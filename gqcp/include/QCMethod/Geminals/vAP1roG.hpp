@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Mathematical/Optimization/LinearEquation/LinearEquationEnvironment.hpp"
 #include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp"
 #include "QCMethod/QCStructure.hpp"
 #include "QCModel/Geminals/vAP1roG.hpp"

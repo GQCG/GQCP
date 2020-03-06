@@ -32,6 +32,4 @@ void bindNonLinearEquationEnvironment(py::module& module) {
 }
 
 
-
-
 }  // namespace gqcpy

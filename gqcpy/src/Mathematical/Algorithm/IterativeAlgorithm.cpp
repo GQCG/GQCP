@@ -46,7 +46,7 @@ template <typename Environment>
 void bindIterativeAlgorithm(py::module& module, const std::string& suffix, const std::string& description) {
 
     py::class_<GQCP::IterativeAlgorithm<Environment>>(module,
-        ("IterativeAlgorithm" + suffix).c_str(),
+        ("IterativeAlgorithm_" + suffix).c_str(),
         description.c_str()
     );
 }

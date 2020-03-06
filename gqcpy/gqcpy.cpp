@@ -36,13 +36,17 @@ void bindBasisTransform(py::module& module);
 
 
 // Mathematical - Algorithm
-void bindAlgorithm(py::module& module);
+void bindAlgorithms(py::module& module);
 void bindIterativeAlgorithms(py::module& module);
 
 
 // Mathematical - Optimization - Eigenproblem
 void bindEigenproblemEnvironment(py::module& module);
 void bindEigenproblemSolver(py::module& module);
+
+
+// Mathematical - Optimization - LinearEquation
+void bindLinearEquationSolver(py::module& module);
 
 
 // Mathematical - Optimization - NonLinearEquation
@@ -83,6 +87,7 @@ void bindQCMethodCIs(py::module& module);
 // QCMethod - Geminals
 void bindPSEnvironment(py::module& module);
 void bindQCMethodAP1roG(py::module& module);
+void bindQCMethodvAP1roG(py::module& module);
 
 
 // QCMethod - HF
@@ -103,6 +108,7 @@ void bindLinearExpansions(py::module& module);
 // QCModel - Geminals
 void bindAP1roGGeminalCoefficients(py::module& module);
 void bindQCModelAP1roG(py::module& module);
+void bindQCModelvAP1roG(py::module& module);
 
 
 // QCModel - HF
@@ -132,13 +138,17 @@ PYBIND11_MODULE (gqcpy, module) {
 
 
     // Mathematical - Algorithm
-    gqcpy::bindAlgorithm(module);
+    gqcpy::bindAlgorithms(module);
     gqcpy::bindIterativeAlgorithms(module);
 
 
     // Mathematical - Optimization - Eigenproblem
     gqcpy::bindEigenproblemEnvironment(module);
     gqcpy::bindEigenproblemSolver(module);
+
+
+    // Mathematical - Optimization - LinearEquation
+    gqcpy::bindLinearEquationSolver(module);
 
 
     // Mathematical - Optimization - NonLinearEquation
@@ -179,6 +189,7 @@ PYBIND11_MODULE (gqcpy, module) {
     // QCMethod - Geminals
     gqcpy::bindPSEnvironment(module);
     gqcpy::bindQCMethodAP1roG(module);
+    gqcpy::bindQCMethodvAP1roG(module);
 
 
     // QCMethod - HF
@@ -199,6 +210,7 @@ PYBIND11_MODULE (gqcpy, module) {
     // QCModel - Geminals
     gqcpy::bindAP1roGGeminalCoefficients(module);
     gqcpy::bindQCModelAP1roG(module);
+    gqcpy::bindQCModelvAP1roG(module);
 
 
     // QCModel - HF

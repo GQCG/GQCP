@@ -15,8 +15,9 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "QCModel/Geminals/AP1roG.hpp"
+#include "QCModel/Geminals/vAP1roG.hpp"
 
+#include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
 
 
@@ -26,16 +27,22 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
-void bindQCModelAP1roG(py::module& module) {
-    py::class_<GQCP::QCModel::AP1roG>(module, "QCModel_AP1roG", "The AP1roG wave function model.")
+void bindQCModelvAP1roG(py::module& module) {
+    py::class_<GQCP::QCModel::vAP1roG>(module, "QCModel_vAP1roG", "The variationally optimized AP1roG wave function model.")
 
         .def("geminalCoefficients",
-            &GQCP::QCModel::AP1roG::geminalCoefficients,
+            &GQCP::QCModel::vAP1roG::geminalCoefficients,
             "Return the corresponding geminal coefficients of these AP1roG model parameters."
+        )
+
+        .def("lagrangeMultipliers",
+            [ ] (const GQCP::QCModel::vAP1roG& qc_model) {
+                return qc_model.lagrangeMultipliers().asMatrix();
+            },
+            "Return the Lagrange multipliers."
         )
     ;
 }
-
 
 
 }  // namespace gqcpy

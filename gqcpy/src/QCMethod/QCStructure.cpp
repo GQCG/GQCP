@@ -22,6 +22,7 @@
 #include "QCMethod/QCStructure.hpp"
 #include "QCModel/CI/LinearExpansion.hpp"
 #include "QCModel/Geminals/AP1roG.hpp"
+#include "QCModel/Geminals/vAP1roG.hpp"
 #include "QCModel/HF/RHF.hpp"
 
 #include <pybind11/eigen.h>
@@ -96,6 +97,7 @@ void bindQCStructures(py::module& module) {
     bindQCStructure<GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>>(module, "LinearExpansionSpinResolvedSelected", "A quantum chemical structure for linear expansions in a spin-resolved selected ONV basis.");
 
     bindQCStructure<GQCP::QCModel::AP1roG>(module, "AP1roG", "A quantum chemical structure for AP1roG parameters.");
+    bindQCStructure<GQCP::QCModel::vAP1roG>(module, "vAP1roG", "A quantum chemical structure for vAP1roG parameters.");
 
     bindQCStructure<GQCP::QCModel::RHF<double>>(module, "RHF", "A quantum chemical structure for RHF parameters.");
 }

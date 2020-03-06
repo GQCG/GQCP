@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "QCModel/Geminals/AP1roG.hpp"
+#include "Mathematical/Optimization/LinearEquation/LinearEquationSolver.hpp"
 
 #include <pybind11/pybind11.h>
 
@@ -26,16 +26,24 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
-void bindQCModelAP1roG(py::module& module) {
-    py::class_<GQCP::QCModel::AP1roG>(module, "QCModel_AP1roG", "The AP1roG wave function model.")
+void bindLinearEquationSolver(py::module& module) {
 
-        .def("geminalCoefficients",
-            &GQCP::QCModel::AP1roG::geminalCoefficients,
-            "Return the corresponding geminal coefficients of these AP1roG model parameters."
-        )
-    ;
+    auto module_linear_equation_solver = module.def_submodule("LinearEquationSolver");
+
+    module_linear_equation_solver.def("HouseholderQR",
+        [ ] () {
+            return GQCP::LinearEquationSolver<double>::HouseholderQR();
+        },
+        "Return a linear equations solver that uses the Householder QR algorithm."
+    );
+
+    module_linear_equation_solver.def("ColPivHouseholderQR",
+        [ ] () {
+            return GQCP::LinearEquationSolver<double>::ColPivHouseholderQR();
+        },
+        "Return a linear equations solver that uses the Householder QR (with column-pivoting) algorithm."
+    );
 }
-
 
 
 }  // namespace gqcpy
