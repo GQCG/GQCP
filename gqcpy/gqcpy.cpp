@@ -85,6 +85,7 @@ void bindQCMethodCIs(py::module& module);
 
 
 // QCMethod - Geminals
+void bindAP1roGLagrangianNewtonOrbitalOptimizer(py::module& module);
 void bindPSEnvironment(py::module& module);
 void bindQCMethodAP1roG(py::module& module);
 void bindQCMethodvAP1roG(py::module& module);
@@ -187,6 +188,7 @@ PYBIND11_MODULE (gqcpy, module) {
 
 
     // QCMethod - Geminals
+    gqcpy::bindAP1roGLagrangianNewtonOrbitalOptimizer(module);
     gqcpy::bindPSEnvironment(module);
     gqcpy::bindQCMethodAP1roG(module);
     gqcpy::bindQCMethodvAP1roG(module);
