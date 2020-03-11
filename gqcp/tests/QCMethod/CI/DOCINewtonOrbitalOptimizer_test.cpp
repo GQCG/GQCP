@@ -23,28 +23,36 @@
 
 #include "Basis/transform.hpp"
 #include "Mathematical/Optimization/Minimization/IterativeIdentitiesHessianModifier.hpp"
+#include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
+#include "Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Processing/RDM/FCIRDMBuilder.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
+#include "QCMethod/CI/CIEnvironment.hpp"
 #include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF.hpp"
 #include "QCMethod/HF/RHFSCFSolver.hpp"
 
 
-// dim = 2 for DOCI
+/**
+ *  Check if OO-DOCI (dense) matches FCI for a two-electron system.
+ *  The system of interested is H2//STO-3G, with reference results obtained from Christina at Ayer's lab.
+ */
 BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_sto_3g ) {
 
-    // Check if OO-DOCI = FCI for a two-electron system
-    double reference_fci_energy = -1.13726333769813;
+    const double reference_fci_energy = -1.13726333769813;
 
-    // Prepare the molecular Hamiltonian in the RHF basis
-    auto h2 = GQCP::Molecule::ReadXYZ("data/h2_cristina.xyz");
-    double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(h2).value();  // 0.713176780299327
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (h2, "STO-3G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
-    auto K = sq_hamiltonian.dimension();
+    // Prepare the molecular Hamiltonian in the canonical RHF basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2_cristina.xyz");
+    const auto N_P = molecule.numberOfElectrons() / 2;
+    const auto internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(molecule).value();  // 0.713176780299327
 
-    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (molecule, "STO-3G");
+    const auto K = spinor_basis.numberOfSpatialOrbitals();
+
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
+
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian);
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
@@ -52,147 +60,45 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_sto_3g ) {
     basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
 
 
-    // Do the DOCI orbital optimization using specified solver options
-    GQCP::SpinUnresolvedONVBasis fock_space (K, h2.numberOfElectrons()/2);  // dim = 120
-    GQCP::DOCI doci (fock_space);
-    GQCP::DenseSolverOptions ci_solver_options;
+    // Do the DOCI orbital optimization.
+    const GQCP::SeniorityZeroONVBasis onv_basis (K, N_P);
+
+    auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
+    auto solver = GQCP::EigenproblemSolver::Dense();
+    using EigenproblemSolver = decltype(solver);
+
     auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
-    GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, ci_solver_options, hessian_modifier);
+    GQCP::DOCINewtonOrbitalOptimizer<EigenproblemSolver> orbital_optimizer (onv_basis, solver, environment, hessian_modifier);
     orbital_optimizer.optimize(spinor_basis, sq_hamiltonian);
 
+    const auto OO_DOCI_eigenvalue = orbital_optimizer.get_eigenpair().get_eigenvalue();
 
-    // Check if the OO-DOCI energy is equal to the FCI energy
-    auto OO_DOCI_eigenvalue = orbital_optimizer.get_eigenpair().get_eigenvalue();
-    double OO_DOCI_energy = OO_DOCI_eigenvalue + internuclear_repulsion_energy;
+
+    // Check if the OO-DOCI energy is equal to the FCI energy.
+    const double OO_DOCI_energy = OO_DOCI_eigenvalue + internuclear_repulsion_energy;
     BOOST_CHECK(std::abs(OO_DOCI_energy - reference_fci_energy) < 1.0e-08);
 }
 
 
-// dim = 4 for DOCI
-BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31g ) {
-
-    // Check if OO-DOCI = FCI for a two-electron system, starting from the FCI naturals
-    double reference_fci_energy = -1.15168629203274;
-
-
-    // Prepare the molecular Hamiltonian in the RHF basis
-    auto h2 = GQCP::Molecule::ReadXYZ("data/h2_cristina.xyz");
-    double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(h2).value();  // 0.713176780299327
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (h2, "6-31G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
-    auto K = sq_hamiltonian.dimension();
-
-    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
-    auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-    const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian);
-    const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
-
-    basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
-
-
-    // Transform the molecular Hamiltonian to the FCI natural basis
-    size_t N_a = h2.numberOfElectrons() / 2;
-    size_t N_b = h2.numberOfElectrons() / 2;
-    GQCP::SpinResolvedONVBasis fci_fock_space (K, N_a, N_b);  // dim = 441
-    GQCP::FCI fci (fci_fock_space);
-    GQCP::CISolver fci_solver (fci, sq_hamiltonian);
-    GQCP::DenseSolverOptions ci_solver_options;
-    fci_solver.solve(ci_solver_options);
-
-    GQCP::VectorX<double> coef = fci_solver.makeLinearExpansion().get_coefficients();
-    GQCP::FCIRDMBuilder fci_rdm_builder (fci_fock_space);
-    GQCP::OneRDM<double> one_rdm = fci_rdm_builder.calculate1RDMs(coef).one_rdm;
-
-    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (one_rdm);
-    GQCP::TransformationMatrix<double> U = saes.eigenvectors();
-
-    basisRotate(spinor_basis, sq_hamiltonian, U);
-
-
-    // Do the DOCI orbital optimization, using the FCI natural orbitals
-    GQCP::SpinUnresolvedONVBasis doci_fock_space (K, h2.numberOfElectrons()/2);  // dim = 120
-    GQCP::DOCI doci (doci_fock_space);
-    auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
-    GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, ci_solver_options, hessian_modifier);
-    orbital_optimizer.optimize(spinor_basis, sq_hamiltonian);
-
-
-    // Check if the OO-DOCI energy is equal to the FCI energy
-    auto OO_DOCI_eigenvalue = orbital_optimizer.get_eigenpair().get_eigenvalue();
-    double OO_DOCI_energy = OO_DOCI_eigenvalue + internuclear_repulsion_energy;
-    BOOST_CHECK(std::abs(OO_DOCI_energy - reference_fci_energy) < 1.0e-08);
-}
-
-
-// dim = 10 for DOCI
-BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx ) {
-
-    double reference_fci_energy = -1.16514875501195;
-
-    // Prepare the molecular Hamiltonian in the RHF basis
-    auto h2 = GQCP::Molecule::ReadXYZ("data/h2_cristina.xyz");
-    double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(h2).value();  // 0.713176780299327
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (h2, "6-31G**");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
-    auto K = sq_hamiltonian.dimension();
-
-
-    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
-    auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-    const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian);
-    const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
-
-    basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
-
-
-    // Transform the molecular Hamiltonian to the FCI natural basis
-    size_t N_a = h2.numberOfElectrons() / 2;
-    size_t N_b = h2.numberOfElectrons() / 2;
-    GQCP::SpinResolvedONVBasis fci_fock_space (K, N_a, N_b);  // dim = 441
-    GQCP::FCI fci (fci_fock_space);
-    GQCP::CISolver fci_solver (fci, sq_hamiltonian);
-    GQCP::DenseSolverOptions ci_solver_options;
-    fci_solver.solve(ci_solver_options);
-
-    GQCP::VectorX<double> coef = fci_solver.makeLinearExpansion().get_coefficients();
-    GQCP::FCIRDMBuilder fci_rdm_builder (fci_fock_space);
-    GQCP::OneRDM<double> one_rdm = fci_rdm_builder.calculate1RDMs(coef).one_rdm;
-
-    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (one_rdm);
-    GQCP::TransformationMatrix<double> U = saes.eigenvectors();
-
-    basisRotate(spinor_basis, sq_hamiltonian, U);
-
-
-    // Do the DOCI orbital optimization, using the FCI natural orbitals
-    GQCP::SpinUnresolvedONVBasis doci_fock_space (K, h2.numberOfElectrons()/2);  // dim = 120
-    GQCP::DOCI doci (doci_fock_space);
-    auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
-    GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, ci_solver_options, hessian_modifier);
-    orbital_optimizer.optimize(spinor_basis, sq_hamiltonian);
-
-
-    // Check if the OO-DOCI energy is equal to the FCI energy
-    auto OO_DOCI_eigenvalue = orbital_optimizer.get_eigenpair().get_eigenvalue();
-    double OO_DOCI_energy = OO_DOCI_eigenvalue + internuclear_repulsion_energy;
-    BOOST_CHECK(std::abs(OO_DOCI_energy - reference_fci_energy) < 1.0e-08);
-}
-
-
-// dim = 10 for DOCI
+/**
+ *  Check if OO-DOCI (Davidson) matches FCI for a two-electron system.
+ *  The system of interested is H2//6-31G**, with reference results obtained from Christina at Ayer's lab.
+ */
 BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
 
-    double reference_fci_energy = -1.16514875501195;
+    const double reference_fci_energy = -1.16514875501195;
 
-    // Prepare the molecular Hamiltonianin the RHF basis
-    auto h2 = GQCP::Molecule::ReadXYZ("data/h2_cristina.xyz");
-    double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(h2).value();  // 0.713176780299327
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (h2, "6-31G**");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
-    auto K = sq_hamiltonian.dimension();
+    // Prepare the molecular Hamiltonian in the canonical RHF basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2_cristina.xyz");
+    const auto N_P = molecule.numberOfElectrons() / 2;
+    const auto internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(molecule).value();  // 0.713176780299327
 
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (molecule, "6-31G**");
+    const auto K = spinor_basis.numberOfSpatialOrbitals();
 
-    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
+
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian);
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
@@ -200,37 +106,27 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
     basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
 
 
-    // Transform the molecular Hamiltonian to the FCI natural basis
-    size_t N_a = h2.numberOfElectrons() / 2;
-    size_t N_b = h2.numberOfElectrons() / 2;
-    GQCP::SpinResolvedONVBasis fci_fock_space (K, N_a, N_b);  // dim = 441
-    GQCP::FCI fci (fci_fock_space);
-    GQCP::CISolver fci_solver (fci, sq_hamiltonian);
-    GQCP::DenseSolverOptions ci_solver_options;
-    fci_solver.solve(ci_solver_options);
+    // Do the DOCI orbital optimization.
+    const GQCP::SeniorityZeroONVBasis onv_basis (K, N_P);
 
-    GQCP::VectorX<double> coef = fci_solver.makeLinearExpansion().get_coefficients();
-    GQCP::FCIRDMBuilder fci_rdm_builder (fci_fock_space);
-    GQCP::OneRDM<double> one_rdm = fci_rdm_builder.calculate1RDMs(coef).one_rdm;
-
-    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (one_rdm);
-    GQCP::TransformationMatrix<double> U = saes.eigenvectors();
-
-    basisRotate(spinor_basis, sq_hamiltonian, U);
+    const auto initial_guess = onv_basis.hartreeFockExpansion();
+    auto environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, initial_guess);
+    auto solver = GQCP::EigenproblemSolver::Davidson();
+    using EigenproblemSolver = decltype(solver);
 
 
-    // Do the DOCI orbital optimization, using the FCI natural orbitals
-    GQCP::SpinUnresolvedONVBasis doci_fock_space (K, h2.numberOfElectrons()/2);  // dim = 120
-    GQCP::DOCI doci (doci_fock_space);
-    GQCP::VectorX<double> initial_g = doci_fock_space.hartreeFockExpansion();
-    GQCP::DavidsonSolverOptions davidson_solver_options (initial_g);
+
+
+
     auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
-    GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, ci_solver_options, hessian_modifier);
+    GQCP::DOCINewtonOrbitalOptimizer<EigenproblemSolver> orbital_optimizer (onv_basis, solver, environment, hessian_modifier);
     orbital_optimizer.optimize(spinor_basis, sq_hamiltonian);
 
+    const auto OO_DOCI_eigenvalue = orbital_optimizer.get_eigenpair().get_eigenvalue();
 
-    // Check if the OO-DOCI energy is equal to the FCI energy
-    auto OO_DOCI_eigenvalue = orbital_optimizer.get_eigenpair().get_eigenvalue();
-    double OO_DOCI_energy = OO_DOCI_eigenvalue + internuclear_repulsion_energy;
+
+    // Check if the OO-DOCI energy is equal to the FCI energy.
+    const double OO_DOCI_energy = OO_DOCI_eigenvalue + internuclear_repulsion_energy;
+    std::cout << "OO-DOCI-energy " << OO_DOCI_energy << std::endl;
     BOOST_CHECK(std::abs(OO_DOCI_energy - reference_fci_energy) < 1.0e-08);
 }

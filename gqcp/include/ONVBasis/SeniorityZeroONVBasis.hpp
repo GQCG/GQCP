@@ -41,6 +41,12 @@ public:
     // CONSTRUCTORS
 
     /**
+     *  The default constructor.
+     */
+    SeniorityZeroONVBasis() = default;
+
+
+    /**
      *  @param K            the number of spatial orbitals
      *  @param N_P          the number of electron pairs
      */

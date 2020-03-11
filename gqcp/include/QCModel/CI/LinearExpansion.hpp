@@ -58,6 +58,11 @@ public:
      *  CONSTRUCTORS
      */
 
+    /*
+     *  The default constructor.
+     */
+    LinearExpansion() = default;
+
     /**
      *  Construct a normalized wave function from possibly non-normalized coefficients
      *

@@ -1,7 +1,8 @@
 target_sources(gqcp
     PRIVATE
         CI.hpp
-        # DOCINewtonOrbitalOptimizer.hpp
+        CIEnvironment.hpp
+        DOCINewtonOrbitalOptimizer.hpp
 )
 
 add_subdirectory(HamiltonianBuilder)
