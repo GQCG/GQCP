@@ -19,8 +19,8 @@
 
 
 #include "Mathematical/Representation/Matrix.hpp"
-#include "QCMethod/Geminals/GeminalCoefficientsInterface.hpp"
 #include "QCModel/CI/LinearExpansion.hpp"
+#include "QCModel/Geminals/GeminalCoefficientsInterface.hpp"
 
 
 namespace GQCP {

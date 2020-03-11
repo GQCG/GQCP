@@ -20,15 +20,15 @@
 
 #include "Mathematical/Representation/BlockMatrix.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "QCMethod/Geminals/GeminalCoefficientsInterface.hpp"
 #include "QCModel/CI/LinearExpansion.hpp"
+#include "QCModel/Geminals/GeminalCoefficientsInterface.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  A class that represents geminal coefficients for an AP1roG wave function
+ *  Geminal coefficients for an AP1roG wave function.
  */
 class AP1roGGeminalCoefficients : public GeminalCoefficientsInterface {
 private:

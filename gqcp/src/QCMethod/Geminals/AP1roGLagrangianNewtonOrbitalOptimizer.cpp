@@ -17,9 +17,10 @@
 // 
 #include "QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.hpp"
 
-#include "QCMethod/Geminals/AP1roGLagrangianOptimizer.hpp"
-#include "QCMethod/Geminals/AP1roGPSESolver.hpp"
-#include "QCMethod/Geminals/AP1roG.hpp"
+#include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationSolver.hpp"
+#include "QCMethod/Geminals/PSEnvironment.hpp"
+#include "QCMethod/Geminals/vAP1roG.hpp"
+#include "QCModel/Geminals/vAP1roG.hpp"
 
 
 namespace GQCP {
@@ -74,16 +75,16 @@ AP1roGLagrangianNewtonOrbitalOptimizer::AP1roGLagrangianNewtonOrbitalOptimizer(c
  */
 void AP1roGLagrangianNewtonOrbitalOptimizer::prepareDMCalculation(const SQHamiltonian<double>& sq_hamiltonian) {
 
-    // Solve the AP1roG PSEs for the geminal coefficients
-    const AP1roGPSEs pses (sq_hamiltonian, this->N_P);
-    const AP1roGPSESolver pse_solver (pses, this->pse_convergence_threshold, this->pse_maximum_number_of_iterations);
-    pse_solver.solve(G);
-    this->E = calculateAP1roGEnergy(this->G, sq_hamiltonian);
+    // Optimize the vAP1roG wave function model in this basis and update the results.
+    auto non_linear_solver = GQCP::NonLinearEquationSolver<double>::Newton();
+    auto non_linear_environment = GQCP::PSEnvironment::AP1roG(sq_hamiltonian, this->G);  // the initial guess are the current geminal coefficients
+    auto linear_solver = GQCP::LinearEquationSolver<double>::HouseholderQR();
 
+    const auto qc_structure = GQCP::QCMethod::vAP1roG(sq_hamiltonian, N_P).optimize(non_linear_solver, non_linear_environment, linear_solver);
 
-    // Determine the Lagrangian multipliers
-    AP1roGLagrangianOptimizer lagrangian_optimizer (this->G, sq_hamiltonian);
-    this->multipliers = lagrangian_optimizer.solve();
+    this->G = qc_structure.groundStateParameters().geminalCoefficients();
+    this->multipliers = qc_structure.groundStateParameters().lagrangeMultipliers();
+    this->E = qc_structure.groundStateEnergy();
 }
 
 
@@ -91,7 +92,7 @@ void AP1roGLagrangianNewtonOrbitalOptimizer::prepareDMCalculation(const SQHamilt
  *  @return the current 1-DM
  */
 OneRDM<double> AP1roGLagrangianNewtonOrbitalOptimizer::calculate1RDM() const {
-    return GQCP::calculate1RDM(this->G, this->multipliers);
+    return GQCP::QCModel::vAP1roG::calculate1RDM(this->G, this->multipliers);
 }
 
 
@@ -99,7 +100,7 @@ OneRDM<double> AP1roGLagrangianNewtonOrbitalOptimizer::calculate1RDM() const {
  *  @return the current 2-DM
  */
 TwoRDM<double> AP1roGLagrangianNewtonOrbitalOptimizer::calculate2RDM() const {
-    return GQCP::calculate2RDM(this->G, this->multipliers);
+    return GQCP::QCModel::vAP1roG::calculate2RDM(this->G, this->multipliers);
 }
 
 

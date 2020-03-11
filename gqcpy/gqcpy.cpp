@@ -26,19 +26,32 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
-// Basis
+// Basis - SpinorBasis
 void bindGSpinorBasis(py::module& module);
 void bindRSpinorBasis(py::module& module);
 
 
+// Basis
+void bindBasisTransform(py::module& module);
+
+
 // Mathematical - Algorithm
-void bindAlgorithm(py::module& module);
+void bindAlgorithms(py::module& module);
 void bindIterativeAlgorithms(py::module& module);
 
 
 // Mathematical - Optimization - Eigenproblem
 void bindEigenproblemEnvironment(py::module& module);
 void bindEigenproblemSolver(py::module& module);
+
+
+// Mathematical - Optimization - LinearEquation
+void bindLinearEquationSolver(py::module& module);
+
+
+// Mathematical - Optimization - NonLinearEquation
+void bindNonLinearEquationEnvironment(py::module& module);
+void bindNonLinearEquationSolver(py::module& module);
 
 
 // Molecule
@@ -72,6 +85,13 @@ void bindCIFactory(py::module& module);
 void bindQCMethodCIs(py::module& module);
 
 
+// QCMethod - Geminals
+void bindAP1roGLagrangianNewtonOrbitalOptimizer(py::module& module);
+void bindPSEnvironment(py::module& module);
+void bindQCMethodAP1roG(py::module& module);
+void bindQCMethodvAP1roG(py::module& module);
+
+
 // QCMethod - HF
 void bindDiagonalRHFFockMatrixObjective(py::module& module);
 void bindQCMethodRHF(py::module& module);
@@ -85,6 +105,12 @@ void bindQCStructures(py::module& module);
 
 // QCModel - CI
 void bindLinearExpansions(py::module& module);
+
+
+// QCModel - Geminals
+void bindAP1roGGeminalCoefficients(py::module& module);
+void bindQCModelAP1roG(py::module& module);
+void bindQCModelvAP1roG(py::module& module);
 
 
 // QCModel - HF
@@ -104,19 +130,32 @@ void bindVersion(py::module& module);
  */
 PYBIND11_MODULE (gqcpy, module) {
 
-    // Basis
+    // Basis - SpinorBasis
     gqcpy::bindGSpinorBasis(module);
     gqcpy::bindRSpinorBasis(module);
 
 
+    // Basis
+    gqcpy::bindBasisTransform(module);
+
+
     // Mathematical - Algorithm
-    gqcpy::bindAlgorithm(module);
+    gqcpy::bindAlgorithms(module);
     gqcpy::bindIterativeAlgorithms(module);
 
 
     // Mathematical - Optimization - Eigenproblem
     gqcpy::bindEigenproblemEnvironment(module);
     gqcpy::bindEigenproblemSolver(module);
+
+
+    // Mathematical - Optimization - LinearEquation
+    gqcpy::bindLinearEquationSolver(module);
+
+
+    // Mathematical - Optimization - NonLinearEquation
+    gqcpy::bindNonLinearEquationEnvironment(module);
+    gqcpy::bindNonLinearEquationSolver(module);
 
 
     // Molecule
@@ -150,6 +189,13 @@ PYBIND11_MODULE (gqcpy, module) {
     gqcpy::bindQCMethodCIs(module);
 
 
+    // QCMethod - Geminals
+    gqcpy::bindAP1roGLagrangianNewtonOrbitalOptimizer(module);
+    gqcpy::bindPSEnvironment(module);
+    gqcpy::bindQCMethodAP1roG(module);
+    gqcpy::bindQCMethodvAP1roG(module);
+
+
     // QCMethod - HF
     gqcpy::bindDiagonalRHFFockMatrixObjective(module);
     gqcpy::bindQCMethodRHF(module);
@@ -163,6 +209,12 @@ PYBIND11_MODULE (gqcpy, module) {
 
     // QCModel - CI
     gqcpy::bindLinearExpansions(module);
+
+
+    // QCModel - Geminals
+    gqcpy::bindAP1roGGeminalCoefficients(module);
+    gqcpy::bindQCModelAP1roG(module);
+    gqcpy::bindQCModelvAP1roG(module);
 
 
     // QCModel - HF

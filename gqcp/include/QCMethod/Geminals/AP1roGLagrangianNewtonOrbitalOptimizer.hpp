@@ -19,8 +19,8 @@
 
 
 #include "Mathematical/Representation/BlockMatrix.hpp"
-#include "QCMethod/Geminals/AP1roGGeminalCoefficients.hpp"
 #include "QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp"
+#include "QCModel/Geminals/AP1roGGeminalCoefficients.hpp"
 
 
 namespace GQCP {

@@ -20,8 +20,8 @@
 
 #include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "QCMethod/QCMethodProtocol.hpp"
 #include "QCMethod/QCObjective.hpp"
+#include "QCMethod/QCStructure.hpp"
 #include "QCMethod/HF/RHFSCFEnvironment.hpp"
 #include "QCModel/HF/RHF.hpp"
 
@@ -38,8 +38,7 @@ namespace QCMethod {
  *  @tparam _Scalar             the type of scalar that is used for the expansion of the spatial orbitals in their underlying scalar basis
  */
 template <typename _Scalar>
-class RHF:
-    public GQCP::QCMethodProtocol<QCModel::RHF<_Scalar>, QCMethod::RHF<_Scalar>> {
+class RHF {
 
 public:
     using Scalar = _Scalar;

@@ -19,15 +19,15 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp"
-
 #include "Basis/transform.hpp"
+#include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationSolver.hpp"
 #include "QCMethod/Geminals/AP1roG.hpp"
-#include "QCMethod/Geminals/AP1roGPSEs.hpp"
-#include "QCMethod/Geminals/AP1roGPSESolver.hpp"
+#include "QCMethod/Geminals/PSEnvironment.hpp"
 #include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF.hpp"
 #include "QCMethod/HF/RHFSCFSolver.hpp"
+#include "QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp"
+#include "QCModel/Geminals/AP1roG.hpp"
 
 
 /**
@@ -60,9 +60,9 @@ BOOST_AUTO_TEST_CASE ( analytical_rotation_energy_AP1roG ) {
             const GQCP::JacobiRotationParameters jacobi_rot_par {p, q, theta};
 
             // Calculate geminal coefficients as an ingredient for the AP1roG energy
-            const GQCP::AP1roGPSEs pses (sq_hamiltonian, N_P);
-            const GQCP::AP1roGPSESolver pse_solver (pses);
-            const auto G = pse_solver.solve();  // zero initial guess
+            auto solver = GQCP::NonLinearEquationSolver<double>::Newton();
+            auto environment = GQCP::PSEnvironment::AP1roG(sq_hamiltonian, N_P);  // zero initial guess
+            const auto G = GQCP::QCMethod::AP1roG(sq_hamiltonian, N_P).optimize(solver, environment).groundStateParameters().geminalCoefficients();
 
 
             // Calculate the analytical energy after rotation
@@ -73,10 +73,10 @@ BOOST_AUTO_TEST_CASE ( analytical_rotation_energy_AP1roG ) {
 
 
             // Calculate the energy after a numerical rotation (using a Jacobi rotation matrix)
-            const double E_before = GQCP::calculateAP1roGEnergy(G, sq_hamiltonian);
+            const double E_before = GQCP::QCModel::AP1roG::calculateEnergy(G, sq_hamiltonian);
             auto sq_ham_copy = sq_hamiltonian;
             sq_ham_copy.rotate(jacobi_rot_par);
-            const double E_after = GQCP::calculateAP1roGEnergy(G, sq_ham_copy);
+            const double E_after = GQCP::QCModel::AP1roG::calculateEnergy(G, sq_ham_copy);
             const double E_correction_numerical = E_after - E_before;
 
 
@@ -107,17 +107,18 @@ BOOST_AUTO_TEST_CASE ( orbital_optimize ) {
 
 
     // Get the initial AP1roG energy
-    const GQCP::AP1roGPSEs pses (sq_hamiltonian, N_P);
-    const GQCP::AP1roGPSESolver pse_solver (pses);
-    const auto initial_G = pse_solver.solve();  // zero initial guess
-    const double initial_energy = GQCP::calculateAP1roGEnergy(initial_G, sq_hamiltonian);
+    auto solver = GQCP::NonLinearEquationSolver<double>::Newton();
+    auto environment = GQCP::PSEnvironment::AP1roG(sq_hamiltonian, N_P);  // zero initial guess
+    const auto qc_structure = GQCP::QCMethod::AP1roG(sq_hamiltonian, N_P).optimize(solver, environment);
+
+    const auto G_initial = qc_structure.groundStateParameters().geminalCoefficients();
+    const auto initial_energy = qc_structure.groundStateEnergy();
 
 
     // Do an AP1roG orbital optimization using Jacobi rotations and check if the energy is lower
-    GQCP::AP1roGJacobiOrbitalOptimizer orbital_optimizer (initial_G, 1.0e-04);
+    GQCP::AP1roGJacobiOrbitalOptimizer orbital_optimizer (G_initial, 1.0e-04);
     orbital_optimizer.optimize(spinor_basis, sq_hamiltonian);
     const double optimized_energy = orbital_optimizer.get_electronic_energy();
-
 
     BOOST_CHECK(optimized_energy < initial_energy);
 }

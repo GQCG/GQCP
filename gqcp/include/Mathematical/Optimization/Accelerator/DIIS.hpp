@@ -18,6 +18,8 @@
 #pragma once
 
 
+#include "Mathematical/Optimization/LinearEquation/LinearEquationEnvironment.hpp"
+#include "Mathematical/Optimization/LinearEquation/LinearEquationSolver.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 
 #include <vector>
@@ -87,10 +89,12 @@ public:
         b(n) = -1;  // the last entry of b is accessed through n: dimension of b is n+1 - 1 because of computers
 
 
-        // Solve the DIIS linear equations B y = b
-        using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
-        Eigen::HouseholderQR<MatrixType> linear_solver (B);
-        return linear_solver.solve(b);
+        // Solve the DIIS linear equations [B x = b]
+        auto environment = LinearEquationEnvironment<Scalar>(B, b);
+        auto solver = LinearEquationSolver<Scalar>::HouseholderQR();
+        solver.perform(environment);
+
+        return environment.x;
     }
 };
 

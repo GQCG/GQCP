@@ -18,54 +18,75 @@
 #pragma once
 
 
+#include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "Processing/RDM/OneRDM.hpp"
-#include "Processing/RDM/TwoRDM.hpp"
-#include "QCMethod/Geminals/AP1roGGeminalCoefficients.hpp"
+#include "QCMethod/QCStructure.hpp"
+#include "QCModel/Geminals/AP1roG.hpp"
 
 
 namespace GQCP {
+namespace QCMethod {
 
 
 /**
- *  @param G                    the converged AP1roG geminal coefficients
- *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
- *
- *  @return the AP1roG electronic energy
+ *  The AP1roG quantum chemical method.
  */
-double calculateAP1roGEnergy(const AP1roGGeminalCoefficients& G, const SQHamiltonian<double>& sq_hamiltonian);
-
-/**
- *  @param G                the AP1roG geminal coefficients
- *  @param multipliers      the AP1roG Lagrangian multipliers
- *
- *  @return the AP1roG 1-DM
- */
-OneRDM<double> calculate1RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers);
-
-/**
- *  @param G                the AP1roG geminal coefficients
- *  @param multipliers      the AP1roG Lagrangian multipliers
- *
- *  @return the AP1roG number 2-RDM (the Delta-matrix in the notes)
- */
-SquareMatrix<double> calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers);
-
-/**
- *  @param G                the AP1roG geminal coefficients
- *  @param multipliers      the AP1roG Lagrangian multipliers
- *
- *  @return the AP1roG pair 2-RDM (the Pi-matrix in the notes)
- */
-SquareMatrix<double> calculatePair2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers);
-
-/**
- *  @param G                the AP1roG geminal coefficients
- *  @param multipliers      the AP1roG Lagrangian multipliers
- *
- *  @return the AP1roG 2-DM
- */
-TwoRDM<double> calculate2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers);
+class AP1roG {
 
 
+private:
+    size_t N_P;  // the number of electron pairs
+    size_t K;  // the number of spatial orbitals
+
+    SQHamiltonian<double> sq_hamiltonian;  // the second-quantized Hamiltonian in an orthonormal basis
+
+
+public:
+
+    /*
+     *  CONSTRUCTORS
+     */
+
+    /**
+     *  @param sq_hamiltonian           the second-quantized Hamiltonian in an orthonormal basis
+     *  @param N_P                      the number of electron pairs
+     */
+    AP1roG(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P) :
+        N_P (N_P),
+        K (sq_hamiltonian.dimension()),  // number of spatial orbitals
+        sq_hamiltonian (sq_hamiltonian)
+    {}
+
+
+    /*
+     *  PUBLIC METHODS
+     */
+
+    /**
+     *  Optimize the AP1roG wave function model: find the parameters satisfy the given objective.
+     * 
+     *  @tparam Solver              the type of the solver
+     * 
+     *  @param solver               the solver that will try to optimize the parameters
+     *  @param environment          the environment, which acts as a sort of calculation space for the solver
+     */
+    template <typename Solver>
+    QCStructure<GQCP::QCModel::AP1roG> optimize(Solver& solver, NonLinearEquationEnvironment<double>& environment) const {
+
+        // The AP1roG method's responsibility is to try to optimize the parameters of its method, given a solver and associated environment.
+        solver.perform(environment);
+
+        // To make a QCStructure, we need the electronic energy, geminal coefficients and number of electrons.
+        // Furthermore, the solvers only find the ground state wave function parameters, so the QCStructure only needs to contain the parameters for one state.
+        const auto G_optimal = AP1roGGeminalCoefficients::FromColumnMajor(environment.variables.back(), this->N_P, this->K);
+        const GQCP::QCModel::AP1roG ap1rog_parameters {G_optimal};
+
+        const auto E_electronic = ap1rog_parameters.calculateEnergy(sq_hamiltonian);
+
+        return QCStructure<GQCP::QCModel::AP1roG>({E_electronic}, {ap1rog_parameters});
+    }
+};
+
+
+}  // namespace QCMethod
 }  // namespace GQCP

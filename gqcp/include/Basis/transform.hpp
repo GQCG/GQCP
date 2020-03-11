@@ -26,7 +26,6 @@
 #include "Operator/SecondQuantized/USQHamiltonian.hpp"
 
 
-
 namespace GQCP {
 
 

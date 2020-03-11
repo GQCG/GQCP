@@ -15,49 +15,25 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "QCMethod/Geminals/AP1roG.hpp"
+#include "QCModel/Geminals/vAP1roG.hpp"
+
+#include "QCModel/Geminals/AP1roG.hpp"
 
 
 namespace GQCP {
 
 
-/**
- *  @param G                    the converged AP1roG geminal coefficients
- *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
- *
- *  @return the AP1roG electronic energy
+/*
+ *  STATIC PUBLIC METHODS
  */
-double calculateAP1roGEnergy(const AP1roGGeminalCoefficients& G, const SQHamiltonian<double>& sq_hamiltonian) {
-
-    const auto& h = sq_hamiltonian.core().parameters();
-    const auto& g = sq_hamiltonian.twoElectron().parameters();
-
-
-    // KISS implementation of the AP1roG energy
-    double E = 0.0;
-    for (size_t j = 0; j < G.get_N_P(); j++) {
-        E += 2 * h(j,j);
-
-        for (size_t k = 0; k < G.get_N_P(); k++) {
-            E += 2 * g(k,k,j,j) - g(k,j,j,k);
-        }
-
-        for (size_t b = G.get_N_P(); b < G.get_K(); b++) {
-            E += g(j,b,j,b) * G(j,b);
-        }
-    }
-
-    return E;
-}
-
 
 /**
  *  @param G                the AP1roG geminal coefficients
  *  @param multipliers      the AP1roG Lagrangian multipliers
  *
- *  @return the AP1roG 1-DM
+ *  @return the AP1roG response 1-DM
  */
-OneRDM<double> calculate1RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers) {
+OneRDM<double> QCModel::vAP1roG::calculate1RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers) {
 
     OneRDM<double> D = OneRDM<double>::Zero(G.get_K(), G.get_K());
 
@@ -95,12 +71,49 @@ OneRDM<double> calculate1RDM(const AP1roGGeminalCoefficients& G, const BlockMatr
 
 
 /**
+ *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
+ *  @param N_P                  the number of electron pairs
+ * 
+ *  @return the response force (-F_lambda) that is used to solve the linear equations for the Lagrange multipliers lambda in [k_lambda lambda = -F_lambda]
+ */
+BlockMatrix<double> QCModel::vAP1roG::calculateMultiplierResponseForce(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P) {
+
+    const auto K = sq_hamiltonian.dimension();  // number of spatial orbitals
+    const auto& g = sq_hamiltonian.twoElectron().parameters();
+
+    BlockMatrix<double> F_lambda (0, N_P, N_P, K);
+    for (size_t i = 0; i < N_P; i++) {
+        for (size_t a = N_P; a < K; a++) {
+            F_lambda(i,a) = -g(i,a,i,a);
+        }
+    }
+
+    return F_lambda;
+}
+
+
+/**
+ *  @param G                    the AP1roG geminal coefficients
+ *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
+ * 
+ *  @return the response force constant (k_lambda) that is used to solve the linear equations for the Lagrange multipliers lambda in [k_lambda lambda = -F_lambda]
+ */
+MatrixX<double> QCModel::vAP1roG::calculateMultiplierResponseForceConstant(const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G) {
+
+    const auto N_P = G.numberOfElectronPairs();
+
+    const MatrixX<double> k_lambda = QCModel::AP1roG::calculatePSEJacobian(sq_hamiltonian, G).asMatrix().transpose();
+    return k_lambda;
+}
+
+
+/**
  *  @param G                the AP1roG geminal coefficients
  *  @param multipliers      the AP1roG Lagrangian multipliers
  *
- *  @return the AP1roG number 2-RDM (the Delta-matrix in the notes)
+ *  @return the AP1roG response number 2-RDM (the Delta-matrix in the notes)
  */
-SquareMatrix<double> calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers) {
+SquareMatrix<double> QCModel::vAP1roG::calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers) {
 
     size_t N_P = G.get_N_P();
     size_t K = G.get_K();
@@ -175,9 +188,9 @@ SquareMatrix<double> calculateNumber2RDM(const AP1roGGeminalCoefficients& G, con
  *  @param G                the AP1roG geminal coefficients
  *  @param multipliers      the AP1roG Lagrangian multipliers
  *
- *  @return the AP1roG pair 2-RDM (the Pi-matrix in the notes)
+ *  @return the vAP1roG response pair 2-RDM (the Pi-matrix in the notes)
  */
-SquareMatrix<double> calculatePair2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers) {
+SquareMatrix<double> QCModel::vAP1roG::calculatePair2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers) {
 
     size_t N_P = G.get_N_P();
     size_t K = G.get_K();
@@ -264,17 +277,17 @@ SquareMatrix<double> calculatePair2RDM(const AP1roGGeminalCoefficients& G, const
  *  @param G                the AP1roG geminal coefficients
  *  @param multipliers      the AP1roG Lagrangian multipliers
  *
- *  @return the AP1roG 2-DM
+ *  @return the AP1roG response 2-DM
  */
-TwoRDM<double> calculate2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers) {
+TwoRDM<double> QCModel::vAP1roG::calculate2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers) {
 
     size_t K = G.get_K();
     TwoRDM<double> d (K);
     d.setZero();
 
 
-    auto Delta = calculateNumber2RDM(G, multipliers);
-    auto Pi = calculatePair2RDM(G, multipliers);
+    auto Delta = QCModel::vAP1roG::calculateNumber2RDM(G, multipliers);
+    auto Pi = QCModel::vAP1roG::calculatePair2RDM(G, multipliers);
 
     // KISS-implementation
     for (size_t p = 0; p < K; p++) {
@@ -301,6 +314,7 @@ TwoRDM<double> calculate2RDM(const AP1roGGeminalCoefficients& G, const BlockMatr
     }  // spatial orbital loops
 
     return d;
+
 }
 
 

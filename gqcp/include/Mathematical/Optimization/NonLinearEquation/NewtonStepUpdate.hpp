@@ -18,7 +18,10 @@
 #pragma once
 
 
+#include "Mathematical/Algorithm/Algorithm.hpp"
 #include "Mathematical/Algorithm/Step.hpp"
+#include "Mathematical/Optimization/LinearEquation/LinearEquationEnvironment.hpp"
+#include "Mathematical/Optimization/LinearEquation/LinearEquationSolver.hpp"
 #include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 
@@ -34,8 +37,9 @@ namespace NonLinearEquation {
  * 
  *  @tparam _Scalar             the scalar type that is used to represent the variables of the system of equations
  *  @tparam _Environment        the type of the calculation environment
+ *  @tparam _LinearSolver       the type of the solver that performs the Newton step, this defaults to the type of the ColPivHouseholderQR linear equations solver
  */
-template <typename _Scalar, typename _Environment>
+template <typename _Scalar, typename _Environment, typename LinearSolver = decltype(LinearEquationSolver<_Scalar>::ColPivHouseholderQR())>
 class NewtonStepUpdate :
     public Step<_Environment> {
 
@@ -46,7 +50,23 @@ public:
     static_assert(std::is_base_of<NonLinearEquationEnvironment<Scalar>, Environment>::value, "The environment type must derive from NonLinearEquationEnvironment.");
 
 
+private:
+    LinearSolver linear_solver;
+
+
 public:
+
+    /*
+     *  CONSTRUCTORS
+     */
+
+    /**
+     *  @param linear_solver            the linear equation solver that solves for the Newton step, i.e. it finds 'x' in [Jx = - f]. This defaults to the ColPivHouseholderQR linear equations solver
+     */
+    NewtonStepUpdate(const LinearSolver& linear_solver = LinearEquationSolver<Scalar>::ColPivHouseholderQR()) :
+        linear_solver (linear_solver)
+    {}
+
 
     /*
      *  OVERRIDDEN PUBLIC METHODS
@@ -66,8 +86,12 @@ public:
         // Calculate f(x) and J(x), i.e. the values of the vector field and its Jacobian at the given x
         VectorX<Scalar> f_vector = f(x);
         SquareMatrix<Scalar> J_matrix = J(x);
-        const VectorX<Scalar> dx = J_matrix.colPivHouseholderQr().solve(-f_vector);  // the actual Newton step
 
+        // Solve [J dx = -f].
+        auto linear_environment = LinearEquationEnvironment<Scalar>(J_matrix, -f_vector);
+        this->linear_solver.perform(linear_environment);
+
+        const auto dx = linear_environment.x;
         environment.variables.push_back(x + dx);
     }
 };
