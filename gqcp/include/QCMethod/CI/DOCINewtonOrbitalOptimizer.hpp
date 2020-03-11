@@ -38,13 +38,22 @@ namespace GQCP {
  *      - solving the DOCI eigenvalue problem
  *      - solving the Newton step to find the anti-Hermitian orbital rotation parameters
  *      - rotating the underlying spatial orbital basis
+ * 
+ *  @tparam _EigenproblemSolver          the type of the eigenproblem solver that is used
  */
-template <typename EigenproblemSolver>
-class DOCINewtonOrbitalOptimizer : public QCMethodNewtonOrbitalOptimizer {
+template <typename _EigenproblemSolver>
+class DOCINewtonOrbitalOptimizer: 
+    public QCMethodNewtonOrbitalOptimizer {
+
+public:
+    using EigenproblemSolver = _EigenproblemSolver;
+
+
 private:
+    SeniorityZeroONVBasis onv_basis;  // the Fock subspace used for DOCI calculations
+
     EigenproblemEnvironment eigenproblem_environment;
     EigenproblemSolver eigenproblem_solver;
-    SeniorityZeroONVBasis onv_basis;
 
     DOCIRDMBuilder rdm_calculator;
 
@@ -58,9 +67,9 @@ public:
     // CONSTRUCTORS
 
     /**
-     *  @param onv_basis                        
-     *  @param eigenproblem_environment         
-     *  @param eigenproblem_solver              
+     *  @param onv_basis                        the Fock subspace used for DOCI calculations
+     *  @param eigenproblem_environment         the environments that acts as the calculation context for the eigenproblem solver
+     *  @param eigenproblem_solver              the algorithm that tries to solve the DOCI eigenvalue problem
      *  @param hessian_modifier                 the modifier functor that should be used when an indefinite Hessian is encountered
      *  @param number_of_requested_eigenpairs   the number of eigenpairs that should be looked for
      *  @param convergence_threshold            the threshold used to check for convergence
@@ -110,10 +119,8 @@ public:
             this->eigenproblem_environment = CIEnvironment::Dense(sq_hamiltonian, this->onv_basis);
         } else {
 
-            std::cout << "Number of eigenvectors in V: " << this->eigenproblem_environment.V.cols() << std::endl;
-            std::cout << "Iteration counter: " << this->number_of_iterations << std::endl;
-            if (this->number_of_iterations != 0) {
-                // Create a new iterative environment with the current lowest-lying states.
+            // Recreate the iterative eigenproblem environment with the previous guesses.
+            if (this->number_of_iterations != 0) {  // not needed when we haven't done an OO iteration
                 const auto dim = this->onv_basis.dimension();
                 MatrixX<double> V = MatrixX<double>::Zero(dim, this->number_of_requested_eigenpairs);
 

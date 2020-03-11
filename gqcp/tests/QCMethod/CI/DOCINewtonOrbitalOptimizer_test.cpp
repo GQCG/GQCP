@@ -26,8 +26,6 @@
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
 #include "Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "Processing/RDM/FCIRDMBuilder.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
 #include "QCMethod/CI/CIEnvironment.hpp"
 #include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF.hpp"
@@ -36,7 +34,7 @@
 
 /**
  *  Check if OO-DOCI (dense) matches FCI for a two-electron system.
- *  The system of interested is H2//STO-3G, with reference results obtained from Christina at Ayer's lab.
+ *  The system of interest is H2//STO-3G, with reference results obtained from Christina at Ayer's lab.
  */
 BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_sto_3g ) {
 
@@ -60,7 +58,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_sto_3g ) {
     basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
 
 
-    // Do the DOCI orbital optimization.
+    // Do the DOCI orbital optimization: construct the orbital optimizer and let it do its work.
     const GQCP::SeniorityZeroONVBasis onv_basis (K, N_P);
 
     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
@@ -82,7 +80,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_sto_3g ) {
 
 /**
  *  Check if OO-DOCI (Davidson) matches FCI for a two-electron system.
- *  The system of interested is H2//6-31G**, with reference results obtained from Christina at Ayer's lab.
+ *  The system of interest is H2//6-31G**, with reference results obtained from Christina at Ayer's lab.
  */
 BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
 
@@ -106,17 +104,13 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
     basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
 
 
-    // Do the DOCI orbital optimization.
+    // Do the DOCI orbital optimization: construct the orbital optimizer and let it do its work.
     const GQCP::SeniorityZeroONVBasis onv_basis (K, N_P);
 
     const auto initial_guess = onv_basis.hartreeFockExpansion();
     auto environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, initial_guess);
     auto solver = GQCP::EigenproblemSolver::Davidson();
     using EigenproblemSolver = decltype(solver);
-
-
-
-
 
     auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
     GQCP::DOCINewtonOrbitalOptimizer<EigenproblemSolver> orbital_optimizer (onv_basis, solver, environment, hessian_modifier);
@@ -127,6 +121,5 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
 
     // Check if the OO-DOCI energy is equal to the FCI energy.
     const double OO_DOCI_energy = OO_DOCI_eigenvalue + internuclear_repulsion_energy;
-    std::cout << "OO-DOCI-energy " << OO_DOCI_energy << std::endl;
     BOOST_CHECK(std::abs(OO_DOCI_energy - reference_fci_energy) < 1.0e-08);
 }
