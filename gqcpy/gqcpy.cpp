@@ -69,6 +69,8 @@ void bindSQTwoElectronOperator(py::module& module);
 // QCMethod - CI
 void bindCIEnvironments(py::module& module);
 void bindCIFactory(py::module& module);
+void bindDOCINewtonOrbitalOptimizerFactory(py::module& module);
+void bindDOCINewtonOrbitalOptimizers(py::module& module);
 void bindQCMethodCIs(py::module& module);
 
 
@@ -147,6 +149,8 @@ PYBIND11_MODULE (gqcpy, module) {
     // QCMethod - CI
     gqcpy::bindCIEnvironments(module);
     gqcpy::bindCIFactory(module);
+    gqcpy::bindDOCINewtonOrbitalOptimizerFactory(module);
+    gqcpy::bindDOCINewtonOrbitalOptimizers(module);
     gqcpy::bindQCMethodCIs(module);
 
 
