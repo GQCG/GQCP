@@ -128,7 +128,107 @@ public:
     /*
      *  OPERATORS
      */
-    
+    /**
+     *  @param i            the index
+     * 
+     *  @return the i-th component of this operator, for both spin components
+     */
+    USQOneElectronOperator<Scalar, 1, Scalar, 1> operator[](const size_t i) const {
+
+        if (i >= Components) {
+            throw std::invalid_argument("USQOneElectronOperator::operator[](const size_t): The given index is out of bounds.");
+        }
+
+        return SQOneElectronOperator<Scalar, 1, Scalar, 1> {this->fs_alpha[i], this->fs_beta[i]};
+    }
+
+
+    /*
+     *  PUBLIC METHODS
+     */
+
+    /**
+     *  @return read-only matrix representations of all the parameters (integrals) of the different components of this second-quantized operator
+     */
+    const std::array<QCMatrix<Scalar>, Components>& allParameters() const {
+        return this->fs_alpha, this->fs_beta;
+    }
+
+
+    /**
+     *  @return writable matrix representations of all the parameters (integrals) of the different components of this second-quantized operator
+     */
+    std::array<QCMatrix<Scalar>, Components>& allParameters() {
+        return this->fs_alpha, this->fs_beta;
+    }
+
+
+    /**
+     *  @param D                the 1-RDM that represents the wave function
+     *
+     *  @return the expectation values of all components of the one-electron operator
+     */
+    Vector<Scalar, Components> calculateExpectationValue(const OneRDM<Scalar>& D_alpha, const OneRDM<Scalar>& D_beta) const {
+
+        if (this->fs_alpha.dimension() != D_alpha.dimension() || this->fs_beta.dimension() != D_beta.dimension()) {
+            throw std::invalid_argument("USQOneElectronOperator::calculateExpectationValue(const OneRDM<Scalar>, OneRDM<Scalar>): The given 1-RDM is not compatible with the one-electron operator.");
+        }
+
+        std::array<Scalar, Components> expectation_values {};  // zero initialization
+        for (size_t i = 0; i < Components; i++) {
+            expectation_values_alpha[i] = (this->fs_alpha.parameters(i) * D_alpha).trace();
+            expectation_values_beta[i] = (this->fs_beta.parameters(i) * D_beta).trace();
+        }
+
+        return Eigen::Map<Eigen::Matrix<Scalar, Components, 1>>(expectation_values_alpha.data()), Eigen::Map<Eigen::Matrix<Scalar, Components, 1>>(expectation_values_beta.data());  // convert std::array to Vector
+    }
+
+
+    /**
+     *  @param D      the 1-DM (or the response 1-DM for made-variational wave function models)
+     *  @param d      the 2-DM (or the response 2-DM for made-variational wave function models)
+     *
+     *  @return the (generalized) Fockian matrix for each of the components
+     */
+    std::array<SquareMatrix<Scalar>, Components> calculateFockianMatrix(const OneRDM<double>& D_alpha, const TwoRDM<double>& d_alpha, const OneRDM<double>& D_beta, const TwoRDM<double>& d_beta) const {
+
+        // Check if dimensions are compatible
+        if (D_alpha.dimension() != this->fs_alpha.dimension() || D_beta.dimension() != this->fs_beta.dimension()) {
+            throw std::invalid_argument("USQOneElectronOperator::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>, OneRDM<double>, TwoRDM<double>): The 1-RDM is not compatible with the one-electron operator.");
+        }
+
+        if (d_alpha.dimension() != this->fs_alpha.dimension() || d_beta.dimension() != this->fs_beta.dimension()) {
+            throw std::invalid_argument("USQOneElectronOperator::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>, OneRDM<double>, TwoRDM<double>): The 2-RDM is not compatible with the one-electron operator.");
+        }
+
+
+        // A KISS implementation of the calculation of the Fockian matrix
+        std::array<SquareMatrix<Scalar>, Components> Fs_alpha;  // Fock matrices (hence the 's')
+        for (size_t i = 0; i < Components; i++) {
+
+            const auto& f_i_alpha = this->fs_alpha.parameters(i);  // the matrix representation of the parameters of the i-th alpha component
+            const auto& f_i_beta = this->fs_beta.parameters(i); // the matrix representation of the parameters of the i-th beta component
+
+            // Calculate the Fockian matrix for every component and add it to the array
+            SquareMatrix<Scalar> F_i_alpha = SquareMatrix<Scalar>::Zero(this->fs_alpha.dimension(), this->fs_alpha.dimension());  // the alpha Fockian matrix of the i-th component
+            SquareMatrix<Scalar> F_i_beta = SquareMatrix<Scalar>::Zero(this->fs_beta.dimension(), this->fs_beta.dimension());  // the beta Fockian matrix of the i-th component
+
+            for (size_t p = 0; p < this->fs_alpha.dimension(); p++) {
+                for (size_t q = 0; q < this->fs_alpha.dimension(); q++) {
+                    for (size_t r = 0; r < this->fs_alpha.dimension(); r++) {
+                        F_i_alpha(p,q) += f_i_alpha(q,r) * (D_alpha(p,r) + D_alpha(r,p));
+                        F_i_beta(p,q) += f_i_beta(q,r) * (D_beta(p,r) + D_beta(r,p));
+                    }
+                }
+            }  // F_i_alpha and F_i_beta elements loop. Dimensions are the same so written in 1 loop.
+            Fs_alpha[i] = 0.5 * F_i_alpha;
+            Fs_beta[i] = 0.5 * F_i_beta;
+        }
+
+        return Fs_alpha, Fs_beta;
+    }
+
+
 }
 
 } // namespace GQCP
