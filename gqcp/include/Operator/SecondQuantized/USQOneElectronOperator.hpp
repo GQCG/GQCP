@@ -41,7 +41,7 @@ namespace GQCP {
  *  @tparam _Scalar             the scalar type, i.e. the scalar representation of one of the parameters
  *  @tparam _Components         the number of components of the second-quantized operator
  */
-template <typename _Scalar, size_t _Components>
+template <typename _Scalar, size_t _Components, _Scalar, size_t _Components>
 class USQOneElectronOperator{
 public:
 
@@ -49,7 +49,8 @@ public:
     static constexpr auto Components = _Components;
 
 private:
-    std::array<QCMatrix<Scalar>, Components> fs;  // all the matrix representations (hence the s) of the parameters (integrals) of the different components of this second-quantized operator
+    std::array<QCMatrix<Scalar>, Components> fs_alpha;  // all the matrix representations (hence the s) of the parameters (integrals) of the different components of this second-quantized operator
+    std::array<QCMatrix<Scalar>, Components> fs_beta;  // all the matrix representations (hence the s) of the parameters (integrals) of the different components of this second-quantized operator
 
 public:
 
@@ -119,10 +120,10 @@ public:
     /*
      *  GETTERS
      */
-    size_t get_dim_alpha() const { return this->f_alpha.dimension(); }
-    size_t get_dim_beta() const { return this->f_beta.dimension(); }
-    size_t get_K_alpha() const { return this->f_alpha.dimension(); }
-    size_t get_K_beta() const { return this->f_beta.dimension(); }
+    size_t get_dim_alpha() const { return this->fs_alpha.dimension(); }
+    size_t get_dim_beta() const { return this->fs_beta.dimension(); }
+    size_t get_K_alpha() const { return this->fs_alpha.dimension(); }
+    size_t get_K_beta() const { return this->fs_beta.dimension(); }
 
 
     /*
@@ -139,7 +140,7 @@ public:
             throw std::invalid_argument("USQOneElectronOperator::operator[](const size_t): The given index is out of bounds.");
         }
 
-        return SQOneElectronOperator<Scalar, 1, Scalar, 1> {this->fs_alpha[i], this->fs_beta[i]};
+        return USQOneElectronOperator<Scalar, 1, Scalar, 1> {this->fs_alpha[i], this->fs_beta[i]};
     }
 
 
@@ -203,7 +204,8 @@ public:
 
 
         // A KISS implementation of the calculation of the Fockian matrix
-        std::array<SquareMatrix<Scalar>, Components> Fs_alpha;  // Fock matrices (hence the 's')
+        std::array<SquareMatrix<Scalar>, Components> Fs_alpha;  // alpha Fock matrices (hence the 's')
+        std::array<SquareMatrix<Scalar>, Components> Fs_beta; // beta Fock matrices (hence the 's')
         for (size_t i = 0; i < Components; i++) {
 
             const auto& f_i_alpha = this->fs_alpha.parameters(i);  // the matrix representation of the parameters of the i-th alpha component
@@ -229,6 +231,92 @@ public:
     }
 
 
+    /**
+     *  @param D      the 1-DM (or the response 1-DM for made-variational wave function models)
+     *  @param d      the 2-DM (or the response 2-DM for made-variational wave function models)
+     *
+     *  @return the (generalized) super-Fockian matrix
+     */
+    std::array<SquareRankFourTensor<Scalar>, Components> calculateSuperFockianMatrix(const OneRDM<double>& D_alpha, const TwoRDM<double>& d_alpha, const OneRDM<double>& D_beta, const TwoRDM<double>& d_beta) const {
+
+        // Check if dimensions are compatible
+        if (D_alpha.dimension() != this->fs_alpha.dimension() || D_beta.dimension() != this->fs_beta.dimension()) {
+            throw std::invalid_argument("USQOneElectronOperator::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>, OneRDM<double>, TwoRDM<double>): The 1-RDM is not compatible with the one-electron operator.");
+        }
+
+        if (d_alpha.dimension() != this->fs_alpha.dimension() || d_beta.dimension() != this->fs_beta.dimension()) {
+            throw std::invalid_argument("USQOneElectronOperator::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>, OneRDM<double>, TwoRDM<double>): The 2-RDM is not compatible with the one-electron operator.");
+        }
+
+        // A KISS implementation of the calculation of the super-Fockian matrix
+        std::array<SquareRankFourTensor<Scalar>, Components> Gs_alpha;  // multiple alpha Gs, hence the 's'
+        std::array<SquareRankFourTensor<Scalar>, Components> Gs_beta; // multiple beta Gs, hence the 's'
+        const auto Fs_alpha, Fs_beta = this->calculateFockianMatrix(D_alpha, d_alpha, D_beta, d_beta);  // the Fockian matrices are necessary in the calculation
+
+        for (size_t i = 0; i < Components; i++) {
+            
+            const auto& f_i_alpha = this->fs_alpha.parameters(i);  // the matrix representation of the parameters of the i-th alpha component
+            const auto& f_i_beta = this->fs_beta.parameters(i);  // the matrix representation of the parameters of the i-th beta component
+
+            const auto& F_i_alpha = Fs_alpha[i];  // the alpha Fockian matrix of the i-th component
+            const auto& F_i_beta = Fs_beta[i];  // the beta Fockian matrix of the i-th component
+
+            // Calculate the super-Fockian matrix for every component and add it to the array
+            SquareRankFourTensor<Scalar> G_i_alpha (this->fs_alpha.dimension());
+            SquareRankFourTensor<Scalar> G_i_beta (this->fs_beta.dimension());
+            G_i_alpha.setZero();
+            G_i_beta.setZero();
+            for (size_t p = 0; p < this->fs_alpha.dimension(); p++) {
+                for (size_t q = 0; q < this->fs_alpha.dimension(); q++) {
+                    for (size_t r = 0; r < this->fs_alpha.dimension(); r++) {
+                        for (size_t s = 0; s < this->fs_alpha.imension(); s++) {
+
+                            if (q == r) {
+                                G_i_alpha(p,q,r,s) += 2 * F_i_alpha(p,s);
+                                G_i_beta(p,q,r,s) += 2 * F_i_beta(p,s);
+                            }
+
+                            G_i_alpha(p,q,r,s) -= f_i_alpha(s,p) * (D_alpha(r,q) + D_alpha(q,r));
+                            G_i_beta(p,q,r,s) -= f_i_beta(s,p) * (D_beta(r,q) + D_alpha(q,r));
+                        }
+                    }
+                }
+            }  // G_i elements loop, dimensions for alpha and beta are the same and can thus be written in 1 loop.
+            Gs_alpha[i] = 0.5 * G_i_alpha;
+            Gs_beta[i] = 0.5 * G_i_beta;
+        }
+
+        return Gs_alpha, Gs_beta;
+    }
+
+
+    /**
+     *  @return the dimension of the matrix representation of the parameters, i.e. the number of orbitals/sites
+     */
+    size_t dimension() const {
+        return this->fs_alpha[0].dimension(), this->fs_beta[0].dimension();  // all the dimensions are the same, this is checked in the constructor
+    }
+
+
+    /**
+     *  @param a        the vector
+     * 
+     *  @return the dot product of this second-quantized one-electron operator with the given vector
+     */
+    USQOneElectronOperator<Scalar, Components, Scalar, Components> dot(const Vector<Scalar, Components>& a) const {
+
+        const auto dim = this->fs_alpha.dimension();
+        const auto dim = this->fs_beta.dimension();
+        USQOneElectronOperator<Scalar, Components, Scalar, Components> result_alpha, result_beta {dim};
+
+        // Calculate the inner product
+        for (size_t i = 0; i < Components; i++) {
+            result_alpha += a(i) * this->fs_alpha.operator[](i);
+            result_beta += a(i) * this-> fs_beta.operator[](i);           
+        }
+
+        return result_alpha, result_beta;
+    }
 }
 
 } // namespace GQCP
