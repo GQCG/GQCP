@@ -15,41 +15,24 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#pragma once
+#define BOOST_TEST_MODULE "USQOneElectronOperator"
 
+#include <boost/test/unit_test.hpp>
 
-#include <complex>
-#include <cstdlib>
-#include <type_traits>
-#include <vector>
-
+#include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
 
 
 /**
- *  A header that contains general typedefs inside the GQCP namespace
+ *  Check the construction of one-electron operators from matrices.
  */
+BOOST_AUTO_TEST_CASE ( USQOneElectronOperator_constructor ) {
+
+    // Check a correct constructor.
+    const auto square_matrix = GQCP::SquareMatrix<double>::Zero(4, 4);
+    const GQCP::ScalarUSQOneElectronOperator<double> O {square_matrix};
 
 
-namespace GQCP {
-
-
-/*
- *  SCALARS
- */
-using cd = std::complex<double>;
-
-
-/*
- *  TEMPLATE ALIASES
- */
-template <typename T, typename U>
-using sum_t = decltype(std::declval<T>() + std::declval<U>());
-
-template <typename T, typename U>
-using product_t = decltype(std::declval<T>() * std::declval<U>());
-
-template<typename T, tupenameU>
-using difference_t = decltype(std::declval<T>() - std::declval<U>());
-
-
-}  // namespace GQCP
+    // Check a faulty constructor.
+    const GQCP::MatrixX<double> matrix = GQCP::MatrixX<double>::Zero(3, 4);
+    BOOST_CHECK_THROW(GQCP::ScalarUSQOneElectronOperator<double> O2 {matrix}, std::invalid_argument);
+}
