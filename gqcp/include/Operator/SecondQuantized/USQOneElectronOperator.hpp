@@ -120,10 +120,10 @@ public:
     /*
      *  GETTERS
      */
-    size_t get_dim_alpha() const { return this->fs_alpha.dimension(); }
-    size_t get_dim_beta() const { return this->fs_beta.dimension(); }
-    size_t get_K_alpha() const { return this->fs_alpha.dimension(); }
-    size_t get_K_beta() const { return this->fs_beta.dimension(); }
+    size_t get_dim_alpha() const { return this->fs_alpha[0].dimension(); }
+    size_t get_dim_beta() const { return this->fs_beta[0].dimension(); }
+    size_t get_K_alpha() const { return this->fs_alpha[0].dimension(); }
+    size_t get_K_beta() const { return this->fs_beta[0].dimension(); }
 
 
     /*
@@ -171,7 +171,7 @@ public:
      */
     Vector<Scalar, Components> calculateExpectationValue(const OneRDM<Scalar>& D_alpha, const OneRDM<Scalar>& D_beta) const {
 
-        if (this->fs_alpha.dimension() != D_alpha.dimension() || this->fs_beta.dimension() != D_beta.dimension()) {
+        if (this->fs_alpha[0].dimension() != D_alpha.dimension() || this->fs_beta[0].dimension() != D_beta.dimension()) {
             throw std::invalid_argument("USQOneElectronOperator::calculateExpectationValue(const OneRDM<Scalar>, OneRDM<Scalar>): The given 1-RDM is not compatible with the one-electron operator.");
         }
 
@@ -194,11 +194,11 @@ public:
     std::array<SquareMatrix<Scalar>, Components> calculateFockianMatrix(const OneRDM<double>& D_alpha, const TwoRDM<double>& d_alpha, const OneRDM<double>& D_beta, const TwoRDM<double>& d_beta) const {
 
         // Check if dimensions are compatible
-        if (D_alpha.dimension() != this->fs_alpha.dimension() || D_beta.dimension() != this->fs_beta.dimension()) {
+        if (D_alpha.dimension() != this->fs_alpha[0].dimension() || D_beta.dimension() != this->fs_beta[0].dimension()) {
             throw std::invalid_argument("USQOneElectronOperator::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>, OneRDM<double>, TwoRDM<double>): The 1-RDM is not compatible with the one-electron operator.");
         }
 
-        if (d_alpha.dimension() != this->fs_alpha.dimension() || d_beta.dimension() != this->fs_beta.dimension()) {
+        if (d_alpha.dimension() != this->fs_alpha[0].dimension() || d_beta.dimension() != this->fs_beta[0].dimension()) {
             throw std::invalid_argument("USQOneElectronOperator::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>, OneRDM<double>, TwoRDM<double>): The 2-RDM is not compatible with the one-electron operator.");
         }
 
@@ -212,12 +212,12 @@ public:
             const auto& f_i_beta = this->fs_beta.parameters(i); // the matrix representation of the parameters of the i-th beta component
 
             // Calculate the Fockian matrix for every component and add it to the array
-            SquareMatrix<Scalar> F_i_alpha = SquareMatrix<Scalar>::Zero(this->fs_alpha.dimension(), this->fs_alpha.dimension());  // the alpha Fockian matrix of the i-th component
-            SquareMatrix<Scalar> F_i_beta = SquareMatrix<Scalar>::Zero(this->fs_beta.dimension(), this->fs_beta.dimension());  // the beta Fockian matrix of the i-th component
+            SquareMatrix<Scalar> F_i_alpha = SquareMatrix<Scalar>::Zero(this->fs_alpha[0].dimension(), this->fs_alpha[0].dimension());  // the alpha Fockian matrix of the i-th component
+            SquareMatrix<Scalar> F_i_beta = SquareMatrix<Scalar>::Zero(this->fs_beta[0].dimension(), this->fs_beta[0].dimension());  // the beta Fockian matrix of the i-th component
 
-            for (size_t p = 0; p < this->fs_alpha.dimension(); p++) {
-                for (size_t q = 0; q < this->fs_alpha.dimension(); q++) {
-                    for (size_t r = 0; r < this->fs_alpha.dimension(); r++) {
+            for (size_t p = 0; p < this->fs_alpha[0].dimension(); p++) {
+                for (size_t q = 0; q < this->fs_alpha[0].dimension(); q++) {
+                    for (size_t r = 0; r < this->fs_alpha[0].dimension(); r++) {
                         F_i_alpha(p,q) += f_i_alpha(q,r) * (D_alpha(p,r) + D_alpha(r,p));
                         F_i_beta(p,q) += f_i_beta(q,r) * (D_beta(p,r) + D_beta(r,p));
                     }
@@ -240,11 +240,11 @@ public:
     std::array<SquareRankFourTensor<Scalar>, Components> calculateSuperFockianMatrix(const OneRDM<double>& D_alpha, const TwoRDM<double>& d_alpha, const OneRDM<double>& D_beta, const TwoRDM<double>& d_beta) const {
 
         // Check if dimensions are compatible
-        if (D_alpha.dimension() != this->fs_alpha.dimension() || D_beta.dimension() != this->fs_beta.dimension()) {
+        if (D_alpha.dimension() != this->fs_alpha[0].dimension() || D_beta.dimension() != this->fs_beta[0].dimension()) {
             throw std::invalid_argument("USQOneElectronOperator::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>, OneRDM<double>, TwoRDM<double>): The 1-RDM is not compatible with the one-electron operator.");
         }
 
-        if (d_alpha.dimension() != this->fs_alpha.dimension() || d_beta.dimension() != this->fs_beta.dimension()) {
+        if (d_alpha.dimension() != this->fs_alpha[0].dimension() || d_beta.dimension() != this->fs_beta[0].dimension()) {
             throw std::invalid_argument("USQOneElectronOperator::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>, OneRDM<double>, TwoRDM<double>): The 2-RDM is not compatible with the one-electron operator.");
         }
 
@@ -262,14 +262,14 @@ public:
             const auto& F_i_beta = Fs_beta[i];  // the beta Fockian matrix of the i-th component
 
             // Calculate the super-Fockian matrix for every component and add it to the array
-            SquareRankFourTensor<Scalar> G_i_alpha (this->fs_alpha.dimension());
-            SquareRankFourTensor<Scalar> G_i_beta (this->fs_beta.dimension());
+            SquareRankFourTensor<Scalar> G_i_alpha (this->fs_alpha[0].dimension());
+            SquareRankFourTensor<Scalar> G_i_beta (this->fs_beta[0].dimension());
             G_i_alpha.setZero();
             G_i_beta.setZero();
-            for (size_t p = 0; p < this->fs_alpha.dimension(); p++) {
-                for (size_t q = 0; q < this->fs_alpha.dimension(); q++) {
-                    for (size_t r = 0; r < this->fs_alpha.dimension(); r++) {
-                        for (size_t s = 0; s < this->fs_alpha.imension(); s++) {
+            for (size_t p = 0; p < this->fs_alpha[0].dimension(); p++) {
+                for (size_t q = 0; q < this->fs_alpha[0].dimension(); q++) {
+                    for (size_t r = 0; r < this->fs_alpha[0].dimension(); r++) {
+                        for (size_t s = 0; s < this->fs_alpha[0].dimension(); s++) {
 
                             if (q == r) {
                                 G_i_alpha(p,q,r,s) += 2 * F_i_alpha(p,s);
@@ -305,8 +305,8 @@ public:
      */
     USQOneElectronOperator<Scalar, Components, Scalar, Components> dot(const Vector<Scalar, Components>& a) const {
 
-        const auto dim = this->fs_alpha.dimension();
-        const auto dim = this->fs_beta.dimension();
+        const auto dim = this->fs_alpha[0].dimension();
+        const auto dim = this->fs_beta[0].dimension();
         USQOneElectronOperator<Scalar, Components, Scalar, Components> result_alpha, result_beta {dim};
 
         // Calculate the inner product
@@ -317,6 +317,79 @@ public:
 
         return result_alpha, result_beta;
     }
-}
+
+
+    }
+
+
+    /**
+     *  @param i            the index of the component
+     * 
+     *  @return a read-only the matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator
+     */
+    const QCMatrix<Scalar>& parameters(const size_t i = 0) const {
+        return this->fs_alpha[i], this->fs_beta[i];
+    }
+
+
+    /**
+     *  @param i            the index of the component
+     * 
+     *  @return a writable matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator
+     */
+    QCMatrix<Scalar>& parameters(const size_t i = 0) {
+        return this->fs_alpha[i], this->fs_beta[i];
+    }
+
+
+    /**
+     *  In-place rotate the operator to another basis
+     * 
+     *  @param U                            the (unitary) rotation matrix
+     */
+    void rotate(const TransformationMatrix<Scalar>& U) {
+
+        // Transform the matrix representations of the components
+        for (auto& f_alpha : this->fs_alpha.allParameters()) {
+            f_alpha.basisRotateInPlace(U);
+        }
+        for (auto& f_beta : this->fs_beta.allParameters())) {
+            f_beta.basisRotateInPlace(U);
+        }
+    }
+
+    /**
+     *  In-place rotate the operator using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters
+     * 
+     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
+     */
+    void rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
+
+        // Transform the matrix representations of the components
+        for (auto& f_alpha : this->fs_alpha.allParameters()) {
+            f_alpha.basisRotateInPlace(jacobi_rotation_parameters);
+        }
+        for (auto& f_beta : this->fs_beta.allParameters()) {
+            f_beta.basisRotateInPlace(jacobi_rotation_parameters);
+        }
+    }
+
+
+    /**
+     *  In-place transform the operator to another basis
+     * 
+     *  @param T                            the transformation matrix
+     */
+    void transform(const TransformationMatrix<Scalar>& T) {
+
+        // Transform the matrix representations of the components
+        for (auto& f_alpha : this->fs_alpha.allParameters()) {
+            f_alpha.basisTransformInPlace(T);
+        }
+        for (auto& f_beta : this->fs_beta.allParameters()) {
+            f_beta.basisTransformInPlace(T);
+        }
+    }    
+};
 
 } // namespace GQCP
