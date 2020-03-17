@@ -362,11 +362,11 @@ auto operator+(const USQOneElectronOperator<LHSScalar, Components>& lhs, const U
 
     using ResultScalar = sum_t<LHSScalar, RHSScalar>;
 
-    auto F_sum_alpha = lhs.alphaParameters();
-    auto F_sum_beta = lhs.betaParameters();
+    auto F_sum_alpha = lhs.allAlphaParameters();
+    auto F_sum_beta = lhs.allBetaParameters();
     for (size_t i = 0; i < Components; i++) {
-        F_sum_alpha[i] += rhs.alphaParameters()[i];
-        F_sum_beta[i] += rhs.betaParameters()[i];
+        F_sum_alpha[i] += rhs.alphaParameters(i);
+        F_sum_beta[i] += rhs.betaParameters(i);
     }
 
     return USQOneElectronOperator<ResultScalar, Components>(F_sum_alpha, F_sum_beta);
@@ -430,11 +430,11 @@ auto operator-(const USQOneElectronOperator<LHSScalar, Components>& lhs, const U
 
     using ResultScalar = difference_t<LHSScalar, RHSScalar>;
 
-    auto F_min_alpha = lhs.alphaParameters();
-    auto F_min_beta = lhs.betaParameters();
+    auto F_min_alpha = lhs.allAlphaParameters();
+    auto F_min_beta = lhs.allBetaParameters();
     for (size_t i = 0; i < Components; i++) {
-        F_min_alpha[i] -= rhs.alphaParameters()[i];
-        F_min_beta[i] -= rhs.betaParameters()[i];
+        F_min_alpha[i] -= rhs.alphaParameters(i);
+        F_min_beta[i] -= rhs.betaParameters(i);
     }
 
     return USQOneElectronOperator<ResultScalar, Components>(F_min_alpha, F_min_beta);
