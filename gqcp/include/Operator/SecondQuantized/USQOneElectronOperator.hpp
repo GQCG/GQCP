@@ -74,8 +74,7 @@ public:
             const auto dimension_of_ith_beta = this->fs_beta[i].dimension();
 
             if ((dimension_of_first_alpha != dimension_of_ith_alpha) || (dimension_of_first_beta != dimension_of_ith_beta)) {
-                throw std::invalid_argument("USQOneElectronOperator(const std::array<QCMatrix<Scalar>, Components>&, const std::array<QCMatrix<Scalar>, components>&): 
-                The given matrix representations do not have the same dimensions for either the alpha or beta component.");
+                throw std::invalid_argument("USQOneElectronOperator(const std::array<QCMatrix<Scalar>, Components>&, const std::array<QCMatrix<Scalar>, components>&): The given matrix representations do not have the same dimensions for either the alpha or beta component.");
             }
         }
     }
@@ -98,7 +97,9 @@ public:
     /**
      *  Construct a one-electron operator with parameters that are zero, for both the alpha and beta spin components
      * 
-     *  @param dim          the dimension of the matrix representation of the parameters, i.e. the number of orbitals/sites
+     *  @param dim_alpha          the dimension of the alpha matrix representation of the parameters, i.e. the number of orbitals/sites
+     *  @param dim_beta           the dimension of the beta matrix representation of the parameters, i.e. the number of orbitals/sites
+     * 
      */
     USQOneElectronOperator(const size_t dim_alpha, const size_t dim_beta) {
         for (size_t i = 0; i < Components; i++) {
@@ -199,7 +200,8 @@ public:
             throw std::invalid_argument("USQOneElectronOperator::calculateExpectationValue(const OneRDM<Scalar>, OneRDM<Scalar>): The given 1-RDM is not compatible with the one-electron operator.");
         }
 
-        std::array<Scalar, Components> expectation_values {};  // zero initialization
+        std::array<Scalar, Components> expectation_values_alpha {};  // zero initialization
+        std::array<Scalar, Components> expectation_values_beta {};  // zero initialization
         for (size_t i = 0; i < Components; i++) {
             expectation_values_alpha[i] = (this->fs_alpha.parameters(i) * D_alpha).trace();
             expectation_values_beta[i] = (this->fs_beta.parameters(i) * D_beta).trace();
@@ -273,7 +275,7 @@ public:
      * 
      *  @return a read-only the matrix representation of the parameters (integrals) of one of the the different beta components of this second-quantized operator
      */
-    const QCMatrix<Scalar>& betaParameters(const size_t i = 0) const {
+    QCMatrix<Scalar>& betaParameters(const size_t i = 0) {
         return this->fs_beta[i];
     }
 
@@ -289,7 +291,7 @@ public:
         for (auto& f_alpha : this->fs_alpha.allParameters()) {
             f_alpha.basisRotateInPlace(U);
         }
-        for (auto& f_beta : this->fs_beta.allParameters())) {
+        for (auto& f_beta : this->fs_beta.allParameters()) {
             f_beta.basisRotateInPlace(U);
         }
     }
@@ -426,7 +428,7 @@ USQOneElectronOperator<Scalar, Components> operator-(const USQOneElectronOperato
 template <typename LHSScalar, typename RHSScalar, size_t Components>
 auto operator-(const USQOneElectronOperator<LHSScalar, Components>& lhs, const USQOneElectronOperator<RHSScalar, Components>& rhs) -> USQOneElectronOperator<sum_t<LHSScalar, RHSScalar>, Components> {
 
-    using resultScalar = difference_t<LHSScalar, RHSScalar>;
+    using ResultScalar = difference_t<LHSScalar, RHSScalar>;
 
     auto F_min_alpha = lhs.alphaParameters();
     auto F_min_beta = lhs.betaParametrs();
