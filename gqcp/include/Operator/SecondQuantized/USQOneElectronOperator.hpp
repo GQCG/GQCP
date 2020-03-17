@@ -203,8 +203,8 @@ public:
         std::array<Scalar, Components> expectation_values_alpha {};  // zero initialization
         std::array<Scalar, Components> expectation_values_beta {};  // zero initialization
         for (size_t i = 0; i < Components; i++) {
-            expectation_values_alpha[i] = (this->fs_alpha.parameters(i) * D_alpha).trace();
-            expectation_values_beta[i] = (this->fs_beta.parameters(i) * D_beta).trace();
+            expectation_values_alpha[i] = (this->alphaParameters(i) * D_alpha).trace();
+            expectation_values_beta[i] = (this->betaParameters(i) * D_beta).trace();
         }
 
         return Eigen::Map<Eigen::Matrix<Scalar, Components, 1>>(expectation_values_alpha.data()), Eigen::Map<Eigen::Matrix<Scalar, Components, 1>>(expectation_values_beta.data());  // convert std::array to Vector
@@ -288,10 +288,10 @@ public:
     void rotate(const TransformationMatrix<Scalar>& U) {
 
         // Transform the matrix representations of the components
-        for (auto& f_alpha : this->fs_alpha.allParameters()) {
+        for (auto& f_alpha : this->fs_alpha.allAlphaParameters()) {
             f_alpha.basisRotateInPlace(U);
         }
-        for (auto& f_beta : this->fs_beta.allParameters()) {
+        for (auto& f_beta : this->fs_beta.allBetaParameters()) {
             f_beta.basisRotateInPlace(U);
         }
     }
@@ -305,10 +305,10 @@ public:
     void rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
 
         // Transform the matrix representations of the components
-        for (auto& f_alpha : this->fs_alpha.allParameters()) {
+        for (auto& f_alpha : this->fs_alpha.allAlphaParameters()) {
             f_alpha.basisRotateInPlace(jacobi_rotation_parameters);
         }
-        for (auto& f_beta : this->fs_beta.allParameters()) {
+        for (auto& f_beta : this->fs_beta.allBetaParameters()) {
             f_beta.basisRotateInPlace(jacobi_rotation_parameters);
         }
     }
@@ -322,10 +322,10 @@ public:
     void transform(const TransformationMatrix<Scalar>& T) {
 
         // Transform the matrix representations of the components
-        for (auto& f_alpha : this->fs_alpha.allParameters()) {
+        for (auto& f_alpha : this->fs_alpha.allAlphaParameters()) {
             f_alpha.basisTransformInPlace(T);
         }
-        for (auto& f_beta : this->fs_beta.allParameters()) {
+        for (auto& f_beta : this->fs_beta.allBetaParameters()) {
             f_beta.basisTransformInPlace(T);
         }
     }
@@ -365,8 +365,8 @@ auto operator+(const USQOneElectronOperator<LHSScalar, Components>& lhs, const U
     auto F_sum_alpha = lhs.alphaParameters();
     auto F_sum_beta = lhs.betaParameters();
     for (size_t i = 0; i < Components; i++) {
-        F_sum_alpha[i] += rhs.alphaParameters(i);
-        F_sum_beta[i] += rhs.betaParameters(i);
+        F_sum_alpha[i] += rhs.alphaParameters()[i];
+        F_sum_beta[i] += rhs.betaParameters()[i];
     }
 
     return USQOneElectronOperator<ResultScalar, Components>(F_sum_alpha, F_sum_beta);
@@ -387,8 +387,8 @@ auto operator*(const Scalar& scalar, const USQOneElectronOperator<OperatorScalar
 
     using ResultScalar = product_t<Scalar, OperatorScalar>;
 
-    auto fs_alpha = op.alphaParameters();
-    auto fs_beta = op.betaParameters();
+    auto fs_alpha = op.allAlphaParameters();
+    auto fs_beta = op.allBetaParameters();
     for (auto& f_alpha : fs_alpha) {
         f_alpha *= scalar;
     }
@@ -431,10 +431,10 @@ auto operator-(const USQOneElectronOperator<LHSScalar, Components>& lhs, const U
     using ResultScalar = difference_t<LHSScalar, RHSScalar>;
 
     auto F_min_alpha = lhs.alphaParameters();
-    auto F_min_beta = lhs.betaParametrs();
+    auto F_min_beta = lhs.betaParameters();
     for (size_t i = 0; i < Components; i++) {
-        F_min_alpha[i] -= rhs.alphaParameters(i);
-        F_min_beta[i] -= rhs.betaParameters(i);
+        F_min_alpha[i] -= rhs.alphaParameters()[i];
+        F_min_beta[i] -= rhs.betaParameters()[i];
     }
 
     return USQOneElectronOperator<ResultScalar, Components>(F_min_alpha, F_min_beta);
