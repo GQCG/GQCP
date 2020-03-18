@@ -203,7 +203,7 @@ public:
      * 
      *  @return a read-only the matrix representation of the parameters (integrals) of one of the the different alpha components of this second-quantized operator
      */
-    QCMatrix<Scalar>& alphaParameters(const size_t i = 0) const {
+    QCMatrix<Scalar>& alphaParameters(const size_t i = 0) {
         return this->fs_alpha[i];
     }
 
@@ -229,7 +229,7 @@ public:
      * 
      *  @return a read-only the matrix representation of the parameters (integrals) of one of the the different beta components of this second-quantized operator
      */
-    QCMatrix<Scalar>& betaParameters(const size_t i = 0) const {
+    QCMatrix<Scalar>& betaParameters(const size_t i = 0) {
         return this->fs_beta[i];
     }
 
