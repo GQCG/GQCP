@@ -307,7 +307,7 @@ BOOST_AUTO_TEST_CASE ( calculateExpectationValue_behaviour ) {
     
     // Initialize a reference value
     GQCP::QCMatrix<double> ref (1);
-    ref << 2.0;
+    ref << 5.0;
 
     const auto ex_value = op.calculateExpectationValue(d);
     BOOST_CHECK(ex_value.isApprox(ref, 1.0e-08));
@@ -358,8 +358,8 @@ BOOST_AUTO_TEST_CASE ( transform_with_transformation_matrix ) {
 
     // Initialize a reference matrix
     GQCP::QCMatrix<double> ref (dim);
-    ref << 4.5, 0.5,
-           8.5, 0.5;
+    ref << 108.0, 142.0,
+           140.0, 184.0;
     
     op.transform(T);
     BOOST_CHECK(op.parameters().isApprox(ref, 1.0e-08));

@@ -269,9 +269,8 @@ BOOST_AUTO_TEST_CASE ( transform_with_transformation_matrix ) {
 
     // Initialize a reference matrix
     GQCP::QCMatrix<double> ref (dim);
-    ref << 4.5, 0.5,
-           8.5, 0.5;
-    
+    ref << 108.0, 142.0,
+           140.0, 184.0;
     op.transform(T);
     BOOST_CHECK(op.alphaParameters().isApprox(ref, 1.0e-08));
     BOOST_CHECK(op.betaParameters().isApprox(ref, 1.0e-08));
