@@ -213,7 +213,7 @@ public:
 
 
     /**
-     *  @return the dimension of the total generalized coefficient matrix
+     *  @return the sum of the alpha and beta dimensions
      */
     size_t dimension() const {
         return this->alphaDimension() + this->betaDimension();
