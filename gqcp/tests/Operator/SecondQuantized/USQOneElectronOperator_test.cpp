@@ -43,6 +43,7 @@ BOOST_AUTO_TEST_CASE ( USQOneElectronOperator_constructor ) {
     BOOST_CHECK_THROW(GQCP::ScalarUSQOneElectronOperator<double> O_4 (square_matrix, matrix), std::invalid_argument);
 }
 
+
 /**
  *  Check if the zero constructor actually sets its parameters to zeros
  */
