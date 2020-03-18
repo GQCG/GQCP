@@ -17,15 +17,14 @@
 // 
 #pragma once
 
-
 #include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
+#include "Basis/SpinorBasis/SpinComponent.hpp"
 #include "Basis/TransformationMatrix.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Mathematical/ScalarFunction.hpp"
 #include "Processing/RDM/OneRDM.hpp"
 #include "Processing/RDM/TwoRDM.hpp"
 #include "Utilities/type_traits.hpp"
-#include "Basis/SpinorBasis/SpinComponent.hpp"
 
 #include <array>
 
