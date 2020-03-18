@@ -134,7 +134,7 @@ public:
     /**
      *  @param i            the index
      * 
-     *  @return the i-th component of this operator, for both spin components
+     *  @return the i-th component (i.e. the i-th alpha and i-th beta component) of this operator
      */
     USQOneElectronOperator<Scalar, 1> operator[](const size_t i) const {
 
