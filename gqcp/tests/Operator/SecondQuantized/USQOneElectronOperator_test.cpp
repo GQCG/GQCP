@@ -293,7 +293,7 @@ BOOST_AUTO_TEST_CASE ( transform_with_jacobi_matrix ) {
     GQCP::ScalarUSQOneElectronOperator<double> op (M1, M1);
 
     // Initialize a transformation matrix
-    GQCP::JacobiRotationParameters J (1, 2, M_PI_2);
+    GQCP::JacobiRotationParameters J (2, 1, M_PI_2);
 
     // Initialize a reference matrix
     GQCP::QCMatrix<double> ref (dim);
