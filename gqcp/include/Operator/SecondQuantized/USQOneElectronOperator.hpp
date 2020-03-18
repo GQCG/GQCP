@@ -288,10 +288,10 @@ public:
     void rotate(const TransformationMatrix<Scalar>& U) {
 
         // Transform the matrix representations of the components
-        for (auto& f_alpha : this->fs_alpha.allAlphaParameters()) {
+        for (auto& f_alpha : this->allAlphaParameters()) {
             f_alpha.basisRotateInPlace(U);
         }
-        for (auto& f_beta : this->fs_beta.allBetaParameters()) {
+        for (auto& f_beta : this->allBetaParameters()) {
             f_beta.basisRotateInPlace(U);
         }
     }
@@ -305,10 +305,10 @@ public:
     void rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
 
         // Transform the matrix representations of the components
-        for (auto& f_alpha : this->fs_alpha.allAlphaParameters()) {
+        for (auto& f_alpha : this->allAlphaParameters()) {
             f_alpha.basisRotateInPlace(jacobi_rotation_parameters);
         }
-        for (auto& f_beta : this->fs_beta.allBetaParameters()) {
+        for (auto& f_beta : this->allBetaParameters()) {
             f_beta.basisRotateInPlace(jacobi_rotation_parameters);
         }
     }
@@ -322,10 +322,10 @@ public:
     void transform(const TransformationMatrix<Scalar>& T) {
 
         // Transform the matrix representations of the components
-        for (auto& f_alpha : this->fs_alpha.allAlphaParameters()) {
+        for (auto& f_alpha : this->allAlphaParameters()) {
             f_alpha.basisTransformInPlace(T);
         }
-        for (auto& f_beta : this->fs_beta.allBetaParameters()) {
+        for (auto& f_beta : this->allBetaParameters()) {
             f_beta.basisTransformInPlace(T);
         }
     }
