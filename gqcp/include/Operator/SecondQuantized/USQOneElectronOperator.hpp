@@ -49,6 +49,7 @@ private:
     std::array<QCMatrix<Scalar>, Components> fs_alpha;  // all the matrix representations of the alpha spin component (hence the s) of the parameters (integrals) of the different components of this second-quantized operator
     std::array<QCMatrix<Scalar>, Components> fs_beta;  // all the matrix representations of the beta spin component (hence the s) of the parameters (integrals) of the different components of this second-quantized operator
 
+
 public:
 
     /*
