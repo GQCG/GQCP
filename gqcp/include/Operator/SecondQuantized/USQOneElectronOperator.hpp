@@ -442,5 +442,4 @@ auto operator-(const USQOneElectronOperator<LHSScalar, Components>& lhs, const U
 }
 
 
-
 } // namespace GQCP
