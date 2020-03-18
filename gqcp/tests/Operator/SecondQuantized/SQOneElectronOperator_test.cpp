@@ -84,6 +84,53 @@ BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_addition ) {
 
 
 /**
+ *  Check if scalar product with the operators works as expected
+ */
+BOOST_AUTO_TEST_CASE ( USQOneElectronOperator_scalar_product ) {
+
+    const size_t dim = 2;
+    const double scalar = 2.0;
+
+    // Initialize a test matrix and convert it into an operator
+    GQCP::QCMatrix<double> M1 (dim);
+    M1 << 1.0, 2.0,
+          3.0, 4.0;
+    const GQCP::ScalarSQOneElectronOperator<double> op1 (M1);
+
+    // Initialize the reference and check the result
+    GQCP::QCMatrix<double> M_ref (dim);
+    M_ref <<  2.0,  4.0,
+              6.0,  8.0;
+    
+    const auto op_result = scalar * op1;
+    BOOST_CHECK(op_result.parameters().isApprox(M_ref, 1.0e-08));
+}
+
+
+/**
+ *  Check if negation of the operators works as expected
+ */
+BOOST_AUTO_TEST_CASE ( USQOneElectronOperator_negate ) {
+
+    const size_t dim = 2;
+
+    // Initialize a test matrix and convert it into an operator
+    GQCP::QCMatrix<double> M1 (dim);
+    M1 << 1.0, 2.0,
+          3.0, 4.0;
+    const GQCP::ScalarSQOneElectronOperator<double> op1 (M1);
+
+    // Initialize the reference and check the result
+    GQCP::QCMatrix<double> M_ref (dim);
+    M_ref <<  -1.0,  -2.0,
+              -3.0,  -4.0;
+    
+    const auto op_result = -op1;
+    BOOST_CHECK(op_result.parameters().isApprox(M_ref, 1.0e-08));
+}
+
+
+/**
  *  Check if the transformation of a one-electron operator consisting of linear combinations of GTOs can be supported through the underlying scalar types
  */
 BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_of_GTOs_transform ) {
@@ -237,4 +284,113 @@ BOOST_AUTO_TEST_CASE ( calculateExpectationValue_throw ) {
 
     BOOST_CHECK_THROW(h.calculateExpectationValue(D_invalid), std::invalid_argument);
     BOOST_CHECK_NO_THROW(h.calculateExpectationValue(D_valid));
+}
+
+
+/**
+ * Check whether or not calculateExpectationValue shows the correct behaviour
+ */
+BOOST_AUTO_TEST_CASE ( calculateExpectationValue_behaviour ) {
+    
+    const size_t dim = 2;
+
+    // Initialize a test matrix and convert it into an operator
+    GQCP::QCMatrix<double> M1 (dim);
+    M1 << 1.0, 2.0,
+          3.0, 4.0;
+    const GQCP::ScalarSQOneElectronOperator<double> op (M1);
+
+    // initialize an alpha and beta density matrix, each one is chosen as a hermitian matrix.
+    GQCP::QCMatrix<double> d (dim);
+    d << 0.0, 1.0,
+         1.0, 0.0;
+    
+    // Initialize a reference value
+    GQCP::QCMatrix<double> ref (1);
+    ref << 2.0;
+
+    const auto ex_value = op.calculateExpectationValue(d);
+    BOOST_CHECK(ex_value.isApprox(ref, 1.0e-08));
+}
+
+
+/**
+ * Check whether or not the rotate with transformation matrix method works as expected
+ */
+BOOST_AUTO_TEST_CASE ( rotate_with_unitary_transformation_matrix ) {
+
+    const size_t dim = 2;
+
+    // Initialize a test matrix and convert it into an operator
+    GQCP::QCMatrix<double> M1 (dim);
+    M1 << 1.0, 2.0,
+          3.0, 4.0;
+    GQCP::ScalarSQOneElectronOperator<double> op (M1);
+
+    // Initialize a unitary transformation matrix
+    GQCP::TransformationMatrix<double> U (dim);
+    U << 1.0, 0.0,
+         0.0, 1.0;
+    
+    op.rotate(U);
+    BOOST_CHECK(op.parameters().isApprox(M1, 1.0e-08));
+
+}
+
+
+/**
+ * Check whether or not the rotate with transformation matrix method works as expected
+ */
+BOOST_AUTO_TEST_CASE ( transform_with_transformation_matrix ) {
+
+    const size_t dim = 2;
+
+    // Initialize a test matrix and convert it into an operator
+    GQCP::QCMatrix<double> M1 (dim);
+    M1 << 1.0, 2.0,
+          3.0, 4.0;
+    GQCP::ScalarSQOneElectronOperator<double> op (M1);
+
+    // Initialize a transformation matrix
+    GQCP::TransformationMatrix<double> T (dim);
+    T << 2.0, 3.0,
+         4.0, 5.0;
+
+    // Initialize a reference matrix
+    GQCP::QCMatrix<double> ref (dim);
+    ref << 4.5, 0.5,
+           8.5, 0.5;
+    
+    op.transform(T);
+    BOOST_CHECK(op.parameters().isApprox(ref, 1.0e-08));
+}
+
+
+/**
+ * Check whether or not the rotate with transformation matrix method works as expected
+ */
+BOOST_AUTO_TEST_CASE ( transform_with_jacobi_matrix ) {
+
+    const size_t dim = 4;
+
+    // Initialize a test matrix and convert it into an operator
+    GQCP::QCMatrix<double> M1 (dim);
+     M1 << 1.0, 2.0, 3.0, 4.0,
+          5.0, 6.0, 7.0, 8.0,
+          9.0, 10.0, 11.0, 12,
+          13.0, 14.0, 15.0, 16.0;
+    GQCP::ScalarSQOneElectronOperator<double> op (M1);
+
+    // Initialize a transformation matrix
+    GQCP::JacobiRotationParameters J (2, 1, M_PI_2);
+
+    // Initialize a reference matrix
+    GQCP::QCMatrix<double> ref (dim);
+    ref <<  1.0, 3.0, -2.0, 4.0,
+            9.0, 11.0, -10.0, 12.0,
+            -5.0, -7.0, 6.0, -8.0,
+            13.0, 15.0, -14.0, 16.0;
+
+    op.rotate(J);
+    BOOST_CHECK(op.parameters().isApprox(ref, 1.0e-08));
 }

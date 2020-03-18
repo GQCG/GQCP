@@ -264,13 +264,13 @@ BOOST_AUTO_TEST_CASE ( transform_with_transformation_matrix ) {
 
     // Initialize a transformation matrix
     GQCP::TransformationMatrix<double> T (dim);
-    T << 1.0, 2.0,
-         3.0, 4.0;
+    T << 2.0, 3.0,
+         4.0, 5.0;
 
     // Initialize a reference matrix
     GQCP::QCMatrix<double> ref (dim);
-    ref << 7.0, 10,
-           15.0, 22.0;
+    ref << 4.5, 0.5,
+           8.5, 0.5;
     
     op.transform(T);
     BOOST_CHECK(op.alphaParameters().isApprox(ref, 1.0e-08));
@@ -283,13 +283,14 @@ BOOST_AUTO_TEST_CASE ( transform_with_transformation_matrix ) {
  */
 BOOST_AUTO_TEST_CASE ( transform_with_jacobi_matrix ) {
 
-    const size_t dim = 3;
+    const size_t dim = 4;
 
     // Initialize a test matrix and convert it into an operator
     GQCP::QCMatrix<double> M1 (dim);
-    M1 << 1.0, 7.0, 3.0,
-          7.0, 4.0, -5.0,
-          3.0, -5.0, 6.0;
+    M1 << 1.0, 2.0, 3.0, 4.0,
+          5.0, 6.0, 7.0, 8.0,
+          9.0, 10.0, 11.0, 12,
+          13.0, 14.0, 15.0, 16.0;
     GQCP::ScalarUSQOneElectronOperator<double> op (M1, M1);
 
     // Initialize a transformation matrix
@@ -297,9 +298,10 @@ BOOST_AUTO_TEST_CASE ( transform_with_jacobi_matrix ) {
 
     // Initialize a reference matrix
     GQCP::QCMatrix<double> ref (dim);
-    ref <<  -4.65891, 0.00000, 5.47639,
-            0.00000, 9.65891, -2.00230,
-            5.47639, -2.00230, 6.00000;
+    ref <<  1.0, 3.0, -2.0, 4.0,
+            9.0, 11.0, -10.0, 12.0,
+            -5.0, -7.0, 6.0, -8.0,
+            13.0, 15.0, -14.0, 16.0;
 
     op.rotate(J);
     BOOST_CHECK(op.alphaParameters().isApprox(ref, 1.0e-08));
