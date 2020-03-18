@@ -108,6 +108,7 @@ public:
         }
     }
 
+
     /**
      *  Construct a one-electron operator with parameters that are zero, for both the alpha and beta spin components
      * 
