@@ -215,7 +215,8 @@ public:
 
 
     /**
-     *  @param D                the 1-RDM that represents the wave function
+     *  @param D_alpha                the alpha 1-RDM that represents the wave function
+     *  @param D_beta                 the beta 1-RDM that represents the wave function
      *
      *  @return the expectation values of all components of the one-electron operator
      */
@@ -225,19 +226,13 @@ public:
             throw std::invalid_argument("USQOneElectronOperator::calculateExpectationValue(const OneRDM<Scalar>, OneRDM<Scalar>): The given 1-RDM is not compatible with the one-electron operator.");
         }
 
-        std::array<Scalar, Components> expectation_values_alpha {};  // zero initialization
-        std::array<Scalar, Components> expectation_values_beta {};  // zero initialization
+        std::array<Scalar, Components> expectation_values {} ; // zero initialization
+
         for (size_t i = 0; i < Components; i++) {
-            expectation_values_alpha[i] = (this->alphaParameters(i) * D_alpha).trace();
-            expectation_values_beta[i] = (this->betaParameters(i) * D_beta).trace();
+            expectation_values[i] = (this->alphaParameters(i) * D_alpha).trace() + (this->betaParameters(i) * D_beta).trace();
         }
 
-        std::array<Scalar, Components> expectation_values {} ; // zero initialization
-        for (size_t i = 0; i < Components; i++) {
-            expectation_values[i] = expectation_values_alpha[i] + expectation_values_beta[i]
-        } 
-
-        return Eigen::Map<Eigen::Matrix<Scalar, Components, 1>>(expectation_values.data()));  // convert std::array to Vector
+        return Eigen::Map<Eigen::Matrix<Scalar, Components, 1>>(expectation_values.data());  // convert std::array to Vector
     }
 
 
@@ -250,7 +245,7 @@ public:
 
 
     /**
-     *  In-place rotate the operator to another basis. The same matrix is used for the alpha and beta components. 
+     *  In-place rotate the operator to another basis. The same matrix is used for the alpha and beta components.   
      * 
      *  @param U                            the (unitary) rotation matrix
      */
@@ -397,7 +392,7 @@ USQOneElectronOperator<Scalar, Components> operator-(const USQOneElectronOperato
 template <typename LHSScalar, typename RHSScalar, size_t Components>
 auto operator-(const USQOneElectronOperator<LHSScalar, Components>& lhs, const USQOneElectronOperator<RHSScalar, Components>& rhs) -> USQOneElectronOperator<sum_t<LHSScalar, RHSScalar>, Components> {
 
-    using ResultScalar = sum_t<LHSScalar, -RHSScalar>;
+    using ResultScalar = sum_t<LHSScalar, RHSScalar>;
 
     auto F_min_alpha = lhs.allAlphaParameters();
     auto F_min_beta = lhs.allBetaParameters();
