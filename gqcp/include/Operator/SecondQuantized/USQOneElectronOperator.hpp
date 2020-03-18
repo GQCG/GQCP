@@ -223,6 +223,7 @@ public:
         return this->fs_beta[i];
     }
 
+
     /**
      *  @param i            the index of the component
      * 
