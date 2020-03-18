@@ -48,8 +48,5 @@ using sum_t = decltype(std::declval<T>() + std::declval<U>());
 template <typename T, typename U>
 using product_t = decltype(std::declval<T>() * std::declval<U>());
 
-template<typename T, typename U>
-using difference_t = decltype(std::declval<T>() - std::declval<U>());
-
 
 }  // namespace GQCP

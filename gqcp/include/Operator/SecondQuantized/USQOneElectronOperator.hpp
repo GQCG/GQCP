@@ -165,13 +165,8 @@ public:
         return this->fs_alpha;
     }
 
+
     /**
-     *  @return the dimension of the alpha matrices
-     */
-    size_t alphaDimension() const { return this->fs_alpha[0].dimension(); }
-
-
-     /**
      *  @return read-only matrix representations of all the beta parameters (integrals) of the different components of this second-quantized operator
      */
     const std::array<QCMatrix<Scalar>, Components>& allBetaParameters() const {
@@ -185,10 +180,39 @@ public:
     std::array<QCMatrix<Scalar>, Components>& allBetaParameters() {
         return this->fs_beta;
     }
+
+
+    /**
+     *  @return the dimension of the alpha matrices
+     */
+    size_t alphaDimension() const { return this->fs_alpha[0].dimension(); }
+
+
+    /**
+     *  @param i            the index of the component
+     * 
+     *  @return a read-only the matrix representation of the parameters (integrals) of one of the the different alpha components of this second-quantized operator
+     */
+    const QCMatrix<Scalar>& alphaParameters(const size_t i = 0) const {
+        return this->fs_alpha[i];
+    }
+
+
     /**
      *  @return the dimension of the beta matrices
      */
     size_t betaDimension() const { return this->fs_beta[0].dimension(); }
+
+
+    /**
+     *  @param i            the index of the component
+     * 
+     *  @return a read-only the matrix representation of the parameters (integrals) of one of the the different beta components of this second-quantized operator
+     */
+    const QCMatrix<Scalar>& betaParameters(const size_t i = 0) const {
+        return this->fs_beta[i];
+    }
+
 
     /**
      *  @param D                the 1-RDM that represents the wave function
@@ -208,7 +232,12 @@ public:
             expectation_values_beta[i] = (this->betaParameters(i) * D_beta).trace();
         }
 
-        return Eigen::Map<Eigen::Matrix<Scalar, Components, 1>>(expectation_values_alpha.data()), Eigen::Map<Eigen::Matrix<Scalar, Components, 1>>(expectation_values_beta.data());  // convert std::array to Vector
+        std::array<Scalar, Components> expectation_values {} ; // zero initialization
+        for (size_t i = 0; i < Components; i++) {
+            expectation_values[i] = expectation_values_alpha[i] + expectation_values_beta[i]
+        } 
+
+        return Eigen::Map<Eigen::Matrix<Scalar, Components, 1>>(expectation_values.data()));  // convert std::array to Vector
     }
 
 
@@ -217,67 +246,6 @@ public:
      */
     size_t dimension() const {
         return this->alphaDimension() + this->betaDimension();
-    }
-
-
-    // /**
-    //  *  @param a        the vector
-    //  * 
-    //  *  @return the dot product of this second-quantized one-electron operator with the given vector
-    //  */
-    // USQOneElectronOperator<Scalar, Components> dot(const Vector<Scalar, Components>& a) const {
-
-    //     const auto dim = this->fs_alpha[0].dimension();
-    //     const auto dim = this->fs_beta[0].dimension();
-    //     USQOneElectronOperator<Scalar, Components> result_alpha, result_beta {dim};
-
-    //     // Calculate the inner product
-    //     for (size_t i = 0; i < Components; i++) {
-    //         result_alpha += a(i) * this->fs_alpha.operator[](i);
-    //         result_beta += a(i) * this-> fs_beta.operator[](i);
-    //     }
-
-    //     return result_alpha, result_beta;
-    // }
-
-
-    /**
-     *  @param i            the index of the component
-     * 
-     *  @return a read-only the matrix representation of the parameters (integrals) of one of the the different alpha components of this second-quantized operator
-     */
-    const QCMatrix<Scalar>& alphaParameters(const size_t i = 0) const {
-        return this->fs_alpha[i];
-    }
-
-
-    /**
-     *  @param i            the index of the component
-     * 
-     *  @return a read-only the matrix representation of the parameters (integrals) of one of the the different beta components of this second-quantized operator
-     */
-    const QCMatrix<Scalar>& betaParameters(const size_t i = 0) const {
-        return this->fs_beta[i];
-    }
-
-
-    /**
-     *  @param i            the index of the component
-     * 
-     *  @return a writable matrix representation of the parameters (integrals) of one of the the different alpha components of this second-quantized operator
-     */
-    QCMatrix<Scalar>& alphaParameters(const size_t i = 0) {
-        return this->fs_alpha[i];
-    }
-
-
-    /**
-     *  @param i            the index of the component
-     * 
-     *  @return a read-only the matrix representation of the parameters (integrals) of one of the the different beta components of this second-quantized operator
-     */
-    QCMatrix<Scalar>& betaParameters(const size_t i = 0) {
-        return this->fs_beta[i];
     }
 
 
@@ -429,7 +397,7 @@ USQOneElectronOperator<Scalar, Components> operator-(const USQOneElectronOperato
 template <typename LHSScalar, typename RHSScalar, size_t Components>
 auto operator-(const USQOneElectronOperator<LHSScalar, Components>& lhs, const USQOneElectronOperator<RHSScalar, Components>& rhs) -> USQOneElectronOperator<sum_t<LHSScalar, RHSScalar>, Components> {
 
-    using ResultScalar = difference_t<LHSScalar, RHSScalar>;
+    using ResultScalar = sum_t<LHSScalar, -RHSScalar>;
 
     auto F_min_alpha = lhs.allAlphaParameters();
     auto F_min_beta = lhs.allBetaParameters();

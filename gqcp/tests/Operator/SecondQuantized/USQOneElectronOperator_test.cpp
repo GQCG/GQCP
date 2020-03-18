@@ -111,7 +111,7 @@ BOOST_AUTO_TEST_CASE ( USQOneElectronOperator_difference ) {
     // Initialize the reference and check the result
     GQCP::QCMatrix<double> M_diff_ref (dim);
     M_diff_ref <<  4.0,  4.0,
-                  4.0,  4.0;
+                   4.0,  4.0;
     
     const auto op_diff = op2 - op1;
     BOOST_CHECK(op_diff.alphaParameters().isApprox(M_diff_ref, 1.0e-08));
