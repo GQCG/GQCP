@@ -27,7 +27,6 @@
 #include <boost/math/constants/constants.hpp>
 
 
-
 /**
  *  Check the construction of one-electron operators from matrices.
  */
