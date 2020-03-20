@@ -24,6 +24,8 @@
 #include "Basis/ScalarBasis/CartesianGTO.hpp"
 #include "Utilities/miscellaneous.hpp"
 
+#include <boost/math/constants/constants.hpp>
+
 
 /**
  *  Check the construction of one-electron operators from matrices
@@ -309,7 +311,7 @@ BOOST_AUTO_TEST_CASE ( calculateExpectationValue_behaviour ) {
     const double reference_expectation_value = 5.0;
 
     const auto expectation_value = op.calculateExpectationValue(D)(0);  // extract the 'scalar' from a one-dimensional vector
-    BOOST_CHECK(expectation_value.isApprox(reference_expectation_value, 1.0e-08));
+    BOOST_CHECK(std::abs(expectation_value - reference_expectation_value) < 1.0e-08);
 }
 
 
@@ -373,20 +375,20 @@ BOOST_AUTO_TEST_CASE ( transform_with_jacobi_matrix ) {
 
     // Initialize a test matrix and convert it into an operator
     GQCP::QCMatrix<double> M1 (dim);
-     M1 << 1.0, 2.0, 3.0, 4.0,
-          5.0, 6.0, 7.0, 8.0,
-          9.0, 10.0, 11.0, 12,
+     M1 << 1.0,  2.0,  3.0,  4.0,
+           5.0,  6.0,  7.0,  8.0,
+           9.0, 10.0, 11.0, 12.0,
           13.0, 14.0, 15.0, 16.0;
     GQCP::ScalarSQOneElectronOperator<double> op (M1);
 
     // Initialize a transformation matrix
-    GQCP::JacobiRotationParameters J (2, 1, M_PI_2);
+    GQCP::JacobiRotationParameters J (2, 1, (boost::math::constants::pi<double>() / 2));
 
     // Initialize a reference matrix
     GQCP::QCMatrix<double> ref (dim);
-    ref <<  1.0, 3.0, -2.0, 4.0,
-            9.0, 11.0, -10.0, 12.0,
-            -5.0, -7.0, 6.0, -8.0,
+    ref <<   1.0,  3.0,  -2.0,  4.0,
+             9.0, 11.0, -10.0, 12.0,
+            -5.0, -7.0,   6.0, -8.0,
             13.0, 15.0, -14.0, 16.0;
 
     op.rotate(J);

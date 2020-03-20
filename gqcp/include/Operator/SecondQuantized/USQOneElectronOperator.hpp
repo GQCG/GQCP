@@ -33,7 +33,7 @@ namespace GQCP {
 
 
 /**
- *  A class that represents an unrestricted second-quantized one-electron operator: it holds the matrix representation of its parameters for both spin components, which are (usually) integrals over first-quantized operators
+ *  A class that represents an 'unrestricted second-quantized one-electron operator' suitable for the projection of the non-relativistic Hamiltonian onto an unrestricted spinor basis. It holds the matrix representation of its parameters for both spin components, which are (usually) integrals over first-quantized operators
  *
  *  @tparam _Scalar             the scalar type, i.e. the scalar representation of one of the parameters
  *  @tparam _Components         the number of components of the second-quantized operator

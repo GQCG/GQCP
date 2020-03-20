@@ -18,11 +18,11 @@
 #define BOOST_TEST_MODULE "USQOneElectronOperator"
 
 #include <boost/test/unit_test.hpp>
-#include <math.h>
+#include <boost/math/constants/constants.hpp>
 
-#include "Basis/ScalarBasis/CartesianGTO.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
 
+#include "Basis/ScalarBasis/CartesianGTO.hpp"
 #include "Utilities/miscellaneous.hpp"
 
 
@@ -216,10 +216,10 @@ BOOST_AUTO_TEST_CASE ( calculateExpectationValue_behaviour ) {
               0.0, -1.0;
     
     // Initialize a reference value
-    const double ref_expectation_value = 2.0;
+    const double reference_expectation_value = 2.0;
 
     const auto expectation_value = op.calculateExpectationValue(D_alpha, D_beta)(0);  // extract the scalar out of a one-dimensional vector
-    BOOST_CHECK(expectation_value.isApprox(ref_expectation_value, 1.0e-08));
+    BOOST_CHECK(std::abs(expectation_value - reference_expectation_value) < 1.0e-08);
 }
 
 
@@ -291,7 +291,7 @@ BOOST_AUTO_TEST_CASE ( transform_with_jacobi_matrix ) {
     GQCP::ScalarUSQOneElectronOperator<double> op (M1, M1);
 
     // Initialize a transformation matrix
-    GQCP::JacobiRotationParameters J (2, 1, M_PI_2);
+    GQCP::JacobiRotationParameters J (2, 1, (boost::math::constants::pi<double>() / 2));
 
     // Initialize a reference matrix
     GQCP::QCMatrix<double> ref (dim);
