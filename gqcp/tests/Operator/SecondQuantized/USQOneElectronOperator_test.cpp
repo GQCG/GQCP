@@ -18,12 +18,14 @@
 #define BOOST_TEST_MODULE "USQOneElectronOperator"
 
 #include <boost/test/unit_test.hpp>
-#include <boost/math/constants/constants.hpp>
 
 #include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
 
 #include "Basis/ScalarBasis/CartesianGTO.hpp"
 #include "Utilities/miscellaneous.hpp"
+
+#include <boost/math/constants/constants.hpp>
+
 
 
 /**
