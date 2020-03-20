@@ -300,17 +300,16 @@ BOOST_AUTO_TEST_CASE ( calculateExpectationValue_behaviour ) {
           3.0, 4.0;
     const GQCP::ScalarSQOneElectronOperator<double> op (M1);
 
-    // initialize an alpha and beta density matrix, each one is chosen as a hermitian matrix.
-    GQCP::QCMatrix<double> d (dim);
-    d << 0.0, 1.0,
+    // Initialize an alpha and beta density matrix, each one is chosen as a Hermitian matrix.
+    GQCP::QCMatrix<double> D (dim);
+    D << 0.0, 1.0,
          1.0, 0.0;
     
-    // Initialize a reference value
-    GQCP::QCMatrix<double> ref (1);
-    ref << 5.0;
+    // Initialize a reference value and check the result.
+    const double reference_expectation_value = 5.0;
 
-    const auto ex_value = op.calculateExpectationValue(d);
-    BOOST_CHECK(ex_value.isApprox(ref, 1.0e-08));
+    const auto expectation_value = op.calculateExpectationValue(D)(0);  // extract the 'scalar' from a one-dimensional vector
+    BOOST_CHECK(expectation_value.isApprox(reference_expectation_value, 1.0e-08));
 }
 
 
@@ -334,7 +333,6 @@ BOOST_AUTO_TEST_CASE ( rotate_with_unitary_transformation_matrix ) {
     
     op.rotate(U);
     BOOST_CHECK(op.parameters().isApprox(M1, 1.0e-08));
-
 }
 
 

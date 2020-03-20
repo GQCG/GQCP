@@ -207,25 +207,24 @@ BOOST_AUTO_TEST_CASE ( calculateExpectationValue_behaviour ) {
     const GQCP::ScalarUSQOneElectronOperator<double> op (M1, M1);
 
     // initialize an alpha and beta density matrix, each one is chosen as a hermitian matrix.
-    GQCP::QCMatrix<double> d_alpha (dim);
-    d_alpha << 0.0, 1.0,
+    GQCP::QCMatrix<double> D_alpha (dim);
+    D_alpha << 0.0, 1.0,
                1.0, 0.0;
 
-    GQCP::QCMatrix<double> d_beta (dim);
-    d_beta << 1.0, 0.0,
+    GQCP::QCMatrix<double> D_beta (dim);
+    D_beta << 1.0,  0.0,
               0.0, -1.0;
     
     // Initialize a reference value
-    GQCP::QCMatrix<double> ref (1);
-    ref << 2.0;
+    const double ref_expectation_value = 2.0;
 
-    const auto ex_value = op.calculateExpectationValue(d_alpha, d_beta);
-    BOOST_CHECK(ex_value.isApprox(ref, 1.0e-08));
+    const auto expectation_value = op.calculateExpectationValue(D_alpha, D_beta)(0);  // extract the scalar out of a one-dimensional vector
+    BOOST_CHECK(expectation_value.isApprox(ref_expectation_value, 1.0e-08));
 }
 
 
 /**
- * Check whether or not the rotate with transformation matrix method works as expected
+ * Check whether or not the rotate with a unitary transformation matrix method works as expected
  */
 BOOST_AUTO_TEST_CASE ( rotate_with_unitary_transformation_matrix ) {
 
@@ -245,12 +244,11 @@ BOOST_AUTO_TEST_CASE ( rotate_with_unitary_transformation_matrix ) {
     op.rotate(U);
     BOOST_CHECK(op.alphaParameters().isApprox(M1, 1.0e-08));
     BOOST_CHECK(op.betaParameters().isApprox(M1, 1.0e-08));
-
 }
 
 
 /**
- * Check whether or not the rotate with transformation matrix method works as expected
+ * Check whether or not the transformation with a transformation matrix method works as expected
  */
 BOOST_AUTO_TEST_CASE ( transform_with_transformation_matrix ) {
 
@@ -278,7 +276,7 @@ BOOST_AUTO_TEST_CASE ( transform_with_transformation_matrix ) {
 
 
 /**
- * Check whether or not the rotate with transformation matrix method works as expected
+ * Check whether or not the rotate with Jacobi rotation parameters method works as expected
  */
 BOOST_AUTO_TEST_CASE ( transform_with_jacobi_matrix ) {
 
