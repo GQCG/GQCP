@@ -241,21 +241,8 @@ BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_scalar_product ) {
     }
     const GQCP::ScalarSQTwoElectronOperator<double> op1 (T1);
 
-    // Initialize the reference and check the result
-    GQCP::QCRankFourTensor<double> T_prod_ref (dim);
-
-    for (size_t i = 0; i < dim; i++) {
-        for (size_t j = 0; j < dim; j++) {
-            for (size_t k = 0; k < dim; k++) {
-                for (size_t l = 0; l < dim; l++) {
-                    T_prod_ref(i,j,k,l) = 2*(i+1) + 4*(j+1) + 8*(k+1) + 16*(l+1);
-                }
-            }
-        }
-    }   
-    
     auto op_prod = scalar * op1;
-    BOOST_CHECK(op_prod.parameters().isApprox(T_prod_ref, 1.0e-08));
+    BOOST_CHECK(op_prod.parameters().isApprox((2 * T1), 1.0e-08));
 }
 
 
@@ -265,7 +252,6 @@ BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_scalar_product ) {
 BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_negate ) {
 
     const size_t dim = 2;
-    const double scalar = 2.0;
 
     // Initialize two test tensors and convert them into operators
     GQCP::QCRankFourTensor<double> T1 (dim);

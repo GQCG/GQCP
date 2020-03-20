@@ -416,7 +416,7 @@ auto operator*(const Scalar& scalar, const SQTwoElectronOperator<OperatorScalar,
 
     auto G = op.allParameters();
     for (size_t i = 0; i < Components; i++) {
-        G[i] *= scalar;
+        G[i] *= scalar * G[i];
     }
 
     return SQTwoElectronOperator<ResultScalar, Components>(G);
