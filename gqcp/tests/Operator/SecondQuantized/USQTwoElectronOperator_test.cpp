@@ -24,6 +24,8 @@
 #include "Utilities/linalg.hpp"
 #include "Utilities/miscellaneous.hpp"
 
+#include <boost/math/constants/constants.hpp>
+
 
 /**
  *  Check the interface for constructing SQTwoElectronOperators from Tensors
@@ -32,14 +34,15 @@ BOOST_AUTO_TEST_CASE ( USQTwoElectronOperator_constructor ) {
 
     // Check a correct constructor
     const GQCP::QCRankFourTensor<double> tensor (3);
-    GQCP::ScalarUSQTwoElectronOperator<double> O (tensor, tensor);
+    GQCP::ScalarUSQTwoElectronOperator<double> O (tensor, tensor, tensor, tensor);
 
 
     // Check a faulty constructor
     GQCP::Tensor<double, 4> tensor2 (3, 3, 3, 2);
-    BOOST_CHECK_THROW(GQCP::ScalarUSQTwoElectronOperator<double> O2 (tensor2, tensor2), std::invalid_argument);
-    BOOST_CHECK_THROW(GQCP::ScalarUSQTwoElectronOperator<double> O2 (tensor, tensor2), std::invalid_argument);
-    BOOST_CHECK_THROW(GQCP::ScalarUSQTwoElectronOperator<double> O2 (tensor2, tensor), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::ScalarUSQTwoElectronOperator<double> O2 (tensor2, tensor2, tensor2, tensor2), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::ScalarUSQTwoElectronOperator<double> O2 (tensor, tensor2, tensor, tensor), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::ScalarUSQTwoElectronOperator<double> O2 (tensor2, tensor, tensor2, tensor), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::ScalarUSQTwoElectronOperator<double> O2 (tensor2, tensor2, tensor2, tensor), std::invalid_argument);
 
 }
 
@@ -66,58 +69,62 @@ BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_zero_constructor ) {
         }
     }
 
-    BOOST_CHECK_EQUAL(op.alphaDimension(), K);
-    BOOST_CHECK_EQUAL(op.betaDimension(), K);
-    BOOST_CHECK(op.alphaParameters().isApprox(ref, 1.0e-08));
-    BOOST_CHECK(op.betaParameters().isApprox(ref, 1.0e-08));
+    BOOST_CHECK_EQUAL(op.alphaAlphaDimension(), K);
+    BOOST_CHECK_EQUAL(op.alphaBetaDimension(), K);
+    BOOST_CHECK_EQUAL(op.betaAlphaDimension(), K);
+    BOOST_CHECK_EQUAL(op.betaBetaDimension(), K);
+    BOOST_CHECK(op.alphaAlphaParameters().isApprox(ref, 1.0e-08));
+    BOOST_CHECK(op.alphaBetaParameters().isApprox(ref, 1.0e-08));
+    BOOST_CHECK(op.betaAlphaParameters().isApprox(ref, 1.0e-08));
+    BOOST_CHECK(op.betaBetaParameters().isApprox(ref, 1.0e-08));
 
 }
 
 
-/**
- *  Check if the formulas in effectiveOneElectronPartition are implemented correctly
- */
-BOOST_AUTO_TEST_CASE ( USQTwoElectronOperator_effectiveOneElectronPartition ) {
+// /**
+//  *  Check if the formulas in effectiveOneElectronPartition are implemented correctly
+//  */
+// BOOST_AUTO_TEST_CASE ( USQTwoElectronOperator_effectiveOneElectronPartition ) {
 
-    const size_t K = 4;
-    auto K_ = static_cast<double>(K);
+//     const size_t K = 4;
+//     auto K_ = static_cast<double>(K);
 
-    // Set up toy 2-electron integrals
-    GQCP::QCRankFourTensor<double> g_par_alpha (K);
-    GQCP::QCRankFourTensor<double> g_par_beta (K);
+//     // Set up toy 2-electron integrals
+//     GQCP::QCRankFourTensor<double> g_par_alpha (K);
+//     GQCP::QCRankFourTensor<double> g_par_beta (K);
 
-    g_par_alpha.setZero();
-    g_par_beta.setZero();
+//     g_par_alpha.setZero();
+//     g_par_beta.setZero();
 
-    for (size_t i = 0; i < K; i++) {
-        for (size_t j = 0; j < K; j++) {
-            for (size_t k = 0; k < K; k++) {
-                for (size_t l = 0; l < K; l++) {
-                    g_par_alpha(i,j,k,l) = (i+1) + 2*(j+1) + 4*(k+1) + 8*(l+1);
-                    g_par_beta(i,j,k,l) = (i+1) + 2*(j+1) + 4*(k+1) + 8*(l+1);
-                }
-            }
-        }
-    }
+//     for (size_t i = 0; i < K; i++) {
+//         for (size_t j = 0; j < K; j++) {
+//             for (size_t k = 0; k < K; k++) {
+//                 for (size_t l = 0; l < K; l++) {
+//                     g_par_alpha(i,j,k,l) = (i+1) + 2*(j+1) + 4*(k+1) + 8*(l+1);
+//                     g_par_beta(i,j,k,l) = (i+1) + 2*(j+1) + 4*(k+1) + 8*(l+1);
+//                 }
+//             }
+//         }
+//     }
 
-    GQCP::ScalarUSQTwoElectronOperator<double> g (g_par_alpha, g_par_beta);
-
-
-// Set up the reference effective one-electron integrals by manual calculation
-    GQCP::QCMatrix<double> k_par_ref = GQCP::QCMatrix<double>::Zero(K, K);  // reference parameters
-    for (size_t p = 0; p < K; p++) {
-        for (size_t q = 0; q < K; q++) {
-            auto p_ = static_cast<double>(p) + 1;
-            auto q_ = static_cast<double>(q) + 1;
-
-            k_par_ref(p,q) = -K_ / 2 * (p_ + 8*q_ + 3*K_ + 3);
-        }
-    }
+//     GQCP::ScalarUSQTwoElectronOperator<double> g (g_par_alpha, g_par_beta);
 
 
-    BOOST_CHECK(k_par_ref.isApprox(g.effectiveOneElectronPartition().alphaParameters(), 1.0e-08));
-    BOOST_CHECK(k_par_ref.isApprox(g.effectiveOneElectronPartition().betaParameters(), 1.0e-08));
-}
+// // Set up the reference effective one-electron integrals by manual calculation
+//     GQCP::QCMatrix<double> k_par_ref = GQCP::QCMatrix<double>::Zero(K, K);  // reference parameters
+//     for (size_t p = 0; p < K; p++) {
+//         for (size_t q = 0; q < K; q++) {
+//             auto p_ = static_cast<double>(p) + 1;
+//             auto q_ = static_cast<double>(q) + 1;
+
+//             k_par_ref(p,q) = -K_ / 2 * (p_ + 8*q_ + 3*K_ + 3);
+//         }
+//     }
+
+
+//     BOOST_CHECK(k_par_ref.isApprox(g.effectiveOneElectronPartition().alphaParameters(), 1.0e-08));
+//     BOOST_CHECK(k_par_ref.isApprox(g.effectiveOneElectronPartition().betaParameters(), 1.0e-08));
+// }
 
 
 /**
@@ -130,11 +137,12 @@ BOOST_AUTO_TEST_CASE ( calculateExpectationValue_throw ) {
     const GQCP::TwoRDM<double> D_valid (2);
     const GQCP::TwoRDM<double> D_invalid (3);
 
-    BOOST_CHECK_THROW(g.calculateExpectationValue(D_invalid, D_invalid), std::invalid_argument);
-    BOOST_CHECK_THROW(g.calculateExpectationValue(D_invalid, D_valid), std::invalid_argument);
-    BOOST_CHECK_THROW(g.calculateExpectationValue(D_valid, D_invalid), std::invalid_argument);
+    BOOST_CHECK_THROW(g.calculateExpectationValue(D_invalid, D_invalid, D_invalid, D_invalid), std::invalid_argument);
+    BOOST_CHECK_THROW(g.calculateExpectationValue(D_invalid, D_valid, D_invalid, D_invalid), std::invalid_argument);
+    BOOST_CHECK_THROW(g.calculateExpectationValue(D_valid, D_invalid, D_valid, D_invalid), std::invalid_argument);
+    BOOST_CHECK_THROW(g.calculateExpectationValue(D_valid, D_invalid, D_valid, D_valid), std::invalid_argument);
 
-    BOOST_CHECK_NO_THROW(g.calculateExpectationValue(D_valid, D_valid));
+    BOOST_CHECK_NO_THROW(g.calculateExpectationValue(D_valid, D_valid,D_valid, D_valid));
 }
 
 
@@ -157,39 +165,50 @@ BOOST_AUTO_TEST_CASE ( calculateExpectationValue_behaviour ) {
             }
         }
     }
-    const GQCP::ScalarUSQTwoElectronOperator<double> op (T1, T1);
 
-    // initialize an alpha and beta density matrix, each one is chosen as a hermitian matrix.
-    GQCP::TwoRDM<double> d_alpha (dim);
+    GQCP::QCRankFourTensor<double> T2 (dim);
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
             for (size_t k = 0; k < dim; k++) {
                 for (size_t l = 0; l < dim; l++) {
-                    d_alpha(i,j,k,l) = 1;
+                    T2(i,j,k,l) = 0;
+                }
+            }
+        }
+    }
+    const GQCP::ScalarUSQTwoElectronOperator<double> op (T1, T2, T2, T1);
+
+    // initialize density matrices, each one is chosen as a hermitian matrix.
+    GQCP::TwoRDM<double> d1 (dim);
+
+    for (size_t i = 0; i < dim; i++) {
+        for (size_t j = 0; j < dim; j++) {
+            for (size_t k = 0; k < dim; k++) {
+                for (size_t l = 0; l < dim; l++) {
+                    d1(i,j,k,l) = 1;
                 }
             }
         }
     }
 
-    GQCP::TwoRDM<double> d_beta (dim);
+    GQCP::TwoRDM<double> d2 (dim);
     
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
             for (size_t k = 0; k < dim; k++) {
                 for (size_t l = 0; l < dim; l++) {
-                    d_beta(i,j,k,l) = 2;
+                    d2(i,j,k,l) = 2;
                 }
             }
         }
     }
 
     // Initialize a reference value
-    GQCP::QCMatrix<double> ref (1);
-    ref << 540.0;
+    const double reference_expectation_value =  540.0;
 
-    const auto ex_value = op.calculateExpectationValue(d_alpha, d_beta);
-    BOOST_CHECK(ex_value.isApprox(ref, 1.0e-08));
+    const auto expectation_value = op.calculateExpectationValue(d1, d1, d2, d2)(0);
+    BOOST_CHECK(std::abs(expectation_value - reference_expectation_value) < 1.0e-08);
 }
 
 
@@ -212,22 +231,9 @@ BOOST_AUTO_TEST_CASE ( USQTwoElectronOperator_addition ) {
             }
         }
     }
-    const GQCP::ScalarUSQTwoElectronOperator<double> op1 (T1, T1);
+    const GQCP::ScalarUSQTwoElectronOperator<double> op1 (T1, T1, T1, T1);
 
-    GQCP::QCRankFourTensor<double> T2 (dim);
-
-    for (size_t i = 0; i < dim; i++) {
-        for (size_t j = 0; j < dim; j++) {
-            for (size_t k = 0; k < dim; k++) {
-                for (size_t l = 0; l < dim; l++) {
-                    T2(i,j,k,l) = (i+1) + 2*(j+1) + 4*(k+1) + 8*(l+1);
-                }
-            }
-        }
-    }   
-    const GQCP::ScalarUSQTwoElectronOperator<double> op2 (T2, T2);
-
-
+    
     // Initialize the reference and check the result
     GQCP::QCRankFourTensor<double> T_sum_ref (dim);
 
@@ -241,9 +247,11 @@ BOOST_AUTO_TEST_CASE ( USQTwoElectronOperator_addition ) {
         }
     }   
     
-    auto op_sum = op1 + op2;
-    BOOST_CHECK(op_sum.alphaParameters().isApprox(T_sum_ref, 1.0e-08));
-    BOOST_CHECK(op_sum.betaParameters().isApprox(T_sum_ref, 1.0e-08));
+    auto op_sum = op1 + op1;
+    BOOST_CHECK(op_sum.alphaAlphaParameters().isApprox(T_sum_ref, 1.0e-08));
+    BOOST_CHECK(op_sum.alphaBetaParameters().isApprox(T_sum_ref, 1.0e-08));
+    BOOST_CHECK(op_sum.betaAlphaParameters().isApprox(T_sum_ref, 1.0e-08));
+    BOOST_CHECK(op_sum.betaBetaParameters().isApprox(T_sum_ref, 1.0e-08));
 }
 
 
@@ -267,11 +275,13 @@ BOOST_AUTO_TEST_CASE ( USQTwoElectronOperator_scalar_product ) {
             }
         }
     }
-    const GQCP::ScalarUSQTwoElectronOperator<double> op1 (T1, T1);
+    const GQCP::ScalarUSQTwoElectronOperator<double> op1 (T1, T1, T1, T1);
 
     auto op_prod = scalar * op1;
-    BOOST_CHECK(op_prod.alphaParameters().isApprox((2 * T1), 1.0e-08));
-    BOOST_CHECK(op_prod.betaParameters().isApprox((2 * T1), 1.0e-08));
+    BOOST_CHECK(op_prod.alphaAlphaParameters().isApprox((2 * T1), 1.0e-08));
+    BOOST_CHECK(op_prod.alphaBetaParameters().isApprox((2 * T1), 1.0e-08));
+    BOOST_CHECK(op_prod.betaAlphaParameters().isApprox((2 * T1), 1.0e-08));
+    BOOST_CHECK(op_prod.betaBetaParameters().isApprox((2 * T1), 1.0e-08));
 }
 
 
@@ -294,24 +304,13 @@ BOOST_AUTO_TEST_CASE ( USQTwoElectronOperator_negate ) {
             }
         }
     }
-    const GQCP::ScalarUSQTwoElectronOperator<double> op1 (T1, T1);
+    const GQCP::ScalarUSQTwoElectronOperator<double> op1 (T1, T1, T1, T1);
 
-    // Initialize the reference and check the result
-    GQCP::QCRankFourTensor<double> T_neg_ref (dim);
-
-    for (size_t i = 0; i < dim; i++) {
-        for (size_t j = 0; j < dim; j++) {
-            for (size_t k = 0; k < dim; k++) {
-                for (size_t l = 0; l < dim; l++) {
-                    T_neg_ref(i,j,k,l) = -5;
-                }
-            }
-        }
-    }   
-    
     auto op_neg = -op1;
-    BOOST_CHECK(op_neg.alphaParameters().isApprox(T_neg_ref, 1.0e-08));
-    BOOST_CHECK(op_neg.betaParameters().isApprox(T_neg_ref, 1.0e-08));
+    BOOST_CHECK(op_neg.alphaAlphaParameters().isApprox(-T1, 1.0e-08));
+    BOOST_CHECK(op_neg.alphaBetaParameters().isApprox(-T1, 1.0e-08));
+    BOOST_CHECK(op_neg.betaAlphaParameters().isApprox(-T1, 1.0e-08));
+    BOOST_CHECK(op_neg.betaBetaParameters().isApprox(-T1, 1.0e-08));
 }
 
 
@@ -331,7 +330,7 @@ BOOST_AUTO_TEST_CASE ( USQTwoElectronOperator_difference ) {
             }
         }
     }
-    const GQCP::ScalarUSQTwoElectronOperator<double> op1 (T1, T1);
+    const GQCP::ScalarUSQTwoElectronOperator<double> op1 (T1, T1, T1, T1);
 
     GQCP::QCRankFourTensor<double> T2 (dim);
 
@@ -344,11 +343,13 @@ BOOST_AUTO_TEST_CASE ( USQTwoElectronOperator_difference ) {
             }
         }
     }   
-    const GQCP::ScalarUSQTwoElectronOperator<double> op2 (T2, T2);
+    const GQCP::ScalarUSQTwoElectronOperator<double> op2 (T2, T2, T2, T2);
 
     auto op_diff = op2 - op1;
-    BOOST_CHECK(op_diff.alphaParameters().isApprox(T1, 1.0e-08));
-    BOOST_CHECK(op_diff.betaParameters().isApprox(T1, 1.0e-08));
+    BOOST_CHECK(op_diff.alphaAlphaParameters().isApprox(T1, 1.0e-08));
+    BOOST_CHECK(op_diff.alphaBetaParameters().isApprox(T1, 1.0e-08));
+    BOOST_CHECK(op_diff.betaAlphaParameters().isApprox(T1, 1.0e-08));
+    BOOST_CHECK(op_diff.betaBetaParameters().isApprox(T1, 1.0e-08));
 }
 
 
@@ -371,7 +372,7 @@ BOOST_AUTO_TEST_CASE ( rotate_with_unitary_transformation_matrix ) {
             }
         }
     }
-    GQCP::ScalarUSQTwoElectronOperator<double> op (T1, T1);
+    GQCP::ScalarUSQTwoElectronOperator<double> op (T1, T1, T1, T1);
 
     // Initialize a unitary transformation matrix
     GQCP::TransformationMatrix<double> U (dim);
@@ -379,8 +380,10 @@ BOOST_AUTO_TEST_CASE ( rotate_with_unitary_transformation_matrix ) {
          0.0, 1.0;
     
     op.rotate(U);
-    BOOST_CHECK(op.alphaParameters().isApprox(T1, 1.0e-08));
-    BOOST_CHECK(op.betaParameters().isApprox(T1, 1.0e-08));
+    BOOST_CHECK(op.alphaAlphaParameters().isApprox(T1, 1.0e-08));
+    BOOST_CHECK(op.alphaBetaParameters().isApprox(T1, 1.0e-08));
+    BOOST_CHECK(op.betaAlphaParameters().isApprox(T1, 1.0e-08));
+    BOOST_CHECK(op.betaBetaParameters().isApprox(T1, 1.0e-08));
 
 }
 
@@ -404,7 +407,7 @@ BOOST_AUTO_TEST_CASE ( transform_with_transformation_matrix ) {
             }
         }
     }
-    GQCP::ScalarUSQTwoElectronOperator<double> op (T1, T1);
+    GQCP::ScalarUSQTwoElectronOperator<double> op (T1, T1, T1, T1);
 
     // Initialize a transformation matrix
     GQCP::TransformationMatrix<double> T (dim);
@@ -438,8 +441,10 @@ BOOST_AUTO_TEST_CASE ( transform_with_transformation_matrix ) {
     }
 
     op.transform(T);
-    BOOST_CHECK(op.alphaParameters().isApprox(ref, 1.0e-08));
-    BOOST_CHECK(op.betaParameters().isApprox(ref, 1.0e-08));
+    BOOST_CHECK(op.alphaAlphaParameters().isApprox(ref, 1.0e-08));
+    BOOST_CHECK(op.alphaBetaParameters().isApprox(ref, 1.0e-08));
+    BOOST_CHECK(op.betaAlphaParameters().isApprox(ref, 1.0e-08));
+    BOOST_CHECK(op.betaBetaParameters().isApprox(ref, 1.0e-08));
 }
 
 
@@ -462,10 +467,10 @@ BOOST_AUTO_TEST_CASE ( transform_with_jacobi_matrix ) {
             }
         }
     }
-    GQCP::ScalarUSQTwoElectronOperator<double> op (T1, T1);
+    GQCP::ScalarUSQTwoElectronOperator<double> op (T1, T1, T1, T1);
 
     // Initialize a transformation matrix
-    GQCP::JacobiRotationParameters J (1, 0, M_PI_2);
+    GQCP::JacobiRotationParameters J (1, 0, (boost::math::constants::pi<double>() / 2));
 
     // Initialize a reference tensor
     GQCP::QCRankFourTensor<double> ref (dim);
@@ -486,6 +491,8 @@ BOOST_AUTO_TEST_CASE ( transform_with_jacobi_matrix ) {
     }
 
     op.rotate(J);
-    BOOST_CHECK(op.alphaParameters().isApprox(ref, 1.0e-08));
-    BOOST_CHECK(op.betaParameters().isApprox(ref, 1.0e-08));
+    BOOST_CHECK(op.alphaAlphaParameters().isApprox(ref, 1.0e-08));
+    BOOST_CHECK(op.alphaBetaParameters().isApprox(ref, 1.0e-08));
+    BOOST_CHECK(op.betaAlphaParameters().isApprox(ref, 1.0e-08));
+    BOOST_CHECK(op.betaBetaParameters().isApprox(ref, 1.0e-08));
 }

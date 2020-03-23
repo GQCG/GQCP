@@ -24,6 +24,8 @@
 #include "Utilities/linalg.hpp"
 #include "Utilities/miscellaneous.hpp"
 
+#include <boost/math/constants/constants.hpp>
+
 
 /**
  *  Check the interface for constructing SQTwoElectronOperators from Tensors
@@ -214,7 +216,7 @@ BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_addition ) {
         }
     }   
     
-    auto op_sum = op1 + op2;
+    const auto op_sum = op1 + op2;
     BOOST_CHECK(op_sum.parameters().isApprox(T_sum_ref, 1.0e-08));
 }
 
@@ -241,9 +243,10 @@ BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_scalar_product ) {
     }
     const GQCP::ScalarSQTwoElectronOperator<double> op1 (T1);
 
-    auto op_prod = scalar * op1;
+    const auto op_prod = scalar * op1;
     BOOST_CHECK(op_prod.parameters().isApprox((2 * T1), 1.0e-08));
 }
+
 
 
 /**
@@ -280,7 +283,7 @@ BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_negate ) {
         }
     }   
     
-    auto op_neg = -op1;
+    const auto op_neg = -op1;
     BOOST_CHECK(op_neg.parameters().isApprox(T_neg_ref, 1.0e-08));
 }
 
@@ -316,7 +319,7 @@ BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_difference ) {
     }   
     const GQCP::ScalarSQTwoElectronOperator<double> op2 (T2);
 
-    auto op_diff = op2 - op1;
+    const auto op_diff = op2 - op1;
     BOOST_CHECK(op_diff.parameters().isApprox(T1, 1.0e-08));
 }
 
@@ -432,7 +435,7 @@ BOOST_AUTO_TEST_CASE ( transform_with_jacobi_matrix ) {
     GQCP::ScalarSQTwoElectronOperator<double> op (T1);
 
     // Initialize a transformation matrix
-    GQCP::JacobiRotationParameters J (1, 0, M_PI_2);
+    GQCP::JacobiRotationParameters J (1, 0, (boost::math::constants::pi<double>() / 2));
 
     // Initialize a reference tensor
     GQCP::QCRankFourTensor<double> ref (dim);
