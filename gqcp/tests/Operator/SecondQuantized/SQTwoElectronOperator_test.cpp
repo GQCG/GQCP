@@ -160,11 +160,10 @@ BOOST_AUTO_TEST_CASE ( calculateExpectationValue_behaviour ) {
     }
 
     // Initialize a reference value
-    GQCP::QCMatrix<double> ref (1);
-    ref << 180.0;
+    const double reference_expectation_value = 180.0;
 
-    const auto ex_value = op.calculateExpectationValue(d);
-    BOOST_CHECK(ex_value.isApprox(ref, 1.0e-08));
+    const auto expectation_value = op.calculateExpectationValue(d)(0);
+    BOOST_CHECK(std::abs(expectation_value - reference_expectation_value) < 1.0e-08);
 }
 
 
