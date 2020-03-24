@@ -97,26 +97,14 @@ public:
     /**
      *  Construct a one-electron operator with parameters that are zero, for both the alpha and beta spin components
      * 
-     *  @param dim_alpha          the dimension of the alpha matrix representation of the parameters, i.e. the number of orbitals/sites
-     *  @param dim_beta           the dimension of the beta matrix representation of the parameters, i.e. the number of orbitals/sites
-     * 
-     */
-    USQOneElectronOperator(const size_t dim_alpha, const size_t dim_beta) {
-        for (size_t i = 0; i < Components; i++) {
-            this->fs_alpha[i] = QCMatrix<Scalar>::Zero(dim_alpha, dim_alpha);
-            this->fs_beta[i] = QCMatrix<Scalar>::Zero(dim_beta, dim_beta);
-        }
-    }
-
-
-    /**
-     *  Construct a one-electron operator with parameters that are zero, for both the alpha and beta spin components
-     * 
      *  @param dim          the dimension of the matrix representation of the parameters, i.e. the number of orbitals/sites. This dimension is the same for the alpha and beta component.
      */
-    USQOneElectronOperator(const size_t dim) :
-        USQOneElectronOperator(dim, dim)
-    {}
+    USQOneElectronOperator(const size_t dim) {
+        for (size_t i = 0; i < Components; i++) {
+            this->fs_alpha[i] = QCMatrix<Scalar>::Zero(dim, dim);
+            this->fs_beta[i] = QCMatrix<Scalar>::Zero(dim, dim);
+        }
+    }
 
 
     /**

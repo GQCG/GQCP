@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#define BOOST_TEST_MODULE "SQTwoElectronOperator"
+#define BOOST_TEST_MODULE "USQTwoElectronOperator"
 
 #include <boost/test/unit_test.hpp>
 
@@ -50,10 +50,9 @@ BOOST_AUTO_TEST_CASE ( USQTwoElectronOperator_constructor ) {
 /**
  *  Check if the zero constructor really sets is parameters to all zeros
  */
-BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_zero_constructor ) {
+BOOST_AUTO_TEST_CASE ( USQTwoElectronOperator_zero_constructor ) {
 
     const size_t K = 2;
-    auto K_ = static_cast<double>(K);
     GQCP::ScalarUSQTwoElectronOperator<double> op {K}; // should initialize zero's
 
     // Create a reference zero tensor
@@ -73,58 +72,13 @@ BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_zero_constructor ) {
     BOOST_CHECK_EQUAL(op.alphaBetaDimension(), K);
     BOOST_CHECK_EQUAL(op.betaAlphaDimension(), K);
     BOOST_CHECK_EQUAL(op.betaBetaDimension(), K);
+
     BOOST_CHECK(op.alphaAlphaParameters().isApprox(ref, 1.0e-08));
     BOOST_CHECK(op.alphaBetaParameters().isApprox(ref, 1.0e-08));
     BOOST_CHECK(op.betaAlphaParameters().isApprox(ref, 1.0e-08));
     BOOST_CHECK(op.betaBetaParameters().isApprox(ref, 1.0e-08));
 
 }
-
-
-// /**
-//  *  Check if the formulas in effectiveOneElectronPartition are implemented correctly
-//  */
-// BOOST_AUTO_TEST_CASE ( USQTwoElectronOperator_effectiveOneElectronPartition ) {
-
-//     const size_t K = 4;
-//     auto K_ = static_cast<double>(K);
-
-//     // Set up toy 2-electron integrals
-//     GQCP::QCRankFourTensor<double> g_par_alpha (K);
-//     GQCP::QCRankFourTensor<double> g_par_beta (K);
-
-//     g_par_alpha.setZero();
-//     g_par_beta.setZero();
-
-//     for (size_t i = 0; i < K; i++) {
-//         for (size_t j = 0; j < K; j++) {
-//             for (size_t k = 0; k < K; k++) {
-//                 for (size_t l = 0; l < K; l++) {
-//                     g_par_alpha(i,j,k,l) = (i+1) + 2*(j+1) + 4*(k+1) + 8*(l+1);
-//                     g_par_beta(i,j,k,l) = (i+1) + 2*(j+1) + 4*(k+1) + 8*(l+1);
-//                 }
-//             }
-//         }
-//     }
-
-//     GQCP::ScalarUSQTwoElectronOperator<double> g (g_par_alpha, g_par_beta);
-
-
-// // Set up the reference effective one-electron integrals by manual calculation
-//     GQCP::QCMatrix<double> k_par_ref = GQCP::QCMatrix<double>::Zero(K, K);  // reference parameters
-//     for (size_t p = 0; p < K; p++) {
-//         for (size_t q = 0; q < K; q++) {
-//             auto p_ = static_cast<double>(p) + 1;
-//             auto q_ = static_cast<double>(q) + 1;
-
-//             k_par_ref(p,q) = -K_ / 2 * (p_ + 8*q_ + 3*K_ + 3);
-//         }
-//     }
-
-
-//     BOOST_CHECK(k_par_ref.isApprox(g.effectiveOneElectronPartition().alphaParameters(), 1.0e-08));
-//     BOOST_CHECK(k_par_ref.isApprox(g.effectiveOneElectronPartition().betaParameters(), 1.0e-08));
-// }
 
 
 /**

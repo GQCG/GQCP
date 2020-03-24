@@ -52,7 +52,7 @@ BOOST_AUTO_TEST_CASE ( USQOneElectronOperator_constructor ) {
 BOOST_AUTO_TEST_CASE ( USQOneElectronOperator_zero_constructor ) {
 
     const size_t dim = 2;
-    const GQCP::ScalarUSQOneElectronOperator<double> one_op (2, 2);  // should initialize to zeros
+    const GQCP::ScalarUSQOneElectronOperator<double> one_op (2);  // should initialize to zeros
 
     BOOST_CHECK_EQUAL(one_op.alphaDimension(), dim);
     BOOST_CHECK_EQUAL(one_op.betaDimension(), dim);

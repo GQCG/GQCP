@@ -106,18 +106,17 @@ public:
 
 
     /**
-     *  Construct an unrestricted two-electron operator with zero parameters, dimensions of alpha and beta component may vary.
+     *  Construct an unrestricted two-electron operator with zero parameters, dimensions of alpha and beta component are the same.
      * 
-     *  @param dim_alpha          the dimension of the matrix representation of the alpha parameters, i.e. the number of orbitals/sites
-     *  @param dim_beta           the dimension of the matrix representation of the beta parameters, i.e. the number of orbitals/sites
-
+     *  @param dim        the dimension of the matrix representation of the alpha and beta parameters, i.e. the number of orbitals/sites
+     * 
      */
-    USQTwoElectronOperator(const size_t dim_alpha, const size_t dim_beta) {
+    USQTwoElectronOperator(const size_t dim) {
         for (size_t i = 0; i < Components; i++) {
-            this->gs_alphaAlpha[i] = QCRankFourTensor<Scalar>(dim_alpha);
-            this->gs_alphaBeta[i] = QCRankFourTensor<Scalar>(dim_beta);
-            this->gs_betaAlpha[i] = QCRankFourTensor<Scalar>(dim_alpha);
-            this->gs_betaBeta[i] = QCRankFourTensor<Scalar>(dim_beta);
+            this->gs_alphaAlpha[i] = QCRankFourTensor<Scalar>(dim);
+            this->gs_alphaBeta[i] = QCRankFourTensor<Scalar>(dim);
+            this->gs_betaAlpha[i] = QCRankFourTensor<Scalar>(dim);
+            this->gs_betaBeta[i] = QCRankFourTensor<Scalar>(dim);
             this->gs_alphaAlpha[i].setZero();
             this->gs_alphaBeta[i].setZero();
             this->gs_betaAlpha[i].setZero();
@@ -125,18 +124,7 @@ public:
         }
     }
 
-
-    /**
-     *  Construct an unrestricted two-electron operator with zero parameters, dimensions of alpha and beta component are the same.
-     * 
-     *  @param dim        the dimension of the matrix representation of the alpha and beta parameters, i.e. the number of orbitals/sites
-     * 
-     */
-    USQTwoElectronOperator(const size_t dim) :
-        USQTwoElectronOperator(dim, dim, dim, dim)
-        {}
     
-
     /**
      *  Default constructor: construct an unrestricted two-electron operator with parameters that are zero
      */
@@ -211,8 +199,8 @@ public:
     }
 
 
-    /**
-     *  @return the dimension of the alpha-alpha components
+    /** partition
+      *  @return the dimension of the alpha-alpha components
      */
     size_t alphaAlphaDimension() const { return this->gs_alphaAlpha[0].dimension(); }
 
@@ -345,35 +333,6 @@ public:
 
         return Eigen::Map<Eigen::Matrix<Scalar, Components, 1>>(expectation_values.data());  // convert std::array to Vector
     }
-
-
-    // /**
-    //  *  @return the one-electron operator that is the difference between a two-electron operator (e_pqrs) and a product of one-electron operators (E_pq E_rs)
-    //  */
-    // USQOneElectronOperator<Scalar, Components> effectiveOneElectronPartition() const {
-
-    //     // Initialize a zero operator
-    //     const auto K_alpha = this->alphaDimension();  // number of alpha orbitals
-    //     const auto K_beta = this->betaDimension(); // number of beta orbitals
-    //     USQOneElectronOperator<Scalar, Components> F (K_alpha, K_beta);
-
-
-    //     // Use a formula to set the parameters
-    //     for (size_t i = 0; i < Components; i++) {
-
-    //         for (size_t p = 0; p < K_alpha; p++) {
-    //             for (size_t q = 0; q < K_alpha; q++) {
-    //                 for (size_t r = 0; r < K_alpha; r++) {
-    //                     F.alphaParameters(i)(p,q) -= 0.5 * this->alphaParameters(i)(p,r,r,q);
-    //                     F.betaParameters(i)(p,q) -= 0.5 * this->betaParameters(i)(p,r,r,q);
-    //                 }
-    //             }
-    //         }
-
-    //     }  // loop over components
-
-    //     return F;
-    // }
 
 
     /**
