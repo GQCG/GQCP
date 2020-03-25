@@ -70,7 +70,7 @@ public:
         gs_betaAlpha (gs_betaAlpha),
         gs_betaBeta (gs_betaBeta)
     {
-        // Check if the given tensor representations have the same dimensions
+        // Check if the given tensor representations have the same dimensions, for each spin part.
         const auto dimension_of_first_alphaAlpha = this->gs_alphaAlpha[0].dimension();
         const auto dimension_of_first_alphaBeta = this-> gs_alphaBeta[0].dimension();
         const auto dimension_of_first_betaAlpha = this->gs_betaAlpha[0].dimension();
@@ -106,7 +106,7 @@ public:
 
 
     /**
-     *  Construct an unrestricted two-electron operator with zero parameters, dimensions of alpha and beta component are the same.
+     *  Construct an unrestricted two-electron operator with parameters that are zero. The dimensions of the alpha and beta component are the same.
      * 
      *  @param dim        the dimension of the matrix representation of the alpha and beta parameters, i.e. the number of orbitals/sites
      * 
@@ -199,7 +199,7 @@ public:
     }
 
 
-    /** partition
+    /**
       *  @return the dimension of the alpha-alpha components
      */
     size_t alphaAlphaDimension() const { return this->gs_alphaAlpha[0].dimension(); }
@@ -315,10 +315,10 @@ public:
         }
 
 
-        std::array<Scalar, Components> expectation_values {};  // zero initialization of alphha component
+        std::array<Scalar, Components> expectation_values {};
         for (size_t i = 0; i < Components; i++) {
 
-            // Specify the contractions for the relevant contraction of the two-electron integrals and the 2-RDM
+            // Specify the contractions for the relevant contraction of the two-electron integrals and the 2-RDMs
             //      0.5 g(p q r s) d(p q r s)
             Eigen::array<Eigen::IndexPair<int>, 4> contractions = {Eigen::IndexPair<int>(0,0), Eigen::IndexPair<int>(1,1), Eigen::IndexPair<int>(2,2), Eigen::IndexPair<int>(3,3)};
             //      Perform the contraction

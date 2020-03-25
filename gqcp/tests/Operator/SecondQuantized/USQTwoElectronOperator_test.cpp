@@ -28,7 +28,7 @@
 
 
 /**
- *  Check the interface for constructing SQTwoElectronOperators from Tensors
+ *  Check the interface for constructing USQTwoElectronOperators from Tensors
  */
 BOOST_AUTO_TEST_CASE ( USQTwoElectronOperator_constructor ) {
 
@@ -48,36 +48,23 @@ BOOST_AUTO_TEST_CASE ( USQTwoElectronOperator_constructor ) {
 
 
 /**
- *  Check if the zero constructor really sets is parameters to all zeros
+ *  Check if the zero constructor really sets its parameters to all zeros
  */
 BOOST_AUTO_TEST_CASE ( USQTwoElectronOperator_zero_constructor ) {
 
     const size_t K = 2;
-    GQCP::ScalarUSQTwoElectronOperator<double> op {K}; // should initialize zero's
+    GQCP::ScalarUSQTwoElectronOperator<double> op {K};  // should initialize zeros
 
-    // Create a reference zero tensor
-    GQCP::QCRankFourTensor<double> ref (K);
-
-    for (size_t i = 0; i < K; i++) {
-        for (size_t j = 0; j < K; j++) {
-            for (size_t k = 0; k < K; k++) {
-                for (size_t l = 0; l < K; l++) {
-                    ref(i,j,k,l) = 0;
-                }
-            }
-        }
-    }
 
     BOOST_CHECK_EQUAL(op.alphaAlphaDimension(), K);
     BOOST_CHECK_EQUAL(op.alphaBetaDimension(), K);
     BOOST_CHECK_EQUAL(op.betaAlphaDimension(), K);
     BOOST_CHECK_EQUAL(op.betaBetaDimension(), K);
 
-    BOOST_CHECK(op.alphaAlphaParameters().isApprox(ref, 1.0e-08));
-    BOOST_CHECK(op.alphaBetaParameters().isApprox(ref, 1.0e-08));
-    BOOST_CHECK(op.betaAlphaParameters().isApprox(ref, 1.0e-08));
-    BOOST_CHECK(op.betaBetaParameters().isApprox(ref, 1.0e-08));
-
+    BOOST_CHECK(op.alphaAlphaParameters().isZero(1.0e-08));
+    BOOST_CHECK(op.alphaBetaParameters().isZero(1.0e-08));
+    BOOST_CHECK(op.betaAlphaParameters().isZero(1.0e-08));
+    BOOST_CHECK(op.betaBetaParameters().isZero(1.0e-08));
 }
 
 
@@ -133,7 +120,7 @@ BOOST_AUTO_TEST_CASE ( calculateExpectationValue_behaviour ) {
     }
     const GQCP::ScalarUSQTwoElectronOperator<double> op (T1, T2, T2, T1);
 
-    // initialize density matrices, each one is chosen as a hermitian matrix.
+    // Initialize density matrices: each one is chosen to have the correct four-index symmetries.
     GQCP::TwoRDM<double> d1 (dim);
 
     for (size_t i = 0; i < dim; i++) {
@@ -158,7 +145,7 @@ BOOST_AUTO_TEST_CASE ( calculateExpectationValue_behaviour ) {
         }
     }
 
-    // Initialize a reference value
+    // Initialize a reference value and check the result.
     const double reference_expectation_value =  540.0;
 
     const auto expectation_value = op.calculateExpectationValue(d1, d1, d2, d2)(0);
@@ -343,7 +330,7 @@ BOOST_AUTO_TEST_CASE ( rotate_with_unitary_transformation_matrix ) {
 
 
 /**
- * Check whether or not the rotate with transformation matrix method works as expected
+ * Check whether or not the transform with transformation matrix method works as expected
  */
 BOOST_AUTO_TEST_CASE ( transform_with_transformation_matrix ) {
 
