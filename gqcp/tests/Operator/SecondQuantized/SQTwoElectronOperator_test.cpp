@@ -54,18 +54,8 @@ BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_zero_constructor ) {
     // Create a reference zero tensor
     GQCP::QCRankFourTensor<double> ref (dim);
 
-    for (size_t i = 0; i < dim; i++) {
-        for (size_t j = 0; j < dim; j++) {
-            for (size_t k = 0; k < dim; k++) {
-                for (size_t l = 0; l < dim; l++) {
-                    ref(i,j,k,l) = 0;
-                }
-            }
-        }
-    }
-
     BOOST_CHECK_EQUAL(op.dimension(), dim);
-    BOOST_CHECK(op.parameters().isApprox(ref, 1.0e-08));
+    BOOST_CHECK(op.parameters().isApprox(ref.setZero(), 1.0e-08));
 }
 
 
@@ -132,7 +122,7 @@ BOOST_AUTO_TEST_CASE ( calculateExpectationValue_behaviour ) {
     
     const size_t dim = 2;
 
-   // Initialize a test tensor and convert it into an operators
+   // Initialize a test tensor and convert it into an operator
     GQCP::QCRankFourTensor<double> T1 (dim);
 
     for (size_t i = 0; i < dim; i++) {
@@ -146,7 +136,7 @@ BOOST_AUTO_TEST_CASE ( calculateExpectationValue_behaviour ) {
     }
     const GQCP::ScalarSQTwoElectronOperator<double> op (T1);
 
-    // initialize an alpha and beta density matrix, each one is chosen as a hermitian matrix.
+    // Initialize an alpha and beta density matrix, each one is chosen as a Hermitian matrix.
     GQCP::TwoRDM<double> d (dim);
 
     for (size_t i = 0; i < dim; i++) {
@@ -255,7 +245,7 @@ BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_negate ) {
 
     const size_t dim = 2;
 
-    // Initialize two test tensors and convert them into operators
+    // Initialize a test tensor and convert it into an operator
     GQCP::QCRankFourTensor<double> T1 (dim);
 
     for (size_t i = 0; i < dim; i++) {
@@ -287,6 +277,9 @@ BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_negate ) {
 }
 
 
+/**
+ *  Check if taking the difference of two operators works as expected
+ */
 BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_difference ) {
 
     const size_t dim = 2;
@@ -351,12 +344,11 @@ BOOST_AUTO_TEST_CASE ( rotate_with_unitary_transformation_matrix ) {
     
     op.rotate(U);
     BOOST_CHECK(op.parameters().isApprox(T1, 1.0e-08));
-
 }
 
 
 /**
- * Check whether or not the rotate with transformation matrix method works as expected
+ * Check whether or not the transform with transformation matrix method works as expected
  */
 BOOST_AUTO_TEST_CASE ( transform_with_transformation_matrix ) {
 
