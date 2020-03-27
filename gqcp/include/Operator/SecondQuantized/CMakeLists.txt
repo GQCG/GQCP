@@ -4,6 +4,7 @@ target_sources(gqcp
         SQOneElectronOperator.hpp
         SQTwoElectronOperator.hpp
         USQOneElectronOperator.hpp
+        USQTwoElectronOperator.hpp
         USQHamiltonian.hpp
 )
 
