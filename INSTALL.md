@@ -1,6 +1,6 @@
 # Installation
 
-## User install
+## Installation instructions for users
 
 The quickest way to install GQCP is through conda:
 
@@ -18,7 +18,7 @@ export LIBINT_DATA_PATH=$CONDA_PREFIX/share/libint/2.3.1/basis
 
 You will have to either export this environment variable everytime you activate the `gqcp` environment or (better) put this export in your .bashrc or (preferred) [add this environment variable to your virtual environment](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#saving-environment-variables).
 
-## Develop install
+## Installation instructions for developers
 
 ###  Clone the repo
 
@@ -81,9 +81,9 @@ cmake .. -DCMAKE_PREFIX_PATH=$CONDA_PREFIX \
 
 In general, please set and pass the following options to the `cmake ..` command:
 
-* `-DCMAKE_C_COMPILER=cc`, with `cc` the C-compiler used. On the HPC clusters, you can use the Intel compiler `icc` after loading the relevant module (e.g. `module load intel/2019b`).
+* `-DCMAKE_C_COMPILER=cc`, with `cc` the C-compiler used.
 
-* `-DCMAKE_CXX_COMPILER=cxx`, with `cxx` the C++-compiler used. On the HPC clusters, you can use the Intel compiler `icpc` after loading the relevant module (e.g. `module load intel/2019b`).
+* `-DCMAKE_CXX_COMPILER=cxx`, with `cxx` the C++-compiler used.
 
 * `-DCMAKE_PREFIX_PATH=prefix_path`, with `prefix_path` the path to those libraries and includes that are not in default locations, but are grouped together.
    For instance, setting the prefix_path to `/usr/local` ensures that the folders `cmake`, `lib`, `lib64` and `include` can be found.
