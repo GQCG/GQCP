@@ -116,7 +116,7 @@ public:
      *  @param two_op_mixed              the alpha & beta mixed two-electron operators (whose integrals are represented as g_aabb)
      */
     USQHamiltonian(const std::vector<ScalarUSQOneElectronOperator<Scalar>>& h, const std::vector<ScalarUSQTwoElectronOperator<Scalar>>& g) :
-        USQHamiltonian(std::vector<ScalarUSQOneElectronOperator<Scalar>>{h}, std::vector<ScalarUSQTwoElectronOperator<Scalar>>{g})
+        USQHamiltonian(std::vector<ScalarUSQOneElectronOperator<Scalar>> (h), std::vector<ScalarUSQTwoElectronOperator<Scalar>> (g))
     {}
 
 
