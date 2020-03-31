@@ -1,20 +1,24 @@
 # Installation
 
-## User install
+## Installation instructions for users
 
 The quickest way to install GQCP is through conda:
 
 ```bash
+conda create --name gqcp
+source activate gqcp
 conda install -c gqcg -c intel -c conda-forge gqcp
 ```
 
 After installation, set the `LIBINT_DATA_PATH` environment variable to the folder that contains the libint bases. In a default installation (of e.g. version v2.3.1), the data path is given by:
 
 ```bash
-export LIBINT_DATA_PATH=${conda_install_dir}/share/libint/2.3.1/basis
+export LIBINT_DATA_PATH=$CONDA_PREFIX/share/libint/2.3.1/basis
 ```
 
-## Develop install
+You will have to either export this environment variable everytime you activate the `gqcp` environment or (better) put this export in your .bashrc or (preferred) [add this environment variable to your virtual environment](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#saving-environment-variables).
+
+## Installation instructions for developers
 
 ###  Clone the repo
 
@@ -39,14 +43,16 @@ Note that we offer Conda packages for these installation requirements:
 
 ```bash
 conda env create -f environment.yml
-conda activate gqcg_dev
+conda activate gqcp_dev
 ```
 
 Set the `LIBINT_DATA_PATH` environment variable to the folder that contains the libint bases. In a default installation (of e.g. version v2.3.1), the data path is given by:
 
 ```bash
-export LIBINT_DATA_PATH=${conda_install_dir}/share/libint/2.3.1/basis
+export LIBINT_DATA_PATH=$CONDA_PREFIX/share/libint/2.3.1/basis
 ```
+
+You will have to either export this environment variable everytime you activate the `gqcp_dev` environment or (better) put this export in your .bashrc or (preferred) [add this environment variable to your virtual environment](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#saving-environment-variables).
 
 ### CMake out-of-source build
 
@@ -62,26 +68,22 @@ The possible CMake options are listed below. As such, for the provided GQCG envi
 
 ```bash
 mkdir build && cd build
-cmake .. -DCMAKE_PREFIX_PATH=${conda_install_dir}/envs/gqcg_dev \
+cmake .. -DCMAKE_PREFIX_PATH=$CONDA_PREFIX \
     -DCMAKE_INSTALL_PREFIX=~/.local \
     -DBUILD_TESTS=TRUE \ 
     -DBUILD_PYTHON_BINDINGS=TRUE \
-    -DPYTHON_EXECUTABLE=${conda_install_dir}/envs/gqcg_dev/bin/python \ 
-    -DPYTHON_LIBRARY=${conda_install_dir}/envs/gqcg_dev/lib/libpython3.8.a
+    -DPYTHON_EXECUTABLE=$CONDA_PREFIX/bin/python \ 
+    -DPYTHON_LIBRARY=$CONDA_PREFIX/lib/libpython3.8.a
     make -j{CPU} && make test && (sudo) make install
 ```
-
-where `${conda_install_dir}` is the directory where you have installed conda. This directory can be found using
-
-```bash
-which conda
-```
-
-which should return `${conda_install_dir}/bin/conda`.
 
 #### CMake options
 
 In general, please set and pass the following options to the `cmake ..` command:
+
+* `-DCMAKE_C_COMPILER=cc`, with `cc` the C-compiler used.
+
+* `-DCMAKE_CXX_COMPILER=cxx`, with `cxx` the C++-compiler used.
 
 * `-DCMAKE_PREFIX_PATH=prefix_path`, with `prefix_path` the path to those libraries and includes that are not in default locations, but are grouped together.
    For instance, setting the prefix_path to `/usr/local` ensures that the folders `cmake`, `lib`, `lib64` and `include` can be found.
@@ -114,3 +116,9 @@ For this library, there are several extra options and configuration arguments yo
 * `-DPYTHON_EXECUTABLE=python_executable` with `python_executable` the path to your preferred Python executable.
 
 * `-DPYTHON_LIBRARY=python_library` with `python_library` the path to the libraries that support your preferred Python executable.
+
+### Guidelines
+
+* If you encounter an EMT-instruction failure when using the Intel compilers on the HPC clusters, reduce the number of processors passed to make, e.g. replace `make -j6` by `make -j3`.
+* Store and compile the code on `$VSC_SCRATCH` to achieve optimal performance.
+
