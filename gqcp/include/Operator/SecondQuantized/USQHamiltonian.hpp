@@ -26,6 +26,7 @@
 #include "Molecule/Molecule.hpp"
 #include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 #include "Operator/FirstQuantized/OverlapOperator.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/USQTwoElectronOperator.hpp"
 #include "Processing/RDM/OneRDM.hpp"
@@ -110,13 +111,12 @@ public:
         this->total_two_op = ScalarUSQTwoElectronOperator<Scalar> (total_two_op_par_aa, total_two_op_par_ab, total_two_op_par_ba, total_two_op_par_bb);
     }
 
-    /**
-     *  @param sq_hamiltonian_alpha      the alpha Hamiltonian
-     *  @param sq_hamiltonian_beta       the beta Hamiltonian
-     *  @param two_op_mixed              the alpha & beta mixed two-electron operators (whose integrals are represented as g_aabb)
+     /**
+     *  @param h            the (total) one-electron (i.e. core) integrals
+     *  @param g            the (total) two-electron integrals
      */
-    USQHamiltonian(const std::vector<ScalarUSQOneElectronOperator<Scalar>>& h, const std::vector<ScalarUSQTwoElectronOperator<Scalar>>& g) :
-        USQHamiltonian(std::vector<ScalarUSQOneElectronOperator<Scalar>> (h), std::vector<ScalarUSQTwoElectronOperator<Scalar>> (g))
+    USQHamiltonian(const ScalarUSQOneElectronOperator<Scalar>& h, const ScalarUSQTwoElectronOperator<Scalar>& g) :
+        USQHamiltonian(std::vector<ScalarUSQOneElectronOperator<Scalar>>{h}, std::vector<ScalarUSQTwoElectronOperator<Scalar>>{g})
     {}
 
 
@@ -139,13 +139,14 @@ public:
     template <typename Z = Scalar>
     static enable_if_t<std::is_same<Z, double>::value, USQHamiltonian<double>> Molecular(const USpinorBasis<Z, GTOShell>& spinor_basis, const Molecule& molecule) {
 
-        const SQHamiltonian<Scalar> sq_hamiltonian_alpha = SQHamiltonian<double>::Molecular(spinor_basis.spinorBasis(SpinComponent::ALPHA), molecule);
-        const SQHamiltonian<Scalar> sq_hamiltonian_beta = SQHamiltonian<double>::Molecular(spinor_basis.spinorBasis(SpinComponent::BETA), molecule);
+        // Calculate the integrals for the molecular Hamiltonian
+        const auto T = spinor_basis.quantize(Operator::Kinetic());
+        const auto V = spinor_basis.quantize(Operator::NuclearAttraction(molecule));
+        ScalarUSQOneElectronOperator<double> H = T + V;
 
-        // Initial basis for alpha and beta are identical so the mixed integrals are identical to spin specific components
-        const ScalarSQTwoElectronOperator<double> two_op_mixed = sq_hamiltonian_alpha.twoElectron();
+        const auto g = spinor_basis.quantize(Operator::Coulomb());
 
-        return USQHamiltonian{sq_hamiltonian_alpha, sq_hamiltonian_beta, two_op_mixed};
+        return USQHamiltonian(H, g);
     }
 
     /*
@@ -155,7 +156,7 @@ public:
     /**
      *  @return the dimension of the Hamiltonian, i.e. the number of spinors in which it is expressed
      */
-    size_t dimension() const { return this->sq_hamiltonians[SpinComponent::ALPHA].dimension() + this->sq_hamiltonians[SpinComponent::BETA].dimension(); }
+    size_t dimension() const { return this->one_ops[0].dimension(GQCP::SpinComponent::ALPHA) + this->one_ops[0].dimension(GQCP::SpinComponent::BETA); }
 
     /**
      *  @return if the alpha and beta components of the unrestricted Hamiltonian are of the same dimension
@@ -167,17 +168,27 @@ public:
      * 
      *  @return the pure contributions of the requested component of the unrestricted Hamiltonian 
      */
-    const SQHamiltonian<Scalar>& spinHamiltonian(const SpinComponent& component) const { return this->sq_hamiltonians[component]; }
+    const  SQHamiltonian<Scalar>& spinHamiltonian(const SpinComponent& component, const size_t i = 0) const { 
+
+        QCMatrix<Scalar> one_e = this->total_one_op[i].parameters(component);
+        QCRankFourTensor<Scalar> two_e = this->total_two_op[i].parameters(component, component);
+
+        return SQHamiltonian<Scalar>(one_e, two_e); 
+    }
 
     /**
      *  @return the total contributions to the mixed alpha & beta two-electron part of the unrestricted Hamiltonian
      */
-    const ScalarSQTwoElectronOperator<Scalar>& twoElectronMixed() const { return this->total_two_op_mixed; }
+    const ScalarUSQTwoElectronOperator<Scalar>& twoElectronMixed() const { 
+        return this->total_two_op.parameters(GQCP::SpinComponent::ALPHA, GQCP::SpinComponent::BETA) + this->total_two_op.parameters(GQCP::SpinComponent::BETA, GQCP::SpinComponent::ALPHA); 
+    }
 
     /**
-     *  @return the total contributions to the mixed alpha & beta two-electron part of the unrestricted Hamiltonian
+     *  @return the contributions to the mixed alpha & beta two-electron part of the unrestricted Hamiltonian
      */
-    const std::vector<ScalarSQTwoElectronOperator<Scalar>>& twoElectronContributionsMixed() const { return this->two_op_mixed; }
+    const std::vector<ScalarSQTwoElectronOperator<Scalar>>& twoElectronContributionsMixed(const size_t i = 0) const { 
+        return this->two_ops[i].parameters(GQCP::SpinComponent::ALPHA, GQCP::SpinComponent::BETA) + this->two_ops[i].parameters(GQCP::SpinComponent::BETA, GQCP::SpinComponent::ALPHA); 
+    }
 
     /**
      *  In-place transform the matrix representations of the unrestricted Hamiltonian
