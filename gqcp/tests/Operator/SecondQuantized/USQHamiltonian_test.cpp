@@ -20,6 +20,9 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Operator/SecondQuantized/USQHamiltonian.hpp"
+#include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
+#include "Operator/SecondQuantized/USQTwoElectronOperator.hpp"
+
 
 #include "Utilities/miscellaneous.hpp"
 #include "Utilities/linalg.hpp"
@@ -37,27 +40,27 @@ BOOST_AUTO_TEST_CASE ( USQHamiltonian_constructor ) {
     const auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
     const GQCP::USpinorBasis<double, GQCP::GTOShell> spinor_basis (water, "STO-3G");
     
-    // Create One- and SQTwoElectronOperators (and a transformation matrix) with compatible dimensions
+    // Create USQOne- and USQTwoElectronOperators (and a transformation matrix) with compatible dimensions
     const size_t K = spinor_basis.numberOfCoefficients(GQCP::SpinComponent::ALPHA);
     const GQCP::QCMatrix<double> H_core = GQCP::QCMatrix<double>::Random(K, K);
+    GQCP::ScalarUSQOneElectronOperator<double> core_correct (H_core, H_core);
+
     GQCP::QCRankFourTensor<double> g (K);
     g.setRandom();
+    GQCP::ScalarUSQTwoElectronOperator<double> coulomb_correct (g, g, g, g);
 
-   // Create SQ operators with greater dimensions
+   // Create USQ operators with greater dimensions
     const GQCP::QCMatrix<double> H_core_faulty = GQCP::QCMatrix<double>::Random(K+1, K+1);
+    GQCP::ScalarUSQOneElectronOperator<double> core_faulty (H_core_faulty, H_core_faulty);
     GQCP::QCRankFourTensor<double> g_faulty (K+1);
     g_faulty.setRandom();
-
-    // Create SQHamilonians with different dimensions
-    const GQCP::SQHamiltonian<double> sq_hamiltonian_a {GQCP::ScalarSQOneElectronOperator<double>{H_core}, GQCP::ScalarSQTwoElectronOperator<double>{g}};
-    const GQCP::SQHamiltonian<double> sq_hamiltonian_b {GQCP::ScalarSQOneElectronOperator<double>{H_core}, GQCP::ScalarSQTwoElectronOperator<double>{g}};
-    const GQCP::SQHamiltonian<double> sq_hamiltonian_b_faulty {GQCP::ScalarSQOneElectronOperator<double>{H_core_faulty}, GQCP::ScalarSQTwoElectronOperator<double>{g_faulty}};
+    GQCP::ScalarUSQTwoElectronOperator<double> coulomb_faulty (g_faulty, g_faulty, g_faulty, g_faulty);
 
     // Check if a correct constructor works with compatible elements
-    BOOST_CHECK_NO_THROW(GQCP::USQHamiltonian<double> usq_hamiltonian (sq_hamiltonian_a, sq_hamiltonian_b, GQCP::ScalarSQTwoElectronOperator<double>{g}));
+    BOOST_CHECK_NO_THROW(GQCP::USQHamiltonian<double> usq_hamiltonian (core_correct, coulomb_correct));
     // Check if a constructor throws an error with incompatible elements
-    BOOST_CHECK_THROW(GQCP::USQHamiltonian<double> usq_hamiltonian (sq_hamiltonian_a, sq_hamiltonian_b_faulty, GQCP::ScalarSQTwoElectronOperator<double>{g}), std::invalid_argument);
-    BOOST_CHECK_THROW(GQCP::USQHamiltonian<double> usq_hamiltonian (sq_hamiltonian_a, sq_hamiltonian_b, GQCP::ScalarSQTwoElectronOperator<double>{g_faulty}), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::USQHamiltonian<double> usq_hamiltonian (core_faulty, coulomb_correct), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::USQHamiltonian<double> usq_hamiltonian (core_correct, coulomb_faulty), std::invalid_argument);
 }
 
 /**
@@ -87,4 +90,3 @@ BOOST_AUTO_TEST_CASE ( USQHamiltonian_transform ) {
     BOOST_CHECK(usq_hamiltonian1.spinHamiltonian(GQCP::SpinComponent::ALPHA).core().parameters().isApprox(usq_hamiltonian2.spinHamiltonian(GQCP::SpinComponent::ALPHA).core().parameters()));
     BOOST_CHECK(usq_hamiltonian1.spinHamiltonian(GQCP::SpinComponent::BETA).core().parameters().isApprox(usq_hamiltonian2.spinHamiltonian(GQCP::SpinComponent::BETA).core().parameters()));   
 }
-

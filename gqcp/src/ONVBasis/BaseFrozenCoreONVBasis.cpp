@@ -470,11 +470,7 @@ USQHamiltonian<double> BaseFrozenCoreONVBasis::freezeOperator(const USQHamiltoni
         }
     }
 
-    return USQHamiltonian<double> {
-            SQHamiltonian<double>{ScalarSQOneElectronOperator<double>{frozen_one_op_par_alpha}, ScalarSQTwoElectronOperator<double>{frozen_two_op_par_alpha}},
-            SQHamiltonian<double>{ScalarSQOneElectronOperator<double>{frozen_one_op_par_beta}, ScalarSQTwoElectronOperator<double>{frozen_two_op_par_beta}},
-            ScalarSQTwoElectronOperator<double>{frozen_two_op_par_mixed}
-    };
+    return USQHamiltonian<double>(ScalarUSQOneElectronOperator<double>{frozen_one_op_par_alpha, frozen_one_op_par_beta}, ScalarUSQTwoElectronOperator<double>{frozen_two_op_par_alpha, frozen_two_op_par_mixed, frozen_two_op_par_mixed, frozen_two_op_par_beta});
 }
 
 
