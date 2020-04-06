@@ -152,10 +152,12 @@ public:
         GQCP::ScalarUSQOneElectronOperator<double> H (H_a.parameters(), H_b.parameters());
 
         const auto g_aa = spinor_basis.quantize(Operator::Coulomb(), GQCP::SpinComponent::ALPHA);
-        const auto g_bb = spinor_basis.quantize(Operator::Coulomb(), GQCP::SpinComponent::BETA);
-        const auto dim = g_aa.dimension();
-        GQCP::QCRankFourTensor<double> g_mix (dim);
-        g_mix.setZero();
+        const auto g_bb = spinor_basis.quantize(Operator::Coulomb(), GQCP::SpinComponent::BETA); 
+        GQCP::QCRankFourTensor<double> g_mix (g_aa.dimension());
+
+        for (const auto& g_values : g_aa.allParameters()) {
+            g_mix += g_values.Eigen();
+        }
 
         GQCP::ScalarUSQTwoElectronOperator<double> g (g_aa.parameters(), g_mix, g_mix, g_bb.parameters());
 
