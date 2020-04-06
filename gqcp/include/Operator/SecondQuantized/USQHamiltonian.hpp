@@ -153,11 +153,10 @@ public:
 
         const auto g_aa = spinor_basis.quantize(Operator::Coulomb(), GQCP::SpinComponent::ALPHA);
         const auto g_bb = spinor_basis.quantize(Operator::Coulomb(), GQCP::SpinComponent::BETA); 
-        GQCP::QCRankFourTensor<double> g_mix (g_aa.dimension());
-
-        for (const auto& g_values : g_aa.allParameters()) {
-            g_mix += g_values.Eigen();
-        }
+        
+        const SQHamiltonian<Scalar> sq_hamiltonian_alpha = SQHamiltonian<double>::Molecular(spinor_basis.spinorBasis(SpinComponent::ALPHA), molecule);
+        const ScalarSQTwoElectronOperator<double> two_op_mixed = sq_hamiltonian_alpha.twoElectron();
+        const auto g_mix = two_op_mixed.parameters();
 
         GQCP::ScalarUSQTwoElectronOperator<double> g (g_aa.parameters(), g_mix, g_mix, g_bb.parameters());
 
@@ -185,8 +184,8 @@ public:
      */
     const  SQHamiltonian<Scalar> spinHamiltonian(const SpinComponent& component) const { 
 
-        QCMatrix<Scalar> one_e = this->total_one_op.parameters(component);
-        QCRankFourTensor<Scalar> two_e = this->total_two_op.parameters(component, component);
+        const auto one_e = this->total_one_op.allParameters(component);
+        const auto two_e = this->total_two_op.allParameters(component, component);
 
         return SQHamiltonian<Scalar>(one_e, two_e); 
     }
