@@ -59,6 +59,36 @@ void bindLinearExpansion(py::module& module, const std::string& suffix, const st
 }
 
 
+/**
+ *  A template specialization for the binding of GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>, because it has an additional function to be bound.
+ * 
+ *  @param module               the Pybind11 module
+ *  @param suffix               the suffix for the gqcpy class name, i.e. "SQOperator" + suffix
+ *  @param description          the description for the gqcpy class
+ */
+template <>
+void bindLinearExpansion<GQCP::SeniorityZeroONVBasis>(py::module& module, const std::string& suffix, const std::string& description) {
+
+    py::class_<GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>>(module,
+        ("LinearExpansion" + suffix).c_str(),
+        description.c_str()
+    )
+
+        .def("calculate1DM",
+            [ ] (const GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>& linear_expansion) {
+                return linear_expansion.calculate1DM();
+            },
+            "Return the one-electron density matrix (1-DM) for a seniority-zero wave function expansion."
+        )
+
+        .def("coefficients",
+            &GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>::coefficients,
+            "Return the expansion coefficients of this linear expansion wave function model."
+        )
+    ;
+}
+
+
 void bindLinearExpansions(py::module& module) {
 
     bindLinearExpansion<GQCP::SeniorityZeroONVBasis>(module, "SeniorityZero", "The linear expansion (configuration interaction) wave function model in a seniority-zero ONV basis.");
