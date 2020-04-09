@@ -1,0 +1,1706 @@
+Start testing: Mar 30 17:16 CEST
+----------------------------------------------------------
+1/82 Testing: TransformationMatrix_test
+1/82 Test: TransformationMatrix_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/TransformationMatrix_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"TransformationMatrix_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 1 test case...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   1.99 sec
+----------------------------------------------------------
+Test Passed.
+"TransformationMatrix_test" end time: Mar 30 17:16 CEST
+"TransformationMatrix_test" time elapsed: 00:00:01
+----------------------------------------------------------
+
+2/82 Testing: LibintInterfacer_test
+2/82 Test: LibintInterfacer_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/LibintInterfacer_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"LibintInterfacer_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 5 test cases...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"LibintInterfacer_test" end time: Mar 30 17:16 CEST
+"LibintInterfacer_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/82 Testing: IntegralCalculator_test
+3/82 Test: IntegralCalculator_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/IntegralCalculator_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"IntegralCalculator_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 4 test cases...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+unknown location:0: [4;31;49mfatal error: in "libcint_vs_libint2_H2O_STO_3G": signal: illegal opcode; address of failing instruction: 0x10b879a47[0;39;49m
+/Users/daria/ugent/GQCP/gqcp/tests/Basis/Integrals/IntegralCalculator_test.cpp:116: [1;36;49mlast checkpoint: "libcint_vs_libint2_H2O_STO_3G" test entry[0;39;49m
+
+[1;31;49m*** 1 failure is detected in the test module "IntegralCalculator"
+[0;39;49m
+<end of output>
+Test time =   0.21 sec
+----------------------------------------------------------
+Test Failed.
+"IntegralCalculator_test" end time: Mar 30 17:16 CEST
+"IntegralCalculator_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/82 Testing: CartesianExponents_test
+4/82 Test: CartesianExponents_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/CartesianExponents_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"CartesianExponents_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 4 test cases...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.16 sec
+----------------------------------------------------------
+Test Passed.
+"CartesianExponents_test" end time: Mar 30 17:16 CEST
+"CartesianExponents_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/82 Testing: CartesianGTO_test
+5/82 Test: CartesianGTO_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/CartesianGTO_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"CartesianGTO_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 5 test cases...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"CartesianGTO_test" end time: Mar 30 17:16 CEST
+"CartesianGTO_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/82 Testing: GTOShell_test
+6/82 Test: GTOShell_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/GTOShell_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"GTOShell_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 5 test cases...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"GTOShell_test" end time: Mar 30 17:16 CEST
+"GTOShell_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+7/82 Testing: ScalarBasis_test
+7/82 Test: ScalarBasis_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/ScalarBasis_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"ScalarBasis_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 4 test cases...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.19 sec
+----------------------------------------------------------
+Test Passed.
+"ScalarBasis_test" end time: Mar 30 17:16 CEST
+"ScalarBasis_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+8/82 Testing: ShellSet_test
+8/82 Test: ShellSet_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/ShellSet_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"ShellSet_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 1 test case...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"ShellSet_test" end time: Mar 30 17:16 CEST
+"ShellSet_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+9/82 Testing: GSpinorBasis_test
+9/82 Test: GSpinorBasis_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/GSpinorBasis_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"GSpinorBasis_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 4 test cases...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/6-31g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/6-31g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.21 sec
+----------------------------------------------------------
+Test Passed.
+"GSpinorBasis_test" end time: Mar 30 17:16 CEST
+"GSpinorBasis_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+10/82 Testing: JacobiRotationParameters_test
+10/82 Test: JacobiRotationParameters_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/JacobiRotationParameters_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"JacobiRotationParameters_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 2 test cases...
+p: 3, q: 1, angle: 0.5
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"JacobiRotationParameters_test" end time: Mar 30 17:16 CEST
+"JacobiRotationParameters_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+11/82 Testing: OrbitalRotationGenerators_test
+11/82 Test: OrbitalRotationGenerators_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/OrbitalRotationGenerators_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"OrbitalRotationGenerators_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 3 test cases...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"OrbitalRotationGenerators_test" end time: Mar 30 17:16 CEST
+"OrbitalRotationGenerators_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+12/82 Testing: RSpinorBasis_test
+12/82 Test: RSpinorBasis_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/RSpinorBasis_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"RSpinorBasis_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 1 test case...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.19 sec
+----------------------------------------------------------
+Test Passed.
+"RSpinorBasis_test" end time: Mar 30 17:16 CEST
+"RSpinorBasis_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+13/82 Testing: SimpleSpinorBasis_test
+13/82 Test: SimpleSpinorBasis_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/SimpleSpinorBasis_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"SimpleSpinorBasis_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 2 test cases...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.18 sec
+----------------------------------------------------------
+Test Passed.
+"SimpleSpinorBasis_test" end time: Mar 30 17:16 CEST
+"SimpleSpinorBasis_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+14/82 Testing: USpinorBasis_test
+14/82 Test: USpinorBasis_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/USpinorBasis_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"USpinorBasis_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 2 test cases...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/6-31g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"USpinorBasis_test" end time: Mar 30 17:16 CEST
+"USpinorBasis_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+15/82 Testing: ScalarFunction_test
+15/82 Test: ScalarFunction_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/ScalarFunction_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"ScalarFunction_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 1 test case...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.16 sec
+----------------------------------------------------------
+Test Passed.
+"ScalarFunction_test" end time: Mar 30 17:16 CEST
+"ScalarFunction_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+16/82 Testing: Eigenpair_test
+16/82 Test: Eigenpair_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/Eigenpair_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"Eigenpair_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 1 test case...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.16 sec
+----------------------------------------------------------
+Test Passed.
+"Eigenpair_test" end time: Mar 30 17:16 CEST
+"Eigenpair_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+17/82 Testing: EigenproblemSolver_test
+17/82 Test: EigenproblemSolver_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/EigenproblemSolver_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"EigenproblemSolver_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 8 test cases...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   1.12 sec
+----------------------------------------------------------
+Test Passed.
+"EigenproblemSolver_test" end time: Mar 30 17:16 CEST
+"EigenproblemSolver_test" time elapsed: 00:00:01
+----------------------------------------------------------
+
+18/82 Testing: IterativeIdentitiesHessianModifier_test
+18/82 Test: IterativeIdentitiesHessianModifier_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/IterativeIdentitiesHessianModifier_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"IterativeIdentitiesHessianModifier_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 1 test case...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.16 sec
+----------------------------------------------------------
+Test Passed.
+"IterativeIdentitiesHessianModifier_test" end time: Mar 30 17:16 CEST
+"IterativeIdentitiesHessianModifier_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+19/82 Testing: Minimizer_test
+19/82 Test: Minimizer_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/Minimizer_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"Minimizer_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 1 test case...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"Minimizer_test" end time: Mar 30 17:16 CEST
+"Minimizer_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+20/82 Testing: NonLinearEquationSolver_test
+20/82 Test: NonLinearEquationSolver_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/NonLinearEquationSolver_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"NonLinearEquationSolver_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 1 test case...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"NonLinearEquationSolver_test" end time: Mar 30 17:16 CEST
+"NonLinearEquationSolver_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+21/82 Testing: BlockMatrix_test
+21/82 Test: BlockMatrix_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/BlockMatrix_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"BlockMatrix_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 3 test cases...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.16 sec
+----------------------------------------------------------
+Test Passed.
+"BlockMatrix_test" end time: Mar 30 17:16 CEST
+"BlockMatrix_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+22/82 Testing: BlockRankFourTensor_test
+22/82 Test: BlockRankFourTensor_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/BlockRankFourTensor_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"BlockRankFourTensor_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 1 test case...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.16 sec
+----------------------------------------------------------
+Test Passed.
+"BlockRankFourTensor_test" end time: Mar 30 17:16 CEST
+"BlockRankFourTensor_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+23/82 Testing: Matrix_test
+23/82 Test: Matrix_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/Matrix_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"Matrix_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 9 test cases...
+0 0  -0.233169
+0 1  -0.165028
+1 0  -0.866316
+1 1  0.373545
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.16 sec
+----------------------------------------------------------
+Test Passed.
+"Matrix_test" end time: Mar 30 17:16 CEST
+"Matrix_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+24/82 Testing: QCMatrix_test
+24/82 Test: QCMatrix_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/QCMatrix_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"QCMatrix_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 7 test cases...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"QCMatrix_test" end time: Mar 30 17:16 CEST
+"QCMatrix_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+25/82 Testing: QCRankFourTensor_test
+25/82 Test: QCRankFourTensor_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/QCRankFourTensor_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"QCRankFourTensor_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 5 test cases...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"QCRankFourTensor_test" end time: Mar 30 17:16 CEST
+"QCRankFourTensor_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+26/82 Testing: SquareMatrix_test
+26/82 Test: SquareMatrix_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/SquareMatrix_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"SquareMatrix_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 10 test cases...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.16 sec
+----------------------------------------------------------
+Test Passed.
+"SquareMatrix_test" end time: Mar 30 17:16 CEST
+"SquareMatrix_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+27/82 Testing: SquareRankFourTensor_test
+27/82 Test: SquareRankFourTensor_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/SquareRankFourTensor_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"SquareRankFourTensor_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 6 test cases...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"SquareRankFourTensor_test" end time: Mar 30 17:16 CEST
+"SquareRankFourTensor_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+28/82 Testing: Tensor_test
+28/82 Test: Tensor_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/Tensor_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"Tensor_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 9 test cases...
+0 0 0 0  0.96869
+0 0 0 1  0.428058
+0 0 1 0  0.670096
+0 0 1 1  0.898613
+0 1 0 0  0.52043
+0 1 0 1  0.121222
+0 1 1 0  0.532641
+0 1 1 1  0.31851
+1 0 0 0  0.647483
+1 0 0 1  0.122722
+1 0 1 0  0.972211
+1 0 1 1  0.0555598
+1 1 0 0  0.558533
+1 1 0 1  0.858929
+1 1 1 0  0.425868
+1 1 1 1  0.0783268
+ 4  6  5  7
+12 14 13 15
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"Tensor_test" end time: Mar 30 17:16 CEST
+"Tensor_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+29/82 Testing: elements_test
+29/82 Test: elements_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/elements_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"elements_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 2 test cases...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"elements_test" end time: Mar 30 17:16 CEST
+"elements_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+30/82 Testing: Molecule_test
+30/82 Test: Molecule_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/Molecule_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"Molecule_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 5 test cases...
+Number of electrons: 10
+H  (0, 3, 0)
+He (0, 0, 4)
+Li (3, 0, 0)
+Be (0, 0, 5)
+
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.16 sec
+----------------------------------------------------------
+Test Passed.
+"Molecule_test" end time: Mar 30 17:16 CEST
+"Molecule_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+31/82 Testing: NuclearFramework_test
+31/82 Test: NuclearFramework_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/NuclearFramework_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"NuclearFramework_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 10 test cases...
+H  (0, 3, 0)
+He (0, 0, 4)
+Li (3, 0, 0)
+Be (0, 0, 5)
+
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"NuclearFramework_test" end time: Mar 30 17:16 CEST
+"NuclearFramework_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+32/82 Testing: Nucleus_test
+32/82 Test: Nucleus_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/Nucleus_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"Nucleus_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 5 test cases...
+H  (0, 0.1, 0.2)
+
+He (0.1, 0.2, 0.3)
+
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.16 sec
+----------------------------------------------------------
+Test Passed.
+"Nucleus_test" end time: Mar 30 17:16 CEST
+"Nucleus_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+33/82 Testing: SpinResolvedFrozenONVBasis_test
+33/82 Test: SpinResolvedFrozenONVBasis_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/SpinResolvedFrozenONVBasis_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"SpinResolvedFrozenONVBasis_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 7 test cases...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.30 sec
+----------------------------------------------------------
+Test Passed.
+"SpinResolvedFrozenONVBasis_test" end time: Mar 30 17:16 CEST
+"SpinResolvedFrozenONVBasis_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+34/82 Testing: SpinResolvedONVBasis_test
+34/82 Test: SpinResolvedONVBasis_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/SpinResolvedONVBasis_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"SpinResolvedONVBasis_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 9 test cases...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.50 sec
+----------------------------------------------------------
+Test Passed.
+"SpinResolvedONVBasis_test" end time: Mar 30 17:16 CEST
+"SpinResolvedONVBasis_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+35/82 Testing: SpinResolvedSelectedONVBasis_test
+35/82 Test: SpinResolvedSelectedONVBasis_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/SpinResolvedSelectedONVBasis_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"SpinResolvedSelectedONVBasis_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 3 test cases...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.77 sec
+----------------------------------------------------------
+Test Passed.
+"SpinResolvedSelectedONVBasis_test" end time: Mar 30 17:16 CEST
+"SpinResolvedSelectedONVBasis_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+36/82 Testing: SpinUnresolvedFrozenONVBasis_test
+36/82 Test: SpinUnresolvedFrozenONVBasis_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/SpinUnresolvedFrozenONVBasis_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"SpinUnresolvedFrozenONVBasis_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 5 test cases...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.21 sec
+----------------------------------------------------------
+Test Passed.
+"SpinUnresolvedFrozenONVBasis_test" end time: Mar 30 17:16 CEST
+"SpinUnresolvedFrozenONVBasis_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+37/82 Testing: SpinUnresolvedONV_test
+37/82 Test: SpinUnresolvedONV_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/SpinUnresolvedONV_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"SpinUnresolvedONV_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 27 test cases...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"SpinUnresolvedONV_test" end time: Mar 30 17:16 CEST
+"SpinUnresolvedONV_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+38/82 Testing: SpinUnresolvedONVBasis_test
+38/82 Test: SpinUnresolvedONVBasis_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/SpinUnresolvedONVBasis_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"SpinUnresolvedONVBasis_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 18 test cases...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.33 sec
+----------------------------------------------------------
+Test Passed.
+"SpinUnresolvedONVBasis_test" end time: Mar 30 17:16 CEST
+"SpinUnresolvedONVBasis_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+39/82 Testing: NuclearDipoleOperator_test
+39/82 Test: NuclearDipoleOperator_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/NuclearDipoleOperator_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"NuclearDipoleOperator_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 1 test case...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.16 sec
+----------------------------------------------------------
+Test Passed.
+"NuclearDipoleOperator_test" end time: Mar 30 17:16 CEST
+"NuclearDipoleOperator_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+40/82 Testing: NuclearRepulsionOperator_test
+40/82 Test: NuclearRepulsionOperator_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/NuclearRepulsionOperator_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"NuclearRepulsionOperator_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 2 test cases...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"NuclearRepulsionOperator_test" end time: Mar 30 17:16 CEST
+"NuclearRepulsionOperator_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+41/82 Testing: SQHamiltonian_test
+41/82 Test: SQHamiltonian_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/SQHamiltonian_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"SQHamiltonian_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 9 test cases...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.26 sec
+----------------------------------------------------------
+Test Passed.
+"SQHamiltonian_test" end time: Mar 30 17:16 CEST
+"SQHamiltonian_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+42/82 Testing: SQOneElectronOperator_test
+42/82 Test: SQOneElectronOperator_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/SQOneElectronOperator_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"SQOneElectronOperator_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 12 test cases...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"SQOneElectronOperator_test" end time: Mar 30 17:16 CEST
+"SQOneElectronOperator_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+43/82 Testing: SQTwoElectronOperator_test
+43/82 Test: SQTwoElectronOperator_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/SQTwoElectronOperator_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"SQTwoElectronOperator_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 12 test cases...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"SQTwoElectronOperator_test" end time: Mar 30 17:16 CEST
+"SQTwoElectronOperator_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+44/82 Testing: USQHamiltonian_test
+44/82 Test: USQHamiltonian_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/USQHamiltonian_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"USQHamiltonian_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 2 test cases...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.23 sec
+----------------------------------------------------------
+Test Passed.
+"USQHamiltonian_test" end time: Mar 30 17:16 CEST
+"USQHamiltonian_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+45/82 Testing: USQOneElectronOperator_test
+45/82 Test: USQOneElectronOperator_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/USQOneElectronOperator_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"USQOneElectronOperator_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 11 test cases...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.16 sec
+----------------------------------------------------------
+Test Passed.
+"USQOneElectronOperator_test" end time: Mar 30 17:16 CEST
+"USQOneElectronOperator_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+46/82 Testing: USQTwoElectronOperator_test
+46/82 Test: USQTwoElectronOperator_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/USQTwoElectronOperator_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"USQTwoElectronOperator_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 11 test cases...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"USQTwoElectronOperator_test" end time: Mar 30 17:16 CEST
+"USQTwoElectronOperator_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+47/82 Testing: expectation_values_test
+47/82 Test: expectation_values_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/expectation_values_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"expectation_values_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 1 test case...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.20 sec
+----------------------------------------------------------
+Test Passed.
+"expectation_values_test" end time: Mar 30 17:16 CEST
+"expectation_values_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+48/82 Testing: properties_test
+48/82 Test: properties_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/properties_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"properties_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 4 test cases...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.25 sec
+----------------------------------------------------------
+Test Passed.
+"properties_test" end time: Mar 30 17:16 CEST
+"properties_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+49/82 Testing: DOCIRDMBuilder_test
+49/82 Test: DOCIRDMBuilder_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/DOCIRDMBuilder_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"DOCIRDMBuilder_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 1 test case...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.20 sec
+----------------------------------------------------------
+Test Passed.
+"DOCIRDMBuilder_test" end time: Mar 30 17:16 CEST
+"DOCIRDMBuilder_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+50/82 Testing: FCIRDMBuilder_test
+50/82 Test: FCIRDMBuilder_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/FCIRDMBuilder_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"FCIRDMBuilder_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 4 test cases...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.40 sec
+----------------------------------------------------------
+Test Passed.
+"FCIRDMBuilder_test" end time: Mar 30 17:16 CEST
+"FCIRDMBuilder_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+51/82 Testing: FrozenCoreFCIRDMBuilder_test
+51/82 Test: FrozenCoreFCIRDMBuilder_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/FrozenCoreFCIRDMBuilder_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"FrozenCoreFCIRDMBuilder_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 1 test case...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.19 sec
+----------------------------------------------------------
+Test Passed.
+"FrozenCoreFCIRDMBuilder_test" end time: Mar 30 17:16 CEST
+"FrozenCoreFCIRDMBuilder_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+52/82 Testing: OneRDM_test
+52/82 Test: OneRDM_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/OneRDM_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"OneRDM_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 1 test case...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"OneRDM_test" end time: Mar 30 17:16 CEST
+"OneRDM_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+53/82 Testing: SelectedRDMBuilder_test
+53/82 Test: SelectedRDMBuilder_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/SelectedRDMBuilder_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"SelectedRDMBuilder_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 2 test cases...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/6-31g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/6-31g.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.19 sec
+----------------------------------------------------------
+Test Passed.
+"SelectedRDMBuilder_test" end time: Mar 30 17:16 CEST
+"SelectedRDMBuilder_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+54/82 Testing: SpinUnresolvedFCIRDMBuilder_test
+54/82 Test: SpinUnresolvedFCIRDMBuilder_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/SpinUnresolvedFCIRDMBuilder_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"SpinUnresolvedFCIRDMBuilder_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 5 test cases...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"SpinUnresolvedFCIRDMBuilder_test" end time: Mar 30 17:16 CEST
+"SpinUnresolvedFCIRDMBuilder_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+55/82 Testing: TwoRDM_test
+55/82 Test: TwoRDM_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/TwoRDM_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"TwoRDM_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 3 test cases...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.16 sec
+----------------------------------------------------------
+Test Passed.
+"TwoRDM_test" end time: Mar 30 17:16 CEST
+"TwoRDM_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+56/82 Testing: AtomicDecompositionParameters_test
+56/82 Test: AtomicDecompositionParameters_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/AtomicDecompositionParameters_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"AtomicDecompositionParameters_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 1 test case...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.21 sec
+----------------------------------------------------------
+Test Passed.
+"AtomicDecompositionParameters_test" end time: Mar 30 17:16 CEST
+"AtomicDecompositionParameters_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+57/82 Testing: constrained_RHF_test
+57/82 Test: constrained_RHF_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/constrained_RHF_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"constrained_RHF_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 2 test cases...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.32 sec
+----------------------------------------------------------
+Test Passed.
+"constrained_RHF_test" end time: Mar 30 17:16 CEST
+"constrained_RHF_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+58/82 Testing: DOCI_test
+58/82 Test: DOCI_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/DOCI_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"DOCI_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 9 test cases...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.54 sec
+----------------------------------------------------------
+Test Passed.
+"DOCI_test" end time: Mar 30 17:16 CEST
+"DOCI_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+59/82 Testing: DOCINewtonOrbitalOptimizer_test
+59/82 Test: DOCINewtonOrbitalOptimizer_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/DOCINewtonOrbitalOptimizer_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"DOCINewtonOrbitalOptimizer_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 2 test cases...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/6-31g**.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.32 sec
+----------------------------------------------------------
+Test Passed.
+"DOCINewtonOrbitalOptimizer_test" end time: Mar 30 17:16 CEST
+"DOCINewtonOrbitalOptimizer_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+60/82 Testing: FCI_test
+60/82 Test: FCI_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/FCI_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"FCI_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 6 test cases...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/6-31g**.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/6-31g**.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.38 sec
+----------------------------------------------------------
+Test Passed.
+"FCI_test" end time: Mar 30 17:16 CEST
+"FCI_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+61/82 Testing: Hubbard_test
+61/82 Test: Hubbard_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/Hubbard_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"Hubbard_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 6 test cases...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.46 sec
+----------------------------------------------------------
+Test Passed.
+"Hubbard_test" end time: Mar 30 17:16 CEST
+"Hubbard_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+62/82 Testing: DOCI_builder_test
+62/82 Test: DOCI_builder_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/DOCI_builder_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"DOCI_builder_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 2 test cases...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"DOCI_builder_test" end time: Mar 30 17:16 CEST
+"DOCI_builder_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+63/82 Testing: FCI_builder_test
+63/82 Test: FCI_builder_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/FCI_builder_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"FCI_builder_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 2 test cases...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"FCI_builder_test" end time: Mar 30 17:16 CEST
+"FCI_builder_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+64/82 Testing: FrozenCoreFCI_test
+64/82 Test: FrozenCoreFCI_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/FrozenCoreFCI_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"FrozenCoreFCI_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 3 test cases...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.19 sec
+----------------------------------------------------------
+Test Passed.
+"FrozenCoreFCI_test" end time: Mar 30 17:16 CEST
+"FrozenCoreFCI_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+65/82 Testing: Hubbard_builder_test
+65/82 Test: Hubbard_builder_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/Hubbard_builder_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"Hubbard_builder_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 6 test cases...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.22 sec
+----------------------------------------------------------
+Test Passed.
+"Hubbard_builder_test" end time: Mar 30 17:16 CEST
+"Hubbard_builder_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+66/82 Testing: SelectedCI_test
+66/82 Test: SelectedCI_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/SelectedCI_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"SelectedCI_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 4 test cases...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.21 sec
+----------------------------------------------------------
+Test Passed.
+"SelectedCI_test" end time: Mar 30 17:16 CEST
+"SelectedCI_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+67/82 Testing: AP1roGJacobiOrbitalOptimizer_test
+67/82 Test: AP1roGJacobiOrbitalOptimizer_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/AP1roGJacobiOrbitalOptimizer_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"AP1roGJacobiOrbitalOptimizer_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 2 test cases...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/6-31g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/6-31g.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.37 sec
+----------------------------------------------------------
+Test Passed.
+"AP1roGJacobiOrbitalOptimizer_test" end time: Mar 30 17:16 CEST
+"AP1roGJacobiOrbitalOptimizer_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+68/82 Testing: AP1roGLagrangianNewtonOrbitalOptimizer_test
+68/82 Test: AP1roGLagrangianNewtonOrbitalOptimizer_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/AP1roGLagrangianNewtonOrbitalOptimizer_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"AP1roGLagrangianNewtonOrbitalOptimizer_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 1 test case...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/6-31g.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.34 sec
+----------------------------------------------------------
+Test Passed.
+"AP1roGLagrangianNewtonOrbitalOptimizer_test" end time: Mar 30 17:16 CEST
+"AP1roGLagrangianNewtonOrbitalOptimizer_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+69/82 Testing: QCMethod_AP1roG_test
+69/82 Test: QCMethod_AP1roG_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/QCMethod_AP1roG_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"QCMethod_AP1roG_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 2 test cases...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/6-31g**.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/6-31g**.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.22 sec
+----------------------------------------------------------
+Test Passed.
+"QCMethod_AP1roG_test" end time: Mar 30 17:16 CEST
+"QCMethod_AP1roG_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+70/82 Testing: QCMethod_vAP1roG_test
+70/82 Test: QCMethod_vAP1roG_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/QCMethod_vAP1roG_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"QCMethod_vAP1roG_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 1 test case...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/6-31g**.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.20 sec
+----------------------------------------------------------
+Test Passed.
+"QCMethod_vAP1roG_test" end time: Mar 30 17:16 CEST
+"QCMethod_vAP1roG_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+71/82 Testing: QCMethod_RHF_test
+71/82 Test: QCMethod_RHF_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/QCMethod_RHF_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"QCMethod_RHF_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 11 test cases...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/6-31g**.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/6-31g**.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.38 sec
+----------------------------------------------------------
+Test Passed.
+"QCMethod_RHF_test" end time: Mar 30 17:16 CEST
+"QCMethod_RHF_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+72/82 Testing: RHFSCFEnvironment_test
+72/82 Test: RHFSCFEnvironment_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/RHFSCFEnvironment_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"RHFSCFEnvironment_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 1 test case...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.19 sec
+----------------------------------------------------------
+Test Passed.
+"RHFSCFEnvironment_test" end time: Mar 30 17:16 CEST
+"RHFSCFEnvironment_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+73/82 Testing: ERJacobiLocalizer_test
+73/82 Test: ERJacobiLocalizer_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/ERJacobiLocalizer_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"ERJacobiLocalizer_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 1 test case...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.23 sec
+----------------------------------------------------------
+Test Passed.
+"ERJacobiLocalizer_test" end time: Mar 30 17:16 CEST
+"ERJacobiLocalizer_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+74/82 Testing: ERNewtonLocalizer_test
+74/82 Test: ERNewtonLocalizer_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/ERNewtonLocalizer_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"ERNewtonLocalizer_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 1 test case...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.21 sec
+----------------------------------------------------------
+Test Passed.
+"ERNewtonLocalizer_test" end time: Mar 30 17:16 CEST
+"ERNewtonLocalizer_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+75/82 Testing: RMP2_test
+75/82 Test: RMP2_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/RMP2_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"RMP2_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 2 test cases...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.24 sec
+----------------------------------------------------------
+Test Passed.
+"RMP2_test" end time: Mar 30 17:16 CEST
+"RMP2_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+76/82 Testing: LinearExpansion_test
+76/82 Test: LinearExpansion_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/LinearExpansion_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"LinearExpansion_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 5 test cases...
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+Will read basis set from /Users/daria/opt/anaconda3/envs/gqcg_dev/share/libint/2.3.1/basis/sto-3g.g94
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.22 sec
+----------------------------------------------------------
+Test Passed.
+"LinearExpansion_test" end time: Mar 30 17:16 CEST
+"LinearExpansion_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+77/82 Testing: AP1roGGeminalCoefficients_test
+77/82 Test: AP1roGGeminalCoefficients_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/AP1roGGeminalCoefficients_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"AP1roGGeminalCoefficients_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 7 test cases...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.18 sec
+----------------------------------------------------------
+Test Passed.
+"AP1roGGeminalCoefficients_test" end time: Mar 30 17:16 CEST
+"AP1roGGeminalCoefficients_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+78/82 Testing: APIGGeminalCoefficients_test
+78/82 Test: APIGGeminalCoefficients_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/APIGGeminalCoefficients_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"APIGGeminalCoefficients_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 6 test cases...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.16 sec
+----------------------------------------------------------
+Test Passed.
+"APIGGeminalCoefficients_test" end time: Mar 30 17:16 CEST
+"APIGGeminalCoefficients_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+79/82 Testing: RHF_test
+79/82 Test: RHF_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/RHF_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"RHF_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 3 test cases...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.16 sec
+----------------------------------------------------------
+Test Passed.
+"RHF_test" end time: Mar 30 17:16 CEST
+"RHF_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+80/82 Testing: linalg_test
+80/82 Test: linalg_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/linalg_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"linalg_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 3 test cases...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.19 sec
+----------------------------------------------------------
+Test Passed.
+"linalg_test" end time: Mar 30 17:16 CEST
+"linalg_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+81/82 Testing: miscellaneous_test
+81/82 Test: miscellaneous_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/miscellaneous_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"miscellaneous_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 7 test cases...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"miscellaneous_test" end time: Mar 30 17:16 CEST
+"miscellaneous_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+82/82 Testing: units_test
+82/82 Test: units_test
+Command: "/Users/daria/ugent/GQCP/gqcp/gqcp/tests/units_test"
+Directory: /Users/daria/ugent/GQCP/gqcp/gqcp/tests
+"units_test" start time: Mar 30 17:16 CEST
+Output:
+----------------------------------------------------------
+Running 1 test case...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"units_test" end time: Mar 30 17:16 CEST
+"units_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Mar 30 17:16 CEST
