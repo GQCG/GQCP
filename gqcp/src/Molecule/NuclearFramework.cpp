@@ -170,7 +170,7 @@ NuclearFramework NuclearFramework::HRingFromRadius(const size_t n, const double 
     //      P_i = R ( cos[i/n * 2pi] , sin[i/n * 2pi] )
     std::vector<Nucleus> nuclei {};
     for (size_t i = 0; i < n; i++) {
-        const double angle = i / n * 2 * boost::math::constants::pi<double>();
+        const double angle = i / double(n) * 2 * boost::math::constants::pi<double>();
 
         const double x = radius * std::cos(angle);
         const double y = radius * std::sin(angle);
@@ -178,7 +178,7 @@ NuclearFramework NuclearFramework::HRingFromRadius(const size_t n, const double 
         nuclei.emplace_back(1,  x, y, 0);  // hydrogen in the x,y-plane
     }
 
-    return nuclei;
+    return NuclearFramework(nuclei);
 }
 
 
