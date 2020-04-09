@@ -4,4 +4,5 @@ target_sources(gqcp
         expectation_values.hpp
         properties.hpp
         RHFElectricalResponseSolver.hpp
+        vAP1roGElectricalResponseSolver.hpp
 )
