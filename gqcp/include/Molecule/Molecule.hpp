@@ -110,7 +110,7 @@ public:
      *
      *  @return the distance between the two nuclei at index1 and index2 in bohr
      */
-    double internuclearDistance(const size_t index1, const size_t index2) const;
+    double internuclearDistance(const size_t index1, const size_t index2) const { return this->nuclearFramework().internuclearDistance(index1, index2); }
 
     /**
      *  @return the underlying nuclear framework
@@ -123,6 +123,11 @@ public:
     size_t numberOfAtoms() const { return this->nuclear_framework.numberOfNuclei(); }
 
     /**
+     *  @return the number of electron pairs in this molecule. For odd numbers of electrons, the number of electron pairs is equal to that of the (N-1)-even-electron system.
+     */
+    size_t numberOfElectronPairs() const { return this->numberOfElectrons()/2;  /* this floors to zero */ }
+
+    /**
      *  @return the number of electrons in the molecule
      */
     size_t numberOfElectrons() const { return this->N; }
@@ -130,7 +135,7 @@ public:
     /**
      *  @return the sum of all the charges of the nuclei that are in this molecule
      */
-    size_t totalNucleicCharge() const;
+    size_t totalNucleicCharge() const { return this->nuclear_framework.totalNucleicCharge(); }
 };
 
 
