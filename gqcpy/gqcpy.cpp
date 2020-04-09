@@ -79,6 +79,10 @@ void bindSQOneElectronOperators(py::module& module);
 void bindSQTwoElectronOperator(py::module& module);
 
 
+// Processing - Properties
+void bindRHFElectricalResponseSolver(py::module& module);
+
+
 // QCMethod - CI
 void bindCIEnvironments(py::module& module);
 void bindCIFactory(py::module& module);
@@ -183,6 +187,10 @@ PYBIND11_MODULE (gqcpy, module) {
     gqcpy::bindSQHamiltonian(module);
     gqcpy::bindSQOneElectronOperators(module);
     gqcpy::bindSQTwoElectronOperator(module);
+
+
+    // Processing - Properties
+    gqcpy::bindRHFElectricalResponseSolver(module);
 
 
     // QCMethod - CI
