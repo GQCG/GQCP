@@ -28,7 +28,9 @@ namespace GQCP {
 
 
 /**
- *  A class that represents a set of nuclei at fixed positions (in bohr) in space
+ *  A collection of nuclei at fixed positions in space.
+ * 
+ *  The unit of length is chosen to be the atomic unit (a.u.) bohr.
  */
 class NuclearFramework {
 private:
@@ -45,13 +47,6 @@ public:
 
 
     // NAMED CONSTRUCTORS
-
-    /**
-     *  Construct a nuclear framework based on the content of a given .xyz-file. In an .xyz-file, the nuclear coordinates are in Angstrom
-     *
-     *  @param xyz_filename     the .xyz-file that contains the nuclear coordinates in Angstrom
-     */
-    static NuclearFramework ReadXYZ(const std::string& xyz_filename);
 
     /**
      *  @param n            the number of H nuclei
@@ -72,6 +67,13 @@ public:
      */
     static NuclearFramework H2Chain(const size_t n, const double a, const double b, CartesianDirection axis=CartesianDirection::z);
 
+    /**
+     *  Construct a nuclear framework based on the content of a given .xyz-file. In an .xyz-file, the nuclear coordinates are in Angstrom
+     *
+     *  @param xyz_filename     the .xyz-file that contains the nuclear coordinates in Angstrom
+     */
+    static NuclearFramework ReadXYZ(const std::string& xyz_filename);
+
 
     // OPERATORS
 
@@ -84,13 +86,15 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const NuclearFramework& nuclear_framework);
 
 
-
     // PUBLIC METHODS
 
     /**
-     *  @return the sum of all the charges of the nuclei
+     *  @param index1   the index of the first nucleus
+     *  @param index2   the index of the second nucleus
+     *
+     *  @return the distance between the two nuclei at index1 and index2 in bohr
      */
-    size_t totalNucleicCharge() const;
+    double internuclearDistance(const size_t index1, const size_t index2) const;
 
     /**
      *  @return the nuclei in this nuclear framework as a std::vector
@@ -103,12 +107,9 @@ public:
     size_t numberOfNuclei() const { return this->nucleiAsVector().size(); }
 
     /**
-     *  @param index1   the index of the first nucleus
-     *  @param index2   the index of the second nucleus
-     *
-     *  @return the distance between the two nuclei at index1 and index2 in bohr
+     *  @return the sum of all the charges of the nuclei
      */
-    double internuclearDistance(const size_t index1, const size_t index2) const;
+    size_t totalNucleicCharge() const;
 };
 
 
