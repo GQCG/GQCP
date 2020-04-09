@@ -62,21 +62,6 @@ Molecule::Molecule(const std::vector<Nucleus>& nuclei, const int charge) :
  */
 
 /**
- *  Construct a molecule based on the content of a given .xyz-file. In an .xyz-file, the molecular coordinates are in Angstrom
- *
- *  @param xyz_filename     the .xyz-file that contains the molecular coordinates in Angstrom
- *  @param charge       the charge of the molecule:
- *                          +1 -> cation (one electron less than the neutral molecule)
- *                           0 -> neutral molecule
- *                          -1 -> anion (one electron more than the neutral molecule)
- */
-Molecule Molecule::ReadXYZ(const std::string& xyz_filename, const int charge) {
-
-    return Molecule(NuclearFramework::ReadXYZ(xyz_filename), charge);
-}
-
-
-/**
  *  @param n            the number of H nuclei
  *  @param spacing      the internuclear spacing in bohr
  *  @param charge       the total charge
@@ -103,6 +88,44 @@ Molecule Molecule::H2Chain(size_t n, double a, double b, int charge, CartesianDi
 }
 
 
+/**
+ *  @param n                the number of hydrogens
+ *  @param distance         the distance (in bohr) between neighbouring hydrogen atoms
+ * 
+ *  @return a regular H-ring where neighbouring hydrogens are separated by the given distance
+ */
+Molecule HRingFromDistance(const size_t n, const double distance, int charge=0) {
+
+    return Molecule(NuclearFramework::HRingFromDistance(n, distance), charge);
+}
+
+
+/**
+ *  @param n                the number of hydrogens
+ *  @param radius           the radius (in bohr) of the circumscribed circle
+ * 
+ *  @return a regular H-ring whose hydrogens are on the circle with the given radius
+ */
+Molecule HRingFromRadius(const size_t n, const double radius, int charge=0) {
+
+    return Molecule(NuclearFramework::HRingFromRadius(n, radius), charge);
+}
+
+
+/**
+ *  Construct a molecule based on the content of a given .xyz-file. In an .xyz-file, the molecular coordinates are in Angstrom
+ *
+ *  @param xyz_filename     the .xyz-file that contains the molecular coordinates in Angstrom
+ *  @param charge       the charge of the molecule:
+ *                          +1 -> cation (one electron less than the neutral molecule)
+ *                           0 -> neutral molecule
+ *                          -1 -> anion (one electron more than the neutral molecule)
+ */
+Molecule Molecule::ReadXYZ(const std::string& xyz_filename, const int charge) {
+
+    return Molecule(NuclearFramework::ReadXYZ(xyz_filename), charge);
+}
+
 
 /*
  *  OPERATORS
@@ -120,32 +143,6 @@ std::ostream& operator<<(std::ostream& os, const Molecule& molecule) {
     os << molecule.nuclearFramework();
 
     return os;
-}
-
-
-
-/*
- *  PUBLIC METHODS
- */
-
-/**
- *  @return the sum of all the charges of the nuclei
- */
-size_t Molecule::totalNucleicCharge() const {
-
-    return this->nuclear_framework.totalNucleicCharge();
-}
-
-
-/**
- *  @param index1   the index of the first nucleus
- *  @param index2   the index of the second nucleus
- *
- *  @return the distance between the two nuclei at index1 and index2 in bohr
- */
-double Molecule::internuclearDistance(const size_t index1, const size_t index2) const {
-
-    return this->nuclearFramework().internuclearDistance(index1, index2);
 }
 
 

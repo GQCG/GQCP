@@ -28,12 +28,12 @@ namespace GQCP {
 
 
 /**
- *  A class that represents a collection of nuclei with a number of electrons
+ *  A molecule: a number of electrons and a collection of nuclei arranged in a nuclear framework.
  */
 class Molecule {
 private:
-    NuclearFramework nuclear_framework;  // the underlying nuclear framework
     size_t N;  // the number of electrons
+    NuclearFramework nuclear_framework;  // the underlying nuclear framework
 
 
 public:
@@ -61,17 +61,6 @@ public:
     // NAMED CONSTRUCTORS
 
     /**
-     *  Construct a molecule based on the content of a given .xyz-file. In an .xyz-file, the molecular coordinates are in Angstrom
-     *
-     *  @param xyz_filename     the .xyz-file that contains the molecular coordinates in Angstrom
-     *  @param charge       the charge of the molecule:
-     *                          +1 -> cation (one electron less than the neutral molecule)
-     *                           0 -> neutral molecule
-     *                          -1 -> anion (one electron more than the neutral molecule)
-     */
-    static Molecule ReadXYZ(const std::string& xyz_filename, const int charge=0);
-
-    /**
      *  @param n            the number of H nuclei
      *  @param spacing      the internuclear spacing in bohr
      *  @param charge       the total charge
@@ -90,6 +79,33 @@ public:
      */
     static Molecule H2Chain(size_t n, double a, double b, int charge=0, CartesianDirection axis=CartesianDirection::z);
 
+    /**
+     *  @param n                the number of hydrogens
+     *  @param distance         the distance (in bohr) between neighbouring hydrogen atoms
+     * 
+     *  @return a regular H-ring where neighbouring hydrogens are separated by the given distance
+     */
+    static Molecule HRingFromDistance(const size_t n, const double distance, int charge=0);
+
+    /**
+     *  @param n                the number of hydrogens
+     *  @param radius           the radius (in bohr) of the circumscribed circle
+     * 
+     *  @return a regular H-ring whose hydrogens are on the circle with the given radius
+     */
+    static Molecule HRingFromRadius(const size_t n, const double radius, int charge=0);
+
+    /**
+     *  Construct a molecule based on the content of a given .xyz-file. In an .xyz-file, the molecular coordinates are in Angstrom
+     *
+     *  @param xyz_filename     the .xyz-file that contains the molecular coordinates in Angstrom
+     *  @param charge       the charge of the molecule:
+     *                          +1 -> cation (one electron less than the neutral molecule)
+     *                           0 -> neutral molecule
+     *                          -1 -> anion (one electron more than the neutral molecule)
+     */
+    static Molecule ReadXYZ(const std::string& xyz_filename, const int charge=0);
+
 
     // OPERATORS
 
@@ -105,14 +121,17 @@ public:
     // PUBLIC METHODS
 
     /**
+     *  @param index1   the index of the first nucleus
+     *  @param index2   the index of the second nucleus
+     *
+     *  @return the distance between the two nuclei at index1 and index2 in bohr
+     */
+    double internuclearDistance(const size_t index1, const size_t index2) const { return this->nuclearFramework().internuclearDistance(index1, index2); }
+
+    /**
      *  @return the underlying nuclear framework
      */
     const NuclearFramework& nuclearFramework() const { return this->nuclear_framework; }
-
-    /**
-     *  @return the number of electrons in the molecule
-     */
-    size_t numberOfElectrons() const { return this->N; }
 
     /**
      *  @return the number of atoms in this molecule
@@ -120,17 +139,19 @@ public:
     size_t numberOfAtoms() const { return this->nuclear_framework.numberOfNuclei(); }
 
     /**
-     *  @return the sum of all the charges of the nuclei that are in this molecule
+     *  @return the number of electron pairs in this molecule. For odd numbers of electrons, the number of electron pairs is equal to that of the (N-1)-even-electron system.
      */
-    size_t totalNucleicCharge() const;
+    size_t numberOfElectronPairs() const { return this->numberOfElectrons()/2;  /* this floors to zero */ }
 
     /**
-     *  @param index1   the index of the first nucleus
-     *  @param index2   the index of the second nucleus
-     *
-     *  @return the distance between the two nuclei at index1 and index2 in bohr
+     *  @return the number of electrons in the molecule
      */
-    double internuclearDistance(const size_t index1, const size_t index2) const;
+    size_t numberOfElectrons() const { return this->N; }
+
+    /**
+     *  @return the sum of all the charges of the nuclei that are in this molecule
+     */
+    size_t totalNucleicCharge() const { return this->nuclear_framework.totalNucleicCharge(); }
 };
 
 

@@ -21,6 +21,10 @@
 #include "Utilities/units.hpp"
 #include "Utilities/miscellaneous.hpp"
 
+#include <boost/math/constants/constants.hpp>
+
+#include <cmath>
+
 
 namespace GQCP {
 
@@ -53,57 +57,6 @@ NuclearFramework::NuclearFramework(const std::vector<Nucleus>& nuclei) :
 /*
  *  NAMED CONSTRUCTORS
  */
-
-/**
- *  Construct a nuclear framework based on the content of a given .xyz-file. In an .xyz-file, the nuclear coordinates are in Angstrom
- *
- *  @param xyz_filename     the .xyz-file that contains the nuclear coordinates in Angstrom
- */
-NuclearFramework NuclearFramework::ReadXYZ(const std::string& xyz_filename) {
-
-    // Check the file name extension and open the file
-    std::ifstream input_file_stream = validateAndOpen(xyz_filename, "xyz");
-
-
-    // Do the actual parsing
-    std::string line;
-
-
-    // First line is the number of nuclei
-    std::getline(input_file_stream, line);
-    auto number_of_nuclei = static_cast<size_t>(std::stoi(line));
-
-
-    // Second line is empty
-    std::getline(input_file_stream, line);
-
-
-    // Next lines are the nuclei
-    std::vector<Nucleus> nuclei;
-    nuclei.reserve(number_of_nuclei);
-
-    while (std::getline(input_file_stream, line)) {
-        std::string symbol;
-        double x_angstrom, y_angstrom, z_angstrom;
-
-        std::istringstream iss (line);
-        iss >> symbol >> x_angstrom >> y_angstrom >> z_angstrom;
-
-        // Convert the (x,y,z)-coordinates that are in Angstrom to Bohr
-        double x_bohr = units::angstrom_to_bohr(x_angstrom);
-        double y_bohr = units::angstrom_to_bohr(y_angstrom);
-        double z_bohr = units::angstrom_to_bohr(z_angstrom);
-
-        nuclei.emplace_back(elements::elementToAtomicNumber(symbol), x_bohr, y_bohr, z_bohr);
-    }
-
-    if (number_of_nuclei > nuclei.size()) {
-        throw std::invalid_argument("NuclearFramework::ReadXYZ(const std::string&): The .xyz-file contains more nuclei than specified on its first line.");
-    } else {
-        return NuclearFramework(nuclei);
-    }
-}
-
 
 /**
  *  @param n            the number of H nuclei
@@ -180,6 +133,107 @@ NuclearFramework NuclearFramework::H2Chain(const size_t n, const double a, const
 }
 
 
+/**
+ *  @param n                the number of hydrogens
+ *  @param distance         the distance (in bohr) between neighbouring hydrogen atoms
+ * 
+ *  @return a regular H-ring where neighbouring hydrogens are separated by the given distance
+ */
+NuclearFramework NuclearFramework::HRingFromDistance(const size_t n, const double distance) {
+
+    // The circumscribed radius given the distance between neighbouring vertices is given by:
+    //      R = s / [ 2 * sin(pi/n) ]
+
+    const double radius = distance / ( 2 * std::sin(boost::math::constants::pi<double>() / n) );
+    return HRingFromRadius(n, radius);
+}
+
+
+/**
+ *  @param n                the number of hydrogens
+ *  @param radius           the radius (in bohr) of the circumscribed circle
+ * 
+ *  @return a regular H-ring whose hydrogens are on the circle with the given radius
+ */
+NuclearFramework NuclearFramework::HRingFromRadius(const size_t n, const double radius) {
+
+    if (n == 0) {
+        throw std::invalid_argument("NuclearFramework::HRingFromRadius(const size_t, const double): Can not create a H-ring consisting of zero hydrogens.");
+    }
+
+    if (radius < 0.0) {
+        throw std::invalid_argument("NuclearFramework::HRingFromRadius(const size_t, const double): Can't have a negative radius.");
+    }
+
+    // We construct the regular polygon with an origin that is in (0,0), with a first vertex on the horizontal axis, i.e. P_0 = (R, 0)
+    // The coordinates of every vertex P_i are given by (https://en.wikipedia.org/wiki/Regular_polygon):
+    //      P_i = R ( cos[i/n * 2pi] , sin[i/n * 2pi] )
+    std::vector<Nucleus> nuclei {};
+    for (size_t i = 0; i < n; i++) {
+        const double angle = i / double(n) * 2 * boost::math::constants::pi<double>();
+
+        const double x = radius * std::cos(angle);
+        const double y = radius * std::sin(angle);
+
+        nuclei.emplace_back(1,  x, y, 0);  // hydrogen in the x,y-plane
+    }
+
+    return NuclearFramework(nuclei);
+}
+
+
+/**
+ *  Construct a nuclear framework based on the content of a given .xyz-file. In an .xyz-file, the nuclear coordinates are in Angstrom
+ *
+ *  @param xyz_filename     the .xyz-file that contains the nuclear coordinates in Angstrom
+ */
+NuclearFramework NuclearFramework::ReadXYZ(const std::string& xyz_filename) {
+
+    // Check the file name extension and open the file
+    std::ifstream input_file_stream = validateAndOpen(xyz_filename, "xyz");
+
+
+    // Do the actual parsing
+    std::string line;
+
+
+    // First line is the number of nuclei
+    std::getline(input_file_stream, line);
+    auto number_of_nuclei = static_cast<size_t>(std::stoi(line));
+
+
+    // Second line is empty
+    std::getline(input_file_stream, line);
+
+
+    // Next lines are the nuclei
+    std::vector<Nucleus> nuclei;
+    nuclei.reserve(number_of_nuclei);
+
+    while (std::getline(input_file_stream, line)) {
+        std::string symbol;
+        double x_angstrom, y_angstrom, z_angstrom;
+
+        std::istringstream iss (line);
+        iss >> symbol >> x_angstrom >> y_angstrom >> z_angstrom;
+
+        // Convert the (x,y,z)-coordinates that are in Angstrom to Bohr
+        double x_bohr = units::angstrom_to_bohr(x_angstrom);
+        double y_bohr = units::angstrom_to_bohr(y_angstrom);
+        double z_bohr = units::angstrom_to_bohr(z_angstrom);
+
+        nuclei.emplace_back(elements::elementToAtomicNumber(symbol), x_bohr, y_bohr, z_bohr);
+    }
+
+    if (number_of_nuclei > nuclei.size()) {
+        throw std::invalid_argument("NuclearFramework::ReadXYZ(const std::string&): The .xyz-file contains more nuclei than specified on its first line.");
+    } else {
+        return NuclearFramework(nuclei);
+    }
+}
+
+
+
 /*
  *  OPERATORS
  */
@@ -206,21 +260,6 @@ std::ostream& operator<<(std::ostream& os, const NuclearFramework& nuclear_frame
  */
 
 /**
- *  @return the sum of all the charges of the nuclei
- */
-size_t NuclearFramework::totalNucleicCharge() const {
-
-    size_t value {0};
-
-    for (const auto& nucleus : this->nuclei) {
-        value += nucleus.charge();
-    }
-
-    return value;
-}
-
-
-/**
  *  @param index1   the index of the first nucleus
  *  @param index2   the index of the second nucleus
  *
@@ -236,6 +275,20 @@ double NuclearFramework::internuclearDistance(size_t index1, size_t index2) cons
     return this->nuclei[index1].calculateDistance(this->nuclei[index2]);
 }
 
+
+/**
+ *  @return the sum of all the charges of the nuclei
+ */
+size_t NuclearFramework::totalNucleicCharge() const {
+
+    size_t value {0};
+
+    for (const auto& nucleus : this->nuclei) {
+        value += nucleus.charge();
+    }
+
+    return value;
+}
 
 
 }  // namespace GQCP
