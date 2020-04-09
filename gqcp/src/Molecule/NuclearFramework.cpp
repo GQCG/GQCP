@@ -21,6 +21,10 @@
 #include "Utilities/units.hpp"
 #include "Utilities/miscellaneous.hpp"
 
+#include <boost/math/constants/constants.hpp>
+
+#include <cmath>
+
 
 namespace GQCP {
 
@@ -126,6 +130,55 @@ NuclearFramework NuclearFramework::H2Chain(const size_t n, const double a, const
     }
 
     return NuclearFramework(h_chain);
+}
+
+
+/**
+ *  @param n                the number of hydrogens
+ *  @param distance         the distance (in bohr) between neighbouring hydrogen atoms
+ * 
+ *  @return a regular H-ring where neighbouring hydrogens are separated by the given distance
+ */
+NuclearFramework NuclearFramework::HRingFromDistance(const size_t n, const double distance) {
+
+    // The circumscribed radius given the distance between neighbouring vertices is given by:
+    //      R = s / [ 2 * sin(pi/n) ]
+
+    const double radius = distance / ( 2 * std::sin(boost::math::constants::pi<double>() / n) );
+    return HRingFromRadius(n, radius);
+}
+
+
+/**
+ *  @param n                the number of hydrogens
+ *  @param radius           the radius (in bohr) of the circumscribed circle
+ * 
+ *  @return a regular H-ring whose hydrogens are on the circle with the given radius
+ */
+NuclearFramework NuclearFramework::HRingFromRadius(const size_t n, const double radius) {
+
+    if (n == 0) {
+        throw std::invalid_argument("NuclearFramework::HRingFromRadius(const size_t, const double): Can not create a H-ring consisting of zero hydrogens.");
+    }
+
+    if (radius < 0.0) {
+        throw std::invalid_argument("NuclearFramework::HRingFromRadius(const size_t, const double): Can't have a negative radius.");
+    }
+
+    // We construct the regular polygon with an origin that is in (0,0), with a first vertex on the horizontal axis, i.e. P_0 = (R, 0)
+    // The coordinates of every vertex P_i are given by (https://en.wikipedia.org/wiki/Regular_polygon):
+    //      P_i = R ( cos[i/n * 2pi] , sin[i/n * 2pi] )
+    std::vector<Nucleus> nuclei {};
+    for (size_t i = 0; i < n; i++) {
+        const double angle = i / n * 2 * boost::math::constants::pi<double>();
+
+        const double x = radius * std::cos(angle);
+        const double y = radius * std::sin(angle);
+
+        nuclei.emplace_back(1,  x, y, 0);  // hydrogen in the x,y-plane
+    }
+
+    return nuclei;
 }
 
 

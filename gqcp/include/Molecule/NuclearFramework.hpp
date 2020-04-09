@@ -67,6 +67,23 @@ public:
      */
     static NuclearFramework H2Chain(const size_t n, const double a, const double b, CartesianDirection axis=CartesianDirection::z);
 
+
+    /**
+     *  @param n                the number of hydrogens
+     *  @param distance         the distance (in bohr) between neighbouring hydrogen atoms
+     * 
+     *  @return a regular H-ring where neighbouring hydrogens are separated by the given distance
+     */
+    static NuclearFramework HRingFromDistance(const size_t n, const double distance);
+
+    /**
+     *  @param n                the number of hydrogens
+     *  @param radius           the radius (in bohr) of the circumscribed circle
+     * 
+     *  @return a regular H-ring whose hydrogens are on the circle with the given radius
+     */
+    static NuclearFramework HRingFromRadius(const size_t n, const double radius);
+
     /**
      *  Construct a nuclear framework based on the content of a given .xyz-file. In an .xyz-file, the nuclear coordinates are in Angstrom
      *

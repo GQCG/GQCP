@@ -89,6 +89,30 @@ Molecule Molecule::H2Chain(size_t n, double a, double b, int charge, CartesianDi
 
 
 /**
+ *  @param n                the number of hydrogens
+ *  @param distance         the distance (in bohr) between neighbouring hydrogen atoms
+ * 
+ *  @return a regular H-ring where neighbouring hydrogens are separated by the given distance
+ */
+Molecule HRingFromDistance(const size_t n, const double distance, int charge=0) {
+
+    return Molecule(NuclearFramework::HRingFromDistance(n, distance), charge);
+}
+
+
+/**
+ *  @param n                the number of hydrogens
+ *  @param radius           the radius (in bohr) of the circumscribed circle
+ * 
+ *  @return a regular H-ring whose hydrogens are on the circle with the given radius
+ */
+Molecule HRingFromRadius(const size_t n, const double radius, int charge=0) {
+
+    return Molecule(NuclearFramework::HRingFromRadius(n, radius), charge);
+}
+
+
+/**
  *  Construct a molecule based on the content of a given .xyz-file. In an .xyz-file, the molecular coordinates are in Angstrom
  *
  *  @param xyz_filename     the .xyz-file that contains the molecular coordinates in Angstrom

@@ -190,3 +190,49 @@ BOOST_AUTO_TEST_CASE ( H2Chain ) {
     BOOST_CHECK(h2_chain2.numberOfNuclei() == 8);
     BOOST_CHECK(h2_chain2.totalNucleicCharge() == 8);
 }
+
+
+/**
+ *  Check if the NuclearFramework::HRingFromRadius throws when expected.
+ */
+BOOST_AUTO_TEST_CASE ( HRingFromRadius_throws ) {
+
+    BOOST_CHECK_THROW(GQCP::NuclearFramework::HRingFromRadius(0, 1.0), std::invalid_argument);  // can't create 0 H-nuclei
+    BOOST_CHECK_THROW(GQCP::NuclearFramework::HRingFromRadius(1, -1.0), std::invalid_argument);  // can't a negative radius
+}
+
+
+/**
+ *  Check if the construction of an H4-ring from a given circumscribing radius works as expected.
+ */
+BOOST_AUTO_TEST_CASE ( HRingFromRadius ) {
+
+    const auto ring = GQCP::NuclearFramework::HRingFromRadius(4, 1.0);
+    const auto distance = boost::math::constants::root_two<double>();  // 2 R sin(pi/n)
+
+    BOOST_CHECK(ring.numberOfNuclei() == 4);
+    BOOST_CHECK(ring.totalNucleicCharge() == 4);
+
+    BOOST_CHECK(std::abs(ring.internuclearDistance(0, 1) - distance) < 1.0e-12);
+    BOOST_CHECK(std::abs(ring.internuclearDistance(1, 2) - distance) < 1.0e-12);
+    BOOST_CHECK(std::abs(ring.internuclearDistance(2, 3) - distance) < 1.0e-12);
+    BOOST_CHECK(std::abs(ring.internuclearDistance(3, 0) - distance) < 1.0e-12);
+}
+
+
+/**
+ *  Check if the construction of an H4-ring from a given neighbour distance works as expected.
+ */
+BOOST_AUTO_TEST_CASE ( HRingFromDistance ) {
+
+    const double distance = 1.0;
+    const auto ring = GQCP::NuclearFramework::HRingFromDistance(4, distance);
+
+    BOOST_CHECK(ring.numberOfNuclei() == 4);
+    BOOST_CHECK(ring.totalNucleicCharge() == 4);
+
+    BOOST_CHECK(std::abs(ring.internuclearDistance(0, 1) - distance) < 1.0e-12);
+    BOOST_CHECK(std::abs(ring.internuclearDistance(1, 2) - distance) < 1.0e-12);
+    BOOST_CHECK(std::abs(ring.internuclearDistance(2, 3) - distance) < 1.0e-12);
+    BOOST_CHECK(std::abs(ring.internuclearDistance(3, 0) - distance) < 1.0e-12);
+}
