@@ -17,6 +17,7 @@
 // 
 #include "ONVBasis/SeniorityZeroONVBasis.hpp"
 
+#include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 
 
@@ -59,6 +60,36 @@ size_t SeniorityZeroONVBasis::calculateDimension(const size_t K, const size_t N_
 /*
  *  PUBLIC METHODS
  */
+
+/**
+ *  Evaluate the diagonal of the operator
+ *
+ *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
+ *
+ *  @return the operator's diagonal evaluation in a vector with the dimension of the ONV basis
+ */
+VectorX<double> SeniorityZeroONVBasis::evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>& one_op) const {
+
+    const SpinResolvedSelectedONVBasis selected_onv_basis {*this};
+    return selected_onv_basis.evaluateOperatorDiagonal(one_op);
+}
+
+
+/**
+ *  Evaluate a one electron operator in a matrix vector product
+ *
+ *  @param one_op                       the one electron operator expressed in an orthonormal basis
+ *  @param x                            the vector upon which the evaluation acts 
+ *  @param diagonal                     the diagonal evaluated in the ONV basis
+ *
+ *  @return the one electron operator's matrix vector product in a vector with the dimensions of the ONV basis
+ */
+VectorX<double> SeniorityZeroONVBasis::evaluateOperatorMatrixVectorProduct(const ScalarSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+
+    const SpinResolvedSelectedONVBasis selected_onv_basis {*this};
+    return selected_onv_basis.evaluateOperatorMatrixVectorProduct(one_op, x, diagonal);
+}
+
 
 /**
  *  @return a coefficient vector that describes the expansion coefficients of the Hartree-Fock wave function (i.e. the single Slater determinant with the lowest energy)
