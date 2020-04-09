@@ -133,7 +133,7 @@ public:
      *
      *  @return the Jacobian J_{ia,jb} of the PSEs, i.e. df_i^a/dG_j^b, evaluated at these AP1roG model parameters
      */
-    static BlockRankFourTensor<double> calculatePSEJacobian(const SQHamiltonian<double>& sq_hamiltonian) const { return AP1roG::calculatePSEJacobian(sq_hamiltonian, this->G); }
+    BlockRankFourTensor<double> calculatePSEJacobian(const SQHamiltonian<double>& sq_hamiltonian) const { return AP1roG::calculatePSEJacobian(sq_hamiltonian, this->G); }
 
     /**
      *  @return the corresponding geminal coefficients of these AP1roG model parameters
