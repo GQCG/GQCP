@@ -17,6 +17,7 @@
 // 
 #include "Operator/FirstQuantized/Operator.hpp"
 
+#include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
 
 
@@ -27,6 +28,15 @@ namespace gqcpy {
 
 
 void bindOperator(py::module& module) {
+
+    py::class_<GQCP::NuclearDipoleOperator>(module, "NuclearDipoleOperator", "The nuclear dipole operator.")
+
+        .def("value",
+            &GQCP::NuclearDipoleOperator::value,
+            "Return the value of this nuclear dipole operator."
+        )
+    ;
+
 
     py::class_<GQCP::NuclearRepulsionOperator>(module, "NuclearRepulsionOperator", "The nuclear repulsion operator.")
 
@@ -39,9 +49,18 @@ void bindOperator(py::module& module) {
 
     py::class_<GQCP::Operator>(module, "Operator", "A class that is used to construct operators using static methods, much like a factory class.")
 
+        .def_static("NuclearDipole",
+            [ ] (const GQCP::Molecule& molecule, const Eigen::Vector3d& o) {
+                return GQCP::Operator::NuclearDipole(molecule, GQCP::Vector<double, 3>(o));
+            },
+            py::arg("molecule"),
+            py::arg("o") = Eigen::Vector3d::Zero(),
+            "Return a NuclearDipoleOperator."
+        )
+
         .def_static("NuclearRepulsion",
             &GQCP::Operator::NuclearRepulsion,
-            "Return a NuclearRepulsionOperator"
+            "Return a NuclearRepulsionOperator."
         )
     ;
 }

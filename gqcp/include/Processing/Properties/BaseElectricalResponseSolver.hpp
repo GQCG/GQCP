@@ -36,7 +36,7 @@ public:
     // PUBLIC PURE VIRTUAL METHODS
 
     /**
-     *  @param sq_hamiltonian           the Hamiltonian parameters
+     *  @param sq_hamiltonian           the Hamiltonian in an orthonormal orbital basis
      * 
      *  @return the parameter response constant (k_p)
      */

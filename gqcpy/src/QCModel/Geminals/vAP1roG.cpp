@@ -30,6 +30,13 @@ namespace gqcpy {
 void bindQCModelvAP1roG(py::module& module) {
     py::class_<GQCP::QCModel::vAP1roG>(module, "QCModel_vAP1roG", "The variationally optimized AP1roG wave function model.")
 
+        .def("calculate1RDM",
+            [ ] (const GQCP::QCModel::vAP1roG& qc_model) {
+                return qc_model.calculate1RDM();
+            },
+            "Return the reponse one-electron density matrix."
+        )
+
         .def("geminalCoefficients",
             &GQCP::QCModel::vAP1roG::geminalCoefficients,
             "Return the corresponding geminal coefficients of these AP1roG model parameters."

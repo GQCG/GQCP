@@ -112,17 +112,7 @@ public:
     static size_t numberOfGeminalCoefficients(const size_t N_P, const size_t K);
 
 
-    // PUBLIC METHODS
-
-    /**
-     *  @return the number of electron pairs that these geminal coefficients describe
-     */
-    size_t numberOfElectronPairs() const { return this->N_P; }
-
-    /**
-     *  @return the number of spatial orbitals each geminal is expanded in
-     */
-    size_t numberOfSpatialOrbitals() const { return this->K; }
+    // GETTERS
 
     /**
      *  @return the number of electron pairs that these geminal coefficients describe
@@ -134,6 +124,9 @@ public:
      */
     size_t get_K() const { return this->numberOfSpatialOrbitals(); }
 
+
+    // PUBLIC METHODS
+
     /**
      *  @return the total geminal coefficient matrix, including the identity matrix block
      */
@@ -143,6 +136,21 @@ public:
      *  @return the geminal coefficients as a column-major vector, excluding the identity block
      */
     VectorX<double> asVector() const;
+
+    /**
+     *  @return the number of geminal coefficients that this instance encapsulates.
+     */
+    size_t count() const { return AP1roGGeminalCoefficients::numberOfGeminalCoefficients(this->N_P, this->K); }
+
+    /**
+     *  @return the number of electron pairs that these geminal coefficients describe
+     */
+    size_t numberOfElectronPairs() const { return this->N_P; }
+
+    /**
+     *  @return the number of spatial orbitals each geminal is expanded in
+     */
+    size_t numberOfSpatialOrbitals() const { return this->K; }
 
     /**
      *  @param onv      the doubly-occupied (spin-resolved) ONV that is being projected on

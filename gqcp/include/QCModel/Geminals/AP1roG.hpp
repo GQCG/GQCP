@@ -129,6 +129,13 @@ public:
     double calculateEnergy(const SQHamiltonian<double>& sq_hamiltonian) const { return AP1roG::calculateEnergy(this->G, sq_hamiltonian); }
 
     /**
+     *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
+     *
+     *  @return the Jacobian J_{ia,jb} of the PSEs, i.e. df_i^a/dG_j^b, evaluated at these AP1roG model parameters
+     */
+    BlockRankFourTensor<double> calculatePSEJacobian(const SQHamiltonian<double>& sq_hamiltonian) const { return AP1roG::calculatePSEJacobian(sq_hamiltonian, this->G); }
+
+    /**
      *  @return the corresponding geminal coefficients of these AP1roG model parameters
      */
     const AP1roGGeminalCoefficients& geminalCoefficients() const { return this->G; }

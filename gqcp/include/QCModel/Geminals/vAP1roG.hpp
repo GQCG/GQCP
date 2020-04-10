@@ -119,6 +119,11 @@ public:
      */
 
     /**
+     *  @return the reponse one-electron density matrix for these vAP1roG parameters
+     */
+    OneRDM<double> calculate1RDM() const { return vAP1roG::calculate1RDM(this->G, this->multipliers); };
+
+    /**
      *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
      * 
      *  @return the electronic energy for these AP1roG model parameters

@@ -36,6 +36,20 @@ namespace GQCP {
  */
 Matrix<double, 3, 3> calculateElectricPolarizability(const Matrix<double, Dynamic, 3>& F_p, const Matrix<double, Dynamic, 3>& response);
 
+
+/**
+ *  Calculate the electric polarizability from the linear wave function response and the linear multiplier response
+ * 
+ *  @param F_p              the electric parameter response force
+ *  @param x                the linear wave function response
+ *  @param A_lambda         the first part of the electric multiplier response force
+ *  @param y                the linear multiplier response
+ * 
+ *  @return the components of the electric polarizability
+ */
+Matrix<double, 3, 3> calculateElectricPolarizability(const Matrix<double, Dynamic, 3>& F_p, const Matrix<double, Dynamic, 3>& x, const Matrix<double, Dynamic, 3>& A_lambda, const Matrix<double, Dynamic, 3>& y);
+
+
 /**
  *  Calculate the Dyson 'amplitudes' (the coefficients of a Dyson orbital) between two wave function expressed in the same spinor basis 
  * 

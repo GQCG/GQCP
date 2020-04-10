@@ -22,6 +22,7 @@
 #include "Mathematical/Representation/Matrix.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
+#include "Processing/RDM/DOCIRDMBuilder.hpp"
 #include "Utilities/typedefs.hpp"
 #include "Utilities/linalg.hpp"
 
@@ -393,6 +394,19 @@ public:
             correction_coefficients.setZero();
         }
         this->coeffs = current_coefficients;
+    }
+
+
+    /**
+     *  Calculate the one-electron density matrix for a seniority-zero wave function expansion.
+     * 
+     *  @return the total (spin-summed) 1-DM
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, OneRDM<double>> calculate1DM() const {
+
+        const DOCIRDMBuilder doci_rdm_builder {this->onv_basis};
+        return doci_rdm_builder.calculate1RDMs(this->coefficients()).one_rdm;
     }
 
 

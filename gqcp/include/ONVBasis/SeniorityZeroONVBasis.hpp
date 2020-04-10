@@ -72,6 +72,26 @@ public:
     size_t dimension() const { return this->dim; }
 
     /**
+     *  Evaluate the diagonal of the operator
+     *
+     *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
+     *
+     *  @return the operator's diagonal evaluation in a vector with the dimension of the ONV basis
+     */
+    VectorX<double> evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>& one_op) const;
+
+    /**
+     *  Evaluate a one electron operator in a matrix vector product
+     *
+     *  @param one_op                       the one electron operator expressed in an orthonormal basis
+     *  @param x                            the vector upon which the evaluation acts 
+     *  @param diagonal                     the diagonal evaluated in the ONV basis
+     *
+     *  @return the one electron operator's matrix vector product in a vector with the dimensions of the ONV basis
+     */
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+
+    /**
      *  @return a coefficient vector that describes the expansion coefficients of the Hartree-Fock wave function (i.e. the single Slater determinant with the lowest energy)
      */
     VectorX<double> hartreeFockExpansion() const;
