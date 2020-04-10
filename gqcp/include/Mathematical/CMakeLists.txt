@@ -5,5 +5,6 @@ target_sources(gqcp
         ScalarFunction.hpp
 )
 
+add_subdirectory(Algorithm)
 add_subdirectory(Optimization)
 add_subdirectory(Representation)
