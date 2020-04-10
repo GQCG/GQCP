@@ -44,6 +44,48 @@ CubicGrid::CubicGrid(const Vector<double, 3>& origin, const std::array<size_t, 3
  *  PUBLIC METHODS
  */
 
+
+/**
+ *  @return the number of points that are in this grid
+ */
+size_t CubicGrid::numberOfPoints() const {
+
+    return (this->step_sizes[0] + 1) * (this->step_sizes[1] + 1) * (this->step_sizes[2] + 1);
+}
+
+
+/**
+ *  Loop over the points of this grid by index number.
+ * 
+ *  @param callback         the function you would like to apply to each incoming (i,j,k)-tuple of numbers of steps taken in the x,y,z-direction.
+ */
+void CubicGrid::loop(const std::function<void (const size_t, const size_t, const size_t)>& callback) const {
+
+    for (size_t i = 0; i < this->m_steps[0]; i++) {
+        for (size_t j = 0; j < this->m_steps[1]; j++) {
+            for (size_t k = 0; k < this->m_steps[2]; k++) {
+                callback(i,j,k);
+            }
+        }
+    }
+}
+
+
+/**
+ *  Loop over the points of this grid by position (relative to the origin of this grid).
+ * 
+ *  @param callback         the function you would like to apply to each incoming position vector
+ */
+void CubicGrid::loop(const std::function<void (const Vector<double, 3>&)>& callback) const {
+
+    const auto this_copy = *this;
+    this->loop( [this_copy, callback] (const size_t i, const size_t j, const size_t k) {
+        const auto position = this_copy.position(i,j,k);
+        callback(position);
+    });
+}
+
+
 /**
  *  @param i        the number of steps taken in the x-direction
  *  @param j        the number of steps taken in the y-direction
@@ -59,6 +101,9 @@ Vector<double, 3> CubicGrid::position(const size_t i, const size_t j, const size
 
     return Vector<double, 3>(x, y, z);
 }
+
+
+
 
 
 }  // namespace GQCP

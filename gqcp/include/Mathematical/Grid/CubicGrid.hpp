@@ -18,9 +18,13 @@
 #pragma once
 
 
+#include "Mathematical/Grid/Field.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
+#include "Mathematical/ScalarFunction.hpp"
 
 #include <array>
+#include <functional>
+#include <type_traits>
 
 
 namespace GQCP {
@@ -48,6 +52,43 @@ public:
 
 
     // PUBLIC METHODS
+
+    /**
+     *  Evaluate a scalar function on every point of this grid.
+     * 
+     *  @param scalar_function          the scalar functions whose values should be evaluated
+     * 
+     *  @return a field with the calculated evaluations
+     */
+    template <typename Valued>
+    Field<Valued, CubicGrid> evaluate(const ScalarFunction<Valued, double, 3>& scalar_function) const {
+
+        std::vector<Valued> values;  // the evaluated values of the scalar function
+        values.reserve(this->numberOfPoints());
+
+        this->loop( [&values, &scalar_function] (const Vector<double, 3>& r) {
+            values.push_back(scalar_function(r));
+        });
+    }
+
+    /**
+     *  Loop over the points of this grid by index number.
+     * 
+     *  @param callback         the function you would like to apply to each incoming (i,j,k)-tuple of numbers of steps taken in the x,y,z-direction.
+     */
+    void loop(const std::function<void (const size_t, const size_t, const size_t)>& callback) const;
+
+    /**
+     *  Loop over the points of this grid by position (relative to the origin of this grid).
+     * 
+     *  @param callback         the function you would like to apply to each incoming position vector
+     */
+    void loop(const std::function<void (const Vector<double, 3>&)>& callback) const;
+
+    /**
+     *  @return the number of points that are in this grid
+     */
+    size_t numberOfPoints() const;
 
     /**
      *  @return the origin of this grid
