@@ -36,7 +36,6 @@ vAP1roGElectricalResponseSolver::vAP1roGElectricalResponseSolver(const QCModel::
 {}
 
 
-
 /*
  *  PUBLIC OVERRIDDEN METHODS
  */
@@ -89,7 +88,6 @@ Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateParameterRe
 
     return F_p;
 }
-
 
 
 /*
