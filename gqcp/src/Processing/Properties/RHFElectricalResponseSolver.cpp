@@ -61,7 +61,7 @@ SquareMatrix<double> RHFElectricalResponseSolver::calculateParameterResponseCons
  * 
  *  @return the parameter response force (F_p) as an (Nx3)-matrix, i.e. the first-order parameter partial derivative of the perturbation derivative of the RHF energy function
  */
-Matrix<double, Dynamic, 3> RHFElectricalResponseSolver::calculateParameterResponseForce(const VectorSQOneElectronOperator<double> dipole_op) const {
+Matrix<double, Dynamic, 3> RHFElectricalResponseSolver::calculateParameterResponseForce(const VectorSQOneElectronOperator<double>& dipole_op) const {
 
     const auto K = dipole_op.dimension();  // number of spatial orbitals
 

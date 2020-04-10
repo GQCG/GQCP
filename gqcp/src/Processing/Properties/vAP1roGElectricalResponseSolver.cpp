@@ -56,7 +56,7 @@ SquareMatrix<double> vAP1roGElectricalResponseSolver::calculateParameterResponse
  * 
  *  @return the parameter response force (F_p) as an (Nx3)-matrix, i.e. the first-order perturbation derivative of the PSEs
  */
-Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateParameterResponseForce(const VectorSQOneElectronOperator<double> dipole_op) const {
+Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateParameterResponseForce(const VectorSQOneElectronOperator<double>& dipole_op) const {
 
     // Prepare some variables.
     const auto& G = this->vap1rog.geminalCoefficients();

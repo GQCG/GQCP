@@ -47,7 +47,7 @@ public:
      * 
      *  @return the parameter response force (F_p) as an (Nx3)-matrix
      */
-    virtual Matrix<double, Dynamic, 3> calculateParameterResponseForce(const VectorSQOneElectronOperator<double> dipole_op) const = 0;
+    virtual Matrix<double, Dynamic, 3> calculateParameterResponseForce(const VectorSQOneElectronOperator<double>& dipole_op) const = 0;
 
 
     // PUBLIC METHODS
