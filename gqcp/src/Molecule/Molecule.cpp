@@ -94,7 +94,7 @@ Molecule Molecule::H2Chain(size_t n, double a, double b, int charge, CartesianDi
  * 
  *  @return a regular H-ring where neighbouring hydrogens are separated by the given distance
  */
-Molecule HRingFromDistance(const size_t n, const double distance, int charge=0) {
+Molecule Molecule::HRingFromDistance(const size_t n, const double distance, int charge) {
 
     return Molecule(NuclearFramework::HRingFromDistance(n, distance), charge);
 }
@@ -106,7 +106,7 @@ Molecule HRingFromDistance(const size_t n, const double distance, int charge=0) 
  * 
  *  @return a regular H-ring whose hydrogens are on the circle with the given radius
  */
-Molecule HRingFromRadius(const size_t n, const double radius, int charge=0) {
+Molecule Molecule::HRingFromRadius(const size_t n, const double radius, int charge) {
 
     return Molecule(NuclearFramework::HRingFromRadius(n, radius), charge);
 }
