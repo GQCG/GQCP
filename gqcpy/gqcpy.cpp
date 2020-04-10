@@ -81,6 +81,7 @@ void bindSQTwoElectronOperator(py::module& module);
 
 // Processing - Properties
 void bindRHFElectricalResponseSolver(py::module& module);
+void bindvAP1roGElectricalResponseSolver(py::module& module);
 
 
 // QCMethod - CI
@@ -191,6 +192,7 @@ PYBIND11_MODULE (gqcpy, module) {
 
     // Processing - Properties
     gqcpy::bindRHFElectricalResponseSolver(module);
+    gqcpy::bindvAP1roGElectricalResponseSolver(module);
 
 
     // QCMethod - CI
