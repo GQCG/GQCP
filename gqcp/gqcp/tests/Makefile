@@ -393,6 +393,21 @@ constrained_RHF_test/fast:
 .PHONY : constrained_RHF_test/fast
 
 # Convenience name for target.
+gqcp/tests/CMakeFiles/CCD0_test.dir/rule:
+	cd /Users/daria/ugent/gqcp/gqcp && $(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/CCD0_test.dir/rule
+.PHONY : gqcp/tests/CMakeFiles/CCD0_test.dir/rule
+
+# Convenience name for target.
+CCD0_test: gqcp/tests/CMakeFiles/CCD0_test.dir/rule
+
+.PHONY : CCD0_test
+
+# fast build rule for target.
+CCD0_test/fast:
+	cd /Users/daria/ugent/gqcp/gqcp && $(MAKE) -f gqcp/tests/CMakeFiles/CCD0_test.dir/build.make gqcp/tests/CMakeFiles/CCD0_test.dir/build
+.PHONY : CCD0_test/fast
+
+# Convenience name for target.
 gqcp/tests/CMakeFiles/AtomicDecompositionParameters_test.dir/rule:
 	cd /Users/daria/ugent/gqcp/gqcp && $(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/AtomicDecompositionParameters_test.dir/rule
 .PHONY : gqcp/tests/CMakeFiles/AtomicDecompositionParameters_test.dir/rule
@@ -2936,6 +2951,33 @@ QCMethod/Applications/constrained_RHF_test.cpp.s:
 	cd /Users/daria/ugent/gqcp/gqcp && $(MAKE) -f gqcp/tests/CMakeFiles/constrained_RHF_test.dir/build.make gqcp/tests/CMakeFiles/constrained_RHF_test.dir/QCMethod/Applications/constrained_RHF_test.cpp.s
 .PHONY : QCMethod/Applications/constrained_RHF_test.cpp.s
 
+QCMethod/CC/CCD0_test.o: QCMethod/CC/CCD0_test.cpp.o
+
+.PHONY : QCMethod/CC/CCD0_test.o
+
+# target to build an object file
+QCMethod/CC/CCD0_test.cpp.o:
+	cd /Users/daria/ugent/gqcp/gqcp && $(MAKE) -f gqcp/tests/CMakeFiles/CCD0_test.dir/build.make gqcp/tests/CMakeFiles/CCD0_test.dir/QCMethod/CC/CCD0_test.cpp.o
+.PHONY : QCMethod/CC/CCD0_test.cpp.o
+
+QCMethod/CC/CCD0_test.i: QCMethod/CC/CCD0_test.cpp.i
+
+.PHONY : QCMethod/CC/CCD0_test.i
+
+# target to preprocess a source file
+QCMethod/CC/CCD0_test.cpp.i:
+	cd /Users/daria/ugent/gqcp/gqcp && $(MAKE) -f gqcp/tests/CMakeFiles/CCD0_test.dir/build.make gqcp/tests/CMakeFiles/CCD0_test.dir/QCMethod/CC/CCD0_test.cpp.i
+.PHONY : QCMethod/CC/CCD0_test.cpp.i
+
+QCMethod/CC/CCD0_test.s: QCMethod/CC/CCD0_test.cpp.s
+
+.PHONY : QCMethod/CC/CCD0_test.s
+
+# target to generate assembly for a file
+QCMethod/CC/CCD0_test.cpp.s:
+	cd /Users/daria/ugent/gqcp/gqcp && $(MAKE) -f gqcp/tests/CMakeFiles/CCD0_test.dir/build.make gqcp/tests/CMakeFiles/CCD0_test.dir/QCMethod/CC/CCD0_test.cpp.s
+.PHONY : QCMethod/CC/CCD0_test.cpp.s
+
 QCMethod/CI/DOCINewtonOrbitalOptimizer_test.o: QCMethod/CI/DOCINewtonOrbitalOptimizer_test.cpp.o
 
 .PHONY : QCMethod/CI/DOCINewtonOrbitalOptimizer_test.o
@@ -3639,6 +3681,7 @@ help:
 	@echo "... DOCINewtonOrbitalOptimizer_test"
 	@echo "... DOCI_builder_test"
 	@echo "... constrained_RHF_test"
+	@echo "... CCD0_test"
 	@echo "... AtomicDecompositionParameters_test"
 	@echo "... SpinUnresolvedFCIRDMBuilder_test"
 	@echo "... SelectedRDMBuilder_test"
@@ -3877,6 +3920,9 @@ help:
 	@echo "... QCMethod/Applications/constrained_RHF_test.o"
 	@echo "... QCMethod/Applications/constrained_RHF_test.i"
 	@echo "... QCMethod/Applications/constrained_RHF_test.s"
+	@echo "... QCMethod/CC/CCD0_test.o"
+	@echo "... QCMethod/CC/CCD0_test.i"
+	@echo "... QCMethod/CC/CCD0_test.s"
 	@echo "... QCMethod/CI/DOCINewtonOrbitalOptimizer_test.o"
 	@echo "... QCMethod/CI/DOCINewtonOrbitalOptimizer_test.i"
 	@echo "... QCMethod/CI/DOCINewtonOrbitalOptimizer_test.s"

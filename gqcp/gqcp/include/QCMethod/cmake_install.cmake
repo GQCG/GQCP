@@ -40,6 +40,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/Users/daria/ugent/gqcp/gqcp/gqcp/include/QCMethod/HF/cmake_install.cmake")
   include("/Users/daria/ugent/gqcp/gqcp/gqcp/include/QCMethod/OrbitalOptimization/cmake_install.cmake")
   include("/Users/daria/ugent/gqcp/gqcp/gqcp/include/QCMethod/RMP2/cmake_install.cmake")
+  include("/Users/daria/ugent/gqcp/gqcp/gqcp/include/QCMethod/CC/cmake_install.cmake")
 
 endif()
 

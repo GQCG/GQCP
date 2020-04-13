@@ -154,6 +154,8 @@ add_test(ERNewtonLocalizer_test "/Users/daria/ugent/gqcp/gqcp/gqcp/tests/ERNewto
 set_tests_properties(ERNewtonLocalizer_test PROPERTIES  WORKING_DIRECTORY "/Users/daria/ugent/gqcp/gqcp/gqcp/tests" _BACKTRACE_TRIPLES "/Users/daria/ugent/gqcp/gqcp/tests/CMakeLists.txt;29;add_test;/Users/daria/ugent/gqcp/gqcp/tests/CMakeLists.txt;0;")
 add_test(RMP2_test "/Users/daria/ugent/gqcp/gqcp/gqcp/tests/RMP2_test")
 set_tests_properties(RMP2_test PROPERTIES  WORKING_DIRECTORY "/Users/daria/ugent/gqcp/gqcp/gqcp/tests" _BACKTRACE_TRIPLES "/Users/daria/ugent/gqcp/gqcp/tests/CMakeLists.txt;29;add_test;/Users/daria/ugent/gqcp/gqcp/tests/CMakeLists.txt;0;")
+add_test(CCD0_test "/Users/daria/ugent/gqcp/gqcp/gqcp/tests/CCD0_test")
+set_tests_properties(CCD0_test PROPERTIES  WORKING_DIRECTORY "/Users/daria/ugent/gqcp/gqcp/gqcp/tests" _BACKTRACE_TRIPLES "/Users/daria/ugent/gqcp/gqcp/tests/CMakeLists.txt;29;add_test;/Users/daria/ugent/gqcp/gqcp/tests/CMakeLists.txt;0;")
 add_test(LinearExpansion_test "/Users/daria/ugent/gqcp/gqcp/gqcp/tests/LinearExpansion_test")
 set_tests_properties(LinearExpansion_test PROPERTIES  WORKING_DIRECTORY "/Users/daria/ugent/gqcp/gqcp/gqcp/tests" _BACKTRACE_TRIPLES "/Users/daria/ugent/gqcp/gqcp/tests/CMakeLists.txt;29;add_test;/Users/daria/ugent/gqcp/gqcp/tests/CMakeLists.txt;0;")
 add_test(AP1roGGeminalCoefficients_test "/Users/daria/ugent/gqcp/gqcp/gqcp/tests/AP1roGGeminalCoefficients_test")

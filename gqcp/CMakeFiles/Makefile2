@@ -617,6 +617,7 @@ gqcp/include/QCMethod/all: gqcp/include/QCMethod/Geminals/all
 gqcp/include/QCMethod/all: gqcp/include/QCMethod/HF/all
 gqcp/include/QCMethod/all: gqcp/include/QCMethod/OrbitalOptimization/all
 gqcp/include/QCMethod/all: gqcp/include/QCMethod/RMP2/all
+gqcp/include/QCMethod/all: gqcp/include/QCMethod/CC/all
 
 .PHONY : gqcp/include/QCMethod/all
 
@@ -627,6 +628,7 @@ gqcp/include/QCMethod/clean: gqcp/include/QCMethod/Geminals/clean
 gqcp/include/QCMethod/clean: gqcp/include/QCMethod/HF/clean
 gqcp/include/QCMethod/clean: gqcp/include/QCMethod/OrbitalOptimization/clean
 gqcp/include/QCMethod/clean: gqcp/include/QCMethod/RMP2/clean
+gqcp/include/QCMethod/clean: gqcp/include/QCMethod/CC/clean
 
 .PHONY : gqcp/include/QCMethod/clean
 
@@ -637,6 +639,7 @@ gqcp/include/QCMethod/preinstall: gqcp/include/QCMethod/Geminals/preinstall
 gqcp/include/QCMethod/preinstall: gqcp/include/QCMethod/HF/preinstall
 gqcp/include/QCMethod/preinstall: gqcp/include/QCMethod/OrbitalOptimization/preinstall
 gqcp/include/QCMethod/preinstall: gqcp/include/QCMethod/RMP2/preinstall
+gqcp/include/QCMethod/preinstall: gqcp/include/QCMethod/CC/preinstall
 
 .PHONY : gqcp/include/QCMethod/preinstall
 
@@ -783,6 +786,24 @@ gqcp/include/QCMethod/RMP2/clean:
 gqcp/include/QCMethod/RMP2/preinstall:
 
 .PHONY : gqcp/include/QCMethod/RMP2/preinstall
+
+#=============================================================================
+# Directory level rules for directory gqcp/include/QCMethod/CC
+
+# Convenience name for "all" pass in the directory.
+gqcp/include/QCMethod/CC/all:
+
+.PHONY : gqcp/include/QCMethod/CC/all
+
+# Convenience name for "clean" pass in the directory.
+gqcp/include/QCMethod/CC/clean:
+
+.PHONY : gqcp/include/QCMethod/CC/clean
+
+# Convenience name for "preinstall" pass in the directory.
+gqcp/include/QCMethod/CC/preinstall:
+
+.PHONY : gqcp/include/QCMethod/CC/preinstall
 
 #=============================================================================
 # Directory level rules for directory gqcp/include/QCModel
@@ -1475,6 +1496,7 @@ gqcp/tests/all: gqcp/tests/CMakeFiles/Hubbard_test.dir/all
 gqcp/tests/all: gqcp/tests/CMakeFiles/DOCINewtonOrbitalOptimizer_test.dir/all
 gqcp/tests/all: gqcp/tests/CMakeFiles/DOCI_builder_test.dir/all
 gqcp/tests/all: gqcp/tests/CMakeFiles/constrained_RHF_test.dir/all
+gqcp/tests/all: gqcp/tests/CMakeFiles/CCD0_test.dir/all
 gqcp/tests/all: gqcp/tests/CMakeFiles/AtomicDecompositionParameters_test.dir/all
 gqcp/tests/all: gqcp/tests/CMakeFiles/SpinUnresolvedFCIRDMBuilder_test.dir/all
 gqcp/tests/all: gqcp/tests/CMakeFiles/SelectedRDMBuilder_test.dir/all
@@ -1570,6 +1592,7 @@ gqcp/tests/clean: gqcp/tests/CMakeFiles/Hubbard_test.dir/clean
 gqcp/tests/clean: gqcp/tests/CMakeFiles/DOCINewtonOrbitalOptimizer_test.dir/clean
 gqcp/tests/clean: gqcp/tests/CMakeFiles/DOCI_builder_test.dir/clean
 gqcp/tests/clean: gqcp/tests/CMakeFiles/constrained_RHF_test.dir/clean
+gqcp/tests/clean: gqcp/tests/CMakeFiles/CCD0_test.dir/clean
 gqcp/tests/clean: gqcp/tests/CMakeFiles/AtomicDecompositionParameters_test.dir/clean
 gqcp/tests/clean: gqcp/tests/CMakeFiles/SpinUnresolvedFCIRDMBuilder_test.dir/clean
 gqcp/tests/clean: gqcp/tests/CMakeFiles/SelectedRDMBuilder_test.dir/clean
@@ -1817,7 +1840,7 @@ clean: gqcp/tests/CMakeFiles/AP1roGGeminalCoefficients_test.dir/clean
 gqcp/tests/CMakeFiles/RHFSCFEnvironment_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/RHFSCFEnvironment_test.dir/build.make gqcp/tests/CMakeFiles/RHFSCFEnvironment_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/RHFSCFEnvironment_test.dir/build.make gqcp/tests/CMakeFiles/RHFSCFEnvironment_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=34 "Built target RHFSCFEnvironment_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target RHFSCFEnvironment_test"
 .PHONY : gqcp/tests/CMakeFiles/RHFSCFEnvironment_test.dir/all
 
 # Include target in all.
@@ -1827,7 +1850,7 @@ all: gqcp/tests/CMakeFiles/RHFSCFEnvironment_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/RHFSCFEnvironment_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/RHFSCFEnvironment_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/RHFSCFEnvironment_test.dir/rule
@@ -1854,7 +1877,7 @@ clean: gqcp/tests/CMakeFiles/RHFSCFEnvironment_test.dir/clean
 gqcp/tests/CMakeFiles/QCMethod_RHF_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/QCMethod_RHF_test.dir/build.make gqcp/tests/CMakeFiles/QCMethod_RHF_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/QCMethod_RHF_test.dir/build.make gqcp/tests/CMakeFiles/QCMethod_RHF_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=32 "Built target QCMethod_RHF_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target QCMethod_RHF_test"
 .PHONY : gqcp/tests/CMakeFiles/QCMethod_RHF_test.dir/all
 
 # Include target in all.
@@ -1864,7 +1887,7 @@ all: gqcp/tests/CMakeFiles/QCMethod_RHF_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/QCMethod_RHF_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/QCMethod_RHF_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/QCMethod_RHF_test.dir/rule
@@ -1891,7 +1914,7 @@ clean: gqcp/tests/CMakeFiles/QCMethod_RHF_test.dir/clean
 gqcp/tests/CMakeFiles/QCMethod_AP1roG_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/QCMethod_AP1roG_test.dir/build.make gqcp/tests/CMakeFiles/QCMethod_AP1roG_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/QCMethod_AP1roG_test.dir/build.make gqcp/tests/CMakeFiles/QCMethod_AP1roG_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=31 "Built target QCMethod_AP1roG_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=32 "Built target QCMethod_AP1roG_test"
 .PHONY : gqcp/tests/CMakeFiles/QCMethod_AP1roG_test.dir/all
 
 # Include target in all.
@@ -1965,7 +1988,7 @@ clean: gqcp/tests/CMakeFiles/AP1roGLagrangianNewtonOrbitalOptimizer_test.dir/cle
 gqcp/tests/CMakeFiles/FrozenCoreFCI_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/FrozenCoreFCI_test.dir/build.make gqcp/tests/CMakeFiles/FrozenCoreFCI_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/FrozenCoreFCI_test.dir/build.make gqcp/tests/CMakeFiles/FrozenCoreFCI_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=16 "Built target FrozenCoreFCI_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target FrozenCoreFCI_test"
 .PHONY : gqcp/tests/CMakeFiles/FrozenCoreFCI_test.dir/all
 
 # Include target in all.
@@ -1975,7 +1998,7 @@ all: gqcp/tests/CMakeFiles/FrozenCoreFCI_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/FrozenCoreFCI_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/FrozenCoreFCI_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/FrozenCoreFCI_test.dir/rule
@@ -2039,7 +2062,7 @@ clean: gqcp/tests/CMakeFiles/SelectedCI_test.dir/clean
 gqcp/tests/CMakeFiles/FCI_builder_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/FCI_builder_test.dir/build.make gqcp/tests/CMakeFiles/FCI_builder_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/FCI_builder_test.dir/build.make gqcp/tests/CMakeFiles/FCI_builder_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target FCI_builder_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=14 "Built target FCI_builder_test"
 .PHONY : gqcp/tests/CMakeFiles/FCI_builder_test.dir/all
 
 # Include target in all.
@@ -2049,7 +2072,7 @@ all: gqcp/tests/CMakeFiles/FCI_builder_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/FCI_builder_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/FCI_builder_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/FCI_builder_test.dir/rule
@@ -2113,7 +2136,7 @@ clean: gqcp/tests/CMakeFiles/Hubbard_test.dir/clean
 gqcp/tests/CMakeFiles/DOCINewtonOrbitalOptimizer_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/DOCINewtonOrbitalOptimizer_test.dir/build.make gqcp/tests/CMakeFiles/DOCINewtonOrbitalOptimizer_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/DOCINewtonOrbitalOptimizer_test.dir/build.make gqcp/tests/CMakeFiles/DOCINewtonOrbitalOptimizer_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=7 "Built target DOCINewtonOrbitalOptimizer_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=8 "Built target DOCINewtonOrbitalOptimizer_test"
 .PHONY : gqcp/tests/CMakeFiles/DOCINewtonOrbitalOptimizer_test.dir/all
 
 # Include target in all.
@@ -2150,7 +2173,7 @@ clean: gqcp/tests/CMakeFiles/DOCINewtonOrbitalOptimizer_test.dir/clean
 gqcp/tests/CMakeFiles/DOCI_builder_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/DOCI_builder_test.dir/build.make gqcp/tests/CMakeFiles/DOCI_builder_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/DOCI_builder_test.dir/build.make gqcp/tests/CMakeFiles/DOCI_builder_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target DOCI_builder_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=9 "Built target DOCI_builder_test"
 .PHONY : gqcp/tests/CMakeFiles/DOCI_builder_test.dir/all
 
 # Include target in all.
@@ -2160,7 +2183,7 @@ all: gqcp/tests/CMakeFiles/DOCI_builder_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/DOCI_builder_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/DOCI_builder_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/DOCI_builder_test.dir/rule
@@ -2187,7 +2210,7 @@ clean: gqcp/tests/CMakeFiles/DOCI_builder_test.dir/clean
 gqcp/tests/CMakeFiles/constrained_RHF_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/constrained_RHF_test.dir/build.make gqcp/tests/CMakeFiles/constrained_RHF_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/constrained_RHF_test.dir/build.make gqcp/tests/CMakeFiles/constrained_RHF_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=55 "Built target constrained_RHF_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=56 "Built target constrained_RHF_test"
 .PHONY : gqcp/tests/CMakeFiles/constrained_RHF_test.dir/all
 
 # Include target in all.
@@ -2214,6 +2237,43 @@ gqcp/tests/CMakeFiles/constrained_RHF_test.dir/clean:
 
 # clean rule for target.
 clean: gqcp/tests/CMakeFiles/constrained_RHF_test.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target gqcp/tests/CMakeFiles/CCD0_test.dir
+
+# All Build rule for target.
+gqcp/tests/CMakeFiles/CCD0_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
+	$(MAKE) -f gqcp/tests/CMakeFiles/CCD0_test.dir/build.make gqcp/tests/CMakeFiles/CCD0_test.dir/depend
+	$(MAKE) -f gqcp/tests/CMakeFiles/CCD0_test.dir/build.make gqcp/tests/CMakeFiles/CCD0_test.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target CCD0_test"
+.PHONY : gqcp/tests/CMakeFiles/CCD0_test.dir/all
+
+# Include target in all.
+all: gqcp/tests/CMakeFiles/CCD0_test.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+gqcp/tests/CMakeFiles/CCD0_test.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
+	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/CCD0_test.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
+.PHONY : gqcp/tests/CMakeFiles/CCD0_test.dir/rule
+
+# Convenience name for target.
+CCD0_test: gqcp/tests/CMakeFiles/CCD0_test.dir/rule
+
+.PHONY : CCD0_test
+
+# clean rule for target.
+gqcp/tests/CMakeFiles/CCD0_test.dir/clean:
+	$(MAKE) -f gqcp/tests/CMakeFiles/CCD0_test.dir/build.make gqcp/tests/CMakeFiles/CCD0_test.dir/clean
+.PHONY : gqcp/tests/CMakeFiles/CCD0_test.dir/clean
+
+# clean rule for target.
+clean: gqcp/tests/CMakeFiles/CCD0_test.dir/clean
 
 .PHONY : clean
 
@@ -2298,7 +2358,7 @@ clean: gqcp/tests/CMakeFiles/SpinUnresolvedFCIRDMBuilder_test.dir/clean
 gqcp/tests/CMakeFiles/SelectedRDMBuilder_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/SelectedRDMBuilder_test.dir/build.make gqcp/tests/CMakeFiles/SelectedRDMBuilder_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/SelectedRDMBuilder_test.dir/build.make gqcp/tests/CMakeFiles/SelectedRDMBuilder_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target SelectedRDMBuilder_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=42 "Built target SelectedRDMBuilder_test"
 .PHONY : gqcp/tests/CMakeFiles/SelectedRDMBuilder_test.dir/all
 
 # Include target in all.
@@ -2308,7 +2368,7 @@ all: gqcp/tests/CMakeFiles/SelectedRDMBuilder_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/SelectedRDMBuilder_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/SelectedRDMBuilder_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/SelectedRDMBuilder_test.dir/rule
@@ -2335,7 +2395,7 @@ clean: gqcp/tests/CMakeFiles/SelectedRDMBuilder_test.dir/clean
 gqcp/tests/CMakeFiles/OneRDM_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/OneRDM_test.dir/build.make gqcp/tests/CMakeFiles/OneRDM_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/OneRDM_test.dir/build.make gqcp/tests/CMakeFiles/OneRDM_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=29 "Built target OneRDM_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target OneRDM_test"
 .PHONY : gqcp/tests/CMakeFiles/OneRDM_test.dir/all
 
 # Include target in all.
@@ -2345,7 +2405,7 @@ all: gqcp/tests/CMakeFiles/OneRDM_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/OneRDM_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/OneRDM_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/OneRDM_test.dir/rule
@@ -2372,7 +2432,7 @@ clean: gqcp/tests/CMakeFiles/OneRDM_test.dir/clean
 gqcp/tests/CMakeFiles/FrozenCoreFCIRDMBuilder_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/FrozenCoreFCIRDMBuilder_test.dir/build.make gqcp/tests/CMakeFiles/FrozenCoreFCIRDMBuilder_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/FrozenCoreFCIRDMBuilder_test.dir/build.make gqcp/tests/CMakeFiles/FrozenCoreFCIRDMBuilder_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=15 "Built target FrozenCoreFCIRDMBuilder_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=16 "Built target FrozenCoreFCIRDMBuilder_test"
 .PHONY : gqcp/tests/CMakeFiles/FrozenCoreFCIRDMBuilder_test.dir/all
 
 # Include target in all.
@@ -2409,7 +2469,7 @@ clean: gqcp/tests/CMakeFiles/FrozenCoreFCIRDMBuilder_test.dir/clean
 gqcp/tests/CMakeFiles/FCIRDMBuilder_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/FCIRDMBuilder_test.dir/build.make gqcp/tests/CMakeFiles/FCIRDMBuilder_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/FCIRDMBuilder_test.dir/build.make gqcp/tests/CMakeFiles/FCIRDMBuilder_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=13 "Built target FCIRDMBuilder_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target FCIRDMBuilder_test"
 .PHONY : gqcp/tests/CMakeFiles/FCIRDMBuilder_test.dir/all
 
 # Include target in all.
@@ -2419,7 +2479,7 @@ all: gqcp/tests/CMakeFiles/FCIRDMBuilder_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/FCIRDMBuilder_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/FCIRDMBuilder_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/FCIRDMBuilder_test.dir/rule
@@ -2446,7 +2506,7 @@ clean: gqcp/tests/CMakeFiles/FCIRDMBuilder_test.dir/clean
 gqcp/tests/CMakeFiles/RMP2_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/RMP2_test.dir/build.make gqcp/tests/CMakeFiles/RMP2_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/RMP2_test.dir/build.make gqcp/tests/CMakeFiles/RMP2_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target RMP2_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=36 "Built target RMP2_test"
 .PHONY : gqcp/tests/CMakeFiles/RMP2_test.dir/all
 
 # Include target in all.
@@ -2456,7 +2516,7 @@ all: gqcp/tests/CMakeFiles/RMP2_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/RMP2_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/RMP2_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/RMP2_test.dir/rule
@@ -2483,7 +2543,7 @@ clean: gqcp/tests/CMakeFiles/RMP2_test.dir/clean
 gqcp/tests/CMakeFiles/QCMethod_vAP1roG_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/QCMethod_vAP1roG_test.dir/build.make gqcp/tests/CMakeFiles/QCMethod_vAP1roG_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/QCMethod_vAP1roG_test.dir/build.make gqcp/tests/CMakeFiles/QCMethod_vAP1roG_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target QCMethod_vAP1roG_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=33 "Built target QCMethod_vAP1roG_test"
 .PHONY : gqcp/tests/CMakeFiles/QCMethod_vAP1roG_test.dir/all
 
 # Include target in all.
@@ -2493,7 +2553,7 @@ all: gqcp/tests/CMakeFiles/QCMethod_vAP1roG_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/QCMethod_vAP1roG_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/QCMethod_vAP1roG_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/QCMethod_vAP1roG_test.dir/rule
@@ -2520,7 +2580,7 @@ clean: gqcp/tests/CMakeFiles/QCMethod_vAP1roG_test.dir/clean
 gqcp/tests/CMakeFiles/DOCI_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/DOCI_test.dir/build.make gqcp/tests/CMakeFiles/DOCI_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/DOCI_test.dir/build.make gqcp/tests/CMakeFiles/DOCI_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=9 "Built target DOCI_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=10 "Built target DOCI_test"
 .PHONY : gqcp/tests/CMakeFiles/DOCI_test.dir/all
 
 # Include target in all.
@@ -2557,7 +2617,7 @@ clean: gqcp/tests/CMakeFiles/DOCI_test.dir/clean
 gqcp/tests/CMakeFiles/elements_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/elements_test.dir/build.make gqcp/tests/CMakeFiles/elements_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/elements_test.dir/build.make gqcp/tests/CMakeFiles/elements_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=56 "Built target elements_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target elements_test"
 .PHONY : gqcp/tests/CMakeFiles/elements_test.dir/all
 
 # Include target in all.
@@ -2567,7 +2627,7 @@ all: gqcp/tests/CMakeFiles/elements_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/elements_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/elements_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/elements_test.dir/rule
@@ -2631,7 +2691,7 @@ clean: gqcp/tests/CMakeFiles/expectation_values_test.dir/clean
 gqcp/tests/CMakeFiles/GTOShell_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/GTOShell_test.dir/build.make gqcp/tests/CMakeFiles/GTOShell_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/GTOShell_test.dir/build.make gqcp/tests/CMakeFiles/GTOShell_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=17 "Built target GTOShell_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=18 "Built target GTOShell_test"
 .PHONY : gqcp/tests/CMakeFiles/GTOShell_test.dir/all
 
 # Include target in all.
@@ -2705,7 +2765,7 @@ clean: gqcp/tests/CMakeFiles/USQTwoElectronOperator_test.dir/clean
 gqcp/tests/CMakeFiles/Minimizer_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/Minimizer_test.dir/build.make gqcp/tests/CMakeFiles/Minimizer_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/Minimizer_test.dir/build.make gqcp/tests/CMakeFiles/Minimizer_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=24 "Built target Minimizer_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target Minimizer_test"
 .PHONY : gqcp/tests/CMakeFiles/Minimizer_test.dir/all
 
 # Include target in all.
@@ -2715,7 +2775,7 @@ all: gqcp/tests/CMakeFiles/Minimizer_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/Minimizer_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/Minimizer_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/Minimizer_test.dir/rule
@@ -2742,7 +2802,7 @@ clean: gqcp/tests/CMakeFiles/Minimizer_test.dir/clean
 gqcp/tests/CMakeFiles/USQHamiltonian_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/USQHamiltonian_test.dir/build.make gqcp/tests/CMakeFiles/USQHamiltonian_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/USQHamiltonian_test.dir/build.make gqcp/tests/CMakeFiles/USQHamiltonian_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target USQHamiltonian_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=53 "Built target USQHamiltonian_test"
 .PHONY : gqcp/tests/CMakeFiles/USQHamiltonian_test.dir/all
 
 # Include target in all.
@@ -2752,7 +2812,7 @@ all: gqcp/tests/CMakeFiles/USQHamiltonian_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/USQHamiltonian_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/USQHamiltonian_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/USQHamiltonian_test.dir/rule
@@ -2779,7 +2839,7 @@ clean: gqcp/tests/CMakeFiles/USQHamiltonian_test.dir/clean
 gqcp/tests/CMakeFiles/NuclearRepulsionOperator_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/NuclearRepulsionOperator_test.dir/build.make gqcp/tests/CMakeFiles/NuclearRepulsionOperator_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/NuclearRepulsionOperator_test.dir/build.make gqcp/tests/CMakeFiles/NuclearRepulsionOperator_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target NuclearRepulsionOperator_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=28 "Built target NuclearRepulsionOperator_test"
 .PHONY : gqcp/tests/CMakeFiles/NuclearRepulsionOperator_test.dir/all
 
 # Include target in all.
@@ -2789,7 +2849,7 @@ all: gqcp/tests/CMakeFiles/NuclearRepulsionOperator_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/NuclearRepulsionOperator_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/NuclearRepulsionOperator_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/NuclearRepulsionOperator_test.dir/rule
@@ -2853,7 +2913,7 @@ clean: gqcp/tests/CMakeFiles/TwoRDM_test.dir/clean
 gqcp/tests/CMakeFiles/SpinUnresolvedONV_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/SpinUnresolvedONV_test.dir/build.make gqcp/tests/CMakeFiles/SpinUnresolvedONV_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/SpinUnresolvedONV_test.dir/build.make gqcp/tests/CMakeFiles/SpinUnresolvedONV_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=48 "Built target SpinUnresolvedONV_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target SpinUnresolvedONV_test"
 .PHONY : gqcp/tests/CMakeFiles/SpinUnresolvedONV_test.dir/all
 
 # Include target in all.
@@ -2863,7 +2923,7 @@ all: gqcp/tests/CMakeFiles/SpinUnresolvedONV_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/SpinUnresolvedONV_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/SpinUnresolvedONV_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/SpinUnresolvedONV_test.dir/rule
@@ -2927,7 +2987,7 @@ clean: gqcp/tests/CMakeFiles/NuclearFramework_test.dir/clean
 gqcp/tests/CMakeFiles/Molecule_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/Molecule_test.dir/build.make gqcp/tests/CMakeFiles/Molecule_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/Molecule_test.dir/build.make gqcp/tests/CMakeFiles/Molecule_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target Molecule_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=25 "Built target Molecule_test"
 .PHONY : gqcp/tests/CMakeFiles/Molecule_test.dir/all
 
 # Include target in all.
@@ -2937,7 +2997,7 @@ all: gqcp/tests/CMakeFiles/Molecule_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/Molecule_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/Molecule_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/Molecule_test.dir/rule
@@ -2964,7 +3024,7 @@ clean: gqcp/tests/CMakeFiles/Molecule_test.dir/clean
 gqcp/tests/CMakeFiles/SpinUnresolvedFrozenONVBasis_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/SpinUnresolvedFrozenONVBasis_test.dir/build.make gqcp/tests/CMakeFiles/SpinUnresolvedFrozenONVBasis_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/SpinUnresolvedFrozenONVBasis_test.dir/build.make gqcp/tests/CMakeFiles/SpinUnresolvedFrozenONVBasis_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target SpinUnresolvedFrozenONVBasis_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=47 "Built target SpinUnresolvedFrozenONVBasis_test"
 .PHONY : gqcp/tests/CMakeFiles/SpinUnresolvedFrozenONVBasis_test.dir/all
 
 # Include target in all.
@@ -2974,7 +3034,7 @@ all: gqcp/tests/CMakeFiles/SpinUnresolvedFrozenONVBasis_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/SpinUnresolvedFrozenONVBasis_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/SpinUnresolvedFrozenONVBasis_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/SpinUnresolvedFrozenONVBasis_test.dir/rule
@@ -3001,7 +3061,7 @@ clean: gqcp/tests/CMakeFiles/SpinUnresolvedFrozenONVBasis_test.dir/clean
 gqcp/tests/CMakeFiles/SquareRankFourTensor_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/SquareRankFourTensor_test.dir/build.make gqcp/tests/CMakeFiles/SquareRankFourTensor_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/SquareRankFourTensor_test.dir/build.make gqcp/tests/CMakeFiles/SquareRankFourTensor_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target SquareRankFourTensor_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=50 "Built target SquareRankFourTensor_test"
 .PHONY : gqcp/tests/CMakeFiles/SquareRankFourTensor_test.dir/all
 
 # Include target in all.
@@ -3011,7 +3071,7 @@ all: gqcp/tests/CMakeFiles/SquareRankFourTensor_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/SquareRankFourTensor_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/SquareRankFourTensor_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/SquareRankFourTensor_test.dir/rule
@@ -3038,7 +3098,7 @@ clean: gqcp/tests/CMakeFiles/SquareRankFourTensor_test.dir/clean
 gqcp/tests/CMakeFiles/SpinResolvedONVBasis_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/SpinResolvedONVBasis_test.dir/build.make gqcp/tests/CMakeFiles/SpinResolvedONVBasis_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/SpinResolvedONVBasis_test.dir/build.make gqcp/tests/CMakeFiles/SpinResolvedONVBasis_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=44 "Built target SpinResolvedONVBasis_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=45 "Built target SpinResolvedONVBasis_test"
 .PHONY : gqcp/tests/CMakeFiles/SpinResolvedONVBasis_test.dir/all
 
 # Include target in all.
@@ -3149,7 +3209,7 @@ clean: gqcp/tests/CMakeFiles/SquareMatrix_test.dir/clean
 gqcp/tests/CMakeFiles/CartesianGTO_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/CartesianGTO_test.dir/build.make gqcp/tests/CMakeFiles/CartesianGTO_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/CartesianGTO_test.dir/build.make gqcp/tests/CMakeFiles/CartesianGTO_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=6 "Built target CartesianGTO_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=7 "Built target CartesianGTO_test"
 .PHONY : gqcp/tests/CMakeFiles/CartesianGTO_test.dir/all
 
 # Include target in all.
@@ -3223,7 +3283,7 @@ clean: gqcp/tests/CMakeFiles/SQOneElectronOperator_test.dir/clean
 gqcp/tests/CMakeFiles/ERNewtonLocalizer_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/ERNewtonLocalizer_test.dir/build.make gqcp/tests/CMakeFiles/ERNewtonLocalizer_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/ERNewtonLocalizer_test.dir/build.make gqcp/tests/CMakeFiles/ERNewtonLocalizer_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target ERNewtonLocalizer_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=11 "Built target ERNewtonLocalizer_test"
 .PHONY : gqcp/tests/CMakeFiles/ERNewtonLocalizer_test.dir/all
 
 # Include target in all.
@@ -3233,7 +3293,7 @@ all: gqcp/tests/CMakeFiles/ERNewtonLocalizer_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/ERNewtonLocalizer_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/ERNewtonLocalizer_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/ERNewtonLocalizer_test.dir/rule
@@ -3260,7 +3320,7 @@ clean: gqcp/tests/CMakeFiles/ERNewtonLocalizer_test.dir/clean
 gqcp/tests/CMakeFiles/CartesianExponents_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/CartesianExponents_test.dir/build.make gqcp/tests/CMakeFiles/CartesianExponents_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/CartesianExponents_test.dir/build.make gqcp/tests/CMakeFiles/CartesianExponents_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target CartesianExponents_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=6 "Built target CartesianExponents_test"
 .PHONY : gqcp/tests/CMakeFiles/CartesianExponents_test.dir/all
 
 # Include target in all.
@@ -3270,7 +3330,7 @@ all: gqcp/tests/CMakeFiles/CartesianExponents_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/CartesianExponents_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/CartesianExponents_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/CartesianExponents_test.dir/rule
@@ -3297,7 +3357,7 @@ clean: gqcp/tests/CMakeFiles/CartesianExponents_test.dir/clean
 gqcp/tests/CMakeFiles/USQOneElectronOperator_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/USQOneElectronOperator_test.dir/build.make gqcp/tests/CMakeFiles/USQOneElectronOperator_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/USQOneElectronOperator_test.dir/build.make gqcp/tests/CMakeFiles/USQOneElectronOperator_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=53 "Built target USQOneElectronOperator_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target USQOneElectronOperator_test"
 .PHONY : gqcp/tests/CMakeFiles/USQOneElectronOperator_test.dir/all
 
 # Include target in all.
@@ -3307,7 +3367,7 @@ all: gqcp/tests/CMakeFiles/USQOneElectronOperator_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/USQOneElectronOperator_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/USQOneElectronOperator_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/USQOneElectronOperator_test.dir/rule
@@ -3334,7 +3394,7 @@ clean: gqcp/tests/CMakeFiles/USQOneElectronOperator_test.dir/clean
 gqcp/tests/CMakeFiles/NonLinearEquationSolver_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/NonLinearEquationSolver_test.dir/build.make gqcp/tests/CMakeFiles/NonLinearEquationSolver_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/NonLinearEquationSolver_test.dir/build.make gqcp/tests/CMakeFiles/NonLinearEquationSolver_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=25 "Built target NonLinearEquationSolver_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=26 "Built target NonLinearEquationSolver_test"
 .PHONY : gqcp/tests/CMakeFiles/NonLinearEquationSolver_test.dir/all
 
 # Include target in all.
@@ -3371,7 +3431,7 @@ clean: gqcp/tests/CMakeFiles/NonLinearEquationSolver_test.dir/clean
 gqcp/tests/CMakeFiles/Matrix_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/Matrix_test.dir/build.make gqcp/tests/CMakeFiles/Matrix_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/Matrix_test.dir/build.make gqcp/tests/CMakeFiles/Matrix_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=23 "Built target Matrix_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=24 "Built target Matrix_test"
 .PHONY : gqcp/tests/CMakeFiles/Matrix_test.dir/all
 
 # Include target in all.
@@ -3408,7 +3468,7 @@ clean: gqcp/tests/CMakeFiles/Matrix_test.dir/clean
 gqcp/tests/CMakeFiles/Tensor_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/Tensor_test.dir/build.make gqcp/tests/CMakeFiles/Tensor_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/Tensor_test.dir/build.make gqcp/tests/CMakeFiles/Tensor_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=50 "Built target Tensor_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target Tensor_test"
 .PHONY : gqcp/tests/CMakeFiles/Tensor_test.dir/all
 
 # Include target in all.
@@ -3418,7 +3478,7 @@ all: gqcp/tests/CMakeFiles/Tensor_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/Tensor_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/Tensor_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/Tensor_test.dir/rule
@@ -3482,7 +3542,7 @@ clean: gqcp/tests/CMakeFiles/BlockMatrix_test.dir/clean
 gqcp/tests/CMakeFiles/QCMatrix_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/QCMatrix_test.dir/build.make gqcp/tests/CMakeFiles/QCMatrix_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/QCMatrix_test.dir/build.make gqcp/tests/CMakeFiles/QCMatrix_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target QCMatrix_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=31 "Built target QCMatrix_test"
 .PHONY : gqcp/tests/CMakeFiles/QCMatrix_test.dir/all
 
 # Include target in all.
@@ -3492,7 +3552,7 @@ all: gqcp/tests/CMakeFiles/QCMatrix_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/QCMatrix_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/QCMatrix_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/QCMatrix_test.dir/rule
@@ -3556,7 +3616,7 @@ clean: gqcp/tests/CMakeFiles/RHF_test.dir/clean
 gqcp/tests/CMakeFiles/Hubbard_builder_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/Hubbard_builder_test.dir/build.make gqcp/tests/CMakeFiles/Hubbard_builder_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/Hubbard_builder_test.dir/build.make gqcp/tests/CMakeFiles/Hubbard_builder_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=18 "Built target Hubbard_builder_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target Hubbard_builder_test"
 .PHONY : gqcp/tests/CMakeFiles/Hubbard_builder_test.dir/all
 
 # Include target in all.
@@ -3566,7 +3626,7 @@ all: gqcp/tests/CMakeFiles/Hubbard_builder_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/Hubbard_builder_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/Hubbard_builder_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/Hubbard_builder_test.dir/rule
@@ -3593,7 +3653,7 @@ clean: gqcp/tests/CMakeFiles/Hubbard_builder_test.dir/clean
 gqcp/tests/CMakeFiles/EigenproblemSolver_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/EigenproblemSolver_test.dir/build.make gqcp/tests/CMakeFiles/EigenproblemSolver_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/EigenproblemSolver_test.dir/build.make gqcp/tests/CMakeFiles/EigenproblemSolver_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=12 "Built target EigenproblemSolver_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=13 "Built target EigenproblemSolver_test"
 .PHONY : gqcp/tests/CMakeFiles/EigenproblemSolver_test.dir/all
 
 # Include target in all.
@@ -3630,7 +3690,7 @@ clean: gqcp/tests/CMakeFiles/EigenproblemSolver_test.dir/clean
 gqcp/tests/CMakeFiles/SQHamiltonian_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/SQHamiltonian_test.dir/build.make gqcp/tests/CMakeFiles/SQHamiltonian_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/SQHamiltonian_test.dir/build.make gqcp/tests/CMakeFiles/SQHamiltonian_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=37 "Built target SQHamiltonian_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target SQHamiltonian_test"
 .PHONY : gqcp/tests/CMakeFiles/SQHamiltonian_test.dir/all
 
 # Include target in all.
@@ -3640,7 +3700,7 @@ all: gqcp/tests/CMakeFiles/SQHamiltonian_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/SQHamiltonian_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/SQHamiltonian_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/SQHamiltonian_test.dir/rule
@@ -3667,7 +3727,7 @@ clean: gqcp/tests/CMakeFiles/SQHamiltonian_test.dir/clean
 gqcp/tests/CMakeFiles/SpinUnresolvedONVBasis_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/SpinUnresolvedONVBasis_test.dir/build.make gqcp/tests/CMakeFiles/SpinUnresolvedONVBasis_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/SpinUnresolvedONVBasis_test.dir/build.make gqcp/tests/CMakeFiles/SpinUnresolvedONVBasis_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=47 "Built target SpinUnresolvedONVBasis_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=48 "Built target SpinUnresolvedONVBasis_test"
 .PHONY : gqcp/tests/CMakeFiles/SpinUnresolvedONVBasis_test.dir/all
 
 # Include target in all.
@@ -3704,7 +3764,7 @@ clean: gqcp/tests/CMakeFiles/SpinUnresolvedONVBasis_test.dir/clean
 gqcp/tests/CMakeFiles/QCRankFourTensor_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/QCRankFourTensor_test.dir/build.make gqcp/tests/CMakeFiles/QCRankFourTensor_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/QCRankFourTensor_test.dir/build.make gqcp/tests/CMakeFiles/QCRankFourTensor_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=33 "Built target QCRankFourTensor_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=34 "Built target QCRankFourTensor_test"
 .PHONY : gqcp/tests/CMakeFiles/QCRankFourTensor_test.dir/all
 
 # Include target in all.
@@ -3741,7 +3801,7 @@ clean: gqcp/tests/CMakeFiles/QCRankFourTensor_test.dir/clean
 gqcp/tests/CMakeFiles/DOCIRDMBuilder_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/DOCIRDMBuilder_test.dir/build.make gqcp/tests/CMakeFiles/DOCIRDMBuilder_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/DOCIRDMBuilder_test.dir/build.make gqcp/tests/CMakeFiles/DOCIRDMBuilder_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=8 "Built target DOCIRDMBuilder_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target DOCIRDMBuilder_test"
 .PHONY : gqcp/tests/CMakeFiles/DOCIRDMBuilder_test.dir/all
 
 # Include target in all.
@@ -3751,7 +3811,7 @@ all: gqcp/tests/CMakeFiles/DOCIRDMBuilder_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/DOCIRDMBuilder_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/DOCIRDMBuilder_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/DOCIRDMBuilder_test.dir/rule
@@ -3778,7 +3838,7 @@ clean: gqcp/tests/CMakeFiles/DOCIRDMBuilder_test.dir/clean
 gqcp/tests/CMakeFiles/ScalarBasis_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/ScalarBasis_test.dir/build.make gqcp/tests/CMakeFiles/ScalarBasis_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/ScalarBasis_test.dir/build.make gqcp/tests/CMakeFiles/ScalarBasis_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=39 "Built target ScalarBasis_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=40 "Built target ScalarBasis_test"
 .PHONY : gqcp/tests/CMakeFiles/ScalarBasis_test.dir/all
 
 # Include target in all.
@@ -3815,7 +3875,7 @@ clean: gqcp/tests/CMakeFiles/ScalarBasis_test.dir/clean
 gqcp/tests/CMakeFiles/ScalarFunction_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/ScalarFunction_test.dir/build.make gqcp/tests/CMakeFiles/ScalarFunction_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/ScalarFunction_test.dir/build.make gqcp/tests/CMakeFiles/ScalarFunction_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=40 "Built target ScalarFunction_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target ScalarFunction_test"
 .PHONY : gqcp/tests/CMakeFiles/ScalarFunction_test.dir/all
 
 # Include target in all.
@@ -3825,7 +3885,7 @@ all: gqcp/tests/CMakeFiles/ScalarFunction_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/ScalarFunction_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/ScalarFunction_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/ScalarFunction_test.dir/rule
@@ -3852,7 +3912,7 @@ clean: gqcp/tests/CMakeFiles/ScalarFunction_test.dir/clean
 gqcp/tests/CMakeFiles/USpinorBasis_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/USpinorBasis_test.dir/build.make gqcp/tests/CMakeFiles/USpinorBasis_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/USpinorBasis_test.dir/build.make gqcp/tests/CMakeFiles/USpinorBasis_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target USpinorBasis_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=55 "Built target USpinorBasis_test"
 .PHONY : gqcp/tests/CMakeFiles/USpinorBasis_test.dir/all
 
 # Include target in all.
@@ -3862,7 +3922,7 @@ all: gqcp/tests/CMakeFiles/USpinorBasis_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/USpinorBasis_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/USpinorBasis_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/USpinorBasis_test.dir/rule
@@ -3889,7 +3949,7 @@ clean: gqcp/tests/CMakeFiles/USpinorBasis_test.dir/clean
 gqcp/tests/CMakeFiles/IntegralCalculator_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/IntegralCalculator_test.dir/build.make gqcp/tests/CMakeFiles/IntegralCalculator_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/IntegralCalculator_test.dir/build.make gqcp/tests/CMakeFiles/IntegralCalculator_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target IntegralCalculator_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=20 "Built target IntegralCalculator_test"
 .PHONY : gqcp/tests/CMakeFiles/IntegralCalculator_test.dir/all
 
 # Include target in all.
@@ -3899,7 +3959,7 @@ all: gqcp/tests/CMakeFiles/IntegralCalculator_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/IntegralCalculator_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/IntegralCalculator_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/IntegralCalculator_test.dir/rule
@@ -3926,7 +3986,7 @@ clean: gqcp/tests/CMakeFiles/IntegralCalculator_test.dir/clean
 gqcp/tests/CMakeFiles/SpinResolvedFrozenONVBasis_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/SpinResolvedFrozenONVBasis_test.dir/build.make gqcp/tests/CMakeFiles/SpinResolvedFrozenONVBasis_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/SpinResolvedFrozenONVBasis_test.dir/build.make gqcp/tests/CMakeFiles/SpinResolvedFrozenONVBasis_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target SpinResolvedFrozenONVBasis_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=44 "Built target SpinResolvedFrozenONVBasis_test"
 .PHONY : gqcp/tests/CMakeFiles/SpinResolvedFrozenONVBasis_test.dir/all
 
 # Include target in all.
@@ -3936,7 +3996,7 @@ all: gqcp/tests/CMakeFiles/SpinResolvedFrozenONVBasis_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/SpinResolvedFrozenONVBasis_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/SpinResolvedFrozenONVBasis_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/SpinResolvedFrozenONVBasis_test.dir/rule
@@ -4074,7 +4134,7 @@ clean: gqcp/tests/CMakeFiles/SimpleSpinorBasis_test.dir/clean
 gqcp/tests/CMakeFiles/Eigenpair_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/Eigenpair_test.dir/build.make gqcp/tests/CMakeFiles/Eigenpair_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/Eigenpair_test.dir/build.make gqcp/tests/CMakeFiles/Eigenpair_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=11 "Built target Eigenpair_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=12 "Built target Eigenpair_test"
 .PHONY : gqcp/tests/CMakeFiles/Eigenpair_test.dir/all
 
 # Include target in all.
@@ -4111,7 +4171,7 @@ clean: gqcp/tests/CMakeFiles/Eigenpair_test.dir/clean
 gqcp/tests/CMakeFiles/LinearExpansion_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/LinearExpansion_test.dir/build.make gqcp/tests/CMakeFiles/LinearExpansion_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/LinearExpansion_test.dir/build.make gqcp/tests/CMakeFiles/LinearExpansion_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=22 "Built target LinearExpansion_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=23 "Built target LinearExpansion_test"
 .PHONY : gqcp/tests/CMakeFiles/LinearExpansion_test.dir/all
 
 # Include target in all.
@@ -4185,7 +4245,7 @@ clean: gqcp/tests/CMakeFiles/OrbitalRotationGenerators_test.dir/clean
 gqcp/tests/CMakeFiles/NuclearDipoleOperator_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/NuclearDipoleOperator_test.dir/build.make gqcp/tests/CMakeFiles/NuclearDipoleOperator_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/NuclearDipoleOperator_test.dir/build.make gqcp/tests/CMakeFiles/NuclearDipoleOperator_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=26 "Built target NuclearDipoleOperator_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target NuclearDipoleOperator_test"
 .PHONY : gqcp/tests/CMakeFiles/NuclearDipoleOperator_test.dir/all
 
 # Include target in all.
@@ -4195,7 +4255,7 @@ all: gqcp/tests/CMakeFiles/NuclearDipoleOperator_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/NuclearDipoleOperator_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/NuclearDipoleOperator_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/NuclearDipoleOperator_test.dir/rule
@@ -4222,7 +4282,7 @@ clean: gqcp/tests/CMakeFiles/NuclearDipoleOperator_test.dir/clean
 gqcp/tests/CMakeFiles/FCI_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/FCI_test.dir/build.make gqcp/tests/CMakeFiles/FCI_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/FCI_test.dir/build.make gqcp/tests/CMakeFiles/FCI_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=14 "Built target FCI_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=15 "Built target FCI_test"
 .PHONY : gqcp/tests/CMakeFiles/FCI_test.dir/all
 
 # Include target in all.
@@ -4296,7 +4356,7 @@ clean: gqcp/tests/CMakeFiles/TransformationMatrix_test.dir/clean
 gqcp/tests/CMakeFiles/Nucleus_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/Nucleus_test.dir/build.make gqcp/tests/CMakeFiles/Nucleus_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/Nucleus_test.dir/build.make gqcp/tests/CMakeFiles/Nucleus_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=28 "Built target Nucleus_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=29 "Built target Nucleus_test"
 .PHONY : gqcp/tests/CMakeFiles/Nucleus_test.dir/all
 
 # Include target in all.
@@ -4333,7 +4393,7 @@ clean: gqcp/tests/CMakeFiles/Nucleus_test.dir/clean
 gqcp/tests/CMakeFiles/ShellSet_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/ShellSet_test.dir/build.make gqcp/tests/CMakeFiles/ShellSet_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/ShellSet_test.dir/build.make gqcp/tests/CMakeFiles/ShellSet_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=42 "Built target ShellSet_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target ShellSet_test"
 .PHONY : gqcp/tests/CMakeFiles/ShellSet_test.dir/all
 
 # Include target in all.
@@ -4343,7 +4403,7 @@ all: gqcp/tests/CMakeFiles/ShellSet_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/ShellSet_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/ShellSet_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/ShellSet_test.dir/rule
@@ -4370,7 +4430,7 @@ clean: gqcp/tests/CMakeFiles/ShellSet_test.dir/clean
 gqcp/tests/CMakeFiles/JacobiRotationParameters_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/JacobiRotationParameters_test.dir/build.make gqcp/tests/CMakeFiles/JacobiRotationParameters_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/JacobiRotationParameters_test.dir/build.make gqcp/tests/CMakeFiles/JacobiRotationParameters_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=21 "Built target JacobiRotationParameters_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target JacobiRotationParameters_test"
 .PHONY : gqcp/tests/CMakeFiles/JacobiRotationParameters_test.dir/all
 
 # Include target in all.
@@ -4380,7 +4440,7 @@ all: gqcp/tests/CMakeFiles/JacobiRotationParameters_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/JacobiRotationParameters_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/JacobiRotationParameters_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/JacobiRotationParameters_test.dir/rule
@@ -4407,7 +4467,7 @@ clean: gqcp/tests/CMakeFiles/JacobiRotationParameters_test.dir/clean
 gqcp/tests/CMakeFiles/SQTwoElectronOperator_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/SQTwoElectronOperator_test.dir/build.make gqcp/tests/CMakeFiles/SQTwoElectronOperator_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/SQTwoElectronOperator_test.dir/build.make gqcp/tests/CMakeFiles/SQTwoElectronOperator_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target SQTwoElectronOperator_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=39 "Built target SQTwoElectronOperator_test"
 .PHONY : gqcp/tests/CMakeFiles/SQTwoElectronOperator_test.dir/all
 
 # Include target in all.
@@ -4417,7 +4477,7 @@ all: gqcp/tests/CMakeFiles/SQTwoElectronOperator_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/SQTwoElectronOperator_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/SQTwoElectronOperator_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/SQTwoElectronOperator_test.dir/rule
@@ -4444,7 +4504,7 @@ clean: gqcp/tests/CMakeFiles/SQTwoElectronOperator_test.dir/clean
 gqcp/tests/CMakeFiles/IterativeIdentitiesHessianModifier_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/IterativeIdentitiesHessianModifier_test.dir/build.make gqcp/tests/CMakeFiles/IterativeIdentitiesHessianModifier_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/IterativeIdentitiesHessianModifier_test.dir/build.make gqcp/tests/CMakeFiles/IterativeIdentitiesHessianModifier_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=20 "Built target IterativeIdentitiesHessianModifier_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=21 "Built target IterativeIdentitiesHessianModifier_test"
 .PHONY : gqcp/tests/CMakeFiles/IterativeIdentitiesHessianModifier_test.dir/all
 
 # Include target in all.
@@ -4481,7 +4541,7 @@ clean: gqcp/tests/CMakeFiles/IterativeIdentitiesHessianModifier_test.dir/clean
 gqcp/tests/CMakeFiles/ERJacobiLocalizer_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/ERJacobiLocalizer_test.dir/build.make gqcp/tests/CMakeFiles/ERJacobiLocalizer_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/ERJacobiLocalizer_test.dir/build.make gqcp/tests/CMakeFiles/ERJacobiLocalizer_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=10 "Built target ERJacobiLocalizer_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target ERJacobiLocalizer_test"
 .PHONY : gqcp/tests/CMakeFiles/ERJacobiLocalizer_test.dir/all
 
 # Include target in all.
@@ -4491,7 +4551,7 @@ all: gqcp/tests/CMakeFiles/ERJacobiLocalizer_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/ERJacobiLocalizer_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/ERJacobiLocalizer_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/ERJacobiLocalizer_test.dir/rule
@@ -4518,7 +4578,7 @@ clean: gqcp/tests/CMakeFiles/ERJacobiLocalizer_test.dir/clean
 gqcp/tests/CMakeFiles/RSpinorBasis_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/RSpinorBasis_test.dir/build.make gqcp/tests/CMakeFiles/RSpinorBasis_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/RSpinorBasis_test.dir/build.make gqcp/tests/CMakeFiles/RSpinorBasis_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=36 "Built target RSpinorBasis_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=37 "Built target RSpinorBasis_test"
 .PHONY : gqcp/tests/CMakeFiles/RSpinorBasis_test.dir/all
 
 # Include target in all.
@@ -4592,7 +4652,7 @@ clean: gqcp/tests/CMakeFiles/properties_test.dir/clean
 gqcp/tests/CMakeFiles/LibintInterfacer_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/LibintInterfacer_test.dir/build.make gqcp/tests/CMakeFiles/LibintInterfacer_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/LibintInterfacer_test.dir/build.make gqcp/tests/CMakeFiles/LibintInterfacer_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target LibintInterfacer_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=22 "Built target LibintInterfacer_test"
 .PHONY : gqcp/tests/CMakeFiles/LibintInterfacer_test.dir/all
 
 # Include target in all.
@@ -4602,7 +4662,7 @@ all: gqcp/tests/CMakeFiles/LibintInterfacer_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/LibintInterfacer_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/LibintInterfacer_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/LibintInterfacer_test.dir/rule
@@ -4629,7 +4689,7 @@ clean: gqcp/tests/CMakeFiles/LibintInterfacer_test.dir/clean
 gqcp/tests/CMakeFiles/GSpinorBasis_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/GSpinorBasis_test.dir/build.make gqcp/tests/CMakeFiles/GSpinorBasis_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/GSpinorBasis_test.dir/build.make gqcp/tests/CMakeFiles/GSpinorBasis_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target GSpinorBasis_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=17 "Built target GSpinorBasis_test"
 .PHONY : gqcp/tests/CMakeFiles/GSpinorBasis_test.dir/all
 
 # Include target in all.
@@ -4639,7 +4699,7 @@ all: gqcp/tests/CMakeFiles/GSpinorBasis_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/GSpinorBasis_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/GSpinorBasis_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/GSpinorBasis_test.dir/rule
@@ -4666,7 +4726,7 @@ clean: gqcp/tests/CMakeFiles/GSpinorBasis_test.dir/clean
 gqcp/tests/CMakeFiles/SpinResolvedSelectedONVBasis_test.dir/all: gqcp/CMakeFiles/gqcp.dir/all
 	$(MAKE) -f gqcp/tests/CMakeFiles/SpinResolvedSelectedONVBasis_test.dir/build.make gqcp/tests/CMakeFiles/SpinResolvedSelectedONVBasis_test.dir/depend
 	$(MAKE) -f gqcp/tests/CMakeFiles/SpinResolvedSelectedONVBasis_test.dir/build.make gqcp/tests/CMakeFiles/SpinResolvedSelectedONVBasis_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num=45 "Built target SpinResolvedSelectedONVBasis_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daria/ugent/gqcp/gqcp/CMakeFiles --progress-num= "Built target SpinResolvedSelectedONVBasis_test"
 .PHONY : gqcp/tests/CMakeFiles/SpinResolvedSelectedONVBasis_test.dir/all
 
 # Include target in all.
@@ -4676,7 +4736,7 @@ all: gqcp/tests/CMakeFiles/SpinResolvedSelectedONVBasis_test.dir/all
 
 # Build rule for subdir invocation for target.
 gqcp/tests/CMakeFiles/SpinResolvedSelectedONVBasis_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 25
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 24
 	$(MAKE) -f CMakeFiles/Makefile2 gqcp/tests/CMakeFiles/SpinResolvedSelectedONVBasis_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daria/ugent/gqcp/gqcp/CMakeFiles 0
 .PHONY : gqcp/tests/CMakeFiles/SpinResolvedSelectedONVBasis_test.dir/rule
@@ -5069,6 +5129,7 @@ gqcp/tests/QCMethod/all: gqcp/tests/QCMethod/Geminals/all
 gqcp/tests/QCMethod/all: gqcp/tests/QCMethod/HF/all
 gqcp/tests/QCMethod/all: gqcp/tests/QCMethod/OrbitalOptimization/all
 gqcp/tests/QCMethod/all: gqcp/tests/QCMethod/RMP2/all
+gqcp/tests/QCMethod/all: gqcp/tests/QCMethod/CC/all
 
 .PHONY : gqcp/tests/QCMethod/all
 
@@ -5079,6 +5140,7 @@ gqcp/tests/QCMethod/clean: gqcp/tests/QCMethod/Geminals/clean
 gqcp/tests/QCMethod/clean: gqcp/tests/QCMethod/HF/clean
 gqcp/tests/QCMethod/clean: gqcp/tests/QCMethod/OrbitalOptimization/clean
 gqcp/tests/QCMethod/clean: gqcp/tests/QCMethod/RMP2/clean
+gqcp/tests/QCMethod/clean: gqcp/tests/QCMethod/CC/clean
 
 .PHONY : gqcp/tests/QCMethod/clean
 
@@ -5089,6 +5151,7 @@ gqcp/tests/QCMethod/preinstall: gqcp/tests/QCMethod/Geminals/preinstall
 gqcp/tests/QCMethod/preinstall: gqcp/tests/QCMethod/HF/preinstall
 gqcp/tests/QCMethod/preinstall: gqcp/tests/QCMethod/OrbitalOptimization/preinstall
 gqcp/tests/QCMethod/preinstall: gqcp/tests/QCMethod/RMP2/preinstall
+gqcp/tests/QCMethod/preinstall: gqcp/tests/QCMethod/CC/preinstall
 
 .PHONY : gqcp/tests/QCMethod/preinstall
 
@@ -5235,6 +5298,24 @@ gqcp/tests/QCMethod/RMP2/clean:
 gqcp/tests/QCMethod/RMP2/preinstall:
 
 .PHONY : gqcp/tests/QCMethod/RMP2/preinstall
+
+#=============================================================================
+# Directory level rules for directory gqcp/tests/QCMethod/CC
+
+# Convenience name for "all" pass in the directory.
+gqcp/tests/QCMethod/CC/all:
+
+.PHONY : gqcp/tests/QCMethod/CC/all
+
+# Convenience name for "clean" pass in the directory.
+gqcp/tests/QCMethod/CC/clean:
+
+.PHONY : gqcp/tests/QCMethod/CC/clean
+
+# Convenience name for "preinstall" pass in the directory.
+gqcp/tests/QCMethod/CC/preinstall:
+
+.PHONY : gqcp/tests/QCMethod/CC/preinstall
 
 #=============================================================================
 # Directory level rules for directory gqcp/tests/QCModel

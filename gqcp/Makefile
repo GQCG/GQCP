@@ -376,6 +376,19 @@ constrained_RHF_test/fast:
 .PHONY : constrained_RHF_test/fast
 
 #=============================================================================
+# Target rules for targets named CCD0_test
+
+# Build rule for target.
+CCD0_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 CCD0_test
+.PHONY : CCD0_test
+
+# fast build rule for target.
+CCD0_test/fast:
+	$(MAKE) -f gqcp/tests/CMakeFiles/CCD0_test.dir/build.make gqcp/tests/CMakeFiles/CCD0_test.dir/build
+.PHONY : CCD0_test/fast
+
+#=============================================================================
 # Target rules for targets named AtomicDecompositionParameters_test
 
 # Build rule for target.
@@ -1288,6 +1301,7 @@ help:
 	@echo "... DOCINewtonOrbitalOptimizer_test"
 	@echo "... DOCI_builder_test"
 	@echo "... constrained_RHF_test"
+	@echo "... CCD0_test"
 	@echo "... AtomicDecompositionParameters_test"
 	@echo "... SpinUnresolvedFCIRDMBuilder_test"
 	@echo "... SelectedRDMBuilder_test"
