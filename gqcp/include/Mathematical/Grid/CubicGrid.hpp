@@ -69,6 +69,8 @@ public:
         this->loop( [&values, &scalar_function] (const Vector<double, 3>& r) {
             values.push_back(scalar_function(r));
         });
+
+        return Field<Valued, CubicGrid>{values, *this};
     }
 
     /**

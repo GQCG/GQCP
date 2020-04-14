@@ -66,7 +66,7 @@ public:
      */
 
     /**
-     *  Write this field's values to a cube file
+     *  Write this field's values to a GAUSSIAN Cube file (http://paulbourke.net/dataformats/cube/).
      *
      *  @param filename     the name of the cubefile that has to be generated
      *  @param molecule     the molecule that should be placed in the cubefile
@@ -84,20 +84,28 @@ public:
 
 
         // Write the necessary header lines.
-        cubefile << "Fun times" << std::endl;
-        cubefile << "Fun times" << std::endl;
+
+        // The first two lines are comment lines.
+        cubefile << "COMMENT LINE -- GAUSSIAN Cube file" << std::endl;
+        cubefile << "COMMENT LINE -- OUTER LOOP: X, MIDDLE LOOP: Y, INNER LOOP: Z" << std::endl;
+
         cubefile << std::scientific;
+
+        // The next line has the number of atoms and the origin of the volumetric data.
         cubefile << nuclei.size() << " " << origin(0)     << " " << origin(1)     << " " << origin(2) << std::endl;
-        cubefile << steps[0]     << " " << step_sizes[0] << " " << 0.0           << " " << 0.0 << std::endl;
-        cubefile << steps[1]     << " " << 0.0           << " " << step_sizes[1] << " " << 0.0 << std::endl;
-        cubefile << steps[2]     << " " << 0.0           << " " << 0.0           << " " << step_sizes[2] << std::endl;
+
+        // The next three lines give the number of voxels along the respective axes.
+        // We're choosing the x-, y- and z-axes, and since the number of steps is positive, the units are Bohr.
+        cubefile << steps[0]      << " " << step_sizes[0] << " " << 0.0           << " " << 0.0 << std::endl;
+        cubefile << steps[1]      << " " << 0.0           << " " << step_sizes[1] << " " << 0.0 << std::endl;
+        cubefile << steps[2]      << " " << 0.0           << " " << 0.0           << " " << step_sizes[2] << std::endl;
         for (const auto& nucleus : nuclei) {
-            cubefile << nucleus.charge() << " " << 0.0 << " " << nucleus.position(0) << " " << nucleus.position(1) << " " << nucleus.position(2) << std::endl;
+            cubefile << nucleus.charge() << " " << 0.0 << " " << nucleus.position()(0) << " " << nucleus.position()(1) << " " << nucleus.position()(2) << std::endl;
         }
 
 
         // Write the values of the scalar function.
-        size_t index = 0
+        size_t index = 0;
         this->grid.loop( [&index, &cubefile, this] (const size_t i, const size_t j, const size_t k) {
             cubefile << this->values[index] << " ";  // write one value
 
