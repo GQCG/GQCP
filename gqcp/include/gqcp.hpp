@@ -60,6 +60,9 @@
 #include "Mathematical/Algorithm/Step.hpp"
 #include "Mathematical/Algorithm/StepCollection.hpp"
 
+#include "Mathematical/Grid/CubicGrid.hpp"
+#include "Mathematical/Grid/Field.hpp"
+
 #include "Mathematical/Optimization/Accelerator/ConstantDamper.hpp"
 #include "Mathematical/Optimization/Accelerator/DIIS.hpp"
 
@@ -142,11 +145,15 @@
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
 #include "Operator/SecondQuantized/USQHamiltonian.hpp"
+#include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
+#include "Operator/SecondQuantized/USQTwoElectronOperator.hpp"
 
 #include "Processing/Properties/BaseElectricalResponseSolver.hpp"
+#include "Processing/Properties/CIElectricalResponseSolver.hpp"
 #include "Processing/Properties/expectation_values.hpp"
 #include "Processing/Properties/properties.hpp"
 #include "Processing/Properties/RHFElectricalResponseSolver.hpp"
+#include "Processing/Properties/vAP1roGElectricalResponseSolver.hpp"
 
 #include "Processing/RDM/BaseRDMBuilder.hpp"
 #include "Processing/RDM/BaseSpinUnresolvedRDMBuilder.hpp"
@@ -160,7 +167,7 @@
 #include "Processing/RDM/RDMs.hpp"
 #include "Processing/RDM/SelectedRDMBuilder.hpp"
 #include "Processing/RDM/SpinUnresolvedFCIRDMBuilder.hpp"
-#include "Processing/RDM/SpinUnresolvedRDMCalculator.hpp"
+// #include "Processing/RDM/SpinUnresolvedRDMCalculator.hpp"
 #include "Processing/RDM/TwoRDM.hpp"
 
 #include "QCMethod/Applications/AtomicDecompositionParameters.hpp"
