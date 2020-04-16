@@ -41,8 +41,6 @@ CubicGrid::CubicGrid(const Vector<double, 3>& origin, const std::array<size_t, 3
 /*
  *  PUBLIC METHODS
  */
-
-
 /**
  *  @return the number of points that are in this grid
  */
@@ -99,9 +97,6 @@ Vector<double, 3> CubicGrid::position(const size_t i, const size_t j, const size
 
     return Vector<double, 3>(x, y, z);
 }
-
-
-
 
 
 }  // namespace GQCP
