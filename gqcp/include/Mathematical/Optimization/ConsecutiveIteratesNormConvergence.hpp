@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #pragma once
 
 
@@ -35,7 +35,7 @@ namespace GQCP {
  *  @tparam _Environment        the type of the calculation environment
  */
 template <typename _Iterate, typename _Environment>
-class ConsecutiveIteratesNormConvergence :
+class ConsecutiveIteratesNormConvergence:
     public ConvergenceCriterion<_Environment> {
 
 public:
@@ -52,7 +52,6 @@ private:
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -61,10 +60,10 @@ public:
      *  @param threshold                    the threshold that is used in comparing the iterates
      *  @param extractor                    a function that can extract the correct iterates from the environment. The default is to check the environment on a property called 'variables'
      */
-    ConsecutiveIteratesNormConvergence(const double threshold = 1.0e-08, const std::function<std::deque<Iterate>(const Environment&)> extractor = [] (const Environment& environment) { return environment.variables; } ) :
-        threshold (threshold),
-        extractor (extractor)
-    {}
+    ConsecutiveIteratesNormConvergence(
+        const double threshold = 1.0e-08, const std::function<std::deque<Iterate>(const Environment&)> extractor = [](const Environment& environment) { return environment.variables; }) :
+        threshold {threshold},
+        extractor {extractor} {}
 
 
     /*
@@ -86,7 +85,7 @@ public:
 
         // Get the two most recent density matrices and compare the norm of their difference
         const auto second_to_last_it = iterates.end() - 2;  // 'it' for 'iterator'
-        const auto& previous = *second_to_last_it;  // dereference the iterator
+        const auto& previous = *second_to_last_it;          // dereference the iterator
         const auto current = iterates.back();
 
         return ((current - previous).norm() <= this->threshold);

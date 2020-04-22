@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #pragma once
 
 
@@ -41,7 +41,7 @@ namespace GQCP {
  *  @tparam _Shell                  the type of shell the underlying scalar bases contain
  */
 template <typename _ExpansionScalar, typename _Shell>
-class GSpinorBasis : public SimpleSpinorBasis<_ExpansionScalar, GSpinorBasis<_ExpansionScalar, _Shell>> {
+class GSpinorBasis: public SimpleSpinorBasis<_ExpansionScalar, GSpinorBasis<_ExpansionScalar, _Shell>> {
 public:
     using ExpansionScalar = _ExpansionScalar;
     using Shell = _Shell;
@@ -54,7 +54,6 @@ private:
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -66,8 +65,7 @@ public:
      */
     GSpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis, const TransformationMatrix<ExpansionScalar>& C) :
         Base(C),
-        scalar_bases ({alpha_scalar_basis, beta_scalar_basis})
-    {
+        scalar_bases {alpha_scalar_basis, beta_scalar_basis} {
         // Check if the dimensions of the given objects are compatible
         const auto K_alpha = alpha_scalar_basis.numberOfBasisFunctions();
         const auto K_beta = beta_scalar_basis.numberOfBasisFunctions();
@@ -85,16 +83,16 @@ public:
      *  @param C                    the coefficient matrix, i.e. the matrix of the expansion coefficients of the spinors in terms of the underlying scalar basis
      */
     GSpinorBasis(const ScalarBasis<Shell>& scalar_basis, const TransformationMatrix<ExpansionScalar>& C) :
-        GSpinorBasis(scalar_basis, scalar_basis, C)
-    {}
+        GSpinorBasis(scalar_basis, scalar_basis, C) {}
 
 
     /**
      *  Construct a generalized spinor basis with two different underlying scalar basis, and a coefficient matrix being the identity
      */
-    GSpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis) : 
-        GSpinorBasis(alpha_scalar_basis, beta_scalar_basis, TransformationMatrix<ExpansionScalar>::Identity(alpha_scalar_basis.numberOfBasisFunctions() + beta_scalar_basis.numberOfBasisFunctions(), alpha_scalar_basis.numberOfBasisFunctions() + beta_scalar_basis.numberOfBasisFunctions()))
-    {}
+    GSpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis) :
+        GSpinorBasis(alpha_scalar_basis, beta_scalar_basis,
+                     TransformationMatrix<ExpansionScalar>::Identity(alpha_scalar_basis.numberOfBasisFunctions() + beta_scalar_basis.numberOfBasisFunctions(),
+                                                                     alpha_scalar_basis.numberOfBasisFunctions() + beta_scalar_basis.numberOfBasisFunctions())) {}
 
 
     /**
@@ -103,8 +101,7 @@ public:
      *  @param scalar_basis         the scalar basis in which both the alpha and beta components are expanded
      */
     GSpinorBasis(const ScalarBasis<Shell>& scalar_basis) :
-        GSpinorBasis(scalar_basis, scalar_basis)
-    {}
+        GSpinorBasis(scalar_basis, scalar_basis) {}
 
 
     /**
@@ -117,8 +114,7 @@ public:
      *  @note the resulting generalized spinor basis is (most likely) non-orthogonal
      */
     GSpinorBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name) :
-        GSpinorBasis(ScalarBasis<Shell>(nuclear_framework, basisset_name))
-    {}
+        GSpinorBasis(ScalarBasis<Shell>(nuclear_framework, basisset_name)) {}
 
 
     /**
@@ -131,8 +127,7 @@ public:
      *  @note the resulting generalized spinor basis is (most likely) non-orthogonal
      */
     GSpinorBasis(const Molecule& molecule, const std::string& basisset_name) :
-        GSpinorBasis(ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name))
-    {}
+        GSpinorBasis(ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name)) {}
 
 
     /**
@@ -146,8 +141,8 @@ public:
      *  @note the resulting generalized spinor basis is (most likely) non-orthogonal
      */
     GSpinorBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name_alpha, const std::string& basisset_name_beta) :
-        GSpinorBasis(ScalarBasis<Shell>(nuclear_framework, basisset_name_alpha), ScalarBasis<Shell>(nuclear_framework, basisset_name_beta))
-    {}
+        GSpinorBasis(ScalarBasis<Shell>(nuclear_framework, basisset_name_alpha),
+                     ScalarBasis<Shell>(nuclear_framework, basisset_name_beta)) {}
 
 
     /**
@@ -161,9 +156,8 @@ public:
      *  @note the resulting generalized spinor basis is (most likely) non-orthogonal
      */
     GSpinorBasis(const Molecule& molecule, const std::string& basisset_name_alpha, const std::string& basisset_name_beta) :
-        GSpinorBasis(ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name_alpha), ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name_beta))
-    {}
-
+        GSpinorBasis(ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name_alpha),
+                     ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name_beta)) {}
 
 
     /*
@@ -177,7 +171,7 @@ public:
      * 
      *  @return the coefficient matrix for the requested component, i.e. the matrix of the expansion coefficients of the requested components of the spinors in terms of its underlying scalar basis
      */
-    MatrixX<ExpansionScalar> coefficientMatrix(SpinComponent component) const { 
+    MatrixX<ExpansionScalar> coefficientMatrix(SpinComponent component) const {
 
         const size_t K = this->numberOfCoefficients(component);
         if (component == SpinComponent::ALPHA) {
@@ -240,7 +234,7 @@ public:
         f.bottomRightCorner(K_beta, K_beta) = F_beta;
 
         // 2. Transform using the current coefficient matrix.
-        ResultOperator op ({f});  // op for 'operator'
+        ResultOperator op {{f}};  // op for 'operator'
         op.transform(this->coefficientMatrix());
         return op;
     }
@@ -278,19 +272,19 @@ public:
 
 
         // 2. Place the overlaps into the correct blocks.
-        S_x.block(0,K_alpha, K_alpha,K_beta) = 0.5 * S_ab;
-        S_x.block(K_alpha,0, K_beta,K_alpha) = 0.5 * S_ba;
+        S_x.block(0, K_alpha, K_alpha, K_beta) = 0.5 * S_ab;
+        S_x.block(K_alpha, 0, K_beta, K_alpha) = 0.5 * S_ba;
 
-        const cd ii (0.0, 1.0);  // 'cd' is a typedef for 'std::complex<double>', so 'ii' is the imaginary unit
-        S_y.block(0,K_alpha, K_alpha,K_beta) = -0.5 * ii * S_ab;
-        S_y.block(K_alpha,0, K_beta,K_alpha) = 0.5 * ii * S_ba;
+        const cd ii(0.0, 1.0);  // 'cd' is a typedef for 'std::complex<double>', so 'ii' is the imaginary unit
+        S_y.block(0, K_alpha, K_alpha, K_beta) = -0.5 * ii * S_ab;
+        S_y.block(K_alpha, 0, K_beta, K_alpha) = 0.5 * ii * S_ba;
 
         S_z.topLeftCorner(K_alpha, K_alpha) = 0.5 * S_aa;
         S_z.bottomRightCorner(K_beta, K_beta) = -0.5 * S_bb;
 
 
         // 3. Transform using the coefficient matrix
-        ResultOperator spin_op {std::array<QCMatrix<ResultScalar>, 3>{S_x, S_y, S_z}};  // 'op' for operator
+        ResultOperator spin_op {std::array<QCMatrix<ResultScalar>, 3> {S_x, S_y, S_z}};  // 'op' for operator
         spin_op.transform(this->coefficientMatrix());
         return spin_op;
     }
@@ -323,7 +317,7 @@ public:
         const auto K_beta = this->numberOfCoefficients(SpinComponent::BETA);
 
         const auto M = this->numberOfSpinors();
-        QCRankFourTensor<ResultScalar> g_par (M);  // 'par' for 'parameters'
+        QCRankFourTensor<ResultScalar> g_par(M);  // 'par' for 'parameters'
         g_par.setZero();
 
         // Primed indices are indices in the larger representation, normal ones are those in the smaller tensors.

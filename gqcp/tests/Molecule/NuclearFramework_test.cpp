@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #define BOOST_TEST_MODULE "NuclearFramework"
 
 #include <boost/test/unit_test.hpp>
@@ -27,7 +27,7 @@
 /**
  *  Test if we can't create a NuclearFramework with duplicate nuclei.
  */
-BOOST_AUTO_TEST_CASE ( duplicate_nuclei_constructor ) {
+BOOST_AUTO_TEST_CASE(duplicate_nuclei_constructor) {
 
     // Make some nuclei
     const GQCP::Nucleus nucleus1 {1, 0.0, 0.0, 0.0};
@@ -38,27 +38,26 @@ BOOST_AUTO_TEST_CASE ( duplicate_nuclei_constructor ) {
 
 
     // Check if we can't create a NuclearFramework with duplicate nuclei
-    BOOST_CHECK_THROW(GQCP::NuclearFramework nuclear_framework (nuclei1), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::NuclearFramework nuclear_framework {nuclei1}, std::invalid_argument);
 
     // Check if a correct argument doesn't throw
-    BOOST_CHECK_NO_THROW(GQCP::NuclearFramework nuclear_framework (nuclei2));
+    BOOST_CHECK_NO_THROW(GQCP::NuclearFramework nuclear_framework {nuclei2});
 }
 
 
 /**
  *  Check if totalNucleicCharge() works as expected.
  */
-BOOST_AUTO_TEST_CASE ( totalNucleicCharge ) {
+BOOST_AUTO_TEST_CASE(totalNucleicCharge) {
 
     // Create a fictitious molecule from some nuclei (charge, x, y ,z)
     const std::vector<GQCP::Nucleus> nuclei = {
         {1, 0, 3, 0},
         {2, 0, 0, 4},
         {3, 3, 0, 0},
-        {4, 0, 0, 5}
-    };
+        {4, 0, 0, 5}};
 
-    const GQCP::NuclearFramework nuclear_framework (nuclei);
+    const GQCP::NuclearFramework nuclear_framework {nuclei};
     BOOST_CHECK_EQUAL(nuclear_framework.totalNucleicCharge(), 10);
 }
 
@@ -66,16 +65,15 @@ BOOST_AUTO_TEST_CASE ( totalNucleicCharge ) {
 /**
  *  Check if internuclearDistance() works as expected.
  */
-BOOST_AUTO_TEST_CASE ( internuclearDistance ) {
+BOOST_AUTO_TEST_CASE(internuclearDistance) {
 
     // Create a fictitious molecule from some nuclei (charge, x, y ,z)
     const std::vector<GQCP::Nucleus> nuclei = {
         {1, 0, 3, 0},
         {2, 0, 0, 4},
         {3, 3, 0, 0},
-        {4, 0, 0, 5}
-    };
-    const GQCP::NuclearFramework nuclear_framework (nuclei);
+        {4, 0, 0, 5}};
+    const GQCP::NuclearFramework nuclear_framework {nuclei};
 
 
     // Check if we get throws when the indices are out of bounds
@@ -93,7 +91,7 @@ BOOST_AUTO_TEST_CASE ( internuclearDistance ) {
 /**
  *  Check if the basic methods work on H2.
  */
-BOOST_AUTO_TEST_CASE ( methods_h2 ) {
+BOOST_AUTO_TEST_CASE(methods_h2) {
 
     // Create the dihydrogen nuclear framework
     const auto h2 = GQCP::NuclearFramework::ReadXYZ("data/h2_szabo.xyz");
@@ -107,7 +105,7 @@ BOOST_AUTO_TEST_CASE ( methods_h2 ) {
 /**
  *  Check if the basic methods work on H2O.
  */
-BOOST_AUTO_TEST_CASE ( methods_water ) {
+BOOST_AUTO_TEST_CASE(methods_water) {
 
     // Create the water nuclear framework
     const auto water = GQCP::NuclearFramework::ReadXYZ("data/h2o.xyz");
@@ -121,9 +119,9 @@ BOOST_AUTO_TEST_CASE ( methods_water ) {
 /**
  *  Check if the NuclearFramework::HChain throws when expected.
  */
-BOOST_AUTO_TEST_CASE ( HChain_throws ) {
+BOOST_AUTO_TEST_CASE(HChain_throws) {
 
-    BOOST_CHECK_THROW(GQCP::NuclearFramework::HChain(0, 1.0), std::invalid_argument);  // can't create 0 H-nuclei
+    BOOST_CHECK_THROW(GQCP::NuclearFramework::HChain(0, 1.0), std::invalid_argument);   // can't create 0 H-nuclei
     BOOST_CHECK_THROW(GQCP::NuclearFramework::HChain(1, -1.0), std::invalid_argument);  // can't have negative spacing
 }
 
@@ -131,9 +129,9 @@ BOOST_AUTO_TEST_CASE ( HChain_throws ) {
 /**
  *  Check if the NuclearFramework::H2Chain throws when expected.
  */
-BOOST_AUTO_TEST_CASE ( H2Chain_throws ) {
+BOOST_AUTO_TEST_CASE(H2Chain_throws) {
 
-    BOOST_CHECK_THROW(GQCP::NuclearFramework::H2Chain(0, 1.0, 2.0), std::invalid_argument);  // can't create 0 H2-molecules
+    BOOST_CHECK_THROW(GQCP::NuclearFramework::H2Chain(0, 1.0, 2.0), std::invalid_argument);   // can't create 0 H2-molecules
     BOOST_CHECK_THROW(GQCP::NuclearFramework::H2Chain(1, -1.0, 1.0), std::invalid_argument);  // can't have negative spacing
     BOOST_CHECK_THROW(GQCP::NuclearFramework::H2Chain(1, 1.0, -1.0), std::invalid_argument);  // can't have negative spacing
 }
@@ -142,7 +140,7 @@ BOOST_AUTO_TEST_CASE ( H2Chain_throws ) {
 /**
  *  Check if the construction of an H-chain works, with a manual example.
  */
-BOOST_AUTO_TEST_CASE ( HChain ) {
+BOOST_AUTO_TEST_CASE(HChain) {
 
     // Check the construction for a H3-chain.
     const GQCP::NuclearFramework h_chain1 = GQCP::NuclearFramework::HChain(3, 1.0);
@@ -170,7 +168,7 @@ BOOST_AUTO_TEST_CASE ( HChain ) {
 /**
  *  Check if the construction of an H2-chain works, with a manual example.
  */
-BOOST_AUTO_TEST_CASE ( H2Chain ) {
+BOOST_AUTO_TEST_CASE(H2Chain) {
 
     // Check the construction for 2 H2-molecules
     const GQCP::NuclearFramework h2_chain1 = GQCP::NuclearFramework::H2Chain(2, 1.0, 1.5);
@@ -195,9 +193,9 @@ BOOST_AUTO_TEST_CASE ( H2Chain ) {
 /**
  *  Check if the NuclearFramework::HRingFromRadius throws when expected.
  */
-BOOST_AUTO_TEST_CASE ( HRingFromRadius_throws ) {
+BOOST_AUTO_TEST_CASE(HRingFromRadius_throws) {
 
-    BOOST_CHECK_THROW(GQCP::NuclearFramework::HRingFromRadius(0, 1.0), std::invalid_argument);  // can't create 0 H-nuclei
+    BOOST_CHECK_THROW(GQCP::NuclearFramework::HRingFromRadius(0, 1.0), std::invalid_argument);   // can't create 0 H-nuclei
     BOOST_CHECK_THROW(GQCP::NuclearFramework::HRingFromRadius(1, -1.0), std::invalid_argument);  // can't a negative radius
 }
 
@@ -205,7 +203,7 @@ BOOST_AUTO_TEST_CASE ( HRingFromRadius_throws ) {
 /**
  *  Check if the construction of an H4-ring from a given circumscribing radius works as expected.
  */
-BOOST_AUTO_TEST_CASE ( HRingFromRadius ) {
+BOOST_AUTO_TEST_CASE(HRingFromRadius) {
 
     const auto ring = GQCP::NuclearFramework::HRingFromRadius(4, 1.0);
     const auto distance = boost::math::constants::root_two<double>();  // 2 R sin(pi/n)
@@ -223,7 +221,7 @@ BOOST_AUTO_TEST_CASE ( HRingFromRadius ) {
 /**
  *  Check if the construction of an H4-ring from a given neighbour distance works as expected.
  */
-BOOST_AUTO_TEST_CASE ( HRingFromDistance ) {
+BOOST_AUTO_TEST_CASE(HRingFromDistance) {
 
     const double distance = 1.0;
     const auto ring = GQCP::NuclearFramework::HRingFromDistance(4, distance);

@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #pragma once
 
 
@@ -46,7 +46,6 @@ protected:
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -55,9 +54,7 @@ public:
      *  @param C                    the matrix that holds the the expansion coefficients, i.e. that expresses the spinors in terms of the underlying scalar basis
      */
     SimpleSpinorBasis(const TransformationMatrix<ExpansionScalar>& C) :
-        C (C)
-    {}
-
+        C {C} {}
 
 
     /* 
@@ -90,7 +87,7 @@ public:
 
         // Calculate S^{-1/2}, where S is epxressed in the current spinor basis
         const auto S = this->overlap().parameters();
-        Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (S);
+        Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes {S};
         return TransformationMatrix<double>(saes.operatorInverseSqrt());
     }
 
@@ -136,7 +133,7 @@ public:
      * 
      *  @note this function is only available for real spinor bases because Jacobi rotation parameters generate real rotations
      */
-    template<typename Z = ExpansionScalar>
+    template <typename Z = ExpansionScalar>
     enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
 
         const auto dim = this->simpleDimension();

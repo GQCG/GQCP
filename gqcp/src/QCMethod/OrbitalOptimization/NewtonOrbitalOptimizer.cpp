@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #include "QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp"
 
 #include "Mathematical/Optimization/NonLinearEquation/step.hpp"
@@ -24,7 +24,6 @@
 
 
 namespace GQCP {
-
 
 
 /*
@@ -37,10 +36,8 @@ namespace GQCP {
  *  @param maximum_number_of_iterations     the maximum number of iterations that may be used to achieve convergence
 */
 NewtonOrbitalOptimizer::NewtonOrbitalOptimizer(std::shared_ptr<BaseHessianModifier> hessian_modifier, const double convergence_threshold, const size_t maximum_number_of_iterations) :
-    hessian_modifier (hessian_modifier),
-    BaseOrbitalOptimizer(convergence_threshold, maximum_number_of_iterations)
-{}
-
+    hessian_modifier {hessian_modifier},
+    BaseOrbitalOptimizer(convergence_threshold, maximum_number_of_iterations) {}
 
 
 /*
@@ -87,7 +84,6 @@ bool NewtonOrbitalOptimizer::checkForConvergence(const SQHamiltonian<double>& sq
 }
 
 
-
 /**
  *  Produce a new rotation matrix by either
  *      - continuing in the direction of the largest (in absolute value) non-conforming eigenvalue (i.e. the smallest (negative) eigenvalue for minimization algorithms and the largest (positive) eigenvalue for maximization algorithms)
@@ -104,16 +100,15 @@ TransformationMatrix<double> NewtonOrbitalOptimizer::calculateNewRotationMatrix(
     //      2) determine the full orbital rotation generators, by also including any redundant parameters
     //      3) calculate the unitary rotation matrix from the full orbital rotation generators
 
-   const auto full_kappa = this->calculateNewFullOrbitalGenerators(sq_hamiltonian);  // should internally calculate the free orbital rotation generators
+    const auto full_kappa = this->calculateNewFullOrbitalGenerators(sq_hamiltonian);  // should internally calculate the free orbital rotation generators
 
     return full_kappa.calculateRotationMatrix();  // matrix exponential
 }
 
 
-
 /* 
  *  PUBLIC METHODS
- */ 
+ */
 
 /**
  *  @param sq_hamiltonian           the current Hamiltonian
@@ -141,7 +136,7 @@ SquareMatrix<double> NewtonOrbitalOptimizer::calculateHessianMatrix(const SQHami
 bool NewtonOrbitalOptimizer::newtonStepIsWellDefined() const {
 
     // Can only produce a well-defined descending Newton step if the Hessian is positive definite
-    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> hessian_diagonalizer (this->hessian);
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> hessian_diagonalizer {this->hessian};
     if (hessian_diagonalizer.eigenvalues()(0) < -1.0e-04) {  // not enough negative curvature to continue; can we change this to -this->convergence_threshold?
         return false;
     } else {
@@ -156,8 +151,8 @@ bool NewtonOrbitalOptimizer::newtonStepIsWellDefined() const {
  *  @return the new direction from the Hessian if the Newton step is ill-defined
  */
 VectorX<double> NewtonOrbitalOptimizer::directionFromIndefiniteHessian() const {
-    
-    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> hessian_diagonalizer (this->hessian);
+
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> hessian_diagonalizer {this->hessian};
     return hessian_diagonalizer.eigenvectors().col(0);
 }
 
@@ -175,13 +170,13 @@ OrbitalRotationGenerators NewtonOrbitalOptimizer::calculateNewFreeOrbitalGenerat
     if (this->gradient.norm() > this->convergence_threshold) {
 
         const size_t dim = this->gradient.size();
-        const VectorFunction<double> gradient_function = [this] (const VectorX<double>& x) { return this->gradient; };
+        const VectorFunction<double> gradient_function = [this](const VectorX<double>& x) { return this->gradient; };
 
         auto modified_hessian = this->hessian;
         if (!this->newtonStepIsWellDefined()) {
             modified_hessian = this->hessian_modifier->operator()(this->hessian);
         }
-        const MatrixFunction<double> hessian_function = [&modified_hessian] (const VectorX<double>& x) { return modified_hessian; };
+        const MatrixFunction<double> hessian_function = [&modified_hessian](const VectorX<double>& x) { return modified_hessian; };
 
         return OrbitalRotationGenerators(newtonStep(VectorX<double>::Zero(dim), gradient_function, hessian_function));  // with only the free parameters
     }

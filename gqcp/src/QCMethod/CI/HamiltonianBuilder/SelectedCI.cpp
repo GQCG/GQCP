@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #include "QCMethod/CI/HamiltonianBuilder/SelectedCI.hpp"
 
 
@@ -39,7 +39,7 @@ void SelectedCI::evaluateHamiltonianElements(const SQHamiltonian<double>& sq_ham
         SpinUnresolvedONV beta_I = configuration_I.betaONV();
 
         // Calculate the off-diagonal elements, by going over all other ONVs
-        for (size_t J = I+1; J < dim; J++) {
+        for (size_t J = I + 1; J < dim; J++) {
 
             SpinResolvedONV configuration_J = this->onv_basis.get_configuration(J);
             SpinUnresolvedONV alpha_J = configuration_J.alphaONV();
@@ -54,29 +54,29 @@ void SelectedCI::evaluateHamiltonianElements(const SQHamiltonian<double>& sq_ham
                 // Calculate the total sign
                 int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q);
 
-                double value = h(p,q);
+                double value = h(p, q);
 
-                method(I, J, sign*value);
-                method(J, I, sign*value);
+                method(I, J, sign * value);
+                method(J, I, sign * value);
 
                 for (size_t r = 0; r < K; r++) {  // r loops over spatial orbitals
 
                     if (alpha_I.isOccupied(r) && alpha_J.isOccupied(r)) {  // r must be occupied on the left and on the right
-                        if ((p != r) && (q != r)) {  // can't create or annihilate the same orbital
+                        if ((p != r) && (q != r)) {                        // can't create or annihilate the same orbital
 
-                            double value = 0.5 * (g(p,q,r,r) - g(r,q,p,r) - g(p,r,r,q) + g(r,r,p,q));
+                            double value = 0.5 * (g(p, q, r, r) - g(r, q, p, r) - g(p, r, r, q) + g(r, r, p, q));
 
-                            method(I, J, sign*value);
-                            method(J, I, sign*value);
+                            method(I, J, sign * value);
+                            method(J, I, sign * value);
                         }
                     }
 
                     if (beta_I.isOccupied(r)) {  // beta_I == beta_J from the previous if-branch
 
-                        double value = 0.5 * (g(p,q,r,r) + g(r,r,p,q));
+                        double value = 0.5 * (g(p, q, r, r) + g(r, r, p, q));
 
-                        method(I, J, sign*value);
-                        method(J, I, sign*value);
+                        method(I, J, sign * value);
+                        method(J, I, sign * value);
                     }
                 }
             }
@@ -92,28 +92,28 @@ void SelectedCI::evaluateHamiltonianElements(const SQHamiltonian<double>& sq_ham
                 // Calculate the total sign
                 int sign = beta_I.operatorPhaseFactor(p) * beta_J.operatorPhaseFactor(q);
 
-                double value = h(p,q);
+                double value = h(p, q);
 
-                method(I, J, sign*value);
-                method(J, I, sign*value);
+                method(I, J, sign * value);
+                method(J, I, sign * value);
 
                 for (size_t r = 0; r < K; r++) {  // r loops over spatial orbitals
 
                     if (beta_I.isOccupied(r) && beta_J.isOccupied(r)) {  // r must be occupied on the left and on the right
-                        if ((p != r) && (q != r)) {  // can't create or annihilate the same orbital
-                            double value = 0.5 * (g(p,q,r,r) - g(r,q,p,r) - g(p,r,r,q) + g(r,r,p,q));
+                        if ((p != r) && (q != r)) {                      // can't create or annihilate the same orbital
+                            double value = 0.5 * (g(p, q, r, r) - g(r, q, p, r) - g(p, r, r, q) + g(r, r, p, q));
 
-                            method(I, J, sign*value);
-                            method(J, I, sign*value);
+                            method(I, J, sign * value);
+                            method(J, I, sign * value);
                         }
                     }
 
                     if (alpha_I.isOccupied(r)) {  // alpha_I == alpha_J from the previous if-branch
 
-                        double value =  0.5 * (g(p,q,r,r) + g(r,r,p,q));
+                        double value = 0.5 * (g(p, q, r, r) + g(r, r, p, q));
 
-                        method(I, J, sign*value);
-                        method(J, I, sign*value);
+                        method(I, J, sign * value);
+                        method(J, I, sign * value);
                     }
                 }
             }
@@ -129,10 +129,10 @@ void SelectedCI::evaluateHamiltonianElements(const SQHamiltonian<double>& sq_ham
                 size_t s = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
 
                 int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(s);
-                double value = 0.5 * (g(p,q,r,s) + g(r,s,p,q));
+                double value = 0.5 * (g(p, q, r, s) + g(r, s, p, q));
 
-                method(I, J, sign*value);
-                method(J, I, sign*value);
+                method(I, J, sign * value);
+                method(J, I, sign * value);
             }
 
             // 2 electron excitations in alpha, 0 in beta
@@ -149,10 +149,10 @@ void SelectedCI::evaluateHamiltonianElements(const SQHamiltonian<double>& sq_ham
 
                 int sign = alpha_I.operatorPhaseFactor(p) * alpha_I.operatorPhaseFactor(r) * alpha_J.operatorPhaseFactor(q) * alpha_J.operatorPhaseFactor(s);
 
-                double value = 0.5 * (g(p,q,r,s) - g(p,s,r,q) - g(r,q,p,s) + g(r,s,p,q));
+                double value = 0.5 * (g(p, q, r, s) - g(p, s, r, q) - g(r, q, p, s) + g(r, s, p, q));
 
-                method(I, J, sign*value);
-                method(J, I, sign*value);
+                method(I, J, sign * value);
+                method(J, I, sign * value);
             }
 
             // 0 electron excitations in alpha, 2 in beta
@@ -169,13 +169,13 @@ void SelectedCI::evaluateHamiltonianElements(const SQHamiltonian<double>& sq_ham
 
                 int sign = beta_I.operatorPhaseFactor(p) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(q) * beta_J.operatorPhaseFactor(s);
 
-                double value = 0.5 * (g(p,q,r,s) - g(p,s,r,q) - g(r,q,p,s) + g(r,s,p,q));
+                double value = 0.5 * (g(p, q, r, s) - g(p, s, r, q) - g(r, q, p, s) + g(r, s, p, q));
 
-                method(I, J, sign*value);
-                method(J, I, sign*value);
+                method(I, J, sign * value);
+                method(J, I, sign * value);
             }
         }  // loop over addresses J > I
-    }  // loop over addresses I
+    }      // loop over addresses I
 }
 
 
@@ -188,9 +188,7 @@ void SelectedCI::evaluateHamiltonianElements(const SQHamiltonian<double>& sq_ham
  */
 SelectedCI::SelectedCI(const SpinResolvedSelectedONVBasis& onv_basis) :
     HamiltonianBuilder(),
-    onv_basis(onv_basis)
-{}
-
+    onv_basis {onv_basis} {}
 
 
 /*
@@ -254,7 +252,6 @@ VectorX<double> SelectedCI::matrixVectorProduct(const SQHamiltonian<double>& sq_
 VectorX<double> SelectedCI::calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
     return this->onv_basis.evaluateOperatorDiagonal(sq_hamiltonian);
 }
-
 
 
 }  // namespace GQCP

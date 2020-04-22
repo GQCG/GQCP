@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #include "Processing/RDM/RDMCalculator.hpp"
 
 #include "Processing/RDM/DOCIRDMBuilder.hpp"
@@ -47,8 +47,7 @@ namespace GQCP {
  *  @param fock_space       the FCI ONV basis
  */
 RDMCalculator::RDMCalculator(const SpinResolvedONVBasis& fock_space) :
-    rdm_builder (std::make_shared<FCIRDMBuilder>(fock_space))
-{}
+    rdm_builder {std::make_shared<FCIRDMBuilder>(fock_space)} {}
 
 
 /**
@@ -57,8 +56,7 @@ RDMCalculator::RDMCalculator(const SpinResolvedONVBasis& fock_space) :
  *  @param fock_space       the 'selected' ONV basis
  */
 RDMCalculator::RDMCalculator(const SpinResolvedSelectedONVBasis& fock_space) :
-    rdm_builder (std::make_shared<SelectedRDMBuilder>(fock_space))
-{}
+    rdm_builder {std::make_shared<SelectedRDMBuilder>(fock_space)} {}
 
 
 /**
@@ -68,24 +66,24 @@ RDMCalculator::RDMCalculator(const SpinResolvedSelectedONVBasis& fock_space) :
  */
 RDMCalculator::RDMCalculator(const BaseONVBasis& fock_space) {
 
-    switch (fock_space.get_type()){
+    switch (fock_space.get_type()) {
 
         // case ONVBasisType::SpinUnresolvedONVBasis: {
         //     this->rdm_builder = std::make_shared<DOCIRDMBuilder>(dynamic_cast<const SpinUnresolvedONVBasis&>(fock_space));
         //     break;
         // }
 
-        case ONVBasisType::SpinResolvedONVBasis: {
-            this->rdm_builder = std::make_shared<FCIRDMBuilder>(dynamic_cast<const SpinResolvedONVBasis&>(fock_space));
+    case ONVBasisType::SpinResolvedONVBasis: {
+        this->rdm_builder = std::make_shared<FCIRDMBuilder>(dynamic_cast<const SpinResolvedONVBasis&>(fock_space));
 
-            break;
-        }
+        break;
+    }
 
-        case ONVBasisType::SpinResolvedSelectedONVBasis: {
-            this->rdm_builder = std::make_shared<SelectedRDMBuilder>(dynamic_cast<const SpinResolvedSelectedONVBasis&>(fock_space));
+    case ONVBasisType::SpinResolvedSelectedONVBasis: {
+        this->rdm_builder = std::make_shared<SelectedRDMBuilder>(dynamic_cast<const SpinResolvedSelectedONVBasis&>(fock_space));
 
-            break;
-        }
+        break;
+    }
 
         // case ONVBasisType::SpinUnresolvedFrozenONVBasis: {
         //     this->rdm_builder = std::make_shared<FrozenCoreDOCIRDMBuilder>(dynamic_cast<const SpinUnresolvedFrozenONVBasis&>(fock_space));
@@ -93,13 +91,15 @@ RDMCalculator::RDMCalculator(const BaseONVBasis& fock_space) {
         //     break;
         // }
 
-        case ONVBasisType::SpinResolvedFrozenONVBasis: {
-            this->rdm_builder = std::make_shared<FrozenCoreFCIRDMBuilder>(dynamic_cast<const SpinResolvedFrozenONVBasis&>(fock_space));
+    case ONVBasisType::SpinResolvedFrozenONVBasis: {
+        this->rdm_builder = std::make_shared<FrozenCoreFCIRDMBuilder>(dynamic_cast<const SpinResolvedFrozenONVBasis&>(fock_space));
 
-            break;
-        }
+        break;
+    }
 
-        default: {break;}
+    default: {
+        break;
+    }
     }
 }
 

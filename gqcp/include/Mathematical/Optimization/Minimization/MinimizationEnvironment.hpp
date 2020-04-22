@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #pragma once
 
 
@@ -40,13 +40,12 @@ public:
 
 public:
     VectorFunction<Scalar> gradient_function;  // a callable function that produces the gradient of the scalar function, evaluated at the given variables
-    MatrixFunction<Scalar> hessian_function;  // a callable function that produces the Hessian of the scalar function, evaluated at the given variables
+    MatrixFunction<Scalar> hessian_function;   // a callable function that produces the Hessian of the scalar function, evaluated at the given variables
 
     std::deque<double> function_values;  // values for the evaluated scalar function (often a sort of 'cost' function)
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -60,9 +59,8 @@ public:
      */
     MinimizationEnvironment(const VectorX<_Scalar>& initial_guess, const VectorFunction<Scalar>& gradient_function, const MatrixFunction<Scalar>& hessian_function) :
         OptimizationEnvironment<VectorX<_Scalar>>(initial_guess),
-        gradient_function (gradient_function),
-        hessian_function (hessian_function)
-    {}
+        gradient_function {gradient_function},
+        hessian_function {hessian_function} {}
 };
 
 

@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #pragma once
 
 
@@ -38,7 +38,7 @@ template <typename _IntegralScalar, size_t _N>
 class BaseTwoElectronIntegralBuffer {
 public:
     using IntegralScalar = _IntegralScalar;  // the scalar representation of an integral
-    static constexpr auto N = _N;  // the number of components the operator has
+    static constexpr auto N = _N;            // the number of components the operator has
 
 
 protected:
@@ -48,9 +48,7 @@ protected:
     size_t nbf4;  // the number of basis functions in the fourth shell
 
 
-
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -62,18 +60,16 @@ public:
      *  @param nbf4             the number of basis functions in the fourth shell
      */
     BaseTwoElectronIntegralBuffer(const size_t nbf1, const size_t nbf2, const size_t nbf3, const size_t nbf4) :
-        nbf1 (nbf1),
-        nbf2 (nbf2),
-        nbf3 (nbf3),
-        nbf4 (nbf4)
-    {}
+        nbf1 {nbf1},
+        nbf2 {nbf2},
+        nbf3 {nbf3},
+        nbf4 {nbf4} {}
 
 
     /*
      *  DESTRUCTOR
      */
     virtual ~BaseTwoElectronIntegralBuffer() = default;
-
 
 
     /*
@@ -133,19 +129,19 @@ public:
     void emplace(std::array<Tensor<IntegralScalar, 4>, N>& full_components, const size_t bf1, const size_t bf2, const size_t bf3, const size_t bf4) const {
 
         // Place the calculated integrals inside the matrix representation of the integrals
-        for (size_t f1 = 0; f1 != this->nbf1; f1++) {  // f1: index of basis function within shell 1
-            for (size_t f2 = 0; f2 != this->nbf2; f2++) {  // f2: index of basis function within shell 2
-                for (size_t f3 = 0; f3 != this->nbf3; f3++) {  // f3: index of basis function within shell 3
+        for (size_t f1 = 0; f1 != this->nbf1; f1++) {              // f1: index of basis function within shell 1
+            for (size_t f2 = 0; f2 != this->nbf2; f2++) {          // f2: index of basis function within shell 2
+                for (size_t f3 = 0; f3 != this->nbf3; f3++) {      // f3: index of basis function within shell 3
                     for (size_t f4 = 0; f4 != this->nbf4; f4++) {  // f4: index of basis function within shell 4
 
                         for (size_t i = 0; i < N; i++) {
                             full_components[i](bf1 + f1, bf2 + f2, bf3 + f3, bf4 + f4) = this->value(i, f1, f2, f3, f4);  // in chemist's notation
-                        }  // components
+                        }
 
                     }  // f1
-                }  // f2
-            }  // f3
-        }  // f4
+                }      // f2
+            }          // f3
+        }              // f4
     }
 };
 

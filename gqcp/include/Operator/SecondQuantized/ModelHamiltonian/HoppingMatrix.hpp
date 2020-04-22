@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #pragma once
 
 
@@ -38,7 +38,6 @@ public:
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -46,23 +45,23 @@ public:
     /**
      *  A default constructor.
      */
-    HoppingMatrix() : SquareMatrix<Scalar>() {}
+    HoppingMatrix() :
+        SquareMatrix<Scalar>() {}
 
 
     /**
      *  A constructor required for compatibility with Pybind11. In its 'Eigen' bindings (eigen.h), it makes a call "Type(fits.rows, fits.cols)". This constructor should be called there.
      */
     HoppingMatrix(const size_t cols, const size_t rows) :
-        SquareMatrix<Scalar>(MatrixX<Scalar>(cols, rows))
-    {}
+        SquareMatrix<Scalar>(MatrixX<Scalar>(cols, rows)) {}
 
 
     /**
      *  @param H        the Hubbard hopping matrix
      */
     HoppingMatrix(const SquareMatrix<Scalar>& H) :
-        SquareMatrix<Scalar>(H)
-    {
+        SquareMatrix<Scalar>(H) {
+
         if (!H.adjoint().isApprox(H)) {
             throw std::invalid_argument("HoppingMatrix::HoppingMatrix(const SquareMatrix<Scalar>&): The given hopping matrix must be Hermitian.");
         }
@@ -81,8 +80,7 @@ public:
     template <typename Z = Scalar>
     HoppingMatrix(const SquareMatrix<double>& A, const double t, const double U,
                   typename std::enable_if<std::is_same<Z, double>::value>::type* = 0) :
-        HoppingMatrix(U * SquareMatrix<double>::Identity(A.dimension(), A.dimension()) - t * A)
-    {}
+        HoppingMatrix(U * SquareMatrix<double>::Identity(A.dimension(), A.dimension()) - t * A) {}
 
 
     /*
@@ -126,7 +124,7 @@ public:
     template <typename Z = Scalar>
     static enable_if_t<std::is_same<Z, double>::value, HoppingMatrix<double>> Random(const size_t K) {
 
-        VectorX<double> v = VectorX<double>::Random(K*(K+1)/2);  // random free variables
+        VectorX<double> v = VectorX<double>::Random(K * (K + 1) / 2);  // random free variables
 
         return HoppingMatrix<double>::SymmetricFromUpperTriangle(v);
     }

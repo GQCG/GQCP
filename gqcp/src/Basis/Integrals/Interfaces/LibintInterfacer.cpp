@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
 
 #include "Basis/ScalarBasis/CartesianGTO.hpp"
@@ -58,7 +58,6 @@ LibintInterfacer::~LibintInterfacer() {
 }
 
 
-
 /*
  *  PUBLIC METHODS - SINGLETON
  */
@@ -66,11 +65,10 @@ LibintInterfacer::~LibintInterfacer() {
 /**
  *  @return the static singleton instance
  */
-LibintInterfacer& LibintInterfacer::get() {  // need to return by reference since we deleted the relevant constructor
+LibintInterfacer& LibintInterfacer::get() {      // need to return by reference since we deleted the relevant constructor
     static LibintInterfacer singleton_instance;  // instantiated on first use and guaranteed to be destroyed
     return singleton_instance;
 }
-
 
 
 /*
@@ -132,7 +130,7 @@ libint2::Shell LibintInterfacer::interface(const GTOShell& shell) const {
 
 
     // Upon construction, libint2 renorm()alizes the contraction coefficients, so we want to undo this
-    libint2::Shell libint_shell (libint_alpha, {libint_contraction}, libint_O);
+    libint2::Shell libint_shell {libint_alpha, {libint_contraction}, libint_O};
     this->undo_renorm(libint_shell);
     return libint_shell;
 }
@@ -156,7 +154,7 @@ libint2::BasisSet LibintInterfacer::interface(const ShellSet<GTOShell>& shellset
     // At this point in the code, the libint2::BasisSet is 'uninitialized', i.e. its private member _nbf is -1, etc.
     // Therefore, we are using a hack to force the private libint2::BasisSet::init() being called
 
-    std::vector<bool> pure_flags (libint_basisset.size());
+    std::vector<bool> pure_flags(libint_basisset.size());  // create an array with the given size
     for (size_t i = 0; i < libint_basisset.size(); i++) {
         pure_flags[i] = libint_basisset[i].contr[0].pure;  // the libint2::BasisSet that was created can never have more than one libint2::Shell::Contraction (we split SP-shells)
     }
@@ -205,7 +203,7 @@ std::vector<GTOShell> LibintInterfacer::interface(const libint2::Shell& libint_s
         std::vector<double> coefficients = libint_contraction.coeff;
 
         // Libint2 only stores the origin of the shell, so we have to find the nucleus corresponding to the copied shell's origin
-        Eigen::Map<const Eigen::Matrix<double, 3, 1>> libint_origin_map (libint_shell_copy.O.data());  // convert raw array data to Eigen
+        Eigen::Map<const Eigen::Matrix<double, 3, 1>> libint_origin_map(libint_shell_copy.O.data());  // convert raw array data to Eigen
         Nucleus corresponding_nucleus;
         for (size_t i = 0; i < nuclei.size(); i++) {
             Nucleus nucleus = nuclei[i];
@@ -251,7 +249,6 @@ std::vector<GTOShell> LibintInterfacer::interface(const libint2::BasisSet& libin
 }
 
 
-
 /*
  *  PUBLIC METHODS - OTHER LIBINT2-RELATED FUNCTIONS
  */
@@ -291,7 +288,7 @@ size_t LibintInterfacer::numberOfShells(const libint2::BasisSet& libint_basisset
 void LibintInterfacer::undo_renorm(libint2::Shell& libint_shell) const {
 
     // Instead of multiplying (what libint2 does), divide each contraction coefficient by the normalization factor
-    for (auto& contraction: libint_shell.contr) {
+    for (auto& contraction : libint_shell.contr) {
         for (size_t p = 0; p != libint_shell.nprim(); p++) {
             double alpha = libint_shell.alpha[p];
             size_t l = contraction.l;

@@ -1,25 +1,24 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #pragma once
 
 
 #include "Mathematical/Optimization/Minimization/BaseHessianModifier.hpp"
-
 
 
 namespace GQCP {
@@ -30,11 +29,11 @@ namespace GQCP {
  * 
  *  This implements Algorithm 3.3 in Nocedal and Wright
  */
-class IterativeIdentitiesHessianModifier : public BaseHessianModifier {
+class IterativeIdentitiesHessianModifier: public BaseHessianModifier {
 private:
     double alpha;  // the scaling factor used to obtain the next scaler tau
-    double beta;  // the heuristic increment
-    double tau;  // the scaling scalar (the 'scaler')
+    double beta;   // the heuristic increment
+    double tau;    // the scaling scalar (the 'scaler')
 
 
 public:

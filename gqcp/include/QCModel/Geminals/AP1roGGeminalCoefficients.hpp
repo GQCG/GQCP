@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #pragma once
 
 
@@ -30,10 +30,10 @@ namespace GQCP {
 /**
  *  Geminal coefficients for an AP1roG wave function.
  */
-class AP1roGGeminalCoefficients : public GeminalCoefficientsInterface {
+class AP1roGGeminalCoefficients: public GeminalCoefficientsInterface {
 private:
-    size_t K;  // the number of spatial orbitals corresponding to these geminal coefficients
-    size_t N_P;  // the number of electron pairs (i.e. the number of geminals) corresponding to these geminal coefficients
+    size_t K;               // the number of spatial orbitals corresponding to these geminal coefficients
+    size_t N_P;             // the number of electron pairs (i.e. the number of geminals) corresponding to these geminal coefficients
     BlockMatrix<double> G;  // the AP1roG geminal coefficients (not including the identity matrix on the left), as a block matrix, so it implements easy operator(i,a) calls
 
 

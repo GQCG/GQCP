@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #include "QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.hpp"
 
 #include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationSolver.hpp"
@@ -42,8 +42,7 @@ namespace GQCP {
  *  The initial guess for the geminal coefficients is zero
  */
 AP1roGLagrangianNewtonOrbitalOptimizer::AP1roGLagrangianNewtonOrbitalOptimizer(const size_t N_P, const size_t K, std::shared_ptr<BaseHessianModifier> hessian_modifier, const double oo_convergence_threshold, const size_t oo_maximum_number_of_iterations, const double pse_convergence_threshold, const size_t pse_maximum_number_of_iterations) :
-    AP1roGLagrangianNewtonOrbitalOptimizer(AP1roGGeminalCoefficients(N_P, K), hessian_modifier, oo_convergence_threshold, oo_maximum_number_of_iterations, pse_convergence_threshold, pse_maximum_number_of_iterations)
-{}
+    AP1roGLagrangianNewtonOrbitalOptimizer(AP1roGGeminalCoefficients(N_P, K), hessian_modifier, oo_convergence_threshold, oo_maximum_number_of_iterations, pse_convergence_threshold, pse_maximum_number_of_iterations) {}
 
 
 /**
@@ -55,13 +54,11 @@ AP1roGLagrangianNewtonOrbitalOptimizer::AP1roGLagrangianNewtonOrbitalOptimizer(c
  *  @param pse_maximum_number_of_iterations         the maximum number of Newton steps that may be used to achieve convergence of the PSEs
  */
 AP1roGLagrangianNewtonOrbitalOptimizer::AP1roGLagrangianNewtonOrbitalOptimizer(const AP1roGGeminalCoefficients& G, std::shared_ptr<BaseHessianModifier> hessian_modifier, const double oo_convergence_threshold, const size_t oo_maximum_number_of_iterations, const double pse_convergence_threshold, const size_t pse_maximum_number_of_iterations) :
-    N_P (G.get_N_P()),
-    G (G),
-    pse_convergence_threshold (pse_convergence_threshold),
-    pse_maximum_number_of_iterations (pse_maximum_number_of_iterations),
-    QCMethodNewtonOrbitalOptimizer(hessian_modifier, oo_convergence_threshold, oo_maximum_number_of_iterations)
-{}
-
+    N_P {G.get_N_P()},
+    G {G},
+    pse_convergence_threshold {pse_convergence_threshold},
+    pse_maximum_number_of_iterations {pse_maximum_number_of_iterations},
+    QCMethodNewtonOrbitalOptimizer(hessian_modifier, oo_convergence_threshold, oo_maximum_number_of_iterations) {}
 
 
 /*

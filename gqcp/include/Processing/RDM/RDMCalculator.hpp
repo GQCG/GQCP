@@ -1,27 +1,27 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #pragma once
 
 
-#include "Processing/RDM/BaseRDMBuilder.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
+#include "Processing/RDM/BaseRDMBuilder.hpp"
 #include "QCModel/CI/LinearExpansion.hpp"
 
 #include <boost/range/adaptor/sliced.hpp>
@@ -81,8 +81,8 @@ public:
      */
     template <typename ONVBasis>
     explicit RDMCalculator(const LinearExpansion<ONVBasis>& linear_expansion) :
-        RDMCalculator(linear_expansion.onvBasis())
-    {
+        RDMCalculator(linear_expansion.onvBasis()) {
+
         this->set_coefficients(linear_expansion.coefficients());
     }
 
@@ -117,7 +117,7 @@ public:
     /**
      *  @param indices_pack      the indices that specify the element of the N-RDM that has to be calculated
      */
-    template<typename... size_ts>
+    template <typename... size_ts>
     double operator()(size_ts... indices_pack) const {
 
         // Assume the user has given size_ts

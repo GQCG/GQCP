@@ -1,30 +1,29 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #define BOOST_TEST_MODULE "atomic_decomposition"
 
 #include <boost/test/unit_test.hpp>
-
-#include "QCMethod/Applications/AtomicDecompositionParameters.hpp"
 
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "Processing/RDM/RDMCalculator.hpp"
+#include "QCMethod/Applications/AtomicDecompositionParameters.hpp"
 #include "QCMethod/CI/CI.hpp"
 #include "QCMethod/CI/CIEnvironment.hpp"
 #include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
@@ -36,26 +35,26 @@
 /**
  *  Check if the decomposition of the molecular Hamiltonian for BeH+//STO-3G into atomic contributions works as expected. The dimension of the full spin-resolved Fock space is 441.
  */
-BOOST_AUTO_TEST_CASE ( decomposition_BeH_cation_STO_3G_Nuclear ) {
+BOOST_AUTO_TEST_CASE(decomposition_BeH_cation_STO_3G_Nuclear) {
 
     // Create the molecular Hamiltonian in an AO basis.
     const GQCP::Nucleus Be {4, 0.0, 0.0, 0.0};
     const GQCP::Nucleus H {1, 0.0, 0.0, GQCP::units::angstrom_to_bohr(1.134)};  // from CCCBDB, STO-3G geometry
     const std::vector<GQCP::Nucleus> nuclei {Be, H};
-    const GQCP::Molecule molecule (nuclei, +1);
+    const GQCP::Molecule molecule {nuclei, +1};
     const auto N_P = molecule.numberOfElectrons() / 2;
 
     const GQCP::AtomicDecompositionParameters adp = GQCP::AtomicDecompositionParameters::Nuclear(molecule, "STO-3G");  // the molecular Hamiltonian in its atomic contributions
-    const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (molecule, "STO-3G");
+    const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
 
     auto sq_hamiltonian = adp.get_molecular_hamiltonian_parameters();
-    const auto K = sq_hamiltonian.dimension();  // number of 
+    const auto K = sq_hamiltonian.dimension();  // number of
 
 
     // Transform the molecular Hamiltonian to the canonical RHF basis.
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-    const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian);
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
     const auto& T = rhf_parameters.coefficientMatrix();
@@ -63,7 +62,7 @@ BOOST_AUTO_TEST_CASE ( decomposition_BeH_cation_STO_3G_Nuclear ) {
 
 
     // Create the appropriate ONV basis for FCI, specify dense solver and corresponding environment and put them together in the QCMethod to do a FCI calculation.
-    const GQCP::SpinResolvedONVBasis onv_basis (K, N_P, N_P);
+    const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
 
     const auto initial_guess = onv_basis.hartreeFockExpansion();
     auto environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, initial_guess);

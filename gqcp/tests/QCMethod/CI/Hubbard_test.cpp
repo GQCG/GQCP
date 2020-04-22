@@ -1,48 +1,47 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #define BOOST_TEST_MODULE "Hubbard"
 
 #include <boost/test/unit_test.hpp>
 
-
-#include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
 #include "Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"
+#include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
 #include "Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/Hubbard.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
 #include "QCMethod/CI/CI.hpp"
 #include "QCMethod/CI/CIEnvironment.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/Hubbard.hpp"
 
 
 /**
  *  Check if a dense diagonalization using the specialized Hubbard routines produces the same results as when using the unspecialized routines.
  */
-BOOST_AUTO_TEST_CASE ( Hubbard_specialized_vs_unspecialized_dense_diagonalization ) {
+BOOST_AUTO_TEST_CASE(Hubbard_specialized_vs_unspecialized_dense_diagonalization) {
 
     // Create the Hubbard model Hamiltonian and an appropriate ONV basis.
-    const auto K = 4;  // number of lattice sites
+    const auto K = 4;    // number of lattice sites
     const auto N_P = 2;  // number of electron pairs
 
     const auto H = GQCP::HoppingMatrix<double>::Random(K);
-    const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian (H);
+    const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian {H};
 
-    GQCP::SpinResolvedONVBasis onv_basis (K, N_P, N_P);
+    GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
 
 
     // Create an identical, but 'unspecialized' second-quantized Hamiltonian.
@@ -66,16 +65,16 @@ BOOST_AUTO_TEST_CASE ( Hubbard_specialized_vs_unspecialized_dense_diagonalizatio
 /**
  *  Check if a dense diagonalization using the specialized Hubbard routines produces the same results as when using the unspecialized routines, for a larger number of lattice sites.
  */
-BOOST_AUTO_TEST_CASE ( Hubbard_specialized_vs_unspecialized_dense_diagonalization_large ) {
+BOOST_AUTO_TEST_CASE(Hubbard_specialized_vs_unspecialized_dense_diagonalization_large) {
 
     // Create the Hubbard model Hamiltonian and an appropriate ONV basis.
-    const auto K = 6;  // number of lattice sites
+    const auto K = 6;    // number of lattice sites
     const auto N_P = 3;  // number of electron pairs
 
     const auto H = GQCP::HoppingMatrix<double>::Random(K);
-    const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian (H);
+    const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian {H};
 
-    GQCP::SpinResolvedONVBasis onv_basis (K, N_P, N_P);
+    GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
 
 
     // Create an identical, but 'unspecialized' second-quantized Hamiltonian.
@@ -99,17 +98,18 @@ BOOST_AUTO_TEST_CASE ( Hubbard_specialized_vs_unspecialized_dense_diagonalizatio
 /**
  *  Check if we can reproduce the ground-state energies for a four-site chain from a reference implementation by Ward Poelmans. (https://github.com/wpoely86/Hubbard-GPU)
  */
-BOOST_AUTO_TEST_CASE ( four_site_chain ) {
+BOOST_AUTO_TEST_CASE(four_site_chain) {
 
     // Create the adjacency matrix for a four-site chain.
-    const auto K = 4;  // number of sites
+    const auto K = 4;    // number of sites
     const auto N_P = 2;  // = N_alpha = N_beta: half-filling
     GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Zero(K, K);
+    // clang-format off
     A << 0, 1, 0, 0,
          1, 0, 1, 0,
          0, 1, 0, 1,
          0, 0, 1, 0;
-
+    // clang-format on
 
     // Set the reference results
     const double t = 1.0;
@@ -118,14 +118,13 @@ BOOST_AUTO_TEST_CASE ( four_site_chain ) {
 
 
     // Create the appropriate spin-resolved ONV basis.
-    GQCP::SpinResolvedONVBasis onv_basis (K, N_P, N_P);
-
+    GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
 
     for (size_t i = 0; i < 7; i++) {
 
         // Create the Hubbard model Hamiltonian.
-        const GQCP::HoppingMatrix<double> H (A, t, U_list[i]);
-        const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian (H);
+        const GQCP::HoppingMatrix<double> H {A, t, U_list[i]};
+        const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian {H};
 
 
         // Optimize the CI model, using a dense solver.
@@ -141,18 +140,20 @@ BOOST_AUTO_TEST_CASE ( four_site_chain ) {
 /**
  *  Check if we can reproduce the ground-state energies for a six-site ring from a reference implementation by Ward Poelmans. (https://github.com/wpoely86/Hubbard-GPU)
  */
-BOOST_AUTO_TEST_CASE ( six_site_ring ) {
+BOOST_AUTO_TEST_CASE(six_site_ring) {
 
     // Create the adjacency matrix for a four-site chain
-    const auto K = 6;  // number of sites
+    const auto K = 6;    // number of sites
     const auto N_P = 3;  // = N_alpha = N_beta: half-filling
     GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Zero(K, K);
+    // clang-format off
     A << 0, 1, 0, 0, 0, 1,
          1, 0, 1, 0, 0, 0,
          0, 1, 0, 1, 0, 0,
          0, 0, 1, 0, 1, 0,
          0, 0, 0, 1, 0, 1,
          1, 0, 0, 0, 1, 0;
+    // clang-format on
 
 
     // Set the reference results
@@ -162,14 +163,13 @@ BOOST_AUTO_TEST_CASE ( six_site_ring ) {
 
 
     // Create the appropriate spin-resolved ONV basis.
-    GQCP::SpinResolvedONVBasis onv_basis (K, N_P, N_P);
-
+    GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
 
     for (size_t i = 0; i < 7; i++) {
 
         // Create the Hubbard model Hamiltonian.
-        const GQCP::HoppingMatrix<double> H (A, t, U_list[i]);
-        const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian (H);
+        const GQCP::HoppingMatrix<double> H {A, t, U_list[i]};
+        const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian {H};
 
 
         // Optimize the CI model, using a dense solver.
@@ -185,16 +185,16 @@ BOOST_AUTO_TEST_CASE ( six_site_ring ) {
 /**
  *  Check if a Davidson diagonalization using the specialized Hubbard routines produces the same results as when using the unspecialized routines.
  */
-BOOST_AUTO_TEST_CASE ( Hubbard_specialized_vs_unspecialized_Davidson_diagonalization ) {
+BOOST_AUTO_TEST_CASE(Hubbard_specialized_vs_unspecialized_Davidson_diagonalization) {
 
     // Create the Hubbard model Hamiltonian and an appropriate ONV basis.
-    const auto K = 4;  // number of lattice sites
+    const auto K = 4;    // number of lattice sites
     const auto N_P = 2;  // number of electron pairs
 
     const auto H = GQCP::HoppingMatrix<double>::Random(K);
-    const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian (H);
+    const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian {H};
 
-    GQCP::SpinResolvedONVBasis onv_basis (K, N_P, N_P);
+    GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
 
 
     // Create an identical, but 'unspecialized' second-quantized Hamiltonian.
@@ -219,16 +219,16 @@ BOOST_AUTO_TEST_CASE ( Hubbard_specialized_vs_unspecialized_Davidson_diagonaliza
 /**
  *  Check if a Davidson diagonalization using the specialized Hubbard routines produces the same results as when using the unspecialized routines, for a larger number of lattice sites.
  */
-BOOST_AUTO_TEST_CASE ( Hubbard_specialized_vs_unspecialized_Davidson_diagonalization_large ) {
+BOOST_AUTO_TEST_CASE(Hubbard_specialized_vs_unspecialized_Davidson_diagonalization_large) {
 
     // Create the Hubbard model Hamiltonian and an appropriate ONV basis.
-    const auto K = 6;  // number of lattice sites
+    const auto K = 6;    // number of lattice sites
     const auto N_P = 3;  // number of electron pairs
 
     const auto H = GQCP::HoppingMatrix<double>::Random(K);
-    const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian (H);
+    const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian {H};
 
-    GQCP::SpinResolvedONVBasis onv_basis (K, N_P, N_P);
+    GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
 
 
     // Create an identical, but 'unspecialized' second-quantized Hamiltonian.

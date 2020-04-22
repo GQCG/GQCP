@@ -2,15 +2,15 @@
  *  A benchmark executable that tests the one-electron matrix-vector product for a full spin-unresolved ONV basis. The number of spinors is 28, the number of electrons varies from 5 to 9.
  */
 
-#include <benchmark/benchmark.h>
-
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
+
+#include <benchmark/benchmark.h>
 
 
 static void CustomArguments(benchmark::internal::Benchmark* b) {
     for (int i = 5; i < 10; ++i) {  // need int instead of size_t
-        b->Args({28, i});  // spinors, electrons
+        b->Args({28, i});           // spinors, electrons
     }
 }
 
@@ -20,7 +20,7 @@ static void matvec(benchmark::State& state) {
     // Prepare a full spin-unresolved ONV basis
     const size_t M = state.range(0);  // number of spinors
     const size_t N = state.range(1);  // number of electrons
-    GQCP::SpinUnresolvedONVBasis onv_basis (M, N);
+    GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
 
     // Create a random one-electron operator
     const auto one_op_par = GQCP::QCMatrix<double>::Random(M, M);

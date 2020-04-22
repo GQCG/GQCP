@@ -1,21 +1,21 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
-// 
+//
+//
 #pragma once
 
 
@@ -34,14 +34,14 @@ namespace GQCP {
  *  @note Since a Libcint function accepts a raw pointer/buffer as an argument, this class should take ownership of the buffer data since the raw buffer is created on the stack. This is done by placing the raw buffer data inside a std::vector.
  */
 template <typename _IntegralScalar, size_t _N>
-class LibcintOneElectronIntegralBuffer : public BaseOneElectronIntegralBuffer<_IntegralScalar, _N> {
+class LibcintOneElectronIntegralBuffer: public BaseOneElectronIntegralBuffer<_IntegralScalar, _N> {
 public:
     using IntegralScalar = _IntegralScalar;  // the scalar representation of an integral
-    static constexpr auto N = _N;  // the number of components the operator has
+    static constexpr auto N = _N;            // the number of components the operator has
 
 
 private:
-    double scaling_factor;  // a factor that multiplies every calculated value (for example in the dipole integrals, an extra factor -1 should be included)
+    double scaling_factor;               // a factor that multiplies every calculated value (for example in the dipole integrals, an extra factor -1 should be included)
     std::vector<IntegralScalar> buffer;  // the libcint integral data converted to a C++ vector
 
     int result;  // the result of the libcint_function call
@@ -59,18 +59,17 @@ public:
      *  @param scaling_factor       a factor that multiplies every calculated value (for example in the dipole integrals, an extra factor -1 should be included)
      *  @param result               the result of the libcint_function call
      */
-    LibcintOneElectronIntegralBuffer(const std::vector<IntegralScalar>& buffer, const size_t nbf1, const size_t nbf2, const int result, const double scaling_factor=1.0) :
-        scaling_factor (scaling_factor),
-        buffer (buffer),
-        result (result),
-        BaseOneElectronIntegralBuffer<IntegralScalar, N>(nbf1, nbf2)
-    {}
+    LibcintOneElectronIntegralBuffer(const std::vector<IntegralScalar>& buffer, const size_t nbf1, const size_t nbf2, const int result, const double scaling_factor = 1.0) :
+        scaling_factor {scaling_factor},
+        buffer {buffer},
+        result {result},
+        BaseOneElectronIntegralBuffer<IntegralScalar, N>(nbf1, nbf2) {}
 
 
     /*
      *  PUBLIC OVERRIDDEN METHODS
      */
-    
+
     /**
      *  @param i            the index of the component of the operator
      *  @param f1           the index of the basis function within shell 1

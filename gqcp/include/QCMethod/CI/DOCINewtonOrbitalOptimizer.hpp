@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #pragma once
 
 
@@ -42,7 +42,7 @@ namespace GQCP {
  *  @tparam _EigenproblemSolver          the type of the eigenproblem solver that is used
  */
 template <typename _EigenproblemSolver>
-class DOCINewtonOrbitalOptimizer: 
+class DOCINewtonOrbitalOptimizer:
     public QCMethodNewtonOrbitalOptimizer {
 
 public:
@@ -76,13 +76,12 @@ public:
      *  @param maximum_number_of_iterations     the maximum number of iterations that may be used to achieve convergence
      */
     DOCINewtonOrbitalOptimizer(const SeniorityZeroONVBasis& onv_basis, const EigenproblemSolver& eigenproblem_solver, const EigenproblemEnvironment& eigenproblem_environment, std::shared_ptr<BaseHessianModifier> hessian_modifier, const size_t number_of_requested_eigenpairs = 1, const double convergence_threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128) :
-        onv_basis (onv_basis),
-        eigenproblem_solver (eigenproblem_solver),
-        eigenproblem_environment (eigenproblem_environment),
-        number_of_requested_eigenpairs (number_of_requested_eigenpairs),
-        rdm_calculator (DOCIRDMBuilder(onv_basis)),
-        QCMethodNewtonOrbitalOptimizer(hessian_modifier, convergence_threshold, maximum_number_of_iterations)
-    {}
+        onv_basis {onv_basis},
+        eigenproblem_solver {eigenproblem_solver},
+        eigenproblem_environment {eigenproblem_environment},
+        number_of_requested_eigenpairs {number_of_requested_eigenpairs},
+        rdm_calculator {DOCIRDMBuilder(onv_basis)},
+        QCMethodNewtonOrbitalOptimizer(hessian_modifier, convergence_threshold, maximum_number_of_iterations) {}
 
 
     // GETTERS
@@ -176,7 +175,7 @@ public:
             throw std::logic_error("DOCINewtonOrbitalOptimizer::makeLinearExpansion(size_t): Not enough requested eigenpairs for the given index.");
         }
 
-        return LinearExpansion<SeniorityZeroONVBasis>{this->onv_basis, this->eigenpairs[index].get_eigenvector()};
+        return LinearExpansion<SeniorityZeroONVBasis>(this->onv_basis, this->eigenpairs[index].get_eigenvector());
     }
 };
 

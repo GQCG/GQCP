@@ -1,25 +1,25 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #pragma once
 
 
-#include "ONVBasis/BaseONVBasis.hpp"
 #include "ONVBasis/BaseFrozenCoreONVBasis.hpp"
+#include "ONVBasis/BaseONVBasis.hpp"
 #include "ONVBasis/ONVManipulator.hpp"
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 
@@ -32,7 +32,7 @@ namespace GQCP {
  */
 class SpinUnresolvedFrozenONVBasis: public BaseFrozenCoreONVBasis, public ONVManipulator<SpinUnresolvedFrozenONVBasis> {
 protected:
-    size_t X;  // number of frozen orbitals/electrons
+    size_t X;                                 // number of frozen orbitals/electrons
     SpinUnresolvedONVBasis active_onv_basis;  // active (non-frozen) spin-unresolved ONV basis containing only the active electrons (N-X) and orbitals (K-X)
 
 
@@ -93,14 +93,14 @@ public:
     /**
      *  @param onv       the spin-resolved ONV
      *
-     *  @return the amount of ONVs (with a larger address) this spin-resolved ONV would couple with given a one electron operator
+     *  @return the number of ONVs (with a larger address) this spin-resolved ONV would couple with given a one electron operator
      */
     size_t countOneElectronCouplings(const SpinUnresolvedONV& onv) const override;
 
     /**
      *  @param onv       the spin-resolved ONV
      *
-     *  @return the amount of ONVs (with a larger address) this spin-resolved ONV would couple with given a two electron operator
+     *  @return the number of ONVs (with a larger address) this spin-resolved ONV would couple with given a two electron operator
      */
     size_t countTwoElectronCouplings(const SpinUnresolvedONV& onv) const override;
 

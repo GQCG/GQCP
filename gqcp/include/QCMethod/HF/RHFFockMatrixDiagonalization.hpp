@@ -1,21 +1,21 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
-#pragma once 
+//
+#pragma once
 
 
 #include "Mathematical/Algorithm/Step.hpp"
@@ -33,7 +33,7 @@ namespace GQCP {
  *  @tparam _Scalar              the scalar type used to represent the expansion coefficient/elements of the transformation matrix
  */
 template <typename _Scalar>
-class RHFFockMatrixDiagonalization :
+class RHFFockMatrixDiagonalization:
     public Step<RHFSCFEnvironment<_Scalar>> {
 
 public:
@@ -42,7 +42,6 @@ public:
 
 
 public:
-
     /*
      *  OVERRIDDEN PUBLIC METHODS
      */
@@ -57,7 +56,7 @@ public:
         const auto& F = environment.fock_matrices.back();  // the most recent scalar/AO basis Fock matrix
 
         using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
-        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver (F, environment.S);
+        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver(F, environment.S);
         const TransformationMatrix<Scalar>& C = generalized_eigensolver.eigenvectors();
         const auto& orbital_energies = generalized_eigensolver.eigenvalues();
 

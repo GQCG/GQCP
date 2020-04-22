@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #define BOOST_TEST_MODULE "miscellaneous"
 
 #include <boost/test/unit_test.hpp>
@@ -22,7 +22,7 @@
 #include "Utilities/miscellaneous.hpp"
 
 
-BOOST_AUTO_TEST_CASE ( gray_code ) {
+BOOST_AUTO_TEST_CASE(gray_code) {
 
     BOOST_CHECK(GQCP::gray_code(0) == 0);    // "0000" (0)
     BOOST_CHECK(GQCP::gray_code(1) == 1);    // "0001" (1)
@@ -43,7 +43,7 @@ BOOST_AUTO_TEST_CASE ( gray_code ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( vectorIndex ) {
+BOOST_AUTO_TEST_CASE(vectorIndex) {
 
     size_t cols = 11;
     size_t skipped = 2;
@@ -57,7 +57,7 @@ BOOST_AUTO_TEST_CASE ( vectorIndex ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( matrixIndex ) {
+BOOST_AUTO_TEST_CASE(matrixIndex) {
 
     size_t cols = 11;
     size_t skipped = 2;
@@ -79,7 +79,7 @@ BOOST_AUTO_TEST_CASE ( matrixIndex ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( sandbox ) {
+BOOST_AUTO_TEST_CASE(partitions) {
 
     // 2-way part 4
     std::vector<std::array<size_t, 2>> ref_partitions1 {{4, 0}, {3, 1}, {2, 2}};
@@ -105,8 +105,8 @@ BOOST_AUTO_TEST_CASE ( sandbox ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( triangularRoot_strictTriangularRoot ) {
-    
+BOOST_AUTO_TEST_CASE(triangularRoot_strictTriangularRoot) {
+
     BOOST_CHECK(GQCP::triangularRoot(6) == 3);
     BOOST_CHECK(GQCP::strictTriangularRoot(3) == 3);
 
@@ -115,7 +115,7 @@ BOOST_AUTO_TEST_CASE ( triangularRoot_strictTriangularRoot ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( validateAndOpen ) {
+BOOST_AUTO_TEST_CASE(validateAndOpen) {
 
     // Make sure we get an error when a nonsense path is given (i.e. no extension)
     BOOST_REQUIRE_THROW(GQCP::validateAndOpen("this is a nonsense data path", "data"), std::invalid_argument);
@@ -128,7 +128,7 @@ BOOST_AUTO_TEST_CASE ( validateAndOpen ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( findElementIndex ) {
+BOOST_AUTO_TEST_CASE(findElementIndex) {
 
     std::vector<int> vector {1, 2, 3};
 

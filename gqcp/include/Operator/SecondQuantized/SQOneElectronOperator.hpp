@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #pragma once
 
 
@@ -41,7 +41,6 @@ namespace GQCP {
 template <typename _Scalar, size_t _Components>
 class SQOneElectronOperator {
 public:
-
     using Scalar = _Scalar;
     static constexpr auto Components = _Components;
 
@@ -51,7 +50,6 @@ private:
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -59,9 +57,9 @@ public:
     /**
      *  @param fs           all the matrix representations (hence the s) of the parameters (integrals) of the different components of this second-quantized operator
      */
-    SQOneElectronOperator(const std::array<QCMatrix<Scalar>, Components>& fs) : 
-        fs (fs)
-    {
+    SQOneElectronOperator(const std::array<QCMatrix<Scalar>, Components>& fs) :
+        fs {fs} {
+
         // Check if the given matrix representations have the same dimensions
         const auto dimension_of_first = this->fs[0].dimension();
         for (size_t i = 1; i < Components; i++) {
@@ -83,8 +81,7 @@ public:
      */
     template <size_t Z = Components>
     SQOneElectronOperator(const QCMatrix<Scalar>& f, typename std::enable_if<Z == 1>::type* = 0) :
-        SQOneElectronOperator(std::array<QCMatrix<Scalar>, 1>{f})
-    {}
+        SQOneElectronOperator(std::array<QCMatrix<Scalar>, 1> {f}) {}
 
 
     /**
@@ -203,9 +200,8 @@ public:
                 for (size_t q = 0; q < this->dimension(); q++) {
 
                     for (size_t r = 0; r < this->dimension(); r++) {
-                        F_i(p,q) += f_i(q,r) * (D(p,r) + D(r,p));
+                        F_i(p, q) += f_i(q, r) * (D(p, r) + D(r, p));
                     }
-
                 }
             }  // F_i elements loop
             Fs[i] = 0.5 * F_i;
@@ -235,14 +231,14 @@ public:
 
         // A KISS implementation of the calculation of the super-Fockian matrix
         std::array<SquareRankFourTensor<Scalar>, Components> Gs;  // multiple Gs, hence the 's'
-        const auto Fs = this->calculateFockianMatrix(D, d);  // the Fockian matrices are necessary in the calculation
+        const auto Fs = this->calculateFockianMatrix(D, d);       // the Fockian matrices are necessary in the calculation
         for (size_t i = 0; i < Components; i++) {
-            
+
             const auto& f_i = this->parameters(i);  // the matrix representation of the parameters of the i-th component
-            const auto& F_i = Fs[i];  // the Fockian matrix of the i-th component
+            const auto& F_i = Fs[i];                // the Fockian matrix of the i-th component
 
             // Calculate the super-Fockian matrix for every component and add it to the array
-            SquareRankFourTensor<Scalar> G_i (this->dimension());
+            SquareRankFourTensor<Scalar> G_i(this->dimension());
             G_i.setZero();
             for (size_t p = 0; p < this->dimension(); p++) {
                 for (size_t q = 0; q < this->dimension(); q++) {
@@ -250,10 +246,10 @@ public:
                         for (size_t s = 0; s < this->dimension(); s++) {
 
                             if (q == r) {
-                                G_i(p,q,r,s) += 2 * F_i(p,s);
+                                G_i(p, q, r, s) += 2 * F_i(p, s);
                             }
 
-                            G_i(p,q,r,s) -= f_i(s,p) * (D(r,q) + D(q,r));
+                            G_i(p, q, r, s) -= f_i(s, p) * (D(r, q) + D(q, r));
                         }
                     }
                 }
@@ -301,7 +297,8 @@ public:
      */
     template <typename Z = Scalar>
     enable_if_t<std::is_base_of<ScalarFunction<typename Z::Valued, typename Z::Scalar, Z::Cols>, Z>::value,
-    SQOneElectronOperator<typename Z::Valued, Components>> evaluate(const Vector<typename Z::Scalar, Z::Cols>& x) const {
+                SQOneElectronOperator<typename Z::Valued, Components>>
+    evaluate(const Vector<typename Z::Scalar, Z::Cols>& x) const {
 
         // Initialize the results
         std::array<QCMatrix<typename Z::Valued>, Components> F_evaluated;  // components are not initialized here
@@ -312,8 +309,8 @@ public:
 
             for (size_t m = 0; m < this->dimension(); m++) {
                 for (size_t n = 0; n < this->dimension(); n++) {
-                    const auto F_i_mn = this->parameters(i)(m,n);  // (m,n)-th element of the i-th component
-                    F_evaluated[i](m,n) = F_i_mn.operator()(x);  // evaluate the ScalarFunction
+                    const auto F_i_mn = this->parameters(i)(m, n);  // (m,n)-th element of the i-th component
+                    F_evaluated[i](m, n) = F_i_mn.operator()(x);    // evaluate the ScalarFunction
                 }
             }
         }
@@ -383,7 +380,6 @@ public:
         }
     }
 };
-
 
 
 /*

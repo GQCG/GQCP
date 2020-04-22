@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #define BOOST_TEST_MODULE "Selected_RDM_test"
 
 #include <boost/test/unit_test.hpp>
@@ -37,13 +37,13 @@
  *  Check if the 1- and 2-DMs for a full spin-resolved ONV basis are equal to the 'selected' case.
  *  The system of interest is H2//6-31G, whose associated spin-resolved Fock space is of dimension 16.
  */
-BOOST_AUTO_TEST_CASE ( spin_resolved_vs_selected_DMs ) {
+BOOST_AUTO_TEST_CASE(spin_resolved_vs_selected_DMs) {
 
     // Set up the molecular Hamiltonian for H2//6-31G in the Löwdin basis.
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2.xyz");
     const auto N_P = molecule.numberOfElectrons() / 2;  // the number of electron pairs
 
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (molecule, "6-31G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "6-31G"};
     const auto K = spinor_basis.numberOfSpatialOrbitals();  // 4
 
     spinor_basis.lowdinOrthonormalize();
@@ -51,7 +51,7 @@ BOOST_AUTO_TEST_CASE ( spin_resolved_vs_selected_DMs ) {
 
 
     // Do a dense FCI calculation.
-    const GQCP::SpinResolvedONVBasis onv_basis (K, N_P, N_P);
+    const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
 
     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
     auto solver = GQCP::EigenproblemSolver::Dense();
@@ -88,13 +88,13 @@ BOOST_AUTO_TEST_CASE ( spin_resolved_vs_selected_DMs ) {
  *  Check if the 1- and 2-DMs for a full seniority-zero ONV basis are equal to the 'selected' case.
  *  The system of interest is H2//6-31G, whose associated doubly-occupied Fock space is of dimension 4.
  */
-BOOST_AUTO_TEST_CASE ( seniority_zero_vs_selected_DMs ) {
+BOOST_AUTO_TEST_CASE(seniority_zero_vs_selected_DMs) {
 
     // Set up the molecular Hamiltonian for H2//6-31G in the Löwdin basis.
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2.xyz");
     const auto N_P = molecule.numberOfElectrons() / 2;  // the number of electron pairs
 
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (molecule, "6-31G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "6-31G"};
     const auto K = spinor_basis.numberOfSpatialOrbitals();  // 4
 
     spinor_basis.lowdinOrthonormalize();
@@ -102,7 +102,7 @@ BOOST_AUTO_TEST_CASE ( seniority_zero_vs_selected_DMs ) {
 
 
     // Do a dense DOCI calculation.
-    const GQCP::SeniorityZeroONVBasis onv_basis (K, N_P);
+    const GQCP::SeniorityZeroONVBasis onv_basis {K, N_P};
 
     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
     auto solver = GQCP::EigenproblemSolver::Dense();
@@ -115,7 +115,7 @@ BOOST_AUTO_TEST_CASE ( seniority_zero_vs_selected_DMs ) {
     const auto one_rdms_specialized = seniority_zero_rdm_builder.calculate1RDMs(linear_expansion.coefficients());
 
     const GQCP::SpinResolvedSelectedONVBasis selected_onv_basis {onv_basis};
-    const GQCP::SelectedRDMBuilder selected_rdm_builder (selected_onv_basis);
+    const GQCP::SelectedRDMBuilder selected_rdm_builder {selected_onv_basis};
     const auto one_rdms_selected = selected_rdm_builder.calculate1RDMs(linear_expansion.coefficients());
 
     BOOST_CHECK(one_rdms_specialized.one_rdm.isApprox(one_rdms_selected.one_rdm, 1.0e-12));

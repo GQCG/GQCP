@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #pragma once
 
 
@@ -32,7 +32,7 @@ namespace GQCP {
  *
  *  @tparam _Scalar      the scalar type
  */
-template<typename _Scalar>
+template <typename _Scalar>
 class QCRankFourTensor: public SquareRankFourTensor<_Scalar> {
 public:
     using Scalar = _Scalar;
@@ -42,7 +42,6 @@ public:
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -64,7 +63,6 @@ public:
     size_t get_K() const { return this->dimension(0); };
 
 
-
     /**
      *  In-place transform this quantum chemical rank-4 tensor according to a given basis transformation.
      *
@@ -73,7 +71,7 @@ public:
     void basisTransformInPlace(const TransformationMatrix<Scalar>& T) {
 
         // Since we're only getting T as a matrix, we should convert it to an appropriate tensor to perform contractions.
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> T_tensor (T.data(), T.rows(), T.cols());  // since T is const, we need const in the template (https://stackoverflow.com/questions/45283468/eigen-const-tensormap)
+        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> T_tensor {T.data(), T.rows(), T.cols()};  // since T is const, we need const in the template (https://stackoverflow.com/questions/45283468/eigen-const-tensormap)
 
 
         // We will have to do four single contractions, so we'll have to specify the contraction indices.
@@ -100,12 +98,12 @@ public:
         //      1) avoid storing intermediate contractions;
         //      2) let Eigen figure out some optimizations.
         Self g_transformed = T_tensor.conjugate().contract(
-                T_tensor.contract(
-                    this->contract(T_tensor.conjugate(), contraction_pair1).shuffle(shuffle_1)  // the 'inner' contraction, the first one
-                    .contract(T_tensor, contraction_pair2),
-                contraction_pair3).shuffle(shuffle_3),
-            contraction_pair4
-        );
+            T_tensor.contract(
+                        this->contract(T_tensor.conjugate(), contraction_pair1).shuffle(shuffle_1)  // the 'inner' contraction, the first one
+                            .contract(T_tensor, contraction_pair2),
+                        contraction_pair3)
+                .shuffle(shuffle_3),
+            contraction_pair4);
         (*this) = g_transformed;
     }
 

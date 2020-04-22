@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #include "QCMethod/OrbitalOptimization/JacobiOrbitalOptimizer.hpp"
 
 #include <queue>
@@ -33,10 +33,8 @@ namespace GQCP {
  *  @param maximum_number_of_iterations     the maximum number of iterations that may be used to achieve convergence
  */
 JacobiOrbitalOptimizer::JacobiOrbitalOptimizer(const size_t dim, const double convergence_threshold, const size_t maximum_number_of_iterations) :
-    dim (dim),
-    BaseOrbitalOptimizer(convergence_threshold, maximum_number_of_iterations)
-{}
-
+    dim {dim},
+    BaseOrbitalOptimizer(convergence_threshold, maximum_number_of_iterations) {}
 
 
 /*
@@ -82,7 +80,6 @@ TransformationMatrix<double> JacobiOrbitalOptimizer::calculateNewRotationMatrix(
 }
 
 
-
 /*
  *  PUBLIC METHODS
  */
@@ -95,15 +92,15 @@ TransformationMatrix<double> JacobiOrbitalOptimizer::calculateNewRotationMatrix(
  */
 std::pair<JacobiRotationParameters, double> JacobiOrbitalOptimizer::calculateOptimalJacobiParameters(const SQHamiltonian<double>& sq_hamiltonian) {
 
-    const auto& cmp = this->comparer();
-    std::priority_queue<pair_type, std::vector<pair_type>, decltype(cmp)> queue (cmp);
+    const auto& cmp = this->comparer();  // cmp: 'comparer'
+    std::priority_queue<pair_type, std::vector<pair_type>, decltype(cmp)> queue {cmp};
 
     for (size_t q = 0; q < this->dim; q++) {
-        for (size_t p = q+1; p < this->dim; p++) {  // loop over p>q
-            this->calculateJacobiCoefficients(sq_hamiltonian, p,q);  // initialize the trigoniometric polynomial coefficients
+        for (size_t p = q + 1; p < this->dim; p++) {                  // loop over p>q
+            this->calculateJacobiCoefficients(sq_hamiltonian, p, q);  // initialize the trigoniometric polynomial coefficients
 
-            const double theta = this->calculateOptimalRotationAngle(sq_hamiltonian, p,q);
-            const JacobiRotationParameters jacobi_rot_par (p, q, theta);
+            const double theta = this->calculateOptimalRotationAngle(sq_hamiltonian, p, q);
+            const JacobiRotationParameters jacobi_rot_par(p, q, theta);
 
             const double E_change = this->calculateScalarFunctionChange(sq_hamiltonian, jacobi_rot_par);
 
@@ -118,9 +115,9 @@ std::pair<JacobiRotationParameters, double> JacobiOrbitalOptimizer::calculateOpt
 /**
  *  @return the comparer functor that is used to compare two pair_types
  */
-std::function<bool (const JacobiOrbitalOptimizer::pair_type&, const JacobiOrbitalOptimizer::pair_type&)> JacobiOrbitalOptimizer::comparer() const {
+std::function<bool(const JacobiOrbitalOptimizer::pair_type&, const JacobiOrbitalOptimizer::pair_type&)> JacobiOrbitalOptimizer::comparer() const {
 
-    return [this] (const pair_type& lhs, const pair_type& rhs) {
+    return [this](const pair_type& lhs, const pair_type& rhs) {
         if (lhs.second < rhs.second) {
             return false;
         } else {

@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #pragma once
 
 
@@ -81,9 +81,12 @@ public:
     /**
      *  @param indices_pack      the indices that specify the element of the N-RDM that has to be calculated
      */
-    template<typename... size_ts>
+    template <typename... size_ts>
     double operator()(size_ts... indices_pack) const {
-        if (this->coefficients.rows() == 0) { throw std::logic_error("No vector has been set."); }
+
+        if (this->coefficients.rows() == 0) {
+            throw std::logic_error("No vector has been set.");
+        }
 
         // Assume the user has given size_ts
         std::vector<size_t> indices {static_cast<size_t>(indices_pack)...};  // convert the pack to a vector so we can easily traverse

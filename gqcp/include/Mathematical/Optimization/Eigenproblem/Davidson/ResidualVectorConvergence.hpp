@@ -1,25 +1,24 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #pragma once
 
 
 #include "Mathematical/Algorithm/ConvergenceCriterion.hpp"
-
 
 
 namespace GQCP {
@@ -31,7 +30,7 @@ namespace GQCP {
  *  @tparam _Environment        the type of the calculation environment
  */
 template <typename _Environment>
-class ResidualVectorConvergence :
+class ResidualVectorConvergence:
     public ConvergenceCriterion<_Environment> {
 
 public:
@@ -43,7 +42,6 @@ private:
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -52,8 +50,7 @@ public:
      *  @param threshold                    the threshold that is used in checking the norm of the residual vectors
      */
     ResidualVectorConvergence(const double threshold = 1.0e-08) :
-        threshold (threshold)
-    {}
+        threshold {threshold} {}
 
 
     /*

@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 
 #include <boost/dynamic_bitset.hpp>
@@ -39,8 +39,8 @@ namespace GQCP {
  */
 SpinResolvedONV SpinResolvedSelectedONVBasis::makeConfiguration(const std::string& onv1, const std::string& onv2) const {
 
-    boost::dynamic_bitset<> alpha_transfer (onv1);
-    boost::dynamic_bitset<> beta_transfer (onv2);
+    boost::dynamic_bitset<> alpha_transfer {onv1};
+    boost::dynamic_bitset<> beta_transfer {onv2};
 
     if (alpha_transfer.size() != this->K | beta_transfer.size() != this->K) {
         throw std::invalid_argument("SpinResolvedSelectedONVBasis::makeConfiguration(std::string, std::string): Given string representations for ONVs are not compatible with the number of orbitals of this ONV basis");
@@ -53,12 +53,11 @@ SpinResolvedONV SpinResolvedSelectedONVBasis::makeConfiguration(const std::strin
     size_t alpha_s = alpha_transfer.to_ulong();
     size_t beta_s = beta_transfer.to_ulong();
 
-    SpinUnresolvedONV alpha (this->K, this->N_alpha, alpha_s);
-    SpinUnresolvedONV beta (this->K, this->N_beta, beta_s);
+    SpinUnresolvedONV alpha {this->K, this->N_alpha, alpha_s};
+    SpinUnresolvedONV beta {this->K, this->N_beta, beta_s};
 
-    return SpinResolvedONV {alpha, beta};
+    return SpinResolvedONV(alpha, beta);
 }
-
 
 
 /*
@@ -74,9 +73,8 @@ SpinResolvedONV SpinResolvedSelectedONVBasis::makeConfiguration(const std::strin
  */
 SpinResolvedSelectedONVBasis::SpinResolvedSelectedONVBasis(size_t K, size_t N_alpha, size_t N_beta) :
     BaseONVBasis(K, 0),
-    N_alpha (N_alpha),
-    N_beta (N_beta)
-{}
+    N_alpha {N_alpha},
+    N_beta {N_beta} {}
 
 
 /**
@@ -85,8 +83,7 @@ SpinResolvedSelectedONVBasis::SpinResolvedSelectedONVBasis(size_t K, size_t N_al
  *  @param onv_basis        the seniority-zero ONV basis from which the 'selected ONVs' should be generated
  */
 SpinResolvedSelectedONVBasis::SpinResolvedSelectedONVBasis(const SeniorityZeroONVBasis& onv_basis) :
-    SpinResolvedSelectedONVBasis (onv_basis.numberOfSpatialOrbitals(), onv_basis.numberOfElectronPairs(), onv_basis.numberOfElectronPairs())
-{
+    SpinResolvedSelectedONVBasis(onv_basis.numberOfSpatialOrbitals(), onv_basis.numberOfElectronPairs(), onv_basis.numberOfElectronPairs()) {
 
     // Prepare some variables.
     const auto dimension = onv_basis.dimension();
@@ -109,16 +106,14 @@ SpinResolvedSelectedONVBasis::SpinResolvedSelectedONVBasis(const SeniorityZeroON
 }
 
 
-
-
 /**
  *  A constructor that generates the onvs based off the given SpinResolvedONVBasis.
  *
  *  @param fock_space       the SpinResolvedONVBasis from which the onvs should be generated
  */
 SpinResolvedSelectedONVBasis::SpinResolvedSelectedONVBasis(const SpinResolvedONVBasis& fock_space) :
-    SpinResolvedSelectedONVBasis (fock_space.get_K(), fock_space.get_N_alpha(), fock_space.get_N_beta())
-{
+    SpinResolvedSelectedONVBasis(fock_space.get_K(), fock_space.get_N_alpha(), fock_space.get_N_beta()) {
+
     std::vector<SpinResolvedONV> onvs;
 
     const SpinUnresolvedONVBasis& fock_space_alpha = fock_space.get_fock_space_alpha();
@@ -148,17 +143,14 @@ SpinResolvedSelectedONVBasis::SpinResolvedSelectedONVBasis(const SpinResolvedONV
 }
 
 
-
-
-
 /**
  *  A constructor that generates the onvs based off the given frozen product spin-resolved ONV basis.
  *
  *  @param fock_space       the SpinUnresolvedONVBasis from which the onvs should be generated
  */
 SpinResolvedSelectedONVBasis::SpinResolvedSelectedONVBasis(const SpinResolvedFrozenONVBasis& fock_space) :
-        SpinResolvedSelectedONVBasis (fock_space.get_K(), fock_space.get_N_alpha(), fock_space.get_N_beta())
-{
+    SpinResolvedSelectedONVBasis(fock_space.get_K(), fock_space.get_N_alpha(), fock_space.get_N_beta()) {
+
     std::vector<SpinResolvedONV> onvs;
 
     const SpinUnresolvedFrozenONVBasis& frozen_fock_space_alpha = fock_space.get_frozen_fock_space_alpha();
@@ -211,7 +203,6 @@ SpinResolvedSelectedONVBasis::SpinResolvedSelectedONVBasis(const SpinResolvedFro
 // }
 
 
-
 /*
  *  PUBLIC METHODS
  */
@@ -237,7 +228,7 @@ void SpinResolvedSelectedONVBasis::addConfiguration(const std::string& onv1, con
  *  @param onv1s     the alpha ONVs as string representations read from right to left
  *  @param onv2s     the beta ONVs as string representations read from right to left
  */
-void SpinResolvedSelectedONVBasis::addConfiguration(const std::vector<std::string>& onv1s, const std::vector<std::string>& onv2s){
+void SpinResolvedSelectedONVBasis::addConfiguration(const std::vector<std::string>& onv1s, const std::vector<std::string>& onv2s) {
 
     if (onv1s.size() != onv2s.size()) {
         throw std::invalid_argument("SpinResolvedSelectedONVBasis::addConfiguration(const std::string&, const std::string&): Size of both ONV entry vectors do not match");
@@ -247,7 +238,6 @@ void SpinResolvedSelectedONVBasis::addConfiguration(const std::vector<std::strin
         this->addConfiguration(onv1s[i], onv2s[i]);
     }
 }
-
 
 
 /**
@@ -265,7 +255,7 @@ SquareMatrix<double> SpinResolvedSelectedONVBasis::evaluateOperatorDense(const S
         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperatorDense(ScalarSQOneElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
-    EvaluationIterator<SquareMatrix<double>> evaluation_iterator (this->dim);
+    EvaluationIterator<SquareMatrix<double>> evaluation_iterator {this->dim};
     this->EvaluateOperator<SquareMatrix<double>>(one_op, evaluation_iterator, diagonal_values);
     return evaluation_iterator.evaluation();
 }
@@ -286,7 +276,7 @@ Eigen::SparseMatrix<double> SpinResolvedSelectedONVBasis::evaluateOperatorSparse
         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperatorSparse(ScalarSQOneElectronOperator<double>, bool): Basis functions of the ONV basis and the operator are incompatible.");
     }
 
-    EvaluationIterator<Eigen::SparseMatrix<double>> evaluation_iterator (this->dim);
+    EvaluationIterator<Eigen::SparseMatrix<double>> evaluation_iterator {this->dim};
 
     // Estimate the memory that is needed for the evaluation
     size_t memory = dim * this->K * (this->N_alpha + this->N_beta);
@@ -316,7 +306,7 @@ SquareMatrix<double> SpinResolvedSelectedONVBasis::evaluateOperatorDense(const S
         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperatorDense(ScalarSQTwoElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
-    EvaluationIterator<SquareMatrix<double>> evaluation_iterator (this->dim);
+    EvaluationIterator<SquareMatrix<double>> evaluation_iterator {this->dim};
     this->EvaluateOperator<SquareMatrix<double>>(two_op, evaluation_iterator, diagonal_values);
     return evaluation_iterator.evaluation();
 }
@@ -337,10 +327,10 @@ Eigen::SparseMatrix<double> SpinResolvedSelectedONVBasis::evaluateOperatorSparse
         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperatorSparse(ScalarSQTwoElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
-    EvaluationIterator<Eigen::SparseMatrix<double>> evaluation_iterator (this->dim);
+    EvaluationIterator<Eigen::SparseMatrix<double>> evaluation_iterator {this->dim};
 
     // Estimate the memory that is needed for the evaluation
-    size_t memory = dim * this->K * this->K * (this->N_alpha + this->N_beta)*(this->N_alpha + this->N_beta);
+    size_t memory = dim * this->K * this->K * (this->N_alpha + this->N_beta) * (this->N_alpha + this->N_beta);
     if (diagonal_values) {
         memory += this->dim;
     }
@@ -367,7 +357,7 @@ SquareMatrix<double> SpinResolvedSelectedONVBasis::evaluateOperatorDense(const S
         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperatorDense(SQHamiltonian<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
-    EvaluationIterator<SquareMatrix<double>> evaluation_iterator (this->dim);
+    EvaluationIterator<SquareMatrix<double>> evaluation_iterator {this->dim};
     this->EvaluateOperator<SquareMatrix<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), evaluation_iterator, diagonal_values);
     return evaluation_iterator.evaluation();
 }
@@ -388,10 +378,10 @@ Eigen::SparseMatrix<double> SpinResolvedSelectedONVBasis::evaluateOperatorSparse
         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperatorSparse(SQHamiltonian<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
-    EvaluationIterator<Eigen::SparseMatrix<double>> evaluation_iterator (this->dim);
+    EvaluationIterator<Eigen::SparseMatrix<double>> evaluation_iterator {this->dim};
 
     // Estimate the memory that is needed for the evaluation
-    size_t memory = dim * this->K * this->K * (this->N_alpha + this->N_beta) * (this->N_alpha + this->N_beta)/4;
+    size_t memory = dim * this->K * this->K * (this->N_alpha + this->N_beta) * (this->N_alpha + this->N_beta) / 4;
     if (diagonal_values) {
         memory += this->dim;
     }
@@ -429,11 +419,11 @@ VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorDiagonal(const Sca
 
         for (size_t p = 0; p < K; p++) {
             if (alpha_I.isOccupied(p)) {
-                diagonal(I) += one_op_par(p,p);
+                diagonal(I) += one_op_par(p, p);
             }
 
             if (beta_I.isOccupied(p)) {
-                diagonal(I) += one_op_par(p,p);
+                diagonal(I) += one_op_par(p, p);
             }
         }  // loop over q
 
@@ -472,13 +462,13 @@ VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorDiagonal(const Sca
 
                     if (p != q) {  // can't create/annihilate the same orbital twice
                         if (alpha_I.isOccupied(q)) {
-                            diagonal(I) += 0.5 * two_op_par(p,p,q,q);
-                            diagonal(I) -= 0.5 * two_op_par(p,q,q,p);
+                            diagonal(I) += 0.5 * two_op_par(p, p, q, q);
+                            diagonal(I) -= 0.5 * two_op_par(p, q, q, p);
                         }
                     }
 
                     if (beta_I.isOccupied(q)) {
-                        diagonal(I) += 0.5 * two_op_par(p,p,q,q);
+                        diagonal(I) += 0.5 * two_op_par(p, p, q, q);
                     }
                 }  // loop over q
             }
@@ -488,13 +478,13 @@ VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorDiagonal(const Sca
 
                     if (p != q) {  // can't create/annihilate the same orbital twice
                         if (beta_I.isOccupied(q)) {
-                            diagonal(I) += 0.5 * two_op_par(p,p,q,q);
-                            diagonal(I) -= 0.5 * two_op_par(p,q,q,p);
+                            diagonal(I) += 0.5 * two_op_par(p, p, q, q);
+                            diagonal(I) -= 0.5 * two_op_par(p, q, q, p);
                         }
                     }
 
                     if (alpha_I.isOccupied(q)) {
-                        diagonal(I) += 0.5 * two_op_par(p,p,q,q);
+                        diagonal(I) += 0.5 * two_op_par(p, p, q, q);
                     }
                 }  // loop over q
             }
@@ -533,7 +523,7 @@ VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduc
         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduct(ScalarSQOneElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
-    EvaluationIterator<VectorX<double>> evaluation_iterator (x, diagonal);
+    EvaluationIterator<VectorX<double>> evaluation_iterator {x, diagonal};
     this->EvaluateOperator<VectorX<double>>(one_op, evaluation_iterator, false);
     return evaluation_iterator.evaluation();
 }
@@ -554,7 +544,7 @@ VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduc
         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduct(ScalarSQTwoElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
-    EvaluationIterator<VectorX<double>> evaluation_iterator (x, diagonal);
+    EvaluationIterator<VectorX<double>> evaluation_iterator {x, diagonal};
     this->EvaluateOperator<VectorX<double>>(two_op, evaluation_iterator, false);
     return evaluation_iterator.evaluation();
 }
@@ -575,16 +565,15 @@ VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduc
         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
-    EvaluationIterator<VectorX<double>> evaluation_iterator (x, diagonal);
+    EvaluationIterator<VectorX<double>> evaluation_iterator {x, diagonal};
     this->EvaluateOperator<VectorX<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), evaluation_iterator, false);
     return evaluation_iterator.evaluation();
 }
 
 
-
 /*
  *  UNRESTRICTED
- */ 
+ */
 
 /**
  *  Evaluate the Hamiltonian in a dense matrix
@@ -594,9 +583,9 @@ VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduc
  *
  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of this ONV basis
  */
-SquareMatrix<double>  SpinResolvedSelectedONVBasis::evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const {
-   
-    const auto K = usq_hamiltonian.dimension()/2;
+SquareMatrix<double> SpinResolvedSelectedONVBasis::evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const {
+
+    const auto K = usq_hamiltonian.dimension() / 2;
 
     if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperatorDense(USQHamiltonian<double>, bool): Underlying spin Hamiltonians are not of the same dimension, and this is currently required for this method");
@@ -606,10 +595,9 @@ SquareMatrix<double>  SpinResolvedSelectedONVBasis::evaluateOperatorDense(const 
         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperatorDense(USQHamiltonian<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
-    EvaluationIterator<SquareMatrix<double>> evaluation_iterator (this->dim);
+    EvaluationIterator<SquareMatrix<double>> evaluation_iterator {this->dim};
     this->EvaluateOperator<SquareMatrix<double>>(usq_hamiltonian, evaluation_iterator, diagonal_values);
     return evaluation_iterator.evaluation();
-
 }
 
 
@@ -622,7 +610,7 @@ SquareMatrix<double>  SpinResolvedSelectedONVBasis::evaluateOperatorDense(const 
  */
 VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const {
 
-    const auto K = usq_hamiltonian.dimension()/2;
+    const auto K = usq_hamiltonian.dimension() / 2;
 
     if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperatorDiagonal(USQHamiltonian<double>, bool): Different spinor dimensions of spin components are currently not supported.");
@@ -650,38 +638,38 @@ VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorDiagonal(const USQ
         for (size_t p = 0; p < K; p++) {
             if (alpha_I.isOccupied(p)) {
 
-                diagonal(I) += h_a(p,p);
+                diagonal(I) += h_a(p, p);
 
                 for (size_t q = 0; q < K; q++) {
 
                     if (p != q) {  // can't create/annihilate the same orbital twice
                         if (alpha_I.isOccupied(q)) {
-                            diagonal(I) += 0.5 * g_a(p,p,q,q);
-                            diagonal(I) -= 0.5 * g_a(p,q,q,p);
+                            diagonal(I) += 0.5 * g_a(p, p, q, q);
+                            diagonal(I) -= 0.5 * g_a(p, q, q, p);
                         }
                     }
 
                     if (beta_I.isOccupied(q)) {
-                        diagonal(I) += 0.5 * g_ab(p,p,q,q);
+                        diagonal(I) += 0.5 * g_ab(p, p, q, q);
                     }
                 }  // loop over q
             }
 
             if (beta_I.isOccupied(p)) {
-    
-                diagonal(I) += h_b(p,p);
+
+                diagonal(I) += h_b(p, p);
 
                 for (size_t q = 0; q < K; q++) {
 
                     if (p != q) {  // can't create/annihilate the same orbital twice
                         if (beta_I.isOccupied(q)) {
-                            diagonal(I) += 0.5 * g_b(p,p,q,q);
-                            diagonal(I) -= 0.5 * g_b(p,q,q,p);
+                            diagonal(I) += 0.5 * g_b(p, p, q, q);
+                            diagonal(I) -= 0.5 * g_b(p, q, q, p);
                         }
                     }
 
                     if (alpha_I.isOccupied(q)) {
-                        diagonal(I) += 0.5 * g_ab(q,q,p,p);
+                        diagonal(I) += 0.5 * g_ab(q, q, p, p);
                     }
                 }  // loop over q
             }
@@ -703,7 +691,8 @@ VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorDiagonal(const USQ
  *  @return the Hamiltonian's matrix vector product in a vector with the dimensions of this ONV basis
  */
 VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
-    const auto K = usq_hamiltonian.dimension()/2;
+
+    const auto K = usq_hamiltonian.dimension() / 2;
 
     if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduct(USQHamiltonian<double>, VectorX<double>, VectorX<double>): Underlying spin Hamiltonians are not of the same dimension, and this is currently required for this method");
@@ -713,7 +702,7 @@ VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduc
         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduct(USQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
-    EvaluationIterator<VectorX<double>> evaluation_iterator (x, diagonal);
+    EvaluationIterator<VectorX<double>> evaluation_iterator {x, diagonal};
     this->EvaluateOperator<VectorX<double>>(usq_hamiltonian, evaluation_iterator, false);
     return evaluation_iterator.evaluation();
 }
@@ -728,7 +717,7 @@ VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduc
  *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of this ONV basis
  */
 Eigen::SparseMatrix<double> SpinResolvedSelectedONVBasis::evaluateOperatorSparse(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const {
-    const auto K = usq_hamiltonian.dimension()/2;
+    const auto K = usq_hamiltonian.dimension() / 2;
 
     if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperatorSparse(USQHamiltonian<double>, bool): Underlying spin Hamiltonians are not of the same dimension, and this is currently required for this method");
@@ -738,10 +727,10 @@ Eigen::SparseMatrix<double> SpinResolvedSelectedONVBasis::evaluateOperatorSparse
         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperatorSparse(USQHamiltonian<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
-    EvaluationIterator<Eigen::SparseMatrix<double>> evaluation_iterator (this->dim);
+    EvaluationIterator<Eigen::SparseMatrix<double>> evaluation_iterator {this->dim};
 
     // Estimate the memory that is needed for the evaluation
-    size_t memory = dim * this->K * this->K * (this->N_alpha + this->N_beta)*(this->N_alpha + this->N_beta);
+    size_t memory = dim * this->K * this->K * (this->N_alpha + this->N_beta) * (this->N_alpha + this->N_beta);
     if (diagonal_values) {
         memory += this->dim;
     }

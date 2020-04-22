@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #define BOOST_TEST_MODULE "LinearExpansion"
 
 #include <boost/test/unit_test.hpp>
@@ -31,7 +31,7 @@
 /**
  *  Test if a GAMESS-US expansion file is correctly read in.
  */
-BOOST_AUTO_TEST_CASE ( reader_test ) {
+BOOST_AUTO_TEST_CASE(reader_test) {
 
     // Provide the reference values.
     const GQCP::VectorX<double> ref_coefficients = GQCP::VectorX<double>::Unit(2, 0);  // (size, position)
@@ -67,10 +67,10 @@ BOOST_AUTO_TEST_CASE ( reader_test ) {
 /**
  *  Check if the calculation of the Shannon entropy is correctly implemented by comparing with a manual calculation.
  */
-BOOST_AUTO_TEST_CASE ( shannon_entropy ) {
+BOOST_AUTO_TEST_CASE(shannon_entropy) {
 
     // Set up a test spin-resolved ONV basis.
-    const GQCP::SpinUnresolvedONVBasis onv_basis (8, 3);  // 8 spinors, 3 electrons
+    const GQCP::SpinUnresolvedONVBasis onv_basis {8, 3};  // 8 spinors, 3 electrons
 
 
     // Check the Shannon entropy of a Hartree-Fock expansion
@@ -89,13 +89,13 @@ BOOST_AUTO_TEST_CASE ( shannon_entropy ) {
  *  Check if the basis transformation of a linear expansion inside the full spin-resolved ONV basis is correctly implemented: we compare the direct transformation of the expansion coefficients with another FCI calculation using the transformed spinor basis.
  *  The test system is a linear H chain H3-//STO-3G, with an internuclear charge 0.742 bohr.
  */
-BOOST_AUTO_TEST_CASE ( transform_wave_function_h3 ) {
+BOOST_AUTO_TEST_CASE(transform_wave_function_h3) {
 
     // Create the molecular Hamiltonian in the Löwdin basis.
     const auto molecule = GQCP::Molecule::HChain(3, 0.742, -1);  // charge -1
     const auto N_P = molecule.numberOfElectrons() / 2;
 
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (molecule, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
     const auto K = spinor_basis.numberOfSpatialOrbitals();
 
     spinor_basis.lowdinOrthonormalize();
@@ -103,7 +103,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h3 ) {
 
 
     // Do a dense FCI calculation.
-    const GQCP::SpinResolvedONVBasis onv_basis (K, N_P, N_P);
+    const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
 
     auto environment_direct = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
     auto solver_direct = GQCP::EigenproblemSolver::Dense();
@@ -131,13 +131,13 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h3 ) {
  *  Check if the basis transformation of a linear expansion inside the full spin-resolved ONV basis is correctly implemented: we compare the direct transformation of the expansion coefficients with another FCI calculation using the transformed spinor basis.
  *  The test system is a linear H chain H4//STO-3G, with an internuclear charge 0.742 bohr.
  */
-BOOST_AUTO_TEST_CASE ( transform_wave_function_h4 ) {
+BOOST_AUTO_TEST_CASE(transform_wave_function_h4) {
 
     // Create the molecular Hamiltonian in the Löwdin basis.
     const auto molecule = GQCP::Molecule::HChain(4, 0.742);
     const auto N_P = molecule.numberOfElectrons() / 2;
 
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (molecule, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
     const auto K = spinor_basis.numberOfSpatialOrbitals();
 
     spinor_basis.lowdinOrthonormalize();
@@ -145,7 +145,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h4 ) {
 
 
     // Do a dense FCI calculation.
-    const GQCP::SpinResolvedONVBasis onv_basis (K, N_P, N_P);
+    const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
 
     auto environment_direct = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
     auto solver_direct = GQCP::EigenproblemSolver::Dense();
@@ -173,14 +173,14 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h4 ) {
  *  Check if the basis transformation of a linear expansion inside the full spin-resolved ONV basis is correctly implemented: we compare the direct transformation of the expansion coefficients with another FCI calculation using the transformed spinor basis.
  *  The test system is a linear H chain H5//STO-3G, with an internuclear charge 0.742 bohr.
  */
-BOOST_AUTO_TEST_CASE ( transform_wave_function_h5 ) {
+BOOST_AUTO_TEST_CASE(transform_wave_function_h5) {
 
     // Create the molecular Hamiltonian in the Löwdin basis.
     const auto molecule = GQCP::Molecule::HChain(5, 0.742);
     const auto N_alpha = 3;
     const auto N_beta = 2;
 
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (molecule, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
     const auto K = spinor_basis.numberOfSpatialOrbitals();
 
     spinor_basis.lowdinOrthonormalize();
@@ -188,7 +188,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h5 ) {
 
 
     // Do a dense FCI calculation.
-    const GQCP::SpinResolvedONVBasis onv_basis (K, N_alpha, N_beta);
+    const GQCP::SpinResolvedONVBasis onv_basis {K, N_alpha, N_beta};
 
     auto environment_direct = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
     auto solver_direct = GQCP::EigenproblemSolver::Dense();

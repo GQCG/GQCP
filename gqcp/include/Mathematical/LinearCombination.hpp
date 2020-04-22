@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #pragma once
 
 
@@ -33,7 +33,9 @@ namespace GQCP {
  *  @tparam CoefficientScalar       the type of scalar that is used as coefficient
  */
 template <typename CoefficientScalar, typename T>
-class LinearCombination : public ScalarFunction<typename T::Valued, typename T::Scalar, T::Cols> {
+class LinearCombination:
+    public ScalarFunction<typename T::Valued, typename T::Scalar, T::Cols> {
+
     static_assert(std::is_base_of<ScalarFunction<typename T::Valued, typename T::Scalar, T::Cols>, T>::value, "LinearCombination: T must derive from ScalarFunction");
 
 
@@ -43,7 +45,6 @@ protected:
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -53,9 +54,9 @@ public:
      *  @param functions        the scalar functions of the linear combination
      */
     LinearCombination(const std::vector<CoefficientScalar>& coefficients, const std::vector<T>& functions) :
-        coefficients (coefficients),
-        functions (functions)
-    {
+        coefficients {coefficients},
+        functions {functions} {
+
         if (coefficients.size() != functions.size()) {
             throw std::invalid_argument("LinearCombination(std::vector<CoefficientScalar>, std::vector<T>): the number of coefficients and functions should match");
         }
@@ -66,8 +67,7 @@ public:
      *  Default constructor: construct a 'zero vector', i.e. an empty linear combination
      */
     LinearCombination() :
-        LinearCombination(std::vector<CoefficientScalar> {}, std::vector<T> {})
-    {}
+        LinearCombination(std::vector<CoefficientScalar> {}, std::vector<T> {}) {}
 
 
     /**
@@ -77,8 +77,7 @@ public:
      *  @param function         one single scalar function
      */
     LinearCombination(CoefficientScalar coefficient, const T& function) :
-        LinearCombination(std::vector<CoefficientScalar> {coefficient}, std::vector<T> {function})
-    {}
+        LinearCombination(std::vector<CoefficientScalar> {coefficient}, std::vector<T> {function}) {}
 
 
     /**
@@ -87,8 +86,7 @@ public:
      *  @param function         one single scalar function
      */
     LinearCombination(const T& function) :
-        LinearCombination(1.0, function)
-    {}
+        LinearCombination(1.0, function) {}
 
 
     /**
@@ -97,8 +95,8 @@ public:
      *  This constructor is added to fix errors in Eigen concerning 'Scalar(0)';
      */
     LinearCombination(int zero) :
-        LinearCombination()
-    {
+        LinearCombination() {
+
         if (zero != 0) {
             throw std::invalid_argument("LinearCombination(int): Can't convert a non-zero integer to a zero vector");
         }
@@ -219,11 +217,10 @@ public:
     }
 
 
-
     /*
      *  PUBLIC METHODS
      */
-    
+
     /**
      *  Append the given coefficients and functions to this linear combination
      *
@@ -253,15 +250,14 @@ public:
 }  // namespace GQCP
 
 
-
 /*
  *  Make GQCP::LinearCombination<T> an Eigen scalar type
  */
 
 namespace Eigen {
 
-template<typename CoefficientScalar, typename T>
-struct NumTraits<GQCP::LinearCombination<CoefficientScalar, T>> : public NumTraits<double> {  // permits to get the epsilon, dummy_precision, lowest, highest functions
+template <typename CoefficientScalar, typename T>
+struct NumTraits<GQCP::LinearCombination<CoefficientScalar, T>>: public NumTraits<double> {  // permits to get the epsilon, dummy_precision, lowest, highest functions
 
     using Real = GQCP::LinearCombination<CoefficientScalar, T>;
     using NonInteger = GQCP::LinearCombination<CoefficientScalar, T>;
@@ -281,13 +277,17 @@ struct NumTraits<GQCP::LinearCombination<CoefficientScalar, T>> : public NumTrai
 
 // Enable the scalar product of a LinearCombination<CoefficientScalar, T> with its own CoefficientScalar (both sides)
 
-template<typename CoefficientScalar, typename T>
-struct ScalarBinaryOpTraits<GQCP::LinearCombination<CoefficientScalar, T>, CoefficientScalar, Eigen::internal::scalar_product_op<GQCP::LinearCombination<CoefficientScalar, T>, CoefficientScalar>> {
+template <typename CoefficientScalar, typename T>
+struct ScalarBinaryOpTraits<GQCP::LinearCombination<CoefficientScalar, T>, CoefficientScalar,
+                            Eigen::internal::scalar_product_op<GQCP::LinearCombination<CoefficientScalar, T>, CoefficientScalar>> {
+
     using ReturnType = GQCP::LinearCombination<CoefficientScalar, T>;
 };
 
-template<typename CoefficientScalar, typename T>
-struct ScalarBinaryOpTraits<CoefficientScalar, GQCP::LinearCombination<CoefficientScalar, T>, Eigen::internal::scalar_product_op<CoefficientScalar, GQCP::LinearCombination<CoefficientScalar, T>>> {
+template <typename CoefficientScalar, typename T>
+struct ScalarBinaryOpTraits<CoefficientScalar, GQCP::LinearCombination<CoefficientScalar, T>,
+                            Eigen::internal::scalar_product_op<CoefficientScalar, GQCP::LinearCombination<CoefficientScalar, T>>> {
+
     using ReturnType = GQCP::LinearCombination<CoefficientScalar, T>;
 };
 

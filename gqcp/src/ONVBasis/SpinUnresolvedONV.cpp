@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #include "ONVBasis/SpinUnresolvedONV.hpp"
 
 #include <boost/dynamic_bitset.hpp>
@@ -33,8 +33,8 @@ namespace GQCP {
  *  @param unsigned_representation  the representation for the SpinUnresolvedONV as an unsigned integer
  */
 SpinUnresolvedONV::SpinUnresolvedONV(size_t K, size_t N, size_t unsigned_representation) :
-    SpinUnresolvedONV(K, N)
-{
+    SpinUnresolvedONV(K, N) {
+
     this->unsigned_representation = unsigned_representation;
     this->updateOccupationIndices();  // throws error if the representation and N are not compatible
 }
@@ -47,13 +47,12 @@ SpinUnresolvedONV::SpinUnresolvedONV(size_t K, size_t N, size_t unsigned_represe
  *  @param N                        the number of electrons
  */
 SpinUnresolvedONV::SpinUnresolvedONV(size_t K, size_t N) :
-    K (K),
-    N (N),
-    occupation_indices (VectorXs::Zero(N))
-{
+    K {K},
+    N {N},
+    occupation_indices {VectorXs::Zero(N)} {
+
     this->occupation_indices = VectorXs::Zero(N);
 }
-
 
 
 /*
@@ -67,7 +66,7 @@ SpinUnresolvedONV::SpinUnresolvedONV(size_t K, size_t N) :
  *  @return the updated output stream
  */
 std::ostream& operator<<(std::ostream& os, const SpinUnresolvedONV& onv) {
-    return os<< onv.asString();
+    return os << onv.asString();
 }
 
 
@@ -91,7 +90,6 @@ bool SpinUnresolvedONV::operator!=(SpinUnresolvedONV& other) const {
 }
 
 
-
 /*
  *  SETTERS
  */
@@ -105,7 +103,6 @@ void SpinUnresolvedONV::set_representation(size_t unsigned_representation) {
     this->unsigned_representation = unsigned_representation;
     this->updateOccupationIndices();
 }
-
 
 
 /*
@@ -242,7 +239,7 @@ int SpinUnresolvedONV::operatorPhaseFactor(size_t p) const {
     }
     size_t m = __builtin_popcountl(this->slice(0, p));  // count the number of set bits in the slice [0,p-1]
 
-    if ( m % 2 == 0 ) {  // even number of electrons: phase factor (+1)
+    if (m % 2 == 0) {  // even number of electrons: phase factor (+1)
         return 1;
     } else {  // odd number of electrons: phase factor (-1)
         return -1;
@@ -383,7 +380,7 @@ bool SpinUnresolvedONV::createAll(const std::vector<size_t>& indices) {
     }
 }
 
-    
+
 /**
  *  @param indices      the indices of the orbitals that should be annihilated (the first index is annihilated first)
  *  @param sign     the current sign of the operator string
@@ -420,18 +417,18 @@ size_t SpinUnresolvedONV::countNumberOfDifferences(const SpinUnresolvedONV& othe
  *
  *  @return the indices of the orbitals (from right to left) that are occupied in this ONV, but unoccupied in the other
  */
-std::vector<size_t> SpinUnresolvedONV::findDifferentOccupations(const SpinUnresolvedONV &other) const {
+std::vector<size_t> SpinUnresolvedONV::findDifferentOccupations(const SpinUnresolvedONV& other) const {
 
     size_t differences = this->unsigned_representation ^ other.unsigned_representation;
     size_t occupied_differences = differences & this->unsigned_representation;  // this holds all indices occupied in this, but unoccupied in other
 
     size_t number_of_occupied_differences = __builtin_popcountl(occupied_differences);
-    std::vector<size_t> positions (number_of_occupied_differences);
+    std::vector<size_t> positions {number_of_occupied_differences};
 
 
     // Find the positions of the set bits in occupied_differences
     for (size_t counter = 0; counter < number_of_occupied_differences; counter++) {  // counts the number of occupied differences we have already encountered
-        size_t position = __builtin_ctzl(occupied_differences);  // count trailing zeros
+        size_t position = __builtin_ctzl(occupied_differences);                      // count trailing zeros
         positions[counter] = position;
 
         occupied_differences ^= occupied_differences & -occupied_differences;  // annihilate the least significant set bit
@@ -450,12 +447,12 @@ std::vector<size_t> SpinUnresolvedONV::findMatchingOccupations(const SpinUnresol
 
     size_t matches = this->unsigned_representation & other.unsigned_representation;
     size_t number_of_occupied_matches = __builtin_popcountl(matches);
-    std::vector<size_t> positions (number_of_occupied_matches);
+    std::vector<size_t> positions {number_of_occupied_matches};
 
 
     // Find the positions of the set bits in occupied_differences
     for (size_t counter = 0; counter < number_of_occupied_matches; counter++) {  // counts the number of occupied differences we have already encountered
-        size_t position = __builtin_ctzl(matches);  // count trailing zeros
+        size_t position = __builtin_ctzl(matches);                               // count trailing zeros
         positions[counter] = position;
 
         matches ^= matches & -matches;  // annihilate the least significant set bit
@@ -469,7 +466,7 @@ std::vector<size_t> SpinUnresolvedONV::findMatchingOccupations(const SpinUnresol
  *  @return a string representation of the ONV
  */
 std::string SpinUnresolvedONV::asString() const {
-    boost::dynamic_bitset<> transfer_set (this->K, this->unsigned_representation);
+    boost::dynamic_bitset<> transfer_set {this->K, this->unsigned_representation};
     std::string buffer;
     boost::to_string(transfer_set, buffer);
     return buffer;

@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #include "Molecule/Nucleus.hpp"
 
 #include "Molecule/elements.hpp"
@@ -37,8 +37,8 @@ namespace GQCP {
  *  @param z        the z-position of the nucleus in bohr
  */
 Nucleus::Nucleus(const size_t Z, const double x, const double y, const double z) :
-    Z (Z)
-{
+    Z {Z} {
+
     this->R.setZero();
     this->R << x, y, z;
 }
@@ -49,17 +49,15 @@ Nucleus::Nucleus(const size_t Z, const double x, const double y, const double z)
  *  @param position     the position of the nucleus in bohr
  */
 Nucleus::Nucleus(const size_t Z, const Vector<double, 3>& position) :
-    Nucleus(Z, position.x(), position.y(), position.z())
-{}
+    Nucleus(Z, position.x(), position.y(), position.z()) {}
 
 
 /**
  *  Default constructor, creating a 'ghost' nucleus (i.e. Bq) in the origin
  */
 Nucleus::Nucleus() :
-    Nucleus(0,  0.0, 0.0, 0.0)  // Z = 0
+    Nucleus(0, 0.0, 0.0, 0.0)  // Z = 0
 {}
-
 
 
 /*
@@ -80,7 +78,6 @@ std::ostream& operator<<(std::ostream& os, const Nucleus& nucleus) {
 }
 
 
-
 /*
  *  STATIC PUBLIC METHODS
  */
@@ -90,8 +87,7 @@ std::ostream& operator<<(std::ostream& os, const Nucleus& nucleus) {
  */
 std::function<bool(const Nucleus&, const Nucleus&)> Nucleus::sortComparer(const double tolerance) {
 
-    const auto sort_comparer_lambda = [tolerance] (const Nucleus& lhs, const Nucleus& rhs) {
-
+    const auto sort_comparer_lambda = [tolerance](const Nucleus& lhs, const Nucleus& rhs) {
         if (std::abs(lhs.position().x() - rhs.position().x()) > tolerance) {  // the difference is meaningful
             return (lhs.position().x() < rhs.position().x());
         } else {  // the x-coordinates are considered equal
@@ -106,7 +102,7 @@ std::function<bool(const Nucleus&, const Nucleus&)> Nucleus::sortComparer(const 
                     return false;
                 }
             }  // else y
-        }  // else x
+        }      // else x
     };
 
     return sort_comparer_lambda;
@@ -118,12 +114,11 @@ std::function<bool(const Nucleus&, const Nucleus&)> Nucleus::sortComparer(const 
  */
 std::function<bool(const Nucleus&, const Nucleus&)> Nucleus::equalityComparer(const double tolerance) {
 
-    const auto equality_comparer_lambda = [tolerance] (const Nucleus& lhs, const Nucleus& rhs) {
-
+    const auto equality_comparer_lambda = [tolerance](const Nucleus& lhs, const Nucleus& rhs) {
         return (lhs.charge() == rhs.charge()) &&
-           (std::abs(lhs.position().x() - rhs.position().x()) < tolerance) &&
-           (std::abs(lhs.position().y() - rhs.position().y()) < tolerance) &&
-           (std::abs(lhs.position().z() - rhs.position().z()) < tolerance);
+               (std::abs(lhs.position().x() - rhs.position().x()) < tolerance) &&
+               (std::abs(lhs.position().y() - rhs.position().y()) < tolerance) &&
+               (std::abs(lhs.position().z() - rhs.position().z()) < tolerance);
     };
 
     return equality_comparer_lambda;

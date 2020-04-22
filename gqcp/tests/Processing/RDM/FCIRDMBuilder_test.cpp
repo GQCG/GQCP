@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #define BOOST_TEST_MODULE "FCI_RDM_test"
 
 #include <boost/test/unit_test.hpp>
@@ -31,7 +31,7 @@
  *  Check if the trace of the spin-resolved 1-DMs yields the appropriate number of electrons.
  *  The system of interested is H2O//STO-3G, with 7 spatial orbitals and a Fock space dimension of 441.
  */
-BOOST_AUTO_TEST_CASE ( density_matrices_traces ) {
+BOOST_AUTO_TEST_CASE(density_matrices_traces) {
 
     // Set up the molecular Hamiltonian in a Löwdin-orthonormalized spinor basis.
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE ( density_matrices_traces ) {
     const size_t N_beta = 5;
     const auto N = molecule.numberOfElectrons();
 
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (molecule, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
     const auto K = spinor_basis.numberOfSpatialOrbitals();
     spinor_basis.lowdinOrthonormalize();
 
@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE ( density_matrices_traces ) {
 
 
     // Do a dense FCI calculation.
-    const GQCP::SpinResolvedONVBasis onv_basis (K, N_alpha, N_beta);
+    const GQCP::SpinResolvedONVBasis onv_basis {K, N_alpha, N_beta};
 
     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
     auto solver = GQCP::EigenproblemSolver::Dense();
@@ -67,24 +67,22 @@ BOOST_AUTO_TEST_CASE ( density_matrices_traces ) {
     // Calculate the 2-DMs, calculate the traces and check if they match the expected result.
     const auto two_rdms = spin_resolved_rdm_builder.calculate2RDMs(linear_expansion.coefficients());
 
-    BOOST_CHECK(std::abs(two_rdms.two_rdm_aaaa.trace() - N_alpha*(N_alpha-1)) < 1.0e-12);
-    BOOST_CHECK(std::abs(two_rdms.two_rdm_aabb.trace() - N_alpha*N_beta) < 1.0e-12);
-    BOOST_CHECK(std::abs(two_rdms.two_rdm_bbaa.trace() - N_beta*N_alpha) < 1.0e-12);
-    BOOST_CHECK(std::abs(two_rdms.two_rdm_bbbb.trace() - N_beta*(N_beta-1)) < 1.0e-12);
+    BOOST_CHECK(std::abs(two_rdms.two_rdm_aaaa.trace() - N_alpha * (N_alpha - 1)) < 1.0e-12);
+    BOOST_CHECK(std::abs(two_rdms.two_rdm_aabb.trace() - N_alpha * N_beta) < 1.0e-12);
+    BOOST_CHECK(std::abs(two_rdms.two_rdm_bbaa.trace() - N_beta * N_alpha) < 1.0e-12);
+    BOOST_CHECK(std::abs(two_rdms.two_rdm_bbbb.trace() - N_beta * (N_beta - 1)) < 1.0e-12);
 
 
-
-    GQCP::OneRDM<double> D_from_reduction = (1.0/(N-1)) * two_rdms.two_rdm.reduce();
+    GQCP::OneRDM<double> D_from_reduction = (1.0 / (N - 1)) * two_rdms.two_rdm.reduce();
     BOOST_CHECK(one_rdms.one_rdm.isApprox(D_from_reduction, 1.0e-12));
 }
-
 
 
 /**
  *  Check if the 1-DM can be calculated from a reduction of the 2-DM.
  *  The system of interested is H2O//STO-3G, with 7 spatial orbitals and a Fock space dimension of 441.
  */
-BOOST_AUTO_TEST_CASE ( One_DM_from_2_DM ) {
+BOOST_AUTO_TEST_CASE(One_DM_from_2_DM) {
 
     // Set up the molecular Hamiltonian in a Löwdin-orthonormalized spinor basis.
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
@@ -92,7 +90,7 @@ BOOST_AUTO_TEST_CASE ( One_DM_from_2_DM ) {
     const size_t N_beta = 5;
     const auto N = molecule.numberOfElectrons();
 
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (molecule, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
     const auto K = spinor_basis.numberOfSpatialOrbitals();
     spinor_basis.lowdinOrthonormalize();
 
@@ -100,7 +98,7 @@ BOOST_AUTO_TEST_CASE ( One_DM_from_2_DM ) {
 
 
     // Do a dense FCI calculation.
-    const GQCP::SpinResolvedONVBasis onv_basis (K, N_alpha, N_beta);
+    const GQCP::SpinResolvedONVBasis onv_basis {K, N_alpha, N_beta};
 
     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
     auto solver = GQCP::EigenproblemSolver::Dense();
@@ -114,7 +112,7 @@ BOOST_AUTO_TEST_CASE ( One_DM_from_2_DM ) {
     const auto d = spin_resolved_rdm_builder.calculate2RDMs(linear_expansion.coefficients()).two_rdm;
 
 
-    const auto D_from_reduction = (1.0/(N-1)) * d.reduce();
+    const auto D_from_reduction = (1.0 / (N - 1)) * d.reduce();
     BOOST_CHECK(D_from_reduction.isApprox(D, 1.0e-12));
 }
 
@@ -123,14 +121,14 @@ BOOST_AUTO_TEST_CASE ( One_DM_from_2_DM ) {
  *  Check if the energy is equal to the expectation value of the Hamiltonian.
  *  The system of interested is H2O//STO-3G, with 7 spatial orbitals and a Fock space dimension of 441.
  */
-BOOST_AUTO_TEST_CASE ( energy_expectation_value_Hamiltonian ) {
+BOOST_AUTO_TEST_CASE(energy_expectation_value_Hamiltonian) {
 
     // Set up the molecular Hamiltonian in a Löwdin-orthonormalized spinor basis.
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
     const size_t N_alpha = 5;
     const size_t N_beta = 5;
 
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (molecule, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
     const auto K = spinor_basis.numberOfSpatialOrbitals();
     spinor_basis.lowdinOrthonormalize();
 
@@ -138,7 +136,7 @@ BOOST_AUTO_TEST_CASE ( energy_expectation_value_Hamiltonian ) {
 
 
     // Do a dense FCI calculation.
-    const GQCP::SpinResolvedONVBasis onv_basis (K, N_alpha, N_beta);
+    const GQCP::SpinResolvedONVBasis onv_basis {K, N_alpha, N_beta};
 
     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
     auto solver = GQCP::EigenproblemSolver::Dense();
@@ -162,14 +160,14 @@ BOOST_AUTO_TEST_CASE ( energy_expectation_value_Hamiltonian ) {
  *  Check if the 1- and 2-DMs for a full spin-resolved ONV basis are equal to the 'selected' case.
  *  The system of interested is H2O//STO-3G, with 7 spatial orbitals and a Fock space dimension of 441. However, we're choosing a different number of alpha and beta electrons. (N_alpha = 4, N_beta = 6)
  */
-BOOST_AUTO_TEST_CASE ( specialized_vs_selected_DMs ) {
+BOOST_AUTO_TEST_CASE(specialized_vs_selected_DMs) {
 
     // Set up the molecular Hamiltonian in a Löwdin-orthonormalized spinor basis.
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
     const size_t N_alpha = 4;
     const size_t N_beta = 6;
 
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (molecule, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
     const auto K = spinor_basis.numberOfSpatialOrbitals();
     spinor_basis.lowdinOrthonormalize();
 
@@ -177,7 +175,7 @@ BOOST_AUTO_TEST_CASE ( specialized_vs_selected_DMs ) {
 
 
     // Do a dense FCI calculation.
-    const GQCP::SpinResolvedONVBasis onv_basis (K, N_alpha, N_beta);
+    const GQCP::SpinResolvedONVBasis onv_basis {K, N_alpha, N_beta};
 
     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
     auto solver = GQCP::EigenproblemSolver::Dense();

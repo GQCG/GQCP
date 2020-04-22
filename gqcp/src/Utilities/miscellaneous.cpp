@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #include "Utilities/miscellaneous.hpp"
 
 #include <boost/math/special_functions.hpp>
@@ -108,9 +108,9 @@ size_t vectorIndex(size_t i, size_t j, size_t cols, size_t skipped) {
  */
 size_t triangularRoot(const size_t x) {
 
-    size_t n = static_cast<size_t>( (std::sqrt(8*x+1) - 1)/2 );
+    size_t n = static_cast<size_t>((std::sqrt(8 * x + 1) - 1) / 2);
 
-    if (n * (n+1) != 2*x) {
+    if (n * (n + 1) != 2 * x) {
         throw std::invalid_argument("triangularRoot(const size_t): The given number does not have a triangular root.");
     }
 
@@ -140,7 +140,7 @@ std::ifstream validateAndOpen(const std::string& filename, const std::string& ex
     std::string::size_type idx = filename.rfind('.');
 
     if (idx != std::string::npos) {
-        filename_extension = filename.substr(idx+1);
+        filename_extension = filename.substr(idx + 1);
     } else {
         throw std::invalid_argument("validateAndOpen(const std::string&, const std::string&): I did not find an extension in your given file name.");
     }
@@ -150,7 +150,7 @@ std::ifstream validateAndOpen(const std::string& filename, const std::string& ex
     }
 
     // If the filename isn't properly converted into an input file stream, we assume the user supplied a wrong file
-    std::ifstream input_file_stream (filename);
+    std::ifstream input_file_stream {filename};
     if (!input_file_stream.good()) {
         throw std::invalid_argument("validateAndOpen(const std::string&, const std::string&): The provided file name is illegible. Maybe you specified a wrong path?");
     } else {

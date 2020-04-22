@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #pragma once
 
 
@@ -37,16 +37,15 @@ public:
 
 private:
     size_t row_start;  // the 0-based row index of the full matrix at which the block starts, i.e. the start of the range of values that the first argument of operator() should accept
-    size_t row_end;  // the 0-based row index of the full matrix at which the block ends (not included), i.e. the end (not included) of the range of values that the first argument of operator() should accept
+    size_t row_end;    // the 0-based row index of the full matrix at which the block ends (not included), i.e. the end (not included) of the range of values that the first argument of operator() should accept
 
     size_t col_start;  // the 0-based column index of the full matrix at which the block starts, i.e. the start of the range of values that the second argument of operator() should accept
-    size_t col_end;  // the 0-based column index of the full matrix at which the block ends (not included), i.e. the end (not included) of the range of values that the second argument of operator() should accept
+    size_t col_end;    // the 0-based column index of the full matrix at which the block ends (not included), i.e. the end (not included) of the range of values that the second argument of operator() should accept
 
     MatrixX<Scalar> M;  // the matrix representation of the block
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -61,12 +60,11 @@ public:
      *  @param M                the block matrix
      */
     BlockMatrix(const size_t row_start, const size_t row_end, const size_t col_start, const size_t col_end, const MatrixX<Scalar>& M) :
-        row_start (row_start),
-        row_end (row_end),
-        col_start (col_start),
-        col_end (col_end),
-        M (M)
-    {
+        row_start {row_start},
+        row_end {row_end},
+        col_start {col_start},
+        col_end {col_end},
+        M {M} {
         if (row_end - row_start != M.rows()) {
             throw std::invalid_argument("BlockMatrix(const size_t, const size_t, const size_t, const size_t, const MatrixX<Scalar>&): The given matrix does not have a compatible number of rows.");
         }
@@ -85,17 +83,15 @@ public:
      *  @param col_end          the 0-based column index of the full matrix at which the block ends (not included), i.e. the end (not included) of the range of values that the second argument of operator() should accept
      */
     BlockMatrix(const size_t row_start, const size_t row_end, const size_t col_start, const size_t col_end) :
-        BlockMatrix(row_start, row_end, col_start, col_end, MatrixX<Scalar>::Zero(row_end-row_start, col_end-col_start))
-    {}
+        BlockMatrix(row_start, row_end, col_start, col_end,
+                    MatrixX<Scalar>::Zero(row_end - row_start, col_end - col_start)) {}
 
 
     /**
      *  Default constructor is needed: sets everything to zero(s)
      */
-    BlockMatrix() : 
-        BlockMatrix(0, 0, 0, 0)
-    {}
-
+    BlockMatrix() :
+        BlockMatrix(0, 0, 0, 0) {}
 
 
     /*
@@ -131,11 +127,10 @@ public:
     }
 
 
-
     /*
      *  PUBLIC METHODS
      */
-    
+
     /**
      *  @return this as a (column-major) vector
      */

@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #include "QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.hpp"
 
 #include "Basis/transform.hpp"
@@ -32,10 +32,8 @@ namespace GQCP {
 *  @param maximum_number_of_iterations     the maximum number of iterations that may be used to achieve convergence
 */
 BaseOrbitalOptimizer::BaseOrbitalOptimizer(const double convergence_threshold, const size_t maximum_number_of_iterations) :
-    convergence_threshold (convergence_threshold),
-    maximum_number_of_iterations (maximum_number_of_iterations)
-{}
-
+    convergence_threshold {convergence_threshold},
+    maximum_number_of_iterations {maximum_number_of_iterations} {}
 
 
 /*
@@ -62,7 +60,7 @@ void BaseOrbitalOptimizer::optimize(RSpinorBasis<double, GTOShell>& spinor_basis
 
         this->number_of_iterations++;
         if (this->number_of_iterations > this->maximum_number_of_iterations) {
-            throw std::runtime_error("BaseOrbitalOptimizer::optimize(SQHamiltonian<double>&): The orbital optimization procedure did not converge in the given amount of iterations.");
+            throw std::runtime_error("BaseOrbitalOptimizer::optimize(SQHamiltonian<double>&): The orbital optimization procedure did not converge in the given number of iterations.");
         }
     }
 

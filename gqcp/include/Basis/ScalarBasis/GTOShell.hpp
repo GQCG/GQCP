@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #pragma once
 
 
@@ -30,12 +30,12 @@ namespace GQCP {
  */
 class GTOShell {
 private:
-    bool pure;  // true if spherical, false if Cartesian
+    bool pure;                                          // true if spherical, false if Cartesian
     bool embedded_normalization_factors_of_primitives;  // if the normalization factors of the primitives are embedded in the contraction coefficients
-    bool normalized;  // if the total normalization factor is already embedded in the contraction coefficients
-    size_t l;  // the angular momentum of the shell
-    Nucleus nucleus;  // nucleus on which the shell is centered
-    std::vector<double> gaussian_exponents;  // Gaussian exponents (i.e. for the exponential), shared for every contraction
+    bool normalized;                                    // if the total normalization factor is already embedded in the contraction coefficients
+    size_t l;                                           // the angular momentum of the shell
+    Nucleus nucleus;                                    // nucleus on which the shell is centered
+    std::vector<double> gaussian_exponents;             // Gaussian exponents (i.e. for the exponential), shared for every contraction
     std::vector<double> contraction_coefficients;
 
 
@@ -54,7 +54,7 @@ public:
      *  @param are_embedded_normalization_factors_of_primitives     if the normalization factors of the primitives are embedded in the contraction coefficients
      *  @param is_normalized                                        if the total normalization factor is already embedded in the contraction coefficients
      */
-    GTOShell(size_t l, const Nucleus& nucleus, const std::vector<double>& gaussian_exponents, const std::vector<double>& contraction_coefficients, bool pure=true, bool are_embedded_normalization_factors_of_primitives=false, bool is_normalized=false);
+    GTOShell(size_t l, const Nucleus& nucleus, const std::vector<double>& gaussian_exponents, const std::vector<double>& contraction_coefficients, bool pure = true, bool are_embedded_normalization_factors_of_primitives = false, bool is_normalized = false);
 
 
     // GETTERS

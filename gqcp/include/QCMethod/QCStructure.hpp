@@ -1,24 +1,25 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #pragma once
 
 
 #include <stdexcept>
+
 #include <vector>
 
 
@@ -35,24 +36,22 @@ public:
 
 
 private:
-    std::vector<double> energies;  // the ground (and possibly excited) state electronic energies
+    std::vector<double> energies;           // the ground (and possibly excited) state electronic energies
     std::vector<QCModel> model_parameters;  // the ground (and possibly excited) state model parameters
 
 
 public:
-
     /*
      *  CONSTRUCTORS
-     */ 
+     */
 
     /**
      *  @param energies                 the ground (and possibly excited) state electronic energies
      *  @param model_parameters         the ground (and possibly excited) state model parameters
      */
     QCStructure(const std::vector<double>& energies, const std::vector<QCModel>& model_parameters) :
-        energies (energies),
-        model_parameters (model_parameters)
-    {
+        energies {energies},
+        model_parameters {model_parameters} {
         const auto n = energies.size();
 
         if (n < 1) {

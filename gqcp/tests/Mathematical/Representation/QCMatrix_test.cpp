@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #define BOOST_TEST_MODULE "QCMatrix"
 
 #include <boost/test/unit_test.hpp>
@@ -27,20 +27,20 @@
 /**
  *  Check the constructor API for QCMatrix
  */
-BOOST_AUTO_TEST_CASE ( constructor ) {
+BOOST_AUTO_TEST_CASE(constructor) {
 
     const GQCP::QCMatrix<double> M1 = GQCP::QCMatrix<double>::Zero(2, 2);
-    BOOST_CHECK_NO_THROW(GQCP::QCMatrix<double> chemical_matrix (M1));
+    BOOST_CHECK_NO_THROW(GQCP::QCMatrix<double> chemical_matrix {M1});
 
     const GQCP::MatrixX<double> M2 = GQCP::MatrixX<double>::Zero(2, 1);
-    BOOST_CHECK_THROW(GQCP::QCMatrix<double> chemical_matrix (M2), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::QCMatrix<double> chemical_matrix {M2}, std::invalid_argument);
 }
 
 
 /**
  *  Check the basis transformation formula with a trivial transformation: T being a unit matrix
  */
-BOOST_AUTO_TEST_CASE ( QCMatrix_transform_trivial ) {
+BOOST_AUTO_TEST_CASE(QCMatrix_transform_trivial) {
 
     const GQCP::QCMatrix<double> T = GQCP::QCMatrix<double>::Identity(3, 3);
 
@@ -55,12 +55,14 @@ BOOST_AUTO_TEST_CASE ( QCMatrix_transform_trivial ) {
 /**
  *  Check if we transform with a transformation matrix and its inverse, we get a zero operation
  */
-BOOST_AUTO_TEST_CASE ( QCMatrix_transform_and_inverse ) {
+BOOST_AUTO_TEST_CASE(QCMatrix_transform_and_inverse) {
 
-    GQCP::QCMatrix<double> T (3);
+    GQCP::QCMatrix<double> T {3};
+    // clang-format off
     T << 1,  0,  0,
          0, -2,  0,
          0,  0,  3;
+    // clang-format on
     const GQCP::QCMatrix<double> T_inverse = T.inverse();
 
 
@@ -76,7 +78,7 @@ BOOST_AUTO_TEST_CASE ( QCMatrix_transform_and_inverse ) {
 /**
  *  Check if we can't rotate with a unitary matrix
  */
-BOOST_AUTO_TEST_CASE ( QCMatrix_rotate_throws ) {
+BOOST_AUTO_TEST_CASE(QCMatrix_rotate_throws) {
 
     // Create a random QCMatrix
     size_t dim = 3;
@@ -97,7 +99,7 @@ BOOST_AUTO_TEST_CASE ( QCMatrix_rotate_throws ) {
 /**
  *  Check if rotating with JacobiRotationParameters is the same as with the corresponding Jacobi rotation matrix
  */
-BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_rotate_JacobiRotationParameters ) {
+BOOST_AUTO_TEST_CASE(SQOneElectronOperator_rotate_JacobiRotationParameters) {
 
     // Create a random QCMatrix
     const size_t dim = 5;
@@ -105,7 +107,7 @@ BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_rotate_JacobiRotationParameters ) {
     auto M2 = M1;
 
     // Create random Jacobi rotation parameters and the corresponding Jacobi rotation matrix
-    GQCP::JacobiRotationParameters jacobi_rotation_parameters (4, 2, 56.81);
+    GQCP::JacobiRotationParameters jacobi_rotation_parameters {4, 2, 56.81};
     const auto J = GQCP::TransformationMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
 
 
@@ -120,28 +122,34 @@ BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_rotate_JacobiRotationParameters ) {
 /**
  *  Check if a unitary transformation (i.e. a rotation) leaves the overlap matrix invariant
  */
-BOOST_AUTO_TEST_CASE ( rotate_overlap_invariant ) {
+BOOST_AUTO_TEST_CASE(rotate_overlap_invariant) {
 
     // Initialize the overlap matrix
     const size_t K = 3;
-    GQCP::QCMatrix<double> S (K);
+    GQCP::QCMatrix<double> S {K};
+    // clang-format off
     S << 1.0, 0.5, 0.0,
          0.5, 2.0, 0.0,
          0.0, 0.0, 1.0;
+    // clang-format on
 
 
     // Initialize the reference
-    GQCP::QCMatrix<double> S_rotated_ref (K);
+    GQCP::QCMatrix<double> S_rotated_ref {K};
+    // clang-format off
     S_rotated_ref <<  1.0, 0.0, -0.5,
                       0.0, 1.0,  0.0,
                      -0.5, 0.0,  2.0;
+    // clang-format on
 
 
     // Rotate the overlap matrix and check the result
-    GQCP::TransformationMatrix<double> U (K);
+    GQCP::TransformationMatrix<double> U {K};
+    // clang-format off
     U << 1.0,  0.0,  0.0,
          0.0,  0.0, -1.0,
          0.0, -1.0,  0.0;
+    // clang-format on
 
     auto S_copy = S;
     S_copy.basisRotateInPlace(U);
@@ -152,23 +160,27 @@ BOOST_AUTO_TEST_CASE ( rotate_overlap_invariant ) {
 /**
  *  Check a rotation through Jacobi rotation parameters through a manual calculation
  */
-BOOST_AUTO_TEST_CASE ( rotate_Jacobi_manual ) {
+BOOST_AUTO_TEST_CASE(rotate_Jacobi_manual) {
 
     // Initialize the test overlap matrix and rotation parameters
     const size_t K = 3;
-    GQCP::QCMatrix<double> S (K);
+    GQCP::QCMatrix<double> S {K};
+    // clang-format off
     S << 1.0, 0.5, 0.0,
          0.5, 2.0, 0.0,
          0.0, 0.0, 1.0;
+    // clang-format on
 
     const GQCP::JacobiRotationParameters jacobi_rotation_parameters {1, 0, boost::math::constants::half_pi<double>()};  // interchanges two orbitals
 
 
     // Initialize the reference, rotate the overlap matrix and check the result
-    GQCP::QCMatrix<double> S_rotated_ref (K);  // manual calculation
+    GQCP::QCMatrix<double> S_rotated_ref {K};  // manual calculation
+    // clang-format off
     S_rotated_ref <<  2.0, -0.5, 0.0,
                      -0.5,  1.0, 0.0,
                       0.0,  0.0, 1.0;
+    // clang-format on
 
 
     S.basisRotateInPlace(jacobi_rotation_parameters);

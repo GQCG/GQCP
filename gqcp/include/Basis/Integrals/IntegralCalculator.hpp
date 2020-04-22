@@ -1,28 +1,28 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #pragma once
 
 
-#include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
-#include "Basis/Integrals/Interfaces/LibcintInterfacer.hpp"
-#include "Basis/Integrals/IntegralEngine.hpp"
 #include "Basis/Integrals/BaseOneElectronIntegralEngine.hpp"
 #include "Basis/Integrals/BaseTwoElectronIntegralEngine.hpp"
+#include "Basis/Integrals/IntegralEngine.hpp"
+#include "Basis/Integrals/Interfaces/LibcintInterfacer.hpp"
+#include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
 #include "Basis/ScalarBasis/ShellSet.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
@@ -42,7 +42,6 @@ namespace GQCP {
  */
 class IntegralCalculator {
 public:
-
     /*
      *  PUBLIC METHODS
      */
@@ -93,7 +92,7 @@ public:
                 }
                 buffer->emplace(components, left_bf_index, right_bf_index);
             }  // right shells loop
-        }  // left shells loop
+        }      // left shells loop
 
         return components;
     }
@@ -153,10 +152,11 @@ public:
                             continue;
                         }
                         buffer->emplace(components, left_bf1_index, left_bf2_index, right_bf1_index, right_bf2_index);  // place the calculated integrals inside the full tensors
+
                     }  // sh4_index
-                }  // right_shell_index1
-            }  // left_shell_index2
-        }  // left_shell_index1
+                }      // right_shell_index1
+            }          // left_shell_index2
+        }              // left_shell_index1
 
         return components;
     }
@@ -208,7 +208,7 @@ public:
     template <typename FQOneElectronOperator>
     static QCMatrix<double> calculateLibintIntegrals(const FQOneElectronOperator& fq_one_op, const ScalarBasis<GTOShell>& scalar_basis) {
 
-        return QCMatrix<double>{IntegralCalculator::calculateLibintIntegrals(fq_one_op, scalar_basis, scalar_basis)};  // the same scalar basis appear on the left and right of the operator
+        return QCMatrix<double>(IntegralCalculator::calculateLibintIntegrals(fq_one_op, scalar_basis, scalar_basis));  // the same scalar basis appear on the left and right of the operator
     }
 
 
@@ -269,7 +269,7 @@ public:
      */
     static QCRankFourTensor<double> calculateLibintIntegrals(const CoulombRepulsionOperator& fq_two_op, const ScalarBasis<GTOShell>& scalar_basis) {
 
-        return QCRankFourTensor<double>{IntegralCalculator::calculateLibintIntegrals(fq_two_op, scalar_basis, scalar_basis)};  // the same scalar basis appear on the left and right of the operator
+        return QCRankFourTensor<double>(IntegralCalculator::calculateLibintIntegrals(fq_two_op, scalar_basis, scalar_basis));  // the same scalar basis appear on the left and right of the operator
     }
 
 
@@ -297,7 +297,6 @@ public:
         const auto integrals = IntegralCalculator::calculate(engine, left_shell_set, right_shell_set);
         return integrals[0];
     }
-
 
 
     /*

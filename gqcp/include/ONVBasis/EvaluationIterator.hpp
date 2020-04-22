@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #pragma once
 
 
@@ -39,7 +39,7 @@ public:
 
 private:
     size_t index = 0;  // current position of the iterator in the dimension of the ONV basis
-    size_t end;  // the dimension of the ONV basis
+    size_t end;        // the dimension of the ONV basis
 
     Matrix matrix;  // matrix containing the evaluations
 
@@ -50,7 +50,9 @@ private:
     /**
      * @param dimension         the dimension of the ONV basis
      */
-    EvaluationIterator(const size_t dimension) :  matrix(Matrix::Zero(dimension, dimension)), end(dimension) {}
+    EvaluationIterator(const size_t dimension) :
+        matrix {Matrix::Zero(dimension, dimension)},
+        end {dimension} {}
 
 
     /*
@@ -79,7 +81,7 @@ private:
 
     /**
      *  @return the evaluation that is stored
-     */ 
+     */
     const Matrix& evaluation() const { return this->matrix; }
 
     /**
@@ -111,29 +113,28 @@ private:
 };
 
 
-
 /**
  *  Sparse template specialization is required because insertions into an existing sparse matrix are expensive
  *  Elements should only be added to the matrix once all of them are evaluated in a vector of triplets
  */
-template<>
+template <>
 class EvaluationIterator<Eigen::SparseMatrix<double>> {
     size_t index = 0;  // current position of the iterator in the dimension of the ONV basis
-    size_t end;  // total dimension
+    size_t end;        // total dimension
 
-    Eigen::SparseMatrix<double> matrix;  // matrix containing the evaluations
+    Eigen::SparseMatrix<double> matrix;                  // matrix containing the evaluations
     std::vector<Eigen::Triplet<double>> triplet_vector;  // vector which temporarily contains the added values
 
     /*
      *  CONSTRUCTORS
      */
-    
+
     /**
      * @param dimension         the dimensions of the matrix (equal to that of the fock space)
      */
-    EvaluationIterator(const size_t dimension) : 
-        matrix(Eigen::SparseMatrix<double>(dimension, dimension)), end(dimension) 
-    {}
+    EvaluationIterator(const size_t dimension) :
+        matrix {Eigen::SparseMatrix<double>(dimension, dimension)},
+        end(dimension) {}
 
 
     /*
@@ -192,7 +193,7 @@ class EvaluationIterator<Eigen::SparseMatrix<double>> {
      *  @return the evaluation that is stored
      * 
      *  @note the matrix will not be initialized if `addToMatrix()` has not been called
-     */ 
+     */
     const Eigen::SparseMatrix<double>& evaluation() const { return this->matrix; }
 
     /**
@@ -218,7 +219,7 @@ class EvaluationIterator<Eigen::SparseMatrix<double>> {
 
     /**
      *  @return the triplet vector
-     */ 
+     */
     const std::vector<Eigen::Triplet<double>>& triplets() const { return triplet_vector; }
 
     // Friend classes
@@ -228,19 +229,18 @@ class EvaluationIterator<Eigen::SparseMatrix<double>> {
 };
 
 
-
 /**
  *  Vector template specialization is required because of matvec evaluations are stored in a vector additions
  */
-template<>
+template <>
 class EvaluationIterator<VectorX<double>> {
     size_t index = 0;  // current position of the iterator in the dimension of the ONV basis
-    size_t end;  // total dimension
+    size_t end;        // total dimension
 
-    VectorX<double> matvec;  // matvec containing the evaluations
+    VectorX<double> matvec;                     // matvec containing the evaluations
     const VectorX<double>& coefficient_vector;  // vector with which is multiplied
-    double sequential_double = 0;  // double which temporarily contains the sum of added values, it corresponds to the value in the matvec of the current index and allows a for a single write access each iteration instead of multiple
-    double nonsequential_double = 0;  // double gathered from the coefficient for non-sequential matvec additions, this corresponds to the value of the coefficient vector of the current index, it allows for a single read operation each iteration
+    double sequential_double = 0;               // double which temporarily contains the sum of added values, it corresponds to the value in the matvec of the current index and allows a for a single write access each iteration instead of multiple
+    double nonsequential_double = 0;            // double gathered from the coefficient for non-sequential matvec additions, this corresponds to the value of the coefficient vector of the current index, it allows for a single read operation each iteration
 
 
     /*
@@ -250,16 +250,14 @@ class EvaluationIterator<VectorX<double>> {
     /**
      * @param dimension         the dimensions of the matrix (equal to that of the fock space)
      */
-    EvaluationIterator(const VectorX<double>& coefficient_vector, const VectorX<double>& diagonal) : 
-        end (coefficient_vector.rows()),
-        coefficient_vector(coefficient_vector), 
-        matvec(diagonal.cwiseProduct(coefficient_vector))
-    {}
+    EvaluationIterator(const VectorX<double>& coefficient_vector, const VectorX<double>& diagonal) :
+        end {static_cast<size_t>(coefficient_vector.rows())},
+        coefficient_vector {coefficient_vector},
+        matvec {diagonal.cwiseProduct(coefficient_vector)} {}
 
-    EvaluationIterator(const VectorX<double>& coefficient_vector) : 
-        coefficient_vector(coefficient_vector), 
-        matvec(VectorX<double>::Zero(coefficient_vector.rows()))
-    {}
+    EvaluationIterator(const VectorX<double>& coefficient_vector) :
+        coefficient_vector {coefficient_vector},
+        matvec {VectorX<double>::Zero(coefficient_vector.rows())} {}
 
 
     /*
@@ -288,7 +286,7 @@ class EvaluationIterator<VectorX<double>> {
 
     /**
      *  @return the evaluation that is stored
-     */ 
+     */
     const VectorX<double>& evaluation() const { return this->matvec; }
 
     /**

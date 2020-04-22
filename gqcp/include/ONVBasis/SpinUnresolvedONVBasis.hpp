@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #pragma once
 
 
@@ -38,7 +38,6 @@ private:
 
 
 public:
-    
     /*
      *  CONSTRUCTORS
      */
@@ -103,14 +102,14 @@ public:
     /**
      *  @param onv       the spin-unresolved ONV
      *
-     *  @return the amount of ONVs (with a larger address) this spin-unresolved ONV would couple with given a one electron operator
+     *  @return the number of ONVs (with a larger address) this spin-unresolved ONV would couple with given a one electron operator
      */
     size_t countOneElectronCouplings(const SpinUnresolvedONV& onv) const override;
 
     /**
      *  @param onv       the spin-unresolved ONV
      *
-     *  @return the amount of ONVs (with a larger address) this spin-unresolved ONV would couple with given a two electron operator
+     *  @return the number of ONVs (with a larger address) this spin-unresolved ONV would couple with given a two electron operator
      */
     size_t countTwoElectronCouplings(const SpinUnresolvedONV& onv) const override;
 
@@ -275,14 +274,14 @@ public:
      *  resulting from a difference between the initial vertex weights for the encountered occupied orbitals
      *  and the corrected vertex weights accounting for previously annihilated electrons
      *
-     *  @tparam T        the amount of previously annihilated electrons
+     *  @tparam T        the number of previously annihilated electrons
      *
      *  @param address   the address which is updated
      *  @param onv       the spin-unresolved ONV for which we search the next unnocupied orbital
      *  @param q         the orbital index
      *  @param e         the electron count
      */
-    template<int T>
+    template <int T>
     void shiftUntilNextUnoccupiedOrbital(const SpinUnresolvedONV& onv, size_t& address, size_t& q, size_t& e) const {
 
         // Test whether the current orbital index is occupied
@@ -305,7 +304,7 @@ public:
      *  resulting from a difference between the initial vertex weights for the encountered occupied orbitals
      *  and the corrected vertex weights accounting for previously annihilated electrons
      *
-     *  @tparam T        the amount of previously annihilated electrons
+     *  @tparam T        the number of previously annihilated electrons
      *
      *  @param address   the address which is updated
      *  @param onv       the spin-unresolved ONV for which we search the next unnocupied orbital
@@ -313,7 +312,7 @@ public:
      *  @param e         the electron count
      *  @param sign      the sign which is flipped for each iteration
      */
-    template<int T>
+    template <int T>
     void shiftUntilNextUnoccupiedOrbital(const SpinUnresolvedONV& onv, size_t& address, size_t& q, size_t& e, int& sign) const {
 
         // Test whether the current orbital index is occupied
@@ -337,7 +336,7 @@ public:
      *  resulting from a difference between the initial vertex weights for the encountered occupied orbitals
      *  and the corrected vertex weights accounting for newly created electrons
      *
-     *  @tparam T        the amount of newly created electrons
+     *  @tparam T        the number of newly created electrons
      *
      *  @param address   the address which is updated
      *  @param onv       the spin-unresolved ONV for which we search the next unoccupied orbital
@@ -345,7 +344,7 @@ public:
      *  @param e         the electron count
      *  @param sign      the sign which is flipped for each iteration
      */
-    template<int T>
+    template <int T>
     void shiftUntilPreviousUnoccupiedOrbital(const SpinUnresolvedONV& onv, size_t& address, size_t& q, size_t& e, int& sign) const {
 
         // Test whether the current orbital index is occupied
@@ -379,8 +378,10 @@ public:
         const size_t dim = this->get_dimension();
 
         SpinUnresolvedONV onv = this->makeONV(0);  // onv with address 0
-        for ( ;!evaluation_iterator.is_finished(); evaluation_iterator.increment()) {  // I loops over all the addresses of the onv
-            for (size_t e1 = 0; e1 < N; e1++) {  // e1 (electron 1) loops over the (number of) electrons
+
+        for (; !evaluation_iterator.is_finished(); evaluation_iterator.increment()) {  // I loops over all the addresses of the onv
+            for (size_t e1 = 0; e1 < N; e1++) {                                        // e1 (electron 1) loops over the (number of) electrons
+
                 size_t p = onv.get_occupation_index(e1);  // retrieve the index of a given electron
                 // remove the weight from the initial address I, because we annihilate
                 size_t address = evaluation_iterator.index - this->get_vertex_weights(p, e1 + 1);
@@ -389,7 +390,7 @@ public:
                     evaluation_iterator.addRowwise(evaluation_iterator.index, one_op_par(p, p));
                 }
 
-                // The e2 iteration counts the amount of encountered electrons for the creation operator
+                // The e2 iteration counts the number of encountered electrons for the creation operator
                 // We only consider greater addresses than the initial one (because of symmetry)
                 // Hence we only count electron after the annihilated electron (e1)
                 size_t e2 = e1 + 1;
@@ -401,16 +402,16 @@ public:
 
                 while (q < K) {
                     size_t J = address + this->get_vertex_weights(q, e2);
-                    double value = sign_e2*one_op_par(p, q);
+                    double value = sign_e2 * one_op_par(p, q);
                     evaluation_iterator.addColumnwise(J, value);
                     evaluation_iterator.addRowwise(J, value);
 
-                    q++; // go to the next orbital
+                    q++;  // go to the next orbital
 
                     // perform a shift
                     this->shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
                 }  //  (creation)
-            } // e1 loop (annihilation)
+            }      // e1 loop (annihilation)
             // Prevent last permutation
             if (evaluation_iterator.index < dim - 1) {
                 this->setNextONV(onv);
@@ -430,7 +431,7 @@ public:
     template <typename _Matrix>
     void EvaluateOperator(const ScalarSQTwoElectronOperator<double>& two_op, EvaluationIterator<_Matrix>& evaluation_iterator, bool diagonal_values) const {
         // Calling this combined method for both the one- and two-electron operator does not affect the performance, hence we avoid writing more code by plugging a zero operator in the combined method
-        EvaluateOperator(ScalarSQOneElectronOperator<double>{this->K}, two_op, evaluation_iterator, diagonal_values);
+        EvaluateOperator(ScalarSQOneElectronOperator<double> {this->K}, two_op, evaluation_iterator, diagonal_values);
     }
 
 
@@ -457,20 +458,21 @@ public:
         const auto& k_par = k.parameters();
 
         SpinUnresolvedONV onv = this->makeONV(0);  // onv with address 0
-        for ( ;!evaluation_iterator.is_finished(); evaluation_iterator.increment()) {  // I loops over all addresses in the spin-unresolved ONV basis
+
+        for (; !evaluation_iterator.is_finished(); evaluation_iterator.increment()) {  // I loops over all addresses in the spin-unresolved ONV basis
             if (evaluation_iterator.index > 0) {
                 this->setNextONV(onv);
             }
-            int sign1 = -1;  // start with -1 because we flip at the start of the annihilation (so we start at 1, followed by:  -1, 1, ...)
+            int sign1 = -1;                      // start with -1 because we flip at the start of the annihilation (so we start at 1, followed by:  -1, 1, ...)
             for (size_t e1 = 0; e1 < N; e1++) {  // A1 (annihilation 1)
 
                 sign1 *= -1;
                 size_t p = onv.get_occupation_index(e1);  // retrieve the index of a given electron
-                size_t address = evaluation_iterator.index  - this->get_vertex_weights(p, e1 + 1);
+                size_t address = evaluation_iterator.index - this->get_vertex_weights(p, e1 + 1);
 
                 // Strictly diagonal values
                 if (diagonal_values) {
-                    evaluation_iterator.addRowwise(evaluation_iterator.index, k_par(p,p));
+                    evaluation_iterator.addRowwise(evaluation_iterator.index, k_par(p, p));
                     for (size_t q = 0; q < K; q++) {  // q loops over SOs
                         if (onv.isOccupied(q)) {
                             evaluation_iterator.addRowwise(evaluation_iterator.index, 0.5 * two_op_par(p, p, q, q));
@@ -513,10 +515,7 @@ public:
                         while (s < K) {
                             size_t J = address3 + this->get_vertex_weights(s, e4);
                             int signev = sign1 * sign2 * sign3 * sign4;
-                            double value = signev * 0.5 * (two_op_par(p, q, r, s) +
-                                                           two_op_par(r, s, p, q) -
-                                                           two_op_par(p, s, r, q) -
-                                                           two_op_par(r, q, p, s));
+                            double value = signev * 0.5 * (two_op_par(p, q, r, s) + two_op_par(r, s, p, q) - two_op_par(p, s, r, q) - two_op_par(r, q, p, s));
 
 
                             evaluation_iterator.addColumnwise(J, value);
@@ -547,7 +546,7 @@ public:
                      */
                     int sign3 = sign2;
                     for (size_t e3 = e2; e3 < N; e3++) {
-                        sign3 *= -1; // -1 cause we created electron (creation) sign of A is now the that of C *-1
+                        sign3 *= -1;  // -1 cause we created electron (creation) sign of A is now the that of C *-1
                         size_t r = onv.get_occupation_index(e3);
                         size_t address3 = address1 - this->get_vertex_weights(r, e3 + 1);
 
@@ -560,10 +559,7 @@ public:
                             size_t J = address3 + this->get_vertex_weights(s, e4);
                             int signev = sign1 * sign2 * sign3 * sign4;
 
-                            double value = signev * 0.5 * (two_op_par(p, q, r, s) +
-                                                           two_op_par(r, s, p, q) -
-                                                           two_op_par(r, q, p, s) -
-                                                           two_op_par(p, s, r, q));
+                            double value = signev * 0.5 * (two_op_par(p, q, r, s) + two_op_par(r, s, p, q) - two_op_par(r, q, p, s) - two_op_par(p, s, r, q));
 
                             evaluation_iterator.addColumnwise(J, value);
                             evaluation_iterator.addRowwise(J, value);
@@ -572,7 +568,6 @@ public:
                             this->shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign4);
 
                         }  // (creation)
-
                     }
 
                     size_t r = q;
@@ -596,17 +591,13 @@ public:
                             size_t J = address2 + this->get_vertex_weights(s, e4);
 
                             int signev = sign1 * sign2 * sign3 * sign4;
-                            double value = signev * 0.5 * (two_op_par(p, q, r, s) +
-                                                           two_op_par(r, s, p, q) -
-                                                           two_op_par(r, q, p, s) -
-                                                           two_op_par(p, s, r, q));
+                            double value = signev * 0.5 * (two_op_par(p, q, r, s) + two_op_par(r, s, p, q) - two_op_par(r, q, p, s) - two_op_par(p, s, r, q));
 
                             evaluation_iterator.addColumnwise(J, value);
                             evaluation_iterator.addRowwise(J, value);
 
                             s++;
                             this->shiftUntilNextUnoccupiedOrbital<1>(onv, address2, s, e4, sign4);
-
                         }
                     }
 
@@ -618,7 +609,7 @@ public:
                     double value_I = k_par(p, q);  // cover the one electron calculations
 
                     for (size_t s = 0; s < K; s++) {
-                        if(!onv.isOccupied(s)){
+                        if (!onv.isOccupied(s)) {
                             value_I += 0.5 * (two_op_par(p, s, s, q));
                         } else {
                             value_I += 0.5 * (two_op_par(s, s, p, q) - two_op_par(s, q, p, s) + two_op_par(p, q, s, s));

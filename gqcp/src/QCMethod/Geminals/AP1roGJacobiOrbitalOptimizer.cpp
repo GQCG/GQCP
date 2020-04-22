@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #include "QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp"
 
 #include "Mathematical/Optimization/Minimization/MinimizationEnvironment.hpp"
@@ -46,8 +46,7 @@ namespace GQCP {
  *  The initial guess for the geminal coefficients is zero
  */
 AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const size_t N_P, const size_t K, const double convergence_threshold, const size_t maximum_number_of_iterations) :
-    AP1roGJacobiOrbitalOptimizer(AP1roGGeminalCoefficients(N_P, K), convergence_threshold, maximum_number_of_iterations)
-{}
+    AP1roGJacobiOrbitalOptimizer(AP1roGGeminalCoefficients(N_P, K), convergence_threshold, maximum_number_of_iterations) {}
 
 
 /**
@@ -56,11 +55,9 @@ AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const size_t N_P, con
  *  @param maximum_number_of_iterations     the maximum number of iterations that may be used to achieve convergence
  */
 AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const AP1roGGeminalCoefficients& G, const double convergence_threshold, const size_t maximum_number_of_iterations) :
-    N_P (G.get_N_P()),
-    G (G),
-    JacobiOrbitalOptimizer(G.get_K(), convergence_threshold, maximum_number_of_iterations)
-{}
-
+    N_P {G.get_N_P()},
+    G {G},
+    JacobiOrbitalOptimizer(G.get_K(), convergence_threshold, maximum_number_of_iterations) {}
 
 
 /*
@@ -108,9 +105,9 @@ void AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(const SQHamiltoni
 
 
         for (size_t b = this->N_P; b < K; b++) {
-            this->A1 -= 0.5 * (g(b,p,b,p) - g(b,q,b,q)) * (G(p,b) - G(q,b));
-            this->B1 += 0.5 * (g(b,p,b,p) - g(b,q,b,q)) * (G(p,b) - G(q,b));
-            this->C1 += g(b,p,b,q) * (G(q,b) - G(p,b));
+            this->A1 -= 0.5 * (g(b, p, b, p) - g(b, q, b, q)) * (G(p, b) - G(q, b));
+            this->B1 += 0.5 * (g(b, p, b, p) - g(b, q, b, q)) * (G(p, b) - G(q, b));
+            this->C1 += g(b, p, b, q) * (G(q, b) - G(p, b));
         }
     }
 
@@ -125,28 +122,28 @@ void AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(const SQHamiltoni
         this->E2 = 0.0;
 
 
-        this->A2 += h(p,p) - h(q,q) + 0.375 * (g(p,p,p,p) + g(q,q,q,q)) * (1 - G(q,p)) - 0.25 * g(p,p,q,q) * (7 + G(q,p)) + 0.5 * g(p,q,p,q) * (3 + G(q,p));
-        this->B2 += h(q,q) - h(p,p) + 2 * g(p,p,q,q) + 0.5 * (g(p,p,p,p) + g(q,q,q,q)) * (G(q,p) - 1) - g(p,q,p,q) * (1 + G(q,p));
-        this->C2 += 2 * h(p,q) + (g(p,p,p,q) - g(p,q,q,q)) * (1 - G(q,p));
-        this->D2 += 0.125 * (g(p,p,p,p) + g(q,q,q,q) - 2 * (g(p,p,q,q) + 2 * g(p,q,p,q))) * (1 - G(q,p));
-        this->E2 += 0.5 * (g(p,p,p,q) - g(p,q,q,q)) * (G(q,p) - 1);
+        this->A2 += h(p, p) - h(q, q) + 0.375 * (g(p, p, p, p) + g(q, q, q, q)) * (1 - G(q, p)) - 0.25 * g(p, p, q, q) * (7 + G(q, p)) + 0.5 * g(p, q, p, q) * (3 + G(q, p));
+        this->B2 += h(q, q) - h(p, p) + 2 * g(p, p, q, q) + 0.5 * (g(p, p, p, p) + g(q, q, q, q)) * (G(q, p) - 1) - g(p, q, p, q) * (1 + G(q, p));
+        this->C2 += 2 * h(p, q) + (g(p, p, p, q) - g(p, q, q, q)) * (1 - G(q, p));
+        this->D2 += 0.125 * (g(p, p, p, p) + g(q, q, q, q) - 2 * (g(p, p, q, q) + 2 * g(p, q, p, q))) * (1 - G(q, p));
+        this->E2 += 0.5 * (g(p, p, p, q) - g(p, q, q, q)) * (G(q, p) - 1);
 
         for (size_t j = 0; j < this->N_P; j++) {
-            this->A2 += 2 * (g(j,j,p,p) - g(j,j,q,q)) - 0.5 * (g(j,p,j,p) - g(j,q,j,q)) * (2 + G(j,p));
-            this->B2 += 2 * (g(j,j,q,q) - g(j,j,p,p)) + 0.5 * (g(j,p,j,p) - g(j,q,j,q)) * (2 + G(j,p));
-            this->C2 += 4 * g(j,j,p,q) - g(j,p,j,q) * (2 + G(j,p));
+            this->A2 += 2 * (g(j, j, p, p) - g(j, j, q, q)) - 0.5 * (g(j, p, j, p) - g(j, q, j, q)) * (2 + G(j, p));
+            this->B2 += 2 * (g(j, j, q, q) - g(j, j, p, p)) + 0.5 * (g(j, p, j, p) - g(j, q, j, q)) * (2 + G(j, p));
+            this->C2 += 4 * g(j, j, p, q) - g(j, p, j, q) * (2 + G(j, p));
         }
 
         for (size_t b = this->N_P; b < K; b++) {
-            this->A2 += 0.5 * (g(b,p,b,p) - g(b,q,b,q)) * G(q,b);
-            this->B2 += 0.5 * (g(b,q,b,q) - g(b,p,b,p)) * G(q,b);
-            this->C2 += g(b,p,b,q) * G(q,b);
+            this->A2 += 0.5 * (g(b, p, b, p) - g(b, q, b, q)) * G(q, b);
+            this->B2 += 0.5 * (g(b, q, b, q) - g(b, p, b, p)) * G(q, b);
+            this->C2 += g(b, p, b, q) * G(q, b);
         }
     }
 
 
     // Virtual-virtual rotations: if p > N_P and q > N_P for computers
-    else if ((p >= this->N_P) && (q >= this->N_P )) {
+    else if ((p >= this->N_P) && (q >= this->N_P)) {
 
         this->A3 = 0.0;
         this->B3 = 0.0;
@@ -154,9 +151,9 @@ void AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(const SQHamiltoni
 
 
         for (size_t j = 0; j < this->N_P; j++) {
-            this->A3 -= 0.5 * (g(j,p,j,p) - g(j,q,j,q)) * (G(j,p) - G(j,q));
-            this->B3 += 0.5 * (g(j,p,j,p) - g(j,q,j,q)) * (G(j,p) - G(j,q));
-            this->C3 += g(j,p,j,q) * (G(j,q) - G(j,p));
+            this->A3 -= 0.5 * (g(j, p, j, p) - g(j, q, j, q)) * (G(j, p) - G(j, q));
+            this->B3 += 0.5 * (g(j, p, j, p) - g(j, q, j, q)) * (G(j, p) - G(j, q));
+            this->C3 += g(j, p, j, q) * (G(j, q) - G(j, p));
         }
     }
 
@@ -192,19 +189,19 @@ double AP1roGJacobiOrbitalOptimizer::calculateOptimalRotationAngle(const SQHamil
     else if ((p >= this->N_P) && (q < this->N_P)) {
 
         const auto& cmp = this->comparer();
-        std::priority_queue<pair_type, std::vector<pair_type>, decltype(cmp)> queue (cmp);
+        std::priority_queue<pair_type, std::vector<pair_type>, decltype(cmp)> queue(cmp);
 
         // Construct a lambda gradient function
-        VectorFunction<double> gradient_function = [this] (const VectorX<double>& x) {
-            VectorX<double> gradient_vec (1);
-            gradient_vec << (-2*this->B2 * std::sin(2*x(0)) + 2*this->C2 * std::cos(2*x(0)) - 4*this->D2 * std::sin(4*x(0)) + 4*this->E2 * std::cos(4*x(0)));
+        VectorFunction<double> gradient_function = [this](const VectorX<double>& x) {
+            VectorX<double> gradient_vec(1);
+            gradient_vec << (-2 * this->B2 * std::sin(2 * x(0)) + 2 * this->C2 * std::cos(2 * x(0)) - 4 * this->D2 * std::sin(4 * x(0)) + 4 * this->E2 * std::cos(4 * x(0)));
             return gradient_vec;
         };
 
         // Construct a lambda Hessian function
-        MatrixFunction<double> hessian_function = [this] (const VectorX<double>& x) {
-            SquareMatrix<double> hessian_matrix (1);
-            hessian_matrix << (-4*this->B2 * std::cos(2*x(0)) - 2*this->C2 * std::sin(2*x(0)) - 16*this->D2 * std::cos(4*x(0)) - 16*this->E2 * std::sin(4*x(0)));
+        MatrixFunction<double> hessian_function = [this](const VectorX<double>& x) {
+            SquareMatrix<double> hessian_matrix(1);
+            hessian_matrix << (-4 * this->B2 * std::cos(2 * x(0)) - 2 * this->C2 * std::sin(2 * x(0)) - 16 * this->D2 * std::cos(4 * x(0)) - 16 * this->E2 * std::sin(4 * x(0)));
             return hessian_matrix;
         };
 
@@ -214,10 +211,10 @@ double AP1roGJacobiOrbitalOptimizer::calculateOptimalRotationAngle(const SQHamil
         const double quarter_pi = half_pi / 2;
         const std::vector<double> theta_values {0.0, half_pi, quarter_pi};
         for (const auto& theta : theta_values) {
-            VectorX<double> theta_vec (1);  // we can't implicitly convert a float to an VectorX<double> so we make it ourselves
+            VectorX<double> theta_vec(1);  // we can't implicitly convert a float to an VectorX<double> so we make it ourselves
             theta_vec << theta;
 
-            MinimizationEnvironment<double> minimization_environment (theta_vec, gradient_function, hessian_function);
+            MinimizationEnvironment<double> minimization_environment(theta_vec, gradient_function, hessian_function);
             auto minimizer = GQCP::Minimizer<double>::Newton();
             minimizer.perform(minimization_environment);
             const auto& theta_min = minimization_environment.variables.back()(0);  // get inside the VectorX<double>
@@ -226,21 +223,21 @@ double AP1roGJacobiOrbitalOptimizer::calculateOptimalRotationAngle(const SQHamil
             const double E_change = this->calculateScalarFunctionChange(sq_hamiltonian, jacobi_rot_par);
 
             queue.emplace(jacobi_rot_par, E_change);  // construct a pair_type
-        }  // for theta
+        }                                             // for theta
 
         const double optimal_theta = queue.top().first.get_angle();
 
-        VectorX<double> theta_min_vec (1);  // we can't implicitly convert a float to an VectorX<double> so we make it ourselves
-        theta_min_vec << optimal_theta;;
+        VectorX<double> theta_min_vec {1};  // we can't implicitly convert a float to an VectorX<double> so we make it ourselves
+        theta_min_vec << optimal_theta;
 
-        assert(hessian_function(theta_min_vec)(0,0) > 0);  // the Hessian of the minimal value of the three must be positive, otherwise we're not in a minimum
+        assert(hessian_function(theta_min_vec)(0, 0) > 0);  // the Hessian of the minimal value of the three must be positive, otherwise we're not in a minimum
 
         return optimal_theta;
     }
 
 
     // Virtual-virtual rotations: if p > N_P and q > N_P for computers
-    else if ((p >= this->N_P) && (q >= this->N_P )) {
+    else if ((p >= this->N_P) && (q >= this->N_P)) {
         const double denominator = std::sqrt(std::pow(this->B3, 2) + std::pow(this->C3, 2));
 
         // If the denominator is almost zero, the Jacobi rotation is redundant: the corresponding angle of a 'non'-rotation is 0.0

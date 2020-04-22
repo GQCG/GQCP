@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #include "Processing/Properties/properties.hpp"
 
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
@@ -60,9 +60,8 @@ Matrix<double, 3, 3> calculateElectricPolarizability(const Matrix<double, Dynami
  *  Calculate the Dyson 'amplitudes' (the coefficients of a Dyson orbital) between two wave function expressed in the same spinor basis 
  * 
  *  @param linear_expansion1        a wave function in a spin-unresolved ONV basis  
- *  @param linear_expansion2        a wave function in a spin-unresolved ONV basis containing one fewer electron and the same amount of orbitals that is expressed in the same basis
+ *  @param linear_expansion2        a wave function in a spin-unresolved ONV basis containing one fewer electron and the same number of orbitals that is expressed in the same basis
  *
- * 
  *  @return a vector with the Dyson orbital amplitudes
  */
 VectorX<double> calculateDysonOrbitalCoefficients(const LinearExpansion<SpinResolvedONVBasis>& linear_expansion1, const LinearExpansion<SpinResolvedONVBasis>& linear_expansion2) {
@@ -75,19 +74,19 @@ VectorX<double> calculateDysonOrbitalCoefficients(const LinearExpansion<SpinReso
         if ((onv_basis1.get_N_alpha() - onv_basis2.get_N_alpha() != 1) && (onv_basis1.get_N_beta() - onv_basis2.get_N_beta() != 0)) {
             throw std::runtime_error("properties::calculateDysonOrbital(LinearExpansion, LinearExpansion): linear_expansion2 is not expressed in a spin-resolved ONV basis with one fewer electron than linear_expansion1");
         }
-    } 
+    }
 
     // Initialize environment variables
 
     // The 'passive' ONV basis is the ONV basis that is equal for both wave functions
     // The 'target' ONV basis has an electron difference of one
-    // We initialize the variables for the case in which they differ in one beta electron, if this isn't the case, we will update it later 
+    // We initialize the variables for the case in which they differ in one beta electron, if this isn't the case, we will update it later
     auto passive_onv_basis1 = onv_basis1.get_fock_space_alpha();
     auto passive_onv_basis2 = onv_basis2.get_fock_space_alpha();
     auto target_onv_basis1 = onv_basis1.get_fock_space_beta();
     auto target_onv_basis2 = onv_basis2.get_fock_space_beta();
 
-    // Mod variables relate to the modification of the address jump in coefficient index according to the ordering of the spin ONVs 
+    // Mod variables relate to the modification of the address jump in coefficient index according to the ordering of the spin ONVs
     size_t passive_mod1 = target_onv_basis1.get_dimension();
     size_t passive_mod2 = target_onv_basis2.get_dimension();
     size_t target_mod = 1;
@@ -98,7 +97,7 @@ VectorX<double> calculateDysonOrbitalCoefficients(const LinearExpansion<SpinReso
         passive_onv_basis2 = target_onv_basis2;
         target_onv_basis1 = onv_basis1.get_fock_space_alpha();
         target_onv_basis2 = onv_basis2.get_fock_space_alpha();
-        
+
         passive_mod1 = 1;
         passive_mod2 = 1;
         target_mod = passive_onv_basis1.get_dimension();
@@ -116,11 +115,11 @@ VectorX<double> calculateDysonOrbitalCoefficients(const LinearExpansion<SpinReso
     SpinUnresolvedONV onv = target_onv_basis1.makeONV(0);
 
     for (size_t It = 0; It < target_onv_basis1.get_dimension(); It++) {  // It loops over addresses of the target ONV basis
-        int sign = -1;  // total phase factor of all the annihilations that have occurred
-        for (size_t e = 0; e < target_onv_basis1.get_N(); e++) {  // loop over electrons in the ONV
-        
+        int sign = -1;                                                   // total phase factor of all the annihilations that have occurred
+        for (size_t e = 0; e < target_onv_basis1.get_N(); e++) {         // loop over electrons in the ONV
+
             // Annihilate on the corresponding orbital, to make sure we can calculate overlaps in the (N-1)-'target' ONV basis
-            sign *= -1; 
+            sign *= -1;
             size_t p = onv.get_occupation_index(e);
             onv.annihilate(p);
 
@@ -130,6 +129,7 @@ VectorX<double> calculateDysonOrbitalCoefficients(const LinearExpansion<SpinReso
 
             double coeff = 0;
             for (size_t Ip = 0; Ip < passive_onv_basis1.get_dimension(); Ip++) {  // Ip loops over the addresses of the passive ONV basis
+
                 coeff += sign * ci_coeffs1(It * target_mod + Ip * passive_mod1) * ci_coeffs2(address * target_mod + Ip * passive_mod2);  // access the indices of the coefficient vectors
             }
             dyson_coeffs(p) += coeff;
@@ -140,10 +140,9 @@ VectorX<double> calculateDysonOrbitalCoefficients(const LinearExpansion<SpinReso
             target_onv_basis1.setNextONV(onv);
         }
     }  // target address (It) loop
-    
+
     return dyson_coeffs;
 }
-
 
 
 }  // namespace GQCP

@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #include "Processing/RDM/FrozenCoreRDMBuilder.hpp"
 
 #include "Utilities/linalg.hpp"
@@ -32,10 +32,8 @@ namespace GQCP {
  */
 FrozenCoreRDMBuilder::FrozenCoreRDMBuilder(std::shared_ptr<BaseRDMBuilder> rdm_builder, size_t X) :
     BaseRDMBuilder(),
-    active_rdm_builder (std::move(rdm_builder)),
-    X (X)
-{}
-
+    active_rdm_builder {std::move(rdm_builder)},
+    X {X} {}
 
 
 /*
@@ -58,8 +56,8 @@ OneRDMs<double> FrozenCoreRDMBuilder::calculate1RDMs(const VectorX<double>& x) c
 
     // Set the values for the frozen orbital
     for (size_t i = 0; i < this->X; i++) {
-        D_aa(i,i) = 1;
-        D_bb(i,i) = 1;
+        D_aa(i, i) = 1;
+        D_bb(i, i) = 1;
     }
 
     OneRDMs<double> sub_1rdms = this->active_rdm_builder->calculate1RDMs(x);
@@ -81,16 +79,16 @@ TwoRDMs<double> FrozenCoreRDMBuilder::calculate2RDMs(const VectorX<double>& x) c
 
     auto K = this->get_fock_space()->get_K();
 
-    TwoRDM<double> d_aaaa (K);
+    TwoRDM<double> d_aaaa {K};
     d_aaaa.setZero();
 
-    TwoRDM<double> d_aabb (K);
+    TwoRDM<double> d_aabb {K};
     d_aabb.setZero();
 
-    TwoRDM<double> d_bbaa (K);
+    TwoRDM<double> d_bbaa {K};
     d_bbaa.setZero();
 
-    TwoRDM<double> d_bbbb (K);
+    TwoRDM<double> d_bbbb {K};
     d_bbbb.setZero();
 
 
@@ -105,44 +103,44 @@ TwoRDMs<double> FrozenCoreRDMBuilder::calculate2RDMs(const VectorX<double>& x) c
         //      frozen orbital indices (p) must always have one annihilation and one creation index (always occupied)
         //      values are dictated by the 'active' orbital indices and correspond to that of the active 1RDMs
         //      Hence we start adding the 1RDMs starting from index 'X' the number frozen orbitals
-        d_aaaa.addBlock<0,1>(D_aa, this->X, this->X, p, p);
-        d_aaaa.addBlock<2,3>(D_aa, p, p, this->X, this->X);
-        d_aaaa.addBlock<2,1>(-D_aa, p, this->X, this->X, p);
-        d_aaaa.addBlock<3,0>(-D_aa, this->X, p, p, this->X);
+        d_aaaa.addBlock<0, 1>(D_aa, this->X, this->X, p, p);
+        d_aaaa.addBlock<2, 3>(D_aa, p, p, this->X, this->X);
+        d_aaaa.addBlock<2, 1>(-D_aa, p, this->X, this->X, p);
+        d_aaaa.addBlock<3, 0>(-D_aa, this->X, p, p, this->X);
 
-        d_bbbb.addBlock<0,1>(D_bb, this->X, this->X, p, p);
-        d_bbbb.addBlock<2,3>(D_bb, p, p, this->X, this->X);
-        d_bbbb.addBlock<2,1>(-D_bb, p, this->X, this->X, p);
-        d_bbbb.addBlock<3,0>(-D_bb, this->X, p, p, this->X);
+        d_bbbb.addBlock<0, 1>(D_bb, this->X, this->X, p, p);
+        d_bbbb.addBlock<2, 3>(D_bb, p, p, this->X, this->X);
+        d_bbbb.addBlock<2, 1>(-D_bb, p, this->X, this->X, p);
+        d_bbbb.addBlock<3, 0>(-D_bb, this->X, p, p, this->X);
 
-        d_aabb.addBlock<2,3>(D_bb, p, p, this->X, this->X);
-        d_aabb.addBlock<0,1>(D_aa, this->X, this->X, p, p);
+        d_aabb.addBlock<2, 3>(D_bb, p, p, this->X, this->X);
+        d_aabb.addBlock<0, 1>(D_aa, this->X, this->X, p, p);
 
-        d_bbaa.addBlock<2,3>(D_aa, p, p, this->X, this->X);
-        d_bbaa.addBlock<0,1>(D_bb, this->X, this->X, p, p);
+        d_bbaa.addBlock<2, 3>(D_aa, p, p, this->X, this->X);
+        d_bbaa.addBlock<0, 1>(D_bb, this->X, this->X, p, p);
 
 
         // Set the values for the frozen orbital
-        d_bbaa(p,p,p,p) = 1;
-        d_aabb(p,p,p,p) = 1;
+        d_bbaa(p, p, p, p) = 1;
+        d_aabb(p, p, p, p) = 1;
 
-        for (size_t q = p +1; q < this->X; q++) {  // iterate over frozen orbitals
+        for (size_t q = p + 1; q < this->X; q++) {  // iterate over frozen orbitals
 
-            d_aaaa(p,p,q,q) = 1;
-            d_aaaa(q,q,p,p) = 1;
-            d_aaaa(p,q,q,p) = -1;
-            d_aaaa(q,p,p,q) = -1;
+            d_aaaa(p, p, q, q) = 1;
+            d_aaaa(q, q, p, p) = 1;
+            d_aaaa(p, q, q, p) = -1;
+            d_aaaa(q, p, p, q) = -1;
 
-            d_bbbb(p,p,q,q) = 1;
-            d_bbbb(q,q,p,p) = 1;
-            d_bbbb(p,q,q,p) = -1;
-            d_bbbb(q,p,p,q) = -1;
+            d_bbbb(p, p, q, q) = 1;
+            d_bbbb(q, q, p, p) = 1;
+            d_bbbb(p, q, q, p) = -1;
+            d_bbbb(q, p, p, q) = -1;
 
-            d_aabb(p,p,q,q) = 1;
-            d_bbaa(p,p,q,q) = 1;
+            d_aabb(p, p, q, q) = 1;
+            d_bbaa(p, p, q, q) = 1;
 
-            d_aabb(q,q,p,p) = 1;
-            d_bbaa(q,q,p,p) = 1;
+            d_aabb(q, q, p, p) = 1;
+            d_bbaa(q, q, p, p) = 1;
         }
     }
 
@@ -169,8 +167,8 @@ TwoRDMs<double> FrozenCoreRDMBuilder::calculate2RDMs(const VectorX<double>& x) c
  *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
  */
 double FrozenCoreRDMBuilder::calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const VectorX<double>& x) const {
-    throw std::runtime_error ("FrozenCoreRDMBuilder::calculateElement(std::vector<size_t>, std::vector<size_t>, VectorX<double>): calculateElement is not implemented for FrozenCoreCI RDMs");
+    throw std::runtime_error("FrozenCoreRDMBuilder::calculateElement(std::vector<size_t>, std::vector<size_t>, VectorX<double>): calculateElement is not implemented for FrozenCoreCI RDMs");
 };
 
 
-}  // namespace GQCG
+}  // namespace GQCP

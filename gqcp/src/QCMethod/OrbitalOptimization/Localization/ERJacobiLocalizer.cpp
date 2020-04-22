@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #include "QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.hpp"
 
 #include <cmath>
@@ -38,9 +38,9 @@ void ERJacobiLocalizer::calculateJacobiCoefficients(const SQHamiltonian<double>&
 
     const auto& g = sq_hamiltonian.twoElectron().parameters();  // two-electron integrals
 
-    this->A = 0.25 * (2*g(i,i,j,j) + 4*g(i,j,i,j) - g(i,i,i,i) - g(j,j,j,j));
+    this->A = 0.25 * (2 * g(i, i, j, j) + 4 * g(i, j, i, j) - g(i, i, i, i) - g(j, j, j, j));
     this->B = -this->A;
-    this->C = g(i,j,j,j) - g(i,i,i,j);
+    this->C = g(i, j, j, j) - g(i, i, i, j);
 }
 
 
@@ -71,9 +71,8 @@ double ERJacobiLocalizer::calculateOptimalRotationAngle(const SQHamiltonian<doub
  */
 double ERJacobiLocalizer::calculateScalarFunctionChange(const SQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rot_par) const {
 
-    return - (this->A + std::sqrt(std::pow(this->B, 2) + std::pow(this->C, 2)));  // formulate as minimization problem
+    return -(this->A + std::sqrt(std::pow(this->B, 2) + std::pow(this->C, 2)));  // formulate as minimization problem
 }
-
 
 
 }  // namespace GQCP

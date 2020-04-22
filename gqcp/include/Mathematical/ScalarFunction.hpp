@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 
 /*
  *  This file contains the source code for both ScalarFunctionProduct and ScalarFunction
@@ -37,7 +37,6 @@ template <typename _Valued, typename _Scalar, int _Cols>
 class ScalarFunction;
 
 
-
 /*
  *  ScalarFunctionProduct
  */
@@ -49,7 +48,8 @@ class ScalarFunction;
  *  @tparam T2      the right-hand side scalar function type
  */
 template <typename T1, typename T2 = T1>
-    class ScalarFunctionProduct : public ScalarFunction<product_t<typename T1::Valued, typename T2::Valued>, typename T1::Scalar, T1::Cols> {
+class ScalarFunctionProduct:
+    public ScalarFunction<product_t<typename T1::Valued, typename T2::Valued>, typename T1::Scalar, T1::Cols> {
 
     static_assert(std::is_base_of<ScalarFunction<typename T1::Valued, typename T1::Scalar, T1::Cols>, T1>::value, "ScalarFunctionProduct: T1 must inherit from ScalarFunction");
     static_assert(std::is_base_of<ScalarFunction<typename T2::Valued, typename T2::Scalar, T2::Cols>, T2>::value, "ScalarFunctionProduct: T2 must inherit from ScalarFunction");
@@ -81,9 +81,8 @@ public:
      *  @param rhs      the right-hand side of the product
      */
     ScalarFunctionProduct(const T1& lhs, const T2& rhs) :
-        lhs (lhs),
-        rhs (rhs)
-    {}
+        lhs {lhs},
+        rhs {rhs} {}
 
 
     /*
@@ -99,8 +98,6 @@ public:
         return this->lhs(x) * this->rhs(x);
     }
 };
-
-
 
 
 /*
@@ -134,7 +131,7 @@ public:
     /*
      *  OPERATORS
      */
-    
+
     /**
      *  @param x        the vector/point at which the scalar function is to be evaluated
      *

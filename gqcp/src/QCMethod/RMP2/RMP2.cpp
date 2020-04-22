@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #include "QCMethod/RMP2/RMP2.hpp"
 
 
@@ -52,10 +52,9 @@ double calculateRMP2EnergyCorrection(const SQHamiltonian<double>& sq_hamiltonian
                     double epsilon_i = rhf_parameters.orbitalEnergy(i);
                     double epsilon_j = rhf_parameters.orbitalEnergy(j);
 
-                    E -= g(a,i,b,j) * (2 * g(i,a,j,b) - g(i,b,j,a)) / (epsilon_a + epsilon_b - epsilon_i - epsilon_j);
+                    E -= g(a, i, b, j) * (2 * g(i, a, j, b) - g(i, b, j, a)) / (epsilon_a + epsilon_b - epsilon_i - epsilon_j);
                 }
             }  // end of summation over virtual orbitals
-
         }
     }  // end of summation over occupied orbitals
 

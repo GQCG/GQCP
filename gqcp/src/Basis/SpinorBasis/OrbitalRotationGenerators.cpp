@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #include "Basis/SpinorBasis/OrbitalRotationGenerators.hpp"
 
 #include <unsupported/Eigen/MatrixFunctions>
@@ -31,18 +31,15 @@ namespace GQCP {
  *  @param  kappa_vector        the orbital rotation generators represented as a vector that corresponds to the strict upper/lower triangle of the kappa matrix
  */
 OrbitalRotationGenerators::OrbitalRotationGenerators(const VectorX<double>& kappa_vector) :
-    kappa_vector (kappa_vector),
-    number_of_spatial_orbitals (strictTriangularRoot(kappa_vector.size()))
-{}
+    kappa_vector {kappa_vector},
+    number_of_spatial_orbitals {strictTriangularRoot(kappa_vector.size())} {}
 
 
 /**
  *  @param  kappa_vector        the orbital rotation generators represented as the full antisymmetric matrix kappa
  */
 OrbitalRotationGenerators::OrbitalRotationGenerators(const SquareMatrix<double>& kappa_matrix) :
-    OrbitalRotationGenerators(kappa_matrix.pairWiseStrictReduce())
-{}
-
+    OrbitalRotationGenerators(kappa_matrix.pairWiseStrictReduce()) {}
 
 
 /*
@@ -64,7 +61,6 @@ OrbitalRotationGenerators OrbitalRotationGenerators::FromOccOcc(const OrbitalRot
     kappa_full_matrix.topLeftCorner(o_o_generators.numberOfSpatialOrbitals(), o_o_generators.numberOfSpatialOrbitals()) = o_o_generators.asMatrix();
     return OrbitalRotationGenerators(kappa_full_matrix);
 }
-
 
 
 /*

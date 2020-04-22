@@ -1,25 +1,25 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #include "Molecule/NuclearFramework.hpp"
 
 #include "Molecule/elements.hpp"
-#include "Utilities/units.hpp"
 #include "Utilities/miscellaneous.hpp"
+#include "Utilities/units.hpp"
 
 #include <boost/math/constants/constants.hpp>
 
@@ -37,8 +37,8 @@ namespace GQCP {
  *  @param nuclei           the nuclei of the nuclear framework
  */
 NuclearFramework::NuclearFramework(const std::vector<Nucleus>& nuclei) :
-    nuclei (nuclei)
-{
+    nuclei {nuclei} {
+
     // Check if there are no duplicate nuclei
     std::vector<Nucleus> nuclei_copy = this->nuclei;
 
@@ -51,7 +51,6 @@ NuclearFramework::NuclearFramework(const std::vector<Nucleus>& nuclei) :
         throw std::invalid_argument("NuclearFramework::NuclearFramework(std::vector<Nucleus>): There can't be two nuclei on the same position.");
     }
 }
-
 
 
 /*
@@ -118,12 +117,12 @@ NuclearFramework NuclearFramework::H2Chain(const size_t n, const double a, const
 
     for (size_t i = 0; i < n; i++) {
 
-        position(axis) = coordinate;  // put a value on index 0, 1, or 2
+        position(axis) = coordinate;        // put a value on index 0, 1, or 2
         h_chain.emplace_back(1, position);  // the first H-atom
 
         coordinate += a;  // add internuclear distance (we're within a H2-molecule)
 
-        position(axis) = coordinate;  // put a value on index 0, 1, or 2
+        position(axis) = coordinate;        // put a value on index 0, 1, or 2
         h_chain.emplace_back(1, position);  // the second H-atom
 
         coordinate += b;  // proceed to the next H2-molecule
@@ -144,7 +143,7 @@ NuclearFramework NuclearFramework::HRingFromDistance(const size_t n, const doubl
     // The circumscribed radius given the distance between neighbouring vertices is given by:
     //      R = s / [ 2 * sin(pi/n) ]
 
-    const double radius = distance / ( 2 * std::sin(boost::math::constants::pi<double>() / n) );
+    const double radius = distance / (2 * std::sin(boost::math::constants::pi<double>() / n));
     return HRingFromRadius(n, radius);
 }
 
@@ -175,7 +174,7 @@ NuclearFramework NuclearFramework::HRingFromRadius(const size_t n, const double 
         const double x = radius * std::cos(angle);
         const double y = radius * std::sin(angle);
 
-        nuclei.emplace_back(1,  x, y, 0);  // hydrogen in the x,y-plane
+        nuclei.emplace_back(1, x, y, 0);  // hydrogen in the x,y-plane
     }
 
     return NuclearFramework(nuclei);
@@ -214,7 +213,7 @@ NuclearFramework NuclearFramework::ReadXYZ(const std::string& xyz_filename) {
         std::string symbol;
         double x_angstrom, y_angstrom, z_angstrom;
 
-        std::istringstream iss (line);
+        std::istringstream iss {line};
         iss >> symbol >> x_angstrom >> y_angstrom >> z_angstrom;
 
         // Convert the (x,y,z)-coordinates that are in Angstrom to Bohr
@@ -231,7 +230,6 @@ NuclearFramework NuclearFramework::ReadXYZ(const std::string& xyz_filename) {
         return NuclearFramework(nuclei);
     }
 }
-
 
 
 /*
@@ -252,7 +250,6 @@ std::ostream& operator<<(std::ostream& os, const NuclearFramework& nuclear_frame
 
     return os;
 }
-
 
 
 /*

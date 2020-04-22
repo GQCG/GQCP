@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #pragma once
 
 
@@ -40,7 +40,6 @@ private:
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -49,8 +48,7 @@ public:
      *  @param H            the Hubbard hopping matrix
      */
     HubbardHamiltonian(const HoppingMatrix<Scalar>& H) :
-        H (H)
-    {}
+        H {H} {}
 
 
     /*
@@ -72,13 +70,13 @@ public:
         for (size_t i = 0; i < K; i++) {
             for (size_t j = i; j < K; j++) {
                 if (i != j) {
-                    h_par(i,j) = this->H(i,j);
-                    h_par(j,i) = this->H(j,i);
+                    h_par(i, j) = this->H(i, j);
+                    h_par(j, i) = this->H(j, i);
                 }
             }
         }
 
-        return ScalarSQOneElectronOperator<double>{h_par};
+        return ScalarSQOneElectronOperator<double> {h_par};
     }
 
 
@@ -104,19 +102,19 @@ public:
 
         const auto K = this->numberOfLatticeSites();
 
-        QCRankFourTensor<double> g_par (K);
+        QCRankFourTensor<double> g_par(K);
         g_par.setZero();
 
         // The two-electron on-site repulsion is found on the diagonal of the hopping matrix.
         for (size_t i = 0; i < K; i++) {
             for (size_t j = i; j < K; j++) {
                 if (i == j) {
-                    g_par(i,i,i,i) = H(i,i);
+                    g_par(i, i, i, i) = H(i, i);
                 }
             }
         }
 
-        return ScalarSQTwoElectronOperator<double>{g_par};
+        return ScalarSQTwoElectronOperator<double> {g_par};
     }
 };
 

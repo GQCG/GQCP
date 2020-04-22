@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #pragma once
 
 
@@ -50,7 +50,6 @@ private:
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -60,9 +59,8 @@ public:
      *  @param number_of_states                 the number of states that searched for (including the ground state)
      */
     CI(const ONVBasis& onv_basis, const size_t number_of_states = 1) :
-        onv_basis (onv_basis),
-        number_of_states (number_of_states)
-    {}
+        onv_basis {onv_basis},
+        number_of_states {number_of_states} {}
 
 
     /*
@@ -103,10 +101,9 @@ public:
 
         // Wrap all the requested number of states into a QCStructure.
         // Since we have already created a list of LinearExpansions, we only have to create a list of the corresponding energies.
-        return QCStructure<LinearExpansion<ONVBasis>>{{energies}, {linear_expansions}};
+        return QCStructure<LinearExpansion<ONVBasis>>(energies, linear_expansions);
     }
 };
-
 
 
 }  // namespace QCMethod

@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #include "Processing/Properties/vAP1roGElectricalResponseSolver.hpp"
 
 #include "Mathematical/Optimization/LinearEquation/LinearEquationEnvironment.hpp"
@@ -32,8 +32,7 @@ namespace GQCP {
  *  @param vap1rog          the optimal vAP1roG parameters
  */
 vAP1roGElectricalResponseSolver::vAP1roGElectricalResponseSolver(const QCModel::vAP1roG& vap1rog) :
-    vap1rog (vap1rog)
-{}
+    vap1rog {vap1rog} {}
 
 
 /*
@@ -73,10 +72,10 @@ Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateParameterRe
         const auto mu_m = dipole_op[m].parameters();
 
         // Calculate the m-th component of the parameter response force F_p.
-        BlockMatrix<double> F_p_m (0, N_P, N_P, K);
+        BlockMatrix<double> F_p_m {0, N_P, N_P, K};
         for (size_t i = 0; i < N_P; i++) {
             for (size_t a = N_P; a < K; a++) {
-                F_p_m(i,a) = 2 * (mu_m(i,i) - mu_m(a,a)) * G(i,a);
+                F_p_m(i, a) = 2 * (mu_m(i, i) - mu_m(a, a)) * G(i, a);
             }
         }
 
@@ -128,10 +127,10 @@ Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateExplicitMul
         const auto mu_m = dipole_op[m].parameters();
 
         // Calculate the m-th component.
-        BlockMatrix<double> A_lambda_m (0, N_P, N_P, K);
+        BlockMatrix<double> A_lambda_m(0, N_P, N_P, K);
         for (size_t i = 0; i < N_P; i++) {
             for (size_t a = N_P; a < K; a++) {
-                A_lambda_m(i,a) = 2 * lambda(i,a) * (mu_m(i,i) - mu_m(a,a));
+                A_lambda_m(i, a) = 2 * lambda(i, a) * (mu_m(i, i) - mu_m(a, a));
             }
         }
 
@@ -162,8 +161,8 @@ BlockRankFourTensor<double> vAP1roGElectricalResponseSolver::calculateImplicitMu
     const auto& g = sq_hamiltonian.twoElectron().parameters();
 
 
-    BlockRankFourTensor<double> B_lambda (0, N_P, N_P, K,
-                                          0, N_P, N_P, K);
+    BlockRankFourTensor<double> B_lambda {0, N_P, N_P, K,
+                                          0, N_P, N_P, K};
 
     for (size_t i = 0; i < N_P; i++) {
         for (size_t a = N_P; a < K; a++) {
@@ -171,21 +170,21 @@ BlockRankFourTensor<double> vAP1roGElectricalResponseSolver::calculateImplicitMu
                 for (size_t b = N_P; b < K; b++) {
                     double value {0.0};
 
-                    value += lambda(i,b) * g(j,a,j,a) + lambda(j,a) * g(i,b,i,b);
+                    value += lambda(i, b) * g(j, a, j, a) + lambda(j, a) * g(i, b, i, b);
 
                     if (i == j) {
-                        value -= 2 * (lambda(i,b) * g(i,a,i,a) + lambda(i,a) * g(i,b,i,b));
+                        value -= 2 * (lambda(i, b) * g(i, a, i, a) + lambda(i, a) * g(i, b, i, b));
                     }
 
                     if (a == b) {
-                        value -= 2*(lambda(j,a) * g(i,a,i,a) + lambda(i,a) * g(j,a,j,a));
+                        value -= 2 * (lambda(j, a) * g(i, a, i, a) + lambda(i, a) * g(j, a, j, a));
                     }
 
                     if ((i == j) && (a == b)) {
-                        value += 4 * lambda(i,a) * g(i,a,i,a);
+                        value += 4 * lambda(i, a) * g(i, a, i, a);
                     }
 
-                    B_lambda(i,a,j,b) = value;
+                    B_lambda(i, a, j, b) = value;
                 }
             }
         }
