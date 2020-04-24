@@ -67,8 +67,35 @@ size_t SeniorityZeroONVBasis::calculateDimension(const size_t K, const size_t N_
  */
 VectorX<double> SeniorityZeroONVBasis::evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>& one_op) const {
 
-    const SpinResolvedSelectedONVBasis selected_onv_basis {*this};
-    return selected_onv_basis.evaluateOperatorDiagonal(one_op);
+    // Check if the argument is compatible.
+    const auto K = one_op.dimension();  // number of spatial orbitals
+
+    if (K != this->numberOfSpatialOrbitals()) {
+        throw std::invalid_argument("SeniorityZeroONVBasis::evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>&): The number of spatial orbitals for the ONV basis and one-electron operator are incompatible.");
+    }
+
+    // Prepare some variables to be used in the algorithm.
+    const auto N_P = this->numberOfElectronPairs();
+    const auto dim = this->dimension();
+
+    const auto& f = one_op.parameters();
+
+    VectorX<double> diagonal = VectorX<double>::Zero(dim);
+
+
+    // Iterate over every proxy doubly-occupied ONV. Since we are actually using spin-unresolved ONVs, we should multiply contributions by 2.
+    this->forEach([&diagonal, &f](const SpinUnresolvedONV& onv, const size_t I) {
+        double value = 0;  // to be added to the diagonal
+
+        // Loop over occupied orbital index and add the contribution due to the spinor that it occupies.
+        onv.forEach([&value, &f](const size_t p) {
+            value += 2 * f(p, p);  // *2 because of seniority-zero
+        });
+
+        diagonal(I) += value;
+    });
+
+    return diagonal;
 }
 
 
@@ -85,6 +112,28 @@ VectorX<double> SeniorityZeroONVBasis::evaluateOperatorMatrixVectorProduct(const
 
     const SpinResolvedSelectedONVBasis selected_onv_basis {*this};
     return selected_onv_basis.evaluateOperatorMatrixVectorProduct(one_op, x, diagonal);
+}
+
+
+/**
+ *  Iterate over every (proxy) spin-resolved ONV in this seniority-zero ONV basis and apply the given callback.
+ * 
+ *  @param callback             a function to be called on every step during the iteration overall the ONVs. The arguments of the callback are the ONV and its address in this ONV basis.
+ */
+void SeniorityZeroONVBasis::forEach(const std::function<void(const SpinUnresolvedONV&, size_t)>& callback) const {
+
+    // Create the first doubly-occupied ONV. Since in DOCI, alpha == beta, we can use the proxy ONV basis to treat them as one.
+    const auto proxy_onv_basis = this->proxy();
+    SpinUnresolvedONV onv = proxy_onv_basis.makeONV(0);  // ONV with address 0
+
+    for (size_t I = 0; I < dim; I++) {  // I loops over addresses of spin strings
+
+        callback(onv, I);
+
+        if (I < dim - 1) {  // prevent the last permutation from occurring
+            proxy_onv_basis.setNextONV(onv);
+        }
+    }  // address (I) loop
 }
 
 
