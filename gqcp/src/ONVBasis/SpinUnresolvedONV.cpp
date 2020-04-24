@@ -110,144 +110,6 @@ void SpinUnresolvedONV::set_representation(size_t unsigned_representation) {
  */
 
 /**
- *  Extracts the positions of the set bits from the this->unsigned_representation and places them in the this->occupation_indices
- */
-void SpinUnresolvedONV::updateOccupationIndices() {
-    size_t l = this->unsigned_representation;
-    int representation_electron = 0;
-    while (l != 0) {
-        this->occupation_indices(representation_electron) = __builtin_ctzl(l);  // retrieves occupation index
-        representation_electron++;
-        l ^= (l & -l);  // flip the least significant bit
-    }
-    if (representation_electron != this->N) {
-        throw std::invalid_argument("SpinUnresolvedONV::updateOccupationIndices(): The current representation and electron count are not compatible");
-    }
-}
-
-
-/**
- *  @param p    the orbital index starting from 0, counted from right to left
- *
- *  @return if the p-th spatial orbital is occupied
- */
-bool SpinUnresolvedONV::isOccupied(size_t p) const {
-
-    if (p > this->K - 1) {
-        throw std::invalid_argument("SpinUnresolvedONV::isOccupied(size_t): The index is out of the bitset bounds");
-    }
-
-    size_t operator_string = 1U << p;
-    return this->unsigned_representation & operator_string;
-}
-
-
-/**
- *  @param indices      the orbital indices (starting from 0)
- *
- *  @return if all given indices are occupied
- */
-bool SpinUnresolvedONV::areOccupied(const std::vector<size_t>& indices) const {
-
-    for (const auto& index : indices) {
-        if (!this->isOccupied(index)) {
-            return false;
-        }
-    }
-
-    // Only if all indices have been tested to be occupied, we can return true
-    return true;
-}
-
-
-/**
- *  @param p    the orbital index starting from 0, counted from right to left
- *
- *  @return if the p-th spatial orbital is not occupied
- */
-bool SpinUnresolvedONV::isUnoccupied(size_t p) const {
-    return !this->isOccupied(p);
-}
-
-
-/**
- *  @param indices      the orbital indices (starting from 0)
- *
- *  @return if all the given indices are unoccupied
- */
-bool SpinUnresolvedONV::areUnoccupied(const std::vector<size_t>& indices) const {
-
-    for (const auto& index : indices) {
-        if (this->isOccupied(index)) {
-            return false;
-        }
-    }
-
-    // Only if all indices have been tested to be unoccupied, we can return true
-    return true;
-}
-
-
-/**
- *  @param index_start      the starting index (included), read from right to left
- *  @param index_end        the ending index (not included), read from right to left
- *
- *  @return the representation of a slice (i.e. a subset) of the spin string (read from right to left) between index_start (included) and index_end (not included)
- *
- *      Example:
- *          "010011".slice(1, 4) => "01[001]1" -> "001"
- */
-size_t SpinUnresolvedONV::slice(size_t index_start, size_t index_end) const {
-
-    // First, do some checks
-    if (index_end <= index_start) {
-        throw std::invalid_argument("SpinUnresolvedONV::slice(size_t, size_t): index_end should be larger than index_start.");
-    }
-
-    if (index_end > this->K + 1) {
-        throw std::invalid_argument("SpinUnresolvedONV::slice(size_t, size_t): The last slicing index index_end cannot be greater than the number of spatial orbitals K.");
-    }
-
-    // The union of these conditions also include the case that index_start > this->K
-
-
-    // Shift bits to the right
-    size_t u = this->unsigned_representation >> index_start;
-
-
-    // Create the correct mask
-    size_t mask_length = index_end - index_start;
-    size_t mask = ((1U) << mask_length) - 1;
-
-
-    // Use the mask
-    return u & mask;
-}
-
-
-/**
- *  @param p        the orbital index starting from 0, counted from right to left
- *
- *  @return the phase factor (+1 or -1) that arises by applying an annihilation or creation operator on orbital p
- *
- *  Let's say that there are m electrons in the orbitals up to p (not included). If m is even, the phase factor is (+1) and if m is odd, the phase factor is (-1), since electrons are fermions.
- */
-int SpinUnresolvedONV::operatorPhaseFactor(size_t p) const {
-
-    if (p == 0) {  // we can't give this to this->slice(0, 0)
-        return 1;
-    }
-    size_t m = __builtin_popcountl(this->slice(0, p));  // count the number of set bits in the slice [0,p-1]
-
-    if (m % 2 == 0) {  // even number of electrons: phase factor (+1)
-        return 1;
-    } else {  // odd number of electrons: phase factor (-1)
-        return -1;
-    }
-}
-
-
-/**
  *  @param p    the orbital index starting from 0, counted from right to left
  *
  *  @return if we can apply the annihilation operator (i.e. 1->0) for the p-th spatial orbital. Subsequently perform an in-place annihilation on the orbital p
@@ -283,6 +145,42 @@ bool SpinUnresolvedONV::annihilateAll(const std::vector<size_t>& indices) {
     } else {
         return false;
     }
+}
+
+
+/**
+ *  @param indices      the orbital indices (starting from 0)
+ *
+ *  @return if all given indices are occupied
+ */
+bool SpinUnresolvedONV::areOccupied(const std::vector<size_t>& indices) const {
+
+    for (const auto& index : indices) {
+        if (!this->isOccupied(index)) {
+            return false;
+        }
+    }
+
+    // Only if all indices have been tested to be occupied, we can return true
+    return true;
+}
+
+
+/**
+ *  @param indices      the orbital indices (starting from 0)
+ *
+ *  @return if all the given indices are unoccupied
+ */
+bool SpinUnresolvedONV::areUnoccupied(const std::vector<size_t>& indices) const {
+
+    for (const auto& index : indices) {
+        if (this->isOccupied(index)) {
+            return false;
+        }
+    }
+
+    // Only if all indices have been tested to be unoccupied, we can return true
+    return true;
 }
 
 
@@ -323,6 +221,27 @@ bool SpinUnresolvedONV::annihilateAll(const std::vector<size_t>& indices, int& s
     } else {
         return false;
     }
+}
+
+
+/**
+ *  @return a string representation of the ONV
+ */
+std::string SpinUnresolvedONV::asString() const {
+    boost::dynamic_bitset<> transfer_set {this->K, this->unsigned_representation};
+    std::string buffer;
+    boost::to_string(transfer_set, buffer);
+    return buffer;
+}
+
+
+/**
+ *  @param other        the other ONV
+ *
+ *  @return the number of different occupations between this ONV and the other, i.e. two times the number of electron excitations
+ */
+size_t SpinUnresolvedONV::countNumberOfDifferences(const SpinUnresolvedONV& other) const {
+    return __builtin_popcountl(this->unsigned_representation ^ other.unsigned_representation);
 }
 
 
@@ -405,16 +324,6 @@ bool SpinUnresolvedONV::createAll(const std::vector<size_t>& indices, int& sign)
 /**
  *  @param other        the other ONV
  *
- *  @return the number of different occupations between this ONV and the other, i.e. two times the number of electron excitations
- */
-size_t SpinUnresolvedONV::countNumberOfDifferences(const SpinUnresolvedONV& other) const {
-    return __builtin_popcountl(this->unsigned_representation ^ other.unsigned_representation);
-}
-
-
-/**
- *  @param other        the other ONV
- *
  *  @return the indices of the orbitals (from right to left) that are occupied in this ONV, but unoccupied in the other
  */
 std::vector<size_t> SpinUnresolvedONV::findDifferentOccupations(const SpinUnresolvedONV& other) const {
@@ -463,13 +372,119 @@ std::vector<size_t> SpinUnresolvedONV::findMatchingOccupations(const SpinUnresol
 
 
 /**
- *  @return a string representation of the ONV
+ *  @param p    the orbital index starting from 0, counted from right to left
+ *
+ *  @return if the p-th spatial orbital is occupied
  */
-std::string SpinUnresolvedONV::asString() const {
-    boost::dynamic_bitset<> transfer_set {this->K, this->unsigned_representation};
-    std::string buffer;
-    boost::to_string(transfer_set, buffer);
-    return buffer;
+bool SpinUnresolvedONV::isOccupied(size_t p) const {
+
+    if (p > this->K - 1) {
+        throw std::invalid_argument("SpinUnresolvedONV::isOccupied(size_t): The index is out of the bitset bounds");
+    }
+
+    size_t operator_string = 1U << p;
+    return this->unsigned_representation & operator_string;
+}
+
+
+/**
+ *  Iterate over every occupied spinor index in this ONV and apply the given callback function.
+ * 
+ *  @param callback         the function that should be called in every iteration step over all occupied spinor indices. The argument of this callback function is the index of the occupied spinor.
+ */
+void SpinUnresolvedONV::forEach(const std::function<void(const size_t)>& callback) const {
+
+    // Loop over every electron in this ONV and retrieve the index of the spinor that it occupies.
+    for (size_t e = 0; e < this->numberOfElectrons(); e++) {
+        const size_t p = this->occupationIndexOf(e);
+        callback(p);
+    }  // electron index loop
+}
+
+
+/**
+ *  @param p    the orbital index starting from 0, counted from right to left
+ *
+ *  @return if the p-th spatial orbital is not occupied
+ */
+bool SpinUnresolvedONV::isUnoccupied(size_t p) const {
+    return !this->isOccupied(p);
+}
+
+
+/**
+ *  @param p        the orbital index starting from 0, counted from right to left
+ *
+ *  @return the phase factor (+1 or -1) that arises by applying an annihilation or creation operator on orbital p
+ *
+ *  Let's say that there are m electrons in the orbitals up to p (not included). If m is even, the phase factor is (+1) and if m is odd, the phase factor is (-1), since electrons are fermions.
+ */
+int SpinUnresolvedONV::operatorPhaseFactor(size_t p) const {
+
+    if (p == 0) {  // we can't give this to this->slice(0, 0)
+        return 1;
+    }
+    size_t m = __builtin_popcountl(this->slice(0, p));  // count the number of set bits in the slice [0,p-1]
+
+    if (m % 2 == 0) {  // even number of electrons: phase factor (+1)
+        return 1;
+    } else {  // odd number of electrons: phase factor (-1)
+        return -1;
+    }
+}
+
+
+/**
+ *  @param index_start      the starting index (included), read from right to left
+ *  @param index_end        the ending index (not included), read from right to left
+ *
+ *  @return the representation of a slice (i.e. a subset) of the spin string (read from right to left) between index_start (included) and index_end (not included)
+ *
+ *      Example:
+ *          "010011".slice(1, 4) => "01[001]1" -> "001"
+ */
+size_t SpinUnresolvedONV::slice(size_t index_start, size_t index_end) const {
+
+    // First, do some checks
+    if (index_end <= index_start) {
+        throw std::invalid_argument("SpinUnresolvedONV::slice(size_t, size_t): index_end should be larger than index_start.");
+    }
+
+    if (index_end > this->K + 1) {
+        throw std::invalid_argument("SpinUnresolvedONV::slice(size_t, size_t): The last slicing index index_end cannot be greater than the number of spatial orbitals K.");
+    }
+
+    // The union of these conditions also include the case that index_start > this->K
+
+
+    // Shift bits to the right
+    size_t u = this->unsigned_representation >> index_start;
+
+
+    // Create the correct mask
+    size_t mask_length = index_end - index_start;
+    size_t mask = ((1U) << mask_length) - 1;
+
+
+    // Use the mask
+    return u & mask;
+}
+
+
+/**
+ *  Extracts the positions of the set bits from the this->unsigned_representation and places them in the this->occupation_indices
+ */
+void SpinUnresolvedONV::updateOccupationIndices() {
+    size_t l = this->unsigned_representation;
+    int representation_electron = 0;
+    while (l != 0) {
+        this->occupation_indices(representation_electron) = __builtin_ctzl(l);  // retrieves occupation index
+        representation_electron++;
+        l ^= (l & -l);  // flip the least significant bit
+    }
+    if (representation_electron != this->N) {
+        throw std::invalid_argument("SpinUnresolvedONV::updateOccupationIndices(): The current representation and electron count are not compatible");
+    }
 }
 
 
