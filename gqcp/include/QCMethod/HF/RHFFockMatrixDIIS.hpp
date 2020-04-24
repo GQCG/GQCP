@@ -1,21 +1,21 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
-#pragma once 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
+#pragma once
 
 
 #include "Mathematical/Algorithm/Step.hpp"
@@ -36,7 +36,7 @@ namespace GQCP {
  *  @tparam _Scalar              the scalar type used to represent the expansion coefficient/elements of the transformation matrix
  */
 template <typename _Scalar>
-class RHFFockMatrixDIIS :
+class RHFFockMatrixDIIS:
     public Step<RHFSCFEnvironment<_Scalar>> {
 
 public:
@@ -52,7 +52,6 @@ private:
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -62,9 +61,8 @@ public:
      *  @param maximum_subspace_dimension       the maximum number of Fock matrices that can be handled by DIIS
      */
     RHFFockMatrixDIIS(const size_t minimum_subspace_dimension = 6, const size_t maximum_subspace_dimension = 6) :
-        minimum_subspace_dimension (minimum_subspace_dimension),
-        maximum_subspace_dimension (maximum_subspace_dimension)
-    {}
+        minimum_subspace_dimension {minimum_subspace_dimension},
+        maximum_subspace_dimension {maximum_subspace_dimension} {}
 
 
     /*
@@ -92,8 +90,8 @@ public:
 
         // Convert the deques in the environment to vectors that can be accepted by the DIIS accelerator. The total number of elements we can use in DIIS is either the maximum subspace dimension or the number of available error matrices.
         const auto n = std::min(this->maximum_subspace_dimension, environment.error_vectors.size());
-        const std::vector<VectorX<Scalar>> error_vectors (environment.error_vectors.end() - n, environment.error_vectors.end());  // the n-th last error vectors
-        const std::vector<QCMatrix<Scalar>> fock_matrices (environment.fock_matrices.end() - n, environment.fock_matrices.end());  // the n-th last Fock matrices
+        const std::vector<VectorX<Scalar>> error_vectors(environment.error_vectors.end() - n, environment.error_vectors.end());   // the n-th last error vectors
+        const std::vector<QCMatrix<Scalar>> fock_matrices(environment.fock_matrices.end() - n, environment.fock_matrices.end());  // the n-th last Fock matrices
 
         // Calculate the accelerated Fock matrix and do a diagonalization step on it
         const auto F_accelerated = this->diis.accelerate(fock_matrices, error_vectors);

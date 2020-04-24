@@ -4,8 +4,6 @@
  *  The system of interest is a linear H-chain composed of 4 to 10 hydrogen atoms.
  */
 
-#include <benchmark/benchmark.h>
-
 #include "Basis/transform.hpp"
 #include "Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
@@ -18,14 +16,14 @@
 #include "QCMethod/HF/RHF.hpp"
 #include "QCMethod/HF/RHFSCFSolver.hpp"
 
+#include <benchmark/benchmark.h>
 
 
 static void CustomArguments(benchmark::internal::Benchmark* b) {
     for (int i = 4; i < 11; i++) {  // need int instead of size_t
-        b->Args({i, 4});  // number of hydrogen nuclei, 4 electrons
+        b->Args({i, 4});            // number of hydrogen nuclei, 4 electrons
     }
 }
-
 
 
 /**
@@ -34,29 +32,29 @@ static void CustomArguments(benchmark::internal::Benchmark* b) {
 static void fci_dense_molecule(benchmark::State& state) {
 
     const auto number_of_H_atoms = state.range(0);
-    const auto N = state.range(1);  // number of electrons
-    const auto N_P = N / 2;  // number of electron pairs
+    const size_t N = state.range(1);  // number of electrons
+    const auto N_P = N / 2;           // number of electron pairs
     const auto charge = static_cast<int>(number_of_H_atoms - N);
 
 
     // Set up the molecular Hamiltonian in the canonical RHF basis.
     // Construct the initial spinor basis.
     const auto molecule = GQCP::Molecule::HChain(number_of_H_atoms, 0.742, charge);
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (molecule, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
     const auto K = spinor_basis.numberOfSpatialOrbitals();
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in AO basis
 
     // Solve the SCF equations using a plain solver to find the canonical spinors.
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(N, sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-    const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian);
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
     GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
 
 
     // Do the FCI calculation by setting up a full spin-resolved ONV basis, an eigenvalue problem solver and a corresponding environment.
-    const GQCP::SpinResolvedONVBasis onv_basis (K, N_P, N_P);
+    const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
     auto solver = GQCP::EigenproblemSolver::Dense();
 
@@ -74,22 +72,21 @@ static void fci_dense_molecule(benchmark::State& state) {
 }
 
 
-
 /**
  *  DAVIDSON
  */
 static void fci_davidson_molecule(benchmark::State& state) {
 
     const auto number_of_H_atoms = state.range(0);
-    const auto N = state.range(1);  // number of electrons
-    const auto N_P = N / 2;  // number of electron pairs
+    const size_t N = state.range(1);  // number of electrons
+    const auto N_P = N / 2;           // number of electron pairs
     const auto charge = static_cast<int>(number_of_H_atoms - N);
 
 
     // Set up the molecular Hamiltonian in the canonical RHF basis.
     // Construct the initial spinor basis.
     const auto molecule = GQCP::Molecule::HChain(number_of_H_atoms, 0.742, charge);
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (molecule, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
     const auto K = spinor_basis.numberOfSpatialOrbitals();
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in AO basis
 
@@ -97,14 +94,14 @@ static void fci_davidson_molecule(benchmark::State& state) {
     // Solve the SCF equations using a plain solver to find the canonical spinors.
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(N, sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-    const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian);
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
     GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
 
 
     // Do the FCI calculation by setting up a full spin-resolved ONV basis, an eigenvalue problem solver and a corresponding environment.
-    const GQCP::SpinResolvedONVBasis onv_basis (K, N_P, N_P);
+    const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
 
     const auto initial_guess = onv_basis.hartreeFockExpansion();
     auto environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, initial_guess);

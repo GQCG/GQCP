@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
@@ -41,7 +41,6 @@ A class that represents an 'unrestricted second-quantized two-electron operator'
 template <typename _Scalar, size_t _Components>
 class USQTwoElectronOperator {
 public:
-
     using Scalar = _Scalar;
     static constexpr auto Components = _Components;
 
@@ -53,28 +52,27 @@ private:
     std::array<QCRankFourTensor<Scalar>, Components> gs_bb;  // all the tensor representations (hence the 's') of the beta-beta parameters (integrals) of the different components of this second-quantized operator
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
+
     /**
      *  @param gs_aa            all the tensor representations (hence the 's') of the alpha-alpha parameters (integrals) of the different components of this second-quantized operator
      *  @param gs_ab            all the tensor representations (hence the 's') of the alpha-beta parameters (integrals) of the different components of this second-quantized operator
      *  @param gs_ba            all the tensor representations (hence the 's') of the beta-alpha parameters (integrals) of the different components of this second-quantized operator
      *  @param gs_bb            all the tensor representations (hence the 's') of the beta-beta parameters (integrals) of the different components of this second-quantized operator
-     * 
      */
-    USQTwoElectronOperator(const std::array<QCRankFourTensor<Scalar>, Components>& gs_aa, const std::array<QCRankFourTensor<Scalar>, Components>& gs_ab, const std::array<QCRankFourTensor<Scalar>, Components>& gs_ba, const std::array<QCRankFourTensor<Scalar>, Components>& gs_bb) : 
-        gs_aa (gs_aa),
-        gs_ab (gs_ab),
-        gs_ba (gs_ba),
-        gs_bb (gs_bb)
-    {
+    USQTwoElectronOperator(const std::array<QCRankFourTensor<Scalar>, Components>& gs_aa, const std::array<QCRankFourTensor<Scalar>, Components>& gs_ab, const std::array<QCRankFourTensor<Scalar>, Components>& gs_ba, const std::array<QCRankFourTensor<Scalar>, Components>& gs_bb) :
+        gs_aa {gs_aa},
+        gs_ab {gs_ab},
+        gs_ba {gs_ba},
+        gs_bb {gs_bb} {
+
         // Check if the given tensor representations have the same dimensions, for each spin part.
         const auto dimension_of_first_aa = this->gs_aa[0].dimension();
-        const auto dimension_of_first_ab = this-> gs_ab[0].dimension();
+        const auto dimension_of_first_ab = this->gs_ab[0].dimension();
         const auto dimension_of_first_ba = this->gs_ba[0].dimension();
-        const auto dimension_of_first_bb = this-> gs_bb[0].dimension();
+        const auto dimension_of_first_bb = this->gs_bb[0].dimension();
 
         for (size_t i = 1; i < Components; i++) {
 
@@ -82,6 +80,7 @@ public:
             const auto dimension_of_ith_ab = this->gs_ab[i].dimension();
             const auto dimension_of_ith_ba = this->gs_ba[i].dimension();
             const auto dimension_of_ith_bb = this->gs_bb[i].dimension();
+
             if ((dimension_of_first_aa != dimension_of_ith_aa) || (dimension_of_first_ab != dimension_of_ith_ab) || (dimension_of_first_ba != dimension_of_ith_ba) || (dimension_of_first_bb != dimension_of_ith_bb)) {
                 throw std::invalid_argument("USQTwoElectronOperator(const std::array<QCMatrix<Scalar>, Components>&): The given tenso representations do not have the same dimensions for either the alpha, beta or one of the mixed components.");
             }
@@ -100,9 +99,9 @@ public:
      *  @note This constructor is only available for ScalarSQTwoElectronOperators (for the std::enable_if, see https://stackoverflow.com/a/17842695/7930415)
      */
     template <size_t Z = Components>
-    USQTwoElectronOperator(const QCRankFourTensor<Scalar>& g_aa, const QCRankFourTensor<Scalar>& g_ab, const QCRankFourTensor<Scalar>& g_ba, const QCRankFourTensor<Scalar>& g_bb, typename std::enable_if<Z == 1>::type* = 0) :
-        USQTwoElectronOperator(std::array<QCRankFourTensor<Scalar>, 1>{g_aa}, std::array<QCRankFourTensor<Scalar>, 1>{g_ab}, std::array<QCRankFourTensor<Scalar>, 1>{g_ba}, std::array<QCRankFourTensor<Scalar>, 1>{g_bb})
-    {}
+    USQTwoElectronOperator(const QCRankFourTensor<Scalar>& g_aa, const QCRankFourTensor<Scalar>& g_ab, const QCRankFourTensor<Scalar>& g_ba, const QCRankFourTensor<Scalar>& g_bb,
+                           typename std::enable_if<Z == 1>::type* = 0) :
+        USQTwoElectronOperator(std::array<QCRankFourTensor<Scalar>, 1> {g_aa}, std::array<QCRankFourTensor<Scalar>, 1> {g_ab}, std::array<QCRankFourTensor<Scalar>, 1> {g_ba}, std::array<QCRankFourTensor<Scalar>, 1> {g_bb}) {}
 
 
     /**
@@ -117,6 +116,7 @@ public:
             this->gs_ab[i] = QCRankFourTensor<Scalar>(dim);
             this->gs_ba[i] = QCRankFourTensor<Scalar>(dim);
             this->gs_bb[i] = QCRankFourTensor<Scalar>(dim);
+
             this->gs_aa[i].setZero();
             this->gs_ab[i].setZero();
             this->gs_ba[i].setZero();
@@ -124,7 +124,7 @@ public:
         }
     }
 
-    
+
     /**
      *  Default constructor: construct an unrestricted two-electron operator with parameters that are zero
      */
@@ -142,7 +142,7 @@ public:
      * 
      *  @return read-only tensor representations of all the parameters (integrals) of the different components of this second-quantized operator, for the requested spin components.
      */
-    const std::array<QCRankFourTensor<Scalar>, Components>& allParameters(SpinComponent left, SpinComponent right) const {  
+    const std::array<QCRankFourTensor<Scalar>, Components>& allParameters(SpinComponent left, SpinComponent right) const {
 
         if (left == SpinComponent::ALPHA && right == SpinComponent::ALPHA) {
             return this->gs_aa;
@@ -158,7 +158,7 @@ public:
 
         else {
             return this->gs_bb;
-        };  
+        };
     }
 
 
@@ -186,7 +186,7 @@ public:
         };
     }
 
-    
+
     /**
      *  @param d_aa            the alpha-alpha 2-RDM that represents the wave function
      *  @param d_ab            the alpha-beta 2-RDM that represents the wave function
@@ -207,7 +207,7 @@ public:
 
             // Specify the contractions for the relevant contraction of the two-electron integrals and the 2-RDMs
             //      0.5 g(p q r s) d(p q r s)
-            Eigen::array<Eigen::IndexPair<int>, 4> contractions = {Eigen::IndexPair<int>(0,0), Eigen::IndexPair<int>(1,1), Eigen::IndexPair<int>(2,2), Eigen::IndexPair<int>(3,3)};
+            Eigen::array<Eigen::IndexPair<int>, 4> contractions {Eigen::IndexPair<int>(0, 0), Eigen::IndexPair<int>(1, 1), Eigen::IndexPair<int>(2, 2), Eigen::IndexPair<int>(3, 3)};
             //      Perform the contraction
             Eigen::Tensor<Scalar, 0> contraction_aa = 0.5 * this->parameters(GQCP::SpinComponent::ALPHA, GQCP::SpinComponent::ALPHA, i).contract(d_aa.Eigen(), contractions);
             Eigen::Tensor<Scalar, 0> contraction_ab = 0.5 * this->parameters(GQCP::SpinComponent::ALPHA, GQCP::SpinComponent::BETA, i).contract(d_ab.Eigen(), contractions);
@@ -229,7 +229,7 @@ public:
      */
     size_t dimension(SpinComponent left, SpinComponent right) const {
 
-         if (left == SpinComponent::ALPHA && right == SpinComponent::ALPHA) {
+        if (left == SpinComponent::ALPHA && right == SpinComponent::ALPHA) {
             return this->gs_aa[0].dimension();
         }
 
@@ -253,7 +253,7 @@ public:
      * 
      *  @return a read-only tensor representation of the parameters (integrals) of one of the the different components of this second-quantized operator, for the requested spin components.
      */
-    const QCRankFourTensor<Scalar>& parameters(SpinComponent left, SpinComponent right, const size_t i = 0 ) const {
+    const QCRankFourTensor<Scalar>& parameters(SpinComponent left, SpinComponent right, const size_t i = 0) const {
 
         if (left == SpinComponent::ALPHA && right == SpinComponent::ALPHA) {
             return this->gs_aa[i];
@@ -369,7 +369,6 @@ public:
 };
 
 
-
 /*
  *  CONVENIENCE ALIASES
  */
@@ -472,4 +471,4 @@ auto operator-(const USQTwoElectronOperator<LHSScalar, Components>& lhs, const U
 }
 
 
-} // namespace GQCP
+}  // namespace GQCP

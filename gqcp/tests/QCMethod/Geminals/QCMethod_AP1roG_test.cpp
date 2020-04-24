@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #define BOOST_TEST_MODULE "QCMethod_AP1roG"
 
 #include <boost/test/unit_test.hpp>
@@ -33,23 +33,23 @@
  *  Check an AP1roG calculation (with zero initial guess) with reference data from Ayers' implementation.
  *  The test system is H2 with HF/6-31G** orbitals.
  */
-BOOST_AUTO_TEST_CASE ( h2_631gdp ) {
+BOOST_AUTO_TEST_CASE(h2_631gdp) {
 
     // Input the reference data.
     const double ref_ap1rog_energy = -1.8696828608304892;
-    GQCP::VectorX<double> ref_ap1rog_coefficients (9);
+    GQCP::VectorX<double> ref_ap1rog_coefficients {9};
     ref_ap1rog_coefficients << -0.05949796, -0.05454253, -0.03709503, -0.02899231, -0.02899231, -0.01317386, -0.00852702, -0.00852702, -0.00517996;
 
 
     // Prepare the molecular Hamiltonian in the canonical RHF basis.
     const auto h2 = GQCP::Molecule::ReadXYZ("data/h2_olsens.xyz");
-    const auto N_P = h2.numberOfElectrons()/2;
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (h2, "6-31G**");
+    const auto N_P = h2.numberOfElectrons() / 2;
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {h2, "6-31G**"};
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-    const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian);
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
     GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
@@ -77,23 +77,23 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp ) {
  *  Check an AP1roG calculation (with the weak interaction limit as an initial guess) with reference data from Ayers' implementation.
  *  The test system is H2 with HF/6-31G** orbitals.
  */
-BOOST_AUTO_TEST_CASE ( h2_631gdp_weak_interaction_limit ) {
+BOOST_AUTO_TEST_CASE(h2_631gdp_weak_interaction_limit) {
 
     // Input the reference data.
     const double ref_ap1rog_energy = -1.8696828608304892;
-    GQCP::VectorX<double> ref_ap1rog_coefficients (9);
+    GQCP::VectorX<double> ref_ap1rog_coefficients {9};
     ref_ap1rog_coefficients << -0.05949796, -0.05454253, -0.03709503, -0.02899231, -0.02899231, -0.01317386, -0.00852702, -0.00852702, -0.00517996;
 
 
     // Prepare molecular Hamiltonian in the canonical RHF basis.
     const auto h2 = GQCP::Molecule::ReadXYZ("data/h2_olsens.xyz");
     const auto N_P = h2.numberOfElectrons() / 2;
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (h2, "6-31G**");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {h2, "6-31G**"};
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-    const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian);
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
     GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());

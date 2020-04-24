@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #include "QCMethod/CI/CI.hpp"
 
 #include "Mathematical/Algorithm/Algorithm.hpp"
@@ -34,7 +34,6 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
-
 /**
  *  Since QCMethod::CI has a template argument for the representation of the ONVBasis, we'll have to bind each of them separately. In order to avoid duplicate code, we use a templated binding approach.
  */
@@ -51,29 +50,26 @@ namespace gqcpy {
 template <typename ONVBasis>
 void bindQCMethodCI(py::module& module, const std::string& suffix, const std::string& description) {
     py::class_<GQCP::QCMethod::CI<ONVBasis>>(module,
-        ("CI" + suffix).c_str(),
-        description.c_str()
-    )
+                                             ("CI" + suffix).c_str(),
+                                             description.c_str())
 
         .def(py::init<const ONVBasis, const size_t>(),
-            py::arg("onv_basis"),
-            py::arg("number_of_states") = 1
-        )
+             py::arg("onv_basis"),
+             py::arg("number_of_states") = 1)
 
-        .def("optimize",
-            [] (const GQCP::QCMethod::CI<ONVBasis>& qc_method, GQCP::Algorithm<GQCP::EigenproblemEnvironment>& solver, GQCP::EigenproblemEnvironment& environment) {
+        .def(
+            "optimize",
+            [](const GQCP::QCMethod::CI<ONVBasis>& qc_method, GQCP::Algorithm<GQCP::EigenproblemEnvironment>& solver, GQCP::EigenproblemEnvironment& environment) {
                 return qc_method.optimize(solver, environment);
             },
-            "Optimize the CI wave function model: find the linear expansion coefficients."
-        )
+            "Optimize the CI wave function model: find the linear expansion coefficients.")
 
-        .def("optimize",
-            [] (const GQCP::QCMethod::CI<ONVBasis>& qc_method, GQCP::IterativeAlgorithm<GQCP::EigenproblemEnvironment>& solver, GQCP::EigenproblemEnvironment& environment) {
+        .def(
+            "optimize",
+            [](const GQCP::QCMethod::CI<ONVBasis>& qc_method, GQCP::IterativeAlgorithm<GQCP::EigenproblemEnvironment>& solver, GQCP::EigenproblemEnvironment& environment) {
                 return qc_method.optimize(solver, environment);
             },
-            "Optimize the CI wave function model: find the linear expansion coefficients."
-        )
-    ;
+            "Optimize the CI wave function model: find the linear expansion coefficients.");
 }
 
 

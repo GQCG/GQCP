@@ -1,36 +1,35 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #define BOOST_TEST_MODULE "SpinResolvedSelectedONVBasis"
 
 #include <boost/test/unit_test.hpp>
 
-#include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
-
 #include "Basis/transform.hpp"
+#include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 
 
 /**
  *  Test the general functionality of the addConfiguration function, by testing throws and retrieving configurations.
  */
-BOOST_AUTO_TEST_CASE ( addConfiguration ) {
+BOOST_AUTO_TEST_CASE(addConfiguration) {
 
     // Create a faulty expansion: one of the orbitals is different
-    GQCP::SpinResolvedSelectedONVBasis fock_space (3, 1, 1);
+    GQCP::SpinResolvedSelectedONVBasis fock_space {3, 1, 1};
 
     std::vector<std::string> alpha_set {"001", "010"};
     std::vector<std::string> beta_set {"001", "010"};
@@ -78,20 +77,20 @@ BOOST_AUTO_TEST_CASE ( addConfiguration ) {
  *  Evaluate the Hamiltonian in a selected ONV basis in which all configurations are selected (Full CI)
  *  Compare the evaluation of a direct matrix vector product to that of the matrix vector product evaluations and test the lowest eigenvalue against of the evaluated Hamiltonian a reference value
  */
-BOOST_AUTO_TEST_CASE ( Selected_Evaluation_H2O ) {
+BOOST_AUTO_TEST_CASE(Selected_Evaluation_H2O) {
 
     // Psi4 and GAMESS' FCI energy for H2O
     double reference_fci_energy = -75.0129803939602;
 
     // Create the molecular Hamiltonian in an AO basis
     auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (h2o, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {h2o, "STO-3G"};
     spinor_basis.lowdinOrthonormalize();
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2o);  // in the Löwdin basis
     auto K = sq_hamiltonian.dimension();
 
-    GQCP::SpinResolvedONVBasis fock_space (K, h2o.numberOfElectrons()/2, h2o.numberOfElectrons()/2);  // dim = 441
-    GQCP::SpinResolvedSelectedONVBasis selected_fock_space (fock_space);
+    GQCP::SpinResolvedONVBasis fock_space {K, h2o.numberOfElectrons() / 2, h2o.numberOfElectrons() / 2};  // dim = 441
+    GQCP::SpinResolvedSelectedONVBasis selected_fock_space {fock_space};
 
 
     // Evaluate the dense Hamiltonian
@@ -106,9 +105,9 @@ BOOST_AUTO_TEST_CASE ( Selected_Evaluation_H2O ) {
 
     // Calculate the explicit matvec with the dense evaluations
     GQCP::VectorX<double> matvec_reference = hamiltonian * hamiltonian_diagonal;
-   
+
     // Retrieve the lowest eigenvalue (FCI solution)
-    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> self_adjoint_eigensolver (hamiltonian);
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> self_adjoint_eigensolver {hamiltonian};
 
     double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(h2o).value();
     double test_energy = self_adjoint_eigensolver.eigenvalues()(0) + internuclear_repulsion_energy;
@@ -128,28 +127,28 @@ BOOST_AUTO_TEST_CASE ( Selected_Evaluation_H2O ) {
  *  Evaluate the an unrestricted Hamiltonian where one component (beta) is rotated to a different basis in a selected ONV basis in which all configurations are selected (Full CI)
  *  Compare the evaluation of a direct matrix vector product to that of the matrix vector product evaluations and test the lowest eigenvalue against of the evaluated Hamiltonian a reference value
  */
-BOOST_AUTO_TEST_CASE ( Selected_H2O_Unrestricted ) {
+BOOST_AUTO_TEST_CASE(Selected_H2O_Unrestricted) {
 
     // Psi4 and GAMESS' FCI energy (restricted)
     double reference_fci_energy = -75.0129803939602;
 
     // Create the molecular Hamiltonian in an AO basis
     auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
-    GQCP::USpinorBasis<double, GQCP::GTOShell> spinor_basis (h2o, "STO-3G");
+    GQCP::USpinorBasis<double, GQCP::GTOShell> spinor_basis {h2o, "STO-3G"};
     spinor_basis.lowdinOrthonormalize();
     auto usq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(spinor_basis, h2o);  // unrestricted Hamiltonian in the Löwdin basis
 
-    // Transform the Hamiltonian to an orthonormal basis 
+    // Transform the Hamiltonian to an orthonormal basis
     GQCP::basisTransform(spinor_basis, usq_hamiltonian, spinor_basis.lowdinOrthonormalizationMatrix(GQCP::SpinComponent::ALPHA));
 
     // Transform the beta component
     // Create stable unitairy matrix
-    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (usq_hamiltonian.spinHamiltonian(GQCP::SpinComponent::ALPHA).core().parameters());
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes {usq_hamiltonian.spinHamiltonian(GQCP::SpinComponent::ALPHA).core().parameters()};
     GQCP::basisTransform(spinor_basis, usq_hamiltonian, GQCP::TransformationMatrix<double>(saes.eigenvectors()), GQCP::SpinComponent::BETA);
-    auto K = usq_hamiltonian.dimension()/2;
+    auto K = usq_hamiltonian.dimension() / 2;
 
-    GQCP::SpinResolvedONVBasis fock_space (K, h2o.numberOfElectrons()/2, h2o.numberOfElectrons()/2);  // dim = 441
-    GQCP::SpinResolvedSelectedONVBasis selected_fock_space (fock_space);
+    GQCP::SpinResolvedONVBasis fock_space {K, h2o.numberOfElectrons() / 2, h2o.numberOfElectrons() / 2};  // dim = 441
+    GQCP::SpinResolvedSelectedONVBasis selected_fock_space {fock_space};
 
     // Evaluate the dense Hamiltonian
     GQCP::SquareMatrix<double> hamiltonian = selected_fock_space.evaluateOperatorDense(usq_hamiltonian, true);
@@ -165,7 +164,7 @@ BOOST_AUTO_TEST_CASE ( Selected_H2O_Unrestricted ) {
     GQCP::VectorX<double> matvec_reference = hamiltonian * hamiltonian_diagonal;
 
     // Retrieve the lowest eigenvalue (FCI solution)
-    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> self_adjoint_eigensolver (hamiltonian);
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> self_adjoint_eigensolver {hamiltonian};
 
     // Calculate the total FCI energy
     double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(h2o).value();

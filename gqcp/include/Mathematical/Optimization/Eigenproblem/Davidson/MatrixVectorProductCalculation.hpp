@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
@@ -30,11 +30,10 @@ namespace GQCP {
 /**
  *  An iteration step that calculates the matrix-vector products for all (new) guess vectors.
  */
-class MatrixVectorProductCalculation :
+class MatrixVectorProductCalculation:
     public Step<EigenproblemEnvironment> {
 
 public:
-
     /*
      *  OVERRIDDEN PUBLIC METHODS
      */
@@ -46,7 +45,8 @@ public:
      */
     void execute(EigenproblemEnvironment& environment) override {
 
-        const auto& V = environment.V;   // the subspace of guess vectors
+        const auto& V = environment.V;  // the subspace of guess vectors
+
         assert((V.transpose() * V).isApprox(MatrixX<double>::Identity(V.cols(), V.cols()), 1.0e-08));  // make sure that the subspace vectors are orthonormal
 
 
@@ -68,7 +68,7 @@ public:
         if (difference != 0) {
             VA.conservativeResize(Eigen::NoChange, VA.cols() + difference);  // accounts for both expansion and shrinking
 
-            // Calculate the only the necessary matrix-vector products; find the start_index that accounts for both expansion and shrinking 
+            // Calculate the only the necessary matrix-vector products; find the start_index that accounts for both expansion and shrinking
             size_t start_index = 0;
             if ((difference > 0) && (vectors_in_VA > 0)) {
                 start_index = vectors_in_VA - 1;  // -1 because of computers
@@ -77,7 +77,7 @@ public:
             for (size_t column_index = start_index; column_index < vectors_in_V; column_index++) {
                 VA.col(column_index) = matvec(V.col(column_index));
             }
-        } 
+        }
     }
 };
 

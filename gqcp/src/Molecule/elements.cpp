@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #include "Molecule/elements.hpp"
 
 #include <boost/bimap.hpp>
@@ -33,6 +33,7 @@ namespace elements {
  *
  *  Adapted from https://stackoverflow.com/a/20290421/7930415
  */
+// clang-format off
 std::vector<boost::bimap<std::string, size_t>::value_type> elements_list {
     {"H",     1},
     {"He",    2},
@@ -153,6 +154,7 @@ std::vector<boost::bimap<std::string, size_t>::value_type> elements_list {
     {"Uus", 117},
     {"Og",  118}
 };
+// clang-format on
 
 
 /**
@@ -160,8 +162,7 @@ std::vector<boost::bimap<std::string, size_t>::value_type> elements_list {
  *
  *  Adapted from https://stackoverflow.com/a/20290421/7930415
  */
-static const boost::bimap<std::string, size_t> periodic_table (elements_list.begin(), elements_list.end());
-
+static const boost::bimap<std::string, size_t> periodic_table {elements_list.begin(), elements_list.end()};
 
 
 /*

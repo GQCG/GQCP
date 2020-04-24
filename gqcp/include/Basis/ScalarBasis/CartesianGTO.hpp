@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
@@ -33,12 +33,12 @@ namespace GQCP {
  *
  *  Contracted GTOs can be expressed as linear combinations of GTOs: LinearCombination<CartesianGTO>
  */
-class CartesianGTO : public ScalarFunction<double, double, 3> {
+class CartesianGTO: public ScalarFunction<double, double, 3> {
 private:
-    double gaussian_exponent;  // exponent of the exponential
-    double N;  // normalization factor
+    double gaussian_exponent;                // exponent of the exponential
+    double N;                                // normalization factor
     CartesianExponents cartesian_exponents;  // exponents of (x-X), (y-Y), (z-Z)
-    Vector<double, 3> center;  // center of the GTO (X, Y, Z)
+    Vector<double, 3> center;                // center of the GTO (X, Y, Z)
 
 
 public:

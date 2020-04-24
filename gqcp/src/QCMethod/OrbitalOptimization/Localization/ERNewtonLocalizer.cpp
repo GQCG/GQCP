@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #include "QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
 
 
@@ -32,10 +32,8 @@ namespace GQCP {
  *  @param maximum_number_of_iterations     the maximum number of iterations that may be used to achieve convergence
  */
 ERNewtonLocalizer::ERNewtonLocalizer(size_t N_P, std::shared_ptr<BaseHessianModifier> hessian_modifier, const double convergence_threshold, const size_t maximum_number_of_iterations) :
-    N_P (N_P),
-    NewtonOrbitalOptimizer(hessian_modifier, convergence_threshold, maximum_number_of_iterations)
-{}
-
+    N_P {N_P},
+    NewtonOrbitalOptimizer(hessian_modifier, convergence_threshold, maximum_number_of_iterations) {}
 
 
 /*
@@ -53,13 +51,12 @@ SquareMatrix<double> ERNewtonLocalizer::calculateGradientMatrix(const SQHamilton
 
     for (size_t i = 0; i < this->N_P; i++) {
         for (size_t j = 0; j < this->N_P; j++) {
-            G(i,j) = this->calculateGradientMatrixElement(sq_hamiltonian, i,j);
+            G(i, j) = this->calculateGradientMatrixElement(sq_hamiltonian, i, j);
         }
     }
 
     return G;
 }
-
 
 
 /**
@@ -69,14 +66,14 @@ SquareMatrix<double> ERNewtonLocalizer::calculateGradientMatrix(const SQHamilton
  */
 SquareRankFourTensor<double> ERNewtonLocalizer::calculateHessianTensor(const SQHamiltonian<double>& sq_hamiltonian) const {
 
-    SquareRankFourTensor<double> H (this->N_P);
+    SquareRankFourTensor<double> H(this->N_P);
     H.setZero();
 
     for (size_t i = 0; i < this->N_P; i++) {
         for (size_t j = 0; j < this->N_P; j++) {
             for (size_t k = 0; k < this->N_P; k++) {
                 for (size_t l = 0; l < this->N_P; l++) {
-                    H(i,j,k,l) = this->calculateHessianTensorElement(sq_hamiltonian, i,j,k,l);
+                    H(i, j, k, l) = this->calculateHessianTensorElement(sq_hamiltonian, i, j, k, l);
                 }
             }
         }
@@ -102,7 +99,6 @@ OrbitalRotationGenerators ERNewtonLocalizer::calculateNewFullOrbitalGenerators(c
 }
 
 
-
 /*
  *  PUBLIC METHODS
  */
@@ -118,7 +114,7 @@ double ERNewtonLocalizer::calculateGradientMatrixElement(const SQHamiltonian<dou
 
     const auto& g = sq_hamiltonian.twoElectron().parameters();
 
-    return -4 * (g(j,i,i,i) - g(i,j,j,j));  // formulate as minimization problem
+    return -4 * (g(j, i, i, i) - g(i, j, j, j));  // formulate as minimization problem
 }
 
 
@@ -138,24 +134,23 @@ double ERNewtonLocalizer::calculateHessianTensorElement(const SQHamiltonian<doub
     // KISS-implementation of the Hessian element for the Edmiston-Ruedenberg localization index
     double value = 0.0;
     if (i == k) {
-        value += -2*g(j,l,l,l) - 2*g(l,j,j,j) + 8*g(l,i,j,i) + 4*g(l,j,i,i);
+        value += -2 * g(j, l, l, l) - 2 * g(l, j, j, j) + 8 * g(l, i, j, i) + 4 * g(l, j, i, i);
     }
 
     if (j == k) {
-        value += 2*g(i,l,l,l) + 2*g(l,i,i,i) - 8*g(l,j,i,j) - 4*g(l,i,j,j);
+        value += 2 * g(i, l, l, l) + 2 * g(l, i, i, i) - 8 * g(l, j, i, j) - 4 * g(l, i, j, j);
     }
 
     if (i == l) {
-        value += 2*g(j,k,k,k) + 2*g(k,j,j,j) - 8*g(k,i,j,i) - 4*g(k,j,i,i);
+        value += 2 * g(j, k, k, k) + 2 * g(k, j, j, j) - 8 * g(k, i, j, i) - 4 * g(k, j, i, i);
     }
 
     if (j == l) {
-        value += -2*g(i,k,k,k) - 2*g(k,i,i,i) + 8*g(k,j,i,j) + 4*g(k,i,j,j);
+        value += -2 * g(i, k, k, k) - 2 * g(k, i, i, i) + 8 * g(k, j, i, j) + 4 * g(k, i, j, j);
     }
 
     return -value;  // formulate as minimization problem
 }
-
 
 
 }  // namespace GQCP

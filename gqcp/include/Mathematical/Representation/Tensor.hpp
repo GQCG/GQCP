@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
@@ -36,7 +36,7 @@ namespace GQCP {
  *  We have decided to inherit from Eigen::Tensor, because we will use different hierarchies: see also: https://eigen.tuxfamily.org/dox-devel/TopicCustomizing_InheritingMatrix.html
  */
 template <typename _Scalar, int _Rank>
-class Tensor : public Eigen::Tensor<_Scalar, _Rank> {
+class Tensor: public Eigen::Tensor<_Scalar, _Rank> {
 public:
     using Scalar = _Scalar;
     static constexpr auto Rank = _Rank;
@@ -45,7 +45,6 @@ public:
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -69,9 +68,12 @@ public:
      *  @return a rank-4 tensor from an other rank-4 tensor, starting from given indices
      */
     template <int Z = Rank>
-    static enable_if_t<Z == 4, Self> FromBlock(const Self& T, size_t i, size_t j, size_t k, size_t l, size_t desize=0) {
+    static enable_if_t<Z == 4, Self> FromBlock(const Self& T, size_t i, size_t j, size_t k, size_t l, size_t desize = 0) {
 
-        Tensor<double, Rank> T_result (T.dimension(0) - i - desize, T.dimension(1) - j - desize, T.dimension(2) - k - desize, T.dimension(3) - l - desize);
+        Tensor<double, Rank> T_result {static_cast<long>(T.dimension(0) - i - desize),
+                                       static_cast<long>(T.dimension(1) - j - desize),
+                                       static_cast<long>(T.dimension(2) - k - desize),
+                                       static_cast<long>(T.dimension(3) - l - desize)};
         T_result.setZero();
 
         for (size_t p = 0; p < T_result.dimension(0); p++) {
@@ -142,7 +144,7 @@ public:
             for (size_t j = 0; j < this->dimension(1); j++) {
                 for (size_t k = 0; k < this->dimension(2); k++) {
                     for (size_t l = 0; l < this->dimension(3); l++) {
-                        if (std::abs(this->operator()(i,j,k,l) - other(i,j,k,l)) > tolerance) {
+                        if (std::abs(this->operator()(i, j, k, l) - other(i, j, k, l)) > tolerance) {
                             return false;
                         }
                     }
@@ -166,7 +168,7 @@ public:
             for (size_t j = 0; j < this->dimension(1); j++) {
                 for (size_t k = 0; k < this->dimension(2); k++) {
                     for (size_t l = 0; l < this->dimension(3); l++) {
-                        output_stream << i << ' ' << j << ' ' << k << ' ' << l << "  " << this->operator()(i,j,k,l) << std::endl;
+                        output_stream << i << ' ' << j << ' ' << k << ' ' << l << "  " << this->operator()(i, j, k, l) << std::endl;
                     }
                 }
             }
@@ -192,18 +194,19 @@ public:
 
         // Initialize the resulting matrix
         const auto dims = this->dimensions();
-        Matrix<Scalar> M ( (dims[0]-start_i)*(dims[1]-start_j), (dims[2]-start_k)*(dims[3]-start_l) );
+        Matrix<Scalar> M {(dims[0] - start_i) * (dims[1] - start_j),
+                          (dims[2] - start_k) * (dims[3] - start_l)};
 
         // Calculate the compound indices and bring the elements from the tensor over into the matrix
         size_t row_index = 0;
-        for (size_t j = start_j; j < dims[1]; j++) {  // "column major" ordering for row_index<-i,j so we do j first, then i
+        for (size_t j = start_j; j < dims[1]; j++) {      // "column major" ordering for row_index<-i,j so we do j first, then i
             for (size_t i = start_i; i < dims[0]; i++) {  // in column major indices, columns are contiguous, so the first of two indices changes more rapidly
 
                 size_t column_index = 0;
-                for (size_t l = start_l; l < dims[3]; l++) {  // "column major" ordering for column_index<-k,l so we do l first, then k
+                for (size_t l = start_l; l < dims[3]; l++) {      // "column major" ordering for column_index<-k,l so we do l first, then k
                     for (size_t k = start_k; k < dims[2]; k++) {  // in column major indices, columns are contiguous, so the first of two indices changes more rapidly
 
-                        M(row_index,column_index) = this->operator()(i,j,k,l);
+                        M(row_index, column_index) = this->operator()(i, j, k, l);
 
                         column_index++;
                     }
@@ -235,7 +238,7 @@ public:
             for (size_t q = 0; q < T.dimension(1); q++) {
                 for (size_t r = 0; r < T.dimension(2); r++) {
                     for (size_t s = 0; s < T.dimension(3); s++) {
-                        this->operator()(i+p, j+q, k+r, l+s) += T(p,q,r,s);
+                        this->operator()(i + p, j + q, k + r, l + s) += T(p, q, r, s);
                     }
                 }
             }
@@ -269,14 +272,14 @@ public:
      *       given the input <2,0> this means the indices of the 2nd (indicated by the "2") and the 4th (indicated by the "3") axes 
      *       are held fixed because they do not correspond to the entries <2,0>.
      */
-    template<size_t r, size_t s, int Z = Rank>
+    template <size_t r, size_t s, int Z = Rank>
     enable_if_t<Z == 4, Self&> addBlock(const MatrixX<Scalar>& M, size_t i, size_t j, size_t k, size_t l) {
 
         // Initialize series of arrays with 1 or 0 values, so that the correct tensor indices given by the template argument correspond to the matrix indices
-        size_t ia[4] = {1,0,0,0};
-        size_t ja[4] = {0,1,0,0};
-        size_t ka[4] = {0,0,1,0};
-        size_t la[4] = {0,0,0,1};
+        size_t ia[4] = {1, 0, 0, 0};
+        size_t ja[4] = {0, 1, 0, 0};
+        size_t ka[4] = {0, 0, 1, 0};
+        size_t la[4] = {0, 0, 0, 1};
 
         for (size_t x = 0; x < M.rows(); x++) {
             for (size_t y = 0; y < M.cols(); y++) {
@@ -286,7 +289,7 @@ public:
                 size_t k_effective = k + x * ka[r] + y * ka[s];
                 size_t l_effective = l + x * la[r] + y * la[s];
 
-                this->operator()(i_effective, j_effective, k_effective, l_effective) += M(x,y);
+                this->operator()(i_effective, j_effective, k_effective, l_effective) += M(x, y);
             }
         }
 

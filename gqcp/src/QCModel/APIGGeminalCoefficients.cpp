@@ -1,24 +1,24 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #include "QCModel/Geminals/APIGGeminalCoefficients.hpp"
 
-#include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
+#include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 #include "Utilities/miscellaneous.hpp"
 
 
@@ -33,10 +33,9 @@ namespace GQCP {
  *  @param G                the APIG geminal coefficients
  */
 APIGGeminalCoefficients::APIGGeminalCoefficients(const MatrixX<double>& G) :
-    K (G.cols()),
-    N_P (G.rows()),
-    G (G)
-{}
+    K {static_cast<size_t>(G.cols())},
+    N_P {static_cast<size_t>(G.rows())},
+    G {G} {}
 
 
 /**
@@ -46,9 +45,7 @@ APIGGeminalCoefficients::APIGGeminalCoefficients(const MatrixX<double>& G) :
  *  @param K        the number of spatial orbitals
  */
 APIGGeminalCoefficients::APIGGeminalCoefficients(const size_t N_P, const size_t K) :
-    APIGGeminalCoefficients(MatrixX<double>::Zero(N_P, K))
-{}
-
+    APIGGeminalCoefficients(MatrixX<double>::Zero(N_P, K)) {}
 
 
 /*
@@ -56,7 +53,6 @@ APIGGeminalCoefficients::APIGGeminalCoefficients(const size_t N_P, const size_t 
  */
 
 APIGGeminalCoefficients::~APIGGeminalCoefficients() {}
-
 
 
 /*
@@ -71,9 +67,8 @@ APIGGeminalCoefficients::~APIGGeminalCoefficients() {}
  */
 double APIGGeminalCoefficients::operator()(const size_t i, const size_t p) const {
 
-    return this->G(i,p);
+    return this->G(i, p);
 }
-
 
 
 /*
@@ -102,7 +97,6 @@ APIGGeminalCoefficients APIGGeminalCoefficients::FromRowMajor(const VectorX<doub
 }
 
 
-
 /*
  *  STATIC PUBLIC METHODS
  */
@@ -124,7 +118,6 @@ size_t APIGGeminalCoefficients::numberOfGeminalCoefficients(size_t N_P, size_t K
 }
 
 
-
 /*
  *  PUBLIC METHODS
  */
@@ -144,7 +137,7 @@ double APIGGeminalCoefficients::overlap(const SpinUnresolvedONV& onv) const {
     SquareMatrix<double> Gm = SquareMatrix<double>::Zero(this->N_P, this->N_P);
 
     // TODO: wait until the syntax G(Eigen::placeholders::all, occupation_indices) is released in a stable Eigen release
-    for (size_t e = 0; e < this->N_P ; e++) {  // loop over all electrons
+    for (size_t e = 0; e < this->N_P; e++) {  // loop over all electrons
         size_t occupation_index = onv.get_occupation_index(e);
 
         Gm.col(e) = G.col(occupation_index);

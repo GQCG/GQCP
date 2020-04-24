@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
@@ -22,9 +22,9 @@
 #include "Utilities/type_traits.hpp"
 #include "Utilities/typedefs.hpp"
 
-#include <Eigen/Dense>
-
 #include <boost/algorithm/string.hpp>
+
+#include <Eigen/Dense>
 
 #include <fstream>
 #include <iostream>
@@ -45,7 +45,7 @@ constexpr auto Dynamic = Eigen::Dynamic;
  *  We have decided to inherit from Eigen::Matrix, because we will use different hierarchies: see also: https://eigen.tuxfamily.org/dox-devel/TopicCustomizing_InheritingMatrix.html
  */
 template <typename _Scalar = double, int _Rows = Dynamic, int _Cols = Dynamic>
-class Matrix : public Eigen::Matrix<_Scalar, _Rows, _Cols> {
+class Matrix: public Eigen::Matrix<_Scalar, _Rows, _Cols> {
 public:
     using Scalar = _Scalar;
     static constexpr auto Rows = _Rows;
@@ -60,7 +60,6 @@ private:
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -84,7 +83,7 @@ public:
         // Initialize a zero vector
         Self result = Self::Zero(rows);
 
-        std::ifstream file (filename);
+        std::ifstream file {filename};
         size_t index = 0;
         if (file.is_open()) {
             std::string line;
@@ -126,7 +125,7 @@ public:
 
         Self result = Self::Zero(rows, cols);
 
-        std::ifstream file (filename);
+        std::ifstream file {filename};
         if (file.is_open()) {
             std::string line;
 
@@ -144,7 +143,7 @@ public:
                 auto j = std::stoi(splitted_line[1]);
                 auto value = std::stod(splitted_line[2]);
 
-                result(i,j) = value;
+                result(i, j) = value;
             }
 
             file.close();
@@ -195,7 +194,6 @@ public:
     }
 
 
-
     /*
      *  OPERATORS
      */
@@ -207,7 +205,7 @@ public:
      */
     template <typename Z = Scalar>
     enable_if_t<Self::is_vector && (Rows == 3), Z> operator()(CartesianDirection direction) const {
-        
+
         const auto& index = static_cast<size_t>(direction);  // 0, 1, or 2
         return this->operator()(index);
     }
@@ -219,13 +217,12 @@ public:
      */
     template <typename Z = Scalar&>
     enable_if_t<Self::is_vector && (Rows == 3), Z> operator()(CartesianDirection direction) {
-        
+
         const auto& index = static_cast<size_t>(direction);  // 0, 1, or 2
         return this->operator()(index);
     }
 
     using Base::operator();  // bring over the other operator() overloads
-
 
 
     /*
@@ -259,7 +256,7 @@ public:
 
         for (size_t i = 0; i < this->rows(); i++) {
             for (size_t j = 0; j < this->cols(); j++) {
-                output_stream << i << ' ' << j << "  " << this->operator()(i,j) << std::endl;
+                output_stream << i << ' ' << j << "  " << this->operator()(i, j) << std::endl;
             }
         }
     }
@@ -271,7 +268,7 @@ public:
      *
      *  @return the i-j minor (i.e. delete the i-th row and j-th column)
      */
-    template <typename Z = Self>  // enable_if must have Z inside
+    template <typename Z = Self>
     enable_if_t<Self::is_matrix, Z> matrixMinor(size_t i, size_t j) const {  // wrap minor inside braces as a fix for the GCC macro 'minor'
 
         // Delete the i-th row
@@ -283,7 +280,7 @@ public:
             } else if (i2 == i) {
                 continue;
             } else if (i2 > i) {
-                A_i.row(i2-1) = this->row(i2);
+                A_i.row(i2 - 1) = this->row(i2);
             }
         }
 
@@ -295,7 +292,7 @@ public:
             } else if (j2 == j) {
                 continue;
             } else if (j2 > j) {
-                A_ij.col(j2-1) = A_i.col(j2);
+                A_ij.col(j2 - 1) = A_i.col(j2);
             }
         }
 
@@ -317,14 +314,14 @@ public:
     enable_if_t<Self::is_matrix, Z> pairWiseReduce(const size_t start_i = 0, size_t start_j = 0) const {
 
         // Initialize the resulting vector
-        Matrix<Scalar, Rows, 1> v ( (this->rows()-start_i)*(this->cols()-start_j) );
+        Matrix<Scalar, Rows, 1> v((this->rows() - start_i) * (this->cols() - start_j));
 
         // Calculate the compound indices and bring the elements from the matrix over into the vector
         size_t vector_index = 0;
-        for (size_t j = start_j; j < this->cols(); j++) {  // "column major" ordering for row_index<-i,j so we do j first, then i
+        for (size_t j = start_j; j < this->cols(); j++) {      // "column major" ordering for row_index<-i,j so we do j first, then i
             for (size_t i = start_i; i < this->rows(); i++) {  // in column major indices, columns are contiguous, so the first of two indices changes more rapidly
 
-                v(vector_index) = this->operator()(i,j);
+                v(vector_index) = this->operator()(i, j);
                 vector_index++;
             }
         }
@@ -334,7 +331,6 @@ public:
 };
 
 
-
 /*
  *  Convenience typedefs related to Matrix
  */
@@ -342,7 +338,7 @@ public:
 template <typename Scalar>
 using MatrixX = Matrix<Scalar, Dynamic, Dynamic>;
 
-template<typename Scalar, int Rows>
+template <typename Scalar, int Rows>
 using Vector = Matrix<Scalar, Rows, 1>;
 
 template <typename Scalar>
@@ -351,10 +347,10 @@ using VectorX = Vector<Scalar, Dynamic>;
 using VectorXs = VectorX<size_t>;
 
 template <typename Scalar>
-using VectorFunction = std::function<VectorX<Scalar> (const VectorX<Scalar>&)>;
+using VectorFunction = std::function<VectorX<Scalar>(const VectorX<Scalar>&)>;
 
 template <typename Scalar>
-using MatrixFunction = std::function<MatrixX<Scalar> (const VectorX<Scalar>&)>;
+using MatrixFunction = std::function<MatrixX<Scalar>(const VectorX<Scalar>&)>;
 
 
 }  // namespace GQCP

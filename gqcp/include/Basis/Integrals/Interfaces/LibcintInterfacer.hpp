@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 #include "Basis/ScalarBasis/GTOShell.hpp"
@@ -37,13 +37,12 @@ extern "C" {
  *  The following functions are not inside the include header <cint.h>, so we should define them in order to be able to use them in our source code
  */
 FINT cint1e_ovlp_cart(double* buf, const int* shls, const int* atm, int natm, const int* bas, int nbas, const double* env);  // overlap
-FINT cint1e_kin_cart(double* buf, const int* shls, const int* atm, int natm, const int* bas, int nbas, const double* env);  // kinetic energy
-FINT cint1e_nuc_cart(double* buf, const int* shls, const int* atm, int natm, const int* bas, int nbas, const double* env);  // nuclear attraction energy
-FINT cint1e_r_cart(double* buf, const int* shls, const int* atm, int natm, const int* bas, int nbas, const double* env);  // dipole integrals
+FINT cint1e_kin_cart(double* buf, const int* shls, const int* atm, int natm, const int* bas, int nbas, const double* env);   // kinetic energy
+FINT cint1e_nuc_cart(double* buf, const int* shls, const int* atm, int natm, const int* bas, int nbas, const double* env);   // nuclear attraction energy
+FINT cint1e_r_cart(double* buf, const int* shls, const int* atm, int natm, const int* bas, int nbas, const double* env);     // dipole integrals
 
 
 }  // extern "C"
-
 
 
 namespace GQCP {
@@ -53,10 +52,9 @@ namespace GQCP {
  *  Aliases for functions that are used in Libcint
  */
 
-using Libcint1eFunction = std::function<int (double*, const int*, const int*, int, const int*, int, const double*)>;
-using Libcint2eFunction = std::function<int (double*, const int*, const int*, int, const int*, int, const double*, const CINTOpt*)>;
-using Libcint2eOptimizerFunction = std::function<void (CINTOpt**, const int*, const int, const int*, const int, const double*)>;
-
+using Libcint1eFunction = std::function<int(double*, const int*, const int*, int, const int*, int, const double*)>;
+using Libcint2eFunction = std::function<int(double*, const int*, const int*, int, const int*, int, const double*, const CINTOpt*)>;
+using Libcint2eOptimizerFunction = std::function<void(CINTOpt**, const int*, const int, const int*, const int, const double*)>;
 
 
 /*
@@ -72,13 +70,11 @@ class RawContainer;
 }  // namespace libcint
 
 
-
 /**
  *  A class that takes care of the interfacing with the libcint library
  */
 class LibcintInterfacer {
 public:
-
     // PUBLIC METHODS - INTERFACING
 
     /**
@@ -102,7 +98,6 @@ public:
      *  @param raw_container                    the libcint::RawContainer that holds the data needed by libcint
      */
     void initializeOptimizer(CINTOpt* libcint_optimizer, const Libcint2eOptimizerFunction& libcint_optimizer_function, const libcint::RawContainer& raw_container) const;
-
 
 
     //  PUBLIC METHODS - INTEGRAL FUNCTIONS
@@ -151,7 +146,6 @@ public:
 };
 
 
-
 namespace libcint {
 
 
@@ -159,7 +153,7 @@ namespace libcint {
  *  C++ global variables instead of macro commands
  */
 static constexpr int ptr_common_orig = PTR_COMMON_ORIG;  // an offset for the origin of vector operators
-static constexpr int ptr_env_start = PTR_ENV_START;  // an offset such that libcint can retrieve the correct index inside the environment, starts at 20
+static constexpr int ptr_env_start = PTR_ENV_START;      // an offset such that libcint can retrieve the correct index inside the environment, starts at 20
 
 static constexpr int atm_slots = ATM_SLOTS;  // the number of 'slots' (i.e. 'members') for an atom
 static constexpr int charge_of = CHARGE_OF;  // slot offset for atomic charge
@@ -167,13 +161,12 @@ static constexpr int ptr_coord = PTR_COORD;  // slot offset for a 'pointer' of t
 
 
 static constexpr int bas_slots = BAS_SLOTS;  // the number of 'slots' (i.e. 'members') for a basis function
-static constexpr int atom_of = ATOM_OF;  // slot offset for the corresponding atom in the basis function
-static constexpr int ang_of = ANG_OF;  // slot offset for the angular momentum
-static constexpr int nprim_of = NPRIM_OF;  // slot offset for the number of primitives inside the basis function
-static constexpr int nctr_of = NCTR_OF;  // slot offset for the number of contractions
-static constexpr int ptr_exp = PTR_EXP;  // slot offset for a 'pointer' to the exponents of the shell inside the libcint environment
+static constexpr int atom_of = ATOM_OF;      // slot offset for the corresponding atom in the basis function
+static constexpr int ang_of = ANG_OF;        // slot offset for the angular momentum
+static constexpr int nprim_of = NPRIM_OF;    // slot offset for the number of primitives inside the basis function
+static constexpr int nctr_of = NCTR_OF;      // slot offset for the number of contractions
+static constexpr int ptr_exp = PTR_EXP;      // slot offset for a 'pointer' to the exponents of the shell inside the libcint environment
 static constexpr int ptr_coeff = PTR_COEFF;  // slot offset for a 'pointer' to the contraction coefficients inside the libcint environment
-
 
 
 /**
@@ -182,11 +175,11 @@ static constexpr int ptr_coeff = PTR_COEFF;  // slot offset for a 'pointer' to t
 class RawContainer {
 private:
     int natm;  // number of atoms
-    int nbf;  // number of basis functions
-    int nsh;  // the number of shells
+    int nbf;   // number of basis functions
+    int nsh;   // the number of shells
 
-    int* libcint_atm;  // information about the atoms
-    int* libcint_bas;  // information about the basis functions
+    int* libcint_atm;     // information about the atoms
+    int* libcint_bas;     // information about the basis functions
     double* libcint_env;  // a raw block of doubles in which libcint (probably) places intermediary calculations
 
 
@@ -203,13 +196,12 @@ public:
      *  @param nsh          the number of shells
      */
     RawContainer(const size_t natm, const size_t nbf, const size_t nsh) :
-        natm (static_cast<int>(natm)),
-        nbf (static_cast<int>(nbf)),
-        nsh (static_cast<int>(nsh)),
-        libcint_atm (new int[this->natm * atm_slots]),
-        libcint_bas (new int[this->nbf * bas_slots]),
-        libcint_env (new double[10000])
-    {}
+        natm {static_cast<int>(natm)},
+        nbf {static_cast<int>(nbf)},
+        nsh {static_cast<int>(nsh)},
+        libcint_atm {new int[this->natm * atm_slots]},
+        libcint_bas {new int[this->nbf * bas_slots]},
+        libcint_env {new double[10000]} {}
 
 
     /*

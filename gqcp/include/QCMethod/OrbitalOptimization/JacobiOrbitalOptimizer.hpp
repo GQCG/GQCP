@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
@@ -28,7 +28,7 @@ namespace GQCP {
 /**
  *  An intermediate abstract class that should be derived from to implement a Jacobi rotation based orbital optimization: the change in scalar function due to a Jacobi rotation should be implemented
  */
-class JacobiOrbitalOptimizer : public BaseOrbitalOptimizer {
+class JacobiOrbitalOptimizer: public BaseOrbitalOptimizer {
 protected:
     size_t dim;  // the dimension of the orbital space that should be scanned. The valid orbital indices then are 0 ... dim (not included)
 
@@ -90,7 +90,7 @@ public:
      *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
      */
     void prepareConvergenceChecking(const SQHamiltonian<double>& sq_hamiltonian) override;
-    
+
     /**
      *  @param sq_hamiltonian           the current Hamiltonian
      * 
@@ -118,7 +118,7 @@ public:
     /**
      *  @return the comparer functor that is used to compare two pair_types
      */
-    std::function<bool (const pair_type&, const pair_type&)> comparer() const;
+    std::function<bool(const pair_type&, const pair_type&)> comparer() const;
 };
 
 

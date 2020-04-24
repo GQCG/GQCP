@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #include "Processing/Properties/RHFElectricalResponseSolver.hpp"
 
 #include "Mathematical/Representation/BlockMatrix.hpp"
@@ -33,9 +33,7 @@ namespace GQCP {
  *  @param N_P          the number of electron pairs
  */
 RHFElectricalResponseSolver::RHFElectricalResponseSolver(const size_t N_P) :
-    N_P (N_P)
-{}
-
+    N_P {N_P} {}
 
 
 /*
@@ -61,7 +59,7 @@ SquareMatrix<double> RHFElectricalResponseSolver::calculateParameterResponseCons
  * 
  *  @return the parameter response force (F_p) as an (Nx3)-matrix, i.e. the first-order parameter partial derivative of the perturbation derivative of the RHF energy function
  */
-Matrix<double, Dynamic, 3> RHFElectricalResponseSolver::calculateParameterResponseForce(const VectorSQOneElectronOperator<double> dipole_op) const {
+Matrix<double, Dynamic, 3> RHFElectricalResponseSolver::calculateParameterResponseForce(const VectorSQOneElectronOperator<double>& dipole_op) const {
 
     const auto K = dipole_op.dimension();  // number of spatial orbitals
 
@@ -71,11 +69,11 @@ Matrix<double, Dynamic, 3> RHFElectricalResponseSolver::calculateParameterRespon
 
     // Loop over the components of the electrical dipole to calculate the response force for every component
     for (size_t m = 0; m < 3; m++) {
-        BlockMatrix<double> F_p_m (N_P, K, 0, N_P);  // zero-initialize an object suitable for the representation of virtual-occupied (a,i) quantities
+        BlockMatrix<double> F_p_m {N_P, K, 0, N_P};  // zero-initialize an object suitable for the representation of virtual-occupied (a,i) quantities
 
         for (size_t i = 0; i < this->N_P; i++) {
             for (size_t a = this->N_P; a < K; a++) {
-                F_p_m(a,i) = 4 * dipole_op.parameters(m)(a,i);  // RHF formula for the parameter (i.e. orbital) response force
+                F_p_m(a, i) = 4 * dipole_op.parameters(m)(a, i);  // RHF formula for the parameter (i.e. orbital) response force
             }
         }
 

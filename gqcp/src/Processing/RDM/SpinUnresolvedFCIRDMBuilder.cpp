@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #include "Processing/RDM/SpinUnresolvedFCIRDMBuilder.hpp"
 
 
@@ -25,8 +25,7 @@ namespace GQCP {
  *  CONSTRUCTOR
  */
 SpinUnresolvedFCIRDMBuilder::SpinUnresolvedFCIRDMBuilder(const SpinUnresolvedONVBasis& fock_space) :
-    fock_space (fock_space)
-{}
+    fock_space {fock_space} {}
 
 
 /*
@@ -82,7 +81,7 @@ double SpinUnresolvedFCIRDMBuilder::calculateElement(const std::vector<size_t>& 
         if (!bra.annihilateAll(bra_indices, sign)) {  // if we can't annihilate, the bra doesn't change
 
             // Go to the beginning of the outer while loop with the next bra
-            if (I < dim-1) {  // prevent the last permutation from occurring
+            if (I < dim - 1) {  // prevent the last permutation from occurring
                 fock_space.setNextONV(bra);
                 I++;
                 sign = 1;
@@ -101,7 +100,7 @@ double SpinUnresolvedFCIRDMBuilder::calculateElement(const std::vector<size_t>& 
             if (!ket.annihilateAll(ket_indices_reversed, sign)) {  // if we can't annihilate, the ket doesn't change
 
                 // Go to the beginning of this (the inner) while loop with the next bra
-                if (J < dim-1) {  // prevent the last permutation from occurring
+                if (J < dim - 1) {  // prevent the last permutation from occurring
                     fock_space.setNextONV(ket);
                     J++;
                     sign = 1;
@@ -116,8 +115,8 @@ double SpinUnresolvedFCIRDMBuilder::calculateElement(const std::vector<size_t>& 
             }
 
             // Reset the previous ket annihilations and move to the next ket
-            if (J == dim-1) {  // prevent the last permutation from occurring
-                break;  // out of the J-loop
+            if (J == dim - 1) {  // prevent the last permutation from occurring
+                break;           // out of the J-loop
             }
             ket.createAll(ket_indices_reversed);
             fock_space.setNextONV(ket);
@@ -126,8 +125,8 @@ double SpinUnresolvedFCIRDMBuilder::calculateElement(const std::vector<size_t>& 
         }  // while J loop
 
         // Reset the previous bra annihilations and move to the next bra
-        if (I == dim-1) {  // prevent the last permutation from occurring
-            break;  // out of the I-loop
+        if (I == dim - 1) {  // prevent the last permutation from occurring
+            break;           // out of the I-loop
         }
         bra.createAll(bra_indices);
         fock_space.setNextONV(bra);

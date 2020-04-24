@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
 
 
@@ -30,8 +30,7 @@ namespace GQCP {
  */
 FCI::FCI(const SpinResolvedONVBasis& onv_basis) :
     HamiltonianBuilder(),
-    onv_basis (onv_basis)
-{}
+    onv_basis {onv_basis} {}
 
 
 /*
@@ -73,23 +72,23 @@ VectorX<double> FCI::matrixVectorProduct(const SQHamiltonian<double>& sq_hamilto
 
     VectorX<double> matvec = diagonal.cwiseProduct(x);
 
-    Eigen::Map<Eigen::MatrixXd> matvecmap (matvec.data(), dim_beta, dim_alpha);
-    Eigen::Map<const Eigen::MatrixXd> xmap (x.data(), dim_beta, dim_alpha);
+    Eigen::Map<Eigen::MatrixXd> matvecmap {matvec.data(), static_cast<long>(dim_beta), static_cast<long>(dim_alpha)};
+    Eigen::Map<const Eigen::MatrixXd> xmap {x.data(), static_cast<long>(dim_beta), static_cast<long>(dim_alpha)};
 
-    for (size_t p = 0; p<K; p++) {
+    for (size_t p = 0; p < K; p++) {
 
         const auto& P = this->onv_basis.oneElectronPartition(p, p, sq_hamiltonian.twoElectron());
         const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorDense(P, false);
 
         // sigma(pp) * X * theta(pp)
-        matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p*(K+K+1-p)/2]);
-        for (size_t q = p + 1; q<K; q++) {
+        matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p * (K + K + 1 - p) / 2]);
+        for (size_t q = p + 1; q < K; q++) {
 
             const auto& P = this->onv_basis.oneElectronPartition(p, q, sq_hamiltonian.twoElectron());
             const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorDense(P, true);
 
             // (sigma(pq) + sigma(qp)) * X * theta(pq)
-            matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p*(K+K+1-p)/2 + q - p]);
+            matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p * (K + K + 1 - p) / 2 + q - p]);
         }
     }
 
@@ -109,9 +108,8 @@ VectorX<double> FCI::matrixVectorProduct(const SQHamiltonian<double>& sq_hamilto
  */
 VectorX<double> FCI::calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
 
-   return this->onv_basis.evaluateOperatorDiagonal(sq_hamiltonian);
+    return this->onv_basis.evaluateOperatorDiagonal(sq_hamiltonian);
 }
-
 
 
 }  // namespace GQCP

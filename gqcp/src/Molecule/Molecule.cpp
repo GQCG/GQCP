@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #include "Molecule/Molecule.hpp"
 
 
@@ -33,9 +33,9 @@ namespace GQCP {
  *                                      -1 -> anion (one electron more than the neutral molecule)
  */
 Molecule::Molecule(const NuclearFramework& nuclear_framework, const int charge) :
-    nuclear_framework (nuclear_framework),
-    N (nuclear_framework.totalNucleicCharge() - charge)
-{
+    nuclear_framework {nuclear_framework},
+    N {nuclear_framework.totalNucleicCharge() - charge} {
+
     // Check if the total positive charge is valid, e.g. H^(2+) does not exist
     if (charge > 0) {
         if (this->totalNucleicCharge() < charge) {  // OK to compare size_t and int like this
@@ -53,8 +53,7 @@ Molecule::Molecule(const NuclearFramework& nuclear_framework, const int charge) 
  *                          -1 -> anion (one electron more than the neutral molecule)
  */
 Molecule::Molecule(const std::vector<Nucleus>& nuclei, const int charge) :
-    Molecule(NuclearFramework(nuclei), charge)
-{}
+    Molecule(NuclearFramework(nuclei), charge) {}
 
 
 /*
@@ -94,7 +93,7 @@ Molecule Molecule::H2Chain(size_t n, double a, double b, int charge, CartesianDi
  * 
  *  @return a regular H-ring where neighbouring hydrogens are separated by the given distance
  */
-Molecule HRingFromDistance(const size_t n, const double distance, int charge=0) {
+Molecule Molecule::HRingFromDistance(const size_t n, const double distance, int charge) {
 
     return Molecule(NuclearFramework::HRingFromDistance(n, distance), charge);
 }
@@ -106,7 +105,7 @@ Molecule HRingFromDistance(const size_t n, const double distance, int charge=0) 
  * 
  *  @return a regular H-ring whose hydrogens are on the circle with the given radius
  */
-Molecule HRingFromRadius(const size_t n, const double radius, int charge=0) {
+Molecule Molecule::HRingFromRadius(const size_t n, const double radius, int charge) {
 
     return Molecule(NuclearFramework::HRingFromRadius(n, radius), charge);
 }
@@ -143,6 +142,18 @@ std::ostream& operator<<(std::ostream& os, const Molecule& molecule) {
     os << molecule.nuclearFramework();
 
     return os;
+}
+
+
+/*
+ *  PUBLIC METHODS
+ */
+
+/**
+ *  @return the charge of this molecule (in a.u.)
+ */
+int Molecule::charge() const {
+    return this->totalNucleicCharge() - this->numberOfElectrons();
 }
 
 

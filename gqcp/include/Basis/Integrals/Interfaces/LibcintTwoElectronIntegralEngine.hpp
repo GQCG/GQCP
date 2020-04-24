@@ -1,25 +1,24 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
 #include "Basis/Integrals/BaseTwoElectronIntegralEngine.hpp"
-
 #include "Basis/Integrals/Interfaces/LibcintInterfacer.hpp"
 #include "Basis/Integrals/Interfaces/LibcintTwoElectronIntegralBuffer.hpp"
 #include "Utilities/miscellaneous.hpp"
@@ -40,24 +39,23 @@ namespace GQCP {
  *  The libcint optimizer struct should also be kept in the engine during the shell-quartet loop, because it should only be initialized once, having access to all the data inside the libcint RawContainer.
  */
 template <typename _Shell, size_t _N, typename _IntegralScalar>
-class LibcintTwoElectronIntegralEngine : public BaseTwoElectronIntegralEngine<_Shell, _N, _IntegralScalar> {
+class LibcintTwoElectronIntegralEngine: public BaseTwoElectronIntegralEngine<_Shell, _N, _IntegralScalar> {
 public:
-    using Shell = _Shell;  // the type of shell the integral engine is able to handle
+    using Shell = _Shell;                    // the type of shell the integral engine is able to handle
     using IntegralScalar = _IntegralScalar;  // the scalar representation of an integral
-    static constexpr auto N = _N;  // the number of components the operator has
+    static constexpr auto N = _N;            // the number of components the operator has
 
 
 private:
-    Libcint2eFunction libcint_function;  // the libcint two-electron integral function
+    Libcint2eFunction libcint_function;                     // the libcint two-electron integral function
     Libcint2eOptimizerFunction libcint_optimizer_function;  // the libcint two-electron optimizer integral function
 
     // Data that has to be kept as a member (see the class note)
     libcint::RawContainer libcint_raw_container;  // the raw libcint data
-    ShellSet<Shell> shell_set;  // the corresponding shell set
+    ShellSet<Shell> shell_set;                    // the corresponding shell set
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -67,12 +65,10 @@ public:
      *  @param shell_set        the ShellSet whose information should be converted to a RawContainer, which will serve as some kind of 'global' data for the libcint engine to use in all its calculate() calls
      */
     LibcintTwoElectronIntegralEngine(const CoulombRepulsionOperator& op, const ShellSet<Shell>& shell_set) :
-        libcint_function (LibcintInterfacer().twoElectronFunction(op)),
-        libcint_optimizer_function (LibcintInterfacer().twoElectronOptimizerFunction(op)),
-        libcint_raw_container (LibcintInterfacer().convert(shell_set)),
-        shell_set (shell_set)
-    {}
-
+        libcint_function {LibcintInterfacer().twoElectronFunction(op)},
+        libcint_optimizer_function {LibcintInterfacer().twoElectronOptimizerFunction(op)},
+        libcint_raw_container {LibcintInterfacer().convert(shell_set)},
+        shell_set {shell_set} {}
 
 
     /*
@@ -109,7 +105,7 @@ public:
         const auto result = this->libcint_function(libcint_buffer, shell_indices, this->libcint_raw_container.atmData(), this->libcint_raw_container.numberOfAtoms(), this->libcint_raw_container.basData(), this->libcint_raw_container.numberOfBasisFunctions(), this->libcint_raw_container.envData(), nullptr);  // no optimizer struct
 
 
-        std::vector<double> buffer_converted (libcint_buffer, libcint_buffer + N*nbf1*nbf2*nbf3*nbf4);  // std::vector constructor from .begin() and .end()
+        std::vector<double> buffer_converted {libcint_buffer, libcint_buffer + N * nbf1 * nbf2 * nbf3 * nbf4};  // std::vector constructor from .begin() and .end()
         return std::make_shared<LibcintTwoElectronIntegralBuffer<IntegralScalar, N>>(buffer_converted, nbf1, nbf2, nbf3, nbf4, result);
     }
 };

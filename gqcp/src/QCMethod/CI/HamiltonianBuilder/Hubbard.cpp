@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #include "QCMethod/CI/HamiltonianBuilder/Hubbard.hpp"
 
 
@@ -29,9 +29,7 @@ namespace GQCP {
  *  @param onv_basis       the full spin-resolved ONV basis
  */
 Hubbard::Hubbard(const SpinResolvedONVBasis& onv_basis) :
-    onv_basis (onv_basis)
-{}
-
+    onv_basis {onv_basis} {}
 
 
 /*
@@ -81,11 +79,11 @@ VectorX<double> Hubbard::matrixVectorProduct(const HubbardHamiltonian<double>& h
     // Calculate the Hubbard matrix-vector product, which is the sum of the alpha- and beta one-electron contributions plus the diagonal (which contains the two-electron contributions).
     VectorX<double> matvec = diagonal.cwiseProduct(x);
 
-    Eigen::Map<Eigen::MatrixXd> matvecmap (matvec.data(), dim_beta, dim_alpha);
-    Eigen::Map<const Eigen::MatrixXd> xmap (x.data(), dim_beta, dim_alpha);
+    Eigen::Map<Eigen::MatrixXd> matvecmap {matvec.data(), static_cast<long>(dim_beta), static_cast<long>(dim_alpha)};
+    Eigen::Map<const Eigen::MatrixXd> xmap {x.data(), static_cast<long>(dim_beta), static_cast<long>(dim_alpha)};
 
     const auto H_alpha = onv_basis_alpha.evaluateOperatorSparse(hubbard_hamiltonian.core(), false);  // false: no diagonal contributions
-    const auto H_beta = onv_basis_beta.evaluateOperatorSparse(hubbard_hamiltonian.core(), false);  // false: no diagonal contributions
+    const auto H_beta = onv_basis_beta.evaluateOperatorSparse(hubbard_hamiltonian.core(), false);    // false: no diagonal contributions
 
     matvecmap += xmap * H_alpha + H_beta * xmap;
     return matvec;
@@ -126,13 +124,13 @@ VectorX<double> Hubbard::calculateDiagonal(const HubbardHamiltonian<double>& hub
     for (size_t Ia = 0; Ia < dim_alpha; Ia++) {  // Ia loops over the addresses of alpha ONVs
         onv_basis_beta.transformONV(onv_beta, 0);
 
-        for (size_t Ib = 0; Ib < dim_beta; Ib++) {  // Ib loops over addresses of beta ONVs
+        for (size_t Ib = 0; Ib < dim_beta; Ib++) {      // Ib loops over addresses of beta ONVs
             const size_t address = Ia * dim_beta + Ib;  // compound address in the spin-resolved ONV basis
 
             // There is a contribution for all orbital indices p that are occupied both in the alpha- and beta ONV.
             std::vector<size_t> occupations = onv_alpha.findMatchingOccupations(onv_beta);
             for (const auto& p : occupations) {
-                diagonal(address) += H(p,p);  // the two-electron (on-site repulsion) contributions are on the diagonal of the hopping matrix
+                diagonal(address) += H(p, p);  // the two-electron (on-site repulsion) contributions are on the diagonal of the hopping matrix
             }
 
             if (Ib < dim_beta - 1) {  // prevent the last permutation from occurring
@@ -146,7 +144,6 @@ VectorX<double> Hubbard::calculateDiagonal(const HubbardHamiltonian<double>& hub
     }  // alpha address (Ia) loop
     return diagonal;
 }
-
 
 
 }  // namespace GQCP

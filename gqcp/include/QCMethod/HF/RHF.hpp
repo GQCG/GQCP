@@ -1,28 +1,28 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
 #include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "QCMethod/HF/RHFSCFEnvironment.hpp"
 #include "QCMethod/QCObjective.hpp"
 #include "QCMethod/QCStructure.hpp"
-#include "QCMethod/HF/RHFSCFEnvironment.hpp"
 #include "QCModel/HF/RHF.hpp"
 
 #include <type_traits>
@@ -45,7 +45,6 @@ public:
 
 
 public:
-
     /*
      *  PUBLIC METHODS
      */
@@ -73,7 +72,7 @@ public:
         const auto& orbital_energies = environment.orbital_energies.back();
         const auto& N_P = environment.N / 2;
 
-        const QCModel::RHF<Scalar> rhf_parameters (N_P, orbital_energies, C);
+        const QCModel::RHF<Scalar> rhf_parameters {N_P, orbital_energies, C};
 
         // Now that we have constructed an instance of the QCModel, we should check if the objective is fulfilled
         if (!objective.isSatisfiedWith(rhf_parameters)) {

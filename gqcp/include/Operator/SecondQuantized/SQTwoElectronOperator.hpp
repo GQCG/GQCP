@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
@@ -41,7 +41,6 @@ namespace GQCP {
 template <typename _Scalar, size_t _Components>
 class SQTwoElectronOperator {
 public:
-
     using Scalar = _Scalar;
     static constexpr auto Components = _Components;
 
@@ -50,7 +49,6 @@ private:
     std::array<QCRankFourTensor<Scalar>, Components> gs;  // all the matrix representations (hence the 's') of the parameters (integrals) of the different components of this second-quantized operator
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -58,9 +56,9 @@ public:
     /**
      *  @param gs            all the matrix representations (hence the 's') of the parameters (integrals) of the different components of this second-quantized operator
      */
-    SQTwoElectronOperator(const std::array<QCRankFourTensor<Scalar>, Components>& gs) : 
-        gs (gs)
-    {
+    SQTwoElectronOperator(const std::array<QCRankFourTensor<Scalar>, Components>& gs) :
+        gs {gs} {
+
         // Check if the given matrix representations have the same dimensions
         const auto dimension_of_first = this->gs[0].dimension();
 
@@ -83,8 +81,7 @@ public:
      */
     template <size_t Z = Components>
     SQTwoElectronOperator(const QCRankFourTensor<Scalar>& g, typename std::enable_if<Z == 1>::type* = 0) :
-        SQTwoElectronOperator(std::array<QCRankFourTensor<Scalar>, 1>{g})
-    {}
+        SQTwoElectronOperator(std::array<QCRankFourTensor<Scalar>, 1> {g}) {}
 
 
     /**
@@ -153,7 +150,7 @@ public:
 
             // Specify the contractions for the relevant contraction of the two-electron integrals and the 2-RDM
             //      0.5 g(p q r s) d(p q r s)
-            Eigen::array<Eigen::IndexPair<int>, 4> contractions = {Eigen::IndexPair<int>(0,0), Eigen::IndexPair<int>(1,1), Eigen::IndexPair<int>(2,2), Eigen::IndexPair<int>(3,3)};
+            Eigen::array<Eigen::IndexPair<int>, 4> contractions {Eigen::IndexPair<int>(0, 0), Eigen::IndexPair<int>(1, 1), Eigen::IndexPair<int>(2, 2), Eigen::IndexPair<int>(3, 3)};
             //      Perform the contraction
             Eigen::Tensor<Scalar, 0> contraction = 0.5 * this->parameters(i).contract(d.Eigen(), contractions);
 
@@ -197,11 +194,10 @@ public:
                     for (size_t r = 0; r < this->dimension(); r++) {
                         for (size_t s = 0; s < this->dimension(); s++) {
                             for (size_t t = 0; t < this->dimension(); t++) {
-                                F_i(p,q) += g_i(q,r,s,t) * (d(p,r,s,t) + d(r,p,s,t));
+                                F_i(p, q) += g_i(q, r, s, t) * (d(p, r, s, t) + d(r, p, s, t));
                             }
                         }
                     }
-
                 }
             }  // F elements loop
             Fs[i] = 0.5 * F_i;
@@ -231,14 +227,14 @@ public:
 
         // A KISS implementation of the calculation of the super-Fockian matrix
         std::array<SquareRankFourTensor<Scalar>, Components> Gs;  // multiple Gs, hence the 's'
-        const auto Fs = this->calculateFockianMatrix(D, d);  // the Fockian matrices are necessary in the calculation
+        const auto Fs = this->calculateFockianMatrix(D, d);       // the Fockian matrices are necessary in the calculation
         for (size_t i = 0; i < Components; i++) {
-            
+
             const auto& g_i = this->parameters(i);  // the matrix representation of the parameters of the i-th component
-            const auto& F_i = Fs[i];  // the Fockian matrix of the i-th component
+            const auto& F_i = Fs[i];                // the Fockian matrix of the i-th component
 
             // Calculate the super-Fockian matrix for every component and add it to the array
-            SquareRankFourTensor<Scalar> G_i (this->dimension());
+            SquareRankFourTensor<Scalar> G_i(this->dimension());
             G_i.setZero();
             for (size_t p = 0; p < this->dimension(); p++) {
                 for (size_t q = 0; q < this->dimension(); q++) {
@@ -246,15 +242,14 @@ public:
                         for (size_t s = 0; s < this->dimension(); s++) {
 
                             if (q == r) {
-                                G_i(p,q,r,s) += 2 * F_i(p,s);
+                                G_i(p, q, r, s) += 2 * F_i(p, s);
                             }
 
                             for (size_t t = 0; t < this->dimension(); t++) {
                                 for (size_t u = 0; u < this->dimension(); u++) {
-                                    G_i(p,q,r,s) += g_i(s,t,q,u) * (d(r,t,p,u) + d(t,r,u,p)) - g_i(s,t,u,p) * (d(r,t,u,q) + d(t,r,q,u)) - g_i(s,p,t,u) * (d(r,q,t,u) + d(q,r,u,t));
+                                    G_i(p, q, r, s) += g_i(s, t, q, u) * (d(r, t, p, u) + d(t, r, u, p)) - g_i(s, t, u, p) * (d(r, t, u, q) + d(t, r, q, u)) - g_i(s, p, t, u) * (d(r, q, t, u) + d(q, r, u, t));
                                 }
                             }
-
                         }
                     }
                 }
@@ -281,7 +276,7 @@ public:
 
         // Initialize a zero operator
         const auto K = this->dimension();  // number of orbitals
-        SQOneElectronOperator<Scalar, Components> F (K);
+        SQOneElectronOperator<Scalar, Components> F {K};
 
 
         // Use a formula to set the parameters
@@ -290,7 +285,7 @@ public:
             for (size_t p = 0; p < K; p++) {
                 for (size_t q = 0; q < K; q++) {
                     for (size_t r = 0; r < K; r++) {
-                        F.parameters(i)(p,q) -= 0.5 * this->parameters(i)(p,r,r,q);
+                        F.parameters(i)(p, q) -= 0.5 * this->parameters(i)(p, r, r, q);
                     }
                 }
             }
@@ -362,7 +357,6 @@ public:
         }
     }
 };
-
 
 
 /*

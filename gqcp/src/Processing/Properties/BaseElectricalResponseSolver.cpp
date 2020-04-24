@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #include "Processing/Properties/BaseElectricalResponseSolver.hpp"
 
 #include "Mathematical/Optimization/LinearEquation/LinearEquationEnvironment.hpp"
@@ -22,7 +22,6 @@
 
 
 namespace GQCP {
-
 
 
 /*
@@ -40,7 +39,7 @@ namespace GQCP {
 Matrix<double, Dynamic, 3> BaseElectricalResponseSolver::calculateWaveFunctionResponse(const SQHamiltonian<double>& sq_hamiltonian, const VectorSQOneElectronOperator<double> dipole_op) const {
 
     const auto k_p = this->calculateParameterResponseConstant(sq_hamiltonian);  // p for parameter
-    const auto F_p = this->calculateParameterResponseForce(dipole_op);  // has 3 columns
+    const auto F_p = this->calculateParameterResponseForce(dipole_op);          // has 3 columns
 
 
     // This function is basically a wrapper around solving k_p x = -F_p

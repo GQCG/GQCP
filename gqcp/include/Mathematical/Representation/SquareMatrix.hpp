@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
@@ -35,8 +35,8 @@ namespace GQCP {
  *
  *  @tparam _Scalar      the scalar type
  */
-template<typename _Scalar>
-class SquareMatrix : public MatrixX<_Scalar> {
+template <typename _Scalar>
+class SquareMatrix: public MatrixX<_Scalar> {
 public:
     using Scalar = _Scalar;
 
@@ -45,7 +45,6 @@ public:
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -53,7 +52,8 @@ public:
     /**
      *  A default constructor.
      */
-    SquareMatrix() : Base() {}
+    SquareMatrix() :
+        Base() {}
 
 
     /**
@@ -62,8 +62,7 @@ public:
      *  @param dim      the dimension of the matrix
      */
     SquareMatrix(size_t dim) :
-        Base(dim, dim)
-    {}
+        Base(dim, dim) {}
 
 
     /**
@@ -72,8 +71,8 @@ public:
      *  @param matrix       the matrix that should be square
      */
     SquareMatrix(const Base& matrix) :
-        Base(matrix)
-    {
+        Base(matrix) {
+
         // Check if the given matrix is square
         if (this->cols() != this->rows()) {
             throw std::invalid_argument("SquareMatrix::SquareMatrix(Base): The given matrix is not square.");
@@ -94,7 +93,6 @@ public:
     {}
 
 
-
     /*
      *  NAMED CONSTRUCTORS
      */
@@ -112,9 +110,9 @@ public:
         size_t column_index = 0;
         size_t row_index = column_index + 1;  // fill the lower triangle
         for (size_t vector_index = 0; vector_index < v.size(); vector_index++) {
-            A(row_index,column_index) = v(vector_index);
+            A(row_index, column_index) = v(vector_index);
 
-            if (row_index == dim-1) {  // -1 because of computers
+            if (row_index == dim - 1) {  // -1 because of computers
                 column_index++;
                 row_index = column_index + 1;
             } else {
@@ -136,14 +134,14 @@ public:
 
         Self A = Self::Zero(dim, dim);
 
-        size_t k = 0;  // vector index
-        for (size_t i = 0; i < dim; i++) {  // row index
+        size_t k = 0;                           // vector index
+        for (size_t i = 0; i < dim; i++) {      // row index
             for (size_t j = i; j < dim; j++) {  // column index
                 if (i != j) {
-                    A(i,j) = v(k);
-                    A(j,i) = v(k);
+                    A(i, j) = v(k);
+                    A(j, i) = v(k);
                 } else {
-                    A(i,i) = v(k);
+                    A(i, i) = v(k);
                 }
 
                 k++;
@@ -169,7 +167,7 @@ public:
         Self J = Self::Identity(M, M);
 
         // And apply the Jacobi rotation as J = I * jacobi_rotation (cfr. B' = B T)
-        J.applyOnTheRight(jacobi_rotation_parameters.get_p(), jacobi_rotation_parameters.get_q(), Eigen::JacobiRotation<double> (c, s));
+        J.applyOnTheRight(jacobi_rotation_parameters.get_p(), jacobi_rotation_parameters.get_q(), Eigen::JacobiRotation<double>(c, s));
         return J;
     }
 
@@ -196,7 +194,7 @@ public:
     }
 
 
-   /**
+    /**
     *  @param start            starting index of the partition
     *  @param range            range overwhich the partition indices stretch
     *  @param M                the dimension of the resulting matrix
@@ -212,7 +210,7 @@ public:
     }
 
 
-   /**
+    /**
     *  @param M                the dimension of the resulting matrix
     *
     *  @return a random unitary matrix
@@ -222,12 +220,11 @@ public:
         // Get a random unitary matrix by diagonalizing a random symmetric matrix
         Self A_random = Self::Random(M, M);
         Self A_symmetric = A_random + A_random.adjoint();
-        Eigen::SelfAdjointEigenSolver<Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>> unitary_solver (A_symmetric);
+        Eigen::SelfAdjointEigenSolver<Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>> unitary_solver {A_symmetric};
 
         return unitary_solver.eigenvectors();
     }
 
-    
 
     /*
      *  GETTERS
@@ -243,10 +240,7 @@ public:
     /**
      *  @return the dimension of this square matrix, i.e. the number of rows or columns
      */
-    size_t dimension() const { 
-
-        return this->cols(); // equals this->rows()
-    }
+    size_t dimension() const { return this->cols(); }  // equals this->rows()
 
     /**
      *  @return a pair-wise strict reduced form of this square matrix. The elements of the matrix are put into the vector such that
@@ -265,12 +259,12 @@ public:
 
         const auto dim = this->get_dim();
 
-        VectorX<Scalar> m = VectorX<Scalar>::Zero((dim*(dim-1)/2));  // strictly lower triangle has dim(dim-1)/2 parameters
+        VectorX<Scalar> m = VectorX<Scalar>::Zero((dim * (dim - 1) / 2));  // strictly lower triangle has dim(dim-1)/2 parameters
 
         size_t vector_index = 0;
-        for (size_t q = 0; q < dim; q++) {  // "column major" ordering for, so we do p first, then q
-            for (size_t p = q+1; p < dim; p++) {  // strict lower triangle means p > q
-                m(vector_index) = this->operator()(p,q);
+        for (size_t q = 0; q < dim; q++) {          // "column major" ordering for, so we do p first, then q
+            for (size_t p = q + 1; p < dim; p++) {  // strict lower triangle means p > q
+                m(vector_index) = this->operator()(p, q);
                 vector_index++;
             }
         }
@@ -286,13 +280,13 @@ public:
 
         // The recursion ends when the given 'matrix' is just a number
         if ((this->rows() == 1) && (this->cols() == 1)) {
-            return this->operator()(0,0);
+            return this->operator()(0, 0);
         }
 
         size_t j = 0;  // develop by the first column
         double value = 0.0;
         for (size_t i = 0; i < this->rows(); i++) {
-            value += this->operator()(i,j) * SquareMatrix<Scalar>(this->matrixMinor(i,j)).permanent_combinatorial();  // need to convert because 'minor' is a Base function and isn't guaranteed to be square
+            value += this->operator()(i, j) * SquareMatrix<Scalar>(this->matrixMinor(i, j)).permanent_combinatorial();  // need to convert because 'minor' is a Base function and isn't guaranteed to be square
         }
 
         return value;
@@ -318,8 +312,8 @@ public:
             size_t k = __builtin_popcountll(gray_code_value);  // number of columns
 
             Base X = Base::Zero(n, k);
-            size_t j = 0;  // the column index in X
-            while (gray_code_value != 0) {  // loop over the set bits in the Gray code
+            size_t j = 0;                                         // the column index in X
+            while (gray_code_value != 0) {                        // loop over the set bits in the Gray code
                 size_t index = __builtin_ctzll(gray_code_value);  // the index in the original matrix
 
                 X.col(j) = this->col(index);
@@ -352,47 +346,47 @@ public:
 
         Self L = Self::Zero(M, M);
         Self U = Self::Zero(M, M);
-        
+
         // Algorithm from "https://www.geeksforgeeks.org/doolittle-algorithm-lu-decomposition/"
-        for (size_t i = 0; i < M; i++) { 
-    
+        for (size_t i = 0; i < M; i++) {
+
             // Systematically solve for the entries of the upper triangular matrix U:
             //  U_ik = A_ik - (LU)_ik
-            for (size_t k = i; k < M; k++) { 
-    
-                // Summation of L(i, j) * U(j, k) 
-                double sum = 0.0; 
+            for (size_t k = i; k < M; k++) {
+
+                // Summation of L(i, j) * U(j, k)
+                double sum = 0.0;
                 for (size_t j = 0; j < i; j++) {
-                    sum += (L(i,j) * U(j,k)); 
+                    sum += (L(i, j) * U(j, k));
                 }
-    
-                // Evaluating U(i, k) 
-                U(i,k) = this->operator()(i,k) - sum; 
-            } 
-    
+
+                // Evaluating U(i, k)
+                U(i, k) = this->operator()(i, k) - sum;
+            }
+
             // Systematically solve for the entries of the lower triangular matrix L:
             //  L_ik = (A_ik - (LU)_ik) / U_kk
-            for (size_t k = i; k < M; k++) { 
+            for (size_t k = i; k < M; k++) {
                 if (i == k) {
-                    L(i,i) = 1;  // diagonal as 1 
-                } else { 
-    
-                    // Summation of L(k, j) * U(j, i) 
-                    double sum = 0.0; 
+                    L(i, i) = 1;  // diagonal as 1
+                } else {
+
+                    // Summation of L(k, j) * U(j, i)
+                    double sum = 0.0;
                     for (size_t j = 0; j < i; j++) {
-                        sum += (L(k,j) * U(j,i)); 
+                        sum += (L(k, j) * U(j, i));
                     }
-    
-                    // Evaluating L(k, i) 
-                    L(k,i) = (this->operator()(k,i) - sum) / U(i,i); 
-                } 
-            } 
-        } 
-        
+
+                    // Evaluating L(k, i)
+                    L(k, i) = (this->operator()(k, i) - sum) / U(i, i);
+                }
+            }
+        }
+
         // Test if the decomposition was stable
         Self A = L * U;
         if (A.isApprox(*this)) {
-            return std::array<Self, 2> ({L, U});
+            return std::array<Self, 2>({L, U});
         } else {
             throw std::runtime_error("SquareMatrix<Scalar>::NoPivotLUDecomposition(): The decomposition was not stable");
         }

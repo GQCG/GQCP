@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
@@ -23,8 +23,8 @@
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "Processing/RDM/DOCIRDMBuilder.hpp"
-#include "Utilities/typedefs.hpp"
 #include "Utilities/linalg.hpp"
+#include "Utilities/typedefs.hpp"
 
 #include <boost/algorithm/string.hpp>
 #include <boost/dynamic_bitset.hpp>
@@ -54,7 +54,6 @@ private:
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -71,9 +70,9 @@ public:
      *  @param coeffs               the expansion coefficients
      */
     LinearExpansion(const ONVBasis& onv_basis, const VectorX<double>& coeffs) :
-        onv_basis (onv_basis),
-        coeffs (coeffs)
-    {
+        onv_basis {onv_basis},
+        coeffs {coeffs} {
+
         if (std::abs(this->coeffs.norm() - 1.0) > 1.0e-12) {  // normalize the coefficients if they aren't
             this->coeffs.normalize();
         }
@@ -94,12 +93,12 @@ public:
     static enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, LinearExpansion<Z>> FromGAMESSUS(const std::string& GAMESSUS_filename) {
 
         // If the filename isn't properly converted into an input file stream, we assume the user supplied a wrong file.
-        std::ifstream input_file_stream (GAMESSUS_filename);
+        std::ifstream input_file_stream {GAMESSUS_filename};
         if (!input_file_stream.good()) {
             throw std::runtime_error("LinearExpansionReader(std::string): The provided GAMESS file is illegible. Maybe you specified a wrong path?");
         }
 
-        std::ifstream input_file_stream_count (GAMESSUS_filename);  // made to count the expansion size
+        std::ifstream input_file_stream_count {GAMESSUS_filename};  // made to count the expansion size
 
 
         // Do the actual parsing.
@@ -150,11 +149,11 @@ public:
 
 
         // Parse the trimmed ONV strings into boost::dynamic_bitset to use its functionality.
-        std::string reversed_alpha (trimmed_alpha.rbegin(), trimmed_alpha.rend());
-        std::string reversed_beta (trimmed_beta.rbegin(), trimmed_beta.rend());
+        std::string reversed_alpha {trimmed_alpha.rbegin(), trimmed_alpha.rend()};
+        std::string reversed_beta {trimmed_beta.rbegin(), trimmed_beta.rend()};
 
-        boost::dynamic_bitset<> alpha_transfer (reversed_alpha);
-        boost::dynamic_bitset<> beta_transfer (reversed_beta);
+        boost::dynamic_bitset<> alpha_transfer {reversed_alpha};
+        boost::dynamic_bitset<> beta_transfer {reversed_beta};
 
         size_t K = alpha_transfer.size();
         size_t N_alpha = alpha_transfer.count();
@@ -208,12 +207,12 @@ public:
 
         // Sum over the ONV basis dimension, and only include the term if c_k != 0
         // We might as well replace all coeffients that are 0 by 1, since log(1) = 0 so there is no influence on the final entropy value
-        Eigen::ArrayXd coefficients_replaced = this->coeffs.unaryExpr([](double c) { return c < 1.0e-18 ? 1 : c;});  // replace 0 by 1
+        Eigen::ArrayXd coefficients_replaced = this->coeffs.unaryExpr([](double c) { return c < 1.0e-18 ? 1 : c; });  // replace 0 by 1
 
         Eigen::ArrayXd coefficients_squared = coefficients_replaced.square();
         Eigen::ArrayXd log_coefficients_squared = coefficients_squared.log();  // natural logarithm (ln)
 
-        return - 1 / std::log(2) * (coefficients_squared * log_coefficients_squared).sum();
+        return -1 / std::log(2) * (coefficients_squared * log_coefficients_squared).sum();
     }
 
 
@@ -275,7 +274,7 @@ public:
             SpinUnresolvedONV alpha = alpha_onv_basis.makeONV(0);
             for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
                 if (!alpha.isOccupied(m)) {
-                    for (size_t e1 = 0; e1 < N_alpha; e1++) {  // e1 (electron 1) loops over the (number of) electrons
+                    for (size_t e1 = 0; e1 < N_alpha; e1++) {       // e1 (electron 1) loops over the (number of) electrons
                         size_t p = alpha.get_occupation_index(e1);  // retrieve the index of a given electron
 
                         if (p < m) {
@@ -336,7 +335,7 @@ public:
 
             for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
                 if (!beta.isOccupied(m)) {
-                    for (size_t e1 = 0; e1 < N_beta; e1++) {  // e1 (electron 1) loops over the (number of) electrons
+                    for (size_t e1 = 0; e1 < N_beta; e1++) {       // e1 (electron 1) loops over the (number of) electrons
                         size_t p = beta.get_occupation_index(e1);  // retrieve the index of a given electron
 
                         if (p < m) {
@@ -422,7 +421,7 @@ public:
      * 
      *  @return if two wave functions are equal within a given tolerance
      */
-     bool isApprox(const LinearExpansion<ONVBasis>& other, double tolerance = 1e-10) const {
+    bool isApprox(const LinearExpansion<ONVBasis>& other, double tolerance = 1e-10) const {
 
         if (this->onv_basis.dimension() != other.onv_basis.get_dimension()) {
             return false;

@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
@@ -30,15 +30,15 @@ namespace GQCP {
  * 
  *  Note that, since this algorithm does not use the PSE Lagrangian, a rotation can jump out of the AP1roG manifold, so this algorithm should be used with care
  */
-class AP1roGJacobiOrbitalOptimizer : public JacobiOrbitalOptimizer {
+class AP1roGJacobiOrbitalOptimizer: public JacobiOrbitalOptimizer {
 private:
     size_t N_P;  // the number of electron pairs
 
-    double A1=0.0, B1=0.0, C1=0.0;  // coefficients for occupied-occupied rotations
-    double A2=0.0, B2=0.0, C2=0.0, D2=0.0, E2=0.0;  // coefficients for occupied-virtual rotations
-    double A3=0.0, B3=0.0, C3=0.0;  // coefficients for virtual-virtual rotations
+    double A1 = 0.0, B1 = 0.0, C1 = 0.0;                      // coefficients for occupied-occupied rotations
+    double A2 = 0.0, B2 = 0.0, C2 = 0.0, D2 = 0.0, E2 = 0.0;  // coefficients for occupied-virtual rotations
+    double A3 = 0.0, B3 = 0.0, C3 = 0.0;                      // coefficients for virtual-virtual rotations
 
-    double E;  // the electronic energy
+    double E;                     // the electronic energy
     AP1roGGeminalCoefficients G;  // the current geminal coefficients
 
 

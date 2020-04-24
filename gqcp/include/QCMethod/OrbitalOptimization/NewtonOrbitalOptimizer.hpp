@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
@@ -34,7 +34,7 @@ namespace GQCP {
 /**
  *  An intermediate abstract class that should be derived from to implement a Newton-step based orbital optimization: the orbital gradient and Hessian are calculated through the DMs
  */
-class NewtonOrbitalOptimizer : public BaseOrbitalOptimizer {
+class NewtonOrbitalOptimizer: public BaseOrbitalOptimizer {
 protected:
     std::shared_ptr<BaseHessianModifier> hessian_modifier;  // the modifier functor that should be used when an indefinite Hessian is encountered
 
@@ -154,7 +154,7 @@ public:
      * 
      *  @return the new free orbital generators
      */
-    OrbitalRotationGenerators calculateNewFreeOrbitalGenerators(const SQHamiltonian<double>& sq_hamiltonian)const;
+    OrbitalRotationGenerators calculateNewFreeOrbitalGenerators(const SQHamiltonian<double>& sq_hamiltonian) const;
 };
 
 

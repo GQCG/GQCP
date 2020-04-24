@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #define BOOST_TEST_MODULE "QCRankFourTensor"
 
 #include <boost/test/unit_test.hpp>
@@ -27,25 +27,25 @@
 /**
  *  Check the interface for QCRankFourTensor constructors
  */
-BOOST_AUTO_TEST_CASE ( constructor ) {
+BOOST_AUTO_TEST_CASE(constructor) {
 
-    GQCP::Tensor<double, 4> T1 (2, 2, 2, 2);
+    GQCP::Tensor<double, 4> T1 {2, 2, 2, 2};
     T1.setZero();
-    BOOST_CHECK_NO_THROW(GQCP::QCRankFourTensor<double> square_T1 (T1));
+    BOOST_CHECK_NO_THROW(GQCP::QCRankFourTensor<double> square_T1(T1));
 
-    const GQCP::Tensor<double, 4> T2 (2, 1, 2, 2);
-    BOOST_CHECK_THROW(GQCP::QCRankFourTensor<double> square_T2 (T2), std::invalid_argument);  // not square
+    const GQCP::Tensor<double, 4> T2 {2, 1, 2, 2};
+    BOOST_CHECK_THROW(GQCP::QCRankFourTensor<double> square_T2(T2), std::invalid_argument);  // not square
 }
 
 
 /**
  *  Check the basis transformation formula for a trivial case: T being a unit matrix
  */
-BOOST_AUTO_TEST_CASE ( QCRankFourTensor_basisTransformInPlace_trivial ) {
+BOOST_AUTO_TEST_CASE(QCRankFourTensor_basisTransformInPlace_trivial) {
 
     const GQCP::TransformationMatrix<double> T = GQCP::TransformationMatrix<double>::Identity(3, 3);
 
-    GQCP::QCRankFourTensor<double> G (3);
+    GQCP::QCRankFourTensor<double> G {3};
     const auto G_copy = G;  // the reference
     G.basisTransformInPlace(T);
 
@@ -56,21 +56,23 @@ BOOST_AUTO_TEST_CASE ( QCRankFourTensor_basisTransformInPlace_trivial ) {
 /**
  *  Check the basis transformation formula using an other implementation (the old olsens code) from Ayers' Lab
  */
-BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_transform_olsens ) {
+BOOST_AUTO_TEST_CASE(SQTwoElectronOperator_transform_olsens) {
 
     // Set an example transformation matrix and two-electron integrals tensor
     const size_t dim = 2;
-    GQCP::TransformationMatrix<double> T (dim);
+    GQCP::TransformationMatrix<double> T {dim};
+    // clang-format off
     T << 1, 2,
          3, 4;
+    // clang-format on
 
-    GQCP::QCRankFourTensor<double> G (dim);
+    GQCP::QCRankFourTensor<double> G {dim};
     G.setZero();
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
             for (size_t k = 0; k < dim; k++) {
                 for (size_t l = 0; l < dim; l++) {
-                    G(i, j, k, l) = l + 2*k + 4*j + 8*i;
+                    G(i, j, k, l) = l + 2 * k + 4 * j + 8 * i;
                 }
             }
         }
@@ -87,11 +89,11 @@ BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_transform_olsens ) {
 /**
  *  Check if the code throws errors concerning non-unitary matrices being given to .rotate()
  */
-BOOST_AUTO_TEST_CASE ( QCRankFourTensor_rotate_throws ) {
+BOOST_AUTO_TEST_CASE(QCRankFourTensor_rotate_throws) {
 
     // Create a random QCRankFourTensor
     const size_t dim = 3;
-    GQCP::QCRankFourTensor<double> g (dim);
+    GQCP::QCRankFourTensor<double> g {dim};
     g.setRandom();
 
 
@@ -109,17 +111,17 @@ BOOST_AUTO_TEST_CASE ( QCRankFourTensor_rotate_throws ) {
 /**
  *  Check that rotating using JacobiRotationParameters is the same as using the corresponding Jacobi rotation matrix
  */
-BOOST_AUTO_TEST_CASE ( QCRankFourTensor_basisRotateInPlace_JacobiRotationParameters ) {
+BOOST_AUTO_TEST_CASE(QCRankFourTensor_basisRotateInPlace_JacobiRotationParameters) {
 
     // Create a random QCRankFourTensor
     const size_t dim = 5;
-    GQCP::QCRankFourTensor<double> g (dim);
+    GQCP::QCRankFourTensor<double> g {dim};
     g.setRandom();
-    GQCP::QCRankFourTensor<double> G1 (g);
-    GQCP::QCRankFourTensor<double> G2 (g);
+    GQCP::QCRankFourTensor<double> G1 {g};
+    GQCP::QCRankFourTensor<double> G2 {g};
 
 
-    const GQCP::JacobiRotationParameters jacobi_rotation_parameters (4, 2, 56.81);
+    const GQCP::JacobiRotationParameters jacobi_rotation_parameters(4, 2, 56.81);
     const auto U = GQCP::TransformationMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
 
     G1.basisRotateInPlace(jacobi_rotation_parameters);

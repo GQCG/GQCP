@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
@@ -44,7 +44,6 @@ private:
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -56,8 +55,9 @@ public:
      *  @param C_beta                       the beta coefficient matrix, i.e. the matrix of the expansion coefficients of the beta spinors in terms of the underlying scalar basis
      */
     USpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis, const TransformationMatrix<ExpansionScalar>& C_alpha, const TransformationMatrix<ExpansionScalar>& C_beta) :
-        spinor_bases ({RSpinorBasis<ExpansionScalar, Shell>(alpha_scalar_basis, C_alpha), RSpinorBasis<ExpansionScalar, Shell>(beta_scalar_basis, C_beta)})
-    {
+        spinor_bases {RSpinorBasis<ExpansionScalar, Shell>(alpha_scalar_basis, C_alpha),
+                      RSpinorBasis<ExpansionScalar, Shell>(beta_scalar_basis, C_beta)} {
+
         // Check if the dimensions of the given objects are compatible
         const auto K_alpha = alpha_scalar_basis.numberOfBasisFunctions();
         const auto K_beta = beta_scalar_basis.numberOfBasisFunctions();
@@ -79,16 +79,16 @@ public:
      *  @param C                    the coefficient matrix, i.e. the matrix of the expansion coefficients of the spinors in terms of the underlying scalar bases
      */
     USpinorBasis(const ScalarBasis<Shell>& scalar_basis, const TransformationMatrix<ExpansionScalar>& C) :
-        USpinorBasis(scalar_basis, scalar_basis, C, C)
-    {}
+        USpinorBasis(scalar_basis, scalar_basis, C, C) {}
 
 
     /**
      *  Construct an unrestricted spinor basis with two different underlying scalar basis, and a coefficient matrix being the identity
      */
-    USpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis) : 
-        USpinorBasis(alpha_scalar_basis, beta_scalar_basis, TransformationMatrix<ExpansionScalar>::Identity(alpha_scalar_basis.numberOfBasisFunctions(), alpha_scalar_basis.numberOfBasisFunctions()), TransformationMatrix<ExpansionScalar>::Identity(beta_scalar_basis.numberOfBasisFunctions(), beta_scalar_basis.numberOfBasisFunctions()))
-    {}
+    USpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis) :
+        USpinorBasis(alpha_scalar_basis, beta_scalar_basis,
+                     TransformationMatrix<ExpansionScalar>::Identity(alpha_scalar_basis.numberOfBasisFunctions(), alpha_scalar_basis.numberOfBasisFunctions()),
+                     TransformationMatrix<ExpansionScalar>::Identity(beta_scalar_basis.numberOfBasisFunctions(), beta_scalar_basis.numberOfBasisFunctions())) {}
 
 
     /**
@@ -97,8 +97,7 @@ public:
      *  @param scalar_basis         the scalar basis in which both the alpha and beta components are expanded
      */
     USpinorBasis(const ScalarBasis<Shell>& scalar_basis) :
-        USpinorBasis(scalar_basis, scalar_basis)
-    {}
+        USpinorBasis(scalar_basis, scalar_basis) {}
 
 
     /**
@@ -112,8 +111,7 @@ public:
      * 
      */
     USpinorBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name) :
-        USpinorBasis(ScalarBasis<Shell>(nuclear_framework, basisset_name))
-    {}
+        USpinorBasis(ScalarBasis<Shell>(nuclear_framework, basisset_name)) {}
 
 
     /**
@@ -126,8 +124,7 @@ public:
      *  @note the resulting unrestricted spinor basis is (most likely) non-orthogonal
      */
     USpinorBasis(const Molecule& molecule, const std::string& basisset_name) :
-        USpinorBasis(ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name))
-    {}
+        USpinorBasis(ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name)) {}
 
 
     /**
@@ -141,8 +138,8 @@ public:
      *  @note the resulting unrestricted spinor basis is (most likely) non-orthogonal
      */
     USpinorBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name_alpha, const std::string& basisset_name_beta) :
-        USpinorBasis(ScalarBasis<Shell>(nuclear_framework, basisset_name_alpha), ScalarBasis<Shell>(nuclear_framework, basisset_name_beta))
-    {}
+        USpinorBasis(ScalarBasis<Shell>(nuclear_framework, basisset_name_alpha),
+                     ScalarBasis<Shell>(nuclear_framework, basisset_name_beta)) {}
 
 
     /**
@@ -156,9 +153,8 @@ public:
      *  @note the resulting unrestricted spinor basis is (most likely) non-orthogonal
      */
     USpinorBasis(const Molecule& molecule, const std::string& basisset_name_alpha, const std::string& basisset_name_beta) :
-        USpinorBasis(ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name_alpha), ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name_beta))
-    {}
-
+        USpinorBasis(ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name_alpha),
+                     ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name_beta)) {}
 
 
     /*
@@ -170,7 +166,7 @@ public:
      * 
      *  @return the coefficient matrix for the requested component, i.e. the matrix of the expansion coefficients of the requested component of the spinors in terms of its underlying scalar basis
      */
-    const MatrixX<ExpansionScalar>& coefficientMatrix(SpinComponent component) const { 
+    const MatrixX<ExpansionScalar>& coefficientMatrix(SpinComponent component) const {
         return spinor_bases[component].coefficientMatrix();
     }
 
@@ -198,7 +194,7 @@ public:
     /**
      *  @return the number of spinors that 'are' in this unrestricted spinor basis
      */
-    size_t numberOfSpinors() const { 
+    size_t numberOfSpinors() const {
 
         const auto K_alpha = this->numberOfCoefficients(SpinComponent::ALPHA);
         const auto K_beta = this->numberOfCoefficients(SpinComponent::BETA);
@@ -293,7 +289,7 @@ public:
      * 
      *  @note this function is only available for real spinor bases because Jacobi rotation parameters generate real rotations
      */
-    template<typename Z = ExpansionScalar>
+    template <typename Z = ExpansionScalar>
     enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters, const SpinComponent& component) {
         this->spinor_bases[component].rotate(jacobi_rotation_parameters);
     }
@@ -307,7 +303,7 @@ public:
      *  @note this function is only available for real spinor bases because Jacobi rotation parameters generate real rotations
      *  @note this method is only valid when the beta and alpha component are of the same dimension, and will only accept parameters of the same dimension as the individual component.
      */
-    template<typename Z = ExpansionScalar>
+    template <typename Z = ExpansionScalar>
     enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
         this->rotate(jacobi_rotation_parameters, SpinComponent::ALPHA);
         this->rotate(jacobi_rotation_parameters, SpinComponent::BETA);
@@ -346,7 +342,7 @@ public:
      *
      *  @note this method is only available for real matrix representations
      */
-    template<typename Z = ExpansionScalar>
+    template <typename Z = ExpansionScalar>
     enable_if_t<std::is_same<Z, double>::value, ScalarSQOneElectronOperator<double>> calculateMullikenOperator(const std::vector<size_t>& ao_list, const SpinComponent& component) const {
         return this->spinor_bases[component].template calculateMullikenOperator<ExpansionScalar>(ao_list);
     }
@@ -362,7 +358,7 @@ public:
     auto quantize(const FQOneElectronOperator& fq_op, const SpinComponent& component) const -> SQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, FQOneElectronOperator::Components> {
         return this->spinor_bases[component].quantize(fq_op);
     }
-        
+
 
     /**
      *  @param fq_op            the first-quantized Coulomb operator
@@ -383,13 +379,13 @@ public:
      *
      *  Note that this method is only available for real SQoperators
      */
-    template<typename Z = ExpansionScalar>
+    template <typename Z = ExpansionScalar>
     enable_if_t<std::is_same<Z, double>::value, ScalarSQOneElectronOperator<double>> calculateAtomicSpinZ(const std::vector<size_t>& ao_list, const SpinComponent& component) const {
 
         // The atomic spin operator can be calculated as as the atomic Mulliken operator divided by 2, multiplied by the correct sign factor
-        int sign = 1 - 2*component;  // 1 for ALPHA, -1 for BETA
+        int sign = 1 - 2 * component;  // 1 for ALPHA, -1 for BETA
         const auto spin_z_par = 0.5 * sign * this->spinor_bases[component].calculateMullikenOperator(ao_list).parameters();
-        return ScalarSQOneElectronOperator<double>{spin_z_par};
+        return ScalarSQOneElectronOperator<double> {spin_z_par};
     }
 };
 

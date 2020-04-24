@@ -2,11 +2,11 @@
  *  A benchmark for the construction of a random DOCI Hamiltonian matrix in a doubly-occupied spin-unresolved basis of 16 spatial orbitals and 5-8 electron pairs.
  */
 
-#include <benchmark/benchmark.h>
-
 #include "ONVBasis/SeniorityZeroONVBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
+
+#include <benchmark/benchmark.h>
 
 
 static void CustomArguments(benchmark::internal::Benchmark* b) {
@@ -19,7 +19,7 @@ static void CustomArguments(benchmark::internal::Benchmark* b) {
 static void constructHamiltonian(benchmark::State& state) {
 
     // Set up a random SQHamiltonian and a doubly occupied SpinUnresolvedONV basis.
-    const size_t K = state.range(0);  // number of spatial orbitals
+    const size_t K = state.range(0);    // number of spatial orbitals
     const size_t N_P = state.range(1);  // number of electron pairs
 
     const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Random(K);  // not necessarily in a non-orthonormal basis, but this doesn't matter here

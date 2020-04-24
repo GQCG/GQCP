@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
@@ -48,7 +48,6 @@ private:
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -56,9 +55,8 @@ public:
     /**
      *  @param shell_set        a collection of shells that represents this scalar basis
      */
-    ScalarBasis(const ShellSet<Shell>& shell_set): 
-        shell_set (shell_set)
-    {}
+    ScalarBasis(const ShellSet<Shell>& shell_set) :
+        shell_set {shell_set} {}
 
 
     /**
@@ -72,10 +70,9 @@ public:
      *  @note This constructor is only available for GTOShells (for the std::enable_if, see https://stackoverflow.com/a/17842695/7930415)
      */
     template <typename Z = GTOShell>
-    ScalarBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name,
-                typename std::enable_if<std::is_same<Z, GTOShell>::value>::type* = 0) :
-        ScalarBasis(GTOBasisSet(basisset_name).generate(nuclear_framework))
-    {
+    ScalarBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name, typename std::enable_if<std::is_same<Z, GTOShell>::value>::type* = 0) :
+        ScalarBasis(GTOBasisSet(basisset_name).generate(nuclear_framework)) {
+
         this->shell_set.embedNormalizationFactorsOfPrimitives();
     }
 
@@ -91,10 +88,8 @@ public:
      *  @note This constructor is only available for GTOShells (for the std::enable_if, see https://stackoverflow.com/a/17842695/7930415).
      */
     template <typename Z = GTOShell>
-    ScalarBasis(const Molecule& molecule, const std::string& basisset_name,
-                typename std::enable_if<std::is_same<Z, GTOShell>::value>::type* = 0) :
-        ScalarBasis(molecule.nuclearFramework(), basisset_name)
-    {}
+    ScalarBasis(const Molecule& molecule, const std::string& basisset_name, typename std::enable_if<std::is_same<Z, GTOShell>::value>::type* = 0) :
+        ScalarBasis(molecule.nuclearFramework(), basisset_name) {}
 
 
     /*

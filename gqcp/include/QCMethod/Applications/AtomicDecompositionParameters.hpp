@@ -1,25 +1,25 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
-#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Molecule/Molecule.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 
 namespace GQCP {
@@ -32,18 +32,17 @@ class AtomicDecompositionParameters {
 private:
     SQHamiltonian<double> molecular_hamiltonian_parameters;  // the Hamiltonian of the complete molecule
 
-    std::vector<SQHamiltonian<double>> net_atomic_parameters;  // vector of net atomic Hamiltonians
+    std::vector<SQHamiltonian<double>> net_atomic_parameters;   // vector of net atomic Hamiltonians
     std::vector<SQHamiltonian<double>> interaction_parameters;  // vector of interaction Hamiltonians
-    std::vector<SQHamiltonian<double>> atomic_parameters;  // vector of the total atomic contributions
+    std::vector<SQHamiltonian<double>> atomic_parameters;       // vector of the total atomic contributions
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
     AtomicDecompositionParameters() = default;
-    
+
 
     /**
      *  @param molecular_hamiltonian_parameters     the complete molecular Hamiltonian
@@ -51,8 +50,7 @@ public:
      *  @param interaction_parameters               collection of atomic interaction Hamiltonians
      *  @param atomic_parameters                    collection of atomic Hamiltonians
      */
-    AtomicDecompositionParameters (const SQHamiltonian<double>& molecular_hamiltonian_parameters, const std::vector<SQHamiltonian<double>>& net_atomic_parameters, const std::vector<SQHamiltonian<double>>& interaction_parameters, const std::vector<SQHamiltonian<double>>& atomic_parameters);
-
+    AtomicDecompositionParameters(const SQHamiltonian<double>& molecular_hamiltonian_parameters, const std::vector<SQHamiltonian<double>>& net_atomic_parameters, const std::vector<SQHamiltonian<double>>& interaction_parameters, const std::vector<SQHamiltonian<double>>& atomic_parameters);
 
 
     /*
@@ -85,7 +83,6 @@ public:
      *      atomic_parameters will contain parameters for A then B.
      */
     static AtomicDecompositionParameters Nuclear(const Molecule& molecule, const std::string& basisset_name);
-
 
 
     /*

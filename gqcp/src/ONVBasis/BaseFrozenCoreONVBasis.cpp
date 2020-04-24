@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #include "ONVBasis/BaseFrozenCoreONVBasis.hpp"
 
 
@@ -30,11 +30,9 @@ namespace GQCP {
  *  @param X                             the number of frozen orbitals
  */
 BaseFrozenCoreONVBasis::BaseFrozenCoreONVBasis(std::shared_ptr<GQCP::BaseONVBasis> onv_basis, size_t X) :
-    BaseONVBasis(onv_basis->get_K()+X, onv_basis->get_dimension()),
-    active_fock_space (std::move(onv_basis)),
-    X (X)
-{}
-
+    BaseONVBasis(onv_basis->get_K() + X, onv_basis->get_dimension()),
+    active_fock_space {std::move(onv_basis)},
+    X {X} {}
 
 
 /*
@@ -271,7 +269,7 @@ VectorX<double> BaseFrozenCoreONVBasis::evaluateOperatorDiagonal(const SQHamilto
 ScalarSQOneElectronOperator<double> BaseFrozenCoreONVBasis::freezeOperator(const ScalarSQOneElectronOperator<double>& one_op, size_t X) {
 
     size_t K_active = one_op.dimension() - X;
-    return ScalarSQOneElectronOperator<double>{one_op.parameters().block(X, X, K_active, K_active)};
+    return ScalarSQOneElectronOperator<double> {one_op.parameters().block(X, X, K_active, K_active)};
 }
 
 
@@ -290,23 +288,23 @@ FrozenOperators BaseFrozenCoreONVBasis::freezeOperator(const ScalarSQTwoElectron
 
     // Frozen two-electron integrals can be rewritten partially as one electron integrals.
     for (size_t i = 0; i < K_active; i++) {  // iterate over the active orbitals
-        size_t q = i + X;  // map active orbitals indexes to total orbital indexes (those including the frozen orbitals)
+        size_t q = i + X;                    // map active orbitals indexes to total orbital indexes (those including the frozen orbitals)
 
         for (size_t l = 0; l < X; l++) {  // iterate over the frozen orbitals
-            frozen_one_op_par(i,i) += two_op_par(q,q,l,l) + two_op_par(l,l,q,q) - two_op_par(q,l,l,q)/2 - two_op_par(l,q,q,l)/2;
+            frozen_one_op_par(i, i) += two_op_par(q, q, l, l) + two_op_par(l, l, q, q) - two_op_par(q, l, l, q) / 2 - two_op_par(l, q, q, l) / 2;
         }
 
-        for (size_t j = i+1; j < K_active; j++) {  // iterate over the active orbitals
-            size_t p = j + X;  // map active orbitals indexes to total orbital indexes (those including the frozen orbitals)
+        for (size_t j = i + 1; j < K_active; j++) {  // iterate over the active orbitals
+            size_t p = j + X;                        // map active orbitals indexes to total orbital indexes (those including the frozen orbitals)
 
             for (size_t l = 0; l < X; l++) {  // iterate over the frozen orbitals
-                frozen_one_op_par(i,j) += two_op_par(q,p,l,l) + two_op_par(l,l,q,p) - two_op_par(q,l,l,p)/2 - two_op_par(l,p,q,l)/2;
-                frozen_one_op_par(j,i) += two_op_par(p,q,l,l) + two_op_par(l,l,p,q) - two_op_par(p,l,l,q)/2 - two_op_par(l,q,p,l)/2;
+                frozen_one_op_par(i, j) += two_op_par(q, p, l, l) + two_op_par(l, l, q, p) - two_op_par(q, l, l, p) / 2 - two_op_par(l, p, q, l) / 2;
+                frozen_one_op_par(j, i) += two_op_par(p, q, l, l) + two_op_par(l, l, p, q) - two_op_par(p, l, l, q) / 2 - two_op_par(l, q, p, l) / 2;
             }
         }
     }
 
-    return {ScalarSQOneElectronOperator<double>{frozen_one_op_par}, ScalarSQTwoElectronOperator<double>{frozen_two_op_par}};
+    return {ScalarSQOneElectronOperator<double> {frozen_one_op_par}, ScalarSQTwoElectronOperator<double> {frozen_two_op_par}};
 }
 
 
@@ -348,10 +346,10 @@ VectorX<double> BaseFrozenCoreONVBasis::frozenCoreDiagonal(const ScalarSQOneElec
     // The diagonal value for the frozen orbitals is the same for each frozen ONV
     double value = 0;
     for (size_t i = 0; i < X; i++) {
-        value += 2 * one_op_par(i,i);
+        value += 2 * one_op_par(i, i);
     }
 
-    return  VectorX<double>::Constant(dimension, value);
+    return VectorX<double>::Constant(dimension, value);
 }
 
 
@@ -368,10 +366,10 @@ VectorX<double> BaseFrozenCoreONVBasis::frozenCoreDiagonal(const ScalarSQTwoElec
     // The diagonal value for the frozen orbitals is the same for each ONV
     double value = 0;
     for (size_t i = 0; i < X; i++) {
-        value += two_op_par(i,i,i,i);
+        value += two_op_par(i, i, i, i);
 
-        for (size_t j = i+1; j < X; j++) {
-            value += 2*two_op_par(i,i,j,j) + 2*two_op_par(j,j,i,i) - two_op_par(j,i,i,j) - two_op_par(i,j,j,i);
+        for (size_t j = i + 1; j < X; j++) {
+            value += 2 * two_op_par(i, i, j, j) + 2 * two_op_par(j, j, i, i) - two_op_par(j, i, i, j) - two_op_par(i, j, j, i);
         }
     }
 
@@ -385,15 +383,14 @@ VectorX<double> BaseFrozenCoreONVBasis::frozenCoreDiagonal(const ScalarSQTwoElec
  *
  *  @return the Hamiltonian diagonal from strictly evaluating the frozen orbitals in the frozen ONV basis
  */
-VectorX<double> BaseFrozenCoreONVBasis::frozenCoreDiagonal(const SQHamiltonian<double>& sq_hamiltonian, size_t X,  size_t dimension) {
+VectorX<double> BaseFrozenCoreONVBasis::frozenCoreDiagonal(const SQHamiltonian<double>& sq_hamiltonian, size_t X, size_t dimension) {
     return BaseFrozenCoreONVBasis::frozenCoreDiagonal(sq_hamiltonian.core(), X, dimension) + BaseFrozenCoreONVBasis::frozenCoreDiagonal(sq_hamiltonian.twoElectron(), X, dimension);
 }
 
 
-
 /*
  *  STATIC UNRESTRICTED
- */ 
+ */
 
 /**
  *  @param usq_hamiltonian      the Hamiltonian expressed in an unrestricted orthonormal basis
@@ -410,14 +407,16 @@ VectorX<double> BaseFrozenCoreONVBasis::frozenCoreDiagonal(const USQHamiltonian<
     const auto& two_op_par_mixed = usq_hamiltonian.twoElectronMixed().parameters();
     const auto& two_op_par_a = usq_hamiltonian.spinHamiltonian(SpinComponent::ALPHA).twoElectron().parameters();
     const auto& two_op_par_b = usq_hamiltonian.spinHamiltonian(SpinComponent::BETA).twoElectron().parameters();
-    
+
     // The diagonal value for the frozen orbitals is the same for each ONV
     double value = 0;
     for (size_t i = 0; i < X; i++) {
-        value += two_op_par_mixed(i,i,i,i);
-        value += one_op_par_alpha(i,i) + one_op_par_beta(i,i);
-        for (size_t j = i+1; j < X; j++) {
-            value += two_op_par_mixed(i,i,j,j) + two_op_par_mixed(j,j,i,i) + two_op_par_a(i,i,j,j)/2 + two_op_par_a(j,j,i,i)/2 - two_op_par_a(j,i,i,j)/2 - two_op_par_a(i,j,j,i)/2  + two_op_par_b(i,i,j,j)/2 + two_op_par_b(j,j,i,i)/2 - two_op_par_b(j,i,i,j)/2 - two_op_par_b(i,j,j,i)/2;
+        value += two_op_par_mixed(i, i, i, i);
+        value += one_op_par_alpha(i, i) + one_op_par_beta(i, i);
+        for (size_t j = i + 1; j < X; j++) {
+            value += two_op_par_mixed(i, i, j, j) + two_op_par_mixed(j, j, i, i) +
+                     two_op_par_a(i, i, j, j) / 2 + two_op_par_a(j, j, i, i) / 2 - two_op_par_a(j, i, i, j) / 2 - two_op_par_a(i, j, j, i) / 2 +
+                     two_op_par_b(i, i, j, j) / 2 + two_op_par_b(j, j, i, i) / 2 - two_op_par_b(j, i, i, j) / 2 - two_op_par_b(i, j, j, i) / 2;
         }
     }
 
@@ -433,8 +432,8 @@ VectorX<double> BaseFrozenCoreONVBasis::frozenCoreDiagonal(const USQHamiltonian<
  *  (see https://drive.google.com/file/d/1Fnhv2XyNO9Xw9YDoJOXU21_6_x2llntI/view?usp=sharing)
  */
 USQHamiltonian<double> BaseFrozenCoreONVBasis::freezeOperator(const USQHamiltonian<double>& usq_hamiltonian, size_t X) {
-    
-    size_t K_active = usq_hamiltonian.dimension()/2 - X;  // number of non-frozen orbitals
+
+    size_t K_active = usq_hamiltonian.dimension() / 2 - X;  // number of non-frozen orbitals
 
     QCMatrix<double> frozen_one_op_par_alpha = usq_hamiltonian.spinHamiltonian(SpinComponent::ALPHA).core().parameters().block(X, X, K_active, K_active);
     QCMatrix<double> frozen_one_op_par_beta = usq_hamiltonian.spinHamiltonian(SpinComponent::BETA).core().parameters().block(X, X, K_active, K_active);
@@ -449,32 +448,30 @@ USQHamiltonian<double> BaseFrozenCoreONVBasis::freezeOperator(const USQHamiltoni
 
     // Frozen two-electron integrals can be rewritten partially as one electron integrals
     for (size_t i = 0; i < K_active; i++) {  // iterate over the active orbitals
-        size_t q = i + X;  // map active orbitals indexes to total orbital indexes (those including the frozen orbitals)
+        size_t q = i + X;                    // map active orbitals indexes to total orbital indexes (those including the frozen orbitals)
 
         for (size_t l = 0; l < X; l++) {  // iterate over the frozen orbitals
-            frozen_one_op_par_alpha(i,i) += two_op_par_mixed(q,q,l,l) + two_op_par_alpha(l,l,q,q) - two_op_par_alpha(q,l,l,q)/2 - two_op_par_alpha(l,q,q,l)/2;
+            frozen_one_op_par_alpha(i, i) += two_op_par_mixed(q, q, l, l) + two_op_par_alpha(l, l, q, q) - two_op_par_alpha(q, l, l, q) / 2 - two_op_par_alpha(l, q, q, l) / 2;
             // There's a small catch here, the variable 'two_op_par_mixed' is represented as g_aabb, the formulas dictate we need g_bbaa for the beta component, hence we switched the indices
-            frozen_one_op_par_beta(i,i) += two_op_par_mixed(l,l,q,q) + two_op_par_beta(l,l,q,q) - two_op_par_beta(q,l,l,q)/2 - two_op_par_beta(l,q,q,l)/2;
+            frozen_one_op_par_beta(i, i) += two_op_par_mixed(l, l, q, q) + two_op_par_beta(l, l, q, q) - two_op_par_beta(q, l, l, q) / 2 - two_op_par_beta(l, q, q, l) / 2;
         }
 
-        for (size_t j = i+1; j < K_active; j++) {  // iterate over the active orbitals
-            size_t p = j + X;  // map active orbitals indexes to total orbital indexes (those including the frozen orbitals)
+        for (size_t j = i + 1; j < K_active; j++) {  // iterate over the active orbitals
+            size_t p = j + X;                        // map active orbitals indexes to total orbital indexes (those including the frozen orbitals)
 
             for (size_t l = 0; l < X; l++) {  // iterate over the frozen orbitals
-                frozen_one_op_par_alpha(i,j) += two_op_par_mixed(q,p,l,l) + two_op_par_alpha(l,l,q,p) - two_op_par_alpha(q,l,l,p)/2 - two_op_par_alpha(l,p,q,l)/2;
-                frozen_one_op_par_beta(i,j) += two_op_par_mixed(l,l,q,p) + two_op_par_beta(l,l,q,p) - two_op_par_beta(q,l,l,p)/2 - two_op_par_beta(l,p,q,l)/2;
+                frozen_one_op_par_alpha(i, j) += two_op_par_mixed(q, p, l, l) + two_op_par_alpha(l, l, q, p) - two_op_par_alpha(q, l, l, p) / 2 - two_op_par_alpha(l, p, q, l) / 2;
+                frozen_one_op_par_beta(i, j) += two_op_par_mixed(l, l, q, p) + two_op_par_beta(l, l, q, p) - two_op_par_beta(q, l, l, p) / 2 - two_op_par_beta(l, p, q, l) / 2;
 
-                frozen_one_op_par_alpha(j,i) += two_op_par_mixed(p,q,l,l) + two_op_par_alpha(l,l,p,q) - two_op_par_alpha(p,l,l,q)/2 - two_op_par_alpha(l,q,p,l)/2;
-                frozen_one_op_par_beta(j,i) += two_op_par_mixed(l,l,p,q) + two_op_par_beta(l,l,p,q) - two_op_par_beta(p,l,l,q)/2 - two_op_par_beta(l,q,p,l)/2;
+                frozen_one_op_par_alpha(j, i) += two_op_par_mixed(p, q, l, l) + two_op_par_alpha(l, l, p, q) - two_op_par_alpha(p, l, l, q) / 2 - two_op_par_alpha(l, q, p, l) / 2;
+                frozen_one_op_par_beta(j, i) += two_op_par_mixed(l, l, p, q) + two_op_par_beta(l, l, p, q) - two_op_par_beta(p, l, l, q) / 2 - two_op_par_beta(l, q, p, l) / 2;
             }
         }
     }
 
-    return USQHamiltonian<double> {
-            SQHamiltonian<double>{ScalarSQOneElectronOperator<double>{frozen_one_op_par_alpha}, ScalarSQTwoElectronOperator<double>{frozen_two_op_par_alpha}},
-            SQHamiltonian<double>{ScalarSQOneElectronOperator<double>{frozen_one_op_par_beta}, ScalarSQTwoElectronOperator<double>{frozen_two_op_par_beta}},
-            ScalarSQTwoElectronOperator<double>{frozen_two_op_par_mixed}
-    };
+    return USQHamiltonian<double>(SQHamiltonian<double>(ScalarSQOneElectronOperator<double> {frozen_one_op_par_alpha}, ScalarSQTwoElectronOperator<double> {frozen_two_op_par_alpha}),
+                                  SQHamiltonian<double>(ScalarSQOneElectronOperator<double> {frozen_one_op_par_beta}, ScalarSQTwoElectronOperator<double> {frozen_two_op_par_beta}),
+                                  ScalarSQTwoElectronOperator<double>(frozen_two_op_par_mixed));
 }
 
 

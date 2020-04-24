@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #include "QCMethod/Applications/AtomicDecompositionParameters.hpp"
 
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
@@ -30,12 +30,11 @@ namespace GQCP {
  *  @param interaction_parameters               collection of the atomic interaction Hamiltonian
  *  @param atomic_parameters                    collection of the atomic Hamiltonian
  */
-AtomicDecompositionParameters::AtomicDecompositionParameters (const SQHamiltonian<double>& molecular_hamiltonian_parameters, const std::vector<SQHamiltonian<double>>& net_atomic_parameters, const std::vector<SQHamiltonian<double>>& interaction_parameters, const std::vector<SQHamiltonian<double>>& atomic_parameters) :
-    molecular_hamiltonian_parameters (molecular_hamiltonian_parameters),
-    net_atomic_parameters (net_atomic_parameters),
-    interaction_parameters (interaction_parameters),
-    atomic_parameters (atomic_parameters)
-{}
+AtomicDecompositionParameters::AtomicDecompositionParameters(const SQHamiltonian<double>& molecular_hamiltonian_parameters, const std::vector<SQHamiltonian<double>>& net_atomic_parameters, const std::vector<SQHamiltonian<double>>& interaction_parameters, const std::vector<SQHamiltonian<double>>& atomic_parameters) :
+    molecular_hamiltonian_parameters {molecular_hamiltonian_parameters},
+    net_atomic_parameters {net_atomic_parameters},
+    interaction_parameters {interaction_parameters},
+    atomic_parameters {atomic_parameters} {}
 
 
 /**
@@ -70,16 +69,16 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
         throw std::invalid_argument("AtomicDecompositionParameters::Nuclear(Molecule, std::string): Only available for diatomic molecules");
     }
 
-    const RSpinorBasis<double, GTOShell> spinor_basis (molecule, basisset_name);
+    const RSpinorBasis<double, GTOShell> spinor_basis {molecule, basisset_name};
     const auto K = spinor_basis.numberOfSpatialOrbitals();
 
 
     // Retrieve an AO basis for the individual atoms so that we can retrieve net atomic nuclear integrals
-    const NuclearFramework nuclear_framework_a ({atoms[0]});
-    const NuclearFramework nuclear_framework_b ({atoms[1]});
+    const NuclearFramework nuclear_framework_a {{atoms[0]}};
+    const NuclearFramework nuclear_framework_b {{atoms[1]}};
 
-    RSpinorBasis<double, GTOShell> spinor_basis_a (nuclear_framework_a, basisset_name);  // in non-orthogonal AO basis
-    RSpinorBasis<double, GTOShell> spinor_basis_b (nuclear_framework_b, basisset_name);  // in non-orthogonal AO basis
+    RSpinorBasis<double, GTOShell> spinor_basis_a {nuclear_framework_a, basisset_name};  // in non-orthogonal AO basis
+    RSpinorBasis<double, GTOShell> spinor_basis_b {nuclear_framework_b, basisset_name};  // in non-orthogonal AO basis
 
     const auto K_a = spinor_basis_a.numberOfSpatialOrbitals();
     const auto K_b = spinor_basis_b.numberOfSpatialOrbitals();
@@ -108,7 +107,7 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
     QCMatrix<double> h_b = QCMatrix<double>::Zero(K, K);
 
     h_a.block(0, 0, K_a, K_a) = T_a + V_a;
-    h_b.block(K_a , K_a, K_b, K_b) = T_b + V_b;
+    h_b.block(K_a, K_a, K_b, K_b) = T_b + V_b;
 
     QCMatrix<double> h_ab = H - h_a - h_b;
 
@@ -131,17 +130,18 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
 
     QCRankFourTensor<double> g_abba = g_ab.Eigen() + g_ba.Eigen();
 
-    SQHamiltonian<double> HAA {ScalarSQOneElectronOperator<double>{h_a}, ScalarSQTwoElectronOperator<double>{g_a}};
-    SQHamiltonian<double> HBB {ScalarSQOneElectronOperator<double>{h_b}, ScalarSQTwoElectronOperator<double>{g_b}};
-    SQHamiltonian<double> HAB {ScalarSQOneElectronOperator<double>{h_ab}, ScalarSQTwoElectronOperator<double>{g_abba}};
-    SQHamiltonian<double> HA {ScalarSQOneElectronOperator<double>{h_a + h_ab/2}, ScalarSQTwoElectronOperator<double>{g_a.Eigen() + 0.5*g_abba.Eigen()}};
-    SQHamiltonian<double> HB {ScalarSQOneElectronOperator<double>{h_b + h_ab/2}, ScalarSQTwoElectronOperator<double>{g_b.Eigen() + 0.5*g_abba.Eigen()}};
+    SQHamiltonian<double> HAA {ScalarSQOneElectronOperator<double>(h_a), ScalarSQTwoElectronOperator<double>(g_a)};
+    SQHamiltonian<double> HBB {ScalarSQOneElectronOperator<double>(h_b), ScalarSQTwoElectronOperator<double>(g_b)};
+    SQHamiltonian<double> HAB {ScalarSQOneElectronOperator<double>(h_ab), ScalarSQTwoElectronOperator<double>(g_abba)};
+    SQHamiltonian<double> HA {ScalarSQOneElectronOperator<double>(h_a + h_ab / 2), ScalarSQTwoElectronOperator<double>(g_a.Eigen() + 0.5 * g_abba.Eigen())};
+    SQHamiltonian<double> HB {ScalarSQOneElectronOperator<double>(h_b + h_ab / 2), ScalarSQTwoElectronOperator<double>(g_b.Eigen() + 0.5 * g_abba.Eigen())};
 
-    std::vector<SQHamiltonian<double>> net_atomic_parameters = {HAA, HBB};
-    std::vector<SQHamiltonian<double>> interaction_parameters = {HAB};
-    std::vector<SQHamiltonian<double>> atomic_parameters = {HA, HB};
+    std::vector<SQHamiltonian<double>> net_atomic_parameters {HAA, HBB};
+    std::vector<SQHamiltonian<double>> interaction_parameters {HAB};
+    std::vector<SQHamiltonian<double>> atomic_parameters {HA, HB};
 
-    return AtomicDecompositionParameters{SQHamiltonian<double>::Molecular(spinor_basis, molecule), net_atomic_parameters, interaction_parameters, atomic_parameters};
+    return AtomicDecompositionParameters(SQHamiltonian<double>::Molecular(spinor_basis, molecule),
+                                         net_atomic_parameters, interaction_parameters, atomic_parameters);
 }
 
 

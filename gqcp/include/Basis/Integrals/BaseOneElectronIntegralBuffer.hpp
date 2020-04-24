@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
@@ -38,7 +38,7 @@ template <typename _IntegralScalar, size_t _N>
 class BaseOneElectronIntegralBuffer {
 public:
     using IntegralScalar = _IntegralScalar;  // the scalar representation of an integral
-    static constexpr auto N = _N;  // the number of components the operator has
+    static constexpr auto N = _N;            // the number of components the operator has
 
 
 protected:
@@ -47,7 +47,6 @@ protected:
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -57,16 +56,14 @@ public:
      *  @param nbf2             the number of basis functions in the second shell
      */
     BaseOneElectronIntegralBuffer(const size_t nbf1, const size_t nbf2) :
-        nbf1 (nbf1),
-        nbf2 (nbf2)
-    {}
+        nbf1(nbf1),
+        nbf2(nbf2) {}
 
 
     /*
      *  DESTRUCTOR
      */
     virtual ~BaseOneElectronIntegralBuffer() = default;
-
 
 
     /*
@@ -112,15 +109,15 @@ public:
     void emplace(std::array<MatrixX<IntegralScalar>, N>& full_components, const size_t bf1, const size_t bf2) const {
 
         // Place the calculated integrals inside the matrix representation of the integrals
-        for (size_t f1 = 0; f1 < this->nbf1; f1++) {  // the index of the basis function within shell 1
+        for (size_t f1 = 0; f1 < this->nbf1; f1++) {      // the index of the basis function within shell 1
             for (size_t f2 = 0; f2 < this->nbf2; f2++) {  // the index of the basis function within shell 2
-                
+
                 for (size_t i = 0; i < N; i++) {  // loop over the components
                     full_components[i](bf1 + f1, bf2 + f2) = this->value(i, f1, f2);
                 }  // components
 
             }  // f2
-        }  // f1
+        }      // f1
     }
 };
 
