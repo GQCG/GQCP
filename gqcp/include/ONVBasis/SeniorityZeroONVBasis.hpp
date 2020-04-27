@@ -20,6 +20,7 @@
 
 #include "Mathematical/Representation/Matrix.hpp"
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 #include <functional>
 
@@ -73,13 +74,31 @@ public:
     size_t dimension() const { return this->dim; }
 
     /**
-     *  Evaluate the diagonal of the matrix representation of a one-electron operator inside this seniority-zero ONV basis
+     *  Evaluate the diagonal of the matrix representation of a one-electron operator inside this seniority-zero ONV basis.
      *
      *  @param one_op               a one-electron operator expressed in an orthonormal orbital basis
      *
      *  @return the diagonal of the matrix representation of the one-electron operator in this seniority-zero ONV basis
      */
     VectorX<double> evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>& one_op) const;
+
+    /**
+     *  Evaluate the diagonal of the matrix representation of a two-electron operator inside this seniority-zero ONV basis.
+     *
+     *  @param two_op               a two-electron operator expressed in an orthonormal orbital basis
+     *
+     *  @return the diagonal of the matrix representation of the two-electron operator in this seniority-zero ONV basis
+     */
+    VectorX<double> evaluateOperatorDiagonal(const ScalarSQTwoElectronOperator<double>& two_op) const;
+
+    /**
+     *  Evaluate the diagonal of the matrix representation of a Hamiltonian inside this seniority-zero ONV basis.
+     *
+     *  @param sq_hamiltonian               a Hamiltonian expressed in an orthonormal orbital basis
+     *
+     *  @return the diagonal of the matrix representation of the Hamiltonian in this seniority-zero ONV basis
+     */
+    VectorX<double> evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const;
 
     /**
      *  Evaluate a one electron operator in a matrix vector product

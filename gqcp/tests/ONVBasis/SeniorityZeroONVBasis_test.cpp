@@ -42,10 +42,12 @@ BOOST_AUTO_TEST_CASE(evaluateOperatorDiagonal) {
     const GQCP::SeniorityZeroONVBasis sz_onv_basis {K, N_P};
     const GQCP::SpinResolvedSelectedONVBasis selected_onv_basis {sz_onv_basis};
 
-    // Check the results.
-    const auto& h = sq_hamiltonian.core();
-    // sz_onv_basis.evaluateOperatorDiagonal(h);
-    selected_onv_basis.evaluateOperatorDiagonal(h);
 
-    // BOOST_CHECK(sz_onv_basis.evaluateOperatorDiagonal(h).isApprox(selected_onv_basis.evaluateOperatorDiagonal(h), 1.0e-08));
+    // Check the if the evaluations are correct.
+    const auto& h = sq_hamiltonian.core();
+    const auto& g = sq_hamiltonian.twoElectron();
+
+    BOOST_CHECK(sz_onv_basis.evaluateOperatorDiagonal(h).isApprox(selected_onv_basis.evaluateOperatorDiagonal(h), 1.0e-08));
+    BOOST_CHECK(sz_onv_basis.evaluateOperatorDiagonal(g).isApprox(selected_onv_basis.evaluateOperatorDiagonal(g), 1.0e-08));
+    BOOST_CHECK(sz_onv_basis.evaluateOperatorDiagonal(sq_hamiltonian).isApprox(selected_onv_basis.evaluateOperatorDiagonal(sq_hamiltonian), 1.0e-08));
 }

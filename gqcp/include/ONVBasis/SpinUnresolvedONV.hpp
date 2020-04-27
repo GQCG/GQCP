@@ -233,6 +233,13 @@ public:
     void forEach(const std::function<void(const size_t)>& callback) const;
 
     /**
+     *  Iterate over every unique pair of occupied spinor indices in this ONV and apply the given callback function.
+     * 
+     *  @param callback         the function that should be called in every iteration step over all pairs of occupied spinor indices. The arguments of this callback function are the indices of the occupied spinor, where the first index is always larger than the second.
+     */
+    void forEach(const std::function<void(const size_t, const size_t)>& callback) const;
+
+    /**
      *  @param p    the orbital index starting from 0, counted from right to left
      *
      *  @return if the p-th spatial orbital is occupied

@@ -403,6 +403,27 @@ void SpinUnresolvedONV::forEach(const std::function<void(const size_t)>& callbac
 
 
 /**
+ *  Iterate over every unique pair of occupied spinor indices in this ONV and apply the given callback function.
+ * 
+ *  @param callback         the function that should be called in every iteration step over all pairs of occupied spinor indices. The arguments of this callback function are the indices of the occupied spinor, where the first index is always larger than the second.
+ */
+void SpinUnresolvedONV::forEach(const std::function<void(const size_t, const size_t)>& callback) const {
+
+    // Loop over every electron in this ONV and retrieve the index of the spinor that it occupies.
+    for (size_t e1 = 0; e1 < this->numberOfElectrons(); e1++) {
+        const size_t p = this->occupationIndexOf(e1);
+
+        // Loop over every different electron in this ONV and retrieve the index of the spinor that it occupies.
+        for (size_t e2 = 0; e2 < e1; e2++) {
+            const size_t q = this->occupationIndexOf(e2);
+
+            callback(p, q);
+        }  // electron 2 index loop
+    }      // electron 1 index loop
+}
+
+
+/**
  *  @param p    the orbital index starting from 0, counted from right to left
  *
  *  @return if the p-th spatial orbital is not occupied
