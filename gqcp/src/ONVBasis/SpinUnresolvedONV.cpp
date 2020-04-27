@@ -332,13 +332,14 @@ std::vector<size_t> SpinUnresolvedONV::findDifferentOccupations(const SpinUnreso
     size_t occupied_differences = differences & this->unsigned_representation;  // this holds all indices occupied in this, but unoccupied in other
 
     size_t number_of_occupied_differences = __builtin_popcountl(occupied_differences);
-    std::vector<size_t> positions {number_of_occupied_differences};
-
+    std::vector<size_t> positions;
+    positions.reserve(number_of_occupied_differences);
 
     // Find the positions of the set bits in occupied_differences
     for (size_t counter = 0; counter < number_of_occupied_differences; counter++) {  // counts the number of occupied differences we have already encountered
         size_t position = __builtin_ctzl(occupied_differences);                      // count trailing zeros
-        positions[counter] = position;
+        positions.push_back(position);
+        // positions[counter] = position;
 
         occupied_differences ^= occupied_differences & -occupied_differences;  // annihilate the least significant set bit
     }
@@ -355,14 +356,16 @@ std::vector<size_t> SpinUnresolvedONV::findDifferentOccupations(const SpinUnreso
 std::vector<size_t> SpinUnresolvedONV::findMatchingOccupations(const SpinUnresolvedONV& other) const {
 
     size_t matches = this->unsigned_representation & other.unsigned_representation;
+
     size_t number_of_occupied_matches = __builtin_popcountl(matches);
-    std::vector<size_t> positions {number_of_occupied_matches};
+    std::vector<size_t> positions;
+    positions.reserve(number_of_occupied_matches);
 
 
     // Find the positions of the set bits in occupied_differences
     for (size_t counter = 0; counter < number_of_occupied_matches; counter++) {  // counts the number of occupied differences we have already encountered
         size_t position = __builtin_ctzl(matches);                               // count trailing zeros
-        positions[counter] = position;
+        positions.push_back(position);
 
         matches ^= matches & -matches;  // annihilate the least significant set bit
     }
