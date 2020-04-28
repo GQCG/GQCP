@@ -56,14 +56,12 @@ install:
     - source $HOME/miniconda/bin/activate
     - hash -r
     - conda config --set always_yes yes --set changeps1 no
-    - conda create --name GQCG-dev
-    - conda activate GQCG-dev
 
     # Install a recent version of CMake, Boost and eigen if they are not yet already installed.
     - if [ ! -f $HOME/miniconda/bin/cmake ]; then
-        conda install -c conda-forge cmake=3.13 boost-cpp=1.69.0 eigen blas mkl pybind11 benchmark numpy;
-        conda install -c gqcg libint cint;
-        conda install -c intel mkl-include mkl-static intel-openmp;
+        conda install -c conda-forge openmp=8.0.1 cmake=3.13 boost-cpp=1.69.0 eigen=3.3.7 blas=2.15 mkl=2019.0 pybind11=2.4.3 benchmark numpy=1.18.1;
+        conda install -c gqcg libint=2.3.1 cint=3.0.17;
+        conda install -c intel mkl-include=2019.0 mkl-static=2019.0 intel-openmp=2019.0;
       else
         echo "Using already installed packages.";
       fi
