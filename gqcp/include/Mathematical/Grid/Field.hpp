@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
@@ -42,11 +42,10 @@ public:
 
 private:
     std::vector<T> values;  // the evaluated function values, in the order of the grid's loop
-    Grid grid;  // the grid associated with this field
+    Grid grid;              // the grid associated with this field
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -56,9 +55,8 @@ public:
      *  @param grid             the grid associated with this field
      */
     Field(const std::vector<T>& values, const Grid& grid) :
-        values (values),
-        grid (grid)
-    {}
+        values {values},
+        grid {grid} {}
 
 
     /*
@@ -92,13 +90,13 @@ public:
         cubefile << std::scientific;
 
         // The next line has the number of atoms and the origin of the volumetric data.
-        cubefile << nuclei.size() << " " << origin(0)     << " " << origin(1)     << " " << origin(2) << std::endl;
+        cubefile << nuclei.size() << " " << origin(0) << " " << origin(1) << " " << origin(2) << std::endl;
 
         // The next three lines give the number of voxels along the respective axes.
         // We're choosing the x-, y- and z-axes, and since the number of steps is positive, the units are Bohr.
-        cubefile << steps[0]      << " " << step_sizes[0] << " " << 0.0           << " " << 0.0 << std::endl;
-        cubefile << steps[1]      << " " << 0.0           << " " << step_sizes[1] << " " << 0.0 << std::endl;
-        cubefile << steps[2]      << " " << 0.0           << " " << 0.0           << " " << step_sizes[2] << std::endl;
+        cubefile << steps[0] << " " << step_sizes[0] << " " << 0.0 << " " << 0.0 << std::endl;
+        cubefile << steps[1] << " " << 0.0 << " " << step_sizes[1] << " " << 0.0 << std::endl;
+        cubefile << steps[2] << " " << 0.0 << " " << 0.0 << " " << step_sizes[2] << std::endl;
         for (const auto& nucleus : nuclei) {
             cubefile << nucleus.charge() << " " << 0.0 << " " << nucleus.position()(0) << " " << nucleus.position()(1) << " " << nucleus.position()(2) << std::endl;
         }
@@ -106,7 +104,7 @@ public:
 
         // Write the values of the scalar function.
         size_t index = 0;
-        this->grid.loop( [&index, &cubefile, this] (const size_t i, const size_t j, const size_t k) {
+        this->grid.loop([&index, &cubefile, this](const size_t i, const size_t j, const size_t k) {
             cubefile << this->values[index] << " ";  // write one value
 
             // There can only be 5 values on one line.
@@ -120,6 +118,8 @@ public:
 
             index++;  // move to the next value
         });
+
+        cubefile.close();
     }
 };
 
