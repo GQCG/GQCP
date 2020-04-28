@@ -56,6 +56,8 @@ install:
     - source $HOME/miniconda/bin/activate
     - hash -r
     - conda config --set always_yes yes --set changeps1 no
+    - conda create --name GQCG-dev
+    - conda activate GQCG-dev
 
     # Install a recent version of CMake, Boost and eigen if they are not yet already installed.
     - if [ ! -f $HOME/miniconda/bin/cmake ]; then
