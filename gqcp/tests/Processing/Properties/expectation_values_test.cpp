@@ -54,9 +54,10 @@ BOOST_AUTO_TEST_CASE(mulliken_N2_STO_3G) {
     // Calculate the Mulliken population operator in this spinor basis.
 
     // To calculate the total Mulliken population operator, we have to include all basis functions.
-    std::vector<size_t> basis_functions {K};
+    std::vector<size_t> basis_functions;
+    basis_functions.reserve(K);
     for (size_t i = 0; i < K; i++) {
-        basis_functions[i] = i;
+        basis_functions.push_back(i);
     }
     const auto mulliken_op = spinor_basis.calculateMullikenOperator(basis_functions);  // 'op' for 'operator'
 

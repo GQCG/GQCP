@@ -115,4 +115,6 @@ OverlapOperator Operator::Overlap() {
 
     return OverlapOperator();
 }
+
+
 }  // namespace GQCP

@@ -78,12 +78,12 @@ public:
      */
     size_t maximumAngularMomentum() const {
 
-        std::vector<size_t> angular_momenta {this->numberOfShells()};  // contains the number of primitives for each of the shells
+        // Generate a list of all the angular momenta and then check its maximum.
+        std::vector<size_t> angular_momenta {};  // will contain the number of primitives for each of the shells
+        angular_momenta.reserve(this->numberOfShells());
 
-        for (size_t i = 0; i < this->numberOfShells(); i++) {
-            const auto shell = this->shells[i];
-
-            angular_momenta[i] = shell.angularMomentum();
+        for (const auto& shell : this->asVector()) {
+            angular_momenta.push_back(shell.angularMomentum());
         }
 
         const auto it = std::max_element(angular_momenta.begin(), angular_momenta.end());  // iterator
@@ -96,12 +96,12 @@ public:
      */
     size_t maximumNumberOfPrimitives() const {
 
-        std::vector<size_t> number_of_primitives {this->numberOfShells()};  // contains the number of primitives for each of the shells
+        // Generate a list of all the number of primitives momenta and then check its maximum.
+        std::vector<size_t> number_of_primitives {};  // will contain the number of primitives for each of the shells
+        number_of_primitives.reserve(this->numberOfShells());
 
-        for (size_t i = 0; i < this->numberOfShells(); i++) {
-            const auto shell = this->shells[i];
-
-            number_of_primitives[i] = shell.contractionSize();
+        for (const auto& shell : this->asVector()) {
+            number_of_primitives.push_back(shell.contractionSize());
         }
 
         const auto it = std::max_element(number_of_primitives.begin(), number_of_primitives.end());  // iterator

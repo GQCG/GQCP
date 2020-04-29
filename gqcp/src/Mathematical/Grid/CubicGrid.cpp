@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #include "Mathematical/Grid/CubicGrid.hpp"
 
 
@@ -31,11 +31,9 @@ namespace GQCP {
  *  @param step_sizes           the step sizes in the x, y, z-directions
  */
 CubicGrid::CubicGrid(const Vector<double, 3>& origin, const std::array<size_t, 3>& steps, const std::array<double, 3>& step_sizes) :
-    m_origin (origin),
-    m_steps (steps),
-    step_sizes (step_sizes)
-{}
-
+    m_origin {origin},
+    m_steps {steps},
+    step_sizes {step_sizes} {}
 
 
 /*
@@ -55,12 +53,12 @@ size_t CubicGrid::numberOfPoints() const {
  * 
  *  @param callback         the function you would like to apply to each incoming (i,j,k)-tuple of numbers of steps taken in the x,y,z-direction.
  */
-void CubicGrid::loop(const std::function<void (const size_t, const size_t, const size_t)>& callback) const {
+void CubicGrid::loop(const std::function<void(const size_t, const size_t, const size_t)>& callback) const {
 
     for (size_t i = 0; i < this->m_steps[0]; i++) {
         for (size_t j = 0; j < this->m_steps[1]; j++) {
             for (size_t k = 0; k < this->m_steps[2]; k++) {
-                callback(i,j,k);
+                callback(i, j, k);
             }
         }
     }
@@ -72,11 +70,11 @@ void CubicGrid::loop(const std::function<void (const size_t, const size_t, const
  * 
  *  @param callback         the function you would like to apply to each incoming position vector
  */
-void CubicGrid::loop(const std::function<void (const Vector<double, 3>&)>& callback) const {
+void CubicGrid::loop(const std::function<void(const Vector<double, 3>&)>& callback) const {
 
     const auto this_copy = *this;
-    this->loop( [this_copy, callback] (const size_t i, const size_t j, const size_t k) {
-        const auto position = this_copy.position(i,j,k);
+    this->loop([this_copy, callback](const size_t i, const size_t j, const size_t k) {
+        const auto position = this_copy.position(i, j, k);
         callback(position);
     });
 }

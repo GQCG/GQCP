@@ -56,8 +56,8 @@ public:
      *  @param nbf2             the number of basis functions in the second shell
      */
     BaseOneElectronIntegralBuffer(const size_t nbf1, const size_t nbf2) :
-        nbf1(nbf1),
-        nbf2(nbf2) {}
+        nbf1 {nbf1},
+        nbf2 {nbf2} {}
 
 
     /*

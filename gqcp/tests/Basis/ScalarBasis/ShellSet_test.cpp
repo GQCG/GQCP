@@ -24,22 +24,23 @@
 #include "Basis/ScalarBasis/ShellSet.hpp"
 
 
-BOOST_AUTO_TEST_CASE(constructor_basisset) {
+/**
+ *  Check if basic methods work as expected.
+ */
+BOOST_AUTO_TEST_CASE(basic) {
 
-    // Create an STO-3G basisset on (a toy geometry of) H2O
-    GQCP::Nucleus h1 {1, 0.0, 0.0, 0.0};
-    GQCP::Nucleus o {8, 0.0, 0.0, 1.0};
-    GQCP::Nucleus h2 {1, 0.0, 0.0, 2.0};
-
-    GQCP::ShellSet<GQCP::GTOShell> ref_shellset {
-        GQCP::GTOShell(0, h1, {3.42525091, 0.62391373, 0.16885540}, {0.15432897, 0.53532814, 0.44463454}, false),
-        GQCP::GTOShell(0, o, {130.7093200, 23.8088610, 6.4436083}, {0.15432897, 0.53532814, 0.44463454}, false),
-        GQCP::GTOShell(0, o, {5.0331513, 1.1695961, 0.3803890}, {-0.09996723, 0.39951283, 0.70011547}, false),
-        GQCP::GTOShell(1, o, {5.0331513, 1.1695961, 0.3803890}, {0.15591627, 0.60768372, 0.39195739}, false),
-        GQCP::GTOShell(0, h2, {3.42525091, 0.62391373, 0.16885540}, {0.15432897, 0.53532814, 0.44463454}, false)};
+    // Generate a scalar basis of GTOs with at least a p-type function inside.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    const auto shellset = GQCP::GTOBasisSet("STO-3G").generate(molecule);
 
 
-    GQCP::Molecule h2o {{h1, o, h2}};
-    const auto shellset = GQCP::GTOBasisSet("STO-3G").generate(h2o);
-    BOOST_CHECK(ref_shellset.asVector() == shellset.asVector());
+    /**
+     *  H2O in an STO-3G basisset contains:
+     *      - 5 shells (sets of functions on the same nucleuswith the same angular momentum): 1s on H (2 times), 1s on O, 2s on O, 3s on O
+     *      - 7 basis functions: 1 1s on H (2 times), 1 1s on O, 1 2s on O and 3 2p on O
+     */
+    BOOST_CHECK_EQUAL(shellset.numberOfShells(), 5);
+    BOOST_CHECK_EQUAL(shellset.numberOfBasisFunctions(), 7);
+    BOOST_CHECK_EQUAL(shellset.maximumNumberOfPrimitives(), 3);  // 3 primitives for O's p-type GTO
+    BOOST_CHECK_EQUAL(shellset.maximumAngularMomentum(), 1);     // O has a p-type basis function
 }

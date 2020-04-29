@@ -20,6 +20,9 @@
 
 #include "Mathematical/Representation/Matrix.hpp"
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
+
+#include <functional>
 
 
 namespace GQCP {
@@ -71,13 +74,31 @@ public:
     size_t dimension() const { return this->dim; }
 
     /**
-     *  Evaluate the diagonal of the operator
+     *  Evaluate the diagonal of the matrix representation of a one-electron operator inside this seniority-zero ONV basis.
      *
-     *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
+     *  @param one_op               a one-electron operator expressed in an orthonormal orbital basis
      *
-     *  @return the operator's diagonal evaluation in a vector with the dimension of the ONV basis
+     *  @return the diagonal of the matrix representation of the one-electron operator in this seniority-zero ONV basis
      */
     VectorX<double> evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>& one_op) const;
+
+    /**
+     *  Evaluate the diagonal of the matrix representation of a two-electron operator inside this seniority-zero ONV basis.
+     *
+     *  @param two_op               a two-electron operator expressed in an orthonormal orbital basis
+     *
+     *  @return the diagonal of the matrix representation of the two-electron operator in this seniority-zero ONV basis
+     */
+    VectorX<double> evaluateOperatorDiagonal(const ScalarSQTwoElectronOperator<double>& two_op) const;
+
+    /**
+     *  Evaluate the diagonal of the matrix representation of a Hamiltonian inside this seniority-zero ONV basis.
+     *
+     *  @param sq_hamiltonian               a Hamiltonian expressed in an orthonormal orbital basis
+     *
+     *  @return the diagonal of the matrix representation of the Hamiltonian in this seniority-zero ONV basis
+     */
+    VectorX<double> evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const;
 
     /**
      *  Evaluate a one electron operator in a matrix vector product
@@ -89,6 +110,13 @@ public:
      *  @return the one electron operator's matrix vector product in a vector with the dimensions of the ONV basis
      */
     VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+
+    /**
+     *  Iterate over every (proxy) spin-resolved ONV in this seniority-zero ONV basis and apply the given callback.
+     * 
+     *  @param callback             a function to be called on every step during the iteration over all the ONVs. The arguments of the callback are the ONV and its address in this ONV basis.
+     */
+    void forEach(const std::function<void(const SpinUnresolvedONV&, const size_t)>& callback) const;
 
     /**
      *  @return a coefficient vector that describes the expansion coefficients of the Hartree-Fock wave function (i.e. the single Slater determinant with the lowest energy)

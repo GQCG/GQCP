@@ -67,8 +67,129 @@ size_t SeniorityZeroONVBasis::calculateDimension(const size_t K, const size_t N_
  */
 VectorX<double> SeniorityZeroONVBasis::evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>& one_op) const {
 
-    const SpinResolvedSelectedONVBasis selected_onv_basis {*this};
-    return selected_onv_basis.evaluateOperatorDiagonal(one_op);
+    // Check if the argument is compatible.
+    const auto K = one_op.dimension();  // number of spatial orbitals
+
+    if (K != this->numberOfSpatialOrbitals()) {
+        throw std::invalid_argument("SeniorityZeroONVBasis::evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>&): The number of spatial orbitals for the ONV basis and one-electron operator are incompatible.");
+    }
+
+    // Prepare some variables to be used in the algorithm.
+    const auto dim = this->dimension();
+    const auto& f = one_op.parameters();
+
+    VectorX<double> diagonal = VectorX<double>::Zero(dim);
+
+
+    // Iterate over every proxy doubly-occupied ONV. Since we are actually using spin-unresolved ONVs, we should multiply contributions by 2.
+    this->forEach([&diagonal, &f](const SpinUnresolvedONV& onv, const size_t I) {
+        double value = 0;  // to be added to the diagonal
+
+        // Loop over every occupied orbital index and add the contribution.
+        onv.forEach([&value, &f](const size_t p) {
+            value += 2 * f(p, p);  // *2 because of seniority-zero
+        });
+
+        diagonal(I) += value;
+    });
+
+    return diagonal;
+}
+
+
+/**
+ *  Evaluate the diagonal of the matrix representation of a two-electron operator inside this seniority-zero ONV basis.
+ *
+ *  @param two_op               a two-electron operator expressed in an orthonormal orbital basis
+ *
+ *  @return the diagonal of the matrix representation of the two-electron operator in this seniority-zero ONV basis
+ */
+VectorX<double> SeniorityZeroONVBasis::evaluateOperatorDiagonal(const ScalarSQTwoElectronOperator<double>& two_op) const {
+
+    // Check if the argument is compatible.
+    const auto K = two_op.dimension();  // number of spatial orbitals
+
+    if (K != this->numberOfSpatialOrbitals()) {
+        throw std::invalid_argument("SeniorityZeroONVBasis::evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>&): The number of spatial orbitals for the ONV basis and one-electron operator are incompatible.");
+    }
+
+    // Prepare some variables to be used in the algorithm.
+    const auto dim = this->dimension();
+    const auto& g = two_op.parameters();
+
+    VectorX<double> diagonal = VectorX<double>::Zero(dim);
+
+
+    // Iterate over every proxy doubly-occupied ONV. Since we are actually using spin-unresolved ONVs, we should multiply contributions by 2.
+    this->forEach([&diagonal, &g](const SpinUnresolvedONV& onv, const size_t I) {
+        double value = 0;  // to be added to the diagonal
+
+        // Loop over every occupied spinor index and add the contributions.
+        onv.forEach([&value, &g](const size_t p) {
+            value += g(p, p, p, p);  // 1/2*2 because of seniority-zero
+        });
+
+        // Loop over every pair of occupied spinor indices and add the contributions.
+        onv.forEach([&value, &g](const size_t p, const size_t q) {
+            // Since we are doing a restricted summation (p > q), we should multiply by 2 since the summand argument is symmetric upon interchanging p and q.
+            value += 2 * (2 * g(p, p, q, q) - g(p, q, q, p));
+        });
+
+        diagonal(I) += value;
+    });
+
+    return diagonal;
+}
+
+
+/**
+ *  Evaluate the diagonal of the matrix representation of a Hamiltonian inside this seniority-zero ONV basis.
+ *
+ *  @param sq_hamiltonian               a Hamiltonian expressed in an orthonormal orbital basis
+ *
+ *  @return the diagonal of the matrix representation of the Hamiltonian in this seniority-zero ONV basis
+ */
+VectorX<double> SeniorityZeroONVBasis::evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
+
+    // We don't just use the sum of the one- and two-electron operator's diagonal representation because that would mean 2 iterations over the dimension of the ONV basis.
+
+
+    // Check if the argument is compatible.
+    const auto K = sq_hamiltonian.dimension();  // number of spatial orbitals
+
+    if (K != this->numberOfSpatialOrbitals()) {
+        throw std::invalid_argument("SeniorityZeroONVBasis::evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>&): The number of spatial orbitals for the ONV basis and one-electron operator are incompatible.");
+    }
+
+    // Prepare some variables to be used in the algorithm.
+    const auto dim = this->dimension();
+
+    const auto& h = sq_hamiltonian.core().parameters();
+    const auto& g = sq_hamiltonian.twoElectron().parameters();
+
+    VectorX<double> diagonal = VectorX<double>::Zero(dim);
+
+
+    // Iterate over every proxy doubly-occupied ONV. Since we are actually using spin-unresolved ONVs, we should multiply contributions by 2.
+    this->forEach([&diagonal, &h, &g](const SpinUnresolvedONV& onv, const size_t I) {
+        double value = 0;  // to be added to the diagonal
+
+        // Loop over every occupied spinor index and add the contributions.
+        onv.forEach([&value, &h, &g](const size_t p) {
+            value += 2 * h(p, p);    // *2 because of seniority zero
+            value += g(p, p, p, p);  // 1/2*2 because of seniority zero
+        });
+
+        // Loop over every pair of occupied spinor indices and add the contributions.
+        onv.forEach([&value, &g](const size_t p, const size_t q) {
+            // Since we are doing a restricted summation (p > q), we should multiply by 2 since the summand argument is symmetric upon interchanging p and q.
+            value += 2 * (2 * g(p, p, q, q) - g(p, q, q, p));
+        });
+
+        diagonal(I) += value;
+    });
+
+    return diagonal;
 }
 
 
@@ -85,6 +206,28 @@ VectorX<double> SeniorityZeroONVBasis::evaluateOperatorMatrixVectorProduct(const
 
     const SpinResolvedSelectedONVBasis selected_onv_basis {*this};
     return selected_onv_basis.evaluateOperatorMatrixVectorProduct(one_op, x, diagonal);
+}
+
+
+/**
+ *  Iterate over every (proxy) spin-resolved ONV in this seniority-zero ONV basis and apply the given callback.
+ * 
+ *  @param callback             a function to be called on every step during the iteration overall the ONVs. The arguments of the callback are the ONV and its address in this ONV basis.
+ */
+void SeniorityZeroONVBasis::forEach(const std::function<void(const SpinUnresolvedONV&, size_t)>& callback) const {
+
+    // Create the first doubly-occupied ONV. Since in DOCI, alpha == beta, we can use the proxy ONV basis to treat them as one.
+    const auto proxy_onv_basis = this->proxy();
+    SpinUnresolvedONV onv = proxy_onv_basis.makeONV(0);  // ONV with address 0
+
+    for (size_t I = 0; I < dim; I++) {  // I loops over addresses of spin strings
+
+        callback(onv, I);
+
+        if (I < dim - 1) {  // prevent the last permutation from occurring
+            proxy_onv_basis.setNextONV(onv);
+        }
+    }  // address (I) loop
 }
 
 
