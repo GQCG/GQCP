@@ -45,7 +45,7 @@
 #include "Basis/SpinorBasis/OrbitalRotationGenerators.hpp"
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
-#include "Basis/SpinorBasis/SpinComponent.hpp"
+#include "Basis/SpinorBasis/Spin.hpp"
 #include "Basis/SpinorBasis/USpinorBasis.hpp"
 #include "Basis/TransformationMatrix.hpp"
 #include "Basis/transform.hpp"

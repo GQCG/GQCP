@@ -46,8 +46,8 @@ BOOST_AUTO_TEST_CASE(constructor_throws) {
 
     // Check if the constructor throws upon receiving incompatible arguments.
     using SpinorBasisType = GQCP::GSpinorBasis<double, GQCP::GTOShell>;  // needed to resolve compilation errors with boost::test
-    BOOST_CHECK_THROW(SpinorBasisType spinor_basis (alpha_scalar_basis, beta_scalar_basis, T_incompatible), std::invalid_argument);
-    BOOST_CHECK_NO_THROW(SpinorBasisType spinor_basis (alpha_scalar_basis, beta_scalar_basis, T_compatible));
+    BOOST_CHECK_THROW(SpinorBasisType spinor_basis(alpha_scalar_basis, beta_scalar_basis, T_incompatible), std::invalid_argument);
+    BOOST_CHECK_NO_THROW(SpinorBasisType spinor_basis(alpha_scalar_basis, beta_scalar_basis, T_compatible));
 }
 
 
@@ -62,8 +62,8 @@ BOOST_AUTO_TEST_CASE(basic_functionality) {
 
 
     // Check some basic functionality.
-    BOOST_CHECK(spinor_basis.numberOfCoefficients(GQCP::SpinComponent::ALPHA) == 2);
-    BOOST_CHECK(spinor_basis.numberOfCoefficients(GQCP::SpinComponent::BETA) == 2);
+    BOOST_CHECK(spinor_basis.numberOfCoefficients(GQCP::Spin::alpha) == 2);
+    BOOST_CHECK(spinor_basis.numberOfCoefficients(GQCP::Spin::beta) == 2);
     BOOST_CHECK(spinor_basis.numberOfSpinors() == 4);
 }
 
@@ -76,8 +76,8 @@ BOOST_AUTO_TEST_CASE(alpha_beta_coefficient_matrix) {
     // Initialize a spinor basis with a different scalar basis for both the components.
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2.xyz");
     const GQCP::GSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G", "6-31G"};
-    const auto K_alpha = spinor_basis.numberOfCoefficients(GQCP::SpinComponent::ALPHA);
-    const auto K_beta = spinor_basis.numberOfCoefficients(GQCP::SpinComponent::BETA);
+    const auto K_alpha = spinor_basis.numberOfCoefficients(GQCP::Spin::alpha);
+    const auto K_beta = spinor_basis.numberOfCoefficients(GQCP::Spin::beta);
     const auto M = K_alpha + K_beta;  // number of spinors
 
 
@@ -90,8 +90,8 @@ BOOST_AUTO_TEST_CASE(alpha_beta_coefficient_matrix) {
 
     GQCP::SquareMatrix<double> C_ref = GQCP::SquareMatrix<double>::Identity(M, M);
 
-    BOOST_CHECK(spinor_basis.coefficientMatrix(GQCP::SpinComponent::ALPHA).isApprox(C_alpha_ref, 1.0e-08));
-    BOOST_CHECK(spinor_basis.coefficientMatrix(GQCP::SpinComponent::BETA).isApprox(C_beta_ref, 1.0e-08));
+    BOOST_CHECK(spinor_basis.coefficientMatrix(GQCP::Spin::alpha).isApprox(C_alpha_ref, 1.0e-08));
+    BOOST_CHECK(spinor_basis.coefficientMatrix(GQCP::Spin::beta).isApprox(C_beta_ref, 1.0e-08));
     BOOST_CHECK(spinor_basis.coefficientMatrix().isApprox(C_ref, 1.0e-08));
 }
 

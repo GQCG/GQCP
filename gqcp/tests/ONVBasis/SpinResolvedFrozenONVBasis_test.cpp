@@ -186,8 +186,8 @@ BOOST_AUTO_TEST_CASE(FrozenProductONVBasis_evaluateOperator_diagonal_unrestricte
 
     // Transform the beta component
     // Create stable unitairy matrix
-    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes {usq_hamiltonian.spinHamiltonian(GQCP::SpinComponent::ALPHA).core().parameters()};
-    GQCP::basisTransform(spinor_basis, usq_hamiltonian, GQCP::TransformationMatrix<double>(saes.eigenvectors()), GQCP::SpinComponent::BETA);
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes {usq_hamiltonian.spinHamiltonian(GQCP::Spin::alpha).core().parameters()};
+    GQCP::basisTransform(spinor_basis, usq_hamiltonian, GQCP::TransformationMatrix<double>(saes.eigenvectors()), GQCP::Spin::beta);
 
     GQCP::SpinResolvedFrozenONVBasis product_fock_space {6, 4, 4, 2};
     GQCP::SpinResolvedSelectedONVBasis selected_fock_space {product_fock_space};

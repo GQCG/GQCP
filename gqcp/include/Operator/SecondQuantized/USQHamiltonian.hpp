@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/SpinorBasis/SpinComponent.hpp"
+#include "Basis/SpinorBasis/Spin.hpp"
 #include "Basis/SpinorBasis/USpinorBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Utilities/type_traits.hpp"
@@ -56,9 +56,9 @@ public:
         two_op_mixed {two_op_mixed} {
 
         // Check if the dimensions are compatible
-        const auto dim = sq_hamiltonians[SpinComponent::ALPHA].dimension();
+        const auto dim = sq_hamiltonians[Spin::alpha].dimension();
 
-        if (sq_hamiltonians[SpinComponent::BETA].dimension() != dim) {
+        if (sq_hamiltonians[Spin::beta].dimension() != dim) {
             throw std::invalid_argument("USQHamiltonian::USQHamiltonian(const SQHamiltonian<Scalar>& sq_hamiltonian_alpha, const SQHamiltonian<Scalar>& sq_hamiltonian_beta, const ScalarSQTwoElectronOperator<Scalar>& two_op_mixed): The dimensions of the alpha and beta Hamiltonian are incompatible");
         }
 
@@ -106,8 +106,8 @@ public:
     template <typename Z = Scalar>
     static enable_if_t<std::is_same<Z, double>::value, USQHamiltonian<double>> Molecular(const USpinorBasis<Z, GTOShell>& spinor_basis, const Molecule& molecule) {
 
-        const SQHamiltonian<Scalar> sq_hamiltonian_alpha = SQHamiltonian<double>::Molecular(spinor_basis.spinorBasis(SpinComponent::ALPHA), molecule);
-        const SQHamiltonian<Scalar> sq_hamiltonian_beta = SQHamiltonian<double>::Molecular(spinor_basis.spinorBasis(SpinComponent::BETA), molecule);
+        const SQHamiltonian<Scalar> sq_hamiltonian_alpha = SQHamiltonian<double>::Molecular(spinor_basis.spinorBasis(Spin::alpha), molecule);
+        const SQHamiltonian<Scalar> sq_hamiltonian_beta = SQHamiltonian<double>::Molecular(spinor_basis.spinorBasis(Spin::beta), molecule);
 
         // Initial basis for alpha and beta are identical so the mixed integrals are identical to spin specific components
         const ScalarSQTwoElectronOperator<double> two_op_mixed = sq_hamiltonian_alpha.twoElectron();
@@ -122,13 +122,13 @@ public:
     /**
      *  @return the dimension of the Hamiltonian, i.e. the number of spinors in which it is expressed
      */
-    size_t dimension() const { return this->sq_hamiltonians[SpinComponent::ALPHA].dimension() + this->sq_hamiltonians[SpinComponent::BETA].dimension(); }
+    size_t dimension() const { return this->sq_hamiltonians[Spin::alpha].dimension() + this->sq_hamiltonians[Spin::beta].dimension(); }
 
     /**
      *  @return if the alpha and beta components of the unrestricted Hamiltonian are of the same dimension
      */
     bool areSpinHamiltoniansOfSameDimension() const {
-        return this->spinHamiltonian(SpinComponent::ALPHA).dimension() == this->spinHamiltonian(SpinComponent::BETA).dimension();
+        return this->spinHamiltonian(Spin::alpha).dimension() == this->spinHamiltonian(Spin::beta).dimension();
     }
 
     /**
@@ -136,7 +136,7 @@ public:
      * 
      *  @return the pure contributions of the requested component of the unrestricted Hamiltonian 
      */
-    const SQHamiltonian<Scalar>& spinHamiltonian(const SpinComponent& component) const { return this->sq_hamiltonians[component]; }
+    const SQHamiltonian<Scalar>& spinHamiltonian(const Spin& component) const { return this->sq_hamiltonians[component]; }
 
     /**
      *  @return the total contributions to the mixed alpha & beta two-electron part of the unrestricted Hamiltonian
@@ -155,8 +155,8 @@ public:
      */
     void transform(const TransformationMatrix<Scalar>& T) {
 
-        this->sq_hamiltonians[SpinComponent::ALPHA].transform(T);
-        this->sq_hamiltonians[SpinComponent::BETA].transform(T);
+        this->sq_hamiltonians[Spin::alpha].transform(T);
+        this->sq_hamiltonians[Spin::beta].transform(T);
 
         // Transform the mixed
         this->total_two_op_mixed.transform(T);
@@ -171,7 +171,7 @@ public:
      *  @param T                        the transformation matrix between the old and the new orbital basis
      *  @param component                the spin component
      */
-    void transform(const TransformationMatrix<Scalar>& T, const SpinComponent& component) {
+    void transform(const TransformationMatrix<Scalar>& T, const Spin& component) {
 
         this->sq_hamiltonians[component].transform(T);
 
@@ -202,8 +202,8 @@ public:
      *  @param U    the unitary rotation matrix between the old and the new orbital basis
      */
     void rotate(const TransformationMatrix<Scalar>& U) {
-        this->sq_hamiltonians[SpinComponent::ALPHA].rotate(U);
-        this->sq_hamiltonians[SpinComponent::BETA].rotate(U);
+        this->sq_hamiltonians[Spin::alpha].rotate(U);
+        this->sq_hamiltonians[Spin::beta].rotate(U);
     }
 
 
@@ -213,7 +213,7 @@ public:
      *  @param U                    the unitary rotation matrix between the old and the new orbital basis
      *  @param component            the spin component
      */
-    void rotate(const TransformationMatrix<Scalar>& U, const SpinComponent& component) {
+    void rotate(const TransformationMatrix<Scalar>& U, const Spin& component) {
         this->transform(U, component);
     }
 
@@ -225,8 +225,8 @@ public:
      */
     template <typename Z = Scalar>
     enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
-        this->sq_hamiltonians[SpinComponent::ALPHA].rotate(jacobi_rotation_parameters);
-        this->sq_hamiltonians[SpinComponent::BETA].rotate(jacobi_rotation_parameters);
+        this->sq_hamiltonians[Spin::alpha].rotate(jacobi_rotation_parameters);
+        this->sq_hamiltonians[Spin::beta].rotate(jacobi_rotation_parameters);
     }
 
 
@@ -237,7 +237,7 @@ public:
      *  @param component                        the spin component
      */
     template <typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters, const SpinComponent& component) {
+    enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters, const Spin& component) {
         this->transform(jacobi_rotation_parameters, component);
     }
 
@@ -254,14 +254,14 @@ public:
      *  Note that this method is only available for real matrix representations
      */
     template <typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value, USQHamiltonian<double>> constrain(const ScalarSQOneElectronOperator<double>& one_op, const double lambda, const SpinComponent& component) const {
+    enable_if_t<std::is_same<Z, double>::value, USQHamiltonian<double>> constrain(const ScalarSQOneElectronOperator<double>& one_op, const double lambda, const Spin& component) const {
 
         auto const constrained_component = this->sq_hamiltonians[component] - lambda * one_op;
 
-        if (component == SpinComponent::BETA) {
-            return USQHamiltonian(this->sq_hamiltonians[SpinComponent::ALPHA], constrained_component, this->two_op_mixed);
+        if (component == Spin::beta) {
+            return USQHamiltonian(this->sq_hamiltonians[Spin::alpha], constrained_component, this->two_op_mixed);
         } else {
-            return USQHamiltonian(constrained_component, this->sq_hamiltonians[SpinComponent::BETA], this->two_op_mixed);
+            return USQHamiltonian(constrained_component, this->sq_hamiltonians[Spin::beta], this->two_op_mixed);
         }
     }
 };

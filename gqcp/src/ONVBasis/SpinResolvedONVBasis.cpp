@@ -638,8 +638,8 @@ SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const USQHamilt
 
     SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->get_dimension(), this->get_dimension());
 
-    auto const& sq_hamiltonian_alpha = usq_hamiltonian.spinHamiltonian(SpinComponent::ALPHA);
-    auto const& sq_hamiltonian_beta = usq_hamiltonian.spinHamiltonian(SpinComponent::BETA);
+    auto const& sq_hamiltonian_alpha = usq_hamiltonian.spinHamiltonian(Spin::alpha);
+    auto const& sq_hamiltonian_beta = usq_hamiltonian.spinHamiltonian(Spin::beta);
     auto const& mixed_two_electron_operator = usq_hamiltonian.twoElectronMixed();
 
     auto dim_alpha = fock_space_alpha.get_dimension();
@@ -714,8 +714,8 @@ VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const USQHamilton
     }
 
     // Evaluation environment
-    auto const& sq_hamiltonian_alpha = usq_hamiltonian.spinHamiltonian(SpinComponent::ALPHA);
-    auto const& sq_hamiltonian_beta = usq_hamiltonian.spinHamiltonian(SpinComponent::BETA);
+    auto const& sq_hamiltonian_alpha = usq_hamiltonian.spinHamiltonian(Spin::alpha);
+    auto const& sq_hamiltonian_beta = usq_hamiltonian.spinHamiltonian(Spin::beta);
     auto const& mixed_two_electron_operator = usq_hamiltonian.twoElectronMixed();
 
     const auto dim_alpha = fock_space_alpha.get_dimension();
@@ -839,8 +839,8 @@ VectorX<double> SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(const 
         }
     }
 
-    auto beta_hamiltonian = fock_space_beta.evaluateOperatorSparse(usq_hamiltonian.spinHamiltonian(SpinComponent::BETA), false);
-    auto alpha_hamiltonian = fock_space_alpha.evaluateOperatorSparse(usq_hamiltonian.spinHamiltonian(SpinComponent::ALPHA), false);
+    auto beta_hamiltonian = fock_space_beta.evaluateOperatorSparse(usq_hamiltonian.spinHamiltonian(Spin::beta), false);
+    auto alpha_hamiltonian = fock_space_alpha.evaluateOperatorSparse(usq_hamiltonian.spinHamiltonian(Spin::alpha), false);
 
     matvecmap += beta_hamiltonian * xmap + xmap * alpha_hamiltonian;
 

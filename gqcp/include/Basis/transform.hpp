@@ -19,7 +19,7 @@
 
 
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
-#include "Basis/SpinorBasis/SpinComponent.hpp"
+#include "Basis/SpinorBasis/Spin.hpp"
 #include "Basis/SpinorBasis/USpinorBasis.hpp"
 #include "Basis/TransformationMatrix.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
@@ -116,7 +116,7 @@ void basisRotate(RSpinorBasis<double, Shell>& spinor_basis, SQHamiltonian<double
  *  @param component                    the spin component
  */
 template <typename TransformationScalar, typename ShellType>
-void basisTransform(USpinorBasis<TransformationScalar, ShellType>& spinor_basis, USQHamiltonian<TransformationScalar>& usq_hamiltonian, const TransformationMatrix<TransformationScalar>& T, const SpinComponent& component) {
+void basisTransform(USpinorBasis<TransformationScalar, ShellType>& spinor_basis, USQHamiltonian<TransformationScalar>& usq_hamiltonian, const TransformationMatrix<TransformationScalar>& T, const Spin& component) {
     spinor_basis.transform(T, component);
     usq_hamiltonian.transform(T, component);
 }
@@ -151,7 +151,7 @@ void basisTransform(USpinorBasis<TransformationScalar, ShellType>& spinor_basis,
  *  @param component                    the spin component
  */
 template <typename TransformationScalar, typename Shell>
-void basisRotate(USpinorBasis<TransformationScalar, Shell>& spinor_basis, USQHamiltonian<TransformationScalar>& sq_hamiltonian, const TransformationMatrix<TransformationScalar>& U, const SpinComponent& component) {
+void basisRotate(USpinorBasis<TransformationScalar, Shell>& spinor_basis, USQHamiltonian<TransformationScalar>& sq_hamiltonian, const TransformationMatrix<TransformationScalar>& U, const Spin& component) {
 
     spinor_basis.rotate(U, component);
     sq_hamiltonian.rotate(U, component);
@@ -187,7 +187,7 @@ void basisRotate(USpinorBasis<TransformationScalar, Shell>& spinor_basis, USQHam
  *  @param component                        the spin component
  */
 template <typename Shell>
-void basisRotate(USpinorBasis<double, Shell>& spinor_basis, USQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rotation_parameters, const SpinComponent& component) {
+void basisRotate(USpinorBasis<double, Shell>& spinor_basis, USQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rotation_parameters, const Spin& component) {
 
     spinor_basis.rotate(jacobi_rotation_parameters, component);
     sq_hamiltonian.rotate(jacobi_rotation_parameters, component);

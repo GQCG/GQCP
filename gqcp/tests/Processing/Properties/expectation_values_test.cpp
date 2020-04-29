@@ -113,14 +113,14 @@ BOOST_AUTO_TEST_CASE(mulliken_N2_STO_3G) {
 //     GQCP::basisTransform(uspinor_basis, usq_hamiltonian, rhf_parameters.coefficientMatrix());
 
 //     // Calculate the atomic spin-z operator
-//     GQCP::ScalarSQOneElectronOperator<double> sq_N_Sz_alpha = uspinor_basis.calculateAtomicSpinZ(gto_N, GQCP::SpinComponent::ALPHA);
-//     GQCP::ScalarSQOneElectronOperator<double> sq_N_Sz_beta = uspinor_basis.calculateAtomicSpinZ(gto_N, GQCP::SpinComponent::BETA);
-//     GQCP::ScalarSQOneElectronOperator<double> sq_O_Sz_alpha = uspinor_basis.calculateAtomicSpinZ(gto_O, GQCP::SpinComponent::ALPHA);
-//     GQCP::ScalarSQOneElectronOperator<double> sq_O_Sz_beta = uspinor_basis.calculateAtomicSpinZ(gto_O, GQCP::SpinComponent::BETA);
+//     GQCP::ScalarSQOneElectronOperator<double> sq_N_Sz_alpha = uspinor_basis.calculateAtomicSpinZ(gto_N, GQCP::Spin::alpha);
+//     GQCP::ScalarSQOneElectronOperator<double> sq_N_Sz_beta = uspinor_basis.calculateAtomicSpinZ(gto_N, GQCP::Spin::beta);
+//     GQCP::ScalarSQOneElectronOperator<double> sq_O_Sz_alpha = uspinor_basis.calculateAtomicSpinZ(gto_O, GQCP::Spin::alpha);
+//     GQCP::ScalarSQOneElectronOperator<double> sq_O_Sz_beta = uspinor_basis.calculateAtomicSpinZ(gto_O, GQCP::Spin::beta);
 
 //     // Create a constraint for the spin-z on N
-//     auto constrained = usq_hamiltonian.constrain(sq_N_Sz_alpha, 0.5, GQCP::SpinComponent::ALPHA);
-//     constrained = constrained.constrain(sq_N_Sz_beta, 0.5, GQCP::SpinComponent::BETA);
+//     auto constrained = usq_hamiltonian.constrain(sq_N_Sz_alpha, 0.5, GQCP::Spin::alpha);
+//     constrained = constrained.constrain(sq_N_Sz_beta, 0.5, GQCP::Spin::beta);
 
 //     // Do the FCI calculation
 //     GQCP::SpinResolvedONVBasis onv_basis (K, Ne/2, Ne/2);
