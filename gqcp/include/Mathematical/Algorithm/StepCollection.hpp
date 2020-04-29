@@ -72,6 +72,33 @@ public:
             step->execute(environment);
         }
     }
+
+
+    /**
+     *  Insert an algorithm step at the given index.
+     * 
+     *  @param step                 the step that should be inserted into this algorithm step collection
+     *  @param index                the zero-based index that the given step should be performed at in the total collection of steps
+     */
+    template <typename Z = Step<Environment>>
+    enable_if_t<std::is_same<Environment, typename Z::Environment>::value, void> insert(const Z& step, const size_t index) {
+
+        // Check if the index is out of bounds.
+        if (index >= this->numberOfSteps()) {
+            throw std::invalid_argument("StepCollection::insert(const Z&, const size_t): Cannot insert at the given index.");
+        }
+
+
+        // Actually insert the index in the std::vector of steps.
+        const auto it = this->steps.begin();
+        this->steps.insert(it + index, std::make_shared<Z>(step));  // inserting at an given index goes through an iterator
+    }
+
+
+    /**
+     *  @return the number of steps that are in this consecutive collection
+     */
+    size_t numberOfSteps() const { return this->steps.size(); }
 };
 
 

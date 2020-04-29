@@ -17,6 +17,7 @@
 
 #include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
 
+#include "Mathematical/Algorithm/FunctionalStep.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
 #include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp"
 #include "QCMethod/HF/RHF/RHFSCFEnvironment.hpp"
@@ -48,7 +49,22 @@ void bindIterativeAlgorithm(py::module& module, const std::string& suffix, const
 
     py::class_<GQCP::IterativeAlgorithm<Environment>>(module,
                                                       ("IterativeAlgorithm_" + suffix).c_str(),
-                                                      description.c_str());
+                                                      description.c_str())
+
+        .def(
+            "perform",
+            [](GQCP::IterativeAlgorithm<Environment>& algorithm, Environment& environment) {
+                algorithm.perform(environment);
+            })
+
+
+        .def(
+            "insert",
+            [](GQCP::IterativeAlgorithm<Environment>& algorithm, const GQCP::FunctionalStep<Environment>& step, const size_t index) {
+                algorithm.insert(step, index);
+            },
+            py::arg("step"),
+            py::arg("index"));
 }
 
 

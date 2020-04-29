@@ -37,6 +37,7 @@ void bindBasisTransform(py::module& module);
 
 // Mathematical - Algorithm
 void bindAlgorithms(py::module& module);
+void bindFunctionalSteps(py::module& module);
 void bindIterativeAlgorithms(py::module& module);
 
 
@@ -133,7 +134,7 @@ void bindVersion(py::module& module);
 
 
 /**
- *  The actual Python binding into the gqcpy Python module
+ *  The actual Python binding into the gqcpy Python module.
  */
 PYBIND11_MODULE(gqcpy, module) {
 
@@ -148,6 +149,7 @@ PYBIND11_MODULE(gqcpy, module) {
 
     // Mathematical - Algorithm
     gqcpy::bindAlgorithms(module);
+    gqcpy::bindFunctionalSteps(module);
     gqcpy::bindIterativeAlgorithms(module);
 
 
@@ -191,7 +193,7 @@ PYBIND11_MODULE(gqcpy, module) {
 
 
     // Processing - Properties
-    gqcpy::bindDOCIElectricalResponseSolver(module);
+    // gqcpy::bindDOCIElectricalResponseSolver(module);
     gqcpy::bindRHFElectricalResponseSolver(module);
     gqcpy::bindvAP1roGElectricalResponseSolver(module);
 

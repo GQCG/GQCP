@@ -18,38 +18,57 @@
 #pragma once
 
 
+#include "Mathematical/Algorithm/Step.hpp"
+
+#include <functional>
+
 namespace GQCP {
 
 
 /**
- *  A criterion that can check convergence by examining certain properties of the environment.
+ *  A general algorithmic step that acts as a wrapper around a function call.
  * 
- *  @tparam _Environment                the type of the environment that this criterion can read from
+ *  @param _Environment             the type of the environment that this step can read from and write to
  */
 template <typename _Environment>
-class ConvergenceCriterion {
+class FunctionalStep:
+    public Step<_Environment> {
+
 public:
     using Environment = _Environment;
+    using Function = std::function<void(Environment&)>;
+
+
+private:
+    Function function;  // the function that this Step wraps
 
 
 public:
     /*
-     *  DESTRUCTOR
-     */
-
-    virtual ~ConvergenceCriterion() = default;
-
-
-    /*
-     *  PUBLIC METHODS
+     *  CONSTRUCTORS
      */
 
     /**
-     *  @param environment              the environment that this criterion can read from
+     *  Create a Step by wrapping a function.
      * 
-     *  @return if this criterion is fulfilled
+     *  @param function             the function that this Step wraps
      */
-    virtual bool isFulfilled(Environment& environment) = 0;
+    FunctionalStep(const Function& function) :
+        function {function} {}
+
+
+    /*
+     *  PUBLIC OVERRIDDEN FUNCTIONS
+     */
+
+    /**
+     *  Execute/perform this algorithm step.
+     * 
+     *  @param environment              the environment that this step can read from and write to
+     */
+    void execute(Environment& environment) override {
+        this->function(environment);
+    }
 };
 
 
