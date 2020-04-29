@@ -1,4 +1,4 @@
-// This file is part of GQCG-GQCP.
+// / RHF / RHF.hpps part of GQCG-GQCP.
 //
 // Copyright (C) 2017-2020  the GQCG developers
 //
@@ -19,20 +19,20 @@
 
 
 #include "Mathematical/Algorithm/Step.hpp"
-#include "QCMethod/HF/RHF.hpp"
-#include "QCMethod/HF/RHFSCFEnvironment.hpp"
+#include "QCMethod/HF/RHF/RHF.hpp"
+#include "QCMethod/HF/RHF/RHFSCFEnvironment.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  An iteration step that calculates the current electronic RHF energy.
+ *  An iteration step that calculates the current Fock matrix (expressed in the scalar/AO basis) from the current density matrix.
  * 
  *  @tparam _Scalar              the scalar type used to represent the expansion coefficient/elements of the transformation matrix
  */
 template <typename _Scalar>
-class RHFElectronicEnergyCalculation:
+class RHFFockMatrixCalculation:
     public Step<RHFSCFEnvironment<_Scalar>> {
 
 public:
@@ -46,18 +46,14 @@ public:
      */
 
     /**
-     *  Calculate the current electronic RHF energy and place it in the environment
+     *  Calculate the current RHF density matrix (expressed in the scalar/AO basis) and place it in the environment
      * 
      *  @param environment              the environment that acts as a sort of calculation space
      */
     void execute(Environment& environment) override {
-
-        const auto& D = environment.density_matrices.back();                             // the most recent density matrix
-        const ScalarSQOneElectronOperator<Scalar> F {environment.fock_matrices.back()};  // the most recent Fock matrix
-        const auto& H_core = environment.sq_hamiltonian.core();                          // the core Hamiltonian matrix
-
-        const auto E_electronic = QCModel::RHF<double>::calculateElectronicEnergy(D, H_core, F);
-        environment.electronic_energies.push_back(E_electronic);
+        const auto& D = environment.density_matrices.back();  // the most recent density matrix
+        const auto F = QCModel::RHF<double>::calculateScalarBasisFockMatrix(D, environment.sq_hamiltonian);
+        environment.fock_matrices.push_back(F.parameters());
     }
 };
 

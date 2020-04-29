@@ -1,4 +1,4 @@
-// This file is part of GQCG-GQCP.
+// / RHF / DiagonalRHFFockMatrixObjective
 //
 // Copyright (C) 2017-2020  the GQCG developers
 //
@@ -20,9 +20,9 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
-#include "QCMethod/HF/RHF.hpp"
-#include "QCMethod/HF/RHFSCFSolver.hpp"
+#include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
+#include "QCMethod/HF/RHF/RHF.hpp"
+#include "QCMethod/HF/RHF/RHFSCFSolver.hpp"
 #include "QCMethod/RMP2/RMP2.hpp"
 
 

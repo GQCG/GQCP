@@ -1,4 +1,4 @@
-// This file is part of GQCG-GQCP.
+// / RHF / RHFSCFEnvironment.hpp-GQCP.
 //
 // Copyright (C) 2017-2020  the GQCG developers
 //
@@ -20,7 +20,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "QCMethod/HF/RHFSCFEnvironment.hpp"
+#include "QCMethod/HF/RHF/RHFSCFEnvironment.hpp"
 
 
 /**

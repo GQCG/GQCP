@@ -1,4 +1,4 @@
-// This file is part of GQCG-GQCP.
+// / RHF / RHF.hpps part of GQCG-GQCP.
 //
 // Copyright (C) 2017-2020  the GQCG developers
 //
@@ -20,7 +20,7 @@
 
 #include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "QCMethod/HF/RHFSCFEnvironment.hpp"
+#include "QCMethod/HF/RHF/RHFSCFEnvironment.hpp"
 #include "QCMethod/QCObjective.hpp"
 #include "QCMethod/QCStructure.hpp"
 #include "QCModel/HF/RHF.hpp"

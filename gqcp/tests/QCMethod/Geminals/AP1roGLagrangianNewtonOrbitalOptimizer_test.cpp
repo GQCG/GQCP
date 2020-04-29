@@ -1,4 +1,4 @@
-// This file is part of GQCG-GQCP.
+// / RHF / DiagonalRHFFockMatrixObjective
 //
 // Copyright (C) 2017-2020  the GQCG developers
 //
@@ -25,9 +25,9 @@
 #include "QCMethod/Geminals/AP1roG.hpp"
 #include "QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.hpp"
 #include "QCMethod/Geminals/PSEnvironment.hpp"
-#include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
-#include "QCMethod/HF/RHF.hpp"
-#include "QCMethod/HF/RHFSCFSolver.hpp"
+#include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
+#include "QCMethod/HF/RHF/RHF.hpp"
+#include "QCMethod/HF/RHF/RHFSCFSolver.hpp"
 #include "QCModel/Geminals/AP1roG.hpp"
 
 

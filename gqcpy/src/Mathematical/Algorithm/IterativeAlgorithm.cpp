@@ -1,4 +1,4 @@
-// This file is part of GQCG-GQCP.
+// / RHF / RHFSCFEnvironment.hpp-GQCP.
 //
 // Copyright (C) 2017-2020  the GQCG developers
 //
@@ -19,7 +19,7 @@
 
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
 #include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp"
-#include "QCMethod/HF/RHFSCFEnvironment.hpp"
+#include "QCMethod/HF/RHF/RHFSCFEnvironment.hpp"
 
 #include <pybind11/pybind11.h>
 

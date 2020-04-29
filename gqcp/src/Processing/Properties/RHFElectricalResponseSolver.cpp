@@ -1,4 +1,4 @@
-// This file is part of GQCG-GQCP.
+// / RHF / RHF.hppHF / RHF / RHF.hpp-GQCP.
 //
 // Copyright (C) 2017-2020  the GQCG developers
 //
@@ -18,7 +18,7 @@
 #include "Processing/Properties/RHFElectricalResponseSolver.hpp"
 
 #include "Mathematical/Representation/BlockMatrix.hpp"
-#include "QCMethod/HF/RHF.hpp"
+#include "QCMethod/HF/RHF/RHF.hpp"
 #include "QCModel/HF/RHF.hpp"
 
 

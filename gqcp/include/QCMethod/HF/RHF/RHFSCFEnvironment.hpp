@@ -99,7 +99,7 @@ public:
      */
     static RHFSCFEnvironment<Scalar> WithCoreGuess(const size_t N, const SQHamiltonian<Scalar>& sq_hamiltonian, const QCMatrix<Scalar>& S) {
 
-        const auto& H_core = sq_hamiltonian.core().parameters();
+        const auto& H_core = sq_hamiltonian.core().parameters();  // in AO basis
 
         using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
         Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver {H_core, S};

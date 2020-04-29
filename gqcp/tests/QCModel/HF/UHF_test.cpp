@@ -67,3 +67,11 @@ BOOST_AUTO_TEST_CASE(basic_constructor) {
     // Check that the constructor that sets the orbital energies to zeros doesn't throw.
     BOOST_CHECK_NO_THROW(GQCP::QCModel::UHF<double>(N_alpha1, N_beta1, C_alpha1, C_beta1));
 }
+
+
+/**
+ *  Sandbox for calculating overlap between RHF and UHF.
+ */
+BOOST_AUTO_TEST_CASE(overlap) {
+
+}

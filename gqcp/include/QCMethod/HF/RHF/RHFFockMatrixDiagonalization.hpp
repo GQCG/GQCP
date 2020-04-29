@@ -19,20 +19,21 @@
 
 
 #include "Mathematical/Algorithm/Step.hpp"
-#include "QCMethod/HF/RHF.hpp"
-#include "QCMethod/HF/RHFSCFEnvironment.hpp"
+#include "QCMethod/HF/RHF/RHFSCFEnvironment.hpp"
+
+#include <Eigen/Dense>
 
 
 namespace GQCP {
 
 
 /**
- *  An iteration step that calculates the current density matrix (expressed in the scalar/AO basis) from the current coefficient matrix.
+ *  An iteration step that solves the generalized eigenvalue problem for the current scalar/AO basis Fock matrix for the coefficient matrix.
  * 
  *  @tparam _Scalar              the scalar type used to represent the expansion coefficient/elements of the transformation matrix
  */
 template <typename _Scalar>
-class RHFDensityMatrixCalculation:
+class RHFFockMatrixDiagonalization:
     public Step<RHFSCFEnvironment<_Scalar>> {
 
 public:
@@ -46,14 +47,21 @@ public:
      */
 
     /**
-     *  Calculate the current RHF density matrix and place it in the environment
+     *  Solve the generalized eigenvalue problem for the most recent scalar/AO Fock matrix. Add the associated coefficient matrix and orbital energies to the environment.
      * 
      *  @param environment              the environment that acts as a sort of calculation space
      */
     void execute(Environment& environment) override {
-        const auto& C = environment.coefficient_matrices.back();  // the most recent coefficient matrix
-        const auto D = QCModel::RHF<double>::calculateScalarBasis1RDM(C, environment.N);
-        environment.density_matrices.push_back(D);
+
+        const auto& F = environment.fock_matrices.back();  // the most recent scalar/AO basis Fock matrix
+
+        using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
+        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver(F, environment.S);
+        const TransformationMatrix<Scalar>& C = generalized_eigensolver.eigenvectors();
+        const auto& orbital_energies = generalized_eigensolver.eigenvalues();
+
+        environment.coefficient_matrices.push_back(C);
+        environment.orbital_energies.push_back(orbital_energies);
     }
 };
 
