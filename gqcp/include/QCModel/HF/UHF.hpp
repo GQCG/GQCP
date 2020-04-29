@@ -20,6 +20,7 @@
 
 #include "Basis/TransformationMatrix.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
+#include "QCModel/HF/RHF.hpp"
 
 
 namespace GQCP {
@@ -109,6 +110,17 @@ public:
             GQCP::VectorX<double>::Zero(C_beta.dimension()),
             C_alpha, C_beta) {
     }
+
+
+    /**
+     *  Convert an RHF wave function model to an UHF wave function model.
+     * 
+     *  @param rhf_model            an RHF wave function model
+     */
+    UHF(const GQCP::QCModel::RHF<Scalar>& rhf_model) :
+        UHF(rhf_model.numberOfElectrons(SpinComponent::ALPHA), rhf_model.numberOfElectrons(SpinComponent::BETA),
+            rhf_model.orbitalEnergies(), rhf_model.orbitalEnergies(),
+            rhf_model.coefficientMatrix(), rhf_model.coefficientMatrix()) {}
 };
 
 
