@@ -74,7 +74,14 @@ public:
      *  @return if this criterion is fulfilled
      */
     bool isFulfilled(Environment& environment) override {
-        return this->criterion1.isFulfilled(environment) && this->criterion2.isFulfilled(environment);
+
+        // Check if every criterion is fulfilled.
+        for (const auto& criterion : this->criteria) {
+            if (!criterion->isFulfilled(environment)) {
+                return false;
+            }
+        }
+        return true;
     }
 };
 

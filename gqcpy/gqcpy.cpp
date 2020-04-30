@@ -110,6 +110,7 @@ void bindRHFSCFSolver(py::module& module);
 
 // QCMethod - HF - UHF
 void bindUHFSCFEnvironment(py::module& module);
+void bindUHFSCFSolver(py::module& module);
 
 
 // QCMethod
@@ -223,8 +224,11 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindRHFSCFEnvironment(module);
     gqcpy::bindRHFSCFSolver(module);
 
+
     // QCMethod - HF - UHF
     gqcpy::bindUHFSCFEnvironment(module);
+    gqcpy::bindUHFSCFSolver(module);
+
 
     // QCMethod
     gqcpy::bindQCStructures(module);

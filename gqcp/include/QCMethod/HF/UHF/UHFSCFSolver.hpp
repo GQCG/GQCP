@@ -18,9 +18,10 @@
 #pragma once
 
 
+#include "Mathematical/Algorithm/CompoundConvergenceCriterion.hpp"
 #include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
 #include "Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp"
-#include "QCMethod/HF/RHF/UHFSCFEnvironment.hpp"
+#include "QCMethod/HF/UHF/UHFSCFEnvironment.hpp"
 
 
 namespace GQCP {
@@ -48,23 +49,30 @@ public:
      * 
      *  @return a plain UHF SCF solver that uses the combination of norm of the difference of two consecutive alpha and beta density matrices as a convergence criterion
      */
-    static IterativeAlgorithm<RHFSCFEnvironment<Scalar>> Plain(const double threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128) {
+    static IterativeAlgorithm<UHFSCFEnvironment<Scalar>> Plain(const double threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128) {
 
-        // Create the iteration cycle that effectively 'defines' a plain RHF SCF solver
-        StepCollection<RHFSCFEnvironment<Scalar>> plain_uhf_scf_cycle {};
+        // Create the iteration cycle that effectively 'defines' a plain UHF SCF solver
+        StepCollection<UHFSCFEnvironment<Scalar>> plain_uhf_scf_cycle {};
         // plain_uhf_scf_cycle
-        // .add(RHFDensityMatrixCalculation<Scalar>())
-        // .add(RHFFockMatrixCalculation<Scalar>())
-        // .add(RHFFockMatrixDiagonalization<Scalar>())
-        // .add(RHFElectronicEnergyCalculation<Scalar>());
+        // .add(UHFDensityMatrixCalculation<Scalar>())
+        // .add(UHFFockMatrixCalculation<Scalar>())
+        // .add(UHFFockMatrixDiagonalization<Scalar>())
+        // .add(UHFElectronicEnergyCalculation<Scalar>());
 
-        // Create a convergence criterion on the norm of subsequent density matrices
-        const auto density_matrix_extractor = [](const RHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices; };
+        // Create a compound convergence criterion on the norm of subsequent alpha- and beta-density matrices
+        using SingleConvergenceType = ConsecutiveIteratesNormConvergence<OneRDM<Scalar>, UHFSCFEnvironment<Scalar>>;
 
-        using ConvergenceType = ConsecutiveIteratesNormConvergence<OneRDM<Scalar>, RHFSCFEnvironment<Scalar>>;
-        const ConvergenceType convergence_criterion {threshold, density_matrix_extractor};
+        const auto density_matrix_alpha_extractor = [](const UHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices_alpha; };
+        const SingleConvergenceType convergence_criterion_alpha {threshold, density_matrix_alpha_extractor};
 
-        return IterativeAlgorithm<RHFSCFEnvironment<Scalar>>(plain_rhf_scf_cycle, convergence_criterion, maximum_number_of_iterations);
+        const auto density_matrix_beta_extractor = [](const UHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices_beta; };
+        const SingleConvergenceType convergence_criterion_beta {threshold, density_matrix_beta_extractor};
+
+        const CompoundConvergenceCriterion<UHFSCFEnvironment<Scalar>> convergence_criterion {convergence_criterion_alpha, convergence_criterion_beta};
+
+
+        // Put together the pieces of the algorithm.
+        return IterativeAlgorithm<UHFSCFEnvironment<Scalar>>(plain_uhf_scf_cycle, convergence_criterion, maximum_number_of_iterations);
     }
 };
 
