@@ -18,6 +18,16 @@
 #pragma once
 
 
+#include "Basis/TransformationMatrix.hpp"
+#include "Mathematical/Representation/QCMatrix.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "Processing/RDM/OneRDM.hpp"
+
+#include <Eigen/Dense>
+
+#include <deque>
+
+
 namespace GQCP {
 
 
@@ -80,8 +90,8 @@ public:
         N_beta {N_beta},
         S {S},
         sq_hamiltonian {sq_hamiltonian},
-        coefficient_matrices_alpha {1, C_alpha_initial},
-        coefficient_matrices_beta {1, C_beta_initial} {}
+        coefficient_matrices_alpha {C_alpha_initial},
+        coefficient_matrices_beta {C_beta_initial} {}
 
 
     /*

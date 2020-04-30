@@ -78,7 +78,7 @@ public:
         N {N},
         S {S},
         sq_hamiltonian {sq_hamiltonian},
-        coefficient_matrices {1, C_initial} {
+        coefficient_matrices {C_initial} {
 
         if (this->N % 2 != 0) {  // if the total number of electrons is odd
             throw std::invalid_argument("RHFSCFEnvironment::RHFSCFEnvironment(const size_t, const SQHamiltonian<Scalar>&, const QCMatrix<Scalar>&, const TransformationMatrix<Scalar>&): You have given an odd number of electrons.");
