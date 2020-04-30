@@ -19,7 +19,7 @@
 
 
 #include "Mathematical/Algorithm/Step.hpp"
-#include "QCMethod/HF/RHF/RHF.hpp"
+#include "QCModel/HF/RHF.hpp"
 #include "QCMethod/HF/RHF/RHFSCFEnvironment.hpp"
 
 
