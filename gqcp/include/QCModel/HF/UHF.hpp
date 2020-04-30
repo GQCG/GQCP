@@ -18,8 +18,10 @@
 #pragma once
 
 
+#include "Basis/SpinorBasis/Spin.hpp"
 #include "Basis/TransformationMatrix.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
+#include "Processing/RDM/OneRDM.hpp"
 #include "QCModel/HF/RHF.hpp"
 
 
@@ -121,6 +123,240 @@ public:
         UHF(rhf_model.numberOfElectrons(Spin::alpha), rhf_model.numberOfElectrons(Spin::beta),
             rhf_model.orbitalEnergies(), rhf_model.orbitalEnergies(),
             rhf_model.coefficientMatrix(), rhf_model.coefficientMatrix()) {}
+
+
+    /*
+     *  PUBLIC STATIC METHODS
+     */
+
+    /**
+     *  @param K_sigma          the number of spatial orbitals for one of the spin components
+     *  @param N_sigma          the number of sigma electrons, i.e. the number of occupied sigma spin-orbitals
+     *
+     *  @return the sigma-spin UHF 1-RDM expressed in an orthonormal sigma spin-orbital basis
+     */
+    static OneRDM<Scalar> calculateOrthonormalBasis1RDM(const size_t K_sigma, const size_t N_sigma) {
+
+        // The 1-RDM for UHF looks like (for K=5, N=3)
+        //    1  0  0  0  0
+        //    0  1  0  0  0
+        //    0  0  1  0  0
+        //    0  0  0  0  0
+        //    0  0  0  0  0
+
+        OneRDM<Scalar> D_MO = OneRDM<Scalar>::Zero(K_sigma, K_sigma);
+        D_MO.topLeftCorner(N_sigma, N_sigma) = SquareMatrix<Scalar>::Identity(N_sigma, N_sigma);
+
+        return D_MO;
+    }
+
+
+    /**
+     *  @param C_sigma          the coefficient matrix that expresses the sigma spin-orbitals (as a column) in its underlying scalar basis
+     *  @param N_sigma          the number of sigma electrons, i.e. the number of occupied sigma spin-orbitals
+     *
+     *  @return the sigma-spin UHF 1-RDM expressed in the underlying scalar basis
+     */
+    static OneRDM<Scalar> calculateScalarBasis1RDM(const TransformationMatrix<double>& C_sigma, const size_t N_sigma) {
+
+        const auto K_sigma = C_sigma.dimension();
+        const auto D_orthonormal = UHF<Scalar>::calculateOrthonormalBasis1RDM(K_sigma, N_sigma);
+
+        // Transform the 1-RDM in an orthonormal basis to the underlying scalar basis
+        return C_sigma.conjugate() * D_orthonormal * C_sigma.transpose();
+    }
+
+
+    /**
+     *  Calculate the UHF direct (Coulomb) matrix for spin sigma.
+     * 
+     *  @param P_alpha              the UHF alpha density matrix expressed in the underlying scalar orbital basis
+     *  @param P_beta               the UHF beta density matrix expressed in the (same) underlying scalar orbital basis
+     *  @param sq_hamiltonian       the Hamiltonian expressed in the (same) underlying scalar orbital basis
+     * 
+     *  @return the UHF direct (Coulomb) matrix for spin sigma
+     */
+    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisDirectMatrix(const OneRDM<Scalar>& P_alpha, const OneRDM<Scalar>& P_beta, const SQHamiltonian<Scalar>& sq_hamiltonian) {
+
+        // To perform the contraction, we will first have to convert the density matrices into tensors (since contractions are only implemented for tensors).
+        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_alpha_tensor {P_alpha.data(), P_alpha.rows(), P_alpha.cols()};
+        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_beta_tensor {P_beta.data(), P_beta.rows(), P_beta.cols()};
+
+        // Specify the contraction pairs for the direct contractions:
+        //      (mu nu|rho lambda) P(rho lambda)
+        Eigen::array<Eigen::IndexPair<int>, 2> direct_contraction_pair = {Eigen::IndexPair<int>(2, 0), Eigen::IndexPair<int>(3, 1)};
+
+        // Do the actual contractions, and convert the given tensor back to a matrix.
+        const auto& g = sq_hamiltonian.twoElectron().parameters();
+        Tensor<Scalar, 2> J_alpha_tensor = g.contract(P_alpha_tensor, direct_contraction_pair);
+        Tensor<Scalar, 2> J_beta_tensor = g.contract(P_beta_tensor, direct_contraction_pair);
+
+        Tensor<Scalar, 2> J_tensor = J_alpha_tensor.Eigen() + J_beta_tensor.Eigen();
+
+        Eigen::Map<Eigen::MatrixXd> J {J_tensor.data(), J_tensor.dimension(0), J_tensor.dimension(1)};
+        return ScalarSQOneElectronOperator<Scalar>(J);
+    }
+
+
+    /**
+     *  Calculate the UHF exchange matrix for spin sigma.
+     * 
+     *  @param P_sigma              the UHF sigma density matrix expressed in the underlying scalar orbital basis
+     *  @param sq_hamiltonian       the Hamiltonian expressed in the (same) underlying scalar orbital basis
+     * 
+     *  @return the UHF direct (Coulomb) matrix for spin sigma
+     */
+    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisExchangeMatrix(const OneRDM<Scalar>& P_sigma, const SQHamiltonian<Scalar>& sq_hamiltonian) {
+
+        // To perform the contraction, we will first have to convert the density matrix into a tensor (since contractions are only implemented for tensors).
+        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_sigma_tensor {P_sigma.data(), P_sigma.rows(), P_sigma.cols()};
+
+        // Specify the contraction pairs for the exchange contraction:
+        //      (mu rho|lambda nu) P(lambda rho)
+        Eigen::array<Eigen::IndexPair<int>, 2> exchange_contraction_pair = {Eigen::IndexPair<int>(1, 1), Eigen::IndexPair<int>(2, 0)};
+
+        // Do the actual contraction, and convert the given tensor back to a matrix.
+        const auto& g = sq_hamiltonian.twoElectron().parameters();
+        Tensor<Scalar, 2> K_sigma_tensor = g.contract(P_sigma_tensor, exchange_contraction_pair);
+
+        Eigen::Map<Eigen::MatrixXd> K_sigma {K_sigma_tensor.data(), K_sigma_tensor.dimension(0), K_sigma_tensor.dimension(1)};
+        return ScalarSQOneElectronOperator<Scalar>(K_sigma);
+    }
+
+
+    /**
+     *  Calculate the UHF Fock matrix F = H_core + G, in which G is a contraction of the density matrix and the two-electron integrals
+     *
+     *  @param P                    the RHF density matrix in a scalar basis
+     *  @param sq_hamiltonian       the Hamiltonian expressed in the same scalar basis
+     *
+     *  @return the RHF Fock matrix expressed in the scalar basis
+     */
+    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(Spin sigma, const OneRDM<Scalar>& P_alpha, const OneRDM<Scalar>& P_beta, const SQHamiltonian<Scalar>& sq_hamiltonian) {
+
+        // F_sigma = H_core + (J_alpha + J_beta) - K_sigma
+        const auto& H_core = sq_hamiltonian.core();
+        const auto J = UHF<Scalar>::calculateScalarBasisDirectMatrix(P_alpha, P_beta, sq_hamiltonian);
+
+        switch (sigma) {
+        case Spin::alpha: {
+            const auto K_alpha = UHF<Scalar>::calculateScalarBasisExchangeMatrix(P_alpha, sq_hamiltonian);
+            return H_core + J - K_alpha;
+        }
+
+        case Spin::beta: {
+            const auto K_beta = UHF<Scalar>::calculateScalarBasisExchangeMatrix(P_beta, sq_hamiltonian);
+            return H_core + J - K_beta;
+        }
+        }
+    }
+
+
+    /*
+     *  PUBLIC METHODS
+     */
+
+    /**
+     *  @param sigma            alpha or beta
+     * 
+     *  @return the sigma-spin UHF 1-RDM expressed in an orthonormal sigma spin-orbital basis for these UHF model parameters
+     */
+    OneRDM<Scalar> calculateOrthonormalBasis1RDM(Spin sigma) const {
+
+        const auto K_sigma = this->numberOfSpinOrbitals(sigma);
+        const auto N_sigma = this->numberOfElectrons(sigma);
+
+        return UHF<Scalar>::calculateOrthonormalBasis1RDM(K_sigma, N_sigma);
+    }
+
+
+    /**
+     *  @param sigma            alpha or beta
+     *
+     *  @return the sigma-spin UHF 1-RDM expressed in the underlying scalar basis for these UHF model parameters
+     */
+    OneRDM<Scalar> calculateScalarBasis1RDM(Spin sigma) const {
+
+        const auto C_sigma = this->coefficientMatrix(sigma);
+        const auto N_sigma = this->numberOfElectrons(sigma);
+
+        return UHF<Scalar>::calculateScalarBasis1RDM(C_sigma, N_sigma);
+    }
+
+
+    /**
+     *  @param sigma            alpha or beta
+     *
+     *  @return the coefficient matrix that expresses the sigma spin-orbitals (as a column) in its underlying scalar basis
+     */
+    const TransformationMatrix<Scalar>& coefficientMatrix(Spin sigma) const {
+
+        switch (sigma) {
+        case Spin::alpha: {
+            return this->C_alpha;
+        }
+
+        case Spin::beta: {
+            return this->C_beta;
+        }
+        }
+    }
+
+
+    /**
+     *  @param sigma            alpha or beta
+     * 
+     *  @return the number of sigma electrons that these UHF model parameters describe, i.e. the number of occupied sigma-spin-orbitals
+     */
+    size_t numberOfElectrons(Spin sigma) const {
+
+        switch (sigma) {
+        case Spin::alpha: {
+            return this->N_alpha;
+        }
+
+        case Spin::beta: {
+            return this->N_beta;
+        }
+        }
+    }
+
+    /**
+     *  @param sigma            alpha or beta
+     * 
+     *  @return the number of sigma spin-orbitals that these UHF model parameters describe
+     */
+    size_t numberOfSpinOrbitals(Spin sigma) const {
+
+        switch (sigma) {
+        case Spin::alpha: {
+            return this->C_alpha.dimension();
+        }
+
+        case Spin::beta: {
+            return this->C_beta.dimension();
+        }
+        }
+    }
+
+
+    /**
+     *  @param sigma            alpha or beta
+     * 
+     *  @return the orbital energies of the sigma-spin-orbitals
+     */
+    const VectorX<double>& orbitalEnergies(Spin sigma) const {
+
+        switch (sigma) {
+        case Spin::alpha: {
+            return this->orbital_energies_alpha;
+        }
+
+        case Spin::beta: {
+            return this->orbital_energies_beta;
+        }
+        }
+    }
 };
 
 

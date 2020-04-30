@@ -53,19 +53,25 @@ void bindIterativeAlgorithm(py::module& module, const std::string& suffix, const
                                                       description.c_str())
 
         .def(
-            "perform",
-            [](GQCP::IterativeAlgorithm<Environment>& algorithm, Environment& environment) {
-                algorithm.perform(environment);
-            })
-
-
-        .def(
             "insert",
             [](GQCP::IterativeAlgorithm<Environment>& algorithm, const GQCP::FunctionalStep<Environment>& step, const size_t index) {
                 algorithm.insert(step, index);
             },
             py::arg("step"),
-            py::arg("index"));
+            py::arg("index"))
+
+        .def(
+            "numberOfIterations",
+            [](GQCP::IterativeAlgorithm<Environment>& algorithm) {
+                return algorithm.numberOfIterations();
+            })
+
+        .def(
+            "perform",
+            [](GQCP::IterativeAlgorithm<Environment>& algorithm, Environment& environment) {
+                algorithm.perform(environment);
+            },
+            py::arg("environment"));
 }
 
 

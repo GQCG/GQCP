@@ -1,4 +1,4 @@
-// This file is part of GQCG-GQCP.
+// / RHF / RHF.hpps part of GQCG-GQCP.
 //
 // Copyright (C) 2017-2020  the GQCG developers
 //
@@ -19,26 +19,25 @@
 
 
 #include "Mathematical/Algorithm/Step.hpp"
-#include "QCMethod/HF/RHF/RHFSCFEnvironment.hpp"
-
-#include <Eigen/Dense>
+#include "QCMethod/HF/UHF/UHFSCFEnvironment.hpp"
+#include "QCModel/HF/UHF.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  An iteration step that solves the generalized eigenvalue problem for the current scalar/AO basis Fock matrix for the coefficient matrix.
+ *  An iteration step that calculates the current UHF Fock matrices (expressed in the scalar/AO basis) from the current density matrices.
  * 
  *  @tparam _Scalar              the scalar type used to represent the expansion coefficient/elements of the transformation matrix
  */
 template <typename _Scalar>
-class RHFFockMatrixDiagonalization:
-    public Step<RHFSCFEnvironment<_Scalar>> {
+class UHFFockMatrixCalculation:
+    public Step<UHFSCFEnvironment<_Scalar>> {
 
 public:
     using Scalar = _Scalar;
-    using Environment = RHFSCFEnvironment<Scalar>;
+    using Environment = UHFSCFEnvironment<Scalar>;
 
 
 public:
@@ -47,21 +46,20 @@ public:
      */
 
     /**
-     *  Solve the generalized eigenvalue problem for the most recent scalar/AO Fock matrix. Add the associated coefficient matrix and orbital energies to the environment.
+     *  Calculate the current UHF Fock matrices (expressed in the scalar/AO basis) and place them in the environment
      * 
      *  @param environment              the environment that acts as a sort of calculation space
      */
     void execute(Environment& environment) override {
 
-        const auto& F = environment.fock_matrices.back();  // the most recent scalar/AO basis Fock matrix
+        const auto& P_alpha = environment.density_matrices_alpha.back();  // the most recent alpha density matrix
+        const auto& P_beta = environment.density_matrices_beta.back();    // the most recent beta density matrices
 
-        using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
-        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver {F, environment.S};
-        const TransformationMatrix<Scalar>& C = generalized_eigensolver.eigenvectors();
-        const auto& orbital_energies = generalized_eigensolver.eigenvalues();
+        const auto F_alpha = QCModel::UHF<double>::calculateScalarBasisFockMatrix(Spin::alpha, P_alpha, P_beta, environment.sq_hamiltonian);
+        const auto F_beta = QCModel::UHF<double>::calculateScalarBasisFockMatrix(Spin::beta, P_alpha, P_beta, environment.sq_hamiltonian);
 
-        environment.coefficient_matrices.push_back(C);
-        environment.orbital_energies.push_back(orbital_energies);
+        environment.fock_matrices_alpha.push_back(F_alpha.parameters());
+        environment.fock_matrices_beta.push_back(F_beta.parameters());
     }
 };
 

@@ -20,6 +20,7 @@
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
 #include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp"
 #include "QCMethod/HF/RHF/RHFSCFEnvironment.hpp"
+#include "QCMethod/HF/UHF/UHFSCFEnvironment.hpp"
 
 #include <pybind11/functional.h>
 #include <pybind11/pybind11.h>
@@ -62,6 +63,7 @@ void bindFunctionalSteps(py::module& module) {
     bindFunctionalStep<GQCP::EigenproblemEnvironment>(module, "EigenproblemEnvironment", "A functional step that uses an EigenproblemEnvironment.");
     bindFunctionalStep<GQCP::NonLinearEquationEnvironment<double>>(module, "NonLinearEquationEnvironment", "A functional step that uses a NonLinearEquationEnvironment.");
     bindFunctionalStep<GQCP::RHFSCFEnvironment<double>>(module, "RHFSCFEnvironment", "A functional step that uses an RHFSCFEnvironment.");
+    bindFunctionalStep<GQCP::UHFSCFEnvironment<double>>(module, "UHFSCFEnvironment", "A functional step that uses an UHFSCFEnvironment.");
 }
 
 

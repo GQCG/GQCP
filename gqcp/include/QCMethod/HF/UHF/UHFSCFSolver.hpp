@@ -21,6 +21,9 @@
 #include "Mathematical/Algorithm/CompoundConvergenceCriterion.hpp"
 #include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
 #include "Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp"
+#include "QCMethod/HF/UHF/UHFDensityMatrixCalculation.hpp"
+#include "QCMethod/HF/UHF/UHFFockMatrixCalculation.hpp"
+#include "QCMethod/HF/UHF/UHFFockMatrixDiagonalization.hpp"
 #include "QCMethod/HF/UHF/UHFSCFEnvironment.hpp"
 
 
@@ -53,11 +56,12 @@ public:
 
         // Create the iteration cycle that effectively 'defines' a plain UHF SCF solver
         StepCollection<UHFSCFEnvironment<Scalar>> plain_uhf_scf_cycle {};
-        // plain_uhf_scf_cycle
-        // .add(UHFDensityMatrixCalculation<Scalar>())
-        // .add(UHFFockMatrixCalculation<Scalar>())
-        // .add(UHFFockMatrixDiagonalization<Scalar>())
-        // .add(UHFElectronicEnergyCalculation<Scalar>());
+        plain_uhf_scf_cycle
+            .add(UHFDensityMatrixCalculation<Scalar>())
+            .add(UHFFockMatrixCalculation<Scalar>())
+            .add(UHFFockMatrixDiagonalization<Scalar>())
+            // .add(UHFElectronicEnergyCalculation<Scalar>());
+            ;
 
         // Create a compound convergence criterion on the norm of subsequent alpha- and beta-density matrices
         using SingleConvergenceType = ConsecutiveIteratesNormConvergence<OneRDM<Scalar>, UHFSCFEnvironment<Scalar>>;

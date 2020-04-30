@@ -19,7 +19,7 @@
 
 
 #include "Mathematical/Algorithm/Step.hpp"
-#include "QCMethod/HF/RHF/RHFSCFEnvironment.hpp"
+#include "QCMethod/HF/UHF/UHFSCFEnvironment.hpp"
 
 #include <Eigen/Dense>
 
@@ -33,12 +33,12 @@ namespace GQCP {
  *  @tparam _Scalar              the scalar type used to represent the expansion coefficient/elements of the transformation matrix
  */
 template <typename _Scalar>
-class RHFFockMatrixDiagonalization:
-    public Step<RHFSCFEnvironment<_Scalar>> {
+class UHFFockMatrixDiagonalization:
+    public Step<UHFSCFEnvironment<_Scalar>> {
 
 public:
     using Scalar = _Scalar;
-    using Environment = RHFSCFEnvironment<Scalar>;
+    using Environment = UHFSCFEnvironment<Scalar>;
 
 
 public:
@@ -47,21 +47,31 @@ public:
      */
 
     /**
-     *  Solve the generalized eigenvalue problem for the most recent scalar/AO Fock matrix. Add the associated coefficient matrix and orbital energies to the environment.
+     *  Solve the generalized eigenvalue problem for the most recent scalar/AO Fock matrices. Add the associated coefficient matrices and orbital energies to the environment.
      * 
      *  @param environment              the environment that acts as a sort of calculation space
      */
     void execute(Environment& environment) override {
 
-        const auto& F = environment.fock_matrices.back();  // the most recent scalar/AO basis Fock matrix
+        const auto& F_alpha = environment.fock_matrices_alpha.back();  // the most recent scalar/AO basis alpha Fock matrix
+        const auto& F_beta = environment.fock_matrices_beta.back();    // the most recent scalar/AO basis beta Fock matrices
 
         using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
-        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver {F, environment.S};
-        const TransformationMatrix<Scalar>& C = generalized_eigensolver.eigenvectors();
-        const auto& orbital_energies = generalized_eigensolver.eigenvalues();
 
-        environment.coefficient_matrices.push_back(C);
-        environment.orbital_energies.push_back(orbital_energies);
+        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver_alpha {F_alpha, environment.S};
+        const TransformationMatrix<Scalar>& C_alpha = generalized_eigensolver_alpha.eigenvectors();
+        environment.coefficient_matrices_alpha.push_back(C_alpha);
+
+        const auto& orbital_energies_alpha = generalized_eigensolver_alpha.eigenvalues();
+        environment.orbital_energies_alpha.push_back(orbital_energies_alpha);
+
+
+        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver_beta {F_beta, environment.S};
+        const TransformationMatrix<Scalar>& C_beta = generalized_eigensolver_beta.eigenvectors();
+        environment.coefficient_matrices_beta.push_back(C_beta);
+
+        const auto& orbital_energies_beta = generalized_eigensolver_beta.eigenvalues();
+        environment.orbital_energies_beta.push_back(orbital_energies_beta);
     }
 };
 

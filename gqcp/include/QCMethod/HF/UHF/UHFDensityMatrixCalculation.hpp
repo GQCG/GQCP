@@ -19,7 +19,8 @@
 
 
 #include "Mathematical/Algorithm/Step.hpp"
-#include "QCMethod/HF/RHF/UHFSCFEnvironment.hpp"
+#include "QCMethod/HF/UHF/UHFSCFEnvironment.hpp"
+#include "QCModel/HF/UHF.hpp"
 
 
 namespace GQCP {
@@ -51,10 +52,14 @@ public:
      */
     void execute(Environment& environment) override {
 
+        const auto& C_alpha = environment.coefficient_matrices_alpha.back();  // the most recent alpha coefficient matrix
+        const auto& C_beta = environment.coefficient_matrices_beta.back();    // the most recent beta coefficient matrix
 
-        const auto& C = environment.coefficient_matrices.back();  // the most recent coefficient matrix
-        const auto D = QCModel::RHF<double>::calculateScalarBasis1RDM(C, environment.N);
-        environment.density_matrices.push_back(D);
+        const auto D_alpha = QCModel::UHF<double>::calculateScalarBasis1RDM(C_alpha, environment.N_alpha);
+        const auto D_beta = QCModel::UHF<double>::calculateScalarBasis1RDM(C_beta, environment.N_beta);
+
+        environment.density_matrices_alpha.push_back(D_alpha);
+        environment.density_matrices_beta.push_back(D_beta);
     }
 };
 
