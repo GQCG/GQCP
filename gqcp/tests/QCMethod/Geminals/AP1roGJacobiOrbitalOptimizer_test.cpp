@@ -1,4 +1,4 @@
-// / RHF / DiagonalRHFFockMatrixObjective
+// This file is part of GQCG-GQCP.
 //
 // Copyright (C) 2017-2020  the GQCG developers
 //
