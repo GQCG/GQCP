@@ -7043,6 +7043,8 @@ stdint.h
 /Users/daria/ugent/gqcp/gqcp/src/QCMethod/CC/CCD0.cpp
 Basis/ScalarBasis/GTOBasisSet.hpp
 /Users/daria/ugent/gqcp/gqcp/src/QCMethod/CC/Basis/ScalarBasis/GTOBasisSet.hpp
+Molecule/Molecule.hpp
+/Users/daria/ugent/gqcp/gqcp/src/QCMethod/CC/Molecule/Molecule.hpp
 
 include/Basis/ScalarBasis/CartesianExponents.hpp
 Mathematical/CartesianDirection.hpp

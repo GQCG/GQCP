@@ -1,7 +1,8 @@
 #include "Basis/ScalarBasis/GTOBasisSet.hpp"
+#include "Molecule/Molecule.hpp"
 
-int main(){
-    std::cout<<"Hello.\n";
-    std::cout<<"test";
-    return 0;
-}
+namespace GQCP{
+
+
+
+}  // namespace GQCP
