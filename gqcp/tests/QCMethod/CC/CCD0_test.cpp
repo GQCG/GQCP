@@ -53,12 +53,12 @@ double calculateProjection(const GQCP::SQHamiltonian<double>& sq_hamiltonian, GQ
     double projection = 0.0;
     // [ab||ij]
     projection += ls(a/2, i/2, b/2, j/2);
-    /*
+    
     // t_ij^ac
     for (size_t c=N ; c!=2*N ; c++){
         projection += fs(b/2, c/2) * ts(a, c, i, j) - fs(a/2, c/2) * ts(b, c, i, j); // P(ab)
     }
-
+    
     // t_ik^ab
     for (size_t k=0 ; k!=N ; k++){
         projection -= fs(k/2, j/2) * ts(a, b, i, k) - fs(k/2, i/2) * ts(a, b, j, k); // P(ij)
@@ -67,24 +67,24 @@ double calculateProjection(const GQCP::SQHamiltonian<double>& sq_hamiltonian, GQ
     // t_ij^cd
     for (size_t c=N ; c!=2*N ; c++){ // electron 1
         for (size_t d=N ; d!=2*N ; d++){ // electron 2
-            projection += 0.5 * ls(a/2, b/2, c/2, d/2) * ts(c, d, i, j);
+            projection += 0.5 * ls(a/2, c/2, b/2, d/2) * ts(c, d, i, j);
         }
     }
-
+    
     // t_kl^ab
     for (size_t k=0 ; k!=N ; k++){
         for (size_t l=0 ; l!=N ; l++){
-            projection += 0.5 * ls(k/2, l/2, i/2, j/2) * ts(a, b, k, l);
+            projection += 0.5 * ls(k/2, i/2, l/2, j/2) * ts(a, b, k, l);
         }
     }
-
+    
     // t_ik^ac
     for (size_t k=0 ; k!=N ; k++){
         for (size_t c=N ; c!=2*N ; c++){
-            projection += ls(k/2, b/2, c/2, j/2) * ts(a, c, i, k) // P(ab)
-                        - ls(k/2, a/2, c/2, j/2) * ts(b, c, i, k)
-                        - ls(k/2, b/2, c/2, i/2) * ts(a, c, j, k) // P(ij)
-                        + ls(k/2, a/2, c/2, i/2) * ts(b, c, j, k);
+            projection += ls(k/2, c/2, b/2, j/2) * ts(a, c, i, k) // P(ab)
+                        - ls(k/2, c/2, a/2, j/2) * ts(b, c, i, k)
+                        - ls(k/2, c/2, b/2, i/2) * ts(a, c, j, k) // P(ij)
+                        + ls(k/2, c/2, a/2, i/2) * ts(b, c, j, k);
         }
     }   
     
@@ -94,26 +94,26 @@ double calculateProjection(const GQCP::SQHamiltonian<double>& sq_hamiltonian, GQ
             for (size_t l=0 ; l!=N ; l++){
                 for (size_t d=N ; d!=2*N ; d++){
                     // t_ik^ac * t_lj^db
-                    projection += 0.5 * ls(k/2, l/2, c/2, d/2) * ts(a, c, i, k) * ts(d, b, l, j) // P(ab)
-                                - 0.5 * ls(k/2, l/2, c/2, d/2) * ts(b, c, i, k) * ts(d, a, l, j) 
-                                - 0.5 * ls(k/2, l/2, c/2, d/2) * ts(a, c, j, k) * ts(d, b, l, i) // P(ij)
-                                + 0.5 * ls(k/2, l/2, c/2, d/2) * ts(b, c, j, k) * ts(d, a, l, i);
+                    projection += 0.5 * ls(k/2, c/2, l/2, d/2) * ts(a, c, i, k) * ts(d, b, l, j) // P(ab)
+                                - 0.5 * ls(k/2, c/2, l/2, d/2) * ts(b, c, i, k) * ts(d, a, l, j) 
+                                - 0.5 * ls(k/2, c/2, l/2, d/2) * ts(a, c, j, k) * ts(d, b, l, i) // P(ij)
+                                + 0.5 * ls(k/2, c/2, l/2, d/2) * ts(b, c, j, k) * ts(d, a, l, i);
 
-                    // t_ik^cd * t_lj^ab
-                    projection +=  0.5 * ls(k/2, l/2, c/2, d/2) * ts(c, d, i, k) * ts(a, b, l, j) // P(ij)
-                                - 0.5 * ls(k/2, l/2, c/2, d/2) * ts(c, d, j, k) * ts(a, b, l, i);
+                    // t_ij^ac * t_kl^bd
+                    projection -=  0.5 * ls(k/2, c/2, l/2, d/2) * ts(a, c, i, j) * ts(b, d, k, l) // P(ab)
+                                - 0.5 * ls(k/2, c/2, l/2, d/2) * ts(b, c, i, j) * ts(a, d, k, l);
 
-                    // t_kl^ac * t_ij^db
-                    projection += 0.5 * ls(k/2, l/2, c/2, d/2) * ts(a, c, k, l) * ts(d, b, i, j) // P(ab)
-                                - 0.5 * ls(k/2, l/2, c/2, d/2) * ts(b, c, k, l) * ts(d, a, i, j);
+                    // t_ik^ab * t_jl^cd
+                    projection -= 0.5 * ls(k/2, c/2, l/2, d/2) * ts(a, b, i, k) * ts(c, d, j, l) // P(ij)
+                                - 0.5 * ls(k/2, c/2, l/2, d/2) * ts(a, b, j, k) * ts(c, d, i, l);
 
                     // t_ij^cd * t_kl^ab
-                    projection += 0.25 * ls(k/2, l/2, c/2, d/2) * ts(c, d, i, j) * ts(a, b, k, l);
+                    projection += 0.25 * ls(k/2, c/2, l/2, d/2) * ts(c, d, i, j) * ts(a, b, k, l);
                 }
             }
         }
     }
-    */
+    
     
     return projection;
 }
@@ -187,7 +187,7 @@ void step(const GQCP::SQHamiltonian<double>& sq_hamiltonian, GQCP::BlockRankFour
 double calculateEnergy(const double e_hf, const GQCP::SQHamiltonian<double>& sq_hamiltonian, GQCP::BlockRankFourTensor<double>& ts){
     const auto hs = sq_hamiltonian.core().parameters(0);
     const auto gs = sq_hamiltonian.twoElectron().parameters(0);
-    const auto ls = gs; //twoElectronAntiSymmetrized(gs);
+    const auto ls = twoElectronAntiSymmetrized(gs);
 
     const size_t N = hs.dimension(); // returns the number of electrons
     
@@ -237,17 +237,21 @@ BOOST_AUTO_TEST_CASE ( CCD0 ) {
     
     // initialize t amplitudes
     auto ts = initializeAmplitudes(sq_hamiltonian, inactive_fock_matrix);
-    ts.asTensor().print();
-    std::cout<<"\n\n";
+    //ts.asTensor().print();
+    //std::cout<<"\n\n";
 
     // calculate the function values for the initial t amplitudes
     auto F = calculateProjections(sq_hamiltonian, ts, inactive_fock_matrix);
-    F.asTensor().print();
+    //F.asTensor().print();
 
-    //for (int s=0 ; s<10 ; s++){
-    //    step(sq_hamiltonian, ts, F, inactive_fock_matrix);
-    //    F = calculateProjections(sq_hamiltonian, ts, inactive_fock_matrix);
-    //    std::cout<<calculateEnergy(rhf_energy, sq_hamiltonian, ts)<<std::endl;
-    //}
+    // calculate the CCD energy
+    auto E_old = calculateEnergy(rhf_energy, sq_hamiltonian, ts);
+
+    for (int s=0 ; s<50 ; s++){
+        step(sq_hamiltonian, ts, F, inactive_fock_matrix);
+        F = calculateProjections(sq_hamiltonian, ts, inactive_fock_matrix);
+        ts.asTensor().print();
+        std::cout<<calculateEnergy(rhf_energy, sq_hamiltonian, ts)<<std::endl;
+    }
  
 }
