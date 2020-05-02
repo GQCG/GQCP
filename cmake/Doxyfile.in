@@ -846,6 +846,7 @@ INPUT = "@CMAKE_SOURCE_DIR@/gqcp/include" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Processing/RDM" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/QCMethod" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/QCMethod/Applications" \
+        "@CMAKE_SOURCE_DIR@/gqcp/src/QCMethod/CC/" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/QCMethod/CI" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/QCMethod/CI/HamiltonianBuilder" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/QCMethod/Geminals" \

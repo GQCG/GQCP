@@ -165,6 +165,8 @@
 
 #include "QCMethod/Applications/AtomicDecompositionParameters.hpp"
 
+// #include "QCMethod/CC/CCD0.hpp"
+
 #include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FrozenCoreCI.hpp"
