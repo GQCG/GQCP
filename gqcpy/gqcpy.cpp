@@ -29,6 +29,7 @@ namespace gqcpy {
 // Basis - SpinorBasis
 void bindGSpinorBasis(py::module& module);
 void bindRSpinorBasis(py::module& module);
+void bindSpin(py::module& module);
 
 
 // Basis
@@ -109,6 +110,7 @@ void bindRHFSCFSolver(py::module& module);
 
 
 // QCMethod - HF - UHF
+void bindQCMethodUHF(py::module& module);
 void bindUHFSCFEnvironment(py::module& module);
 void bindUHFSCFSolver(py::module& module);
 
@@ -129,6 +131,7 @@ void bindQCModelvAP1roG(py::module& module);
 
 // QCModel - HF
 void bindQCModelRHF(py::module& module);
+void bindQCModelUHF(py::module& module);
 
 
 // Single includes
@@ -146,6 +149,7 @@ PYBIND11_MODULE(gqcpy, module) {
     // Basis - SpinorBasis
     gqcpy::bindGSpinorBasis(module);
     gqcpy::bindRSpinorBasis(module);
+    gqcpy::bindSpin(module);
 
 
     // Basis
@@ -226,6 +230,7 @@ PYBIND11_MODULE(gqcpy, module) {
 
 
     // QCMethod - HF - UHF
+    gqcpy::bindQCMethodUHF(module);
     gqcpy::bindUHFSCFEnvironment(module);
     gqcpy::bindUHFSCFSolver(module);
 
@@ -246,6 +251,7 @@ PYBIND11_MODULE(gqcpy, module) {
 
     // QCModel - HF
     gqcpy::bindQCModelRHF(module);
+    gqcpy::bindQCModelUHF(module);
 
 
     // Single includes

@@ -1,4 +1,5 @@
 list(APPEND python_bindings_sources
+    ${CMAKE_CURRENT_SOURCE_DIR}/UHF.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/UHFSCFEnvironment.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/UHFSCFSolver.cpp
 )

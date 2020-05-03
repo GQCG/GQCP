@@ -25,6 +25,7 @@
 #include "QCModel/Geminals/AP1roG.hpp"
 #include "QCModel/Geminals/vAP1roG.hpp"
 #include "QCModel/HF/RHF.hpp"
+#include "QCModel/HF/UHF.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
@@ -99,6 +100,7 @@ void bindQCStructures(py::module& module) {
     bindQCStructure<GQCP::QCModel::vAP1roG>(module, "vAP1roG", "A quantum chemical structure for vAP1roG parameters.");
 
     bindQCStructure<GQCP::QCModel::RHF<double>>(module, "RHF", "A quantum chemical structure for RHF parameters.");
+    bindQCStructure<GQCP::QCModel::UHF<double>>(module, "UHF", "A quantum chemical structure for UHF parameters.");
 }
 
 

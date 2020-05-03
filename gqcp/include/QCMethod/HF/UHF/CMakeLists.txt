@@ -1,6 +1,8 @@
 target_sources(gqcp
     PRIVATE
+        UHF.hpp
         UHFDensityMatrixCalculation.hpp
+        UHFElectronicEnergyCalculation.hpp
         UHFFockMatrixCalculation.hpp
         UHFFockMatrixDiagonalization.hpp
         UHFSCFEnvironment.hpp

@@ -130,6 +130,35 @@ public:
      */
 
     /**
+     *  @param P_sigma              the spin-sigma density matrix in a scalar basis
+     *  @param H_core_sigma         the spin-sigma core Hamiltonian expressed in the same scalar basis
+     *  @param F_sigma              the spin-sigma Fock matrix in the same scalar basis
+     *
+     *  @return the UHF electronic energy for the sigma electrons
+     */
+    static double calculateElectronicEnergy(const OneRDM<Scalar>& P_sigma, const ScalarSQOneElectronOperator<Scalar>& H_core_sigma, const ScalarSQOneElectronOperator<Scalar>& F_sigma) {
+
+        // First, calculate the sum of H_core and F (this saves a contraction).
+        const ScalarSQOneElectronOperator<Scalar> Z_sigma = H_core_sigma + F_sigma;
+
+        // Convert the matrices Z and P to a tensor, as contractions are only implemented for tensors.
+        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_sigma_tensor {P_sigma.data(), P_sigma.rows(), P_sigma.cols()};
+        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> Z_sigma_tensor {Z_sigma.parameters().data(), Z_sigma.parameters().rows(), Z_sigma.parameters().cols()};
+
+        // Specify the contraction pair
+        // To calculate the electronic energy, we must perform a double contraction.
+        //      0.5 P_sigma(mu nu) P_sigma(mu nu)
+        Eigen::array<Eigen::IndexPair<int>, 2> contraction_pair = {Eigen::IndexPair<int>(0, 0), Eigen::IndexPair<int>(1, 1)};
+
+        // Calculate the double contraction (with prefactor 0.5).
+        Tensor<Scalar, 0> contraction = 0.5 * P_sigma_tensor.contract(Z_sigma_tensor, contraction_pair);
+
+        // As the double contraction of two rank-2 tensors is a scalar (a tensor of rank 0), we should access the value as (0).
+        return contraction(0);
+    }
+
+
+    /**
      *  @param K_sigma          the number of spatial orbitals for one of the spin components
      *  @param N_sigma          the number of sigma electrons, i.e. the number of occupied sigma spin-orbitals
      *
