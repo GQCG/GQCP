@@ -31,13 +31,13 @@
 
 GQCP::ScalarSQTwoElectronOperator<double> twoElectronAntiSymmetrized(const GQCP::ScalarSQTwoElectronOperator<double>& g_op) {
     const auto& g_par = g_op.parameters();
-    const size_t N = g_par.dimension(); // number of electrons
+    const size_t K = g_par.dimension(); // number of spatial orbitals
     
-    GQCP::QCRankFourTensor<double> l_par(N);
-    for (size_t p=0 ; p!=N ; p++){
-        for (size_t q=0 ; q!=N ; q++){
-            for (size_t r=0 ; r!=N ; r++){
-                for (size_t s=0 ; s!=N ; s++){
+    GQCP::QCRankFourTensor<double> l_par(K);
+    for (size_t p=0 ; p!=K ; p++){
+        for (size_t q=0 ; q!=K ; q++){
+            for (size_t r=0 ; r!=K ; r++){
+                for (size_t s=0 ; s!=K ; s++){
                     l_par(p, q, r, s) = 2*g_par(p, q, r, s) - g_par(p, s, r, q);
                 }
             }
@@ -232,9 +232,11 @@ BOOST_AUTO_TEST_CASE ( CCD0 ) {
     double e_rhf = rhf_parameters.groundStateEnergy();
     std::cout<<"RHF ground state energy: "<<e_rhf<<" hartree"<<std::endl;
 
-    // calculate antisymmetrized two electron integrals
-    const auto l_op = twoElectronAntiSymmetrized(sq_hamiltonian.twoElectron());
+    //sq_hamiltonian.twoElectron().parameters().print();
 
+    // calculate antisymmetrized two electron integrals
+    //const auto l_op = twoElectronAntiSymmetrized(sq_hamiltonian.twoElectron());
+    
     // initialize t amplitudes
     auto T = initializeAmplitudes(inactive_f_op, l_op, N);
     T.asTensor().print();
