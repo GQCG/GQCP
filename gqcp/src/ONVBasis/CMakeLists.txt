@@ -4,6 +4,7 @@ target_sources(gqcp
         BaseONVBasis.cpp
         SeniorityZeroONVBasis.cpp
         SpinResolvedFrozenONVBasis.cpp
+        SpinResolvedONV.cpp
         SpinResolvedONVBasis.cpp
         SpinResolvedSelectedONVBasis.cpp
         SpinUnresolvedFrozenONVBasis.cpp

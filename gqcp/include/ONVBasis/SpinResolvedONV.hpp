@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/SpinorBasis/Spin.hpp"
 #include "ONVBasis/SpinUnresolvedONV.hpp"
 
 
@@ -25,12 +26,12 @@ namespace GQCP {
 
 
 /**
- *  A spin-resolved ONV.
+ *  An occupation number vector that is spin-resolved into alpha- and beta-constituents.
  */
 class SpinResolvedONV {
 private:
-    SpinUnresolvedONV onv_alpha;  // the ONV that descripes the occupations of the alpha spinors
-    SpinUnresolvedONV onv_beta;   // the ONV that descripes the occupations of the beta spinors
+    SpinUnresolvedONV onv_alpha;  // the ONV that describes the occupations of the alpha spin-orbitals
+    SpinUnresolvedONV onv_beta;   // the ONV that describes the occupations of the beta spin-orbitals
 
 public:
     /*
@@ -38,8 +39,8 @@ public:
      */
 
     /**
-     *  @param onv_alpha                the ONV that descripes the occupations of the alpha spinors
-     *  @param onv_beta                 the ONV that descripes the occupations of the beta spinors
+     *  @param onv_alpha                the ONV that describes the occupations of the alpha spin-orbitals
+     *  @param onv_beta                 the ONV that describes the occupations of the beta spin-orbitals
      */
     SpinResolvedONV(const SpinUnresolvedONV& onv_alpha, const SpinUnresolvedONV& onv_beta) :
         onv_alpha {onv_alpha},
@@ -47,18 +48,40 @@ public:
 
 
     /*
+     *  NAMED CONSTRUCTORS
+     */
+
+    /**
+     *  Create a spin-resolved ONV that represents the RHF single Slater determinant.
+     * 
+     *  @param K            the number of spatial orbitals
+     *  @param N_P          the number of electron pairs
+     * 
+     *  @param a spin-resolved ONV that represents the RHF single Slater determinant
+     */
+    static SpinResolvedONV RHF(const size_t K, const size_t N_P);
+
+    /**
+     *  Create a spin-resolved ONV that represents the UHF single Slater determinant.
+     * 
+     *  @param K            the number of spatial orbitals
+     *  @param N_P          the number of electron pairs
+     * 
+     *  @param a spin-resolved ONV that represents the UHF single Slater determinant
+     */
+    static SpinResolvedONV UHF(const size_t K, const size_t N_alpha, const size_t N_beta);
+
+
+    /*
      *  PUBLIC METHODS
      */
 
     /**
-     *  @return the ONV that descripes the occupations of the alpha spinors
+     *  @param sigma                alpha or beta
+     * 
+     *  @return the ONV that describes the occupations of the sigma-spin orbitals.
      */
-    const SpinUnresolvedONV& alphaONV() const { return this->onv_alpha; }
-
-    /**
-     *  @return the ONV that descripes the occupations of the beta spinors
-     */
-    const SpinUnresolvedONV& betaONV() const { return this->onv_beta; }
+    const SpinUnresolvedONV& onv(Spin sigma) const;
 };
 
 
