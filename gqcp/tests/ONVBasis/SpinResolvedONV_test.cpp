@@ -20,6 +20,10 @@
 #include <boost/test/unit_test.hpp>
 
 #include "ONVBasis/SpinResolvedONV.hpp"
+#include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
+#include "QCMethod/HF/RHF/RHF.hpp"
+#include "QCMethod/HF/RHF/RHFSCFSolver.hpp"
+#include "QCModel/HF/UHF.hpp"
 
 
 /**
@@ -51,4 +55,41 @@ BOOST_AUTO_TEST_CASE(UHF) {
 
     const GQCP::SpinResolvedONV reference {alpha_onv, beta_onv};
     BOOST_CHECK(reference == GQCP::SpinResolvedONV::UHF(K, N_alpha, N_beta));
+}
+
+
+/**
+ *  Check if the overlap between an RHF-related ONV and an UHF-related ONV works as expected.
+ * 
+ *  We don't really have a reference implementation, but we can check if the overlaps are equal to 1 if we use RHF orbitals and UHF orbitals that have the same alpha- and beta-part.
+ * 
+ *  The system under consideration is H2 with a 6-31G** basisset.
+ */
+BOOST_AUTO_TEST_CASE(RHF_UHF_overlap) {
+
+    // Find the canonical RHF parameters.
+    const auto h2 = GQCP::Molecule::ReadXYZ("data/h2.xyz");
+    const auto N_P = h2.numberOfElectrons() / 2;
+
+    const GQCP::RSpinorBasis<double, GQCP::GTOShell> r_spinor_basis {h2, "6-31G**"};
+    const auto K = r_spinor_basis.numberOfSpatialOrbitals();
+
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(r_spinor_basis, h2);  // in an AO basis
+
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2.numberOfElectrons(), sq_hamiltonian, r_spinor_basis.overlap().parameters());
+    auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
+
+    const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
+
+
+    // Convert the RHF parameters into UHF parameters.
+    const GQCP::QCModel::UHF<double> uhf_parameters {rhf_parameters};
+    const GQCP::USpinorBasis<double, GQCP::GTOShell> u_spinor_basis {r_spinor_basis};
+
+
+    // Check if the RHF determinant has overlap 1 with the corresponding UHF determinant.
+    const auto rhf_determinant = GQCP::SpinResolvedONV::RHF(K, N_P);
+    const auto uhf_determinant = GQCP::SpinResolvedONV::UHF(K, N_P, N_P);
+    BOOST_CHECK(std::abs(rhf_determinant.calculateOverlap(uhf_determinant, r_spinor_basis, u_spinor_basis) - 1.0) < 1.0e-07);
 }

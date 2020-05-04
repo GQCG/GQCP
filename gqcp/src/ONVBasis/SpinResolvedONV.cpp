@@ -103,6 +103,52 @@ SpinResolvedONV SpinResolvedONV::UHF(const size_t K, const size_t N_alpha, const
  *  PUBLIC METHODS
  */
 
+
+/**
+ *  Calculate the overlap between this and another spin-resolved ONV expressed in R/U-spinor bases.
+ * 
+ *  @param other                        the other spin-resolved ONV
+ *  @param this_spinor_basis            the restricted spin-orbital basis in which this ONV is expressed
+ *  @param other_spinor_basis           the unrestricted spin-orbital basis in which the other ONV is expressed
+ * 
+ *  @param the overlap between this and the other spin-resolved ONV
+ */
+double SpinResolvedONV::calculateOverlap(const SpinResolvedONV& other, const RSpinorBasis<double, GTOShell>& this_spinor_basis, const USpinorBasis<double, GTOShell>& other_spinor_basis) const {
+
+    const auto S = this_spinor_basis.overlap().parameters();  // the overlap matrix in AO basis
+    const auto S_alpha = other_spinor_basis.overlap(Spin::alpha).parameters();
+    const auto S_beta = other_spinor_basis.overlap(Spin::beta).parameters();
+    if (!(S.isApprox(S_alpha, 1.0e-08)) || !(S.isApprox(S_beta, 1.0e-08))) {
+        throw std::invalid_argument("SpinResolvedONV::calculateOverlap(const SpinResolvedONV&, const RSpinorBasis<double, GTOShell>&, const USpinorBasis<double, GTOShell>&): The given spinor bases are not expressed using the same scalar orbital basis.");
+    }
+
+
+    // Prepare some parameters.
+    const auto& C = this_spinor_basis.coefficientMatrix();
+    const auto& C_alpha = other_spinor_basis.coefficientMatrix(Spin::alpha);
+    const auto& C_beta = other_spinor_basis.coefficientMatrix(Spin::beta);
+
+
+    // Calculate the overlap matrices between the restricted and unrestricted spinor bases.
+    MatrixX<double> T_alpha = C.adjoint() * S * C_alpha;
+    MatrixX<double> T_beta = C.adjoint() * S * C_beta;
+
+
+    // Create the smaller 'occupied' matrices by deleting columns and rows belonging to unoccupied spin-orbitals.
+    const auto unoccupied_indices_alpha = this->onv(Spin::alpha).unoccupiedIndices();
+    T_alpha.removeRows(unoccupied_indices_alpha);
+    T_alpha.removeColumns(unoccupied_indices_alpha);
+
+    const auto unoccupied_indices_beta = this->onv(Spin::beta).unoccupiedIndices();
+    T_beta.removeRows(unoccupied_indices_beta);
+    T_beta.removeColumns(unoccupied_indices_beta);
+
+
+    // The overlap is the determinant of the product of the resulting matrices.
+    return (T_alpha * T_beta).determinant();
+}
+
+
 /**
  *  @param sigma                alpha or beta
  * 

@@ -157,6 +157,15 @@ public:
                      ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name_beta)) {}
 
 
+    /**
+     *  Create an unrestricted spinor basis from a restricted spinor basis, leading to alpha- and beta- coefficient matrices that are equal.
+     * 
+     *  @param r_spinor_basis               the restricted spinor basis
+     */
+    USpinorBasis(const RSpinorBasis<ExpansionScalar, Shell>& r_spinor_basis) :
+        spinor_bases {r_spinor_basis, r_spinor_basis} {}
+
+
     /*
      *  PUBLIC METHODS
      */

@@ -18,7 +18,10 @@
 #pragma once
 
 
+#include "Basis/ScalarBasis/GTOShell.hpp"
+#include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Basis/SpinorBasis/Spin.hpp"
+#include "Basis/SpinorBasis/USpinorBasis.hpp"
 #include "ONVBasis/SpinUnresolvedONV.hpp"
 
 
@@ -84,6 +87,17 @@ public:
 
 
     // PUBLIC METHODS
+
+    /**
+     *  Calculate the overlap between this and another spin-resolved ONV expressed in R/U-spinor bases.
+     * 
+     *  @param other                        the other spin-resolved ONV
+     *  @param this_spinor_basis            the restricted spin-orbital basis in which this ONV is expressed
+     *  @param other_spinor_basis           the unrestricted spin-orbital basis in which the other ONV is expressed
+     * 
+     *  @param the overlap between this and the other spin-resolved ONV
+     */
+    double calculateOverlap(const SpinResolvedONV& other, const RSpinorBasis<double, GTOShell>& this_spinor_basis, const USpinorBasis<double, GTOShell>& other_spinor_basis) const;
 
     /**
      *  @param sigma                alpha or beta
