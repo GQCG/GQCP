@@ -41,9 +41,9 @@ private:
     size_t M;  // the number of spinors that this ONV is expressed in
     size_t N;  // the number of electrons that appear in this ONV, i.e. the number of spinor that is occupied
 
-    size_t unsigned_representation;  // the representation of this ONV as an unsigned integer
-    VectorXs occupation_indices;     // the indices of the spinors that are occupied in this ONV
-                                     // it is a vector of N elements in which occupation_indices[j] returns the index of the spinor that the electron j occupies
+    size_t unsigned_representation;        // the representation of this ONV as an unsigned integer
+    std::vector<size_t> occupied_indices;  // the indices of the spinors that are occupied in this ONV
+                                           // it is a vector of N elements in which occupied_indices[j] returns the index of the spinor that the electron j occupies
 
 
 public:
@@ -112,18 +112,6 @@ public:
      *  Set the representation of an spin-unresolved ONV to a new representation and call update the occupation indices accordingly
      */
     void set_representation(const size_t unsigned_representation);
-
-
-    // GETTERS
-    size_t get_unsigned_representation() const { return unsigned_representation; }
-    const VectorXs& get_occupation_indices() const { return occupation_indices; }
-
-    /**
-     *  @param electron_index       the index of the electron
-     *
-     *  @return the index of the orbital that the electron occupies. For the bitset "100", this would be 2: the conversion from right-to-left is already made
-     */
-    size_t get_occupation_index(const size_t electron_index) const { return occupationIndexOf(electron_index); }
 
 
     // PUBLIC METHODS
@@ -284,11 +272,16 @@ public:
     size_t numberOfElectrons() const { return this->N; }
 
     /**
+     *  @return the indices of the spinors that are occupied in this ONV, in ascending order
+     */
+    const std::vector<size_t>& occupiedIndices() const { return this->occupied_indices; }
+
+    /**
      *  @param electron_index           the index of an electron in this ONV
      *  
      *  @return the index of spinor that the given electron (index) occupies
      */
-    size_t occupationIndexOf(const size_t electron_index) const { return occupation_indices(electron_index); }
+    size_t occupationIndexOf(const size_t electron_index) const { return occupied_indices[electron_index]; }
 
     /**
      *  @param p            the 0-based spinor index, counted in this ONV from right to left
@@ -312,7 +305,12 @@ public:
     size_t slice(const size_t index_start, const size_t index_end) const;
 
     /**
-     *  Extract the positions of the set bits from 'this->unsigned_representation' and places them in 'this->occupation_indices'.
+     *  @return the unsigned representation of this spin-unresolved ONV
+     */
+    size_t unsignedRepresentation() const { return this->unsigned_representation; }
+
+    /**
+     *  Extract the positions of the set bits from 'this->unsigned_representation' and places them in 'this->occupied_indices'.
      */
     void updateOccupationIndices();
 };

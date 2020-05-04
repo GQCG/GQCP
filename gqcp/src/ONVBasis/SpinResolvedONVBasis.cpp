@@ -343,14 +343,14 @@ VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const ScalarSQOne
 
             for (size_t e_a = 0; e_a < fock_space_alpha.get_N(); e_a++) {  // loop over alpha electrons
 
-                size_t p = onv_alpha.get_occupation_index(e_a);
+                size_t p = onv_alpha.occupationIndexOf(e_a);
                 diagonal(Ia * dim_beta + Ib) += one_op_par(p, p);
 
             }  // e_a loop
 
             for (size_t e_b = 0; e_b < fock_space_beta.get_N(); e_b++) {  // loop over beta electrons
 
-                size_t p = onv_beta.get_occupation_index(e_b);
+                size_t p = onv_beta.occupationIndexOf(e_b);
                 diagonal(Ia * dim_beta + Ib) += one_op_par(p, p);
             }
 
@@ -400,7 +400,7 @@ VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const ScalarSQTwo
 
             for (size_t e_a = 0; e_a < fock_space_alpha.get_N(); e_a++) {  // loop over alpha electrons
 
-                size_t p = onv_alpha.get_occupation_index(e_a);
+                size_t p = onv_alpha.occupationIndexOf(e_a);
                 diagonal(Ia * dim_beta + Ib) += k(p, p);
 
                 for (size_t q = 0; q < K; q++) {    // q loops over SOs
@@ -418,7 +418,7 @@ VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const ScalarSQTwo
 
             for (size_t e_b = 0; e_b < fock_space_beta.get_N(); e_b++) {  // loop over beta electrons
 
-                size_t p = onv_beta.get_occupation_index(e_b);
+                size_t p = onv_beta.occupationIndexOf(e_b);
                 diagonal(Ia * dim_beta + Ib) += k(p, p);
 
                 for (size_t q = 0; q < K; q++) {   // q loops over SOs
@@ -743,7 +743,7 @@ VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const USQHamilton
 
             for (size_t e_a = 0; e_a < fock_space_alpha.get_N(); e_a++) {  // loop over alpha electrons
 
-                size_t p = onv_alpha.get_occupation_index(e_a);
+                size_t p = onv_alpha.occupationIndexOf(e_a);
                 diagonal(Ia * dim_beta + Ib) += k_alpha(p, p);
 
                 for (size_t q = 0; q < K; q++) {    // q loops over SOs
@@ -761,7 +761,7 @@ VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const USQHamilton
 
             for (size_t e_b = 0; e_b < fock_space_beta.get_N(); e_b++) {  // loop over beta electrons
 
-                size_t p = onv_beta.get_occupation_index(e_b);
+                size_t p = onv_beta.occupationIndexOf(e_b);
                 diagonal(Ia * dim_beta + Ib) += k_beta(p, p);
 
                 for (size_t q = 0; q < K; q++) {   // q loops over SOs

@@ -36,12 +36,11 @@ BOOST_AUTO_TEST_CASE(ONV_constructor) {
 
     // Check if both unsigned representations match (are equal to 31 and have the same considered bits)
     BOOST_CHECK(onv1 == onv2);
-    BOOST_CHECK(onv1.get_unsigned_representation() == 31);
+    BOOST_CHECK(onv1.unsignedRepresentation() == 31);
 
     // Test if the occupation numbers are correct.
-    GQCP::VectorXs x {5};
-    x << 0, 1, 2, 3, 4;
-    BOOST_CHECK(x.isApprox(onv1.get_occupation_indices()));
+    std::vector<size_t> ref_indices {0, 1, 2, 3, 4};
+    BOOST_CHECK(ref_indices == onv1.occupiedIndices());
 
     // Test if setting incompatible representation throws an error
     BOOST_CHECK_THROW(onv1.set_representation(1), std::invalid_argument);
@@ -179,7 +178,7 @@ BOOST_AUTO_TEST_CASE(annihilate) {
 
     // We can annihilate on index 1
     BOOST_CHECK(onv.annihilate(1));  // "1010" (10) -> "1000" (8)
-    BOOST_CHECK_EQUAL(onv.get_unsigned_representation(), 8);
+    BOOST_CHECK_EQUAL(onv.unsignedRepresentation(), 8);
     // Test if updating throws an error (no longer 2 electrons)
     BOOST_CHECK_THROW(onv.updateOccupationIndices(), std::invalid_argument);
 }
@@ -323,7 +322,7 @@ BOOST_AUTO_TEST_CASE(create) {
 
     // We can create on index 2
     BOOST_CHECK(onv.create(2));  // "0010" (2) -> "0110" (6)
-    BOOST_CHECK_EQUAL(onv.get_unsigned_representation(), 6);
+    BOOST_CHECK_EQUAL(onv.unsignedRepresentation(), 6);
 }
 
 

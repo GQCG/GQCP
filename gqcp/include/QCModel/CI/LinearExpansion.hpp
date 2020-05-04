@@ -275,7 +275,7 @@ public:
             for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
                 if (!alpha.isOccupied(m)) {
                     for (size_t e1 = 0; e1 < N_alpha; e1++) {       // e1 (electron 1) loops over the (number of) electrons
-                        size_t p = alpha.get_occupation_index(e1);  // retrieve the index of a given electron
+                        size_t p = alpha.occupationIndexOf(e1);  // retrieve the index of a given electron
 
                         if (p < m) {
                             size_t address = I_alpha - alpha_onv_basis.get_vertex_weights(p, e1 + 1);
@@ -336,7 +336,7 @@ public:
             for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
                 if (!beta.isOccupied(m)) {
                     for (size_t e1 = 0; e1 < N_beta; e1++) {       // e1 (electron 1) loops over the (number of) electrons
-                        size_t p = beta.get_occupation_index(e1);  // retrieve the index of a given electron
+                        size_t p = beta.occupationIndexOf(e1);  // retrieve the index of a given electron
 
                         if (p < m) {
                             size_t address = I_beta - beta_onv_basis.get_vertex_weights(p, e1 + 1);

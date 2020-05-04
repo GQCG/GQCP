@@ -120,12 +120,12 @@ VectorX<double> calculateDysonOrbitalCoefficients(const LinearExpansion<SpinReso
 
             // Annihilate on the corresponding orbital, to make sure we can calculate overlaps in the (N-1)-'target' ONV basis
             sign *= -1;
-            size_t p = onv.get_occupation_index(e);
+            size_t p = onv.occupationIndexOf(e);
             onv.annihilate(p);
 
             // Now, we calculate the overlap in the (N-1)-'target' ONV basis
             // In order to access the correct coefficients for the, we need the address of the resulting (annihilated) ONV inside the 'target' ONV basis
-            size_t address = target_onv_basis2.getAddress(onv.get_unsigned_representation());
+            size_t address = target_onv_basis2.getAddress(onv.unsignedRepresentation());
 
             double coeff = 0;
             for (size_t Ip = 0; Ip < passive_onv_basis1.get_dimension(); Ip++) {  // Ip loops over the addresses of the passive ONV basis

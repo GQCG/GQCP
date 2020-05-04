@@ -48,13 +48,10 @@ SpinUnresolvedONV::SpinUnresolvedONV(const size_t M, const size_t N, const size_
  *  @param M                the number of spinors that this ONV is expressed in
  *  @param N                the number of electrons that appear in this ONV, i.e. the number of spinor that is occupied
  */
-SpinUnresolvedONV::SpinUnresolvedONV(size_t M, size_t N) :
+SpinUnresolvedONV::SpinUnresolvedONV(const size_t M, const size_t N) :
     M {M},
     N {N},
-    occupation_indices {VectorXs::Zero(N)} {
-
-    this->occupation_indices = VectorXs::Zero(N);
-}
+    occupied_indices(N, 0) {}
 
 
 /*
@@ -529,7 +526,7 @@ size_t SpinUnresolvedONV::slice(const size_t index_start, const size_t index_end
 
 
 /**
- *  Extract the positions of the set bits from 'this->unsigned_representation' and places them in 'this->occupation_indices'.
+ *  Extract the positions of the set bits from 'this->unsigned_representation' and places them in 'this->occupied_indices'.
  */
 void SpinUnresolvedONV::updateOccupationIndices() {
 
@@ -537,7 +534,7 @@ void SpinUnresolvedONV::updateOccupationIndices() {
     int electron_index = 0;
 
     while (representation_copy != 0) {
-        this->occupation_indices(electron_index) = __builtin_ctzl(representation_copy);  // retrieves occupation index
+        this->occupied_indices[electron_index] = __builtin_ctzl(representation_copy);  // retrieves occupation index
         electron_index++;
 
         representation_copy ^= (representation_copy & -representation_copy);  // flip the least significant bit

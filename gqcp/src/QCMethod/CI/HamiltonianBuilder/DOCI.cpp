@@ -68,7 +68,7 @@ SquareMatrix<double> DOCI::constructHamiltonian(const SQHamiltonian<double>& sq_
         result_matrix(I, I) += diagonal(I);
 
         for (size_t e1 = 0; e1 < N_P; e1++) {               // e1 (electron 1) loops over the number of electrons
-            const size_t p = onv.get_occupation_index(e1);  // retrieve the index of the orbital that the electron occupies
+            const size_t p = onv.occupationIndexOf(e1);  // retrieve the index of the orbital that the electron occupies
 
             // Remove the weight from the initial address I, because we annihilate
             size_t address = I - proxy_onv_basis.get_vertex_weights(p, e1 + 1);
@@ -137,7 +137,7 @@ VectorX<double> DOCI::matrixVectorProduct(const SQHamiltonian<double>& sq_hamilt
         const double x_I = x(I);
 
         for (size_t e1 = 0; e1 < N_P; e1++) {               // e1 (electron 1) loops over the (number of) electrons
-            const size_t p = onv.get_occupation_index(e1);  // retrieve the index of a given electron
+            const size_t p = onv.occupationIndexOf(e1);  // retrieve the index of a given electron
 
             // Remove the weight from the initial address I, because we annihilate
             size_t address = I - proxy_onv_basis.get_vertex_weights(p, e1 + 1);
@@ -206,13 +206,13 @@ VectorX<double> DOCI::calculateDiagonal(const SQHamiltonian<double>& sq_hamilton
         double value = 0;  // to be added to the diagonal
 
         for (size_t e1 = 0; e1 < N_P; e1++) {               // e1 (electron 1) loops over the number of electrons
-            const size_t p = onv.get_occupation_index(e1);  // retrieve the index of the orbital that the electron occupies
+            const size_t p = onv.occupationIndexOf(e1);  // retrieve the index of the orbital that the electron occupies
             value += 2 * h(p, p) + g(p, p, p, p);
 
             for (size_t e2 = 0; e2 < e1; e2++) {  // e2 (electron 2) loops over the number of electrons
 
                 // Since we are doing a restricted summation (e2 < e1), we should multiply by 2 since the summand argument is symmetric.
-                const size_t q = onv.get_occupation_index(e2);  // retrieve the index of the orbital the electron occupies
+                const size_t q = onv.occupationIndexOf(e2);  // retrieve the index of the orbital the electron occupies
                 value += 2 * (2 * g(p, p, q, q) - g(p, q, q, p));
             }  // q or e2 loop
         }      // p or e1 loop
