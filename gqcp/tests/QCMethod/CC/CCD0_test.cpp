@@ -26,6 +26,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <stdlib.h>
 
 
 
@@ -51,89 +52,90 @@ GQCP::ScalarSQTwoElectronOperator<double> twoElectronAntiSymmetrized(const GQCP:
 
 
 double calculateProjection(const GQCP::ScalarSQOneElectronOperator<double>& f_op, const GQCP::ScalarSQTwoElectronOperator<double>& l_op, const GQCP::BlockRankFourTensor<double>& T, 
-                            const size_t N, const size_t a, const size_t b, const size_t i, const size_t j){
+                            const size_t N_P, const size_t a, const size_t b, const size_t i, const size_t j){
     const auto& f_par = f_op.parameters();
     const auto& l_par = l_op.parameters();
 
+    const size_t K = f_par.dimension();
+
     double projection = 0.0;
     // [ab||ij]
-    projection += l_par(a/2, i/2, b/2, j/2);
+    projection += l_par(a, i, b, j);
     
     // t_ij^ac
-    for (size_t c=N ; c!=2*N ; c++){
-        projection += f_par(b/2, c/2) * T(a, c, i, j) - f_par(a/2, c/2) * T(b, c, i, j); // P(ab)
+    for (size_t c=N_P ; c!=K ; c++){
+        projection += f_par(b, c) * T(a, c, i, j) - f_par(a, c) * T(b, c, i, j); // P(ab)
     }
     
     // t_ik^ab
-    for (size_t k=0 ; k!=N ; k++){
-        projection -= f_par(k/2, j/2) * T(a, b, i, k) - f_par(k/2, i/2) * T(a, b, j, k); // P(ij)
+    for (size_t k=0 ; k!=N_P ; k++){
+        projection -= f_par(k, j) * T(a, b, i, k) - f_par(k, i) * T(a, b, j, k); // P(ij)
     }
-    
-    // t_ij^cd
-    for (size_t c=N ; c!=2*N ; c++){ // electron 1
-        for (size_t d=N ; d!=2*N ; d++){ // electron 2
-            projection += 0.5 * l_par(a/2, c/2, b/2, d/2) * T(c, d, i, j);
+
+    // t_kl^ab
+    for (size_t k=0 ; k!=N_P ; k++){
+        for (size_t l=0 ; l!=N_P ; l++){
+            projection += 0.5 * l_par(k, i, l, j) * T(a, b, k, l);
         }
     }
     
-    // t_kl^ab
-    for (size_t k=0 ; k!=N ; k++){
-        for (size_t l=0 ; l!=N ; l++){
-            projection += 0.5 * l_par(k/2, i/2, l/2, j/2) * T(a, b, k, l);
+    // t_ij^cd
+    for (size_t c=N_P ; c!=K ; c++){ // electron 1
+        for (size_t d=N_P ; d!=K ; d++){ // electron 2
+            projection += 0.5 * l_par(a, c, b, d) * T(c, d, i, j);
         }
     }
     
     // t_ik^ac
-    for (size_t k=0 ; k!=N ; k++){
-        for (size_t c=N ; c!=2*N ; c++){
-            projection += l_par(k/2, c/2, b/2, j/2) * T(a, c, i, k) // P(ab)
-                        - l_par(k/2, c/2, a/2, j/2) * T(b, c, i, k)
-                        - l_par(k/2, c/2, b/2, i/2) * T(a, c, j, k) // P(ij)
-                        + l_par(k/2, c/2, a/2, i/2) * T(b, c, j, k);
+    for (size_t k=0 ; k!=N_P ; k++){
+        for (size_t c=N_P ; c!=K ; c++){
+            projection += l_par(k, c, b, j) * T(a, c, i, k) // P(ab)
+                        - l_par(k, c, a, j) * T(b, c, i, k)
+                        - l_par(k, c, b, i) * T(a, c, j, k) // P(ij)
+                        + l_par(k, c, a, i) * T(b, c, j, k);
         }
     }   
     
     // quadratic terms
-    for (size_t k=0 ; k!=N ; k++){
-        for (size_t c=N ; c!=2*N ; c++){
-            for (size_t l=0 ; l!=N ; l++){
-                for (size_t d=N ; d!=2*N ; d++){
+    for (size_t k=0 ; k!=N_P ; k++){
+        for (size_t c=N_P ; c!=K ; c++){
+            for (size_t l=0 ; l!=N_P ; l++){
+                for (size_t d=N_P ; d!=K ; d++){
                     // t_ik^ac * t_lj^db
-                    projection += 0.5 * l_par(k/2, c/2, l/2, d/2) * T(a, c, i, k) * T(d, b, l, j) // P(ab)
-                                - 0.5 * l_par(k/2, c/2, l/2, d/2) * T(b, c, i, k) * T(d, a, l, j) 
-                                - 0.5 * l_par(k/2, c/2, l/2, d/2) * T(a, c, j, k) * T(d, b, l, i) // P(ij)
-                                + 0.5 * l_par(k/2, c/2, l/2, d/2) * T(b, c, j, k) * T(d, a, l, i);
-
-                    // t_ij^ac * t_kl^bd
-                    projection -=  0.5 * l_par(k/2, c/2, l/2, d/2) * T(a, c, i, j) * T(b, d, k, l) // P(ab)
-                                - 0.5 * l_par(k/2, c/2, l/2, d/2) * T(b, c, i, j) * T(a, d, k, l);
-
-                    // t_ik^ab * t_jl^cd
-                    projection -= 0.5 * l_par(k/2, c/2, l/2, d/2) * T(a, b, i, k) * T(c, d, j, l) // P(ij)
-                                - 0.5 * l_par(k/2, c/2, l/2, d/2) * T(a, b, j, k) * T(c, d, i, l);
+                    projection += 0.5 * l_par(k, c, l, d) * T(a, c, i, k) * T(d, b, l, j) // P(ab)
+                                - 0.5 * l_par(k, c, l, d) * T(b, c, i, k) * T(d, a, l, j) 
+                                - 0.5 * l_par(k, c, l, d) * T(a, c, j, k) * T(d, b, l, i) // P(ij)
+                                + 0.5 * l_par(k, c, l, d) * T(b, c, j, k) * T(d, a, l, i);
 
                     // t_ij^cd * t_kl^ab
-                    projection += 0.25 * l_par(k/2, c/2, l/2, d/2) * T(c, d, i, j) * T(a, b, k, l);
+                    projection += 0.25 * l_par(k, c, l, d) * T(c, d, i, j) * T(a, b, k, l);
+
+                    // t_ij^ac * t_kl^bd
+                    projection -=  0.5 * l_par(k, c, l, d) * T(a, c, i, j) * T(b, d, k, l) // P(ab)
+                                - 0.5 * l_par(k, c, l, d) * T(b, c, i, j) * T(a, d, k, l);
+
+                    // t_ik^ab * t_jl^cd
+                    projection -= 0.5 * l_par(k, c, l, d) * T(a, b, i, k) * T(c, d, j, l) // P(ij)
+                                - 0.5 * l_par(k, c, l, d) * T(a, b, j, k) * T(c, d, i, l);
                 }
             }
         }
     }
     
-    
     return projection;
 }
 
 GQCP::BlockRankFourTensor<double> calculateProjections(const GQCP::ScalarSQOneElectronOperator<double>& f_op, const GQCP::ScalarSQTwoElectronOperator<double>& l_op, 
-                                                        const GQCP::BlockRankFourTensor<double>& T, const size_t N){
-    size_t occupied_s = 0, occupied_e = N;
-    size_t virtual_s = N, virtual_e = 2*N;
-    GQCP::BlockRankFourTensor<double> F(virtual_s, virtual_e, virtual_s, virtual_e, occupied_s, occupied_e, occupied_s, occupied_e);
+                                                        const GQCP::BlockRankFourTensor<double>& T, const size_t N_P){
+    const size_t K = f_op.parameters().dimension();
 
-    for (size_t a=N ; a!=2*N ; a++){
-        for (size_t b=N ; b!=2*N ; b++){
-            for (size_t i=0 ; i!=N ; i++){
-                for (size_t j=0 ; j!=N ; j++){
-                    F(a, b, i, j) = calculateProjection(f_op, l_op, T, N, a, b, i, j);
+    GQCP::BlockRankFourTensor<double> F(N_P, K, N_P, K, 0, N_P, 0, N_P); // virtual-virtual-occupied-occupied
+
+    for (size_t a=N_P ; a!=K ; a++){
+        for (size_t b=N_P ; b!=K ; b++){
+            for (size_t i=0 ; i!=N_P ; i++){
+                for (size_t j=0 ; j!=N_P ; j++){
+                    F(a, b, i, j) = calculateProjection(f_op, l_op, T, N_P, a, b, i, j);
                 }
             }
         }
@@ -142,25 +144,26 @@ GQCP::BlockRankFourTensor<double> calculateProjections(const GQCP::ScalarSQOneEl
     return F;
 }
 
-GQCP::BlockRankFourTensor<double> initializeAmplitudes(const GQCP::ScalarSQOneElectronOperator<double>& f_op, const GQCP::ScalarSQTwoElectronOperator<double>& l_op, const size_t N){
+GQCP::BlockRankFourTensor<double> initializeAmplitudes(const GQCP::ScalarSQOneElectronOperator<double>& f_op, const GQCP::ScalarSQTwoElectronOperator<double>& l_op, const size_t N_P){
 
     const auto& f_par = f_op.parameters();
     const auto& l_par = l_op.parameters();
 
-    size_t occupied_s = 0, occupied_e = N;
-    size_t virtual_s = N, virtual_e = 2*N;
-    GQCP::BlockRankFourTensor<double> T(virtual_s, virtual_e, virtual_s, virtual_e, occupied_s, occupied_e, occupied_s, occupied_e);
+    const size_t K = f_par.dimension();
+    //std::cout<<"N_P: "<<N_P<<"  K: "<<K<<std::endl;
+
+    GQCP::BlockRankFourTensor<double> T(N_P, K, N_P, K, 0, N_P, 0, N_P);
 
     // initialize t-values
-    for (size_t a=N ; a!=2*N ; a++){
-        for (size_t b=N ; b!=2*N ; b++){
-            for (size_t i=0 ; i!=N ; i++){
-                for (size_t j=0 ; j!=N ; j++){
+    for (size_t a=N_P ; a!=K ; a++){
+        for (size_t b=N_P ; b!=K ; b++){
+            for (size_t i=0 ; i!=N_P ; i++){
+                for (size_t j=0 ; j!=N_P ; j++){
                     //std::cout<<"<"<<a<<b<<"|"<<i<<j<<">"<<std::endl;
                     //std::cout<<"("<<a<<i<<"|"<<b<<j<<")"<<std::endl;
                     //std::cout<<ls(a/2, i/2, b/2, j/2)<<"/("<<fs(i/2, i/2)<<"+"<<fs(j/2, j/2)<<"-"<<fs(a/2, a/2)<<"-"<<fs(b/2, b/2)<<")"<<std::endl;
                     //std::cout<<ls(a/2, i/2, b/2, j/2) / (fs(i/2, i/2) + fs(j/2, j/2) - fs(a/2, a/2) - fs(b/2, b/2))<<std::endl;
-                    T(a, b, i, j) = l_par(a/2, i/2, b/2, j/2) / (f_par(i/2, i/2) + f_par(j/2, j/2) - f_par(a/2, a/2) - f_par(b/2, b/2));
+                    T(a, b, i, j) = l_par(a, i, b, j) / (f_par(i, i) + f_par(j, j) - f_par(a, a) - f_par(b, b));
                 }
             }
         }
@@ -169,15 +172,18 @@ GQCP::BlockRankFourTensor<double> initializeAmplitudes(const GQCP::ScalarSQOneEl
 }
 
 void step(const GQCP::ScalarSQOneElectronOperator<double>& f_op, const GQCP::ScalarSQTwoElectronOperator<double>& l_op, 
-            GQCP::BlockRankFourTensor<double>& T, const GQCP::BlockRankFourTensor<double>& F, const size_t N){
+            GQCP::BlockRankFourTensor<double>& T, const GQCP::BlockRankFourTensor<double>& F, const size_t N_P){
     
     const auto& f_par = f_op.parameters();
 
-    for (size_t a=N ; a!=2*N ; a++){
-        for (size_t b=N ; b!=2*N ; b++){
-            for (size_t i=0 ; i!=N ; i++){
-                for (size_t j=0 ; j!=N ; j++){
-                    T(a, b, i, j) += F(a, b, i, j) / (f_par(i/2, i/2) + f_par(j/2, j/2) + f_par(a/2, a/2) + f_par(b/2, b/2));
+    const size_t K = f_par.dimension();
+
+    for (size_t a=N_P ; a!=K ; a++){
+        for (size_t b=N_P ; b!=K ; b++){
+            for (size_t i=0 ; i!=N_P ; i++){
+                for (size_t j=0 ; j!=N_P ; j++){
+                    //std::cout<<"T("<<a<<b<<i<<j<<") = "<<F(a, b, i, j)<<" / "<<f_par(i, i) + f_par(j, j) + f_par(a, a) + f_par(b, b)<<std::endl;
+                    T(a, b, i, j) += F(a, b, i, j) / (f_par(i, i) + f_par(j, j) + f_par(a, a) + f_par(b, b));
                 }
             }
         }
@@ -185,22 +191,24 @@ void step(const GQCP::ScalarSQOneElectronOperator<double>& f_op, const GQCP::Sca
 }
 
 double calculateEnergy(const double e_hf, const GQCP::ScalarSQTwoElectronOperator<double>& l_op, 
-            GQCP::BlockRankFourTensor<double>& T, const GQCP::BlockRankFourTensor<double>& F, const size_t N){
+            GQCP::BlockRankFourTensor<double>& T, const GQCP::BlockRankFourTensor<double>& F, const size_t N_P){
     const auto& l_par = l_op.parameters();
     
+    const size_t K = l_par.dimension();
+
     double energy = 0.0;
 
-    for (size_t i=0 ; i!=N ; i++){
-        for (size_t j=0 ; j!=N ; j++){
-            for (size_t a=N ; a!=2*N ; a++){
-                for (size_t b=N ; b!=2*N ; b++){
-                    energy += 0.25 * l_par(i/2, a/2, j/2, b/2) * T(a, b, i, j);
+    for (size_t a=N_P ; a!=K ; a++){
+        for (size_t b=N_P ; b!=K ; b++){
+            for (size_t i=0 ; i!=N_P ; i++){
+                for (size_t j=0 ; j!=N_P ; j++){
+                    energy += 0.25 * l_par(i, a, j, b) * T(a, b, i, j);
                 }
             }
         }
     }
     
-    energy += e_hf;
+    //energy += e_hf;
     
     return energy;
 }
@@ -209,6 +217,7 @@ BOOST_AUTO_TEST_CASE ( CCD0 ) {
 
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2.xyz" , 0);
     const size_t N = molecule.numberOfElectrons();
+    const size_t N_P = N/2;
 
     GQCP::RSpinorBasis<double, GQCP::GTOShell> rspinor_basis(molecule, "STO-3G");
     std::cout<<"Number of spatial orbitals: "<<rspinor_basis.numberOfSpatialOrbitals()<<std::endl;
@@ -216,44 +225,49 @@ BOOST_AUTO_TEST_CASE ( CCD0 ) {
 
 
     // calculate necessary integrals and operators
-    const auto S = rspinor_basis.quantize(GQCP::Operator::Overlap());
-    const auto ss = S.parameters(0);
     const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(rspinor_basis, molecule);
-    GQCP::ScalarSQOneElectronOperator<double> inactive_f_op = sq_hamiltonian.calculateInactiveFockian(N/2);
+    GQCP::ScalarSQOneElectronOperator<double> inactive_f_op = sq_hamiltonian.calculateInactiveFockian(N_P);
     
     // setting up the environment and solver for the RHF energy
-    GQCP::RHFSCFEnvironment<double> environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(N, sq_hamiltonian, ss);
-    GQCP::IterativeAlgorithm<GQCP::RHFSCFEnvironment<double>> solver = GQCP::RHFSCFSolver<double>::DIIS();
-    GQCP::DiagonalRHFFockMatrixObjective<double> objective(sq_hamiltonian);
-    
+    GQCP::RHFSCFEnvironment<double> environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(N, sq_hamiltonian, rspinor_basis.overlap().parameters());
+    GQCP::IterativeAlgorithm<GQCP::RHFSCFEnvironment<double>> solver = GQCP::RHFSCFSolver<double>::Plain();
+    //GQCP::DiagonalRHFFockMatrixObjective<double> objective(sq_hamiltonian);
+    solver.perform(environment);
+
+    // check the total energy
+    const double e_rhf = environment.electronic_energies.back() + GQCP::Operator::NuclearRepulsion(molecule).value();
     // calculate necessary E_HF
-    GQCP::QCMethod::RHF<double> rhf;
-    GQCP::QCStructure<GQCP::QCModel::RHF<double>> rhf_parameters = rhf.optimize(objective, solver, environment);
-    double e_rhf = rhf_parameters.groundStateEnergy();
-    std::cout<<"RHF ground state energy: "<<e_rhf<<" hartree"<<std::endl;
+    //GQCP::QCMethod::RHF<double> rhf;
+    //GQCP::QCStructure<GQCP::QCModel::RHF<double>> rhf_parameters = rhf.optimize(objective, solver, environment);
+    //double e_rhf = rhf_parameters.groundStateEnergy();
+    std::cout<<"RHF ground state energy: "<<e_rhf<<" hartree.\n\n"<<std::endl;
 
     // calculate antisymmetrized two electron integrals
     const auto l_op = twoElectronAntiSymmetrized(sq_hamiltonian.twoElectron());
     
     // initialize t amplitudes
-    auto T = initializeAmplitudes(inactive_f_op, l_op, N);
-    T.asTensor().print();
-    std::cout<<"\n\n";
+    auto T = initializeAmplitudes(inactive_f_op, l_op, N_P);
     
     // calculate the function values for the initial t amplitudes
-    auto F = calculateProjections(inactive_f_op, l_op, T, N);
-    F.asTensor().print();
+    auto F = calculateProjections(inactive_f_op, l_op, T, N_P);
     
     // calculate the CCD energy
-    auto E_old = calculateEnergy(e_rhf, l_op, T, F, N);
-    std::cout<<E_old;
+    double E_new;
+    auto E_old = calculateEnergy(e_rhf, l_op, T, F, N_P);
+    std::cout<<"E (initial): "<<E_old<<std::endl;
     
-    for (int s=0 ; s<50 ; s++){
-        step(inactive_f_op, l_op, T, F, N);
-        F = calculateProjections(inactive_f_op, l_op, T, N);
+    for (int s=0 ; s<100 ; s++){
+        step(inactive_f_op, l_op, T, F, N_P);
+        F = calculateProjections(inactive_f_op, l_op, T, N_P);
+        E_new = calculateEnergy(e_rhf, l_op, T, F, N_P);
+        //std::cout << E_new << std::endl;
 
-        std::cout << calculateEnergy(e_rhf, l_op, T, F, N) << std::endl;
+        if (abs(E_new-E_old)<10e-4){
+            std::cout<<"Convergence after "<<s<<" iterations."<<std::endl;
+            break;
+        }
     }
+    std::cout<<"The final, converged energy is: "<<E_new<<std::endl;
     
  
 }
