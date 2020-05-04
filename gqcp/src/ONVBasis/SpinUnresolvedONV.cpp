@@ -21,6 +21,9 @@
 
 #include <boost/dynamic_bitset.hpp>
 
+#include <algorithm>
+#include <numeric>
+
 
 namespace GQCP {
 
@@ -522,6 +525,24 @@ size_t SpinUnresolvedONV::slice(const size_t index_start, const size_t index_end
 
     // Use the mask
     return u & mask;
+}
+
+
+/**
+ *  @return the spinor indices that are not occupied in this ONV.
+ */
+std::vector<size_t> SpinUnresolvedONV::unoccupiedIndices() const {
+
+    // Create a vector containing all indices.
+    std::vector<size_t> all_indices(this->M);
+    std::iota(all_indices.begin(), all_indices.end(), 0);  // fill all_indices with increasing numbers, starting by 0
+
+    // The unoccupied indices are {all indices}\{occupied indices}.
+    std::vector<size_t> unoccupied_indices;
+    std::set_difference(all_indices.begin(), all_indices.end(), this->occupied_indices.begin(), this->occupied_indices.end(),
+                        std::inserter(unoccupied_indices, unoccupied_indices.begin()));
+
+    return unoccupied_indices;
 }
 
 

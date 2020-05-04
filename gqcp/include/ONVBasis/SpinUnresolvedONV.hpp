@@ -310,6 +310,11 @@ public:
     size_t unsignedRepresentation() const { return this->unsigned_representation; }
 
     /**
+     *  @return the spinor indices that are not occupied in this ONV.
+     */
+    std::vector<size_t> unoccupiedIndices() const;
+
+    /**
      *  Extract the positions of the set bits from 'this->unsigned_representation' and places them in 'this->occupied_indices'.
      */
     void updateOccupationIndices();
