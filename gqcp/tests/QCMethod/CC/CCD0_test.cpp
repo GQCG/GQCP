@@ -207,7 +207,7 @@ double calculateEnergy(const double e_hf, const GQCP::ScalarSQTwoElectronOperato
 
 BOOST_AUTO_TEST_CASE ( CCD0 ) {
 
-    const auto molecule = GQCP::Molecule::ReadXYZ("/Users/daria/ugent/GQCP/gqcp/tests/data/h2.xyz" , 0);
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2.xyz" , 0);
     const size_t N = molecule.numberOfElectrons();
 
     GQCP::RSpinorBasis<double, GQCP::GTOShell> rspinor_basis(molecule, "STO-3G");
@@ -232,10 +232,8 @@ BOOST_AUTO_TEST_CASE ( CCD0 ) {
     double e_rhf = rhf_parameters.groundStateEnergy();
     std::cout<<"RHF ground state energy: "<<e_rhf<<" hartree"<<std::endl;
 
-    //sq_hamiltonian.twoElectron().parameters().print();
-
     // calculate antisymmetrized two electron integrals
-    //const auto l_op = twoElectronAntiSymmetrized(sq_hamiltonian.twoElectron());
+    const auto l_op = twoElectronAntiSymmetrized(sq_hamiltonian.twoElectron());
     
     // initialize t amplitudes
     auto T = initializeAmplitudes(inactive_f_op, l_op, N);
