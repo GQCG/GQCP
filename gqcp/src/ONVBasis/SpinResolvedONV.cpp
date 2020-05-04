@@ -17,14 +17,54 @@
 
 #include "ONVBasis/SpinResolvedONV.hpp"
 
+#include "ONVBasis/SpinUnresolvedONVBasis.hpp"
+
 
 namespace GQCP {
 
 
 /*
- *  NAMED CONSTRUCTORS
+ *  CONSTRUCTORS
  */
 
+/**
+ *  @param onv_alpha                the ONV that describes the occupations of the alpha spin-orbitals
+ *  @param onv_beta                 the ONV that describes the occupations of the beta spin-orbitals
+ */
+SpinResolvedONV::SpinResolvedONV(const SpinUnresolvedONV& onv_alpha, const SpinUnresolvedONV& onv_beta) :
+    onv_alpha {onv_alpha},
+    onv_beta {onv_beta} {}
+
+
+/*
+ *  OPERATORS
+ */
+
+/**
+ *  @param other    the other spin-resolved ONV
+ *
+ *  @return if this spin-resolved ONV is the same as the other spin-resolved ONV
+ */
+bool SpinResolvedONV::operator==(const SpinResolvedONV& other) const {
+
+    return (this->onv(Spin::alpha) == other.onv(Spin::alpha)) && (this->onv(Spin::beta) == other.onv(Spin::beta));
+}
+
+
+/**
+ *  @param other    the other spin-resolved ONV
+ *
+ *  @return if this spin-resolved ONV is not the same as the other spin-resolved ONV
+ */
+bool SpinResolvedONV::operator!=(const SpinResolvedONV& other) const {
+
+    return !(*this == other);
+}
+
+
+/*
+ *  NAMED CONSTRUCTORS
+ */
 
 /**
  *  Create a spin-resolved ONV that represents the RHF single Slater determinant.
@@ -35,7 +75,12 @@ namespace GQCP {
  *  @param a spin-resolved ONV that represents the RHF single Slater determinant
  */
 SpinResolvedONV SpinResolvedONV::RHF(const size_t K, const size_t N_P) {
+
+    const auto sigma_onv = SpinUnresolvedONV::GHF(K, N_P);  // for sigma = alpha and sigma = beta
+
+    return SpinResolvedONV(sigma_onv, sigma_onv);
 }
+
 
 /**
  *  Create a spin-resolved ONV that represents the UHF single Slater determinant.
@@ -46,6 +91,11 @@ SpinResolvedONV SpinResolvedONV::RHF(const size_t K, const size_t N_P) {
  *  @param a spin-resolved ONV that represents the UHF single Slater determinant
  */
 SpinResolvedONV SpinResolvedONV::UHF(const size_t K, const size_t N_alpha, const size_t N_beta) {
+
+    const auto alpha_onv = SpinUnresolvedONV::GHF(K, N_alpha);
+    const auto beta_onv = SpinUnresolvedONV::GHF(K, N_beta);
+
+    return SpinResolvedONV(alpha_onv, beta_onv);
 }
 
 

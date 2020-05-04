@@ -486,3 +486,17 @@ BOOST_AUTO_TEST_CASE(findMatchingOccupations) {
     BOOST_TEST(onv2.findMatchingOccupations(onv3) == (std::vector<size_t> {1, 4}), boost::test_tools::per_element());
     BOOST_TEST(onv3.findMatchingOccupations(onv2) == (std::vector<size_t> {1, 4}), boost::test_tools::per_element());
 }
+
+
+/**
+ *  Check if the creation of the 'GHF' ONV works as expected.
+ */
+BOOST_AUTO_TEST_CASE(GHF) {
+
+    // For M=10 spinors and N=5 electrons, the 'GHF' ONV should be "0000011111" = 31.
+    const size_t M = 10;
+    const size_t N = 5;
+    const GQCP::SpinUnresolvedONV reference {M, N, 31};
+
+    BOOST_CHECK(reference == GQCP::SpinUnresolvedONV::GHF(M, N));
+}

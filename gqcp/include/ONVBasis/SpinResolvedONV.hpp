@@ -34,22 +34,33 @@ private:
     SpinUnresolvedONV onv_beta;   // the ONV that describes the occupations of the beta spin-orbitals
 
 public:
-    /*
-     *  CONSTRUCTORS
-     */
+    // CONSTRUCTORS
 
     /**
      *  @param onv_alpha                the ONV that describes the occupations of the alpha spin-orbitals
      *  @param onv_beta                 the ONV that describes the occupations of the beta spin-orbitals
      */
-    SpinResolvedONV(const SpinUnresolvedONV& onv_alpha, const SpinUnresolvedONV& onv_beta) :
-        onv_alpha {onv_alpha},
-        onv_beta {onv_beta} {}
+    SpinResolvedONV(const SpinUnresolvedONV& onv_alpha, const SpinUnresolvedONV& onv_beta);
 
 
-    /*
-     *  NAMED CONSTRUCTORS
+    // OPERATORS
+
+    /**
+     *  @param other    the other spin-resolved ONV
+     *
+     *  @return if this spin-resolved ONV is the same as the other spin-resolved ONV
      */
+    bool operator==(const SpinResolvedONV& other) const;
+
+    /**
+     *  @param other    the other spin-resolved ONV
+     *
+     *  @return if this spin-resolved ONV is not the same as the other spin-resolved ONV
+     */
+    bool operator!=(const SpinResolvedONV& other) const;
+
+
+    // NAMED CONSTRUCTORS
 
     /**
      *  Create a spin-resolved ONV that represents the RHF single Slater determinant.
@@ -72,9 +83,7 @@ public:
     static SpinResolvedONV UHF(const size_t K, const size_t N_alpha, const size_t N_beta);
 
 
-    /*
-     *  PUBLIC METHODS
-     */
+    // PUBLIC METHODS
 
     /**
      *  @param sigma                alpha or beta

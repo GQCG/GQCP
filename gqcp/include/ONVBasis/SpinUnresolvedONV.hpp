@@ -67,6 +67,19 @@ public:
     SpinUnresolvedONV(const size_t M, const size_t N);
 
 
+    // NAMED CONSTRUCTORS
+
+    /**
+     *  Create a spin-unresolved ONV that represents the GHF single Slater determinant.
+     * 
+     *  @param M            the number of spinors
+     *  @param N            the number of electrons
+     * 
+     *  @param a spin-resolved ONV that represents the GHF single Slater determinant
+     */
+    static SpinUnresolvedONV GHF(const size_t M, const size_t N);
+
+
     // OPERATORS
 
     /**

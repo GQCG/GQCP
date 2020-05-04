@@ -17,6 +17,8 @@
 
 #include "ONVBasis/SpinUnresolvedONV.hpp"
 
+#include "ONVBasis/SpinUnresolvedONVBasis.hpp"
+
 #include <boost/dynamic_bitset.hpp>
 
 
@@ -52,6 +54,26 @@ SpinUnresolvedONV::SpinUnresolvedONV(size_t M, size_t N) :
     occupation_indices {VectorXs::Zero(N)} {
 
     this->occupation_indices = VectorXs::Zero(N);
+}
+
+
+/*
+ *  NAMED CONSTRUCTORS
+ */
+
+/**
+ *  Create a spin-unresolved ONV that represents the GHF single Slater determinant.
+ * 
+ *  @param M            the number of spinors
+ *  @param N            the number of electrons
+ * 
+ *  @param a spin-resolved ONV that represents the GHF single Slater determinant
+ */
+SpinUnresolvedONV SpinUnresolvedONV::GHF(const size_t M, const size_t N) {
+
+    // The GHF ONV is that one in which the lowest N spinors are occupied.
+    const SpinUnresolvedONVBasis onv_basis {M, N};  // the ONV basis in which the GHF ONV should live
+    return onv_basis.makeONV(0);                    // the 'address' of the 'GHF' ONV is 0
 }
 
 
