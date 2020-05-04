@@ -66,7 +66,7 @@ BOOST_AUTO_TEST_CASE(basic_functionality) {
 
 
     // Check some basic functionality
-    BOOST_CHECK(spinor_basis.numberOfCoefficients(GQCP::SpinComponent::ALPHA) == 2);
-    BOOST_CHECK(spinor_basis.numberOfCoefficients(GQCP::SpinComponent::BETA) == 2);
+    BOOST_CHECK(spinor_basis.numberOfCoefficients(GQCP::Spin::alpha) == 2);
+    BOOST_CHECK(spinor_basis.numberOfCoefficients(GQCP::Spin::beta) == 2);
     BOOST_CHECK(spinor_basis.numberOfSpinors() == 4);
 }

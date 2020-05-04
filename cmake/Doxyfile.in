@@ -822,10 +822,12 @@ INPUT = "@CMAKE_SOURCE_DIR@/gqcp/include" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod/CI/HamiltonianBuilder" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod/Geminals" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod/HF" \
+        "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod/HF/RHF" \
+        "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod/HF/UHF" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod/OrbitalOptimization" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod/OrbitalOptimization/Localization" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod/RMP2" \
-        "@CMAKE_SOURCE_DIR@/gqcp/include/QCModel/HF/RHF" \
+        "@CMAKE_SOURCE_DIR@/gqcp/include/QCModel/HF" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Utilities" \
         "@CMAKE_SOURCE_DIR@/gqcp/src" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Basis" \

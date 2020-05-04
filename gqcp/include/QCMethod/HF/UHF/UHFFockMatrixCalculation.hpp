@@ -19,25 +19,25 @@
 
 
 #include "Mathematical/Algorithm/Step.hpp"
-#include "QCMethod/HF/RHF.hpp"
-#include "QCMethod/HF/RHFSCFEnvironment.hpp"
+#include "QCMethod/HF/UHF/UHFSCFEnvironment.hpp"
+#include "QCModel/HF/UHF.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  An iteration step that calculates the current electronic RHF energy.
+ *  An iteration step that calculates the current UHF Fock matrices (expressed in the scalar/AO basis) from the current density matrices.
  * 
  *  @tparam _Scalar              the scalar type used to represent the expansion coefficient/elements of the transformation matrix
  */
 template <typename _Scalar>
-class RHFElectronicEnergyCalculation:
-    public Step<RHFSCFEnvironment<_Scalar>> {
+class UHFFockMatrixCalculation:
+    public Step<UHFSCFEnvironment<_Scalar>> {
 
 public:
     using Scalar = _Scalar;
-    using Environment = RHFSCFEnvironment<Scalar>;
+    using Environment = UHFSCFEnvironment<Scalar>;
 
 
 public:
@@ -46,18 +46,20 @@ public:
      */
 
     /**
-     *  Calculate the current electronic RHF energy and place it in the environment
+     *  Calculate the current UHF Fock matrices (expressed in the scalar/AO basis) and place them in the environment
      * 
      *  @param environment              the environment that acts as a sort of calculation space
      */
     void execute(Environment& environment) override {
 
-        const auto& D = environment.density_matrices.back();                             // the most recent density matrix
-        const ScalarSQOneElectronOperator<Scalar> F {environment.fock_matrices.back()};  // the most recent Fock matrix
-        const auto& H_core = environment.sq_hamiltonian.core();                          // the core Hamiltonian matrix
+        const auto& P_alpha = environment.density_matrices_alpha.back();  // the most recent alpha density matrix
+        const auto& P_beta = environment.density_matrices_beta.back();    // the most recent beta density matrices
 
-        const auto E_electronic = QCModel::RHF<double>::calculateElectronicEnergy(D, H_core, F);
-        environment.electronic_energies.push_back(E_electronic);
+        const auto F_alpha = QCModel::UHF<double>::calculateScalarBasisFockMatrix(Spin::alpha, P_alpha, P_beta, environment.sq_hamiltonian);
+        const auto F_beta = QCModel::UHF<double>::calculateScalarBasisFockMatrix(Spin::beta, P_alpha, P_beta, environment.sq_hamiltonian);
+
+        environment.fock_matrices_alpha.push_back(F_alpha.parameters());
+        environment.fock_matrices_beta.push_back(F_beta.parameters());
     }
 };
 

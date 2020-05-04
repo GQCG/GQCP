@@ -314,7 +314,7 @@ public:
             throw std::invalid_argument("SpinResolvedSelectedONVBasis::EvaluateOperator(USQHamiltonian<double>, EvaluationIterator&, bool): Different spinor dimensions of spin components are currently not supported.");
         }
 
-        EvaluateOperator(usq_hamiltonian.spinHamiltonian(SpinComponent::ALPHA).core(), usq_hamiltonian.spinHamiltonian(SpinComponent::BETA).core(), usq_hamiltonian.spinHamiltonian(SpinComponent::ALPHA).twoElectron(), usq_hamiltonian.spinHamiltonian(SpinComponent::BETA).twoElectron(), usq_hamiltonian.twoElectronMixed(), evaluation_iterator, diagonal_values);
+        EvaluateOperator(usq_hamiltonian.spinHamiltonian(Spin::alpha).core(), usq_hamiltonian.spinHamiltonian(Spin::beta).core(), usq_hamiltonian.spinHamiltonian(Spin::alpha).twoElectron(), usq_hamiltonian.spinHamiltonian(Spin::beta).twoElectron(), usq_hamiltonian.twoElectronMixed(), evaluation_iterator, diagonal_values);
     }
 
 

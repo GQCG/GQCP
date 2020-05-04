@@ -5,6 +5,6 @@ target_sources(gqcp
         OrbitalRotationGenerators.hpp
         RSpinorBasis.hpp
         SimpleSpinorBasis.hpp
-        SpinComponent.hpp
+        Spin.hpp
         USpinorBasis.hpp
 )

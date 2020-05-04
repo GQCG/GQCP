@@ -25,9 +25,9 @@
 #include "Processing/Properties/expectation_values.hpp"
 #include "QCMethod/Geminals/PSEnvironment.hpp"
 #include "QCMethod/Geminals/vAP1roG.hpp"
-#include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
-#include "QCMethod/HF/RHF.hpp"
-#include "QCMethod/HF/RHFSCFSolver.hpp"
+#include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
+#include "QCMethod/HF/RHF/RHF.hpp"
+#include "QCMethod/HF/RHF/RHFSCFSolver.hpp"
 #include "QCModel/Geminals/vAP1roG.hpp"
 
 

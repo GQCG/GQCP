@@ -53,10 +53,10 @@ BOOST_AUTO_TEST_CASE(USQOneElectronOperator_zero_constructor) {
     const size_t dim = 2;
     const GQCP::ScalarUSQOneElectronOperator<double> one_op {2};  // should initialize to zeros
 
-    BOOST_CHECK_EQUAL(one_op.dimension(GQCP::SpinComponent::ALPHA), dim);
-    BOOST_CHECK_EQUAL(one_op.dimension(GQCP::SpinComponent::BETA), dim);
-    BOOST_CHECK(one_op.parameters(GQCP::SpinComponent::ALPHA).isZero(1.0e-08));
-    BOOST_CHECK(one_op.parameters(GQCP::SpinComponent::BETA).isZero(1.0e-08));
+    BOOST_CHECK_EQUAL(one_op.dimension(GQCP::Spin::alpha), dim);
+    BOOST_CHECK_EQUAL(one_op.dimension(GQCP::Spin::beta), dim);
+    BOOST_CHECK(one_op.parameters(GQCP::Spin::alpha).isZero(1.0e-08));
+    BOOST_CHECK(one_op.parameters(GQCP::Spin::beta).isZero(1.0e-08));
 }
 
 
@@ -91,8 +91,8 @@ BOOST_AUTO_TEST_CASE(USQOneElectronOperator_addition) {
     // clang-format on
 
     const auto op_sum = op1 + op2;
-    BOOST_CHECK(op_sum.parameters(GQCP::SpinComponent::ALPHA).isApprox(M_sum_ref, 1.0e-08));
-    BOOST_CHECK(op_sum.parameters(GQCP::SpinComponent::BETA).isApprox(M_sum_ref, 1.0e-08));
+    BOOST_CHECK(op_sum.parameters(GQCP::Spin::alpha).isApprox(M_sum_ref, 1.0e-08));
+    BOOST_CHECK(op_sum.parameters(GQCP::Spin::beta).isApprox(M_sum_ref, 1.0e-08));
 }
 
 
@@ -127,8 +127,8 @@ BOOST_AUTO_TEST_CASE(USQOneElectronOperator_difference) {
     // clang-format on
 
     const auto op_diff = op2 - op1;
-    BOOST_CHECK(op_diff.parameters(GQCP::SpinComponent::ALPHA).isApprox(M_diff_ref, 1.0e-08));
-    BOOST_CHECK(op_diff.parameters(GQCP::SpinComponent::BETA).isApprox(M_diff_ref, 1.0e-08));
+    BOOST_CHECK(op_diff.parameters(GQCP::Spin::alpha).isApprox(M_diff_ref, 1.0e-08));
+    BOOST_CHECK(op_diff.parameters(GQCP::Spin::beta).isApprox(M_diff_ref, 1.0e-08));
 }
 
 
@@ -156,8 +156,8 @@ BOOST_AUTO_TEST_CASE(USQOneElectronOperator_scalar_product) {
     // clang-format on
 
     const auto op_result = scalar * op1;
-    BOOST_CHECK(op_result.parameters(GQCP::SpinComponent::ALPHA).isApprox(M_ref, 1.0e-08));
-    BOOST_CHECK(op_result.parameters(GQCP::SpinComponent::BETA).isApprox(M_ref, 1.0e-08));
+    BOOST_CHECK(op_result.parameters(GQCP::Spin::alpha).isApprox(M_ref, 1.0e-08));
+    BOOST_CHECK(op_result.parameters(GQCP::Spin::beta).isApprox(M_ref, 1.0e-08));
 }
 
 
@@ -184,8 +184,8 @@ BOOST_AUTO_TEST_CASE(USQOneElectronOperator_negate) {
     // clang-format on
 
     const auto op_result = -op1;
-    BOOST_CHECK(op_result.parameters(GQCP::SpinComponent::ALPHA).isApprox(M_ref, 1.0e-08));
-    BOOST_CHECK(op_result.parameters(GQCP::SpinComponent::BETA).isApprox(M_ref, 1.0e-08));
+    BOOST_CHECK(op_result.parameters(GQCP::Spin::alpha).isApprox(M_ref, 1.0e-08));
+    BOOST_CHECK(op_result.parameters(GQCP::Spin::beta).isApprox(M_ref, 1.0e-08));
 }
 
 
@@ -274,8 +274,8 @@ BOOST_AUTO_TEST_CASE(rotate_with_unitary_transformation_matrix) {
     // clang-format on
 
     op.rotate(U);
-    BOOST_CHECK(op.parameters(GQCP::SpinComponent::ALPHA).isApprox(M1, 1.0e-08));
-    BOOST_CHECK(op.parameters(GQCP::SpinComponent::BETA).isApprox(M1, 1.0e-08));
+    BOOST_CHECK(op.parameters(GQCP::Spin::alpha).isApprox(M1, 1.0e-08));
+    BOOST_CHECK(op.parameters(GQCP::Spin::beta).isApprox(M1, 1.0e-08));
 }
 
 
@@ -308,8 +308,8 @@ BOOST_AUTO_TEST_CASE(transform_with_transformation_matrix) {
            140.0, 184.0;
     // clang-format on
     op.transform(T);
-    BOOST_CHECK(op.parameters(GQCP::SpinComponent::ALPHA).isApprox(ref, 1.0e-08));
-    BOOST_CHECK(op.parameters(GQCP::SpinComponent::BETA).isApprox(ref, 1.0e-08));
+    BOOST_CHECK(op.parameters(GQCP::Spin::alpha).isApprox(ref, 1.0e-08));
+    BOOST_CHECK(op.parameters(GQCP::Spin::beta).isApprox(ref, 1.0e-08));
 }
 
 
@@ -343,6 +343,6 @@ BOOST_AUTO_TEST_CASE(transform_with_jacobi_matrix) {
     // clang-format on
 
     op.rotate(J);
-    BOOST_CHECK(op.parameters(GQCP::SpinComponent::ALPHA).isApprox(ref, 1.0e-08));
-    BOOST_CHECK(op.parameters(GQCP::SpinComponent::BETA).isApprox(ref, 1.0e-08));
+    BOOST_CHECK(op.parameters(GQCP::Spin::alpha).isApprox(ref, 1.0e-08));
+    BOOST_CHECK(op.parameters(GQCP::Spin::beta).isApprox(ref, 1.0e-08));
 }

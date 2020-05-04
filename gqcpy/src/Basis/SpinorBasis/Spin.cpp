@@ -15,9 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "QCMethod/HF/RHFSCFEnvironment.hpp"
+#include "Basis/SpinorBasis/Spin.hpp"
 
-#include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
 
 
@@ -27,15 +26,12 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
-void bindRHFSCFEnvironment(py::module& module) {
-    py::class_<GQCP::RHFSCFEnvironment<double>>(module, "RHFSCFEnvironment", "An algorithm environment that can be used with standard RHF SCF solvers.")
+void bindSpin(py::module& module) {
+    py::enum_<GQCP::Spin>(module, "Spin")
 
-        .def_static(
-            "WithCoreGuess",
-            [](const size_t N, const GQCP::SQHamiltonian<double>& sq_hamiltonian, const Eigen::MatrixXd& S) {  // use an itermediary Eigen matrix for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Matrix
-                return GQCP::RHFSCFEnvironment<double>::WithCoreGuess(N, sq_hamiltonian, GQCP::QCMatrix<double> {S});
-            },
-            "Initialize an RHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix.");
+        .value("alpha", GQCP::Spin::alpha)
+        .value("beta", GQCP::Spin::beta)
+        .export_values();
 }
 
 

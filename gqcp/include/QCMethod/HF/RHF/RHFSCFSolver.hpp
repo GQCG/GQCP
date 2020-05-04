@@ -20,14 +20,14 @@
 
 #include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
 #include "Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp"
-#include "QCMethod/HF/RHFDensityMatrixCalculation.hpp"
-#include "QCMethod/HF/RHFDensityMatrixDamper.hpp"
-#include "QCMethod/HF/RHFElectronicEnergyCalculation.hpp"
-#include "QCMethod/HF/RHFErrorCalculation.hpp"
-#include "QCMethod/HF/RHFFockMatrixCalculation.hpp"
-#include "QCMethod/HF/RHFFockMatrixDIIS.hpp"
-#include "QCMethod/HF/RHFFockMatrixDiagonalization.hpp"
-#include "QCMethod/HF/RHFSCFEnvironment.hpp"
+#include "QCMethod/HF/RHF/RHFDensityMatrixCalculation.hpp"
+#include "QCMethod/HF/RHF/RHFDensityMatrixDamper.hpp"
+#include "QCMethod/HF/RHF/RHFElectronicEnergyCalculation.hpp"
+#include "QCMethod/HF/RHF/RHFErrorCalculation.hpp"
+#include "QCMethod/HF/RHF/RHFFockMatrixCalculation.hpp"
+#include "QCMethod/HF/RHF/RHFFockMatrixDIIS.hpp"
+#include "QCMethod/HF/RHF/RHFFockMatrixDiagonalization.hpp"
+#include "QCMethod/HF/RHF/RHFSCFEnvironment.hpp"
 
 
 namespace GQCP {
@@ -67,7 +67,9 @@ public:
 
         // Create a convergence criterion on the norm of subsequent density matrices
         const auto density_matrix_extractor = [](const RHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices; };
-        const ConsecutiveIteratesNormConvergence<OneRDM<Scalar>, RHFSCFEnvironment<Scalar>> convergence_criterion(threshold, density_matrix_extractor);
+
+        using ConvergenceType = ConsecutiveIteratesNormConvergence<OneRDM<Scalar>, RHFSCFEnvironment<Scalar>>;
+        const ConvergenceType convergence_criterion {threshold, density_matrix_extractor};
 
         return IterativeAlgorithm<RHFSCFEnvironment<Scalar>>(plain_rhf_scf_cycle, convergence_criterion, maximum_number_of_iterations);
     }
@@ -93,7 +95,9 @@ public:
 
         // Create a convergence criterion on the norm of subsequent density matrices
         const std::function<std::deque<OneRDM<Scalar>>(const RHFSCFEnvironment<Scalar>&)> density_matrix_extractor = [](const RHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices; };
-        const ConsecutiveIteratesNormConvergence<OneRDM<Scalar>, RHFSCFEnvironment<Scalar>> convergence_criterion(threshold, density_matrix_extractor);
+
+        using ConvergenceType = ConsecutiveIteratesNormConvergence<OneRDM<Scalar>, RHFSCFEnvironment<Scalar>>;
+        const ConvergenceType convergence_criterion {threshold, density_matrix_extractor};
 
         return IterativeAlgorithm<RHFSCFEnvironment<Scalar>>(damped_rhf_scf_cycle, convergence_criterion, maximum_number_of_iterations);
     }
@@ -118,7 +122,9 @@ public:
 
         // Create a convergence criterion on the norm of subsequent density matrices
         const std::function<std::deque<OneRDM<Scalar>>(const RHFSCFEnvironment<Scalar>&)> density_matrix_extractor = [](const RHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices; };
-        const ConsecutiveIteratesNormConvergence<OneRDM<Scalar>, RHFSCFEnvironment<Scalar>> convergence_criterion(threshold, density_matrix_extractor);
+
+        using ConvergenceType = ConsecutiveIteratesNormConvergence<OneRDM<Scalar>, RHFSCFEnvironment<Scalar>>;
+        const ConvergenceType convergence_criterion {threshold, density_matrix_extractor};
 
         return IterativeAlgorithm<RHFSCFEnvironment<Scalar>>(diis_rhf_scf_cycle, convergence_criterion, maximum_number_of_iterations);
     }

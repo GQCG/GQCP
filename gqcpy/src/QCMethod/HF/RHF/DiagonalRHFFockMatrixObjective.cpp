@@ -15,11 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "QCMethod/HF/RHF.hpp"
-
-#include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
-#include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
-#include "QCMethod/HF/RHFSCFSolver.hpp"
+#include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
 
 #include <pybind11/pybind11.h>
 
@@ -30,15 +26,12 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
-void bindQCMethodRHF(py::module& module) {
-    py::class_<GQCP::QCMethod::RHF<double>>(module, "RHF", "The restricted Hartree-Fock quantum chemical method.")
+void bindDiagonalRHFFockMatrixObjective(py::module& module) {
+    py::class_<GQCP::DiagonalRHFFockMatrixObjective<double>>(module, "DiagonalRHFFockMatrixObjective", "An objective that checks if the RHF Fock matrix is diagonal, i.e. if the RHF parameters represent the canonical RHF coefficients.")
 
-        .def_static(
-            "optimize",
-            [](const GQCP::DiagonalRHFFockMatrixObjective<double>& objective, GQCP::IterativeAlgorithm<GQCP::RHFSCFEnvironment<double>>& solver, GQCP::RHFSCFEnvironment<double>& environment) {
-                return GQCP::QCMethod::RHF<double>().optimize(objective, solver, environment);
-            },
-            "Optimize the RHF wave function model: find the parameters satisfy the given objective.");
+        .def(py::init<const GQCP::SQHamiltonian<double>&, const double>(),
+             py::arg("sq_hamiltonian"),
+             py::arg("precision") = 1.0e-08);
 }
 
 

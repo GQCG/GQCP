@@ -1,4 +1,4 @@
-/**
+/*
  *  A benchmark executable to check the performance of finding FCI results using a dense and iterative (Davidson) algorithm.
  * 
  *  The system of interest is a linear H-chain composed of 4 to 10 hydrogen atoms.
@@ -12,9 +12,9 @@
 #include "QCMethod/CI/CI.hpp"
 #include "QCMethod/CI/CIEnvironment.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
-#include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
-#include "QCMethod/HF/RHF.hpp"
-#include "QCMethod/HF/RHFSCFSolver.hpp"
+#include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
+#include "QCMethod/HF/RHF/RHF.hpp"
+#include "QCMethod/HF/RHF/RHFSCFSolver.hpp"
 
 #include <benchmark/benchmark.h>
 

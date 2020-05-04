@@ -620,10 +620,10 @@ VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorDiagonal(const USQ
         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperatorDiagonal(USQHamiltonian<double>): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
-    const auto& h_a = usq_hamiltonian.spinHamiltonian(SpinComponent::ALPHA).core().parameters();
-    const auto& g_a = usq_hamiltonian.spinHamiltonian(SpinComponent::ALPHA).twoElectron().parameters();
-    const auto& h_b = usq_hamiltonian.spinHamiltonian(SpinComponent::BETA).core().parameters();
-    const auto& g_b = usq_hamiltonian.spinHamiltonian(SpinComponent::BETA).twoElectron().parameters();
+    const auto& h_a = usq_hamiltonian.spinHamiltonian(Spin::alpha).core().parameters();
+    const auto& g_a = usq_hamiltonian.spinHamiltonian(Spin::alpha).twoElectron().parameters();
+    const auto& h_b = usq_hamiltonian.spinHamiltonian(Spin::beta).core().parameters();
+    const auto& g_b = usq_hamiltonian.spinHamiltonian(Spin::beta).twoElectron().parameters();
 
     // Only g_ab is stored, for integrals derived from g_ba we reverse the indices as follows : g_ab(pqrs) = g_ba(rspq)
     const auto& g_ab = usq_hamiltonian.twoElectronMixed().parameters();

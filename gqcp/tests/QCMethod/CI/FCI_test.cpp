@@ -27,9 +27,10 @@
 #include "QCMethod/CI/CI.hpp"
 #include "QCMethod/CI/CIEnvironment.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
-#include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
-#include "QCMethod/HF/RHFSCFEnvironment.hpp"
-#include "QCMethod/HF/RHFSCFSolver.hpp"
+#include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
+#include "QCMethod/HF/RHF/RHF.hpp"
+#include "QCMethod/HF/RHF/RHFSCFEnvironment.hpp"
+#include "QCMethod/HF/RHF/RHFSCFSolver.hpp"
 
 
 /**

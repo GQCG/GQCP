@@ -20,12 +20,13 @@
 
 namespace GQCP {
 
+
 /**
- *  An enumeration containing the modes of spin for electrons
+ *  A type that can be used to represent the eigenvectors of the S_z operator.
  */
-enum SpinComponent {
-    ALPHA = 0,
-    BETA = 1
+enum Spin {
+    alpha = 0,
+    beta = 1
 };
 
 

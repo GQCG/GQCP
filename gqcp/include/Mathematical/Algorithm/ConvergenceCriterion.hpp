@@ -24,7 +24,7 @@ namespace GQCP {
 /**
  *  A criterion that can check convergence by examining certain properties of the environment.
  * 
- *  @param _Environment             the type of the environment that this criterion can read from
+ *  @tparam _Environment                the type of the environment that this criterion can read from
  */
 template <typename _Environment>
 class ConvergenceCriterion {

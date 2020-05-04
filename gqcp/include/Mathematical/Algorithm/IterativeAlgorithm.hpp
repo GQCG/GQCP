@@ -20,6 +20,7 @@
 
 #include "Mathematical/Algorithm/ConvergenceCriterion.hpp"
 #include "Mathematical/Algorithm/StepCollection.hpp"
+
 #include <cstddef>
 
 
@@ -69,6 +70,15 @@ public:
     /*
      *  PUBLIC METHODS
      */
+
+    /**
+     *  Insert an algorithm step at the given index.
+     * 
+     *  @param step                 the step that should be inserted into this algorithm
+     *  @param index                the zero-based index that the given step should be performed at in this algorithm
+     */
+    template <typename Z = Step<Environment>>
+    enable_if_t<std::is_same<Environment, typename Z::Environment>::value, void> insert(const Z& step, const size_t index) { this->steps.insert(step, index); }
 
     /**
      *  Perform the iteration steps until convergence is achieved

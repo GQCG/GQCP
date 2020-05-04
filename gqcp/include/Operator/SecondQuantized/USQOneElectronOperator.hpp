@@ -17,8 +17,9 @@
 
 #pragma once
 
+
 #include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
-#include "Basis/SpinorBasis/SpinComponent.hpp"
+#include "Basis/SpinorBasis/Spin.hpp"
 #include "Basis/TransformationMatrix.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Mathematical/ScalarFunction.hpp"
@@ -137,12 +138,13 @@ public:
      */
 
     /**
-     *  @param SpinComponent            The requested spin component. This can be either alpha or beta.
+     *  @param sigma                The requested spin component. This can be either alpha or beta.
      * 
      *  @return read-only matrix representations of all the parameters (integrals) of the different components of this second-quantized operator, for the requested spin component.
      */
-    const std::array<QCMatrix<Scalar>, Components>& allParameters(SpinComponent s) const {
-        if (s == SpinComponent::ALPHA) {
+    const std::array<QCMatrix<Scalar>, Components>& allParameters(Spin sigma) const {
+
+        if (sigma == Spin::alpha) {
             return this->fs_a;
         } else {
             return this->fs_b;
@@ -151,12 +153,13 @@ public:
 
 
     /**
-     *  @param SpinComponent            The requested spin component. This can be either alpha or beta.
+     *  @param sigma                The requested spin component. This can be either alpha or beta.
      * 
      *  @return writable matrix representations of all the parameters (integrals) of the different components of this second-quantized operator, for the requested spin component.
      */
-    std::array<QCMatrix<Scalar>, Components>& allParameters(SpinComponent s) {
-        if (s == SpinComponent::ALPHA) {
+    std::array<QCMatrix<Scalar>, Components>& allParameters(Spin sigma) {
+
+        if (sigma == Spin::alpha) {
             return this->fs_a;
         } else {
             return this->fs_b;
@@ -179,7 +182,7 @@ public:
         std::array<Scalar, Components> expectation_values {};  // zero initialization
 
         for (size_t i = 0; i < Components; i++) {
-            expectation_values[i] = (this->parameters(GQCP::SpinComponent::ALPHA, i) * D_a).trace() + (this->parameters(GQCP::SpinComponent::BETA, i) * D_b).trace();
+            expectation_values[i] = (this->parameters(GQCP::Spin::alpha, i) * D_a).trace() + (this->parameters(GQCP::Spin::beta, i) * D_b).trace();
         }
 
         return Eigen::Map<Eigen::Matrix<Scalar, Components, 1>>(expectation_values.data());  // convert std::array to Vector
@@ -187,12 +190,13 @@ public:
 
 
     /**
-     *  @param SpinComponent            The requested spin component. This can be either alpha or beta.
+     *  @param sigma                The requested spin component. This can be either alpha or beta.
      * 
      *  @return the dimension of the matrices for the requested spin component.
      */
-    size_t dimension(SpinComponent s) const {
-        if (s == SpinComponent::ALPHA) {
+    size_t dimension(Spin sigma) const {
+
+        if (sigma == Spin::alpha) {
             return this->fs_a[0].dimension();
         } else {
             return this->fs_b[0].dimension();
@@ -201,13 +205,14 @@ public:
 
 
     /**
-     *  @param SpinComponent            The requested spin component. This can be either alpha or beta.
+     *  @param sigma                    The requested spin component. This can be either alpha or beta.
      *  @param i                        The index of the component.
      * 
      *  @return a read-only the matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator, for the requested spin component.
      */
-    const QCMatrix<Scalar>& parameters(SpinComponent s, const size_t i = 0) const {
-        if (s == SpinComponent::ALPHA) {
+    const QCMatrix<Scalar>& parameters(Spin sigma, const size_t i = 0) const {
+
+        if (sigma == Spin::alpha) {
             return this->fs_a[i];
         } else {
             return this->fs_b[i];
@@ -216,13 +221,14 @@ public:
 
 
     /**
-     *  @param SpinComponent            The requested spin component. This can be either alpha or beta.
+     *  @param sigma                    The requested spin component. This can be either alpha or beta.
      *  @param i                        The index of the component.
      * 
      *  @return the writable matrix representation of the parameters (integrals) of one of the components of this second-quantized operator, for the requested spin component.
      */
-    QCMatrix<Scalar>& parameters(SpinComponent s, const size_t i = 0) {
-        if (s == SpinComponent::ALPHA) {
+    QCMatrix<Scalar>& parameters(Spin sigma, const size_t i = 0) {
+
+        if (sigma == Spin::alpha) {
             return this->fs_a[i];
         } else {
             return this->fs_b[i];
@@ -238,10 +244,10 @@ public:
     void rotate(const TransformationMatrix<Scalar>& U) {
 
         // Transform the matrix representations of the components
-        for (auto& f_a : this->allParameters(GQCP::SpinComponent::ALPHA)) {
+        for (auto& f_a : this->allParameters(GQCP::Spin::alpha)) {
             f_a.basisRotateInPlace(U);
         }
-        for (auto& f_b : this->allParameters(GQCP::SpinComponent::BETA)) {
+        for (auto& f_b : this->allParameters(GQCP::Spin::beta)) {
             f_b.basisRotateInPlace(U);
         }
     }
@@ -255,10 +261,10 @@ public:
     void rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
 
         // Transform the matrix representations of the components
-        for (auto& f_a : this->allParameters(GQCP::SpinComponent::ALPHA)) {
+        for (auto& f_a : this->allParameters(GQCP::Spin::alpha)) {
             f_a.basisRotateInPlace(jacobi_rotation_parameters);
         }
-        for (auto& f_b : this->allParameters(GQCP::SpinComponent::BETA)) {
+        for (auto& f_b : this->allParameters(GQCP::Spin::beta)) {
             f_b.basisRotateInPlace(jacobi_rotation_parameters);
         }
     }
@@ -268,7 +274,7 @@ public:
      *  @return the sum of the alpha and beta dimensions
      */
     size_t sumOfDimensions() const {
-        return this->dimension(GQCP::SpinComponent::ALPHA) + this->dimension(GQCP::SpinComponent::BETA);
+        return this->dimension(GQCP::Spin::alpha) + this->dimension(GQCP::Spin::beta);
     }
 
 
@@ -280,10 +286,10 @@ public:
     void transform(const TransformationMatrix<Scalar>& T) {
 
         // Transform the matrix representations of the components
-        for (auto& f_a : this->allParameters(GQCP::SpinComponent::ALPHA)) {
+        for (auto& f_a : this->allParameters(GQCP::Spin::alpha)) {
             f_a.basisTransformInPlace(T);
         }
-        for (auto& f_b : this->allParameters(GQCP::SpinComponent::BETA)) {
+        for (auto& f_b : this->allParameters(GQCP::Spin::beta)) {
             f_b.basisTransformInPlace(T);
         }
     }
@@ -319,11 +325,11 @@ auto operator+(const USQOneElectronOperator<LHSScalar, Components>& lhs, const U
 
     using ResultScalar = sum_t<LHSScalar, RHSScalar>;
 
-    auto F_sum_a = lhs.allParameters(GQCP::SpinComponent::ALPHA);
-    auto F_sum_b = lhs.allParameters(GQCP::SpinComponent::BETA);
+    auto F_sum_a = lhs.allParameters(GQCP::Spin::alpha);
+    auto F_sum_b = lhs.allParameters(GQCP::Spin::beta);
     for (size_t i = 0; i < Components; i++) {
-        F_sum_a[i] += rhs.parameters(GQCP::SpinComponent::ALPHA, i);
-        F_sum_b[i] += rhs.parameters(GQCP::SpinComponent::BETA, i);
+        F_sum_a[i] += rhs.parameters(GQCP::Spin::alpha, i);
+        F_sum_b[i] += rhs.parameters(GQCP::Spin::beta, i);
     }
 
     return USQOneElectronOperator<ResultScalar, Components>(F_sum_a, F_sum_b);
@@ -344,8 +350,8 @@ auto operator*(const Scalar& scalar, const USQOneElectronOperator<OperatorScalar
 
     using ResultScalar = product_t<Scalar, OperatorScalar>;
 
-    auto fs_a = op.allParameters(GQCP::SpinComponent::ALPHA);
-    auto fs_b = op.allParameters(GQCP::SpinComponent::BETA);
+    auto fs_a = op.allParameters(GQCP::Spin::alpha);
+    auto fs_b = op.allParameters(GQCP::Spin::beta);
     for (auto& f_a : fs_a) {
         f_a *= scalar;
     }
@@ -387,11 +393,11 @@ auto operator-(const USQOneElectronOperator<LHSScalar, Components>& lhs, const U
 
     using ResultScalar = sum_t<LHSScalar, RHSScalar>;
 
-    auto F_min_a = lhs.allParameters(GQCP::SpinComponent::ALPHA);
-    auto F_min_b = lhs.allParameters(GQCP::SpinComponent::BETA);
+    auto F_min_a = lhs.allParameters(GQCP::Spin::alpha);
+    auto F_min_b = lhs.allParameters(GQCP::Spin::beta);
     for (size_t i = 0; i < Components; i++) {
-        F_min_a[i] -= rhs.parameters(GQCP::SpinComponent::ALPHA, i);
-        F_min_b[i] -= rhs.parameters(GQCP::SpinComponent::BETA, i);
+        F_min_a[i] -= rhs.parameters(GQCP::Spin::alpha, i);
+        F_min_b[i] -= rhs.parameters(GQCP::Spin::beta, i);
     }
 
     return USQOneElectronOperator<ResultScalar, Components>(F_min_a, F_min_b);

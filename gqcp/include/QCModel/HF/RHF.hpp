@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/SpinorBasis/Spin.hpp"
 #include "Basis/TransformationMatrix.hpp"
 #include "Mathematical/Representation/BlockRankFourTensor.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
@@ -321,6 +322,13 @@ public:
      *  @return the number of electron pairs that these RHF model parameters describe
      */
     size_t numberOfElectronPairs() const { return this->N_P; }
+
+    /**
+     *  @param sigma            the spin of the electrons (::ALPHA or ::BETA)
+     * 
+     *  @return the number of sigma-electrons that these RHF model parameters describe
+     */
+    size_t numberOfElectrons(Spin sigma) const { return this->numberOfElectronPairs(); }
 
     /**
      *  @return the number of spatial orbitals that these RHF model parameters describe
