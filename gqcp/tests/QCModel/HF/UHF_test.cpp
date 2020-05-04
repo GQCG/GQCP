@@ -73,5 +73,4 @@ BOOST_AUTO_TEST_CASE(basic_constructor) {
  *  Sandbox for calculating overlap between RHF and UHF.
  */
 BOOST_AUTO_TEST_CASE(overlap) {
-
 }

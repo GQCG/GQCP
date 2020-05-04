@@ -27,9 +27,6 @@
 namespace GQCP {
 
 
-/**
- *  FIXME: rewrite this using std::shared_ptr<ConvergenceCriterion>, see IterativeAlgorithm
- */
 
 /**
  *  A criterion that checks convergence by requiring that multiple convergence criteria are fulfilled simultaneously.
@@ -42,6 +39,7 @@ class CompoundConvergenceCriterion:
 
 public:
     using Environment = _Environment;
+    using Self = CompoundConvergenceCriterion<Environment>;
 
 
 private:
@@ -67,6 +65,20 @@ public:
     /*
      *  PUBLIC METHODS
      */
+
+    /**
+     *  Add another convergence criterion that should be fulfilled in this compound convergence criterion.
+     * 
+     *  @param criterion                    the new convergence criterion
+     *  
+     *  @return an updated version of *this, in order to allow chaining
+     */
+    template <typename C>
+    Self add(const C& criterion) {
+        this->criteria.push_back(std::make_shared<C>(criterion));
+        return *this;
+    }
+
 
     /**
      *  @param environment              the environment that this criterion can read from

@@ -1,4 +1,4 @@
-// / RHF / RHFSCFEnvironment.hpp-GQCP.
+// This file is part of GQCG-GQCP.
 //
 // Copyright (C) 2017-2020  the GQCG developers
 //
@@ -62,6 +62,7 @@ void bindFunctionalSteps(py::module& module) {
 
     bindFunctionalStep<GQCP::EigenproblemEnvironment>(module, "EigenproblemEnvironment", "A functional step that uses an EigenproblemEnvironment.");
     bindFunctionalStep<GQCP::NonLinearEquationEnvironment<double>>(module, "NonLinearEquationEnvironment", "A functional step that uses a NonLinearEquationEnvironment.");
+
     bindFunctionalStep<GQCP::RHFSCFEnvironment<double>>(module, "RHFSCFEnvironment", "A functional step that uses an RHFSCFEnvironment.");
     bindFunctionalStep<GQCP::UHFSCFEnvironment<double>>(module, "UHFSCFEnvironment", "A functional step that uses an UHFSCFEnvironment.");
 }

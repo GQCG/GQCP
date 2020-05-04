@@ -32,7 +32,7 @@ namespace QCMethod {
 
 
 /**
- *  The unrestricted Hartree-Fock quantum chemical method
+ *  The unrestricted Hartree-Fock quantum chemical method.
  * 
  *  @tparam _Scalar             the type of scalar that is used for the expansion of the spatial orbitals in their underlying scalar basis
  */
@@ -53,7 +53,6 @@ public:
      * 
      *  @tparam Solver              the type of the solver
      * 
-     *  @param objective            the objective that should be fulfilled in order to consider the model's parameters as 'optimal'
      *  @param solver               the solver that will try to optimize the parameters
      *  @param environment          the environment, which acts as a sort of calculation space for the solver
      */
@@ -74,8 +73,6 @@ public:
         const auto& N_beta = environment.N_beta;
 
         const QCModel::UHF<Scalar> uhf_parameters {N_alpha, N_beta, orbital_energies_alpha, orbital_energies_beta, C_alpha, C_beta};
-
-        // We should check if an objective is fulfilled.
 
         return QCStructure<QCModel::UHF<Scalar>>({E_electronic}, {uhf_parameters});
     }

@@ -1,4 +1,4 @@
-/* / RHF / DiagonalRHFFockMatrixObjective
+/*
  *  A benchmark executable to check the performance of finding FCI results using a dense and iterative (Davidson) algorithm.
  * 
  *  The system of interest is a linear H-chain composed of 4 to 10 hydrogen atoms.

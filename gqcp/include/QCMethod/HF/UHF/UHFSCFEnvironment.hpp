@@ -22,6 +22,7 @@
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Processing/RDM/OneRDM.hpp"
+#include "QCModel/HF/RHF.hpp"
 
 #include <Eigen/Dense>
 
@@ -76,7 +77,7 @@ public:
      */
 
     /**
-     *  A constructor that initializes the environment with initial guesses for the alpha and beta coefficient matrices
+     *  A constructor that initializes the environment with initial guesses for the alpha and beta coefficient matrices.
      * 
      *  @param N_alpha                  the number of alpha electrons (the number of occupied alpha-spin-orbitals)
      *  @param N_beta                   the number of beta electrons (the number of occupied beta-spin-orbitals)
@@ -92,6 +93,19 @@ public:
         sq_hamiltonian {sq_hamiltonian},
         coefficient_matrices_alpha {C_alpha_initial},
         coefficient_matrices_beta {C_beta_initial} {}
+
+
+    /**
+     *  A constructor that initializes the environment from converged RHF model parameters.
+     * 
+     *  @param rhf_parameters           the converged RHF model parameters
+     *  @param sq_hamiltonian           the Hamiltonian expressed in the scalar (AO) basis
+     *  @param S                        the overlap matrix (of the scalar (AO) basis)
+     */
+    UHFSCFEnvironment(const QCModel::RHF<Scalar>& rhf_parameters, const SQHamiltonian<Scalar>& sq_hamiltonian, const QCMatrix<Scalar>& S) :
+        UHFSCFEnvironment(rhf_parameters.numberOfElectrons(Spin::alpha), rhf_parameters.numberOfElectrons(Spin::beta),
+                          sq_hamiltonian, S,
+                          rhf_parameters.coefficientMatrix(), rhf_parameters.coefficientMatrix()) {}
 
 
     /*

@@ -138,12 +138,13 @@ public:
      */
 
     /**
-     *  @param Spin            The requested spin component. This can be either alpha or beta.
+     *  @param sigma                The requested spin component. This can be either alpha or beta.
      * 
      *  @return read-only matrix representations of all the parameters (integrals) of the different components of this second-quantized operator, for the requested spin component.
      */
-    const std::array<QCMatrix<Scalar>, Components>& allParameters(Spin s) const {
-        if (s == Spin::alpha) {
+    const std::array<QCMatrix<Scalar>, Components>& allParameters(Spin sigma) const {
+
+        if (sigma == Spin::alpha) {
             return this->fs_a;
         } else {
             return this->fs_b;
@@ -152,12 +153,13 @@ public:
 
 
     /**
-     *  @param Spin            The requested spin component. This can be either alpha or beta.
+     *  @param sigma                The requested spin component. This can be either alpha or beta.
      * 
      *  @return writable matrix representations of all the parameters (integrals) of the different components of this second-quantized operator, for the requested spin component.
      */
-    std::array<QCMatrix<Scalar>, Components>& allParameters(Spin s) {
-        if (s == Spin::alpha) {
+    std::array<QCMatrix<Scalar>, Components>& allParameters(Spin sigma) {
+
+        if (sigma == Spin::alpha) {
             return this->fs_a;
         } else {
             return this->fs_b;
@@ -188,12 +190,13 @@ public:
 
 
     /**
-     *  @param Spin            The requested spin component. This can be either alpha or beta.
+     *  @param sigma                The requested spin component. This can be either alpha or beta.
      * 
      *  @return the dimension of the matrices for the requested spin component.
      */
-    size_t dimension(Spin s) const {
-        if (s == Spin::alpha) {
+    size_t dimension(Spin sigma) const {
+
+        if (sigma == Spin::alpha) {
             return this->fs_a[0].dimension();
         } else {
             return this->fs_b[0].dimension();
@@ -202,13 +205,14 @@ public:
 
 
     /**
-     *  @param Spin            The requested spin component. This can be either alpha or beta.
+     *  @param sigma                    The requested spin component. This can be either alpha or beta.
      *  @param i                        The index of the component.
      * 
      *  @return a read-only the matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator, for the requested spin component.
      */
-    const QCMatrix<Scalar>& parameters(Spin s, const size_t i = 0) const {
-        if (s == Spin::alpha) {
+    const QCMatrix<Scalar>& parameters(Spin sigma, const size_t i = 0) const {
+
+        if (sigma == Spin::alpha) {
             return this->fs_a[i];
         } else {
             return this->fs_b[i];
@@ -217,13 +221,14 @@ public:
 
 
     /**
-     *  @param Spin            The requested spin component. This can be either alpha or beta.
+     *  @param sigma                    The requested spin component. This can be either alpha or beta.
      *  @param i                        The index of the component.
      * 
      *  @return the writable matrix representation of the parameters (integrals) of one of the components of this second-quantized operator, for the requested spin component.
      */
-    QCMatrix<Scalar>& parameters(Spin s, const size_t i = 0) {
-        if (s == Spin::alpha) {
+    QCMatrix<Scalar>& parameters(Spin sigma, const size_t i = 0) {
+
+        if (sigma == Spin::alpha) {
             return this->fs_a[i];
         } else {
             return this->fs_b[i];
