@@ -32,7 +32,7 @@ void bindUHFSCFEnvironment(py::module& module) {
     py::class_<GQCP::UHFSCFEnvironment<double>>(module, "UHFSCFEnvironment", "An algorithm environment that can be used with standard UHF SCF solvers.")
 
         // Bind the constructor based on converged RHF model parameters.
-        .def(py::init([](const GQCP::QCModel::RHF<Scalar>& rhf_parameters, const GQCP::SQHamiltonian<Scalar>& sq_hamiltonian, const Eigen::MatrixXd& S) {  // use an itermediary Eigen matrix for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Matrix
+        .def(py::init([](const GQCP::QCModel::RHF<double>& rhf_parameters, const GQCP::SQHamiltonian<double>& sq_hamiltonian, const Eigen::MatrixXd& S) {  // use an itermediary Eigen matrix for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Matrix
                  return GQCP::UHFSCFEnvironment<double>(rhf_parameters, sq_hamiltonian, GQCP::QCMatrix<double>(S));
              }),
              py::arg("rhf_parameters"),
