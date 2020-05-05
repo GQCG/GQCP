@@ -56,7 +56,7 @@ void bindGSpinorBasis(py::module& module) {
 
         .def("coefficientMatrix",
              [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, GQCP::Spin sigma) {
-
+                 return spinor_basis.coefficientMatrix(sigma);
              })
 
         .def(

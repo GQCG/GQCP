@@ -29,6 +29,7 @@ namespace gqcpy {
 // Basis - SpinorBasis
 void bindGSpinorBasis(py::module& module);
 void bindRSpinorBasis(py::module& module);
+void bindUSpinorBasis(py::module& module);
 void bindSpin(py::module& module);
 
 
@@ -63,6 +64,7 @@ void bindNucleus(py::module& module);
 
 // ONVBasis
 void bindSeniorityZeroONVBasis(py::module& module);
+void bindSpinResolvedONV(py::module& module);
 void bindSpinResolvedONVBasis(py::module& module);
 
 
@@ -149,6 +151,7 @@ PYBIND11_MODULE(gqcpy, module) {
     // Basis - SpinorBasis
     gqcpy::bindGSpinorBasis(module);
     gqcpy::bindRSpinorBasis(module);
+    gqcpy::bindUSpinorBasis(module);
     gqcpy::bindSpin(module);
 
 
@@ -183,6 +186,7 @@ PYBIND11_MODULE(gqcpy, module) {
 
     // ONVBasis
     gqcpy::bindSeniorityZeroONVBasis(module);
+    gqcpy::bindSpinResolvedONV(module);
     gqcpy::bindSpinResolvedONVBasis(module);
 
 
