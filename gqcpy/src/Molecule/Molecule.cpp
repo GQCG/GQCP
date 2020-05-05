@@ -42,11 +42,11 @@ void bindMolecule(py::module& module) {
              })
 
         // NAMED CONSTRUCTORS
-        .def_static("HCHain",
+        .def_static("HChain",
                     &GQCP::Molecule::HChain,
                     "Return a H-chain with equal internuclear spacing.")
 
-        .def_static("H2CHain",
+        .def_static("H2Chain",
                     &GQCP::Molecule::H2Chain,
                     "Return an H2-chain.")
 

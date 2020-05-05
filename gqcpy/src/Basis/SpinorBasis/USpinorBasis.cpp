@@ -173,7 +173,16 @@ void bindUSpinorBasis(py::module& module) {
             },
             py::arg("T"),
             py::arg("sigma"),
-            "Transform the spinor basis for one component to another one using the given transformation matrix.");
+            "Transform the spinor basis for one component to another one using the given transformation matrix.")
+
+        .def(
+            "transform",
+            [](GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& T_alpha, const Eigen::MatrixXd& T_beta) {
+                spinor_basis.transform(GQCP::TransformationMatrix<double>(T_alpha), GQCP::TransformationMatrix<double>(T_beta));
+            },
+            py::arg("T_alpha"),
+            py::arg("T_beta"),
+            "Transform the spinor basis to another one using the given transformation matrices.");
 }
 
 

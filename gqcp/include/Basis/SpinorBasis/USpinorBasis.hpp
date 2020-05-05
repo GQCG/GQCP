@@ -238,7 +238,7 @@ public:
      * 
      *  @return the total number of sigma-spinors/spin-orbitals that this spinor basis describes
      */
-    size_t numberOfSpinors(GQCP::Spin sigma) const {
+    size_t numberOfSpinors(Spin sigma) const {
         return this->scalarBasis(sigma).numberOfBasisFunctions();
     }
 
@@ -250,7 +250,7 @@ public:
      *  @return if this spinor basis for the requested component is orthonormal within the given precision
      */
     bool isOrthonormal(const Spin& sigma, const double precision = 1.0e-08) const {
-        return this->spinor_bases[sigma].isOrthonormal();
+        return this->spinor_bases[sigma].isOrthonormal(precision);
     }
 
 
@@ -346,8 +346,8 @@ public:
      *  @note this method is only valid when the beta and alpha component are of the same dimension, and will only accept matrices of the same dimension as the individual component.
      */
     void rotate(const TransformationMatrix<ExpansionScalar>& U) {
-        this->rotate(Spin::alpha);
-        this->rotate(Spin::beta);
+        this->rotate(U, Spin::alpha);
+        this->rotate(U, Spin::beta);
     }
 
 
