@@ -373,7 +373,7 @@ public:
      */
     void removeRows(const std::vector<size_t>& row_indices) {
 
-        size_t removed_counter;
+        size_t removed_counter = 0;
         for (const auto& i : row_indices) {
             this->removeRow(i - removed_counter);  // take into account that the given indices are with respect to the old dimensions of the matrix
             removed_counter++;

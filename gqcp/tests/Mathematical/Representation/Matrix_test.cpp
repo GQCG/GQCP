@@ -228,7 +228,7 @@ BOOST_AUTO_TEST_CASE(remove_single_rows_columns) {
     // clang-format on
 
 
-    // Remove row 2.
+    // Remove the row with index 2.
     GQCP::MatrixX<double> M_ref1 {3, 4};
     // clang-format off
     M_ref1 <<  0,  1,  2,  3,
@@ -240,7 +240,7 @@ BOOST_AUTO_TEST_CASE(remove_single_rows_columns) {
     BOOST_CHECK(M_1.isApprox(M_ref1, 1.0e-08));
 
 
-    // Remove column 1.
+    // Remove the column with index 1.
     GQCP::MatrixX<double> M_ref2 {4, 3};
     // clang-format off
     M_ref2 <<  0,  2,  3,
@@ -251,6 +251,19 @@ BOOST_AUTO_TEST_CASE(remove_single_rows_columns) {
     GQCP::MatrixX<double> M_2 = M;
     M_2.removeColumn(1);
     BOOST_CHECK(M_2.isApprox(M_ref2, 1.0e-08));
+
+
+    // Remove the column with index 3.
+    GQCP::MatrixX<double> M_ref3 {4, 3};
+    // clang-format off
+    M_ref3 <<  0,  1,  2,
+               4,  5,  6,
+               8,  9, 10,
+              12, 13, 14;
+    // clang-format on
+    GQCP::MatrixX<double> M_3 = M;
+    M_3.removeColumn(3);
+    BOOST_CHECK(M_3.isApprox(M_ref3, 1.0e-08));
 }
 
 
@@ -268,7 +281,7 @@ BOOST_AUTO_TEST_CASE(remove_multiple_rows_columns) {
     // clang-format on
 
 
-    // Remove row 2 and 3.
+    // Remove the rows with indices 2 and 3.
     GQCP::MatrixX<double> M_ref1 {2, 4};
     // clang-format off
     M_ref1 <<  0, 1, 2, 3,
@@ -279,7 +292,7 @@ BOOST_AUTO_TEST_CASE(remove_multiple_rows_columns) {
     BOOST_CHECK(M_1.isApprox(M_ref1, 1.0e-08));
 
 
-    // Remove columns 1 and 3.
+    // Remove the columns with indices 1 and 3.
     GQCP::MatrixX<double> M_ref2 {4, 2};
     // clang-format off
     M_ref2 <<  0,  2,
@@ -290,4 +303,17 @@ BOOST_AUTO_TEST_CASE(remove_multiple_rows_columns) {
     GQCP::MatrixX<double> M_2 = M;
     M_2.removeColumns({1, 3});
     BOOST_CHECK(M_2.isApprox(M_ref2, 1.0e-08));
+
+
+    // Remove the column with index 3.
+    GQCP::MatrixX<double> M_ref3 {4, 3};
+    // clang-format off
+    M_ref3 <<  0,  1,  2,
+               4,  5,  6,
+               8,  9, 10,
+              12, 13, 14;
+    // clang-format on
+    GQCP::MatrixX<double> M_3 = M;
+    M_3.removeColumns({3});
+    BOOST_CHECK(M_3.isApprox(M_ref3, 1.0e-08));
 }
