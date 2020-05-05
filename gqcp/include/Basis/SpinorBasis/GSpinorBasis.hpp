@@ -207,7 +207,7 @@ public:
         }
 
         case Spin::beta: {
-            return this->coefficientMatrix().bottomRows(K)
+            return this->coefficientMatrix().bottomRows(K);
         }
         }
     }

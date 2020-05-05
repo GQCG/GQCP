@@ -335,7 +335,7 @@ public:
      *  @param sigma                    alpha or beta
      */
     void rotate(const TransformationMatrix<ExpansionScalar>& U, const Spin& sigma) {
-        this->spinor_bases[sigma].rotate();
+        this->spinor_bases[sigma].rotate(U);
     }
 
     /**

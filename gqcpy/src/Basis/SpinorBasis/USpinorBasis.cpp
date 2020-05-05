@@ -78,7 +78,7 @@ void bindUSpinorBasis(py::module& module) {
         .def(
             "numberOfSpinors",
             [](const GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, GQCP::Spin sigma) {
-                return spinor_basis.numberOfSpinors(sigma)
+                return spinor_basis.numberOfSpinors(sigma);
             },
             py::arg("sigma"),
             "Return the total number of sigma-spinors/spin-orbitals that this spinor basis describes")
@@ -145,6 +145,7 @@ void bindUSpinorBasis(py::module& module) {
             [](const GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Molecule& molecule, GQCP::Spin sigma) {
                 return spinor_basis.quantize(GQCP::Operator::NuclearAttraction(molecule), sigma);
             },
+            py::arg("molecule"),
             py::arg("sigma"),
             "Return the nuclear attraction operator expressed in this spinor basis.")
 
@@ -166,9 +167,12 @@ void bindUSpinorBasis(py::module& module) {
             "Rotate the spinor basis of the requested component to another one using the given unitary transformation matrix.")
 
         .def(
-            "transform", [](GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& T, GQCP::Spin sigma) {
+            "transform",
+            [](GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& T, GQCP::Spin sigma) {
                 spinor_basis.transform(GQCP::TransformationMatrix<double>(T), sigma);
             },
+            py::arg("T"),
+            py::arg("sigma"),
             "Transform the spinor basis for one component to another one using the given transformation matrix.");
 }
 
