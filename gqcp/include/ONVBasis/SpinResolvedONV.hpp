@@ -89,15 +89,18 @@ public:
     // PUBLIC METHODS
 
     /**
-     *  Calculate the overlap between this and another spin-resolved ONV expressed in R/U-spinor bases.
+     *  Calculate the overlap <on|of>: the projection of between this spin-resolved ONV ('of') and another spin-resolved ONV ('on'), expressed in different R/U-spinor bases.
      * 
-     *  @param other                        the other spin-resolved ONV
-     *  @param this_spinor_basis            the restricted spin-orbital basis in which this ONV is expressed
-     *  @param other_spinor_basis           the unrestricted spin-orbital basis in which the other ONV is expressed
+     *  @param onv_on                       the spin-resolved ONV that should be projected on
+     *  @param spinor_basis_of              the unrestricted spin-orbital basis in which this ONV (the 'of'-ONV) is expressed
+     *  @param spinor_basis_on              the restricted spin-orbital basis in which the 'on'-ONV is expressed.
      * 
-     *  @return the overlap between this and the other spin-resolved ONV
+     *  @return the overlap element <on|of>
+     * 
+     *  @note This method can be used to project UHF-ONVs onto RHF-ONVs, by calling
+     *          uhf_onv.calculateProjection(rhf_onv, USpinorBasis, RSpinorBasis)
      */
-    double calculateOverlap(const SpinResolvedONV& other, const RSpinorBasis<double, GTOShell>& this_spinor_basis, const USpinorBasis<double, GTOShell>& other_spinor_basis) const;
+    double calculateProjection(const SpinResolvedONV& onv_on, const USpinorBasis<double, GTOShell>& spinor_basis_of, const RSpinorBasis<double, GTOShell>& spinor_basis_on) const;
 
     /**
      *  @param sigma                alpha or beta

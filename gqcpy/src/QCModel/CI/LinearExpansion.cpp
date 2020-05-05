@@ -86,6 +86,38 @@ void bindLinearExpansion<GQCP::SeniorityZeroONVBasis>(py::module& module, const 
 }
 
 
+/**
+ *  A template specialization for the binding of GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>, because it has an additional function to be bound.
+ * 
+ *  @param module               the Pybind11 module
+ *  @param suffix               the suffix for the gqcpy class name, i.e. "LinearExpansion" + suffix
+ *  @param description          the description for the gqcpy class
+ */
+template <>
+void bindLinearExpansion<GQCP::SpinResolvedONVBasis>(py::module& module, const std::string& suffix, const std::string& description) {
+
+    py::class_<GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>>(module,
+                                                                  ("LinearExpansion_" + suffix).c_str(),
+                                                                  description.c_str())
+
+        // CONSTRUCTORS
+        .def_static(
+            "FromONVProjection",
+            [](const GQCP::SpinResolvedONV& onv, const GQCP::RSpinorBasis<double, GQCP::GTOShell>& r_spinor_basis, const GQCP::USpinorBasis<double, GQCP::GTOShell>& u_spinor_basis) {
+                return GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::FromONVProjection(onv, r_spinor_basis, u_spinor_basis);
+            },
+            py::arg("onv"),
+            py::arg("r_spinor_basis"),
+            py::arg("u_spinor_basis"),
+            "Create the linear expansion of the given spin-resolved ONV that is expressed in the given USpinorBasis, by projection onto the spin-resolved ONVs expressed with respect to the given RSpinorBasis.")
+
+        // PUBLIC METHODS
+        .def("coefficients",
+             &GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::coefficients,
+             "Return the expansion coefficients of this linear expansion wave function model.");
+}
+
+
 void bindLinearExpansions(py::module& module) {
 
     bindLinearExpansion<GQCP::SeniorityZeroONVBasis>(module, "SeniorityZero", "The linear expansion (configuration interaction) wave function model in a seniority-zero ONV basis.");

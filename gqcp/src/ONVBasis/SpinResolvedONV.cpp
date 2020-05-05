@@ -105,46 +105,65 @@ SpinResolvedONV SpinResolvedONV::UHF(const size_t K, const size_t N_alpha, const
 
 
 /**
- *  Calculate the overlap between this and another spin-resolved ONV expressed in R/U-spinor bases.
+ *  Calculate the overlap <on|of>: the projection of between this spin-resolved ONV ('of') and another spin-resolved ONV ('on'), expressed in different R/U-spinor bases.
  * 
- *  @param other                        the other spin-resolved ONV
- *  @param this_spinor_basis            the restricted spin-orbital basis in which this ONV is expressed
- *  @param other_spinor_basis           the unrestricted spin-orbital basis in which the other ONV is expressed
+ *  @param onv_on                       the spin-resolved ONV that should be projected on
+ *  @param spinor_basis_of              the unrestricted spin-orbital basis in which this ONV (the 'of'-ONV) is expressed
+ *  @param spinor_basis_on              the restricted spin-orbital basis in which the 'on'-ONV is expressed.
  * 
- *  @param the overlap between this and the other spin-resolved ONV
+ *  @return the overlap element <on|of>
+ * 
+ *  @note This method can be used to project UHF-ONVs onto RHF-ONVs, by calling
+ *          uhf_onv.calculateProjection(rhf_onv, USpinorBasis, RSpinorBasis)
  */
-double SpinResolvedONV::calculateOverlap(const SpinResolvedONV& other, const RSpinorBasis<double, GTOShell>& this_spinor_basis, const USpinorBasis<double, GTOShell>& other_spinor_basis) const {
+double SpinResolvedONV::calculateProjection(const SpinResolvedONV& onv_on, const USpinorBasis<double, GTOShell>& spinor_basis_of, const RSpinorBasis<double, GTOShell>& spinor_basis_on) const {
 
-    const auto S = this_spinor_basis.overlap().parameters();  // the overlap matrix in AO basis
-    const auto S_alpha = other_spinor_basis.overlap(Spin::alpha).parameters();
-    const auto S_beta = other_spinor_basis.overlap(Spin::beta).parameters();
+
+    // Determine the overlap matrices of the underlying scalar orbital bases, which is needed later on.
+    auto S = spinor_basis_on.overlap().parameters();                         // the overlap matrix of the restricted MOs/spin-orbitals
+    S.basisTransformInPlace(spinor_basis_on.coefficientMatrix().inverse());  // now in AO basis
+
+    auto S_alpha = spinor_basis_of.overlap(Spin::alpha).parameters();                         // the overlap matrix of the alpha spin-orbitals
+    S_alpha.basisTransformInPlace(spinor_basis_of.coefficientMatrix(Spin::alpha).inverse());  // now in AO basis
+
+    auto S_beta = spinor_basis_of.overlap(Spin::beta).parameters();                         // the overlap matrix of the beta spin-orbitals
+    S_beta.basisTransformInPlace(spinor_basis_of.coefficientMatrix(Spin::beta).inverse());  // now in AO basis
+
     if (!(S.isApprox(S_alpha, 1.0e-08)) || !(S.isApprox(S_beta, 1.0e-08))) {
         throw std::invalid_argument("SpinResolvedONV::calculateOverlap(const SpinResolvedONV&, const RSpinorBasis<double, GTOShell>&, const USpinorBasis<double, GTOShell>&): The given spinor bases are not expressed using the same scalar orbital basis.");
     }
 
 
     // Prepare some parameters.
-    const auto& C = this_spinor_basis.coefficientMatrix();
-    const auto& C_alpha = other_spinor_basis.coefficientMatrix(Spin::alpha);
-    const auto& C_beta = other_spinor_basis.coefficientMatrix(Spin::beta);
+    const auto onv_of = *this;
+    const auto& C = spinor_basis_on.coefficientMatrix();
+    const auto& C_alpha = spinor_basis_of.coefficientMatrix(Spin::alpha);
+    const auto& C_beta = spinor_basis_of.coefficientMatrix(Spin::beta);
 
 
-    // Calculate the overlap matrices between the restricted and unrestricted spinor bases.
-    MatrixX<double> T_alpha = C.adjoint() * S * C_alpha;
-    MatrixX<double> T_beta = C.adjoint() * S * C_beta;
+    // Calculate the transformation matrices between both sets of spin-orbitals.
+    TransformationMatrix<double> T_alpha = C.adjoint() * S * C_alpha;
+    TransformationMatrix<double> T_beta = C.adjoint() * S * C_beta;
 
 
-    // Create the smaller 'occupied' matrices by deleting columns and rows belonging to unoccupied spin-orbitals.
-    const auto unoccupied_indices_alpha = this->onv(Spin::alpha).unoccupiedIndices();
-    T_alpha.removeRows(unoccupied_indices_alpha);
-    T_alpha.removeColumns(unoccupied_indices_alpha);
+    // T's columns should be the ones occupied in the 'of'-ONV.
+    // T's rows should be the ones occupied in the 'on'-ONV.
+    // While waiting for Eigen 3.4. to release (which has better slicing APIs), we'll remove the UNoccupied rows/columns.
+    const auto unoccupied_indices_of_alpha = onv_of.onv(Spin::alpha).unoccupiedIndices();
+    const auto unoccupied_indices_on_alpha = onv_on.onv(Spin::alpha).unoccupiedIndices();
 
-    const auto unoccupied_indices_beta = this->onv(Spin::beta).unoccupiedIndices();
-    T_beta.removeRows(unoccupied_indices_beta);
-    T_beta.removeColumns(unoccupied_indices_beta);
+    T_alpha.removeColumns(unoccupied_indices_of_alpha);
+    T_alpha.removeRows(unoccupied_indices_on_alpha);
 
 
-    // The overlap is the determinant of the product of the resulting matrices.
+    const auto unoccupied_indices_of_beta = onv_of.onv(Spin::beta).unoccupiedIndices();
+    const auto unoccupied_indices_on_beta = onv_on.onv(Spin::beta).unoccupiedIndices();
+
+    T_beta.removeColumns(unoccupied_indices_of_beta);
+    T_beta.removeRows(unoccupied_indices_on_beta);
+
+
+    // The requested overlap is the determinant of the product of the resulting smaller matrices.
     return (T_alpha * T_beta).determinant();
 }
 
