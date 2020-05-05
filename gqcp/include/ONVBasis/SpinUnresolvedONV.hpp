@@ -70,6 +70,15 @@ public:
     // NAMED CONSTRUCTORS
 
     /**
+     *  Create a spin-unresolved ONV from a textual/string representation.
+     * 
+     *  @param string_representation                the textual representation of the spin-unresolved ONV, for example "0011", indicating that the first two spinors should be occupied
+     * 
+     *  @return a spin-unresolved ONV from a textual/string representation.
+     */
+    static SpinUnresolvedONV FromString(const std::string& string_representation);
+
+    /**
      *  Create a spin-unresolved ONV that represents the GHF single Slater determinant.
      * 
      *  @param M            the number of spinors

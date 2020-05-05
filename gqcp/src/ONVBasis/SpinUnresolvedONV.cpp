@@ -62,6 +62,25 @@ SpinUnresolvedONV::SpinUnresolvedONV(const size_t M, const size_t N) :
  */
 
 /**
+ *  Create a spin-unresolved ONV from a textual/string representation.
+ * 
+ *  @param string_representation                the textual representation of the spin-unresolved ONV, for example "0011", indicating that the first two spinors should be occupied
+ * 
+ *  @return a spin-unresolved ONV from a textual/string representation.
+ */
+SpinUnresolvedONV SpinUnresolvedONV::FromString(const std::string& string_representation) {
+
+    boost::dynamic_bitset<> intermediate_bitset {string_representation};  // the least significant bit has the highest position in the string
+    const auto M = intermediate_bitset.size();
+    const auto N = intermediate_bitset.count();
+
+    const auto unsigned_representation = static_cast<size_t>(intermediate_bitset.to_ulong());
+
+    return SpinUnresolvedONV(M, N, unsigned_representation);
+}
+
+
+/**
  *  Create a spin-unresolved ONV that represents the GHF single Slater determinant.
  * 
  *  @param M            the number of spinors

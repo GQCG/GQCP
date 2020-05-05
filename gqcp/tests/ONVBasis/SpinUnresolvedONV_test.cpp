@@ -502,6 +502,26 @@ BOOST_AUTO_TEST_CASE(GHF) {
 
 
 /**
+ *  Check if the creation of a spin-unresolved ONV from a textual/string representation works as expected.
+ */
+BOOST_AUTO_TEST_CASE(FromString) {
+
+    const GQCP::SpinUnresolvedONV onv_ref1 {5, 3, 21};  // "10101" (21)
+    const GQCP::SpinUnresolvedONV onv_ref2 {5, 3, 22};  // "10110" (22)
+    const GQCP::SpinUnresolvedONV onv_ref3 {5, 3, 26};  // "11010" (26)
+
+    const auto onv1 = GQCP::SpinUnresolvedONV::FromString("10101");
+    BOOST_CHECK(onv1 == onv_ref1);
+
+    const auto onv2 = GQCP::SpinUnresolvedONV::FromString("10110");
+    BOOST_CHECK(onv2 == onv_ref2);
+
+    const auto onv3 = GQCP::SpinUnresolvedONV::FromString("11010");
+    BOOST_CHECK(onv3 == onv_ref3);
+}
+
+
+/**
  *  Check if unoccupiedIndices() works as expected.
  */
 BOOST_AUTO_TEST_CASE(unoccupiedIndices) {
@@ -509,8 +529,8 @@ BOOST_AUTO_TEST_CASE(unoccupiedIndices) {
     // Create some test ONVs.
     const GQCP::SpinUnresolvedONV onv1 {5, 3, 21};  // "10101" (21)
     const GQCP::SpinUnresolvedONV onv2 {5, 3, 22};  // "10110" (22)
-    const GQCP::SpinUnresolvedONV onv3 {5, 3, 26};  // "11010" (26) 
-    const GQCP::SpinUnresolvedONV onv4 {4, 2, 5};  // "0101" (5)
+    const GQCP::SpinUnresolvedONV onv3 {5, 3, 26};  // "11010" (26)
+    const GQCP::SpinUnresolvedONV onv4 {4, 2, 5};   // "0101" (5)
 
     // Initialize the reference unoccupied indices and check the result.
     const std::vector<size_t> ref_unoccupied_indices1 {1, 3};

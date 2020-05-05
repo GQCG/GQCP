@@ -59,9 +59,23 @@ BOOST_AUTO_TEST_CASE(UHF) {
 
 
 /**
+ *  Check if the creation of a spin-resolved ONV from a textual/string representation works as expected.
+ */
+BOOST_AUTO_TEST_CASE(FromString) {
+
+    const GQCP::SpinUnresolvedONV onv_alpha_ref {5, 3, 21};  // "10101" (21)
+    const GQCP::SpinUnresolvedONV onv_beta_ref {5, 3, 22};   // "10110" (22)
+    const GQCP::SpinResolvedONV onv_ref {onv_alpha_ref, onv_beta_ref};
+
+    const auto onv = GQCP::SpinUnresolvedONV::FromString("10101", "10110");
+    BOOST_CHECK(onv == onv_ref);
+}
+
+
+/**
  *  Check if the overlap between an RHF-related ONV and an UHF-related ONV works as expected.
  * 
- *  We don't really have a reference implementation, but we can check if the overlaps are equal to 1 if we use RHF orbitals and UHF orbitals that have the same alpha- and beta-part.
+ *  We don't really have a reference implementation, but we can check if the overlaps are equal to 1 or 0 if we use RHF orbitals and UHF orbitals that have the same alpha- and beta-part.
  * 
  *  The system under consideration is H2 with a 6-31G** basisset.
  */
@@ -89,7 +103,8 @@ BOOST_AUTO_TEST_CASE(RHF_UHF_overlap) {
 
 
     // Check if the RHF determinant has overlap 1 with the corresponding UHF determinant.
-    const auto rhf_determinant = GQCP::SpinResolvedONV::RHF(K, N_P);
     const auto uhf_determinant = GQCP::SpinResolvedONV::UHF(K, N_P, N_P);
+
+    const auto onv_0101 = GQCP::SpinResolvedONV::RHF(K, N_P);
     BOOST_CHECK(std::abs(rhf_determinant.calculateOverlap(uhf_determinant, r_spinor_basis, u_spinor_basis) - 1.0) < 1.0e-07);
 }

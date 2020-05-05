@@ -67,6 +67,23 @@ bool SpinResolvedONV::operator!=(const SpinResolvedONV& other) const {
  */
 
 /**
+ *  Create a spin-resolved ONV from textual/string representations.
+ * 
+ *  @param string_representation_alpha              the textual representation of the alpha-part of the spin-resolved ONV, for example "0011", indicating that the first two alpha-spin-orbitals should be occupied
+ *  @param string_representation_beta               the textual representation of the beta-part of the spin-resolved ONV, for example "0011", indicating that the first two beta-spin-orbitals should be occupied
+ * 
+ *  @return a spin-unresolved ONV from textual/string representations.
+ */
+SpinResolvedONV SpinResolvedONV::FromString(const std::string& string_representation_alpha, const std::string& string_representation_beta) {
+
+    const auto onv_alpha = SpinUnresolvedONV::FromString(string_representation_alpha);
+    const auto onv_beta = SpinUnresolvedONV::FromString(string_representation_beta);
+
+    return SpinResolvedONV(onv_alpha, onv_beta);
+}
+
+
+/**
  *  Create a spin-resolved ONV that represents the RHF single Slater determinant.
  * 
  *  @param K            the number of spatial orbitals
