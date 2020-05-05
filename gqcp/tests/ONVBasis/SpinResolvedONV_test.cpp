@@ -67,7 +67,7 @@ BOOST_AUTO_TEST_CASE(FromString) {
     const GQCP::SpinUnresolvedONV onv_beta_ref {5, 3, 22};   // "10110" (22)
     const GQCP::SpinResolvedONV onv_ref {onv_alpha_ref, onv_beta_ref};
 
-    const auto onv = GQCP::SpinUnresolvedONV::FromString("10101", "10110");
+    const auto onv = GQCP::SpinResolvedONV::FromString("10101", "10110");
     BOOST_CHECK(onv == onv_ref);
 }
 
@@ -77,32 +77,34 @@ BOOST_AUTO_TEST_CASE(FromString) {
  * 
  *  We don't really have a reference implementation, but we can check if the overlaps are equal to 1 or 0 if we use RHF orbitals and UHF orbitals that have the same alpha- and beta-part.
  * 
- *  The system under consideration is H2 with a 6-31G** basisset.
+ *  The system under consideration is H2 with a STO-3G basisset.
  */
 BOOST_AUTO_TEST_CASE(RHF_UHF_overlap) {
 
-    // Find the canonical RHF parameters.
+    // Create an RSpinorBasis with the canonical RHF spin-orbitals.
     const auto h2 = GQCP::Molecule::ReadXYZ("data/h2.xyz");
-    const auto N_P = h2.numberOfElectrons() / 2;
+    const auto N = h2.numberOfElectrons();
+    const auto N_P = h2.numberOfElectronPairs();
 
-    const GQCP::RSpinorBasis<double, GQCP::GTOShell> r_spinor_basis {h2, "6-31G**"};
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> r_spinor_basis {h2, "STO-3G"};
     const auto K = r_spinor_basis.numberOfSpatialOrbitals();
 
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(r_spinor_basis, h2);  // in an AO basis
 
-    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2.numberOfElectrons(), sq_hamiltonian, r_spinor_basis.overlap().parameters());
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(N, sq_hamiltonian, r_spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
 
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
+    r_spinor_basis.transform(rhf_parameters.coefficientMatrix());
 
-    // Convert the RHF parameters into UHF parameters.
-    const GQCP::QCModel::UHF<double> uhf_parameters {rhf_parameters};
+
+    // Convert the RSpinorBasis into an USpinorBasis, yielding an unrestricted spin-orbital basis where C_alpha == C_beta.
     const auto u_spinor_basis = GQCP::USpinorBasis<double, GQCP::GTOShell>::FromRestricted(r_spinor_basis);
 
 
-    // Check if the RHF determinant has overlap 1 with the corresponding UHF determinant.
+    // Check if the UHF determinant has overlap 1 with the corresponding RHF determinant, and overlap 0 with the excitations on top of the RHF reference.
     const auto uhf_determinant = GQCP::SpinResolvedONV::UHF(K, N_P, N_P);
 
     const auto rhf_onv_0101 = GQCP::SpinResolvedONV::FromString("01", "01");

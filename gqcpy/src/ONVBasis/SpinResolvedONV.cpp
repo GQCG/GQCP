@@ -52,8 +52,8 @@ void bindSpinResolvedONV(py::module& module) {
 
         // PUBLIC METHODS
         .def(
-            "calculateOverlap",
-            [](const GQCP::SpinResolvedONV& spin_resolved_onv, const GQCP::SpinResolvedONV& onv_on, const GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis_of, const GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis_on) {
+            "calculateProjection",
+            [](const GQCP::SpinResolvedONV& spin_resolved_onv, const GQCP::SpinResolvedONV& onv_on, const GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis_of, const GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis_on) {
                 return spin_resolved_onv.calculateProjection(onv_on, spinor_basis_of, spinor_basis_on);
             },
             py::arg("onv_on"),
