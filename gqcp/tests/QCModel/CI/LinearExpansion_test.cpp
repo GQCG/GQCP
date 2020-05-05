@@ -19,6 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/SpinorBasis/USpinorBasis.hpp"
 #include "Basis/transform.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
@@ -210,3 +211,50 @@ BOOST_AUTO_TEST_CASE(transform_wave_function_h5) {
     const auto linear_expansion_indirect = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver_indirect, environment_indirect).groundStateParameters();
     BOOST_CHECK(linear_expansion_direct.isApprox(linear_expansion_indirect, 1.0e-12));
 }
+
+
+// /**
+//  *  Check if the projection of |UHF> and |GHF> (the equivalent ONV in a generalized spinor basis) onto |RHF> is the same.
+//  */
+// BOOST_AUTO_TEST_CASE(overlap_GHF_UHF_on_RHF) {
+
+//     const auto molecule = GQCP::Molecule::HRingFromDistance(4, 1.0);
+
+//     GQCP::RSpinorBasis<double, GQCP::GTOShell> r_spinor_basis {molecule, "STO-3G"};
+//     GQCP::TransformationMatrix<double> C {4};  // RHF canonical orbitals for this system (Xeno)
+//     // clang-format off
+//     C << -0.27745359, -0.8505133,   0.85051937,  2.02075317,
+//          -0.27745362, -0.85051937, -0.8505133,  -2.02075317,
+//          -0.27745359,  0.8505133,  -0.85051937,  2.02075317,
+//          -0.27745362,  0.85051937,  0.8505133,  -2.02075317;
+//     // clang-format on
+//     r_spinor_basis.transform(C);
+
+
+//     // GQCP::USpinorBasis<double, GQCP::GTOShell> u_spinor_basis {molecule, "STO-3G"};
+//     GQCP::TransformationMatrix<double> C_alpha {4};  // UHF alpha canonical orbitals for this system (Xeno), triplet
+//     // clang-format off
+//     C_alpha << -1.75646828e-01, -1.20606646e-06,  1.20281173e+00,  2.03213486e+00,
+//                -3.78560533e-01, -1.20281173e+00, -1.20606647e-06, -2.00427438e+00,
+//                -1.75646828e-01,  1.20606646e-06, -1.20281173e+00,  2.03213486e+00,
+//                -3.78560533e-01,  1.20281173e+00,  1.20606646e-06, -2.00427438e+00;
+//     // clang-format on
+
+//     GQCP::TransformationMatrix<double> C_beta {4};  // UHF alpha canonical orbitals for this system (Xeno), triplet
+//     // clang-format off
+//     C_beta << -3.78560533e-01,  1.20281173e+00,  1.21724557e-06,  2.00427438e+00,
+//               -1.75646828e-01,  1.21724558e-06, -1.20281173e+00, -2.03213486e+00,
+//               -3.78560533e-01, -1.20281173e+00, -1.21724558e-06,  2.00427438e+00,
+//               -1.75646828e-01, -1.21724558e-06,  1.20281173e+00, -2.03213486e+00;
+//     // clang-format on
+//     // u_spinor_basis.transform(C_alpha, C_beta);
+
+
+//     const auto u_spinor_basis = GQCP::USpinorBasis<double, GQCP::GTOShell>::FromRestricted(r_spinor_basis);
+
+
+//     const auto uhf_onv = GQCP::SpinResolvedONV::UHF(4, 2, 2);
+//     const auto linear_expansion = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::FromONVProjection(uhf_onv, r_spinor_basis, u_spinor_basis);
+
+//     std::cout << linear_expansion.coefficients() << std::endl;
+// }

@@ -105,6 +105,13 @@ BOOST_AUTO_TEST_CASE(RHF_UHF_overlap) {
     // Check if the RHF determinant has overlap 1 with the corresponding UHF determinant.
     const auto uhf_determinant = GQCP::SpinResolvedONV::UHF(K, N_P, N_P);
 
-    const auto onv_0101 = GQCP::SpinResolvedONV::RHF(K, N_P);
-    BOOST_CHECK(std::abs(rhf_determinant.calculateOverlap(uhf_determinant, r_spinor_basis, u_spinor_basis) - 1.0) < 1.0e-07);
+    const auto rhf_onv_0101 = GQCP::SpinResolvedONV::FromString("01", "01");
+    const auto rhf_onv_0110 = GQCP::SpinResolvedONV::FromString("01", "10");
+    const auto rhf_onv_1001 = GQCP::SpinResolvedONV::FromString("10", "01");
+    const auto rhf_onv_1010 = GQCP::SpinResolvedONV::FromString("10", "10");
+
+    BOOST_CHECK(std::abs(uhf_determinant.calculateProjection(rhf_onv_0101, u_spinor_basis, r_spinor_basis) - 1.0) < 1.0e-08);
+    BOOST_CHECK(std::abs(uhf_determinant.calculateProjection(rhf_onv_0110, u_spinor_basis, r_spinor_basis) - 0.0) < 1.0e-08);
+    BOOST_CHECK(std::abs(uhf_determinant.calculateProjection(rhf_onv_1001, u_spinor_basis, r_spinor_basis) - 0.0) < 1.0e-08);
+    BOOST_CHECK(std::abs(uhf_determinant.calculateProjection(rhf_onv_1010, u_spinor_basis, r_spinor_basis) - 0.0) < 1.0e-08);
 }
