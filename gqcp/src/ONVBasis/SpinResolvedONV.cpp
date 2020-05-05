@@ -152,6 +152,44 @@ double SpinResolvedONV::calculateOverlap(const SpinResolvedONV& other, const RSp
 /**
  *  @param sigma                alpha or beta
  * 
+ *  @return the number of sigma-electrons this spin-resolved ONV describes
+ */
+size_t SpinResolvedONV::numberOfElectrons(Spin sigma) const {
+
+    switch (sigma) {
+    case Spin::alpha: {
+        return this->onv_alpha.numberOfElectrons();
+    }
+
+    case Spin::beta: {
+        return this->onv_beta.numberOfElectrons();
+    }
+    }
+}
+
+
+/**
+ *  @param sigma                alpha or beta
+ * 
+ *  @return the number of sigma-spatial orbitals/spin-orbitals that this ONV is expressed with
+ */
+size_t SpinResolvedONV::numberOfSpatialOrbitals(Spin sigma) const {
+
+    switch (sigma) {
+    case Spin::alpha: {
+        return this->onv_alpha.numberOfSpinors();
+    }
+
+    case Spin::beta: {
+        return this->onv_beta.numberOfSpinors();
+    }
+    }
+}
+
+
+/**
+ *  @param sigma                alpha or beta
+ * 
  *  @return the ONV that describes the occupations of the sigma-spin orbitals.
  */
 const SpinUnresolvedONV& SpinResolvedONV::onv(Spin sigma) const {

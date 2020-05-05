@@ -248,8 +248,8 @@ public:
 
 
         // Set up spin-unresolved ONV basis variables for the loops over the ONVs
-        const SpinUnresolvedONVBasis& alpha_onv_basis = onv_basis.get_fock_space_alpha();
-        const SpinUnresolvedONVBasis& beta_onv_basis = onv_basis.get_fock_space_beta();
+        const SpinUnresolvedONVBasis& alpha_onv_basis = onv_basis.get_onv_basis_alpha();
+        const SpinUnresolvedONVBasis& beta_onv_basis = onv_basis.get_onv_basis_beta();
 
         auto dim_alpha = alpha_onv_basis.get_dimension();
         auto dim_beta = beta_onv_basis.get_dimension();
@@ -274,7 +274,7 @@ public:
             SpinUnresolvedONV alpha = alpha_onv_basis.makeONV(0);
             for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
                 if (!alpha.isOccupied(m)) {
-                    for (size_t e1 = 0; e1 < N_alpha; e1++) {       // e1 (electron 1) loops over the (number of) electrons
+                    for (size_t e1 = 0; e1 < N_alpha; e1++) {    // e1 (electron 1) loops over the (number of) electrons
                         size_t p = alpha.occupationIndexOf(e1);  // retrieve the index of a given electron
 
                         if (p < m) {
@@ -335,7 +335,7 @@ public:
 
             for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
                 if (!beta.isOccupied(m)) {
-                    for (size_t e1 = 0; e1 < N_beta; e1++) {       // e1 (electron 1) loops over the (number of) electrons
+                    for (size_t e1 = 0; e1 < N_beta; e1++) {    // e1 (electron 1) loops over the (number of) electrons
                         size_t p = beta.occupationIndexOf(e1);  // retrieve the index of a given electron
 
                         if (p < m) {

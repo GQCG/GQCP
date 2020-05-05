@@ -37,20 +37,21 @@ namespace gqcpy {
  */
 
 /**
- *  Bind a templated CI method.
+ *  Bind a templated LinearExpansion class.
  * 
- *  @tparam ONVBasis            the scalar type of the SQOperator
+ *  @tparam ONVBasis            the type of the ONV basis
  * 
  *  @param module               the Pybind11 module
- *  @param suffix               the suffix for the gqcpy class name, i.e. "SQOperator" + suffix
+ *  @param suffix               the suffix for the gqcpy class name, i.e. "LinearExpansion" + suffix
  *  @param description          the description for the gqcpy class
  */
 template <typename ONVBasis>
 void bindLinearExpansion(py::module& module, const std::string& suffix, const std::string& description) {
     py::class_<GQCP::LinearExpansion<ONVBasis>>(module,
-                                                ("LinearExpansion" + suffix).c_str(),
+                                                ("LinearExpansion_" + suffix).c_str(),
                                                 description.c_str())
 
+        // PUBLIC METHODS
         .def("coefficients",
              &GQCP::LinearExpansion<ONVBasis>::coefficients,
              "Return the expansion coefficients of this linear expansion wave function model.");
@@ -61,16 +62,17 @@ void bindLinearExpansion(py::module& module, const std::string& suffix, const st
  *  A template specialization for the binding of GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>, because it has an additional function to be bound.
  * 
  *  @param module               the Pybind11 module
- *  @param suffix               the suffix for the gqcpy class name, i.e. "SQOperator" + suffix
+ *  @param suffix               the suffix for the gqcpy class name, i.e. "LinearExpansion" + suffix
  *  @param description          the description for the gqcpy class
  */
 template <>
 void bindLinearExpansion<GQCP::SeniorityZeroONVBasis>(py::module& module, const std::string& suffix, const std::string& description) {
 
     py::class_<GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>>(module,
-                                                                   ("LinearExpansion" + suffix).c_str(),
+                                                                   ("LinearExpansion_" + suffix).c_str(),
                                                                    description.c_str())
 
+        // PUBLIC METHODS
         .def(
             "calculate1DM",
             [](const GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>& linear_expansion) {

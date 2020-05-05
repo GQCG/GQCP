@@ -85,7 +85,7 @@ BOOST_AUTO_TEST_CASE(RHF_UHF_overlap) {
 
     // Convert the RHF parameters into UHF parameters.
     const GQCP::QCModel::UHF<double> uhf_parameters {rhf_parameters};
-    const GQCP::USpinorBasis<double, GQCP::GTOShell> u_spinor_basis {r_spinor_basis};
+    const auto u_spinor_basis = GQCP::USpinorBasis<double, GQCP::GTOShell>::FromRestricted(r_spinor_basis);
 
 
     // Check if the RHF determinant has overlap 1 with the corresponding UHF determinant.
