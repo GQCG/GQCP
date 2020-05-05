@@ -30,10 +30,64 @@ namespace gqcpy {
 void bindMolecule(py::module& module) {
     py::class_<GQCP::Molecule>(module, "Molecule", "A class that represents a collection of nuclei with a number of electrons")
 
+        // CONSTRUCTORS
         .def(py::init<const std::vector<GQCP::Nucleus>&, const int>(),
              py::arg("nuclei"),
              py::arg("charge") = 0)
 
+
+        .def_static(
+            "HChain",
+            [](const size_t n, const double spacing, const int charge) {
+                return GQCP::Molecule::HChain(n, spacing, charge);
+            },
+            py::arg("n"),
+            py::arg("spacing"),
+            py::arg("charge") = 0,
+            "Return a H-chain with equal internuclear spacing.")
+
+        .def_static(
+            "H2Chain",
+            [](const size_t n, const double a, const double b, const int charge) {
+                return GQCP::Molecule::H2Chain(n, a, b, charge);
+            },
+            py::arg("n"),
+            py::arg("a"),
+            py::arg("b"),
+            py::arg("charge") = 0,
+            "Return an H2-chain.")
+
+        .def_static(
+            "HRingFromDistance",
+            [](const size_t n, const double distance, const int charge) {
+                return GQCP::Molecule::HRingFromDistance(n, distance, charge);
+            },
+            py::arg("n"),
+            py::arg("distance"),
+            py::arg("charge") = 0,
+            "Return a regular H-ring where neighbouring hydrogens are separated by the given distance.")
+
+        .def_static(
+            "HRingFromRadius",
+            [](const size_t n, const double radius, const int charge) {
+                return GQCP::Molecule::HRingFromRadius(n, radius, charge);
+            },
+            py::arg("n"),
+            py::arg("radius"),
+            py::arg("charge") = 0,
+            "Return a regular H-ring whose hydrogens are on the circle with the given radius.")
+
+        .def_static(
+            "ReadXYZ",
+            [](const std::string& xyz_filename, const int charge) {
+                return GQCP::Molecule::ReadXYZ(xyz_filename, charge);
+            },
+            py::arg("xyz_filename"),
+            py::arg("charge") = 0,
+            "Construct a molecule based on the content of a given .xyz-file.")
+
+
+        // PUBLIC METHODS
         .def("__repr__",
              [](const GQCP::Molecule& m) {
                  std::ostringstream ss;
@@ -41,29 +95,7 @@ void bindMolecule(py::module& module) {
                  return ss.str();
              })
 
-        // NAMED CONSTRUCTORS
-        .def_static("HChain",
-                    &GQCP::Molecule::HChain,
-                    "Return a H-chain with equal internuclear spacing.")
 
-        .def_static("H2Chain",
-                    &GQCP::Molecule::H2Chain,
-                    "Return an H2-chain.")
-
-        .def_static("HRingFromDistance",
-                    &GQCP::Molecule::HRingFromDistance,
-                    "Return a regular H-ring where neighbouring hydrogens are separated by the given distance.")
-
-        .def_static("HRingFromRadius",
-                    &GQCP::Molecule::HRingFromRadius,
-                    "Return a regular H-ring whose hydrogens are on the circle with the given radius.")
-
-        .def_static("ReadXYZ",
-                    &GQCP::Molecule::ReadXYZ,
-                    "Construct a molecule based on the content of a given .xyz-file.")
-
-
-        // PUBLIC METHODS
         .def("numberOfElectrons",
              &GQCP::Molecule::numberOfElectrons,
              "Return the number of electrons in the molecule.")
