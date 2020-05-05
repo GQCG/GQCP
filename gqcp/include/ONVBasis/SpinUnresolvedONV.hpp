@@ -272,6 +272,11 @@ public:
     size_t numberOfElectrons() const { return this->N; }
 
     /**
+     *  @return the number of spinors that are used to express this ONV.
+     */
+    size_t numberOfSpinors() const { return this->M; }
+
+    /**
      *  @return the indices of the spinors that are occupied in this ONV, in ascending order
      */
     const std::vector<size_t>& occupiedIndices() const { return this->occupied_indices; }

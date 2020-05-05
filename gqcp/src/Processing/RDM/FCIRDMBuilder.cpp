@@ -45,8 +45,8 @@ OneRDMs<double> FCIRDMBuilder::calculate1RDMs(const VectorX<double>& x) const {
     OneRDM<double> D_aa = OneRDM<double>::Zero(K, K);
     OneRDM<double> D_bb = OneRDM<double>::Zero(K, K);
 
-    SpinUnresolvedONVBasis fock_space_alpha = fock_space.get_fock_space_alpha();
-    SpinUnresolvedONVBasis fock_space_beta = fock_space.get_fock_space_beta();
+    SpinUnresolvedONVBasis fock_space_alpha = fock_space.get_onv_basis_alpha();
+    SpinUnresolvedONVBasis fock_space_beta = fock_space.get_onv_basis_beta();
 
     auto dim_alpha = fock_space_alpha.get_dimension();
     auto dim_beta = fock_space_beta.get_dimension();
@@ -160,8 +160,8 @@ TwoRDMs<double> FCIRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
 
     // KISS implementation of the 2-DMs (no symmetry relations are used yet)
 
-    SpinUnresolvedONVBasis fock_space_alpha = fock_space.get_fock_space_alpha();
-    SpinUnresolvedONVBasis fock_space_beta = fock_space.get_fock_space_beta();
+    SpinUnresolvedONVBasis fock_space_alpha = fock_space.get_onv_basis_alpha();
+    SpinUnresolvedONVBasis fock_space_beta = fock_space.get_onv_basis_beta();
 
     auto dim_alpha = fock_space_alpha.get_dimension();
     auto dim_beta = fock_space_beta.get_dimension();

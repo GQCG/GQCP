@@ -69,10 +69,10 @@ VectorX<double> Hubbard::matrixVectorProduct(const HubbardHamiltonian<double>& h
 
 
     // Set up ONV bases for alpha and beta
-    const SpinUnresolvedONVBasis onv_basis_alpha = onv_basis.get_fock_space_alpha();
+    const SpinUnresolvedONVBasis onv_basis_alpha = onv_basis.get_onv_basis_alpha();
     const auto dim_alpha = onv_basis_alpha.get_dimension();
 
-    const SpinUnresolvedONVBasis onv_basis_beta = onv_basis.get_fock_space_beta();
+    const SpinUnresolvedONVBasis onv_basis_beta = onv_basis.get_onv_basis_beta();
     const auto dim_beta = onv_basis_beta.get_dimension();
 
 
@@ -104,10 +104,10 @@ VectorX<double> Hubbard::calculateDiagonal(const HubbardHamiltonian<double>& hub
 
 
     // Set up ONV bases for alpha and beta
-    const SpinUnresolvedONVBasis onv_basis_alpha = onv_basis.get_fock_space_alpha();
+    const SpinUnresolvedONVBasis onv_basis_alpha = onv_basis.get_onv_basis_alpha();
     const auto dim_alpha = onv_basis_alpha.get_dimension();
 
-    SpinUnresolvedONVBasis onv_basis_beta = onv_basis.get_fock_space_beta();
+    SpinUnresolvedONVBasis onv_basis_beta = onv_basis.get_onv_basis_beta();
     const auto dim_beta = onv_basis_beta.get_dimension();
 
     const auto dim = onv_basis.get_dimension();

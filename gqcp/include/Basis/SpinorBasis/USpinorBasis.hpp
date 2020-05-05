@@ -331,6 +331,20 @@ public:
 
 
     /**
+     *  Transform the spinor basis to another one using the given transformation matrices.
+     *
+     *  @param T_alpha              the transformation matrix that transforms the alpha- spin-orbitals
+     *  @param T_beta               the transformation matrix that transforms the beta- spin-orbitals
+     * 
+     *  @note this method is only valid when the beta and alpha component are of the same dimension, and will only accept matrices of the same dimension as the individual component.
+     */
+    void transform(const TransformationMatrix<ExpansionScalar>& T_alpha, const TransformationMatrix<ExpansionScalar>& T_beta) {
+        this->transform(T_alpha, Spin::alpha);
+        this->transform(T_beta, Spin::beta);
+    }
+
+
+    /**
      *  Transform the spinor basis to another one using the given transformation matrix
      *
      *  @param T            the transformation matrix that transforms both the alpha- and beta components
@@ -338,8 +352,7 @@ public:
      *  @note this method is only valid when the beta and alpha component are of the same dimension, and will only accept matrices of the same dimension as the individual component.
      */
     void transform(const TransformationMatrix<ExpansionScalar>& T) {
-        this->transform(T, Spin::alpha);
-        this->transform(T, Spin::beta);
+        this->transform(T, T);
     }
 
 

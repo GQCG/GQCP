@@ -22,6 +22,8 @@
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 #include "Operator/SecondQuantized/USQHamiltonian.hpp"
 
+#include <functional>
+
 
 namespace GQCP {
 
@@ -31,8 +33,8 @@ namespace GQCP {
  */
 class SpinResolvedONVBasis: public BaseONVBasis {
 private:
-    SpinUnresolvedONVBasis fock_space_alpha;
-    SpinUnresolvedONVBasis fock_space_beta;
+    SpinUnresolvedONVBasis onv_basis_alpha;
+    SpinUnresolvedONVBasis onv_basis_beta;
 
     std::vector<Eigen::SparseMatrix<double>> alpha_couplings;
 
@@ -54,10 +56,10 @@ public:
 
 
     // GETTERS
-    size_t get_N_alpha() const { return this->fock_space_alpha.get_N(); }
-    size_t get_N_beta() const { return this->fock_space_beta.get_N(); }
-    const SpinUnresolvedONVBasis& get_fock_space_alpha() const { return this->fock_space_alpha; }
-    const SpinUnresolvedONVBasis& get_fock_space_beta() const { return this->fock_space_beta; }
+    size_t get_N_alpha() const { return this->onv_basis_alpha.get_N(); }
+    size_t get_N_beta() const { return this->onv_basis_beta.get_N(); }
+    const SpinUnresolvedONVBasis& get_onv_basis_alpha() const { return this->onv_basis_alpha; }
+    const SpinUnresolvedONVBasis& get_onv_basis_beta() const { return this->onv_basis_beta; }
     ONVBasisType get_type() const override { return ONVBasisType::SpinResolvedONVBasis; }
     const std::vector<Eigen::SparseMatrix<double>>& get_alpha_couplings() const { return alpha_couplings; }
 
@@ -75,6 +77,16 @@ public:
 
 
     // PUBLIC METHODS
+
+    /**
+     *  Calculate the compound address of an ONV represented by the two given alpha- and beta-addresses.
+     * 
+     *  @param I_alpha              the alpha-address
+     *  @param I_beta               the beta-address
+     * 
+     *  @return the compound address of an ONV represented by the two given alpha- and beta-addresses.
+     */
+    size_t compoundAddress(const size_t I_alpha, const size_t I_beta) const;
 
     /**
      *  @return the dimension of this ONV basis
@@ -230,6 +242,13 @@ public:
      *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of this ONV basis
      */
     Eigen::SparseMatrix<double> evaluateOperatorSparse(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const override;
+
+    /**
+     *  Iterate over all ONVs (implicitly, by resolving in their spin components) in this ONV basis and apply the given callback function.
+     * 
+     *  @param callback             the function to be applied in every iteration. Its arguments are two pairs of spin-unresolved ONVs and their corresponding addresses, where the first two arguments are related to alpha-spin. The last two arguments are related to beta-spin.
+     */
+    void forEach(const std::function<void(const SpinUnresolvedONV&, const size_t, const SpinUnresolvedONV&, const size_t)>& callback) const;
 
     /**
      *  Auxiliary method in order to calculate "theta(pq)",

@@ -41,6 +41,7 @@ void bindMolecule(py::module& module) {
                  return ss.str();
              })
 
+        // NAMED CONSTRUCTORS
         .def_static("HCHain",
                     &GQCP::Molecule::HChain,
                     "Return a H-chain with equal internuclear spacing.")
@@ -62,6 +63,7 @@ void bindMolecule(py::module& module) {
                     "Construct a molecule based on the content of a given .xyz-file.")
 
 
+        // PUBLIC METHODS
         .def("numberOfElectrons",
              &GQCP::Molecule::numberOfElectrons,
              "Return the number of electrons in the molecule.")

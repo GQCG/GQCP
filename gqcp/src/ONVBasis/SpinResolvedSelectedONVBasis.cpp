@@ -116,8 +116,8 @@ SpinResolvedSelectedONVBasis::SpinResolvedSelectedONVBasis(const SpinResolvedONV
 
     std::vector<SpinResolvedONV> onvs;
 
-    const SpinUnresolvedONVBasis& fock_space_alpha = fock_space.get_fock_space_alpha();
-    const SpinUnresolvedONVBasis& fock_space_beta = fock_space.get_fock_space_beta();
+    const SpinUnresolvedONVBasis& fock_space_alpha = fock_space.get_onv_basis_alpha();
+    const SpinUnresolvedONVBasis& fock_space_beta = fock_space.get_onv_basis_beta();
 
     auto dim_alpha = fock_space_alpha.get_dimension();
     auto dim_beta = fock_space_beta.get_dimension();

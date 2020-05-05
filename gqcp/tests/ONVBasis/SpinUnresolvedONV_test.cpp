@@ -509,14 +509,17 @@ BOOST_AUTO_TEST_CASE(unoccupiedIndices) {
     // Create some test ONVs.
     const GQCP::SpinUnresolvedONV onv1 {5, 3, 21};  // "10101" (21)
     const GQCP::SpinUnresolvedONV onv2 {5, 3, 22};  // "10110" (22)
-    const GQCP::SpinUnresolvedONV onv3 {5, 3, 26};  // "11010" (26)
+    const GQCP::SpinUnresolvedONV onv3 {5, 3, 26};  // "11010" (26) 
+    const GQCP::SpinUnresolvedONV onv4 {4, 2, 5};  // "0101" (5)
 
     // Initialize the reference unoccupied indices and check the result.
     const std::vector<size_t> ref_unoccupied_indices1 {1, 3};
     const std::vector<size_t> ref_unoccupied_indices2 {0, 3};
     const std::vector<size_t> ref_unoccupied_indices3 {0, 2};
+    const std::vector<size_t> ref_unoccupied_indices4 {1, 3};
 
     BOOST_CHECK(onv1.unoccupiedIndices() == ref_unoccupied_indices1);  // counted from right to left
     BOOST_CHECK(onv2.unoccupiedIndices() == ref_unoccupied_indices2);  // counted from right to left
     BOOST_CHECK(onv3.unoccupiedIndices() == ref_unoccupied_indices3);  // counted from right to left
+    BOOST_CHECK(onv4.unoccupiedIndices() == ref_unoccupied_indices4);  // counted from right to left
 }

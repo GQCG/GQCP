@@ -95,9 +95,23 @@ public:
      *  @param this_spinor_basis            the restricted spin-orbital basis in which this ONV is expressed
      *  @param other_spinor_basis           the unrestricted spin-orbital basis in which the other ONV is expressed
      * 
-     *  @param the overlap between this and the other spin-resolved ONV
+     *  @return the overlap between this and the other spin-resolved ONV
      */
     double calculateOverlap(const SpinResolvedONV& other, const RSpinorBasis<double, GTOShell>& this_spinor_basis, const USpinorBasis<double, GTOShell>& other_spinor_basis) const;
+
+    /**
+     *  @param sigma                alpha or beta
+     * 
+     *  @return the number of sigma-electrons this spin-resolved ONV describes
+     */
+    size_t numberOfElectrons(Spin sigma) const;
+
+    /**
+     *  @param sigma                alpha or beta
+     * 
+     *  @return the number of sigma-spatial orbitals/spin-orbitals that this ONV is expressed with
+     */
+    size_t numberOfSpatialOrbitals(Spin sigma) const;
 
     /**
      *  @param sigma                alpha or beta

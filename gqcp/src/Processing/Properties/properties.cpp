@@ -81,10 +81,10 @@ VectorX<double> calculateDysonOrbitalCoefficients(const LinearExpansion<SpinReso
     // The 'passive' ONV basis is the ONV basis that is equal for both wave functions
     // The 'target' ONV basis has an electron difference of one
     // We initialize the variables for the case in which they differ in one beta electron, if this isn't the case, we will update it later
-    auto passive_onv_basis1 = onv_basis1.get_fock_space_alpha();
-    auto passive_onv_basis2 = onv_basis2.get_fock_space_alpha();
-    auto target_onv_basis1 = onv_basis1.get_fock_space_beta();
-    auto target_onv_basis2 = onv_basis2.get_fock_space_beta();
+    auto passive_onv_basis1 = onv_basis1.get_onv_basis_alpha();
+    auto passive_onv_basis2 = onv_basis2.get_onv_basis_alpha();
+    auto target_onv_basis1 = onv_basis1.get_onv_basis_beta();
+    auto target_onv_basis2 = onv_basis2.get_onv_basis_beta();
 
     // Mod variables relate to the modification of the address jump in coefficient index according to the ordering of the spin ONVs
     size_t passive_mod1 = target_onv_basis1.get_dimension();
@@ -95,8 +95,8 @@ VectorX<double> calculateDysonOrbitalCoefficients(const LinearExpansion<SpinReso
     if ((onv_basis1.get_N_alpha() - onv_basis2.get_N_alpha() == 1) && (onv_basis1.get_N_beta() - onv_basis2.get_N_beta() == 0)) {
         passive_onv_basis1 = target_onv_basis1;
         passive_onv_basis2 = target_onv_basis2;
-        target_onv_basis1 = onv_basis1.get_fock_space_alpha();
-        target_onv_basis2 = onv_basis2.get_fock_space_alpha();
+        target_onv_basis1 = onv_basis1.get_onv_basis_alpha();
+        target_onv_basis2 = onv_basis2.get_onv_basis_alpha();
 
         passive_mod1 = 1;
         passive_mod2 = 1;
