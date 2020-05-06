@@ -1,29 +1,27 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #define BOOST_TEST_MODULE "EigenproblemSolver"
 
 #include <boost/test/unit_test.hpp>
 
-#include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
 #include "Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"
+#include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
 #include "Utilities/linalg.hpp"
-
-
 
 
 /**
@@ -34,24 +32,24 @@
 /**
  *  Test if the dense diagonalization algorithm finds the correct results. Even though it is a wrapper around Eigen's routines, we should check that the interplay between the solver and its corresponding environment is correctly implemented.
  */
-BOOST_AUTO_TEST_CASE ( dense ) {
+BOOST_AUTO_TEST_CASE(dense) {
 
     const size_t number_of_requested_eigenpairs = 3;
 
     // Construct a random symmetric matrix
     const size_t dim = 10;
-    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Random(dim,dim);
+    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Random(dim, dim);
     GQCP::SquareMatrix<double> AT = A.transpose();
     GQCP::SquareMatrix<double> B = A + AT;
 
 
     // Diagonalize the matrix using Eigen's interface
-    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> self_adjoint_eigensolver (B);
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> self_adjoint_eigensolver {B};
     GQCP::VectorX<double> ref_lowest_eigenvalues = self_adjoint_eigensolver.eigenvalues().head(number_of_requested_eigenpairs);
     GQCP::MatrixX<double> ref_lowest_eigenvectors = self_adjoint_eigensolver.eigenvectors().topLeftCorner(dim, number_of_requested_eigenpairs);
 
     // Create eigenpairs for the reference eigenpairs
-    std::vector<GQCP::Eigenpair> ref_eigenpairs (number_of_requested_eigenpairs);
+    std::vector<GQCP::Eigenpair> ref_eigenpairs {number_of_requested_eigenpairs};
     for (size_t i = 0; i < number_of_requested_eigenpairs; i++) {
         ref_eigenpairs[i] = GQCP::Eigenpair(ref_lowest_eigenvalues(i), ref_lowest_eigenvectors.col(i));
     }
@@ -68,7 +66,7 @@ BOOST_AUTO_TEST_CASE ( dense ) {
     // Check if the results are equal
     BOOST_CHECK(eigenpairs.size() == number_of_requested_eigenpairs);
     for (size_t i = 0; i < number_of_requested_eigenpairs; i++) {
-        BOOST_CHECK(eigenpairs[i].isEqual(ref_eigenpairs[i]));  // check if the found eigenpairs are equal to the reference eigenpairs
+        BOOST_CHECK(eigenpairs[i].isEqual(ref_eigenpairs[i]));                        // check if the found eigenpairs are equal to the reference eigenpairs
         BOOST_CHECK(std::abs(eigenpairs[i].get_eigenvector().norm() - 1) < 1.0e-12);  // check if the found eigenpairs are normalized
     }
 }
@@ -77,26 +75,26 @@ BOOST_AUTO_TEST_CASE ( dense ) {
 /**
  *  Check if the Davidson algorithm finds correct results. The example is taken from (http://www.esqc.org/static/lectures/Malmqvist_2B.pdf)
  */
-BOOST_AUTO_TEST_CASE ( Davidson_ESQC_example_solver ) {
+BOOST_AUTO_TEST_CASE(Davidson_ESQC_example_solver) {
 
     // Build up the example matrix
     GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Constant(5, 5, 0.1);
-    A(0,0) = 1.0;
-    A(1,1) = 2.0;
-    A(2,2) = 3.0;
-    A(3,3) = 3.0;
-    A(4,4) = 3.0;
+    A(0, 0) = 1.0;
+    A(1, 1) = 2.0;
+    A(2, 2) = 3.0;
+    A(3, 3) = 3.0;
+    A(4, 4) = 3.0;
 
 
     // The solutions to the problem are given in the example
     double ref_lowest_eigenvalue = 0.979;
 
-    GQCP::VectorX<double> ref_lowest_eigenvector (5);
+    GQCP::VectorX<double> ref_lowest_eigenvector {5};
     ref_lowest_eigenvector << 0.994, -0.083, -0.042, -0.042, -0.042;
 
 
     // Solve using the Davidson diagonalization, supplying an initial guess
-    GQCP::VectorX<double> x_0 (5);
+    GQCP::VectorX<double> x_0 {5};
     x_0 << 1, 0, 0, 0, 0;
     auto davidson_environment = GQCP::EigenproblemEnvironment::Iterative(A, x_0);
     auto davidson_solver = GQCP::EigenproblemSolver::Davidson();  // the default is finding only the eigenpair with the lowest eigenvalue
@@ -115,7 +113,7 @@ BOOST_AUTO_TEST_CASE ( Davidson_ESQC_example_solver ) {
 /**
  *  Check the workings of the Davidson algorithm for Liu's reference test (article: Liu1978)
  */
-BOOST_AUTO_TEST_CASE ( Davidson_Liu_50 ) {
+BOOST_AUTO_TEST_CASE(Davidson_Liu_50) {
 
     // Build up the example matrix
     const size_t N = 50;
@@ -130,7 +128,7 @@ BOOST_AUTO_TEST_CASE ( Davidson_Liu_50 ) {
 
 
     // Solve the eigenvalue problem with Eigen
-    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> eigensolver (A);
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> eigensolver {A};
     const double ref_lowest_eigenvalue = eigensolver.eigenvalues()(0);
     const GQCP::VectorX<double> ref_lowest_eigenvector = eigensolver.eigenvectors().col(0);
 
@@ -144,7 +142,7 @@ BOOST_AUTO_TEST_CASE ( Davidson_Liu_50 ) {
     davidson_solver.perform(davidson_environment);
 
     const double test_lowest_eigenvalue = davidson_environment.eigenvalues(0);
-    const GQCP::VectorX<double> test_lowest_eigenvector = davidson_environment.eigenvectors.col(0);;
+    const GQCP::VectorX<double> test_lowest_eigenvector = davidson_environment.eigenvectors.col(0);
 
 
     BOOST_CHECK(std::abs(test_lowest_eigenvalue - ref_lowest_eigenvalue) < 1.0e-08);
@@ -153,13 +151,12 @@ BOOST_AUTO_TEST_CASE ( Davidson_Liu_50 ) {
 }
 
 
-
 /**
  *  Check if the Davidson algorithm works for Liu's reference test (Liu1975) when a subspace collapse is forced.
  * 
  *  This test uses the same example as the previous test, from which we know that it requires 12 iterations. In this test, we set the maximum subspace dimensions to 10, in order to force the subspace collapse.
  */
-BOOST_AUTO_TEST_CASE ( Davidson_Liu_50_collapse ) {
+BOOST_AUTO_TEST_CASE(Davidson_Liu_50_collapse) {
 
     // Build up the example matrix
     const size_t N = 50;
@@ -174,7 +171,7 @@ BOOST_AUTO_TEST_CASE ( Davidson_Liu_50_collapse ) {
 
 
     // Solve the eigenvalue problem with Eigen
-    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> eigensolver (A);
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> eigensolver {A};
     const double ref_lowest_eigenvalue = eigensolver.eigenvalues()(0);
     const GQCP::VectorX<double> ref_lowest_eigenvector = eigensolver.eigenvectors().col(0);
 
@@ -189,7 +186,7 @@ BOOST_AUTO_TEST_CASE ( Davidson_Liu_50_collapse ) {
 
 
     const double test_lowest_eigenvalue = davidson_environment.eigenvalues(0);
-    const GQCP::VectorX<double> test_lowest_eigenvector = davidson_environment.eigenvectors.col(0);;
+    const GQCP::VectorX<double> test_lowest_eigenvector = davidson_environment.eigenvectors.col(0);
 
 
     BOOST_CHECK(std::abs(test_lowest_eigenvalue - ref_lowest_eigenvalue) < 1.0e-08);
@@ -201,7 +198,7 @@ BOOST_AUTO_TEST_CASE ( Davidson_Liu_50_collapse ) {
 /**
  *  Check if the Davidson algorithm works for Liu's reference test (Liu1978), when the number of requested eigenpairs is different from 1.
  */
-BOOST_AUTO_TEST_CASE ( Davidson_Liu_50_number_of_requested_eigenpairs ) {
+BOOST_AUTO_TEST_CASE(Davidson_Liu_50_number_of_requested_eigenpairs) {
 
     const size_t number_of_requested_eigenpairs = 3;
 
@@ -218,7 +215,7 @@ BOOST_AUTO_TEST_CASE ( Davidson_Liu_50_number_of_requested_eigenpairs ) {
 
 
     // Solve the eigenvalue problem with Eigen
-    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> eigensolver (A);
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> eigensolver {A};
     const GQCP::VectorX<double> ref_lowest_eigenvalues = eigensolver.eigenvalues().head(number_of_requested_eigenpairs);
     const GQCP::MatrixX<double> ref_lowest_eigenvectors = eigensolver.eigenvectors().topLeftCorner(N, number_of_requested_eigenpairs);
 
@@ -227,7 +224,7 @@ BOOST_AUTO_TEST_CASE ( Davidson_Liu_50_number_of_requested_eigenpairs ) {
     const GQCP::MatrixX<double> X_0 = GQCP::MatrixX<double>::Identity(N, N).topLeftCorner(N, number_of_requested_eigenpairs);
 
     auto davidson_environment = GQCP::EigenproblemEnvironment::Iterative(A, X_0);
-    auto davidson_solver = GQCP::EigenproblemSolver::Davidson(3);  // number_of_requested_eigenpairs=3, 
+    auto davidson_solver = GQCP::EigenproblemSolver::Davidson(3);  // number_of_requested_eigenpairs=3
     davidson_solver.perform(davidson_environment);
 
 
@@ -242,7 +239,7 @@ BOOST_AUTO_TEST_CASE ( Davidson_Liu_50_number_of_requested_eigenpairs ) {
 /**
  *  Check the workings of the Davidson algorithm for Liu's reference test (article: Liu1978) with large dimensions.
  */
-BOOST_AUTO_TEST_CASE ( Davidson_Liu_1000 ) {
+BOOST_AUTO_TEST_CASE(Davidson_Liu_1000) {
 
     // Build up the example matrix
     const size_t N = 1000;
@@ -257,7 +254,7 @@ BOOST_AUTO_TEST_CASE ( Davidson_Liu_1000 ) {
 
 
     // Solve the eigenvalue problem with Eigen
-    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> eigensolver (A);
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> eigensolver {A};
     const double ref_lowest_eigenvalue = eigensolver.eigenvalues()(0);
     const GQCP::VectorX<double> ref_lowest_eigenvector = eigensolver.eigenvectors().col(0);
 
@@ -270,7 +267,7 @@ BOOST_AUTO_TEST_CASE ( Davidson_Liu_1000 ) {
     davidson_solver.perform(davidson_environment);
 
     const double test_lowest_eigenvalue = davidson_environment.eigenvalues(0);
-    const GQCP::VectorX<double> test_lowest_eigenvector = davidson_environment.eigenvectors.col(0);;
+    const GQCP::VectorX<double> test_lowest_eigenvector = davidson_environment.eigenvectors.col(0);
 
 
     BOOST_CHECK(std::abs(test_lowest_eigenvalue - ref_lowest_eigenvalue) < 1.0e-08);
@@ -284,7 +281,7 @@ BOOST_AUTO_TEST_CASE ( Davidson_Liu_1000 ) {
  * 
  *  This test uses the same example as the previous test, from which we know that it requires 12 iterations. In this test, we set the maximum subspace dimensions to 10, in order to force the subspace collapse.
  */
-BOOST_AUTO_TEST_CASE ( Davidson_Liu_1000_collapse ) {
+BOOST_AUTO_TEST_CASE(Davidson_Liu_1000_collapse) {
 
     // Build up the example matrix
     const size_t N = 1000;
@@ -299,7 +296,7 @@ BOOST_AUTO_TEST_CASE ( Davidson_Liu_1000_collapse ) {
 
 
     // Solve the eigenvalue problem with Eigen
-    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> eigensolver (A);
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> eigensolver {A};
     const double ref_lowest_eigenvalue = eigensolver.eigenvalues()(0);
     const GQCP::VectorX<double> ref_lowest_eigenvector = eigensolver.eigenvectors().col(0);
 
@@ -314,7 +311,7 @@ BOOST_AUTO_TEST_CASE ( Davidson_Liu_1000_collapse ) {
 
 
     const double test_lowest_eigenvalue = davidson_environment.eigenvalues(0);
-    const GQCP::VectorX<double> test_lowest_eigenvector = davidson_environment.eigenvectors.col(0);;
+    const GQCP::VectorX<double> test_lowest_eigenvector = davidson_environment.eigenvectors.col(0);
 
 
     BOOST_CHECK(std::abs(test_lowest_eigenvalue - ref_lowest_eigenvalue) < 1.0e-08);
@@ -323,11 +320,10 @@ BOOST_AUTO_TEST_CASE ( Davidson_Liu_1000_collapse ) {
 }
 
 
-
 /**
  *  Check if the Davidson algorithm works for a number of requested eigenpairs different from 1 with large dimensions.
  */
-BOOST_AUTO_TEST_CASE ( Davidson_Liu_1000_number_of_requested_eigenpairs ) {
+BOOST_AUTO_TEST_CASE(Davidson_Liu_1000_number_of_requested_eigenpairs) {
 
     const size_t number_of_requested_eigenpairs = 3;
 
@@ -344,7 +340,7 @@ BOOST_AUTO_TEST_CASE ( Davidson_Liu_1000_number_of_requested_eigenpairs ) {
 
 
     // Solve the eigenvalue problem with Eigen
-    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> eigensolver (A);
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> eigensolver {A};
     const GQCP::VectorX<double> ref_lowest_eigenvalues = eigensolver.eigenvalues().head(number_of_requested_eigenpairs);
     const GQCP::MatrixX<double> ref_lowest_eigenvectors = eigensolver.eigenvectors().topLeftCorner(N, number_of_requested_eigenpairs);
 

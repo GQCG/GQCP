@@ -1,24 +1,27 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
+
+#include "Mathematical/Algorithm/FunctionalStep.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
 #include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp"
-#include "QCMethod/HF/RHFSCFEnvironment.hpp"
+#include "QCMethod/HF/RHF/RHFSCFEnvironment.hpp"
+#include "QCMethod/HF/UHF/UHFSCFEnvironment.hpp"
 
 #include <pybind11/pybind11.h>
 
@@ -46,9 +49,29 @@ template <typename Environment>
 void bindIterativeAlgorithm(py::module& module, const std::string& suffix, const std::string& description) {
 
     py::class_<GQCP::IterativeAlgorithm<Environment>>(module,
-        ("IterativeAlgorithm_" + suffix).c_str(),
-        description.c_str()
-    );
+                                                      ("IterativeAlgorithm_" + suffix).c_str(),
+                                                      description.c_str())
+
+        .def(
+            "insert",
+            [](GQCP::IterativeAlgorithm<Environment>& algorithm, const GQCP::FunctionalStep<Environment>& step, const size_t index) {
+                algorithm.insert(step, index);
+            },
+            py::arg("step"),
+            py::arg("index"))
+
+        .def(
+            "numberOfIterations",
+            [](GQCP::IterativeAlgorithm<Environment>& algorithm) {
+                return algorithm.numberOfIterations();
+            })
+
+        .def(
+            "perform",
+            [](GQCP::IterativeAlgorithm<Environment>& algorithm, Environment& environment) {
+                algorithm.perform(environment);
+            },
+            py::arg("environment"));
 }
 
 
@@ -57,6 +80,7 @@ void bindIterativeAlgorithms(py::module& module) {
     bindIterativeAlgorithm<GQCP::EigenproblemEnvironment>(module, "EigenproblemEnvironment", "An algorithm that performs iterations using an EigenproblemEnvironment.");
     bindIterativeAlgorithm<GQCP::NonLinearEquationEnvironment<double>>(module, "NonLinearEquationEnvironment", "An algorithm that performs iterations using a NonLinearEquationEnvironment.");
     bindIterativeAlgorithm<GQCP::RHFSCFEnvironment<double>>(module, "RHFSCFEnvironment", "An algorithm that performs iterations using an RHFSCFEnvironment.");
+    bindIterativeAlgorithm<GQCP::UHFSCFEnvironment<double>>(module, "UHFSCFEnvironment", "An algorithm that performs iterations using an UHFSCFEnvironment.");
 }
 
 

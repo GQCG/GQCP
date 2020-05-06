@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
@@ -53,7 +53,7 @@ size_t gray_code(size_t S);
  *
  *  @return the row-major major (non-contiguous) index given the corresponding vector index
  */
-size_t matrixIndexMajor(size_t v, size_t cols, size_t skipped=0);
+size_t matrixIndexMajor(size_t v, size_t cols, size_t skipped = 0);
 
 /**
  *  @param v            the vector index
@@ -62,7 +62,7 @@ size_t matrixIndexMajor(size_t v, size_t cols, size_t skipped=0);
  *
  *  @return the row-major minor (contiguous) index given the corresponding vector index
  */
-size_t matrixIndexMinor(size_t v, size_t cols, size_t skipped=0);
+size_t matrixIndexMinor(size_t v, size_t cols, size_t skipped = 0);
 
 /**
  *  @param i            the row index
@@ -72,8 +72,8 @@ size_t matrixIndexMinor(size_t v, size_t cols, size_t skipped=0);
  *
  *  @return the vector index given the corresponding row-major matrix indices
  */
-size_t vectorIndex(size_t i, size_t j, size_t cols, size_t skipped=0);
-    
+size_t vectorIndex(size_t i, size_t j, size_t cols, size_t skipped = 0);
+
 
 /**
  *  Partition a positive integer into its unique partitions

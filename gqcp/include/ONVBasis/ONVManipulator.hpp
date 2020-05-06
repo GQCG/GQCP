@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
@@ -38,7 +38,6 @@ protected:
     size_t N;  // number of electrons
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -47,15 +46,13 @@ public:
      *  Default constructor setting everything to zero
      */
     ONVManipulator() :
-        ONVManipulator(0)
-    {}
+        ONVManipulator(0) {}
 
     /**
      *  @param N            the number of electrons
      */
     ONVManipulator(const size_t N) :
-        N (N)
-    {}
+        N {N} {}
 
 
     // DESTRUCTOR
@@ -128,7 +125,7 @@ public:
 
         const auto& fock_space = this->derived();
 
-        SpinUnresolvedONV onv (fock_space.get_K(), this->N);
+        SpinUnresolvedONV onv {fock_space.get_K(), this->N};
         fock_space.transformONV(onv, address);
         return onv;
     }
@@ -141,7 +138,7 @@ public:
     void setNextONV(SpinUnresolvedONV& onv) const {
 
         const auto& fock_space = this->derived();
-        onv.set_representation(fock_space.ulongNextPermutation(onv.get_unsigned_representation()));
+        onv.set_representation(fock_space.ulongNextPermutation(onv.unsignedRepresentation()));
     }
 
     /**
@@ -152,7 +149,7 @@ public:
     size_t getAddress(const SpinUnresolvedONV& onv) const {
 
         const auto& fock_space = this->derived();
-        return fock_space.getAddress(onv.get_unsigned_representation());
+        return fock_space.getAddress(onv.unsignedRepresentation());
     };
 
     /**

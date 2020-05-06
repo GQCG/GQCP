@@ -1,25 +1,24 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
 #include "Basis/Integrals/BaseTwoElectronIntegralEngine.hpp"
-
 #include "Basis/Integrals/Interfaces/LibintTwoElectronIntegralBuffer.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
 
@@ -33,10 +32,10 @@ namespace GQCP {
  *  @tparam _N                  the number of components the operator has
  */
 template <size_t _N>
-class LibintTwoElectronIntegralEngine : public BaseTwoElectronIntegralEngine<GTOShell, _N, double> {
+class LibintTwoElectronIntegralEngine: public BaseTwoElectronIntegralEngine<GTOShell, _N, double> {
 public:
     using IntegralScalar = double;  // the scalar representation of an integral for libint is always a real number
-    static constexpr auto N = _N;  // the number of components the operator has
+    static constexpr auto N = _N;   // the number of components the operator has
 
 
 private:
@@ -44,7 +43,6 @@ private:
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -55,9 +53,7 @@ public:
      *  @param max_l            the maximum angular momentum of Gaussian shell
      */
     LibintTwoElectronIntegralEngine(const CoulombRepulsionOperator& op, const size_t max_nprim, const size_t max_l) :
-        libint2_engine (LibintInterfacer::get().createEngine(op, max_nprim, max_l))
-    {}
-
+        libint2_engine {LibintInterfacer::get().createEngine(op, max_nprim, max_l)} {}
 
 
     /*

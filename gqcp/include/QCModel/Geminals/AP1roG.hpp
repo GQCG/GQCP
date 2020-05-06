@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
@@ -37,7 +37,6 @@ private:
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -46,8 +45,7 @@ public:
      *  @param G                the optimal geminal coefficients
      */
     AP1roG(const AP1roGGeminalCoefficients& G) :
-        G (G)
-    {}
+        G {G} {}
 
 
     /*
@@ -129,6 +127,13 @@ public:
     double calculateEnergy(const SQHamiltonian<double>& sq_hamiltonian) const { return AP1roG::calculateEnergy(this->G, sq_hamiltonian); }
 
     /**
+     *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
+     *
+     *  @return the Jacobian J_{ia,jb} of the PSEs, i.e. df_i^a/dG_j^b, evaluated at these AP1roG model parameters
+     */
+    BlockRankFourTensor<double> calculatePSEJacobian(const SQHamiltonian<double>& sq_hamiltonian) const { return AP1roG::calculatePSEJacobian(sq_hamiltonian, this->G); }
+
+    /**
      *  @return the corresponding geminal coefficients of these AP1roG model parameters
      */
     const AP1roGGeminalCoefficients& geminalCoefficients() const { return this->G; }
@@ -143,7 +148,6 @@ public:
      */
     size_t numberOfSpatialOrbitals() const { return this->G.numberOfSpatialOrbitals(); }
 };
-
 
 
 }  // namespace QCModel

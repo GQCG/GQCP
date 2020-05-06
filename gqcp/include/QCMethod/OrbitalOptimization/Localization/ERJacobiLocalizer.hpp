@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
@@ -27,9 +27,9 @@ namespace GQCP {
 /**
  *  A class that localizes a set of orthonormal orbitals according to the maximization of the Edmiston-Ruedenberg localization index formulated as a minimization problem. The minimum is found using subsequent Jacobi rotations
  */
-class ERJacobiLocalizer : public JacobiOrbitalOptimizer {
+class ERJacobiLocalizer: public JacobiOrbitalOptimizer {
 private:
-    double A=0.0, B=0.0, C=0.0;  // the Jacobi rotation coefficients
+    double A = 0.0, B = 0.0, C = 0.0;  // the Jacobi rotation coefficients
 
 
 public:

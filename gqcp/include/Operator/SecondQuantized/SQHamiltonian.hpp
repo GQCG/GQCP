@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
@@ -53,7 +53,6 @@ private:
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -64,12 +63,11 @@ public:
      *  @param two_ops      the two-electron contributions to the Hamiltonian
      */
     SQHamiltonian(const std::vector<ScalarSQOneElectronOperator<Scalar>>& one_ops, const std::vector<ScalarSQTwoElectronOperator<Scalar>>& two_ops) :
-        one_ops (one_ops),
-        two_ops (two_ops)
-    {
+        one_ops {one_ops},
+        two_ops {two_ops} {
 
         // Check if the dimensions are compatible
-        const std::invalid_argument dimension_error ("SQHamiltonian::SQHamiltonian(const std::vector<ScalarSQOneElectronOperator<Scalar>& one_ops, const std::vector<ScalarSQTwoElectronOperator<Scalar>& two_ops: The dimensions of the operators and coefficients matrix are incompatible");
+        const std::invalid_argument dimension_error("SQHamiltonian::SQHamiltonian(const std::vector<ScalarSQOneElectronOperator<Scalar>& one_ops, const std::vector<ScalarSQTwoElectronOperator<Scalar>& two_ops: The dimensions of the operators and coefficients matrix are incompatible");
 
         const auto dim = one_ops[0].dimension();
         for (const auto& one_op : this->one_ops) {
@@ -86,21 +84,21 @@ public:
 
 
         // Calculate the total one-electron operator
-        QCMatrix<Scalar> total_one_op_par (dim);
+        QCMatrix<Scalar> total_one_op_par {dim};
         total_one_op_par.setZero();
         for (const auto& one_op : this->one_ops) {
             total_one_op_par += one_op.parameters();
         }
-        this->total_one_op = ScalarSQOneElectronOperator<Scalar>{total_one_op_par};
+        this->total_one_op = ScalarSQOneElectronOperator<Scalar>(total_one_op_par);
 
 
         // Calculate the total two-electron operator
-        QCRankFourTensor<Scalar> total_two_op_par (dim);
+        QCRankFourTensor<Scalar> total_two_op_par(dim);
         total_two_op_par.setZero();
         for (const auto& two_op : this->two_ops) {
             total_two_op_par += two_op.parameters().Eigen();
         }
-        this->total_two_op = ScalarSQTwoElectronOperator<Scalar>{total_two_op_par};
+        this->total_two_op = ScalarSQTwoElectronOperator<Scalar>(total_two_op_par);
     }
 
 
@@ -109,9 +107,7 @@ public:
      *  @param g            the (total) two-electron integrals
      */
     SQHamiltonian(const ScalarSQOneElectronOperator<Scalar>& h, const ScalarSQTwoElectronOperator<Scalar>& g) :
-        SQHamiltonian(std::vector<ScalarSQOneElectronOperator<Scalar>>{h}, std::vector<ScalarSQTwoElectronOperator<Scalar>>{g})
-    {}
-
+        SQHamiltonian(std::vector<ScalarSQOneElectronOperator<Scalar>>{h}, std::vector<ScalarSQTwoElectronOperator<Scalar>>{g}) {}
 
 
     /*
@@ -125,13 +121,13 @@ public:
      *
      *  @note This named constructor is only available for real matrix representations.
      */
-    template<typename Z = Scalar>
+    template <typename Z = Scalar>
     static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> FromHubbard(const GQCP::HubbardHamiltonian<double>& hubbard_hamiltonian) {
 
         const auto h = hubbard_hamiltonian.core();
         const auto g = hubbard_hamiltonian.twoElectron();
 
-        return SQHamiltonian{h, g};
+        return SQHamiltonian(h, g);
     }
 
 
@@ -178,7 +174,7 @@ public:
 
 
         // Unfortunately, the Tensor module provides uniform random distributions between [0, 1]
-        QCRankFourTensor<double> g (K);
+        QCRankFourTensor<double> g {K};
         g.setRandom();
 
         // Move the distribution from [0, 1] -> [-1, 1]
@@ -186,13 +182,13 @@ public:
             for (size_t j = 0; j < K; j++) {
                 for (size_t k = 0; k < K; k++) {
                     for (size_t l = 0; l < K; l++) {
-                        g(i,j,k,l) = 2*g(i,j,k,l) - 1;  // scale from [0, 1] -> [0, 2] -> [-1, 1]
+                        g(i, j, k, l) = 2 * g(i, j, k, l) - 1;  // scale from [0, 1] -> [0, 2] -> [-1, 1]
                     }
                 }
             }
         }
 
-        return SQHamiltonian<double>{H, ScalarSQTwoElectronOperator<double>{g}};
+        return SQHamiltonian<double>(H, ScalarSQTwoElectronOperator<double>(g));
     }
 
 
@@ -203,7 +199,7 @@ public:
      *
      *  Note that this named constructor is only available for real matrix representations
      */
-    template<typename Z = Scalar>
+    template <typename Z = Scalar>
     static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> ReadFCIDUMP(const std::string& fcidump_file) {
 
         std::ifstream input_file_stream = validateAndOpen(fcidump_file, "FCIDUMP");
@@ -214,7 +210,7 @@ public:
         //  Get the number of orbitals to check if it's a valid FCIDUMP file
         std::string start_line;  // first line contains orbitals and electron count
         std::getline(input_file_stream, start_line);
-        std::stringstream linestream (start_line);
+        std::stringstream linestream {start_line};
 
         size_t K = 0;
         char iter;
@@ -222,7 +218,7 @@ public:
         while (linestream >> iter) {
             if (iter == '=') {
                 linestream >> K;  // right here we have the number of orbitals
-                break;  // we can finish reading the linestream after we found K
+                break;            // we can finish reading the linestream after we found K
             }
         }
 
@@ -232,7 +228,7 @@ public:
 
 
         QCMatrix<double> h_core = QCMatrix<double>::Zero(K, K);
-        QCRankFourTensor<double> g (K);
+        QCRankFourTensor<double> g {K};
         g.setZero();
 
         //  Skip 3 lines
@@ -247,7 +243,7 @@ public:
 
         std::string line;
         while (std::getline(input_file_stream, line)) {
-            std::istringstream iss (line);
+            std::istringstream iss {line};
 
             // Based on what the values of the indices are, we can read one-electron integrals, two-electron integrals and the internuclear repulsion energy
             //  See also (http://hande.readthedocs.io/en/latest/manual/integrals.html)
@@ -255,16 +251,17 @@ public:
             iss >> x >> i >> a >> j >> b;
 
             //  Single-particle eigenvalues (skipped)
-            if ((a == 0) && (j == 0) && (b == 0)) {}
+            if ((a == 0) && (j == 0) && (b == 0)) {
+            }
 
             //  One-electron integrals (h_core)
             else if ((j == 0) && (b == 0)) {
                 size_t p = i - 1;
                 size_t q = a - 1;
-                h_core(p,q) = x;
+                h_core(p, q) = x;
 
                 // Apply the permutational symmetry for real orbitals
-                h_core(q,p) = x;
+                h_core(q, p) = x;
             }
 
             //  Two-electron integrals are given in CHEMIST'S NOTATION, so just copy them over
@@ -273,22 +270,22 @@ public:
                 size_t q = a - 1;
                 size_t r = j - 1;
                 size_t s = b - 1;
-                g(p,q,r,s) = x;
+                g(p, q, r, s) = x;
 
                 // Apply the permutational symmetries for real orbitals
-                g(p,q,s,r) = x;
-                g(q,p,r,s) = x;
-                g(q,p,s,r) = x;
+                g(p, q, s, r) = x;
+                g(q, p, r, s) = x;
+                g(q, p, s, r) = x;
 
-                g(r,s,p,q) = x;
-                g(s,r,p,q) = x;
-                g(r,s,q,p) = x;
-                g(s,r,q,p) = x;
+                g(r, s, p, q) = x;
+                g(s, r, p, q) = x;
+                g(r, s, q, p) = x;
+                g(s, r, q, p) = x;
             }
         }  // while loop
 
 
-        return SQHamiltonian{ScalarSQOneElectronOperator<Scalar>{h_core}, ScalarSQTwoElectronOperator<Scalar>{g}};
+        return SQHamiltonian(ScalarSQOneElectronOperator<Scalar>(h_core), ScalarSQTwoElectronOperator<Scalar>(g));
     }
 
 
@@ -303,7 +300,7 @@ public:
      *
      *  Note that this method is only available for real matrix representations
      */
-    template<typename Z = Scalar>
+    template <typename Z = Scalar>
     enable_if_t<std::is_same<Z, double>::value, double> calculateEdmistonRuedenbergLocalizationIndex(size_t N_P) const {
 
         const auto& g_par = this->total_two_op.parameters();
@@ -311,7 +308,7 @@ public:
         // TODO: when Eigen releases TensorTrace, use it here
         double localization_index = 0.0;
         for (size_t i = 0; i < N_P; i++) {
-            localization_index += g_par(i,i,i,i);
+            localization_index += g_par(i, i, i, i);
         }
 
         return localization_index;
@@ -370,13 +367,12 @@ public:
             for (size_t q = 0; q < this->dimension(); q++) {
 
                 for (size_t i = 0; i < N_P; i++) {
-                    F_par(p,q) += 2*g_par(p,q,i,i) - g_par(p,i,i,q);
+                    F_par(p, q) += 2 * g_par(p, q, i, i) - g_par(p, i, i, q);
                 }
-
             }
         }  // F elements loop
 
-        return ScalarSQOneElectronOperator<Scalar>{F_par};
+        return ScalarSQOneElectronOperator<Scalar>(F_par);
     }
 
 
@@ -412,14 +408,14 @@ public:
      *
      *  Note that this method is only available for real matrix representations
      */
-    template<typename Z = Scalar>
+    template <typename Z = Scalar>
     enable_if_t<std::is_same<Z, double>::value> randomRotate() {
 
         // Get a random unitary matrix by diagonalizing a random symmetric matrix
         const auto K = this->dimension();
         TransformationMatrix<double> A_random = TransformationMatrix<double>::Random(K, K);
         TransformationMatrix<double> A_symmetric = A_random + A_random.transpose();
-        Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> unitary_solver (A_symmetric);
+        Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> unitary_solver {A_symmetric};
         TransformationMatrix<double> U_random = unitary_solver.eigenvectors();
 
         this->rotate(U_random);
@@ -454,7 +450,7 @@ public:
      *
      *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
      */
-    template<typename Z = Scalar>
+    template <typename Z = Scalar>
     enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
 
         // Transform the one-electron contributions
@@ -508,7 +504,6 @@ public:
 };
 
 
-
 /*
  *  OPERATORS
  */
@@ -532,7 +527,7 @@ SQHamiltonian<Scalar> operator+(const SQHamiltonian<Scalar>& sq_hamiltonian, con
     // 'Add' the one-electron operator
     sq_one_ops.push_back(sq_one_op);
 
-    return SQHamiltonian<Scalar>{sq_one_ops, sq_hamiltonian.twoElectronContributions()};
+    return SQHamiltonian<Scalar>(sq_one_ops, sq_hamiltonian.twoElectronContributions());
 }
 
 
@@ -572,7 +567,7 @@ SQHamiltonian<Scalar> operator+(const SQHamiltonian<Scalar>& sq_hamiltonian, con
     // 'Add' the two-electron operator
     sq_two_ops.push_back(sq_two_ops);
 
-    return SQHamiltonian<Scalar>{sq_hamiltonian.coreContributions(), sq_two_ops};
+    return SQHamiltonian<Scalar>(sq_hamiltonian.coreContributions(), sq_two_ops);
 }
 
 

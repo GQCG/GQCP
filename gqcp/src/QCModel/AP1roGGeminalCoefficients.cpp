@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #include "QCModel/Geminals/AP1roGGeminalCoefficients.hpp"
 
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
@@ -34,20 +34,19 @@ namespace GQCP {
  *  @param G            the AP1roG geminal coefficients (not including the identity matrix on the left), as a block matrix
  */
 AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(const BlockMatrix<double>& G, const size_t N_P, const size_t K) :
-    N_P (N_P),
-    K (K),
-    G (G)
-{}
+    N_P {N_P},
+    K {K},
+    G {G} {}
 
 
 /**
  *  @param G            the AP1roG geminal coefficients (not including the identity matrix on the left)
  */
 AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(const MatrixX<double>& G) :
-    N_P (G.rows()),
-    K (G.rows() + G.cols()),
-    G (BlockMatrix<double>(0, this->N_P, this->N_P, this->K, G))
-{}
+    // Don't use a delegated constructor for code readability
+    N_P {static_cast<size_t>(G.rows())},
+    K {static_cast<size_t>(G.rows() + G.cols())},
+    G {BlockMatrix<double>(0, this->N_P, this->N_P, this->K, G)} {}
 
 
 /**
@@ -57,9 +56,7 @@ AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(const MatrixX<double>& G) :
  *  @param K        the number of spatial orbitals
  */
 AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(const size_t N_P, const size_t K) :
-    AP1roGGeminalCoefficients(MatrixX<double>::Zero(N_P, K-N_P))
-{}
-
+    AP1roGGeminalCoefficients(MatrixX<double>::Zero(N_P, K - N_P)) {}
 
 
 /*
@@ -67,7 +64,6 @@ AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(const size_t N_P, const siz
  */
 
 AP1roGGeminalCoefficients::~AP1roGGeminalCoefficients() {}
-
 
 
 /*
@@ -82,9 +78,8 @@ AP1roGGeminalCoefficients::~AP1roGGeminalCoefficients() {}
  */
 double AP1roGGeminalCoefficients::operator()(const size_t i, const size_t a) const {
 
-    return this->G(i,a);  // BlockMatrix implements operator() as we would expect
+    return this->G(i, a);  // BlockMatrix implements operator() as we would expect
 }
-
 
 
 /*
@@ -101,14 +96,14 @@ AP1roGGeminalCoefficients AP1roGGeminalCoefficients::WeakInteractionLimit(const 
 
     const auto K = sq_hamiltonian.dimension();
     const auto number_of_geminal_coefficients = AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K);
-    const auto& h = sq_hamiltonian.core().parameters();  // core Hamiltonian integrals
+    const auto& h = sq_hamiltonian.core().parameters();         // core Hamiltonian integrals
     const auto& g = sq_hamiltonian.twoElectron().parameters();  // two-electron integrals
 
     // Provide the weak interaction limit values for the geminal coefficients
-    BlockMatrix<double> G (0, N_P, N_P, K);
+    BlockMatrix<double> G {0, N_P, N_P, K};
     for (size_t i = 0; i < N_P; i++) {
         for (size_t a = N_P; a < K; a++) {
-            G(i,a) = - g(a,i,a,i) / (2 * (h(a,a) - h(i,i)));
+            G(i, a) = -g(a, i, a, i) / (2 * (h(a, a) - h(i, i)));
         }
     }
 
@@ -129,7 +124,8 @@ AP1roGGeminalCoefficients AP1roGGeminalCoefficients::FromColumnMajor(const Vecto
 
     const MatrixX<double> M = MatrixX<double>::FromColumnMajorVector(g, rows, cols);  // the block of the actual entries of the geminal coefficient matrix
 
-    return AP1roGGeminalCoefficients(BlockMatrix<double>(0, N_P, N_P, K, M), N_P, K);  // an encapsulating object that implements operator() in an intuitive way
+    return AP1roGGeminalCoefficients(BlockMatrix<double>(0, N_P, N_P, K, M),
+                                     N_P, K);  // an encapsulating object that implements operator() in an intuitive way
 }
 
 
@@ -148,7 +144,6 @@ AP1roGGeminalCoefficients AP1roGGeminalCoefficients::FromRowMajor(const VectorX<
 
     return AP1roGGeminalCoefficients(BlockMatrix<double>(0, N_P, N_P, K, M), N_P, K);  // an encapsulating object that implements operator() in an intuitive way
 }
-
 
 
 /*
@@ -172,7 +167,6 @@ size_t AP1roGGeminalCoefficients::numberOfGeminalCoefficients(const size_t N_P, 
 }
 
 
-
 /*
  *  PUBLIC METHODS
  */
@@ -189,7 +183,7 @@ MatrixX<double> AP1roGGeminalCoefficients::asMatrix() const {
     G_total.topLeftCorner(this->N_P, this->N_P) = MatrixX<double>::Identity(this->N_P, this->N_P);
 
     // Set the right AP1roG coefficient block
-    G_total.topRightCorner(this->N_P, this->K-this->N_P) = this->G.asMatrix();
+    G_total.topRightCorner(this->N_P, this->K - this->N_P) = this->G.asMatrix();
 
     return G_total;
 }
@@ -213,7 +207,7 @@ double AP1roGGeminalCoefficients::overlap(const SpinUnresolvedONV& onv) const {
 
     // For an AP1roG wave function, we use a simplification for singly and doubly pair-excited ONVs
 
-    SpinUnresolvedONVBasis onv_basis (this->K, this->N_P);  // the doubly-occupied spin-resolved ONV basis
+    SpinUnresolvedONVBasis onv_basis {this->K, this->N_P};  // the doubly-occupied spin-resolved ONV basis
     SpinUnresolvedONV reference = onv_basis.makeONV(0);
 
     if (onv.countNumberOfDifferences(reference) == 0) {  // no excitations
@@ -243,7 +237,7 @@ double AP1roGGeminalCoefficients::overlap(const SpinUnresolvedONV& onv) const {
 
     else {  // use the general formula if the difference is more than two pair excitations
 
-        APIGGeminalCoefficients APIG (this->asMatrix());
+        APIGGeminalCoefficients APIG {this->asMatrix()};
         return APIG.overlap(onv);
     }
 }

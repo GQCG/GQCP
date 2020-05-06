@@ -1,0 +1,61 @@
+# Indentation
+ColumnLimit: 0
+UseTab: Never
+IndentWidth: 4
+ContinuationIndentWidth: 4
+AccessModifierOffset: -4
+
+
+# Comments
+FixNamespaceComments: true
+
+
+# Breaks and lines
+AlwaysBreakTemplateDeclarations: Yes
+BreakBeforeBraces: Attach
+BreakConstructorInitializers: AfterColon
+BreakInheritanceList: AfterColon
+KeepEmptyLinesAtTheStartOfBlocks: true
+
+
+# Spacing
+SpaceAfterCStyleCast: true
+SpaceAfterLogicalNot: false
+SpaceAfterTemplateKeyword: true
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeCpp11BracedList: true
+SpaceBeforeCtorInitializerColon: true
+SpaceBeforeInheritanceColon: false
+SpaceBeforeParens: ControlStatements
+SpaceBeforeRangeBasedForLoopColon: true
+SpacesBeforeTrailingComments: 2
+SpacesInAngles: false
+SpacesInCStyleCastParentheses: false
+SpacesInContainerLiterals: false
+SpacesInParentheses: false
+SpacesInSquareBrackets: false
+
+
+# Includes
+SortIncludes: true
+IncludeBlocks: Regroup
+IncludeCategories:  # The corresponding header of a .cpp-file gets priority 0
+  - Regex: '<boost/test'  # make sure Boost/test headers are always included first
+    Priority: -1
+  - Regex: '<boost'  # Boost headers
+    Priority: 2
+  - Regex: '<(Eigen|unsupported/Eigen)'  # Eigen headers
+    Priority: 3
+  - Regex: '<(algorithm|array|cmath|chrono|complex|cstddef|cstdlib|deque|fstream|functional|initializer_list|iomanip|iostream|iterator|memory|numeric|ostream|queue|sstream|string|type_traits|utility|vector)'  # std headers
+    Priority: 4
+  - Regex: '<'  # any other system-installed headers are grouped and should appear second-to-last
+    Priority: 5
+  - Regex: '<libint2'  # libint2 always goes last
+    Priority: 6
+  - Regex: '.'  # all files that aren't included in one of the previous categories are considered to be project sources and appear first
+    Priority: 1
+
+
+# General
+MaxEmptyLinesToKeep: 2
+PointerAlignment: Left

@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
@@ -32,7 +32,7 @@ namespace GQCP {
  *
  *  @tparam _Scalar      the scalar type
  */
-template<typename _Scalar>
+template <typename _Scalar>
 class SquareRankFourTensor: public Tensor<_Scalar, 4> {
 public:
     using Scalar = _Scalar;
@@ -42,7 +42,6 @@ public:
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -50,7 +49,8 @@ public:
     /**
      *  Default constructor
      */
-    SquareRankFourTensor() : Base() {}
+    SquareRankFourTensor() :
+        Base() {}
 
 
     /**
@@ -59,8 +59,7 @@ public:
      *  @param dim      the dimension of the rank-4 tensor
      */
     SquareRankFourTensor(size_t dim) :
-        Base(dim, dim, dim, dim)
-    {}
+        Base(dim, dim, dim, dim) {}
 
 
     /**
@@ -69,11 +68,11 @@ public:
      *  @param tensor       the tensor that should be square
      */
     SquareRankFourTensor(const Base& tensor) :
-        Base(tensor)
-    {
-        // Check if the given tensor is square
+        Base(tensor) {
+
+        // Check if the given tensor is 'square'.
         auto dims = this->dimensions();
-        if ((dims[0] != dims[1]) || (dims[1] != dims[2]) || (dims[2] != dims[3]) ) {
+        if ((dims[0] != dims[1]) || (dims[1] != dims[2]) || (dims[2] != dims[3])) {
             throw std::invalid_argument("SquareRankFourTensor(Eigen::TensorBase<OtherDerived, AccessLevel>): The given tensor should have equal dimensions in every rank.");
         }
     }
@@ -89,9 +88,7 @@ public:
      */
     template <typename ExpDerived, int AccessLevel>
     SquareRankFourTensor(const Eigen::TensorBase<ExpDerived, AccessLevel>& exp) :
-        Self(Base(exp))  // the Base constructor returns the required type for the square-checking constructor
-    {}
-
+        Self(Base(exp)) {}  // the Base constructor returns the required type for the square-checking constructor
 
 
     /*
@@ -106,10 +103,10 @@ public:
      */
     static Self FromFile(const std::string& filename, size_t dim) {
 
-        Self result (dim);
+        Self result {dim};
         result.setZero();  // make sure that the tensor is initialized to zero values before reading in
 
-        std::ifstream file (filename);
+        std::ifstream file {filename};
         if (file.is_open()) {
             std::string line;
             while (std::getline(file, line)) {
@@ -128,7 +125,7 @@ public:
                 auto l = std::stoi(splitted_line[3]);
                 auto value = std::stod(splitted_line[4]);
 
-                result(i,j,k,l) = value;
+                result(i, j, k, l) = value;
             }
 
             file.close();
@@ -159,7 +156,6 @@ public:
     }
 
 
-
     /*
      *  GETTERS
      */
@@ -167,11 +163,10 @@ public:
     size_t get_dim() const { return this->dimension(0); }  // all tensor dimensions are equal because of the constructor
 
 
-
     /*
      *  PUBLIC METHODS
      */
-   
+
     /**
      *  @return the pair-wise reduction of this square rank-4 tensor, i.e. the tensor analog of a strict "lower triangle" as a matrix in column major form
      *
@@ -183,20 +178,20 @@ public:
 
         // Initialize the resulting matrix
         const auto K = this->get_dim();
-        SquareMatrix<double> M = SquareMatrix<double>::Zero(K*(K-1)/2, K*(K-1)/2);
+        SquareMatrix<double> M = SquareMatrix<double>::Zero(K * (K - 1) / 2, K * (K - 1) / 2);
 
         // Calculate the compound indices and bring the elements from the tensor over into the matrix
         size_t row_index = 0;
-        for (size_t j = 0; j < K; j++) {  // "column major" ordering for row_index<-i,j so we do j first, then i
-            for (size_t i = j+1; i < K; i++) {  // in column major indices, columns are contiguous, so the first of two indices changes more rapidly
+        for (size_t j = 0; j < K; j++) {          // "column major" ordering for row_index<-i,j so we do j first, then i
+            for (size_t i = j + 1; i < K; i++) {  // in column major indices, columns are contiguous, so the first of two indices changes more rapidly
                 // require i > j for "lower triangle"
 
                 size_t column_index = 0;
-                for (size_t l = 0; l < K; l++) {  // "column major" ordering for column_index<-k,l so we do l first, then k
-                    for (size_t k = l+1; k < K; k++) {  // in column major indices, columns are contiguous, so the first of two indices changes more rapidly
+                for (size_t l = 0; l < K; l++) {          // "column major" ordering for column_index<-k,l so we do l first, then k
+                    for (size_t k = l + 1; k < K; k++) {  // in column major indices, columns are contiguous, so the first of two indices changes more rapidly
                         // require l > k for "lower triangle"
 
-                        M(row_index,column_index) = this->operator()(i,j,k,l);
+                        M(row_index, column_index) = this->operator()(i, j, k, l);
 
                         column_index++;
                     }
@@ -237,16 +232,16 @@ public:
         // Eigen3 does not accept a way to specify the output axes: instead, it retains the order from left to right of the axes that survive the contraction.
         // This means that, in order to get the right ordering of the axes, we will have to swap axes
 
-        std::array<int, 4> shuffle {1,2,3,0};
+        std::array<int, 4> shuffle {1, 2, 3, 0};
         shuffle[index] = 0;
-        for (int i = index+1; i < 4; i++ ) {
+        for (int i = index + 1; i < 4; i++) {
             shuffle[i] = i;
         }
 
         // Since we're only getting M as a matrix, we should make the appropriate tensor to perform contractions
         // For the const argument, we need the const in the template
         //      For more info, see: https://stackoverflow.com/questions/45283468/eigen-const-tensormap
-        Eigen::TensorMap<Eigen::Tensor<const MultiplicationScalar, 2>> M_tensor (M.data(), M.rows(), M.cols());
+        Eigen::TensorMap<Eigen::Tensor<const MultiplicationScalar, 2>> M_tensor(M.data(), M.rows(), M.cols());
 
         Self T_transformed = M_tensor.contract(this->Eigen(), contraction_pair).shuffle(shuffle);
 

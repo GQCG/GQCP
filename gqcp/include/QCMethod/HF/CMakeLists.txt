@@ -1,14 +1,2 @@
-target_sources(gqcp
-    PRIVATE
-        DiagonalRHFFockMatrixObjective.hpp
-        RHF.hpp
-        RHFDensityMatrixCalculation.hpp
-        RHFDensityMatrixDamper.hpp
-        RHFElectronicEnergyCalculation.hpp
-        RHFErrorCalculation.hpp
-        RHFFockMatrixCalculation.hpp
-        RHFFockMatrixDiagonalization.hpp
-        RHFFockMatrixDIIS.hpp
-        RHFSCFEnvironment.hpp
-        RHFSCFSolver.hpp
-)
+add_subdirectory(RHF)
+add_subdirectory(UHF)

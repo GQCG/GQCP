@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #include "QCModel/Geminals/vAP1roG.hpp"
 
 #include "QCModel/Geminals/AP1roG.hpp"
@@ -48,10 +48,10 @@ OneRDM<double> QCModel::vAP1roG::calculate1RDM(const AP1roGGeminalCoefficients& 
         double sum {0.0};
 
         for (size_t a = N_P; a < K; a++) {
-            sum += multipliers(i,a) * G(i,a);
+            sum += multipliers(i, a) * G(i, a);
         }
 
-        D(i,i) = 2 * (1 - sum);
+        D(i, i) = 2 * (1 - sum);
     }
 
 
@@ -60,10 +60,10 @@ OneRDM<double> QCModel::vAP1roG::calculate1RDM(const AP1roGGeminalCoefficients& 
         double sum {0.0};
 
         for (size_t i = 0; i < N_P; i++) {
-            sum += multipliers(i,a) * G(i,a);
+            sum += multipliers(i, a) * G(i, a);
         }
 
-        D(a,a) = 2 * sum;
+        D(a, a) = 2 * sum;
     }
 
     return D;
@@ -81,10 +81,10 @@ BlockMatrix<double> QCModel::vAP1roG::calculateMultiplierResponseForce(const SQH
     const auto K = sq_hamiltonian.dimension();  // number of spatial orbitals
     const auto& g = sq_hamiltonian.twoElectron().parameters();
 
-    BlockMatrix<double> F_lambda (0, N_P, N_P, K);
+    BlockMatrix<double> F_lambda {0, N_P, N_P, K};
     for (size_t i = 0; i < N_P; i++) {
         for (size_t a = N_P; a < K; a++) {
-            F_lambda(i,a) = -g(i,a,i,a);
+            F_lambda(i, a) = -g(i, a, i, a);
         }
     }
 
@@ -132,14 +132,14 @@ SquareMatrix<double> QCModel::vAP1roG::calculateNumber2RDM(const AP1roGGeminalCo
                 double sum {0.0};
 
                 for (size_t a = N_P; a < K; a++) {
-                    sum += multipliers(i,a) * G(i,a) + multipliers(j,a) * G(j,a);
+                    sum += multipliers(i, a) * G(i, a) + multipliers(j, a) * G(j, a);
 
                     if (i == j) {
-                        sum -= multipliers(i,a) * G(i,a);
+                        sum -= multipliers(i, a) * G(i, a);
                     }
                 }
 
-                Delta(i,j) = 4 * (1 - sum);
+                Delta(i, j) = 4 * (1 - sum);
             }  // occupied-occupied block
 
 
@@ -151,10 +151,10 @@ SquareMatrix<double> QCModel::vAP1roG::calculateNumber2RDM(const AP1roGGeminalCo
                     double sum {0.0};
 
                     for (size_t i = 0; i < N_P; i++) {
-                        sum += multipliers(i,a) * G(i,a);
+                        sum += multipliers(i, a) * G(i, a);
                     }
 
-                    Delta(a,b) = 4 * sum;
+                    Delta(a, b) = 4 * sum;
                 }
             }  // virtual-virtual
 
@@ -168,15 +168,14 @@ SquareMatrix<double> QCModel::vAP1roG::calculateNumber2RDM(const AP1roGGeminalCo
 
                     for (size_t j = 0; j < N_P; j++) {
                         if (j != i) {
-                            sum += multipliers(j,a) * G(j,a);
+                            sum += multipliers(j, a) * G(j, a);
                         }
                     }
 
-                    Delta(i,a) = 4 * sum;
-                    Delta(a,i) = Delta(i,a);
+                    Delta(i, a) = 4 * sum;
+                    Delta(a, i) = Delta(i, a);
                 }
             }  // occupied-virtual and virtual-occupied block
-
         }
     }
 
@@ -208,14 +207,14 @@ SquareMatrix<double> QCModel::vAP1roG::calculatePair2RDM(const AP1roGGeminalCoef
 
                 double sum {0.0};
                 for (size_t a = N_P; a < K; a++) {
-                    sum += multipliers(j,a) * G(i,a);
+                    sum += multipliers(j, a) * G(i, a);
                 }
 
 
                 if (i == j) {  // diagonal occupied part
-                    Pi(i,j) += 1.0 - sum;
+                    Pi(i, j) += 1.0 - sum;
                 } else {
-                    Pi(i,j) += sum;
+                    Pi(i, j) += sum;
                 }
 
             }  // occupied-occupied block
@@ -228,7 +227,7 @@ SquareMatrix<double> QCModel::vAP1roG::calculatePair2RDM(const AP1roGGeminalCoef
                 double first_sum {0.0};
                 for (size_t j = 0; j < N_P; j++) {
                     for (size_t b = N_P; b < K; b++) {
-                        first_sum += multipliers(j,b) * G(j,b);
+                        first_sum += multipliers(j, b) * G(j, b);
                     }
                 }
 
@@ -237,12 +236,12 @@ SquareMatrix<double> QCModel::vAP1roG::calculatePair2RDM(const AP1roGGeminalCoef
                 for (size_t j = 0; j < N_P; j++) {
                     for (size_t b = N_P; b < K; b++) {
                         if ((j != i) && (b != a)) {
-                            second_sum += multipliers(j,b) * (G(i,a) * G(j,b) + G(j,a) * G(i,b));
+                            second_sum += multipliers(j, b) * (G(i, a) * G(j, b) + G(j, a) * G(i, b));
                         }
                     }
                 }
 
-                Pi(i,a) = (1 - first_sum) * G(i,a) + second_sum;
+                Pi(i, a) = (1 - first_sum) * G(i, a) + second_sum;
             }  // occupied-virtual
 
 
@@ -250,7 +249,7 @@ SquareMatrix<double> QCModel::vAP1roG::calculatePair2RDM(const AP1roGGeminalCoef
                 size_t a = p;
                 size_t i = q;
 
-                Pi(a,i) = multipliers(i,a);
+                Pi(a, i) = multipliers(i, a);
             }
 
 
@@ -260,12 +259,11 @@ SquareMatrix<double> QCModel::vAP1roG::calculatePair2RDM(const AP1roGGeminalCoef
 
                 double sum {0.0};
                 for (size_t i = 0; i < N_P; i++) {
-                    sum += multipliers(i,a) * G(i,b);
+                    sum += multipliers(i, a) * G(i, b);
                 }
 
-                Pi(a,b) = sum;
+                Pi(a, b) = sum;
             }
-
         }
     }
 
@@ -282,7 +280,7 @@ SquareMatrix<double> QCModel::vAP1roG::calculatePair2RDM(const AP1roGGeminalCoef
 TwoRDM<double> QCModel::vAP1roG::calculate2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers) {
 
     size_t K = G.get_K();
-    TwoRDM<double> d (K);
+    TwoRDM<double> d {K};
     d.setZero();
 
 
@@ -296,25 +294,22 @@ TwoRDM<double> QCModel::vAP1roG::calculate2RDM(const AP1roGGeminalCoefficients& 
                 for (size_t s = 0; s < K; s++) {
 
                     if ((p == r) && (q == s)) {
-                        d(p,q,r,s) += 2 * Pi(p,q);
+                        d(p, q, r, s) += 2 * Pi(p, q);
                     }
 
                     if ((p == q) && (r == s) && (p != r)) {
-                        d(p,q,r,s) += Delta(p,r);
+                        d(p, q, r, s) += Delta(p, r);
                     }
 
                     if ((p == s) && (q == r) && (p != q)) {
-                        d(p,q,r,s) -= 0.5 * Delta(p,q);
+                        d(p, q, r, s) -= 0.5 * Delta(p, q);
                     }
-
-
                 }
             }
         }
     }  // spatial orbital loops
 
     return d;
-
 }
 
 

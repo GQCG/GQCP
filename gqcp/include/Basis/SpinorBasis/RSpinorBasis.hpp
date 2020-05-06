@@ -1,29 +1,27 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
 #include "Basis/Integrals/IntegralCalculator.hpp"
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
-#include "Basis/SpinorBasis/GSpinorBasis.hpp"
 #include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
 #include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
-#include "Basis/SpinorBasis/GSpinorBasis.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Molecule/NuclearFramework.hpp"
@@ -46,7 +44,7 @@ namespace GQCP {
  *  @tparam _Shell                  the type of shell that the underlying scalar basis contains
  */
 template <typename _ExpansionScalar, typename _Shell>
-class RSpinorBasis :
+class RSpinorBasis:
     public SimpleSpinorBasis<_ExpansionScalar, RSpinorBasis<_ExpansionScalar, _Shell>> {
 
 public:
@@ -62,7 +60,6 @@ private:
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -73,8 +70,7 @@ public:
      */
     RSpinorBasis(const ScalarBasis<Shell>& scalar_basis, const TransformationMatrix<ExpansionScalar>& C) :
         Base(C),
-        scalar_basis (scalar_basis)
-    {}
+        scalar_basis {scalar_basis} {}
 
 
     /**
@@ -85,8 +81,8 @@ public:
      *  @note the resulting restricted spinor basis is (most likely) non-orthogonal
      */
     RSpinorBasis(const ScalarBasis<Shell>& scalar_basis) :
-        RSpinorBasis(scalar_basis, TransformationMatrix<double>::Identity(scalar_basis.numberOfBasisFunctions(), scalar_basis.numberOfBasisFunctions()))
-    {}
+        RSpinorBasis(scalar_basis, TransformationMatrix<double>::Identity(scalar_basis.numberOfBasisFunctions(),
+                                                                          scalar_basis.numberOfBasisFunctions())) {}
 
 
     /**
@@ -99,8 +95,7 @@ public:
      *  @note the resulting restricted spinor basis is (most likely) non-orthogonal
      */
     RSpinorBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name) :
-        RSpinorBasis(ScalarBasis<Shell>(nuclear_framework, basisset_name))
-    {}
+        RSpinorBasis(ScalarBasis<Shell>(nuclear_framework, basisset_name)) {}
 
 
     /**
@@ -113,8 +108,7 @@ public:
      *  @note the resulting restricted spinor basis is (most likely) non-orthogonal
      */
     RSpinorBasis(const Molecule& molecule, const std::string& basisset_name) :
-        RSpinorBasis(molecule.nuclearFramework(), basisset_name)
-    {}
+        RSpinorBasis(molecule.nuclearFramework(), basisset_name) {}
 
 
     /*
@@ -128,7 +122,7 @@ public:
      *
      *  @note this method is only available for real matrix representations
      */
-    template<typename Z = ExpansionScalar>
+    template <typename Z = ExpansionScalar>
     enable_if_t<std::is_same<Z, double>::value, ScalarSQOneElectronOperator<double>> calculateMullikenOperator(const std::vector<size_t>& ao_list) const {
 
         const auto K = this->numberOfSpatialOrbitals();
@@ -136,29 +130,15 @@ public:
             throw std::invalid_argument("RSpinorBasis::calculateMullikenOperator(std::vector<size_t>): Too many AOs are selected in the given ao_list");
         }
 
-        const SquareMatrix<double> p_a = SquareMatrix<double>::PartitionMatrix(ao_list, K);  // the partitioning matrix
+        const SquareMatrix<double> p_a = SquareMatrix<double>::PartitionMatrix(ao_list, K);                       // the partitioning matrix
         const auto S_AO = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalar_basis);  // the overlap matrix expressed in the AO basis
 
-        ScalarSQOneElectronOperator<double> mulliken_op { 0.5 * (this->C.adjoint() * p_a * S_AO * this->C + this->C.adjoint() * S_AO * p_a * this->C) };
+        ScalarSQOneElectronOperator<double> mulliken_op {0.5 * (this->C.adjoint() * p_a * S_AO * this->C + this->C.adjoint() * S_AO * p_a * this->C)};
         return mulliken_op;
     }
 
 
-    /**
-     *  @return this restricted spinor basis as a general one
-     */
-    GSpinorBasis<ExpansionScalar, Shell> generalized() const {
 
-        // Build up the 'general' coefficient matrix.
-        const auto K = this->numberOfSpatialOrbitals();
-        const auto M = this->numberOfSpinors();
-        TransformationMatrix<ExpansionScalar> C_general = TransformationMatrix<ExpansionScalar>::Zero(M, M);
-
-        C_general.topLeftCorner(K, K) = this->coefficientMatrix();
-        C_general.bottomRightCorner(K, K) = this->coefficientMatrix();
-
-        return GSpinorBasis<ExpansionScalar, Shell>{this->scalarBasis(), C_general};  // the alpha- and beta- scalar bases are equal
-    }
 
 
     /**
@@ -171,7 +151,7 @@ public:
      */
     size_t numberOfSpinors() const {
 
-        return 2 * this->numberOfSpatialOrbitals();  // alpha and beta spinors are equal 
+        return 2 * this->numberOfSpatialOrbitals();  // alpha and beta spinors are equal
     }
 
 

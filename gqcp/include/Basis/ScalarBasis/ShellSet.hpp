@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
@@ -37,7 +37,7 @@ namespace GQCP {
 template <typename _Shell>
 class ShellSet {
 public:
-    using Shell = _Shell;  // the type of shell that is contained in this set
+    using Shell = _Shell;                                 // the type of shell that is contained in this set
     using BasisFunction = typename Shell::BasisFunction;  // the type of basis function that the shell can produce
 
 
@@ -46,7 +46,6 @@ private:
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -54,18 +53,15 @@ public:
     /**
      * @param shells            all the shells represented by a vector
      */
-    ShellSet(const std::vector<Shell>& shells) : 
-        shells (shells)
-    {}
+    ShellSet(const std::vector<Shell>& shells) :
+        shells {shells} {}
 
 
     /**
      *  Construct a ShellSet using an initializer_list
      */
     ShellSet(const std::initializer_list<GTOShell>& list) :
-        shells (list)
-    {}
-
+        shells {list} {}
 
 
     /*
@@ -82,12 +78,12 @@ public:
      */
     size_t maximumAngularMomentum() const {
 
-        std::vector<size_t> angular_momenta (this->numberOfShells());  // contains the number of primitives for each of the shells
+        // Generate a list of all the angular momenta and then check its maximum.
+        std::vector<size_t> angular_momenta {};  // will contain the number of primitives for each of the shells
+        angular_momenta.reserve(this->numberOfShells());
 
-        for (size_t i = 0; i < this->numberOfShells(); i++) {
-            const auto shell = this->shells[i];
-
-            angular_momenta[i] = shell.angularMomentum();
+        for (const auto& shell : this->asVector()) {
+            angular_momenta.push_back(shell.angularMomentum());
         }
 
         const auto it = std::max_element(angular_momenta.begin(), angular_momenta.end());  // iterator
@@ -100,18 +96,18 @@ public:
      */
     size_t maximumNumberOfPrimitives() const {
 
-        std::vector<size_t> number_of_primitives (this->numberOfShells());  // contains the number of primitives for each of the shells
+        // Generate a list of all the number of primitives momenta and then check its maximum.
+        std::vector<size_t> number_of_primitives {};  // will contain the number of primitives for each of the shells
+        number_of_primitives.reserve(this->numberOfShells());
 
-        for (size_t i = 0; i < this->numberOfShells(); i++) {
-            const auto shell = this->shells[i];
-
-            number_of_primitives[i] = shell.contractionSize();
+        for (const auto& shell : this->asVector()) {
+            number_of_primitives.push_back(shell.contractionSize());
         }
 
         const auto it = std::max_element(number_of_primitives.begin(), number_of_primitives.end());  // iterator
         return *it;
     }
-    
+
 
     /**
      *  @return the number of shells in this shell set
@@ -142,7 +138,7 @@ public:
         for (const auto& shell : this->shells) {
             const auto& nucleus = shell.get_nucleus();
 
-            const auto unary_predicate = [nucleus] (const Nucleus& other) {
+            const auto unary_predicate = [nucleus](const Nucleus& other) {
                 return Nucleus::equalityComparer()(nucleus, other);
             };
             const auto& p = std::find_if(nuclei.begin(), nuclei.end(), unary_predicate);

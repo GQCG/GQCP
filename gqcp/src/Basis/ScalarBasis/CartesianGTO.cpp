@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #include "Basis/ScalarBasis/CartesianGTO.hpp"
 
 #include <boost/math/constants/constants.hpp>
@@ -36,10 +36,10 @@ namespace GQCP {
  *  @param center                   the center of the Cartesian GTO
  */
 CartesianGTO::CartesianGTO(double gaussian_exponent, const CartesianExponents& cartesian_exponents, const Vector<double, 3>& center) :
-    gaussian_exponent (gaussian_exponent),
-    cartesian_exponents (cartesian_exponents),
-    center (center)
-{
+    gaussian_exponent {gaussian_exponent},
+    cartesian_exponents {cartesian_exponents},
+    center {center} {
+
     if (gaussian_exponent < 0) {
         throw std::invalid_argument("CartesianGTO::CartesianGTO(double, CartesianExponents, Vector<double, 3>): the exponent must be larger than 0.");
     }
@@ -53,9 +53,7 @@ CartesianGTO::CartesianGTO(double gaussian_exponent, const CartesianExponents& c
  *  Default constructor setting everything to zero
  */
 CartesianGTO::CartesianGTO() :
-    CartesianGTO(0.0, CartesianExponents(0, 0, 0), Vector<double, 3>::Zero())
-{}
-
+    CartesianGTO(0.0, CartesianExponents(0, 0, 0), Vector<double, 3>::Zero()) {}
 
 
 /*
@@ -90,7 +88,6 @@ bool CartesianGTO::operator==(const CartesianGTO& rhs) const {
 }
 
 
-    
 /*
  *  STATIC PUBLIC METHODS
  */
@@ -106,12 +103,12 @@ double CartesianGTO::calculateNormalizationFactorComponent(double gaussian_expon
     double pi = boost::math::constants::pi<double>();
 
     double value = 1.0;
-    value *= std::pow(2*gaussian_exponent / pi, 0.25);
+    value *= std::pow(2 * gaussian_exponent / pi, 0.25);
 
     if (cartesian_exponent > 0) {  // if c==0, the following factor becomes 1
-        auto df = boost::math::double_factorial<double>(2*static_cast<unsigned>(cartesian_exponent) - 1);  // df: double factorial
 
-        value *= std::pow(std::pow(4*gaussian_exponent, cartesian_exponent) / df, 0.5);
+        auto df = boost::math::double_factorial<double>(2 * static_cast<unsigned>(cartesian_exponent) - 1);  // df: double factorial
+        value *= std::pow(std::pow(4 * gaussian_exponent, cartesian_exponent) / df, 0.5);
     }
 
     return value;
@@ -134,7 +131,6 @@ double CartesianGTO::calculateNormalizationFactor(double gaussian_exponent, cons
     }
     return value;
 }
-
 
 
 /*
@@ -161,10 +157,10 @@ LinearCombination<double, CartesianGTO> CartesianGTO::calculateDerivative(Cartes
     // Derivative of the exponential
     CartesianExponents exponential_derivative_exponents = this->cartesian_exponents;
     exponential_derivative_exponents.exponents[direction] += 1;
-    CartesianGTO exponential_derivative_gto (this->gaussian_exponent, exponential_derivative_exponents, this->center);
+    CartesianGTO exponential_derivative_gto {this->gaussian_exponent, exponential_derivative_exponents, this->center};
     double exponential_derivative_coefficient = -2 * this->gaussian_exponent;
 
-    LinearCombination<double, CartesianGTO> lc (exponential_derivative_coefficient, exponential_derivative_gto);  // lc: linear combination
+    LinearCombination<double, CartesianGTO> lc {exponential_derivative_coefficient, exponential_derivative_gto};  // lc: linear combination
 
 
     // If the exponent in x, y or z is non-zero, there is an extra contribution of the linear term
@@ -173,7 +169,7 @@ LinearCombination<double, CartesianGTO> CartesianGTO::calculateDerivative(Cartes
         CartesianExponents linear_derivative_exponents = this->cartesian_exponents;
         linear_derivative_exponents.exponents[direction] -= 1;
 
-        CartesianGTO linear_derivative_gto (this->gaussian_exponent, linear_derivative_exponents, this->center);
+        CartesianGTO linear_derivative_gto(this->gaussian_exponent, linear_derivative_exponents, this->center);
         double linear_derivative_coefficient = this->cartesian_exponents.value(direction);
 
         lc += LinearCombination<double, CartesianGTO>(linear_derivative_coefficient, linear_derivative_gto);

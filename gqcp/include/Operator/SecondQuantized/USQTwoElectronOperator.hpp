@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
@@ -41,7 +41,6 @@ A class that represents an 'unrestricted second-quantized two-electron operator'
 template <typename _Scalar, size_t _Components>
 class USQTwoElectronOperator {
 public:
-
     using Scalar = _Scalar;
     static constexpr auto Components = _Components;
 
@@ -53,28 +52,27 @@ private:
     std::array<QCRankFourTensor<Scalar>, Components> gs_bb;  // all the tensor representations (hence the 's') of the beta-beta parameters (integrals) of the different components of this second-quantized operator
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
+
     /**
      *  @param gs_aa            all the tensor representations (hence the 's') of the alpha-alpha parameters (integrals) of the different components of this second-quantized operator
      *  @param gs_ab            all the tensor representations (hence the 's') of the alpha-beta parameters (integrals) of the different components of this second-quantized operator
      *  @param gs_ba            all the tensor representations (hence the 's') of the beta-alpha parameters (integrals) of the different components of this second-quantized operator
      *  @param gs_bb            all the tensor representations (hence the 's') of the beta-beta parameters (integrals) of the different components of this second-quantized operator
-     * 
      */
-    USQTwoElectronOperator(const std::array<QCRankFourTensor<Scalar>, Components>& gs_aa, const std::array<QCRankFourTensor<Scalar>, Components>& gs_ab, const std::array<QCRankFourTensor<Scalar>, Components>& gs_ba, const std::array<QCRankFourTensor<Scalar>, Components>& gs_bb) : 
-        gs_aa (gs_aa),
-        gs_ab (gs_ab),
-        gs_ba (gs_ba),
-        gs_bb (gs_bb)
-    {
+    USQTwoElectronOperator(const std::array<QCRankFourTensor<Scalar>, Components>& gs_aa, const std::array<QCRankFourTensor<Scalar>, Components>& gs_ab, const std::array<QCRankFourTensor<Scalar>, Components>& gs_ba, const std::array<QCRankFourTensor<Scalar>, Components>& gs_bb) :
+        gs_aa {gs_aa},
+        gs_ab {gs_ab},
+        gs_ba {gs_ba},
+        gs_bb {gs_bb} {
+
         // Check if the given tensor representations have the same dimensions, for each spin part.
         const auto dimension_of_first_aa = this->gs_aa[0].dimension();
-        const auto dimension_of_first_ab = this-> gs_ab[0].dimension();
+        const auto dimension_of_first_ab = this->gs_ab[0].dimension();
         const auto dimension_of_first_ba = this->gs_ba[0].dimension();
-        const auto dimension_of_first_bb = this-> gs_bb[0].dimension();
+        const auto dimension_of_first_bb = this->gs_bb[0].dimension();
 
         for (size_t i = 1; i < Components; i++) {
 
@@ -82,6 +80,7 @@ public:
             const auto dimension_of_ith_ab = this->gs_ab[i].dimension();
             const auto dimension_of_ith_ba = this->gs_ba[i].dimension();
             const auto dimension_of_ith_bb = this->gs_bb[i].dimension();
+
             if ((dimension_of_first_aa != dimension_of_ith_aa) || (dimension_of_first_ab != dimension_of_ith_ab) || (dimension_of_first_ba != dimension_of_ith_ba) || (dimension_of_first_bb != dimension_of_ith_bb)) {
                 throw std::invalid_argument("USQTwoElectronOperator(const std::array<QCMatrix<Scalar>, Components>&): The given tenso representations do not have the same dimensions for either the alpha, beta or one of the mixed components.");
             }
@@ -100,9 +99,9 @@ public:
      *  @note This constructor is only available for ScalarSQTwoElectronOperators (for the std::enable_if, see https://stackoverflow.com/a/17842695/7930415)
      */
     template <size_t Z = Components>
-    USQTwoElectronOperator(const QCRankFourTensor<Scalar>& g_aa, const QCRankFourTensor<Scalar>& g_ab, const QCRankFourTensor<Scalar>& g_ba, const QCRankFourTensor<Scalar>& g_bb, typename std::enable_if<Z == 1>::type* = 0) :
-        USQTwoElectronOperator(std::array<QCRankFourTensor<Scalar>, 1>{g_aa}, std::array<QCRankFourTensor<Scalar>, 1>{g_ab}, std::array<QCRankFourTensor<Scalar>, 1>{g_ba}, std::array<QCRankFourTensor<Scalar>, 1>{g_bb})
-    {}
+    USQTwoElectronOperator(const QCRankFourTensor<Scalar>& g_aa, const QCRankFourTensor<Scalar>& g_ab, const QCRankFourTensor<Scalar>& g_ba, const QCRankFourTensor<Scalar>& g_bb,
+                           typename std::enable_if<Z == 1>::type* = 0) :
+        USQTwoElectronOperator(std::array<QCRankFourTensor<Scalar>, 1> {g_aa}, std::array<QCRankFourTensor<Scalar>, 1> {g_ab}, std::array<QCRankFourTensor<Scalar>, 1> {g_ba}, std::array<QCRankFourTensor<Scalar>, 1> {g_bb}) {}
 
 
     /**
@@ -117,6 +116,7 @@ public:
             this->gs_ab[i] = QCRankFourTensor<Scalar>(dim);
             this->gs_ba[i] = QCRankFourTensor<Scalar>(dim);
             this->gs_bb[i] = QCRankFourTensor<Scalar>(dim);
+
             this->gs_aa[i].setZero();
             this->gs_ab[i].setZero();
             this->gs_ba[i].setZero();
@@ -124,7 +124,7 @@ public:
         }
     }
 
-    
+
     /**
      *  Default constructor: construct an unrestricted two-electron operator with parameters that are zero
      */
@@ -138,46 +138,22 @@ public:
      */
 
     /**
-     *  @param SpinComponent            the requested spin component. The 4 possible combinations can yield all the possible blocks (alpha-alpha, alpha-beta, beta-alpha & beta-beta).
+     *  @param left            the requested spin for the left part of the integrals (left left|right right)
+     *  @param right           the requested spin for the right part of the integrals (left left|right right)
      * 
      *  @return read-only tensor representations of all the parameters (integrals) of the different components of this second-quantized operator, for the requested spin components.
      */
-    const std::array<QCRankFourTensor<Scalar>, Components>& allParameters(SpinComponent left, SpinComponent right) const {  
+    const std::array<QCRankFourTensor<Scalar>, Components>& allParameters(Spin left, Spin right) const {
 
-        if (left == SpinComponent::ALPHA && right == SpinComponent::ALPHA) {
+        if (left == Spin::alpha && right == Spin::alpha) {
             return this->gs_aa;
         }
 
-        else if (left == SpinComponent::ALPHA && right == SpinComponent::BETA) {
+        else if (left == Spin::alpha && right == Spin::beta) {
             return this->gs_ab;
         }
 
-        else if (left == SpinComponent::BETA && right == SpinComponent::ALPHA) {
-            return this->gs_ba;
-        }
-
-        else {
-            return this->gs_bb;
-        };  
-    }
-
-
-    /**
-     *  @param SpinComponent            the requested spin component. The 4 possible combinations can yield all the possible blocks (alpha-alpha, alpha-beta, beta-alpha & beta-beta)
-     * 
-     *  @return the writable tensor representations of all the parameters (integrals) of the different components of this second-quantized operator, for the requested spin components.
-     */
-    std::array<QCRankFourTensor<Scalar>, Components>& allParameters(SpinComponent left, SpinComponent right) {
-
-        if (left == SpinComponent::ALPHA && right == SpinComponent::ALPHA) {
-            return this->gs_aa;
-        }
-
-        else if (left == SpinComponent::ALPHA && right == SpinComponent::BETA) {
-            return this->gs_ab;
-        }
-
-        else if (left == SpinComponent::BETA && right == SpinComponent::ALPHA) {
+        else if (left == Spin::beta && right == Spin::alpha) {
             return this->gs_ba;
         }
 
@@ -186,7 +162,33 @@ public:
         };
     }
 
-    
+
+    /**
+     *  @param left            the requested spin for the left part of the integrals (left left|right right)
+     *  @param right           the requested spin for the right part of the integrals (left left|right right)
+     * 
+     *  @return the writable tensor representations of all the parameters (integrals) of the different components of this second-quantized operator, for the requested spin components.
+     */
+    std::array<QCRankFourTensor<Scalar>, Components>& allParameters(Spin left, Spin right) {
+
+        if (left == Spin::alpha && right == Spin::alpha) {
+            return this->gs_aa;
+        }
+
+        else if (left == Spin::alpha && right == Spin::beta) {
+            return this->gs_ab;
+        }
+
+        else if (left == Spin::beta && right == Spin::alpha) {
+            return this->gs_ba;
+        }
+
+        else {
+            return this->gs_bb;
+        };
+    }
+
+
     /**
      *  @param d_aa            the alpha-alpha 2-RDM that represents the wave function
      *  @param d_ab            the alpha-beta 2-RDM that represents the wave function
@@ -197,7 +199,7 @@ public:
      */
     Vector<Scalar, Components> calculateExpectationValue(const TwoRDM<Scalar>& d_aa, const TwoRDM<Scalar>& d_ab, const TwoRDM<Scalar>& d_ba, const TwoRDM<Scalar>& d_bb) const {
 
-        if ((this->dimension(GQCP::SpinComponent::ALPHA, GQCP::SpinComponent::ALPHA) != d_aa.dimension()) || (this->dimension(GQCP::SpinComponent::ALPHA, GQCP::SpinComponent::ALPHA) != d_ab.dimension()) || (this->dimension(GQCP::SpinComponent::ALPHA, GQCP::SpinComponent::ALPHA) != d_ba.dimension()) || (this->dimension(GQCP::SpinComponent::ALPHA, GQCP::SpinComponent::ALPHA) != d_bb.dimension())) {
+        if ((this->dimension(GQCP::Spin::alpha, GQCP::Spin::alpha) != d_aa.dimension()) || (this->dimension(GQCP::Spin::alpha, GQCP::Spin::alpha) != d_ab.dimension()) || (this->dimension(GQCP::Spin::alpha, GQCP::Spin::alpha) != d_ba.dimension()) || (this->dimension(GQCP::Spin::alpha, GQCP::Spin::alpha) != d_bb.dimension())) {
             throw std::invalid_argument("USQTwoElectronOperator::calculateExpectationValue(const TwoRDM<double>&): One of the given 2-RDMs is not compatible with the respective component of the two-electron operator.");
         }
 
@@ -207,12 +209,12 @@ public:
 
             // Specify the contractions for the relevant contraction of the two-electron integrals and the 2-RDMs
             //      0.5 g(p q r s) d(p q r s)
-            Eigen::array<Eigen::IndexPair<int>, 4> contractions = {Eigen::IndexPair<int>(0,0), Eigen::IndexPair<int>(1,1), Eigen::IndexPair<int>(2,2), Eigen::IndexPair<int>(3,3)};
+            Eigen::array<Eigen::IndexPair<int>, 4> contractions {Eigen::IndexPair<int>(0, 0), Eigen::IndexPair<int>(1, 1), Eigen::IndexPair<int>(2, 2), Eigen::IndexPair<int>(3, 3)};
             //      Perform the contraction
-            Eigen::Tensor<Scalar, 0> contraction_aa = 0.5 * this->parameters(GQCP::SpinComponent::ALPHA, GQCP::SpinComponent::ALPHA, i).contract(d_aa.Eigen(), contractions);
-            Eigen::Tensor<Scalar, 0> contraction_ab = 0.5 * this->parameters(GQCP::SpinComponent::ALPHA, GQCP::SpinComponent::BETA, i).contract(d_ab.Eigen(), contractions);
-            Eigen::Tensor<Scalar, 0> contraction_ba = 0.5 * this->parameters(GQCP::SpinComponent::BETA, GQCP::SpinComponent::ALPHA, i).contract(d_ba.Eigen(), contractions);
-            Eigen::Tensor<Scalar, 0> contraction_bb = 0.5 * this->parameters(GQCP::SpinComponent::BETA, GQCP::SpinComponent::BETA, i).contract(d_bb.Eigen(), contractions);
+            Eigen::Tensor<Scalar, 0> contraction_aa = 0.5 * this->parameters(GQCP::Spin::alpha, GQCP::Spin::alpha, i).contract(d_aa.Eigen(), contractions);
+            Eigen::Tensor<Scalar, 0> contraction_ab = 0.5 * this->parameters(GQCP::Spin::alpha, GQCP::Spin::beta, i).contract(d_ab.Eigen(), contractions);
+            Eigen::Tensor<Scalar, 0> contraction_ba = 0.5 * this->parameters(GQCP::Spin::beta, GQCP::Spin::alpha, i).contract(d_ba.Eigen(), contractions);
+            Eigen::Tensor<Scalar, 0> contraction_bb = 0.5 * this->parameters(GQCP::Spin::beta, GQCP::Spin::beta, i).contract(d_bb.Eigen(), contractions);
 
             // As the contraction is a scalar (a tensor of rank 0), we should access by (0).
             expectation_values[i] = contraction_aa(0) + contraction_ab(0) + contraction_ba(0) + contraction_bb(0);
@@ -223,21 +225,22 @@ public:
 
 
     /**
-     *  @param SpinComponent            the requested spin component. The 4 possible combinations can yield all the possible blocks (alpha-alpha, alpha-beta, beta-alpha & beta-beta)
+     *  @param left            the requested spin for the left part of the integrals (left left|right right)
+     *  @param right           the requested spin for the right part of the integrals (left left|right right)
      * 
      *  @return the dimension of the tensors for the requested spin components.
      */
-    size_t dimension(SpinComponent left, SpinComponent right) const {
+    size_t dimension(Spin left, Spin right) const {
 
-         if (left == SpinComponent::ALPHA && right == SpinComponent::ALPHA) {
+        if (left == Spin::alpha && right == Spin::alpha) {
             return this->gs_aa[0].dimension();
         }
 
-        else if (left == SpinComponent::ALPHA && right == SpinComponent::BETA) {
+        else if (left == Spin::alpha && right == Spin::beta) {
             return this->gs_ab[0].dimension();
         }
 
-        else if (left == SpinComponent::BETA && right == SpinComponent::ALPHA) {
+        else if (left == Spin::beta && right == Spin::alpha) {
             return this->gs_ba[0].dimension();
         }
 
@@ -248,22 +251,23 @@ public:
 
 
     /**
-     *  @param i                        The index of the component.
-     *  @param SpinComponent            the requested spin component. The 4 possible combinations can yield all the possible blocks (alpha-alpha, alpha-beta, beta-alpha & beta-beta)
+     *  @param left            the requested spin for the left part of the integrals (left left|right right)
+     *  @param right           the requested spin for the right part of the integrals (left left|right right)
+     *  @param i               the index of the component
      * 
      *  @return a read-only tensor representation of the parameters (integrals) of one of the the different components of this second-quantized operator, for the requested spin components.
      */
-    const QCRankFourTensor<Scalar>& parameters(SpinComponent left, SpinComponent right, const size_t i = 0 ) const {
+    const QCRankFourTensor<Scalar>& parameters(Spin left, Spin right, const size_t i = 0) const {
 
-        if (left == SpinComponent::ALPHA && right == SpinComponent::ALPHA) {
+        if (left == Spin::alpha && right == Spin::alpha) {
             return this->gs_aa[i];
         }
 
-        else if (left == SpinComponent::ALPHA && right == SpinComponent::BETA) {
+        else if (left == Spin::alpha && right == Spin::beta) {
             return this->gs_ab[i];
         }
 
-        else if (left == SpinComponent::BETA && right == SpinComponent::ALPHA) {
+        else if (left == Spin::beta && right == Spin::alpha) {
             return this->gs_ba[i];
         }
 
@@ -274,22 +278,23 @@ public:
 
 
     /**
-     *  @param i                        The index of the component.
-     *  @param SpinComponent            the requested spin component. The 4 possible combinations can yield all the possible blocks (alpha-alpha, alpha-beta, beta-alpha & beta-beta)
+     *  @param left            the requested spin for the left part of the integrals (left left|right right)
+     *  @param right           the requested spin for the right part of the integrals (left left|right right)
+     *  @param i               the index of the component
      * 
      *  @return a writable tensor representation of the parameters (integrals) of one of the the different components of this second-quantized operator, for the requested spin components.
      */
-    QCRankFourTensor<Scalar>& parameters(SpinComponent left, SpinComponent right, const size_t i = 0) {
+    QCRankFourTensor<Scalar>& parameters(Spin left, Spin right, const size_t i = 0) {
 
-        if (left == SpinComponent::ALPHA && right == SpinComponent::ALPHA) {
+        if (left == Spin::alpha && right == Spin::alpha) {
             return this->gs_aa[i];
         }
 
-        else if (left == SpinComponent::ALPHA && right == SpinComponent::BETA) {
+        else if (left == Spin::alpha && right == Spin::beta) {
             return this->gs_ab[i];
         }
 
-        else if (left == SpinComponent::BETA && right == SpinComponent::ALPHA) {
+        else if (left == Spin::beta && right == Spin::alpha) {
             return this->gs_ba[i];
         }
 
@@ -307,16 +312,16 @@ public:
     void rotate(const TransformationMatrix<Scalar>& U) {
 
         // Transform the matrix representations of the components
-        for (auto& g_aa : this->allParameters(GQCP::SpinComponent::ALPHA, GQCP::SpinComponent::ALPHA)) {
+        for (auto& g_aa : this->allParameters(GQCP::Spin::alpha, GQCP::Spin::alpha)) {
             g_aa.basisRotateInPlace(U);
         }
-        for (auto& g_ab : this->allParameters(GQCP::SpinComponent::ALPHA, GQCP::SpinComponent::BETA)) {
+        for (auto& g_ab : this->allParameters(GQCP::Spin::alpha, GQCP::Spin::beta)) {
             g_ab.basisRotateInPlace(U);
         }
-        for (auto& g_ba : this->allParameters(GQCP::SpinComponent::BETA, GQCP::SpinComponent::ALPHA)) {
+        for (auto& g_ba : this->allParameters(GQCP::Spin::beta, GQCP::Spin::alpha)) {
             g_ba.basisRotateInPlace(U);
         }
-        for (auto& g_bb : this->allParameters(GQCP::SpinComponent::BETA, GQCP::SpinComponent::BETA)) {
+        for (auto& g_bb : this->allParameters(GQCP::Spin::beta, GQCP::Spin::beta)) {
             g_bb.basisRotateInPlace(U);
         }
     }
@@ -330,16 +335,16 @@ public:
     void rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
 
         // Transform the matrix representations of the components
-        for (auto& g_aa : this->allParameters(GQCP::SpinComponent::ALPHA, GQCP::SpinComponent::ALPHA)) {
+        for (auto& g_aa : this->allParameters(GQCP::Spin::alpha, GQCP::Spin::alpha)) {
             g_aa.basisRotateInPlace(jacobi_rotation_parameters);
         }
-        for (auto& g_ab : this->allParameters(GQCP::SpinComponent::ALPHA, GQCP::SpinComponent::BETA)) {
+        for (auto& g_ab : this->allParameters(GQCP::Spin::alpha, GQCP::Spin::beta)) {
             g_ab.basisRotateInPlace(jacobi_rotation_parameters);
         }
-        for (auto& g_ba : this->allParameters(GQCP::SpinComponent::BETA, GQCP::SpinComponent::ALPHA)) {
+        for (auto& g_ba : this->allParameters(GQCP::Spin::beta, GQCP::Spin::alpha)) {
             g_ba.basisRotateInPlace(jacobi_rotation_parameters);
         }
-        for (auto& g_bb : this->allParameters(GQCP::SpinComponent::BETA, GQCP::SpinComponent::BETA)) {
+        for (auto& g_bb : this->allParameters(GQCP::Spin::beta, GQCP::Spin::beta)) {
             g_bb.basisRotateInPlace(jacobi_rotation_parameters);
         }
     }
@@ -353,21 +358,20 @@ public:
     void transform(const TransformationMatrix<Scalar>& T) {
 
         // Transform the matrix representations of the components
-        for (auto& g_aa : this->allParameters(GQCP::SpinComponent::ALPHA, GQCP::SpinComponent::ALPHA)) {
+        for (auto& g_aa : this->allParameters(GQCP::Spin::alpha, GQCP::Spin::alpha)) {
             g_aa.basisTransformInPlace(T);
         }
-        for (auto& g_ab : this->allParameters(GQCP::SpinComponent::ALPHA, GQCP::SpinComponent::BETA)) {
+        for (auto& g_ab : this->allParameters(GQCP::Spin::alpha, GQCP::Spin::beta)) {
             g_ab.basisTransformInPlace(T);
         }
-        for (auto& g_ba : this->allParameters(GQCP::SpinComponent::BETA, GQCP::SpinComponent::ALPHA)) {
+        for (auto& g_ba : this->allParameters(GQCP::Spin::beta, GQCP::Spin::alpha)) {
             g_ba.basisTransformInPlace(T);
         }
-        for (auto& g_bb : this->allParameters(GQCP::SpinComponent::BETA, GQCP::SpinComponent::BETA)) {
+        for (auto& g_bb : this->allParameters(GQCP::Spin::beta, GQCP::Spin::beta)) {
             g_bb.basisTransformInPlace(T);
         }
     }
 };
-
 
 
 /*
@@ -396,15 +400,16 @@ auto operator+(const USQTwoElectronOperator<LHSScalar, Components>& lhs, const U
 
     using ResultScalar = sum_t<LHSScalar, RHSScalar>;
 
-    auto G_sum_aa = lhs.allParameters(GQCP::SpinComponent::ALPHA, GQCP::SpinComponent::ALPHA);
-    auto G_sum_ab = lhs.allParameters(GQCP::SpinComponent::ALPHA, GQCP::SpinComponent::BETA);
-    auto G_sum_ba = lhs.allParameters(GQCP::SpinComponent::BETA, GQCP::SpinComponent::ALPHA);
-    auto G_sum_bb = lhs.allParameters(GQCP::SpinComponent::BETA, GQCP::SpinComponent::BETA);
+    auto G_sum_aa = lhs.allParameters(GQCP::Spin::alpha, GQCP::Spin::alpha);
+    auto G_sum_ab = lhs.allParameters(GQCP::Spin::alpha, GQCP::Spin::beta);
+    auto G_sum_ba = lhs.allParameters(GQCP::Spin::beta, GQCP::Spin::alpha);
+    auto G_sum_bb = lhs.allParameters(GQCP::Spin::beta, GQCP::Spin::beta);
+
     for (size_t i = 0; i < Components; i++) {
-        G_sum_aa[i] += rhs.parameters(GQCP::SpinComponent::ALPHA, GQCP::SpinComponent::ALPHA, i);
-        G_sum_ab[i] += rhs.parameters(GQCP::SpinComponent::ALPHA, GQCP::SpinComponent::BETA, i);
-        G_sum_ba[i] += rhs.parameters(GQCP::SpinComponent::BETA, GQCP::SpinComponent::ALPHA, i);
-        G_sum_bb[i] += rhs.parameters(GQCP::SpinComponent::BETA, GQCP::SpinComponent::BETA, i);
+        G_sum_aa[i] += rhs.parameters(GQCP::Spin::alpha, GQCP::Spin::alpha, i);
+        G_sum_ab[i] += rhs.parameters(GQCP::Spin::alpha, GQCP::Spin::beta, i);
+        G_sum_ba[i] += rhs.parameters(GQCP::Spin::beta, GQCP::Spin::alpha, i);
+        G_sum_bb[i] += rhs.parameters(GQCP::Spin::beta, GQCP::Spin::beta, i);
     }
 
     return USQTwoElectronOperator<ResultScalar, Components>(G_sum_aa, G_sum_ab, G_sum_ba, G_sum_bb);
@@ -425,10 +430,11 @@ auto operator*(const Scalar& scalar, const USQTwoElectronOperator<OperatorScalar
 
     using ResultScalar = product_t<Scalar, OperatorScalar>;
 
-    auto G_aa = op.allParameters(GQCP::SpinComponent::ALPHA, GQCP::SpinComponent::ALPHA);
-    auto G_ab = op.allParameters(GQCP::SpinComponent::ALPHA, GQCP::SpinComponent::BETA);
-    auto G_ba = op.allParameters(GQCP::SpinComponent::BETA, GQCP::SpinComponent::ALPHA);
-    auto G_bb = op.allParameters(GQCP::SpinComponent::BETA, GQCP::SpinComponent::BETA);
+    auto G_aa = op.allParameters(GQCP::Spin::alpha, GQCP::Spin::alpha);
+    auto G_ab = op.allParameters(GQCP::Spin::alpha, GQCP::Spin::beta);
+    auto G_ba = op.allParameters(GQCP::Spin::beta, GQCP::Spin::alpha);
+    auto G_bb = op.allParameters(GQCP::Spin::beta, GQCP::Spin::beta);
+
     for (size_t i = 0; i < Components; i++) {
         G_aa[i] = scalar * G_aa[i];
         G_ab[i] = scalar * G_ab[i];
@@ -472,4 +478,4 @@ auto operator-(const USQTwoElectronOperator<LHSScalar, Components>& lhs, const U
 }
 
 
-} // namespace GQCP
+}  // namespace GQCP

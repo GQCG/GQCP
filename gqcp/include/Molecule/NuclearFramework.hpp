@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
@@ -28,7 +28,9 @@ namespace GQCP {
 
 
 /**
- *  A class that represents a set of nuclei at fixed positions (in bohr) in space
+ *  A collection of nuclei at fixed positions in space.
+ * 
+ *  The unit of length is chosen to be the atomic unit (a.u.) bohr.
  */
 class NuclearFramework {
 private:
@@ -47,20 +49,13 @@ public:
     // NAMED CONSTRUCTORS
 
     /**
-     *  Construct a nuclear framework based on the content of a given .xyz-file. In an .xyz-file, the nuclear coordinates are in Angstrom
-     *
-     *  @param xyz_filename     the .xyz-file that contains the nuclear coordinates in Angstrom
-     */
-    static NuclearFramework ReadXYZ(const std::string& xyz_filename);
-
-    /**
      *  @param n            the number of H nuclei
      *  @param spacing      the internuclear spacing in bohr
      *  @param axis         the Cartesian axis on which the H-chain should be placed
      *
      *  @return a H-chain with equal internuclear spacing
      */
-    static NuclearFramework HChain(const size_t n, const double spacing, CartesianDirection axis=CartesianDirection::z);
+    static NuclearFramework HChain(const size_t n, const double spacing, CartesianDirection axis = CartesianDirection::z);
 
     /**
      *  @param n        the number of H2-molecules
@@ -70,7 +65,31 @@ public:
      * 
      *  @return a H2-chain with the specified internuclear and intermolecular distances
      */
-    static NuclearFramework H2Chain(const size_t n, const double a, const double b, CartesianDirection axis=CartesianDirection::z);
+    static NuclearFramework H2Chain(const size_t n, const double a, const double b, CartesianDirection axis = CartesianDirection::z);
+
+
+    /**
+     *  @param n                the number of hydrogens
+     *  @param distance         the distance (in bohr) between neighbouring hydrogen atoms
+     * 
+     *  @return a regular H-ring where neighbouring hydrogens are separated by the given distance
+     */
+    static NuclearFramework HRingFromDistance(const size_t n, const double distance);
+
+    /**
+     *  @param n                the number of hydrogens
+     *  @param radius           the radius (in bohr) of the circumscribed circle
+     * 
+     *  @return a regular H-ring whose hydrogens are on the circle with the given radius
+     */
+    static NuclearFramework HRingFromRadius(const size_t n, const double radius);
+
+    /**
+     *  Construct a nuclear framework based on the content of a given .xyz-file. In an .xyz-file, the nuclear coordinates are in Angstrom
+     *
+     *  @param xyz_filename     the .xyz-file that contains the nuclear coordinates in Angstrom
+     */
+    static NuclearFramework ReadXYZ(const std::string& xyz_filename);
 
 
     // OPERATORS
@@ -84,13 +103,15 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const NuclearFramework& nuclear_framework);
 
 
-
     // PUBLIC METHODS
 
     /**
-     *  @return the sum of all the charges of the nuclei
+     *  @param index1   the index of the first nucleus
+     *  @param index2   the index of the second nucleus
+     *
+     *  @return the distance between the two nuclei at index1 and index2 in bohr
      */
-    size_t totalNucleicCharge() const;
+    double internuclearDistance(const size_t index1, const size_t index2) const;
 
     /**
      *  @return the nuclei in this nuclear framework as a std::vector
@@ -103,12 +124,9 @@ public:
     size_t numberOfNuclei() const { return this->nucleiAsVector().size(); }
 
     /**
-     *  @param index1   the index of the first nucleus
-     *  @param index2   the index of the second nucleus
-     *
-     *  @return the distance between the two nuclei at index1 and index2 in bohr
+     *  @return the sum of all the charges of the nuclei
      */
-    double internuclearDistance(const size_t index1, const size_t index2) const;
+    size_t totalNucleicCharge() const;
 };
 
 

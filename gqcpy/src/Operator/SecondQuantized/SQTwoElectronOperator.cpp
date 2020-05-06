@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
 
 #include <pybind11/eigen.h>
@@ -41,45 +41,44 @@ py::array_t<T> asNumpyArray(const Eigen::Tensor<T, 4>& tensor) {
     const auto shape = tensor.dimensions();
 
     return py::array_t<T>(shape,
-        {shape[0] * shape[1] * shape[2] * sizeof(T), shape[1] * shape[2] * sizeof(T), shape[2] * sizeof(T), sizeof(T)}, // strides
-        tensor.data()  // data pointer
+                          {shape[0] * shape[1] * shape[2] * sizeof(T), shape[1] * shape[2] * sizeof(T), shape[2] * sizeof(T), sizeof(T)},  // strides
+                          tensor.data()                                                                                                    // data pointer
     );
 }
 
 
 void bindSQTwoElectronOperator(py::module& module) {
     py::class_<GQCP::SQTwoElectronOperator<double, 1>>(module, "SQTwoElectronOperator", "A class that represents a real, second-quantized two-electron operator")
-    
-        .def("calculateExpectationValue",
-            [ ] (const GQCP::SQTwoElectronOperator<double, 1>& op, const Eigen::Tensor<double, 4>& d) {  // use an itermediary Eigen Tensor for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Tensor
-                return op.calculateExpectationValue(GQCP::TwoRDM<double>{d});
-            },
-            "Return the expectation value of the scalar two-electron operator given a 2-DM."
-        )
 
-        .def("parameters",
-            [ ] (const GQCP::SQTwoElectronOperator<double, 1>& op) {
+        .def(
+            "calculateExpectationValue",
+            [](const GQCP::SQTwoElectronOperator<double, 1>& op, const Eigen::Tensor<double, 4>& d) {  // use an itermediary Eigen Tensor for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Tensor
+                return op.calculateExpectationValue(GQCP::TwoRDM<double> {d});
+            },
+            "Return the expectation value of the scalar two-electron operator given a 2-DM.")
+
+        .def(
+            "parameters",
+            [](const GQCP::SQTwoElectronOperator<double, 1>& op) {
                 return asNumpyArray(op.parameters().Eigen());
             },
-            "Return the integrals encapsulated by the second-quantized two-electron operator"
-        )
+            "Return the integrals encapsulated by the second-quantized two-electron operator")
 
-        .def("rotate",
-            [ ] (GQCP::SQTwoElectronOperator<double, 1>& sq_two_op, const Eigen::MatrixXd& U) {
-                sq_two_op.rotate(GQCP::TransformationMatrix<double>{U});
+        .def(
+            "rotate",
+            [](GQCP::SQTwoElectronOperator<double, 1>& sq_two_op, const Eigen::MatrixXd& U) {
+                sq_two_op.rotate(GQCP::TransformationMatrix<double> {U});
             },
             "In-place rotate the operator to another basis.",
-            py::arg("U")
-        )
+            py::arg("U"))
 
-        .def("transform",
-            [ ] (GQCP::SQTwoElectronOperator<double, 1>& sq_two_op, const Eigen::MatrixXd& T) {
-                sq_two_op.transform(GQCP::TransformationMatrix<double>{T});
+        .def(
+            "transform",
+            [](GQCP::SQTwoElectronOperator<double, 1>& sq_two_op, const Eigen::MatrixXd& T) {
+                sq_two_op.transform(GQCP::TransformationMatrix<double> {T});
             },
             "In-place transform the operator to another basis.",
-            py::arg("T")
-        )
-    ;
+            py::arg("T"));
 }
 
 

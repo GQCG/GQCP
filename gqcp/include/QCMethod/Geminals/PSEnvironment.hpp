@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
@@ -44,7 +44,7 @@ NonLinearEquationEnvironment<Scalar> AP1roG(const SQHamiltonian<Scalar>& sq_hami
     const auto f_callable = QCModel::AP1roG::callablePSECoordinateFunctions(sq_hamiltonian, N_P);
     const auto J_callable = QCModel::AP1roG::callablePSEJacobian(sq_hamiltonian, N_P);
 
-    return GQCP::NonLinearEquationEnvironment<Scalar>{initial_guess, f_callable, J_callable};
+    return GQCP::NonLinearEquationEnvironment<Scalar>(initial_guess, f_callable, J_callable);
 }
 
 
@@ -59,8 +59,8 @@ NonLinearEquationEnvironment<Scalar> AP1roG(const SQHamiltonian<Scalar>& sq_hami
 template <typename Scalar>
 NonLinearEquationEnvironment<Scalar> AP1roG(const SQHamiltonian<Scalar>& sq_hamiltonian, const size_t N_P) {
 
-    const auto K = sq_hamiltonian.dimension();  // number of spatial orbitals
-    const AP1roGGeminalCoefficients G_initial (N_P, K);  // geminal coefficients set to zero
+    const auto K = sq_hamiltonian.dimension();           // number of spatial orbitals
+    const AP1roGGeminalCoefficients G_initial {N_P, K};  // geminal coefficients set to zero
 
     return GQCP::PSEnvironment::AP1roG<Scalar>(sq_hamiltonian, G_initial);
 }

@@ -2,31 +2,31 @@
  *  A benchmark executable that times the performance of one FCI matrix-vector product in a full spin-resolved ONV basis with 10 orbitals and 2 to 5 electron pairs.
  */
 
-#include <benchmark/benchmark.h>
-
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
+
+#include <benchmark/benchmark.h>
 
 
 static void CustomArguments(benchmark::internal::Benchmark* b) {
     for (int i = 2; i < 6; ++i) {  // need int instead of size_t
-        b->Args({10, i});  // spatial orbitals, electron pairs
+        b->Args({10, i});          // spatial orbitals, electron pairs
     }
 }
 
 
 static void matvec(benchmark::State& state) {
 
-    const auto K = state.range(0);  // number of spatial orbitals
-    const auto N_P = state.range(1);  // number of electron pairs
+    const size_t K = state.range(0);    // number of spatial orbitals
+    const size_t N_P = state.range(1);  // number of electron pairs
 
 
     // Set up a second-quantized Hamiltonian and a full spin-resolved ONV basis
     const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Random(K);
-    GQCP::SpinResolvedONVBasis onv_basis (K, N_P, N_P);
+    GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
 
 
-    GQCP::FCI fci (onv_basis);
+    GQCP::FCI fci {onv_basis};
     const auto diagonal = fci.calculateDiagonal(sq_hamiltonian);
     const auto x = onv_basis.randomExpansion();
 

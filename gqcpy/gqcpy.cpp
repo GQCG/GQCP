@@ -1,20 +1,20 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #include <pybind11/pybind11.h>
 
 namespace py = pybind11;
@@ -29,6 +29,8 @@ namespace gqcpy {
 // Basis - SpinorBasis
 void bindGSpinorBasis(py::module& module);
 void bindRSpinorBasis(py::module& module);
+void bindUSpinorBasis(py::module& module);
+void bindSpin(py::module& module);
 
 
 // Basis
@@ -37,6 +39,7 @@ void bindBasisTransform(py::module& module);
 
 // Mathematical - Algorithm
 void bindAlgorithms(py::module& module);
+void bindFunctionalSteps(py::module& module);
 void bindIterativeAlgorithms(py::module& module);
 
 
@@ -61,6 +64,7 @@ void bindNucleus(py::module& module);
 
 // ONVBasis
 void bindSeniorityZeroONVBasis(py::module& module);
+void bindSpinResolvedONV(py::module& module);
 void bindSpinResolvedONVBasis(py::module& module);
 
 
@@ -79,6 +83,12 @@ void bindSQOneElectronOperators(py::module& module);
 void bindSQTwoElectronOperator(py::module& module);
 
 
+// Processing - Properties
+void bindDOCIElectricalResponseSolver(py::module& module);
+void bindRHFElectricalResponseSolver(py::module& module);
+void bindvAP1roGElectricalResponseSolver(py::module& module);
+
+
 // QCMethod - CI
 void bindCIEnvironments(py::module& module);
 void bindCIFactory(py::module& module);
@@ -94,11 +104,17 @@ void bindQCMethodAP1roG(py::module& module);
 void bindQCMethodvAP1roG(py::module& module);
 
 
-// QCMethod - HF
+// QCMethod - HF - RHF
 void bindDiagonalRHFFockMatrixObjective(py::module& module);
 void bindQCMethodRHF(py::module& module);
 void bindRHFSCFEnvironment(py::module& module);
 void bindRHFSCFSolver(py::module& module);
+
+
+// QCMethod - HF - UHF
+void bindQCMethodUHF(py::module& module);
+void bindUHFSCFEnvironment(py::module& module);
+void bindUHFSCFSolver(py::module& module);
 
 
 // QCMethod
@@ -117,6 +133,7 @@ void bindQCModelvAP1roG(py::module& module);
 
 // QCModel - HF
 void bindQCModelRHF(py::module& module);
+void bindQCModelUHF(py::module& module);
 
 
 // Single includes
@@ -126,15 +143,16 @@ void bindVersion(py::module& module);
 }  // namespace gqcpy
 
 
-
 /**
- *  The actual Python binding into the gqcpy Python module
+ *  The actual Python binding into the gqcpy Python module.
  */
-PYBIND11_MODULE (gqcpy, module) {
+PYBIND11_MODULE(gqcpy, module) {
 
     // Basis - SpinorBasis
     gqcpy::bindGSpinorBasis(module);
     gqcpy::bindRSpinorBasis(module);
+    gqcpy::bindUSpinorBasis(module);
+    gqcpy::bindSpin(module);
 
 
     // Basis
@@ -143,6 +161,7 @@ PYBIND11_MODULE (gqcpy, module) {
 
     // Mathematical - Algorithm
     gqcpy::bindAlgorithms(module);
+    gqcpy::bindFunctionalSteps(module);
     gqcpy::bindIterativeAlgorithms(module);
 
 
@@ -167,6 +186,7 @@ PYBIND11_MODULE (gqcpy, module) {
 
     // ONVBasis
     gqcpy::bindSeniorityZeroONVBasis(module);
+    gqcpy::bindSpinResolvedONV(module);
     gqcpy::bindSpinResolvedONVBasis(module);
 
 
@@ -185,6 +205,12 @@ PYBIND11_MODULE (gqcpy, module) {
     gqcpy::bindSQTwoElectronOperator(module);
 
 
+    // Processing - Properties
+    // gqcpy::bindDOCIElectricalResponseSolver(module);
+    gqcpy::bindRHFElectricalResponseSolver(module);
+    gqcpy::bindvAP1roGElectricalResponseSolver(module);
+
+
     // QCMethod - CI
     gqcpy::bindCIEnvironments(module);
     gqcpy::bindCIFactory(module);
@@ -200,11 +226,17 @@ PYBIND11_MODULE (gqcpy, module) {
     gqcpy::bindQCMethodvAP1roG(module);
 
 
-    // QCMethod - HF
+    // QCMethod - HF - RHF
     gqcpy::bindDiagonalRHFFockMatrixObjective(module);
     gqcpy::bindQCMethodRHF(module);
     gqcpy::bindRHFSCFEnvironment(module);
     gqcpy::bindRHFSCFSolver(module);
+
+
+    // QCMethod - HF - UHF
+    gqcpy::bindQCMethodUHF(module);
+    gqcpy::bindUHFSCFEnvironment(module);
+    gqcpy::bindUHFSCFSolver(module);
 
 
     // QCMethod
@@ -223,6 +255,7 @@ PYBIND11_MODULE (gqcpy, module) {
 
     // QCModel - HF
     gqcpy::bindQCModelRHF(module);
+    gqcpy::bindQCModelUHF(module);
 
 
     // Single includes

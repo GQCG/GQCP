@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #define BOOST_TEST_MODULE "Nucleus"
 
 #include <boost/test/unit_test.hpp>
@@ -22,13 +22,13 @@
 #include "Molecule/Nucleus.hpp"
 
 
-BOOST_AUTO_TEST_CASE ( Nucleus_constructor ) {
+BOOST_AUTO_TEST_CASE(Nucleus_constructor) {
 
     GQCP::Nucleus nucleus {1, 0.0, 0.1, 0.2};
 }
 
 
-BOOST_AUTO_TEST_CASE ( Nucleus_sortComparer ) {
+BOOST_AUTO_TEST_CASE(Nucleus_sortComparer) {
 
     GQCP::Nucleus nucleus1 {1, 0.0, 0.1, 0.2};
     GQCP::Nucleus nucleus2 {2, 0.0, 0.1, 0.2};
@@ -49,7 +49,7 @@ BOOST_AUTO_TEST_CASE ( Nucleus_sortComparer ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( Nucleus_equalityComparer ) {
+BOOST_AUTO_TEST_CASE(Nucleus_equalityComparer) {
 
     GQCP::Nucleus nucleus1 {1, 0.0, 0.1, 0.2};
     GQCP::Nucleus nucleus2 {1, 0.0, 0.1, 0.2};
@@ -73,7 +73,7 @@ BOOST_AUTO_TEST_CASE ( Nucleus_equalityComparer ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( Nucleus_operator_ostream ) {
+BOOST_AUTO_TEST_CASE(Nucleus_operator_ostream) {
 
     GQCP::Nucleus nucleus1 {1, 0.0, 0.1, 0.2};
     GQCP::Nucleus nucleus2 {2, 0.1, 0.2, 0.3};
@@ -84,7 +84,7 @@ BOOST_AUTO_TEST_CASE ( Nucleus_operator_ostream ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( calculateDistance ) {
+BOOST_AUTO_TEST_CASE(calculateDistance) {
 
     // Create some nuclei
     GQCP::Nucleus nucleus1 {1, 0, 3, 0};

@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #define BOOST_TEST_MODULE "constrained_RHF"
 
 #include <boost/test/unit_test.hpp>
@@ -22,18 +22,18 @@
 #include "Basis/transform.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Processing/Properties/expectation_values.hpp"
-#include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
-#include "QCMethod/HF/RHF.hpp"
-#include "QCMethod/HF/RHFSCFSolver.hpp"
+#include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
+#include "QCMethod/HF/RHF/RHF.hpp"
+#include "QCMethod/HF/RHF/RHFSCFSolver.hpp"
 
 #include <random>
 
 
-BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
+BOOST_AUTO_TEST_CASE(constrained_CO_test) {
 
     // Create a Molecule and the corresponding HamiltonianParameters
     auto CO = GQCP::Molecule::ReadXYZ("data/CO_mulliken.xyz");
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (CO, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {CO, "STO-3G"};
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, CO);  // in an AO basis
 
     size_t K = sq_hamiltonian.dimension();
@@ -47,6 +47,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
     // DOI 10.1007/s00214-012-1227-6
     Eigen::Matrix<double, 21, 3> CO_data;
     //          lambda  charge  energy
+    // clang-format off
     CO_data <<  -1.0,  1.73, -110.530475,
                 -0.9,  1.62, -110.634766,
                 -0.8,  1.50, -110.737606,
@@ -68,9 +69,10 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
                  0.8, -1.38, -110.591599,
                  0.9, -1.57, -110.425574,
                  1.0, -1.77, -110.242423;
+    // clang-format on
 
     // Pick a set of AO's (GTOs of the carbon atom)
-    std::vector<size_t> gto_list = {0,1,2,3,4};
+    std::vector<size_t> gto_list {0, 1, 2, 3, 4};
 
     // Iterate over multipliers
     size_t index = 0;
@@ -85,7 +87,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
         // Create a DIIS RHF SCF solver and solve the SCF equations
         auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(CO.numberOfElectrons(), constrained_sq_hamiltonian, spinor_basis.overlap().parameters());
         auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
-        const GQCP::DiagonalRHFFockMatrixObjective<double> objective (constrained_sq_hamiltonian);
+        const GQCP::DiagonalRHFFockMatrixObjective<double> objective {constrained_sq_hamiltonian};
         const auto rhf_qc_structure = GQCP::QCMethod::RHF<double>().optimize(objective, diis_rhf_scf_solver, rhf_environment);
         const auto rhf_parameters = rhf_qc_structure.groundStateParameters();
 
@@ -114,14 +116,14 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
+BOOST_AUTO_TEST_CASE(constrained_CO_test_random_transformation) {
     // Repeat the same test but perform a random transformation
     // The Hartree-Fock procedure should be invariant under random transformations
     // This tests if our Mulliken operator remains correct if we transform before the procedure.
 
     // Create a Molecule and the corresponding HamiltonianParameters
     auto CO = GQCP::Molecule::ReadXYZ("data/CO_mulliken.xyz");
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (CO, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {CO, "STO-3G"};
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, CO);  // in an AO basis
 
     size_t K = sq_hamiltonian.dimension();
@@ -130,7 +132,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
     GQCP::TransformationMatrix<double> T = GQCP::TransformationMatrix<double>::Random(K, K);
     // set diagonal elements to 1
     for (int i = 0; i < K; i++) {
-        T(i,i) = 1;
+        T(i, i) = 1;
     }
 
     basisTransform(spinor_basis, sq_hamiltonian, T);
@@ -143,6 +145,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
     // DOI 10.1007/s00214-012-1227-6
     Eigen::Matrix<double, 21, 3> CO_data;
     //          lambda  charge  energy
+    // clang-format off
     CO_data <<  -1.0,  1.73, -110.530475,
                 -0.9,  1.62, -110.634766,
                 -0.8,  1.50, -110.737606,
@@ -164,9 +167,10 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
                  0.8, -1.38, -110.591599,
                  0.9, -1.57, -110.425574,
                  1.0, -1.77, -110.242423;
+    // clang-format on
 
     // Pick a set of AO's (GTOs of the carbon atom)
-    std::vector<size_t> gto_list = {0,1,2,3,4};
+    std::vector<size_t> gto_list = {0, 1, 2, 3, 4};
 
     // Iterate over multipliers
     size_t index = 0;
@@ -181,7 +185,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
         // Create a DIIS RHF SCF solver and solve the SCF equations
         auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(CO.numberOfElectrons(), sq_hamiltonian_constrained, spinor_basis.overlap().parameters());
         auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
-        const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian_constrained);
+        const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian_constrained};
         const auto rhf_qc_structure = GQCP::QCMethod::RHF<double>().optimize(objective, diis_rhf_scf_solver, rhf_environment);
         const auto rhf_parameters = rhf_qc_structure.groundStateParameters();
 

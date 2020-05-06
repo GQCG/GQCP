@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
@@ -22,9 +22,9 @@
 #include "Utilities/type_traits.hpp"
 #include "Utilities/typedefs.hpp"
 
-#include <Eigen/Dense>
-
 #include <boost/algorithm/string.hpp>
+
+#include <Eigen/Dense>
 
 #include <fstream>
 #include <iostream>
@@ -45,7 +45,7 @@ constexpr auto Dynamic = Eigen::Dynamic;
  *  We have decided to inherit from Eigen::Matrix, because we will use different hierarchies: see also: https://eigen.tuxfamily.org/dox-devel/TopicCustomizing_InheritingMatrix.html
  */
 template <typename _Scalar = double, int _Rows = Dynamic, int _Cols = Dynamic>
-class Matrix : public Eigen::Matrix<_Scalar, _Rows, _Cols> {
+class Matrix: public Eigen::Matrix<_Scalar, _Rows, _Cols> {
 public:
     using Scalar = _Scalar;
     static constexpr auto Rows = _Rows;
@@ -60,7 +60,6 @@ private:
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -84,7 +83,7 @@ public:
         // Initialize a zero vector
         Self result = Self::Zero(rows);
 
-        std::ifstream file (filename);
+        std::ifstream file {filename};
         size_t index = 0;
         if (file.is_open()) {
             std::string line;
@@ -126,7 +125,7 @@ public:
 
         Self result = Self::Zero(rows, cols);
 
-        std::ifstream file (filename);
+        std::ifstream file {filename};
         if (file.is_open()) {
             std::string line;
 
@@ -144,7 +143,7 @@ public:
                 auto j = std::stoi(splitted_line[1]);
                 auto value = std::stod(splitted_line[2]);
 
-                result(i,j) = value;
+                result(i, j) = value;
             }
 
             file.close();
@@ -195,7 +194,6 @@ public:
     }
 
 
-
     /*
      *  OPERATORS
      */
@@ -207,7 +205,7 @@ public:
      */
     template <typename Z = Scalar>
     enable_if_t<Self::is_vector && (Rows == 3), Z> operator()(CartesianDirection direction) const {
-        
+
         const auto& index = static_cast<size_t>(direction);  // 0, 1, or 2
         return this->operator()(index);
     }
@@ -219,13 +217,12 @@ public:
      */
     template <typename Z = Scalar&>
     enable_if_t<Self::is_vector && (Rows == 3), Z> operator()(CartesianDirection direction) {
-        
+
         const auto& index = static_cast<size_t>(direction);  // 0, 1, or 2
         return this->operator()(index);
     }
 
     using Base::operator();  // bring over the other operator() overloads
-
 
 
     /*
@@ -250,56 +247,20 @@ public:
 
 
     /**
-     *  Print the contents of a this to an output filestream
-     *
-     *  @param output_stream        the stream used for outputting
-     */
-    template <typename Z = void>  // enable_if must have Z inside
-    enable_if_t<Self::is_matrix, Z> print(std::ostream& output_stream = std::cout) const {
-
-        for (size_t i = 0; i < this->rows(); i++) {
-            for (size_t j = 0; j < this->cols(); j++) {
-                output_stream << i << ' ' << j << "  " << this->operator()(i,j) << std::endl;
-            }
-        }
-    }
-
-
-    /**
      *  @param i    row index (starting from 0)
      *  @param j    column index (starting from 0)
      *
      *  @return the i-j minor (i.e. delete the i-th row and j-th column)
      */
-    template <typename Z = Self>  // enable_if must have Z inside
-    enable_if_t<Self::is_matrix, Z> matrixMinor(size_t i, size_t j) const {  // wrap minor inside braces as a fix for the GCC macro 'minor'
+    template <typename Z = Self>
+    enable_if_t<Self::is_matrix, Z> matrixMinor(size_t i, size_t j) const {
 
-        // Delete the i-th row
-        Self A_i = Self::Zero(this->rows() - 1, this->cols());
+        Self this_copy = *this;
 
-        for (size_t i2 = 0; i2 < this->rows(); i2++) {
-            if (i2 < i) {
-                A_i.row(i2) = this->row(i2);
-            } else if (i2 == i) {
-                continue;
-            } else if (i2 > i) {
-                A_i.row(i2-1) = this->row(i2);
-            }
-        }
+        this_copy.removeRow(i);
+        this_copy.removeColumn(j);
 
-        // Delete the j-th column
-        Self A_ij = Self::Zero(this->rows() - 1, this->cols() - 1);
-        for (size_t j2 = 0; j2 < this->cols(); j2++) {
-            if (j2 < j) {
-                A_ij.col(j2) = A_i.col(j2);
-            } else if (j2 == j) {
-                continue;
-            } else if (j2 > j) {
-                A_ij.col(j2-1) = A_i.col(j2);
-            }
-        }
-
-        return A_ij;
+        return this_copy;
     }
 
 
@@ -317,22 +278,108 @@ public:
     enable_if_t<Self::is_matrix, Z> pairWiseReduce(const size_t start_i = 0, size_t start_j = 0) const {
 
         // Initialize the resulting vector
-        Matrix<Scalar, Rows, 1> v ( (this->rows()-start_i)*(this->cols()-start_j) );
+        Matrix<Scalar, Rows, 1> v((this->rows() - start_i) * (this->cols() - start_j));
 
         // Calculate the compound indices and bring the elements from the matrix over into the vector
         size_t vector_index = 0;
-        for (size_t j = start_j; j < this->cols(); j++) {  // "column major" ordering for row_index<-i,j so we do j first, then i
+        for (size_t j = start_j; j < this->cols(); j++) {      // "column major" ordering for row_index<-i,j so we do j first, then i
             for (size_t i = start_i; i < this->rows(); i++) {  // in column major indices, columns are contiguous, so the first of two indices changes more rapidly
 
-                v(vector_index) = this->operator()(i,j);
+                v(vector_index) = this->operator()(i, j);
                 vector_index++;
             }
         }
 
         return v;
     }
-};
 
+
+    /**
+     *  Print the contents of a this to an output filestream
+     *
+     *  @param output_stream        the stream used for outputting
+     */
+    template <typename Z = void>  // enable_if must have Z inside
+    enable_if_t<Self::is_matrix, Z> print(std::ostream& output_stream = std::cout) const {
+
+        for (size_t i = 0; i < this->rows(); i++) {
+            for (size_t j = 0; j < this->cols(); j++) {
+                output_stream << i << ' ' << j << "  " << this->operator()(i, j) << std::endl;
+            }
+        }
+    }
+
+    /**
+     *  Remove the i-th column of this matrix.
+     * 
+     *  @param i            the index of the column that should be removed
+     * 
+     *  @note Implementation adapted from (https://stackoverflow.com/a/46303314), while waiting for Eigen's 3.4 release.
+     */
+    void removeColumn(const size_t i) {
+
+        const size_t rows = this->rows();         // the number of rows of the resulting matrix
+        const size_t columns = this->cols() - 1;  // the number of columns of the resulting matrix
+
+        // Shift the columns to the left.
+        if (i < columns) {
+            this->block(0, i, rows, columns - i) = this->rightCols(columns - i);
+        }
+
+        this->conservativeResize(rows, columns);
+    }
+
+
+    /**
+     *  Remove the columns at the given indices.
+     * 
+     *  @param column_indices               the indices of the columns that should be removed, in ascending order
+     */
+    void removeColumns(const std::vector<size_t>& column_indices) {
+
+        size_t removed_counter = 0;
+        for (const auto& i : column_indices) {
+            this->removeColumn(i - removed_counter);  // take into account that the given indices are with respect to the old dimensions of the matrix
+            removed_counter++;
+        }
+    }
+
+
+    /**
+     *  Remove the i-th row of this matrix.
+     * 
+     *  @param i            the index of the row that should be removed
+     * 
+     *  @note Implementation adapted from (https://stackoverflow.com/a/46303314), while waiting for Eigen's 3.4 release.
+     */
+    void removeRow(const size_t i) {
+
+        const size_t rows = this->rows() - 1;  // the number of rows of the resulting matrix
+        const size_t columns = this->cols();   // the number of columns of the resulting matrix
+
+        // Shift the rows up.
+        if (i < rows) {
+            this->block(i, 0, rows - i, columns) = this->bottomRows(rows - i);
+        }
+
+        this->conservativeResize(rows, columns);
+    }
+
+
+    /**
+     *  Remove the rows at the given indices.
+     * 
+     *  @param row_indices                  the indices of the columns that should be removed, in ascending order
+     */
+    void removeRows(const std::vector<size_t>& row_indices) {
+
+        size_t removed_counter = 0;
+        for (const auto& i : row_indices) {
+            this->removeRow(i - removed_counter);  // take into account that the given indices are with respect to the old dimensions of the matrix
+            removed_counter++;
+        }
+    }
+};
 
 
 /*
@@ -342,7 +389,7 @@ public:
 template <typename Scalar>
 using MatrixX = Matrix<Scalar, Dynamic, Dynamic>;
 
-template<typename Scalar, int Rows>
+template <typename Scalar, int Rows>
 using Vector = Matrix<Scalar, Rows, 1>;
 
 template <typename Scalar>
@@ -351,10 +398,10 @@ using VectorX = Vector<Scalar, Dynamic>;
 using VectorXs = VectorX<size_t>;
 
 template <typename Scalar>
-using VectorFunction = std::function<VectorX<Scalar> (const VectorX<Scalar>&)>;
+using VectorFunction = std::function<VectorX<Scalar>(const VectorX<Scalar>&)>;
 
 template <typename Scalar>
-using MatrixFunction = std::function<MatrixX<Scalar> (const VectorX<Scalar>&)>;
+using MatrixFunction = std::function<MatrixX<Scalar>(const VectorX<Scalar>&)>;
 
 
 }  // namespace GQCP

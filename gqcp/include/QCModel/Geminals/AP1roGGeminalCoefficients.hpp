@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
@@ -30,10 +30,10 @@ namespace GQCP {
 /**
  *  Geminal coefficients for an AP1roG wave function.
  */
-class AP1roGGeminalCoefficients : public GeminalCoefficientsInterface {
+class AP1roGGeminalCoefficients: public GeminalCoefficientsInterface {
 private:
-    size_t K;  // the number of spatial orbitals corresponding to these geminal coefficients
-    size_t N_P;  // the number of electron pairs (i.e. the number of geminals) corresponding to these geminal coefficients
+    size_t K;               // the number of spatial orbitals corresponding to these geminal coefficients
+    size_t N_P;             // the number of electron pairs (i.e. the number of geminals) corresponding to these geminal coefficients
     BlockMatrix<double> G;  // the AP1roG geminal coefficients (not including the identity matrix on the left), as a block matrix, so it implements easy operator(i,a) calls
 
 
@@ -112,17 +112,7 @@ public:
     static size_t numberOfGeminalCoefficients(const size_t N_P, const size_t K);
 
 
-    // PUBLIC METHODS
-
-    /**
-     *  @return the number of electron pairs that these geminal coefficients describe
-     */
-    size_t numberOfElectronPairs() const { return this->N_P; }
-
-    /**
-     *  @return the number of spatial orbitals each geminal is expanded in
-     */
-    size_t numberOfSpatialOrbitals() const { return this->K; }
+    // GETTERS
 
     /**
      *  @return the number of electron pairs that these geminal coefficients describe
@@ -134,6 +124,9 @@ public:
      */
     size_t get_K() const { return this->numberOfSpatialOrbitals(); }
 
+
+    // PUBLIC METHODS
+
     /**
      *  @return the total geminal coefficient matrix, including the identity matrix block
      */
@@ -143,6 +136,21 @@ public:
      *  @return the geminal coefficients as a column-major vector, excluding the identity block
      */
     VectorX<double> asVector() const;
+
+    /**
+     *  @return the number of geminal coefficients that this instance encapsulates.
+     */
+    size_t count() const { return AP1roGGeminalCoefficients::numberOfGeminalCoefficients(this->N_P, this->K); }
+
+    /**
+     *  @return the number of electron pairs that these geminal coefficients describe
+     */
+    size_t numberOfElectronPairs() const { return this->N_P; }
+
+    /**
+     *  @return the number of spatial orbitals each geminal is expanded in
+     */
+    size_t numberOfSpatialOrbitals() const { return this->K; }
 
     /**
      *  @param onv      the doubly-occupied (spin-resolved) ONV that is being projected on

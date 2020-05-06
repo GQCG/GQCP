@@ -2,16 +2,16 @@
  *  A benchmark executable for the DOCI matrix-vector product. The system of interest has K=28 spatial orbitals and N_P=5-8 electron pairs.
  */
 
-#include <benchmark/benchmark.h>
-
 #include "ONVBasis/SeniorityZeroONVBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
 
+#include <benchmark/benchmark.h>
+
 
 static void CustomArguments(benchmark::internal::Benchmark* b) {
     for (int i = 5; i < 9; ++i) {  // need int instead of size_t
-        b->Args({28, i});  // spatial orbitals, electron pairs
+        b->Args({28, i});          // spatial orbitals, electron pairs
     }
 }
 
@@ -23,7 +23,7 @@ static void matvec(benchmark::State& state) {
     const size_t N_P = state.range(1);  // number of electron pairs
 
     const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Random(K);  // not necessarily in a non-orthonormal basis, but this doesn't matter here
-    const GQCP::SeniorityZeroONVBasis onv_basis (K, N_P);
+    const GQCP::SeniorityZeroONVBasis onv_basis {K, N_P};
 
     GQCP::DOCI doci_builder {onv_basis};  // the DOCI HamiltonianBuilder
 

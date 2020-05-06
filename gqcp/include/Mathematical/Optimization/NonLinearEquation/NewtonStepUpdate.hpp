@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
@@ -40,7 +40,7 @@ namespace NonLinearEquation {
  *  @tparam _LinearSolver       the type of the solver that performs the Newton step, this defaults to the type of the ColPivHouseholderQR linear equations solver
  */
 template <typename _Scalar, typename _Environment, typename LinearSolver = decltype(LinearEquationSolver<_Scalar>::ColPivHouseholderQR())>
-class NewtonStepUpdate :
+class NewtonStepUpdate:
     public Step<_Environment> {
 
 public:
@@ -55,7 +55,6 @@ private:
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -64,8 +63,7 @@ public:
      *  @param linear_solver            the linear equation solver that solves for the Newton step, i.e. it finds 'x' in [Jx = - f]. This defaults to the ColPivHouseholderQR linear equations solver
      */
     NewtonStepUpdate(const LinearSolver& linear_solver = LinearEquationSolver<Scalar>::ColPivHouseholderQR()) :
-        linear_solver (linear_solver)
-    {}
+        linear_solver {linear_solver} {}
 
 
     /*

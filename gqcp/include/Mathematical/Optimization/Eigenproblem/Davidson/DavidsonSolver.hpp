@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
@@ -49,16 +49,18 @@ IterativeAlgorithm<EigenproblemEnvironment> Davidson(const size_t number_of_requ
 
     // Create the iteration cycle that effectively 'defines' our Davidson solver
     StepCollection<EigenproblemEnvironment> davidson_cycle {};
-    davidson_cycle.add(MatrixVectorProductCalculation())
-                  .add(SubspaceMatrixCalculation())
-                  .add(SubspaceMatrixDiagonalization(number_of_requested_eigenpairs))
-                  .add(GuessVectorUpdate())
-                  .add(ResidualVectorCalculation(number_of_requested_eigenpairs))
-                  .add(CorrectionVectorCalculation(number_of_requested_eigenpairs, correction_threshold))  // this solves the residual equations
-                  .add(SubspaceUpdate(maximum_subspace_dimension, inclusion_threshold));
+
+    davidson_cycle
+        .add(MatrixVectorProductCalculation())
+        .add(SubspaceMatrixCalculation())
+        .add(SubspaceMatrixDiagonalization(number_of_requested_eigenpairs))
+        .add(GuessVectorUpdate())
+        .add(ResidualVectorCalculation(number_of_requested_eigenpairs))
+        .add(CorrectionVectorCalculation(number_of_requested_eigenpairs, correction_threshold))  // this solves the residual equations
+        .add(SubspaceUpdate(maximum_subspace_dimension, inclusion_threshold));
 
     // Create a convergence criterion on the norm of the residual vectors
-    const ResidualVectorConvergence<EigenproblemEnvironment> convergence_criterion (convergence_threshold);
+    const ResidualVectorConvergence<EigenproblemEnvironment> convergence_criterion {convergence_threshold};
 
     return IterativeAlgorithm<EigenproblemEnvironment>(davidson_cycle, convergence_criterion, maximum_number_of_iterations);
 }

@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #define BOOST_TEST_MODULE "FCI"
 
 #include <boost/test/unit_test.hpp>
@@ -35,7 +35,7 @@
  *  Check if we can reproduce the DOCI energy for BeH+, using a dense solver. The dimension of the seniority zero sub Fock space is 120.
  *  The reference values are obtained from Caitlin Lanssens.
  */
-BOOST_AUTO_TEST_CASE ( DOCI_BeH_cation_dense ) {
+BOOST_AUTO_TEST_CASE(DOCI_BeH_cation_dense) {
 
     const double reference_energy = -14.8782216937;
 
@@ -45,7 +45,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_BeH_cation_dense ) {
 
     // The species contains 4 electrons, so 2 electron pairs.
     // Construct an appropriate seniority-zero ONV basis.
-    const GQCP::SeniorityZeroONVBasis onv_basis (K, 2);
+    const GQCP::SeniorityZeroONVBasis onv_basis {K, 2};
 
 
     // Create a dense solver and corresponding environment and put them together in the QCMethod.
@@ -65,7 +65,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_BeH_cation_dense ) {
  *  Check if we can reproduce the DOCI energy for LiH, using a dense solver. The dimension of the seniority zero sub Fock space is 120.
  *  The reference values are obtained from Caitlin Lanssens.
  */
-BOOST_AUTO_TEST_CASE ( DOCI_LiH_dense ) {
+BOOST_AUTO_TEST_CASE(DOCI_LiH_dense) {
 
     const double reference_energy = -8.0029560313;
 
@@ -75,7 +75,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_LiH_dense ) {
 
     // The species contains 4 electrons, so 2 electron pairs.
     // Construct an appropriate seniority-zero ONV basis.
-    const GQCP::SeniorityZeroONVBasis onv_basis (K, 2);
+    const GQCP::SeniorityZeroONVBasis onv_basis {K, 2};
 
 
     // Create a dense solver and corresponding environment and put them together in the QCMethod.
@@ -95,7 +95,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_LiH_dense ) {
  *  Check if we can reproduce the DOCI energy for Li2, using a dense solver. The dimension of the seniority zero sub Fock space is 816.
  *  The reference values are obtained from Caitlin Lanssens.
  */
-BOOST_AUTO_TEST_CASE ( DOCI_Li2_dense ) {
+BOOST_AUTO_TEST_CASE(DOCI_Li2_dense) {
 
     const double reference_energy = -15.1153976060;
 
@@ -105,7 +105,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_Li2_dense ) {
 
     // The species contains 6 electrons, so 3 electron pairs.
     // Construct an appropriate seniority-zero ONV basis.
-    const GQCP::SeniorityZeroONVBasis onv_basis (K, 3);
+    const GQCP::SeniorityZeroONVBasis onv_basis {K, 3};
 
 
     // Create a dense solver and corresponding environment and put them together in the QCMethod.
@@ -130,7 +130,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_Li2_dense ) {
  *  Check if we can reproduce the DOCI energy for H2O//STO-3G, using a Davidson solver. The dimension of the seniority zero sub Fock space is 21.
  *  The reference values are obtained from Klaas Gunst.
  */
-BOOST_AUTO_TEST_CASE ( DOCI_h2o_sto3g_Davidson ) {
+BOOST_AUTO_TEST_CASE(DOCI_h2o_sto3g_Davidson) {
 
     const double reference_energy = -74.9671366903;
 
@@ -140,7 +140,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2o_sto3g_Davidson ) {
 
     // The species contains 10 electrons, so 5 electron pairs.
     // Construct an appropriate seniority-zero ONV basis.
-    const GQCP::SeniorityZeroONVBasis onv_basis (K, 5);
+    const GQCP::SeniorityZeroONVBasis onv_basis {K, 5};
 
 
     // Create a Davidson solver and corresponding environment and put them together in the QCMethod.
@@ -161,7 +161,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2o_sto3g_Davidson ) {
  *  Check if we can reproduce the DOCI energy for BeH+//6-31G, using a Davidson solver. The dimension of the seniority zero sub Fock space is 120.
  *  The reference values are obtained from Klaas Gunst.
  */
-BOOST_AUTO_TEST_CASE ( DOCI_BeH_cation_Davidson ) {
+BOOST_AUTO_TEST_CASE(DOCI_BeH_cation_Davidson) {
 
     const double reference_energy = -14.8782216937;
 
@@ -171,7 +171,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_BeH_cation_Davidson ) {
 
     // The species contains 4 electrons, so 2 electron pairs.
     // Construct an appropriate seniority-zero ONV basis.
-    const GQCP::SeniorityZeroONVBasis onv_basis (K, 2);
+    const GQCP::SeniorityZeroONVBasis onv_basis {K, 2};
 
 
     // Create a Davidson solver and corresponding environment and put them together in the QCMethod.
@@ -192,7 +192,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_BeH_cation_Davidson ) {
  *  Check if we can reproduce the DOCI energy for N2//STO-3G, using a Davidson solver. The dimension of the seniority zero sub Fock space is 120.
  *  The reference values are obtained from Klaas Gunst.
  */
-BOOST_AUTO_TEST_CASE ( DOCI_N2_STO_3G_Davidson ) {
+BOOST_AUTO_TEST_CASE(DOCI_N2_STO_3G_Davidson) {
 
     const double reference_energy = -107.5813316864;
 
@@ -202,7 +202,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_N2_STO_3G_Davidson ) {
 
     // The species contains 14 electrons, so 7 electron pairs.
     // Construct an appropriate seniority-zero ONV basis.
-    const GQCP::SeniorityZeroONVBasis onv_basis (K, 7);
+    const GQCP::SeniorityZeroONVBasis onv_basis {K, 7};
 
 
     // Create a Davidson solver and corresponding environment and put them together in the QCMethod.
@@ -223,7 +223,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_N2_STO_3G_Davidson ) {
  *  Check if we can reproduce the DOCI energy for LiH//6-31G, using a Davidson solver. The dimension of the seniority zero sub Fock space is 120.
  *  The reference values are obtained from Klaas Gunst.
  */
-BOOST_AUTO_TEST_CASE ( DOCI_LiH_6_31G_Davidson ) {
+BOOST_AUTO_TEST_CASE(DOCI_LiH_6_31G_Davidson) {
 
     const double reference_energy = -8.0029560313;
 
@@ -233,7 +233,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_LiH_6_31G_Davidson ) {
 
     // The species contains 4 electrons, so 2 electron pairs.
     // Construct an appropriate seniority-zero ONV basis.
-    const GQCP::SeniorityZeroONVBasis onv_basis (K, 2);
+    const GQCP::SeniorityZeroONVBasis onv_basis {K, 2};
 
 
     // Create a Davidson solver and corresponding environment and put them together in the QCMethod.
@@ -254,7 +254,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_LiH_6_31G_Davidson ) {
  *  Check if we can reproduce the DOCI energy for Li2//3-21G, using a Davidson solver. The dimension of the seniority zero sub Fock space is 816.
  *  The reference values are obtained from Klaas Gunst.
  */
-BOOST_AUTO_TEST_CASE ( DOCI_Li2_3_21G_Davidson ) {
+BOOST_AUTO_TEST_CASE(DOCI_Li2_3_21G_Davidson) {
 
     const double reference_energy = -15.1153976060;
 
@@ -264,7 +264,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_Li2_3_21G_Davidson ) {
 
     // The species contains 6 electrons, so 3 electron pairs.
     // Construct an appropriate seniority-zero ONV basis.
-    const GQCP::SeniorityZeroONVBasis onv_basis (K, 3);
+    const GQCP::SeniorityZeroONVBasis onv_basis {K, 3};
 
 
     // Create a Davidson solver and corresponding environment and put them together in the QCMethod.
@@ -285,7 +285,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_Li2_3_21G_Davidson ) {
  *  Check if we can reproduce the DOCI energy for Li2//3-21G, using a Davidson solver. The dimension of the seniority zero sub Fock space is 1287.
  *  The reference values are obtained from Klaas Gunst.
  */
-BOOST_AUTO_TEST_CASE ( DOCI_H2O_6_31G_Davidson ) {
+BOOST_AUTO_TEST_CASE(DOCI_H2O_6_31G_Davidson) {
 
     const double reference_energy = -76.0125161011;
 
@@ -295,7 +295,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_H2O_6_31G_Davidson ) {
 
     // The species contains 10 electrons, so 5 electron pairs.
     // Construct an appropriate seniority-zero ONV basis.
-    const GQCP::SeniorityZeroONVBasis onv_basis (K, 5);
+    const GQCP::SeniorityZeroONVBasis onv_basis {K, 5};
 
 
     // Create a Davidson solver and corresponding environment and put them together in the QCMethod.

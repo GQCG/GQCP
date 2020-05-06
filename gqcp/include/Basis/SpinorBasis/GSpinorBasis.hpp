@@ -1,28 +1,29 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
 #include "Basis/Integrals/IntegralCalculator.hpp"
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
 #include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
+#include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
-#include "Basis/SpinorBasis/SpinComponent.hpp"
+#include "Basis/SpinorBasis/Spin.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Molecule/NuclearFramework.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
@@ -41,7 +42,7 @@ namespace GQCP {
  *  @tparam _Shell                  the type of shell the underlying scalar bases contain
  */
 template <typename _ExpansionScalar, typename _Shell>
-class GSpinorBasis : public SimpleSpinorBasis<_ExpansionScalar, GSpinorBasis<_ExpansionScalar, _Shell>> {
+class GSpinorBasis: public SimpleSpinorBasis<_ExpansionScalar, GSpinorBasis<_ExpansionScalar, _Shell>> {
 public:
     using ExpansionScalar = _ExpansionScalar;
     using Shell = _Shell;
@@ -54,7 +55,6 @@ private:
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -66,8 +66,7 @@ public:
      */
     GSpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis, const TransformationMatrix<ExpansionScalar>& C) :
         Base(C),
-        scalar_bases ({alpha_scalar_basis, beta_scalar_basis})
-    {
+        scalar_bases {alpha_scalar_basis, beta_scalar_basis} {
         // Check if the dimensions of the given objects are compatible
         const auto K_alpha = alpha_scalar_basis.numberOfBasisFunctions();
         const auto K_beta = beta_scalar_basis.numberOfBasisFunctions();
@@ -85,16 +84,16 @@ public:
      *  @param C                    the coefficient matrix, i.e. the matrix of the expansion coefficients of the spinors in terms of the underlying scalar basis
      */
     GSpinorBasis(const ScalarBasis<Shell>& scalar_basis, const TransformationMatrix<ExpansionScalar>& C) :
-        GSpinorBasis(scalar_basis, scalar_basis, C)
-    {}
+        GSpinorBasis(scalar_basis, scalar_basis, C) {}
 
 
     /**
      *  Construct a generalized spinor basis with two different underlying scalar basis, and a coefficient matrix being the identity
      */
-    GSpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis) : 
-        GSpinorBasis(alpha_scalar_basis, beta_scalar_basis, TransformationMatrix<ExpansionScalar>::Identity(alpha_scalar_basis.numberOfBasisFunctions() + beta_scalar_basis.numberOfBasisFunctions(), alpha_scalar_basis.numberOfBasisFunctions() + beta_scalar_basis.numberOfBasisFunctions()))
-    {}
+    GSpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis) :
+        GSpinorBasis(alpha_scalar_basis, beta_scalar_basis,
+                     TransformationMatrix<ExpansionScalar>::Identity(alpha_scalar_basis.numberOfBasisFunctions() + beta_scalar_basis.numberOfBasisFunctions(),
+                                                                     alpha_scalar_basis.numberOfBasisFunctions() + beta_scalar_basis.numberOfBasisFunctions())) {}
 
 
     /**
@@ -103,8 +102,7 @@ public:
      *  @param scalar_basis         the scalar basis in which both the alpha and beta components are expanded
      */
     GSpinorBasis(const ScalarBasis<Shell>& scalar_basis) :
-        GSpinorBasis(scalar_basis, scalar_basis)
-    {}
+        GSpinorBasis(scalar_basis, scalar_basis) {}
 
 
     /**
@@ -117,8 +115,7 @@ public:
      *  @note the resulting generalized spinor basis is (most likely) non-orthogonal
      */
     GSpinorBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name) :
-        GSpinorBasis(ScalarBasis<Shell>(nuclear_framework, basisset_name))
-    {}
+        GSpinorBasis(ScalarBasis<Shell>(nuclear_framework, basisset_name)) {}
 
 
     /**
@@ -131,8 +128,7 @@ public:
      *  @note the resulting generalized spinor basis is (most likely) non-orthogonal
      */
     GSpinorBasis(const Molecule& molecule, const std::string& basisset_name) :
-        GSpinorBasis(ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name))
-    {}
+        GSpinorBasis(ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name)) {}
 
 
     /**
@@ -146,8 +142,8 @@ public:
      *  @note the resulting generalized spinor basis is (most likely) non-orthogonal
      */
     GSpinorBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name_alpha, const std::string& basisset_name_beta) :
-        GSpinorBasis(ScalarBasis<Shell>(nuclear_framework, basisset_name_alpha), ScalarBasis<Shell>(nuclear_framework, basisset_name_beta))
-    {}
+        GSpinorBasis(ScalarBasis<Shell>(nuclear_framework, basisset_name_alpha),
+                     ScalarBasis<Shell>(nuclear_framework, basisset_name_beta)) {}
 
 
     /**
@@ -161,9 +157,33 @@ public:
      *  @note the resulting generalized spinor basis is (most likely) non-orthogonal
      */
     GSpinorBasis(const Molecule& molecule, const std::string& basisset_name_alpha, const std::string& basisset_name_beta) :
-        GSpinorBasis(ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name_alpha), ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name_beta))
-    {}
+        GSpinorBasis(ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name_alpha),
+                     ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name_beta)) {}
 
+
+    /*
+     *  NAMED CONSTRUCTORS
+     */
+
+    /**
+     *  Convert a restricted spinor basis into a generalized framework.
+     * 
+     *  @param r_spinor_basis           the restricted spinor basis
+     * 
+     *  @return the restricted spinor basis as a generalized one
+     */
+    static GSpinorBasis<ExpansionScalar, Shell> FromRestricted(const RSpinorBasis<ExpansionScalar, Shell>& r_spinor_basis) {
+
+        // Build up the 'general' coefficient matrix.
+        const auto K = r_spinor_basis.numberOfSpatialOrbitals();
+        const auto M = r_spinor_basis.numberOfSpinors();
+        TransformationMatrix<ExpansionScalar> C_general = TransformationMatrix<ExpansionScalar>::Zero(M, M);
+
+        C_general.topLeftCorner(K, K) = r_spinor_basis.coefficientMatrix();
+        C_general.bottomRightCorner(K, K) = r_spinor_basis.coefficientMatrix();
+
+        return GSpinorBasis<ExpansionScalar, Shell>(r_spinor_basis.scalarBasis(), C_general);  // the alpha- and beta- scalar bases are equal
+    }
 
 
     /*
@@ -173,41 +193,46 @@ public:
     using Base::coefficientMatrix;
 
     /**
-     *  @param component        the spin component
+     *  @param sigma        alpha or beta
      * 
-     *  @return the coefficient matrix for the requested component, i.e. the matrix of the expansion coefficients of the requested components of the spinors in terms of its underlying scalar basis
+     *  @return the coefficient matrix for the requested spin component, i.e. the matrix of the expansion coefficients of the requested components of the spinors in terms of its underlying scalar basis
      */
-    MatrixX<ExpansionScalar> coefficientMatrix(SpinComponent component) const { 
+    MatrixX<ExpansionScalar> coefficientMatrix(const Spin sigma) const {
 
-        const size_t K = this->numberOfCoefficients(component);
-        if (component == SpinComponent::ALPHA) {
+        const size_t K = this->numberOfCoefficients(sigma);
+
+        switch (sigma) {
+        case Spin::alpha: {
             return this->coefficientMatrix().topRows(K);
-        } else {
+        }
+
+        case Spin::beta: {
             return this->coefficientMatrix().bottomRows(K);
+        }
         }
     }
 
     /**
-     *  @param component        the spin component
+     *  @param sigma        alpha or beta
      * 
-     *  @return the scalar basis that is used for the expansion of the given component
+     *  @return the scalar basis that is used for the expansion of the given spin component
      */
-    const ScalarBasis<Shell>& scalarBasis(const SpinComponent& component) const { return this->scalar_bases[component]; }
+    const ScalarBasis<Shell>& scalarBasis(const Spin& sigma) const { return this->scalar_bases[sigma]; }
 
     /**
-     *  @param component        the spin component
+     *  @param sigma        alpha or beta
      * 
     *  @return the number of coefficients that are used for the expansion of the requested spin-component of a spinor
      */
-    size_t numberOfCoefficients(const SpinComponent& component) const { return this->scalarBasis(component).numberOfBasisFunctions(); }
+    size_t numberOfCoefficients(const Spin& sigma) const { return this->scalarBasis(sigma).numberOfBasisFunctions(); }
 
     /**
      *  @return the number of spinors that 'are' in this generalized spinor basis
      */
     size_t numberOfSpinors() const {
 
-        const auto K_alpha = this->numberOfCoefficients(SpinComponent::ALPHA);
-        const auto K_beta = this->numberOfCoefficients(SpinComponent::BETA);
+        const auto K_alpha = this->numberOfCoefficients(Spin::alpha);
+        const auto K_beta = this->numberOfCoefficients(Spin::beta);
 
         return K_alpha + K_beta;
     }
@@ -227,20 +252,20 @@ public:
         // The strategy for calculating the matrix representation of the one-electron operator in this spinor basis is to:
         //  1. Express the operator in the underlying scalar bases; and
         //  2. Afterwards transform them using the current coefficient matrix.
-        const auto K_alpha = this->numberOfCoefficients(SpinComponent::ALPHA);
-        const auto K_beta = this->numberOfCoefficients(SpinComponent::BETA);
+        const auto K_alpha = this->numberOfCoefficients(Spin::alpha);
+        const auto K_beta = this->numberOfCoefficients(Spin::beta);
         const auto M = this->numberOfSpinors();
         QCMatrix<ResultScalar> f = QCMatrix<ResultScalar>::Zero(M, M);  // the total result
 
         // 1. Express the operator in the underlying scalar bases: spin-independent operators only have alpha-alpha and beta-beta blocks.
-        const auto F_alpha = IntegralCalculator::calculateLibintIntegrals(fq_one_op, this->scalarBasis(SpinComponent::ALPHA));
-        const auto F_beta = IntegralCalculator::calculateLibintIntegrals(fq_one_op, this->scalarBasis(SpinComponent::BETA));
+        const auto F_alpha = IntegralCalculator::calculateLibintIntegrals(fq_one_op, this->scalarBasis(Spin::alpha));
+        const auto F_beta = IntegralCalculator::calculateLibintIntegrals(fq_one_op, this->scalarBasis(Spin::beta));
 
         f.topLeftCorner(K_alpha, K_alpha) = F_alpha;
         f.bottomRightCorner(K_beta, K_beta) = F_beta;
 
         // 2. Transform using the current coefficient matrix.
-        ResultOperator op ({f});  // op for 'operator'
+        ResultOperator op {{f}};  // op for 'operator'
         op.transform(this->coefficientMatrix());
         return op;
     }
@@ -256,8 +281,8 @@ public:
         using ResultScalar = product_t<ElectronicSpinOperator::Scalar, ExpansionScalar>;
         using ResultOperator = SQOneElectronOperator<ResultScalar, ElectronicSpinOperator::Components>;
 
-        const auto K_alpha = this->numberOfCoefficients(SpinComponent::ALPHA);
-        const auto K_beta = this->numberOfCoefficients(SpinComponent::BETA);
+        const auto K_alpha = this->numberOfCoefficients(Spin::alpha);
+        const auto K_beta = this->numberOfCoefficients(Spin::beta);
         const auto M = this->numberOfSpinors();
 
         // The strategy to quantize the spin operator is as follows.
@@ -271,26 +296,26 @@ public:
 
 
         // 1. Calculate the necessary overlap integrals over the scalar bases.
-        const auto S_aa = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalarBasis(SpinComponent::ALPHA));
-        const auto S_ab = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalarBasis(SpinComponent::ALPHA), this->scalarBasis(SpinComponent::BETA));
-        const auto S_ba = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalarBasis(SpinComponent::BETA), this->scalarBasis(SpinComponent::ALPHA));
-        const auto S_bb = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalarBasis(SpinComponent::BETA));
+        const auto S_aa = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalarBasis(Spin::alpha));
+        const auto S_ab = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalarBasis(Spin::alpha), this->scalarBasis(Spin::beta));
+        const auto S_ba = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalarBasis(Spin::beta), this->scalarBasis(Spin::alpha));
+        const auto S_bb = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalarBasis(Spin::beta));
 
 
         // 2. Place the overlaps into the correct blocks.
-        S_x.block(0,K_alpha, K_alpha,K_beta) = 0.5 * S_ab;
-        S_x.block(K_alpha,0, K_beta,K_alpha) = 0.5 * S_ba;
+        S_x.block(0, K_alpha, K_alpha, K_beta) = 0.5 * S_ab;
+        S_x.block(K_alpha, 0, K_beta, K_alpha) = 0.5 * S_ba;
 
-        const cd ii (0.0, 1.0);  // 'cd' is a typedef for 'std::complex<double>', so 'ii' is the imaginary unit
-        S_y.block(0,K_alpha, K_alpha,K_beta) = -0.5 * ii * S_ab;
-        S_y.block(K_alpha,0, K_beta,K_alpha) = 0.5 * ii * S_ba;
+        const cd ii(0.0, 1.0);  // 'cd' is a typedef for 'std::complex<double>', so 'ii' is the imaginary unit
+        S_y.block(0, K_alpha, K_alpha, K_beta) = -0.5 * ii * S_ab;
+        S_y.block(K_alpha, 0, K_beta, K_alpha) = 0.5 * ii * S_ba;
 
         S_z.topLeftCorner(K_alpha, K_alpha) = 0.5 * S_aa;
         S_z.bottomRightCorner(K_beta, K_beta) = -0.5 * S_bb;
 
 
         // 3. Transform using the coefficient matrix
-        ResultOperator spin_op {std::array<QCMatrix<ResultScalar>, 3>{S_x, S_y, S_z}};  // 'op' for operator
+        ResultOperator spin_op {std::array<QCMatrix<ResultScalar>, 3> {S_x, S_y, S_z}};  // 'op' for operator
         spin_op.transform(this->coefficientMatrix());
         return spin_op;
     }
@@ -312,18 +337,18 @@ public:
         //  3. Transform the operator using the current coefficient matrix.
 
         // 1. Calculate the Coulomb integrals in the underlying scalar bases.
-        const auto g_aaaa = IntegralCalculator::calculateLibintIntegrals(Operator::Coulomb(), this->scalarBasis(SpinComponent::ALPHA));
-        const auto g_aabb = IntegralCalculator::calculateLibintIntegrals(Operator::Coulomb(), this->scalarBasis(SpinComponent::ALPHA), this->scalarBasis(SpinComponent::BETA));
-        const auto g_bbaa = IntegralCalculator::calculateLibintIntegrals(Operator::Coulomb(), this->scalarBasis(SpinComponent::BETA), this->scalarBasis(SpinComponent::ALPHA));
-        const auto g_bbbb = IntegralCalculator::calculateLibintIntegrals(Operator::Coulomb(), this->scalarBasis(SpinComponent::BETA));
+        const auto g_aaaa = IntegralCalculator::calculateLibintIntegrals(Operator::Coulomb(), this->scalarBasis(Spin::alpha));
+        const auto g_aabb = IntegralCalculator::calculateLibintIntegrals(Operator::Coulomb(), this->scalarBasis(Spin::alpha), this->scalarBasis(Spin::beta));
+        const auto g_bbaa = IntegralCalculator::calculateLibintIntegrals(Operator::Coulomb(), this->scalarBasis(Spin::beta), this->scalarBasis(Spin::alpha));
+        const auto g_bbbb = IntegralCalculator::calculateLibintIntegrals(Operator::Coulomb(), this->scalarBasis(Spin::beta));
 
 
         // 2. Place the calculated integrals as 'blocks' in the larger representation
-        const auto K_alpha = this->numberOfCoefficients(SpinComponent::ALPHA);
-        const auto K_beta = this->numberOfCoefficients(SpinComponent::BETA);
+        const auto K_alpha = this->numberOfCoefficients(Spin::alpha);
+        const auto K_beta = this->numberOfCoefficients(Spin::beta);
 
         const auto M = this->numberOfSpinors();
-        QCRankFourTensor<ResultScalar> g_par (M);  // 'par' for 'parameters'
+        QCRankFourTensor<ResultScalar> g_par(M);  // 'par' for 'parameters'
         g_par.setZero();
 
         // Primed indices are indices in the larger representation, normal ones are those in the smaller tensors.

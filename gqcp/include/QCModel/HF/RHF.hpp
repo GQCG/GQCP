@@ -1,32 +1,32 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
+#include "Basis/SpinorBasis/Spin.hpp"
 #include "Basis/TransformationMatrix.hpp"
 #include "Mathematical/Representation/BlockRankFourTensor.hpp"
-#include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
+#include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "Processing/RDM/OneRDM.hpp"
 #include "QCMethod/QCObjective.hpp"
-
 
 
 namespace GQCP {
@@ -48,11 +48,10 @@ private:
     size_t N_P;  // the number of electron pairs
 
     VectorX<double> orbital_energies;  // sorted in ascending energies
-    TransformationMatrix<Scalar> C;  // the coefficient matrix that expresses every spatial orbital (as a column) in its underlying scalar basis
+    TransformationMatrix<Scalar> C;    // the coefficient matrix that expresses every spatial orbital (as a column) in its underlying scalar basis
 
 
 public:
-
     /*
      *  CONSTRUCTORS
      */
@@ -65,19 +64,16 @@ public:
      *  @param orbital_energies     the RHF MO energies
      */
     RHF(const size_t N_P, const VectorX<double>& orbital_energies, const TransformationMatrix<double>& C) :
-        N_P (N_P),
-        orbital_energies (orbital_energies),
-        C (C)
-    {}
+        N_P {N_P},
+        orbital_energies {orbital_energies},
+        C(C) {}
 
 
     /**
      *  Default constructor setting everything to zero
      */
     RHF() :
-        RHF(0.0, TransformationMatrix<double>::Zero(0, 0), VectorX<double>::Zero(0))
-    {}
-
+        RHF(0.0, TransformationMatrix<double>::Zero(0, 0), VectorX<double>::Zero(0)) {}
 
 
     /*
@@ -109,8 +105,8 @@ public:
         ScalarSQOneElectronOperator<Scalar> Z = H_core + F;
 
         // Convert the matrices Z and D to an Eigen::Tensor<double, 2> D_tensor, as contractions are only implemented for Tensors
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> D_tensor (D.data(), D.rows(), D.cols());
-        Eigen::TensorMap<Eigen::Tensor<double, 2>> Z_tensor (Z.parameters().data(), D.rows(), D.cols());
+        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> D_tensor {D.data(), D.rows(), D.cols()};
+        Eigen::TensorMap<Eigen::Tensor<double, 2>> Z_tensor {Z.parameters().data(), D.rows(), D.cols()};
 
         // Specify the contraction pair
         // To calculate the electronic energy, we must perform a double contraction
@@ -151,7 +147,7 @@ public:
      */
     static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(const OneRDM<Scalar>& D, const SQHamiltonian<Scalar>& sq_hamiltonian) {
         // To perform the contraction, we will first have to convert the MatrixX<double> D to an Eigen::Tensor<const double, 2> D_tensor, as contractions are only implemented for Tensors
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> D_tensor (D.data(), D.rows(), D.cols());
+        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> D_tensor {D.data(), D.rows(), D.cols()};
 
         // Specify the contraction pairs
         // To calculate G, we must perform two double contractions
@@ -166,10 +162,10 @@ public:
         Tensor<Scalar, 2> exchange_contraction = -0.5 * g.contract(D_tensor, exchange_contraction_pair);
 
         // The previous contractions are Tensor<Scalar, 2> instances. In order to calculate the total G matrix, we will convert them back into MatrixX<double>
-        Eigen::Map<Eigen::MatrixXd> G1 (direct_contraction.data(), direct_contraction.dimension(0), direct_contraction.dimension(1));
-        Eigen::Map<Eigen::MatrixXd> G2 (exchange_contraction.data(), exchange_contraction.dimension(0), exchange_contraction.dimension(1));
+        Eigen::Map<Eigen::MatrixXd> G1 {direct_contraction.data(), direct_contraction.dimension(0), direct_contraction.dimension(1)};
+        Eigen::Map<Eigen::MatrixXd> G2 {exchange_contraction.data(), exchange_contraction.dimension(0), exchange_contraction.dimension(1)};
 
-        return ScalarSQOneElectronOperator<Scalar>{sq_hamiltonian.core().parameters() + G1 + G2};
+        return ScalarSQOneElectronOperator<Scalar> {sq_hamiltonian.core().parameters() + G1 + G2};
     }
 
 
@@ -192,16 +188,16 @@ public:
         // Inactive Fock matrix part
         const auto F = sq_hamiltonian.calculateInactiveFockian(N_P).parameters();
         if (i == j) {
-            value += F(a,b);
+            value += F(a, b);
         }
 
         if (a == b) {
-            value -= F(i,j);
+            value -= F(i, j);
         }
 
 
         // Two-electron part
-        value += 4 * g(a,i,b,j) - g(a,b,i,j) - g(a,j,b,i);
+        value += 4 * g(a, i, b, j) - g(a, b, i, j) - g(a, j, b, i);
 
         return 4 * value;
     }
@@ -217,15 +213,16 @@ public:
 
         const auto K = sq_hamiltonian.dimension();
 
-        BlockRankFourTensor<Scalar> hessian (N_P,K, 0,N_P, N_P,K, 0,N_P);  // zero-initialize an object suitable for the representation of a virtual-occupied,virtual-occupied object (ai,bj)
+        BlockRankFourTensor<Scalar> hessian {N_P, K, 0, N_P,
+                                             N_P, K, 0, N_P};  // zero-initialize an object suitable for the representation of a virtual-occupied,virtual-occupied object (ai,bj)
 
         // Loop over all indices (ai,bj) to construct the orbital hessian
         for (size_t a = N_P; a < K; a++) {
             for (size_t i = 0; i < N_P; i++) {
-                
+
                 for (size_t b = N_P; b < K; b++) {
                     for (size_t j = 0; j < N_P; j++) {
-                        hessian(a,i,b,j) = RHF<Scalar>::calculateOrbitalHessianElement(sq_hamiltonian, N_P, a, i, b, j);
+                        hessian(a, i, b, j) = RHF<Scalar>::calculateOrbitalHessianElement(sq_hamiltonian, N_P, a, i, b, j);
                     }
                 }
             }
@@ -254,7 +251,7 @@ public:
         //    0  0  0  0  0
 
         OneRDM<double> D_MO = OneRDM<double>::Zero(K, K);
-        D_MO.topLeftCorner(N/2, N/2) = 2 * SquareMatrix<double>::Identity(N/2, N/2);
+        D_MO.topLeftCorner(N / 2, N / 2) = 2 * SquareMatrix<double>::Identity(N / 2, N / 2);
 
         return D_MO;
     }
@@ -284,7 +281,7 @@ public:
     static size_t LUMOIndex(const size_t K, const size_t N) {
 
         if (N >= 2 * K) {
-            throw std::invalid_argument("QCModel::RHF::LUMOIndex(size_t, size_t): There is no LUMO for the given amount of electrons N and spatial orbitals K");
+            throw std::invalid_argument("QCModel::RHF::LUMOIndex(size_t, size_t): There is no LUMO for the given number of electrons N and spatial orbitals K");
         }
 
         return RHF<Scalar>::HOMOIndex(N) + 1;
@@ -298,7 +295,7 @@ public:
     /**
      *  @return the 1-RDM expressed in an orthonormal spinor basis related to these optimal RHF parameters
      */
-    OneRDM<Scalar> calculateOrthonormalBasis1RDM() const { 
+    OneRDM<Scalar> calculateOrthonormalBasis1RDM() const {
 
         const auto K = this->numberOfSpatialOrbitals();
         const auto N = 2 * this->numberOfElectronPairs();
@@ -325,6 +322,13 @@ public:
      *  @return the number of electron pairs that these RHF model parameters describe
      */
     size_t numberOfElectronPairs() const { return this->N_P; }
+
+    /**
+     *  @param sigma            the spin of the electrons (::ALPHA or ::BETA)
+     * 
+     *  @return the number of sigma-electrons that these RHF model parameters describe
+     */
+    size_t numberOfElectrons(const Spin sigma) const { return this->numberOfElectronPairs(); }
 
     /**
      *  @return the number of spatial orbitals that these RHF model parameters describe

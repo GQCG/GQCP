@@ -2,13 +2,13 @@
  *  A benchmark executable for DOCI calculations on CO in a 6-31G basisset. This system as (K = 28) number of spatial orbitals and (N = 14) electrons and a total seniority-zero dimension of 1184040.
  */
 
-#include <benchmark/benchmark.h>
-
 #include "Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"
 #include "ONVBasis/SeniorityZeroONVBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/CI.hpp"
 #include "QCMethod/CI/CIEnvironment.hpp"
+
+#include <benchmark/benchmark.h>
 
 
 static void test_case(benchmark::State& state) {
@@ -20,7 +20,7 @@ static void test_case(benchmark::State& state) {
 
 
     // Set up a seniority-zero (doubly-occupied) ONV basis.
-    const GQCP::SeniorityZeroONVBasis onv_basis (K, N_P);
+    const GQCP::SeniorityZeroONVBasis onv_basis {K, N_P};
 
 
     // Specify an initial guess for the Davidson solver.

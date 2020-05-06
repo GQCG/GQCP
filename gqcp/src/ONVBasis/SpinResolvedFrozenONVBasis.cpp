@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #include "ONVBasis/SpinResolvedFrozenONVBasis.hpp"
 
 
@@ -32,12 +32,11 @@ namespace GQCP {
  *  @param X            the number of frozen orbitals and electrons (equal for alpha and beta)
  */
 SpinResolvedFrozenONVBasis::SpinResolvedFrozenONVBasis(size_t K, size_t N_alpha, size_t N_beta, size_t X) :
-    BaseFrozenCoreONVBasis(std::make_shared<SpinResolvedONVBasis>(SpinResolvedONVBasis(K-X, N_alpha-X, N_beta-X)), X),
-    frozen_fock_space_alpha (SpinUnresolvedFrozenONVBasis(K, N_alpha, X)),
-    frozen_fock_space_beta (SpinUnresolvedFrozenONVBasis(K, N_beta, X)),
-    active_onv_basis (SpinResolvedONVBasis(K-X, N_alpha-X, N_beta-X)),
-    X (X)
-{}
+    BaseFrozenCoreONVBasis(std::make_shared<SpinResolvedONVBasis>(SpinResolvedONVBasis(K - X, N_alpha - X, N_beta - X)), X),
+    frozen_fock_space_alpha {SpinUnresolvedFrozenONVBasis(K, N_alpha, X)},
+    frozen_fock_space_beta {SpinUnresolvedFrozenONVBasis(K, N_beta, X)},
+    active_onv_basis {SpinResolvedONVBasis(K - X, N_alpha - X, N_beta - X)},
+    X {X} {}
 
 
 /**
@@ -45,9 +44,7 @@ SpinResolvedFrozenONVBasis::SpinResolvedFrozenONVBasis(size_t K, size_t N_alpha,
  *  @param X                the number of frozen orbitals and electrons (equal for alpha and beta)
  */
 SpinResolvedFrozenONVBasis::SpinResolvedFrozenONVBasis(const SpinResolvedONVBasis& fock_space, size_t X) :
-    SpinResolvedFrozenONVBasis(fock_space.get_K(), fock_space.get_N_alpha(), fock_space.get_N_beta(), X)
-{}
-
+    SpinResolvedFrozenONVBasis(fock_space.get_K(), fock_space.get_N_alpha(), fock_space.get_N_beta(), X) {}
 
 
 /*
@@ -96,7 +93,6 @@ VectorX<double> SpinResolvedFrozenONVBasis::evaluateOperatorDiagonal(const USQHa
     const auto frozen_core_diagonal = BaseFrozenCoreONVBasis::frozenCoreDiagonal(usq_hamiltonian, this->X, this->active_onv_basis.get_dimension());
 
     return diagonal + frozen_core_diagonal;
-
 }
 
 

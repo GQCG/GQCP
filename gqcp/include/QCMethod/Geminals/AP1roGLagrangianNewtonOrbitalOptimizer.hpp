@@ -1,20 +1,20 @@
-// This file is part of GQCG-gqcp.
-// 
-// Copyright (C) 2017-2019  the GQCG developers
-// 
-// GQCG-gqcp is free software: you can redistribute it and/or modify
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
-// GQCG-gqcp is distributed in the hope that it will be useful,
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
 #pragma once
 
 
@@ -26,15 +26,15 @@
 namespace GQCP {
 
 
-class AP1roGLagrangianNewtonOrbitalOptimizer : public QCMethodNewtonOrbitalOptimizer {
+class AP1roGLagrangianNewtonOrbitalOptimizer: public QCMethodNewtonOrbitalOptimizer {
 private:
     size_t N_P;  // the number of electron pairs
-    
-    double pse_convergence_threshold;  // the threshold used to check for convergence on the geminal coefficients
+
+    double pse_convergence_threshold;         // the threshold used to check for convergence on the geminal coefficients
     size_t pse_maximum_number_of_iterations;  // maximum number of Newton steps that may be used to achieve convergence of the PSEs
 
-    double E;  // the electronic energy
-    AP1roGGeminalCoefficients G;  // the current geminal coefficients
+    double E;                         // the electronic energy
+    AP1roGGeminalCoefficients G;      // the current geminal coefficients
     BlockMatrix<double> multipliers;  // the current Lagrangian multipliers
 
 
