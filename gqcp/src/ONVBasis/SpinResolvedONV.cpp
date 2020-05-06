@@ -122,6 +122,15 @@ SpinResolvedONV SpinResolvedONV::UHF(const size_t K, const size_t N_alpha, const
 
 
 /**
+ *  @return a textual representation of this spin-resolved ONV.
+ */
+std::string SpinResolvedONV::asString() const {
+
+    return this->onv(Spin::alpha).asString() + "|" + this->onv(Spin::beta).asString();
+}
+
+
+/**
  *  Calculate the overlap <on|of>: the projection of between this spin-resolved ONV ('of') and another spin-resolved ONV ('on'), expressed in different R/U-spinor bases. The 'on'-ONV is supposed to be expressed in restricted spin-orbitals, and the 'of'-ONV is supposed to be expressed in unrestricted spin-orbitals.
  * 
  *  @param onv_on                       the spin-resolved ONV that should be projected on

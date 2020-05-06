@@ -476,6 +476,28 @@ public:
     const VectorX<double>& coefficients() const { return this->coeffs; }
 
 
+    /**
+     *  Iterate over all expansion coefficients and corresponding ONVs, and apply the given callback function.
+     * 
+     *  @param callback                 the function to be applied in every iteration. Its arguments are an expansion coefficient and the corresponding ONV.
+     *  
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, void> forEach(const std::function<void(const double, const SpinResolvedONV)>& callback) const {
+
+        // Iterate over all ONVs in this ONV basis, and look up the corresponding coefficient.
+        const auto& onv_basis = this->onv_basis;
+        const auto& coeffs = this->coeffs;
+        onv_basis.forEach([&onv_basis, &callback, &coeffs](const SpinUnresolvedONV& onv_alpha, const size_t I_alpha, const SpinUnresolvedONV& onv_beta, const size_t I_beta) {
+            const SpinResolvedONV onv {onv_alpha, onv_beta};
+            const auto address = onv_basis.compoundAddress(I_alpha, I_beta);
+            const auto coefficient = coeffs(address);
+
+            callback(coefficient, onv);
+        });
+    }
+
+
     /** 
      *  @param other            wave function for the comparison
      *  @param tolerance        tolerance for the comparison of coefficients

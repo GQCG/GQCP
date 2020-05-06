@@ -51,6 +51,9 @@ void bindSpinResolvedONV(py::module& module) {
 
 
         // PUBLIC METHODS
+        .def("__repr__",
+             &GQCP::SpinResolvedONV::asString)
+
         .def(
             "calculateProjection",
             [](const GQCP::SpinResolvedONV& onv_of, const GQCP::SpinResolvedONV& onv_on, const GQCP::TransformationMatrix<double>& C_alpha, const GQCP::TransformationMatrix<double>& C_beta, const GQCP::TransformationMatrix<double>& C, const GQCP::QCMatrix<double>& S) {

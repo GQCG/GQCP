@@ -99,6 +99,11 @@ public:
     // PUBLIC METHODS
 
     /**
+     *  Return a textual representation of this spin-resolved ONV.
+     */
+    std::string asString() const;
+
+    /**
      *  Calculate the overlap <on|of>: the projection of between this spin-resolved ONV ('of') and another spin-resolved ONV ('on'), expressed in different R/U-spinor bases. The 'on'-ONV is supposed to be expressed in restricted spin-orbitals, and the 'of'-ONV is supposed to be expressed in unrestricted spin-orbitals.
      * 
      *  @param onv_on                       the spin-resolved ONV that should be projected on

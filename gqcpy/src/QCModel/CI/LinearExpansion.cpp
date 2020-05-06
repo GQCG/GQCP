@@ -23,6 +23,7 @@
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 
 #include <pybind11/eigen.h>
+#include <pybind11/functional.h>
 #include <pybind11/pybind11.h>
 
 
@@ -114,7 +115,15 @@ void bindLinearExpansion<GQCP::SpinResolvedONVBasis>(py::module& module, const s
         // PUBLIC METHODS
         .def("coefficients",
              &GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::coefficients,
-             "Return the expansion coefficients of this linear expansion wave function model.");
+             "Return the expansion coefficients of this linear expansion wave function model.")
+
+        .def(
+            "forEach",
+            [](const GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>& linear_expansion, const std::function<void(const double, const GQCP::SpinResolvedONV)>& callback) {
+                return linear_expansion.forEach(callback);
+            },
+            py::arg("callback"),
+            "Iterate over all expansion coefficients and corresponding ONVs, and apply the given callback function.");
 }
 
 
