@@ -244,7 +244,7 @@ public:
         // Determine the coefficients through calculating the overlap between two ONVs.
         VectorX<double> coeffs = VectorX<double>::Zero(onv_basis.dimension());
 
-        onv_basis.forEach([&onv, &r_spinor_basis, &u_spinor_basis, &coeffs, &onv_basis](const SpinUnresolvedONV& alpha_onv, const size_t I_alpha, const SpinUnresolvedONV& beta_onv, const size_t I_beta) {
+        onv_basis.forEach([&onv, &C_alpha, &C_beta, &C, &S, &coeffs, &onv_basis](const SpinUnresolvedONV& alpha_onv, const size_t I_alpha, const SpinUnresolvedONV& beta_onv, const size_t I_beta) {
             const SpinResolvedONV onv_on {alpha_onv, beta_onv};  // the spin-resolved ONV that should be projected 'on'
 
             const auto coefficient = onv.calculateProjection(onv_on, C_alpha, C_beta, C, S);
