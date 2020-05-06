@@ -65,7 +65,7 @@ void bindSpinResolvedONV(py::module& module) {
 
         .def(
             "onv",
-            [](const GQCP::SpinResolvedONV& spin_resolved_onv, GQCP::Spin sigma) {
+            [](const GQCP::SpinResolvedONV& spin_resolved_onv, const GQCP::Spin sigma) {
                 return spin_resolved_onv.onv(sigma);
             },
             py::arg("sigma"),

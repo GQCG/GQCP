@@ -53,7 +53,7 @@ void bindUSpinorBasis(py::module& module) {
         // PUBLIC METHODS
         .def(
             "calculateMullikenOperator",
-            [](GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, const std::vector<size_t>& ao_list, GQCP::Spin sigma) {
+            [](GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, const std::vector<size_t>& ao_list, const GQCP::Spin sigma) {
                 return spinor_basis.calculateMullikenOperator(ao_list, sigma);
             },
             py::arg("ao_list"),
@@ -62,7 +62,7 @@ void bindUSpinorBasis(py::module& module) {
 
         .def(
             "coefficientMatrix",
-            [](const GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, GQCP::Spin sigma) {
+            [](const GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Spin sigma) {
                 return spinor_basis.coefficientMatrix(sigma);
             },
             py::arg("sigma"),
@@ -77,7 +77,7 @@ void bindUSpinorBasis(py::module& module) {
 
         .def(
             "numberOfSpinors",
-            [](const GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, GQCP::Spin sigma) {
+            [](const GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Spin sigma) {
                 return spinor_basis.numberOfSpinors(sigma);
             },
             py::arg("sigma"),
@@ -85,7 +85,7 @@ void bindUSpinorBasis(py::module& module) {
 
         .def(
             "isOrthornomal",
-            [](const GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, GQCP::Spin sigma, const double precision) {
+            [](const GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Spin sigma, const double precision) {
                 return spinor_basis.isOrthonormal(sigma, precision);
             },
             py::arg("sigma"),
@@ -109,7 +109,7 @@ void bindUSpinorBasis(py::module& module) {
 
         .def(
             "overlap",
-            [](const GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, GQCP::Spin sigma) {
+            [](const GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Spin sigma) {
                 return spinor_basis.overlap(sigma);
             },
             py::arg("sigma"),
@@ -117,7 +117,7 @@ void bindUSpinorBasis(py::module& module) {
 
         .def(
             "quantizeCoulombRepulsionOperator",
-            [](const GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, GQCP::Spin sigma) {
+            [](const GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Spin sigma) {
                 return spinor_basis.quantize(GQCP::Operator::Coulomb(), sigma);
             },
             py::arg("sigma"),
@@ -125,7 +125,7 @@ void bindUSpinorBasis(py::module& module) {
 
         .def(
             "quantizeDipoleOperator",
-            [](const GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Vector<double, 3>& origin, GQCP::Spin sigma) {
+            [](const GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Vector<double, 3>& origin, const GQCP::Spin sigma) {
                 return spinor_basis.quantize(GQCP::Operator::ElectronicDipole(origin), sigma);
             },
             py::arg("spin"),
@@ -134,7 +134,7 @@ void bindUSpinorBasis(py::module& module) {
 
         .def(
             "quantizeKineticOperator",
-            [](const GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, GQCP::Spin sigma) {
+            [](const GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Spin sigma) {
                 return spinor_basis.quantize(GQCP::Operator::Kinetic(), sigma);
             },
             py::arg("sigma"),
@@ -142,7 +142,7 @@ void bindUSpinorBasis(py::module& module) {
 
         .def(
             "quantizeNuclearAttractionOperator",
-            [](const GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Molecule& molecule, GQCP::Spin sigma) {
+            [](const GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Molecule& molecule, const GQCP::Spin sigma) {
                 return spinor_basis.quantize(GQCP::Operator::NuclearAttraction(molecule), sigma);
             },
             py::arg("molecule"),
@@ -151,7 +151,7 @@ void bindUSpinorBasis(py::module& module) {
 
         .def(
             "quantizeOverlapOperator",
-            [](const GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, GQCP::Spin sigma) {
+            [](const GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Spin sigma) {
                 return spinor_basis.quantize(GQCP::Operator::Overlap(), sigma);
             },
             py::arg("sigma"),
@@ -159,7 +159,7 @@ void bindUSpinorBasis(py::module& module) {
 
         .def(
             "rotate",
-            [](GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& U, GQCP::Spin sigma) {
+            [](GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& U, const GQCP::Spin sigma) {
                 spinor_basis.rotate(GQCP::TransformationMatrix<double>(U), sigma);
             },
             py::arg("U"),
@@ -168,7 +168,7 @@ void bindUSpinorBasis(py::module& module) {
 
         .def(
             "transform",
-            [](GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& T, GQCP::Spin sigma) {
+            [](GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& T, const GQCP::Spin sigma) {
                 spinor_basis.transform(GQCP::TransformationMatrix<double>(T), sigma);
             },
             py::arg("T"),

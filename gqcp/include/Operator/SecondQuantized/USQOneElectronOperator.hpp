@@ -142,7 +142,7 @@ public:
      * 
      *  @return read-only matrix representations of all the parameters (integrals) of the different components of this second-quantized operator, for the requested spin component.
      */
-    const std::array<QCMatrix<Scalar>, Components>& allParameters(Spin sigma) const {
+    const std::array<QCMatrix<Scalar>, Components>& allParameters(const Spin sigma) const {
 
         if (sigma == Spin::alpha) {
             return this->fs_a;
@@ -157,7 +157,7 @@ public:
      * 
      *  @return writable matrix representations of all the parameters (integrals) of the different components of this second-quantized operator, for the requested spin component.
      */
-    std::array<QCMatrix<Scalar>, Components>& allParameters(Spin sigma) {
+    std::array<QCMatrix<Scalar>, Components>& allParameters(const Spin sigma) {
 
         if (sigma == Spin::alpha) {
             return this->fs_a;
@@ -194,7 +194,7 @@ public:
      * 
      *  @return the dimension of the matrices for the requested spin component.
      */
-    size_t dimension(Spin sigma) const {
+    size_t dimension(const Spin sigma) const {
 
         if (sigma == Spin::alpha) {
             return this->fs_a[0].dimension();
@@ -210,7 +210,7 @@ public:
      * 
      *  @return a read-only the matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator, for the requested spin component.
      */
-    const QCMatrix<Scalar>& parameters(Spin sigma, const size_t i = 0) const {
+    const QCMatrix<Scalar>& parameters(const Spin sigma, const size_t i = 0) const {
 
         if (sigma == Spin::alpha) {
             return this->fs_a[i];
@@ -226,7 +226,7 @@ public:
      * 
      *  @return the writable matrix representation of the parameters (integrals) of one of the components of this second-quantized operator, for the requested spin component.
      */
-    QCMatrix<Scalar>& parameters(Spin sigma, const size_t i = 0) {
+    QCMatrix<Scalar>& parameters(const Spin sigma, const size_t i = 0) {
 
         if (sigma == Spin::alpha) {
             return this->fs_a[i];

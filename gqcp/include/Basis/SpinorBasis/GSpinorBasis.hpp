@@ -197,7 +197,7 @@ public:
      * 
      *  @return the coefficient matrix for the requested spin component, i.e. the matrix of the expansion coefficients of the requested components of the spinors in terms of its underlying scalar basis
      */
-    MatrixX<ExpansionScalar> coefficientMatrix(Spin sigma) const {
+    MatrixX<ExpansionScalar> coefficientMatrix(const Spin sigma) const {
 
         const size_t K = this->numberOfCoefficients(sigma);
 

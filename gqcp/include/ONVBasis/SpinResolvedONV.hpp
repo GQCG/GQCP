@@ -119,21 +119,21 @@ public:
      * 
      *  @return the number of sigma-electrons this spin-resolved ONV describes
      */
-    size_t numberOfElectrons(Spin sigma) const;
+    size_t numberOfElectrons(const Spin sigma) const;
 
     /**
      *  @param sigma                alpha or beta
      * 
      *  @return the number of sigma-spatial orbitals/spin-orbitals that this ONV is expressed with
      */
-    size_t numberOfSpatialOrbitals(Spin sigma) const;
+    size_t numberOfSpatialOrbitals(const Spin sigma) const;
 
     /**
      *  @param sigma                alpha or beta
      * 
      *  @return the ONV that describes the occupations of the sigma-spin orbitals.
      */
-    const SpinUnresolvedONV& onv(Spin sigma) const;
+    const SpinUnresolvedONV& onv(const Spin sigma) const;
 };
 
 

@@ -261,7 +261,7 @@ public:
      *
      *  @return the RHF Fock matrix expressed in the scalar basis
      */
-    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(Spin sigma, const OneRDM<Scalar>& P_alpha, const OneRDM<Scalar>& P_beta, const SQHamiltonian<Scalar>& sq_hamiltonian) {
+    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(const Spin sigma, const OneRDM<Scalar>& P_alpha, const OneRDM<Scalar>& P_beta, const SQHamiltonian<Scalar>& sq_hamiltonian) {
 
         // F_sigma = H_core + (J_alpha + J_beta) - K_sigma
         const auto& H_core = sq_hamiltonian.core();
@@ -290,7 +290,7 @@ public:
      * 
      *  @return the sigma-spin UHF 1-RDM expressed in an orthonormal sigma spin-orbital basis for these UHF model parameters
      */
-    OneRDM<Scalar> calculateOrthonormalBasis1RDM(Spin sigma) const {
+    OneRDM<Scalar> calculateOrthonormalBasis1RDM(const Spin sigma) const {
 
         const auto K_sigma = this->numberOfSpinOrbitals(sigma);
         const auto N_sigma = this->numberOfElectrons(sigma);
@@ -304,7 +304,7 @@ public:
      *
      *  @return the sigma-spin UHF 1-RDM expressed in the underlying scalar basis for these UHF model parameters
      */
-    OneRDM<Scalar> calculateScalarBasis1RDM(Spin sigma) const {
+    OneRDM<Scalar> calculateScalarBasis1RDM(const Spin sigma) const {
 
         const auto C_sigma = this->coefficientMatrix(sigma);
         const auto N_sigma = this->numberOfElectrons(sigma);
@@ -318,7 +318,7 @@ public:
      *
      *  @return the coefficient matrix that expresses the sigma spin-orbitals (as a column) in its underlying scalar basis
      */
-    const TransformationMatrix<Scalar>& coefficientMatrix(Spin sigma) const {
+    const TransformationMatrix<Scalar>& coefficientMatrix(const Spin sigma) const {
 
         switch (sigma) {
         case Spin::alpha: {
@@ -337,7 +337,7 @@ public:
      * 
      *  @return the number of sigma electrons that these UHF model parameters describe, i.e. the number of occupied sigma-spin-orbitals
      */
-    size_t numberOfElectrons(Spin sigma) const {
+    size_t numberOfElectrons(const Spin sigma) const {
 
         switch (sigma) {
         case Spin::alpha: {
@@ -355,7 +355,7 @@ public:
      * 
      *  @return the number of sigma spin-orbitals that these UHF model parameters describe
      */
-    size_t numberOfSpinOrbitals(Spin sigma) const {
+    size_t numberOfSpinOrbitals(const Spin sigma) const {
 
         switch (sigma) {
         case Spin::alpha: {
@@ -374,7 +374,7 @@ public:
      * 
      *  @return the orbital energies of the sigma-spin-orbitals
      */
-    const VectorX<double>& orbitalEnergies(Spin sigma) const {
+    const VectorX<double>& orbitalEnergies(const Spin sigma) const {
 
         switch (sigma) {
         case Spin::alpha: {

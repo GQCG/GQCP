@@ -55,7 +55,7 @@ void bindGSpinorBasis(py::module& module) {
             "Return the transformation matrix between the scalar bases and the current spinors.")
 
         .def("coefficientMatrix",
-             [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, GQCP::Spin sigma) {
+             [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Spin sigma) {
                  return spinor_basis.coefficientMatrix(sigma);
              })
 
@@ -106,13 +106,13 @@ void bindGSpinorBasis(py::module& module) {
         // PUBLIC METHODS
 
         .def(
-            "coefficientMatrix", [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, GQCP::Spin sigma) {
+            "coefficientMatrix", [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Spin sigma) {
                 return spinor_basis.coefficientMatrix(sigma);
             },
             py::arg("sigma"), "Return the coefficient matrix for the requested spin component, i.e. the matrix of the expansion coefficients of the requested components of the spinors in terms of its underlying scalar basis")
 
         .def(
-            "numberOfCoefficients", [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, GQCP::Spin sigma) {
+            "numberOfCoefficients", [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Spin sigma) {
                 return spinor_basis.numberOfCoefficients(sigma);
             },
             py::arg("sigma"), "Return the number of coefficients that are used for the expansion of the requested spin-component of a spinor")

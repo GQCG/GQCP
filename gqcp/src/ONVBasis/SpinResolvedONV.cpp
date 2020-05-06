@@ -173,7 +173,7 @@ double SpinResolvedONV::calculateProjection(const SpinResolvedONV& onv_on, const
  * 
  *  @return the number of sigma-electrons this spin-resolved ONV describes
  */
-size_t SpinResolvedONV::numberOfElectrons(Spin sigma) const {
+size_t SpinResolvedONV::numberOfElectrons(const Spin sigma) const {
 
     switch (sigma) {
     case Spin::alpha: {
@@ -192,7 +192,7 @@ size_t SpinResolvedONV::numberOfElectrons(Spin sigma) const {
  * 
  *  @return the number of sigma-spatial orbitals/spin-orbitals that this ONV is expressed with
  */
-size_t SpinResolvedONV::numberOfSpatialOrbitals(Spin sigma) const {
+size_t SpinResolvedONV::numberOfSpatialOrbitals(const Spin sigma) const {
 
     switch (sigma) {
     case Spin::alpha: {
@@ -211,7 +211,7 @@ size_t SpinResolvedONV::numberOfSpatialOrbitals(Spin sigma) const {
  * 
  *  @return the ONV that describes the occupations of the sigma-spin orbitals.
  */
-const SpinUnresolvedONV& SpinResolvedONV::onv(Spin sigma) const {
+const SpinUnresolvedONV& SpinResolvedONV::onv(const Spin sigma) const {
 
     switch (sigma) {
 

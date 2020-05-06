@@ -217,7 +217,7 @@ public:
      * 
      *  @return the coefficient matrix for the requested component, i.e. the matrix of the expansion coefficients of the requested component of the spinors in terms of its underlying scalar basis
      */
-    const MatrixX<ExpansionScalar>& coefficientMatrix(Spin sigma) const {
+    const MatrixX<ExpansionScalar>& coefficientMatrix(const Spin sigma) const {
         return spinor_bases[sigma].coefficientMatrix();
     }
 
@@ -238,7 +238,7 @@ public:
      * 
      *  @return the total number of sigma-spinors/spin-orbitals that this spinor basis describes
      */
-    size_t numberOfSpinors(Spin sigma) const {
+    size_t numberOfSpinors(const Spin sigma) const {
         return this->scalarBasis(sigma).numberOfBasisFunctions();
     }
 
