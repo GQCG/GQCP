@@ -32,7 +32,7 @@ void bindQCModelUHF(py::module& module) {
 
         .def(
             "calculateOrthonormalBasis1RDM",
-            [](const GQCP::QCModel::UHF<double>& uhf_parameters, GQCP::Spin sigma) {
+            [](const GQCP::QCModel::UHF<double>& uhf_parameters, const GQCP::Spin sigma) {
                 return uhf_parameters.calculateOrthonormalBasis1RDM(sigma);
             },
             py::arg("sigma"),
@@ -40,7 +40,7 @@ void bindQCModelUHF(py::module& module) {
 
         .def(
             "calculateScalarBasis1RDM",
-            [](const GQCP::QCModel::UHF<double>& uhf_parameters, GQCP::Spin sigma) {
+            [](const GQCP::QCModel::UHF<double>& uhf_parameters, const GQCP::Spin sigma) {
                 return uhf_parameters.calculateScalarBasis1RDM(sigma);
             },
             py::arg("sigma"),
@@ -48,28 +48,28 @@ void bindQCModelUHF(py::module& module) {
 
         .def(
             "coefficientMatrix",
-            [](const GQCP::QCModel::UHF<double>& uhf_parameters, GQCP::Spin sigma) {
+            [](const GQCP::QCModel::UHF<double>& uhf_parameters, const GQCP::Spin sigma) {
                 return uhf_parameters.coefficientMatrix(sigma);
             },
             "Return the coefficient matrix that expresses the sigma spin-orbitals (as a column) in its underlying scalar basis.")
 
         .def(
             "numberOfElectrons",
-            [](const GQCP::QCModel::UHF<double>& uhf_parameters, GQCP::Spin sigma) {
+            [](const GQCP::QCModel::UHF<double>& uhf_parameters, const GQCP::Spin sigma) {
                 return uhf_parameters.numberOfElectrons(sigma);
             },
             "Return the number of sigma electrons that these UHF model parameters describe, i.e. the number of occupied sigma-spin-orbitals.")
 
         .def(
             "numberOfElectrons",
-            [](const GQCP::QCModel::UHF<double>& uhf_parameters, GQCP::Spin sigma) {
+            [](const GQCP::QCModel::UHF<double>& uhf_parameters, const GQCP::Spin sigma) {
                 return uhf_parameters.numberOfSpinOrbitals(sigma);
             },
             "Return the number of sigma spin-orbitals that these UHF model parameters describe.")
 
         .def(
             "orbitalEnergies",
-            [](const GQCP::QCModel::UHF<double>& uhf_parameters, GQCP::Spin sigma) {
+            [](const GQCP::QCModel::UHF<double>& uhf_parameters, const GQCP::Spin sigma) {
                 return uhf_parameters.orbitalEnergies(sigma);
             },
             "Return the orbital energies of the sigma-spin-orbitals.");

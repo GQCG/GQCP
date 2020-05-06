@@ -66,7 +66,7 @@ public:
      *
      *  @return a H-chain with equal internuclear spacing
      */
-    static Molecule HChain(size_t n, double spacing, int charge = 0, CartesianDirection axis = CartesianDirection::z);
+    static Molecule HChain(const size_t n, const double spacing, const int charge = 0, const CartesianDirection axis = CartesianDirection::z);
 
     /**
      *  @param n        the number of H2-molecules
@@ -76,7 +76,7 @@ public:
      *
      *  @return a charged H2-chain
      */
-    static Molecule H2Chain(size_t n, double a, double b, int charge = 0, CartesianDirection axis = CartesianDirection::z);
+    static Molecule H2Chain(const size_t n, const double a, const double b, const int charge = 0, const CartesianDirection axis = CartesianDirection::z);
 
     /**
      *  @param n                the number of hydrogens
@@ -84,7 +84,7 @@ public:
      * 
      *  @return a regular H-ring where neighbouring hydrogens are separated by the given distance
      */
-    static Molecule HRingFromDistance(const size_t n, const double distance, int charge = 0);
+    static Molecule HRingFromDistance(const size_t n, const double distance, const int charge = 0);
 
     /**
      *  @param n                the number of hydrogens
@@ -92,7 +92,7 @@ public:
      * 
      *  @return a regular H-ring whose hydrogens are on the circle with the given radius
      */
-    static Molecule HRingFromRadius(const size_t n, const double radius, int charge = 0);
+    static Molecule HRingFromRadius(const size_t n, const double radius, const int charge = 0);
 
     /**
      *  Construct a molecule based on the content of a given .xyz-file. In an .xyz-file, the molecular coordinates are in Angstrom

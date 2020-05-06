@@ -285,7 +285,7 @@ public:
     void shiftUntilNextUnoccupiedOrbital(const SpinUnresolvedONV& onv, size_t& address, size_t& q, size_t& e) const {
 
         // Test whether the current orbital index is occupied
-        while (e < this->N && q == onv.get_occupation_index(e)) {
+        while (e < this->N && q == onv.occupationIndexOf(e)) {
 
             // Take the difference of vertex weights for the encountered electron weights to that of a vertex weight path with "a" fewer electrons
             // +1 is added to the electron index, because of how the addressing scheme is arrayed.
@@ -316,7 +316,7 @@ public:
     void shiftUntilNextUnoccupiedOrbital(const SpinUnresolvedONV& onv, size_t& address, size_t& q, size_t& e, int& sign) const {
 
         // Test whether the current orbital index is occupied
-        while (e < this->N && q == onv.get_occupation_index(e)) {
+        while (e < this->N && q == onv.occupationIndexOf(e)) {
 
             // Take the difference of vertex weights for the encountered electron weights to that of a vertex weight path with "a" fewer electrons
             // +1 is added to the electron index, because of how the addressing scheme is arrayed.
@@ -348,7 +348,7 @@ public:
     void shiftUntilPreviousUnoccupiedOrbital(const SpinUnresolvedONV& onv, size_t& address, size_t& q, size_t& e, int& sign) const {
 
         // Test whether the current orbital index is occupied
-        while (e != -1 && q == onv.get_occupation_index(e)) {
+        while (e != -1 && q == onv.occupationIndexOf(e)) {
 
             int shift = static_cast<int>(this->get_vertex_weights(q, e + 1 + T)) - static_cast<int>(this->get_vertex_weights(q, e + 1));
             address += shift;
@@ -382,7 +382,7 @@ public:
         for (; !evaluation_iterator.is_finished(); evaluation_iterator.increment()) {  // I loops over all the addresses of the onv
             for (size_t e1 = 0; e1 < N; e1++) {                                        // e1 (electron 1) loops over the (number of) electrons
 
-                size_t p = onv.get_occupation_index(e1);  // retrieve the index of a given electron
+                size_t p = onv.occupationIndexOf(e1);  // retrieve the index of a given electron
                 // remove the weight from the initial address I, because we annihilate
                 size_t address = evaluation_iterator.index - this->get_vertex_weights(p, e1 + 1);
 
@@ -467,7 +467,7 @@ public:
             for (size_t e1 = 0; e1 < N; e1++) {  // A1 (annihilation 1)
 
                 sign1 *= -1;
-                size_t p = onv.get_occupation_index(e1);  // retrieve the index of a given electron
+                size_t p = onv.occupationIndexOf(e1);  // retrieve the index of a given electron
                 size_t address = evaluation_iterator.index - this->get_vertex_weights(p, e1 + 1);
 
                 // Strictly diagonal values
@@ -503,7 +503,7 @@ public:
                     int sign3 = sign1;
                     for (size_t e3 = e1 + 1; e3 < N; e3++) {
                         sign3 *= -1;  // initial sign3 = sign of the annihilation, with one extra electron(from crea) = *-1
-                        size_t r = onv.get_occupation_index(e3);
+                        size_t r = onv.occupationIndexOf(e3);
                         size_t address3 = address2 - this->get_vertex_weights(r, e3 + 1);
 
                         size_t e4 = e3 + 1;
@@ -547,7 +547,7 @@ public:
                     int sign3 = sign2;
                     for (size_t e3 = e2; e3 < N; e3++) {
                         sign3 *= -1;  // -1 cause we created electron (creation) sign of A is now the that of C *-1
-                        size_t r = onv.get_occupation_index(e3);
+                        size_t r = onv.occupationIndexOf(e3);
                         size_t address3 = address1 - this->get_vertex_weights(r, e3 + 1);
 
                         size_t e4 = e3 + 1;
@@ -581,7 +581,7 @@ public:
                         sign3 *= -1;
                         size_t e4 = e2;
                         address1c += this->get_vertex_weights(r, e3) - this->get_vertex_weights(r, e3 + 1);
-                        r = onv.get_occupation_index(e3);
+                        r = onv.occupationIndexOf(e3);
                         size_t address2 = address1c - this->get_vertex_weights(r, e3);
                         int sign4 = sign2;
                         size_t s = q + 1;

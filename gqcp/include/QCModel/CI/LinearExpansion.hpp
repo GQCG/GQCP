@@ -18,8 +18,12 @@
 #pragma once
 
 
+#include "Basis/ScalarBasis/GTOShell.hpp"
+#include "Basis/SpinorBasis/RSpinorBasis.hpp"
+#include "Basis/SpinorBasis/USpinorBasis.hpp"
 #include "Basis/TransformationMatrix.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
+#include "ONVBasis/SpinResolvedONV.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "Processing/RDM/DOCIRDMBuilder.hpp"
@@ -196,6 +200,63 @@ public:
     }
 
 
+    /**
+     *  Create the linear expansion of the given spin-resolved ONV that is expressed in the given USpinorBasis, by projection onto the spin-resolved ONVs expressed with respect to the given RSpinorBasis.
+     * 
+     *  @param onv                      a spin-resolved ONV expressed with respect to an unrestricted spin-orbital basis
+     *  @param r_spinor_basis           the restricted spin-orbital basis that is used to define the resulting linear expansion of ONVs against
+     *  @param u_spinor_basis           the unrestricted spin-orbital basis in with which the given ONV is expressed against
+     * 
+     *  @return a linear expansion inside a spin-resolved ONV basis
+     */
+    template <typename Z = ONVBasis>
+    static enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, LinearExpansion<Z>> FromONVProjection(const SpinResolvedONV& onv, const RSpinorBasis<double, GTOShell>& r_spinor_basis, const USpinorBasis<double, GTOShell>& u_spinor_basis) {
+
+
+        // Determine the overlap matrices of the underlying scalar orbital bases, which is needed later on.
+        auto S = r_spinor_basis.overlap().parameters();                         // the overlap matrix of the restricted MOs/spin-orbitals
+        S.basisTransformInPlace(r_spinor_basis.coefficientMatrix().inverse());  // now in AO basis
+
+        auto S_alpha = u_spinor_basis.overlap(Spin::alpha).parameters();                         // the overlap matrix of the alpha spin-orbitals
+        S_alpha.basisTransformInPlace(u_spinor_basis.coefficientMatrix(Spin::alpha).inverse());  // now in AO basis
+
+        auto S_beta = u_spinor_basis.overlap(Spin::beta).parameters();                         // the overlap matrix of the beta spin-orbitals
+        S_beta.basisTransformInPlace(u_spinor_basis.coefficientMatrix(Spin::beta).inverse());  // now in AO basis
+
+        if (!(S.isApprox(S_alpha, 1.0e-08)) || !(S.isApprox(S_beta, 1.0e-08))) {
+            throw std::invalid_argument("SpinResolvedONV::calculateOverlap(const SpinResolvedONV&, const RSpinorBasis<double, GTOShell>&, const USpinorBasis<double, GTOShell>&): The given spinor bases are not expressed using the same scalar orbital basis.");
+        }
+
+
+        // Prepare some parameters.
+        const auto& C = r_spinor_basis.coefficientMatrix();
+        const auto& C_alpha = u_spinor_basis.coefficientMatrix(Spin::alpha);
+        const auto& C_beta = u_spinor_basis.coefficientMatrix(Spin::beta);
+
+
+        // Set up the required spin-resolved ONV basis.
+        const auto K = onv.numberOfSpatialOrbitals(Spin::alpha);  // assume equal numbers of spin-orbitals for alpha- and beta-electrons
+        const auto N_alpha = onv.numberOfElectrons(Spin::alpha);
+        const auto N_beta = onv.numberOfElectrons(Spin::beta);
+        const SpinResolvedONVBasis onv_basis {K, N_alpha, N_beta};
+
+
+        // Determine the coefficients through calculating the overlap between two ONVs.
+        VectorX<double> coeffs = VectorX<double>::Zero(onv_basis.dimension());
+
+        onv_basis.forEach([&onv, &C_alpha, &C_beta, &C, &S, &coeffs, &onv_basis](const SpinUnresolvedONV& alpha_onv, const size_t I_alpha, const SpinUnresolvedONV& beta_onv, const size_t I_beta) {
+            const SpinResolvedONV onv_on {alpha_onv, beta_onv};  // the spin-resolved ONV that should be projected 'on'
+
+            const auto coefficient = onv.calculateProjection(onv_on, C_alpha, C_beta, C, S);
+            const auto address = onv_basis.compoundAddress(I_alpha, I_beta);
+
+            coeffs(address) = coefficient;
+        });
+
+        return LinearExpansion<Z>(onv_basis, coeffs);
+    }
+
+
     /*
      *  PUBLIC METHODS
      */
@@ -248,8 +309,8 @@ public:
 
 
         // Set up spin-unresolved ONV basis variables for the loops over the ONVs
-        const SpinUnresolvedONVBasis& alpha_onv_basis = onv_basis.get_fock_space_alpha();
-        const SpinUnresolvedONVBasis& beta_onv_basis = onv_basis.get_fock_space_beta();
+        const SpinUnresolvedONVBasis& alpha_onv_basis = onv_basis.get_onv_basis_alpha();
+        const SpinUnresolvedONVBasis& beta_onv_basis = onv_basis.get_onv_basis_beta();
 
         auto dim_alpha = alpha_onv_basis.get_dimension();
         auto dim_beta = beta_onv_basis.get_dimension();
@@ -274,8 +335,8 @@ public:
             SpinUnresolvedONV alpha = alpha_onv_basis.makeONV(0);
             for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
                 if (!alpha.isOccupied(m)) {
-                    for (size_t e1 = 0; e1 < N_alpha; e1++) {       // e1 (electron 1) loops over the (number of) electrons
-                        size_t p = alpha.get_occupation_index(e1);  // retrieve the index of a given electron
+                    for (size_t e1 = 0; e1 < N_alpha; e1++) {    // e1 (electron 1) loops over the (number of) electrons
+                        size_t p = alpha.occupationIndexOf(e1);  // retrieve the index of a given electron
 
                         if (p < m) {
                             size_t address = I_alpha - alpha_onv_basis.get_vertex_weights(p, e1 + 1);
@@ -335,8 +396,8 @@ public:
 
             for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
                 if (!beta.isOccupied(m)) {
-                    for (size_t e1 = 0; e1 < N_beta; e1++) {       // e1 (electron 1) loops over the (number of) electrons
-                        size_t p = beta.get_occupation_index(e1);  // retrieve the index of a given electron
+                    for (size_t e1 = 0; e1 < N_beta; e1++) {    // e1 (electron 1) loops over the (number of) electrons
+                        size_t p = beta.occupationIndexOf(e1);  // retrieve the index of a given electron
 
                         if (p < m) {
                             size_t address = I_beta - beta_onv_basis.get_vertex_weights(p, e1 + 1);
@@ -413,6 +474,28 @@ public:
      *  @return the expansion coefficients of this linear expansion wave function model
      */
     const VectorX<double>& coefficients() const { return this->coeffs; }
+
+
+    /**
+     *  Iterate over all expansion coefficients and corresponding ONVs, and apply the given callback function.
+     * 
+     *  @param callback                 the function to be applied in every iteration. Its arguments are an expansion coefficient and the corresponding ONV.
+     *  
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, void> forEach(const std::function<void(const double, const SpinResolvedONV)>& callback) const {
+
+        // Iterate over all ONVs in this ONV basis, and look up the corresponding coefficient.
+        const auto& onv_basis = this->onv_basis;
+        const auto& coeffs = this->coeffs;
+        onv_basis.forEach([&onv_basis, &callback, &coeffs](const SpinUnresolvedONV& onv_alpha, const size_t I_alpha, const SpinUnresolvedONV& onv_beta, const size_t I_beta) {
+            const SpinResolvedONV onv {onv_alpha, onv_beta};
+            const auto address = onv_basis.compoundAddress(I_alpha, I_beta);
+            const auto coefficient = coeffs(address);
+
+            callback(coefficient, onv);
+        });
+    }
 
 
     /** 

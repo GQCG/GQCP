@@ -21,6 +21,7 @@
 #include "Basis/Integrals/IntegralCalculator.hpp"
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
 #include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
+#include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
 #include "Basis/SpinorBasis/Spin.hpp"
 #include "Molecule/Molecule.hpp"
@@ -161,39 +162,69 @@ public:
 
 
     /*
+     *  NAMED CONSTRUCTORS
+     */
+
+    /**
+     *  Convert a restricted spinor basis into a generalized framework.
+     * 
+     *  @param r_spinor_basis           the restricted spinor basis
+     * 
+     *  @return the restricted spinor basis as a generalized one
+     */
+    static GSpinorBasis<ExpansionScalar, Shell> FromRestricted(const RSpinorBasis<ExpansionScalar, Shell>& r_spinor_basis) {
+
+        // Build up the 'general' coefficient matrix.
+        const auto K = r_spinor_basis.numberOfSpatialOrbitals();
+        const auto M = r_spinor_basis.numberOfSpinors();
+        TransformationMatrix<ExpansionScalar> C_general = TransformationMatrix<ExpansionScalar>::Zero(M, M);
+
+        C_general.topLeftCorner(K, K) = r_spinor_basis.coefficientMatrix();
+        C_general.bottomRightCorner(K, K) = r_spinor_basis.coefficientMatrix();
+
+        return GSpinorBasis<ExpansionScalar, Shell>(r_spinor_basis.scalarBasis(), C_general);  // the alpha- and beta- scalar bases are equal
+    }
+
+
+    /*
      *  PUBLIC METHODS
      */
 
     using Base::coefficientMatrix;
 
     /**
-     *  @param component        the spin component
+     *  @param sigma        alpha or beta
      * 
-     *  @return the coefficient matrix for the requested component, i.e. the matrix of the expansion coefficients of the requested components of the spinors in terms of its underlying scalar basis
+     *  @return the coefficient matrix for the requested spin component, i.e. the matrix of the expansion coefficients of the requested components of the spinors in terms of its underlying scalar basis
      */
-    MatrixX<ExpansionScalar> coefficientMatrix(Spin component) const {
+    MatrixX<ExpansionScalar> coefficientMatrix(const Spin sigma) const {
 
-        const size_t K = this->numberOfCoefficients(component);
-        if (component == Spin::alpha) {
+        const size_t K = this->numberOfCoefficients(sigma);
+
+        switch (sigma) {
+        case Spin::alpha: {
             return this->coefficientMatrix().topRows(K);
-        } else {
+        }
+
+        case Spin::beta: {
             return this->coefficientMatrix().bottomRows(K);
+        }
         }
     }
 
     /**
-     *  @param component        the spin component
+     *  @param sigma        alpha or beta
      * 
-     *  @return the scalar basis that is used for the expansion of the given component
+     *  @return the scalar basis that is used for the expansion of the given spin component
      */
-    const ScalarBasis<Shell>& scalarBasis(const Spin& component) const { return this->scalar_bases[component]; }
+    const ScalarBasis<Shell>& scalarBasis(const Spin& sigma) const { return this->scalar_bases[sigma]; }
 
     /**
-     *  @param component        the spin component
+     *  @param sigma        alpha or beta
      * 
     *  @return the number of coefficients that are used for the expansion of the requested spin-component of a spinor
      */
-    size_t numberOfCoefficients(const Spin& component) const { return this->scalarBasis(component).numberOfBasisFunctions(); }
+    size_t numberOfCoefficients(const Spin& sigma) const { return this->scalarBasis(sigma).numberOfBasisFunctions(); }
 
     /**
      *  @return the number of spinors that 'are' in this generalized spinor basis

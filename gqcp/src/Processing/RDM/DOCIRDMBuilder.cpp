@@ -56,7 +56,7 @@ OneRDMs<double> DOCIRDMBuilder::calculate1RDMs(const VectorX<double>& x) const {
     for (size_t I = 0; I < dimension; I++) {  // I loops over all the addresses of the doubly-occupied ONVs
 
         for (size_t e1 = 0; e1 < onv_basis_proxy.get_N(); e1++) {  // e1 (electron 1) loops over the number of electrons
-            const size_t p = onv.get_occupation_index(e1);         // retrieve the index of the orbital the electron occupies
+            const size_t p = onv.occupationIndexOf(e1);         // retrieve the index of the orbital the electron occupies
             const double c_I = x(I);                               // coefficient of the I-th basis vector
 
             D(p, p) += 2 * std::pow(c_I, 2);

@@ -337,8 +337,8 @@ public:
 
         for (; !evaluation_iterator.is_finished(); evaluation_iterator.increment()) {  // loop over all addresses (1)
             SpinResolvedONV configuration_I = this->get_configuration(evaluation_iterator.index);
-            SpinUnresolvedONV alpha_I = configuration_I.alphaONV();
-            SpinUnresolvedONV beta_I = configuration_I.betaONV();
+            SpinUnresolvedONV alpha_I = configuration_I.onv(Spin::alpha);
+            SpinUnresolvedONV beta_I = configuration_I.onv(Spin::beta);
 
             if (diagonal_values) {
                 for (size_t p = 0; p < K; p++) {
@@ -356,8 +356,8 @@ public:
             for (size_t J = evaluation_iterator.index + 1; J < dim; J++) {
 
                 SpinResolvedONV configuration_J = this->get_configuration(J);
-                SpinUnresolvedONV alpha_J = configuration_J.alphaONV();
-                SpinUnresolvedONV beta_J = configuration_J.betaONV();
+                SpinUnresolvedONV alpha_J = configuration_J.onv(Spin::alpha);
+                SpinUnresolvedONV beta_J = configuration_J.onv(Spin::beta);
 
                 if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
 
@@ -457,8 +457,8 @@ public:
 
         for (; !evaluation_iterator.is_finished(); evaluation_iterator.increment()) {  // loop over all addresses (1)
             SpinResolvedONV configuration_I = this->get_configuration(evaluation_iterator.index);
-            SpinUnresolvedONV alpha_I = configuration_I.alphaONV();
-            SpinUnresolvedONV beta_I = configuration_I.betaONV();
+            SpinUnresolvedONV alpha_I = configuration_I.onv(Spin::alpha);
+            SpinUnresolvedONV beta_I = configuration_I.onv(Spin::beta);
 
             if (diagonal_values) {
                 for (size_t p = 0; p < K; p++) {
@@ -502,8 +502,8 @@ public:
             for (size_t J = evaluation_iterator.index + 1; J < dim; J++) {
 
                 SpinResolvedONV configuration_J = this->get_configuration(J);
-                SpinUnresolvedONV alpha_J = configuration_J.alphaONV();
-                SpinUnresolvedONV beta_J = configuration_J.betaONV();
+                SpinUnresolvedONV alpha_J = configuration_J.onv(Spin::alpha);
+                SpinUnresolvedONV beta_J = configuration_J.onv(Spin::beta);
 
                 if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
 

@@ -138,7 +138,7 @@ public:
     void setNextONV(SpinUnresolvedONV& onv) const {
 
         const auto& fock_space = this->derived();
-        onv.set_representation(fock_space.ulongNextPermutation(onv.get_unsigned_representation()));
+        onv.set_representation(fock_space.ulongNextPermutation(onv.unsignedRepresentation()));
     }
 
     /**
@@ -149,7 +149,7 @@ public:
     size_t getAddress(const SpinUnresolvedONV& onv) const {
 
         const auto& fock_space = this->derived();
-        return fock_space.getAddress(onv.get_unsigned_representation());
+        return fock_space.getAddress(onv.unsignedRepresentation());
     };
 
     /**

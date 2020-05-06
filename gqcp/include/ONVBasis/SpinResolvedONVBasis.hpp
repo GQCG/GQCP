@@ -22,6 +22,8 @@
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 #include "Operator/SecondQuantized/USQHamiltonian.hpp"
 
+#include <functional>
+
 
 namespace GQCP {
 
@@ -31,14 +33,15 @@ namespace GQCP {
  */
 class SpinResolvedONVBasis: public BaseONVBasis {
 private:
-    SpinUnresolvedONVBasis fock_space_alpha;
-    SpinUnresolvedONVBasis fock_space_beta;
+    SpinUnresolvedONVBasis onv_basis_alpha;
+    SpinUnresolvedONVBasis onv_basis_beta;
 
     std::vector<Eigen::SparseMatrix<double>> alpha_couplings;
 
 
 public:
     // CONSTRUCTORS
+
     /**
      *  @param K            the number of orbitals (equal for alpha and beta)
      *  @param N_alpha      the number of alpha electrons
@@ -48,19 +51,21 @@ public:
 
 
     // DESTRUCTORS
+
     ~SpinResolvedONVBasis() override = default;
 
 
     // GETTERS
-    size_t get_N_alpha() const { return this->fock_space_alpha.get_N(); }
-    size_t get_N_beta() const { return this->fock_space_beta.get_N(); }
-    const SpinUnresolvedONVBasis& get_fock_space_alpha() const { return this->fock_space_alpha; }
-    const SpinUnresolvedONVBasis& get_fock_space_beta() const { return this->fock_space_beta; }
+    size_t get_N_alpha() const { return this->onv_basis_alpha.get_N(); }
+    size_t get_N_beta() const { return this->onv_basis_beta.get_N(); }
+    const SpinUnresolvedONVBasis& get_onv_basis_alpha() const { return this->onv_basis_alpha; }
+    const SpinUnresolvedONVBasis& get_onv_basis_beta() const { return this->onv_basis_beta; }
     ONVBasisType get_type() const override { return ONVBasisType::SpinResolvedONVBasis; }
     const std::vector<Eigen::SparseMatrix<double>>& get_alpha_couplings() const { return alpha_couplings; }
 
 
     // STATIC PUBLIC METHODS
+
     /**
      *  @param K            the number of orbitals (equal for alpha and beta)
      *  @param N_alpha      the number of alpha electrons
@@ -74,23 +79,19 @@ public:
     // PUBLIC METHODS
 
     /**
+     *  Calculate the compound address of an ONV represented by the two given alpha- and beta-addresses.
+     * 
+     *  @param I_alpha              the alpha-address
+     *  @param I_beta               the beta-address
+     * 
+     *  @return the compound address of an ONV represented by the two given alpha- and beta-addresses.
+     */
+    size_t compoundAddress(const size_t I_alpha, const size_t I_beta) const;
+
+    /**
      *  @return the dimension of this ONV basis
      */
     size_t dimension() const;
-
-
-    /**
-     *  Auxiliary method in order to calculate "theta(pq)",
-     *  it returns a partition of a two-electron operator as one-electron operator
-     *  where A (i,j) = T (p, q, i, j).
-     *
-     *  @param p            first fixed index of the two-electron operator
-     *  @param q            second fixed index of the two-electron operator
-     *  @param two_op       the two-electron operator
-     *
-     *  @return a one-electron operator containing a partition of the two-electron operator
-     */
-    ScalarSQOneElectronOperator<double> oneElectronPartition(size_t p, size_t q, const ScalarSQTwoElectronOperator<double>& two_op) const;
 
     /**
      *  Evaluate the operator in a dense matrix
@@ -103,16 +104,6 @@ public:
     SquareMatrix<double> evaluateOperatorDense(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const override;
 
     /**
-     *  Evaluate the operator in a sparse matrix
-     *
-     *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in this ONV basis
-     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
-     *
-     *  @return the operator's evaluation in a sparse matrix with the dimensions of this ONV basis
-     */
-    Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const override;
-
-    /**
      *  Evaluate the operator in a dense matrix
      *
      *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in this ONV basis
@@ -121,16 +112,6 @@ public:
      *  @return the operator's evaluation in a dense matrix with the dimensions of this ONV basis
      */
     SquareMatrix<double> evaluateOperatorDense(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const override;
-
-    /**
-     *  Evaluate the operator in a sparse matrix
-     *
-     *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in this ONV basis
-     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
-     *
-     *  @return the operator's evaluation in a sparse matrix with the dimensions of this ONV basis
-     */
-    Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const override;
 
     /**
      *  Evaluate the Hamiltonian in a dense matrix
@@ -143,14 +124,14 @@ public:
     SquareMatrix<double> evaluateOperatorDense(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const override;
 
     /**
-     *  Evaluate the Hamiltonian in a sparse matrix
+     *  Evaluate the unrestricted Hamiltonian in a dense matrix
      *
-     *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
-     *  @param diagonal_values          bool to indicate if diagonal values will be calculated
+     *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
+     *  @param diagonal_values                bool to indicate if diagonal values will be calculated
      *
-     *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of this ONV basis
+     *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of this ONV basis
      */
-    Eigen::SparseMatrix<double> evaluateOperatorSparse(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const override;
+    SquareMatrix<double> evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const;
 
     /**
      *  Evaluate the diagonal of the operator
@@ -178,6 +159,15 @@ public:
      *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of this ONV basis
      */
     VectorX<double> evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const override;
+
+    /**
+     *  Evaluate the diagonal of the unrestricted Hamiltonian
+     *
+     *  @param usq_hamiltonian          the Hamiltonian expressed in an unrestricted orthonormal basis 
+     *
+     *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of this ONV basis
+     */
+    VectorX<double> evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const;
 
     /**
      *  Evaluate a one electron operator in a matrix vector product
@@ -212,27 +202,6 @@ public:
      */
     VectorX<double> evaluateOperatorMatrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
 
-
-    // UNRESTRICTED
-    /**
-     *  Evaluate the unrestricted Hamiltonian in a dense matrix
-     *
-     *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
-     *  @param diagonal_values                bool to indicate if diagonal values will be calculated
-     *
-     *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of this ONV basis
-     */
-    SquareMatrix<double> evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const;
-
-    /**
-     *  Evaluate the diagonal of the unrestricted Hamiltonian
-     *
-     *  @param usq_hamiltonian          the Hamiltonian expressed in an unrestricted orthonormal basis 
-     *
-     *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of this ONV basis
-     */
-    VectorX<double> evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const;
-
     /**
      *  Evaluate the unrestricted Hamiltonian in a matrix vector product
      *
@@ -243,6 +212,56 @@ public:
      *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of this ONV basis
      */
     VectorX<double> evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+
+    /**
+     *  Evaluate the operator in a sparse matrix
+     *
+     *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in this ONV basis
+     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *
+     *  @return the operator's evaluation in a sparse matrix with the dimensions of this ONV basis
+     */
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const override;
+
+    /**
+     *  Evaluate the operator in a sparse matrix
+     *
+     *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in this ONV basis
+     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *
+     *  @return the operator's evaluation in a sparse matrix with the dimensions of this ONV basis
+     */
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const override;
+
+    /**
+     *  Evaluate the Hamiltonian in a sparse matrix
+     *
+     *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
+     *  @param diagonal_values          bool to indicate if diagonal values will be calculated
+     *
+     *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of this ONV basis
+     */
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const override;
+
+    /**
+     *  Iterate over all ONVs (implicitly, by resolving in their spin components) in this ONV basis and apply the given callback function.
+     * 
+     *  @param callback             the function to be applied in every iteration. Its arguments are two pairs of spin-unresolved ONVs and their corresponding addresses, where the first two arguments are related to alpha-spin. The last two arguments are related to beta-spin.
+     */
+    void forEach(const std::function<void(const SpinUnresolvedONV&, const size_t, const SpinUnresolvedONV&, const size_t)>& callback) const;
+
+    /**
+     *  Auxiliary method in order to calculate "theta(pq)",
+     *  it returns a partition of a two-electron operator as one-electron operator
+     *  where A (i,j) = T (p, q, i, j).
+     *
+     *  @param p            first fixed index of the two-electron operator
+     *  @param q            second fixed index of the two-electron operator
+     *  @param two_op       the two-electron operator
+     *
+     *  @return a one-electron operator containing a partition of the two-electron operator
+     */
+    ScalarSQOneElectronOperator<double> oneElectronPartition(size_t p, size_t q, const ScalarSQTwoElectronOperator<double>& two_op) const;
 };
 
 

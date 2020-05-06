@@ -247,56 +247,20 @@ public:
 
 
     /**
-     *  Print the contents of a this to an output filestream
-     *
-     *  @param output_stream        the stream used for outputting
-     */
-    template <typename Z = void>  // enable_if must have Z inside
-    enable_if_t<Self::is_matrix, Z> print(std::ostream& output_stream = std::cout) const {
-
-        for (size_t i = 0; i < this->rows(); i++) {
-            for (size_t j = 0; j < this->cols(); j++) {
-                output_stream << i << ' ' << j << "  " << this->operator()(i, j) << std::endl;
-            }
-        }
-    }
-
-
-    /**
      *  @param i    row index (starting from 0)
      *  @param j    column index (starting from 0)
      *
      *  @return the i-j minor (i.e. delete the i-th row and j-th column)
      */
     template <typename Z = Self>
-    enable_if_t<Self::is_matrix, Z> matrixMinor(size_t i, size_t j) const {  // wrap minor inside braces as a fix for the GCC macro 'minor'
+    enable_if_t<Self::is_matrix, Z> matrixMinor(size_t i, size_t j) const {
 
-        // Delete the i-th row
-        Self A_i = Self::Zero(this->rows() - 1, this->cols());
+        Self this_copy = *this;
 
-        for (size_t i2 = 0; i2 < this->rows(); i2++) {
-            if (i2 < i) {
-                A_i.row(i2) = this->row(i2);
-            } else if (i2 == i) {
-                continue;
-            } else if (i2 > i) {
-                A_i.row(i2 - 1) = this->row(i2);
-            }
-        }
+        this_copy.removeRow(i);
+        this_copy.removeColumn(j);
 
-        // Delete the j-th column
-        Self A_ij = Self::Zero(this->rows() - 1, this->cols() - 1);
-        for (size_t j2 = 0; j2 < this->cols(); j2++) {
-            if (j2 < j) {
-                A_ij.col(j2) = A_i.col(j2);
-            } else if (j2 == j) {
-                continue;
-            } else if (j2 > j) {
-                A_ij.col(j2 - 1) = A_i.col(j2);
-            }
-        }
-
-        return A_ij;
+        return this_copy;
     }
 
 
@@ -327,6 +291,93 @@ public:
         }
 
         return v;
+    }
+
+
+    /**
+     *  Print the contents of a this to an output filestream
+     *
+     *  @param output_stream        the stream used for outputting
+     */
+    template <typename Z = void>  // enable_if must have Z inside
+    enable_if_t<Self::is_matrix, Z> print(std::ostream& output_stream = std::cout) const {
+
+        for (size_t i = 0; i < this->rows(); i++) {
+            for (size_t j = 0; j < this->cols(); j++) {
+                output_stream << i << ' ' << j << "  " << this->operator()(i, j) << std::endl;
+            }
+        }
+    }
+
+    /**
+     *  Remove the i-th column of this matrix.
+     * 
+     *  @param i            the index of the column that should be removed
+     * 
+     *  @note Implementation adapted from (https://stackoverflow.com/a/46303314), while waiting for Eigen's 3.4 release.
+     */
+    void removeColumn(const size_t i) {
+
+        const size_t rows = this->rows();         // the number of rows of the resulting matrix
+        const size_t columns = this->cols() - 1;  // the number of columns of the resulting matrix
+
+        // Shift the columns to the left.
+        if (i < columns) {
+            this->block(0, i, rows, columns - i) = this->rightCols(columns - i);
+        }
+
+        this->conservativeResize(rows, columns);
+    }
+
+
+    /**
+     *  Remove the columns at the given indices.
+     * 
+     *  @param column_indices               the indices of the columns that should be removed, in ascending order
+     */
+    void removeColumns(const std::vector<size_t>& column_indices) {
+
+        size_t removed_counter = 0;
+        for (const auto& i : column_indices) {
+            this->removeColumn(i - removed_counter);  // take into account that the given indices are with respect to the old dimensions of the matrix
+            removed_counter++;
+        }
+    }
+
+
+    /**
+     *  Remove the i-th row of this matrix.
+     * 
+     *  @param i            the index of the row that should be removed
+     * 
+     *  @note Implementation adapted from (https://stackoverflow.com/a/46303314), while waiting for Eigen's 3.4 release.
+     */
+    void removeRow(const size_t i) {
+
+        const size_t rows = this->rows() - 1;  // the number of rows of the resulting matrix
+        const size_t columns = this->cols();   // the number of columns of the resulting matrix
+
+        // Shift the rows up.
+        if (i < rows) {
+            this->block(i, 0, rows - i, columns) = this->bottomRows(rows - i);
+        }
+
+        this->conservativeResize(rows, columns);
+    }
+
+
+    /**
+     *  Remove the rows at the given indices.
+     * 
+     *  @param row_indices                  the indices of the columns that should be removed, in ascending order
+     */
+    void removeRows(const std::vector<size_t>& row_indices) {
+
+        size_t removed_counter = 0;
+        for (const auto& i : row_indices) {
+            this->removeRow(i - removed_counter);  // take into account that the given indices are with respect to the old dimensions of the matrix
+            removed_counter++;
+        }
     }
 };
 

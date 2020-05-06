@@ -81,10 +81,10 @@ VectorX<double> calculateDysonOrbitalCoefficients(const LinearExpansion<SpinReso
     // The 'passive' ONV basis is the ONV basis that is equal for both wave functions
     // The 'target' ONV basis has an electron difference of one
     // We initialize the variables for the case in which they differ in one beta electron, if this isn't the case, we will update it later
-    auto passive_onv_basis1 = onv_basis1.get_fock_space_alpha();
-    auto passive_onv_basis2 = onv_basis2.get_fock_space_alpha();
-    auto target_onv_basis1 = onv_basis1.get_fock_space_beta();
-    auto target_onv_basis2 = onv_basis2.get_fock_space_beta();
+    auto passive_onv_basis1 = onv_basis1.get_onv_basis_alpha();
+    auto passive_onv_basis2 = onv_basis2.get_onv_basis_alpha();
+    auto target_onv_basis1 = onv_basis1.get_onv_basis_beta();
+    auto target_onv_basis2 = onv_basis2.get_onv_basis_beta();
 
     // Mod variables relate to the modification of the address jump in coefficient index according to the ordering of the spin ONVs
     size_t passive_mod1 = target_onv_basis1.get_dimension();
@@ -95,8 +95,8 @@ VectorX<double> calculateDysonOrbitalCoefficients(const LinearExpansion<SpinReso
     if ((onv_basis1.get_N_alpha() - onv_basis2.get_N_alpha() == 1) && (onv_basis1.get_N_beta() - onv_basis2.get_N_beta() == 0)) {
         passive_onv_basis1 = target_onv_basis1;
         passive_onv_basis2 = target_onv_basis2;
-        target_onv_basis1 = onv_basis1.get_fock_space_alpha();
-        target_onv_basis2 = onv_basis2.get_fock_space_alpha();
+        target_onv_basis1 = onv_basis1.get_onv_basis_alpha();
+        target_onv_basis2 = onv_basis2.get_onv_basis_alpha();
 
         passive_mod1 = 1;
         passive_mod2 = 1;
@@ -120,12 +120,12 @@ VectorX<double> calculateDysonOrbitalCoefficients(const LinearExpansion<SpinReso
 
             // Annihilate on the corresponding orbital, to make sure we can calculate overlaps in the (N-1)-'target' ONV basis
             sign *= -1;
-            size_t p = onv.get_occupation_index(e);
+            size_t p = onv.occupationIndexOf(e);
             onv.annihilate(p);
 
             // Now, we calculate the overlap in the (N-1)-'target' ONV basis
             // In order to access the correct coefficients for the, we need the address of the resulting (annihilated) ONV inside the 'target' ONV basis
-            size_t address = target_onv_basis2.getAddress(onv.get_unsigned_representation());
+            size_t address = target_onv_basis2.getAddress(onv.unsignedRepresentation());
 
             double coeff = 0;
             for (size_t Ip = 0; Ip < passive_onv_basis1.get_dimension(); Ip++) {  // Ip loops over the addresses of the passive ONV basis

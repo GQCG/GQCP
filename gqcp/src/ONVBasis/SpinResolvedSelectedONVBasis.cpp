@@ -116,8 +116,8 @@ SpinResolvedSelectedONVBasis::SpinResolvedSelectedONVBasis(const SpinResolvedONV
 
     std::vector<SpinResolvedONV> onvs;
 
-    const SpinUnresolvedONVBasis& fock_space_alpha = fock_space.get_fock_space_alpha();
-    const SpinUnresolvedONVBasis& fock_space_beta = fock_space.get_fock_space_beta();
+    const SpinUnresolvedONVBasis& fock_space_alpha = fock_space.get_onv_basis_alpha();
+    const SpinUnresolvedONVBasis& fock_space_beta = fock_space.get_onv_basis_beta();
 
     auto dim_alpha = fock_space_alpha.get_dimension();
     auto dim_beta = fock_space_beta.get_dimension();
@@ -414,8 +414,8 @@ VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorDiagonal(const Sca
 
     for (size_t I = 0; I < dim; I++) {  // Ia loops over addresses of alpha onvs
         SpinResolvedONV configuration_I = this->get_configuration(I);
-        SpinUnresolvedONV alpha_I = configuration_I.alphaONV();
-        SpinUnresolvedONV beta_I = configuration_I.betaONV();
+        SpinUnresolvedONV alpha_I = configuration_I.onv(Spin::alpha);
+        SpinUnresolvedONV beta_I = configuration_I.onv(Spin::beta);
 
         for (size_t p = 0; p < K; p++) {
             if (alpha_I.isOccupied(p)) {
@@ -453,8 +453,8 @@ VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorDiagonal(const Sca
 
     for (size_t I = 0; I < dim; I++) {  // Ia loops over addresses of alpha onvs
         SpinResolvedONV configuration_I = this->get_configuration(I);
-        SpinUnresolvedONV alpha_I = configuration_I.alphaONV();
-        SpinUnresolvedONV beta_I = configuration_I.betaONV();
+        SpinUnresolvedONV alpha_I = configuration_I.onv(Spin::alpha);
+        SpinUnresolvedONV beta_I = configuration_I.onv(Spin::beta);
 
         for (size_t p = 0; p < K; p++) {
             if (alpha_I.isOccupied(p)) {
@@ -632,8 +632,8 @@ VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorDiagonal(const USQ
     VectorX<double> diagonal = VectorX<double>::Zero(dim);
     for (size_t I = 0; I < dim; I++) {  // Ia loops over addresses of alpha onvs
         SpinResolvedONV configuration_I = this->get_configuration(I);
-        SpinUnresolvedONV alpha_I = configuration_I.alphaONV();
-        SpinUnresolvedONV beta_I = configuration_I.betaONV();
+        SpinUnresolvedONV alpha_I = configuration_I.onv(Spin::alpha);
+        SpinUnresolvedONV beta_I = configuration_I.onv(Spin::beta);
 
         for (size_t p = 0; p < K; p++) {
             if (alpha_I.isOccupied(p)) {

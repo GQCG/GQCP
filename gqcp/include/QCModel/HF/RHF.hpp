@@ -328,7 +328,7 @@ public:
      * 
      *  @return the number of sigma-electrons that these RHF model parameters describe
      */
-    size_t numberOfElectrons(Spin sigma) const { return this->numberOfElectronPairs(); }
+    size_t numberOfElectrons(const Spin sigma) const { return this->numberOfElectronPairs(); }
 
     /**
      *  @return the number of spatial orbitals that these RHF model parameters describe

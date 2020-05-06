@@ -20,7 +20,6 @@
 
 #include "Basis/Integrals/IntegralCalculator.hpp"
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
-#include "Basis/SpinorBasis/GSpinorBasis.hpp"
 #include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
 #include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
@@ -139,21 +138,7 @@ public:
     }
 
 
-    /**
-     *  @return this restricted spinor basis as a general one
-     */
-    GSpinorBasis<ExpansionScalar, Shell> generalized() const {
 
-        // Build up the 'general' coefficient matrix.
-        const auto K = this->numberOfSpatialOrbitals();
-        const auto M = this->numberOfSpinors();
-        TransformationMatrix<ExpansionScalar> C_general = TransformationMatrix<ExpansionScalar>::Zero(M, M);
-
-        C_general.topLeftCorner(K, K) = this->coefficientMatrix();
-        C_general.bottomRightCorner(K, K) = this->coefficientMatrix();
-
-        return GSpinorBasis<ExpansionScalar, Shell>(this->scalarBasis(), C_general);  // the alpha- and beta- scalar bases are equal
-    }
 
 
     /**

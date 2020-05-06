@@ -35,55 +35,120 @@ namespace gqcpy {
 void bindGSpinorBasis(py::module& module) {
     py::class_<GQCP::GSpinorBasis<double, GQCP::GTOShell>>(module, "GSpinorBasis", "A class that represents a real, (generalized) spinor basis with underlying GTO shells.")
 
+        // CONSTRUCTORS
         .def(py::init<const GQCP::Molecule&, const std::string&>(),
              py::arg("molecule"),
              py::arg("basisset_name"))
+
+
+        .def_static("FromRestricted",
+                    [](const GQCP::RSpinorBasis<double, GQCP::GTOShell>& r_spinor_basis) {
+                        return GQCP::GSpinorBasis<double, GQCP::GTOShell>::FromRestricted(r_spinor_basis);
+                    })
+
+        // INHERITED METHODS
+        .def(
+            "coefficientMatrix",
+            [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
+                return spinor_basis.coefficientMatrix();
+            },
+            "Return the transformation matrix between the scalar bases and the current spinors.")
+
+        .def("coefficientMatrix",
+             [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Spin sigma) {
+                 return spinor_basis.coefficientMatrix(sigma);
+             })
+
+        .def(
+            "isOrthonormal",
+            [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const double precision) {
+                return spinor_basis.isOrthonormal(precision);
+            },
+            py::arg("precision") = 1.0e-08,
+            "Return if this spinor basis is orthonormal within the given precision")
+
+        .def(
+            "lowdinOrthonormalizationMatrix",
+            [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
+                return spinor_basis.lowdinOrthonormalizationMatrix();
+            },
+            "Return the transformation matrix to the Löwdin basis: T = S_current^{-1/2}")
 
         .def(
             "lowdinOrthonormalize",
             [](GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
                 spinor_basis.lowdinOrthonormalize();
             },
-            "Transform the spinor basis to the 'Löwdin basis', which is the orthonormal basis that we transform to with T = S^{-1/2}, where S is the current spinor overlap matrix.")
+            "Transform the spinor basis to the 'Löwdin basis', which is the orthonormal basis that we transform to with T = S^{-1/2}, where S is the current overlap matrix.")
 
         .def(
-            "numberOfSpinors",
+            "overlap",
             [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
+                return spinor_basis.overlap();
+            },
+            "Return the overlap (one-electron) operator of this restricted spinor basis")
+
+        .def(
+            "rotate",
+            [](GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& U) {
+                spinor_basis.rotate(GQCP::TransformationMatrix<double>(U));
+            },
+            py::arg("U"),
+            "Rotate the spinor basis to another one using the given unitary transformation matrix.")
+
+        .def(
+            "transform", [](GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& T) {
+                spinor_basis.transform(GQCP::TransformationMatrix<double>(T));
+            },
+            py::arg("T"), "Transform the current spinor basis using a given transformation matrix")
+
+
+        // PUBLIC METHODS
+
+        .def(
+            "coefficientMatrix", [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Spin sigma) {
+                return spinor_basis.coefficientMatrix(sigma);
+            },
+            py::arg("sigma"), "Return the coefficient matrix for the requested spin component, i.e. the matrix of the expansion coefficients of the requested components of the spinors in terms of its underlying scalar basis")
+
+        .def(
+            "numberOfCoefficients", [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Spin sigma) {
+                return spinor_basis.numberOfCoefficients(sigma);
+            },
+            py::arg("sigma"), "Return the number of coefficients that are used for the expansion of the requested spin-component of a spinor")
+
+        .def(
+            "numberOfSpinors", [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
                 return spinor_basis.numberOfSpinors();
             },
             "Return the number of spinors that 'are' in this generalized spinor basis.")
 
         .def(
-            "quantizeCoulombRepulsionOperator",
-            [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
+            "quantizeCoulombRepulsionOperator", [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
                 return spinor_basis.quantize(GQCP::Operator::Coulomb());
             },
             "Return the Coulomb operator expressed in this spinor basis.")
 
         .def(
-            "quantizeKineticOperator",
-            [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
+            "quantizeKineticOperator", [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
                 return spinor_basis.quantize(GQCP::Operator::Kinetic());
             },
             "Return the kinetic energy operator expressed in this spinor basis.")
 
         .def(
-            "quantizeNuclearAttractionOperator",
-            [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Molecule& molecule) {
+            "quantizeNuclearAttractionOperator", [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Molecule& molecule) {
                 return spinor_basis.quantize(GQCP::Operator::NuclearAttraction(molecule));
             },
             "Return the nuclear attraction operator expressed in this spinor basis.")
 
         .def(
-            "quantizeOverlapOperator",
-            [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
+            "quantizeOverlapOperator", [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
                 return spinor_basis.quantize(GQCP::Operator::Overlap());
             },
             "Return the overlap operator expressed in this spinor basis.")
 
         .def(
-            "quantizeSpinOperator",
-            [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
+            "quantizeSpinOperator", [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
                 return spinor_basis.quantize(GQCP::Operator::ElectronicSpin());
             },
             "Return the electronic spin operator expressed in this spinor basis.")

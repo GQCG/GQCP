@@ -50,8 +50,8 @@ OneRDMs<double> SelectedRDMBuilder::calculate1RDMs(const VectorX<double>& x) con
 
     for (size_t I = 0; I < dim; I++) {  // loop over all addresses (1)
         SpinResolvedONV configuration_I = this->fock_space.get_configuration(I);
-        SpinUnresolvedONV alpha_I = configuration_I.alphaONV();
-        SpinUnresolvedONV beta_I = configuration_I.betaONV();
+        SpinUnresolvedONV alpha_I = configuration_I.onv(Spin::alpha);
+        SpinUnresolvedONV beta_I = configuration_I.onv(Spin::beta);
 
         double c_I = x(I);
 
@@ -73,8 +73,8 @@ OneRDMs<double> SelectedRDMBuilder::calculate1RDMs(const VectorX<double>& x) con
         for (size_t J = I + 1; J < dim; J++) {
 
             SpinResolvedONV configuration_J = this->fock_space.get_configuration(J);
-            SpinUnresolvedONV alpha_J = configuration_J.alphaONV();
-            SpinUnresolvedONV beta_J = configuration_J.betaONV();
+            SpinUnresolvedONV alpha_J = configuration_J.onv(Spin::alpha);
+            SpinUnresolvedONV beta_J = configuration_J.onv(Spin::beta);
 
             double c_J = x(J);
 
@@ -140,8 +140,8 @@ TwoRDMs<double> SelectedRDMBuilder::calculate2RDMs(const VectorX<double>& x) con
     for (size_t I = 0; I < dim; I++) {  // loop over all addresses I
 
         SpinResolvedONV configuration_I = this->fock_space.get_configuration(I);
-        SpinUnresolvedONV alpha_I = configuration_I.alphaONV();
-        SpinUnresolvedONV beta_I = configuration_I.betaONV();
+        SpinUnresolvedONV alpha_I = configuration_I.onv(Spin::alpha);
+        SpinUnresolvedONV beta_I = configuration_I.onv(Spin::beta);
 
         double c_I = x(I);
 
@@ -185,8 +185,8 @@ TwoRDMs<double> SelectedRDMBuilder::calculate2RDMs(const VectorX<double>& x) con
         for (size_t J = I + 1; J < dim; J++) {
 
             SpinResolvedONV configuration_J = this->fock_space.get_configuration(J);
-            SpinUnresolvedONV alpha_J = configuration_J.alphaONV();
-            SpinUnresolvedONV beta_J = configuration_J.betaONV();
+            SpinUnresolvedONV alpha_J = configuration_J.onv(Spin::alpha);
+            SpinUnresolvedONV beta_J = configuration_J.onv(Spin::beta);
 
             double c_J = x(J);
 

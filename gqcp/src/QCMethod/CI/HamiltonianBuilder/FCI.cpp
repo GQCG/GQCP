@@ -62,8 +62,8 @@ VectorX<double> FCI::matrixVectorProduct(const SQHamiltonian<double>& sq_hamilto
         throw std::invalid_argument("FCI::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the ONV basis and sq_hamiltonian are incompatible.");
     }
 
-    SpinUnresolvedONVBasis fock_space_alpha = onv_basis.get_fock_space_alpha();
-    SpinUnresolvedONVBasis fock_space_beta = onv_basis.get_fock_space_beta();
+    SpinUnresolvedONVBasis fock_space_alpha = onv_basis.get_onv_basis_alpha();
+    SpinUnresolvedONVBasis fock_space_beta = onv_basis.get_onv_basis_beta();
 
     const auto& alpha_couplings = this->onv_basis.get_alpha_couplings();
 

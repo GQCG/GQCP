@@ -67,7 +67,7 @@ Molecule::Molecule(const std::vector<Nucleus>& nuclei, const int charge) :
  *
  *  @return a charged H-chain with equal internuclear spacing
  */
-Molecule Molecule::HChain(size_t n, double spacing, int charge, CartesianDirection axis) {
+Molecule Molecule::HChain(const size_t n, const double spacing, const int charge, const CartesianDirection axis) {
 
     return Molecule(NuclearFramework::HChain(n, spacing, axis), charge);
 }
@@ -81,7 +81,7 @@ Molecule Molecule::HChain(size_t n, double spacing, int charge, CartesianDirecti
  *
  *  @return a charged H2-chain
  */
-Molecule Molecule::H2Chain(size_t n, double a, double b, int charge, CartesianDirection axis) {
+Molecule Molecule::H2Chain(const size_t n, const double a, const double b, const int charge, const CartesianDirection axis) {
 
     return Molecule(NuclearFramework::H2Chain(n, a, b, axis), charge);
 }
@@ -93,7 +93,7 @@ Molecule Molecule::H2Chain(size_t n, double a, double b, int charge, CartesianDi
  * 
  *  @return a regular H-ring where neighbouring hydrogens are separated by the given distance
  */
-Molecule Molecule::HRingFromDistance(const size_t n, const double distance, int charge) {
+Molecule Molecule::HRingFromDistance(const size_t n, const double distance, const int charge) {
 
     return Molecule(NuclearFramework::HRingFromDistance(n, distance), charge);
 }
@@ -105,7 +105,7 @@ Molecule Molecule::HRingFromDistance(const size_t n, const double distance, int 
  * 
  *  @return a regular H-ring whose hydrogens are on the circle with the given radius
  */
-Molecule Molecule::HRingFromRadius(const size_t n, const double radius, int charge) {
+Molecule Molecule::HRingFromRadius(const size_t n, const double radius, const int charge) {
 
     return Molecule(NuclearFramework::HRingFromRadius(n, radius), charge);
 }

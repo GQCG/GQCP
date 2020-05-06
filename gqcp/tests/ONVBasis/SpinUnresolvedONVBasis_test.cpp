@@ -321,22 +321,19 @@ BOOST_AUTO_TEST_CASE(ONVBasis_setNext) {
     // Check permutations one after the other
 
     fock_space.setNextONV(onv);  // "01011" (11)
-    BOOST_CHECK_EQUAL(onv.get_unsigned_representation(), 11);
-    GQCP::VectorXs x1 {3};
-    x1 << 0, 1, 3;
-    BOOST_CHECK(x1.isApprox(onv.get_occupation_indices()));
+    BOOST_CHECK_EQUAL(onv.unsignedRepresentation(), 11);
+    std::vector<size_t> ref_indices1 {0, 1, 3};
+    BOOST_CHECK(ref_indices1 == onv.occupiedIndices());
 
     fock_space.setNextONV(onv);  // "01101" (13)
-    BOOST_CHECK_EQUAL(onv.get_unsigned_representation(), 13);
-    GQCP::VectorXs x2 {3};
-    x2 << 0, 2, 3;
-    BOOST_CHECK(x2.isApprox(onv.get_occupation_indices()));
+    BOOST_CHECK_EQUAL(onv.unsignedRepresentation(), 13);
+    std::vector<size_t> ref_indices2 {0, 2, 3};
+    BOOST_CHECK(ref_indices2 == onv.occupiedIndices());
 
     fock_space.setNextONV(onv);  // "01110" (14)
-    BOOST_CHECK_EQUAL(onv.get_unsigned_representation(), 14);
-    GQCP::VectorXs x3 {3};
-    x3 << 1, 2, 3;
-    BOOST_CHECK(x3.isApprox(onv.get_occupation_indices()));
+    BOOST_CHECK_EQUAL(onv.unsignedRepresentation(), 14);
+    std::vector<size_t> ref_indices3 {1, 2, 3};
+    BOOST_CHECK(ref_indices3 == onv.occupiedIndices());
 }
 
 

@@ -116,7 +116,7 @@ size_t SpinUnresolvedFrozenONVBasis::countOneElectronCouplings(const SpinUnresol
     size_t coupling_count = 0;
 
     for (size_t e1 = this->X; e1 < this->N; e1++) {  // start from X to ignore the frozen electrons
-        size_t p = onv.get_occupation_index(e1);
+        size_t p = onv.occupationIndexOf(e1);
         coupling_count += (V + e1 - p);  // number of virtuals with an index larger than p
     }
 
@@ -136,12 +136,12 @@ size_t SpinUnresolvedFrozenONVBasis::countTwoElectronCouplings(const SpinUnresol
 
     for (size_t e1 = this->X; e1 < this->N; e1++) {  // start from X to ignore the frozen electrons
 
-        size_t p = onv.get_occupation_index(e1);
+        size_t p = onv.occupationIndexOf(e1);
         coupling_count += (V + e1 - p);  //  one electron part
 
         for (size_t e2 = e1 + 1; e2 < this->N; e2++) {
 
-            size_t q = onv.get_occupation_index(e2);
+            size_t q = onv.occupationIndexOf(e2);
             size_t coupling_count2 = (V + e2 - q);
             coupling_count += (V - coupling_count2) * coupling_count2;
 

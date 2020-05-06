@@ -36,12 +36,11 @@ BOOST_AUTO_TEST_CASE(ONV_constructor) {
 
     // Check if both unsigned representations match (are equal to 31 and have the same considered bits)
     BOOST_CHECK(onv1 == onv2);
-    BOOST_CHECK(onv1.get_unsigned_representation() == 31);
+    BOOST_CHECK(onv1.unsignedRepresentation() == 31);
 
     // Test if the occupation numbers are correct.
-    GQCP::VectorXs x {5};
-    x << 0, 1, 2, 3, 4;
-    BOOST_CHECK(x.isApprox(onv1.get_occupation_indices()));
+    std::vector<size_t> ref_indices {0, 1, 2, 3, 4};
+    BOOST_CHECK(ref_indices == onv1.occupiedIndices());
 
     // Test if setting incompatible representation throws an error
     BOOST_CHECK_THROW(onv1.set_representation(1), std::invalid_argument);
@@ -179,7 +178,7 @@ BOOST_AUTO_TEST_CASE(annihilate) {
 
     // We can annihilate on index 1
     BOOST_CHECK(onv.annihilate(1));  // "1010" (10) -> "1000" (8)
-    BOOST_CHECK_EQUAL(onv.get_unsigned_representation(), 8);
+    BOOST_CHECK_EQUAL(onv.unsignedRepresentation(), 8);
     // Test if updating throws an error (no longer 2 electrons)
     BOOST_CHECK_THROW(onv.updateOccupationIndices(), std::invalid_argument);
 }
@@ -323,7 +322,7 @@ BOOST_AUTO_TEST_CASE(create) {
 
     // We can create on index 2
     BOOST_CHECK(onv.create(2));  // "0010" (2) -> "0110" (6)
-    BOOST_CHECK_EQUAL(onv.get_unsigned_representation(), 6);
+    BOOST_CHECK_EQUAL(onv.unsignedRepresentation(), 6);
 }
 
 
@@ -485,4 +484,62 @@ BOOST_AUTO_TEST_CASE(findMatchingOccupations) {
 
     BOOST_TEST(onv2.findMatchingOccupations(onv3) == (std::vector<size_t> {1, 4}), boost::test_tools::per_element());
     BOOST_TEST(onv3.findMatchingOccupations(onv2) == (std::vector<size_t> {1, 4}), boost::test_tools::per_element());
+}
+
+
+/**
+ *  Check if the creation of the 'GHF' ONV works as expected.
+ */
+BOOST_AUTO_TEST_CASE(GHF) {
+
+    // For M=10 spinors and N=5 electrons, the 'GHF' ONV should be "0000011111" = 31.
+    const size_t M = 10;
+    const size_t N = 5;
+    const GQCP::SpinUnresolvedONV reference {M, N, 31};
+
+    BOOST_CHECK(reference == GQCP::SpinUnresolvedONV::GHF(M, N));
+}
+
+
+/**
+ *  Check if the creation of a spin-unresolved ONV from a textual/string representation works as expected.
+ */
+BOOST_AUTO_TEST_CASE(FromString) {
+
+    const GQCP::SpinUnresolvedONV onv_ref1 {5, 3, 21};  // "10101" (21)
+    const GQCP::SpinUnresolvedONV onv_ref2 {5, 3, 22};  // "10110" (22)
+    const GQCP::SpinUnresolvedONV onv_ref3 {5, 3, 26};  // "11010" (26)
+
+    const auto onv1 = GQCP::SpinUnresolvedONV::FromString("10101");
+    BOOST_CHECK(onv1 == onv_ref1);
+
+    const auto onv2 = GQCP::SpinUnresolvedONV::FromString("10110");
+    BOOST_CHECK(onv2 == onv_ref2);
+
+    const auto onv3 = GQCP::SpinUnresolvedONV::FromString("11010");
+    BOOST_CHECK(onv3 == onv_ref3);
+}
+
+
+/**
+ *  Check if unoccupiedIndices() works as expected.
+ */
+BOOST_AUTO_TEST_CASE(unoccupiedIndices) {
+
+    // Create some test ONVs.
+    const GQCP::SpinUnresolvedONV onv1 {5, 3, 21};  // "10101" (21)
+    const GQCP::SpinUnresolvedONV onv2 {5, 3, 22};  // "10110" (22)
+    const GQCP::SpinUnresolvedONV onv3 {5, 3, 26};  // "11010" (26)
+    const GQCP::SpinUnresolvedONV onv4 {4, 2, 5};   // "0101" (5)
+
+    // Initialize the reference unoccupied indices and check the result.
+    const std::vector<size_t> ref_unoccupied_indices1 {1, 3};
+    const std::vector<size_t> ref_unoccupied_indices2 {0, 3};
+    const std::vector<size_t> ref_unoccupied_indices3 {0, 2};
+    const std::vector<size_t> ref_unoccupied_indices4 {1, 3};
+
+    BOOST_CHECK(onv1.unoccupiedIndices() == ref_unoccupied_indices1);  // counted from right to left
+    BOOST_CHECK(onv2.unoccupiedIndices() == ref_unoccupied_indices2);  // counted from right to left
+    BOOST_CHECK(onv3.unoccupiedIndices() == ref_unoccupied_indices3);  // counted from right to left
+    BOOST_CHECK(onv4.unoccupiedIndices() == ref_unoccupied_indices4);  // counted from right to left
 }

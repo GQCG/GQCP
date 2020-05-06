@@ -189,7 +189,7 @@ size_t SpinUnresolvedONVBasis::countOneElectronCouplings(const SpinUnresolvedONV
     size_t coupling_count = 0;
 
     for (size_t e1 = 0; e1 < this->N; e1++) {
-        size_t p = onv.get_occupation_index(e1);
+        size_t p = onv.occupationIndexOf(e1);
         coupling_count += (V + e1 - p);  // number of virtuals with an index larger than p
     }
 
@@ -209,12 +209,12 @@ size_t SpinUnresolvedONVBasis::countTwoElectronCouplings(const SpinUnresolvedONV
 
     for (size_t e1 = 0; e1 < this->N; e1++) {
 
-        size_t p = onv.get_occupation_index(e1);
+        size_t p = onv.occupationIndexOf(e1);
         coupling_count += (V + e1 - p);  //  one electron part
 
         for (size_t e2 = e1 + 1; e2 < this->N; e2++) {
 
-            size_t q = onv.get_occupation_index(e2);
+            size_t q = onv.occupationIndexOf(e2);
             size_t coupling_count2 = (V + e2 - q);
             coupling_count += (V - coupling_count2) * coupling_count2;
 
@@ -433,7 +433,7 @@ std::vector<Eigen::SparseMatrix<double>> SpinUnresolvedONVBasis::calculateOneEle
     SpinUnresolvedONV onv = this->makeONV(0);         // onv with address 0
     for (size_t I = 0; I < dim; I++) {                // I loops over all the addresses of the onv
         for (size_t e1 = 0; e1 < N; e1++) {           // e1 (electron 1) loops over the (number of) electrons
-            size_t p = onv.get_occupation_index(e1);  // retrieve the index of a given electron
+            size_t p = onv.occupationIndexOf(e1);  // retrieve the index of a given electron
             // remove the weight from the initial address I, because we annihilate
             size_t address = I - this->get_vertex_weights(p, e1 + 1);
             // The e2 iteration counts the number of encountered electrons for the creation operator
@@ -503,7 +503,7 @@ VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorDiagonal(const ScalarSQO
         }
 
         for (size_t e1 = 0; e1 < N; e1++) {  // A1 (annihilation 1)
-            size_t p = onv.get_occupation_index(e1);
+            size_t p = onv.occupationIndexOf(e1);
             diagonal(I) += one_op_par(p, p);
         }
     }
@@ -542,7 +542,7 @@ VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorDiagonal(const ScalarSQT
         }
 
         for (size_t e1 = 0; e1 < N; e1++) {  // A1 (annihilation 1)
-            size_t p = onv.get_occupation_index(e1);
+            size_t p = onv.occupationIndexOf(e1);
             diagonal(I) += k_par(p, p);
 
             for (size_t q = 0; q < K; q++) {  // q loops over SOs
