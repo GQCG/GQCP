@@ -53,13 +53,15 @@ void bindSpinResolvedONV(py::module& module) {
         // PUBLIC METHODS
         .def(
             "calculateProjection",
-            [](const GQCP::SpinResolvedONV& spin_resolved_onv, const GQCP::SpinResolvedONV& onv_on, const GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis_of, const GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis_on) {
-                return spin_resolved_onv.calculateProjection(onv_on, spinor_basis_of, spinor_basis_on);
+            [](const GQCP::SpinResolvedONV& onv_of, const GQCP::SpinResolvedONV& onv_on, const GQCP::TransformationMatrix<double>& C_alpha, const GQCP::TransformationMatrix<double>& C_beta, const GQCP::TransformationMatrix<double>& C, const GQCP::QCMatrix<double>& S) {
+                return onv_of.calculateProjection(onv_on, C_alpha, C_beta, C, S);
             },
             py::arg("onv_on"),
-            py::arg("spinor_basis_of"),
-            py::arg("spinor_basis_on"),
-            "Calculate the overlap <on|of>: the projection of between this spin-resolved ONV ('of') and another spin-resolved ONV ('on'), expressed in different R/U-spinor bases.")
+            py::arg("C_alpha"),
+            py::arg("C_beta"),
+            py::arg("C"),
+            py::arg("S"),
+            "Calculate the overlap <on|of>: the projection of between this spin-resolved ONV ('of') and another spin-resolved ONV ('on'), expressed in different R/U-spinor bases. The 'on'-ONV is supposed to be expressed in restricted spin-orbitals, and the 'of'-ONV is supposed to be expressed in unrestricted spin-orbitals.")
 
         .def(
             "onv",

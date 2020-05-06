@@ -99,18 +99,20 @@ public:
     // PUBLIC METHODS
 
     /**
-     *  Calculate the overlap <on|of>: the projection of between this spin-resolved ONV ('of') and another spin-resolved ONV ('on'), expressed in different R/U-spinor bases.
+     *  Calculate the overlap <on|of>: the projection of between this spin-resolved ONV ('of') and another spin-resolved ONV ('on'), expressed in different R/U-spinor bases. The 'on'-ONV is supposed to be expressed in restricted spin-orbitals, and the 'of'-ONV is supposed to be expressed in unrestricted spin-orbitals.
      * 
      *  @param onv_on                       the spin-resolved ONV that should be projected on
-     *  @param spinor_basis_of              the unrestricted spin-orbital basis in which this ONV (the 'of'-ONV) is expressed
-     *  @param spinor_basis_on              the restricted spin-orbital basis in which the 'on'-ONV is expressed.
+     *  @param C_alpha                      the coefficient matrix that describes the expansion of the alpha-spin-orbitals in terms of the underlying AOs
+     *  @param C_beta                       the coefficient matrix that describes the expansion of the beta-spin-orbitals in terms of the underlying AOs
+     *  @param C                            the coefficient matrix that describes the expansion of the restricted alpha/beta-spin-orbitals in terms of the underlying AOs
+     *  @param S                            the overlap matrix of the underlying AOs
      * 
      *  @return the overlap element <on|of>
      * 
-     *  @note This method can be used to project UHF-ONVs onto RHF-ONVs, by calling
-     *          uhf_onv.calculateProjection(rhf_onv, USpinorBasis, RSpinorBasis)
+     *  @example This method can be used to project UHF-ONVs onto RHF-ONVs, by calling
+     *          uhf_onv.calculateProjection(rhf_onv, C_alpha, C_beta, C, S)
      */
-    double calculateProjection(const SpinResolvedONV& onv_on, const USpinorBasis<double, GTOShell>& spinor_basis_of, const RSpinorBasis<double, GTOShell>& spinor_basis_on) const;
+    double calculateProjection(const SpinResolvedONV& onv_on, const TransformationMatrix<double>& C_alpha, const TransformationMatrix<double>& C_beta, const TransformationMatrix<double>& C, const QCMatrix<double>& S) const;
 
     /**
      *  @param sigma                alpha or beta

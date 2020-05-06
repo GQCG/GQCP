@@ -122,40 +122,23 @@ SpinResolvedONV SpinResolvedONV::UHF(const size_t K, const size_t N_alpha, const
 
 
 /**
- *  Calculate the overlap <on|of>: the projection of between this spin-resolved ONV ('of') and another spin-resolved ONV ('on'), expressed in different R/U-spinor bases.
+ *  Calculate the overlap <on|of>: the projection of between this spin-resolved ONV ('of') and another spin-resolved ONV ('on'), expressed in different R/U-spinor bases. The 'on'-ONV is supposed to be expressed in restricted spin-orbitals, and the 'of'-ONV is supposed to be expressed in unrestricted spin-orbitals.
  * 
  *  @param onv_on                       the spin-resolved ONV that should be projected on
- *  @param spinor_basis_of              the unrestricted spin-orbital basis in which this ONV (the 'of'-ONV) is expressed
- *  @param spinor_basis_on              the restricted spin-orbital basis in which the 'on'-ONV is expressed.
+ *  @param C_alpha                      the coefficient matrix that describes the expansion of the alpha-spin-orbitals in terms of the underlying AOs
+ *  @param C_beta                       the coefficient matrix that describes the expansion of the beta-spin-orbitals in terms of the underlying AOs
+ *  @param C                            the coefficient matrix that describes the expansion of the restricted alpha/beta-spin-orbitals in terms of the underlying AOs
+ *  @param S                            the overlap matrix of the underlying AOs
  * 
  *  @return the overlap element <on|of>
  * 
- *  @note This method can be used to project UHF-ONVs onto RHF-ONVs, by calling
- *          uhf_onv.calculateProjection(rhf_onv, USpinorBasis, RSpinorBasis)
+ *  @example This method can be used to project UHF-ONVs onto RHF-ONVs, by calling
+ *          uhf_onv.calculateProjection(rhf_onv, C_alpha, C_beta, C, S)
  */
-double SpinResolvedONV::calculateProjection(const SpinResolvedONV& onv_on, const USpinorBasis<double, GTOShell>& spinor_basis_of, const RSpinorBasis<double, GTOShell>& spinor_basis_on) const {
+double SpinResolvedONV::calculateProjection(const SpinResolvedONV& onv_on, const TransformationMatrix<double>& C_alpha, const TransformationMatrix<double>& C_beta, const TransformationMatrix<double>& C, const QCMatrix<double>& S) const {
 
 
-    // Determine the overlap matrices of the underlying scalar orbital bases, which is needed later on.
-    auto S = spinor_basis_on.overlap().parameters();                         // the overlap matrix of the restricted MOs/spin-orbitals
-    S.basisTransformInPlace(spinor_basis_on.coefficientMatrix().inverse());  // now in AO basis
-
-    auto S_alpha = spinor_basis_of.overlap(Spin::alpha).parameters();                         // the overlap matrix of the alpha spin-orbitals
-    S_alpha.basisTransformInPlace(spinor_basis_of.coefficientMatrix(Spin::alpha).inverse());  // now in AO basis
-
-    auto S_beta = spinor_basis_of.overlap(Spin::beta).parameters();                         // the overlap matrix of the beta spin-orbitals
-    S_beta.basisTransformInPlace(spinor_basis_of.coefficientMatrix(Spin::beta).inverse());  // now in AO basis
-
-    if (!(S.isApprox(S_alpha, 1.0e-08)) || !(S.isApprox(S_beta, 1.0e-08))) {
-        throw std::invalid_argument("SpinResolvedONV::calculateOverlap(const SpinResolvedONV&, const RSpinorBasis<double, GTOShell>&, const USpinorBasis<double, GTOShell>&): The given spinor bases are not expressed using the same scalar orbital basis.");
-    }
-
-
-    // Prepare some parameters.
     const auto onv_of = *this;
-    const auto& C = spinor_basis_on.coefficientMatrix();
-    const auto& C_alpha = spinor_basis_of.coefficientMatrix(Spin::alpha);
-    const auto& C_beta = spinor_basis_of.coefficientMatrix(Spin::beta);
 
 
     // Calculate the transformation matrices between both sets of spin-orbitals.

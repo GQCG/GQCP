@@ -212,6 +212,28 @@ public:
     template <typename Z = ONVBasis>
     static enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, LinearExpansion<Z>> FromONVProjection(const SpinResolvedONV& onv, const RSpinorBasis<double, GTOShell>& r_spinor_basis, const USpinorBasis<double, GTOShell>& u_spinor_basis) {
 
+
+        // Determine the overlap matrices of the underlying scalar orbital bases, which is needed later on.
+        auto S = r_spinor_basis.overlap().parameters();                         // the overlap matrix of the restricted MOs/spin-orbitals
+        S.basisTransformInPlace(r_spinor_basis.coefficientMatrix().inverse());  // now in AO basis
+
+        auto S_alpha = u_spinor_basis.overlap(Spin::alpha).parameters();                         // the overlap matrix of the alpha spin-orbitals
+        S_alpha.basisTransformInPlace(u_spinor_basis.coefficientMatrix(Spin::alpha).inverse());  // now in AO basis
+
+        auto S_beta = u_spinor_basis.overlap(Spin::beta).parameters();                         // the overlap matrix of the beta spin-orbitals
+        S_beta.basisTransformInPlace(u_spinor_basis.coefficientMatrix(Spin::beta).inverse());  // now in AO basis
+
+        if (!(S.isApprox(S_alpha, 1.0e-08)) || !(S.isApprox(S_beta, 1.0e-08))) {
+            throw std::invalid_argument("SpinResolvedONV::calculateOverlap(const SpinResolvedONV&, const RSpinorBasis<double, GTOShell>&, const USpinorBasis<double, GTOShell>&): The given spinor bases are not expressed using the same scalar orbital basis.");
+        }
+
+
+        // Prepare some parameters.
+        const auto& C = r_spinor_basis.coefficientMatrix();
+        const auto& C_alpha = u_spinor_basis.coefficientMatrix(Spin::alpha);
+        const auto& C_beta = u_spinor_basis.coefficientMatrix(Spin::beta);
+
+
         // Set up the required spin-resolved ONV basis.
         const auto K = onv.numberOfSpatialOrbitals(Spin::alpha);  // assume equal numbers of spin-orbitals for alpha- and beta-electrons
         const auto N_alpha = onv.numberOfElectrons(Spin::alpha);
@@ -225,7 +247,7 @@ public:
         onv_basis.forEach([&onv, &r_spinor_basis, &u_spinor_basis, &coeffs, &onv_basis](const SpinUnresolvedONV& alpha_onv, const size_t I_alpha, const SpinUnresolvedONV& beta_onv, const size_t I_beta) {
             const SpinResolvedONV onv_on {alpha_onv, beta_onv};  // the spin-resolved ONV that should be projected 'on'
 
-            const auto coefficient = onv.calculateProjection(onv_on, u_spinor_basis, r_spinor_basis);
+            const auto coefficient = onv.calculateProjection(onv_on, C_alpha, C_beta, C, S);
             const auto address = onv_basis.compoundAddress(I_alpha, I_beta);
 
             coeffs(address) = coefficient;

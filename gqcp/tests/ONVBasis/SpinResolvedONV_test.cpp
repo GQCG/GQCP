@@ -88,10 +88,11 @@ BOOST_AUTO_TEST_CASE(RHF_UHF_overlap) {
 
     GQCP::RSpinorBasis<double, GQCP::GTOShell> r_spinor_basis {h2, "STO-3G"};
     const auto K = r_spinor_basis.numberOfSpatialOrbitals();
+    const auto S = r_spinor_basis.overlap().parameters();
 
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(r_spinor_basis, h2);  // in an AO basis
 
-    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(N, sq_hamiltonian, r_spinor_basis.overlap().parameters());
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(N, sq_hamiltonian, S);
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
 
@@ -105,6 +106,10 @@ BOOST_AUTO_TEST_CASE(RHF_UHF_overlap) {
 
 
     // Check if the UHF determinant has overlap 1 with the corresponding RHF determinant, and overlap 0 with the excitations on top of the RHF reference.
+    const auto& C = rhf_parameters.coefficientMatrix();
+    const auto& C_alpha = C;
+    const auto& C_beta = C;
+
     const auto uhf_determinant = GQCP::SpinResolvedONV::UHF(K, N_P, N_P);
 
     const auto rhf_onv_0101 = GQCP::SpinResolvedONV::FromString("01", "01");
@@ -112,8 +117,8 @@ BOOST_AUTO_TEST_CASE(RHF_UHF_overlap) {
     const auto rhf_onv_1001 = GQCP::SpinResolvedONV::FromString("10", "01");
     const auto rhf_onv_1010 = GQCP::SpinResolvedONV::FromString("10", "10");
 
-    BOOST_CHECK(std::abs(uhf_determinant.calculateProjection(rhf_onv_0101, u_spinor_basis, r_spinor_basis) - 1.0) < 1.0e-08);
-    BOOST_CHECK(std::abs(uhf_determinant.calculateProjection(rhf_onv_0110, u_spinor_basis, r_spinor_basis) - 0.0) < 1.0e-08);
-    BOOST_CHECK(std::abs(uhf_determinant.calculateProjection(rhf_onv_1001, u_spinor_basis, r_spinor_basis) - 0.0) < 1.0e-08);
-    BOOST_CHECK(std::abs(uhf_determinant.calculateProjection(rhf_onv_1010, u_spinor_basis, r_spinor_basis) - 0.0) < 1.0e-08);
+    BOOST_CHECK(std::abs(uhf_determinant.calculateProjection(rhf_onv_0101, C_alpha, C_beta, C, S) - 1.0) < 1.0e-12);
+    BOOST_CHECK(std::abs(uhf_determinant.calculateProjection(rhf_onv_0110, C_alpha, C_beta, C, S) - 0.0) < 1.0e-12);
+    BOOST_CHECK(std::abs(uhf_determinant.calculateProjection(rhf_onv_1001, C_alpha, C_beta, C, S) - 0.0) < 1.0e-12);
+    BOOST_CHECK(std::abs(uhf_determinant.calculateProjection(rhf_onv_1010, C_alpha, C_beta, C, S) - 0.0) < 1.0e-12);
 }
