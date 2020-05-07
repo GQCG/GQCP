@@ -104,6 +104,8 @@ public:
 
 
     /**
+     *  @param minimum_subspace_dimension           the minimum number of Fock matrices that have to be in the subspace before enabling DIIS
+     *  @param maximum_subspace_dimension           the maximum number of Fock matrices that can be handled by DIIS
      *  @param threshold                            the threshold that is used in comparing the density matrices
      *  @param maximum_number_of_iterations         the maximum number of iterations the algorithm may perform
      * 

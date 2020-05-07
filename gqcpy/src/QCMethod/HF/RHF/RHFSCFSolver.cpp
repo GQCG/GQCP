@@ -31,7 +31,7 @@ void bindRHFSCFSolver(py::module& module) {
 
         .def_static(
             "Plain",
-            [](const double threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128) {
+            [](const double threshold, const size_t maximum_number_of_iterations) {
                 return GQCP::RHFSCFSolver<double>::Plain(threshold, maximum_number_of_iterations);
             },
             py::arg("threshold") = 1.0e-08,
@@ -40,7 +40,7 @@ void bindRHFSCFSolver(py::module& module) {
 
         .def_static(
             "DensityDamped",
-            [](const double alpha, const double threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128) {
+            [](const double alpha, const double threshold, const size_t maximum_number_of_iterations) {
                 return GQCP::RHFSCFSolver<double>::DensityDamped(alpha, threshold, maximum_number_of_iterations);
             },
             py::arg("alpha"),
