@@ -110,14 +110,18 @@ public:
     enable_if_t<std::is_same<Environment, typename Z::Environment>::value, void> insert(const Z& step, const size_t index) {
 
         // Check if the index is out of bounds.
-        if (index >= this->numberOfSteps()) {
+        if (index > this->numberOfSteps()) {
             throw std::invalid_argument("StepCollection::insert(const Z&, const size_t): Cannot insert at the given index.");
         }
 
 
-        // Actually insert the index in the std::vector of steps.
-        const auto it = this->steps.begin();
-        this->steps.insert(it + index, std::make_shared<Z>(step));  // inserting at an given index goes through an iterator
+        // Actually insert in the std::vector of steps.
+        if (index < this->numberOfSteps()) {  // within the current bounds
+            const auto it = this->steps.begin();
+            this->steps.insert(it + index, std::make_shared<Z>(step));  // inserting at an given index goes through an iterator
+        } else if (index == this->numberOfSteps()) {  // at the end
+            this->add(step);
+        }
     }
 
 
