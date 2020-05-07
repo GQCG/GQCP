@@ -73,7 +73,7 @@ void bindUHFSCFEnvironment(py::module& module) {
             [](const GQCP::UHFSCFEnvironment<double>& environment) {
                 return environment.coefficient_matrices_alpha;
             },
-            [](GQCP::UHFSCFEnvironment<double>& environment, const std::deque<Eigen::MatrixXd>& new_coefficient_matrices_alpha) {
+            [](GQCP::UHFSCFEnvironment<double>& environment, const std::vector<Eigen::MatrixXd>& new_coefficient_matrices_alpha) {
                 const std::deque<GQCP::TransformationMatrix<double>> coefficient_matrices_alpha {new_coefficient_matrices_alpha.begin(), new_coefficient_matrices_alpha.end()};
                 environment.coefficient_matrices_alpha = coefficient_matrices_alpha;
             })
@@ -83,7 +83,7 @@ void bindUHFSCFEnvironment(py::module& module) {
             [](const GQCP::UHFSCFEnvironment<double>& environment) {
                 return environment.coefficient_matrices_beta;
             },
-            [](GQCP::UHFSCFEnvironment<double>& environment, const std::deque<Eigen::MatrixXd>& new_coefficient_matrices_beta) {
+            [](GQCP::UHFSCFEnvironment<double>& environment, const std::vector<Eigen::MatrixXd>& new_coefficient_matrices_beta) {
                 const std::deque<GQCP::TransformationMatrix<double>> coefficient_matrices_beta {new_coefficient_matrices_beta.begin(), new_coefficient_matrices_beta.end()};
                 environment.coefficient_matrices_beta = coefficient_matrices_beta;
             })
@@ -93,7 +93,7 @@ void bindUHFSCFEnvironment(py::module& module) {
             [](const GQCP::UHFSCFEnvironment<double>& environment) {
                 return environment.density_matrices_alpha;
             },
-            [](GQCP::UHFSCFEnvironment<double>& environment, const std::deque<Eigen::MatrixXd>& new_density_matrices_alpha) {
+            [](GQCP::UHFSCFEnvironment<double>& environment, const std::vector<Eigen::MatrixXd>& new_density_matrices_alpha) {
                 const std::deque<GQCP::OneRDM<double>> density_matrices_alpha {new_density_matrices_alpha.begin(), new_density_matrices_alpha.end()};
                 environment.density_matrices_alpha = density_matrices_alpha;
             })
@@ -103,19 +103,68 @@ void bindUHFSCFEnvironment(py::module& module) {
             [](const GQCP::UHFSCFEnvironment<double>& environment) {
                 return environment.density_matrices_beta;
             },
-            [](GQCP::UHFSCFEnvironment<double>& environment, const std::deque<Eigen::MatrixXd>& new_density_matrices_beta) {
+            [](GQCP::UHFSCFEnvironment<double>& environment, const std::vector<Eigen::MatrixXd>& new_density_matrices_beta) {
                 const std::deque<GQCP::OneRDM<double>> density_matrices_beta {new_density_matrices_beta.begin(), new_density_matrices_beta.end()};
                 environment.density_matrices_beta = density_matrices_beta;
             })
+
+
+        .def("set_fock_matrices_alpha",
+             [](GQCP::UHFSCFEnvironment<double>& environment, const std::vector<Eigen::MatrixXd>& new_fock_matrices_alpha) {
+                 py::scoped_ostream_redirect stream {
+                     std::cout,                                // std::ostream&
+                     py::module::import("sys").attr("stdout")  // Python output
+                 };
+
+                 std::cout << "new_fock_matrices_alpha" << std::endl;
+                 for (const auto& each : new_fock_matrices_alpha) {
+                     std::cout << each << std::endl;
+                 }
+                 std::cout << std::endl;
+                 //
+             })
+
+
+        .def("replace_current_fock_matrix_alpha",
+             [](GQCP::UHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& new_fock_matrix_alpha) {
+                 environment.fock_matrices_alpha.pop_back();
+                 environment.fock_matrices_alpha.push_back(GQCP::QCMatrix<double>(new_fock_matrix_alpha));
+             })
+
+
+        .def("replace_current_fock_matrix_beta",
+             [](GQCP::UHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& new_fock_matrix_beta) {
+                 environment.fock_matrices_beta.pop_back();
+                 environment.fock_matrices_beta.push_back(GQCP::QCMatrix<double>(new_fock_matrix_beta));
+             })
+
 
         .def_property(
             "fock_matrices_alpha",
             [](const GQCP::UHFSCFEnvironment<double>& environment) {
                 return environment.fock_matrices_alpha;
             },
-            [](GQCP::UHFSCFEnvironment<double>& environment, const std::deque<Eigen::MatrixXd>& new_fock_matrices_alpha) {
+            [](GQCP::UHFSCFEnvironment<double>& environment, const std::vector<Eigen::MatrixXd>& new_fock_matrices_alpha) {
+                py::scoped_ostream_redirect stream {
+                    std::cout,                                // std::ostream&
+                    py::module::import("sys").attr("stdout")  // Python output
+                };
+
+                std::cout << "new_fock_matrices_alpha" << std::endl;
+                for (const auto& each : new_fock_matrices_alpha) {
+                    std::cout << each << std::endl;
+                }
+                std::cout << std::endl;
+                //
+
                 const std::deque<GQCP::QCMatrix<double>> fock_matrices_alpha {new_fock_matrices_alpha.begin(), new_fock_matrices_alpha.end()};
-                environment.fock_matrices_alpha = fock_matrices_alpha;
+                std::cout << "fock_matrices_alpha" << std::endl;
+                for (const auto& each : fock_matrices_alpha) {
+                    std::cout << each << std::endl;
+                }
+                std::cout << std::endl;
+
+                // environment.fock_matrices_alpha = fock_matrices_alpha;
             })
 
         .def_property(
@@ -123,7 +172,7 @@ void bindUHFSCFEnvironment(py::module& module) {
             [](const GQCP::UHFSCFEnvironment<double>& environment) {
                 return environment.fock_matrices_beta;
             },
-            [](GQCP::UHFSCFEnvironment<double>& environment, const std::deque<Eigen::MatrixXd>& new_fock_matrices_beta) {
+            [](GQCP::UHFSCFEnvironment<double>& environment, const std::vector<Eigen::MatrixXd>& new_fock_matrices_beta) {
                 const std::deque<GQCP::QCMatrix<double>> fock_matrices_beta {new_fock_matrices_beta.begin(), new_fock_matrices_beta.end()};
                 environment.fock_matrices_beta = fock_matrices_beta;
             })
@@ -134,7 +183,7 @@ void bindUHFSCFEnvironment(py::module& module) {
             [](const GQCP::UHFSCFEnvironment<double>& environment) {
                 return environment.error_vectors_alpha;
             },
-            [](GQCP::UHFSCFEnvironment<double>& environment, const std::deque<Eigen::MatrixXd>& new_error_vectors_alpha) {
+            [](GQCP::UHFSCFEnvironment<double>& environment, const std::vector<Eigen::MatrixXd>& new_error_vectors_alpha) {
                 const std::deque<GQCP::VectorX<double>> error_vectors_alpha {new_error_vectors_alpha.begin(), new_error_vectors_alpha.end()};
                 environment.error_vectors_alpha = error_vectors_alpha;
             })
@@ -144,7 +193,7 @@ void bindUHFSCFEnvironment(py::module& module) {
             [](const GQCP::UHFSCFEnvironment<double>& environment) {
                 return environment.error_vectors_beta;
             },
-            [](GQCP::UHFSCFEnvironment<double>& environment, const std::deque<Eigen::MatrixXd>& new_error_vectors_beta) {
+            [](GQCP::UHFSCFEnvironment<double>& environment, const std::vector<Eigen::MatrixXd>& new_error_vectors_beta) {
                 const std::deque<GQCP::VectorX<double>> error_vectors_beta {new_error_vectors_beta.begin(), new_error_vectors_beta.end()};
                 environment.error_vectors_beta = error_vectors_beta;
             });

@@ -47,7 +47,12 @@ void bindAlgorithm(py::module& module, const std::string& suffix, const std::str
 
     py::class_<GQCP::Algorithm<Environment>>(module,
                                              ("Algorithm_" + suffix).c_str(),
-                                             description.c_str());
+                                             description.c_str())
+
+        // PUBLIC METHODS
+        .def("description",
+             &GQCP::Algorithm<Environment>::description,
+             "Return a textual description of this algorithm.");
 }
 
 

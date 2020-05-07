@@ -46,6 +46,14 @@ public:
      */
 
     /**
+     *  @return a textual description of this algorithmic step
+     */
+    std::string description() const override {
+        return "Calculate the current UHF alpha and beta density matrices (in the AO basis) and place them in the environment.";
+    }
+
+
+    /**
      *  Calculate the current UHF alpha and beta density matrices (in the AO basis) and place them in the environment.
      * 
      *  @param environment              the environment that acts as a sort of calculation space

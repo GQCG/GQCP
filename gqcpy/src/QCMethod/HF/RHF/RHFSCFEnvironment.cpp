@@ -60,7 +60,7 @@ void bindRHFSCFEnvironment(py::module& module) {
             [](const GQCP::RHFSCFEnvironment<double>& environment) {
                 return environment.coefficient_matrices;
             },
-            [](GQCP::RHFSCFEnvironment<double>& environment, const std::deque<Eigen::MatrixXd>& new_coefficient_matrices) {
+            [](GQCP::RHFSCFEnvironment<double>& environment, const std::vector<Eigen::MatrixXd>& new_coefficient_matrices) {
                 const std::deque<GQCP::TransformationMatrix<double>> coefficient_matrices {new_coefficient_matrices.begin(), new_coefficient_matrices.end()};
                 environment.coefficient_matrices = coefficient_matrices;
             })
@@ -70,7 +70,7 @@ void bindRHFSCFEnvironment(py::module& module) {
             [](const GQCP::RHFSCFEnvironment<double>& environment) {
                 return environment.density_matrices;
             },
-            [](GQCP::RHFSCFEnvironment<double>& environment, const std::deque<Eigen::MatrixXd>& new_density_matrices) {
+            [](GQCP::RHFSCFEnvironment<double>& environment, const std::vector<Eigen::MatrixXd>& new_density_matrices) {
                 const std::deque<GQCP::OneRDM<double>> density_matrices {new_density_matrices.begin(), new_density_matrices.end()};
                 environment.density_matrices = density_matrices;
             })
@@ -80,7 +80,7 @@ void bindRHFSCFEnvironment(py::module& module) {
             [](const GQCP::RHFSCFEnvironment<double>& environment) {
                 return environment.fock_matrices;
             },
-            [](GQCP::RHFSCFEnvironment<double>& environment, const std::deque<Eigen::MatrixXd>& new_fock_matrices) {
+            [](GQCP::RHFSCFEnvironment<double>& environment, const std::vector<Eigen::MatrixXd>& new_fock_matrices) {
                 const std::deque<GQCP::QCMatrix<double>> fock_matrices {new_fock_matrices.begin(), new_fock_matrices.end()};
                 environment.fock_matrices = fock_matrices;
             })
@@ -90,7 +90,7 @@ void bindRHFSCFEnvironment(py::module& module) {
             [](const GQCP::RHFSCFEnvironment<double>& environment) {
                 return environment.error_vectors;
             },
-            [](GQCP::RHFSCFEnvironment<double>& environment, const std::deque<Eigen::MatrixXd>& new_error_vectors) {
+            [](GQCP::RHFSCFEnvironment<double>& environment, const std::vector<Eigen::MatrixXd>& new_error_vectors) {
                 const std::deque<GQCP::VectorX<double>> error_vectors {new_error_vectors.begin(), new_error_vectors.end()};
                 environment.error_vectors = error_vectors;
             });

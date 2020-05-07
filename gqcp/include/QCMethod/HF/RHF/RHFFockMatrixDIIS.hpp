@@ -66,12 +66,16 @@ public:
 
 
     /*
-     *  PUBLIC METHODS
-     */
-
-    /*
      *  OVERRIDDEN PUBLIC METHODS
      */
+
+    /**
+     *  @return a textual description of this algorithmic step
+     */
+    std::string description() const override {
+        return "Calculate the accelerated Fock matrix, and perform a diagonalization step on it.";
+    }
+
 
     /**
      *  Calculate the accelerated Fock matrix, and perform a diagonalization step on it.

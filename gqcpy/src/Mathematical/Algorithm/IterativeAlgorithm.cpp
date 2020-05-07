@@ -52,6 +52,11 @@ void bindIterativeAlgorithm(py::module& module, const std::string& suffix, const
                                                       ("IterativeAlgorithm_" + suffix).c_str(),
                                                       description.c_str())
 
+        // PUBLIC METHODS
+        .def("description",
+             &GQCP::IterativeAlgorithm<Environment>::description,
+             "Return a textual description of this iterative algorithm.")
+
         .def(
             "insert",
             [](GQCP::IterativeAlgorithm<Environment>& algorithm, const GQCP::FunctionalStep<Environment>& step, const size_t index) {

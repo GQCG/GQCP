@@ -19,8 +19,8 @@
 
 
 #include "Mathematical/Algorithm/Step.hpp"
-#include "QCModel/HF/RHF.hpp"
 #include "QCMethod/HF/RHF/RHFSCFEnvironment.hpp"
+#include "QCModel/HF/RHF.hpp"
 
 
 namespace GQCP {
@@ -46,7 +46,15 @@ public:
      */
 
     /**
-     *  Calculate the current electronic RHF energy and place it in the environment
+     *  @return a textual description of this algorithmic step
+     */
+    std::string description() const override {
+        return "Calculate the current electronic RHF energy and place it in the environment.";
+    }
+
+
+    /**
+     *  Calculate the current electronic RHF energy and place it in the environment.
      * 
      *  @param environment              the environment that acts as a sort of calculation space
      */

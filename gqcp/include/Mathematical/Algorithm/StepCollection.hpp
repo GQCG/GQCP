@@ -22,6 +22,8 @@
 #include "Utilities/memory.hpp"
 #include "Utilities/type_traits.hpp"
 
+#include <boost/format.hpp>
+
 #include <vector>
 
 
@@ -47,6 +49,42 @@ private:
 
 public:
     /*
+     *  PUBLIC OVERRIDDEN METHODS
+     */
+
+    /**
+     *  Execute all the steps in this collection.
+     * 
+     *  @param environment              the environment that this step can read from and write to
+     */
+    void execute(Environment& environment) override {
+        for (const auto& step : this->steps) {
+            step->execute(environment);
+        }
+    }
+
+
+    /**
+     *  @return a textual description of this algorithmic step
+     */
+    std::string description() const override {
+
+        std::string description_string = (boost::format("An algorithmic step consisting of %1% algorithmic steps:\n") % this->numberOfSteps()).str();
+
+        for (size_t i = 0; i < this->numberOfSteps(); i++) {
+            const auto& step = this->steps[i];
+
+            description_string += "\t";
+            description_string += std::to_string(i + 1);  // +1 because of computer indices
+            description_string += ". ";
+            description_string += step->description();
+            description_string += "\n";
+        }
+        return description_string;
+    }
+
+
+    /*
      *  PUBLIC METHODS
      */
 
@@ -59,18 +97,6 @@ public:
     enable_if_t<std::is_same<Environment, typename Z::Environment>::value, StepCollection<Environment>&> add(const Z& step) {
         this->steps.push_back(std::make_shared<Z>(step));
         return *this;
-    }
-
-
-    /**
-     *  Execute all the steps in this collection.
-     * 
-     *  @param environment              the environment that this step can read from and write to
-     */
-    void execute(Environment& environment) {
-        for (const auto& step : this->steps) {
-            step->execute(environment);
-        }
     }
 
 

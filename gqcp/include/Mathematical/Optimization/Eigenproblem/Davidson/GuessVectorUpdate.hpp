@@ -37,6 +37,13 @@ public:
      */
 
     /**
+     *  @return a textual description of this algorithmic step
+     */
+    std::string description() const override {
+        return "Calculate new guesses for the eigenvectors from the diagonalized subspace matrix.";
+    }
+
+    /**
      *  Calculate new guesses for the eigenvectors from the diagonalized subspace matrix.
      * 
      *  @param environment              the environment that acts as a sort of calculation space

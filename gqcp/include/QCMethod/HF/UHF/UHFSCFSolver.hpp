@@ -67,10 +67,10 @@ public:
         using SingleConvergenceType = ConsecutiveIteratesNormConvergence<OneRDM<Scalar>, UHFSCFEnvironment<Scalar>>;
 
         const auto density_matrix_alpha_extractor = [](const UHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices_alpha; };
-        const SingleConvergenceType convergence_criterion_alpha {threshold, density_matrix_alpha_extractor};
+        const SingleConvergenceType convergence_criterion_alpha {threshold, density_matrix_alpha_extractor, "the UHF alpha-density matrix in AO basis"};
 
         const auto density_matrix_beta_extractor = [](const UHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices_beta; };
-        const SingleConvergenceType convergence_criterion_beta {threshold, density_matrix_beta_extractor};
+        const SingleConvergenceType convergence_criterion_beta {threshold, density_matrix_beta_extractor, "the UHF beta-density matrix in AO basis"};
 
         const CompoundConvergenceCriterion<UHFSCFEnvironment<Scalar>> convergence_criterion {convergence_criterion_alpha, convergence_criterion_beta};
 

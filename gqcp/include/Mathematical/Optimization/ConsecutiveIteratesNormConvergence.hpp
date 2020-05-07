@@ -29,7 +29,7 @@ namespace GQCP {
 
 
 /**
- *  A convergence criterion that checks if the norm of the difference of two iterates is converged
+ *  A convergence criterion that checks if the norm of the difference of two iterates is converged.
  * 
  *  @tparam _Iterate            the type of the iterative variables
  *  @tparam _Environment        the type of the calculation environment
@@ -48,6 +48,8 @@ public:
 private:
     double threshold;  // the threshold that is used in comparing the iterates
 
+    std::string iterate_description;  // the description of the the iterates that are compared
+
     std::function<std::deque<Iterate>(const Environment&)> extractor;  // a function that can extract the correct iterates from the environment, as it's not mandatory to check convergence on the variables, but any iterate (whose .norm() can be calculated) can in principle be used
 
 
@@ -59,16 +61,26 @@ public:
     /**
      *  @param threshold                    the threshold that is used in comparing the iterates
      *  @param extractor                    a function that can extract the correct iterates from the environment. The default is to check the environment on a property called 'variables'
+     *  @param iterate_description          the description of the the iterates that are compared
      */
     ConsecutiveIteratesNormConvergence(
-        const double threshold = 1.0e-08, const std::function<std::deque<Iterate>(const Environment&)> extractor = [](const Environment& environment) { return environment.variables; }) :
+        const double threshold = 1.0e-08, const std::function<std::deque<Iterate>(const Environment&)> extractor = [](const Environment& environment) { return environment.variables; }, const std::string& iterate_description = "a general iterate") :
         threshold {threshold},
-        extractor {extractor} {}
+        extractor {extractor},
+        iterate_description {iterate_description} {}
 
 
     /*
      *  OVERRIDDEN PUBLIC METHODS
      */
+
+    /**
+     *  @return a textual description of this algorithmic step
+     */
+    std::string description() const override {
+        return (boost::format("A convergence criterion that checks if the norm of the difference of two iterates (%1%) is converged") % this->iterate_description).str();
+    }
+
 
     /**
      *  @param environment                  the environment that acts as a sort of calculation space

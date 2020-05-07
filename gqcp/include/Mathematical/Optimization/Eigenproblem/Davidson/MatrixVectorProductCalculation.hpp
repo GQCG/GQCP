@@ -39,6 +39,14 @@ public:
      */
 
     /**
+     *  @return a textual description of this algorithmic step
+     */
+    std::string description() const override {
+        return "Calculate the matrix-vector products for all the (new) guess vectors and add them to the environment.";
+    }
+
+
+    /**
      *  Calculate the matrix-vector products for all the (new) guess vectors and add them to the environment.
      * 
      *  @param environment              the environment that acts as a sort of calculation space

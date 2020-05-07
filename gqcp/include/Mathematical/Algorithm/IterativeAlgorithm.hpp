@@ -71,6 +71,22 @@ public:
      *  PUBLIC METHODS
      */
 
+
+    /**
+     *  @return a textual description of this iterative algorithm.
+     */
+    std::string description() const {
+
+        std::string description_string = "An iterative algorithm consisting of the following steps:\n";
+        description_string += steps.description();
+
+        description_string += "\nWith the following convergence criterion:\n";
+        description_string += convergence_criterion->description();
+
+        return description_string;
+    }
+
+
     /**
      *  Insert an algorithm step at the given index.
      * 
@@ -79,6 +95,7 @@ public:
      */
     template <typename Z = Step<Environment>>
     enable_if_t<std::is_same<Environment, typename Z::Environment>::value, void> insert(const Z& step, const size_t index) { this->steps.insert(step, index); }
+
 
     /**
      *  Perform the iteration steps until convergence is achieved
