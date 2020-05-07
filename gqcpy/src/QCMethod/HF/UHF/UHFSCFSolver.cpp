@@ -45,7 +45,7 @@ void bindUHFSCFSolver(py::module& module) {
             },
             py::arg("minimum_subspace_dimension") = 6,
             py::arg("maximum_subspace_dimension") = 6,
-            py::arg("threshold") = 1.0e-08;
+            py::arg("threshold") = 1.0e-08,
             py::arg("maximum_number_of_iterations") = 128,
             "Return a DIIS UHF SCF solver that uses the combination of norm of the difference of two consecutive alpha and beta density matrices as a convergence criterion.");
 }
