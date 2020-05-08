@@ -42,6 +42,8 @@ void bindRHFSCFEnvironment(py::module& module) {
         // Bind read-write members/properties, exposing intermediary environment variables to the Python interface.
         .def_readwrite("N", &GQCP::RHFSCFEnvironment<double>::N)
 
+        .def_readwrite("electronic_energies", &GQCP::RHFSCFEnvironment<double>::electronic_energies)
+
         .def_readwrite("orbital_energies", &GQCP::RHFSCFEnvironment<double>::orbital_energies)
 
         .def_property(

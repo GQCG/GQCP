@@ -67,9 +67,12 @@ void bindIterativeAlgorithm(py::module& module, const std::string& suffix, const
 
         .def(
             "numberOfIterations",
-            [](GQCP::IterativeAlgorithm<Environment>& algorithm) {
-                return algorithm.numberOfIterations();
-            })
+            &GQCP::IterativeAlgorithm<Environment>::numberOfIterations,
+            "Return the number of iterations that have been performed")
+
+        .def("maximumNumberOfIterations",
+             &GQCP::IterativeAlgorithm<Environment>::maximumNumberOfIterations,
+             "Return the maximum number of iterations the algorithm may perform")
 
         .def(
             "perform",

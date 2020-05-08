@@ -69,16 +69,11 @@ public:
      */
     std::string description() const override {
 
-        std::string description_string = (boost::format("An algorithmic step consisting of %1% algorithmic steps:\n") % this->numberOfSteps()).str();
+        std::string description_string = (boost::format("An algorithmic step consisting of %s algorithmic steps:\n") % this->numberOfSteps()).str();
 
         for (size_t i = 0; i < this->numberOfSteps(); i++) {
             const auto& step = this->steps[i];
-
-            description_string += "\t";
-            description_string += std::to_string(i + 1);  // +1 because of computer indices
-            description_string += ". ";
-            description_string += step->description();
-            description_string += "\n";
+            description_string += (boost::format("\t%s. %s\n") % std::to_string(i + 1) % step->description()).str();
         }
         return description_string;
     }
@@ -119,7 +114,9 @@ public:
         if (index < this->numberOfSteps()) {  // within the current bounds
             const auto it = this->steps.begin();
             this->steps.insert(it + index, std::make_shared<Z>(step));  // inserting at an given index goes through an iterator
-        } else if (index == this->numberOfSteps()) {  // at the end
+        }
+
+        else if (index == this->numberOfSteps()) {  // at the end
             this->add(step);
         }
     }

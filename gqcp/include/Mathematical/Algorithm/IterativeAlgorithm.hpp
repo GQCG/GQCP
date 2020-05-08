@@ -21,6 +21,8 @@
 #include "Mathematical/Algorithm/ConvergenceCriterion.hpp"
 #include "Mathematical/Algorithm/StepCollection.hpp"
 
+#include <boost/format.hpp>
+
 #include <cstddef>
 
 
@@ -77,7 +79,7 @@ public:
      */
     std::string description() const {
 
-        std::string description_string = "An iterative algorithm consisting of the following steps:\n";
+        std::string description_string = (boost::format("An iterative algorithm (with a maximum of %s iterations) consisting of the following steps:\n") % this->maximumNumberOfIterations()).str();
         description_string += steps.description();
 
         description_string += "\nWith the following convergence criterion:\n";
@@ -95,6 +97,17 @@ public:
      */
     template <typename Z = Step<Environment>>
     enable_if_t<std::is_same<Environment, typename Z::Environment>::value, void> insert(const Z& step, const size_t index) { this->steps.insert(step, index); }
+
+
+    /**
+     *  @return the maximum number of iterations the algorithm may perform
+     */
+    size_t maximumNumberOfIterations() const { return this->maximum_number_of_iterations; }
+
+    /**
+     *  @return the number of iterations that have been performed
+     */
+    size_t numberOfIterations() const { return this->iteration; }
 
 
     /**
@@ -119,12 +132,6 @@ public:
         // Since we will exit the function early if convergence is achieved, the algorithm is considered non-converging if the loop is done.
         throw std::runtime_error("IterativeAlgorithm<Environment>::perform(Environment&): The algorithm didn't find a solution within the maximum number of iterations.");
     }
-
-
-    /**
-     *  @return the number of iterations that have been performed
-     */
-    size_t numberOfIterations() const { return this->iteration; }
 };
 
 

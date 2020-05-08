@@ -72,16 +72,11 @@ public:
      */
     std::string description() const override {
 
-        std::string description_string = (boost::format("A compound convergence criterion step consisting of %1% combined criteria:\n") % this->count()).str();
+        std::string description_string = (boost::format("A compound convergence criterion step consisting of %s combined criteria:\n") % this->count()).str();
 
         for (size_t i = 0; i < this->count(); i++) {
             const auto& criterion = this->criteria[i];
-
-            description_string += "\t";
-            description_string += std::to_string(i + 1);  // +1 because of computer indices
-            description_string += ". ";
-            description_string += criterion->description();
-            description_string += "\n";
+            description_string += (boost::format("\t%s. %s\n") % std::to_string(i + 1) % criterion->description()).str();
         }
         return description_string;
     }

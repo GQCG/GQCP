@@ -46,7 +46,7 @@ public:
 
 
 private:
-    double threshold;  // the threshold that is used in comparing the iterates
+    double m_threshold;  // the threshold that is used in comparing the iterates
 
     std::string iterate_description;  // the description of the the iterates that are compared
 
@@ -65,7 +65,7 @@ public:
      */
     ConsecutiveIteratesNormConvergence(
         const double threshold = 1.0e-08, const std::function<std::deque<Iterate>(const Environment&)> extractor = [](const Environment& environment) { return environment.variables; }, const std::string& iterate_description = "a general iterate") :
-        threshold {threshold},
+        m_threshold {threshold},
         extractor {extractor},
         iterate_description {iterate_description} {}
 
@@ -78,7 +78,7 @@ public:
      *  @return a textual description of this algorithmic step
      */
     std::string description() const override {
-        return (boost::format("A convergence criterion that checks if the norm of the difference of two iterates (%1%) is converged") % this->iterate_description).str();
+        return (boost::format("A convergence criterion that checks if the norm of the difference of two iterates (%s) is converged, with a tolerance of %.2e.") % this->iterate_description % this->threshold()).str();
     }
 
 
@@ -100,8 +100,14 @@ public:
         const auto& previous = *second_to_last_it;          // dereference the iterator
         const auto current = iterates.back();
 
-        return ((current - previous).norm() <= this->threshold);
+        return ((current - previous).norm() <= this->m_threshold);
     }
+
+
+    /**
+     *  @return the threshold that is used in comparing the iterates
+     */
+    double threshold() const { return this->m_threshold; }
 };
 
 

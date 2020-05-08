@@ -63,6 +63,8 @@ void bindUHFSCFEnvironment(py::module& module) {
         .def_readwrite("N_alpha", &GQCP::UHFSCFEnvironment<double>::N_alpha)
         .def_readwrite("N_beta", &GQCP::UHFSCFEnvironment<double>::N_beta)
 
+        .def_readwrite("electronic_energies", &GQCP::UHFSCFEnvironment<double>::electronic_energies)
+
         .def_readwrite("orbital_energies_alpha", &GQCP::UHFSCFEnvironment<double>::orbital_energies_alpha)
         .def_readwrite("orbital_energies_beta", &GQCP::UHFSCFEnvironment<double>::orbital_energies_beta)
 
