@@ -644,4 +644,24 @@ VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(cons
 }
 
 
+/**
+ *  Iterate over all ONVs in this ONV basis and apply the given callback function.
+ * 
+ *  @param callback             the function to be applied in every iteration. Its arguments are a spin-unresolved ONV and its corresponding addresses
+ */
+void SpinUnresolvedONVBasis::forEach(const std::function<void(const SpinUnresolvedONV&, const size_t)>& callback) const {
+
+    SpinUnresolvedONV onv = this->makeONV(0);
+
+    for (size_t I = 0; I < this->dim; I++) {  // I loops over addresses of all ONVs
+
+        callback(onv, I);
+
+        if (I < this->dim - 1) {  // prevent the last permutation from occurring
+            onv_basis.setNextONV(onv);
+        }
+    }  // address (I) loop
+}
+
+
 }  // namespace GQCP

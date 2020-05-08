@@ -22,6 +22,8 @@
 #include "ONVBasis/EvaluationIterator.hpp"
 #include "ONVBasis/ONVManipulator.hpp"
 
+#include <functional>
+
 
 namespace GQCP {
 
@@ -525,6 +527,13 @@ public:
      *  @return a vector that is equal to the matrix-vector product of the Hamiltonian's matrix representation and the given vector
      */
     VectorX<double> evaluateOperatorMatrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+
+    /**
+     *  Iterate over all ONVs in this ONV basis and apply the given callback function.
+     * 
+     *  @param callback             the function to be applied in every iteration. Its arguments are a spin-unresolved ONV and its corresponding addresses
+     */
+    void forEach(const std::function<void(const SpinUnresolvedONV&, const size_t)>& callback) const;
 
     /**
      *  If we have
