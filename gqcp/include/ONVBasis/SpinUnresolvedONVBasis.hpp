@@ -27,9 +27,9 @@ namespace GQCP {
 
 
 /**
- *  The full spin-unresolved ONV basis for a number of spinors and number of electrons
+ *  The full spin-unresolved ONV basis for a number of spinors and number of electrons.
  *
- *  The ONVs and addresses are linked with a hashing function calculated with an addressing scheme. The implementation of the addressing scheme is from Molecular Electronic-Structure Theory (August 2000) by Trygve Helgaker, Poul Jorgensen, and Jeppe Olsen
+ *  The ONVs and addresses are linked with a hashing function calculated with an addressing scheme. The implementation of the addressing scheme is from Molecular Electronic-Structure Theory (August 2000) by Trygve Helgaker, Poul Jorgensen, and Jeppe Olsen.
  *
  */
 class SpinUnresolvedONVBasis: public BaseONVBasis, public ONVManipulator<SpinUnresolvedONVBasis> {
@@ -44,14 +44,13 @@ public:
     SpinUnresolvedONVBasis() = default;
 
     /**
-     *  @param K        the number of orbitals
-     *  @param N        the number of electrons
+     *  @param M            the number of spinors
+     *  @param N            the number of electrons
      */
-    SpinUnresolvedONVBasis(size_t K, size_t N);
+    SpinUnresolvedONVBasis(const size_t K, const size_t M);
 
 
     // DESTRUCTOR
-
     ~SpinUnresolvedONVBasis() override = default;
 
 
@@ -63,33 +62,15 @@ public:
 
     // STATIC PUBLIC METHODS
     /**
-     *  @param K        the number of orbitals
-     *  @param N        the number of electrons
+     *  @param M            the number of spinors
+     *  @param N            the number of electrons
      *
-     *  @return the dimension of the spin-unresolved ONV basis
+     *  @return the dimension of a spin-unresolved ONV basis with the given number of spinors and electrons
      */
-    static size_t calculateDimension(size_t K, size_t N);
+    static size_t calculateDimension(const size_t M, const size_t N);
 
 
-    // PUBLIC OVERRIDEN METHODS
-    /**
-     *  @param representation       a representation of an spin-unresolved ONV
-     *
-     *  @return the next bitstring permutation in the spin-unresolved ONV basis
-     *
-     *      Examples:
-     *          011 -> 101
-     *          101 -> 110
-     */
-    size_t ulongNextPermutation(size_t representation) const override;
-
-    /**
-     *  @param representation      a representation of an spin-unresolved ONV
-     *
-     *  @return the address (i.e. the ordering number) of the given spin-unresolved ONV
-     */
-    size_t getAddress(size_t representation) const override;
-
+    // PUBLIC OVERRIDDEN METHODS
     /**
       *  Calculate unsigned representation for a given address
       *
@@ -134,16 +115,6 @@ public:
     SquareMatrix<double> evaluateOperatorDense(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const override;
 
     /**
-     *  Evaluate the operator in a sparse matrix
-     *
-     *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the spin-unresolved ONV basis
-     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
-     *
-     *  @return the operator's evaluation in a sparse matrix with the dimensions of the spin-unresolved ONV basis
-     */
-    Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const override;
-
-    /**
      *  Evaluate the operator in a dense matrix
      *
      *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the spin-unresolved ONV basis
@@ -154,16 +125,6 @@ public:
     SquareMatrix<double> evaluateOperatorDense(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const override;
 
     /**
-     *  Evaluate the operator in a sparse matrix
-     *
-     *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the spin-unresolved ONV basis
-     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
-     *
-     *  @return the operator's evaluation in a sparse matrix with the dimensions of the spin-unresolved ONV basis
-     */
-    Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const override;
-
-    /**
      *  Evaluate the Hamiltonian in a dense matrix
      *
      *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
@@ -172,25 +133,6 @@ public:
      *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the spin-unresolved ONV basis
      */
     SquareMatrix<double> evaluateOperatorDense(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const override;
-
-    /**
-     *  Evaluate the Hamiltonian in a sparse matrix
-     *
-     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
-     *  @param diagonal_values              bool to indicate if diagonal values will be calculated
-     *
-     *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the spin-unresolved ONV basis
-     */
-    Eigen::SparseMatrix<double> evaluateOperatorSparse(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const override;
-
-    /**
-     *  Calculates sigma(pq) + sigma(qp)'s: all one-electron couplings for each annihilation-creation pair in the (spin) spin-unresolved ONV basis
-     *  and stores them in sparse matrices for each pair combination
-     *
-     *  @return vector of sparse matrices containing the one-electron couplings for the (spin) spin-unresolved ONV basis
-     *      Ordered as: sigma(00), sigma(01) + sigma(10), sigma(02)+ sigma(20), ...
-     */
-    std::vector<Eigen::SparseMatrix<double>> calculateOneElectronCouplings() const;
 
     /**
      *  Evaluate the diagonal of the operator
@@ -220,144 +162,64 @@ public:
     VectorX<double> evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const override;
 
     /**
-     *  Evaluate the matrix-vector product of a one-electron operator
+     *  Evaluate the operator in a sparse matrix
      *
-     *  @param one_op                       the one-electron operator expressed in an orthonormal basis
-     *  @param x                            the vector of the matrix-vector product
-     *  @param diagonal                     the diagonal of the matrix representation of the operator inside the spin-unresolved ONV basis
+     *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the spin-unresolved ONV basis
+     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
      *
-     *  @return a vector that is equal to the matrix-vector product of the one-electron operator's matrix representation and the given vector
+     *  @return the operator's evaluation in a sparse matrix with the dimensions of the spin-unresolved ONV basis
      */
-    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const override;
 
     /**
-     *  Evaluate a two electron operator in a matrix vector product
+     *  Evaluate the operator in a sparse matrix
      *
-     *  @param two_op                       the two electron operator expressed in an orthonormal basis
-     *  @param x                            the vector upon which the evaluation acts 
-     *  @param diagonal                     the diagonal evaluated in the spin-unresolved ONV basis
+     *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the spin-unresolved ONV basis
+     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
      *
-     *  @return a vector that is equal to the matrix-vector product of the two-electron operator's matrix representation and the given vector
+     *  @return the operator's evaluation in a sparse matrix with the dimensions of the spin-unresolved ONV basis
      */
-    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarSQTwoElectronOperator<double>& two_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const override;
 
     /**
-     *  Evaluate the Hamiltonian in a matrix vector product
+     *  Evaluate the Hamiltonian in a sparse matrix
      *
      *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
-     *  @param x                            the vector upon which the evaluation acts 
-     *  @param diagonal                     the diagonal evaluated in the spin-unresolved ONV basis
+     *  @param diagonal_values              bool to indicate if diagonal values will be calculated
      *
-     *  @return a vector that is equal to the matrix-vector product of the Hamiltonian's matrix representation and the given vector
+     *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the spin-unresolved ONV basis
      */
-    VectorX<double> evaluateOperatorMatrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const override;
+
+    /**
+     *  @param representation      a representation of an spin-unresolved ONV
+     *
+     *  @return the address (i.e. the ordering number) of the given spin-unresolved ONV
+     */
+    size_t getAddress(size_t representation) const override;
+
+    /**
+     *  @param representation       a representation of an spin-unresolved ONV
+     *
+     *  @return the next bitstring permutation in the spin-unresolved ONV basis
+     *
+     *      Examples:
+     *          011 -> 101
+     *          101 -> 110
+     */
+    size_t ulongNextPermutation(size_t representation) const override;
 
 
     // PUBLIC METHODS
-    /**
-     *  If we have
-     *      SpinUnresolvedONVBasis fock_space;
-     *
-     *  This makes sure that we can call
-     *      fock_space.getAddress(onv);
-     *  instead of the syntax
-     *      fock_space.ONVManipulator<SpinUnresolvedONVBasis>::getAddress(onv);
-     */
-    using ONVManipulator<SpinUnresolvedONVBasis>::getAddress;
-
-
-    // PUBLIC TEMPLATED METHODS
-    /**
-     *  Find the next unoccupied orbital in a given spin-unresolved ONV,
-     *  update the electron count, orbital index,
-     *  and update the address by calculating a shift
-     *  resulting from a difference between the initial vertex weights for the encountered occupied orbitals
-     *  and the corrected vertex weights accounting for previously annihilated electrons
-     *
-     *  @tparam T        the number of previously annihilated electrons
-     *
-     *  @param address   the address which is updated
-     *  @param onv       the spin-unresolved ONV for which we search the next unnocupied orbital
-     *  @param q         the orbital index
-     *  @param e         the electron count
-     */
-    template <int T>
-    void shiftUntilNextUnoccupiedOrbital(const SpinUnresolvedONV& onv, size_t& address, size_t& q, size_t& e) const {
-
-        // Test whether the current orbital index is occupied
-        while (e < this->N && q == onv.occupationIndexOf(e)) {
-
-            // Take the difference of vertex weights for the encountered electron weights to that of a vertex weight path with "a" fewer electrons
-            // +1 is added to the electron index, because of how the addressing scheme is arrayed.
-            address += this->get_vertex_weights(q, e + 1 - T) - this->get_vertex_weights(q, e + 1);
-
-            // move to the next electron and orbital
-            e++;
-            q++;
-        }
-    }
 
     /**
-     *  Find the next unoccupied orbital in a given spin-unresolved ONV,
-     *  update the electron count, orbital index, sign,
-     *  and update the address by calculating a shift
-     *  resulting from a difference between the initial vertex weights for the encountered occupied orbitals
-     *  and the corrected vertex weights accounting for previously annihilated electrons
+     *  Calculates sigma(pq) + sigma(qp)'s: all one-electron couplings for each annihilation-creation pair in the (spin) spin-unresolved ONV basis
+     *  and stores them in sparse matrices for each pair combination
      *
-     *  @tparam T        the number of previously annihilated electrons
-     *
-     *  @param address   the address which is updated
-     *  @param onv       the spin-unresolved ONV for which we search the next unnocupied orbital
-     *  @param q         the orbital index
-     *  @param e         the electron count
-     *  @param sign      the sign which is flipped for each iteration
+     *  @return vector of sparse matrices containing the one-electron couplings for the (spin) spin-unresolved ONV basis
+     *      Ordered as: sigma(00), sigma(01) + sigma(10), sigma(02)+ sigma(20), ...
      */
-    template <int T>
-    void shiftUntilNextUnoccupiedOrbital(const SpinUnresolvedONV& onv, size_t& address, size_t& q, size_t& e, int& sign) const {
-
-        // Test whether the current orbital index is occupied
-        while (e < this->N && q == onv.occupationIndexOf(e)) {
-
-            // Take the difference of vertex weights for the encountered electron weights to that of a vertex weight path with "a" fewer electrons
-            // +1 is added to the electron index, because of how the addressing scheme is arrayed.
-            address += this->get_vertex_weights(q, e + 1 - T) - this->get_vertex_weights(q, e + 1);
-
-            // move to the next electron and orbital
-            e++;
-            q++;
-            sign *= -1;
-        }
-    }
-
-    /**
-     *  Find the previous unoccupied orbital in a given spin-unresolved ONV,
-     *  update the electron count, orbital index, sign,
-     *  and update the address by calculating a shift
-     *  resulting from a difference between the initial vertex weights for the encountered occupied orbitals
-     *  and the corrected vertex weights accounting for newly created electrons
-     *
-     *  @tparam T        the number of newly created electrons
-     *
-     *  @param address   the address which is updated
-     *  @param onv       the spin-unresolved ONV for which we search the next unoccupied orbital
-     *  @param q         the orbital index
-     *  @param e         the electron count
-     *  @param sign      the sign which is flipped for each iteration
-     */
-    template <int T>
-    void shiftUntilPreviousUnoccupiedOrbital(const SpinUnresolvedONV& onv, size_t& address, size_t& q, size_t& e, int& sign) const {
-
-        // Test whether the current orbital index is occupied
-        while (e != -1 && q == onv.occupationIndexOf(e)) {
-
-            int shift = static_cast<int>(this->get_vertex_weights(q, e + 1 + T)) - static_cast<int>(this->get_vertex_weights(q, e + 1));
-            address += shift;
-
-            e--;
-            q--;
-            sign *= -1;
-        }
-    }
+    std::vector<Eigen::SparseMatrix<double>> calculateOneElectronCouplings() const;
 
     /**
      *  Evaluate the operator in a given evaluation iterator in the spin-unresolved ONV basis
@@ -418,6 +280,7 @@ public:
             }
         }
     }
+
 
     /**
      *  Evaluate the operator in a given evaluation iterator in the spin-unresolved ONV basis
@@ -626,6 +489,143 @@ public:
                     this->shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign2);
                 }
             }
+        }
+    }
+
+
+    /**
+     *  Evaluate the matrix-vector product of a one-electron operator
+     *
+     *  @param one_op                       the one-electron operator expressed in an orthonormal basis
+     *  @param x                            the vector of the matrix-vector product
+     *  @param diagonal                     the diagonal of the matrix representation of the operator inside the spin-unresolved ONV basis
+     *
+     *  @return a vector that is equal to the matrix-vector product of the one-electron operator's matrix representation and the given vector
+     */
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+
+    /**
+     *  Evaluate a two electron operator in a matrix vector product
+     *
+     *  @param two_op                       the two electron operator expressed in an orthonormal basis
+     *  @param x                            the vector upon which the evaluation acts 
+     *  @param diagonal                     the diagonal evaluated in the spin-unresolved ONV basis
+     *
+     *  @return a vector that is equal to the matrix-vector product of the two-electron operator's matrix representation and the given vector
+     */
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarSQTwoElectronOperator<double>& two_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+
+    /**
+     *  Evaluate the Hamiltonian in a matrix vector product
+     *
+     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+     *  @param x                            the vector upon which the evaluation acts 
+     *  @param diagonal                     the diagonal evaluated in the spin-unresolved ONV basis
+     *
+     *  @return a vector that is equal to the matrix-vector product of the Hamiltonian's matrix representation and the given vector
+     */
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+
+    /**
+     *  If we have
+     *      SpinUnresolvedONVBasis fock_space;
+     *
+     *  This makes sure that we can call
+     *      fock_space.getAddress(onv);
+     *  instead of the syntax
+     *      fock_space.ONVManipulator<SpinUnresolvedONVBasis>::getAddress(onv);
+     */
+    using ONVManipulator<SpinUnresolvedONVBasis>::getAddress;
+
+    /**
+     *  Find the next unoccupied orbital in a given spin-unresolved ONV,
+     *  update the electron count, orbital index,
+     *  and update the address by calculating a shift
+     *  resulting from a difference between the initial vertex weights for the encountered occupied orbitals
+     *  and the corrected vertex weights accounting for previously annihilated electrons
+     *
+     *  @tparam T        the number of previously annihilated electrons
+     *
+     *  @param address   the address which is updated
+     *  @param onv       the spin-unresolved ONV for which we search the next unnocupied orbital
+     *  @param q         the orbital index
+     *  @param e         the electron count
+     */
+    template <int T>
+    void shiftUntilNextUnoccupiedOrbital(const SpinUnresolvedONV& onv, size_t& address, size_t& q, size_t& e) const {
+
+        // Test whether the current orbital index is occupied
+        while (e < this->N && q == onv.occupationIndexOf(e)) {
+
+            // Take the difference of vertex weights for the encountered electron weights to that of a vertex weight path with "a" fewer electrons
+            // +1 is added to the electron index, because of how the addressing scheme is arrayed.
+            address += this->get_vertex_weights(q, e + 1 - T) - this->get_vertex_weights(q, e + 1);
+
+            // move to the next electron and orbital
+            e++;
+            q++;
+        }
+    }
+
+    /**
+     *  Find the next unoccupied orbital in a given spin-unresolved ONV,
+     *  update the electron count, orbital index, sign,
+     *  and update the address by calculating a shift
+     *  resulting from a difference between the initial vertex weights for the encountered occupied orbitals
+     *  and the corrected vertex weights accounting for previously annihilated electrons
+     *
+     *  @tparam T        the number of previously annihilated electrons
+     *
+     *  @param address   the address which is updated
+     *  @param onv       the spin-unresolved ONV for which we search the next unnocupied orbital
+     *  @param q         the orbital index
+     *  @param e         the electron count
+     *  @param sign      the sign which is flipped for each iteration
+     */
+    template <int T>
+    void shiftUntilNextUnoccupiedOrbital(const SpinUnresolvedONV& onv, size_t& address, size_t& q, size_t& e, int& sign) const {
+
+        // Test whether the current orbital index is occupied
+        while (e < this->N && q == onv.occupationIndexOf(e)) {
+
+            // Take the difference of vertex weights for the encountered electron weights to that of a vertex weight path with "a" fewer electrons
+            // +1 is added to the electron index, because of how the addressing scheme is arrayed.
+            address += this->get_vertex_weights(q, e + 1 - T) - this->get_vertex_weights(q, e + 1);
+
+            // move to the next electron and orbital
+            e++;
+            q++;
+            sign *= -1;
+        }
+    }
+
+    /**
+     *  Find the previous unoccupied orbital in a given spin-unresolved ONV,
+     *  update the electron count, orbital index, sign,
+     *  and update the address by calculating a shift
+     *  resulting from a difference between the initial vertex weights for the encountered occupied orbitals
+     *  and the corrected vertex weights accounting for newly created electrons
+     *
+     *  @tparam T        the number of newly created electrons
+     *
+     *  @param address   the address which is updated
+     *  @param onv       the spin-unresolved ONV for which we search the next unoccupied orbital
+     *  @param q         the orbital index
+     *  @param e         the electron count
+     *  @param sign      the sign which is flipped for each iteration
+     */
+    template <int T>
+    void shiftUntilPreviousUnoccupiedOrbital(const SpinUnresolvedONV& onv, size_t& address, size_t& q, size_t& e, int& sign) const {
+
+        // Test whether the current orbital index is occupied
+        while (e != -1 && q == onv.occupationIndexOf(e)) {
+
+            int shift = static_cast<int>(this->get_vertex_weights(q, e + 1 + T)) - static_cast<int>(this->get_vertex_weights(q, e + 1));
+            address += shift;
+
+            e--;
+            q--;
+            sign *= -1;
         }
     }
 };
