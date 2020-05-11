@@ -126,6 +126,28 @@ public:
      *  @return the number of steps that are in this consecutive collection
      */
     size_t numberOfSteps() const { return this->steps.size(); }
+
+
+    /**
+     *  Remove the step at the given index.
+     * 
+     *  @param index                the zero-based index of the step in this collection that should be removed
+     */
+    void remove(const size_t index) {
+        this->steps.erase(this->steps.begin() + index);
+    }
+
+
+    /**
+     *  Replace an algorithm step at the given index.
+     * 
+     *  @param step                 the step that should be inserted into this algorithm
+     *  @param index                the zero-based index of the step that should be replaced
+     */
+    template <typename Z = Step<Environment>>
+    enable_if_t<std::is_same<Environment, typename Z::Environment>::value, void> replace(const Z& step, const size_t index) {
+        this->steps[index] = std::make_shared<Z>(step);
+    }
 };
 
 

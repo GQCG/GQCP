@@ -132,6 +132,24 @@ public:
         // Since we will exit the function early if convergence is achieved, the algorithm is considered non-converging if the loop is done.
         throw std::runtime_error("IterativeAlgorithm<Environment>::perform(Environment&): The algorithm didn't find a solution within the maximum number of iterations.");
     }
+
+
+    /**
+     *  Remove the algorithm step at the given index.
+     * 
+     *  @param index                the zero-based index of the step in this algorithm that should be removed
+     */
+    void remove(const size_t index) { this->steps.remove(index); }
+
+
+    /**
+     *  Replace an algorithm step at the given index.
+     * 
+     *  @param step                 the step that should be inserted into this algorithm
+     *  @param index                the zero-based index of the step that should be replaced
+     */
+    template <typename Z = Step<Environment>>
+    enable_if_t<std::is_same<Environment, typename Z::Environment>::value, void> replace(const Z& step, const size_t index) { this->steps.replace(step, index); }
 };
 
 

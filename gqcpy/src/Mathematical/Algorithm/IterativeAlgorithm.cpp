@@ -63,23 +63,42 @@ void bindIterativeAlgorithm(py::module& module, const std::string& suffix, const
                 algorithm.insert(step, index);
             },
             py::arg("step"),
-            py::arg("index"))
-
-        .def(
-            "numberOfIterations",
-            &GQCP::IterativeAlgorithm<Environment>::numberOfIterations,
-            "Return the number of iterations that have been performed")
+            py::arg("index"),
+            "Insert an algorithm step at the given index.")
 
         .def("maximumNumberOfIterations",
              &GQCP::IterativeAlgorithm<Environment>::maximumNumberOfIterations,
              "Return the maximum number of iterations the algorithm may perform")
 
         .def(
+            "numberOfIterations",
+            &GQCP::IterativeAlgorithm<Environment>::numberOfIterations,
+            "Return the number of iterations that have been performed")
+
+        .def(
             "perform",
             [](GQCP::IterativeAlgorithm<Environment>& algorithm, Environment& environment) {
                 algorithm.perform(environment);
             },
-            py::arg("environment"));
+            py::arg("environment"))
+
+
+        .def(
+            "remove",
+            [](GQCP::IterativeAlgorithm<Environment>& algorithm, const size_t index) {
+                algorithm.remove(index);
+            },
+            py::arg("index"),
+            "Remove the algorithm step at the given index.")
+
+        .def(
+            "replace",
+            [](GQCP::IterativeAlgorithm<Environment>& algorithm, const GQCP::FunctionalStep<Environment>& step, const size_t index) {
+                algorithm.replace(step, index);
+            },
+            py::arg("step"),
+            py::arg("index"),
+            "Replace an algorithm step at the given index.");
 }
 
 
