@@ -79,6 +79,16 @@ public:
     static SpinUnresolvedONV FromString(const std::string& string_representation);
 
     /**
+     *  Create a spin-unresolved ONV from a set of occupied indices.
+     * 
+     *  @param occupied_indices             the indices that the electrons occupy, in order: e.g. the i-th element describes the spinor that the i-th electron occupies
+     *  @param M                            the total number of spinors
+     * 
+     *  @return a spin-resolved ONV from a set of occupied indices
+     */
+    static SpinUnresolvedONV FromOccupiedIndices(const std::vector<size_t>& occupied_indices, const size_t M);
+
+    /**
      *  Create a spin-unresolved ONV that represents the GHF single Slater determinant, occupying the N spinors with the lowest spinor energy.
      * 
      *  @param M            the number of spinors

@@ -47,6 +47,26 @@ BOOST_AUTO_TEST_CASE(ONV_constructor) {
 }
 
 
+/**
+ *  Check if the named constructor FromOccupiedIndices works as expected.
+ */
+BOOST_AUTO_TEST_CASE(FromOccupiedIndices) {
+
+    const std::vector<size_t> occupied_indices1 {0, 2, 4};  // "10101" (21)
+    const std::vector<size_t> occupied_indices2 {1, 2, 4};  // "10110" (22)
+    const std::vector<size_t> occupied_indices3 {1, 3, 4};  // "11010" (26)
+
+    GQCP::SpinUnresolvedONV ref_onv1 {5, 3, 21};  // "10101" (21)
+    GQCP::SpinUnresolvedONV ref_onv2 {5, 3, 22};  // "10110" (22)
+    GQCP::SpinUnresolvedONV ref_onv3 {5, 3, 26};  // "11010" (26)
+
+    const size_t M = 5;  // the total number of spinors
+    BOOST_CHECK(GQCP::SpinUnresolvedONV::FromOccupiedIndices(occupied_indices1, M) == ref_onv1);
+    BOOST_CHECK(GQCP::SpinUnresolvedONV::FromOccupiedIndices(occupied_indices2, M) == ref_onv2);
+    BOOST_CHECK(GQCP::SpinUnresolvedONV::FromOccupiedIndices(occupied_indices3, M) == ref_onv3);
+}
+
+
 BOOST_AUTO_TEST_CASE(operator_equals_ONV) {
 
     GQCP::SpinUnresolvedONV onv1 {6, 3, 19};  // "010011" (19)
