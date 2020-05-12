@@ -79,12 +79,14 @@ public:
     static SpinUnresolvedONV FromString(const std::string& string_representation);
 
     /**
-     *  Create a spin-unresolved ONV that represents the GHF single Slater determinant.
+     *  Create a spin-unresolved ONV that represents the GHF single Slater determinant, occupying the N spinors with the lowest spinor energy.
      * 
      *  @param M            the number of spinors
      *  @param N            the number of electrons
      * 
      *  @param a spin-resolved ONV that represents the GHF single Slater determinant
+     * 
+     *  @note The ordering of the spinors is implicit: this method assumes that the spinors in the corresponding GSpinorBasis are sorted with increasing one-particle energy.
      */
     static SpinUnresolvedONV GHF(const size_t M, const size_t N);
 

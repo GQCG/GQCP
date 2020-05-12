@@ -84,12 +84,14 @@ SpinResolvedONV SpinResolvedONV::FromString(const std::string& string_representa
 
 
 /**
- *  Create a spin-resolved ONV that represents the RHF single Slater determinant.
+ *  Create a spin-resolved ONV that represents the RHF single Slater determinant, occupying the N_P lowest alpha- and beta-spin-orbitals.
  * 
  *  @param K            the number of spatial orbitals
  *  @param N_P          the number of electron pairs
  * 
- *  @param a spin-resolved ONV that represents the RHF single Slater determinant
+ *  @return a spin-resolved ONV that represents the RHF single Slater determinant
+ * 
+ * @note The ordering of the spin-orbitals is implicit: this method assumes that the spin-orbitals in the corresponding RSpinorBasis are sorted with increasing one-particle energy.
  */
 SpinResolvedONV SpinResolvedONV::RHF(const size_t K, const size_t N_P) {
 
@@ -100,12 +102,15 @@ SpinResolvedONV SpinResolvedONV::RHF(const size_t K, const size_t N_P) {
 
 
 /**
- *  Create a spin-resolved ONV that represents the UHF single Slater determinant.
+ *  Create a spin-resolved ONV that represents the UHF single Slater determinant, occupying the N_alpha lowest alpha-spin-orbitals, and the N_beta lowest beta-spin-orbitals.
  * 
- *  @param K            the number of spatial orbitals
- *  @param N_P          the number of electron pairs
+ *  @param K                the number of spatial orbitals
+ *  @param N_alpha          the number of alpha-electrons
+ *  @param N_beta           the number of beta-electrons
  * 
- *  @param a spin-resolved ONV that represents the UHF single Slater determinant
+ *  @return a spin-resolved ONV that represents the UHF single Slater determinant
+ * 
+ * @note The ordering of the spin-orbitals is implicit: this method assumes that the spin-orbitals in the corresponding USpinorBasis are sorted with increasing one-particle energy.
  */
 SpinResolvedONV SpinResolvedONV::UHF(const size_t K, const size_t N_alpha, const size_t N_beta) {
 
@@ -147,7 +152,8 @@ std::string SpinResolvedONV::asString() const {
 double SpinResolvedONV::calculateProjection(const SpinResolvedONV& onv_on, const TransformationMatrix<double>& C_alpha, const TransformationMatrix<double>& C_beta, const TransformationMatrix<double>& C, const QCMatrix<double>& S) const {
 
 
-    const auto onv_of = *this;
+    // Make a reference copy in order to improve readibility of the following code.
+    const auto& onv_of = *this;
 
 
     // Calculate the transformation matrices between both sets of spin-orbitals.
@@ -157,7 +163,7 @@ double SpinResolvedONV::calculateProjection(const SpinResolvedONV& onv_on, const
 
     // T's columns should be the ones occupied in the 'of'-ONV.
     // T's rows should be the ones occupied in the 'on'-ONV.
-    // While waiting for Eigen 3.4. to release (which has better slicing APIs), we'll remove the UNoccupied rows/columns.
+    // While waiting for Eigen 3.4 to release (which has better slicing APIs), we'll remove the UNoccupied rows/columns.
     const auto unoccupied_indices_of_alpha = onv_of.onv(Spin::alpha).unoccupiedIndices();
     const auto unoccupied_indices_on_alpha = onv_on.onv(Spin::alpha).unoccupiedIndices();
 
