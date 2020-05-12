@@ -187,10 +187,12 @@ size_t SpinResolvedONV::numberOfElectrons(const Spin sigma) const {
     switch (sigma) {
     case Spin::alpha: {
         return this->onv_alpha.numberOfElectrons();
+        break;
     }
 
     case Spin::beta: {
         return this->onv_beta.numberOfElectrons();
+        break;
     }
     }
 }
@@ -206,10 +208,12 @@ size_t SpinResolvedONV::numberOfSpatialOrbitals(const Spin sigma) const {
     switch (sigma) {
     case Spin::alpha: {
         return this->onv_alpha.numberOfSpinors();
+        break;
     }
 
     case Spin::beta: {
         return this->onv_beta.numberOfSpinors();
+        break;
     }
     }
 }
@@ -226,10 +230,12 @@ const SpinUnresolvedONV& SpinResolvedONV::onv(const Spin sigma) const {
 
     case Spin::alpha: {
         return this->onv_alpha;
+        break;
     }
 
     case Spin::beta: {
         return this->onv_beta;
+        break;
     }
     }
 }

@@ -204,10 +204,12 @@ public:
         switch (sigma) {
         case Spin::alpha: {
             return this->coefficientMatrix().topRows(K);
+            break;
         }
 
         case Spin::beta: {
             return this->coefficientMatrix().bottomRows(K);
+            break;
         }
         }
     }
