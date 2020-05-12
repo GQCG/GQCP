@@ -55,7 +55,15 @@ public:
      */
 
     /**
-     *  Calculate the subspace matrix, i.e. the projection of the matrix A onto the subspace spanned by the vectors in V.
+     *  @return a textual description of this algorithmic step
+     */
+    std::string description() const override {
+        return "Diagonalize the subspace matrix, i.e. the projection of the matrix A onto the subspace spanned by the vectors in V, and write its eigenvalues and eigenvectors to the environment.";
+    }
+
+
+    /**
+     *  Diagonalize the subspace matrix, i.e. the projection of the matrix A onto the subspace spanned by the vectors in V, and write its eigenvalues and eigenvectors to the environment.
      * 
      *  @param environment              the environment that acts as a sort of calculation space
      */

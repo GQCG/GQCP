@@ -46,7 +46,15 @@ public:
      */
 
     /**
-     *  Calculate the current UHF Fock matrices (expressed in the scalar/AO basis) and place them in the environment
+     *  @return a textual description of this algorithmic step
+     */
+    std::string description() const override {
+        return "Calculate the current UHF Fock matrices (expressed in the scalar/AO basis) and place them in the environment.";
+    }
+
+
+    /**
+     *  Calculate the current UHF Fock matrices (expressed in the scalar/AO basis) and place them in the environment.
      * 
      *  @param environment              the environment that acts as a sort of calculation space
      */

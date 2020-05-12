@@ -52,26 +52,53 @@ void bindIterativeAlgorithm(py::module& module, const std::string& suffix, const
                                                       ("IterativeAlgorithm_" + suffix).c_str(),
                                                       description.c_str())
 
+        // PUBLIC METHODS
+        .def("description",
+             &GQCP::IterativeAlgorithm<Environment>::description,
+             "Return a textual description of this iterative algorithm.")
+
         .def(
             "insert",
             [](GQCP::IterativeAlgorithm<Environment>& algorithm, const GQCP::FunctionalStep<Environment>& step, const size_t index) {
                 algorithm.insert(step, index);
             },
             py::arg("step"),
-            py::arg("index"))
+            py::arg("index"),
+            "Insert an algorithm step at the given index.")
+
+        .def("maximumNumberOfIterations",
+             &GQCP::IterativeAlgorithm<Environment>::maximumNumberOfIterations,
+             "Return the maximum number of iterations the algorithm may perform")
 
         .def(
             "numberOfIterations",
-            [](GQCP::IterativeAlgorithm<Environment>& algorithm) {
-                return algorithm.numberOfIterations();
-            })
+            &GQCP::IterativeAlgorithm<Environment>::numberOfIterations,
+            "Return the number of iterations that have been performed")
 
         .def(
             "perform",
             [](GQCP::IterativeAlgorithm<Environment>& algorithm, Environment& environment) {
                 algorithm.perform(environment);
             },
-            py::arg("environment"));
+            py::arg("environment"))
+
+
+        .def(
+            "remove",
+            [](GQCP::IterativeAlgorithm<Environment>& algorithm, const size_t index) {
+                algorithm.remove(index);
+            },
+            py::arg("index"),
+            "Remove the algorithm step at the given index.")
+
+        .def(
+            "replace",
+            [](GQCP::IterativeAlgorithm<Environment>& algorithm, const GQCP::FunctionalStep<Environment>& step, const size_t index) {
+                algorithm.replace(step, index);
+            },
+            py::arg("step"),
+            py::arg("index"),
+            "Replace an algorithm step at the given index.");
 }
 
 

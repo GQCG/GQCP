@@ -56,6 +56,14 @@ public:
      */
 
     /**
+     *  @return a textual description of this algorithmic step
+     */
+    std::string description() const override {
+        return "Add projected correction vectors to the subspace (if their norm is large enough) and collapse the subspace becomes too large. The new subspace vectors (after a collapse) are linear combinations of current subspace vectors, with coefficients found in the lowest eigenvectors of the subspace matrix.";
+    }
+
+
+    /**
      *  Add projected correction vectors to the subspace (if their norm is large enough) and collapse the subspace becomes too large. The new subspace vectors (after a collapse) are linear combinations of current subspace vectors, with coefficients found in the lowest eigenvectors of the subspace matrix.
      * 
      *  @param environment              the environment that acts as a sort of calculation space

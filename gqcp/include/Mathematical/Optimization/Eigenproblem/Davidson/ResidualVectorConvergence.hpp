@@ -58,6 +58,13 @@ public:
      */
 
     /**
+     *  @return a textual description of this algorithmic step
+     */
+    std::string description() const override {
+        return "A convergence criterion that checks if the norm of each of the residual vectors is smaller than a threshold.";
+    }
+
+    /**
      *  @param environment                  the environment that acts as a sort of calculation space
      * 
      *  @return if the norm of each of the residual vectors is smaller than a threshold

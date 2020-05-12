@@ -20,12 +20,13 @@
 
 #include "Mathematical/Algorithm/ConvergenceCriterion.hpp"
 
+#include <boost/format.hpp>
+
 #include <memory>
 #include <vector>
 
 
 namespace GQCP {
-
 
 
 /**
@@ -62,6 +63,42 @@ public:
         criteria {std::make_shared<C1>(criterion1), std::make_shared<C2>(criterion2)} {}
 
 
+    /**
+     *  PUBLIC OVERRIDDEN METHODS
+     */
+
+    /**
+     *  @return a textual description of this algorithmic step
+     */
+    std::string description() const override {
+
+        std::string description_string = (boost::format("A compound convergence criterion step consisting of %s combined criteria:\n") % this->count()).str();
+
+        for (size_t i = 0; i < this->count(); i++) {
+            const auto& criterion = this->criteria[i];
+            description_string += (boost::format("\t%s. %s\n") % std::to_string(i + 1) % criterion->description()).str();
+        }
+        return description_string;
+    }
+
+
+    /**
+     *  @param environment              the environment that this criterion can read from
+     * 
+     *  @return if this criterion is fulfilled
+     */
+    bool isFulfilled(Environment& environment) override {
+
+        // Check if every criterion is fulfilled.
+        for (const auto& criterion : this->criteria) {
+            if (!criterion->isFulfilled(environment)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
     /*
      *  PUBLIC METHODS
      */
@@ -81,20 +118,9 @@ public:
 
 
     /**
-     *  @param environment              the environment that this criterion can read from
-     * 
-     *  @return if this criterion is fulfilled
+     *  @return the number of simple convergence criteria that are compounded in this one
      */
-    bool isFulfilled(Environment& environment) override {
-
-        // Check if every criterion is fulfilled.
-        for (const auto& criterion : this->criteria) {
-            if (!criterion->isFulfilled(environment)) {
-                return false;
-            }
-        }
-        return true;
-    }
+    size_t count() const { return this->criteria.size(); }
 };
 
 

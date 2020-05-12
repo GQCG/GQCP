@@ -69,7 +69,7 @@ public:
         const auto density_matrix_extractor = [](const RHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices; };
 
         using ConvergenceType = ConsecutiveIteratesNormConvergence<OneRDM<Scalar>, RHFSCFEnvironment<Scalar>>;
-        const ConvergenceType convergence_criterion {threshold, density_matrix_extractor};
+        const ConvergenceType convergence_criterion {threshold, density_matrix_extractor, "the RHF density matrix in AO basis"};
 
         return IterativeAlgorithm<RHFSCFEnvironment<Scalar>>(plain_rhf_scf_cycle, convergence_criterion, maximum_number_of_iterations);
     }
@@ -97,13 +97,15 @@ public:
         const std::function<std::deque<OneRDM<Scalar>>(const RHFSCFEnvironment<Scalar>&)> density_matrix_extractor = [](const RHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices; };
 
         using ConvergenceType = ConsecutiveIteratesNormConvergence<OneRDM<Scalar>, RHFSCFEnvironment<Scalar>>;
-        const ConvergenceType convergence_criterion {threshold, density_matrix_extractor};
+        const ConvergenceType convergence_criterion {threshold, density_matrix_extractor, "the RHF density matrix in AO basis"};
 
         return IterativeAlgorithm<RHFSCFEnvironment<Scalar>>(damped_rhf_scf_cycle, convergence_criterion, maximum_number_of_iterations);
     }
 
 
     /**
+     *  @param minimum_subspace_dimension           the minimum number of Fock matrices that have to be in the subspace before enabling DIIS
+     *  @param maximum_subspace_dimension           the maximum number of Fock matrices that can be handled by DIIS
      *  @param threshold                            the threshold that is used in comparing the density matrices
      *  @param maximum_number_of_iterations         the maximum number of iterations the algorithm may perform
      * 
@@ -124,7 +126,7 @@ public:
         const std::function<std::deque<OneRDM<Scalar>>(const RHFSCFEnvironment<Scalar>&)> density_matrix_extractor = [](const RHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices; };
 
         using ConvergenceType = ConsecutiveIteratesNormConvergence<OneRDM<Scalar>, RHFSCFEnvironment<Scalar>>;
-        const ConvergenceType convergence_criterion {threshold, density_matrix_extractor};
+        const ConvergenceType convergence_criterion {threshold, density_matrix_extractor, "the RHF density matrix in AO basis"};
 
         return IterativeAlgorithm<RHFSCFEnvironment<Scalar>>(diis_rhf_scf_cycle, convergence_criterion, maximum_number_of_iterations);
     }

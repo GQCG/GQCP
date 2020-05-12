@@ -44,7 +44,19 @@ public:
      *  @param number_of_requested_eigenpairs       the number of solutions the Davidson solver should find
      */
     ResidualVectorCalculation(const size_t number_of_requested_eigenpairs = 1) :
-        number_of_requested_eigenpairs{number_of_requested_eigenpairs} {}
+        number_of_requested_eigenpairs {number_of_requested_eigenpairs} {}
+
+
+    /*
+     *  OVERRIDDEN PUBLIC METHODS
+     */
+
+    /**
+     *  @return a textual description of this algorithmic step
+     */
+    std::string description() const override {
+        return "Calculate the residual vectors from the new guesses for the eigenvectors.";
+    }
 
 
     /**

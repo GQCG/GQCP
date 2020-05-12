@@ -22,6 +22,7 @@
 
 #include <functional>
 
+
 namespace GQCP {
 
 
@@ -40,6 +41,8 @@ public:
 
 
 private:
+    std::string m_description;  // a textual description of this functional step
+
     Function function;  // the function that this Step wraps
 
 
@@ -53,13 +56,19 @@ public:
      * 
      *  @param function             the function that this Step wraps
      */
-    FunctionalStep(const Function& function) :
-        function {function} {}
+    FunctionalStep(const Function& function, const std::string& description = "A custom functional step.") :
+        function {function},
+        m_description {description} {}
 
 
     /*
      *  PUBLIC OVERRIDDEN FUNCTIONS
      */
+
+    /**
+     *  @return a textual description of this algorithmic step
+     */
+    std::string description() const override { return m_description; }
 
     /**
      *  Execute/perform this algorithm step.
