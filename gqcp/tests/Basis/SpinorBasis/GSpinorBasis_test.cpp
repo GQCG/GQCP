@@ -106,36 +106,13 @@ BOOST_AUTO_TEST_CASE(FromRestricted) {
     const auto K = r_spinor_basis.numberOfSpatialOrbitals();
 
 
-    // RestrictedSpinOrbitalOrdering::spin_blocked
-    // In this case, there should be zero blocks bottom-left and top-right.
-    const auto ordering_type_spin_blocked = GQCP::GSpinorBasis<double, GQCP::GTOShell>::RestrictedSpinOrbitalOrdering::spin_blocked;
-    const auto g_spinor_basis_spin_blocked = GQCP::GSpinorBasis<double, GQCP::GTOShell>::FromRestricted(r_spinor_basis, ordering_type_spin_blocked);
+    // There should be zero blocks bottom-left and top-right.
+    const auto g_spinor_basis = GQCP::GSpinorBasis<double, GQCP::GTOShell>::FromRestricted(r_spinor_basis);
 
-    const auto& C_spin_blocked = g_spinor_basis_spin_blocked.coefficientMatrix();
-
+    const auto& C_spin_blocked = g_spinor_basis.coefficientMatrix();
 
     BOOST_CHECK(C_spin_blocked.bottomLeftCorner(K, K).isApprox(GQCP::MatrixX<double>::Zero(K, K), 1.0e-12));
     BOOST_CHECK(C_spin_blocked.topRightCorner(K, K).isApprox(GQCP::MatrixX<double>::Zero(K, K), 1.0e-12));
-
-
-    // RestrictedSpinOrbitalOrdering::sorted
-    // In this case, there should be alternating zero columns of size K.
-    const auto ordering_type_sorted = GQCP::GSpinorBasis<double, GQCP::GTOShell>::RestrictedSpinOrbitalOrdering::sorted;
-    const auto g_spinor_basis_sorted = GQCP::GSpinorBasis<double, GQCP::GTOShell>::FromRestricted(r_spinor_basis, ordering_type_sorted);
-
-    const auto& C_sorted = g_spinor_basis_sorted.coefficientMatrix();
-
-
-    const std::vector<size_t> alpha_spinor_indices {0, 2, 4, 6};
-    const std::vector<size_t> beta_spinor_indices {1, 3, 5, 7};
-
-    for (const auto& index : alpha_spinor_indices) {
-        BOOST_CHECK(C_sorted.col(index).bottomRows(K).isApprox(GQCP::VectorX<double>::Zero(K), 1.0e-12));  // the beta-part should be zero
-    }
-
-    for (const auto& index : beta_spinor_indices) {
-        BOOST_CHECK(C_sorted.col(index).topRows(K).isApprox(GQCP::VectorX<double>::Zero(K), 1.0e-12));  // the alpha-part should be zero
-    }
 }
 
 

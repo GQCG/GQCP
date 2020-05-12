@@ -36,7 +36,7 @@ namespace GQCP {
 
 
 /**
- *  A class that represents a spinor basis without any restrictions (G for generalized) on the expansion of the alpha and beta components in terms of the underlying (possibly different) scalar bases
+ *  A class that represents a spinor basis without any restrictions (G for generalized) on the expansion of the alpha and beta components in terms of the underlying (possibly different) scalar bases.
  * 
  *  @tparam _ExpansionScalar        the scalar type of the expansion coefficients
  *  @tparam _Shell                  the type of shell the underlying scalar bases contain
@@ -166,58 +166,24 @@ public:
      */
 
     /**
-     *  A type used to specify how a general spinor basis should be constructed from a restricted one. Alpha-spin-orbitals will always come before beta-spin-orbitals.
-     */
-    enum class RestrictedSpinOrbitalOrdering {
-        spin_blocked,  // if the generalized spinors should be spin-blocked
-        sorted         // sorted by ascending single-particle energy
-    };
-
-
-    /**
      *  Convert a restricted spinor basis into a generalized framework, yielding a generalized coefficient matrix that is spin-blocked out.
      * 
      *  @param r_spinor_basis           the restricted spinor basis
-     *  @param ordering_type            how the general spinors should be ordered. See RestrictedSpinOrbitalOrdering for details
      * 
      *  @return the restricted spinor basis as a generalized one
      */
-    static GSpinorBasis<ExpansionScalar, Shell> FromRestricted(const RSpinorBasis<ExpansionScalar, Shell>& r_spinor_basis, const RestrictedSpinOrbitalOrdering ordering_type = RestrictedSpinOrbitalOrdering::spin_blocked) {
+    static GSpinorBasis<ExpansionScalar, Shell> FromRestricted(const RSpinorBasis<ExpansionScalar, Shell>& r_spinor_basis) {
 
         // The goal in this named constructor is to build up the general coefficient matrix (2K x 2K) from the restricted (K x K) one.
-        // Initialize a zero matrix, and according to the specification, fill it in.
         const auto K = r_spinor_basis.numberOfSpatialOrbitals();
         const auto M = r_spinor_basis.numberOfSpinors();
         const auto& C_restricted = r_spinor_basis.coefficientMatrix();
         TransformationMatrix<ExpansionScalar> C_general = TransformationMatrix<ExpansionScalar>::Zero(M, M);
 
-        switch (ordering_type) {
-        case RestrictedSpinOrbitalOrdering::spin_blocked: {
-
-            // A picture says more than a thousand words:
-            //      alpha |  0
-            //        0   | beta
-            C_general.topLeftCorner(K, K) = C_restricted;
-            C_general.bottomRightCorner(K, K) = C_restricted;
-            break;
-        }
-
-        case RestrictedSpinOrbitalOrdering::sorted: {
-
-            // In this case, the spin-orbitals should be interleaved.
-            for (size_t P = 0; P < M; P++) {       // P: spinor index
-                const auto p = std::floor(P / 2);  // spin-orbital index
-
-                if (P % 2 == 0) {  // if the spinor index is even: alpha
-                    C_general.col(P).topRows(K) = C_restricted.col(p);
-                } else {  // if the spinor index is odd: beta
-                    C_general.col(P).bottomRows(K) = C_restricted.col(p);
-                }
-            }
-            break;
-        }
-        }
-
+        //      alpha |  0
+        //        0   | beta
+        C_general.topLeftCorner(K, K) = C_restricted;
+        C_general.bottomRightCorner(K, K) = C_restricted;
 
         return GSpinorBasis<ExpansionScalar, Shell>(r_spinor_basis.scalarBasis(), C_general);  // the alpha- and beta- scalar bases are equal
     }
