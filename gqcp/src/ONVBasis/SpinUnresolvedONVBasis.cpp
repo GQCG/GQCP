@@ -658,7 +658,7 @@ void SpinUnresolvedONVBasis::forEach(const std::function<void(const SpinUnresolv
         callback(onv, I);
 
         if (I < this->dim - 1) {  // prevent the last permutation from occurring
-            onv_basis.setNextONV(onv);
+            this->setNextONV(onv);
         }
     }  // address (I) loop
 }

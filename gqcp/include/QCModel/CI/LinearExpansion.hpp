@@ -259,26 +259,26 @@ public:
 
 
     /**
-     *  Create the linear expansion of the given spin-unresolved ONV that is expressed in the given GSpinorBasis, by projection onto the spin-resolved ONVs expressed with respect to the given RSpinorBasis.
+     *  Create the linear expansion of the given spin-unresolved ONV that is expressed in the given GSpinorBasis, by projection onto the spin-resolved ONVs expressed with respect to another given GSpinorBasis.
      * 
      *  @param onv_of                   a spin-unresolved ONV expressed with respect to an general spinor basis
      *  @param spinor_basis_on          the general spinor basis that is used to define the resulting linear expansion of ONVs against
      *  @param spinor_basis_of          the general spinor basis against which the given ONV is expressed
      * 
-     *  @return a linear expansion inside a spin-resolved ONV basis
+     *  @return a linear expansion inside a spin-unresolved ONV basis
      */
     template <typename Z = ONVBasis>
     static enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value, LinearExpansion<Z>> FromONVProjection(const SpinUnresolvedONV& onv_of, const GSpinorBasis<double, GTOShell>& spinor_basis_on, const GSpinorBasis<double, GTOShell>& spinor_basis_of) {
 
 
         // Determine the overlap matrices of the underlying scalar orbital bases, which is needed later on.
-        auto S = spinor_basis_on.overlap().parameters();
-        S.basisTransformInPlace(spinor_basis_on.coefficientMatrix().inverse());  // now in AO basis
+        auto S_on = spinor_basis_on.overlap().parameters();
+        S_on.basisTransformInPlace(spinor_basis_on.coefficientMatrix().inverse());  // now in AO basis
 
         auto S_of = spinor_basis_of.overlap().parameters();
         S_of.basisTransformInPlace(spinor_basis_of.coefficientMatrix().inverse());  // now in AO basis
 
-        if (!(S.isApprox(S_of, 1.0e-08))) {
+        if (!(S_on.isApprox(S_of, 1.0e-08))) {
             throw std::invalid_argument("LinearExpansion::FromONVProjection(const SpinUnresolvedONV&, const RSpinorBasis<double, GTOShell>&, const GSpinorBasis<double, GTOShell>&): The given spinor bases are not expressed using the same scalar orbital basis.");
         }
 
@@ -290,14 +290,14 @@ public:
 
         // Set up the required spin-resolved ONV basis.
         const auto M = onv_of.numberOfSpinors();
-        const auto N = onv_f.numberOfElectrons();
+        const auto N = onv_of.numberOfElectrons();
         const SpinUnresolvedONVBasis onv_basis {M, N};
 
 
         // Determine the coefficients through calculating the overlap between two ONVs.
         VectorX<double> coeffs = VectorX<double>::Zero(onv_basis.dimension());
-        onv_basis.forEach([&onv_of, &C_on, &C_of, &S, &coeffs](const SpinUnresolvedONV& onv_on, const size_t I) {
-            coeffs(I) = onv.calculateProjection(onv_on, C_of, C_on, S);
+        onv_basis.forEach([&onv_of, &C_on, &C_of, &S_on, &coeffs](const SpinUnresolvedONV& onv_on, const size_t I) {
+            coeffs(I) = onv_of.calculateProjection(onv_on, C_of, C_on, S_on);
         });
 
         return LinearExpansion<Z>(onv_basis, coeffs);
