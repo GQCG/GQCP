@@ -315,6 +315,41 @@ std::string SpinUnresolvedONV::asString() const {
 
 
 /**
+ *  Calculate the overlap <on|of>: the projection of between this spin-unresolved ONV ('of') and another spin-unresolved ONV ('on'), expressed in different general orthonormal spinor bases.
+ * 
+ *  @param onv_on                       the spin-unresolved ONV that should be projected on
+ *  @param C_of                         the coefficient matrix that describes the expansion of the general spinors related to the ONV that is being projected
+ *  @param C_on                         the coefficient matrix that describes the expansion of the general spinors related to the ONV that is being projected on
+ *  @param S                            the overlap matrix of the underlying AOs
+ * 
+ *  @return the overlap element <on|of>
+ */
+double SpinUnresolvedONV::calculateProjection(const SpinUnresolvedONV& onv_on, const TransformationMatrix<double>& C_of, const TransformationMatrix<double>& C_on, const QCMatrix<double>& S) const {
+
+    // Make a reference copy in order to improve readibility of the following code.
+    const auto& onv_of = *this;
+
+
+    // Calculate the transformation matrix between the spinors.
+    TransformationMatrix<double> U = C_on.adjoint() * S * C_of;
+
+
+    // U's columns should be the ones occupied in the 'of'-ONV.
+    // U's rows should be the ones occupied in the 'on'-ONV.
+    // While waiting for Eigen 3.4 to release (which has better slicing APIs), we'll remove the UNoccupied rows/columns.
+    const auto unoccupied_indices_of = onv_of.unoccupiedIndices();
+    const auto unoccupied_indices_on = onv_on.unoccupiedIndices();
+
+    U.removeColumns(unoccupied_indices_of);
+    U.removeRows(unoccupied_indices_on);
+
+
+    // The requested overlap element is the determinant of the resulting matrix.
+    return U.determinant();
+}
+
+
+/**
  *  @param other        the other ONV
  *
  *  @return the number of different occupations between this ONV and the other, i.e. two times the number of electron excitations

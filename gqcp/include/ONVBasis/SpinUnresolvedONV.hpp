@@ -18,7 +18,9 @@
 #pragma once
 
 
+#include "Basis/TransformationMatrix.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
+#include "Mathematical/Representation/QCMatrix.hpp"
 
 
 namespace GQCP {
@@ -198,6 +200,18 @@ public:
      *  @return a string representation of this spin-unresolved ONV
      */
     std::string asString() const;
+
+    /**
+     *  Calculate the overlap <on|of>: the projection of between this spin-unresolved ONV ('of') and another spin-unresolved ONV ('on'), expressed in different general orthonormal spinor bases.
+     * 
+     *  @param onv_on                       the spin-unresolved ONV that should be projected on
+     *  @param C_of                         the coefficient matrix that describes the expansion of the general spinors related to the ONV that is being projected
+     *  @param C_on                         the coefficient matrix that describes the expansion of the general spinors related to the ONV that is being projected on
+     *  @param S                            the overlap matrix of the underlying AOs
+     * 
+     *  @return the overlap element <on|of>
+     */
+    double calculateProjection(const SpinUnresolvedONV& onv_on, const TransformationMatrix<double>& C_of, const TransformationMatrix<double>& C_on, const QCMatrix<double>& S) const;
 
     /**
      *  @param other        the other spin-unresolved ONV
