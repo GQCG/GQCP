@@ -24,6 +24,7 @@
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
 #include "Basis/SpinorBasis/Spin.hpp"
+#include "Basis/SpinorBasis/USpinorBasis.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Molecule/NuclearFramework.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
@@ -176,18 +177,36 @@ public:
      */
     static GSpinorBasis<ExpansionScalar, Shell> FromRestricted(const RSpinorBasis<ExpansionScalar, Shell>& r_spinor_basis) {
 
+        // Create an USpinorBasis from the restricted one and use ::FromUnrestricted.
+        const auto u_spinor_basis = USpinorBasis<ExpansionScalar, Shell>::FromRestricted(r_spinor_basis);
+
+        return GSpinorBasis<ExpansionScalar, Shell>::FromUnrestricted(u_spinor_basis);
+    }
+
+
+    /**
+     *  Convert an unrestricted spinor basis into a generalized framework, yielding a generalized coefficient matrix that is spin-blocked out.
+     * 
+     *  @param u_spinor_basis           the unrestricted spinor basis
+     * 
+     *  @return the unrestricted spinor basis as a generalized one
+     */
+    static GSpinorBasis<ExpansionScalar, Shell> FromUnrestricted(const USpinorBasis<ExpansionScalar, Shell>& u_spinor_basis) {
+
         // The goal in this named constructor is to build up the general coefficient matrix (2K x 2K) from the restricted (K x K) one.
-        const auto K = r_spinor_basis.numberOfSpatialOrbitals();
-        const auto M = r_spinor_basis.numberOfSpinors();
-        const auto& C_restricted = r_spinor_basis.coefficientMatrix();
+        const auto K = u_spinor_basis.numberOfSpinors(Spin::alpha);  // assume K_alpha == K_beta
+        const auto M = u_spinor_basis.numberOfSpinors();             // the total number of spinors, i.e. K_alpha + K_beta
+        const auto& C_alpha = u_spinor_basis.coefficientMatrix(Spin::alpha);
+        const auto& C_beta = u_spinor_basis.coefficientMatrix(Spin::beta);
+
         TransformationMatrix<ExpansionScalar> C_general = TransformationMatrix<ExpansionScalar>::Zero(M, M);
 
         //      alpha |  0
         //        0   | beta
-        C_general.topLeftCorner(K, K) = C_restricted;
-        C_general.bottomRightCorner(K, K) = C_restricted;
+        C_general.topLeftCorner(K, K) = C_alpha;
+        C_general.bottomRightCorner(K, K) = C_beta;
 
-        return GSpinorBasis<ExpansionScalar, Shell>(r_spinor_basis.scalarBasis(), C_general);  // the alpha- and beta- scalar bases are equal
+        return GSpinorBasis<ExpansionScalar, Shell>(u_spinor_basis.scalarBasis(Spin::alpha), C_general);  // assume the alpha- and beta- scalar bases are equal
     }
 
 
