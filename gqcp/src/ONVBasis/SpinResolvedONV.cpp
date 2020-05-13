@@ -95,7 +95,8 @@ SpinResolvedONV SpinResolvedONV::FromString(const std::string& string_representa
  */
 SpinResolvedONV SpinResolvedONV::RHF(const size_t K, const size_t N_P) {
 
-    const auto sigma_onv = SpinUnresolvedONV::GHF(K, N_P);  // for sigma = alpha and sigma = beta
+    const SpinUnresolvedONVBasis onv_basis {K, N_P};  // a proxy ONV basis
+    const auto sigma_onv = onv_basis.makeONV(0);      // address 0 corresponds to the ONV with the right-most orbitals occupied
 
     return SpinResolvedONV(sigma_onv, sigma_onv);
 }
@@ -114,8 +115,11 @@ SpinResolvedONV SpinResolvedONV::RHF(const size_t K, const size_t N_P) {
  */
 SpinResolvedONV SpinResolvedONV::UHF(const size_t K, const size_t N_alpha, const size_t N_beta) {
 
-    const auto alpha_onv = SpinUnresolvedONV::GHF(K, N_alpha);
-    const auto beta_onv = SpinUnresolvedONV::GHF(K, N_beta);
+    const SpinUnresolvedONVBasis onv_basis_alpha {K, N_alpha};  // a proxy ONV basis for the alpha-electrons
+    const auto alpha_onv = onv_basis_alpha.makeONV(0);          // address 0 corresponds to the ONV with the right-most orbitals occupied
+
+    const SpinUnresolvedONVBasis onv_basis_beta {K, N_beta};  // a proxy ONV basis for the beta-electrons
+    const auto beta_onv = onv_basis_beta.makeONV(0);          // address 0 corresponds to the ONV with the right-most orbitals occupied
 
     return SpinResolvedONV(alpha_onv, beta_onv);
 }

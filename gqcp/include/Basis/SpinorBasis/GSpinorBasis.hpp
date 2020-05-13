@@ -40,6 +40,8 @@ namespace GQCP {
  * 
  *  @tparam _ExpansionScalar        the scalar type of the expansion coefficients
  *  @tparam _Shell                  the type of shell the underlying scalar bases contain
+ * 
+ *  @note The individual columns of the coefficient matrix represent the spinors of this basis; they are not ordered by increasing single-particle energy.
  */
 template <typename _ExpansionScalar, typename _Shell>
 class GSpinorBasis: public SimpleSpinorBasis<_ExpansionScalar, GSpinorBasis<_ExpansionScalar, _Shell>> {

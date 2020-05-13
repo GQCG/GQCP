@@ -102,18 +102,27 @@ SpinUnresolvedONV SpinUnresolvedONV::FromOccupiedIndices(const std::vector<size_
 
 
 /**
- *  Create a spin-unresolved ONV that represents the GHF single Slater determinant.
+ *  Create a spin-unresolved ONV that represents the GHF single Slater determinant, occupying the N spinors with the lowest spinor energy.
  * 
- *  @param M            the number of spinors
- *  @param N            the number of electrons
+ *  @param M                            the number of spinors
+ *  @param N                            the number of electrons
+ *  @param orbital_energies             the single-particle energies of the spinors
  * 
  *  @param a spin-resolved ONV that represents the GHF single Slater determinant
  */
-SpinUnresolvedONV SpinUnresolvedONV::GHF(const size_t M, const size_t N) {
+SpinUnresolvedONV SpinUnresolvedONV::GHF(const size_t M, const size_t N, const VectorX<double>& orbital_energies) {
 
-    // The GHF ONV is that one in which the lowest N spinors are occupied.
-    const SpinUnresolvedONVBasis onv_basis {M, N};  // the ONV basis in which the GHF ONV should live
-    return onv_basis.makeONV(0);                    // the 'address' of the 'GHF' ONV is 0
+    // The GHF ONV is that one in which the N spinors with the lowest energy are occupied.
+
+    // Create an array that contains the indices of the spinors with ascending energy.
+    std::vector<size_t> indices(M);                // zero-initialized with M elements
+    std::iota(indices.begin(), indices.end(), 0);  // start with 0
+
+    // Sort the indices according to the orbital energies.
+    std::stable_sort(indices.begin(), indices.end(), [&orbital_energies](const size_t i, const size_t j) { return orbital_energies(i) < orbital_energies(j); });
+
+    const std::vector<size_t> occupied_indices {indices.begin(), indices.begin() + N};  // the first N elements
+    return SpinUnresolvedONV::FromOccupiedIndices(occupied_indices, M);
 }
 
 

@@ -512,12 +512,26 @@ BOOST_AUTO_TEST_CASE(findMatchingOccupations) {
  */
 BOOST_AUTO_TEST_CASE(GHF) {
 
-    // For M=10 spinors and N=5 electrons, the 'GHF' ONV should be "0000011111" = 31.
-    const size_t M = 10;
-    const size_t N = 5;
-    const GQCP::SpinUnresolvedONV reference {M, N, 31};
+    // Create an example array of orbital energies.
+    const size_t M = 6;  // the number of spinors
+    GQCP::VectorX<double> orbital_energies {M};
+    orbital_energies << 0, 1, 2, 0, 0.5, 1;
 
-    BOOST_CHECK(reference == GQCP::SpinUnresolvedONV::GHF(M, N));
+    // N = 2;
+    const auto ref_onv1 = GQCP::SpinUnresolvedONV::FromString("001001");
+    BOOST_CHECK(GQCP::SpinUnresolvedONV::GHF(M, 2, orbital_energies) == ref_onv1);
+
+    // N = 3;
+    const auto ref_onv2 = GQCP::SpinUnresolvedONV::FromString("011001");
+    BOOST_CHECK(GQCP::SpinUnresolvedONV::GHF(M, 3, orbital_energies) == ref_onv2);
+
+    // N = 4;
+    const auto ref_onv3 = GQCP::SpinUnresolvedONV::FromString("011011");
+    BOOST_CHECK(GQCP::SpinUnresolvedONV::GHF(M, 4, orbital_energies) == ref_onv3);
+
+    // N = 5
+    const auto ref_onv4 = GQCP::SpinUnresolvedONV::FromString("111011");
+    BOOST_CHECK(GQCP::SpinUnresolvedONV::GHF(M, 5, orbital_energies) == ref_onv4);
 }
 
 

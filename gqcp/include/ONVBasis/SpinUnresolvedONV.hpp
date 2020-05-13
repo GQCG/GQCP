@@ -91,14 +91,13 @@ public:
     /**
      *  Create a spin-unresolved ONV that represents the GHF single Slater determinant, occupying the N spinors with the lowest spinor energy.
      * 
-     *  @param M            the number of spinors
-     *  @param N            the number of electrons
+     *  @param M                            the number of spinors
+     *  @param N                            the number of electrons
+     *  @param orbital_energies             the single-particle energies of the spinors
      * 
      *  @param a spin-resolved ONV that represents the GHF single Slater determinant
-     * 
-     *  @note The ordering of the spinors is implicit: this method assumes that the spinors in the corresponding GSpinorBasis are sorted with increasing one-particle energy.
      */
-    static SpinUnresolvedONV GHF(const size_t M, const size_t N);
+    static SpinUnresolvedONV GHF(const size_t M, const size_t N, const VectorX<double>& orbital_energies);
 
 
     // OPERATORS
