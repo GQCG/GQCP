@@ -28,7 +28,7 @@ namespace GQCP {
 
 
 /**
- *  An extension of the square rank-4 tensor with methods of quantum chemical context.
+ *  An extension of the square rank-4 tensor with methods of quantum chemical context for two-electron integrals.
  *
  *  @tparam _Scalar      the scalar type
  */
