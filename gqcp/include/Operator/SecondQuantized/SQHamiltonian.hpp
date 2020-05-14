@@ -351,9 +351,39 @@ public:
 
 
     /**
+     *  Calculate the (general) inactive Fockian operator.
+     * 
+     *  @param orbital_space                an orbital space which denotes the occupied-virtual separation
+     * 
+     *  @return the inactive Fockian operator
+     */
+    ScalarSQOneElectronOperator<Scalar> calculateInactiveFockian(const OrbitalSpace orbital_space) const {
+
+        const auto& h_par = this->core().parameters();
+        const auto& g_par = this->twoElectron().parameters();
+
+
+        // A KISS implementation of the calculation of the (general) inactive Fockian matrix
+        auto F_par = h_par;  // one-electron part
+
+        // Two-electron part
+        for (const auto& p : orbital_space.allIndices()) {
+            for (const auto& q : orbital_space.allIndices()) {
+
+                for (const auto& i : orbital_space.occupiedIndices()) {
+                    F_par(p, q) += g_par(p, q, i, i) - g_par(p, i, i, q);
+                }
+            }
+        }  // F elements loop
+
+        return ScalarSQOneElectronOperator<Scalar>(F_par);
+    }
+
+
+    /**
      *  Calculate the (restricted) inactive Fockian operator.
      * 
-     *  @param orbital_space                an orbital space which denotes the occupied-active-virtual separation
+     *  @param orbital_space                an orbital space which denotes the occupied-virtual separation
      * 
      *  @return the inactive Fockian operator
      */
@@ -363,7 +393,7 @@ public:
         const auto& g_par = this->twoElectron().parameters();
 
 
-        // A KISS implementation of the calculation of the inactive Fockian matrix
+        // A KISS implementation of the calculation of the (restricted) inactive Fockian matrix
         auto F_par = h_par;  // one-electron part
 
         // Two-electron part
