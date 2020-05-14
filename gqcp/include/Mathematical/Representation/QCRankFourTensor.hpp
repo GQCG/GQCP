@@ -28,7 +28,7 @@ namespace GQCP {
 
 
 /**
- *  An extension of the square rank-4 tensor with methods of quantum chemical context
+ *  An extension of the square rank-4 tensor with methods of quantum chemical context.
  *
  *  @tparam _Scalar      the scalar type
  */
@@ -54,13 +54,36 @@ public:
      */
 
     /**
-     *  @return the dimension of this matrix representation of the parameters, i.e. the number of orbitals/sites
+     *  In-place rotate this quantum chemical rank-4 tensor using a unitary transformation matrix.
+     * 
+     *  @param U            the unitary transformation matrix
      */
-    size_t dimension() const {
-        return static_cast<size_t>(this->Base::dimension(0));  // returns a long
+    void basisRotateInPlace(const TransformationMatrix<double>& U) {
+
+        // Check if the given matrix is actually unitary
+        if (!U.isUnitary(1.0e-12)) {
+            throw std::invalid_argument("QCRankFourTensor::basisRotateInPlace(const TransformationMatrix<Scalar>&): The given transformation matrix is not unitary.");
+        }
+
+        this->basisTransformInPlace(U);
     }
 
-    size_t get_K() const { return this->dimension(0); };
+
+    /**
+     *  In-place rotate this chemical rank-4 tensor using Jacobi rotation parameters.
+     * 
+     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
+     */
+    void basisRotateInPlace(const JacobiRotationParameters& jacobi_rotation_parameters) {
+
+        /**
+         *  While waiting for an analogous Eigen::Tensor Jacobi module, we implement this rotation by constructing a Jacobi rotation matrix and then simply doing a rotation with it
+         */
+
+        const auto dim = this->dimension();
+        const auto J = TransformationMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
+        this->basisRotateInPlace(J);
+    }
 
 
     /**
@@ -109,36 +132,9 @@ public:
 
 
     /**
-     *  In-place rotate this quantum chemical rank-4 tensor using a unitary transformation matrix.
-     * 
-     *  @param U            the unitary transformation matrix
+     *  @return the dimension of this matrix representation of the parameters, i.e. the number of orbitals/sites
      */
-    void basisRotateInPlace(const TransformationMatrix<double>& U) {
-
-        // Check if the given matrix is actually unitary
-        if (!U.isUnitary(1.0e-12)) {
-            throw std::invalid_argument("QCRankFourTensor::basisRotateInPlace(const TransformationMatrix<Scalar>&): The given transformation matrix is not unitary.");
-        }
-
-        this->basisTransformInPlace(U);
-    }
-
-
-    /**
-     *  In-place rotate this chemical rank-4 tensor using Jacobi rotation parameters.
-     * 
-     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
-     */
-    void basisRotateInPlace(const JacobiRotationParameters& jacobi_rotation_parameters) {
-
-        /**
-         *  While waiting for an analogous Eigen::Tensor Jacobi module, we implement this rotation by constructing a Jacobi rotation matrix and then simply doing a rotation with it
-         */
-
-        const auto dim = this->dimension();
-        const auto J = TransformationMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
-        this->basisRotateInPlace(J);
-    }
+    size_t dimension() const { return static_cast<size_t>(this->Base::dimension(0)); }
 };
 
 

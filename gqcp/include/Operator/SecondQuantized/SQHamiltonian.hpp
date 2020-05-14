@@ -107,7 +107,7 @@ public:
      *  @param g            the (total) two-electron integrals
      */
     SQHamiltonian(const ScalarSQOneElectronOperator<Scalar>& h, const ScalarSQTwoElectronOperator<Scalar>& g) :
-        SQHamiltonian(std::vector<ScalarSQOneElectronOperator<Scalar>>{h}, std::vector<ScalarSQTwoElectronOperator<Scalar>>{g}) {}
+        SQHamiltonian(std::vector<ScalarSQOneElectronOperator<Scalar>> {h}, std::vector<ScalarSQTwoElectronOperator<Scalar>> {g}) {}
 
 
     /*
@@ -168,7 +168,7 @@ public:
      *  Note that this named constructor is only available for real representations
      */
     template <typename Z = Scalar>
-    static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> Random(size_t K) {
+    static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> Random(const size_t K) {
 
         ScalarSQOneElectronOperator<double> H {QCMatrix<double>::Random(K, K)};  // uniformly distributed between [-1,1]
 

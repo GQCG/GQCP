@@ -33,10 +33,12 @@ namespace GQCP {
 
 
 /**
- *  A class that represents a second-quantized one-electron operator: it holds the matrix representation of its parameters, which are (usually) integrals over first-quantized operators
+ *  A class that represents a second-quantized one-electron operator: it holds the matrix representation of its parameters, which are (usually) integrals over first-quantized operators.
  *
  *  @tparam _Scalar             the scalar type, i.e. the scalar representation of one of the parameters
  *  @tparam _Components         the number of components of the second-quantized operator
+ * 
+ *  @note Depending on the context, this class can be used to represent integrals over restricted spatial orbitals, or general spinors.
  */
 template <typename _Scalar, size_t _Components>
 class SQOneElectronOperator {

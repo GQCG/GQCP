@@ -25,7 +25,7 @@ namespace GQCP {
 
 
 /**
- *  A class that localizes a set of orthonormal orbitals according to the maximization of the Edmiston-Ruedenberg localization index formulated as a minimization problem. The minimum is found using subsequent Newton steps
+ *  A class that localizes a set of orthonormal real spatial orbitals according to the maximization of the Edmiston-Ruedenberg localization index formulated as a minimization problem. The minimum is found using subsequent Newton steps.
  */
 class ERNewtonLocalizer: public NewtonOrbitalOptimizer {
 private:
@@ -84,7 +84,7 @@ public:
      *
      *  @return the element (i,j) of the Edmiston-Ruedenberg localization index gradient
      */
-    double calculateGradientMatrixElement(const SQHamiltonian<double>& sq_hamiltonian, size_t i, size_t j) const;
+    double calculateGradientMatrixElement(const SQHamiltonian<double>& sq_hamiltonian, const size_t i, const size_t j) const;
 
     /**
      *  @param sq_hamiltonian       the current Hamiltonian
@@ -95,7 +95,7 @@ public:
      *
      *  @return the element (i,j,k,l) of the Edmiston-Ruedenberg localization index Hessian
      */
-    double calculateHessianTensorElement(const SQHamiltonian<double>& sq_hamiltonian, size_t i, size_t j, size_t k, size_t l) const;
+    double calculateHessianTensorElement(const SQHamiltonian<double>& sq_hamiltonian, const size_t i, const size_t j, const size_t k, const size_t l) const;
 };
 
 
