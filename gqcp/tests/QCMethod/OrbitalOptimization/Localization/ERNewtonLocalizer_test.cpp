@@ -24,24 +24,31 @@
 #include "QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
 
 
+/**
+ *  Check if the Edmiston-Ruedenberg localization index is raised after a localization procedure.
+ * 
+ *  The test system is H2O in an STO-3G basisset.
+ */
 BOOST_AUTO_TEST_CASE(localization_index_raises) {
 
-    // Check if the Edmiston-Ruedenberg localization index is raised after a localization procedure
-    auto h2o = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    size_t N_P = h2o.numberOfElectrons() / 2;
+    // Prepare the molecular Hamiltonian in the Löwdin-basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    const auto N_P = molecule.numberOfElectronPairs();
 
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {h2o, "STO-3G"};
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
     spinor_basis.lowdinOrthonormalize();
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2o);  // in the Löwdin basis
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in the Löwdin basis
 
 
-    double D_before = sq_hamiltonian.calculateEdmistonRuedenbergLocalizationIndex(N_P);
+    // Do an Edmiston-Ruedenberg localization and keep track of the value of the ER-index before and after.
+    const auto orbital_space = GQCP::OrbitalSpace::Occupied(N_P);  // N_P occupied spatial orbitals
+    double D_before = sq_hamiltonian.calculateEdmistonRuedenbergLocalizationIndex(orbital_space);
 
     auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
-    GQCP::ERNewtonLocalizer localizer {N_P, hessian_modifier, 1.0e-04};
+    GQCP::ERNewtonLocalizer localizer {orbital_space, hessian_modifier, 1.0e-04};
     localizer.optimize(spinor_basis, sq_hamiltonian);  // if converged, the Hamiltonian is in the localized basis
 
-    double D_after = sq_hamiltonian.calculateEdmistonRuedenbergLocalizationIndex(N_P);
+    double D_after = sq_hamiltonian.calculateEdmistonRuedenbergLocalizationIndex(orbital_space);
 
     BOOST_CHECK(D_after > D_before);
 }

@@ -17,6 +17,7 @@
 
 #include "Processing/Properties/RHFElectricalResponseSolver.hpp"
 
+#include "Basis/SpinorBasis/OrbitalSpace.hpp"
 #include "Mathematical/Representation/BlockMatrix.hpp"
 #include "QCMethod/HF/RHF/RHF.hpp"
 #include "QCModel/HF/RHF.hpp"
@@ -61,18 +62,21 @@ SquareMatrix<double> RHFElectricalResponseSolver::calculateParameterResponseCons
  */
 Matrix<double, Dynamic, 3> RHFElectricalResponseSolver::calculateParameterResponseForce(const VectorSQOneElectronOperator<double>& dipole_op) const {
 
-    const auto K = dipole_op.dimension();  // number of spatial orbitals
+    // Create an occupied-virtual orbital space.
+    const auto K = dipole_op.dimension();                                    // number of spatial orbitals
+    const auto orbital_space = OrbitalSpace::OccupiedVirtual(this->N_P, K);  // N_P occupied spatial orbitals, K total spatial orbitals
 
+
+    // Zero-initialize the vector representation of the parameter response force F_p
     const auto dim = this->N_P * (K - this->N_P);  // number of non-redundant orbital rotation generators
     Matrix<double, Dynamic, 3> F_p = Matrix<double, Dynamic, 3>::Zero(dim, 3);
-
 
     // Loop over the components of the electrical dipole to calculate the response force for every component
     for (size_t m = 0; m < 3; m++) {
         BlockMatrix<double> F_p_m {N_P, K, 0, N_P};  // zero-initialize an object suitable for the representation of virtual-occupied (a,i) quantities
 
-        for (size_t i = 0; i < this->N_P; i++) {
-            for (size_t a = this->N_P; a < K; a++) {
+        for (const auto& i : orbital_space.occupiedIndices()) {
+            for (const auto& a : orbital_space.virtualIndices()) {
                 F_p_m(a, i) = 4 * dipole_op.parameters(m)(a, i);  // RHF formula for the parameter (i.e. orbital) response force
             }
         }

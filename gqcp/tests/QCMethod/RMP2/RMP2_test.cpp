@@ -46,7 +46,7 @@ BOOST_AUTO_TEST_CASE(crawdad_sto3g_water) {
 
 
     // Check if the RMP2 correction is correct
-    double energy_correction = GQCP::calculateRMP2EnergyCorrection(sq_hamiltonian, water, rhf_parameters);
+    double energy_correction = GQCP::calculateRMP2EnergyCorrection(sq_hamiltonian, rhf_parameters);
     BOOST_CHECK(std::abs(energy_correction - ref_energy_correction) < 1.0e-08);
 }
 
@@ -70,6 +70,6 @@ BOOST_AUTO_TEST_CASE(crawdad_sto3g_methane) {
 
 
     // Check if the RMP2 correction is correct
-    double energy_correction = GQCP::calculateRMP2EnergyCorrection(sq_hamiltonian, methane, rhf_parameters);
+    double energy_correction = GQCP::calculateRMP2EnergyCorrection(sq_hamiltonian, rhf_parameters);
     BOOST_CHECK(std::abs(energy_correction - ref_energy_correction) < 1.0e-08);
 }

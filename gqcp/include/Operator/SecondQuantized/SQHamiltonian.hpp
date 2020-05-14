@@ -20,6 +20,7 @@
 
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
 #include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
+#include "Basis/SpinorBasis/OrbitalSpace.hpp"
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Basis/TransformationMatrix.hpp"
 #include "Molecule/Molecule.hpp"
@@ -294,20 +295,21 @@ public:
      */
 
     /**
-     *  @param N_P      the number of electron pairs
+     *  Calculate the Edmiston-Ruedenberg localization index, which is the trace of the two-electron integrals over only the occupied orbitals.
+     * 
+     *  @param orbital_space                an orbital space which denotes the occupied-active-virtual separation
      *
-     *  @return the Edmiston-Ruedenberg localization index g(i,i,i,i)
+     *  @return the Edmiston-Ruedenberg localization index
      *
-     *  Note that this method is only available for real matrix representations
+     *  @note This method is only available for real matrix representations.
      */
-    template <typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value, double> calculateEdmistonRuedenbergLocalizationIndex(size_t N_P) const {
+    Scalar calculateEdmistonRuedenbergLocalizationIndex(const OrbitalSpace orbital_space) const {
 
         const auto& g_par = this->total_two_op.parameters();
 
         // TODO: when Eigen releases TensorTrace, use it here
         double localization_index = 0.0;
-        for (size_t i = 0; i < N_P; i++) {
+        for (const auto& i : orbital_space.occupiedIndices()) {
             localization_index += g_par(i, i, i, i);
         }
 
@@ -349,11 +351,13 @@ public:
 
 
     /**
-     *  @param N_P          the number of electron pairs
+     *  Calculate the (restricted) inactive Fockian operator.
      * 
-     *  @return the inactive Fockian matrix
+     *  @param orbital_space                an orbital space which denotes the occupied-active-virtual separation
+     * 
+     *  @return the inactive Fockian operator
      */
-    ScalarSQOneElectronOperator<Scalar> calculateInactiveFockian(const size_t N_P) const {
+    ScalarSQOneElectronOperator<Scalar> calculateInactiveFockianRestricted(const OrbitalSpace orbital_space) const {
 
         const auto& h_par = this->core().parameters();
         const auto& g_par = this->twoElectron().parameters();
@@ -363,10 +367,10 @@ public:
         auto F_par = h_par;  // one-electron part
 
         // Two-electron part
-        for (size_t p = 0; p < this->dimension(); p++) {
-            for (size_t q = 0; q < this->dimension(); q++) {
+        for (const auto& p : orbital_space.allIndices()) {
+            for (const auto& q : orbital_space.allIndices()) {
 
-                for (size_t i = 0; i < N_P; i++) {
+                for (const auto& i : orbital_space.occupiedIndices()) {
                     F_par(p, q) += 2 * g_par(p, q, i, i) - g_par(p, i, i, q);
                 }
             }

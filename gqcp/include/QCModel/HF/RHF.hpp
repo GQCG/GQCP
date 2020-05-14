@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/SpinorBasis/OrbitalSpace.hpp"
 #include "Basis/SpinorBasis/Spin.hpp"
 #include "Basis/TransformationMatrix.hpp"
 #include "Mathematical/Representation/BlockRankFourTensor.hpp"
@@ -181,12 +182,17 @@ public:
      */
     static Scalar calculateOrbitalHessianElement(const SQHamiltonian<Scalar>& sq_hamiltonian, const size_t N_P, const size_t a, const size_t i, const size_t b, const size_t j) {
 
+        // Prepare some variables.
         const auto& g = sq_hamiltonian.twoElectron().parameters();
+        const auto K = g.dimension();  // the number of spatial orbitals
+
+        const auto orbital_space = RHF<Scalar>::orbitalSpace(K, N_P);
+
+
         double value {0.0};
 
-
         // Inactive Fock matrix part
-        const auto F = sq_hamiltonian.calculateInactiveFockian(N_P).parameters();
+        const auto F = sq_hamiltonian.calculateInactiveFockianRestricted(orbital_space).parameters();
         if (i == j) {
             value += F(a, b);
         }
@@ -211,17 +217,19 @@ public:
      */
     static BlockRankFourTensor<Scalar> calculateOrbitalHessianTensor(const SQHamiltonian<Scalar>& sq_hamiltonian, const size_t N_P) {
 
+        // Create an occupied-virtual orbital space.
         const auto K = sq_hamiltonian.dimension();
+        const auto orbital_space = OrbitalSpace::OccupiedVirtual(N_P, K);  // N_P occupied spatial orbitals, K total spatial orbitals
 
         BlockRankFourTensor<Scalar> hessian {N_P, K, 0, N_P,
                                              N_P, K, 0, N_P};  // zero-initialize an object suitable for the representation of a virtual-occupied,virtual-occupied object (ai,bj)
 
         // Loop over all indices (ai,bj) to construct the orbital hessian
-        for (size_t a = N_P; a < K; a++) {
-            for (size_t i = 0; i < N_P; i++) {
+        for (const auto& a : orbital_space.virtualIndices()) {
+            for (const auto& i : orbital_space.occupiedIndices()) {
 
-                for (size_t b = N_P; b < K; b++) {
-                    for (size_t j = 0; j < N_P; j++) {
+                for (const auto& b : orbital_space.virtualIndices()) {
+                    for (const auto& j : orbital_space.occupiedIndices()) {
                         hessian(a, i, b, j) = RHF<Scalar>::calculateOrbitalHessianElement(sq_hamiltonian, N_P, a, i, b, j);
                     }
                 }
@@ -288,6 +296,15 @@ public:
     }
 
 
+    /**
+     *  @param K            the number of spatial orbitals
+     *  @param N_P          the number of electrons
+     * 
+     *  @return an occupied-virtual orbital space
+     */
+    static OrbitalSpace orbitalSpace(const size_t K, const size_t N_P) { return OrbitalSpace::OccupiedVirtual(N_P, K); }
+
+
     /*
      *  PUBLIC METHODS
      */
@@ -346,6 +363,11 @@ public:
      *  @return the i-th orbital energy
      */
     double orbitalEnergy(const size_t i) const { return this->orbital_energies(i); }
+
+    /**
+     *  @return the implicit occupied-virtual orbital space that is associated to these RHF model parameters
+     */
+    OrbitalSpace orbitalSpace() const { return RHF<Scalar>::orbitalSpace(this->numberOfSpatialOrbitals(), this->numberOfElectronPairs()); }
 };
 
 

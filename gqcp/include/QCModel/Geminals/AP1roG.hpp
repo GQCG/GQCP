@@ -147,6 +147,11 @@ public:
      *  @return the number of spatial orbitals that are described by these AP1roG model parameters
      */
     size_t numberOfSpatialOrbitals() const { return this->G.numberOfSpatialOrbitals(); }
+
+    /**
+     *  @return the implicit occupied-virtual orbital space that is associated with these AP1roG model parameters
+     */
+    OrbitalSpace orbitalSpace() const { return this->geminalCoefficients().orbitalSpace(); }
 };
 
 

@@ -17,6 +17,7 @@
 
 #include "Processing/Properties/vAP1roGElectricalResponseSolver.hpp"
 
+#include "Basis/SpinorBasis/OrbitalSpace.hpp"
 #include "Mathematical/Optimization/LinearEquation/LinearEquationEnvironment.hpp"
 #include "Mathematical/Optimization/LinearEquation/LinearEquationSolver.hpp"
 
@@ -59,10 +60,12 @@ Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateParameterRe
 
     // Prepare some variables.
     const auto& G = this->vap1rog.geminalCoefficients();
-
-    const auto N_P = G.numberOfElectronPairs();
-    const auto K = G.numberOfSpatialOrbitals();
     const auto dim = G.count();
+
+    // Create an occupied-virtual orbital space.
+    const auto K = G.numberOfSpatialOrbitals();
+    const auto N_P = G.numberOfElectronPairs();
+    const auto orbital_space = OrbitalSpace::OccupiedVirtual(N_P, K);  // N_P occupied (spatial) orbitals, K total (spatial) orbitals
 
 
     // Calculate every component separately.
@@ -73,8 +76,8 @@ Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateParameterRe
 
         // Calculate the m-th component of the parameter response force F_p.
         BlockMatrix<double> F_p_m {0, N_P, N_P, K};
-        for (size_t i = 0; i < N_P; i++) {
-            for (size_t a = N_P; a < K; a++) {
+        for (const auto& i : orbital_space.occupiedIndices()) {
+            for (const auto& a : orbital_space.virtualIndices()) {
                 F_p_m(i, a) = 2 * (mu_m(i, i) - mu_m(a, a)) * G(i, a);
             }
         }
@@ -114,10 +117,12 @@ Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateExplicitMul
     // Prepare some variables.
     const auto& G = this->vap1rog.geminalCoefficients();
     const auto& lambda = this->vap1rog.lagrangeMultipliers();
-
-    const auto N_P = G.numberOfElectronPairs();
-    const auto K = G.numberOfSpatialOrbitals();
     const auto dim = G.count();
+
+    // Create an occupied-virtual orbital space.
+    const auto K = G.numberOfSpatialOrbitals();
+    const auto N_P = G.numberOfElectronPairs();
+    const auto orbital_space = OrbitalSpace::OccupiedVirtual(N_P, K);  // N_P occupied (spatial) orbitals, K total (spatial) orbitals
 
 
     // Calculate A_lambda by constructing its separate components.
@@ -128,8 +133,8 @@ Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateExplicitMul
 
         // Calculate the m-th component.
         BlockMatrix<double> A_lambda_m(0, N_P, N_P, K);
-        for (size_t i = 0; i < N_P; i++) {
-            for (size_t a = N_P; a < K; a++) {
+        for (const auto& i : orbital_space.occupiedIndices()) {
+            for (const auto& a : orbital_space.virtualIndices()) {
                 A_lambda_m(i, a) = 2 * lambda(i, a) * (mu_m(i, i) - mu_m(a, a));
             }
         }
@@ -153,21 +158,23 @@ BlockRankFourTensor<double> vAP1roGElectricalResponseSolver::calculateImplicitMu
     // Prepare some variables.
     const auto& G = this->vap1rog.geminalCoefficients();
     const auto& lambda = this->vap1rog.lagrangeMultipliers();
-
-    const auto N_P = G.numberOfElectronPairs();
-    const auto K = G.numberOfSpatialOrbitals();
     const auto dim = G.count();
 
-    const auto& g = sq_hamiltonian.twoElectron().parameters();
+    // Prepare an occupied-virtual orbital space.
+    const auto N_P = G.numberOfElectronPairs();
+    const auto K = G.numberOfSpatialOrbitals();
+    const auto orbital_space = OrbitalSpace::OccupiedVirtual(N_P, K);  // N_P occupied (spatial) orbitals, K total (spatial) orbitals
 
+
+    const auto& g = sq_hamiltonian.twoElectron().parameters();
 
     BlockRankFourTensor<double> B_lambda {0, N_P, N_P, K,
                                           0, N_P, N_P, K};
 
-    for (size_t i = 0; i < N_P; i++) {
-        for (size_t a = N_P; a < K; a++) {
-            for (size_t j = 0; j < N_P; j++) {
-                for (size_t b = N_P; b < K; b++) {
+    for (const auto& i : orbital_space.occupiedIndices()) {
+        for (const auto& a : orbital_space.virtualIndices()) {
+            for (const auto& j : orbital_space.occupiedIndices()) {
+                for (const auto& b : orbital_space.virtualIndices()) {
                     double value {0.0};
 
                     value += lambda(i, b) * g(j, a, j, a) + lambda(j, a) * g(i, b, i, b);

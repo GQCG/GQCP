@@ -35,19 +35,17 @@ namespace GQCP {
  */
 OneRDM<double> QCModel::vAP1roG::calculate1RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers) {
 
+    // KISS-implementation of the formulas.
     OneRDM<double> D = OneRDM<double>::Zero(G.get_K(), G.get_K());
 
-    size_t N_P = G.get_N_P();
-    size_t K = G.get_K();
+    const auto orbital_space = G.orbitalSpace();
 
 
-    // KISS-implementation of the formulas
-
-    // Occupied part
-    for (size_t i = 0; i < N_P; i++) {
+    // Occupied part.
+    for (const auto& i : orbital_space.occupiedIndices()) {
         double sum {0.0};
 
-        for (size_t a = N_P; a < K; a++) {
+        for (const auto& a : orbital_space.virtualIndices()) {
             sum += multipliers(i, a) * G(i, a);
         }
 
@@ -55,11 +53,11 @@ OneRDM<double> QCModel::vAP1roG::calculate1RDM(const AP1roGGeminalCoefficients& 
     }
 
 
-    // Virtual part
-    for (size_t a = N_P; a < K; a++) {
+    // Virtual part.
+    for (const auto& a : orbital_space.virtualIndices()) {
         double sum {0.0};
 
-        for (size_t i = 0; i < N_P; i++) {
+        for (const auto& i : orbital_space.occupiedIndices()) {
             sum += multipliers(i, a) * G(i, a);
         }
 
@@ -78,12 +76,17 @@ OneRDM<double> QCModel::vAP1roG::calculate1RDM(const AP1roGGeminalCoefficients& 
  */
 BlockMatrix<double> QCModel::vAP1roG::calculateMultiplierResponseForce(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P) {
 
-    const auto K = sq_hamiltonian.dimension();  // number of spatial orbitals
+    // Prepare some variables.
     const auto& g = sq_hamiltonian.twoElectron().parameters();
 
+    // Create an occupied-virtual orbital space.
+    const auto K = sq_hamiltonian.dimension();  // number of spatial orbitals
+    const auto orbital_space = OrbitalSpace::OccupiedVirtual(N_P, K);
+
+
     BlockMatrix<double> F_lambda {0, N_P, N_P, K};
-    for (size_t i = 0; i < N_P; i++) {
-        for (size_t a = N_P; a < K; a++) {
+    for (const auto& i : orbital_space.occupiedIndices()) {
+        for (const auto& a : orbital_space.virtualIndices()) {
             F_lambda(i, a) = -g(i, a, i, a);
         }
     }
@@ -115,23 +118,23 @@ MatrixX<double> QCModel::vAP1roG::calculateMultiplierResponseForceConstant(const
  */
 SquareMatrix<double> QCModel::vAP1roG::calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers) {
 
-    size_t N_P = G.get_N_P();
-    size_t K = G.get_K();
+    const size_t K = G.get_K();
+    const auto orbital_space = G.orbitalSpace();
 
     SquareMatrix<double> Delta = SquareMatrix<double>::Zero(K, K);
 
 
     // KISS-implementation
-    for (size_t p = 0; p < K; p++) {
-        for (size_t q = 0; q < K; q++) {
+    for (const auto& p : orbital_space.allIndices()) {
+        for (const auto& q : orbital_space.allIndices()) {
 
-            if ((p < N_P) && (q < N_P)) {  // occupied-occupied block
-                size_t i = p;
-                size_t j = q;
+            if (orbital_space.isIndexOccupied(p) && orbital_space.isIndexOccupied(q)) {  // occupied-occupied block
+                const size_t i = p;
+                const size_t j = q;
 
                 double sum {0.0};
 
-                for (size_t a = N_P; a < K; a++) {
+                for (const auto& a : orbital_space.virtualIndices()) {
                     sum += multipliers(i, a) * G(i, a) + multipliers(j, a) * G(j, a);
 
                     if (i == j) {
@@ -143,14 +146,14 @@ SquareMatrix<double> QCModel::vAP1roG::calculateNumber2RDM(const AP1roGGeminalCo
             }  // occupied-occupied block
 
 
-            else if ((p >= N_P) && (q >= N_P)) {  // virtual-virtual block
-                size_t a = p;
-                size_t b = q;
+            else if (orbital_space.isIndexVirtual(p) && orbital_space.isIndexVirtual(q)) {  // virtual-virtual block
+                const size_t a = p;
+                const size_t b = q;
 
                 if (a == b) {
                     double sum {0.0};
 
-                    for (size_t i = 0; i < N_P; i++) {
+                    for (const auto& i : orbital_space.occupiedIndices()) {
                         sum += multipliers(i, a) * G(i, a);
                     }
 
@@ -162,11 +165,11 @@ SquareMatrix<double> QCModel::vAP1roG::calculateNumber2RDM(const AP1roGGeminalCo
             else {  // occupied-virtual and virtual-occupied block
 
                 if (p < q) {  // and afterwards set Delta(i,a) = Delta(a,i)
-                    size_t i = p;
-                    size_t a = q;
+                    const size_t i = p;
+                    const size_t a = q;
                     double sum {0.0};
 
-                    for (size_t j = 0; j < N_P; j++) {
+                    for (const auto& j : orbital_space.occupiedIndices()) {
                         if (j != i) {
                             sum += multipliers(j, a) * G(j, a);
                         }
@@ -191,22 +194,23 @@ SquareMatrix<double> QCModel::vAP1roG::calculateNumber2RDM(const AP1roGGeminalCo
  */
 SquareMatrix<double> QCModel::vAP1roG::calculatePair2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers) {
 
-    size_t N_P = G.get_N_P();
-    size_t K = G.get_K();
+    const size_t K = G.get_K();
+    const auto orbital_space = G.orbitalSpace();
+
 
     SquareMatrix<double> Pi = SquareMatrix<double>::Zero(K, K);
 
 
     // KISS-implementation
-    for (size_t p = 0; p < K; p++) {
-        for (size_t q = 0; q < K; q++) {
+    for (const auto& p : orbital_space.allIndices()) {
+        for (const auto& q : orbital_space.allIndices()) {
 
-            if ((p < N_P) && (q < N_P)) {  // occupied-occupied block
-                size_t i = p;
-                size_t j = q;
+            if (orbital_space.isIndexOccupied(p) && orbital_space.isIndexOccupied(q)) {  // occupied-occupied block
+                const size_t i = p;
+                const size_t j = q;
 
                 double sum {0.0};
-                for (size_t a = N_P; a < K; a++) {
+                for (const auto& a : orbital_space.virtualIndices()) {
                     sum += multipliers(j, a) * G(i, a);
                 }
 
@@ -220,21 +224,21 @@ SquareMatrix<double> QCModel::vAP1roG::calculatePair2RDM(const AP1roGGeminalCoef
             }  // occupied-occupied block
 
 
-            else if ((p < N_P) && (q >= N_P)) {  // occupied-virtual block
-                size_t i = p;
-                size_t a = q;
+            else if (orbital_space.isIndexOccupied(p) && orbital_space.isIndexVirtual(q)) {  // occupied-virtual block
+                const size_t i = p;
+                const size_t a = q;
 
                 double first_sum {0.0};
-                for (size_t j = 0; j < N_P; j++) {
-                    for (size_t b = N_P; b < K; b++) {
+                for (const auto& j : orbital_space.occupiedIndices()) {
+                    for (const auto& b : orbital_space.virtualIndices()) {
                         first_sum += multipliers(j, b) * G(j, b);
                     }
                 }
 
 
                 double second_sum {0.0};
-                for (size_t j = 0; j < N_P; j++) {
-                    for (size_t b = N_P; b < K; b++) {
+                for (const auto& j : orbital_space.occupiedIndices()) {
+                    for (const auto& b : orbital_space.virtualIndices()) {
                         if ((j != i) && (b != a)) {
                             second_sum += multipliers(j, b) * (G(i, a) * G(j, b) + G(j, a) * G(i, b));
                         }
@@ -245,20 +249,20 @@ SquareMatrix<double> QCModel::vAP1roG::calculatePair2RDM(const AP1roGGeminalCoef
             }  // occupied-virtual
 
 
-            else if ((p >= N_P) && (q < N_P)) {  // virtual-occupied block
-                size_t a = p;
-                size_t i = q;
+            else if (orbital_space.isIndexVirtual(p) && orbital_space.isIndexOccupied(q)) {  // virtual-occupied block
+                const size_t a = p;
+                const size_t i = q;
 
                 Pi(a, i) = multipliers(i, a);
             }
 
 
             else {  // virtual-virtual block
-                size_t a = p;
-                size_t b = q;
+                const size_t a = p;
+                const size_t b = q;
 
                 double sum {0.0};
-                for (size_t i = 0; i < N_P; i++) {
+                for (const auto& i : orbital_space.occupiedIndices()) {
                     sum += multipliers(i, a) * G(i, b);
                 }
 
@@ -279,7 +283,9 @@ SquareMatrix<double> QCModel::vAP1roG::calculatePair2RDM(const AP1roGGeminalCoef
  */
 TwoRDM<double> QCModel::vAP1roG::calculate2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers) {
 
-    size_t K = G.get_K();
+    const size_t K = G.get_K();
+    const auto orbital_space = G.orbitalSpace();
+
     TwoRDM<double> d {K};
     d.setZero();
 

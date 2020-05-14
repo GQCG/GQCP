@@ -94,15 +94,17 @@ double AP1roGGeminalCoefficients::operator()(const size_t i, const size_t a) con
  */
 AP1roGGeminalCoefficients AP1roGGeminalCoefficients::WeakInteractionLimit(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P) {
 
-    const auto K = sq_hamiltonian.dimension();
-    const auto number_of_geminal_coefficients = AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K);
+    // Prepare some variables.
     const auto& h = sq_hamiltonian.core().parameters();         // core Hamiltonian integrals
     const auto& g = sq_hamiltonian.twoElectron().parameters();  // two-electron integrals
 
+    const auto K = sq_hamiltonian.dimension();
+    const auto orbital_space = OrbitalSpace::OccupiedVirtual(N_P, K);  // N_P occupied spatial orbitals, K total spatial orbitals
+
     // Provide the weak interaction limit values for the geminal coefficients
     BlockMatrix<double> G {0, N_P, N_P, K};
-    for (size_t i = 0; i < N_P; i++) {
-        for (size_t a = N_P; a < K; a++) {
+    for (const auto& i : orbital_space.occupiedIndices()) {
+        for (const auto& a : orbital_space.virtualIndices()) {
             G(i, a) = -g(a, i, a, i) / (2 * (h(a, a) - h(i, i)));
         }
     }
@@ -240,6 +242,15 @@ double AP1roGGeminalCoefficients::overlap(const SpinUnresolvedONV& onv) const {
         APIGGeminalCoefficients APIG {this->asMatrix()};
         return APIG.overlap(onv);
     }
+}
+
+
+/**
+ *  @return the implicit occupied-virtual orbital space that is associated with these geminal coefficients
+ */
+OrbitalSpace AP1roGGeminalCoefficients::orbitalSpace() const {
+
+    return OrbitalSpace::OccupiedVirtual(this->numberOfElectronPairs(), this->numberOfSpatialOrbitals());
 }
 
 

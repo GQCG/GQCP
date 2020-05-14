@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/SpinorBasis/OrbitalSpace.hpp"
 #include "Mathematical/Representation/BlockMatrix.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCModel/CI/LinearExpansion.hpp"
@@ -158,6 +159,11 @@ public:
      *  @return the overlap of the AP1roG wave function with the given ONV, i.e. the projection of the APIG wave function onto that ONV
      */
     double overlap(const SpinUnresolvedONV& onv) const override;
+
+    /**
+     *  @return the implicit occupied-virtual orbital space that is associated with these geminal coefficients
+     */
+    OrbitalSpace orbitalSpace() const;
 };
 
 
