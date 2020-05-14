@@ -41,6 +41,11 @@ public:
     using Self = QCRankFourTensor<Scalar>;
 
 
+private:
+    bool is_antisymmetrized = false;                   // if the two-electron integrals are modified to obey antisymmetry w.r.t. creation and annihilation indices
+    bool is_expressed_using_chemists_notation = true;  // if the two-electron integrals are expressed as g_PQRS or (PQ|RS)
+
+
 public:
     /*
      *  CONSTRUCTORS
@@ -52,6 +57,47 @@ public:
     /*
      *  PUBLIC METHODS
      */
+
+    /**
+     *  @return an antisymmetrized version of these two-electron integrals
+     * 
+     *  @note If these integrals are expressed using
+     *      - chemist's notation g_{PQRS}, return g_{PQRS} - g_{PSRQ}
+     *      - physicist's notation <PQ|RS>, return <PQ||RS> = <PQ|RS> - <PQ|SR>
+     */
+    Self antisymmetrized() const {
+
+        // Attempt to modify a copy of these integrals if they haven't been antisymmetrized already.
+        auto copy = *this;
+        if (!(this->isAntisymmetrized())) {
+
+            if (this->isExpressedUsingChemistsNotation()) {
+                Eigen::array<int, 4> shuffle_indices {0, 3, 2, 1};
+                copy -= this->shuffle(shuffle_indices);
+            }
+
+            else {  // expressed using physicist's notation
+
+                Eigen::array<int, 4> shuffle_indices {0, 1, 3, 2};
+                copy -= this->shuffle(shuffle_indices);
+            }
+
+            copy.is_antisymmetrized = true;
+        }
+
+        return copy;
+    }
+
+
+    /**
+     *  In-place antisymmetrize these two-electron integrals.
+     * 
+     *  @note If these integrals are expressed using
+     *      - chemist's notation g_{PQRS}, they are modified to g_{PQRS} - g_{PSRQ}
+     *      - physicist's notation <PQ|RS>, they are modified to <PQ||RS> = <PQ|RS> - <PQ|SR>
+     */
+    void antisymmetrize() { *this = this->antisymmetrized(); }
+
 
     /**
      *  In-place rotate this quantum chemical rank-4 tensor using a unitary transformation matrix.
@@ -132,9 +178,74 @@ public:
 
 
     /**
+     *  @return the integrals changed to chemist's notation (from physicist's notation).
+     */
+    Self convertedToChemistsNotation() const {
+
+        // Attempt to modify a copy if these integrals are expressed in physicist's notation.
+        auto copy = *this;
+        if (this->isExpressedUsingPhysicistsNotation()) {
+
+            Eigen::array<int, 4> shuffle_indices {0, 2, 1, 3};
+            copy = QCRankFourTensor<double>(this->shuffle(shuffle_indices));
+
+            copy.is_expressed_using_chemists_notation = true;
+        }
+        return copy;
+    }
+
+
+    /**
+     *  @return the integrals changed to physicist's notation (from chemist's notation).
+     */
+    Self convertedToPhysicistsNotation() const {
+
+        // Attempt to modify a copy if these integrals are expressed in chemist's notation.
+        auto copy = *this;
+        if (this->isExpressedUsingChemistsNotation()) {
+
+            Eigen::array<int, 4> shuffle_indices {0, 2, 1, 3};
+            copy = QCRankFourTensor<double>(this->shuffle(shuffle_indices));
+
+            copy.is_expressed_using_chemists_notation = false;
+        }
+        return copy;
+    }
+
+
+    /**
+     *  In-place change the integrals to chemist's notation (from physicist's notation).
+     */
+    void convertToChemistsNotation() { *this = this->convertedToChemistsNotation(); }
+
+    /**
+     *  In-place change the integrals to physicist's notation (from chemist's notation).
+     */
+    void convertToPhysicistsNotation() { *this = this->convertedToPhysicistsNotation(); }
+
+    /**
      *  @return the dimension of this matrix representation of the parameters, i.e. the number of orbitals/sites
      */
     size_t dimension() const { return static_cast<size_t>(this->Base::dimension(0)); }
+
+    /**
+     *  @return if these two-electron integrals are considered to be antisymmetrized.
+     * 
+     *  @note If so, these integrals represent:
+     *      - if they are expressed using chemist's notation:       g_{PQRS} - g_{PSRQ}, i.e. they are antisymmetric upon interchanging the indices PR or QS
+     *      - if they are expressed using physicist's notation:     <PQ|RS> - <PQ|SR>, i.e. they are antisymmetric upon interchanging the indices PQ or RS
+     */
+    bool isAntisymmetrized() const { return this->is_antisymmetrized; }
+
+    /**
+     *  @return if these two-electron integrals are expressed using chemist's notation g_{PQRS}, i.e. (PQ|RS)
+     */
+    bool isExpressedUsingChemistsNotation() const { return this->is_expressed_using_chemists_notation; }
+
+    /**
+     *  @return if these two-electron integrals are expressed using physicist's notation <PQ|RS>
+     */
+    bool isExpressedUsingPhysicistsNotation() const { return !(this->isExpressedUsingChemistsNotation()); }
 };
 
 
