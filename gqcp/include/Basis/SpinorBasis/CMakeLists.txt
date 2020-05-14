@@ -3,6 +3,7 @@ target_sources(gqcp
         GSpinorBasis.hpp
         JacobiRotationParameters.hpp
         OrbitalRotationGenerators.hpp
+        OrbitalSpace.hpp
         RSpinorBasis.hpp
         SimpleSpinorBasis.hpp
         Spin.hpp
