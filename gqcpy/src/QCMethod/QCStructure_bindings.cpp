@@ -15,12 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "QCMethod/QCStructure.hpp"
-
 #include "ONVBasis/SeniorityZeroONVBasis.hpp"
 #include "ONVBasis/SpinResolvedFrozenONVBasis.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
+#include "QCMethod/QCStructure.hpp"
 #include "QCModel/CI/LinearExpansion.hpp"
 #include "QCModel/Geminals/AP1roG.hpp"
 #include "QCModel/Geminals/vAP1roG.hpp"
