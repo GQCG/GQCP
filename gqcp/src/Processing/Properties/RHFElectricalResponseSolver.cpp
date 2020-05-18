@@ -18,7 +18,7 @@
 #include "Processing/Properties/RHFElectricalResponseSolver.hpp"
 
 #include "Basis/SpinorBasis/OrbitalSpace.hpp"
-#include "Mathematical/Representation/BlockMatrix.hpp"
+#include "Mathematical/Representation/ImplicitMatrixSlice.hpp"
 #include "QCMethod/HF/RHF/RHF.hpp"
 #include "QCModel/HF/RHF.hpp"
 
@@ -73,7 +73,7 @@ Matrix<double, Dynamic, 3> RHFElectricalResponseSolver::calculateParameterRespon
 
     // Loop over the components of the electrical dipole to calculate the response force for every component
     for (size_t m = 0; m < 3; m++) {
-        BlockMatrix<double> F_p_m {N_P, K, 0, N_P};  // zero-initialize an object suitable for the representation of virtual-occupied (a,i) quantities
+        ImplicitMatrixSlice<double> F_p_m {N_P, K, 0, N_P};  // zero-initialize an object suitable for the representation of virtual-occupied (a,i) quantities
 
         for (const auto& i : orbital_space.occupiedIndices()) {
             for (const auto& a : orbital_space.virtualIndices()) {

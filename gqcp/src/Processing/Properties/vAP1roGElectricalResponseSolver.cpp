@@ -75,7 +75,7 @@ Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateParameterRe
         const auto mu_m = dipole_op[m].parameters();
 
         // Calculate the m-th component of the parameter response force F_p.
-        BlockMatrix<double> F_p_m {0, N_P, N_P, K};
+        ImplicitMatrixSlice<double> F_p_m {0, N_P, N_P, K};
         for (const auto& i : orbital_space.occupiedIndices()) {
             for (const auto& a : orbital_space.virtualIndices()) {
                 F_p_m(i, a) = 2 * (mu_m(i, i) - mu_m(a, a)) * G(i, a);
@@ -132,7 +132,7 @@ Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateExplicitMul
         const auto mu_m = dipole_op[m].parameters();
 
         // Calculate the m-th component.
-        BlockMatrix<double> A_lambda_m(0, N_P, N_P, K);
+        ImplicitMatrixSlice<double> A_lambda_m(0, N_P, N_P, K);
         for (const auto& i : orbital_space.occupiedIndices()) {
             for (const auto& a : orbital_space.virtualIndices()) {
                 A_lambda_m(i, a) = 2 * lambda(i, a) * (mu_m(i, i) - mu_m(a, a));
@@ -153,7 +153,7 @@ Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateExplicitMul
  *
  *  @return the multiplier force constant of the implicit part (i.e. the second part of the) Lagrangian multiplier response, B_lambda
  */
-BlockRankFourTensor<double> vAP1roGElectricalResponseSolver::calculateImplicitMultiplierResponseForceConstant(const SQHamiltonian<double>& sq_hamiltonian) const {
+ImplicitRankFourTensorSlice<double> vAP1roGElectricalResponseSolver::calculateImplicitMultiplierResponseForceConstant(const SQHamiltonian<double>& sq_hamiltonian) const {
 
     // Prepare some variables.
     const auto& G = this->vap1rog.geminalCoefficients();
@@ -168,8 +168,8 @@ BlockRankFourTensor<double> vAP1roGElectricalResponseSolver::calculateImplicitMu
 
     const auto& g = sq_hamiltonian.twoElectron().parameters();
 
-    BlockRankFourTensor<double> B_lambda {0, N_P, N_P, K,
-                                          0, N_P, N_P, K};
+    ImplicitRankFourTensorSlice<double> B_lambda {0, N_P, N_P, K,
+                                                  0, N_P, N_P, K};
 
     for (const auto& i : orbital_space.occupiedIndices()) {
         for (const auto& a : orbital_space.virtualIndices()) {

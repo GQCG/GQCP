@@ -33,7 +33,7 @@ namespace GQCP {
 /**
  *  @param G            the AP1roG geminal coefficients (not including the identity matrix on the left), as a block matrix
  */
-AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(const BlockMatrix<double>& G, const size_t N_P, const size_t K) :
+AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(const ImplicitMatrixSlice<double>& G, const size_t N_P, const size_t K) :
     N_P {N_P},
     K {K},
     G {G} {}
@@ -46,7 +46,7 @@ AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(const MatrixX<double>& G) :
     // Don't use a delegated constructor for code readability
     N_P {static_cast<size_t>(G.rows())},
     K {static_cast<size_t>(G.rows() + G.cols())},
-    G {BlockMatrix<double>(0, this->N_P, this->N_P, this->K, G)} {}
+    G {ImplicitMatrixSlice<double>(0, this->N_P, this->N_P, this->K, G)} {}
 
 
 /**
@@ -78,7 +78,7 @@ AP1roGGeminalCoefficients::~AP1roGGeminalCoefficients() {}
  */
 double AP1roGGeminalCoefficients::operator()(const size_t i, const size_t a) const {
 
-    return this->G(i, a);  // BlockMatrix implements operator() as we would expect
+    return this->G(i, a);  // ImplicitMatrixSlice implements operator() as we would expect
 }
 
 
@@ -102,7 +102,7 @@ AP1roGGeminalCoefficients AP1roGGeminalCoefficients::WeakInteractionLimit(const 
     const auto orbital_space = OrbitalSpace::OccupiedVirtual(N_P, K);  // N_P occupied spatial orbitals, K total spatial orbitals
 
     // Provide the weak interaction limit values for the geminal coefficients
-    BlockMatrix<double> G {0, N_P, N_P, K};
+    ImplicitMatrixSlice<double> G {0, N_P, N_P, K};
     for (const auto& i : orbital_space.occupiedIndices()) {
         for (const auto& a : orbital_space.virtualIndices()) {
             G(i, a) = -g(a, i, a, i) / (2 * (h(a, a) - h(i, i)));
@@ -126,7 +126,7 @@ AP1roGGeminalCoefficients AP1roGGeminalCoefficients::FromColumnMajor(const Vecto
 
     const MatrixX<double> M = MatrixX<double>::FromColumnMajorVector(g, rows, cols);  // the block of the actual entries of the geminal coefficient matrix
 
-    return AP1roGGeminalCoefficients(BlockMatrix<double>(0, N_P, N_P, K, M),
+    return AP1roGGeminalCoefficients(ImplicitMatrixSlice<double>(0, N_P, N_P, K, M),
                                      N_P, K);  // an encapsulating object that implements operator() in an intuitive way
 }
 
@@ -144,7 +144,7 @@ AP1roGGeminalCoefficients AP1roGGeminalCoefficients::FromRowMajor(const VectorX<
 
     const MatrixX<double> M = MatrixX<double>::FromRowMajorVector(g, rows, cols);  // the block of the actual entries of the geminal coefficient matrix
 
-    return AP1roGGeminalCoefficients(BlockMatrix<double>(0, N_P, N_P, K, M), N_P, K);  // an encapsulating object that implements operator() in an intuitive way
+    return AP1roGGeminalCoefficients(ImplicitMatrixSlice<double>(0, N_P, N_P, K, M), N_P, K);  // an encapsulating object that implements operator() in an intuitive way
 }
 
 

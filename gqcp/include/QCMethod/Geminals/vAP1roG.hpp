@@ -93,7 +93,7 @@ public:
         const size_t cols = this->K - this->N_P;  // the number of columns in the multiplier matrix
 
         const MatrixX<double> lambda_optimal_matrix = MatrixX<double>::FromColumnMajorVector(lambda_optimal_vector, rows, cols);  // the actual Lagrange multipliers, reshaped into a matrix
-        const BlockMatrix<double> lambda_optimal {0, this->N_P, this->N_P, this->K, lambda_optimal_matrix};
+        const ImplicitMatrixSlice<double> lambda_optimal {0, this->N_P, this->N_P, this->K, lambda_optimal_matrix};
 
 
         // To make a QCStructure, we need the electronic energy, geminal coefficients and Lagrange multipliers.

@@ -21,7 +21,7 @@
 #include "Basis/SpinorBasis/OrbitalSpace.hpp"
 #include "Basis/SpinorBasis/Spin.hpp"
 #include "Basis/TransformationMatrix.hpp"
-#include "Mathematical/Representation/BlockRankFourTensor.hpp"
+#include "Mathematical/Representation/ImplicitRankFourTensorSlice.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
@@ -213,16 +213,16 @@ public:
      *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
      *  @param N_P                  the number of electron pairs
      * 
-     *  @return the RHF orbital Hessian as a BlockRankFourTensor, i.e. an object with a suitable operator() implemented
+     *  @return the RHF orbital Hessian as a ImplicitRankFourTensorSlice, i.e. an object with a suitable operator() implemented
      */
-    static BlockRankFourTensor<Scalar> calculateOrbitalHessianTensor(const SQHamiltonian<Scalar>& sq_hamiltonian, const size_t N_P) {
+    static ImplicitRankFourTensorSlice<Scalar> calculateOrbitalHessianTensor(const SQHamiltonian<Scalar>& sq_hamiltonian, const size_t N_P) {
 
         // Create an occupied-virtual orbital space.
         const auto K = sq_hamiltonian.dimension();
         const auto orbital_space = OrbitalSpace::OccupiedVirtual(N_P, K);  // N_P occupied spatial orbitals, K total spatial orbitals
 
-        BlockRankFourTensor<Scalar> hessian {N_P, K, 0, N_P,
-                                             N_P, K, 0, N_P};  // zero-initialize an object suitable for the representation of a virtual-occupied,virtual-occupied object (ai,bj)
+        ImplicitRankFourTensorSlice<Scalar> hessian {N_P, K, 0, N_P,
+                                                     N_P, K, 0, N_P};  // zero-initialize an object suitable for the representation of a virtual-occupied,virtual-occupied object (ai,bj)
 
         // Loop over all indices (ai,bj) to construct the orbital hessian
         for (const auto& a : orbital_space.virtualIndices()) {

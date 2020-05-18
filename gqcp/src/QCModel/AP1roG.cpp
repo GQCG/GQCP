@@ -124,7 +124,7 @@ double QCModel::AP1roG::calculatePSECoordinateFunction(const SQHamiltonian<doubl
  *
  *  @return the PSEs, evaluated at the given geminal coefficients
  */
-BlockMatrix<double> QCModel::AP1roG::calculatePSECoordinateFunctions(const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G) {
+ImplicitMatrixSlice<double> QCModel::AP1roG::calculatePSECoordinateFunctions(const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G) {
 
     // Prepare some variables.
     const auto N_P = G.numberOfElectronPairs();
@@ -133,7 +133,7 @@ BlockMatrix<double> QCModel::AP1roG::calculatePSECoordinateFunctions(const SQHam
     const auto orbital_space = G.orbitalSpace();
 
 
-    BlockMatrix<double> F {0, N_P, N_P, K};  // an occupied-virtual matrix
+    ImplicitMatrixSlice<double> F {0, N_P, N_P, K};  // an occupied-virtual matrix
 
 
     // Loop over all the elements of F to construct it.
@@ -235,7 +235,7 @@ double QCModel::AP1roG::calculatePSEJacobianElement(const SQHamiltonian<double>&
  *
  *  @return the Jacobian J_{ia,jb} of the PSEs, i.e. df_i^a/dG_j^b, evaluated at the given geminal coefficients
  */
-BlockRankFourTensor<double> QCModel::AP1roG::calculatePSEJacobian(const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G) {
+ImplicitRankFourTensorSlice<double> QCModel::AP1roG::calculatePSEJacobian(const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G) {
 
     // Prepare some variables.
     const auto N_P = G.numberOfElectronPairs();
@@ -244,8 +244,8 @@ BlockRankFourTensor<double> QCModel::AP1roG::calculatePSEJacobian(const SQHamilt
     const auto orbital_space = G.orbitalSpace();
 
 
-    BlockRankFourTensor<double> J {0, N_P, N_P, K,
-                                   0, N_P, N_P, K};  // an occupied-virtual, occupied-virtual tensor
+    ImplicitRankFourTensorSlice<double> J {0, N_P, N_P, K,
+                                           0, N_P, N_P, K};  // an occupied-virtual, occupied-virtual tensor
 
 
     // Loop over all elements of J to construct it.

@@ -19,7 +19,7 @@
 
 
 #include "Basis/SpinorBasis/OrbitalSpace.hpp"
-#include "Mathematical/Representation/BlockMatrix.hpp"
+#include "Mathematical/Representation/ImplicitMatrixSlice.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCModel/CI/LinearExpansion.hpp"
 #include "QCModel/Geminals/GeminalCoefficientsInterface.hpp"
@@ -33,9 +33,9 @@ namespace GQCP {
  */
 class AP1roGGeminalCoefficients: public GeminalCoefficientsInterface {
 private:
-    size_t K;               // the number of spatial orbitals corresponding to these geminal coefficients
-    size_t N_P;             // the number of electron pairs (i.e. the number of geminals) corresponding to these geminal coefficients
-    BlockMatrix<double> G;  // the AP1roG geminal coefficients (not including the identity matrix on the left), as a block matrix, so it implements easy operator(i,a) calls
+    size_t K;                       // the number of spatial orbitals corresponding to these geminal coefficients
+    size_t N_P;                     // the number of electron pairs (i.e. the number of geminals) corresponding to these geminal coefficients
+    ImplicitMatrixSlice<double> G;  // the AP1roG geminal coefficients (not including the identity matrix on the left), as a block matrix, so it implements easy operator(i,a) calls
 
 
 public:
@@ -44,7 +44,7 @@ public:
     /**
      *  @param G            the AP1roG geminal coefficients (not including the identity matrix on the left), as a block matrix
      */
-    AP1roGGeminalCoefficients(const BlockMatrix<double>& G, const size_t N_P, const size_t K);
+    AP1roGGeminalCoefficients(const ImplicitMatrixSlice<double>& G, const size_t N_P, const size_t K);
 
     /**
      *  @param G            the AP1roG geminal coefficients (not including the identity matrix on the left)
