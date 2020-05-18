@@ -19,6 +19,7 @@
 
 
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
+#include "Basis/SpinorBasis/GSpinorBasis.hpp"
 #include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
 #include "Basis/SpinorBasis/OrbitalSpace.hpp"
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
@@ -133,10 +134,10 @@ public:
 
 
     /**
-     *  Construct the molecular Hamiltonian in a given spinor basis.
+     *  Construct the molecular Hamiltonian in a given restricted spin-orbital basis.
      *
-     *  @param spinor_basis     the spinor basis in which the Hamiltonian should be expressed
-     *  @param molecule         the molecule on which the single particle is based
+     *  @param r_spinor_basis       the spinor basis in which the Hamiltonian should be expressed
+     *  @param molecule             the molecule on which the single particle is based
      *
      *  @return a second-quantized molecular Hamiltonian. The molecular Hamiltonian has
      *      - one-electron contributions:
@@ -145,17 +146,46 @@ public:
      *      - two-electron contributions:
      *          - Coulomb repulsion
      *
-     *  Note that this named constructor is only available for real matrix representations
+     *  @note This named constructor is only available for real matrix representations.
      */
     template <typename Z = Scalar>
-    static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> Molecular(const RSpinorBasis<Z, GTOShell>& spinor_basis, const Molecule& molecule) {
+    static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> Molecular(const RSpinorBasis<Z, GTOShell>& r_spinor_basis, const Molecule& molecule) {
 
         // Calculate the integrals for the molecular Hamiltonian
-        const auto T = spinor_basis.quantize(Operator::Kinetic());
-        const auto V = spinor_basis.quantize(Operator::NuclearAttraction(molecule));
+        const auto T = r_spinor_basis.quantize(Operator::Kinetic());
+        const auto V = r_spinor_basis.quantize(Operator::NuclearAttraction(molecule));
         ScalarSQOneElectronOperator<double> H = T + V;
 
-        const auto g = spinor_basis.quantize(Operator::Coulomb());
+        const auto g = r_spinor_basis.quantize(Operator::Coulomb());
+
+        return SQHamiltonian(H, g);
+    }
+
+
+    /**
+     *  Construct the molecular Hamiltonian in a given (general) spinor basis.
+     *
+     *  @param g_spinor_basis           the (general) spinor basis in which the Hamiltonian should be expressed
+     *  @param molecule                 the molecule on which the single particle is based
+     *
+     *  @return a second-quantized molecular Hamiltonian. The molecular Hamiltonian has
+     *      - one-electron contributions:
+     *          - kinetic
+     *          - nuclear attraction
+     *      - two-electron contributions:
+     *          - Coulomb repulsion
+     *
+     *  @note This named constructor is only available for real matrix representations.
+     */
+    template <typename Z = Scalar>
+    static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> Molecular(const GSpinorBasis<Z, GTOShell>& g_spinor_basis, const Molecule& molecule) {
+
+        // Calculate the integrals for the molecular Hamiltonian
+        const auto T = g_spinor_basis.quantize(Operator::Kinetic());
+        const auto V = g_spinor_basis.quantize(Operator::NuclearAttraction(molecule));
+        ScalarSQOneElectronOperator<double> H = T + V;
+
+        const auto g = g_spinor_basis.quantize(Operator::Coulomb());
 
         return SQHamiltonian(H, g);
     }

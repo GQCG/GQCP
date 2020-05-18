@@ -15,11 +15,10 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Operator/SecondQuantized/SQHamiltonian.hpp"
-
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Molecule/Molecule.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
@@ -34,26 +33,43 @@ namespace gqcpy {
 void bindSQHamiltonian(py::module& module) {
     py::class_<GQCP::SQHamiltonian<double>>(module, "SQHamiltonian", "A class that represents a real, second-quantized Hamiltonian.")
 
+        // CONSTRUCTORS
         .def_static(
             "Molecular",
-            [](const GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Molecule& molecule) {
-                return GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);
+            [](const GQCP::RSpinorBasis<double, GQCP::GTOShell>& r_spinor_basis, const GQCP::Molecule& molecule) {
+                return GQCP::SQHamiltonian<double>::Molecular(r_spinor_basis, molecule);
             },
-            "Construct the molecular Hamiltonian in a given spinor basis.")
+            py::arg("r_spinor_basis"),
+            py::arg("molecule"),
+            "Construct the molecular Hamiltonian in a given restricted spin-orbital basis.")
 
-        .def("__add__",
-             [](const GQCP::SQHamiltonian<double>& sq_hamiltonian, const GQCP::SQOneElectronOperator<double, 1>& sq_op) {
-                 return sq_hamiltonian + sq_op;
-             })
+        .def_static(
+            "Molecular",
+            [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& g_spinor_basis, const GQCP::Molecule& molecule) {
+                return GQCP::SQHamiltonian<double>::Molecular(g_spinor_basis, molecule);
+            },
+            py::arg("g_spinor_basis"),
+            py::arg("molecule"),
+            "Construct the molecular Hamiltonian in a given (general) spinor basis.")
 
-        .def("__sub__",
-             [](const GQCP::SQHamiltonian<double>& sq_hamiltonian, const GQCP::SQOneElectronOperator<double, 1>& sq_op) {
-                 return sq_hamiltonian - sq_op;
-             })
 
-        .def("core",
-             &GQCP::SQHamiltonian<double>::core,
-             "Return the 'core' Hamiltonian, i.e. the total of the one-electron contributions to the Hamiltonian.")
+        // PUBLIC METHODS
+        .def(
+            "__add__",
+            [](const GQCP::SQHamiltonian<double>& sq_hamiltonian, const GQCP::SQOneElectronOperator<double, 1>& sq_op) {
+                return sq_hamiltonian + sq_op;
+            })
+
+        .def(
+            "__sub__",
+            [](const GQCP::SQHamiltonian<double>& sq_hamiltonian, const GQCP::SQOneElectronOperator<double, 1>& sq_op) {
+                return sq_hamiltonian - sq_op;
+            })
+
+        .def(
+            "core",
+            &GQCP::SQHamiltonian<double>::core,
+            "Return the 'core' Hamiltonian, i.e. the total of the one-electron contributions to the Hamiltonian.")
 
         .def(
             "rotate",
