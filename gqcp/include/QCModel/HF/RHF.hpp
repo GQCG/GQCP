@@ -219,17 +219,17 @@ public:
 
         // Create an occupied-virtual orbital space.
         const auto K = sq_hamiltonian.dimension();
-        const auto orbital_space = OrbitalSpace::OccupiedVirtual(N_P, K);  // N_P occupied spatial orbitals, K total spatial orbitals
+        const auto orbital_space = OrbitalSpace::Implicit({{OccupationType::k_occupied, N_P}, {OccupationType::k_virtual, K - N_P}});  // N_P occupied spatial orbitals, K-N_P virtual spatial orbitals
 
         ImplicitRankFourTensorSlice<Scalar> hessian {N_P, K, 0, N_P,
                                                      N_P, K, 0, N_P};  // zero-initialize an object suitable for the representation of a virtual-occupied,virtual-occupied object (ai,bj)
 
         // Loop over all indices (ai,bj) to construct the orbital hessian
-        for (const auto& a : orbital_space.virtualIndices()) {
-            for (const auto& i : orbital_space.occupiedIndices()) {
+        for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
+            for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
 
-                for (const auto& b : orbital_space.virtualIndices()) {
-                    for (const auto& j : orbital_space.occupiedIndices()) {
+                for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
+                    for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
                         hessian(a, i, b, j) = RHF<Scalar>::calculateOrbitalHessianElement(sq_hamiltonian, N_P, a, i, b, j);
                     }
                 }
@@ -300,9 +300,12 @@ public:
      *  @param K            the number of spatial orbitals
      *  @param N_P          the number of electrons
      * 
-     *  @return an occupied-virtual orbital space
+     *  @return the implicit occupied-virtual orbital space that corresponds to these RHF model parameters
      */
-    static OrbitalSpace orbitalSpace(const size_t K, const size_t N_P) { return OrbitalSpace::OccupiedVirtual(N_P, K); }
+    static OrbitalSpace orbitalSpace(const size_t K, const size_t N_P) {
+
+        return OrbitalSpace::Implicit({{OccupationType::k_occupied, N_P}, {OccupationType::k_virtual, K - N_P}});
+    }
 
 
     /*

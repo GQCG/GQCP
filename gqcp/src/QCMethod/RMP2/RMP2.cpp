@@ -35,16 +35,16 @@ double calculateRMP2EnergyCorrection(const SQHamiltonian<double>& sq_hamiltonian
 
 
     double E = 0.0;
-    for (const auto& i : orbital_space.occupiedIndices()) {
+    for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
         double epsilon_i = rhf_parameters.orbitalEnergy(i);
 
-        for (const auto& j : orbital_space.occupiedIndices()) {
+        for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
             double epsilon_j = rhf_parameters.orbitalEnergy(j);
 
-            for (const auto& a : orbital_space.virtualIndices()) {
+            for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 double epsilon_a = rhf_parameters.orbitalEnergy(a);
 
-                for (const auto& b : orbital_space.virtualIndices()) {
+                for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
                     double epsilon_b = rhf_parameters.orbitalEnergy(b);
 
 

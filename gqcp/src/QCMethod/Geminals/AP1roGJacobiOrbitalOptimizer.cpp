@@ -98,20 +98,20 @@ void AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(const SQHamiltoni
 
     // Create an occupied-virtual orbital space.
     const size_t K = this->dim;
-    const auto orbital_space = OrbitalSpace::OccupiedVirtual(this->N_P, K);  // N_P occupied (spatial) orbitals, K total (spatial) orbitals
+    const auto orbital_space = OrbitalSpace::Implicit({{OccupationType::k_occupied, N_P}, {OccupationType::k_virtual, K - N_P}});  // N_P occupied (spatial) orbitals, K-N_P virtual (spatial) orbitals
 
 
     // Implementation of the Jacobi rotation coefficients with disjoint cases for p and q
 
     // Occupied-occupied rotations.
-    if (orbital_space.isIndexOccupied(p) && orbital_space.isIndexOccupied(q)) {
+    if (orbital_space.isIndex(OccupationType::k_occupied, p) && orbital_space.isIndex(OccupationType::k_occupied, q)) {
 
         this->A1 = 0.0;
         this->B1 = 0.0;
         this->C1 = 0.0;
 
 
-        for (const auto& b : orbital_space.virtualIndices()) {
+        for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
             this->A1 -= 0.5 * (g(b, p, b, p) - g(b, q, b, q)) * (G(p, b) - G(q, b));
             this->B1 += 0.5 * (g(b, p, b, p) - g(b, q, b, q)) * (G(p, b) - G(q, b));
             this->C1 += g(b, p, b, q) * (G(q, b) - G(p, b));
@@ -120,7 +120,7 @@ void AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(const SQHamiltoni
 
 
     // Occupied-virtual rotations.
-    else if (orbital_space.isIndexVirtual(p) && orbital_space.isIndexOccupied(q)) {
+    else if (orbital_space.isIndex(OccupationType::k_virtual, p) && orbital_space.isIndex(OccupationType::k_occupied, q)) {
 
         this->A2 = 0.0;
         this->B2 = 0.0;
@@ -135,13 +135,13 @@ void AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(const SQHamiltoni
         this->D2 += 0.125 * (g(p, p, p, p) + g(q, q, q, q) - 2 * (g(p, p, q, q) + 2 * g(p, q, p, q))) * (1 - G(q, p));
         this->E2 += 0.5 * (g(p, p, p, q) - g(p, q, q, q)) * (G(q, p) - 1);
 
-        for (const auto& j : orbital_space.occupiedIndices()) {
+        for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
             this->A2 += 2 * (g(j, j, p, p) - g(j, j, q, q)) - 0.5 * (g(j, p, j, p) - g(j, q, j, q)) * (2 + G(j, p));
             this->B2 += 2 * (g(j, j, q, q) - g(j, j, p, p)) + 0.5 * (g(j, p, j, p) - g(j, q, j, q)) * (2 + G(j, p));
             this->C2 += 4 * g(j, j, p, q) - g(j, p, j, q) * (2 + G(j, p));
         }
 
-        for (const auto& b : orbital_space.virtualIndices()) {
+        for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
             this->A2 += 0.5 * (g(b, p, b, p) - g(b, q, b, q)) * G(q, b);
             this->B2 += 0.5 * (g(b, q, b, q) - g(b, p, b, p)) * G(q, b);
             this->C2 += g(b, p, b, q) * G(q, b);
@@ -150,14 +150,14 @@ void AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(const SQHamiltoni
 
 
     // Virtual-virtual rotations.
-    else if (orbital_space.isIndexVirtual(p) && orbital_space.isIndexVirtual(q)) {
+    else if (orbital_space.isIndex(OccupationType::k_virtual, p) && orbital_space.isIndex(OccupationType::k_virtual, q)) {
 
         this->A3 = 0.0;
         this->B3 = 0.0;
         this->C3 = 0.0;
 
 
-        for (const auto& j : orbital_space.occupiedIndices()) {
+        for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
             this->A3 -= 0.5 * (g(j, p, j, p) - g(j, q, j, q)) * (G(j, p) - G(j, q));
             this->B3 += 0.5 * (g(j, p, j, p) - g(j, q, j, q)) * (G(j, p) - G(j, q));
             this->C3 += g(j, p, j, q) * (G(j, q) - G(j, p));

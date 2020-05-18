@@ -75,8 +75,8 @@ Matrix<double, Dynamic, 3> RHFElectricalResponseSolver::calculateParameterRespon
     for (size_t m = 0; m < 3; m++) {
         ImplicitMatrixSlice<double> F_p_m {N_P, K, 0, N_P};  // zero-initialize an object suitable for the representation of virtual-occupied (a,i) quantities
 
-        for (const auto& i : orbital_space.occupiedIndices()) {
-            for (const auto& a : orbital_space.virtualIndices()) {
+        for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 F_p_m(a, i) = 4 * dipole_op.parameters(m)(a, i);  // RHF formula for the parameter (i.e. orbital) response force
             }
         }

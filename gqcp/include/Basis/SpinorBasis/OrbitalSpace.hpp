@@ -18,7 +18,12 @@
 #pragma once
 
 
+#include "Basis/SpinorBasis/OccupationType.hpp"
+#include "Mathematical/Representation/ImplicitMatrixSlice.hpp"
+#include "Mathematical/Representation/ImplicitRankFourTensorSlice.hpp"
+
 #include <cstdlib>
+#include <map>
 #include <string>
 #include <vector>
 
@@ -67,36 +72,16 @@ public:
     // NAMED CONSTRUCTORS
 
     /**
-     *  Create an orbital space with only occupied indices [0, N[.
+     *  Create an implicit orbital space with the given dimensions.
      * 
-     *  @param N                the number of occupied indices
+     *  @param counts               a map that links an occupation type (k_occupied, k_active, k_virtual) with the number of orbitals that are to be found in that orbital space
      * 
-     *  @return an orbital space with only occupied indices [0, N[.
+     *  @note An 'implicit' orbital space is one where all indices are sorted by increasing value, and the occupied indices are lower than the active indices, which are in turn lower than the virtual indices.
      */
-    static OrbitalSpace Occupied(const size_t N);
-
-    /**
-     *  Create an orbital space that is separated between occupied and virtual orbitals.
-     * 
-     *  @param N                the number of occupied orbitals
-     *  @param M                the total number of orbitals
-     * 
-     *  @return an orbital space that is separated between occupied and virtual orbitals.
-     */
-    static OrbitalSpace OccupiedVirtual(const size_t N, const size_t M);
+    static OrbitalSpace Implicit(const std::map<OccupationType, size_t>& counts);
 
 
     // PUBLIC METHODS
-
-    /**
-     *  @return all the indices of the spinors
-     */
-    const std::vector<size_t>& allIndices() const { return this->all_indices; }
-
-    /**
-     *  @return the active orbital space, i.e. those spinor indices that are occupied in some set of configurations but not in others
-     */
-    const std::vector<size_t>& activeIndices() const { return this->active_indices; }
 
     /**
      *  @return a textual description of this orbital space
@@ -104,55 +89,82 @@ public:
     std::string description() const;
 
     /**
-     *  @param p            an orbital index
-     * 
-     *  @return if the orbital at the given index is in the active orbital space
+     *  @return all the indices of the spinors
      */
-    bool isIndexActive(const size_t p) const;
+    const std::vector<size_t>& indices() const { return this->all_indices; }
 
     /**
-     *  @param p            an orbital index
+     *  @param type             the occupation type that the indices should belong to
      * 
-     *  @return if the orbital at the given index is in the occupied orbital space
+     *  @return the indices that belong to the given occupation type
      */
-    bool isIndexOccupied(const size_t p) const;
+    const std::vector<size_t>& indices(const OccupationType type) const;
 
     /**
-     *  @param p            an orbital index
+     *  @param type             an occupation type (k_occupied, k_active, k_virtual)
+     *  @param p                an orbital index
      * 
-     *  @return if the orbital at the given index is in the virtual orbital space
+     *  @return if the orbital at the given index is in the given orbital space
      */
-    bool isIndexVirtual(const size_t p) const;
+    bool isIndex(const OccupationType type, const size_t p) const;
 
     /**
      *  @return the total number of orbitals (i.e. spatial orbitals or spinors, depending on the context) in this orbital space
      */
-    size_t numberOfOrbitals() const { return this->allIndices().size(); }
+    size_t numberOfOrbitals() const { return this->indices().size(); }
 
     /**
-     *  @return the number of active orbitals (i.e. spatial orbitals or spinors, depending on the context) in this orbital space
+     *  @param type             an occupation type (k_occupied, k_active, k_virtual)
+     * 
+     *  @return the number of orbitals (i.e. spatial orbitals or spinors, depending on the context) that belong to the given occupation type
      */
-    size_t numberOfActiveOrbitals() const { return this->activeIndices().size(); }
+    size_t numberOfOrbitals(const OccupationType type) const { return this->indices(type).size(); }
 
     /**
-     *  @return the number of occupied orbitals (i.e. spatial orbitals or spinors, depending on the context) in this orbital space
+     *  Create a zero-initialized mathematical object that can serve as the representation of a object with the given occupation types.
+     * 
+     *  @tparam Scalar                      the scalar type of the elements of the implicit matrix
+     * 
+     *  @param row_type                     the spinor occupation type for the rows
+     *  @param column_type                  the spinor occupation type for the columns
+     * 
+     *  @return an implicit matrix slice, according to the given occupation types
+     * 
+     *  @note For the representation of an occupied-virtual object (for example the T1-coupled-cluster amplitudes t_i^a), the following method can be called
+     *      orbital_space.representableObject(OccupationType::occupied, OccupationType::virtual)
      */
-    size_t numberOfOccupiedOrbitals() const { return this->occupiedIndices().size(); }
+    template <typename Scalar>
+    ImplicitMatrixSlice<Scalar> representableObject(const OccupationType row_type, const OccupationType column_type) const {
+
+        // Prepare the necessary members for ImplicitMatrixSlice.
+        const auto row_indices = this->indices(row_type);
+        const auto column_indices = this->indices(column_type);
+
+        const auto rows = row_indices.size();
+        const auto columns = column_indices.size();
+        const MatrixX<Scalar> M = MatrixX<Scalar>::Zero(rows, columns);
+
+        return ImplicitMatrixSlice<Scalar>(rows, columns, M);
+    }
+
 
     /**
-     *  @return the number of virtual orbitals (i.e. spatial orbitals or spinors, depending on the context) in this orbital space
+     *  Create a zero-initializedmathematical object that can serve as the representation of a object with the given occupation types.
+     * 
+     *  @tparam Scalar                      the scalar type of the elements of the implicit matrix
+     * 
+     *  @param axis1_type                  the spinor occupation type for the first tensor axis
+     *  @param axis2_type                  the spinor occupation type for the second tensor axis
+     *  @param axis3_type                  the spinor occupation type for the third tensor axis
+     *  @param axis4_type                  the spinor occupation type for the fourth tensor axis
+     * 
+     *  @return an implicit rank-four tensor slice, according to the given occupation types
+     * 
+     *  @note For the representation of an occupied-virtual-occupied-virtual object (for example the T2-coupled-cluster amplitudes t_{ij}^{ab}), the following method can be called
+     *      orbital_space.representableObject(OccupationType::occupied, OccupationType::virtual, OccupationType::occupied, OccupationType::virtual)
      */
-    size_t numberOfVirtualOrbitals() const { return this->virtualIndices().size(); }
-
-    /**
-     *  @return the occupied orbital space, i.e. the indices of the orbitals that are considered occupied by the electrons
-     */
-    const std::vector<size_t>& occupiedIndices() const { return this->occupied_indices; }
-
-    /**
-     *  @return the virtual orbital space, i.e. the indices of the orbitals that are considered virtual by the electrons
-     */
-    const std::vector<size_t>& virtualIndices() const { return this->virtual_indices; }
+    template <typename Scalar>
+    ImplicitRankFourTensorSlice<Scalar> representableObject(const OccupationType axis1_type, const OccupationType axis2_type, const OccupationType axis3_type, const OccupationType axis4_type) const;
 };
 
 

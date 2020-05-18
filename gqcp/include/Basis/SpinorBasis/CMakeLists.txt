@@ -2,6 +2,7 @@ target_sources(gqcp
     PRIVATE
         GSpinorBasis.hpp
         JacobiRotationParameters.hpp
+        OccupationType.hpp
         OrbitalRotationGenerators.hpp
         OrbitalSpace.hpp
         RSpinorBasis.hpp

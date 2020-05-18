@@ -47,12 +47,12 @@ ERNewtonLocalizer::ERNewtonLocalizer(const OrbitalSpace orbital_space, std::shar
  */
 SquareMatrix<double> ERNewtonLocalizer::calculateGradientMatrix(const SQHamiltonian<double>& sq_hamiltonian) const {
 
-    const auto N_P = this->orbital_space.numberOfOccupiedOrbitals();
+    const auto N_P = this->orbital_space.numberOfOrbitals(OccupationType::k_occupied, );
 
     SquareMatrix<double> G = SquareMatrix<double>::Zero(N_P, N_P);
 
-    for (const auto& i : this->orbital_space.occupiedIndices()) {
-        for (const auto& j : this->orbital_space.occupiedIndices()) {
+    for (const auto& i : this->orbital_space.indices(OccupationType::k_occupied)) {
+        for (const auto& j : this->orbital_space.indices(OccupationType::k_occupied)) {
             G(i, j) = this->calculateGradientMatrixElement(sq_hamiltonian, i, j);
         }
     }
@@ -68,14 +68,14 @@ SquareMatrix<double> ERNewtonLocalizer::calculateGradientMatrix(const SQHamilton
  */
 SquareRankFourTensor<double> ERNewtonLocalizer::calculateHessianTensor(const SQHamiltonian<double>& sq_hamiltonian) const {
 
-    const auto N_P = this->orbital_space.numberOfOccupiedOrbitals();
+    const auto N_P = this->orbital_space.numberOfOrbitals(OccupationType::occupied, );
     SquareRankFourTensor<double> H {N_P};
     H.setZero();
 
-    for (const auto& i : this->orbital_space.occupiedIndices()) {
-        for (const auto& j : this->orbital_space.occupiedIndices()) {
-            for (const auto& k : this->orbital_space.occupiedIndices()) {
-                for (const auto& l : this->orbital_space.occupiedIndices()) {
+    for (const auto& i : this->orbital_space.indices(OccupationType::k_occupied)) {
+        for (const auto& j : this->orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& k : this->orbital_space.indices(OccupationType::k_occupied)) {
+                for (const auto& l : this->orbital_space.indices(OccupationType::k_occupied)) {
                     H(i, j, k, l) = this->calculateHessianTensorElement(sq_hamiltonian, i, j, k, l);
                 }
             }

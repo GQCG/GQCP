@@ -65,38 +65,47 @@ OrbitalSpace::OrbitalSpace(const std::vector<size_t>& occupied_indices, const st
  */
 
 /**
- *  Create an orbital space with only occupied indices [0, N[.
+ *  Create an implicit orbital space with the given dimensions.
  * 
- *  @param N                the number of occupied indices
+ *  @param counts               a map that links an occupation type (k_occupied, k_active, k_virtual) with the number of orbitals that are to be found in that orbital space
  * 
- *  @return an orbital space with only occupied indices [0, N[.
+ *  @note An 'implicit' orbital space is one where all indices are sorted by increasing value, and the occupied indices are lower than the active indices, which are in turn lower than the virtual indices.
  */
-OrbitalSpace OrbitalSpace::Occupied(const size_t N) {
+OrbitalSpace OrbitalSpace::Implicit(const std::map<OccupationType, size_t>& counts) {
 
-    std::vector<size_t> occupied_indices(N);  // zero-initialized with N entries
+    size_t start_index = 0;
 
-    std::iota(occupied_indices.begin(), occupied_indices.end(), 0);  // fill with 0 to N-1
-    return OrbitalSpace(occupied_indices, {}, {});
-}
+    // Create the occupied indices, if any.
+    std::vector<size_t> occupied_indices {};
+    auto it = counts.find(OccupationType::k_occupied);
+    if (it != counts.end()) {
+        const auto number_of_occupied_orbitals = it->second;
+        occupied_indices = std::vector<size_t>(number_of_occupied_orbitals);
+        std::iota(occupied_indices.begin(), occupied_indices.end(), start_index);
+        start_index += number_of_occupied_orbitals;
+    }
+
+    // Create the active indices, if any.
+    std::vector<size_t> active_indices {};
+    it = counts.find(OccupationType::k_active);
+    if (it != counts.end()) {
+        const auto number_of_active_orbitals = it->second;
+        active_indices = std::vector<size_t>(number_of_active_orbitals);
+        std::iota(active_indices.begin(), active_indices.end(), start_index);
+        start_index += number_of_active_orbitals;
+    }
+
+    // Create the virtual indices, if any.
+    std::vector<size_t> virtual_indices {};
+    it = counts.find(OccupationType::k_virtual);
+    if (it != counts.end()) {
+        const auto number_of_virtual_orbitals = it->second;
+        virtual_indices = std::vector<size_t>(number_of_virtual_orbitals);
+        std::iota(virtual_indices.begin(), virtual_indices.end(), start_index);
+    }
 
 
-/**
- *  Create an orbital space that is separated between occupied and virtual orbitals.
- * 
- *  @param N                the number of occupied orbitals
- *  @param M                the total number of orbitals
- * 
- *  @return an orbital space that is separated between occupied and virtual orbitals.
- */
-OrbitalSpace OrbitalSpace::OccupiedVirtual(const size_t N, const size_t M) {
-
-    std::vector<size_t> occupied_indices(N);     // zero-initialized with N entries
-    std::vector<size_t> virtual_indices(M - N);  // zero-initialized with (M-N) entries
-
-    std::iota(occupied_indices.begin(), occupied_indices.end(), 0);  // fill with 0 to N-1
-    std::iota(virtual_indices.begin(), virtual_indices.end(), N);    // fill with N to K-1
-
-    return OrbitalSpace(occupied_indices, virtual_indices);
+    return OrbitalSpace(occupied_indices, active_indices, virtual_indices);
 }
 
 
@@ -113,17 +122,17 @@ std::string OrbitalSpace::description() const {
     std::string description_string = (boost::format("An orbital space with %s orbitals.\n") % this->numberOfOrbitals()).str();
 
     description_string += "\n\tThe occupied orbital indices are: ";
-    for (const auto& i : this->occupiedIndices()) {
+    for (const auto& i : this->indices(OccupationType::k_occupied)) {
         description_string += (boost::format("%s ") % i).str();
     }
 
     description_string += "\n\tThe active orbital indices are: ";
-    for (const auto& m : this->activeIndices()) {
+    for (const auto& m : this->indices(OccupationType::k_active)) {
         description_string += (boost::format("%s ") % m).str();
     }
 
     description_string += "\n\tThe virtual orbital indices are: ";
-    for (const auto& a : this->virtualIndices()) {
+    for (const auto& a : this->indices(OccupationType::k_virtual)) {
         description_string += (boost::format("%s ") % a).str();
     }
 
@@ -132,35 +141,41 @@ std::string OrbitalSpace::description() const {
 
 
 /**
- *  @param p            an orbital index
+ *  @param type             the occupation type that the indices should belong to
  * 
- *  @return if the orbital at the given index is in the active orbital space
+ *  @return the indices that belong to the given occupation type
  */
-bool OrbitalSpace::isIndexActive(const size_t p) const {
+const std::vector<size_t>& OrbitalSpace::indices(const OccupationType type) const {
 
-    return std::find(this->activeIndices().begin(), this->activeIndices().end(), p) != this->activeIndices().end();
+    switch (type) {
+    case OccupationType::k_occupied: {
+        return this->occupied_indices;
+        break;
+    }
+
+    case OccupationType::k_active: {
+        return this->active_indices;
+        break;
+    }
+
+    case OccupationType::k_virtual: {
+        return this->virtual_indices;
+        break;
+    }
+    }
 }
 
 
 /**
- *  @param p            an orbital index
+ *  @param type             an occupation type (k_occupied, k_active, k_virtual)
+ *  @param p                an orbital index
  * 
- *  @return if the orbital at the given index is in the occupied orbital space
+ *  @return if the orbital at the given index is in the given orbital space
  */
-bool OrbitalSpace::isIndexOccupied(const size_t p) const {
+bool OrbitalSpace::isIndex(const OccupationType type, const size_t p) const {
 
-    return std::find(this->occupiedIndices().begin(), this->occupiedIndices().end(), p) != this->occupiedIndices().end();
-}
-
-
-/**
- *  @param p            an orbital index
- * 
- *  @return if the orbital at the given index is in the virtual orbital space
- */
-bool OrbitalSpace::isIndexVirtual(const size_t p) const {
-
-    return std::find(this->virtualIndices().begin(), this->virtualIndices().end(), p) != this->virtualIndices().end();
+    const auto& indices = this->indices(type);
+    return std::find(indices.begin(), indices.end(), p) != indices.end();
 }
 
 

@@ -42,14 +42,14 @@ double QCModel::AP1roG::calculateEnergy(const AP1roGGeminalCoefficients& G, cons
 
     // KISS implementation of the AP1roG energy
     double E = 0.0;
-    for (const auto& j : orbital_space.occupiedIndices()) {
+    for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
         E += 2 * h(j, j);
 
-        for (const auto& k : orbital_space.occupiedIndices()) {
+        for (const auto& k : orbital_space.indices(OccupationType::k_occupied)) {
             E += 2 * g(k, k, j, j) - g(k, j, j, k);
         }
 
-        for (const auto& b : orbital_space.virtualIndices()) {
+        for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
             E += g(j, b, j, b) * G(j, b);
         }
     }
@@ -82,7 +82,7 @@ double QCModel::AP1roG::calculatePSECoordinateFunction(const SQHamiltonian<doubl
     double value = 0.0;
     value += g(a, i, a, i) * (1 - std::pow(G(i, a), 2));
 
-    for (const auto& j : orbital_space.occupiedIndices()) {
+    for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
         if (j != i) {
             value += 2 * ((2 * g(a, a, j, j) - g(a, j, j, a)) - (2 * g(i, i, j, j) - g(i, j, j, i))) * G(i, a);
         }
@@ -92,21 +92,21 @@ double QCModel::AP1roG::calculatePSECoordinateFunction(const SQHamiltonian<doubl
 
     value += (g(a, a, a, a) - g(i, i, i, i)) * G(i, a);
 
-    for (const auto& b : orbital_space.virtualIndices()) {
+    for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
         if (b != a) {
             value += (g(a, b, a, b) - g(i, b, i, b) * G(i, a)) * G(i, b);
         }
     }
 
-    for (const auto& j : orbital_space.occupiedIndices()) {
+    for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
         if (j != i) {
             value += (g(j, i, j, i) - g(j, a, j, a) * G(i, a)) * G(j, a);
         }
     }
 
-    for (const auto& b : orbital_space.virtualIndices()) {
+    for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
         if (b != a) {
-            for (const auto& j : orbital_space.occupiedIndices()) {
+            for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
                 if (j != i) {
                     value += g(j, b, j, b) * G(j, a) * G(i, b);
                 }
@@ -137,8 +137,8 @@ ImplicitMatrixSlice<double> QCModel::AP1roG::calculatePSECoordinateFunctions(con
 
 
     // Loop over all the elements of F to construct it.
-    for (const auto& i : orbital_space.occupiedIndices()) {
-        for (const auto& a : orbital_space.virtualIndices()) {
+    for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+        for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
             F(i, a) = QCModel::AP1roG::calculatePSECoordinateFunction(sq_hamiltonian, G, i, a);
         }
     }
@@ -190,7 +190,7 @@ double QCModel::AP1roG::calculatePSEJacobianElement(const SQHamiltonian<double>&
     if (i == j) {
         value += g(a, b, a, b) - 2 * g(j, b, j, b) * G(j, a);
 
-        for (const auto& k : orbital_space.occupiedIndices()) {
+        for (const auto& k : orbital_space.indices(OccupationType::k_occupied)) {
             value += g(k, b, k, b) * G(k, a);
         }
     }
@@ -199,7 +199,7 @@ double QCModel::AP1roG::calculatePSEJacobianElement(const SQHamiltonian<double>&
     if (a == b) {
         value += g(j, i, j, i) - 2 * g(j, b, j, b) * G(i, b);
 
-        for (const auto& c : orbital_space.virtualIndices()) {
+        for (const auto& c : orbital_space.indices(OccupationType::k_virtual)) {
             value += g(j, c, j, c) * G(i, c);
         }
     }
@@ -210,7 +210,7 @@ double QCModel::AP1roG::calculatePSEJacobianElement(const SQHamiltonian<double>&
 
         value -= 2 * (2 * g(a, a, i, i) - g(a, i, i, a));
 
-        for (const auto& k : orbital_space.occupiedIndices()) {
+        for (const auto& k : orbital_space.indices(OccupationType::k_occupied)) {
             value += 2 * (2 * g(k, k, a, a) - g(a, k, k, a)) - 2 * (2 * g(i, i, k, k) - g(i, k, k, i));
 
             if (k != i) {
@@ -218,7 +218,7 @@ double QCModel::AP1roG::calculatePSEJacobianElement(const SQHamiltonian<double>&
             }
         }
 
-        for (const auto& c : orbital_space.virtualIndices()) {
+        for (const auto& c : orbital_space.indices(OccupationType::k_virtual)) {
             if (c != a) {
                 value -= 2 * g(i, c, i, c) * G(i, c);
             }
@@ -249,10 +249,10 @@ ImplicitRankFourTensorSlice<double> QCModel::AP1roG::calculatePSEJacobian(const 
 
 
     // Loop over all elements of J to construct it.
-    for (const auto& i : orbital_space.occupiedIndices()) {
-        for (const auto& a : orbital_space.virtualIndices()) {
-            for (const auto& j : orbital_space.occupiedIndices()) {
-                for (const auto& b : orbital_space.virtualIndices()) {
+    for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+        for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
+            for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
+                for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
                     J(i, a, j, b) = QCModel::AP1roG::calculatePSEJacobianElement(sq_hamiltonian, G, i, a, j, b);
                 }
             }

@@ -339,7 +339,7 @@ public:
 
         // TODO: when Eigen releases TensorTrace, use it here
         double localization_index = 0.0;
-        for (const auto& i : orbital_space.occupiedIndices()) {
+        for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
             localization_index += g_par(i, i, i, i);
         }
 
@@ -397,10 +397,10 @@ public:
         auto F_par = h_par;  // one-electron part
 
         // Two-electron part
-        for (const auto& p : orbital_space.allIndices()) {
-            for (const auto& q : orbital_space.allIndices()) {
+        for (const auto& p : orbital_space.indices()) {
+            for (const auto& q : orbital_space.indices()) {
 
-                for (const auto& i : orbital_space.occupiedIndices()) {
+                for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
                     F_par(p, q) += g_par(p, q, i, i) - g_par(p, i, i, q);
                 }
             }
@@ -427,10 +427,10 @@ public:
         auto F_par = h_par;  // one-electron part
 
         // Two-electron part
-        for (const auto& p : orbital_space.allIndices()) {
-            for (const auto& q : orbital_space.allIndices()) {
+        for (const auto& p : orbital_space.indices()) {
+            for (const auto& q : orbital_space.indices()) {
 
-                for (const auto& i : orbital_space.occupiedIndices()) {
+                for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
                     F_par(p, q) += 2 * g_par(p, q, i, i) - g_par(p, i, i, q);
                 }
             }

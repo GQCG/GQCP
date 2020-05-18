@@ -71,9 +71,9 @@ BOOST_AUTO_TEST_CASE(basic_constructor) {
 
 
 /**
- *  Check if a constructor works as expected.
+ *  Check if the named constructor ::FromBlockRanges works as expected.
  */
-BOOST_AUTO_TEST_CASE(constructor) {
+BOOST_AUTO_TEST_CASE(FromBlockRanges) {
 
     // Imagine the following 2x2 block is a part of an implicit 4x4 matrix:
     // x 1 2 x
@@ -87,8 +87,8 @@ BOOST_AUTO_TEST_CASE(constructor) {
     // clang-format on
 
     // The block covers rows 0,2(not included) and columns 1,3(not included) of the implicit matrix.
-    GQCP::ImplicitMatrixSlice<size_t> B1 {0, 2, 1, 3, slice};                                        // this constructor should work
-    BOOST_CHECK_THROW(GQCP::ImplicitMatrixSlice<size_t>(0, 1, 1, 3, slice), std::invalid_argument);  // this constructor should fail
+    BOOST_CHECK_NO_THROW(GQCP::ImplicitMatrixSlice<size_t>::FromBlockRanges(0, 2, 1, 3, slice));
+    BOOST_CHECK_THROW(GQCP::ImplicitMatrixSlice<size_t>::FromBlockRanges(0, 1, 1, 3, slice), std::invalid_argument);
 }
 
 
@@ -109,7 +109,7 @@ BOOST_AUTO_TEST_CASE(operator_call) {
     // clang-format on
 
     // The block covers rows 0,2(not included) and columns 1,3(not included) of the implicit matrix.
-    GQCP::ImplicitMatrixSlice<size_t> B {0, 2, 1, 3, slice};
+    const auto B = GQCP::ImplicitMatrixSlice<size_t>::FromBlockRanges(0, 2, 1, 3, slice);
 
     // Check if ImplicitMatrixSlice B's operator() behaves as expected.
     BOOST_CHECK(B(0, 1) == 1);
@@ -138,8 +138,8 @@ BOOST_AUTO_TEST_CASE(operator_call_AP1roG) {
 
 
     // Create the corresponding slice and check the implementation of operator().
-    const GQCP::MatrixX<double> M = GQCP::MatrixX<double>::FromRowMajorVector(g, rows, cols);  // the actual geminal coefficients, reshaped into a matrix
-    const GQCP::ImplicitMatrixSlice<double> variables {0, N_P, N_P, K, M};                     // an encapsulating object that implements operator() intuitively. The block covers rows [0, N_P[ and columns [N_P, K[
+    const GQCP::MatrixX<double> M = GQCP::MatrixX<double>::FromRowMajorVector(g, rows, cols);      // the actual geminal coefficients, reshaped into a matrix
+    const auto variables = GQCP::ImplicitMatrixSlice<double>::FromBlockRanges(0, N_P, N_P, K, M);  // an encapsulating object that implements operator() intuitively. The block covers rows [0, N_P[ and columns [N_P, K[
 
     BOOST_CHECK_EQUAL(variables(0, 2), 1);
     BOOST_CHECK_EQUAL(variables(0, 3), 2);

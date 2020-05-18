@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE(localization_index_raises) {
 
 
     // Do an Edmiston-Ruedenberg localization and keep track of the value of the ER-index before and after.
-    const auto orbital_space = GQCP::OrbitalSpace::Occupied(N_P);  // N_P occupied spatial orbitals
+    const auto orbital_space = GQCP::OrbitalSpace::Implicit({{GQCP::OccupationType::k_occupied, N_P}});  // N_P occupied spatial orbitals
     double D_before = sq_hamiltonian.calculateEdmistonRuedenbergLocalizationIndex(orbital_space);
 
     auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();

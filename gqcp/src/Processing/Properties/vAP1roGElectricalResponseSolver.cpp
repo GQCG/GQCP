@@ -65,7 +65,7 @@ Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateParameterRe
     // Create an occupied-virtual orbital space.
     const auto K = G.numberOfSpatialOrbitals();
     const auto N_P = G.numberOfElectronPairs();
-    const auto orbital_space = OrbitalSpace::OccupiedVirtual(N_P, K);  // N_P occupied (spatial) orbitals, K total (spatial) orbitals
+    const auto orbital_space = OrbitalSpace::Implicit({{OccupationType::k_occupied, N_P}, {OccupationType::k_virtual, K - N_P}});  // N_P occupied (spatial) orbitals, K-N_P virtual (spatial) orbitals
 
 
     // Calculate every component separately.
@@ -76,8 +76,8 @@ Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateParameterRe
 
         // Calculate the m-th component of the parameter response force F_p.
         ImplicitMatrixSlice<double> F_p_m {0, N_P, N_P, K};
-        for (const auto& i : orbital_space.occupiedIndices()) {
-            for (const auto& a : orbital_space.virtualIndices()) {
+        for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 F_p_m(i, a) = 2 * (mu_m(i, i) - mu_m(a, a)) * G(i, a);
             }
         }
@@ -122,7 +122,7 @@ Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateExplicitMul
     // Create an occupied-virtual orbital space.
     const auto K = G.numberOfSpatialOrbitals();
     const auto N_P = G.numberOfElectronPairs();
-    const auto orbital_space = OrbitalSpace::OccupiedVirtual(N_P, K);  // N_P occupied (spatial) orbitals, K total (spatial) orbitals
+    const auto orbital_space = OrbitalSpace::Implicit({{OccupationType::k_occupied, N_P}, {OccupationType::k_virtual, K - N_P}});  // N_P occupied (spatial) orbitals, K-N_P virtual (spatial) orbitals
 
 
     // Calculate A_lambda by constructing its separate components.
@@ -133,8 +133,8 @@ Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateExplicitMul
 
         // Calculate the m-th component.
         ImplicitMatrixSlice<double> A_lambda_m(0, N_P, N_P, K);
-        for (const auto& i : orbital_space.occupiedIndices()) {
-            for (const auto& a : orbital_space.virtualIndices()) {
+        for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 A_lambda_m(i, a) = 2 * lambda(i, a) * (mu_m(i, i) - mu_m(a, a));
             }
         }
@@ -163,7 +163,7 @@ ImplicitRankFourTensorSlice<double> vAP1roGElectricalResponseSolver::calculateIm
     // Prepare an occupied-virtual orbital space.
     const auto N_P = G.numberOfElectronPairs();
     const auto K = G.numberOfSpatialOrbitals();
-    const auto orbital_space = OrbitalSpace::OccupiedVirtual(N_P, K);  // N_P occupied (spatial) orbitals, K total (spatial) orbitals
+    const auto orbital_space = OrbitalSpace::Implicit({{OccupationType::k_occupied, N_P}, {OccupationType::k_virtual, K - N_P}});  // N_P occupied (spatial) orbitals, K-N_P virtual (spatial) orbitals
 
 
     const auto& g = sq_hamiltonian.twoElectron().parameters();
@@ -171,10 +171,10 @@ ImplicitRankFourTensorSlice<double> vAP1roGElectricalResponseSolver::calculateIm
     ImplicitRankFourTensorSlice<double> B_lambda {0, N_P, N_P, K,
                                                   0, N_P, N_P, K};
 
-    for (const auto& i : orbital_space.occupiedIndices()) {
-        for (const auto& a : orbital_space.virtualIndices()) {
-            for (const auto& j : orbital_space.occupiedIndices()) {
-                for (const auto& b : orbital_space.virtualIndices()) {
+    for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+        for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
+            for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
+                for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
                     double value {0.0};
 
                     value += lambda(i, b) * g(j, a, j, a) + lambda(j, a) * g(i, b, i, b);

@@ -99,12 +99,12 @@ AP1roGGeminalCoefficients AP1roGGeminalCoefficients::WeakInteractionLimit(const 
     const auto& g = sq_hamiltonian.twoElectron().parameters();  // two-electron integrals
 
     const auto K = sq_hamiltonian.dimension();
-    const auto orbital_space = OrbitalSpace::OccupiedVirtual(N_P, K);  // N_P occupied spatial orbitals, K total spatial orbitals
+    const auto orbital_space = OrbitalSpace::Implicit({{OccupationType::k_occupied, N_P}, {OccupationType::k_virtual, K - N_P}});  // N_P occupied (spatial) orbitals, K-N_P virtual (spatial) orbitals
 
     // Provide the weak interaction limit values for the geminal coefficients
     ImplicitMatrixSlice<double> G {0, N_P, N_P, K};
-    for (const auto& i : orbital_space.occupiedIndices()) {
-        for (const auto& a : orbital_space.virtualIndices()) {
+    for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+        for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
             G(i, a) = -g(a, i, a, i) / (2 * (h(a, a) - h(i, i)));
         }
     }
@@ -250,7 +250,10 @@ double AP1roGGeminalCoefficients::overlap(const SpinUnresolvedONV& onv) const {
  */
 OrbitalSpace AP1roGGeminalCoefficients::orbitalSpace() const {
 
-    return OrbitalSpace::OccupiedVirtual(this->numberOfElectronPairs(), this->numberOfSpatialOrbitals());
+    const auto K = this->numberOfSpatialOrbitals();
+    const auto N_P = this->numberOfElectronPairs();
+
+    return OrbitalSpace::Implicit({{OccupationType::k_occupied, N_P}, {OccupationType::k_virtual, K - N_P}});
 }
 
 
