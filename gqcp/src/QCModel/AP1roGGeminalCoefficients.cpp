@@ -46,7 +46,7 @@ AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(const MatrixX<double>& G) :
     // Don't use a delegated constructor for code readability
     N_P {static_cast<size_t>(G.rows())},
     K {static_cast<size_t>(G.rows() + G.cols())},
-    G {ImplicitMatrixSlice<double>(0, this->N_P, this->N_P, this->K, G)} {}
+    G {ImplicitMatrixSlice<double>::FromBlockRanges(0, this->N_P, this->N_P, this->K, G)} {}
 
 
 /**
@@ -101,8 +101,8 @@ AP1roGGeminalCoefficients AP1roGGeminalCoefficients::WeakInteractionLimit(const 
     const auto K = sq_hamiltonian.dimension();
     const auto orbital_space = OrbitalSpace::Implicit({{OccupationType::k_occupied, N_P}, {OccupationType::k_virtual, K - N_P}});  // N_P occupied (spatial) orbitals, K-N_P virtual (spatial) orbitals
 
-    // Provide the weak interaction limit values for the geminal coefficients
-    ImplicitMatrixSlice<double> G {0, N_P, N_P, K};
+    // Provide the weak interaction limit values for the geminal coefficients.
+    auto G = orbital_space.initializeRepresentableObjectFor<double>(OccupationType::k_occupied, OccupationType::k_virtual);  // create a mathematical representation for an occupied-virtual object
     for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
         for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
             G(i, a) = -g(a, i, a, i) / (2 * (h(a, a) - h(i, i)));
@@ -126,7 +126,7 @@ AP1roGGeminalCoefficients AP1roGGeminalCoefficients::FromColumnMajor(const Vecto
 
     const MatrixX<double> M = MatrixX<double>::FromColumnMajorVector(g, rows, cols);  // the block of the actual entries of the geminal coefficient matrix
 
-    return AP1roGGeminalCoefficients(ImplicitMatrixSlice<double>(0, N_P, N_P, K, M),
+    return AP1roGGeminalCoefficients(ImplicitMatrixSlice<double>::FromBlockRanges(0, N_P, N_P, K, M),
                                      N_P, K);  // an encapsulating object that implements operator() in an intuitive way
 }
 
@@ -144,7 +144,7 @@ AP1roGGeminalCoefficients AP1roGGeminalCoefficients::FromRowMajor(const VectorX<
 
     const MatrixX<double> M = MatrixX<double>::FromRowMajorVector(g, rows, cols);  // the block of the actual entries of the geminal coefficient matrix
 
-    return AP1roGGeminalCoefficients(ImplicitMatrixSlice<double>(0, N_P, N_P, K, M), N_P, K);  // an encapsulating object that implements operator() in an intuitive way
+    return AP1roGGeminalCoefficients(ImplicitMatrixSlice<double>::FromBlockRanges(0, N_P, N_P, K, M), N_P, K);  // an encapsulating object that implements operator() in an intuitive way
 }
 
 

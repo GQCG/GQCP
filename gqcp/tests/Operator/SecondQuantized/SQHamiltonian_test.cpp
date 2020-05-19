@@ -336,7 +336,7 @@ BOOST_AUTO_TEST_CASE(calculateEdmistonRuedenbergLocalizationIndex) {
 
     // Check the values for the Edmiston-Ruedenberg localization index.
     const auto orbital_space1 = GQCP::OrbitalSpace::Implicit({{GQCP::OccupationType::k_occupied, 3}});  // 3 occupied spatial orbitals
-    const auto orbital_space2 = GQCP::OrbitalSpace::Occupied({{GQCP::OccupationType::k_occupied, 4}});  // 3 occupied spatial orbitals
+    const auto orbital_space2 = GQCP::OrbitalSpace::Implicit({{GQCP::OccupationType::k_occupied, 4}});  // 3 occupied spatial orbitals
 
     BOOST_CHECK(std::abs(sq_hamiltonian.calculateEdmistonRuedenbergLocalizationIndex(orbital_space1) - 6.0) < 1.0e-08);
     BOOST_CHECK(std::abs(sq_hamiltonian.calculateEdmistonRuedenbergLocalizationIndex(orbital_space2) - 12.0) < 1.0e-08);

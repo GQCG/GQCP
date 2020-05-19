@@ -83,8 +83,7 @@ ImplicitMatrixSlice<double> QCModel::vAP1roG::calculateMultiplierResponseForce(c
     // Create an occupied-virtual orbital space.
     const auto orbital_space = OrbitalSpace::Implicit({{OccupationType::k_occupied, N_P}, {OccupationType::k_virtual, K - N_P}});  // N_P occupied (spatial) orbitals, K-N_P virtual (spatial) orbitals
 
-
-    ImplicitMatrixSlice<double> F_lambda {0, N_P, N_P, K};
+    auto F_lambda = orbital_space.initializeRepresentableObjectFor<double>(OccupationType::k_occupied, OccupationType::k_virtual);  // create a mathematical representation for an occupied-virtual orbject
     for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
         for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
             F_lambda(i, a) = -g(i, a, i, a);

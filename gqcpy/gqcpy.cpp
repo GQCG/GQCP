@@ -28,6 +28,7 @@ namespace gqcpy {
 
 // Basis - SpinorBasis
 void bindGSpinorBasis(py::module& module);
+void bindOccupationType(py::module& module);
 void bindOrbitalSpace(py::module& module);
 void bindRSpinorBasis(py::module& module);
 void bindUSpinorBasis(py::module& module);
@@ -151,6 +152,7 @@ PYBIND11_MODULE(gqcpy, module) {
 
     // Basis - SpinorBasis
     gqcpy::bindGSpinorBasis(module);
+    gqcpy::bindOccupationType(module);
     gqcpy::bindOrbitalSpace(module);
     gqcpy::bindRSpinorBasis(module);
     gqcpy::bindUSpinorBasis(module);

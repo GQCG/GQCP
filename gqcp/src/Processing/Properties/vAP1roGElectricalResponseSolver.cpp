@@ -75,7 +75,7 @@ Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateParameterRe
         const auto mu_m = dipole_op[m].parameters();
 
         // Calculate the m-th component of the parameter response force F_p.
-        ImplicitMatrixSlice<double> F_p_m {0, N_P, N_P, K};
+        auto F_p_m = orbital_space.initializeRepresentableObjectFor<double>(OccupationType::k_occupied, OccupationType::k_virtual);  // create a representation for occupied-virtual objects
         for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 F_p_m(i, a) = 2 * (mu_m(i, i) - mu_m(a, a)) * G(i, a);
@@ -132,7 +132,7 @@ Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateExplicitMul
         const auto mu_m = dipole_op[m].parameters();
 
         // Calculate the m-th component.
-        ImplicitMatrixSlice<double> A_lambda_m(0, N_P, N_P, K);
+        auto A_lambda_m = orbital_space.initializeRepresentableObjectFor<double>(OccupationType::k_occupied, OccupationType::k_virtual);  // create a representation for occupied-virtual objects
         for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 A_lambda_m(i, a) = 2 * lambda(i, a) * (mu_m(i, i) - mu_m(a, a));
@@ -168,8 +168,7 @@ ImplicitRankFourTensorSlice<double> vAP1roGElectricalResponseSolver::calculateIm
 
     const auto& g = sq_hamiltonian.twoElectron().parameters();
 
-    ImplicitRankFourTensorSlice<double> B_lambda {0, N_P, N_P, K,
-                                                  0, N_P, N_P, K};
+    auto B_lambda = orbital_space.initializeRepresentableObjectFor<double>(OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_occupied, OccupationType::k_virtual);  // initialize a mathematical object for the representaion of an occupied-virtual-occupied-virtual object (iabj)
 
     for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
         for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {

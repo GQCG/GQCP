@@ -63,17 +63,18 @@ SquareMatrix<double> RHFElectricalResponseSolver::calculateParameterResponseCons
 Matrix<double, Dynamic, 3> RHFElectricalResponseSolver::calculateParameterResponseForce(const VectorSQOneElectronOperator<double>& dipole_op) const {
 
     // Create an occupied-virtual orbital space.
-    const auto K = dipole_op.dimension();                                    // number of spatial orbitals
-    const auto orbital_space = OrbitalSpace::OccupiedVirtual(this->N_P, K);  // N_P occupied spatial orbitals, K total spatial orbitals
+    const auto K = dipole_op.dimension();  // number of spatial orbitals
+
+    const auto orbital_space = OrbitalSpace::Implicit({{OccupationType::k_occupied, N_P}, {OccupationType::k_virtual, K - N_P}});  // N_P occupied (spatial) orbitals, K-N_P virtual (spatial) orbitals
 
 
     // Zero-initialize the vector representation of the parameter response force F_p
-    const auto dim = this->N_P * (K - this->N_P);  // number of non-redundant orbital rotation generators
+    const auto dim = orbital_space.numberOfExcitations(OccupationType::k_occupied, OccupationType::k_virtual);  // number of non-redundant orbital rotation generators
     Matrix<double, Dynamic, 3> F_p = Matrix<double, Dynamic, 3>::Zero(dim, 3);
 
     // Loop over the components of the electrical dipole to calculate the response force for every component
     for (size_t m = 0; m < 3; m++) {
-        ImplicitMatrixSlice<double> F_p_m {N_P, K, 0, N_P};  // zero-initialize an object suitable for the representation of virtual-occupied (a,i) quantities
+        auto F_p_m = orbital_space.initializeRepresentableObjectFor<double>(OccupationType::k_virtual, OccupationType::k_occupied);  // zero-initialize an object suitable for the representation of virtual-occupied (a,i) quantities
 
         for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {

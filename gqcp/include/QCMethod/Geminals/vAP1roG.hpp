@@ -91,9 +91,10 @@ public:
 
         const size_t rows = this->N_P;            // the number of rows in the multiplier matrix
         const size_t cols = this->K - this->N_P;  // the number of columns in the multiplier matrix
+        const auto orbital_space = OrbitalSpace::Implicit({{OccupationType::k_occupied, this->N_P}, {OccupationType::k_virtual, this->K - this->N_P}});
 
         const MatrixX<double> lambda_optimal_matrix = MatrixX<double>::FromColumnMajorVector(lambda_optimal_vector, rows, cols);  // the actual Lagrange multipliers, reshaped into a matrix
-        const ImplicitMatrixSlice<double> lambda_optimal {0, this->N_P, this->N_P, this->K, lambda_optimal_matrix};
+        const auto lambda_optimal = orbital_space.createRepresentableObjectFor<double>(OccupationType::k_occupied, OccupationType::k_virtual, lambda_optimal_matrix);
 
 
         // To make a QCStructure, we need the electronic energy, geminal coefficients and Lagrange multipliers.

@@ -21,12 +21,18 @@
 #include "Mathematical/Representation/Matrix.hpp"
 #include "Mathematical/Representation/Tensor.hpp"
 
+#include <map>
+#include <numeric>
+#include <vector>
+
 
 namespace GQCP {
 
 
 /**
- *  A slice of a rank-four tensor that only exists implicitly. If the full tensor is unnecessary to know, and only a certain slice of the tensor is of interest, this class implements operator() that can be used with the indices of the full tensor.
+ *  A slice of a rank-four tensor that only exists implicitly.
+ * 
+ *  If the full tensor is unnecessary to know, and only a certain slice of the tensor is of interest, this class implements operator() that can be used with the indices of the full tensor.
  */
 template <typename _Scalar>
 class ImplicitRankFourTensorSlice {
@@ -35,53 +41,166 @@ public:
 
 
 private:
-    size_t index1_start;  // the index of the first rank of the full tensor at which the block starts, i.e. the start of the range of values that the first argument of operator() should accept
-    size_t index1_end;    // the index of the first rank of the full tensor at which the block ends (not included), i.e. the end (not included) of the range of values that the first argument of operator() should accept
-
-    size_t index2_start;  // the index of the second rank of the full tensor at which the block starts, i.e. the start of the range of values that the second argument of operator() should accept
-    size_t index2_end;    // the index of the second rank of the full tensor at which the block starts (not included), i.e. the end (not included) of the range of values that the second argument of operator() should accept
-
-    size_t index3_start;  // the index of the third rank of the full tensor at which the block starts, i.e. the start of the range of values that the third argument of operator() should accept
-    size_t index3_end;    // the index of the third rank of the full tensor at which the block starts (not included), i.e. the end (not included) of the range of values that the third argument of operator() should accept
-
-    size_t index4_start;  // the index of the fourth rank of the full tensor at which the block starts, i.e. the start of the range of values that the fourth argument of operator() should accept
-    size_t index4_end;    // the index of the fourth rank of the full tensor at which the block starts (not included), i.e. the end (not included) of the range of values that the fourth argument of operator() should accept
+    std::vector<std::map<size_t, size_t>> indices_implicit_to_dense;  // an array of maps, mapping the implicit tensor indices to these of the dense representation
 
     Tensor<Scalar, 4> T;  // the dense representation of the slice
 
 
 public:
     /*
-     *  CONSTRUCTOR
+     *  CONSTRUCTORS
      */
 
     /**
-     *  Construct a zero-initialized ImplicitRankFourTensorSlice.
+     *  Initialize an ImplicitRankFourTensorSlice's members.
      * 
-     *  @param index1_start         the index of the first rank of the full tensor at which the block starts, i.e. the start of the range of values that the first argument of operator() should accept
-     *  @param index1_start         the index of the first rank of the full tensor at which the block ends (not included), i.e. the end (not included) of the range of values that the first argument of operator() should accept
-     * 
-     *  @param index2_start         the index of the second rank of the full tensor at which the block starts, i.e. the start of the range of values that the second argument of operator() should accept
-     *  @param index2_start         the index of the second rank of the full tensor at which the block starts (not included), i.e. the end (not included) of the range of values that the second argument of operator() should accept
-     * 
-     *  @param index3_start         the index of the third rank of the full tensor at which the block starts, i.e. the start of the range of values that the third argument of operator() should accept
-     *  @param index3_start         the index of the third rank of the full tensor at which the block starts (not included), i.e. the end (not included) of the range of values that the third argument of operator() should accept
-     * 
-     *  @param index4_start         the index of the fourth rank of the full tensor at which the block starts, i.e. the start of the range of values that the fourth argument of operator() should accept
-     *  @param index4_start         the index of the fourth rank of the full tensor at which the block starts (not included), i.e. the end (not included) of the range of values that the fourth argument of operator() should accept
+     *  @param indices_implicit_to_dense                an array of maps, mapping the implicit tensor indices to these of the dense representation
+     *  @param T                                        the dense representation of the slice
      */
-    ImplicitRankFourTensorSlice(const size_t index1_start, const size_t index1_end, const size_t index2_start, const size_t index2_end, const size_t index3_start, const size_t index3_end, const size_t index4_start, const size_t index4_end) :
-        index1_start {index1_start},
-        index1_end {index1_end},
-        index2_start {index2_start},
-        index2_end {index2_end},
-        index3_start {index3_start},
-        index3_end {index3_end},
-        index4_start {index4_start},
-        index4_end {index4_end},
-        T {Tensor<Scalar, 4>(index1_end - index1_start, index2_end - index2_start, index3_end - index3_start, index4_end - index4_start)} {
+    ImplicitRankFourTensorSlice(const std::vector<std::map<size_t, size_t>>& indices_implicit_to_dense, const Tensor<Scalar, 4>& T) :
+        indices_implicit_to_dense {indices_implicit_to_dense},
+        T {T} {
 
+        const auto dimensions = T.dimensions();
+        for (size_t axis_index = 0; axis_index < 4; axis_index++) {
+            if (this->indices_implicit_to_dense[axis_index].size() != dimensions[axis_index]) {
+                throw std::invalid_argument("ImplicitRankFourTensorSlice(const std::vector<std::map<size_t, size_t>>&, const Tensor<Scalar, 4>&): The given dense representation of the slice has an incompatible dimension for axis number " + std::to_string(axis_index) + ".");
+            }
+        }
+    }
+
+
+    /*
+     *  NAMED CONSTRUCTORS
+     */
+
+    /**
+     *  Construct an ImplicitRankFourTensor from a dense tensor block and corresponding index ranges.
+     * 
+     *  @param axis1_start              the zero-based index of the implicit tensor at which the first axis should start
+     *  @param axis1_end                the zero-based index of the implicit tensor at which the first axis should end (not included)
+     *  @param axis2_start              the zero-based index of the implicit tensor at which the second axis should start
+     *  @param axis2_end                the zero-based index of the implicit tensor at which the second axis should end (not included)
+     *  @param axis3_start              the zero-based index of the implicit tensor at which the third axis should start
+     *  @param axis3_end                the zero-based index of the implicit tensor at which the third axis should end (not included)
+     *  @param axis4_start              the zero-based index of the implicit tensor at which the fourth axis should start
+     *  @param axis4_end                the zero-based index of the implicit tensor at which the fourth axis should end (not included)
+     *  @param T                        the dense representation of the block
+     * 
+     *  @return an implicit rank-four tensor slice
+     */
+    static ImplicitRankFourTensorSlice<Scalar> FromBlockRanges(const size_t axis1_start, const size_t axis1_end, const size_t axis2_start, const size_t axis2_end, const size_t axis3_start, const size_t axis3_end, const size_t axis4_start, const size_t axis4_end, const Tensor<Scalar, 4>& T) {
+
+        // Convert the ranges into allowed indices of the implicit tensor, and then use another named constructor.
+        std::vector<size_t> axis1_indices(axis1_end - axis1_start);
+        std::iota(axis1_indices.begin(), axis1_indices.end(), axis1_start);
+
+        std::vector<size_t> axis2_indices(axis2_end - axis2_start);
+        std::iota(axis2_indices.begin(), axis2_indices.end(), axis2_start);
+
+        std::vector<size_t> axis3_indices(axis3_end - axis3_start);
+        std::iota(axis3_indices.begin(), axis3_indices.end(), axis3_start);
+
+        std::vector<size_t> axis4_indices(axis4_end - axis4_start);
+        std::iota(axis4_indices.begin(), axis4_indices.end(), axis4_start);
+
+        return ImplicitRankFourTensorSlice<Scalar>::FromIndices(axis1_indices, axis2_indices, axis3_indices, axis4_indices, T);
+    }
+
+
+    /**
+     *  Create an implicit rank-four tensor slice through a dense representation of the slice.
+     * 
+     *  @param axes_indices                     an array where the i-th element represents the indices (in order) for the i-th tensor axis of the implicit tensor that the indices of the dense representation of the slice correspond to
+     *  @param T                                the dense representation of the slice
+     * 
+     *  @return an implicit rank-four tensor slice
+     */
+    static ImplicitRankFourTensorSlice<Scalar> FromIndices(const std::vector<std::vector<size_t>>& axes_indices, const Tensor<Scalar, 4>& T) {
+
+        // Loop over all indices of all axes, mapping them to the indices of the dense representation of the slice.
+        std::vector<std::map<size_t, size_t>> indices_maps;
+        for (size_t axis_index = 0; axis_index < 4; axis_index++) {
+            size_t dense_index = 0;  // index in the dense representation of the slice
+
+            std::map<size_t, size_t> axis_map {};  // the index mapping for the current axis index
+            for (const auto& implicit_index : axes_indices[axis_index]) {
+                axis_map[implicit_index] = dense_index;
+                dense_index++;  // the dense indices are contiguous
+            }
+            indices_maps.push_back(axis_map);
+        }
+
+        return ImplicitRankFourTensorSlice<Scalar>(indices_maps, T);
+    }
+
+
+    /**
+     *  Create an implicit rank-four tensor slice through a dense representation of the slice.
+     * 
+     *  @param axis1_indices                    the indices (in order) for the first tensor axis of the implicit tensor that the indices of the dense representation of the slice correspond to
+     *  @param axis2_indices                    the indices (in order) for the second tensor axis of the implicit tensor that the indices of the dense representation of the slice correspond to
+     *  @param axis3_indices                    the indices (in order) for the third tensor axis of the implicit tensor that the indices of the dense representation of the slice correspond to
+     *  @param axis4_indices                    the indices (in order) for the fourth tensor axis of the implicit tensor that the indices of the dense representation of the slice correspond to
+     *  @param T                                the dense representation of the slice
+     * 
+     *  @return an implicit rank-four tensor slice
+     */
+    static ImplicitRankFourTensorSlice<Scalar> FromIndices(const std::vector<size_t>& axis1_indices, const std::vector<size_t>& axis2_indices, const std::vector<size_t>& axis3_indices, const std::vector<size_t>& axis4_indices, const Tensor<Scalar, 4>& T) {
+
+        // Wrap the separate indices for the axes into one array and use another named constructor.
+        std::vector<std::vector<size_t>> axes_indices {axis1_indices, axis2_indices, axis3_indices, axis4_indices};
+
+        return ImplicitRankFourTensorSlice<Scalar>::FromIndices(axes_indices, T);
+    }
+
+
+    /**
+     *  Construct a zero ImplicitRankFourTensor from block index ranges.
+     * 
+     *  @param axis1_start              the zero-based index of the implicit tensor at which the first axis should start
+     *  @param axis1_end                the zero-based index of the implicit tensor at which the first axis should end (not included)
+     *  @param axis2_start              the zero-based index of the implicit tensor at which the second axis should start
+     *  @param axis2_end                the zero-based index of the implicit tensor at which the second axis should end (not included)
+     *  @param axis3_start              the zero-based index of the implicit tensor at which the third axis should start
+     *  @param axis3_end                the zero-based index of the implicit tensor at which the third axis should end (not included)
+     *  @param axis4_start              the zero-based index of the implicit tensor at which the fourth axis should start
+     *  @param axis4_end                the zero-based index of the implicit tensor at which the fourth axis should end (not included)
+     * 
+     *  @return a zero implicit rank-four tensor slice
+     */
+    static ImplicitRankFourTensorSlice<Scalar> ZeroFromBlockRanges(const size_t axis1_start, const size_t axis1_end, const size_t axis2_start, const size_t axis2_end, const size_t axis3_start, const size_t axis3_end, const size_t axis4_start, const size_t axis4_end) {
+
+        // Create the zero dense representation of the slice and then use another named constructor.
+        const auto axis1_dimension = static_cast<long>(axis1_end - axis1_start);  // need static_cast for Tensor
+        const auto axis2_dimension = static_cast<long>(axis2_end - axis2_start);
+        const auto axis3_dimension = static_cast<long>(axis3_end - axis3_start);
+        const auto axis4_dimension = static_cast<long>(axis4_end - axis4_start);
+
+        Tensor<Scalar, 4> T {axis1_dimension, axis2_dimension, axis3_dimension, axis4_dimension};
         T.setZero();
+
+        return ImplicitRankFourTensorSlice<Scalar>::FromBlockRanges(axis1_start, axis1_end, axis2_start, axis2_end, axis3_start, axis3_end, axis4_start, axis4_end, T);
+    }
+
+
+    /**
+     *  Create a zero-initialized implicit rank-four tensor slice from allowed axes indices.
+     * 
+     *  @param axis1_indices                    the indices (in order) for the first tensor axis of the implicit tensor that the indices of the dense representation of the slice correspond to
+     *  @param axis2_indices                    the indices (in order) for the second tensor axis of the implicit tensor that the indices of the dense representation of the slice correspond to
+     *  @param axis3_indices                    the indices (in order) for the third tensor axis of the implicit tensor that the indices of the dense representation of the slice correspond to
+     *  @param axis4_indices                    the indices (in order) for the fourth tensor axis of the implicit tensor that the indices of the dense representation of the slice correspond to
+     * 
+     *  @return a zero-initialized implicit rank-four tensor slice
+     */
+    static ImplicitRankFourTensorSlice<Scalar> FromIndices(const std::vector<size_t>& axis1_indices, const std::vector<size_t>& axis2_indices, const std::vector<size_t>& axis3_indices, const std::vector<size_t>& axis4_indices) {
+
+        // Zero-initialize a tensor with the required dimensions and then use another named constructor.
+        Tensor<Scalar, 4> T {axis1_indices.size(), axis2_indices.size(), axis3_indices.size(), axis4_indices.size()};
+        T.setZero();
+
+        return ImplicitRankFourTensorSlice<Scalar>::FromIndices(axis1_indices, axis2_indices, axis3_indices, axis4_indices, T);
     }
 
 
@@ -102,12 +221,12 @@ public:
     Scalar operator()(const size_t index1, const size_t index2, const size_t index3, const size_t index4) const {
 
         // Map the implicit indices to the indices of the dense representation of this slice.
-        const size_t index1_block = index1 - this->index1_start;  // the first index in the dense representation of this slice
-        const size_t index2_block = index2 - this->index2_start;  // the second index in the dense representation of this slice
-        const size_t index3_block = index3 - this->index3_start;  // the third index in the dense representation of this slice
-        const size_t index4_block = index4 - this->index4_start;  // the fourth index in the dense representation of this slice
+        const auto dense_index1 = this->denseIndexOf<0>(index1);
+        const auto dense_index2 = this->denseIndexOf<1>(index2);
+        const auto dense_index3 = this->denseIndexOf<2>(index3);
+        const auto dense_index4 = this->denseIndexOf<3>(index4);
 
-        return this->T(index1_block, index2_block, index3_block, index4_block);
+        return this->T(dense_index1, dense_index2, dense_index3, dense_index4);
     }
 
     /**
@@ -123,18 +242,30 @@ public:
     Scalar& operator()(const size_t index1, const size_t index2, const size_t index3, const size_t index4) {
 
         // Map the implicit indices to the indices of the dense representation of this slice.
-        const size_t index1_block = index1 - this->index1_start;  // the first index in the dense representation of this slice
-        const size_t index2_block = index2 - this->index2_start;  // the second index in the dense representation of this slice
-        const size_t index3_block = index3 - this->index3_start;  // the third index in the dense representation of this slice
-        const size_t index4_block = index4 - this->index4_start;  // the fourth index in the dense representation of this slice
+        const auto dense_index1 = this->denseIndexOf<0>(index1);
+        const auto dense_index2 = this->denseIndexOf<1>(index2);
+        const auto dense_index3 = this->denseIndexOf<2>(index3);
+        const auto dense_index4 = this->denseIndexOf<3>(index4);
 
-        return this->T(index1_block, index2_block, index3_block, index4_block);
+        return this->T(dense_index1, dense_index2, dense_index3, dense_index4);
     }
 
 
     /*
      *  PUBLIC METHODS
      */
+
+    /**
+     *  Convert an implicit axis index to the axis index in the dense representation of this slice.
+     * 
+     *  @tparam Axis                the index of the axis (0,1,2,3)
+     * 
+     *  @param index                the implicit tensor index inside the given axis
+     * 
+     *  @return the index of the dense representation of this slice for the given axis
+     */
+    template <size_t Axis>
+    size_t denseIndexOf(const size_t index) const { return this->indices_implicit_to_dense[Axis].at(index); }
 
     /**
      *  @return this as a (column-major) matrix

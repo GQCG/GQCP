@@ -28,8 +28,8 @@
 BOOST_AUTO_TEST_CASE(operator_call) {
 
     // Create an implicit rank-four tensor and set some values through the call operator.
-    GQCP::ImplicitRankFourTensorSlice<size_t> B {1, 3, 1, 3,
-                                                 1, 3, 1, 3};
+    auto B = GQCP::ImplicitRankFourTensorSlice<size_t>::ZeroFromBlockRanges(1, 3, 1, 3,
+                                                                            1, 3, 1, 3);
 
     B(1, 1, 1, 1) = 1;
     B(1, 2, 2, 2) = 2;

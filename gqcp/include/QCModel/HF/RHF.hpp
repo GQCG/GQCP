@@ -221,8 +221,7 @@ public:
         const auto K = sq_hamiltonian.dimension();
         const auto orbital_space = OrbitalSpace::Implicit({{OccupationType::k_occupied, N_P}, {OccupationType::k_virtual, K - N_P}});  // N_P occupied spatial orbitals, K-N_P virtual spatial orbitals
 
-        ImplicitRankFourTensorSlice<Scalar> hessian {N_P, K, 0, N_P,
-                                                     N_P, K, 0, N_P};  // zero-initialize an object suitable for the representation of a virtual-occupied,virtual-occupied object (ai,bj)
+        auto hessian = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_virtual, OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_occupied);  // zero-initialize an object suitable for the representation of a virtual-occupied,virtual-occupied object (ai,bj)
 
         // Loop over all indices (ai,bj) to construct the orbital hessian
         for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {

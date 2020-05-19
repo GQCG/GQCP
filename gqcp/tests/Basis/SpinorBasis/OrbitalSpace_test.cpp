@@ -62,7 +62,7 @@ BOOST_AUTO_TEST_CASE(Implicit) {
     const std::vector<size_t> ref_occupied_indices1 {0, 1, 2, 3};
 
     const auto orbital_space1 = GQCP::OrbitalSpace::Implicit({{occ, 4}});
-    BOOST_CHECK(orbital_space1.indices(occ) == ref_occupied_indices);
+    BOOST_CHECK(orbital_space1.indices(occ) == ref_occupied_indices1);
 
 
     // Check an occupied-virtual constructor.

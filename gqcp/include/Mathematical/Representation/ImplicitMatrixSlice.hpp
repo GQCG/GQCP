@@ -20,7 +20,8 @@
 
 #include "Mathematical/Representation/Matrix.hpp"
 
-#include <unordered_map>
+#include <map>
+#include <numeric>
 
 
 namespace GQCP {
@@ -40,17 +41,8 @@ public:
 
 
 private:
-    size_t row_start;  // the 0-based row index of the full matrix at which the block starts, i.e. the start of the range of values that the first argument of operator() should accept
-    size_t row_end;    // the 0-based row index of the full matrix at which the block ends (not included), i.e. the end (not included) of the range of values that the first argument of operator() should accept
-
-    size_t col_start;  // the 0-based column index of the full matrix at which the block starts, i.e. the start of the range of values that the second argument of operator() should accept
-    size_t col_end;    // the 0-based column index of the full matrix at which the block ends (not included), i.e. the end (not included) of the range of values that the second argument of operator() should accept
-
-    std::unordered_map<size_t, size_t> rows_implicit_to_dense;  // maps the row indices of the implicit matrix to the row indices of the dense representation of the slice
-    std::unordered_map<size_t, size_t> cols_implicit_to_dense;  // maps the column indices of the implicit matrix to the column indices of the dense representation of the slice
-
-
-    std::vector<size_t> col_indices;  // the column indices (in order) of the implicit matrix that the column indices of the dense representation of the slice correspond to
+    std::map<size_t, size_t> rows_implicit_to_dense;  // maps the row indices of the implicit matrix to the row indices of the dense representation of the slice
+    std::map<size_t, size_t> cols_implicit_to_dense;  // maps the column indices of the implicit matrix to the column indices of the dense representation of the slice
 
     MatrixX<Scalar> M;  // the dense representation of the slice
 
@@ -67,77 +59,138 @@ public:
      *  @param cols_implicit_to_dense           maps the column indices of the implicit matrix to the column indices of the dense representation of the slice
      *  @param M                                the dense representation of the slice
      */
-    ImplicitMatrixSlice(const std::unordered_map<size_t, size_t>& rows_implicit_to_dense, const std::unordered_map<size_t, size_t>& cols_implicit_to_dense, const MatrixX<Scalar>& M) :
+    ImplicitMatrixSlice(const std::map<size_t, size_t>& rows_implicit_to_dense, const std::map<size_t, size_t>& cols_implicit_to_dense, const MatrixX<Scalar>& M) :
         rows_implicit_to_dense {rows_implicit_to_dense},
         cols_implicit_to_dense {cols_implicit_to_dense},
         M {M} {
 
         // Check if the maps are consistent with the dense representation of the slice.
         if (this->rows_implicit_to_dense.size() != this->M.rows()) {
-            throw std::invalid_argument("ImplicitMatrixSlice(const std::unordered_map<size_t, size_t>&, const std::unordered_map<size_t, size_t>&, const MatrixX<Scalar>&): The given matrix does not have a compatible number of rows.");
+            throw std::invalid_argument("ImplicitMatrixSlice(const std::map<size_t, size_t>&, const std::map<size_t, size_t>&, const MatrixX<Scalar>&): The given dense representation of the slice does not have a compatible number of rows.");
         }
 
         if (this->cols_implicit_to_dense.size() != this->M.cols()) {
-            throw std::invalid_argument("ImplicitMatrixSlice(const std::unordered_map<size_t, size_t>&, const std::unordered_map<size_t, size_t>&, const MatrixX<Scalar>&): The given matrix does not have a compatible number of columns.");
+            throw std::invalid_argument("ImplicitMatrixSlice(const std::map<size_t, size_t>&, const std::map<size_t, size_t>&, const MatrixX<Scalar>&): The given dense representation of the slice does not have a compatible number of columns.");
         }
     }
 
 
     /**
-     *  Construct an ImplicitMatrixSlice with a given block matrix.
+     *  Initialize an ImplicitMatrixSlice's members, with a zero matrix for the dense representation of the slice.
      * 
-     *  @param row_start        the 0-based row index of the full matrix at which the block starts, i.e. the start of the range of values that the first argument of operator() should accept
-     *  @param row_end          the 0-based row index of the full matrix at which the block ends (not included), i.e. the end (not included) of the range of values that the first argument of operator() should accept
-     *  @param col_start        the 0-based column index of the full matrix at which the block starts, i.e. the start of the range of values that the second argument of operator() should accept
-     *  @param col_end          the 0-based column index of the full matrix at which the block ends (not included), i.e. the end (not included) of the range of values that the second argument of operator() should accept
-     *  @param M                the dense representation of the slice
+     *  @param rows_implicit_to_dense           maps the row indices of the implicit matrix to the row indices of the dense representation of the slice
+     *  @param cols_implicit_to_dense           maps the column indices of the implicit matrix to the column indices of the dense representation of the slice
      */
-    ImplicitMatrixSlice(const size_t row_start, const size_t row_end, const size_t col_start, const size_t col_end, const MatrixX<Scalar>& M) :
-        row_start {row_start},
-        row_end {row_end},
-        col_start {col_start},
-        col_end {col_end},
-        M {M} {
-        if (row_end - row_start != M.rows()) {
-            throw std::invalid_argument("ImplicitMatrixSlice(const size_t, const size_t, const size_t, const size_t, const MatrixX<Scalar>&): The given matrix does not have a compatible number of rows.");
-        }
-
-        if (col_end - col_start != M.cols()) {
-            throw std::invalid_argument("ImplicitMatrixSlice(const size_t, const size_t, const size_t, const size_t, const MatrixX<Scalar>&): The given matrix does not have a compatible number of columns.");
-        }
-    }
-
-    /**
-     *  Construct an ImplicitMatrixSlice with a zero block matrix.
-     * 
-     *  @param row_start        the 0-based row index of the full matrix at which the block starts, i.e. the start of the range of values that the first argument of operator() should accept
-     *  @param row_end          the 0-based row index of the full matrix at which the block ends (not included), i.e. the end (not included) of the range of values that the first argument of operator() should accept
-     *  @param col_start        the 0-based column index of the full matrix at which the block starts, i.e. the start of the range of values that the second argument of operator() should accept
-     *  @param col_end          the 0-based column index of the full matrix at which the block ends (not included), i.e. the end (not included) of the range of values that the second argument of operator() should accept
-     */
-    ImplicitMatrixSlice(const size_t row_start, const size_t row_end, const size_t col_start, const size_t col_end) :
-        ImplicitMatrixSlice(row_start, row_end, col_start, col_end,
-                            MatrixX<Scalar>::Zero(row_end - row_start, col_end - col_start)) {}
+    ImplicitMatrixSlice(const std::map<size_t, size_t>& rows_implicit_to_dense, const std::map<size_t, size_t>& cols_implicit_to_dense) :
+        ImplicitMatrixSlice(rows_implicit_to_dense, cols_implicit_to_dense,
+                            MatrixX<Scalar>::Zero(rows_implicit_to_dense.size(), cols_implicit_to_dense.size())) {}
 
 
     /**
      *  A default constructor setting everything to zero.
      */
     ImplicitMatrixSlice() :
-        ImplicitMatrixSlice(0, 0, 0, 0) {}
+        // Use a named constructor for the default initialization.
+        ImplicitMatrixSlice(ImplicitMatrixSlice<Scalar>::ZeroFromIndices({}, {})) {}
 
 
-    // /**
-    //  *  Create an implicit matrix slice through a dense representation of the slice.
-    //  *
-    //  *  @param row_indices              the row indices (in order) of the implicit matrix that the row indices of the dense representation of the slice correspond to
-    //  *  @param col_indices              the column indices (in order) of the implicit matrix that the column indices of the dense representation of the slice correspond to
-    //  *  @param M                        the dense representation of the slice
-    //  */
-    // ImplicitMatrixSlice(const std::vector<size_t>& row_indices, const std::vector<size_t>& col_indices, const MatrixX<Scalar>& M) :
-    //     row_indices {row_indices},
-    //     col_indices {col_indices},
-    //     M {M} {}
+    /*
+     *  NAMED CONSTRUCTORS
+     */
+
+    /**
+     *  Construct an ImplicitMatrixSlice from a dense matrix block and corresponding index ranges.
+     * 
+     *  @param row_start        the 0-based row index of the implicit matrix at which the block starts
+     *  @param row_end          the 0-based row index of the implicit matrix at which the block ends (not included)
+     *  @param col_start        the 0-based column index of the implicit matrix at which the block starts
+     *  @param col_end          the 0-based column index of the implicit matrix at which the block ends (not included)
+     *  @param M                the dense representation of the block
+     * 
+     *  @return an implicit matrix slice
+     */
+    static ImplicitMatrixSlice<Scalar> FromBlockRanges(const size_t row_start, const size_t row_end, const size_t col_start, const size_t col_end, const MatrixX<Scalar>& M) {
+
+        // Convert the ranges into allowed row and column indices of the implicit matrix, and then use another named constructor.
+        std::vector<size_t> row_indices(row_end - row_start);
+        std::iota(row_indices.begin(), row_indices.end(), row_start);
+
+        std::vector<size_t> col_indices(col_end - col_start);
+        std::iota(col_indices.begin(), col_indices.end(), col_start);
+
+        return ImplicitMatrixSlice<Scalar>::FromIndices(row_indices, col_indices, M);
+    }
+
+
+    /**
+     *  Create an implicit matrix slice through a dense representation of the slice.
+     *
+     *  @param row_indices              the row indices (in order) of the implicit matrix that the row indices of the dense representation of the slice correspond to
+     *  @param col_indices              the column indices (in order) of the implicit matrix that the column indices of the dense representation of the slice correspond to
+     *  @param M                        the dense representation of the slice
+     * 
+     *  @return an implicit matrix slice
+     */
+    static ImplicitMatrixSlice<Scalar> FromIndices(const std::vector<size_t>& row_indices, const std::vector<size_t>& col_indices, const MatrixX<Scalar>& M) {
+
+        // Loop over all row and column indices, mapping them to the indices of the dense representation of the slice.
+        std::map<size_t, size_t> rows_map;
+        size_t dense_row_index = 0;  // row index in the dense representation of the slice
+        for (const auto& implicit_row_index : row_indices) {
+
+            rows_map[implicit_row_index] = dense_row_index;
+            dense_row_index++;  // the dense indices are contiguous
+        }
+
+        std::map<size_t, size_t> cols_map;
+        size_t dense_col_index = 0;  // column index in the dense representation of the slice
+        for (const auto& implicit_col_index : col_indices) {
+
+            cols_map[implicit_col_index] = dense_col_index;
+            dense_col_index++;  // the dense indices are contiguous
+        }
+
+        return ImplicitMatrixSlice<Scalar>(rows_map, cols_map, M);
+    }
+
+
+    /**
+     *  Construct a zero ImplicitMatrixSlice with given block ranges.
+     * 
+     *  @param row_start        the 0-based row index of the implicit matrix at which the block starts
+     *  @param row_end          the 0-based row index of the implicit matrix at which the block ends (not included)
+     *  @param col_start        the 0-based column index of the implicit matrix at which the block starts
+     *  @param col_end          the 0-based column index of the implicit matrix at which the block ends (not included)
+     *  @param M                the dense representation of the block
+     * 
+     *  @return a zero implicit matrix slice
+     */
+    static ImplicitMatrixSlice<Scalar> ZeroFromBlockRanges(const size_t row_start, const size_t row_end, const size_t col_start, const size_t col_end) {
+
+        // Create the zero dense representation of the slice and then use another named constructor.
+        const auto rows = row_end - row_start;
+        const auto cols = col_end - col_start;
+        const MatrixX<Scalar> M = MatrixX<Scalar>::Zero(rows, cols);
+
+        return ImplicitMatrixSlice<Scalar>::FromBlockRanges(row_start, row_end, col_start, col_end, M);
+    }
+
+
+    /**
+     *  Create a zero-initialized implicit matrix slice from given allowed row and column indices.
+     *
+     *  @param row_indices              the row indices (in order) of the implicit matrix that the row indices of the dense representation of the slice correspond to
+     *  @param col_indices              the column indices (in order) of the implicit matrix that the column indices of the dense representation of the slice correspond to
+     * 
+     *  @return an implicit matrix slice
+     */
+    static ImplicitMatrixSlice<Scalar> ZeroFromIndices(const std::vector<size_t>& row_indices, const std::vector<size_t>& col_indices) {
+
+        // Zero-initialize a matrix with the number of rows and columns and use a different constructor.
+        const MatrixX<Scalar> M = MatrixX<Scalar>::Zero(row_indices.size(), col_indices.size());
+
+        return ImplicitMatrixSlice<Scalar>::FromIndices(row_indices, col_indices, M);
+    }
 
 
     /*
@@ -147,36 +200,36 @@ public:
     /**
      *  Access an element of this implicit matrix slice.
      * 
-     *  @param i                the row number in the implicit encapsulating matrix
-     *  @param j                the column number in the implicit encapsulating matrix
+     *  @param row                  the row number in the implicit encapsulating matrix
+     *  @param col                  the column number in the implicit encapsulating matrix
      * 
      *  @return a read-only element of the implicit encapsulating matrix
      */
-    Scalar operator()(const size_t i, const size_t j) const {
+    Scalar operator()(const size_t row, const size_t col) const {
 
         // Map the implicit row and column indices to the row and column indices of the dense representation of this slice and access accordingly.
-        const size_t row = this->denseIndexOfRow(i);
-        const size_t col = this->denseIndexOfColumn(j);
+        const size_t i = this->denseIndexOfRow(row);
+        const size_t j = this->denseIndexOfColumn(col);
 
-        return this->M(row, col);
+        return this->M(i, j);
     }
 
 
     /**
      *  Access an element of this implicit matrix slice.
      * 
-     *  @param i                the row number in the implicit encapsulating matrix
-     *  @param j                the column number in the implicit encapsulating matrix
+     *  @param row                  the row number in the implicit encapsulating matrix
+     *  @param col                  the column number in the implicit encapsulating matrix
      * 
      *  @return a writable element of the impliti encapsulating matrix
      */
-    Scalar& operator()(const size_t i, const size_t j) {
+    Scalar& operator()(const size_t row, const size_t col) {
 
         // Map the implicit row and column indices to the row and column indices of the dense representation of this slice and access accordingly.
-        const size_t row = this->denseIndexOfRow(i);
-        const size_t col = this->denseIndexOfColumn(j);
+        const size_t i = this->denseIndexOfRow(row);
+        const size_t j = this->denseIndexOfColumn(col);
 
-        return this->M(row, col);
+        return this->M(i, j);
     }
 
 
@@ -203,27 +256,21 @@ public:
     /**
      *  Convert an implicit column index to the column index in the dense representation of this slice.
      * 
-     *  @param j                the column number in the implicit encapsulating matrix
+     *  @param col                  the column number in the implicit encapsulating matrix
      * 
      *  @return the column index the dense representation of this slice.
      */
-    size_t denseIndexOfColumn(const size_t j) const {
-
-        return j - this->col_start;
-    }
+    size_t denseIndexOfColumn(const size_t col) const { return this->cols_implicit_to_dense.at(col); }
 
 
     /**
      *  Convert an implicit row index to the row index in the dense representation of this slice.
      * 
-     *  @param i                the row number in the implicit encapsulating matrix
+     *  @param row                  the row number in the implicit encapsulating matrix
      * 
      *  @return the row index the dense representation of this slice.
      */
-    size_t denseIndexOfRow(const size_t i) const {
-
-        return i - this->row_start;
-    }
+    size_t denseIndexOfRow(const size_t row) const { return this->rows_implicit_to_dense.at(row); }
 };
 
 

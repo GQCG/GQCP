@@ -43,86 +43,64 @@ void bindOrbitalSpace(py::module& module) {
              "Construct an orbital space only from occupied and virtual indices.")
 
         .def_static(
-            "Occupied",
-            [](const size_t N) {
-                return GQCP::OrbitalSpace::Occupied(N);
+            "Implicit",
+            [](const std::map<GQCP::OccupationType, size_t>& counts) {
+                return GQCP::OrbitalSpace::Implicit(counts);
             },
-            py::arg("N"),
-            "Create an orbital space with only occupied indices [0, N[.")
-
-        .def_static(
-            "OccupiedVirtual",
-            [](const size_t N, const size_t M) {
-                return GQCP::OrbitalSpace::OccupiedVirtual(N, M);
-            },
-            py::arg("N"),
-            py::arg("M"),
-            "Create an orbital space that is separated between occupied and virtual orbitals.")
+            py::arg("counts"),
+            "Create an implicit orbital space with the given dimensions.")
 
 
         // PUBLIC METHODS
-        .def(
-            "allIndices",
-            &GQCP::OrbitalSpace::allIndices,
-            "Return all the indices of the spinors.")
-
-        .def(
-            "activeIndices",
-            &GQCP::OrbitalSpace::activeIndices,
-            "Return the active orbital space, i.e. those spinor indices that are occupied in some set of configurations but not in others.")
-
         .def(
             "description",
             &GQCP::OrbitalSpace::description,
             "Return a textual description of this orbital space.")
 
         .def(
-            "isIndexActive",
-            &GQCP::OrbitalSpace::isIndexActive,
-            py::arg("p"),
-            "Return if the orbital at the given index is in the active orbital space.")
+            "indices",
+            [](const GQCP::OrbitalSpace& orbital_space) {
+                return orbital_space.indices();
+            },
+            "Return all the indices of the spinors")
 
         .def(
-            "isIndexOccupied",
-            &GQCP::OrbitalSpace::isIndexOccupied,
-            py::arg("p"),
-            "Return if the orbital at the given index is in the occupied orbital space.")
+            "indices",
+            [](const GQCP::OrbitalSpace& orbital_space, const GQCP::OccupationType type) {
+                return orbital_space.indices(type);
+            },
+            py::arg("type"),
+            "Return the indices that belong to the given occupation type.")
 
         .def(
-            "isIndexVirtual",
-            &GQCP::OrbitalSpace::isIndexVirtual,
+            "isIndex",
+            [](const GQCP::OrbitalSpace& orbital_space, const GQCP::OccupationType type, const size_t p) {
+                return orbital_space.isIndex(type, p);
+            },
+            py::arg("type"),
             py::arg("p"),
-            "Return if the orbital at the given index is in the virtual orbital space.")
+            "Return if the orbital at the given index is in the given orbital space.")
+
+        .def(
+            "numberOfExcitations",
+            &GQCP::OrbitalSpace::numberOfExcitations,
+            py::arg("from"),
+            py::arg("to"),
+            "Return the number of possible excitations between the two orbital sets")
 
         .def(
             "numberOfOrbitals",
-            &GQCP::OrbitalSpace::numberOfOrbitals,
+            [](const GQCP::OrbitalSpace& orbital_space) {
+                return orbital_space.numberOfOrbitals();
+            },
             "Return the total number of orbitals (i.e. spatial orbitals or spinors, depending on the context) in this orbital space.")
 
         .def(
-            "numberOfActiveOrbitals",
-            &GQCP::OrbitalSpace::numberOfActiveOrbitals,
-            "Return the number of active orbitals (i.e. spatial orbitals or spinors, depending on the context) in this orbital space.")
-
-        .def(
-            "numberOfOccupiedOrbitals",
-            &GQCP::OrbitalSpace::numberOfOccupiedOrbitals,
-            "Return the number of occupied orbitals (i.e. spatial orbitals or spinors, depending on the context) in this orbital space.")
-
-        .def(
-            "numberOfVirtualOrbitals",
-            &GQCP::OrbitalSpace::numberOfVirtualOrbitals,
-            "Return the number of virtual orbitals (i.e. spatial orbitals or spinors, depending on the context) in this orbital space.")
-
-        .def(
-            "occupiedIndices",
-            &GQCP::OrbitalSpace::occupiedIndices,
-            "Return the occupied orbital space, i.e. the indices of the orbitals that are considered occupied by the electrons.")
-
-        .def(
-            "virtualIndices",
-            &GQCP::OrbitalSpace::virtualIndices,
-            "Return the virtual orbital space, i.e. the indices of the orbitals that are considered virtual by the electrons.");
+            "numberOfOrbitals",
+            [](const GQCP::OrbitalSpace& orbital_space, const GQCP::OccupationType type) {
+                return orbital_space.numberOfOrbitals(type);
+            },
+            "Return the number of orbitals (i.e. spatial orbitals or spinors, depending on the context) that belong to the given occupation type.");
 }
 
 

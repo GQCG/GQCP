@@ -47,7 +47,7 @@ ERNewtonLocalizer::ERNewtonLocalizer(const OrbitalSpace orbital_space, std::shar
  */
 SquareMatrix<double> ERNewtonLocalizer::calculateGradientMatrix(const SQHamiltonian<double>& sq_hamiltonian) const {
 
-    const auto N_P = this->orbital_space.numberOfOrbitals(OccupationType::k_occupied, );
+    const auto N_P = this->orbital_space.numberOfOrbitals(OccupationType::k_occupied);
 
     SquareMatrix<double> G = SquareMatrix<double>::Zero(N_P, N_P);
 
@@ -68,7 +68,7 @@ SquareMatrix<double> ERNewtonLocalizer::calculateGradientMatrix(const SQHamilton
  */
 SquareRankFourTensor<double> ERNewtonLocalizer::calculateHessianTensor(const SQHamiltonian<double>& sq_hamiltonian) const {
 
-    const auto N_P = this->orbital_space.numberOfOrbitals(OccupationType::occupied, );
+    const auto N_P = this->orbital_space.numberOfOrbitals(OccupationType::k_occupied);
     SquareRankFourTensor<double> H {N_P};
     H.setZero();
 

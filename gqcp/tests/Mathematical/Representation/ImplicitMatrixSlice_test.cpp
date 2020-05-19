@@ -41,13 +41,13 @@ BOOST_AUTO_TEST_CASE(basic_constructor) {
     // clang-format on
 
 
-    // The following unordered_maps map the implicit indices to the dense indices.
-    const std::unordered_map<size_t, size_t> rows_map {
+    // The following maps map the implicit indices to the dense indices.
+    const std::map<size_t, size_t> rows_map {
         {0, 0},  // the 0'th implicit row maps to the 0'th dense row
         {1, 1}   // the 1'th implicit row maps to the 1'th dense row
     };
 
-    const std::unordered_map<size_t, size_t> cols_map {
+    const std::map<size_t, size_t> cols_map {
         {1, 0},  // the 1'th implicit column maps to the 0'th dense column
         {3, 1}   // the 1'th implicit column maps to the 1'th dense column
     };

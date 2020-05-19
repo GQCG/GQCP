@@ -132,8 +132,7 @@ ImplicitMatrixSlice<double> QCModel::AP1roG::calculatePSECoordinateFunctions(con
 
     const auto orbital_space = G.orbitalSpace();
 
-
-    ImplicitMatrixSlice<double> F {0, N_P, N_P, K};  // an occupied-virtual matrix
+    auto F = orbital_space.initializeRepresentableObjectFor<double>(OccupationType::k_occupied, OccupationType::k_virtual);  // create a mathematical representation for an occupied-virtual object
 
 
     // Loop over all the elements of F to construct it.
@@ -243,9 +242,7 @@ ImplicitRankFourTensorSlice<double> QCModel::AP1roG::calculatePSEJacobian(const 
 
     const auto orbital_space = G.orbitalSpace();
 
-
-    ImplicitRankFourTensorSlice<double> J {0, N_P, N_P, K,
-                                           0, N_P, N_P, K};  // an occupied-virtual, occupied-virtual tensor
+    auto J = orbital_space.initializeRepresentableObjectFor<double>(OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_occupied, OccupationType::k_virtual);  // initialize an occupied-virtual, occupied-virtual tensor
 
 
     // Loop over all elements of J to construct it.

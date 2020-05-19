@@ -194,6 +194,6 @@ BOOST_AUTO_TEST_CASE(orbitalSpace) {
 
 
     // Test the implicit orbital space.
-    BOOST_CHECK(G.orbitalSpace().indices(OccupationType::k_occupied) == ref_occupied_indices);
-    BOOST_CHECK(G.orbitalSpace().indices(OccupationType::k_virtual) == ref_virtual_indices);
+    BOOST_CHECK(G.orbitalSpace().indices(GQCP::OccupationType::k_occupied) == ref_occupied_indices);
+    BOOST_CHECK(G.orbitalSpace().indices(GQCP::OccupationType::k_virtual) == ref_virtual_indices);
 }

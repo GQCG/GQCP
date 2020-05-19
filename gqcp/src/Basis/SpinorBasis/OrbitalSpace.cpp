@@ -113,7 +113,6 @@ OrbitalSpace OrbitalSpace::Implicit(const std::map<OccupationType, size_t>& coun
  *  PUBLIC METHODS
  */
 
-
 /**
  *  @return a textual description of this orbital space
  */
@@ -170,12 +169,25 @@ const std::vector<size_t>& OrbitalSpace::indices(const OccupationType type) cons
  *  @param type             an occupation type (k_occupied, k_active, k_virtual)
  *  @param p                an orbital index
  * 
- *  @return if the orbital at the given index is in the given orbital space
+ *  @return if the orbital at the given index is in the given orbital set
  */
 bool OrbitalSpace::isIndex(const OccupationType type, const size_t p) const {
 
     const auto& indices = this->indices(type);
     return std::find(indices.begin(), indices.end(), p) != indices.end();
+}
+
+
+/**
+ *  @param from                     the type of orbitals that should be excited from
+ *  @param to                       the type of orbitals that should be excited to
+ * 
+ *  @return the number of possible excitations between the two orbital sets
+ */
+size_t OrbitalSpace::numberOfExcitations(const OccupationType from, const OccupationType to) const {
+
+    // Count the number of excitation pairs that can be formed.
+    return this->numberOfOrbitals(from) * this->numberOfOrbitals(to);
 }
 
 
