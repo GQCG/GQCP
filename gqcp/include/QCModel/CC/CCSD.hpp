@@ -36,11 +36,30 @@ namespace QCModel {
 template <typename _Scalar>
 class CCSD {
 public:
-    using _Scalar = Scalar;
+    using Scalar = _Scalar;
 
 
 private:
+    T1Amplitudes<Scalar> t1;  // the T1-amplitudes
+    T2Amplitudes<Scalar> t2;  // the T2-amplitudes
+
+
 public:
+    /*
+     *  CONSTRUCTORS
+     */
+
+    /**
+     *  Construct a CCSD wave function from its converged T1- and T2-amplitudes.
+     * 
+     *  @param t1                   the T1-amplitudes
+     *  @param t2                   the T2-amplitudes
+     */
+    CCSD(const T1Amplitudes<Scalar>& t1, const T2Amplitudes<Scalar>& t2) :
+        t1 {t1},
+        t2 {t2} {}
+
+
     /*
      *  STATIC PUBLIC METHODS
      */
@@ -51,14 +70,16 @@ public:
      *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal spinor basis
      *  @param t1                           the T1-amplitudes
      *  @param t2                           the T2-amplitudes
-     *  @param orbital_space                the orbital space which covers the occupied-virtual separation
      * 
      *  @return the CCSD correlation energy
      */
-    static double calculateCorrelationEnergy(const SQHamiltonian<Scalar>& sq_hamiltonian, const T1Amplitudes<Scalar>& t1, const T2Amplitudes<Scalar>& t2, const OrbitalSpace& orbital_space) {
+    static double calculateCorrelationEnergy(const SQHamiltonian<Scalar>& sq_hamiltonian, const T1Amplitudes<Scalar>& t1, const T2Amplitudes<Scalar>& t2) {
+
+        const auto orbital_space = t1.orbitalSpace();  // assume t1 and t2 have the same orbital space.
+
 
         // For the CCSD energy equation, we need the inactive Fock matrix and the anti-symmetrized two-electron integrals in physicist's notation.
-        const auto F = sq_hamiltonian.calculateInactiveFockian(orbital_space);
+        const auto F = sq_hamiltonian.calculateInactiveFockian(orbital_space).parameters();
 
         const auto& g_chemists = sq_hamiltonian.twoElectron().parameters();
         const auto V_A = g_chemists.convertedToPhysicistsNotation().antisymmetrized();
@@ -67,16 +88,16 @@ public:
         // A KISS implementation of the CCSD energy correction.
         // The implementation is in line with Crawford2000 "Chapter 2: An Introduction to Coupled Cluster Theory for Computational Chemists", eq. [134].
         double E = 0.0;
-        for (const auto& i : orbital_space.occupiedIndices()) {
-            for (const auto& a : orbital_space.virtualIndices()) {
+        for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 E += F(i, a) * t1(i, a);
             }
         }
 
-        for (const auto& i : orbital_space.occupiedIndices()) {
-            for (const auto& j : orbital_space.occupiedIndices()) {
-                for (const auto& a : orbital_space.virtualIndices()) {
-                    for (const auto& b : orbital_space.virtualIndices()) {
+        for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
+                for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
+                    for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
                         E += 0.25 * V_A(i, j, a, b) * t2(i, j, a, b);
 
                         E += 0.5 * V_A(i, j, a, b) * t1(i, a) * t1(j, b);
@@ -98,11 +119,13 @@ public:
      *  @param t2                           the T2-amplitudes
      *  @param i                            the (occupied) subscript for the amplitude equation
      *  @param a                            the (virtual) superscript for the amplitude equation
-     *  @param orbital_space                the orbital space which covers the occupied-virtual separation
      * 
      *  @return the value for one of the CCSD T1-amplitude equations
      */
-    static double calculateT1AmplitudeEquation(const SQHamiltonian<double>& sq_hamiltonian, const T1Amplitudes<Scalar>& t1, const T2Amplitudes<Scalar>& t2, const size_t i, const size_t a, const OrbitalSpace& orbital_space) {
+    static double calculateT1AmplitudeEquation(const SQHamiltonian<double>& sq_hamiltonian, const T1Amplitudes<Scalar>& t1, const T2Amplitudes<Scalar>& t2, const size_t i, const size_t a) {
+
+        const auto orbital_space = t1.orbitalSpace();  // assume t1 and t2 have the same orbital space.
+
 
         // For the CCSD T1-amplitude equations equations, we need the inactive Fock matrix and the anti-symmetrized two-electron integrals in physicist's notation.
         const auto F = sq_hamiltonian.calculateInactiveFockian(orbital_space).parameters();
@@ -117,16 +140,16 @@ public:
 
         value += F(a, i);
 
-        for (const auto& c : orbital_space.virtualIndices()) {
+        for (const auto& c : orbital_space.indices(OccupationType::k_virtual)) {
             value += F(a, c) * t1(i, c);
         }
 
-        for (const auto& k : orbital_space.occupiedIndices()) {
+        for (const auto& k : orbital_space.indices(OccupationType::k_occupied)) {
             value -= F(k, i) * t1(k, a);
         }
 
-        for (const auto& k : orbital_space.occupiedIndices()) {
-            for (const auto& c : orbital_space.virtualIndices()) {
+        for (const auto& k : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& c : orbital_space.indices(OccupationType::k_virtual)) {
                 value += V_A(k, a, c, i) * t1(k, c);
 
                 value += F(k, c) * t2(i, k, a, c);
@@ -135,9 +158,9 @@ public:
             }
         }
 
-        for (const auto& k : orbital_space.occupiedIndices()) {
-            for (const auto& c : orbital_space.virtualIndices()) {
-                for (const auto& d : orbital_space.virtualIndices()) {
+        for (const auto& k : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& c : orbital_space.indices(OccupationType::k_virtual)) {
+                for (const auto& d : orbital_space.indices(OccupationType::k_virtual)) {
                     value += 0.5 * V_A(k, a, c, d) * t2(k, i, c, d);
 
                     value -= V_A(k, a, c, d) * t1(k, c) * t1(i, d);
@@ -145,9 +168,9 @@ public:
             }
         }
 
-        for (const auto& k : orbital_space.occupiedIndices()) {
-            for (const auto& l : orbital_space.occupiedIndices()) {
-                for (const auto& c : orbital_space.virtualIndices()) {
+        for (const auto& k : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& l : orbital_space.indices(OccupationType::k_occupied)) {
+                for (const auto& c : orbital_space.indices(OccupationType::k_virtual)) {
                     value -= 0.5 * V_A(k, l, c, i) * t2(k, l, c, a);
 
                     value -= V_A(k, l, c, i) * t1(k, c) * t1(l, a);
@@ -155,10 +178,10 @@ public:
             }
         }
 
-        for (const auto& k : orbital_space.occupiedIndices()) {
-            for (const auto& l : orbital_space.occupiedIndices()) {
-                for (const auto& c : orbital_space.virtualIndices()) {
-                    for (const auto& d : orbital_space.virtualIndices()) {
+        for (const auto& k : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& l : orbital_space.indices(OccupationType::k_occupied)) {
+                for (const auto& c : orbital_space.indices(OccupationType::k_virtual)) {
+                    for (const auto& d : orbital_space.indices(OccupationType::k_virtual)) {
                         value -= V_A(k, l, c, d) * t1(k, c) * t1(i, d) * t1(l, a);
 
                         value += V_A(k, l, c, d) * t1(k, c) * t2(l, i, d, a);
@@ -187,11 +210,12 @@ public:
      *  @param j                            the other (occupied) subscript for the amplitude equation
      *  @param a                            the (virtual) superscript for the amplitude equation
      *  @param b                            the other (virtual) superscript for the amplitude equation
-     *  @param orbital_space                the orbital space which covers the occupied-virtual separation
      * 
      *  @return the value for one of the CCSD T1-amplitude equations
      */
-    static double calculateT2AmplitudeEquation(const SQHamiltonian<double>& sq_hamiltonian, const T1Amplitudes<Scalar>& t1, const T2Amplitudes<Scalar>& t2, const size_t i, const size_t j, const size_t a, const size_t b, const OrbitalSpace& orbital_space) {
+    static double calculateT2AmplitudeEquation(const SQHamiltonian<double>& sq_hamiltonian, const T1Amplitudes<Scalar>& t1, const T2Amplitudes<Scalar>& t2, const size_t i, const size_t j, const size_t a, const size_t b) {
+
+        const auto orbital_space = t1.orbitalSpace();  // assume t1 and t2 have the same orbital space.
 
 
         // For the CCSD T2-amplitude equations equations, we need the inactive Fock matrix and the anti-symmetrized two-electron integrals in physicist's notation.
@@ -208,7 +232,7 @@ public:
 
         value += V_A(a, b, i, j);
 
-        for (const auto& c : orbital_space.virtualIndices()) {
+        for (const auto& c : orbital_space.indices(OccupationType::k_virtual)) {
             value += F(b, c) * t2(i, j, a, c);
             value -= F(a, c) * t2(i, j, b, c);
 
@@ -216,7 +240,7 @@ public:
             value -= V_A(a, b, c, i) * t1(j, c);  // P(ij) applied
         }
 
-        for (const auto& k : orbital_space.occupiedIndices()) {
+        for (const auto& k : orbital_space.indices(OccupationType::k_occupied)) {
             value -= F(k, j) * t2(i, k, a, b);
             value += F(k, i) * t2(j, k, a, b);
 
@@ -224,8 +248,8 @@ public:
             value += V_A(k, a, i, j) * t1(k, b);  // P(ab) applied
         }
 
-        for (const auto& k : orbital_space.occupiedIndices()) {
-            for (const auto& l : orbital_space.occupiedIndices()) {
+        for (const auto& k : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& l : orbital_space.indices(OccupationType::k_occupied)) {
                 value += 0.5 * V_A(k, l, i, j) * t2(k, l, a, b);
 
                 value += 0.5 * V_A(k, l, i, j) * t1(k, a) * t1(l, b);
@@ -233,8 +257,8 @@ public:
             }
         }
 
-        for (const auto& c : orbital_space.virtualIndices()) {
-            for (const auto& d : orbital_space.virtualIndices()) {
+        for (const auto& c : orbital_space.indices(OccupationType::k_virtual)) {
+            for (const auto& d : orbital_space.indices(OccupationType::k_virtual)) {
                 value += 0.5 * V_A(a, b, c, d) * t2(i, j, c, d);
 
                 value += 0.5 * V_A(a, b, c, d) * t1(i, c) * t1(j, d);
@@ -242,8 +266,8 @@ public:
             }
         }
 
-        for (const auto& k : orbital_space.occupiedIndices()) {
-            for (const auto& c : orbital_space.virtualIndices()) {
+        for (const auto& k : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& c : orbital_space.indices(OccupationType::k_virtual)) {
                 value += V_A(k, b, c, j) * t2(i, k, a, c);
                 value -= V_A(k, b, c, i) * t2(j, k, a, c);  // P(ij) applied
                 value -= V_A(k, a, c, j) * t2(i, k, b, c);  // P(ab) applied
@@ -262,9 +286,9 @@ public:
             }
         }
 
-        for (const auto& k : orbital_space.occupiedIndices()) {
-            for (const auto& l : orbital_space.occupiedIndices()) {
-                for (const auto& c : orbital_space.virtualIndices()) {
+        for (const auto& k : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& l : orbital_space.indices(OccupationType::k_occupied)) {
+                for (const auto& c : orbital_space.indices(OccupationType::k_virtual)) {
                     value -= V_A(k, l, c, i) * t1(k, c) * t2(l, j, a, b);
                     value += V_A(k, l, c, j) * t1(k, c) * t2(l, i, a, b);  // P(ij) applied
 
@@ -284,9 +308,9 @@ public:
             }
         }
 
-        for (const auto& k : orbital_space.occupiedIndices()) {
-            for (const auto& c : orbital_space.virtualIndices()) {
-                for (const auto& d : orbital_space.virtualIndices()) {
+        for (const auto& k : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& c : orbital_space.indices(OccupationType::k_virtual)) {
+                for (const auto& d : orbital_space.indices(OccupationType::k_virtual)) {
                     value += V_A(k, a, c, d) * t1(k, c) * t2(i, j, d, b);
                     value -= V_A(k, b, c, d) * t1(k, c) * t2(i, j, d, a);  // P(ab) applied
 
@@ -306,10 +330,10 @@ public:
             }
         }
 
-        for (const auto& k : orbital_space.occupiedIndices()) {
-            for (const auto& l : orbital_space.occupiedIndices()) {
-                for (const auto& c : orbital_space.virtualIndices()) {
-                    for (const auto& d : orbital_space.virtualIndices()) {
+        for (const auto& k : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& l : orbital_space.indices(OccupationType::k_occupied)) {
+                for (const auto& c : orbital_space.indices(OccupationType::k_virtual)) {
+                    for (const auto& d : orbital_space.indices(OccupationType::k_virtual)) {
                         value += 0.5 * V_A(k, l, c, d) * t2(i, k, a, c) * t2(l, j, d, b);
                         value -= 0.5 * V_A(k, l, c, d) * t2(j, k, a, c) * t2(l, i, d, b);  // P(ij) applied
                         value -= 0.5 * V_A(k, l, c, d) * t2(i, k, b, c) * t2(l, j, d, a);  // P(ab) applied
@@ -352,6 +376,21 @@ public:
 
         return value;
     }
+
+
+    /*
+     *  PUBLIC METHODS
+     */
+
+    /**
+     *  @return these CCSD model parameters' T1-amplitudes
+     */
+    const T1Amplitudes<Scalar>& t1Amplitudes() const { return this->t1; }
+
+    /**
+     *  @return these CCSD model parameters' T2-amplitudes
+     */
+    const T2Amplitudes<Scalar>& t2Amplitudes() const { return this->t2; }
 };
 
 

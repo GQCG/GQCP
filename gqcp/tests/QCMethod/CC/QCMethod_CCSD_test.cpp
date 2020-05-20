@@ -1,0 +1,152 @@
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
+#define BOOST_TEST_MODULE "CCSD"
+
+#include <boost/test/unit_test.hpp>
+
+#include "Basis/transform.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "QCMethod/CC/CCSD.hpp"
+#include "QCMethod/CC/CCSDEnvironment.hpp"
+#include "QCMethod/CC/CCSDSolver.hpp"
+#include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
+#include "QCMethod/HF/RHF/RHF.hpp"
+#include "QCMethod/HF/RHF/RHFSCFSolver.hpp"
+
+
+/**
+ *  Check if the implementation of spinor-CCSD is correct, by comparing with a reference by crawdad (https://github.com/CrawfordGroup/ProgrammingProjects/tree/master/Project%2305).
+ * 
+ *  The system under consideration is H2O in an STO-3G basisset
+ */
+BOOST_AUTO_TEST_CASE(sandbox) {
+
+    // Prepare the canonical RHF spin-orbital basis.
+    const auto molecule = GQCP::Molecule::HChain(2, 1.4163);
+    const auto N = molecule.numberOfElectrons();
+
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> r_spinor_basis {molecule, "3-21G"};
+    const auto r_sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(r_spinor_basis, molecule);  // in an AO basis
+
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(N, r_sq_hamiltonian, r_spinor_basis.overlap().parameters());
+    auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective {r_sq_hamiltonian};
+    const auto rhf_qc_structure = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment);
+    const auto rhf_parameters = rhf_qc_structure.groundStateParameters();
+
+    const auto total_rhf_energy = rhf_qc_structure.groundStateEnergy() + GQCP::Operator::NuclearRepulsion(molecule).value();
+    std::cout << "RHF (total) energy: " << total_rhf_energy << std::endl;
+
+    r_spinor_basis.transform(rhf_parameters.coefficientMatrix());
+
+
+    // Create a GSpinorBasis since we have implement spinor-CCSD, and quantize the molecular Hamiltonian in it.
+    const auto g_spinor_basis = GQCP::GSpinorBasis<double, GQCP::GTOShell>::FromRestricted(r_spinor_basis);
+    const auto g_sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(g_spinor_basis, molecule);  // in the canonical restricted spin-orbitals
+
+    // Use a manually-made orbital space (#FIXME in develop).
+    const auto orbital_space = GQCP::OrbitalSpace({0, 1, 4, 5}, {2, 3, 6, 7});  // occupied and virtual indices
+    std::cout << orbital_space.description() << std::endl;
+
+
+    // Prepare the CCSD solver and environment, and optimize the CCSD model parameters.
+    auto environment = GQCP::CCSDEnvironment<double>::Perturbative(g_sq_hamiltonian, orbital_space);
+    auto solver = GQCP::CCSDSolver<double>::Plain();
+    const auto ccsd_qc_structure = GQCP::QCMethod::CCSD<double>().optimize(solver, environment);
+
+    const auto ccsd_correlation_energy = ccsd_qc_structure.groundStateEnergy();
+    std::cout << "CCSD correlation energy: " << ccsd_correlation_energy << std::endl;
+
+    const auto total_ccsd_energy = total_rhf_energy + ccsd_correlation_energy;
+    std::cout << "CCSD (total) energy: " << total_ccsd_energy << std::endl;
+    // const double ref_ccsd_correlation_energy = -0.070680088376;
+    // BOOST_CHECK(std::abs(ccsd_correlation_energy - ref_ccsd_correlation_energy) < 1.0e-08);
+}
+
+
+// /**
+//  *  Check if the implementation of spinor-CCSD is correct, by comparing with a reference by crawdad (https://github.com/CrawfordGroup/ProgrammingProjects/tree/master/Project%2305).
+//  *
+//  *  The system under consideration is H2O in an STO-3G basisset
+//  */
+// BOOST_AUTO_TEST_CASE(h2o_crawdad) {
+
+//     // Prepare the canonical RHF spin-orbital basis.
+//     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o_crawdad.xyz");
+//     const auto N = molecule.numberOfElectrons();
+
+//     GQCP::RSpinorBasis<double, GQCP::GTOShell> r_spinor_basis {molecule, "STO-3G"};
+//     const auto r_sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(r_spinor_basis, molecule);  // in an AO basis
+
+//     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(N, r_sq_hamiltonian, r_spinor_basis.overlap().parameters());
+//     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
+//     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {r_sq_hamiltonian};
+//     const auto rhf_qc_structure = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment);
+//     const auto rhf_parameters = rhf_qc_structure.groundStateParameters();
+
+//     r_spinor_basis.transform(rhf_parameters.coefficientMatrix());
+
+
+//     // Check if the intermediate RHF results are correct. We can't continue if this isn't the case.
+//     const auto rhf_energy = rhf_qc_structure.groundStateEnergy() + GQCP::Operator::NuclearRepulsion(molecule).value();
+//     const double ref_rhf_energy = -74.942079928192;
+//     std::cout << "RHF energy: " << rhf_energy << std::endl;
+//     BOOST_REQUIRE(std::abs(rhf_energy - ref_rhf_energy) < 1.0e-09);
+
+//     std::cout << "r_spinor_basis coefficient matrix: " << std::endl
+//               << r_spinor_basis.coefficientMatrix() << std::endl
+//               << std::endl;
+
+
+//     // Create a GSpinorBasis since we have implement spinor-CCSD, and quantize the molecular Hamiltonian in it.
+//     const auto g_spinor_basis = GQCP::GSpinorBasis<double, GQCP::GTOShell>::FromRestricted(r_spinor_basis);
+//     const auto M = g_spinor_basis.numberOfSpinors();
+//     std::cout << "g_spinor_basis coefficient matrix: " << std::endl
+//               << g_spinor_basis.coefficientMatrix() << std::endl
+//               << std::endl;
+//     const auto g_sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(g_spinor_basis, molecule);  // in the canonical restricted spin-orbitals
+
+//     // Use a manually-made orbital space (#FIXME in develop).
+//     const auto orbital_space = GQCP::OrbitalSpace({0, 1, 2, 3, 4, 7, 8, 9, 10, 11}, {5, 6, 12, 13});  // occupied and virtual indices
+//     BOOST_REQUIRE(orbital_space.numberOfOrbitals() == M);
+//     std::cout << orbital_space.description() << std::endl;
+
+
+//     // Initialize an environment suitable for CCSD.
+//     auto environment = GQCP::CCSDEnvironment<double>::Perturbative(g_sq_hamiltonian, orbital_space);
+
+//     // Since we're working with a Hartree-Fock reference, the perturbative amplitudes actually correspond to the MP2 amplitudes. This means that the initial CCSD energy correction is the MP2 energy correction.
+//     const double ref_mp2_correction_energy = -0.049149636120;
+//     const auto& t1 = environment.t1_amplitudes.back();
+
+//     BOOST_REQUIRE(t1.asImplicitMatrixSlice().asMatrix().isZero(1.0e-08));  // for a HF reference, the perturbative T1 amplitudes are zero
+
+//     const auto initial_ccsd_correction_energy = environment.electronic_energies.back();
+//     BOOST_REQUIRE(std::abs(initial_ccsd_correction_energy - ref_mp2_correction_energy) < 1.0e-10);
+
+
+//     // Prepare the CCSD solver and optimize the CCSD model parameters.
+//     auto solver = GQCP::CCSDSolver<double>::Plain();
+//     const auto ccsd_qc_structure = GQCP::QCMethod::CCSD<double>().optimize(solver, environment);
+
+//     const auto ccsd_correlation_energy = ccsd_qc_structure.groundStateEnergy();
+//     std::cout << "final correlation energy: " << ccsd_correlation_energy << std::endl;
+
+//     const double ref_ccsd_correlation_energy = -0.070680088376;
+//     BOOST_CHECK(std::abs(ccsd_correlation_energy - ref_ccsd_correlation_energy) < 1.0e-08);
+// }

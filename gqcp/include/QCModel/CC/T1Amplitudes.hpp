@@ -19,8 +19,9 @@
 
 
 #include "Basis/SpinorBasis/OrbitalSpace.hpp"
-#include "Mathematical/Representation/BlockMatrix.hpp"
+#include "Mathematical/Representation/ImplicitMatrixSlice.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "Utilities/type_traits.hpp"
 
 
 namespace GQCP {
@@ -38,7 +39,7 @@ public:
 private:
     OrbitalSpace orbital_space;  // the orbital space which covers the occupied-virtual separation
 
-    BlockMatrix<Scalar> t;  // the T1-amplitudes as a block matrix, implementing easy operator(i,a) calls
+    ImplicitMatrixSlice<Scalar> t;  // the T1-amplitudes as a block matrix, implementing easy operator(i,a) calls
 
 
 public:
@@ -47,25 +48,25 @@ public:
      */
 
     /**
-     *  Construct T1-amplitudes given their representation as a BlockMatrix and and explicit occupied-virtual orbital space.
+     *  Construct T1-amplitudes given their representation as a ImplicitMatrixSlice and and explicit occupied-virtual orbital space.
      * 
      *  @param t                            the T1-amplitudes as a block matrix, implementing easy operator(i,a) calls
      *  @param orbital_space                the orbital space which covers the occupied-virtual separation, indicating which indices in the block matrix are occupied and which are virtual
      */
-    T1Amplitudes(const BlockMatrix<double>& t, const OrbitalSpace& orbital_space) :
+    T1Amplitudes(const ImplicitMatrixSlice<Scalar>& t, const OrbitalSpace& orbital_space) :
         orbital_space {orbital_space},
         t {t} {}
 
 
     /**
-     *  Construct the T1-amplitudes given their representation as a BlockMatrix and an implicit occupied-virtual orbital space determined by the given number of occupied orbitals and total number of orbitals.
+     *  Construct the T1-amplitudes given their representation as a ImplicitMatrixSlice and an implicit occupied-virtual orbital space determined by the given number of occupied orbitals and total number of orbitals.
      * 
      *  @param t                the T1-amplitudes as a block matrix, implementing easy operator(i,a) calls
      *  @param N                the number of occupied orbitals
      *  @param M                the total number of orbitals
      */
-    T1Amplitudes(const BlockMatrix<double>& t, const size N, const size_t M) :
-        T1Amplitudes(t, OrbitalSpace::OccupiedVirtual(N, M)) {}
+    T1Amplitudes(const ImplicitMatrixSlice<Scalar>& t, const size_t N, const size_t M) :
+        T1Amplitudes(t, OrbitalSpace::Implicit({{OccupationType::k_occupied, N}, {OccupationType::k_virtual, M - N}})) {}
 
 
     /*
@@ -82,17 +83,14 @@ public:
      */
     static T1Amplitudes<Scalar> Perturbative(const SQHamiltonian<Scalar>& sq_hamiltonian, const OrbitalSpace& orbital_space) {
 
-        // Zero-initialize a BlockMatrix of the appropriate dimensions.
-        const auto N = orbital_space.numberOfOccupiedOrbitals();
-        const auto M = orbital_space.numberOfVirtualOrbitals();
-        BlockMatrix<double> t1 {0, N, N, M};  // a block matrix suitable for occupied-virtual objects, like these T1-amplitudes t_i^a
-
+        // Zero-initialize a matrix representation for the (occupied-virtual) T1-amplitudes t_i^a.
+        auto t1 = orbital_space.initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_virtual);
 
         // Provide the perturbative T1-amplitudes.
-        const auto F = sq_hamiltonian.calculateInactiveFockian(orbital_space);
+        const auto F = sq_hamiltonian.calculateInactiveFockian(orbital_space).parameters();
 
-        for (const auto& i : orbital_space.occupiedIndices()) {
-            for (const auto& a : orbital_space.virtualIndices()) {
+        for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 const auto denominator = F(i, i) - F(a, a);
 
                 t1(i, a) = F(a, i) / denominator;
@@ -115,7 +113,7 @@ public:
     static T1Amplitudes<Scalar> Perturbative(const SQHamiltonian<Scalar>& sq_hamiltonian, const size_t N, const size_t M) {
 
         // Create the implicit orbital space for N occupied orbitals and M total orbitals.
-        const auto orbital_space = OrbitalSpace::OccupiedVirtual(N, M);
+        const auto orbital_space = OrbitalSpace::Implicit({{OccupationType::k_occupied, N}, {OccupationType::k_virtual, M - N}});
 
         return T1Amplitudes<Scalar>::Perturbative(sq_hamiltonian, orbital_space);
     }
@@ -126,12 +124,24 @@ public:
      */
 
     /**
+     *  Access one of the T1-amplitudes.
+     * 
      *  @param i            an occupied index
      *  @param a            a virtual index
      * 
-     *  @return the T1-amplitude corresponding to t_i^a
+     *  @return the read-only T1-amplitude corresponding to t_i^a
      */
-    double operator()(const size_t i, const size_t a) const { return this->t(i, a); }
+    Scalar operator()(const size_t i, const size_t a) const { return this->t(i, a); }
+
+    /**
+     *  Access one of the T1-amplitudes.
+     * 
+     *  @param i            an occupied index
+     *  @param a            a virtual index
+     * 
+     *  @return the writable T1-amplitude corresponding to t_i^a
+     */
+    Scalar& operator()(const size_t i, const size_t a) { return this->t(i, a); }
 
 
     /*
@@ -139,15 +149,106 @@ public:
      */
 
     /**
-     *  @return the T1-amplitudes as a BlockMatrix
+     *  @return the T1-amplitudes as a ImplicitMatrixSlice
      */
-    const BlockMatrix<double>& asBlockMatrix() const { return this->t; }
+    const ImplicitMatrixSlice<Scalar>& asImplicitMatrixSlice() const { return this->t; }
+
+    /**
+     *  @return the Frobenius norm of these amplitudes
+     */
+    Scalar norm() const { return this->asImplicitMatrixSlice().asMatrix().norm(); }
 
     /**
      *  @return the orbital space for these T1-amplitudes, which covers the occupied-virtual separation
      */
     const OrbitalSpace& orbitalSpace() const { return this->orbital_space; }
 };
+
+
+/*
+ *  OPERATORS
+ */
+
+/**
+ *  Add two sets of T1-amplitudes.
+ * 
+ *  @tparam LHSScalar           the scalar type of the left-hand side
+ *  @tparam RHSScalar           the scalar type of the right-hand side
+ * 
+ *  @param lhs                  the left-hand side
+ *  @param rhs                  the right-hand side
+ */
+template <typename LHSScalar, typename RHSScalar>
+auto operator+(const T1Amplitudes<LHSScalar>& lhs, const T1Amplitudes<RHSScalar>& rhs) -> T1Amplitudes<sum_t<LHSScalar, RHSScalar>> {
+
+    using ResultScalar = sum_t<LHSScalar, RHSScalar>;
+
+    // Prepare some variables.
+    const auto& orbital_space = lhs.orbitalSpace();  // assume the orbital spaces are equal for the LHS and RHS
+    const auto& row_map = lhs.asImplicitMatrixSlice().rowIndexMap();
+    const auto& col_map = lhs.asImplicitMatrixSlice().columnIndexMap();
+
+    const MatrixX<ResultScalar> t_sum_dense = lhs.asImplicitMatrixSlice().asMatrix() + rhs.asImplicitMatrixSlice().asMatrix();
+    const ImplicitMatrixSlice<ResultScalar> t_sum_slice {row_map, col_map, t_sum_dense};
+
+    return T1Amplitudes<ResultScalar>(t_sum_slice, orbital_space);
+}
+
+
+/**
+ *  Multiply a set of T1-amplitudes with a scalar.
+ * 
+ *  @tparam Scalar              the scalar type of the scalar
+ *  @tparam AmplitudeScalar     the scalar type of the T1-amplitudes
+ * 
+ *  @param scalar               the scalar
+ *  @param t1                   the the T1-amplitudes
+ */
+template <typename Scalar, typename AmplitudeScalar>
+auto operator*(const Scalar& scalar, const T1Amplitudes<AmplitudeScalar>& t1) -> T1Amplitudes<product_t<Scalar, AmplitudeScalar>> {
+
+    using ResultScalar = product_t<Scalar, AmplitudeScalar>;
+
+    // Prepare some variables.
+    const auto& orbital_space = t1.orbitalSpace();  // assume the orbital spaces are equal for the LHS and RHS
+    const auto& row_map = t1.asImplicitMatrixSlice().rowIndexMap();
+    const auto& col_map = t1.asImplicitMatrixSlice().columnIndexMap();
+
+    const MatrixX<ResultScalar> t_multiplied_dense = scalar * t1.asImplicitMatrixSlice().asMatrix();
+    const ImplicitMatrixSlice<ResultScalar> t_multiplied_slice {row_map, col_map, t_multiplied_dense};
+
+    return T1Amplitudes<ResultScalar>(t_multiplied_slice, orbital_space);
+}
+
+
+/**
+ *  Negate a set of T1-amplitudes.
+ * 
+ *  @tparam Scalar              the scalar type of the T1-amplitudes
+ * 
+ *  @param t1                   the T1-amplitudes
+ */
+template <typename Scalar>
+T1Amplitudes<Scalar> operator-(const T1Amplitudes<Scalar>& t1) {
+
+    return (-1.0) * t1;  // negation is scalar multiplication with (-1.0)
+}
+
+
+/**
+ *  Subtract one set of T1-amplitudes from another.
+ * 
+ *  @tparam LHSScalar           the scalar type of the left-hand side
+ *  @tparam RHSScalar           the scalar type of the right-hand side
+ * 
+ *  @param lhs                  the left-hand side
+ *  @param rhs                  the right-hand side
+ */
+template <typename LHSScalar, typename RHSScalar>
+auto operator-(const T1Amplitudes<LHSScalar>& lhs, const T1Amplitudes<RHSScalar>& rhs) -> T1Amplitudes<sum_t<LHSScalar, RHSScalar>> {
+
+    return lhs + (-rhs);
+}
 
 
 }  // namespace GQCP
