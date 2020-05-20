@@ -299,7 +299,7 @@ public:
      *  @param K            the number of spatial orbitals
      *  @param N_P          the number of electrons
      * 
-     *  @return the implicit occupied-virtual orbital space that corresponds to these RHF model parameters
+     *  @return the implicit (i.e. with ascending and contiguous orbital indices) occupied-virtual orbital space that corresponds to these RHF model parameters
      */
     static OrbitalSpace orbitalSpace(const size_t K, const size_t N_P) {
 

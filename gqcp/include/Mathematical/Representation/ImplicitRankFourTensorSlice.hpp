@@ -61,6 +61,7 @@ public:
         indices_implicit_to_dense {indices_implicit_to_dense},
         T {T} {
 
+        // Check if the given maps are consistent with the given tensor's dimensions.
         const auto dimensions = T.dimensions();
         for (size_t axis_index = 0; axis_index < 4; axis_index++) {
             if (this->indices_implicit_to_dense[axis_index].size() != dimensions[axis_index]) {

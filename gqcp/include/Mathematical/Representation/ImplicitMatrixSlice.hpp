@@ -221,7 +221,7 @@ public:
      *  @param row                  the row number in the implicit encapsulating matrix
      *  @param col                  the column number in the implicit encapsulating matrix
      * 
-     *  @return a writable element of the impliti encapsulating matrix
+     *  @return a writable element of the implicit encapsulating matrix
      */
     Scalar& operator()(const size_t row, const size_t col) {
 

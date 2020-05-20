@@ -161,7 +161,7 @@ public:
     double overlap(const SpinUnresolvedONV& onv) const override;
 
     /**
-     *  @return the implicit occupied-virtual orbital space that is associated with these geminal coefficients
+     *  @return the implicit (i.e. with ascending and contiguous orbital indices) occupied-virtual orbital space that is associated with these geminal coefficients
      */
     OrbitalSpace orbitalSpace() const;
 };

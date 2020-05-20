@@ -74,17 +74,17 @@ public:
     /**
      *  Create an implicit orbital space with the given dimensions.
      * 
-     *  @param counts               a map that links an occupation type (k_occupied, k_active, k_virtual) with the number of orbitals that are to be found in that orbital space
+     *  @param occupation_type_numbers              a map that links an occupation type (k_occupied, k_active, k_virtual) with the number of orbitals that are to be found in that orbital space
      * 
      *  @note An 'implicit' orbital space is one where all indices are sorted by increasing value, and the occupied indices are lower than the active indices, which are in turn lower than the virtual indices.
      */
-    static OrbitalSpace Implicit(const std::map<OccupationType, size_t>& counts);
+    static OrbitalSpace Implicit(const std::map<OccupationType, size_t>& occupation_type_numbers);
 
 
     // PUBLIC METHODS
 
     /**
-     *  Create an implicit mathematical object that can serve as the representation of a object with the given occupation types, from the dense representation of the matrix slice
+     *  Create an implicit mathematical object that can serve as the representation of a object with the given occupation types, from the dense representation of the matrix slice.
      * 
      *  @tparam Scalar                      the scalar type of the elements of the implicit matrix
      * 
@@ -95,7 +95,8 @@ public:
      *  @return an implicit matrix slice, according to the given occupation types
      * 
      *  @note For the representation of an occupied-virtual object (for example the T1-coupled-cluster amplitudes t_i^a), the following method can be called
-     *      orbital_space.createRepresentableObjectFor(OccupationType::k_occupied, OccupationType::k_virtual, M)
+     *      orbital_space.createRepresentableObjectFor(OccupationType::k_occupied, OccupationType::k_virtual, M),
+     *  where `M` is supposed to be the dense matrix representation of the T1 amplitudes.
      */
     template <typename Scalar>
     ImplicitMatrixSlice<Scalar> createRepresentableObjectFor(const OccupationType row_type, const OccupationType column_type, const MatrixX<Scalar>& M) const {
@@ -122,7 +123,8 @@ public:
      *  @return an implicit rank-four tensor slice, according to the given occupation types
      * 
      *  @note For the representation of an occupied-occupied-virtual-virtual object (for example the T2-coupled-cluster amplitudes t_{ij}^{ab}), the following method can be called
-     *      orbital_space.createRepresentableObjectFor(OccupationType::k_occupied, OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_virtual, T)
+     *      orbital_space.createRepresentableObjectFor(OccupationType::k_occupied, OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_virtual, T),
+     *  where `T` is supposed to be the dense tensor representation of the T2-amplitudes.
      */
     template <typename Scalar>
     ImplicitRankFourTensorSlice<Scalar> createRepresentableObjectFor(const OccupationType axis1_type, const OccupationType axis2_type, const OccupationType axis3_type, const OccupationType axis4_type, const Tensor<Scalar, 4>& T) const {
@@ -209,6 +211,7 @@ public:
 
         return this->createRepresentableObjectFor(axis1_type, axis2_type, axis3_type, axis4_type, T);
     }
+
 
     /**
      *  @param type             an occupation type (k_occupied, k_active, k_virtual)

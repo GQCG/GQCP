@@ -104,15 +104,6 @@ public:
             }
         }
 
-
-        std::cout << "New T1 amplitudes: " << std::endl
-                  << t1_updated.asImplicitMatrixSlice().asMatrix() << std::endl
-                  << std::endl;
-
-        // std::cout << "New T2 amplitudes: " << std::endl
-        //           << t2_updated.asImplicitRankFourTensorSlice).asTensor() << std::endl
-        //           << std::endl;
-
         // Write the updated amplitudes back to the environment.
         environment.t1_amplitudes.push_back(t1_updated);
         environment.t2_amplitudes.push_back(t2_updated);

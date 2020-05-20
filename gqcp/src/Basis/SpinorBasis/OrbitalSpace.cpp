@@ -67,18 +67,18 @@ OrbitalSpace::OrbitalSpace(const std::vector<size_t>& occupied_indices, const st
 /**
  *  Create an implicit orbital space with the given dimensions.
  * 
- *  @param counts               a map that links an occupation type (k_occupied, k_active, k_virtual) with the number of orbitals that are to be found in that orbital space
+ *  @param occupation_type_numbers              a map that links an occupation type (k_occupied, k_active, k_virtual) with the number of orbitals that are to be found in that orbital space
  * 
  *  @note An 'implicit' orbital space is one where all indices are sorted by increasing value, and the occupied indices are lower than the active indices, which are in turn lower than the virtual indices.
  */
-OrbitalSpace OrbitalSpace::Implicit(const std::map<OccupationType, size_t>& counts) {
+OrbitalSpace OrbitalSpace::Implicit(const std::map<OccupationType, size_t>& occupation_type_numbers) {
 
     size_t start_index = 0;
 
     // Create the occupied indices, if any.
     std::vector<size_t> occupied_indices {};
-    auto it = counts.find(OccupationType::k_occupied);
-    if (it != counts.end()) {
+    auto it = occupation_type_numbers.find(OccupationType::k_occupied);
+    if (it != occupation_type_numbers.end()) {
         const auto number_of_occupied_orbitals = it->second;
         occupied_indices = std::vector<size_t>(number_of_occupied_orbitals);
         std::iota(occupied_indices.begin(), occupied_indices.end(), start_index);
@@ -87,8 +87,8 @@ OrbitalSpace OrbitalSpace::Implicit(const std::map<OccupationType, size_t>& coun
 
     // Create the active indices, if any.
     std::vector<size_t> active_indices {};
-    it = counts.find(OccupationType::k_active);
-    if (it != counts.end()) {
+    it = occupation_type_numbers.find(OccupationType::k_active);
+    if (it != occupation_type_numbers.end()) {
         const auto number_of_active_orbitals = it->second;
         active_indices = std::vector<size_t>(number_of_active_orbitals);
         std::iota(active_indices.begin(), active_indices.end(), start_index);
@@ -97,8 +97,8 @@ OrbitalSpace OrbitalSpace::Implicit(const std::map<OccupationType, size_t>& coun
 
     // Create the virtual indices, if any.
     std::vector<size_t> virtual_indices {};
-    it = counts.find(OccupationType::k_virtual);
-    if (it != counts.end()) {
+    it = occupation_type_numbers.find(OccupationType::k_virtual);
+    if (it != occupation_type_numbers.end()) {
         const auto number_of_virtual_orbitals = it->second;
         virtual_indices = std::vector<size_t>(number_of_virtual_orbitals);
         std::iota(virtual_indices.begin(), virtual_indices.end(), start_index);
