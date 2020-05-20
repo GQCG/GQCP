@@ -256,6 +256,16 @@ public:
      */
 
     /**
+     *  @return this as a (column-major) matrix
+     */
+    MatrixX<Scalar> asMatrix() const { return this->T.pairWiseReduce(); }
+
+    /**
+     *  @return this as a tensor
+     */
+    const Tensor<Scalar, 4>& asTensor() const { return this->T; }
+
+    /**
      *  Convert an implicit axis index to the axis index in the dense representation of this slice.
      * 
      *  @tparam Axis                the index of the axis (0,1,2,3)
@@ -268,19 +278,9 @@ public:
     size_t denseIndexOf(const size_t index) const { return this->indices_implicit_to_dense[Axis].at(index); }
 
     /**
-     *  @return this as a (column-major) matrix
+     *  @return an array of maps, mapping the implicit tensor indices to these of the dense representation
      */
-    MatrixX<Scalar> asMatrix() const {
-        return this->T.pairWiseReduce();
-    }
-
-
-    /**
-     *  @return this as a tensor
-     */
-    const Tensor<Scalar, 4>& asTensor() const {
-        return this->T;
-    }
+    const std::vector<std::map<size_t, size_t>>& indexMaps() const { return this->indices_implicit_to_dense; }
 };
 
 

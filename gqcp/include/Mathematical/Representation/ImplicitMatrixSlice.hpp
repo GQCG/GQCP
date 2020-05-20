@@ -240,18 +240,17 @@ public:
     /**
      *  @return this as a (column-major) vector
      */
-    VectorX<Scalar> asVector() const {
-        return this->M.pairWiseReduce();
-    }
-
+    VectorX<Scalar> asVector() const { return this->M.pairWiseReduce(); }
 
     /**
      *  @return this as a matrix
      */
-    const MatrixX<Scalar>& asMatrix() const {
-        return this->M;
-    }
+    const MatrixX<Scalar>& asMatrix() const { return this->M; }
 
+    /**
+     *  @return the map between the column indices of the implicit matrix and the column indices of the dense representation of the slice
+     */
+    const std::map<size_t, size_t>& columnIndexMap() const { return this->cols_implicit_to_dense; }
 
     /**
      *  Convert an implicit column index to the column index in the dense representation of this slice.
@@ -262,7 +261,6 @@ public:
      */
     size_t denseIndexOfColumn(const size_t col) const { return this->cols_implicit_to_dense.at(col); }
 
-
     /**
      *  Convert an implicit row index to the row index in the dense representation of this slice.
      * 
@@ -271,6 +269,11 @@ public:
      *  @return the row index the dense representation of this slice.
      */
     size_t denseIndexOfRow(const size_t row) const { return this->rows_implicit_to_dense.at(row); }
+
+    /**
+     *  @return the map between the row indices of the implicit matrix and the row indices of the dense representation of the slice
+     */
+    const std::map<size_t, size_t>& rowIndexMap() const { return this->rows_implicit_to_dense; }
 };
 
 
