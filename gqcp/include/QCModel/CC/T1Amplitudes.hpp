@@ -76,24 +76,22 @@ public:
     /**
      *  Create perturbative T1-amplitudes using an explicit orbital space.
      * 
-     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal spinor basis
+     *  @param f                            the (inactive) Fock matrix
      *  @param orbital_space                the orbital space which covers the occupied-virtual separation
      * 
      *  @return T1-amplitudes calculated from an initial perturbative result
      */
-    static T1Amplitudes<Scalar> Perturbative(const SQHamiltonian<Scalar>& sq_hamiltonian, const OrbitalSpace& orbital_space) {
+    static T1Amplitudes<Scalar> Perturbative(const QCMatrix<Scalar>& f, const OrbitalSpace& orbital_space) {
 
         // Zero-initialize a matrix representation for the (occupied-virtual) T1-amplitudes t_i^a.
         auto t1 = orbital_space.initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_virtual);
 
-        // Provide the perturbative T1-amplitudes.
-        const auto F = sq_hamiltonian.calculateInactiveFockian(orbital_space).parameters();
-
+        // Provide the perturbative T1-amplitudes, by setting the RHS amplitudes in Stanton1991, equation (1) to zero.
         for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
-                const auto denominator = F(i, i) - F(a, a);
+                const auto denominator = f(i, i) - f(a, a);
 
-                t1(i, a) = F(a, i) / denominator;
+                t1(i, a) = f(i, a) / denominator;
             }
         }
 

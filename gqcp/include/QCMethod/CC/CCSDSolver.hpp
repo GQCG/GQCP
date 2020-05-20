@@ -25,6 +25,7 @@
 #include "QCMethod/CC/CCSDAmplitudesUpdate.hpp"
 #include "QCMethod/CC/CCSDEnergyCalculation.hpp"
 #include "QCMethod/CC/CCSDEnvironment.hpp"
+#include "QCMethod/CC/CCSDIntermediatesUpdate.hpp"
 
 
 namespace GQCP {
@@ -57,6 +58,7 @@ public:
         // Create the iteration cycle that effectively 'defines' a plain CCSD solver.
         StepCollection<CCSDEnvironment<Scalar>> plain_ccsd_cycle {};
         plain_ccsd_cycle
+            .add(CCSDIntermediatesUpdate<Scalar>())
             .add(CCSDAmplitudesUpdate<Scalar>())
             .add(CCSDEnergyCalculation<Scalar>());
 

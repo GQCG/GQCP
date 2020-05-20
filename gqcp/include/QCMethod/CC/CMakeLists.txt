@@ -1,7 +1,9 @@
 target_sources(gqcp
     PRIVATE
+        CCSD.hpp
         CCSDAmplitudesUpdate.hpp
         CCSDEnergyCalculation.hpp
         CCSDEnvironment.hpp
+        CCSDIntermediatesUpdate.hpp
         CCSDSolver.hpp
 )

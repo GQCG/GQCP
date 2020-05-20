@@ -26,12 +26,12 @@ namespace GQCP {
 
 
 /**
- *  An iteration step that calculates the current CCSD electronic correlation energy.
+ *  An iteration step that calculates the current CCSD intermediates as described in Stanton1991.
  * 
  *  @tparam _Scalar             the scalar type that is used to represent the amplitudes
  */
 template <typename _Scalar>
-class CCSDEnergyCalculation:
+class CCSDIntermediatesUpdate:
     public Step<CCSDEnvironment<_Scalar>> {
 
 public:
@@ -48,25 +48,37 @@ public:
      *  @return a textual description of this algorithmic step
      */
     std::string description() const override {
-        return "Calculate the current CCSD electronic correlation energy.";
+        return "Calculate the current CCSD intermediates as described in Stanton1991.";
     }
 
     /**
-     *  Calculate the current CCSD electronic correlation energy.
+     *  Calculate the current CCSD intermediates as described in Stanton1991.
      * 
      *  @param environment              the environment that acts as a sort of calculation space
      */
     void execute(Environment& environment) override {
 
-        // Prepare some variables.
+        // Extract and prepare some variables.
         const auto& f = environment.f;
         const auto& V_A = environment.V_A;
         const auto& t1 = environment.t1_amplitudes.back();
         const auto& t2 = environment.t2_amplitudes.back();
 
-        // Calculate the current correlation energy and push it to the environment.
-        const auto current_correlation_energy = QCModel::CCSD<Scalar>::calculateCorrelationEnergy(f, V_A, t1, t2);
-        environment.electronic_energies.push_back(current_correlation_energy);
+        // First, calculate the intermediate tau2 objects (since they depend on the the T1- and T2-amplitudes).
+        environment.tau2 = QCModel::CCSD<Scalar>::calculateTau2(t1, t2);
+        environment.tau2_tilde = QCModel::CCSD<Scalar>::calculateTau2Tilde(t1, t2);
+
+        const auto& tau2 = environment.tau2;
+        const auto& tau2_tilde = environment.tau2_tilde;
+
+        // Calculate the other CCSD intermediates and push them to the environment.
+        environment.F1 = QCModel::CCSD<Scalar>::calculateF1(f, V_A, t1, tau2_tilde);
+        environment.F2 = QCModel::CCSD<Scalar>::calculateF2(f, V_A, t1, tau2_tilde);
+        environment.F3 = QCModel::CCSD<Scalar>::calculateF3(f, V_A, t1);
+
+        environment.W1 = QCModel::CCSD<Scalar>::calculateW1(V_A, t1, tau2);
+        environment.W2 = QCModel::CCSD<Scalar>::calculateW2(V_A, t1, tau2);
+        environment.W3 = QCModel::CCSD<Scalar>::calculateW3(V_A, t1, t2);
     }
 };
 

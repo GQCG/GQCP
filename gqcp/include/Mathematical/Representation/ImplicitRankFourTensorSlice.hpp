@@ -109,6 +109,14 @@ public:
 
 
     /**
+     *  A default constructor setting everything to zero.
+     */
+    ImplicitRankFourTensorSlice() :
+        // Use a named constructor for the default initialization.
+        ImplicitRankFourTensorSlice(ImplicitRankFourTensorSlice<Scalar>::ZeroFromIndices({}, {}, {}, {})) {}
+
+
+    /**
      *  Create an implicit rank-four tensor slice through a dense representation of the slice.
      * 
      *  @param axes_indices                     an array where the i-th element represents the indices (in order) for the i-th tensor axis of the implicit tensor that the indices of the dense representation of the slice correspond to
@@ -194,10 +202,15 @@ public:
      * 
      *  @return a zero-initialized implicit rank-four tensor slice
      */
-    static ImplicitRankFourTensorSlice<Scalar> FromIndices(const std::vector<size_t>& axis1_indices, const std::vector<size_t>& axis2_indices, const std::vector<size_t>& axis3_indices, const std::vector<size_t>& axis4_indices) {
+    static ImplicitRankFourTensorSlice<Scalar> ZeroFromIndices(const std::vector<size_t>& axis1_indices, const std::vector<size_t>& axis2_indices, const std::vector<size_t>& axis3_indices, const std::vector<size_t>& axis4_indices) {
 
         // Zero-initialize a tensor with the required dimensions and then use another named constructor.
-        Tensor<Scalar, 4> T {axis1_indices.size(), axis2_indices.size(), axis3_indices.size(), axis4_indices.size()};
+        const auto axis1_dimension = static_cast<long>(axis1_indices.size());
+        const auto axis2_dimension = static_cast<long>(axis2_indices.size());
+        const auto axis3_dimension = static_cast<long>(axis3_indices.size());
+        const auto axis4_dimension = static_cast<long>(axis4_indices.size());
+
+        Tensor<Scalar, 4> T {axis1_dimension, axis2_dimension, axis3_dimension, axis4_dimension};
         T.setZero();
 
         return ImplicitRankFourTensorSlice<Scalar>::FromIndices(axis1_indices, axis2_indices, axis3_indices, axis4_indices, T);

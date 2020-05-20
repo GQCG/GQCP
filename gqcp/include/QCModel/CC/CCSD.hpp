@@ -67,30 +67,23 @@ public:
     /**
      *  Calculate the CCSD correlation energy.
      * 
-     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal spinor basis
+     *  @param f                        the (inactive) Fock matrix
+     *  @param V_A                      the antisymmetrized two-electron integrals (in physicist's notation)
      *  @param t1                           the T1-amplitudes
      *  @param t2                           the T2-amplitudes
      * 
      *  @return the CCSD correlation energy
      */
-    static double calculateCorrelationEnergy(const SQHamiltonian<Scalar>& sq_hamiltonian, const T1Amplitudes<Scalar>& t1, const T2Amplitudes<Scalar>& t2) {
+    static Scalar calculateCorrelationEnergy(const QCMatrix<Scalar>& f, const QCRankFourTensor<Scalar>& V_A, const T1Amplitudes<Scalar>& t1, const T2Amplitudes<Scalar>& t2) {
 
         const auto orbital_space = t1.orbitalSpace();  // assume t1 and t2 have the same orbital space.
-
-
-        // For the CCSD energy equation, we need the inactive Fock matrix and the anti-symmetrized two-electron integrals in physicist's notation.
-        const auto F = sq_hamiltonian.calculateInactiveFockian(orbital_space).parameters();
-
-        const auto& g_chemists = sq_hamiltonian.twoElectron().parameters();
-        const auto V_A = g_chemists.convertedToPhysicistsNotation().antisymmetrized();
-
 
         // A KISS implementation of the CCSD energy correction.
         // The implementation is in line with Crawford2000 "Chapter 2: An Introduction to Coupled Cluster Theory for Computational Chemists", eq. [134].
         double E = 0.0;
         for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
-                E += F(i, a) * t1(i, a);
+                E += f(i, a) * t1(i, a);
             }
         }
 
@@ -111,270 +104,524 @@ public:
 
 
     /**
-     *  Calculate the value for one of the CCSD T1-amplitude equations, evaluated at the given T1- and T2-amplitudes
+     *  Calculate the value for one of the CCSD T1-amplitude equations, evaluated at the given T1- and T2-amplitudes (and itermediates).
      *      f_i^a = <Phi_i^a| H |Phi_0>             with H the similarity-transformed normal-ordered Hamiltonian
      * 
-     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal spinor basis
-     *  @param t1                           the T1-amplitudes
-     *  @param t2                           the T2-amplitudes
      *  @param i                            the (occupied) subscript for the amplitude equation
      *  @param a                            the (virtual) superscript for the amplitude equation
+     *  @param f                            the (inactive) Fock matrix
+     *  @param V_A                          the antisymmetrized two-electron integrals (in physicist's notation)
+     *  @param t1                           the T1-amplitudes
+     *  @param t2                           the T2-amplitudes
+     *  @param F1                           the F1-intermediate (equation (3) in Stanton1991)
+     *  @param F2                           the F2-intermediate (equation (4) in Stanton1991)
+     *  @param F3                           the F3-intermediate (equation (5) in Stantion1991)
      * 
      *  @return the value for one of the CCSD T1-amplitude equations
      */
-    static double calculateT1AmplitudeEquation(const SQHamiltonian<double>& sq_hamiltonian, const T1Amplitudes<Scalar>& t1, const T2Amplitudes<Scalar>& t2, const size_t i, const size_t a) {
+    static Scalar calculateT1AmplitudeEquation(const size_t i, const size_t a, const QCMatrix<Scalar>& f, const QCRankFourTensor<Scalar>& V_A, const T1Amplitudes<Scalar>& t1, const T2Amplitudes<Scalar>& t2, const ImplicitMatrixSlice<Scalar>& F1, const ImplicitMatrixSlice<Scalar>& F2, const ImplicitMatrixSlice<Scalar>& F3) {
 
         const auto orbital_space = t1.orbitalSpace();  // assume t1 and t2 have the same orbital space.
 
+        // We will use equation (1) in Stanton1991 by putting the left-hand term (with the energy denominator) to the right.
+        Scalar result {0.0};  // zero-initialize the scalar value for the result
 
-        // For the CCSD T1-amplitude equations equations, we need the inactive Fock matrix and the anti-symmetrized two-electron integrals in physicist's notation.
-        const auto F = sq_hamiltonian.calculateInactiveFockian(orbital_space).parameters();
+        // Calculate the contribution from the left-hand side.
+        const auto D_ia = f(i, i) - f(a, a);
+        result -= t1(i, a) * D_ia;
 
-        const auto& g_chemists = sq_hamiltonian.twoElectron().parameters();
-        const auto V_A = g_chemists.convertedToPhysicistsNotation().antisymmetrized();
+        // Calculate the contribution from the first term.
+        result += f(i, a);
 
-
-        // A KISS implementation of the CCSD T1-amplitude equations.
-        // The implementation is in line with Crawford2000 "Chapter 2: An Introduction to Coupled Cluster Theory for Computational Chemists", eq. [152].
-        double value = 0.0;
-
-        value += F(a, i);
-
-        for (const auto& c : orbital_space.indices(OccupationType::k_virtual)) {
-            value += F(a, c) * t1(i, c);
+        // Calculate the contribution from the second term.
+        for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+            result += t1(i, e) * F1(a, e);
         }
 
-        for (const auto& k : orbital_space.indices(OccupationType::k_occupied)) {
-            value -= F(k, i) * t1(k, a);
+        // Calculate the contribution from the third term.
+        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+            result -= t1(m, a) * F2(m, i);
         }
 
-        for (const auto& k : orbital_space.indices(OccupationType::k_occupied)) {
-            for (const auto& c : orbital_space.indices(OccupationType::k_virtual)) {
-                value += V_A(k, a, c, i) * t1(k, c);
-
-                value += F(k, c) * t2(i, k, a, c);
-
-                value -= F(k, c) * t1(i, c) * t1(k, a);
+        // Calculate the contribution from the fourth term.
+        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+                result += t2(i, m, a, e) * F3(m, e);
             }
         }
 
-        for (const auto& k : orbital_space.indices(OccupationType::k_occupied)) {
-            for (const auto& c : orbital_space.indices(OccupationType::k_virtual)) {
-                for (const auto& d : orbital_space.indices(OccupationType::k_virtual)) {
-                    value += 0.5 * V_A(k, a, c, d) * t2(k, i, c, d);
+        // Calculate the contribution from the fifth term.
+        for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
+                result -= t1(n, f) * V_A(n, a, i, f);
+            }
+        }
 
-                    value -= V_A(k, a, c, d) * t1(k, c) * t1(i, d);
+        // Calculate the contribution from the sixth term.
+        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+                for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
+                    result -= 0.5 * t2(i, m, e, f) * V_A(m, a, e, f);
                 }
             }
         }
 
-        for (const auto& k : orbital_space.indices(OccupationType::k_occupied)) {
-            for (const auto& l : orbital_space.indices(OccupationType::k_occupied)) {
-                for (const auto& c : orbital_space.indices(OccupationType::k_virtual)) {
-                    value -= 0.5 * V_A(k, l, c, i) * t2(k, l, c, a);
-
-                    value -= V_A(k, l, c, i) * t1(k, c) * t1(l, a);
+        // Calculate the contribution from the seventh term.
+        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+                for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
+                    result -= 0.5 * t2(m, n, a, e) * V_A(n, m, e, i);
                 }
             }
         }
 
-        for (const auto& k : orbital_space.indices(OccupationType::k_occupied)) {
-            for (const auto& l : orbital_space.indices(OccupationType::k_occupied)) {
-                for (const auto& c : orbital_space.indices(OccupationType::k_virtual)) {
-                    for (const auto& d : orbital_space.indices(OccupationType::k_virtual)) {
-                        value -= V_A(k, l, c, d) * t1(k, c) * t1(i, d) * t1(l, a);
-
-                        value += V_A(k, l, c, d) * t1(k, c) * t2(l, i, d, a);
-
-                        value -= 0.5 * V_A(k, l, c, d) * t2(k, i, c, d) * t1(l, a);
-
-                        value -= 0.5 * V_A(k, l, c, d) * t2(k, l, c, a) * t1(i, d);
-                    }
-                }
-            }
-        }
-
-
-        return value;
+        return result;
     }
 
 
     /**
-     *  Calculate the value for one of the CCSD T1-amplitude equations, evaluated at the given T1- and T2-amplitudes
+     *  Calculate the value for one of the CCSD T2-amplitude equations, evaluated at the given T1- and T2-amplitudes (and itermediates).
      *      f_{ij}^{ab} = <Phi_{ij}^{ab}| H |Phi_0>             with H the similarity-transformed normal-ordered Hamiltonian
      * 
-     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal spinor basis
-     *  @param t1                           the T1-amplitudes
-     *  @param t2                           the T2-amplitudes
      *  @param i                            the (occupied) subscript for the amplitude equation
      *  @param j                            the other (occupied) subscript for the amplitude equation
      *  @param a                            the (virtual) superscript for the amplitude equation
      *  @param b                            the other (virtual) superscript for the amplitude equation
+     *  @param f                            the (inactive) Fock matrix
+     *  @param V_A                          the antisymmetrized two-electron integrals (in physicist's notation)
+     *  @param t1                           the T1-amplitudes
+     *  @param t2                           the T2-amplitudes
+     *  @param tau2                         the tau2-intermediate (equation (10) in Stanton1991)
+     *  @param F1                           the F1-intermediate (equation (3) in Stanton1991)
+     *  @param F2                           the F2-intermediate (equation (4) in Stanton1991)
+     *  @param F3                           the F3-intermediate (equation (5) in Stantion1991)
+     *  @param W1                           the W1-intermediate (equation (6) in Stanton1991)
+     *  @param W2                           the W2-intermediate (equation (7) in Stanton1991)
+     *  @param W3                           the W3-intermediate (equation (8) in Stantion1991)
      * 
-     *  @return the value for one of the CCSD T1-amplitude equations
+     *  @return the value for one of the CCSD T2-amplitude equations
      */
-    static double calculateT2AmplitudeEquation(const SQHamiltonian<double>& sq_hamiltonian, const T1Amplitudes<Scalar>& t1, const T2Amplitudes<Scalar>& t2, const size_t i, const size_t j, const size_t a, const size_t b) {
+    static Scalar calculateT2AmplitudeEquation(const size_t i, const size_t j, const size_t a, const size_t b, const QCMatrix<Scalar>& f, const QCRankFourTensor<Scalar>& V_A, const T1Amplitudes<Scalar>& t1, const T2Amplitudes<Scalar>& t2, const ImplicitRankFourTensorSlice<Scalar>& tau2, const ImplicitMatrixSlice<Scalar>& F1, const ImplicitMatrixSlice<Scalar>& F2, const ImplicitMatrixSlice<Scalar>& F3, const ImplicitRankFourTensorSlice<Scalar>& W1, const ImplicitRankFourTensorSlice<Scalar>& W2, const ImplicitRankFourTensorSlice<Scalar>& W3) {
 
         const auto orbital_space = t1.orbitalSpace();  // assume t1 and t2 have the same orbital space.
 
+        // We will use equation (2) in Stanton1991 by putting the left-hand term (with the energy denominator) to the right.
+        Scalar result {0.0};  // zero-initialize the scalar value for the result
 
-        // For the CCSD T2-amplitude equations equations, we need the inactive Fock matrix and the anti-symmetrized two-electron integrals in physicist's notation.
-        const auto F = sq_hamiltonian.calculateInactiveFockian(orbital_space).parameters();
+        // Calculate the contribution from the left-hand side.
+        const auto D_ijab = f(i, i) + f(j, j) - f(a, a) - f(b, b);
+        result -= t2(i, j, a, b) * D_ijab;
 
-        const auto& g_chemists = sq_hamiltonian.twoElectron().parameters();
-        const auto V_A = g_chemists.convertedToPhysicistsNotation().antisymmetrized();
+        // Calculate the contribution from the first term.
+        result += V_A(i, j, a, b);
 
+        // Calculate the contribution from the second term.
+        for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+            result += t2(i, j, a, e) * F1(b, e);
+            result -= t2(i, j, b, e) * F1(a, e);  // P(ab) applied
 
-        // A KISS implementation of the CCSD T2-amplitude equations.
-        // The implementation is in line with Crawford2000 "Chapter 2: An Introduction to Coupled Cluster Theory for Computational Chemists", eq. [152].
-        // In the following, P(pq) stands for the antisymmetric (i.e. with sign -1) permutation of the indices p and q
-        double value = 0.0;
-
-        value += V_A(a, b, i, j);
-
-        for (const auto& c : orbital_space.indices(OccupationType::k_virtual)) {
-            value += F(b, c) * t2(i, j, a, c);
-            value -= F(a, c) * t2(i, j, b, c);
-
-            value += V_A(a, b, c, j) * t1(i, c);
-            value -= V_A(a, b, c, i) * t1(j, c);  // P(ij) applied
-        }
-
-        for (const auto& k : orbital_space.indices(OccupationType::k_occupied)) {
-            value -= F(k, j) * t2(i, k, a, b);
-            value += F(k, i) * t2(j, k, a, b);
-
-            value -= V_A(k, b, i, j) * t1(k, a);
-            value += V_A(k, a, i, j) * t1(k, b);  // P(ab) applied
-        }
-
-        for (const auto& k : orbital_space.indices(OccupationType::k_occupied)) {
-            for (const auto& l : orbital_space.indices(OccupationType::k_occupied)) {
-                value += 0.5 * V_A(k, l, i, j) * t2(k, l, a, b);
-
-                value += 0.5 * V_A(k, l, i, j) * t1(k, a) * t1(l, b);
-                value -= 0.5 * V_A(k, l, i, j) * t1(k, b) * t1(l, a);  // P(ab) applied
+            for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+                result -= 0.5 * t2(i, j, a, e) * t1(m, b) * F3(m, e);
+                result += 0.5 * t2(i, j, b, e) * t1(m, a) * F3(m, e);  // P(ab) applied
             }
         }
 
-        for (const auto& c : orbital_space.indices(OccupationType::k_virtual)) {
-            for (const auto& d : orbital_space.indices(OccupationType::k_virtual)) {
-                value += 0.5 * V_A(a, b, c, d) * t2(i, j, c, d);
+        // Calculate the contribution from the third term.
+        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+            result -= t2(i, m, a, b) * F2(m, j);
+            result += t2(j, m, a, b) * F2(m, i);  // P(ij) applied
 
-                value += 0.5 * V_A(a, b, c, d) * t1(i, c) * t1(j, d);
-                value -= 0.5 * V_A(a, b, c, d) * t1(j, c) * t1(i, d);  // P(ij) applied
+            for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+                result -= 0.5 * t2(i, m, a, b) * t1(j, e) * F3(m, e);
+                result += 0.5 * t2(j, m, a, b) * t1(i, e) * F3(m, e);  // P(ij) applied
             }
         }
 
-        for (const auto& k : orbital_space.indices(OccupationType::k_occupied)) {
-            for (const auto& c : orbital_space.indices(OccupationType::k_virtual)) {
-                value += V_A(k, b, c, j) * t2(i, k, a, c);
-                value -= V_A(k, b, c, i) * t2(j, k, a, c);  // P(ij) applied
-                value -= V_A(k, a, c, j) * t2(i, k, b, c);  // P(ab) applied
-                value += V_A(k, a, c, i) * t2(j, k, b, c);  // P(ij) P(ab) applied
-
-                value -= V_A(k, b, i, c) * t1(k, a) * t1(j, c);
-                value += V_A(k, b, j, c) * t1(k, a) * t1(i, c);  // P(ij) applied
-                value += V_A(k, a, i, c) * t1(k, b) * t1(j, c);  // P(ab) applied
-                value -= V_A(k, a, j, c) * t1(k, b) * t1(i, c);  // P(ij) P(ab) applied
-
-                value += F(k, c) * t1(k, a) * t2(i, j, b, c);
-                value -= F(k, c) * t1(k, b) * t2(i, j, a, c);  // P(ab) applied
-
-                value += F(k, c) * t1(i, c) * t2(j, k, a, b);
-                value -= F(k, c) * t1(j, c) * t2(i, k, a, b);  // P(ij) applied
+        // Calculate the contribution from the fourth term.
+        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
+                result += 0.5 * tau2(m, n, a, b) * W1(m, n, i, j);
             }
         }
 
-        for (const auto& k : orbital_space.indices(OccupationType::k_occupied)) {
-            for (const auto& l : orbital_space.indices(OccupationType::k_occupied)) {
-                for (const auto& c : orbital_space.indices(OccupationType::k_virtual)) {
-                    value -= V_A(k, l, c, i) * t1(k, c) * t2(l, j, a, b);
-                    value += V_A(k, l, c, j) * t1(k, c) * t2(l, i, a, b);  // P(ij) applied
+        // Calculate the contribution from the fifth term.
+        for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+            for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
+                result += 0.5 * tau2(i, j, e, f) * W2(a, b, e, f);
+            }
+        }
 
-                    value += V_A(k, l, i, c) * t1(l, a) * t2(j, k, b, c);
-                    value -= V_A(k, l, j, c) * t1(l, a) * t2(i, k, b, c);  // P(ij) applied
-                    value -= V_A(k, l, i, c) * t1(l, b) * t2(j, k, a, c);  // P(ab) applied
-                    value += V_A(k, l, j, c) * t1(l, b) * t2(i, k, a, c);  // P(ij) P(ab) applied
+        // Calculate the contribution from the sixth term.
+        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+                result += t2(i, m, a, e) * W3(m, b, e, j) - t1(i, e) * t1(m, a) * V_A(m, b, e, j);
+                result -= t2(j, m, a, e) * W3(m, b, e, i) - t1(j, e) * t1(m, a) * V_A(m, b, e, i);  // P(ij) applied
+                result -= t2(i, m, b, e) * W3(m, a, e, j) - t1(i, e) * t1(m, b) * V_A(m, a, e, j);  // P(ab) applied
+                result += t2(j, m, b, e) * W3(m, a, e, i) - t1(j, e) * t1(m, b) * V_A(m, a, e, i);  // P(ij) P(ab) applied
+            }
+        }
 
-                    value += 0.5 * V_A(k, l, c, j) * t1(i, c) * t2(k, l, a, b);
-                    value -= 0.5 * V_A(k, l, c, i) * t1(j, c) * t2(k, l, a, b);  // P(ij) applied
+        // Calculate the contribution from the seventh term.
+        for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+            result += t1(i, e) * V_A(a, b, e, j);
+            result -= t1(j, e) * V_A(a, b, e, i);  // P(ij) applied
+        }
 
-                    value += 0.5 * V_A(k, l, c, j) * t1(i, c) * t1(k, a) * t1(l, b);
-                    value -= 0.5 * V_A(k, l, c, i) * t1(j, c) * t1(k, a) * t1(l, b);  // P(ij) applied
-                    value -= 0.5 * V_A(k, l, c, j) * t1(i, c) * t1(k, b) * t1(l, a);  // P(ab) applied
-                    value += 0.5 * V_A(k, l, c, i) * t1(j, c) * t1(k, b) * t1(l, a);  // P(ij) P(ab) applied
+        // Calculate the contribution from the eight term.
+        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+            result -= t1(m, a) * V_A(m, b, i, j);
+            result += t1(m, b) * V_A(m, a, i, j);  // P(ab) applied
+        }
+
+        return result;
+    }
+
+
+    /**
+     *  @param f                    the (inactive) Fock matrix
+     *  @param V_A                  the antisymmetrized two-electron integrals (in physicist's notation)
+     *  @param t1                   the T1-amplitudes
+     *  @param tau2_tilde           the tau2_tilde intermediary (equation (10) in Stanton1991)
+     * 
+     *  @return the F1-intermediate
+     * 
+     *  @note This is one of the intermediate quantities in the factorization of CCSD. In particular, F1 represents equation (3) in Stanton1991.
+     */
+    static ImplicitMatrixSlice<Scalar> calculateF1(const QCMatrix<Scalar>& f, const QCRankFourTensor<Scalar>& V_A, const T1Amplitudes<Scalar>& t1, const ImplicitRankFourTensorSlice<Scalar>& tau2_tilde) {
+
+        const auto& orbital_space = t1.orbitalSpace();
+
+        // Implement the formula for the F1-intermediate: equation (3) in Stanton1993.
+        auto F1 = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_virtual, OccupationType::k_virtual);  // zero-initialize a virtual-virtual object
+        for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
+            for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+                Scalar value {0.0};  // zero-initialize the scalar value to be added
+
+                // Calculate the contribution from the first term.
+                if (a != e) {  // (1 - delta_ae)
+                    value += f(a, e);
                 }
-            }
-        }
 
-        for (const auto& k : orbital_space.indices(OccupationType::k_occupied)) {
-            for (const auto& c : orbital_space.indices(OccupationType::k_virtual)) {
-                for (const auto& d : orbital_space.indices(OccupationType::k_virtual)) {
-                    value += V_A(k, a, c, d) * t1(k, c) * t2(i, j, d, b);
-                    value -= V_A(k, b, c, d) * t1(k, c) * t2(i, j, d, a);  // P(ab) applied
-
-                    value += V_A(a, k, d, c) * t1(i, d) * t2(j, k, b, c);
-                    value -= V_A(a, k, d, c) * t1(j, d) * t2(i, k, b, c);  // P(ij) applied
-                    value -= V_A(b, k, d, c) * t1(i, d) * t2(j, k, a, c);  // P(ab) applied
-                    value += V_A(b, k, d, c) * t1(j, d) * t2(i, k, a, c);  // P(ij) P(ab) applied
-
-                    value -= 0.5 * V_A(k, b, c, d) * t1(k, a) * t2(i, j, c, d);
-                    value += 0.5 * V_A(k, a, c, d) * t1(k, b) * t2(i, j, c, d);  // P(ab) applied
-
-                    value -= 0.5 * V_A(k, b, c, d) * t1(i, c) * t1(k, a) * t1(j, d);
-                    value += 0.5 * V_A(k, b, c, d) * t1(j, c) * t1(k, a) * t1(i, d);  // P(ij) applied
-                    value += 0.5 * V_A(k, a, c, d) * t1(i, c) * t1(k, b) * t1(j, d);  // P(ab) applied
-                    value -= 0.5 * V_A(k, a, c, d) * t1(j, c) * t1(k, b) * t1(i, d);  // P(ij) P(ab) applied
+                // Calculate the contribution from the second term.
+                for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+                    value -= 0.5 * f(m, e) * t1(m, a);
                 }
+
+                // Calculate the contribution from the third term.
+                for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+                    for (const auto f : orbital_space.indices(OccupationType::k_virtual)) {
+                        value += t1(m, f) * V_A(m, a, f, e);
+                    }
+                }
+
+                // Calculate the contribution from the fourth term.
+                for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+                    for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
+                        for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
+                            value -= 0.5 * tau2_tilde(m, n, a, f) * V_A(m, n, e, f);
+                        }
+                    }
+                }
+
+                F1(a, e) = value;
             }
         }
 
-        for (const auto& k : orbital_space.indices(OccupationType::k_occupied)) {
-            for (const auto& l : orbital_space.indices(OccupationType::k_occupied)) {
-                for (const auto& c : orbital_space.indices(OccupationType::k_virtual)) {
-                    for (const auto& d : orbital_space.indices(OccupationType::k_virtual)) {
-                        value += 0.5 * V_A(k, l, c, d) * t2(i, k, a, c) * t2(l, j, d, b);
-                        value -= 0.5 * V_A(k, l, c, d) * t2(j, k, a, c) * t2(l, i, d, b);  // P(ij) applied
-                        value -= 0.5 * V_A(k, l, c, d) * t2(i, k, b, c) * t2(l, j, d, a);  // P(ab) applied
-                        value += 0.5 * V_A(k, l, c, d) * t2(j, k, b, c) * t2(l, i, d, a);  // P(ij) P(ab) applied
+        return F1;
+    }
 
-                        value += 0.25 * V_A(k, l, c, d) * t2(i, j, c, d) * t2(k, l, a, b);
 
-                        value -= 0.5 * V_A(k, l, c, d) * t2(i, j, a, c) * t2(k, l, b, d);
-                        value += 0.5 * V_A(k, l, c, d) * t2(i, j, b, c) * t2(k, l, a, d);  // P(ab) applied
+    /**
+     *  @param f                    the (inactive) Fock matrix
+     *  @param V_A                  the antisymmetrized two-electron integrals (in physicist's notation)
+     *  @param t1                   the T1-amplitudes
+     *  @param tau2_tilde           the tau2_tilde intermediary (equation (10) in Stanton1991)
+     * 
+     *  @return the F2-intermediate
+     * 
+     *  @note This is one of the intermediate quantities in the factorization of CCSD. In particular, F2 represents equation (4) in Stanton1991.
+     */
+    static ImplicitMatrixSlice<Scalar> calculateF2(const QCMatrix<Scalar>& f, const QCRankFourTensor<Scalar>& V_A, const T1Amplitudes<Scalar>& t1, const ImplicitRankFourTensorSlice<Scalar>& tau2_tilde) {
 
-                        value -= 0.5 * V_A(k, l, c, d) * t2(i, k, a, b) * t2(j, l, c, d);
-                        value += 0.5 * V_A(k, l, c, d) * t2(j, k, a, b) * t2(i, l, c, d);  // P(ij) applied
+        const auto& orbital_space = t1.orbitalSpace();
 
-                        value -= V_A(k, l, c, d) * t1(k, c) * t1(i, d) * t2(l, j, a, b);
-                        value += V_A(k, l, c, d) * t1(k, c) * t1(j, d) * t2(l, i, a, b);  // P(ij) applied
+        // Implement the formula for F2 in equation (4) in Stanton1991.
+        auto F2 = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_occupied);  // zero-initialize an occupied-occupied object
+        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+                Scalar value {0.0};  // zero-initialize the scalar value to be added
 
-                        value -= V_A(k, l, c, d) * t1(k, c) * t1(l, a) * t2(i, j, d, b);
-                        value += V_A(k, l, c, d) * t1(k, c) * t1(l, b) * t2(i, j, d, a);  // P(ab) applied
+                // Calculate the contribution from the first term.
+                if (m != i) {  // (1 - delta_mi)
+                    value += f(m, i);
+                }
 
-                        value += 0.25 * V_A(k, l, c, d) * t1(i, c) * t1(j, d) * t2(k, l, a, b);
-                        value -= 0.25 * V_A(k, l, c, d) * t1(j, c) * t1(i, d) * t2(k, l, a, b);  // P(ij) applied
+                // Calculate the contribution from the second term.
+                for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+                    value += 0.5 * t1(i, e) * f(m, e);
+                }
 
-                        value += 0.25 * V_A(k, l, c, d) * t1(k, a) * t1(l, b) * t2(i, j, c, d);
-                        value -= 0.25 * V_A(k, l, c, d) * t1(k, b) * t1(l, a) * t2(i, j, c, d);  // P(ab) applied
+                // Calculate the contribution from the third term.
+                for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+                    for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
+                        value += t1(n, e) * V_A(m, n, i, e);
+                    }
+                }
 
-                        value += V_A(k, l, c, d) * t1(i, c) * t1(l, b) * t2(k, j, a, d);
-                        value -= V_A(k, l, c, d) * t1(j, c) * t1(l, b) * t2(k, i, a, d);  // P(ij) applied
-                        value -= V_A(k, l, c, d) * t1(i, c) * t1(l, a) * t2(k, j, b, d);  // P(ab) applied
-                        value += V_A(k, l, c, d) * t1(j, c) * t1(l, a) * t2(k, i, b, d);  // P(ij) P(ab) applied
+                // Calculate the contribution from the fourth term.
+                for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
+                    for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+                        for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
+                            value += 0.5 * tau2_tilde(i, n, e, f) * V_A(m, n, e, f);
+                        }
+                    }
+                }
 
-                        value += 0.25 * V_A(k, l, c, d) * t1(i, c) * t1(k, a) * t1(j, d) * t1(l, b);
-                        value -= 0.25 * V_A(k, l, c, d) * t1(j, c) * t1(k, a) * t1(i, d) * t1(l, b);  // P(ij) applied
-                        value -= 0.25 * V_A(k, l, c, d) * t1(i, c) * t1(k, b) * t1(j, d) * t1(l, a);  // P(ab) applied
-                        value += 0.25 * V_A(k, l, c, d) * t1(j, c) * t1(k, b) * t1(i, d) * t1(l, a);  // P(ij) P(ab) applied
+                F2(m, i) = value;
+            }
+        }
+
+        return F2;
+    }
+
+
+    /**
+     *  @param f                    the (inactive) Fock matrix
+     *  @param V_A                  the antisymmetrized two-electron integrals (in physicist's notation)
+     *  @param t1                   the T1-amplitudes
+     * 
+     *  @return the F3-intermediate
+     * 
+     *  @note This is one of the intermediate quantities in the factorization of CCSD. In particular, F3 represents equation (5) in Stanton1991.
+     */
+    static ImplicitMatrixSlice<Scalar> calculateF3(const QCMatrix<Scalar>& f, const QCRankFourTensor<Scalar>& V_A, const T1Amplitudes<Scalar>& t1) {
+
+        const auto& orbital_space = t1.orbitalSpace();
+
+        // Implement the formula for F3 in equation (5) in Stanton1991.
+        auto F3 = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_virtual);  // zero-initialize an occupied-virtual object
+        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+                Scalar value {0.0};  // zero-initialize the scalar value to be added
+
+                // Calculate the contribution from the first term.
+                value += f(m, e);
+
+                // Calculate the contribution from the second term.
+                for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
+                    for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
+                        value += t1(n, f) * V_A(m, n, e, f);
+                    }
+                }
+
+                F3(m, e) = value;
+            }
+        }
+
+        return F3;
+    }
+
+
+    /**
+     *  @param t1                   the T1-amplitudes
+     *  @param t2                   the T2-amplitudes
+     * 
+     *  @return the tau2-intermediate
+     * 
+     *  @note This is one of the intermediate quantities in the factorization of CCSD. In particular, tau2 represents equation (10) in Stanton1991.
+     */
+    static ImplicitRankFourTensorSlice<Scalar> calculateTau2(const T1Amplitudes<Scalar>& t1, const T2Amplitudes<Scalar>& t2) {
+
+        const auto& orbital_space = t1.orbitalSpace();  // assume the orbital spaces for t1 and t2 are equal
+
+        // Implement the formula for tau2 (equation 10).
+        auto tau2 = t2.asImplicitRankFourTensorSlice();  // the contribution from the first term
+
+        for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
+                for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
+                    for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
+                        tau2(i, j, a, b) += t1(i, a) * t1(j, b) - t1(i, b) * t1(j, a);
                     }
                 }
             }
         }
 
+        return tau2;
+    }
 
-        return value;
+
+    /**
+     *  @param t1                   the T1-amplitudes
+     *  @param t2                   the T2-amplitudes
+     * 
+     *  @return the tau2_tilde-intermediate
+     * 
+     *  @note This is one of the intermediate quantities in the factorization of CCSD. In particular, tau2_tilde represents equation (9) in Stanton1991.
+     */
+    static ImplicitRankFourTensorSlice<Scalar> calculateTau2Tilde(const T1Amplitudes<Scalar>& t1, const T2Amplitudes<Scalar>& t2) {
+
+        const auto& orbital_space = t1.orbitalSpace();  // assume the orbital spaces for t1 and t2 are equal
+
+        // Implement the formula for tau2_tilde (equation 9).
+        auto tau2_tilde = t2.asImplicitRankFourTensorSlice();  // the contribution from the first term
+
+        for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
+                for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
+                    for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
+                        tau2_tilde(i, j, a, b) += 0.5 * (t1(i, a) * t1(j, b) - t1(i, b) * t1(j, a));
+                    }
+                }
+            }
+        }
+
+        return tau2_tilde;
+    }
+
+
+    /**
+     *  @param V_A                  the antisymmetrized two-electron integrals (in physicist's notation)
+     *  @param t1                   the T1-amplitudes
+     *  @param tau2                 the tau2-intermediate (equation 10 in Stanton1991)
+     * 
+     *  @return the W1-intermediate
+     * 
+     *  @note This is one of the intermediate quantities in the factorization of CCSD. In particular, W1 represents equation (6) in Stanton1991.
+     */
+    static ImplicitRankFourTensorSlice<Scalar> calculateW1(const QCRankFourTensor<Scalar>& V_A, const T1Amplitudes<Scalar>& t1, const ImplicitRankFourTensorSlice<Scalar>& tau2) {
+
+        const auto& orbital_space = t1.orbitalSpace();
+
+        // Implement the formula for W1 (equation 6).
+        auto W1 = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_occupied, OccupationType::k_occupied, OccupationType::k_occupied);  // zero-initialize an occupied-occupied-occupied-occupied object
+        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
+                for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+                    for (const auto j : orbital_space.indices(OccupationType::k_occupied)) {
+                        Scalar value {0.0};  // zero-initialize the scalar value to be added
+
+                        // Calculate the contribution from the first term.
+                        value += V_A(m, n, i, j);
+
+                        // Calculate the contribution from the second term.
+                        for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+                            value += t1(j, e) * V_A(m, n, i, e);
+                            value -= t1(i, e) * V_A(m, n, j, e);  // P(ij) applied
+                        }
+
+                        // Calculate the contribution from the third term.
+                        for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+                            for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
+                                value += 0.25 * tau2(i, j, e, f) * V_A(m, n, e, f);
+                            }
+                        }
+
+                        W1(m, n, i, j) = value;
+                    }
+                }
+            }
+        }
+
+        return W1;
+    }
+
+
+    /**
+     *  @param V_A                  the antisymmetrized two-electron integrals (in physicist's notation)
+     *  @param t1                   the T1-amplitudes
+     *  @param tau2                 the tau2-intermediate (equation 10 in Stanton1991)
+     * 
+     *  @return the W2-intermediate
+     * 
+     *  @note This is one of the intermediate quantities in the factorization of CCSD. In particular, W2 represents equation (7) in Stanton1991.
+     */
+    static ImplicitRankFourTensorSlice<Scalar> calculateW2(const QCRankFourTensor<Scalar>& V_A, const T1Amplitudes<Scalar>& t1, const ImplicitRankFourTensorSlice<Scalar>& tau2) {
+
+        const auto& orbital_space = t1.orbitalSpace();
+
+        // Implement the formula for W2 (equation 7).
+        auto W2 = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_virtual, OccupationType::k_virtual, OccupationType::k_virtual, OccupationType::k_virtual);  // zero-initialize a virtual-virtual-virtual-virtual object
+        for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
+            for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
+                for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+                    for (const auto f : orbital_space.indices(OccupationType::k_virtual)) {
+                        Scalar value {0.0};  // zero-initialize the scalar value to be added
+
+                        // Calculate the contribution from the first term.
+                        value += V_A(a, b, e, f);
+
+                        // Calculate the contribution from the second term.
+                        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+                            value -= t1(m, b) * V_A(a, m, e, f);
+                            value += t1(m, a) * V_A(b, m, e, f);  // P(ab) applied
+                        }
+
+                        // Calculate the contribution from the third term.
+                        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+                            for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
+                                value += 0.25 * tau2(m, n, a, b) * V_A(m, n, e, f);
+                            }
+                        }
+
+                        W2(a, b, e, f) = value;
+                    }
+                }
+            }
+        }
+
+        return W2;
+    }
+
+
+    /**
+     *  @param V_A                  the antisymmetrized two-electron integrals (in physicist's notation)
+     *  @param t1                   the T1-amplitudes
+     *  @param t2                   the T2-amplitudes
+     * 
+     *  @return the W3-intermediate
+     * 
+     *  @note This is one of the intermediate quantities in the factorization of CCSD. In particular, W3 represents equation (8) in Stanton1991.
+     */
+    static ImplicitRankFourTensorSlice<Scalar> calculateW3(const QCRankFourTensor<Scalar>& V_A, const T1Amplitudes<Scalar>& t1, const T2Amplitudes<Scalar>& t2) {
+
+        const auto& orbital_space = t1.orbitalSpace();  // assume the orbital spaces for t1 and t2 are equal
+
+        // Implement the formula for W3 (equation 8).
+        auto W3 = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_virtual, OccupationType::k_occupied);  // zero-initialize an occupied-virtual-virtual-occupied object
+        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
+                for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
+                    for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
+                        Scalar value {0.0};  // zero-initialize the scalar value to be added
+
+                        // Calculate the contribution from the first term.
+                        value += V_A(m, b, e, j);
+
+                        // Calculate the contribution from the second term.
+                        for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
+                            value += t1(j, f) * V_A(m, b, e, f);
+                        }
+
+                        // Calculate the contribution from the third term.
+                        for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
+                            value -= t1(n, b) * V_A(m, n, e, j);
+                        }
+
+                        // Calculate the contribution from the fourth term.
+                        for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
+                            for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
+                                value -= (0.5 * t2(j, n, f, b) + t1(j, f) * t1(n, b)) * V_A(m, n, e, f);
+                            }
+                        }
+
+                        W3(m, b, e, j) = value;
+                    }
+                }
+            }
+        }
+
+        return W3;
     }
 
 

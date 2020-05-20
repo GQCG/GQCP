@@ -74,30 +74,26 @@ public:
     /**
      *  Create perturbative T2-amplitudes using an explicit orbital space.
      * 
-     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal spinor basis
+     *  @param f                            the (inactive) Fock matrix
+     *  @param V_A                          the antisymmetrized two-electron integrals (in physicist's notation)
      *  @param orbital_space                the orbital space which covers the occupied-virtual separation
      * 
      *  @return T2-amplitudes calculated from an initial perturbative result
      */
-    static T2Amplitudes<Scalar> Perturbative(const SQHamiltonian<Scalar>& sq_hamiltonian, const OrbitalSpace& orbital_space) {
+    static T2Amplitudes<Scalar> Perturbative(const QCMatrix<Scalar>& f, const QCRankFourTensor<Scalar>& V_A, const OrbitalSpace& orbital_space) {
 
         // Zero-initialize a tensor representation for the (occupied-occupied-virtual-virtual) T2-amplitudes t_{ij}^{ab}.
         auto t2 = orbital_space.initializeRepresentableObjectFor<double>(OccupationType::k_occupied, OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_virtual);
 
 
-        // Provide the perturbative T2-amplitudes.
-        const auto F = sq_hamiltonian.calculateInactiveFockian(orbital_space).parameters();
-
-        const auto& g_chemists = sq_hamiltonian.twoElectron().parameters();
-        const auto V_A = g_chemists.convertedToPhysicistsNotation().antisymmetrized();
-
+        // Provide the perturbative T2-amplitudes, by setting the RHS amplitudes in Stanton1991, equation (2) to zero.
         for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
             for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
                 for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                     for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                        const auto denominator = F(i, i) + F(j, j) - F(a, a) - F(b, b);
+                        const auto denominator = f(i, i) + f(j, j) - f(a, a) - f(b, b);
 
-                        t2(i, j, a, b) = V_A(a, b, i, j) / denominator;
+                        t2(i, j, a, b) = V_A(i, j, a, b) / denominator;
                     }
                 }
             }

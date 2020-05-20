@@ -58,13 +58,25 @@ public:
      */
     void execute(Environment& environment) override {
 
-        // Extract the current T1- and T2-amplitudes and prepare some variables.
-        const auto& sq_hamiltonian = environment.sq_hamiltonian;
+        // Extract the current T1- and T2-amplitudes and intermediates.
+        const auto& f = environment.f;
+        const auto& V_A = environment.V_A;
         const auto& t1 = environment.t1_amplitudes.back();
         const auto& t2 = environment.t2_amplitudes.back();
 
+        const auto& tau2 = environment.tau2;
+        const auto& tau2_tilde = environment.tau2_tilde;
+
+        const auto& F1 = environment.F1;
+        const auto& F2 = environment.F2;
+        const auto& F3 = environment.F3;
+
+        const auto& W1 = environment.W1;
+        const auto& W2 = environment.W2;
+        const auto& W3 = environment.W3;
+
         const auto& orbital_space = t1.orbitalSpace();  // assume the orbital spaces are equal for the T1- and T2-amplitudes.
-        const auto F = sq_hamiltonian.calculateInactiveFockian(orbital_space).parameters();
+
 
         // Update the T1-amplitudes.
         auto t1_updated = t1;
@@ -72,15 +84,10 @@ public:
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
 
                 // Determine the current value for the corresponding T1-amplitude equation, and use it to update the T1-amplitude.
-                const auto f_ia = QCModel::CCSD<Scalar>::calculateT1AmplitudeEquation(sq_hamiltonian, t1, t2, i, a);
-                t1_updated(i, a) = t1(i, a) + f_ia / (F(i, i) - F(a, a));
+                const auto f_ia = QCModel::CCSD<Scalar>::calculateT1AmplitudeEquation(i, a, f, V_A, t1, t2, F1, F2, F3);
+                t1_updated(i, a) += f_ia / (f(i, i) - f(a, a));
             }
         }
-
-
-        std::cout << "New T1 amplitudes: " << std::endl
-                  << t1_updated.asImplicitMatrixSlice().asMatrix() << std::endl
-                  << std::endl;
 
         // Update the T2-amplitudes.
         auto t2_updated = t2;
@@ -90,8 +97,8 @@ public:
                     for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
 
                         // Determine the current value for the corresponding T2-amplitude equation, and use it to update the T2-amplitude.
-                        const auto f_ijab = QCModel::CCSD<Scalar>::calculateT2AmplitudeEquation(sq_hamiltonian, t1, t2, i, j, a, b);
-                        t2_updated(i, j, a, b) = t2(i, j, a, b) + f_ijab / (F(i, i) + F(j, j) - F(a, a) - F(b, b));
+                        const auto f_ijab = QCModel::CCSD<Scalar>::calculateT2AmplitudeEquation(i, j, a, b, f, V_A, t1, t2, tau2, F1, F2, F3, W1, W2, W3);
+                        t2_updated(i, j, a, b) += f_ijab / (f(i, i) + f(j, j) - f(a, a) - f(b, b));
                     }
                 }
             }
