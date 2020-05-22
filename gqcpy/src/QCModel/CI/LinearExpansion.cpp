@@ -135,7 +135,7 @@ void bindLinearExpansion<GQCP::SpinResolvedONVBasis>(py::module& module, const s
  *  @param description          the description for the gqcpy class
  */
 template <>
-void bindLinearExpansion<GQCP::SpinResolvedONVBasis>(py::module& module, const std::string& suffix, const std::string& description) {
+void bindLinearExpansion<GQCP::SpinUnresolvedONVBasis>(py::module& module, const std::string& suffix, const std::string& description) {
 
     py::class_<GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>>(module,
                                                                     ("LinearExpansion_" + suffix).c_str(),
