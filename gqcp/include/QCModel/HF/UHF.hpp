@@ -283,11 +283,13 @@ public:
         case Spin::alpha: {
             const auto K_alpha = UHF<Scalar>::calculateScalarBasisExchangeMatrix(P_alpha, sq_hamiltonian);
             return H_core + J - K_alpha;
+            break;
         }
 
         case Spin::beta: {
             const auto K_beta = UHF<Scalar>::calculateScalarBasisExchangeMatrix(P_beta, sq_hamiltonian);
             return H_core + J - K_beta;
+            break;
         }
         }
     }
@@ -335,10 +337,12 @@ public:
         switch (sigma) {
         case Spin::alpha: {
             return this->C_alpha;
+            break;
         }
 
         case Spin::beta: {
             return this->C_beta;
+            break;
         }
         }
     }
@@ -354,10 +358,12 @@ public:
         switch (sigma) {
         case Spin::alpha: {
             return this->N_alpha;
+            break;
         }
 
         case Spin::beta: {
             return this->N_beta;
+            break;
         }
         }
     }
@@ -372,10 +378,12 @@ public:
         switch (sigma) {
         case Spin::alpha: {
             return this->C_alpha.dimension();
+            break;
         }
 
         case Spin::beta: {
             return this->C_beta.dimension();
+            break;
         }
         }
     }
@@ -391,10 +399,12 @@ public:
         switch (sigma) {
         case Spin::alpha: {
             return this->orbital_energies_alpha;
+            break;
         }
 
         case Spin::beta: {
             return this->orbital_energies_beta;
+            break;
         }
         }
     }

@@ -19,6 +19,7 @@
 
 
 #include "Basis/ScalarBasis/GTOShell.hpp"
+#include "Basis/SpinorBasis/GSpinorBasis.hpp"
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Basis/SpinorBasis/USpinorBasis.hpp"
 #include "Basis/TransformationMatrix.hpp"
@@ -205,7 +206,7 @@ public:
      * 
      *  @param onv                      a spin-resolved ONV expressed with respect to an unrestricted spin-orbital basis
      *  @param r_spinor_basis           the restricted spin-orbital basis that is used to define the resulting linear expansion of ONVs against
-     *  @param u_spinor_basis           the unrestricted spin-orbital basis in with which the given ONV is expressed against
+     *  @param u_spinor_basis           the unrestricted spin-orbital basis against which the given ONV is expressed
      * 
      *  @return a linear expansion inside a spin-resolved ONV basis
      */
@@ -224,7 +225,7 @@ public:
         S_beta.basisTransformInPlace(u_spinor_basis.coefficientMatrix(Spin::beta).inverse());  // now in AO basis
 
         if (!(S.isApprox(S_alpha, 1.0e-08)) || !(S.isApprox(S_beta, 1.0e-08))) {
-            throw std::invalid_argument("SpinResolvedONV::calculateOverlap(const SpinResolvedONV&, const RSpinorBasis<double, GTOShell>&, const USpinorBasis<double, GTOShell>&): The given spinor bases are not expressed using the same scalar orbital basis.");
+            throw std::invalid_argument("LinearExpansion::FromONVProjection(const SpinResolvedONV&, const RSpinorBasis<double, GTOShell>&, const USpinorBasis<double, GTOShell>&): The given spinor bases are not expressed using the same scalar orbital basis.");
         }
 
 
@@ -251,6 +252,52 @@ public:
             const auto address = onv_basis.compoundAddress(I_alpha, I_beta);
 
             coeffs(address) = coefficient;
+        });
+
+        return LinearExpansion<Z>(onv_basis, coeffs);
+    }
+
+
+    /**
+     *  Create the linear expansion of the given spin-unresolved ONV that is expressed in the given GSpinorBasis, by projection onto the spin-resolved ONVs expressed with respect to another given GSpinorBasis.
+     * 
+     *  @param onv_of                   a spin-unresolved ONV expressed with respect to an general spinor basis
+     *  @param spinor_basis_on          the general spinor basis that is used to define the resulting linear expansion of ONVs against
+     *  @param spinor_basis_of          the general spinor basis against which the given ONV is expressed
+     * 
+     *  @return a linear expansion inside a spin-unresolved ONV basis
+     */
+    template <typename Z = ONVBasis>
+    static enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value, LinearExpansion<Z>> FromONVProjection(const SpinUnresolvedONV& onv_of, const GSpinorBasis<double, GTOShell>& spinor_basis_on, const GSpinorBasis<double, GTOShell>& spinor_basis_of) {
+
+
+        // Determine the overlap matrices of the underlying scalar orbital bases, which is needed later on.
+        auto S_on = spinor_basis_on.overlap().parameters();
+        S_on.basisTransformInPlace(spinor_basis_on.coefficientMatrix().inverse());  // now in AO basis
+
+        auto S_of = spinor_basis_of.overlap().parameters();
+        S_of.basisTransformInPlace(spinor_basis_of.coefficientMatrix().inverse());  // now in AO basis
+
+        if (!(S_on.isApprox(S_of, 1.0e-08))) {
+            throw std::invalid_argument("LinearExpansion::FromONVProjection(const SpinUnresolvedONV&, const RSpinorBasis<double, GTOShell>&, const GSpinorBasis<double, GTOShell>&): The given spinor bases are not expressed using the same scalar orbital basis.");
+        }
+
+
+        // Prepare some parameters.
+        const auto& C_on = spinor_basis_on.coefficientMatrix();
+        const auto& C_of = spinor_basis_of.coefficientMatrix();
+
+
+        // Set up the required spin-resolved ONV basis.
+        const auto M = onv_of.numberOfSpinors();
+        const auto N = onv_of.numberOfElectrons();
+        const SpinUnresolvedONVBasis onv_basis {M, N};
+
+
+        // Determine the coefficients through calculating the overlap between two ONVs.
+        VectorX<double> coeffs = VectorX<double>::Zero(onv_basis.dimension());
+        onv_basis.forEach([&onv_of, &C_on, &C_of, &S_on, &coeffs](const SpinUnresolvedONV& onv_on, const size_t I) {
+            coeffs(I) = onv_of.calculateProjection(onv_on, C_of, C_on, S_on);
         });
 
         return LinearExpansion<Z>(onv_basis, coeffs);

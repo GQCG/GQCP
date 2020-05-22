@@ -81,18 +81,48 @@ SpinUnresolvedONV SpinUnresolvedONV::FromString(const std::string& string_repres
 
 
 /**
- *  Create a spin-unresolved ONV that represents the GHF single Slater determinant.
+ *  Create a spin-unresolved ONV from a set of occupied indices.
  * 
- *  @param M            the number of spinors
- *  @param N            the number of electrons
+ *  @param occupied_indices             the indices that the electrons occupy, in order: e.g. the i-th element describes the spinor that the i-th electron occupies
+ *  @param M                            the total number of spinors
+ * 
+ *  @return a spin-resolved ONV from a set of occupied indices
+ */
+SpinUnresolvedONV SpinUnresolvedONV::FromOccupiedIndices(const std::vector<size_t>& occupied_indices, const size_t M) {
+
+    // Generate the corresponding unsigned representation and use that constructor.
+    size_t unsigned_representation = 0;
+    for (const auto& index : occupied_indices) {
+        unsigned_representation += std::pow(2, index);
+    }
+
+    const size_t N = occupied_indices.size();
+    return SpinUnresolvedONV(M, N, unsigned_representation);
+}
+
+
+/**
+ *  Create a spin-unresolved ONV that represents the GHF single Slater determinant, occupying the N spinors with the lowest spinor energy.
+ * 
+ *  @param M                            the number of spinors
+ *  @param N                            the number of electrons
+ *  @param orbital_energies             the single-particle energies of the spinors
  * 
  *  @param a spin-resolved ONV that represents the GHF single Slater determinant
  */
-SpinUnresolvedONV SpinUnresolvedONV::GHF(const size_t M, const size_t N) {
+SpinUnresolvedONV SpinUnresolvedONV::GHF(const size_t M, const size_t N, const VectorX<double>& orbital_energies) {
 
-    // The GHF ONV is that one in which the lowest N spinors are occupied.
-    const SpinUnresolvedONVBasis onv_basis {M, N};  // the ONV basis in which the GHF ONV should live
-    return onv_basis.makeONV(0);                    // the 'address' of the 'GHF' ONV is 0
+    // The GHF ONV is that one in which the N spinors with the lowest energy are occupied.
+
+    // Create an array that contains the indices of the spinors with ascending energy.
+    std::vector<size_t> indices(M);                // zero-initialized with M elements
+    std::iota(indices.begin(), indices.end(), 0);  // start with 0
+
+    // Sort the indices according to the orbital energies.
+    std::stable_sort(indices.begin(), indices.end(), [&orbital_energies](const size_t i, const size_t j) { return orbital_energies(i) < orbital_energies(j); });
+
+    const std::vector<size_t> occupied_indices {indices.begin(), indices.begin() + N};  // the first N elements
+    return SpinUnresolvedONV::FromOccupiedIndices(occupied_indices, M);
 }
 
 
@@ -281,6 +311,41 @@ std::string SpinUnresolvedONV::asString() const {
 
     boost::to_string(intermediate_bitset, text);
     return text;
+}
+
+
+/**
+ *  Calculate the overlap <on|of>: the projection of between this spin-unresolved ONV ('of') and another spin-unresolved ONV ('on'), expressed in different general orthonormal spinor bases.
+ * 
+ *  @param onv_on                       the spin-unresolved ONV that should be projected on
+ *  @param C_of                         the coefficient matrix that describes the expansion of the general spinors related to the ONV that is being projected
+ *  @param C_on                         the coefficient matrix that describes the expansion of the general spinors related to the ONV that is being projected on
+ *  @param S                            the overlap matrix of the underlying AOs
+ * 
+ *  @return the overlap element <on|of>
+ */
+double SpinUnresolvedONV::calculateProjection(const SpinUnresolvedONV& onv_on, const TransformationMatrix<double>& C_of, const TransformationMatrix<double>& C_on, const QCMatrix<double>& S) const {
+
+    // Make a reference copy in order to improve readibility of the following code.
+    const auto& onv_of = *this;
+
+
+    // Calculate the transformation matrix between the spinors.
+    TransformationMatrix<double> U = C_on.adjoint() * S * C_of;
+
+
+    // U's columns should be the ones occupied in the 'of'-ONV.
+    // U's rows should be the ones occupied in the 'on'-ONV.
+    // While waiting for Eigen 3.4 to release (which has better slicing APIs), we'll remove the UNoccupied rows/columns.
+    const auto unoccupied_indices_of = onv_of.unoccupiedIndices();
+    const auto unoccupied_indices_on = onv_on.unoccupiedIndices();
+
+    U.removeColumns(unoccupied_indices_of);
+    U.removeRows(unoccupied_indices_on);
+
+
+    // The requested overlap element is the determinant of the resulting matrix.
+    return U.determinant();
 }
 
 

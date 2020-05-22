@@ -19,7 +19,9 @@
 
 
 #include "Basis/SpinorBasis/OrbitalSpace.hpp"
+#include "Basis/TransformationMatrix.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
+#include "Mathematical/Representation/QCMatrix.hpp"
 
 
 namespace GQCP {
@@ -80,14 +82,25 @@ public:
     static SpinUnresolvedONV FromString(const std::string& string_representation);
 
     /**
-     *  Create a spin-unresolved ONV that represents the GHF single Slater determinant.
+     *  Create a spin-unresolved ONV from a set of occupied indices.
      * 
-     *  @param M            the number of spinors
-     *  @param N            the number of electrons
+     *  @param occupied_indices             the indices that the electrons occupy, in order: e.g. the i-th element describes the spinor that the i-th electron occupies
+     *  @param M                            the total number of spinors
+     * 
+     *  @return a spin-resolved ONV from a set of occupied indices
+     */
+    static SpinUnresolvedONV FromOccupiedIndices(const std::vector<size_t>& occupied_indices, const size_t M);
+
+    /**
+     *  Create a spin-unresolved ONV that represents the GHF single Slater determinant, occupying the N spinors with the lowest spinor energy.
+     * 
+     *  @param M                            the number of spinors
+     *  @param N                            the number of electrons
+     *  @param orbital_energies             the single-particle energies of the spinors
      * 
      *  @param a spin-resolved ONV that represents the GHF single Slater determinant
      */
-    static SpinUnresolvedONV GHF(const size_t M, const size_t N);
+    static SpinUnresolvedONV GHF(const size_t M, const size_t N, const VectorX<double>& orbital_energies);
 
 
     // OPERATORS
@@ -188,6 +201,18 @@ public:
      *  @return a string representation of this spin-unresolved ONV
      */
     std::string asString() const;
+
+    /**
+     *  Calculate the overlap <on|of>: the projection of between this spin-unresolved ONV ('of') and another spin-unresolved ONV ('on'), expressed in different general orthonormal spinor bases.
+     * 
+     *  @param onv_on                       the spin-unresolved ONV that should be projected on
+     *  @param C_of                         the coefficient matrix that describes the expansion of the general spinors related to the ONV that is being projected
+     *  @param C_on                         the coefficient matrix that describes the expansion of the general spinors related to the ONV that is being projected on
+     *  @param S                            the overlap matrix of the underlying AOs
+     * 
+     *  @return the overlap element <on|of>
+     */
+    double calculateProjection(const SpinUnresolvedONV& onv_on, const TransformationMatrix<double>& C_of, const TransformationMatrix<double>& C_on, const QCMatrix<double>& S) const;
 
     /**
      *  @param other        the other spin-unresolved ONV

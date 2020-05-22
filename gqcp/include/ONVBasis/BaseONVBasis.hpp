@@ -67,12 +67,17 @@ public:
 
 
     // GETTERS
-    size_t get_dimension() const { return dim; }
+    size_t get_dimension() const { return this->dimension(); }
     size_t get_K() const { return K; }
     virtual ONVBasisType get_type() const = 0;
 
 
     // PUBLIC METHODS
+
+    /**
+     *  @return the dimension of this spin-unresolved ONV basis
+     */
+    size_t dimension() const { return this->dim; }
 
     /**
      *  @return the coefficient vector for the Hartree-Fock wave function (i.e. the 'first' ONV/Slater determinant)

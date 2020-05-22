@@ -76,22 +76,27 @@ public:
     static SpinResolvedONV FromString(const std::string& string_representation_alpha, const std::string& string_representation_beta);
 
     /**
-     *  Create a spin-resolved ONV that represents the RHF single Slater determinant.
+     *  Create a spin-resolved ONV that represents the RHF single Slater determinant, occupying the N_P lowest alpha- and beta-spin-orbitals.
      * 
      *  @param K            the number of spatial orbitals
      *  @param N_P          the number of electron pairs
      * 
-     *  @param a spin-resolved ONV that represents the RHF single Slater determinant
+     *  @return a spin-resolved ONV that represents the RHF single Slater determinant
+     * 
+     * @note The ordering of the spin-orbitals is implicit: this method assumes that the spin-orbitals in the corresponding RSpinorBasis are sorted with increasing one-particle energy.
      */
     static SpinResolvedONV RHF(const size_t K, const size_t N_P);
 
     /**
-     *  Create a spin-resolved ONV that represents the UHF single Slater determinant.
+     *  Create a spin-resolved ONV that represents the UHF single Slater determinant, occupying the N_alpha lowest alpha-spin-orbitals, and the N_beta lowest beta-spin-orbitals.
      * 
-     *  @param K            the number of spatial orbitals
-     *  @param N_P          the number of electron pairs
+     *  @param K                the number of spatial orbitals
+     *  @param N_alpha          the number of alpha-electrons
+     *  @param N_beta           the number of beta-electrons
      * 
-     *  @param a spin-resolved ONV that represents the UHF single Slater determinant
+     *  @return a spin-resolved ONV that represents the UHF single Slater determinant
+     * 
+     * @note The ordering of the spin-orbitals is implicit: this method assumes that the spin-orbitals in the corresponding USpinorBasis are sorted with increasing one-particle energy.
      */
     static SpinResolvedONV UHF(const size_t K, const size_t N_alpha, const size_t N_beta);
 

@@ -97,6 +97,26 @@ BOOST_AUTO_TEST_CASE(alpha_beta_coefficient_matrix) {
 
 
 /**
+ *  Check if constructing a generalized spinor basis from a restricted spin-orbital basis works as expected.
+ */
+BOOST_AUTO_TEST_CASE(FromRestricted) {
+
+    const auto molecule = GQCP::Molecule::HChain(2, 1.0);
+    const GQCP::RSpinorBasis<double, GQCP::GTOShell> r_spinor_basis {molecule, "6-31G"};  // a basis with M=2*4=8 spinors
+    const auto K = r_spinor_basis.numberOfSpatialOrbitals();
+
+
+    // There should be zero blocks bottom-left and top-right.
+    const auto g_spinor_basis = GQCP::GSpinorBasis<double, GQCP::GTOShell>::FromRestricted(r_spinor_basis);
+
+    const auto& C_spin_blocked = g_spinor_basis.coefficientMatrix();
+
+    BOOST_CHECK(C_spin_blocked.bottomLeftCorner(K, K).isApprox(GQCP::MatrixX<double>::Zero(K, K), 1.0e-12));
+    BOOST_CHECK(C_spin_blocked.topRightCorner(K, K).isApprox(GQCP::MatrixX<double>::Zero(K, K), 1.0e-12));
+}
+
+
+/**
  *  Check if the quantization of the Coulomb operator yields zero elements where expected.
  * 
  *  For a test system of H2//STO-3G, we expect zero blocks whenever the indices P,Q and R,S do not belong to the same alpha or beta set.
