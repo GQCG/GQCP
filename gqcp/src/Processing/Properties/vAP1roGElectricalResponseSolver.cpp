@@ -17,6 +17,7 @@
 
 #include "Processing/Properties/vAP1roGElectricalResponseSolver.hpp"
 
+#include "Basis/SpinorBasis/OrbitalSpace.hpp"
 #include "Mathematical/Optimization/LinearEquation/LinearEquationEnvironment.hpp"
 #include "Mathematical/Optimization/LinearEquation/LinearEquationSolver.hpp"
 
@@ -59,10 +60,12 @@ Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateParameterRe
 
     // Prepare some variables.
     const auto& G = this->vap1rog.geminalCoefficients();
-
-    const auto N_P = G.numberOfElectronPairs();
-    const auto K = G.numberOfSpatialOrbitals();
     const auto dim = G.count();
+
+    // Create an occupied-virtual orbital space.
+    const auto K = G.numberOfSpatialOrbitals();
+    const auto N_P = G.numberOfElectronPairs();
+    const auto orbital_space = OrbitalSpace::Implicit({{OccupationType::k_occupied, N_P}, {OccupationType::k_virtual, K - N_P}});  // N_P occupied (spatial) orbitals, K-N_P virtual (spatial) orbitals
 
 
     // Calculate every component separately.
@@ -72,9 +75,9 @@ Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateParameterRe
         const auto mu_m = dipole_op[m].parameters();
 
         // Calculate the m-th component of the parameter response force F_p.
-        BlockMatrix<double> F_p_m {0, N_P, N_P, K};
-        for (size_t i = 0; i < N_P; i++) {
-            for (size_t a = N_P; a < K; a++) {
+        auto F_p_m = orbital_space.initializeRepresentableObjectFor<double>(OccupationType::k_occupied, OccupationType::k_virtual);  // create a representation for occupied-virtual objects
+        for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 F_p_m(i, a) = 2 * (mu_m(i, i) - mu_m(a, a)) * G(i, a);
             }
         }
@@ -114,10 +117,12 @@ Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateExplicitMul
     // Prepare some variables.
     const auto& G = this->vap1rog.geminalCoefficients();
     const auto& lambda = this->vap1rog.lagrangeMultipliers();
-
-    const auto N_P = G.numberOfElectronPairs();
-    const auto K = G.numberOfSpatialOrbitals();
     const auto dim = G.count();
+
+    // Create an occupied-virtual orbital space.
+    const auto K = G.numberOfSpatialOrbitals();
+    const auto N_P = G.numberOfElectronPairs();
+    const auto orbital_space = OrbitalSpace::Implicit({{OccupationType::k_occupied, N_P}, {OccupationType::k_virtual, K - N_P}});  // N_P occupied (spatial) orbitals, K-N_P virtual (spatial) orbitals
 
 
     // Calculate A_lambda by constructing its separate components.
@@ -127,9 +132,9 @@ Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateExplicitMul
         const auto mu_m = dipole_op[m].parameters();
 
         // Calculate the m-th component.
-        BlockMatrix<double> A_lambda_m(0, N_P, N_P, K);
-        for (size_t i = 0; i < N_P; i++) {
-            for (size_t a = N_P; a < K; a++) {
+        auto A_lambda_m = orbital_space.initializeRepresentableObjectFor<double>(OccupationType::k_occupied, OccupationType::k_virtual);  // create a representation for occupied-virtual objects
+        for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 A_lambda_m(i, a) = 2 * lambda(i, a) * (mu_m(i, i) - mu_m(a, a));
             }
         }
@@ -148,26 +153,27 @@ Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateExplicitMul
  *
  *  @return the multiplier force constant of the implicit part (i.e. the second part of the) Lagrangian multiplier response, B_lambda
  */
-BlockRankFourTensor<double> vAP1roGElectricalResponseSolver::calculateImplicitMultiplierResponseForceConstant(const SQHamiltonian<double>& sq_hamiltonian) const {
+ImplicitRankFourTensorSlice<double> vAP1roGElectricalResponseSolver::calculateImplicitMultiplierResponseForceConstant(const SQHamiltonian<double>& sq_hamiltonian) const {
 
     // Prepare some variables.
     const auto& G = this->vap1rog.geminalCoefficients();
     const auto& lambda = this->vap1rog.lagrangeMultipliers();
+    const auto dim = G.count();
 
+    // Prepare an occupied-virtual orbital space.
     const auto N_P = G.numberOfElectronPairs();
     const auto K = G.numberOfSpatialOrbitals();
-    const auto dim = G.count();
+    const auto orbital_space = OrbitalSpace::Implicit({{OccupationType::k_occupied, N_P}, {OccupationType::k_virtual, K - N_P}});  // N_P occupied (spatial) orbitals, K-N_P virtual (spatial) orbitals
+
 
     const auto& g = sq_hamiltonian.twoElectron().parameters();
 
+    auto B_lambda = orbital_space.initializeRepresentableObjectFor<double>(OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_occupied, OccupationType::k_virtual);  // initialize a mathematical object for the representaion of an occupied-virtual-occupied-virtual object (iabj)
 
-    BlockRankFourTensor<double> B_lambda {0, N_P, N_P, K,
-                                          0, N_P, N_P, K};
-
-    for (size_t i = 0; i < N_P; i++) {
-        for (size_t a = N_P; a < K; a++) {
-            for (size_t j = 0; j < N_P; j++) {
-                for (size_t b = N_P; b < K; b++) {
+    for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+        for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
+            for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
+                for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
                     double value {0.0};
 
                     value += lambda(i, b) * g(j, a, j, a) + lambda(j, a) * g(i, b, i, b);

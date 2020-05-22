@@ -28,12 +28,11 @@ namespace GQCP {
 
 /**
  *  @param sq_hamiltonian           the Hamiltonian expressed in an orthornomal basis
- *  @param molecule                 the molecule for which the energy correction should be calculated
  *  @param rhf_parameters           the converged solution to the RHF SCF equations
  *
  *  @return the RMP2 energy correction
  */
-double calculateRMP2EnergyCorrection(const SQHamiltonian<double>& sq_hamiltonian, const Molecule& molecule, const QCModel::RHF<double>& rhf_parameters);
+double calculateRMP2EnergyCorrection(const SQHamiltonian<double>& sq_hamiltonian, const QCModel::RHF<double>& rhf_parameters);
 
 
 }  // namespace GQCP

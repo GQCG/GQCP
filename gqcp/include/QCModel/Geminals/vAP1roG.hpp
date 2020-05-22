@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Mathematical/Representation/BlockMatrix.hpp"
+#include "Mathematical/Representation/ImplicitMatrixSlice.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCModel/Geminals/AP1roG.hpp"
 #include "QCModel/Geminals/AP1roGGeminalCoefficients.hpp"
@@ -33,8 +33,8 @@ namespace QCModel {
  */
 class vAP1roG {
 private:
-    AP1roGGeminalCoefficients G;      // the optimized geminal coefficients
-    BlockMatrix<double> multipliers;  // the optimized Lagrange multipliers
+    AP1roGGeminalCoefficients G;              // the optimized geminal coefficients
+    ImplicitMatrixSlice<double> multipliers;  // the optimized Lagrange multipliers
 
 
 public:
@@ -46,7 +46,7 @@ public:
      *  @param G                    the optimal geminal coefficients
      *  @param multipliers          the optimized Lagrange multipliers
      */
-    vAP1roG(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers) :
+    vAP1roG(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<double>& multipliers) :
         G {G},
         multipliers {multipliers} {}
 
@@ -69,7 +69,7 @@ public:
      *
      *  @return the AP1roG response 1-DM
      */
-    static OneRDM<double> calculate1RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers);
+    static OneRDM<double> calculate1RDM(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<double>& multipliers);
 
     /**
      *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
@@ -77,7 +77,7 @@ public:
      * 
      *  @return the response force (-F_lambda) that is used to solve the linear equations for the Lagrange multipliers lambda in [k_lambda lambda = -F_lambda]
      */
-    static BlockMatrix<double> calculateMultiplierResponseForce(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P);
+    static ImplicitMatrixSlice<double> calculateMultiplierResponseForce(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P);
 
     /**
      *  @param G                    the AP1roG geminal coefficients
@@ -93,7 +93,7 @@ public:
      *
      *  @return the AP1roG response number 2-RDM (the Delta-matrix in the notes)
      */
-    static SquareMatrix<double> calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers);
+    static SquareMatrix<double> calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<double>& multipliers);
 
     /**
      *  @param G                the AP1roG geminal coefficients
@@ -101,7 +101,7 @@ public:
      *
      *  @return the AP1roG response pair 2-RDM (the Pi-matrix in the notes)
      */
-    static SquareMatrix<double> calculatePair2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers);
+    static SquareMatrix<double> calculatePair2RDM(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<double>& multipliers);
 
     /**
      *  @param G                the AP1roG geminal coefficients
@@ -109,7 +109,7 @@ public:
      *
      *  @return the AP1roG response 2-DM
      */
-    static TwoRDM<double> calculate2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers);
+    static TwoRDM<double> calculate2RDM(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<double>& multipliers);
 
 
     /*
@@ -136,7 +136,7 @@ public:
     /**
      *  @return the Lagrange multipliers
      */
-    const BlockMatrix<double>& lagrangeMultipliers() const { return this->multipliers; }
+    const ImplicitMatrixSlice<double>& lagrangeMultipliers() const { return this->multipliers; }
 
     /**
      *  @return the number of electron pairs that are described by these AP1roG model parameters
