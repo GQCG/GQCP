@@ -18,6 +18,12 @@
 #pragma once
 
 
+#include "Basis/Integrals/BaseOneElectronIntegralBuffer.hpp"
+#include "Basis/Integrals/BaseOneElectronIntegralEngine.hpp"
+#include "Basis/Integrals/BaseTwoElectronIntegralBuffer.hpp"
+#include "Basis/Integrals/BaseTwoElectronIntegralEngine.hpp"
+#include "Basis/Integrals/IntegralCalculator.hpp"
+#include "Basis/Integrals/IntegralEngine.hpp"
 #include "Basis/Integrals/Interfaces/LibcintInterfacer.hpp"
 #include "Basis/Integrals/Interfaces/LibcintOneElectronIntegralBuffer.hpp"
 #include "Basis/Integrals/Interfaces/LibcintOneElectronIntegralEngine.hpp"
@@ -27,13 +33,7 @@
 #include "Basis/Integrals/Interfaces/LibintOneElectronIntegralBuffer.hpp"
 #include "Basis/Integrals/Interfaces/LibintOneElectronIntegralEngine.hpp"
 #include "Basis/Integrals/Interfaces/LibintTwoElectronIntegralBuffer.hpp"
-#include "Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp
-#include "Basis/Integrals/BaseOneElectronIntegralBuffer.hpp"
-#include "Basis/Integrals/BaseOneElectronIntegralEngine.hpp"
-#include "Basis/Integrals/BaseTwoElectronIntegralBuffer.hpp"
-#include "Basis/Integrals/BaseTwoElectronIntegralEngine.hpp"
-#include "Basis/Integrals/IntegralCalculator.hpp"
-#include "Basis/Integrals/IntegralEngine.hpp"
+#include "Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp"
 #include "Basis/ScalarBasis/CartesianExponents.hpp"
 #include "Basis/ScalarBasis/CartesianGTO.hpp"
 #include "Basis/ScalarBasis/GTOBasisSet.hpp"
