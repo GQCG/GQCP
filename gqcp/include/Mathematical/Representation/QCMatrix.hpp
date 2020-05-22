@@ -27,7 +27,7 @@ namespace GQCP {
 
 
 /**
- *  An extension of the SquareMatrix class with methods of quantum chemical context
+ *  An extension of the SquareMatrix class with methods of quantum chemical context for one-electron integrals.
  *
  *  @tparam _Scalar      the scalar type
  */
@@ -49,34 +49,8 @@ public:
 
 
     /*
-     *  GETTERS
-     */
-
-
-    /*
      *  PUBLIC METHODS
      */
-
-    /**
-     *  @return the dimension of this matrix representation of the parameters, i.e. the number of orbitals/sites
-     */
-    size_t dimension() const {
-        return this->cols();
-    }
-
-    size_t get_K() const { return this->dimension(); };
-
-
-    /**
-     *  In-place transform this chemical matrix to another basis
-     * 
-     *  @param T                            the transformation matrix
-     */
-    void basisTransformInPlace(const TransformationMatrix<Scalar>& T) {
-
-        (*this) = Self(T.adjoint() * (*this) * T);  // has no aliasing issues (https://eigen.tuxfamily.org/dox/group__TopicAliasing.html)
-    }
-
 
     /**
      *  In-place transform this chemical matrix to another basis
@@ -116,6 +90,25 @@ public:
 
         this->applyOnTheLeft(p, q, jacobi.adjoint());
         this->applyOnTheRight(p, q, jacobi);
+    }
+
+
+    /**
+     *  In-place transform this chemical matrix to another basis
+     * 
+     *  @param T                            the transformation matrix
+     */
+    void basisTransformInPlace(const TransformationMatrix<Scalar>& T) {
+
+        (*this) = Self(T.adjoint() * (*this) * T);  // has no aliasing issues (https://eigen.tuxfamily.org/dox/group__TopicAliasing.html)
+    }
+
+
+    /**
+     *  @return the dimension of this matrix representation of the parameters, i.e. the number of orbitals/sites
+     */
+    size_t dimension() const {
+        return this->cols();
     }
 };
 

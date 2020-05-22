@@ -15,21 +15,22 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
-
-#include <pybind11/pybind11.h>
+#pragma once
 
 
-namespace py = pybind11;
+namespace GQCP {
 
 
-namespace gqcpy {
+/**
+ *  The state of occupation for a spinor (index).
+ * 
+ *  @note Since 'virtual' is a C++ keyword, the different cases are given a prefix 'k_' for 'constant'.
+ */
+enum class OccupationType {
+    k_occupied,
+    k_active,
+    k_virtual
+};
 
 
-void bindEigenproblemEnvironment(py::module& module) {
-
-    py::class_<GQCP::EigenproblemEnvironment>(module, "EigenproblemEnvironment", "An environment used to solve eigenvalue problems for self-adjoint matrices.");
-}
-
-
-}  // namespace gqcpy
+}  // namespace GQCP

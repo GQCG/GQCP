@@ -46,6 +46,14 @@ public:
      */
 
     /**
+     *  @return a textual description of this algorithmic step
+     */
+    std::string description() const override {
+        return "Read the left- and right-hand sides of the system of equations from the environment, and write the solution back to the environment.";
+    }
+
+
+    /**
      *  Read the left- and right-hand sides of the system of equations from the environment, and write the solution back to the environment.
      * 
      *  @param environment              the environment that this step can read from and write to

@@ -50,6 +50,18 @@ public:
         correction_threshold {correction_threshold} {}
 
 
+    /*
+     *  OVERRIDDEN PUBLIC METHODS
+     */
+
+    /**
+     *  @return a textual description of this algorithmic step
+     */
+    std::string description() const override {
+        return "Calculate the correction vectors by solving the residual equations.";
+    }
+
+
     /**
      *  Calculate the correction vectors by solving the residual equations.
      * 

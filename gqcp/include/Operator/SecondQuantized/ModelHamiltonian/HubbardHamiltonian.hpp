@@ -67,11 +67,11 @@ public:
         QCMatrix<double> h_par = QCMatrix<double>::Zero(K, K);  // 'par' for 'parameters'
 
         // The one-electron hopping terms can be found on the off-diagonal elements of the hopping matrix.
-        for (size_t i = 0; i < K; i++) {
-            for (size_t j = i; j < K; j++) {
-                if (i != j) {
-                    h_par(i, j) = this->H(i, j);
-                    h_par(j, i) = this->H(j, i);
+        for (size_t p = 0; p < K; p++) {
+            for (size_t q = p; q < K; q++) {
+                if (p != q) {
+                    h_par(p, q) = this->H(p, q);
+                    h_par(q, p) = this->H(q, p);
                 }
             }
         }
@@ -106,12 +106,8 @@ public:
         g_par.setZero();
 
         // The two-electron on-site repulsion is found on the diagonal of the hopping matrix.
-        for (size_t i = 0; i < K; i++) {
-            for (size_t j = i; j < K; j++) {
-                if (i == j) {
-                    g_par(i, i, i, i) = H(i, i);
-                }
-            }
+        for (size_t p = 0; p < K; p++) {
+            g_par(p, p, p, p) = H(p, p);
         }
 
         return ScalarSQTwoElectronOperator<double> {g_par};

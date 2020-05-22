@@ -575,6 +575,16 @@ int SpinUnresolvedONV::operatorPhaseFactor(const size_t p) const {
 
 
 /**
+ *  @return the implicit orbital space that is related to this spin-unresolved ONV by taking this as a reference determinant
+ */
+OrbitalSpace SpinUnresolvedONV::orbitalSpace() const {
+
+    // Create an occupied-virtual orbital space.
+    return OrbitalSpace(this->occupiedIndices(), this->unoccupiedIndices());
+}
+
+
+/**
  *  @param index_start      the starting index (included), read from right to left
  *  @param index_end        the ending index (not included), read from right to left
  *

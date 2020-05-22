@@ -79,7 +79,7 @@ public:
      *
      *  @return the multiplier force constant of the implicit part (i.e. the second part of the) Lagrangian multiplier response, B_lambda
      */
-    BlockRankFourTensor<double> calculateImplicitMultiplierResponseForceConstant(const SQHamiltonian<double>& sq_hamiltonian) const;
+    ImplicitRankFourTensorSlice<double> calculateImplicitMultiplierResponseForceConstant(const SQHamiltonian<double>& sq_hamiltonian) const;
 
     /**
      *  @param sq_hamiltonian                   the Hamiltonian expressed in an orthonormal orbital basis

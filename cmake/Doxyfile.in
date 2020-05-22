@@ -813,11 +813,13 @@ INPUT = "@CMAKE_SOURCE_DIR@/gqcp/include" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Operator" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Operator/FirstQuantized" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Operator/SecondQuantized" \
+        "@CMAKE_SOURCE_DIR@/gqcp/include/Operator/SecondQuantized/ModelHamiltonian" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Processing" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Processing/Properties" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Processing/RDM" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod/Applications" \
+        "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod/CC" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod/CI" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod/CI/HamiltonianBuilder" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod/Geminals" \
@@ -827,6 +829,9 @@ INPUT = "@CMAKE_SOURCE_DIR@/gqcp/include" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod/OrbitalOptimization" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod/OrbitalOptimization/Localization" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod/RMP2" \
+        "@CMAKE_SOURCE_DIR@/gqcp/include/QCModel/CC" \
+        "@CMAKE_SOURCE_DIR@/gqcp/include/QCModel/CI" \
+        "@CMAKE_SOURCE_DIR@/gqcp/include/QCModel/Geminals" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/QCModel/HF" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Utilities" \
         "@CMAKE_SOURCE_DIR@/gqcp/src" \
@@ -836,12 +841,13 @@ INPUT = "@CMAKE_SOURCE_DIR@/gqcp/include" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Basis/ScalarBasis" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Basis/SpinorBasis" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Mathematical" \
+        "@CMAKE_SOURCE_DIR@/gqcp/src/Mathematical/Grid" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Mathematical/Optimization" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Mathematical/Optimization/Eigenproblem" \
+        "@CMAKE_SOURCE_DIR@/gqcp/src/Mathematical/Optimization/Minimization" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Mathematical/Optimization/NonLinearEquation" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Molecule" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/ONVBasis" \
-        "@CMAKE_SOURCE_DIR@/gqcp/src/ONVBasis/LinearExpansion" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Operator" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Operator/FirstQuantized" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Processing" \
@@ -854,8 +860,7 @@ INPUT = "@CMAKE_SOURCE_DIR@/gqcp/include" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/QCMethod/Geminals" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/QCMethod/OrbitalOptimization" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/QCMethod/OrbitalOptimization/Localization" \
-        "@CMAKE_SOURCE_DIR@/gqcp/src/QCMethod/RHF" \
-        "@CMAKE_SOURCE_DIR@/gqcp/src/QCMethod/RMP2" \
+        "@CMAKE_SOURCE_DIR@/gqcp/src/QCModel/Geminals" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Utilities" \
 
 

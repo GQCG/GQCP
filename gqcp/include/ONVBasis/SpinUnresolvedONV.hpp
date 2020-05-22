@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/SpinorBasis/OrbitalSpace.hpp"
 #include "Basis/TransformationMatrix.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
@@ -330,6 +331,11 @@ public:
      *  @example Let's say that there are m electrons in the orbitals up to p (not included). If m is even, the phase factor is (+1) and if m is odd, the phase factor is (-1), since electrons are fermions.
      */
     int operatorPhaseFactor(const size_t p) const;
+
+    /**
+     *  @return the implicit orbital space that is related to this spin-unresolved ONV by taking this as a reference determinant
+     */
+    OrbitalSpace orbitalSpace() const;
 
     /**
      *  @param index_start      the starting index (included), read from right to left

@@ -21,6 +21,8 @@
 #include "Mathematical/Algorithm/ConvergenceCriterion.hpp"
 #include "Mathematical/Algorithm/StepCollection.hpp"
 
+#include <boost/format.hpp>
+
 #include <cstddef>
 
 
@@ -71,6 +73,22 @@ public:
      *  PUBLIC METHODS
      */
 
+
+    /**
+     *  @return a textual description of this iterative algorithm.
+     */
+    std::string description() const {
+
+        std::string description_string = (boost::format("An iterative algorithm (with a maximum of %s iterations) consisting of the following steps:\n") % this->maximumNumberOfIterations()).str();
+        description_string += steps.description();
+
+        description_string += "\nWith the following convergence criterion:\n";
+        description_string += convergence_criterion->description();
+
+        return description_string;
+    }
+
+
     /**
      *  Insert an algorithm step at the given index.
      * 
@@ -79,6 +97,18 @@ public:
      */
     template <typename Z = Step<Environment>>
     enable_if_t<std::is_same<Environment, typename Z::Environment>::value, void> insert(const Z& step, const size_t index) { this->steps.insert(step, index); }
+
+
+    /**
+     *  @return the maximum number of iterations the algorithm may perform
+     */
+    size_t maximumNumberOfIterations() const { return this->maximum_number_of_iterations; }
+
+    /**
+     *  @return the number of iterations that have been performed
+     */
+    size_t numberOfIterations() const { return this->iteration; }
+
 
     /**
      *  Perform the iteration steps until convergence is achieved
@@ -105,9 +135,21 @@ public:
 
 
     /**
-     *  @return the number of iterations that have been performed
+     *  Remove the algorithm step at the given index.
+     * 
+     *  @param index                the zero-based index of the step in this algorithm that should be removed
      */
-    size_t numberOfIterations() const { return this->iteration; }
+    void remove(const size_t index) { this->steps.remove(index); }
+
+
+    /**
+     *  Replace an algorithm step at the given index.
+     * 
+     *  @param step                 the step that should be inserted into this algorithm
+     *  @param index                the zero-based index of the step that should be replaced
+     */
+    template <typename Z = Step<Environment>>
+    enable_if_t<std::is_same<Environment, typename Z::Environment>::value, void> replace(const Z& step, const size_t index) { this->steps.replace(step, index); }
 };
 
 

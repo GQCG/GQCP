@@ -18,7 +18,8 @@
 #pragma once
 
 
-#include "Mathematical/Representation/BlockMatrix.hpp"
+#include "Basis/SpinorBasis/OrbitalSpace.hpp"
+#include "Mathematical/Representation/ImplicitMatrixSlice.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCModel/CI/LinearExpansion.hpp"
 #include "QCModel/Geminals/GeminalCoefficientsInterface.hpp"
@@ -32,9 +33,9 @@ namespace GQCP {
  */
 class AP1roGGeminalCoefficients: public GeminalCoefficientsInterface {
 private:
-    size_t K;               // the number of spatial orbitals corresponding to these geminal coefficients
-    size_t N_P;             // the number of electron pairs (i.e. the number of geminals) corresponding to these geminal coefficients
-    BlockMatrix<double> G;  // the AP1roG geminal coefficients (not including the identity matrix on the left), as a block matrix, so it implements easy operator(i,a) calls
+    size_t K;                       // the number of spatial orbitals corresponding to these geminal coefficients
+    size_t N_P;                     // the number of electron pairs (i.e. the number of geminals) corresponding to these geminal coefficients
+    ImplicitMatrixSlice<double> G;  // the AP1roG geminal coefficients (not including the identity matrix on the left), as a block matrix, so it implements easy operator(i,a) calls
 
 
 public:
@@ -43,7 +44,7 @@ public:
     /**
      *  @param G            the AP1roG geminal coefficients (not including the identity matrix on the left), as a block matrix
      */
-    AP1roGGeminalCoefficients(const BlockMatrix<double>& G, const size_t N_P, const size_t K);
+    AP1roGGeminalCoefficients(const ImplicitMatrixSlice<double>& G, const size_t N_P, const size_t K);
 
     /**
      *  @param G            the AP1roG geminal coefficients (not including the identity matrix on the left)
@@ -158,6 +159,11 @@ public:
      *  @return the overlap of the AP1roG wave function with the given ONV, i.e. the projection of the APIG wave function onto that ONV
      */
     double overlap(const SpinUnresolvedONV& onv) const override;
+
+    /**
+     *  @return the implicit (i.e. with ascending and contiguous orbital indices) occupied-virtual orbital space that is associated with these geminal coefficients
+     */
+    OrbitalSpace orbitalSpace() const;
 };
 
 

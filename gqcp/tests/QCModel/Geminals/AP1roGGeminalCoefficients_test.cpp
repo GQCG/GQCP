@@ -175,3 +175,25 @@ BOOST_AUTO_TEST_CASE(toLinearExpansion_example3) {
     GQCP::SeniorityZeroONVBasis onv_basis {K, N_P};
     BOOST_CHECK(ref_coefficients.isApprox(gem_coeff.toLinearExpansion(onv_basis).coefficients()));
 }
+
+
+/**
+ *  Check if the implicit orbital space is the one that is expected.
+ */
+BOOST_AUTO_TEST_CASE(orbitalSpace) {
+
+    // Set up toy AP1roG geminal coefficients.
+    const size_t N_P = 3;
+    const size_t K = 7;
+    const GQCP::AP1roGGeminalCoefficients G {N_P, K};
+
+
+    // Initialize the reference occupied and virtual orbital indices.
+    const std::vector<size_t> ref_occupied_indices {0, 1, 2};
+    const std::vector<size_t> ref_virtual_indices {3, 4, 5, 6};
+
+
+    // Test the implicit orbital space.
+    BOOST_CHECK(G.orbitalSpace().indices(GQCP::OccupationType::k_occupied) == ref_occupied_indices);
+    BOOST_CHECK(G.orbitalSpace().indices(GQCP::OccupationType::k_virtual) == ref_virtual_indices);
+}

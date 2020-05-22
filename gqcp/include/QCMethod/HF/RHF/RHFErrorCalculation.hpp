@@ -46,6 +46,14 @@ public:
      */
 
     /**
+     *  @return a textual description of this algorithmic step
+     */
+    std::string description() const override {
+        return "Calculate the current error vector and add it to the environment.";
+    }
+
+
+    /**
      *  Calculate the current error vector and add it to the environment.
      * 
      *  @param environment              the environment that acts as a sort of calculation space

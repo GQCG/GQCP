@@ -39,6 +39,14 @@ public:
      */
 
     /**
+     *  @return a textual description of this algorithmic step
+     */
+    std::string description() const override {
+        return "Calculate the subspace matrix, i.e. the projection of the matrix A onto the subspace spanned by the vectors in V.";
+    }
+
+
+    /**
      *  Calculate the subspace matrix, i.e. the projection of the matrix A onto the subspace spanned by the vectors in V.
      * 
      *  @param environment              the environment that acts as a sort of calculation space

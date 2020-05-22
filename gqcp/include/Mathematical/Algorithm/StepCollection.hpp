@@ -22,6 +22,8 @@
 #include "Utilities/memory.hpp"
 #include "Utilities/type_traits.hpp"
 
+#include <boost/format.hpp>
+
 #include <vector>
 
 
@@ -47,6 +49,37 @@ private:
 
 public:
     /*
+     *  PUBLIC OVERRIDDEN METHODS
+     */
+
+    /**
+     *  Execute all the steps in this collection.
+     * 
+     *  @param environment              the environment that this step can read from and write to
+     */
+    void execute(Environment& environment) override {
+        for (const auto& step : this->steps) {
+            step->execute(environment);
+        }
+    }
+
+
+    /**
+     *  @return a textual description of this algorithmic step
+     */
+    std::string description() const override {
+
+        std::string description_string = (boost::format("An algorithmic step consisting of %s algorithmic steps:\n") % this->numberOfSteps()).str();
+
+        for (size_t i = 0; i < this->numberOfSteps(); i++) {
+            const auto& step = this->steps[i];
+            description_string += (boost::format("\t%s. %s\n") % std::to_string(i + 1) % step->description()).str();
+        }
+        return description_string;
+    }
+
+
+    /*
      *  PUBLIC METHODS
      */
 
@@ -63,18 +96,6 @@ public:
 
 
     /**
-     *  Execute all the steps in this collection.
-     * 
-     *  @param environment              the environment that this step can read from and write to
-     */
-    void execute(Environment& environment) {
-        for (const auto& step : this->steps) {
-            step->execute(environment);
-        }
-    }
-
-
-    /**
      *  Insert an algorithm step at the given index.
      * 
      *  @param step                 the step that should be inserted into this algorithm step collection
@@ -84,14 +105,20 @@ public:
     enable_if_t<std::is_same<Environment, typename Z::Environment>::value, void> insert(const Z& step, const size_t index) {
 
         // Check if the index is out of bounds.
-        if (index >= this->numberOfSteps()) {
+        if (index > this->numberOfSteps()) {
             throw std::invalid_argument("StepCollection::insert(const Z&, const size_t): Cannot insert at the given index.");
         }
 
 
-        // Actually insert the index in the std::vector of steps.
-        const auto it = this->steps.begin();
-        this->steps.insert(it + index, std::make_shared<Z>(step));  // inserting at an given index goes through an iterator
+        // Actually insert in the std::vector of steps.
+        if (index < this->numberOfSteps()) {  // within the current bounds
+            const auto it = this->steps.begin();
+            this->steps.insert(it + index, std::make_shared<Z>(step));  // inserting at an given index goes through an iterator
+        }
+
+        else if (index == this->numberOfSteps()) {  // at the end
+            this->add(step);
+        }
     }
 
 
@@ -99,6 +126,28 @@ public:
      *  @return the number of steps that are in this consecutive collection
      */
     size_t numberOfSteps() const { return this->steps.size(); }
+
+
+    /**
+     *  Remove the step at the given index.
+     * 
+     *  @param index                the zero-based index of the step in this collection that should be removed
+     */
+    void remove(const size_t index) {
+        this->steps.erase(this->steps.begin() + index);
+    }
+
+
+    /**
+     *  Replace an algorithm step at the given index.
+     * 
+     *  @param step                 the step that should be inserted into this algorithm
+     *  @param index                the zero-based index of the step that should be replaced
+     */
+    template <typename Z = Step<Environment>>
+    enable_if_t<std::is_same<Environment, typename Z::Environment>::value, void> replace(const Z& step, const size_t index) {
+        this->steps[index] = std::make_shared<Z>(step);
+    }
 };
 
 
