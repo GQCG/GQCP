@@ -1,5 +1,10 @@
 target_sources(gqcp
     PRIVATE
+        CCD.hpp
+        CCDAmplitudesUpdate.hpp
+        CCDEnergyCalculation.hpp
+        CCDIntermediatesUpdate.hpp
+        CCDSolver.hpp
         CCSD.hpp
         CCSDAmplitudesUpdate.hpp
         CCSDEnergyCalculation.hpp
