@@ -19,6 +19,7 @@
 
 
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "QCModel/CC/CCD.hpp"
 #include "QCModel/CC/CCSD.hpp"
 #include "QCModel/CC/T1Amplitudes.hpp"
 #include "QCModel/CC/T2Amplitudes.hpp"
@@ -81,6 +82,19 @@ public:
         f {f},
         V_A {V_A} {}
 
+    /**
+     *  Initialize a CCD algorithmic environment with given T2-amplitudes.
+     * 
+     *  @param t2_amplitudes            the initial T2-amplitudes
+     *  @param f                        the (inactive) Fock matrix
+     *  @param V_A                      the antisymmetrized two-electron integrals (in physicist's notation)
+     */
+    CCSDEnvironment(const T2Amplitudes<Scalar>& t2_amplitudes, const QCMatrix<Scalar>& f, const QCRankFourTensor<Scalar>& V_A) :
+        electronic_energies {QCModel::CCD<Scalar>::calculateCorrelationEnergy(f, V_A, t2_amplitudes)},  // already calculate the initial CCD energy correction
+        t2_amplitudes {t2_amplitudes},
+        f {f},
+        V_A {V_A} {}
+
 
     /*
      *  NAMED CONSTRUCTORS
@@ -107,6 +121,27 @@ public:
         const auto t2_amplitudes = T2Amplitudes<Scalar>::Perturbative(f, V_A, orbital_space);
 
         return CCSDEnvironment<Scalar>(t1_amplitudes, t2_amplitudes, f, V_A);
+    }
+
+    /**
+     *  Initialize a CCD algorithmic environment with initial guesses for the T2-amplitudes based on perturbation theory.
+     * 
+     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal spinor basis
+     *  @param orbital_space                the orbital space which covers the occupied-virtual separation
+     * 
+     *  @return an algorithmic environment suitable for coupled-cluster calculations up to the CCD level.
+     */
+    static CCSDEnvironment<Scalar> PerturbativeCCD(const SQHamiltonian<Scalar>& sq_hamiltonian, const OrbitalSpace& orbital_space) {
+
+        // For the CCSD environment equation, we need the inactive Fock matrix and the anti-symmetrized two-electron integrals in physicist's notation.
+        const auto f = sq_hamiltonian.calculateInactiveFockian(orbital_space).parameters();
+
+        const auto& g_chemists = sq_hamiltonian.twoElectron().parameters();
+        const auto V_A = g_chemists.convertedToPhysicistsNotation().antisymmetrized();
+
+        const auto t2_amplitudes = T2Amplitudes<Scalar>::Perturbative(f, V_A, orbital_space);
+
+        return CCSDEnvironment<Scalar>(t2_amplitudes, f, V_A);
     }
 };
 

@@ -1,4 +1,5 @@
 list(APPEND test_target_sources
+    ${CMAKE_CURRENT_SOURCE_DIR}/QCMethod_CCD_test.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/QCMethod_CCSD_test.cpp
 )
 
