@@ -63,20 +63,13 @@ public:
         const auto& V_A = environment.V_A;
         const auto& t2 = environment.t2_amplitudes.back();
 
-        // First, calculate the intermediate tau2 objects (since they depend on the T2-amplitudes).
-        environment.tau2 = QCModel::CCD<Scalar>::calculateTau2(t2);
-        environment.tau2_tilde = QCModel::CCD<Scalar>::calculateTau2Tilde(t2);
-
-        const auto& tau2 = environment.tau2;
-        const auto& tau2_tilde = environment.tau2_tilde;
-
         // Calculate the other CCD intermediates and push them to the environment.
-        environment.F1 = QCModel::CCD<Scalar>::calculateF1(f, V_A, t2, tau2_tilde);
-        environment.F2 = QCModel::CCD<Scalar>::calculateF2(f, V_A, t2, tau2_tilde);
+        environment.F1 = QCModel::CCD<Scalar>::calculateF1(f, V_A, t2);
+        environment.F2 = QCModel::CCD<Scalar>::calculateF2(f, V_A, t2);
         environment.F3 = QCModel::CCD<Scalar>::calculateF3(f, V_A, t2);
 
-        environment.W1 = QCModel::CCD<Scalar>::calculateW1(V_A, t2, tau2);
-        environment.W2 = QCModel::CCD<Scalar>::calculateW2(V_A, t2, tau2);
+        environment.W1 = QCModel::CCD<Scalar>::calculateW1(V_A, t2);
+        environment.W2 = QCModel::CCD<Scalar>::calculateW2(V_A, t2);
         environment.W3 = QCModel::CCD<Scalar>::calculateW3(V_A, t2);
     }
 };
