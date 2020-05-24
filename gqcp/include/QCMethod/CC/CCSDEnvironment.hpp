@@ -108,7 +108,7 @@ public:
      * 
      *  @return an algorithmic environment suitable for coupled-cluster calculations up to the CCSD level.
      */
-    static CCSDEnvironment<Scalar> Perturbative(const SQHamiltonian<Scalar>& sq_hamiltonian, const OrbitalSpace& orbital_space) {
+    static CCSDEnvironment<Scalar> PerturbativeCCSD(const SQHamiltonian<Scalar>& sq_hamiltonian, const OrbitalSpace& orbital_space) {
 
         // For the CCSD environment equation, we need the inactive Fock matrix and the anti-symmetrized two-electron integrals in physicist's notation.
         const auto f = sq_hamiltonian.calculateInactiveFockian(orbital_space).parameters();
