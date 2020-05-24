@@ -102,7 +102,6 @@ public:
      *  @param f                            the (inactive) Fock matrix
      *  @param V_A                          the antisymmetrized two-electron integrals (in physicist's notation)
      *  @param t2                           the T2-amplitudes
-     *  @param tau2                         the tau2-intermediate (equation (10) in Stanton1991)
      *  @param F1                           the F1-intermediate (equation (3) in Stanton1991)
      *  @param F2                           the F2-intermediate (equation (4) in Stanton1991)
      *  @param F3                           the F3-intermediate (equation (5) in Stantion1991)
@@ -112,7 +111,7 @@ public:
      * 
      *  @return the value for one of the CCD T2-amplitude equations
      */
-    static Scalar calculateT2AmplitudeEquation(const size_t i, const size_t j, const size_t a, const size_t b, const QCMatrix<Scalar>& f, const QCRankFourTensor<Scalar>& V_A, const T2Amplitudes<Scalar>& t2, const ImplicitRankFourTensorSlice<Scalar>& tau2, const ImplicitMatrixSlice<Scalar>& F1, const ImplicitMatrixSlice<Scalar>& F2, const ImplicitMatrixSlice<Scalar>& F3, const ImplicitRankFourTensorSlice<Scalar>& W1, const ImplicitRankFourTensorSlice<Scalar>& W2, const ImplicitRankFourTensorSlice<Scalar>& W3) {
+    static Scalar calculateT2AmplitudeEquation(const size_t i, const size_t j, const size_t a, const size_t b, const QCMatrix<Scalar>& f, const QCRankFourTensor<Scalar>& V_A, const T2Amplitudes<Scalar>& t2, const ImplicitMatrixSlice<Scalar>& F1, const ImplicitMatrixSlice<Scalar>& F2, const ImplicitMatrixSlice<Scalar>& F3, const ImplicitRankFourTensorSlice<Scalar>& W1, const ImplicitRankFourTensorSlice<Scalar>& W2, const ImplicitRankFourTensorSlice<Scalar>& W3) {
 
         const auto orbital_space = t2.orbitalSpace(); 
 
@@ -141,14 +140,14 @@ public:
         // Calculate the contribution from the fourth term.
         for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
             for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
-                result += 0.5 * tau2(m, n, a, b) * W1(m, n, i, j);
+                result += 0.5 * t2(m, n, a, b) * W1(m, n, i, j);
             }
         }
 
         // Calculate the contribution from the fifth term.
         for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
             for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
-                result += 0.5 * tau2(i, j, e, f) * W2(a, b, e, f);
+                result += 0.5 * t2(i, j, e, f) * W2(a, b, e, f);
             }
         }
 
@@ -170,13 +169,12 @@ public:
      *  @param f                    the (inactive) Fock matrix
      *  @param V_A                  the antisymmetrized two-electron integrals (in physicist's notation)
      *  @param t2                   the T2-amplitudes
-     *  @param tau2_tilde           the tau2_tilde intermediary (equation (10) in Stanton1991)
      * 
      *  @return the F1-intermediate
      * 
      *  @note This is one of the intermediate quantities in the factorization of CCD. In particular, F1 represents equation (3) in Stanton1991.
      */
-    static ImplicitMatrixSlice<Scalar> calculateF1(const QCMatrix<Scalar>& f, const QCRankFourTensor<Scalar>& V_A, const T2Amplitudes<Scalar>& t2, const ImplicitRankFourTensorSlice<Scalar>& tau2_tilde) {
+    static ImplicitMatrixSlice<Scalar> calculateF1(const QCMatrix<Scalar>& f, const QCRankFourTensor<Scalar>& V_A, const T2Amplitudes<Scalar>& t2) {
 
         const auto& orbital_space = t2.orbitalSpace();
 
@@ -195,7 +193,7 @@ public:
                 for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
                     for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
                         for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
-                            value -= 0.5 * tau2_tilde(m, n, a, f) * V_A(m, n, e, f);
+                            value -= 0.5 * t2(m, n, a, f) * V_A(m, n, e, f);
                         }
                     }
                 }
@@ -212,13 +210,12 @@ public:
      *  @param f                    the (inactive) Fock matrix
      *  @param V_A                  the antisymmetrized two-electron integrals (in physicist's notation)
      *  @param t2                   the T2-amplitudes
-     *  @param tau2_tilde           the tau2_tilde intermediary (equation (10) in Stanton1991)
      * 
      *  @return the F2-intermediate
      * 
      *  @note This is one of the intermediate quantities in the factorization of CCD. In particular, F2 represents equation (4) in Stanton1991.
      */
-    static ImplicitMatrixSlice<Scalar> calculateF2(const QCMatrix<Scalar>& f, const QCRankFourTensor<Scalar>& V_A, const T2Amplitudes<Scalar>& t2, const ImplicitRankFourTensorSlice<Scalar>& tau2_tilde) {
+    static ImplicitMatrixSlice<Scalar> calculateF2(const QCMatrix<Scalar>& f, const QCRankFourTensor<Scalar>& V_A, const T2Amplitudes<Scalar>& t2) {
 
         const auto& orbital_space = t2.orbitalSpace();
 
@@ -237,7 +234,7 @@ public:
                 for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
                     for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
                         for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
-                            value += 0.5 * tau2_tilde(i, n, e, f) * V_A(m, n, e, f);
+                            value += 0.5 * t2(i, n, e, f) * V_A(m, n, e, f);
                         }
                     }
                 }
@@ -277,51 +274,14 @@ public:
 
 
     /**
-     *  @param t2                   the T2-amplitudes
-     * 
-     *  @return the tau2-intermediate
-     * 
-     *  @note This is one of the intermediate quantities in the factorization of CCD. In particular, tau2 represents equation (10) in Stanton1991.
-     */
-    static ImplicitRankFourTensorSlice<Scalar> calculateTau2(const T2Amplitudes<Scalar>& t2) {
-
-        const auto& orbital_space = t2.orbitalSpace(); 
-
-        // Implement the formula for tau2 (equation 10).
-        auto tau2 = t2.asImplicitRankFourTensorSlice();  // the contribution from the first term
-
-        return tau2;
-    }
-
-
-    /**
-     *  @param t2                   the T2-amplitudes
-     * 
-     *  @return the tau2_tilde-intermediate
-     * 
-     *  @note This is one of the intermediate quantities in the factorization of CCD. In particular, tau2_tilde represents equation (9) in Stanton1991.
-     */
-    static ImplicitRankFourTensorSlice<Scalar> calculateTau2Tilde(const T2Amplitudes<Scalar>& t2) {
-
-        const auto& orbital_space = t2.orbitalSpace(); 
-
-        // Implement the formula for tau2_tilde (equation 9).
-        auto tau2_tilde = t2.asImplicitRankFourTensorSlice();  // the contribution from the first term
-
-        return tau2_tilde;
-    }
-
-
-    /**
      *  @param V_A                  the antisymmetrized two-electron integrals (in physicist's notation)
      *  @param t2                   the T2-amplitudes
-     *  @param tau2                 the tau2-intermediate (equation 10 in Stanton1991)
      * 
      *  @return the W1-intermediate
      * 
      *  @note This is one of the intermediate quantities in the factorization of CCD. In particular, W1 represents equation (6) in Stanton1991.
      */
-    static ImplicitRankFourTensorSlice<Scalar> calculateW1(const QCRankFourTensor<Scalar>& V_A, const T2Amplitudes<Scalar>& t2, const ImplicitRankFourTensorSlice<Scalar>& tau2) {
+    static ImplicitRankFourTensorSlice<Scalar> calculateW1(const QCRankFourTensor<Scalar>& V_A, const T2Amplitudes<Scalar>& t2) {
 
         const auto& orbital_space = t2.orbitalSpace();
 
@@ -339,7 +299,7 @@ public:
                         // Calculate the contribution from the third term.
                         for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
                             for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
-                                value += 0.25 * tau2(i, j, e, f) * V_A(m, n, e, f);
+                                value += 0.25 * t2(i, j, e, f) * V_A(m, n, e, f);
                             }
                         }
 
@@ -356,13 +316,12 @@ public:
     /**
      *  @param V_A                  the antisymmetrized two-electron integrals (in physicist's notation)
      *  @param t2                   the T2-amplitudes
-     *  @param tau2                 the tau2-intermediate (equation 10 in Stanton1991)
      * 
      *  @return the W2-intermediate
      * 
      *  @note This is one of the intermediate quantities in the factorization of CCD. In particular, W2 represents equation (7) in Stanton1991.
      */
-    static ImplicitRankFourTensorSlice<Scalar> calculateW2(const QCRankFourTensor<Scalar>& V_A, const T2Amplitudes<Scalar>& t2, const ImplicitRankFourTensorSlice<Scalar>& tau2) {
+    static ImplicitRankFourTensorSlice<Scalar> calculateW2(const QCRankFourTensor<Scalar>& V_A, const T2Amplitudes<Scalar>& t2) {
 
         const auto& orbital_space = t2.orbitalSpace();
 
@@ -380,7 +339,7 @@ public:
                         // Calculate the contribution from the third term.
                         for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
                             for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
-                                value += 0.25 * tau2(m, n, a, b) * V_A(m, n, e, f);
+                                value += 0.25 * t2(m, n, a, b) * V_A(m, n, e, f);
                             }
                         }
 

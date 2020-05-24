@@ -63,9 +63,6 @@ public:
         const auto& V_A = environment.V_A;
         const auto& t2 = environment.t2_amplitudes.back();
 
-        const auto& tau2 = environment.tau2;
-        const auto& tau2_tilde = environment.tau2_tilde;
-
         const auto& F1 = environment.F1;
         const auto& F2 = environment.F2;
         const auto& F3 = environment.F3;
@@ -85,7 +82,7 @@ public:
                     for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
 
                         // Determine the current value for the corresponding T2-amplitude equation, and use it to update the T2-amplitude.
-                        const auto f_ijab = QCModel::CCD<Scalar>::calculateT2AmplitudeEquation(i, j, a, b, f, V_A, t2, tau2, F1, F2, F3, W1, W2, W3);
+                        const auto f_ijab = QCModel::CCD<Scalar>::calculateT2AmplitudeEquation(i, j, a, b, f, V_A, t2, F1, F2, F3, W1, W2, W3);
                         t2_updated(i, j, a, b) += f_ijab / (f(i, i) + f(j, j) - f(a, a) - f(b, b));
                     }
                 }
