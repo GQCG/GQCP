@@ -20,6 +20,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Basis/transform.hpp"
+#include "ONVBasis/SpinUnresolvedONV.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CC/CCD.hpp"
 #include "QCMethod/CC/CCSDEnvironment.hpp"
@@ -42,6 +43,7 @@ BOOST_AUTO_TEST_CASE(h2o_crawdad) {
 
     GQCP::RSpinorBasis<double, GQCP::GTOShell> r_spinor_basis {molecule, "STO-3G"};
     const auto r_sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(r_spinor_basis, molecule);  // in an AO basis
+    const auto K = r_spinor_basis.numberOfSpatialOrbitals();
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(N, r_sq_hamiltonian, r_spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
@@ -63,8 +65,13 @@ BOOST_AUTO_TEST_CASE(h2o_crawdad) {
     const auto M = g_spinor_basis.numberOfSpinors();
     const auto g_sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(g_spinor_basis, molecule);  // in the canonical restricted spin-orbitals
 
+    // Create the GHF ONV (which is actually just the RHF ONV, since we're using the canonical RHF orbitals) and the corresponding orbital space.
+    //const auto reference_onv = GQCP::SpinUnresolvedONV::GHF(2 * K, N, rhf_parameters.spinOrbitalEnergiesBlocked());
+    //const auto orbital_space = reference_onv.orbitalSpace();
     // Use a manually-made orbital space (#FIXME in develop).
     const auto orbital_space = GQCP::OrbitalSpace({0, 1, 2, 3, 4, 7, 8, 9, 10, 11}, {5, 6, 12, 13});  // occupied and virtual indices
+
+
     BOOST_REQUIRE(orbital_space.numberOfOrbitals() == M);
 
 

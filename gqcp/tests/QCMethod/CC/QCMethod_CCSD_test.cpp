@@ -88,6 +88,5 @@ BOOST_AUTO_TEST_CASE(h2o_crawdad) {
     const auto ccsd_correlation_energy = ccsd_qc_structure.groundStateEnergy();
 
     const double ref_ccsd_correlation_energy = -0.070680088376;
-    std::cout<<rhf_energy+ccsd_correlation_energy<<std::endl;
     BOOST_CHECK(std::abs(ccsd_correlation_energy - ref_ccsd_correlation_energy) < 1.0e-08);
 }
