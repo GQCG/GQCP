@@ -69,7 +69,7 @@ BOOST_AUTO_TEST_CASE(h2o_crawdad) {
 
 
     // Initialize an environment suitable for CCSD.
-    auto environment = GQCP::CCSDEnvironment<double>::Perturbative(g_sq_hamiltonian, orbital_space);
+    auto environment = GQCP::CCSDEnvironment<double>::PerturbativeCCSD(g_sq_hamiltonian, orbital_space);
 
     // Since we're working with a Hartree-Fock reference, the perturbative amplitudes actually correspond to the MP2 amplitudes. This means that the initial CCSD energy correction is the MP2 energy correction.
     const double ref_mp2_correction_energy = -0.049149636120;
