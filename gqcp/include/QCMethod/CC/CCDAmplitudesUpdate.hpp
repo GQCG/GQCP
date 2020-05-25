@@ -70,7 +70,7 @@ public:
         const auto& W2 = environment.W2;
         const auto& W3 = environment.W3;
 
-        const auto& orbital_space = t2.orbitalSpace();  // assume the orbital spaces are equal for the T1- and T2-amplitudes.
+        const auto& orbital_space = t2.orbitalSpace();
 
 
         // Update the T2-amplitudes.
