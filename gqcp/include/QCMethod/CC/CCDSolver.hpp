@@ -68,10 +68,6 @@ public:
         const auto t2_extractor = [](const CCSDEnvironment<Scalar>& environment) { return environment.t2_amplitudes; };
         const T2ConvergenceType t2_convergence_criterion {threshold, t2_extractor, "the T2 amplitudes"};
 
-        // const CompoundConvergenceCriterion<CCSDEnvironment<Scalar>> convergence_criterion {t2_convergence_criterion};
-
-        //const ConvergenceCriterion<CCSDEnvironment<Scalar>> convergence_criterion {t2_convergence_criterion};
-
 
         // Put together the pieces of the algorithm.
         return IterativeAlgorithm<CCSDEnvironment<Scalar>>(plain_ccd_cycle, t2_convergence_criterion, maximum_number_of_iterations);
