@@ -389,7 +389,7 @@ public:
     /**
      *  @return all the spin-orbital energies, with the alpha and beta-spinorbital energies interleaved
      */
-    VectorX<double> spinorbitalEnergiesInterleaved() const {
+    VectorX<double> spinOrbitalEnergiesInterleaved() const {
 
         const auto K = this->numberOfSpatialOrbitals();
 

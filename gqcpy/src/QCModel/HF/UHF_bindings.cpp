@@ -87,8 +87,8 @@ void bindQCModelUHF(py::module& module) {
             "Return the orbital energies of the sigma-spin-orbitals.")
 
         .def(
-            "spinorbitalEnergiesBlocked",
-            &GQCP::QCModel::UHF<double>::spinorbitalEnergiesBlocked,
+            "spinOrbitalEnergiesBlocked",
+            &GQCP::QCModel::UHF<double>::spinOrbitalEnergiesBlocked,
             "Return all the spin-orbital energies, with the alpha spin-orbital energies appearing before the beta spin-orbital energies");
 }
 

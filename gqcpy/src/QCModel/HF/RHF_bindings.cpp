@@ -54,13 +54,13 @@ void bindQCModelRHF(py::module& module) {
              "Return the orbital energies.")
 
         .def(
-            "spinorbitalEnergiesBlocked",
-            &GQCP::QCModel::RHF<double>::spinorbitalEnergiesBlocked,
+            "spinOrbitalEnergiesBlocked",
+            &GQCP::QCModel::RHF<double>::spinOrbitalEnergiesBlocked,
             "Return all the spin-orbital energies, with the alpha spin-orbital energies appearing before the beta spin-orbital energies.")
 
         .def(
-            "spinorbitalEnergiesInterleaved",
-            &GQCP::QCModel::RHF<double>::spinorbitalEnergiesInterleaved,
+            "spinOrbitalEnergiesInterleaved",
+            &GQCP::QCModel::RHF<double>::spinOrbitalEnergiesInterleaved,
             "Return all the spin-orbital energies, with the alpha spin-orbital energies appearing before the beta spin-orbital energies.");
 }
 

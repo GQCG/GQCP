@@ -89,7 +89,7 @@ BOOST_AUTO_TEST_CASE(spinorbitalEnergies) {
     // Provide reference values and check the results.
     GQCP::VectorX<double> ref_spinorbital_energies_interleaved {2 * K};
     ref_spinorbital_energies_interleaved << -0.5, -0.5, 0.5, 0.5;
-    BOOST_CHECK(rhf_parameters.spinorbitalEnergiesInterleaved().isApprox(ref_spinorbital_energies_interleaved, 1.0e-12));
+    BOOST_CHECK(rhf_parameters.spinOrbitalEnergiesInterleaved().isApprox(ref_spinorbital_energies_interleaved, 1.0e-12));
 
     GQCP::VectorX<double> ref_spinorbital_energies_blocked {2 * K};
     ref_spinorbital_energies_blocked << -0.5, 0.5, -0.5, 0.5;
