@@ -75,7 +75,7 @@ BOOST_AUTO_TEST_CASE(h2o_crawdad) {
     BOOST_REQUIRE(orbital_space.numberOfOrbitals() == M);
 
 
-    // Initialize an environment suitable for CCSD.
+    // Initialize an environment suitable for CCD.
     auto environment = GQCP::CCSDEnvironment<double>::PerturbativeCCD(g_sq_hamiltonian, orbital_space);
 
     // Since we're working with a Hartree-Fock reference, the perturbative amplitudes actually correspond to the MP2 amplitudes. This means that the initial CCD energy correction is the MP2 energy correction.
