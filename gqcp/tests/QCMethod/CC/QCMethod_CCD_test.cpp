@@ -75,7 +75,7 @@ BOOST_AUTO_TEST_CASE(h2o_crawdad) {
     BOOST_REQUIRE(orbital_space.numberOfOrbitals() == M);
 
 
-    // Initialize an environment suitable for CCSD.
+    // Initialize an environment suitable for CCD.
     auto environment = GQCP::CCSDEnvironment<double>::PerturbativeCCD(g_sq_hamiltonian, orbital_space);
     
     // Prepare the CCD solver and optimize the CCD model parameters.
