@@ -30,7 +30,7 @@ namespace QCMethod {
 /**
  *  The CCD quantum chemical method.
  * 
- *  @tparam _Scalar                 the scalar type used to represent the T1- and T2-amplitudes
+ *  @tparam _Scalar                 the scalar type used to represent the T2-amplitudes
  */
 template <typename _Scalar>
 class CCD {
