@@ -26,7 +26,7 @@ namespace GQCP {
 
 
 /**
- *  An iteration step that calculates the new T1 and T2-amplitudes using an update formula from the current T1- and T2-amplitudes.
+ *  An iteration step that calculates the new T2-amplitudes using an update formula from the current T2-amplitudes.
  * 
  *  @tparam _Scalar             the scalar type that is used the amplitudes
  */
