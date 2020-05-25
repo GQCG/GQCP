@@ -129,7 +129,7 @@ public:
      *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal spinor basis
      *  @param orbital_space                the orbital space which covers the occupied-virtual separation
      * 
-     *  @return an algorithmic environment suitable for coupled-cluster calculations up to the CCD level.
+     *  @return an algorithmic environment suitable for CCD calculations.
      */
     static CCSDEnvironment<Scalar> PerturbativeCCD(const SQHamiltonian<Scalar>& sq_hamiltonian, const OrbitalSpace& orbital_space) {
 
