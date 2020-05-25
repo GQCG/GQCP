@@ -65,7 +65,7 @@ public:
      * 
      *  @param f                        the (inactive) Fock matrix
      *  @param V_A                      the antisymmetrized two-electron integrals (in physicist's notation)
-     *  @param t2                           the T2-amplitudes
+     *  @param t2                       the T2-amplitudes
      * 
      *  @return the CCD correlation energy
      */
