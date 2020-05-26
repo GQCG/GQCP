@@ -74,7 +74,7 @@ public:
      *  Default constructor setting everything to zero
      */
     RHF() :
-        RHF(0.0, TransformationMatrix<double>::Zero(0, 0), VectorX<double>::Zero(0)) {}
+        RHF(0, TransformationMatrix<double>::Zero(0, 0), VectorX<double>::Zero(0)) {}
 
 
     /*
