@@ -1,7 +1,7 @@
 target_sources(gqcp
     PRIVATE
-        BlockMatrix.hpp
-        BlockRankFourTensor.hpp
+        ImplicitMatrixSlice.hpp
+        ImplicitRankFourTensorSlice.hpp
         Matrix.hpp
         QCMatrix.hpp
         QCRankFourTensor.hpp

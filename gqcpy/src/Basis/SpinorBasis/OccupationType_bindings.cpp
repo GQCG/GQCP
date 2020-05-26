@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "QCMethod/HF/UHF/UHFSCFSolver.hpp"
+#include "Basis/SpinorBasis/OccupationType.hpp"
 
 #include <pybind11/pybind11.h>
 
@@ -26,17 +26,13 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
-void bindUHFSCFSolver(py::module& module) {
-    py::class_<GQCP::UHFSCFSolver<double>>(module, "UHFSCFSolver", "An unrestricted Hartree-Fock self-consistent field solver factory.")
+void bindOccupationType(py::module& module) {
+    py::enum_<GQCP::OccupationType>(module, "OccupationType")
 
-        .def_static(
-            "Plain",
-            [](const double threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128) {
-                return GQCP::UHFSCFSolver<double>::Plain(threshold, maximum_number_of_iterations);
-            },
-            py::arg("threshold") = 1.0e-08,
-            py::arg("maximum_number_of_iterations") = 128,
-            "Plain UHF SCF solver that uses the combination of norm of the difference of two consecutive alpha and beta density matrices as a convergence criterion.");
+        .value("occupied", GQCP::OccupationType::k_occupied)
+        .value("active", GQCP::OccupationType::k_active)
+        .value("virtual", GQCP::OccupationType::k_virtual)
+        .export_values();
 }
 
 

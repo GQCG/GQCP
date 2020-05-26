@@ -56,6 +56,17 @@ public:
      */
 
     /**
+     *  @return a textual description of this iterative algorithm.
+     */
+    std::string description() const {
+
+        std::string description_string = "An algorithm consisting of the following steps:\n";
+        description_string += this->steps.description();
+        return description_string;
+    }
+
+
+    /**
      *  @param environment              the environment that this algorithm is associated to
      */
     void perform(Environment& environment) {

@@ -26,13 +26,13 @@ namespace GQCP {
  */
 
 /**
- *  @param N_P                              the number of electron pairs
+ *  @param orbital_space                    the occupied-virtual orbital space
  *  @param hessian_modifier                 the modifier functor that should be used when an indefinite Hessian is encountered
  *  @param convergence_threshold            the threshold used to check for convergence
  *  @param maximum_number_of_iterations     the maximum number of iterations that may be used to achieve convergence
  */
-ERNewtonLocalizer::ERNewtonLocalizer(size_t N_P, std::shared_ptr<BaseHessianModifier> hessian_modifier, const double convergence_threshold, const size_t maximum_number_of_iterations) :
-    N_P {N_P},
+ERNewtonLocalizer::ERNewtonLocalizer(const OrbitalSpace orbital_space, std::shared_ptr<BaseHessianModifier> hessian_modifier, const double convergence_threshold, const size_t maximum_number_of_iterations) :
+    orbital_space {orbital_space},
     NewtonOrbitalOptimizer(hessian_modifier, convergence_threshold, maximum_number_of_iterations) {}
 
 
@@ -47,10 +47,12 @@ ERNewtonLocalizer::ERNewtonLocalizer(size_t N_P, std::shared_ptr<BaseHessianModi
  */
 SquareMatrix<double> ERNewtonLocalizer::calculateGradientMatrix(const SQHamiltonian<double>& sq_hamiltonian) const {
 
-    SquareMatrix<double> G = SquareMatrix<double>::Zero(this->N_P, this->N_P);
+    const auto N_P = this->orbital_space.numberOfOrbitals(OccupationType::k_occupied);
 
-    for (size_t i = 0; i < this->N_P; i++) {
-        for (size_t j = 0; j < this->N_P; j++) {
+    SquareMatrix<double> G = SquareMatrix<double>::Zero(N_P, N_P);
+
+    for (const auto& i : this->orbital_space.indices(OccupationType::k_occupied)) {
+        for (const auto& j : this->orbital_space.indices(OccupationType::k_occupied)) {
             G(i, j) = this->calculateGradientMatrixElement(sq_hamiltonian, i, j);
         }
     }
@@ -66,13 +68,14 @@ SquareMatrix<double> ERNewtonLocalizer::calculateGradientMatrix(const SQHamilton
  */
 SquareRankFourTensor<double> ERNewtonLocalizer::calculateHessianTensor(const SQHamiltonian<double>& sq_hamiltonian) const {
 
-    SquareRankFourTensor<double> H(this->N_P);
+    const auto N_P = this->orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+    SquareRankFourTensor<double> H {N_P};
     H.setZero();
 
-    for (size_t i = 0; i < this->N_P; i++) {
-        for (size_t j = 0; j < this->N_P; j++) {
-            for (size_t k = 0; k < this->N_P; k++) {
-                for (size_t l = 0; l < this->N_P; l++) {
+    for (const auto& i : this->orbital_space.indices(OccupationType::k_occupied)) {
+        for (const auto& j : this->orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& k : this->orbital_space.indices(OccupationType::k_occupied)) {
+                for (const auto& l : this->orbital_space.indices(OccupationType::k_occupied)) {
                     H(i, j, k, l) = this->calculateHessianTensorElement(sq_hamiltonian, i, j, k, l);
                 }
             }
@@ -110,7 +113,7 @@ OrbitalRotationGenerators ERNewtonLocalizer::calculateNewFullOrbitalGenerators(c
  *
  *  @return the element (i,j) of the Edmiston-Ruedenberg localization index gradient
  */
-double ERNewtonLocalizer::calculateGradientMatrixElement(const SQHamiltonian<double>& sq_hamiltonian, size_t i, size_t j) const {
+double ERNewtonLocalizer::calculateGradientMatrixElement(const SQHamiltonian<double>& sq_hamiltonian, const size_t i, const size_t j) const {
 
     const auto& g = sq_hamiltonian.twoElectron().parameters();
 
@@ -127,7 +130,7 @@ double ERNewtonLocalizer::calculateGradientMatrixElement(const SQHamiltonian<dou
  *
  *  @return the element (i,j,k,l) of the Edmiston-Ruedenberg localization index Hessian
  */
-double ERNewtonLocalizer::calculateHessianTensorElement(const SQHamiltonian<double>& sq_hamiltonian, size_t i, size_t j, size_t k, size_t l) const {
+double ERNewtonLocalizer::calculateHessianTensorElement(const SQHamiltonian<double>& sq_hamiltonian, const size_t i, const size_t j, const size_t k, const size_t l) const {
 
     const auto& g = sq_hamiltonian.twoElectron().parameters();
 

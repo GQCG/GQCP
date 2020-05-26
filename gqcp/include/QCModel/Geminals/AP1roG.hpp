@@ -18,8 +18,8 @@
 #pragma once
 
 
-#include "Mathematical/Representation/BlockMatrix.hpp"
-#include "Mathematical/Representation/BlockRankFourTensor.hpp"
+#include "Mathematical/Representation/ImplicitMatrixSlice.hpp"
+#include "Mathematical/Representation/ImplicitRankFourTensorSlice.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCModel/Geminals/AP1roGGeminalCoefficients.hpp"
 
@@ -76,7 +76,7 @@ public:
      *
      *  @return the PSEs, evaluated at the given geminal coefficients
      */
-    static BlockMatrix<double> calculatePSECoordinateFunctions(const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G);
+    static ImplicitMatrixSlice<double> calculatePSECoordinateFunctions(const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G);
 
     /**
      *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
@@ -104,7 +104,7 @@ public:
      *
      *  @return the Jacobian J_{ia,jb} of the PSEs, i.e. df_i^a/dG_j^b, evaluated at the given geminal coefficients
      */
-    static BlockRankFourTensor<double> calculatePSEJacobian(const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G);
+    static ImplicitRankFourTensorSlice<double> calculatePSEJacobian(const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G);
 
     /**
      *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
@@ -131,7 +131,7 @@ public:
      *
      *  @return the Jacobian J_{ia,jb} of the PSEs, i.e. df_i^a/dG_j^b, evaluated at these AP1roG model parameters
      */
-    BlockRankFourTensor<double> calculatePSEJacobian(const SQHamiltonian<double>& sq_hamiltonian) const { return AP1roG::calculatePSEJacobian(sq_hamiltonian, this->G); }
+    ImplicitRankFourTensorSlice<double> calculatePSEJacobian(const SQHamiltonian<double>& sq_hamiltonian) const { return AP1roG::calculatePSEJacobian(sq_hamiltonian, this->G); }
 
     /**
      *  @return the corresponding geminal coefficients of these AP1roG model parameters
@@ -147,6 +147,11 @@ public:
      *  @return the number of spatial orbitals that are described by these AP1roG model parameters
      */
     size_t numberOfSpatialOrbitals() const { return this->G.numberOfSpatialOrbitals(); }
+
+    /**
+     *  @return the implicit occupied-virtual orbital space that is associated with these AP1roG model parameters
+     */
+    OrbitalSpace orbitalSpace() const { return this->geminalCoefficients().orbitalSpace(); }
 };
 
 

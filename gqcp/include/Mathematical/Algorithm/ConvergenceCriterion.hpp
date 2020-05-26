@@ -18,6 +18,9 @@
 #pragma once
 
 
+#include <string>
+
+
 namespace GQCP {
 
 
@@ -41,8 +44,13 @@ public:
 
 
     /*
-     *  PUBLIC METHODS
+     *  PUBLIC VIRTUAL METHODS
      */
+
+    /**
+     *  @return a textual description of this convergence criterion.
+     */
+    virtual std::string description() const = 0;
 
     /**
      *  @param environment              the environment that this criterion can read from

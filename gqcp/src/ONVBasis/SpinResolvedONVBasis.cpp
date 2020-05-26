@@ -378,12 +378,12 @@ VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const ScalarSQOne
                 diagonal(Ia * dim_beta + Ib) += one_op_par(p, p);
             }
 
-            if (Ib < dim_beta - 1) {  // prevent last permutation to occur
+            if (Ib < dim_beta - 1) {  // prevent the last permutation from occurring
                 onv_basis_beta.setNextONV(onv_beta);
             }
         }  // beta address (Ib) loop
 
-        if (Ia < dim_alpha - 1) {  // prevent last permutation to occur
+        if (Ia < dim_alpha - 1) {  // prevent the last permutation from occurring
             onv_basis_alpha.setNextONV(onv_alpha);
         }
     }  // alpha address (Ia) loop
@@ -455,12 +455,12 @@ VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const ScalarSQTwo
                 }  // q loop
             }      // e_b loop
 
-            if (Ib < dim_beta - 1) {  // prevent last permutation to occur
+            if (Ib < dim_beta - 1) {  // prevent the last permutation from occurring
                 onv_basis_beta.setNextONV(onv_beta);
             }
         }  // beta address (Ib) loop
 
-        if (Ia < dim_alpha - 1) {  // prevent last permutation to occur
+        if (Ia < dim_alpha - 1) {  // prevent the last permutation from occurring
             onv_basis_alpha.setNextONV(onv_alpha);
         }
     }  // alpha address (Ia) loop
@@ -561,12 +561,12 @@ VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const USQHamilton
                 }  // q loop
             }      // e_b loop
 
-            if (Ib < dim_beta - 1) {  // prevent last permutation to occur
+            if (Ib < dim_beta - 1) {  // prevent the last permutation from occurring
                 onv_basis_beta.setNextONV(onv_beta);
             }
         }  // beta address (Ib) loop
 
-        if (Ia < dim_alpha - 1) {  // prevent last permutation to occur
+        if (Ia < dim_alpha - 1) {  // prevent the last permutation from occurring
             onv_basis_alpha.setNextONV(onv_alpha);
         }
     }  // alpha address (Ia) loop
@@ -852,12 +852,12 @@ void SpinResolvedONVBasis::forEach(const std::function<void(const SpinUnresolved
 
             callback(onv_alpha, Ia, onv_beta, Ib);
 
-            if (Ib < dim_beta - 1) {  // prevent last permutation to occur
+            if (Ib < dim_beta - 1) {  // prevent the last permutation from occurring
                 onv_basis_beta.setNextONV(onv_beta);
             }
         }  // beta address (Ib) loop
 
-        if (Ia < dim_alpha - 1) {  // prevent last permutation to occur
+        if (Ia < dim_alpha - 1) {  // prevent the last permutation from occurring
             onv_basis_alpha.setNextONV(onv_alpha);
         }
     }  // alpha address (Ia) loop

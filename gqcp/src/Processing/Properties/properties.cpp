@@ -136,7 +136,7 @@ VectorX<double> calculateDysonOrbitalCoefficients(const LinearExpansion<SpinReso
             onv.create(p);  // allow the iteration to continue with the original ONV
         }
 
-        if (It < target_onv_basis1.get_dimension() - 1) {  // prevent last permutation to occur
+        if (It < target_onv_basis1.get_dimension() - 1) {  // prevent the last permutation from occurring
             target_onv_basis1.setNextONV(onv);
         }
     }  // target address (It) loop

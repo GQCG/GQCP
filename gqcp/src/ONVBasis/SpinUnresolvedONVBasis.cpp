@@ -29,11 +29,11 @@ namespace GQCP {
  */
 
 /**
- *  @param K        the number of orbitals
- *  @param N        the number of electrons
+ *  @param M            the number of spinors
+ *  @param N            the number of electrons
  */
-SpinUnresolvedONVBasis::SpinUnresolvedONVBasis(size_t K, size_t N) :
-    BaseONVBasis(K, SpinUnresolvedONVBasis::calculateDimension(K, N)),
+SpinUnresolvedONVBasis::SpinUnresolvedONVBasis(const size_t M, size_t N) :
+    BaseONVBasis(M, SpinUnresolvedONVBasis::calculateDimension(M, N)),
     ONVManipulator(N) {
     // Create a zero matrix of dimensions (K+1)x(N+1)
     this->vertex_weights = std::vector<std::vector<size_t>>(this->K + 1, std::vector<size_t>(this->N + 1, 0));
@@ -106,47 +106,8 @@ size_t SpinUnresolvedONVBasis::calculateDimension(size_t K, size_t N) {
 
 
 /*
- *  PUBLIC METHODS
+ *  PUBLIC OVERRIDDEN METHODS
  */
-
-/**
- *  @param representation       a representation of an ONV
- *
- *  @return the next bitstring permutation
- *
- *      Examples:
- *          011 -> 101
- *          101 -> 110
- */
-size_t SpinUnresolvedONVBasis::ulongNextPermutation(size_t representation) const {
-
-    // t gets this->representation's least significant 0 bits set to 1
-    unsigned long t = representation | (representation - 1UL);
-
-    // Next set to 1 the most significant bit to change,
-    // set to 0 the least significant ones, and add the necessary 1 bits.
-    return (t + 1UL) | (((~t & (t + 1UL)) - 1UL) >> (__builtin_ctzl(representation) + 1UL));
-}
-
-
-/**
- *  @param representation      a representation of an ONV
- *
- *  @return the address (i.e. the ordering number) of the given ONV
- */
-size_t SpinUnresolvedONVBasis::getAddress(size_t unsigned_onv) const {
-    // An implementation of the formula in Helgaker, starting the addressing count from zero
-    size_t address = 0;
-    size_t electron_count = 0;                    // counts the number of electrons in the spin string up to orbital p
-    while (unsigned_onv != 0) {                   // we will remove the least significant bit each loop, we are finished when no bits are left
-        size_t p = __builtin_ctzl(unsigned_onv);  // p is the orbital index counter (starting from 1)
-        electron_count++;                         // each bit is an electron hence we add it up to the electron count
-        address += this->get_vertex_weights(p, electron_count);
-        unsigned_onv ^= unsigned_onv & -unsigned_onv;  // flip the least significant bit
-    }
-    return address;
-}
-
 
 /**
  *  Calculate unsigned representation for a given address
@@ -272,35 +233,6 @@ SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const ScalarS
 
 
 /**
- *  Evaluate the operator in a sparse matrix
- *
- *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in this ONV basis
- *  @param diagonal_values      bool to indicate if diagonal values will be calculated
- *
- *  @return the operator's evaluation in a sparse matrix with the dimensions of this ONV basis
- */
-Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const {
-
-    auto K = one_op.dimension();
-    if (K != this->K) {
-        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorSparse(ScalarSQOneElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
-    }
-
-    EvaluationIterator<Eigen::SparseMatrix<double>> evaluation_iterator(this->dim);
-
-    size_t memory = this->countTotalOneElectronCouplings();
-    if (diagonal_values) {
-        memory += this->dim;
-    }
-
-    evaluation_iterator.reserve(memory);
-    this->EvaluateOperator<Eigen::SparseMatrix<double>>(one_op, evaluation_iterator, diagonal_values);
-    evaluation_iterator.addToMatrix();
-    return evaluation_iterator.evaluation();
-}
-
-
-/**
  *  Evaluate the operator in a dense matrix
  *
  *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in this ONV basis
@@ -323,35 +255,6 @@ SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const ScalarS
 
 
 /**
- *  Evaluate the operator in a sparse matrix
- *
- *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in this ONV basis
- *  @param diagonal_values      bool to indicate if diagonal values will be calculated
- *
- *  @return the operator's evaluation in a sparse matrix with the dimensions of this ONV basis
- */
-Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const {
-
-    auto K = two_op.dimension();
-    if (K != this->K) {
-        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorSparse(ScalarSQTwoElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
-    }
-
-    EvaluationIterator<Eigen::SparseMatrix<double>> evaluation_iterator(this->dim);
-
-    size_t memory = this->countTotalTwoElectronCouplings();
-    if (diagonal_values) {
-        memory += this->dim;
-    }
-
-    evaluation_iterator.reserve(memory);
-    this->EvaluateOperator<Eigen::SparseMatrix<double>>(two_op, evaluation_iterator, diagonal_values);
-    evaluation_iterator.addToMatrix();
-    return evaluation_iterator.evaluation();
-}
-
-
-/**
  *  Evaluate the Hamiltonian in a dense matrix
  *
  *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
@@ -369,107 +272,6 @@ SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const SQHamil
     EvaluationIterator<SquareMatrix<double>> evaluation_iterator(this->dim);
     this->EvaluateOperator<SquareMatrix<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), evaluation_iterator, diagonal_values);
     return evaluation_iterator.evaluation();
-}
-
-
-/**
- *  Evaluate the Hamiltonian in a sparse matrix
- *
- *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
- *  @param diagonal_values              bool to indicate if diagonal values will be calculated
- *
- *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of this ONV basis
- */
-Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const {
-
-    auto K = sq_hamiltonian.dimension();
-    if (K != this->K) {
-        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorSparse(SQHamiltonian<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
-    }
-
-    EvaluationIterator<Eigen::SparseMatrix<double>> evaluation_iterator(this->dim);
-
-    size_t memory = this->countTotalTwoElectronCouplings();
-    if (diagonal_values) {
-        memory += this->dim;
-    }
-
-    evaluation_iterator.reserve(memory);
-    this->EvaluateOperator<Eigen::SparseMatrix<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), evaluation_iterator, diagonal_values);
-    evaluation_iterator.addToMatrix();
-    return evaluation_iterator.evaluation();
-}
-
-
-/**
- *  Calculates sigma(pq) + sigma(qp)'s: all one-electron couplings for each annihilation-creation pair in this ONV basis
- *  and stores them in sparse matrices for each pair combination
- *
- *  @return a vector of sparse matrices containing the one-electron couplings for the spin-unresolved basis
- *      Ordered as: sigma(00), sigma(01) + sigma(10), sigma(02)+ sigma(20), ...
- */
-std::vector<Eigen::SparseMatrix<double>> SpinUnresolvedONVBasis::calculateOneElectronCouplings() const {
-
-    size_t K = this->get_K();
-    size_t N = this->get_N();
-    size_t dim = this->get_dimension();
-
-    std::vector<std::vector<Eigen::Triplet<double>>> sparse_entries(K * (K + 1) / 2);
-    std::vector<Eigen::SparseMatrix<double>> sparse_matrices(K * (K + 1) / 2, Eigen::SparseMatrix<double>(dim, dim));
-
-    if (N == 0) {
-        return sparse_matrices;
-    }
-
-    // Reserve appropriate number of entries
-    size_t reservation_size = SpinUnresolvedONVBasis::calculateDimension(K - 1, N - 1);
-    for (size_t p = 0; p < K; p++) {
-        sparse_entries[p * (K + K + 1 - p) / 2].reserve(reservation_size);
-        for (size_t q = p + 1; q < K; q++) {
-            sparse_entries[p * (K + K + 1 - p) / 2 + q - p].reserve(2 * reservation_size);
-        }
-    }
-
-    SpinUnresolvedONV onv = this->makeONV(0);         // onv with address 0
-    for (size_t I = 0; I < dim; I++) {                // I loops over all the addresses of the onv
-        for (size_t e1 = 0; e1 < N; e1++) {           // e1 (electron 1) loops over the (number of) electrons
-            size_t p = onv.occupationIndexOf(e1);  // retrieve the index of a given electron
-            // remove the weight from the initial address I, because we annihilate
-            size_t address = I - this->get_vertex_weights(p, e1 + 1);
-            // The e2 iteration counts the number of encountered electrons for the creation operator
-            // We only consider greater addresses than the initial one (because of symmetry)
-            // Hence we only count electron after the annihilated electron (e1)
-            sparse_entries[p * (K + K + 1 - p) / 2].emplace_back(I, I, 1);
-            size_t e2 = e1 + 1;
-            size_t q = p + 1;
-            int sign_e2 = 1;
-            // perform a shift
-            this->shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
-            size_t dex = 0;
-            while (q < K) {
-                size_t J = address + this->get_vertex_weights(q, e2);
-
-                sparse_entries[p * (K + K + 1 - p) / 2 + q - p].emplace_back(I, J, sign_e2);
-                sparse_entries[p * (K + K + 1 - p) / 2 + q - p].emplace_back(J, I, sign_e2);
-
-                q++;  // go to the next orbital
-                dex++;
-                // perform a shift
-                this->shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
-            }  //  (creation)
-        }      // e1 loop (annihilation)
-
-        // Prevent last permutation
-        if (I < dim - 1) {
-            this->setNextONV(onv);
-        }
-    }
-
-    for (size_t k = 0; k < K * (K + 1) / 2; k++) {
-        sparse_matrices[k].setFromTriplets(sparse_entries[k].begin(), sparse_entries[k].end());
-    }
-
-    return sparse_matrices;
 }
 
 
@@ -578,6 +380,208 @@ VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorDiagonal(const SQHamilto
 
 
 /**
+ *  Evaluate the operator in a sparse matrix
+ *
+ *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in this ONV basis
+ *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+ *
+ *  @return the operator's evaluation in a sparse matrix with the dimensions of this ONV basis
+ */
+Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const {
+
+    auto K = one_op.dimension();
+    if (K != this->K) {
+        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorSparse(ScalarSQOneElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
+    }
+
+    EvaluationIterator<Eigen::SparseMatrix<double>> evaluation_iterator(this->dim);
+
+    size_t memory = this->countTotalOneElectronCouplings();
+    if (diagonal_values) {
+        memory += this->dim;
+    }
+
+    evaluation_iterator.reserve(memory);
+    this->EvaluateOperator<Eigen::SparseMatrix<double>>(one_op, evaluation_iterator, diagonal_values);
+    evaluation_iterator.addToMatrix();
+    return evaluation_iterator.evaluation();
+}
+
+
+/**
+ *  Evaluate the operator in a sparse matrix
+ *
+ *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in this ONV basis
+ *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+ *
+ *  @return the operator's evaluation in a sparse matrix with the dimensions of this ONV basis
+ */
+Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const {
+
+    auto K = two_op.dimension();
+    if (K != this->K) {
+        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorSparse(ScalarSQTwoElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
+    }
+
+    EvaluationIterator<Eigen::SparseMatrix<double>> evaluation_iterator(this->dim);
+
+    size_t memory = this->countTotalTwoElectronCouplings();
+    if (diagonal_values) {
+        memory += this->dim;
+    }
+
+    evaluation_iterator.reserve(memory);
+    this->EvaluateOperator<Eigen::SparseMatrix<double>>(two_op, evaluation_iterator, diagonal_values);
+    evaluation_iterator.addToMatrix();
+    return evaluation_iterator.evaluation();
+}
+
+
+/**
+ *  Evaluate the Hamiltonian in a sparse matrix
+ *
+ *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+ *  @param diagonal_values              bool to indicate if diagonal values will be calculated
+ *
+ *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of this ONV basis
+ */
+Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const {
+
+    auto K = sq_hamiltonian.dimension();
+    if (K != this->K) {
+        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorSparse(SQHamiltonian<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
+    }
+
+    EvaluationIterator<Eigen::SparseMatrix<double>> evaluation_iterator(this->dim);
+
+    size_t memory = this->countTotalTwoElectronCouplings();
+    if (diagonal_values) {
+        memory += this->dim;
+    }
+
+    evaluation_iterator.reserve(memory);
+    this->EvaluateOperator<Eigen::SparseMatrix<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), evaluation_iterator, diagonal_values);
+    evaluation_iterator.addToMatrix();
+    return evaluation_iterator.evaluation();
+}
+
+
+/**
+ *  @param representation      a representation of an ONV
+ *
+ *  @return the address (i.e. the ordering number) of the given ONV
+ */
+size_t SpinUnresolvedONVBasis::getAddress(size_t unsigned_onv) const {
+    // An implementation of the formula in Helgaker, starting the addressing count from zero
+    size_t address = 0;
+    size_t electron_count = 0;                    // counts the number of electrons in the spin string up to orbital p
+    while (unsigned_onv != 0) {                   // we will remove the least significant bit each loop, we are finished when no bits are left
+        size_t p = __builtin_ctzl(unsigned_onv);  // p is the orbital index counter (starting from 1)
+        electron_count++;                         // each bit is an electron hence we add it up to the electron count
+        address += this->get_vertex_weights(p, electron_count);
+        unsigned_onv ^= unsigned_onv & -unsigned_onv;  // flip the least significant bit
+    }
+    return address;
+}
+
+
+/**
+ *  @param representation       a representation of an ONV
+ *
+ *  @return the next bitstring permutation
+ *
+ *      Examples:
+ *          011 -> 101
+ *          101 -> 110
+ */
+size_t SpinUnresolvedONVBasis::ulongNextPermutation(size_t representation) const {
+
+    // t gets this->representation's least significant 0 bits set to 1
+    unsigned long t = representation | (representation - 1UL);
+
+    // Next set to 1 the most significant bit to change,
+    // set to 0 the least significant ones, and add the necessary 1 bits.
+    return (t + 1UL) | (((~t & (t + 1UL)) - 1UL) >> (__builtin_ctzl(representation) + 1UL));
+}
+
+
+/*
+ *  PUBLIC METHODS
+ */
+
+/**
+ *  Calculates sigma(pq) + sigma(qp)'s: all one-electron couplings for each annihilation-creation pair in this ONV basis
+ *  and stores them in sparse matrices for each pair combination
+ *
+ *  @return a vector of sparse matrices containing the one-electron couplings for the spin-unresolved basis
+ *      Ordered as: sigma(00), sigma(01) + sigma(10), sigma(02)+ sigma(20), ...
+ */
+std::vector<Eigen::SparseMatrix<double>> SpinUnresolvedONVBasis::calculateOneElectronCouplings() const {
+
+    size_t K = this->get_K();
+    size_t N = this->get_N();
+    size_t dim = this->get_dimension();
+
+    std::vector<std::vector<Eigen::Triplet<double>>> sparse_entries(K * (K + 1) / 2);
+    std::vector<Eigen::SparseMatrix<double>> sparse_matrices(K * (K + 1) / 2, Eigen::SparseMatrix<double>(dim, dim));
+
+    if (N == 0) {
+        return sparse_matrices;
+    }
+
+    // Reserve appropriate number of entries
+    size_t reservation_size = SpinUnresolvedONVBasis::calculateDimension(K - 1, N - 1);
+    for (size_t p = 0; p < K; p++) {
+        sparse_entries[p * (K + K + 1 - p) / 2].reserve(reservation_size);
+        for (size_t q = p + 1; q < K; q++) {
+            sparse_entries[p * (K + K + 1 - p) / 2 + q - p].reserve(2 * reservation_size);
+        }
+    }
+
+    SpinUnresolvedONV onv = this->makeONV(0);      // onv with address 0
+    for (size_t I = 0; I < dim; I++) {             // I loops over all the addresses of the onv
+        for (size_t e1 = 0; e1 < N; e1++) {        // e1 (electron 1) loops over the (number of) electrons
+            size_t p = onv.occupationIndexOf(e1);  // retrieve the index of a given electron
+            // remove the weight from the initial address I, because we annihilate
+            size_t address = I - this->get_vertex_weights(p, e1 + 1);
+            // The e2 iteration counts the number of encountered electrons for the creation operator
+            // We only consider greater addresses than the initial one (because of symmetry)
+            // Hence we only count electron after the annihilated electron (e1)
+            sparse_entries[p * (K + K + 1 - p) / 2].emplace_back(I, I, 1);
+            size_t e2 = e1 + 1;
+            size_t q = p + 1;
+            int sign_e2 = 1;
+            // perform a shift
+            this->shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
+            size_t dex = 0;
+            while (q < K) {
+                size_t J = address + this->get_vertex_weights(q, e2);
+
+                sparse_entries[p * (K + K + 1 - p) / 2 + q - p].emplace_back(I, J, sign_e2);
+                sparse_entries[p * (K + K + 1 - p) / 2 + q - p].emplace_back(J, I, sign_e2);
+
+                q++;  // go to the next orbital
+                dex++;
+                // perform a shift
+                this->shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
+            }  //  (creation)
+        }      // e1 loop (annihilation)
+
+        // Prevent last permutation
+        if (I < dim - 1) {
+            this->setNextONV(onv);
+        }
+    }
+
+    for (size_t k = 0; k < K * (K + 1) / 2; k++) {
+        sparse_matrices[k].setFromTriplets(sparse_entries[k].begin(), sparse_entries[k].end());
+    }
+
+    return sparse_matrices;
+}
+
+
+/**
  *  Evaluate a one electron operator in a matrix vector product
  *
  *  @param one_op                       the one electron operator expressed in an orthonormal basis
@@ -637,6 +641,26 @@ VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(cons
     EvaluationIterator<VectorX<double>> evaluation_iterator(x, diagonal);
     this->EvaluateOperator<VectorX<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), evaluation_iterator, false);
     return evaluation_iterator.evaluation();
+}
+
+
+/**
+ *  Iterate over all ONVs in this ONV basis and apply the given callback function.
+ * 
+ *  @param callback             the function to be applied in every iteration. Its arguments are a spin-unresolved ONV and its corresponding addresses
+ */
+void SpinUnresolvedONVBasis::forEach(const std::function<void(const SpinUnresolvedONV&, const size_t)>& callback) const {
+
+    SpinUnresolvedONV onv = this->makeONV(0);
+
+    for (size_t I = 0; I < this->dim; I++) {  // I loops over addresses of all ONVs
+
+        callback(onv, I);
+
+        if (I < this->dim - 1) {  // prevent the last permutation from occurring
+            this->setNextONV(onv);
+        }
+    }  // address (I) loop
 }
 
 

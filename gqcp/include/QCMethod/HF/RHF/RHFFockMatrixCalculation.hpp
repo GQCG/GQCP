@@ -46,7 +46,15 @@ public:
      */
 
     /**
-     *  Calculate the current RHF density matrix (expressed in the scalar/AO basis) and place it in the environment
+     *  @return a textual description of this algorithmic step
+     */
+    std::string description() const override {
+        return "Calculate the current RHF Fock matrix (expressed in the scalar/AO basis) and place it in the environment.";
+    }
+
+
+    /**
+     *  Calculate the current RHF Fock matrix (expressed in the scalar/AO basis) and place it in the environment.
      * 
      *  @param environment              the environment that acts as a sort of calculation space
      */

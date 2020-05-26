@@ -43,7 +43,15 @@ public:
      */
 
     /**
-     *  Read the matrix from the environment, diagonalize it and write the number of requested eigenpairs to it
+     *  @return a textual description of this algorithmic step
+     */
+    std::string description() const override {
+        return "Read the matrix from the environment, diagonalize it and write the number of requested eigenpairs to it.";
+    }
+
+
+    /**
+     *  Read the matrix from the environment, diagonalize it and write the number of requested eigenpairs to it.
      * 
      *  @param environment              the environment that this step can read from and write to
      */

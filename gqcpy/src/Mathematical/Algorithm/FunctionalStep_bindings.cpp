@@ -52,9 +52,10 @@ void bindFunctionalStep(py::module& module, const std::string& suffix, const std
                                                   ("FunctionalStep_" + suffix).c_str(),
                                                   description.c_str())
 
-        // Define a constructor that takes a function that can act on an Environment
-        .def(py::init<std::function<void(Environment&)>>(),
-             py::arg("function"));
+        // CONSTRUCTORS
+        .def(py::init<std::function<void(Environment&)>, const std::string&>(),
+             py::arg("function"),
+             py::arg("description") = "A custom functional step.");
 }
 
 

@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Mathematical/Representation/BlockMatrix.hpp"
+#include "Mathematical/Representation/ImplicitMatrixSlice.hpp"
 #include "QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp"
 #include "QCModel/Geminals/AP1roGGeminalCoefficients.hpp"
 
@@ -33,9 +33,9 @@ private:
     double pse_convergence_threshold;         // the threshold used to check for convergence on the geminal coefficients
     size_t pse_maximum_number_of_iterations;  // maximum number of Newton steps that may be used to achieve convergence of the PSEs
 
-    double E;                         // the electronic energy
-    AP1roGGeminalCoefficients G;      // the current geminal coefficients
-    BlockMatrix<double> multipliers;  // the current Lagrangian multipliers
+    double E;                                 // the electronic energy
+    AP1roGGeminalCoefficients G;              // the current geminal coefficients
+    ImplicitMatrixSlice<double> multipliers;  // the current Lagrangian multipliers
 
 
 public:
@@ -69,7 +69,7 @@ public:
 
     double get_electronic_energy() const { return this->E; }
     const AP1roGGeminalCoefficients& get_geminal_coefficients() const { return this->G; }
-    const BlockMatrix<double>& get_multipliers() const { return this->multipliers; }
+    const ImplicitMatrixSlice<double>& get_multipliers() const { return this->multipliers; }
 
 
     // OVERRIDDEN PUBLIC METHODS

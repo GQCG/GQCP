@@ -75,13 +75,11 @@ RDMCalculator::RDMCalculator(const BaseONVBasis& fock_space) {
 
     case ONVBasisType::SpinResolvedONVBasis: {
         this->rdm_builder = std::make_shared<FCIRDMBuilder>(dynamic_cast<const SpinResolvedONVBasis&>(fock_space));
-
         break;
     }
 
     case ONVBasisType::SpinResolvedSelectedONVBasis: {
         this->rdm_builder = std::make_shared<SelectedRDMBuilder>(dynamic_cast<const SpinResolvedSelectedONVBasis&>(fock_space));
-
         break;
     }
 
@@ -93,7 +91,6 @@ RDMCalculator::RDMCalculator(const BaseONVBasis& fock_space) {
 
     case ONVBasisType::SpinResolvedFrozenONVBasis: {
         this->rdm_builder = std::make_shared<FrozenCoreFCIRDMBuilder>(dynamic_cast<const SpinResolvedFrozenONVBasis&>(fock_space));
-
         break;
     }
 

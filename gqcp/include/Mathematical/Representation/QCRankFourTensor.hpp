@@ -28,7 +28,7 @@ namespace GQCP {
 
 
 /**
- *  An extension of the square rank-4 tensor with methods of quantum chemical context
+ *  An extension of the square rank-4 tensor with methods of quantum chemical context for two-electron integrals.
  *
  *  @tparam _Scalar      the scalar type
  */
@@ -39,6 +39,11 @@ public:
 
     using Base = SquareRankFourTensor<Scalar>;
     using Self = QCRankFourTensor<Scalar>;
+
+
+private:
+    bool is_antisymmetrized = false;                   // if the two-electron integrals are modified to obey antisymmetry w.r.t. creation and annihilation indices
+    bool is_expressed_using_chemists_notation = true;  // if the two-electron integrals are expressed as g_PQRS or (PQ|RS)
 
 
 public:
@@ -54,13 +59,77 @@ public:
      */
 
     /**
-     *  @return the dimension of this matrix representation of the parameters, i.e. the number of orbitals/sites
+     *  @return an antisymmetrized version of these two-electron integrals
+     * 
+     *  @note If these integrals are expressed using
+     *      - chemist's notation g_{PQRS}, return g_{PQRS} - g_{PSRQ}
+     *      - physicist's notation <PQ|RS>, return <PQ||RS> = <PQ|RS> - <PQ|SR>
      */
-    size_t dimension() const {
-        return static_cast<size_t>(this->Base::dimension(0));  // returns a long
+    Self antisymmetrized() const {
+
+        // Attempt to modify a copy of these integrals if they haven't been antisymmetrized already.
+        auto copy = *this;
+        if (!(this->isAntisymmetrized())) {
+
+            if (this->isExpressedUsingChemistsNotation()) {
+                Eigen::array<int, 4> shuffle_indices {0, 3, 2, 1};
+                copy -= this->shuffle(shuffle_indices);
+            }
+
+            else {  // expressed using physicist's notation
+
+                Eigen::array<int, 4> shuffle_indices {0, 1, 3, 2};
+                copy -= this->shuffle(shuffle_indices);
+            }
+
+            copy.is_antisymmetrized = true;
+        }
+
+        return copy;
     }
 
-    size_t get_K() const { return this->dimension(0); };
+
+    /**
+     *  In-place antisymmetrize these two-electron integrals.
+     * 
+     *  @note If these integrals are expressed using
+     *      - chemist's notation g_{PQRS}, they are modified to g_{PQRS} - g_{PSRQ}
+     *      - physicist's notation <PQ|RS>, they are modified to <PQ||RS> = <PQ|RS> - <PQ|SR>
+     */
+    void antisymmetrize() { *this = this->antisymmetrized(); }
+
+
+    /**
+     *  In-place rotate this quantum chemical rank-4 tensor using a unitary transformation matrix.
+     * 
+     *  @param U            the unitary transformation matrix
+     */
+    void basisRotateInPlace(const TransformationMatrix<double>& U) {
+
+        // Check if the given matrix is actually unitary
+        if (!U.isUnitary(1.0e-12)) {
+            throw std::invalid_argument("QCRankFourTensor::basisRotateInPlace(const TransformationMatrix<Scalar>&): The given transformation matrix is not unitary.");
+        }
+
+        this->basisTransformInPlace(U);
+    }
+
+
+    /**
+     *  In-place rotate this chemical rank-4 tensor using Jacobi rotation parameters.
+     * 
+     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
+     */
+    void basisRotateInPlace(const JacobiRotationParameters& jacobi_rotation_parameters) {
+
+        /**
+         *  While waiting for an analogous Eigen::Tensor Jacobi module, we implement this rotation by constructing a Jacobi rotation matrix and then simply doing a rotation with it
+         */
+
+        const auto dim = this->dimension();
+        const auto J = TransformationMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
+        this->basisRotateInPlace(J);
+    }
 
 
     /**
@@ -109,36 +178,74 @@ public:
 
 
     /**
-     *  In-place rotate this quantum chemical rank-4 tensor using a unitary transformation matrix.
-     * 
-     *  @param U            the unitary transformation matrix
+     *  @return the integrals changed to chemist's notation (from physicist's notation).
      */
-    void basisRotateInPlace(const TransformationMatrix<double>& U) {
+    Self convertedToChemistsNotation() const {
 
-        // Check if the given matrix is actually unitary
-        if (!U.isUnitary(1.0e-12)) {
-            throw std::invalid_argument("QCRankFourTensor::basisRotateInPlace(const TransformationMatrix<Scalar>&): The given transformation matrix is not unitary.");
+        // Attempt to modify a copy if these integrals are expressed in physicist's notation.
+        auto copy = *this;
+        if (this->isExpressedUsingPhysicistsNotation()) {
+
+            Eigen::array<int, 4> shuffle_indices {0, 2, 1, 3};
+            copy = QCRankFourTensor<double>(this->shuffle(shuffle_indices));
+
+            copy.is_expressed_using_chemists_notation = true;
         }
-
-        this->basisTransformInPlace(U);
+        return copy;
     }
 
 
     /**
-     *  In-place rotate this chemical rank-4 tensor using Jacobi rotation parameters.
-     * 
-     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
+     *  @return the integrals changed to physicist's notation (from chemist's notation).
      */
-    void basisRotateInPlace(const JacobiRotationParameters& jacobi_rotation_parameters) {
+    Self convertedToPhysicistsNotation() const {
 
-        /**
-         *  While waiting for an analogous Eigen::Tensor Jacobi module, we implement this rotation by constructing a Jacobi rotation matrix and then simply doing a rotation with it
-         */
+        // Attempt to modify a copy if these integrals are expressed in chemist's notation.
+        auto copy = *this;
+        if (this->isExpressedUsingChemistsNotation()) {
 
-        const auto dim = this->dimension();
-        const auto J = TransformationMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
-        this->basisRotateInPlace(J);
+            Eigen::array<int, 4> shuffle_indices {0, 2, 1, 3};
+            copy = QCRankFourTensor<double>(this->shuffle(shuffle_indices));
+
+            copy.is_expressed_using_chemists_notation = false;
+        }
+        return copy;
     }
+
+
+    /**
+     *  In-place change the integrals to chemist's notation (from physicist's notation).
+     */
+    void convertToChemistsNotation() { *this = this->convertedToChemistsNotation(); }
+
+    /**
+     *  In-place change the integrals to physicist's notation (from chemist's notation).
+     */
+    void convertToPhysicistsNotation() { *this = this->convertedToPhysicistsNotation(); }
+
+    /**
+     *  @return the dimension of this matrix representation of the parameters, i.e. the number of orbitals/sites
+     */
+    size_t dimension() const { return static_cast<size_t>(this->Base::dimension(0)); }
+
+    /**
+     *  @return if these two-electron integrals are considered to be antisymmetrized.
+     * 
+     *  @note If so, these integrals represent:
+     *      - if they are expressed using chemist's notation:       g_{PQRS} - g_{PSRQ}, i.e. they are antisymmetric upon interchanging the indices PR or QS
+     *      - if they are expressed using physicist's notation:     <PQ|RS> - <PQ|SR>, i.e. they are antisymmetric upon interchanging the indices PQ or RS
+     */
+    bool isAntisymmetrized() const { return this->is_antisymmetrized; }
+
+    /**
+     *  @return if these two-electron integrals are expressed using chemist's notation g_{PQRS}, i.e. (PQ|RS)
+     */
+    bool isExpressedUsingChemistsNotation() const { return this->is_expressed_using_chemists_notation; }
+
+    /**
+     *  @return if these two-electron integrals are expressed using physicist's notation <PQ|RS>
+     */
+    bool isExpressedUsingPhysicistsNotation() const { return !(this->isExpressedUsingChemistsNotation()); }
 };
 
 

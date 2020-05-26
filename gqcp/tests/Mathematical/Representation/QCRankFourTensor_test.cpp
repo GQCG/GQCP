@@ -19,13 +19,17 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/ScalarBasis/GTOShell.hpp"
+#include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Mathematical/Representation/QCRankFourTensor.hpp"
+#include "Molecule/Molecule.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 #include <boost/math/constants/constants.hpp>
 
 
 /**
- *  Check the interface for QCRankFourTensor constructors
+ *  Check the interface for QCRankFourTensor constructors.
  */
 BOOST_AUTO_TEST_CASE(constructor) {
 
@@ -39,7 +43,7 @@ BOOST_AUTO_TEST_CASE(constructor) {
 
 
 /**
- *  Check the basis transformation formula for a trivial case: T being a unit matrix
+ *  Check the basis transformation formula for a trivial case: T being a unit matrix.
  */
 BOOST_AUTO_TEST_CASE(QCRankFourTensor_basisTransformInPlace_trivial) {
 
@@ -54,7 +58,7 @@ BOOST_AUTO_TEST_CASE(QCRankFourTensor_basisTransformInPlace_trivial) {
 
 
 /**
- *  Check the basis transformation formula using an other implementation (the old olsens code) from Ayers' Lab
+ *  Check the basis transformation formula using an other implementation (the old olsens code) from Ayers' Lab.
  */
 BOOST_AUTO_TEST_CASE(SQTwoElectronOperator_transform_olsens) {
 
@@ -87,7 +91,7 @@ BOOST_AUTO_TEST_CASE(SQTwoElectronOperator_transform_olsens) {
 
 
 /**
- *  Check if the code throws errors concerning non-unitary matrices being given to .rotate()
+ *  Check if the code throws errors concerning non-unitary matrices being given to .rotate().
  */
 BOOST_AUTO_TEST_CASE(QCRankFourTensor_rotate_throws) {
 
@@ -109,7 +113,7 @@ BOOST_AUTO_TEST_CASE(QCRankFourTensor_rotate_throws) {
 
 
 /**
- *  Check that rotating using JacobiRotationParameters is the same as using the corresponding Jacobi rotation matrix
+ *  Check that rotating using JacobiRotationParameters is the same as using the corresponding Jacobi rotation matrix.
  */
 BOOST_AUTO_TEST_CASE(QCRankFourTensor_basisRotateInPlace_JacobiRotationParameters) {
 
@@ -129,4 +133,99 @@ BOOST_AUTO_TEST_CASE(QCRankFourTensor_basisRotateInPlace_JacobiRotationParameter
 
 
     BOOST_CHECK(G1.isApprox(G2, 1.0e-12));
+}
+
+
+/**
+ *  Check if antisymmetrizing two-electron integrals works as expected.
+ * 
+ *  The two-electron integrals under consideration are those from H2 in an STO-3G basisset.
+ */
+BOOST_AUTO_TEST_CASE(antisymmetrize) {
+
+    // Prepare the two-electron repulsion integrals from the molecular Hamiltonian for H2.
+    const auto molecule = GQCP::Molecule::HChain(2, 1.0);
+    const GQCP::RSpinorBasis<double, GQCP::GTOShell> r_spinor_basis {molecule, "STO-3G"};
+    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(r_spinor_basis, molecule);
+    const auto& g = sq_hamiltonian.twoElectron().parameters();  // in chemist's notation
+
+
+    // Antisymmetrize the chemist's two-electron integrals and check the results.
+    const auto g_A = g.antisymmetrized();
+    for (size_t p = 0; p < 2; p++) {
+        for (size_t q = 0; q < 2; q++) {
+            for (size_t r = 0; r < 2; r++) {
+                for (size_t s = 0; s < 2; s++) {
+                    BOOST_CHECK(std::abs(g_A(p, q, r, s) + g_A(r, q, p, s)) < 1.0e-12);
+                    BOOST_CHECK(std::abs(g_A(p, q, r, s) + g_A(p, s, r, q)) < 1.0e-12);
+                    BOOST_CHECK(std::abs(g_A(p, q, r, s) - g_A(r, s, p, q)) < 1.0e-12);
+                }
+            }
+        }
+    }
+
+
+    // Convert the chemist's to physicist's two-electron integrals, antisymmetrize them and check the results.
+    const auto V_A = g.convertedToPhysicistsNotation().antisymmetrized();
+    for (size_t p = 0; p < 2; p++) {
+        for (size_t q = 0; q < 2; q++) {
+            for (size_t r = 0; r < 2; r++) {
+                for (size_t s = 0; s < 2; s++) {
+                    BOOST_CHECK(std::abs(V_A(p, q, r, s) + V_A(q, p, r, s)) < 1.0e-12);
+                    BOOST_CHECK(std::abs(V_A(p, q, r, s) + V_A(p, q, s, r)) < 1.0e-12);
+                    BOOST_CHECK(std::abs(V_A(p, q, r, s) - V_A(q, p, s, r)) < 1.0e-12);
+                }
+            }
+        }
+    }
+}
+
+
+/**
+ *  Check if converting in-between chemist's and physicist's notation of two-electron integrals works as expected.
+ * 
+ *  The two-electron integrals under consideration are those from H2 in an STO-3G basisset.
+ */
+BOOST_AUTO_TEST_CASE(chemists_physicists) {
+
+    // Prepare the two-electron repulsion integrals from the molecular Hamiltonian for H2.
+    const auto molecule = GQCP::Molecule::HChain(2, 1.0);
+    const GQCP::RSpinorBasis<double, GQCP::GTOShell> r_spinor_basis {molecule, "STO-3G"};
+    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(r_spinor_basis, molecule);
+    const auto& g = sq_hamiltonian.twoElectron().parameters();  // in chemist's notation
+
+
+    // Check if modifying chemist's integrals to chemist's integrals is a no-operation.
+    const auto g_chemists = g.convertedToChemistsNotation();
+    BOOST_CHECK(g_chemists.isApprox(g, 1.0e-12));
+
+
+    // Check if the conversion from chemist's to physicist's notation works as expected.
+    const auto V_physicists = g_chemists.convertedToPhysicistsNotation();
+    for (size_t p = 0; p < 2; p++) {
+        for (size_t q = 0; q < 2; q++) {
+            for (size_t r = 0; r < 2; r++) {
+                for (size_t s = 0; s < 2; s++) {
+                    BOOST_CHECK(std::abs(V_physicists(p, q, r, s) - g_chemists(p, r, q, s)) < 1.0e-12);
+                }
+            }
+        }
+    }
+
+
+    V_physicists.print();
+    std::cout << std::endl
+              << std::endl;
+
+    g_chemists.print();
+
+
+    // Check if modifying physicist's integrals to physicist's integrals is a no-operation.
+    const auto V = V_physicists.convertedToPhysicistsNotation();
+    BOOST_CHECK(V.isApprox(V_physicists, 1.0e-12));
+
+
+    // Check if the conversion from physicist's to chemist's notation works as expected.
+    const auto g_again = V.convertedToChemistsNotation();
+    BOOST_CHECK(g_again.isApprox(g, 1.0e-12));
 }

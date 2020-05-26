@@ -33,21 +33,23 @@ namespace GQCP {
  */
 double QCModel::AP1roG::calculateEnergy(const AP1roGGeminalCoefficients& G, const SQHamiltonian<double>& sq_hamiltonian) {
 
-    // Prepare some variables
+    // Prepare some variables.
     const auto& h = sq_hamiltonian.core().parameters();
     const auto& g = sq_hamiltonian.twoElectron().parameters();
+
+    const auto orbital_space = G.orbitalSpace();
 
 
     // KISS implementation of the AP1roG energy
     double E = 0.0;
-    for (size_t j = 0; j < G.get_N_P(); j++) {
+    for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
         E += 2 * h(j, j);
 
-        for (size_t k = 0; k < G.get_N_P(); k++) {
+        for (const auto& k : orbital_space.indices(OccupationType::k_occupied)) {
             E += 2 * g(k, k, j, j) - g(k, j, j, k);
         }
 
-        for (size_t b = G.get_N_P(); b < G.get_K(); b++) {
+        for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
             E += g(j, b, j, b) * G(j, b);
         }
     }
@@ -73,12 +75,14 @@ double QCModel::AP1roG::calculatePSECoordinateFunction(const SQHamiltonian<doubl
     const auto& h = sq_hamiltonian.core().parameters();
     const auto& g = sq_hamiltonian.twoElectron().parameters();
 
+    const auto orbital_space = G.orbitalSpace();
+
 
     // A KISS implementation of the AP1roG PSE equations
     double value = 0.0;
     value += g(a, i, a, i) * (1 - std::pow(G(i, a), 2));
 
-    for (size_t j = 0; j < N_P; j++) {
+    for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
         if (j != i) {
             value += 2 * ((2 * g(a, a, j, j) - g(a, j, j, a)) - (2 * g(i, i, j, j) - g(i, j, j, i))) * G(i, a);
         }
@@ -88,21 +92,21 @@ double QCModel::AP1roG::calculatePSECoordinateFunction(const SQHamiltonian<doubl
 
     value += (g(a, a, a, a) - g(i, i, i, i)) * G(i, a);
 
-    for (size_t b = N_P; b < K; b++) {
+    for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
         if (b != a) {
             value += (g(a, b, a, b) - g(i, b, i, b) * G(i, a)) * G(i, b);
         }
     }
 
-    for (size_t j = 0; j < N_P; j++) {
+    for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
         if (j != i) {
             value += (g(j, i, j, i) - g(j, a, j, a) * G(i, a)) * G(j, a);
         }
     }
 
-    for (size_t b = N_P; b < K; b++) {
+    for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
         if (b != a) {
-            for (size_t j = 0; j < N_P; j++) {
+            for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
                 if (j != i) {
                     value += g(j, b, j, b) * G(j, a) * G(i, b);
                 }
@@ -120,17 +124,20 @@ double QCModel::AP1roG::calculatePSECoordinateFunction(const SQHamiltonian<doubl
  *
  *  @return the PSEs, evaluated at the given geminal coefficients
  */
-BlockMatrix<double> QCModel::AP1roG::calculatePSECoordinateFunctions(const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G) {
+ImplicitMatrixSlice<double> QCModel::AP1roG::calculatePSECoordinateFunctions(const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G) {
 
     // Prepare some variables.
     const auto N_P = G.numberOfElectronPairs();
     const auto K = G.numberOfSpatialOrbitals();
 
-    BlockMatrix<double> F {0, N_P, N_P, K};  // an occupied-virtual matrix
+    const auto orbital_space = G.orbitalSpace();
+
+    auto F = orbital_space.initializeRepresentableObjectFor<double>(OccupationType::k_occupied, OccupationType::k_virtual);  // create a mathematical representation for an occupied-virtual object
+
 
     // Loop over all the elements of F to construct it.
-    for (size_t i = 0; i < N_P; i++) {
-        for (size_t a = N_P; a < K; a++) {
+    for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+        for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
             F(i, a) = QCModel::AP1roG::calculatePSECoordinateFunction(sq_hamiltonian, G, i, a);
         }
     }
@@ -171,11 +178,10 @@ VectorFunction<double> QCModel::AP1roG::callablePSECoordinateFunctions(const SQH
 double QCModel::AP1roG::calculatePSEJacobianElement(const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G, const size_t i, const size_t a, const size_t j, const size_t b) {
 
     // Prepare some variables.
-    const auto N_P = G.numberOfElectronPairs();
-    const auto K = G.numberOfSpatialOrbitals();
-
     const auto& h = sq_hamiltonian.core().parameters();
     const auto& g = sq_hamiltonian.twoElectron().parameters();
+
+    const auto orbital_space = G.orbitalSpace();
 
 
     // KISS implementation of the calculation of Jacobian elements.
@@ -183,7 +189,7 @@ double QCModel::AP1roG::calculatePSEJacobianElement(const SQHamiltonian<double>&
     if (i == j) {
         value += g(a, b, a, b) - 2 * g(j, b, j, b) * G(j, a);
 
-        for (size_t k = 0; k < N_P; k++) {
+        for (const auto& k : orbital_space.indices(OccupationType::k_occupied)) {
             value += g(k, b, k, b) * G(k, a);
         }
     }
@@ -192,7 +198,7 @@ double QCModel::AP1roG::calculatePSEJacobianElement(const SQHamiltonian<double>&
     if (a == b) {
         value += g(j, i, j, i) - 2 * g(j, b, j, b) * G(i, b);
 
-        for (size_t c = N_P; c < K; c++) {
+        for (const auto& c : orbital_space.indices(OccupationType::k_virtual)) {
             value += g(j, c, j, c) * G(i, c);
         }
     }
@@ -203,17 +209,15 @@ double QCModel::AP1roG::calculatePSEJacobianElement(const SQHamiltonian<double>&
 
         value -= 2 * (2 * g(a, a, i, i) - g(a, i, i, a));
 
-        for (size_t k = 0; k < N_P; k++) {
+        for (const auto& k : orbital_space.indices(OccupationType::k_occupied)) {
             value += 2 * (2 * g(k, k, a, a) - g(a, k, k, a)) - 2 * (2 * g(i, i, k, k) - g(i, k, k, i));
-        }
 
-        for (size_t k = 0; k < N_P; k++) {
             if (k != i) {
                 value -= 2 * g(k, a, k, a) * G(k, a);
             }
         }
 
-        for (size_t c = N_P; c < K; c++) {
+        for (const auto& c : orbital_space.indices(OccupationType::k_virtual)) {
             if (c != a) {
                 value -= 2 * g(i, c, i, c) * G(i, c);
             }
@@ -230,22 +234,22 @@ double QCModel::AP1roG::calculatePSEJacobianElement(const SQHamiltonian<double>&
  *
  *  @return the Jacobian J_{ia,jb} of the PSEs, i.e. df_i^a/dG_j^b, evaluated at the given geminal coefficients
  */
-BlockRankFourTensor<double> QCModel::AP1roG::calculatePSEJacobian(const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G) {
+ImplicitRankFourTensorSlice<double> QCModel::AP1roG::calculatePSEJacobian(const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G) {
 
     // Prepare some variables.
     const auto N_P = G.numberOfElectronPairs();
     const auto K = G.numberOfSpatialOrbitals();
 
+    const auto orbital_space = G.orbitalSpace();
 
-    BlockRankFourTensor<double> J {0, N_P, N_P, K,
-                                   0, N_P, N_P, K};  // an occupied-virtual, occupied-virtual tensor
+    auto J = orbital_space.initializeRepresentableObjectFor<double>(OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_occupied, OccupationType::k_virtual);  // initialize an occupied-virtual, occupied-virtual tensor
 
 
     // Loop over all elements of J to construct it.
-    for (size_t i = 0; i < N_P; i++) {
-        for (size_t a = N_P; a < K; a++) {
-            for (size_t j = 0; j < N_P; j++) {
-                for (size_t b = N_P; b < K; b++) {
+    for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+        for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
+            for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
+                for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
                     J(i, a, j, b) = QCModel::AP1roG::calculatePSEJacobianElement(sq_hamiltonian, G, i, a, j, b);
                 }
             }

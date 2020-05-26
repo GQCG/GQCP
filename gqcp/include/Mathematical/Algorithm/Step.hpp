@@ -18,6 +18,9 @@
 #pragma once
 
 
+#include <string>
+
+
 namespace GQCP {
 
 
@@ -25,6 +28,7 @@ namespace GQCP {
  *  An elementary calculation that is regarded as one step in an algorithm.
  * 
  *  Derived classes should implement:
+ *      - description()
  *      - execute()
  * 
  *  @param _Environment             the type of the environment that this step can read from and write to
@@ -44,8 +48,13 @@ public:
 
 
     /*
-     *  PUBLIC METHODS
+     *  VIRTUAL PUBLIC METHODS
      */
+
+    /**
+     *  @return a textual description of this algorithmic step
+     */
+    virtual std::string description() const = 0;
 
     /**
      *  Execute/perform this algorithm step.

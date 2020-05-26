@@ -316,23 +316,30 @@ BOOST_AUTO_TEST_CASE(calculate_Fockian_and_super) {
 }
 
 
+/**
+ *  Check if the implementation of the Edmiston-Ruedenberg localization index works as expected.
+ */
 BOOST_AUTO_TEST_CASE(calculateEdmistonRuedenbergLocalizationIndex) {
 
     // Create a toy Hamiltonian: only the two-electron integrals are important
-    size_t K = 5;
-    GQCP::QCMatrix<double> H_op = GQCP::QCMatrix<double>::Random(K, K);
+    const size_t K = 5;
+    const GQCP::QCMatrix<double> H_op = GQCP::QCMatrix<double>::Random(K, K);
 
     GQCP::QCRankFourTensor<double> g_op {K};
     g_op.setZero();
-    for (size_t i = 0; i < K; i++) {
-        g_op(i, i, i, i) = 2 * static_cast<float>(i);
+    for (size_t p = 0; p < K; p++) {
+        g_op(p, p, p, p) = 2 * static_cast<float>(p);
     }
 
     GQCP::SQHamiltonian<double> sq_hamiltonian {GQCP::ScalarSQOneElectronOperator<double>(H_op), GQCP::ScalarSQTwoElectronOperator<double>(g_op)};
 
 
-    BOOST_CHECK(std::abs(sq_hamiltonian.calculateEdmistonRuedenbergLocalizationIndex(3) - 6.0) < 1.0e-08);
-    BOOST_CHECK(std::abs(sq_hamiltonian.calculateEdmistonRuedenbergLocalizationIndex(4) - 12.0) < 1.0e-08);
+    // Check the values for the Edmiston-Ruedenberg localization index.
+    const auto orbital_space1 = GQCP::OrbitalSpace::Implicit({{GQCP::OccupationType::k_occupied, 3}});  // 3 occupied spatial orbitals
+    const auto orbital_space2 = GQCP::OrbitalSpace::Implicit({{GQCP::OccupationType::k_occupied, 4}});  // 3 occupied spatial orbitals
+
+    BOOST_CHECK(std::abs(sq_hamiltonian.calculateEdmistonRuedenbergLocalizationIndex(orbital_space1) - 6.0) < 1.0e-08);
+    BOOST_CHECK(std::abs(sq_hamiltonian.calculateEdmistonRuedenbergLocalizationIndex(orbital_space2) - 12.0) < 1.0e-08);
 }
 
 

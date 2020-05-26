@@ -3,8 +3,10 @@ target_sources(gqcp
         UHF.hpp
         UHFDensityMatrixCalculation.hpp
         UHFElectronicEnergyCalculation.hpp
+        UHFErrorCalculation.hpp
         UHFFockMatrixCalculation.hpp
         UHFFockMatrixDiagonalization.hpp
+        UHFFockMatrixDIIS.hpp
         UHFSCFEnvironment.hpp
         UHFSCFSolver.hpp
 )

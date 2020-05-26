@@ -19,8 +19,15 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/SpinorBasis/GSpinorBasis.hpp"
+#include "Basis/SpinorBasis/USpinorBasis.hpp"
+#include "ONVBasis/SpinResolvedONV.hpp"
 #include "ONVBasis/SpinUnresolvedONV.hpp"
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
+#include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
+#include "QCMethod/HF/RHF/RHF.hpp"
+#include "QCMethod/HF/RHF/RHFSCFEnvironment.hpp"
+#include "QCMethod/HF/RHF/RHFSCFSolver.hpp"
 
 
 BOOST_AUTO_TEST_CASE(ONV_constructor) {
@@ -44,6 +51,26 @@ BOOST_AUTO_TEST_CASE(ONV_constructor) {
 
     // Test if setting incompatible representation throws an error
     BOOST_CHECK_THROW(onv1.set_representation(1), std::invalid_argument);
+}
+
+
+/**
+ *  Check if the named constructor FromOccupiedIndices works as expected.
+ */
+BOOST_AUTO_TEST_CASE(FromOccupiedIndices) {
+
+    const std::vector<size_t> occupied_indices1 {0, 2, 4};  // "10101" (21)
+    const std::vector<size_t> occupied_indices2 {1, 2, 4};  // "10110" (22)
+    const std::vector<size_t> occupied_indices3 {1, 3, 4};  // "11010" (26)
+
+    GQCP::SpinUnresolvedONV ref_onv1 {5, 3, 21};  // "10101" (21)
+    GQCP::SpinUnresolvedONV ref_onv2 {5, 3, 22};  // "10110" (22)
+    GQCP::SpinUnresolvedONV ref_onv3 {5, 3, 26};  // "11010" (26)
+
+    const size_t M = 5;  // the total number of spinors
+    BOOST_CHECK(GQCP::SpinUnresolvedONV::FromOccupiedIndices(occupied_indices1, M) == ref_onv1);
+    BOOST_CHECK(GQCP::SpinUnresolvedONV::FromOccupiedIndices(occupied_indices2, M) == ref_onv2);
+    BOOST_CHECK(GQCP::SpinUnresolvedONV::FromOccupiedIndices(occupied_indices3, M) == ref_onv3);
 }
 
 
@@ -492,12 +519,26 @@ BOOST_AUTO_TEST_CASE(findMatchingOccupations) {
  */
 BOOST_AUTO_TEST_CASE(GHF) {
 
-    // For M=10 spinors and N=5 electrons, the 'GHF' ONV should be "0000011111" = 31.
-    const size_t M = 10;
-    const size_t N = 5;
-    const GQCP::SpinUnresolvedONV reference {M, N, 31};
+    // Create an example array of orbital energies.
+    const size_t M = 6;  // the number of spinors
+    GQCP::VectorX<double> orbital_energies {M};
+    orbital_energies << 0, 1, 2, 0, 0.5, 1;
 
-    BOOST_CHECK(reference == GQCP::SpinUnresolvedONV::GHF(M, N));
+    // N = 2;
+    const auto ref_onv1 = GQCP::SpinUnresolvedONV::FromString("001001");
+    BOOST_CHECK(GQCP::SpinUnresolvedONV::GHF(M, 2, orbital_energies) == ref_onv1);
+
+    // N = 3;
+    const auto ref_onv2 = GQCP::SpinUnresolvedONV::FromString("011001");
+    BOOST_CHECK(GQCP::SpinUnresolvedONV::GHF(M, 3, orbital_energies) == ref_onv2);
+
+    // N = 4;
+    const auto ref_onv3 = GQCP::SpinUnresolvedONV::FromString("011011");
+    BOOST_CHECK(GQCP::SpinUnresolvedONV::GHF(M, 4, orbital_energies) == ref_onv3);
+
+    // N = 5
+    const auto ref_onv4 = GQCP::SpinUnresolvedONV::FromString("111011");
+    BOOST_CHECK(GQCP::SpinUnresolvedONV::GHF(M, 5, orbital_energies) == ref_onv4);
 }
 
 
@@ -542,4 +583,140 @@ BOOST_AUTO_TEST_CASE(unoccupiedIndices) {
     BOOST_CHECK(onv2.unoccupiedIndices() == ref_unoccupied_indices2);  // counted from right to left
     BOOST_CHECK(onv3.unoccupiedIndices() == ref_unoccupied_indices3);  // counted from right to left
     BOOST_CHECK(onv4.unoccupiedIndices() == ref_unoccupied_indices4);  // counted from right to left
+}
+
+
+/**
+ *  Check if the overlap between a two GHF-related ONVs works as expected.
+ *
+ *  We don't really have a reference implementation, but we can check if the overlaps are equal to 1 or 0 if we use GHF orbitals (constructed from RHF canonical spin-orbitals) that are equal.
+ *
+ *  The system under consideration is H2 with a STO-3G basisset.
+ */
+BOOST_AUTO_TEST_CASE(GHF_overlap) {
+
+    // Obtain the canonical RHF spin-orbitals.
+    const auto h2 = GQCP::Molecule::ReadXYZ("data/h2.xyz");
+    const auto N = h2.numberOfElectrons();
+    const auto N_P = h2.numberOfElectronPairs();
+
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> r_spinor_basis {h2, "STO-3G"};
+    const auto K = r_spinor_basis.numberOfSpatialOrbitals();
+    const auto S_restricted = r_spinor_basis.overlap().parameters();
+
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(r_spinor_basis, h2);  // in an AO basis
+
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(N, sq_hamiltonian, S_restricted);
+    auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
+
+    const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
+
+    // Create a GSpinorBasis from the canonical RHF spin-orbitals, yielding a general spinor basis with alternating alpha- and beta-spin-orbitals.
+    r_spinor_basis.transform(rhf_parameters.coefficientMatrix());
+
+    const auto g_spinor_basis_of = GQCP::GSpinorBasis<double, GQCP::GTOShell>::FromRestricted(r_spinor_basis);
+    const auto g_spinor_basis_on = g_spinor_basis_of;
+
+    const auto& C_on = g_spinor_basis_on.coefficientMatrix();
+    const auto& C_of = g_spinor_basis_of.coefficientMatrix();
+
+    auto S = g_spinor_basis_of.overlap().parameters();  // in MO basis
+    S.basisTransformInPlace(C_on.inverse());            // now in AO basis
+
+
+    // Check if the one GHF determinant has overlap 1 with the other corresponding GHF determinant, and overlap 0 with the other excitations.
+    // For the construction of the GHF determinant, we need the spinor orbital energies.
+    GQCP::VectorX<double> total_orbital_energies {2 * K};
+    total_orbital_energies.topRows(K) = rhf_parameters.orbitalEnergies();
+    total_orbital_energies.bottomRows(K) = rhf_parameters.orbitalEnergies();
+
+    const auto ghf_determinant_of = GQCP::SpinUnresolvedONV::GHF(2 * K, N, total_orbital_energies);
+
+
+    // Create all the excitations and check if the projection gives the right value.
+    const auto onv_0011 = GQCP::SpinUnresolvedONV::FromString("0011");
+    const auto onv_0101 = GQCP::SpinUnresolvedONV::FromString("0101");  // this is the GHF determinant (according to the orbital energies)
+    const auto onv_0110 = GQCP::SpinUnresolvedONV::FromString("0110");
+    const auto onv_1001 = GQCP::SpinUnresolvedONV::FromString("1001");
+    const auto onv_1010 = GQCP::SpinUnresolvedONV::FromString("1010");
+    const auto onv_1100 = GQCP::SpinUnresolvedONV::FromString("1100");
+
+    BOOST_CHECK(std::abs(ghf_determinant_of.calculateProjection(onv_0011, C_on, C_of, S) - 0.0) < 1.0e-12);
+    BOOST_CHECK(std::abs(ghf_determinant_of.calculateProjection(onv_0101, C_on, C_of, S) - 1.0) < 1.0e-12);
+    BOOST_CHECK(std::abs(ghf_determinant_of.calculateProjection(onv_0110, C_on, C_of, S) - 0.0) < 1.0e-12);
+    BOOST_CHECK(std::abs(ghf_determinant_of.calculateProjection(onv_1001, C_on, C_of, S) - 0.0) < 1.0e-12);
+    BOOST_CHECK(std::abs(ghf_determinant_of.calculateProjection(onv_1010, C_on, C_of, S) - 0.0) < 1.0e-12);
+    BOOST_CHECK(std::abs(ghf_determinant_of.calculateProjection(onv_1100, C_on, C_of, S) - 0.0) < 1.0e-12);
+}
+
+
+/**
+ *  Check if projecting <RHF|UHF> can also be calculated from <GHF|GHF>, i.e. check if the specialized algorithm is consistent with the general algorithm.
+ * 
+ *  The system of interest is an H4-square in an STO-3G basisset. The RHF and UHF results were found using Xeno's GHF code.
+ */
+BOOST_AUTO_TEST_CASE(RHF_UHF_projection) {
+
+    const auto molecule = GQCP::Molecule::HRingFromDistance(4, 1.0);
+
+
+    // Obtain the canonical RHF spin-orbitals.
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> r_spinor_basis {molecule, "STO-3G"};
+    const auto S_restricted = r_spinor_basis.overlap().parameters();  // the AO overlap matrix
+    GQCP::TransformationMatrix<double> C_restricted {4};              // RHF canonical orbitals for this system (Xeno)
+    // clang-format off
+    C_restricted << -0.27745359, -0.8505133,   0.85051937,  2.02075317,
+                    -0.27745362, -0.85051937, -0.8505133,  -2.02075317,
+                    -0.27745359,  0.8505133,  -0.85051937,  2.02075317,
+                    -0.27745362,  0.85051937,  0.8505133,  -2.02075317;
+    // clang-format on
+    r_spinor_basis.transform(C_restricted);
+
+
+    // Obtain the canonical UHF spin-orbitals.
+    GQCP::USpinorBasis<double, GQCP::GTOShell> u_spinor_basis {molecule, "STO-3G"};
+    GQCP::TransformationMatrix<double> C_alpha {4};  // UHF alpha canonical orbitals for this system (Xeno), triplet
+    // clang-format off
+    C_alpha << -1.75646828e-01, -1.20606646e-06,  1.20281173e+00,  2.03213486e+00,
+               -3.78560533e-01, -1.20281173e+00, -1.20606647e-06, -2.00427438e+00,
+               -1.75646828e-01,  1.20606646e-06, -1.20281173e+00,  2.03213486e+00,
+               -3.78560533e-01,  1.20281173e+00,  1.20606646e-06, -2.00427438e+00;
+    // clang-format on
+
+    GQCP::TransformationMatrix<double> C_beta {4};  // UHF beta canonical orbitals for this system (Xeno), triplet
+    // clang-format off
+    C_beta << -3.78560533e-01,  1.20281173e+00,  1.21724557e-06,  2.00427438e+00,
+              -1.75646828e-01,  1.21724558e-06, -1.20281173e+00, -2.03213486e+00,
+              -3.78560533e-01, -1.20281173e+00, -1.21724558e-06,  2.00427438e+00,
+              -1.75646828e-01, -1.21724558e-06,  1.20281173e+00, -2.03213486e+00;
+    // clang-format on
+    u_spinor_basis.transform(C_alpha, C_beta);
+
+
+    // Calculate <RHF|UHF> using the specialized formula.
+    const auto rhf_determinant = GQCP::SpinResolvedONV::RHF(4, 2);     // 4 spatial orbitals, 2 electron pairs
+    const auto uhf_determinant = GQCP::SpinResolvedONV::UHF(4, 2, 2);  // 4 spatial orbitals for each spin component, 2 alpha electrons, 2 beta electrons
+
+    const auto uhf_on_rhf_projection_specialized = uhf_determinant.calculateProjection(rhf_determinant, C_alpha, C_beta, C_restricted, S_restricted);
+
+
+    // Calculate <RHF|UHF> using the general formula.
+    const auto g_spinor_basis_of = GQCP::GSpinorBasis<double, GQCP::GTOShell>::FromRestricted(r_spinor_basis);
+    const auto g_spinor_basis_on = GQCP::GSpinorBasis<double, GQCP::GTOShell>::FromUnrestricted(u_spinor_basis);
+
+    const auto& C_of = g_spinor_basis_of.coefficientMatrix();
+    const auto& C_on = g_spinor_basis_on.coefficientMatrix();
+
+    auto S_generalized = g_spinor_basis_of.overlap().parameters();  // in MO basis
+    S_generalized.basisTransformInPlace(C_of.inverse());            // in AO basis
+
+    const auto onv_on = GQCP::SpinUnresolvedONV::FromString("00110011");
+    const auto onv_of = GQCP::SpinUnresolvedONV::FromString("00110011");
+
+    const auto uhf_on_rhf_projection_general = onv_of.calculateProjection(onv_on, C_of, C_on, S_generalized);
+
+
+    // Check if both approaches yield the same result.
+    BOOST_CHECK(std::abs(uhf_on_rhf_projection_general - uhf_on_rhf_projection_specialized) < 1.0e-12);
 }

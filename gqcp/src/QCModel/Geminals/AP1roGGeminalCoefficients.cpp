@@ -33,7 +33,7 @@ namespace GQCP {
 /**
  *  @param G            the AP1roG geminal coefficients (not including the identity matrix on the left), as a block matrix
  */
-AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(const BlockMatrix<double>& G, const size_t N_P, const size_t K) :
+AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(const ImplicitMatrixSlice<double>& G, const size_t N_P, const size_t K) :
     N_P {N_P},
     K {K},
     G {G} {}
@@ -46,7 +46,7 @@ AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(const MatrixX<double>& G) :
     // Don't use a delegated constructor for code readability
     N_P {static_cast<size_t>(G.rows())},
     K {static_cast<size_t>(G.rows() + G.cols())},
-    G {BlockMatrix<double>(0, this->N_P, this->N_P, this->K, G)} {}
+    G {ImplicitMatrixSlice<double>::FromBlockRanges(0, this->N_P, this->N_P, this->K, G)} {}
 
 
 /**
@@ -78,7 +78,7 @@ AP1roGGeminalCoefficients::~AP1roGGeminalCoefficients() {}
  */
 double AP1roGGeminalCoefficients::operator()(const size_t i, const size_t a) const {
 
-    return this->G(i, a);  // BlockMatrix implements operator() as we would expect
+    return this->G(i, a);  // ImplicitMatrixSlice implements operator() as we would expect
 }
 
 
@@ -94,15 +94,17 @@ double AP1roGGeminalCoefficients::operator()(const size_t i, const size_t a) con
  */
 AP1roGGeminalCoefficients AP1roGGeminalCoefficients::WeakInteractionLimit(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P) {
 
-    const auto K = sq_hamiltonian.dimension();
-    const auto number_of_geminal_coefficients = AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K);
+    // Prepare some variables.
     const auto& h = sq_hamiltonian.core().parameters();         // core Hamiltonian integrals
     const auto& g = sq_hamiltonian.twoElectron().parameters();  // two-electron integrals
 
-    // Provide the weak interaction limit values for the geminal coefficients
-    BlockMatrix<double> G {0, N_P, N_P, K};
-    for (size_t i = 0; i < N_P; i++) {
-        for (size_t a = N_P; a < K; a++) {
+    const auto K = sq_hamiltonian.dimension();
+    const auto orbital_space = OrbitalSpace::Implicit({{OccupationType::k_occupied, N_P}, {OccupationType::k_virtual, K - N_P}});  // N_P occupied (spatial) orbitals, K-N_P virtual (spatial) orbitals
+
+    // Provide the weak interaction limit values for the geminal coefficients.
+    auto G = orbital_space.initializeRepresentableObjectFor<double>(OccupationType::k_occupied, OccupationType::k_virtual);  // create a mathematical representation for an occupied-virtual object
+    for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+        for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
             G(i, a) = -g(a, i, a, i) / (2 * (h(a, a) - h(i, i)));
         }
     }
@@ -124,7 +126,7 @@ AP1roGGeminalCoefficients AP1roGGeminalCoefficients::FromColumnMajor(const Vecto
 
     const MatrixX<double> M = MatrixX<double>::FromColumnMajorVector(g, rows, cols);  // the block of the actual entries of the geminal coefficient matrix
 
-    return AP1roGGeminalCoefficients(BlockMatrix<double>(0, N_P, N_P, K, M),
+    return AP1roGGeminalCoefficients(ImplicitMatrixSlice<double>::FromBlockRanges(0, N_P, N_P, K, M),
                                      N_P, K);  // an encapsulating object that implements operator() in an intuitive way
 }
 
@@ -142,7 +144,7 @@ AP1roGGeminalCoefficients AP1roGGeminalCoefficients::FromRowMajor(const VectorX<
 
     const MatrixX<double> M = MatrixX<double>::FromRowMajorVector(g, rows, cols);  // the block of the actual entries of the geminal coefficient matrix
 
-    return AP1roGGeminalCoefficients(BlockMatrix<double>(0, N_P, N_P, K, M), N_P, K);  // an encapsulating object that implements operator() in an intuitive way
+    return AP1roGGeminalCoefficients(ImplicitMatrixSlice<double>::FromBlockRanges(0, N_P, N_P, K, M), N_P, K);  // an encapsulating object that implements operator() in an intuitive way
 }
 
 
@@ -240,6 +242,18 @@ double AP1roGGeminalCoefficients::overlap(const SpinUnresolvedONV& onv) const {
         APIGGeminalCoefficients APIG {this->asMatrix()};
         return APIG.overlap(onv);
     }
+}
+
+
+/**
+ *  @return the implicit occupied-virtual orbital space that is associated with these geminal coefficients
+ */
+OrbitalSpace AP1roGGeminalCoefficients::orbitalSpace() const {
+
+    const auto K = this->numberOfSpatialOrbitals();
+    const auto N_P = this->numberOfElectronPairs();
+
+    return OrbitalSpace::Implicit({{OccupationType::k_occupied, N_P}, {OccupationType::k_virtual, K - N_P}});
 }
 
 

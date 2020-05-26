@@ -31,7 +31,7 @@ namespace GQCP {
 
 
 /**
- *  An iteration step that accelerates the density matrix (expressed in the scalar/AO basis) based on a DIIS accelerator.
+ *  An iteration step that accelerates the Fock matrix (expressed in the scalar/AO basis) based on a DIIS accelerator.
  * 
  *  @tparam _Scalar              the scalar type used to represent the expansion coefficient/elements of the transformation matrix
  */
@@ -66,12 +66,16 @@ public:
 
 
     /*
-     *  PUBLIC METHODS
-     */
-
-    /*
      *  OVERRIDDEN PUBLIC METHODS
      */
+
+    /**
+     *  @return a textual description of this algorithmic step
+     */
+    std::string description() const override {
+        return "Calculate the accelerated Fock matrix, and perform a diagonalization step on it.";
+    }
+
 
     /**
      *  Calculate the accelerated Fock matrix, and perform a diagonalization step on it.
@@ -90,8 +94,8 @@ public:
 
         // Convert the deques in the environment to vectors that can be accepted by the DIIS accelerator. The total number of elements we can use in DIIS is either the maximum subspace dimension or the number of available error matrices.
         const auto n = std::min(this->maximum_subspace_dimension, environment.error_vectors.size());
-        const std::vector<VectorX<Scalar>> error_vectors(environment.error_vectors.end() - n, environment.error_vectors.end());   // the n-th last error vectors
-        const std::vector<QCMatrix<Scalar>> fock_matrices(environment.fock_matrices.end() - n, environment.fock_matrices.end());  // the n-th last Fock matrices
+        const std::vector<VectorX<Scalar>> error_vectors {environment.error_vectors.end() - n, environment.error_vectors.end()};   // the n-th last error vectors
+        const std::vector<QCMatrix<Scalar>> fock_matrices {environment.fock_matrices.end() - n, environment.fock_matrices.end()};  // the n-th last Fock matrices
 
         // Calculate the accelerated Fock matrix and do a diagonalization step on it
         const auto F_accelerated = this->diis.accelerate(fock_matrices, error_vectors);
