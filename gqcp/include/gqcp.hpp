@@ -219,7 +219,7 @@
 #include "QCModel/Geminals/AP1roGGeminalCoefficients.hpp"
 #include "QCModel/Geminals/APIGGeminalCoefficients.hpp"
 #include "QCModel/Geminals/GeminalCoefficientsInterface.hpp"
-#include "QCModel/HF/GHF"
+#include "QCModel/HF/GHF.hpp"
 #include "QCModel/HF/RHF.hpp"
 #include "QCModel/HF/UHF.hpp"
 #include "Utilities/CRTP.hpp"
