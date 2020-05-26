@@ -19,7 +19,9 @@
 
 
 #include "Basis/TransformationMatrix.hpp"
+#include "Operator/FirstQuantized/ElectronicSpinOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "Utilities/typedefs.hpp"
 
 
 namespace GQCP {
@@ -289,6 +291,50 @@ public:
     /*
      *  PUBLIC METHODS
      */
+
+    /**
+     *  @param spin_op                      the electronic spin operator
+     *  @param S                            the (spin-blocked) overlap matrix of the underlying AO bases
+     * 
+     *  @return the expectation value of the electronic spin operator
+     */
+    Vector<cd, 3> calculateExpectationValueOf(const ElectronicSpinOperator& spin_op, const QCMatrix<Scalar>& S) const {
+
+        // Prepare some variables.
+        const auto M = this->numberOfSpinors();
+        const MatrixX<cd> C_alpha = this->coefficientMatrix().topRows(M / 2);
+        const MatrixX<cd> C_beta = this->coefficientMatrix().bottomRows(M / 2);
+        const QCMatrix<cd> S_AO = S.topLeftCorner(M / 2, M / 2);  // assume equal for alpha and beta
+
+        // Calculate overlaps between the alpha- and beta-spinors.
+        const MatrixX<cd> overlap_aa = C_alpha.adjoint() * S_AO * C_alpha;
+        const MatrixX<cd> overlap_ab = C_alpha.adjoint() * S_AO * C_beta;
+        const MatrixX<cd> overlap_ba = overlap_ab.adjoint();
+        const MatrixX<cd> overlap_bb = C_beta.adjoint() * S_AO * C_beta;
+
+
+        // A KISS implementation of the expectation value of S, from knowdes.
+        cd s_x {0.0};
+        for (size_t I = 0; I < this->numberOfElectrons(); I++) {  // loop over occupied spinors
+            s_x += overlap_ab(I, I).real();
+        }
+
+        cd s_y {0.0};
+        for (size_t I = 0; I < this->numberOfElectrons(); I++) {  // loop over occupied spinors
+            s_y += overlap_ba(I, I).imag();
+        }
+
+        cd s_z {0.0};
+        for (size_t I = 0; I < this->numberOfElectrons(); I++) {  // loop over occupied spinors
+            s_z += 0.5 * (overlap_aa(I, I) - overlap_bb(I, I));
+        }
+
+        Vector<cd, 3> s_expectation_value = Vector<cd, 3>::Zero();
+        s_expectation_value << s_x, s_y, s_z;
+
+        return s_expectation_value;
+    }
+
 
     /**
      *  @return the 1-RDM expressed in an orthonormal spinor basis related to these optimal GHF parameters

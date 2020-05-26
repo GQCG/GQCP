@@ -75,14 +75,17 @@ BOOST_AUTO_TEST_CASE(H3_test_1) {
     BOOST_CHECK(orbital_energies.isApprox(ref_orbital_energies, 1.0e-06));
 
 
-    // Check the reference value for S_z.
+    // Check the reference value for S_z based on two different implementations.
     const double reference_s_z = 0.5;  // an UHF solution
 
     const auto P = ghf_parameters.calculateScalarBasis1RDM();                     // AO density matrix
     const auto S_op = g_spinor_basis.quantize(GQCP::Operator::ElectronicSpin());  // AO representation of the spin operator
 
-    const auto s_z = S_op.calculateExpectationValue(P)(2);  // the z-component
-    BOOST_CHECK(std::abs(s_z - reference_s_z) < 1.0e-08);
+    const auto s_z1 = S_op.calculateExpectationValue(P)(GQCP::CartesianDirection::z);
+    const auto s_z2 = ghf_parameters.calculateExpectationValueOf(GQCP::ElectronicSpinOperator(), S)(GQCP::CartesianDirection::z);
+
+    BOOST_CHECK(std::abs(s_z1 - reference_s_z) < 1.0e-08);
+    BOOST_CHECK(std::abs(s_z2 - reference_s_z) < 1.0e-08);
 }
 
 
@@ -134,12 +137,15 @@ BOOST_AUTO_TEST_CASE(H3_test_2) {
     BOOST_CHECK(orbital_energies.isApprox(ref_orbital_energies, 1.0e-06));
 
 
-    // Check the reference value for S_z.
+    // Check the reference value for S_z based on two different implementations.
     const double reference_s_z = -4.903573113845816e-05;  // a true GHF solution
 
     const auto P = ghf_parameters.calculateScalarBasis1RDM();                     // AO density matrix
     const auto S_op = g_spinor_basis.quantize(GQCP::Operator::ElectronicSpin());  // AO representation of the spin operator
 
-    const auto s_z = S_op.calculateExpectationValue(P)(2);  // the z-component
-    BOOST_CHECK(std::abs(s_z - reference_s_z) < 1.0e-04);
+    const auto s_z1 = S_op.calculateExpectationValue(P)(GQCP::CartesianDirection::z);
+    const auto s_z2 = ghf_parameters.calculateExpectationValueOf(GQCP::ElectronicSpinOperator(), S)(GQCP::CartesianDirection::z);
+
+    BOOST_CHECK(std::abs(s_z1 - reference_s_z) < 1.0e-04);  // since the reference value is about 1.0e-05, this is the minimum threshold we can use
+    BOOST_CHECK(std::abs(s_z2 - reference_s_z) < 1.0e-04);  // since the reference value is about 1.0e-05, this is the minimum threshold we can use
 }

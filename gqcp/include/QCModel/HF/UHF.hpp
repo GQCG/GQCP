@@ -21,6 +21,7 @@
 #include "Basis/SpinorBasis/Spin.hpp"
 #include "Basis/TransformationMatrix.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
+#include "Operator/FirstQuantized/ElectronicSpinOperator.hpp"
 #include "Processing/RDM/OneRDM.hpp"
 #include "QCModel/HF/RHF.hpp"
 
@@ -298,6 +299,25 @@ public:
     /*
      *  PUBLIC METHODS
      */
+
+    /**
+     *  @param spin_op                      the electronic spin operator
+     * 
+     *  @return the expectation value of the electronic spin operator
+     */
+    Vector<Scalar, 3> calculateExpectationValueOf(const ElectronicSpinOperator& spin_op) const {
+
+        // For UHF, S_x and S_y vanish, but S_z has a definite value.
+        const auto N_alpha = this->numberOfElectrons(Spin::alpha);
+        const auto N_beta = this->numberOfElectrons(Spin::beta);
+        const double s_z = 0.5 * (N_alpha - N_beta);
+
+        Vector<Scalar, 3> s_expectation_value = Vector<Scalar, 3>::Zero();
+        s_expectation_value(CartesianDirection::z) = s_z;
+
+        return s_expectation_value;
+    }
+
 
     /**
      *  @param sigma            alpha or beta

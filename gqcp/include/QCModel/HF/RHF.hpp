@@ -24,6 +24,7 @@
 #include "Mathematical/Representation/ImplicitRankFourTensorSlice.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
+#include "Operator/FirstQuantized/ElectronicSpinOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "Processing/RDM/OneRDM.hpp"
@@ -310,6 +311,18 @@ public:
     /*
      *  PUBLIC METHODS
      */
+
+    /**
+     *  @param spin_op                      the electronic spin operator
+     * 
+     *  @return the expectation value of the electronic spin operator
+     */
+    Vector<Scalar, 3> calculateExpectationValueOf(const ElectronicSpinOperator& spin_op) const {
+
+        // From a theoretical derivation, all three expectation values for the electronic spin operator are zero for RHF.
+        return Vector<Scalar, 3>::Zero();
+    }
+
 
     /**
      *  @return the 1-RDM expressed in an orthonormal spinor basis related to these optimal RHF parameters
