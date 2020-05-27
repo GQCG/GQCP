@@ -53,6 +53,11 @@ BOOST_AUTO_TEST_CASE(h2o_crawdad) {
 
     r_spinor_basis.transform(rhf_parameters.coefficientMatrix());
 
+    // Check if the intermediate RHF results are correct. We can't continue if this isn't the case.
+    const auto rhf_energy = rhf_qc_structure.groundStateEnergy() + GQCP::Operator::NuclearRepulsion(molecule).value();
+    const double ref_rhf_energy = -74.942079928192;
+    BOOST_REQUIRE(std::abs(rhf_energy - ref_rhf_energy) < 1.0e-09);
+
 
     // Create a GSpinorBasis since we have implement spinor-CCD, and quantize the molecular Hamiltonian in it.
     const auto g_spinor_basis = GQCP::GSpinorBasis<double, GQCP::GTOShell>::FromRestricted(r_spinor_basis);
@@ -70,15 +75,19 @@ BOOST_AUTO_TEST_CASE(h2o_crawdad) {
 
 
     // Initialize an environment suitable for CCD.
-    auto environment = GQCP::CCSDEnvironment<double>::PerturbativeCCD(g_sq_hamiltonian, orbital_space);
+    auto environment_ccd = GQCP::CCSDEnvironment<double>::PerturbativeCCD(g_sq_hamiltonian, orbital_space);
+    auto environment_ccsd_ref = GQCP::CCSDEnvironment<double>::PerturbativeCCSD(g_sq_hamiltonian, orbital_space);
     
     // Prepare the CCD solver and optimize the CCD model parameters.
-    auto solver = GQCP::CCDSolver<double>::Plain();
-    const auto ccd_qc_structure = GQCP::QCMethod::CCD<double>().optimize(solver, environment);
+    auto solver_ccd = GQCP::CCDSolver<double>::Plain();
+    const auto ccd_qc_structure = GQCP::QCMethod::CCD<double>().optimize(solver_ccd, environment_ccd);
+
+    // Prepare the CCSD reference solver and optimize the CCSD model parameters but with T1-amplitudes all 0.
+    auto solver_ref = GQCP::CCDSolver<double>::Plain();
+    const auto ref_qc_structure = GQCP::QCMethod::CCD<double>().optimize(solver_ref, environment_ccsd_ref);
 
     const auto ccd_correlation_energy = ccd_qc_structure.groundStateEnergy();
+    const double ref_ccd_correlation_energy = ref_qc_structure.groundStateEnergy();
 
-    const double ref_ccd_correlation_energy = -0.070680088376;
-    std::cout<<rhf_energy+ccd_correlation_energy<<std::endl;
-    //BOOST_CHECK(std::abs(ccd_correlation_energy - ref_ccd_correlation_energy) < 1.0e-08);
+    BOOST_CHECK(std::abs(ccd_correlation_energy - ref_ccd_correlation_energy) < 1.0e-08);
 }
