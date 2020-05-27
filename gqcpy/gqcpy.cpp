@@ -68,6 +68,7 @@ void bindNucleus(py::module& module);
 void bindSeniorityZeroONVBasis(py::module& module);
 void bindSpinResolvedONV(py::module& module);
 void bindSpinResolvedONVBasis(py::module& module);
+void bindSpinUnresolvedONV(py::module& module);
 
 
 // Operator - FirstQuantized
@@ -89,6 +90,12 @@ void bindSQTwoElectronOperator(py::module& module);
 void bindDOCIElectricalResponseSolver(py::module& module);
 void bindRHFElectricalResponseSolver(py::module& module);
 void bindvAP1roGElectricalResponseSolver(py::module& module);
+
+
+// QCMethod - CC
+void bindQCMethodCCSD(py::module& module);
+void bindCCSDEnvironment(py::module& module);
+void bindCCSDSolver(py::module& module);
 
 
 // QCMethod - CI
@@ -121,6 +128,12 @@ void bindUHFSCFSolver(py::module& module);
 
 // QCMethod
 void bindQCStructures(py::module& module);
+
+
+// QCModel - CC
+void bindQCModelCCSD(py::module& module);
+void bindT1Amplitudes(py::module& module);
+void bindT2Amplitudes(py::module& module);
 
 
 // QCModel - CI
@@ -192,6 +205,7 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindSeniorityZeroONVBasis(module);
     gqcpy::bindSpinResolvedONV(module);
     gqcpy::bindSpinResolvedONVBasis(module);
+    gqcpy::bindSpinUnresolvedONV(module);
 
 
     // Operator - FirstQuantized
@@ -213,6 +227,12 @@ PYBIND11_MODULE(gqcpy, module) {
     // gqcpy::bindDOCIElectricalResponseSolver(module);
     gqcpy::bindRHFElectricalResponseSolver(module);
     gqcpy::bindvAP1roGElectricalResponseSolver(module);
+
+
+    // QCMethod - CC
+    gqcpy::bindQCMethodCCSD(module);
+    gqcpy::bindCCSDEnvironment(module);
+    gqcpy::bindCCSDSolver(module);
 
 
     // QCMethod - CI
@@ -245,6 +265,12 @@ PYBIND11_MODULE(gqcpy, module) {
 
     // QCMethod
     gqcpy::bindQCStructures(module);
+
+
+    // QCModel - CC
+    gqcpy::bindQCModelCCSD(module);
+    gqcpy::bindT1Amplitudes(module);
+    gqcpy::bindT2Amplitudes(module);
 
 
     // QCModel - CI

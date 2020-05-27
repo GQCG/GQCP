@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "ONVBasis/SpinResolvedONVBasis.hpp"
+#include "QCModel/CC/CCSD.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
@@ -27,28 +27,20 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
-void bindSpinResolvedONVBasis(py::module& module) {
-    py::class_<GQCP::SpinResolvedONVBasis>(module, "SpinResolvedONVBasis", "A full spin-resolved ONV basis.")
+void bindQCModelCCSD(py::module& module) {
 
-        // CONSTRUCTORS
-        .def(py::init<const size_t, const size_t, const size_t>(),
-             py::arg("K"),
-             py::arg("N_alpha"),
-             py::arg("N_beta"))
+    py::class_<GQCP::QCModel::CCSD<double>>(module, "QCModel_CCSD", "The CCSD wave function model.")
 
         // PUBLIC METHODS
-        .def("dimension",
-             &GQCP::SpinResolvedONVBasis::dimension)
+        .def(
+            "t1Amplitudes",
+            &GQCP::QCModel::CCSD<double>::t1Amplitudes,
+            "Return these CCSD model parameters' T1-amplitudes")
 
-        .def("hartreeFockExpansion",
-             [](const GQCP::SpinResolvedONVBasis& onv_basis) {
-                 return onv_basis.hartreeFockExpansion();
-             })
-
-        .def("randomExpansion",
-             [](const GQCP::SpinResolvedONVBasis& onv_basis) {
-                 return onv_basis.randomExpansion();
-             });
+        .def(
+            "t2Amplitudes",
+            &GQCP::QCModel::CCSD<double>::t2Amplitudes,
+            "Return these CCSD model parameters' T2-amplitudes");
 }
 
 

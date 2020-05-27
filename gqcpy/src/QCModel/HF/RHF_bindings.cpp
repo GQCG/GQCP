@@ -30,6 +30,7 @@ namespace gqcpy {
 void bindQCModelRHF(py::module& module) {
     py::class_<GQCP::QCModel::RHF<double>>(module, "QCModel_RHF", "The restricted Hartree-Fock wave function model.")
 
+        // PUBLIC METHODS
         .def(
             "calculateOrthonormalBasis1RDM",
             [](const GQCP::QCModel::RHF<double>& rhf_parameters) {
@@ -50,7 +51,17 @@ void bindQCModelRHF(py::module& module) {
 
         .def("orbitalEnergies",
              &GQCP::QCModel::RHF<double>::orbitalEnergies,
-             "Return the orbital energies.");
+             "Return the orbital energies.")
+
+        .def(
+            "spinOrbitalEnergiesBlocked",
+            &GQCP::QCModel::RHF<double>::spinOrbitalEnergiesBlocked,
+            "Return all the spin-orbital energies, with the alpha spin-orbital energies appearing before the beta spin-orbital energies.")
+
+        .def(
+            "spinOrbitalEnergiesInterleaved",
+            &GQCP::QCModel::RHF<double>::spinOrbitalEnergiesInterleaved,
+            "Return all the spin-orbital energies, with the alpha spin-orbital energies appearing before the beta spin-orbital energies.");
 }
 
 

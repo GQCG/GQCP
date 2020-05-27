@@ -108,7 +108,7 @@ SpinUnresolvedONV SpinUnresolvedONV::FromOccupiedIndices(const std::vector<size_
  *  @param N                            the number of electrons
  *  @param orbital_energies             the single-particle energies of the spinors
  * 
- *  @param a spin-resolved ONV that represents the GHF single Slater determinant
+ *  @param a spin-unresolved ONV that represents the GHF single Slater determinant
  */
 SpinUnresolvedONV SpinUnresolvedONV::GHF(const size_t M, const size_t N, const VectorX<double>& orbital_energies) {
 

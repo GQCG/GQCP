@@ -70,7 +70,22 @@ BOOST_AUTO_TEST_CASE(basic_constructor) {
 
 
 /**
- *  Sandbox for calculating overlap between RHF and UHF.
+ *  Check if the methods for returning spinorbital energies are correctly implemented.
  */
-BOOST_AUTO_TEST_CASE(overlap) {
+BOOST_AUTO_TEST_CASE(spinorbitalEnergies) {
+
+    // Set up toy UHF model parameters.
+    const size_t K = 2;
+    const GQCP::TransformationMatrix<double> C = GQCP::TransformationMatrix<double>::Identity(K, K);
+    GQCP::VectorX<double> orbital_energies {K};
+    orbital_energies << -0.5, 0.5;
+
+    GQCP::QCModel::RHF<double> rhf_parameters {1, orbital_energies, C};
+    GQCP::QCModel::UHF<double> uhf_parameters {rhf_parameters};
+
+
+    // Provide reference values and check the results.
+    GQCP::VectorX<double> ref_spinorbital_energies_blocked {2 * K};
+    ref_spinorbital_energies_blocked << -0.5, 0.5, -0.5, 0.5;
+    BOOST_CHECK(uhf_parameters.spinOrbitalEnergiesBlocked().isApprox(ref_spinorbital_energies_blocked, 1.0e-12));
 }
