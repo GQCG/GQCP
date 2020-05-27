@@ -62,7 +62,7 @@ BOOST_AUTO_TEST_CASE(lih_6_31G_orbital_optimize) {
     auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
     GQCP::AP1roGLagrangianNewtonOrbitalOptimizer orbital_optimizer {G_initial, hessian_modifier, 1.0e-04};
     orbital_optimizer.optimize(spinor_basis, sq_hamiltonian);
-    const auto optimized_energy = orbital_optimizer.get_electronic_energy();
+    const auto optimized_energy = orbital_optimizer.electronicEnergy();
 
     // We don't have reference data, so all we can do is check if orbital optimization lowers the energy
     BOOST_CHECK(optimized_energy < initial_energy);

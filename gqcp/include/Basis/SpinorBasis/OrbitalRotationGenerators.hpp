@@ -64,14 +64,14 @@ public:
     // PUBLIC METHODS
 
     /**
-     *  @return the orbital rotation generators as the strict upper/lower triangle of the kappa matrix
-     */
-    const VectorX<double>& asVector() const { return this->kappa_vector; }
-
-    /**
      *  @return the antisymmetric orbital rotation generator matrix kappa
      */
     SquareMatrix<double> asMatrix() const;
+
+    /**
+     *  @return the orbital rotation generators as the strict upper/lower triangle of the kappa matrix
+     */
+    const VectorX<double>& asVector() const { return this->kappa_vector; }
 
     /**
      *  @return the unitary matrix that corresponds to these orbital rotation generators, i.e. exp(-kappa)

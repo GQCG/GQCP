@@ -34,6 +34,7 @@ void bindSQHamiltonian(py::module& module) {
     py::class_<GQCP::SQHamiltonian<double>>(module, "SQHamiltonian", "A class that represents a real, second-quantized Hamiltonian.")
 
         // CONSTRUCTORS
+
         .def_static(
             "Molecular",
             [](const GQCP::RSpinorBasis<double, GQCP::GTOShell>& r_spinor_basis, const GQCP::Molecule& molecule) {
@@ -54,6 +55,7 @@ void bindSQHamiltonian(py::module& module) {
 
 
         // PUBLIC METHODS
+
         .def(
             "__add__",
             [](const GQCP::SQHamiltonian<double>& sq_hamiltonian, const GQCP::SQOneElectronOperator<double, 1>& sq_op) {

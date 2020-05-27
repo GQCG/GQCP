@@ -32,6 +32,7 @@ void bindUHFSCFEnvironment(py::module& module) {
     py::class_<GQCP::UHFSCFEnvironment<double>>(module, "UHFSCFEnvironment", "An algorithm environment that can be used with standard UHF SCF solvers.")
 
         // CONSTRUCTORS
+
         .def(py::init([](const size_t N_alpha, const size_t N_beta, const GQCP::SQHamiltonian<double>& sq_hamiltonian, const Eigen::MatrixXd& S, const Eigen::MatrixXd& C_alpha_initial, const Eigen::MatrixXd& C_beta_initial) {
                  return GQCP::UHFSCFEnvironment<double>(N_alpha, N_beta, sq_hamiltonian, GQCP::QCMatrix<double>(S), GQCP::TransformationMatrix<double>(C_alpha_initial), GQCP::TransformationMatrix<double>(C_beta_initial));
              }),

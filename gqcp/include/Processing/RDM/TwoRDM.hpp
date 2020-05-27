@@ -51,25 +51,6 @@ public:
      */
 
     /**
-     *  @return the trace of the 2-RDM, i.e. d(p,p,q,q)
-     */
-    Scalar trace() const {
-        // TODO: when Eigen3 releases tensor.trace(), use it to implement the reduction
-
-        auto K = static_cast<size_t>(this->dimension());
-
-        Scalar trace {};
-        for (size_t p = 0; p < K; p++) {
-            for (size_t q = 0; q < K; q++) {
-                trace += this->operator()(p, p, q, q);
-            }
-        }
-
-        return trace;
-    }
-
-
-    /**
      *  @return a partial contraction of the 2-RDM, where D(p,q) = d(p,q,r,r)
      */
     OneRDM<Scalar> reduce() const {
@@ -88,6 +69,25 @@ public:
         }
 
         return D;
+    }
+
+
+    /**
+     *  @return the trace of the 2-RDM, i.e. d(p,p,q,q)
+     */
+    Scalar trace() const {
+        // TODO: when Eigen3 releases tensor.trace(), use it to implement the reduction
+
+        auto K = static_cast<size_t>(this->dimension());
+
+        Scalar trace {};
+        for (size_t p = 0; p < K; p++) {
+            for (size_t q = 0; q < K; q++) {
+                trace += this->operator()(p, p, q, q);
+            }
+        }
+
+        return trace;
     }
 };
 

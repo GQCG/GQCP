@@ -71,6 +71,11 @@ public:
      */
 
     /**
+     *  @return if all the values of the calculated integrals are zero
+     */
+    virtual bool areIntegralsAllZero() const = 0;
+
+    /**
      *  @param i            the index of the component of the operator
      *  @param f1           the index of the basis function within shell 1
      *  @param f2           the index of the basis function within shell 2
@@ -79,25 +84,10 @@ public:
      */
     virtual IntegralScalar value(const size_t i, const size_t f1, const size_t f2) const = 0;
 
-    /**
-     *  @return if all the values of the calculated integrals are zero
-     */
-    virtual bool areIntegralsAllZero() const = 0;
-
 
     /*
      *  PUBLIC METHODS
      */
-
-    /**
-     *  @return the number of basis functions that are in the first shell
-     */
-    size_t numberOfBasisFunctionsInShell1() const { return this->nbf1; }
-
-    /**
-     *  @return the number of basis functions that are in the first shell
-     */
-    size_t numberOfBasisFunctionsInShell2() const { return this->nbf2; }
 
     /**
      *  Place the calculated integrals inside the matrix representation of the integrals
@@ -119,6 +109,17 @@ public:
             }  // f2
         }      // f1
     }
+
+
+    /**
+     *  @return the number of basis functions that are in the first shell
+     */
+    size_t numberOfBasisFunctionsInShell1() const { return this->nbf1; }
+
+    /**
+     *  @return the number of basis functions that are in the second shell
+     */
+    size_t numberOfBasisFunctionsInShell2() const { return this->nbf2; }
 };
 
 

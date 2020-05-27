@@ -27,19 +27,19 @@ namespace GQCP {
  */
 
 /**
- *  @param x        the exponent in x
- *  @param y        the exponent in y
- *  @param z        the exponent in z
- */
-CartesianExponents::CartesianExponents(size_t x, size_t y, size_t z) :
-    exponents {x, y, z} {}
-
-
-/**
  *  @param arr      the array containing the x-, y- and z-exponent in that order
  */
 CartesianExponents::CartesianExponents(const std::array<size_t, 3>& arr) :
     exponents {arr} {}
+
+
+/**
+ *  @param x        the exponent in x
+ *  @param y        the exponent in y
+ *  @param z        the exponent in z
+ */
+CartesianExponents::CartesianExponents(const size_t x, const size_t y, const size_t z) :
+    exponents {x, y, z} {}
 
 
 /*
@@ -102,32 +102,15 @@ bool CartesianExponents::operator!=(const CartesianExponents& rhs) const {
  */
 
 /**
- *  @param direction        the direction (x,y,z) whose exponent should be returned
- *
- *  @return the exponent in the given direction
- */
-size_t CartesianExponents::value(CartesianDirection direction) const {
-    return this->exponents[direction];
-}
-
-
-/**
  *  @return the angular momentum corresponding to these exponents
  */
 size_t CartesianExponents::angularMomentum() const {
+
     size_t momentum = 0;
     for (const auto& direction : {CartesianDirection::x, CartesianDirection::y, CartesianDirection::z}) {
         momentum += this->exponents[direction];
     }
     return momentum;
-}
-
-
-/**
- *  @return the exponents as an array
- */
-const std::array<size_t, 3>& CartesianExponents::asArray() const {
-    return this->exponents;
 }
 
 

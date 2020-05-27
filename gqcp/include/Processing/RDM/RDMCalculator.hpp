@@ -44,35 +44,32 @@ private:
 
 public:
     // CONSTRUCTOR
-    RDMCalculator() = default;
-
-    // /**
-    //  *  Allocate a DOCIRDMBuilder
-    //  *
-    //  *  @param fock_space       the DOCI ONV basis
-    //  */
-    // explicit RDMCalculator(const SpinUnresolvedONVBasis& fock_space);
 
     /**
-     *  Allocate a FCIRDMBuilder
-     *
-     *  @param fock_space       the FCI ONV basis
+     *  The default constructor.
      */
-    explicit RDMCalculator(const SpinResolvedONVBasis& fock_space);
+    RDMCalculator() = default;
+
+    /**
+     *  Allocate an FCIRDMBuilder
+     *
+     *  @param onv_basis       the FCI ONV basis
+     */
+    explicit RDMCalculator(const SpinResolvedONVBasis& onv_basis);
 
     /**
      *  Allocate a SelectedRDMBuilder
      *
-     *  @param fock_space       the 'selected' ONV basis
+     *  @param onv_basis       the 'selected' ONV basis
      */
-    explicit RDMCalculator(const SpinResolvedSelectedONVBasis& fock_space);
+    explicit RDMCalculator(const SpinResolvedSelectedONVBasis& onv_basis);
 
     /**
      *  A run-time constructor allocating the appropriate derived RDMBuilder
      *
-     *  @param fock_space       the ONV basis on which the RDMBuilder should be based
+     *  @param onv_basis       the ONV basis on which the RDMBuilder should be based
      */
-    explicit RDMCalculator(const BaseONVBasis& fock_space);
+    explicit RDMCalculator(const BaseONVBasis& onv_basis);
 
     /**
      *  A run-time constructor allocating the appropriate derived RDMBuilder and coefficient vector
@@ -83,37 +80,12 @@ public:
     explicit RDMCalculator(const LinearExpansion<ONVBasis>& linear_expansion) :
         RDMCalculator(linear_expansion.onvBasis()) {
 
-        this->set_coefficients(linear_expansion.coefficients());
+        this->setCoefficients(linear_expansion.coefficients());
     }
 
 
-    // SETTERS
-    void set_coefficients(const VectorX<double>& coefficients) { this->coefficients = coefficients; };
-
-
-    // PUBLIC METHODS
-    /**
-     *  @return all 1-RDMs if a given coefficient vector is set
-     */
-    OneRDMs<double> calculate1RDMs() const;
-
-    /**
-     *  @return all 2-RDMs if a given coefficient vector is set
-     */
-    TwoRDMs<double> calculate2RDMs() const;
-
-    /**
-     *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)
-     *  @param ket_indices      the indices of the orbitals that should be annihilated on the right (on the ket)
-     *
-     *  @return an element of the N-RDM, as specified by the given bra and ket indices
-     *
-     *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
-     */
-    double calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices) const;
-
-
     // OPERATORS
+
     /**
      *  @param indices_pack      the indices that specify the element of the N-RDM that has to be calculated
      */
@@ -144,6 +116,37 @@ public:
 
         return this->calculateElement(bra_indices, ket_indices);
     }
+
+
+    // PUBLIC METHODS
+
+    /**
+     *  @return all 1-RDMs if a given coefficient vector is set
+     */
+    OneRDMs<double> calculate1RDMs() const;
+
+    /**
+     *  @return all 2-RDMs if a given coefficient vector is set
+     */
+    TwoRDMs<double> calculate2RDMs() const;
+
+    /**
+     *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)
+     *  @param ket_indices      the indices of the orbitals that should be annihilated on the right (on the ket)
+     *
+     *  @return an element of the N-RDM, as specified by the given bra and ket indices
+     *
+     *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
+     */
+    double calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices) const;
+
+    /**
+     *  Replace this instance's coefficients with the given coefficients.
+     * 
+     *  @param coefficients                 the new coefficients for this instance
+     */
+    void setCoefficients(const VectorX<double>& coefficients) { this->coefficients = coefficients; };
+
 };
 
 

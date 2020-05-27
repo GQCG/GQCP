@@ -18,7 +18,6 @@
 #pragma once
 
 
-#include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 #include "Utilities/miscellaneous.hpp"
 
@@ -61,7 +60,7 @@ public:
      *
      *  @param dim      the dimension of the matrix
      */
-    SquareMatrix(size_t dim) :
+    SquareMatrix(const size_t dim) :
         Base(dim, dim) {}
 
 
@@ -104,7 +103,7 @@ public:
      */
     static Self FromStrictTriangle(const VectorX<Scalar>& v) {
 
-        size_t dim = strictTriangularRoot(v.size());
+        size_t dim = strictTriangularRootOf(v.size());
         Self A = Self::Zero(dim, dim);
 
         size_t column_index = 0;
@@ -124,13 +123,67 @@ public:
 
 
     /**
+     *  @param indices          the indices of the diagonal which will be set to 1
+     *  @param M                the dimension of the resulting matrix
+     *
+     * @return a 'partition' matrix, which is a diagonal matrix, whose diagonal elements are either 0 or 1, as specified by the given indices
+     */
+    static Self PartitionMatrix(const std::vector<size_t>& indices, const size_t M) {
+
+        Self A = Self::Zero(M, M);
+
+        for (const auto& index : indices) {
+            if (index >= M) {
+                throw std::invalid_argument("SquareMatrix::PartitionMatrix(std::vector<size_t>, size_t): index is larger than matrix dimension");
+            }
+
+            A(index, index) = 1;
+        }
+
+        return A;
+    }
+
+
+    /**
+     *  @param start            starting index of the partition
+     *  @param range            range overwhich the partition indices stretch
+     *  @param M                the dimension of the resulting matrix
+     *
+     * @return a 'partition' matrix, which is a diagonal matrix, whose diagonal elements are either 0 or 1, as specified by the given indices
+     */
+    static Self PartitionMatrix(const size_t start, const size_t range, const size_t M) {
+
+        std::vector<size_t> l(range);
+        std::iota(std::begin(l), std::end(l), start);
+
+        return PartitionMatrix(l, M);
+    }
+
+
+    /**
+    *  @param M                the dimension of the resulting matrix
+    *
+    *  @return a random unitary matrix
+    */
+    static Self RandomUnitary(const size_t M) {
+
+        // Get a random unitary matrix by diagonalizing a random symmetric matrix
+        Self A_random = Self::Random(M, M);
+        Self A_symmetric = A_random + A_random.adjoint();
+        Eigen::SelfAdjointEigenSolver<Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>> unitary_solver {A_symmetric};
+
+        return unitary_solver.eigenvectors();
+    }
+
+
+    /**
      *  @param v    the upper triangle (including the diagonal) of a matrix
      *
      *  @return the full, symmetric matrix corresponding to the given upper triangle
      */
     static Self SymmetricFromUpperTriangle(const VectorX<Scalar>& v) {
 
-        size_t dim = triangularRoot(v.size());
+        size_t dim = triangularRootOf(v.size());
 
         Self A = Self::Zero(dim, dim);
 
@@ -152,87 +205,6 @@ public:
     }
 
 
-    /**
-     *  @param jacobi_rotation_parameters       the parameters that define the Jacobi rotation matrix
-     *  @param M                                the dimension of the resulting matrix
-     *
-     *  @return the corresponding Jacobi rotation matrix. Note that we work with the (cos, sin, -sin, cos) definition
-     */
-    static Self FromJacobi(const JacobiRotationParameters& jacobi_rotation_parameters, size_t M) {
-
-        double c = std::cos(jacobi_rotation_parameters.get_angle());
-        double s = std::sin(jacobi_rotation_parameters.get_angle());
-
-        // We'll start the construction with an identity matrix
-        Self J = Self::Identity(M, M);
-
-        // And apply the Jacobi rotation as J = I * jacobi_rotation (cfr. B' = B T)
-        J.applyOnTheRight(jacobi_rotation_parameters.get_p(), jacobi_rotation_parameters.get_q(), Eigen::JacobiRotation<double>(c, s));
-        return J;
-    }
-
-
-    /**
-     *  @param indices          the indices of the diagonal which will be set to 1
-     *  @param M                the dimension of the resulting matrix
-     *
-     * @return a 'partition' matrix, which is a diagonal matrix, whose diagonal elements are either 0 or 1, as specified by the given indices
-     */
-    static Self PartitionMatrix(const std::vector<size_t>& indices, size_t M) {
-
-        Self A = Self::Zero(M, M);
-
-        for (const auto& index : indices) {
-            if (index >= M) {
-                throw std::invalid_argument("SquareMatrix::PartitionMatrix(std::vector<size_t>, size_t): index is larger than matrix dimension");
-            }
-
-            A(index, index) = 1;
-        }
-
-        return A;
-    }
-
-
-    /**
-    *  @param start            starting index of the partition
-    *  @param range            range overwhich the partition indices stretch
-    *  @param M                the dimension of the resulting matrix
-    *
-    * @return the corresponding diagonal partition matrix
-    */
-    static Self PartitionMatrix(size_t start, size_t range, size_t M) {
-
-        std::vector<size_t> l(range);
-        std::iota(std::begin(l), std::end(l), start);
-
-        return PartitionMatrix(l, M);
-    }
-
-
-    /**
-    *  @param M                the dimension of the resulting matrix
-    *
-    *  @return a random unitary matrix
-    */
-    static Self RandomUnitary(size_t M) {
-
-        // Get a random unitary matrix by diagonalizing a random symmetric matrix
-        Self A_random = Self::Random(M, M);
-        Self A_symmetric = A_random + A_random.adjoint();
-        Eigen::SelfAdjointEigenSolver<Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>> unitary_solver {A_symmetric};
-
-        return unitary_solver.eigenvectors();
-    }
-
-
-    /*
-     *  GETTERS
-     */
-
-    size_t get_dim() const { return this->dimension(); }
-
-
     /*
      *  PUBLIC METHODS
      */
@@ -243,106 +215,13 @@ public:
     size_t dimension() const { return this->cols(); }  // equals this->rows()
 
     /**
-     *  @return a pair-wise strict reduced form of this square matrix. The elements of the matrix are put into the vector such that
-     *      v(m) = M(i,j)
-     *
-     *  in which
-     *      m is calculated from i and j in a column-major way, with the restriction that i>j
-     * 
-     *  Note that this is equal to extracting to strict lower triangular matrix as a vector in column major form. Example:
-     * 
-     *          5
-     *          1   5       -> (1, 2, 3)
-     *          2   3   5
-     */
-    VectorX<Scalar> pairWiseStrictReduce() const {
-
-        const auto dim = this->get_dim();
-
-        VectorX<Scalar> m = VectorX<Scalar>::Zero((dim * (dim - 1) / 2));  // strictly lower triangle has dim(dim-1)/2 parameters
-
-        size_t vector_index = 0;
-        for (size_t q = 0; q < dim; q++) {          // "column major" ordering for, so we do p first, then q
-            for (size_t p = q + 1; p < dim; p++) {  // strict lower triangle means p > q
-                m(vector_index) = this->operator()(p, q);
-                vector_index++;
-            }
-        }
-
-        return m;
-    }
-
-
-    /**
-     *  @return the permanent using a combinatorial algorithm
-     */
-    double permanent_combinatorial() const {
-
-        // The recursion ends when the given 'matrix' is just a number
-        if ((this->rows() == 1) && (this->cols() == 1)) {
-            return this->operator()(0, 0);
-        }
-
-        size_t j = 0;  // develop by the first column
-        double value = 0.0;
-        for (size_t i = 0; i < this->rows(); i++) {
-            value += this->operator()(i, j) * SquareMatrix<Scalar>(this->matrixMinor(i, j)).permanent_combinatorial();  // need to convert because 'minor' is a Base function and isn't guaranteed to be square
-        }
-
-        return value;
-    }
-
-
-    /**
-     *  @return the permanent of the given square matrix using the Ryser algorithm
-     *
-     *  Note that this algorithm does not work for dimensions larger than 64: see https://www.codeproject.com/Articles/21282/%2FArticles%2F21282%2FCompute-Permanent-of-a-Matrix-with-Ryser-s-Algorit
-     */
-    double permanent_ryser() const {
-
-        size_t n = this->get_dim();
-
-        // Loop over all submatrices of A
-        double value = 0.0;  // value of the permanent
-        size_t number_of_submatrices = boost::numeric::converter<size_t, double>::convert(std::pow(2, n));
-        for (size_t S = 1; S < number_of_submatrices; S++) {  // there are no 'chosen columns' in S=0
-
-            // Generate the current submatrix through the Gray code of S: if the bit is 1, the column is chosen
-            size_t gray_code_value = gray_code(S);
-            size_t k = __builtin_popcountll(gray_code_value);  // number of columns
-
-            Base X = Base::Zero(n, k);
-            size_t j = 0;                                         // the column index in X
-            while (gray_code_value != 0) {                        // loop over the set bits in the Gray code
-                size_t index = __builtin_ctzll(gray_code_value);  // the index in the original matrix
-
-                X.col(j) = this->col(index);
-
-                gray_code_value ^= gray_code_value & -gray_code_value;  // flip the first set bit
-                j++;
-            }
-
-
-            // Calculate the product of all the row sums and multiply by the sign
-            double product_of_rowsums = X.array().rowwise().sum().prod();
-
-            size_t t = n - k;  // number of deleted columns
-            int sign = std::pow(-1, t);
-            value += sign * product_of_rowsums;
-        }
-
-        return value;
-    }
-
-
-    /**
      *  @return a non-pivoted LU decomposition in an array, with L at position 0 and U on position 1 of the array.
-     *   Warning: pivoting is required to ensure that the decomposition is stable. Eigen3 provides partial and full pivot modules
-     *   When the pivot or permutation of a matrix is not of interest we strongly recommend using Eigen3.
+     *  
+     *  @note Pivoting is required to ensure that the decomposition is stable. Eigen3 provides partial and full pivot modules, so when the pivot or permutation of a matrix is not of interest we strongly recommend using Eigen3 instead
      */
-    std::array<Self, 2> NoPivotLUDecomposition() const {
+    std::array<Self, 2> noPivotLUDecompose() const {
 
-        const auto M = this->get_dim();
+        const auto M = this->dimension();
 
         Self L = Self::Zero(M, M);
         Self U = Self::Zero(M, M);
@@ -388,8 +267,101 @@ public:
         if (A.isApprox(*this)) {
             return std::array<Self, 2>({L, U});
         } else {
-            throw std::runtime_error("SquareMatrix<Scalar>::NoPivotLUDecomposition(): The decomposition was not stable");
+            throw std::runtime_error("SquareMatrix<Scalar>::noPivotLUDecompose(): The decomposition was not stable");
         }
+    }
+
+
+    /**
+     *  @return a pair-wise strict reduced form of this square matrix. The elements of the matrix are put into the vector such that
+     *      v(m) = M(i,j)
+     *
+     *  in which
+     *      m is calculated from i and j in a column-major way, with the restriction that i>j
+     * 
+     *  Note that this is equal to extracting to strict lower triangular matrix as a vector in column major form. Example:
+     * 
+     *          5
+     *          1   5       -> (1, 2, 3)
+     *          2   3   5
+     */
+    VectorX<Scalar> pairWiseStrictReduced() const {
+
+        const auto dim = this->dimension();
+
+        VectorX<Scalar> m = VectorX<Scalar>::Zero((dim * (dim - 1) / 2));  // strictly lower triangle has dim(dim-1)/2 parameters
+
+        size_t vector_index = 0;
+        for (size_t q = 0; q < dim; q++) {          // "column major" ordering for, so we do p first, then q
+            for (size_t p = q + 1; p < dim; p++) {  // strict lower triangle means p > q
+                m(vector_index) = this->operator()(p, q);
+                vector_index++;
+            }
+        }
+
+        return m;
+    }
+
+
+    /**
+     *  @return the permanent using a combinatorial algorithm
+     */
+    double calculatePermanentCombinatorial() const {
+
+        // The recursion ends when the given 'matrix' is just a number
+        if ((this->rows() == 1) && (this->cols() == 1)) {
+            return this->operator()(0, 0);
+        }
+
+        size_t j = 0;  // develop by the first column
+        double value = 0.0;
+        for (size_t i = 0; i < this->rows(); i++) {
+            value += this->operator()(i, j) * SquareMatrix<Scalar>(this->calculateMinor(i, j)).calculatePermanentCombinatorial();  // need to convert because 'minor' is a Base function and isn't guaranteed to be square
+        }
+
+        return value;
+    }
+
+
+    /**
+     *  @return the permanent of the given square matrix using the Ryser algorithm
+     *
+     *  Note that this algorithm does not work for dimensions larger than 64: see https://www.codeproject.com/Articles/21282/%2FArticles%2F21282%2FCompute-Permanent-of-a-Matrix-with-Ryser-s-Algorit
+     */
+    double calculatePermanentRyser() const {
+
+        size_t n = this->dimension();
+
+        // Loop over all submatrices of A
+        double value = 0.0;  // value of the permanent
+        size_t number_of_submatrices = boost::numeric::converter<size_t, double>::convert(std::pow(2, n));
+        for (size_t S = 1; S < number_of_submatrices; S++) {  // there are no 'chosen columns' in S=0
+
+            // Generate the current submatrix through the Gray code of S: if the bit is 1, the column is chosen
+            size_t gray_code_value = grayCodeOf(S);
+            size_t k = __builtin_popcountll(gray_code_value);  // number of columns
+
+            Base X = Base::Zero(n, k);
+            size_t j = 0;                                         // the column index in X
+            while (gray_code_value != 0) {                        // loop over the set bits in the Gray code
+                size_t index = __builtin_ctzll(gray_code_value);  // the index in the original matrix
+
+                X.col(j) = this->col(index);
+
+                gray_code_value ^= gray_code_value & -gray_code_value;  // flip the first set bit
+                j++;
+            }
+
+
+            // Calculate the product of all the row sums and multiply by the sign
+            double product_of_rowsums = X.array().rowwise().sum().prod();
+
+            size_t t = n - k;  // number of deleted columns
+            int sign = std::pow(-1, t);
+            value += sign * product_of_rowsums;
+        }
+
+        return value;
     }
 };
 

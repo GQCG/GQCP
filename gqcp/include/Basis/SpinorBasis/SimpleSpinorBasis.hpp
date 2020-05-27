@@ -95,20 +95,12 @@ public:
     /**
      *  Transform the spinor basis to the 'Löwdin basis', which is the orthonormal basis that we transform to with T = S^{-1/2}, where S is the current overlap matrix.
      */
-    void lowdinOrthonormalize() {
-
-        this->C = this->lowdinOrthonormalizationMatrix();
-    }
-
+    void lowdinOrthonormalize() { this->C = this->lowdinOrthonormalizationMatrix(); }
 
     /**
      *  @return the overlap (one-electron) operator of this restricted spinor basis
      */
-    ScalarSQOneElectronOperator<ExpansionScalar> overlap() const {
-
-        return this->derived().quantize(Operator::Overlap());
-    }
-
+    ScalarSQOneElectronOperator<ExpansionScalar> overlap() const { return this->derived().quantize(Operator::Overlap()); }
 
     /**
      *  Rotate the spinor basis to another one using the given unitary transformation matrix

@@ -31,6 +31,7 @@ void bindOrbitalSpace(py::module& module) {
     py::class_<GQCP::OrbitalSpace>(module, "OrbitalSpace", "A class that encapsulates occupied, active and virtual orbital indices.")
 
         // CONSTRUCTORS
+
         .def(py::init<const std::vector<size_t>&, const std::vector<size_t>&, const std::vector<size_t>&>(),
              py::arg("occupied_indices"),
              py::arg("active_indices"),
@@ -52,6 +53,7 @@ void bindOrbitalSpace(py::module& module) {
 
 
         // PUBLIC METHODS
+
         .def(
             "description",
             &GQCP::OrbitalSpace::description,

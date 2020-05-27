@@ -56,12 +56,7 @@ public:
 
 
     // DESTRUCTOR
-
     virtual ~ONVManipulator() = default;
-
-
-    // GETTERS
-    size_t get_N() const { return this->N; }
 
 
     // VIRTUAL PUBLIC METHODS
@@ -69,25 +64,9 @@ public:
     /**
      *  @param representation           a representation of a spin-unresolved ONV
      *
-     *  @return the next bitstring permutation in the spin-unresolved ONV basis
-     */
-    virtual size_t ulongNextPermutation(size_t representation) const = 0;
-
-    /**
-     *  @param representation           a representation of a spin-unresolved ONV
-     *
      *  @return the address (i.e. the ordering number) of the given spin-unresolved ONV's representation
      */
-    virtual size_t getAddress(size_t representation) const = 0;
-
-    /**
-      *  Calculate unsigned representation for a given address
-      *
-      *  @param address                 the address of the representation is calculated
-      *
-      *  @return unsigned representation of the address
-      */
-    virtual size_t calculateRepresentation(size_t address) const = 0;
+    virtual size_t addressOf(const size_t representation) const = 0;
 
     /**
      *  @param onv              the spin-unresolved ONV
@@ -95,13 +74,6 @@ public:
      *  @return the number of ONVs (with a larger address) the given spin-unresolved ONV would couple with when evaluating a one electron operator
      */
     virtual size_t countOneElectronCouplings(const SpinUnresolvedONV& onv) const = 0;
-
-    /**
-     *  @param onv       the spin-resolved ONV
-     *
-     *  @return the number of ONVs (with a larger address) the given spin-resolved ONV would couple with when evaluating a two electron operator
-     */
-    virtual size_t countTwoElectronCouplings(const SpinUnresolvedONV& onv) const = 0;
 
     /**
      *  @return the number non-zero (non-diagonal) couplings of a one electron coupling scheme
@@ -113,44 +85,74 @@ public:
      */
     virtual size_t countTotalTwoElectronCouplings() const = 0;
 
+    /**
+     *  @param onv       the spin-resolved ONV
+     *
+     *  @return the number of ONVs (with a larger address) the given spin-resolved ONV would couple with when evaluating a two electron operator
+     */
+    virtual size_t countTwoElectronCouplings(const SpinUnresolvedONV& onv) const = 0;
+
+    /**
+      *  Calculate unsigned representation for a given address
+      *
+      *  @param address                 the address of the representation is calculated
+      *
+      *  @return unsigned representation of the address
+      */
+    virtual size_t representationOf(const size_t address) const = 0;
+
+    /**
+     *  @param representation           a representation of a spin-unresolved ONV
+     *
+     *  @return the next bitstring permutation in the spin-unresolved ONV basis
+     */
+    virtual size_t nextPermutationOf(const size_t representation) const = 0;
+
 
     // PUBLIC METHODS
-
-    /**
-     *  @param address          the address (i.e. the ordening number) of a spin-unresolved ONV
-     *
-     *  @return the spin-unresolved ONV with the corresponding address
-     */
-    SpinUnresolvedONV makeONV(size_t address) const {
-
-        const auto& fock_space = this->derived();
-
-        SpinUnresolvedONV onv {fock_space.get_K(), this->N};
-        fock_space.transformONV(onv, address);
-        return onv;
-    }
-
-    /**
-     *  Set the current SpinUnresolvedONV to the next SpinUnresolvedONV: performs ulongNextPermutation() and updates the corresponding occupation indices of the SpinUnresolvedONV occupation array
-     *
-     *  @param onv      the current SpinUnresolvedONV
-     */
-    void setNextONV(SpinUnresolvedONV& onv) const {
-
-        const auto& fock_space = this->derived();
-        onv.set_representation(fock_space.ulongNextPermutation(onv.unsignedRepresentation()));
-    }
 
     /**
      *  @param onv      the spin-unresolved ONV
      *
      *  @return the address (i.e. the ordering number) of the given spin-unresolved ONV
      */
-    size_t getAddress(const SpinUnresolvedONV& onv) const {
+    size_t addressOf(const SpinUnresolvedONV& onv) const {
 
         const auto& fock_space = this->derived();
-        return fock_space.getAddress(onv.unsignedRepresentation());
+        return fock_space.addressOf(onv.unsignedRepresentation());
     };
+
+
+    /**
+     *  @param address          the address (i.e. the ordening number) of a spin-unresolved ONV
+     *
+     *  @return the spin-unresolved ONV with the corresponding address
+     */
+    SpinUnresolvedONV constructONVFromAddress(const size_t address) const {
+
+        const auto& fock_space = this->derived();
+
+        SpinUnresolvedONV onv {fock_space.numberOfOrbitals(), this->N};
+        fock_space.transformONVCorrespondingToAddress(onv, address);
+        return onv;
+    }
+
+    /**
+     *  @return the number of electrons that are associated to this ONV manipulator
+     */
+    size_t numberOfElectrons() const { return this->N; }
+
+    /**
+     *  Set the current SpinUnresolvedONV to the next SpinUnresolvedONV: performs nextPermutationOf() and updates the corresponding occupation indices of the SpinUnresolvedONV occupation array
+     *
+     *  @param onv      the current SpinUnresolvedONV
+     */
+    void transformONVToNextPermutation(SpinUnresolvedONV& onv) const {
+
+        const auto& fock_space = this->derived();
+        onv.replaceRepresentationWith(fock_space.nextPermutationOf(onv.unsignedRepresentation()));
+    }
+
 
     /**
      *  Transform a spin-unresolved ONV to one corresponding to the given address
@@ -158,10 +160,10 @@ public:
      *  @param onv          the spin-unresolved ONV
      *  @param address      the address to which the spin-unresolved ONV will be set
      */
-    void transformONV(SpinUnresolvedONV& onv, size_t address) const {
+    void transformONVCorrespondingToAddress(SpinUnresolvedONV& onv, const size_t address) const {
 
         const auto& fock_space = this->derived();
-        onv.set_representation((fock_space.calculateRepresentation(address)));
+        onv.replaceRepresentationWith((fock_space.representationOf(address)));
     }
 };
 

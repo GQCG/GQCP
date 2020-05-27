@@ -54,15 +54,14 @@ public:
 
 
     // DESTRUCTOR
+
+    /**
+     *  The default destructor.
+     */
     virtual ~NewtonOrbitalOptimizer() = default;
 
 
     // PUBLIC PURE VIRTUAL METHODS
-
-    /**
-     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the first and second orbital derivatives, i.e. the orbital gradient and Hessian
-     */
-    virtual void prepareOrbitalDerivativesCalculation(const SQHamiltonian<double>& sq_hamiltonian) = 0;
 
     /**
      *  @param sq_hamiltonian       the current Hamiltonian
@@ -87,13 +86,24 @@ public:
      */
     virtual OrbitalRotationGenerators calculateNewFullOrbitalGenerators(const SQHamiltonian<double>& sq_hamiltonian) const = 0;
 
+    /**
+     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the first and second orbital derivatives, i.e. the orbital gradient and Hessian
+     */
+    virtual void prepareOrbitalDerivativesCalculation(const SQHamiltonian<double>& sq_hamiltonian) = 0;
+
 
     // PUBLIC OVERRIDDEN METHODS
 
     /**
-     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
+     *  Produce a new rotation matrix by either
+     *      - continuing in the direction of the i.e. the smallest (negative) eigenvalue
+     *      - using the Newton step if it is well-defined
+     * 
+     *  @param sq_hamiltonian       the current Hamiltonian
+     * 
+     *  @return a unitary matrix that will be used to rotate the current Hamiltonian into the next iteration
      */
-    virtual void prepareConvergenceChecking(const SQHamiltonian<double>& sq_hamiltonian) override;
+    TransformationMatrix<double> calculateNewRotationMatrix(const SQHamiltonian<double>& sq_hamiltonian) const override;
 
     /**
      *  Determine if the algorithm has converged or not
@@ -108,15 +118,9 @@ public:
     bool checkForConvergence(const SQHamiltonian<double>& sq_hamiltonian) const override;
 
     /**
-     *  Produce a new rotation matrix by either
-     *      - continuing in the direction of the i.e. the smallest (negative) eigenvalue
-     *      - using the Newton step if it is well-defined
-     * 
-     *  @param sq_hamiltonian       the current Hamiltonian
-     * 
-     *  @return a unitary matrix that will be used to rotate the current Hamiltonian into the next iteration
+     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
      */
-    TransformationMatrix<double> calculateNewRotationMatrix(const SQHamiltonian<double>& sq_hamiltonian) const override;
+    virtual void prepareConvergenceChecking(const SQHamiltonian<double>& sq_hamiltonian) override;
 
 
     // PUBLIC METHODS
@@ -136,9 +140,13 @@ public:
     SquareMatrix<double> calculateHessianMatrix(const SQHamiltonian<double>& sq_hamiltonian) const;
 
     /**
-     *  @return if a Newton step would be well-defined, i.e. the Hessian is positive definite
+     *  Use gradient and Hessian information to determine a new direction for the 'free' orbital rotation generators kappa. Note that a distinction is made between 'free' generators, i.e. those that are calculated from the gradient and Hessian information and the 'full' generators, which also include the redundant parameters (that can be set to zero). The 'full' generators are used to calculate the total rotation matrix using the matrix exponential
+     * 
+     *  @param sq_hamiltonian      the current Hamiltonian
+     * 
+     *  @return the new free orbital generators
      */
-    bool newtonStepIsWellDefined() const;
+    OrbitalRotationGenerators calculateNewFreeOrbitalGenerators(const SQHamiltonian<double>& sq_hamiltonian) const;
 
     /**
      *  If the Newton step is ill-defined, examine the Hessian and produce a new direction from it: the eigenvector that corresponds to the smallest (negative) eigenvalue of the Hessian
@@ -148,13 +156,9 @@ public:
     VectorX<double> directionFromIndefiniteHessian() const;
 
     /**
-     *  Use gradient and Hessian information to determine a new direction for the 'free' orbital rotation generators kappa. Note that a distinction is made between 'free' generators, i.e. those that are calculated from the gradient and Hessian information and the 'full' generators, which also include the redundant parameters (that can be set to zero). The 'full' generators are used to calculate the total rotation matrix using the matrix exponential
-     * 
-     *  @param sq_hamiltonian      the current Hamiltonian
-     * 
-     *  @return the new free orbital generators
+     *  @return if a Newton step would be well-defined, i.e. the Hessian is positive definite
      */
-    OrbitalRotationGenerators calculateNewFreeOrbitalGenerators(const SQHamiltonian<double>& sq_hamiltonian) const;
+    bool newtonStepIsWellDefined() const;
 };
 
 

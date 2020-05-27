@@ -31,6 +31,8 @@ void bindOperator(py::module& module) {
 
     py::class_<GQCP::NuclearDipoleOperator>(module, "NuclearDipoleOperator", "The nuclear dipole operator.")
 
+        // PUBLIC METHODS
+
         .def("value",
              &GQCP::NuclearDipoleOperator::value,
              "Return the value of this nuclear dipole operator.");
@@ -38,12 +40,16 @@ void bindOperator(py::module& module) {
 
     py::class_<GQCP::NuclearRepulsionOperator>(module, "NuclearRepulsionOperator", "The nuclear repulsion operator.")
 
+        // PUBLIC METHODS
+
         .def("value",
              &GQCP::NuclearRepulsionOperator::value,
              "Return the scalar value of this nuclear repulsion operator.");
 
 
     py::class_<GQCP::Operator>(module, "Operator", "A class that is used to construct operators using static methods, much like a factory class.")
+
+        // PUBLIC METHODS
 
         .def_static(
             "NuclearDipole",

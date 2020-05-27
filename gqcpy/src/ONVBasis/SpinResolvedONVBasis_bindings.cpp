@@ -30,10 +30,14 @@ namespace gqcpy {
 void bindSpinResolvedONVBasis(py::module& module) {
     py::class_<GQCP::SpinResolvedONVBasis>(module, "SpinResolvedONVBasis", "A full spin-resolved ONV basis.")
 
+        // CONSTRUCTORS
+
         .def(py::init<const size_t, const size_t, const size_t>(),
              py::arg("K"),
              py::arg("N_alpha"),
              py::arg("N_beta"))
+
+        // PUBLIC METHODS
 
         .def("dimension",
              &GQCP::SpinResolvedONVBasis::dimension)

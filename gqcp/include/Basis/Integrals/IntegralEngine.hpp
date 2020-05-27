@@ -35,48 +35,7 @@ namespace GQCP {
 class IntegralEngine {
 public:
     /*
-     *  LIBINT - ONE-ELECTRON ENGINES
-     */
-
-    /**
-     *  @param op               the overlap operator
-     *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
-     *  @param max_l            the maximum angular momentum of Gaussian shell
-     * 
-     *  @return a one-electron integral engine that can calculate integrals over the overlap operator using the Libint integral library backend
-     */
-    static auto Libint(const OverlapOperator& op, const size_t max_nprim, const size_t max_l) -> LibintOneElectronIntegralEngine<OverlapOperator::Components>;
-
-    /**
-     *  @param op               the kinetic operator
-     *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
-     *  @param max_l            the maximum angular momentum of Gaussian shell
-     * 
-     *  @return a one-electron integral engine that can calculate integrals over the kinetic operator using the Libint integral library backend
-     */
-    static auto Libint(const KineticOperator& op, const size_t max_nprim, const size_t max_l) -> LibintOneElectronIntegralEngine<KineticOperator::Components>;
-
-    /**
-     *  @param op               the nuclear attraction operator
-     *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
-     *  @param max_l            the maximum angular momentum of Gaussian shell
-     * 
-     *  @return a one-electron integral engine that can calculate integrals over the nuclear attraction operator using the Libint integral library backend
-     */
-    static auto Libint(const NuclearAttractionOperator& op, const size_t max_nprim, const size_t max_l) -> LibintOneElectronIntegralEngine<NuclearAttractionOperator::Components>;
-
-    /**
-     *  @param op               the electronic electric dipole operator
-     *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
-     *  @param max_l            the maximum angular momentum of Gaussian shell
-     * 
-     *  @return a one-electron integral engine that can calculate integrals over the electronic electric dipole operator using the Libint integral library backend
-     */
-    static auto Libint(const ElectronicDipoleOperator& op, const size_t max_nprim, const size_t max_l) -> LibintOneElectronIntegralEngine<ElectronicDipoleOperator::Components>;
-
-
-    /*
-     *  LIBINT - TWO-ELECTRON ENGINES
+     *  LIBINT
      */
 
     /**
@@ -88,26 +47,62 @@ public:
      */
     static auto Libint(const CoulombRepulsionOperator& op, const size_t max_nprim, const size_t max_l) -> LibintTwoElectronIntegralEngine<CoulombRepulsionOperator::Components>;
 
-
-    /*
-     *  LIBCINT - ONE-ELECTRON ENGINES
+    /**
+     *  @param op               the electronic electric dipole operator
+     *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
+     *  @param max_l            the maximum angular momentum of Gaussian shell
+     * 
+     *  @return a one-electron integral engine that can calculate integrals over the electronic electric dipole operator using the Libint integral library backend
      */
+    static auto Libint(const ElectronicDipoleOperator& op, const size_t max_nprim, const size_t max_l) -> LibintOneElectronIntegralEngine<ElectronicDipoleOperator::Components>;
 
     /**
-     *  @param op               the overlap operator
-     *  @param shell_set        the ShellSet whose information should be converted to a RawContainer, which will serve as some kind of 'global' data for the libcint engine to use in all its calculate() calls
+     *  @param op               the nuclear attraction operator
+     *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
+     *  @param max_l            the maximum angular momentum of Gaussian shell
      * 
-     *  @return a one-electron integral engine that can calculate integrals over the overlap operator using the Libcint integral library backend
+     *  @return a one-electron integral engine that can calculate integrals over the nuclear attraction operator using the Libint integral library backend
      */
-    static auto Libcint(const OverlapOperator& op, const ShellSet<GTOShell>& shell_set) -> LibcintOneElectronIntegralEngine<GTOShell, OverlapOperator::Components, double>;
+    static auto Libint(const NuclearAttractionOperator& op, const size_t max_nprim, const size_t max_l) -> LibintOneElectronIntegralEngine<NuclearAttractionOperator::Components>;
 
     /**
      *  @param op               the kinetic operator
+     *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
+     *  @param max_l            the maximum angular momentum of Gaussian shell
+     * 
+     *  @return a one-electron integral engine that can calculate integrals over the kinetic operator using the Libint integral library backend
+     */
+    static auto Libint(const KineticOperator& op, const size_t max_nprim, const size_t max_l) -> LibintOneElectronIntegralEngine<KineticOperator::Components>;
+
+    /**
+     *  @param op               the overlap operator
+     *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
+     *  @param max_l            the maximum angular momentum of Gaussian shell
+     * 
+     *  @return a one-electron integral engine that can calculate integrals over the overlap operator using the Libint integral library backend
+     */
+    static auto Libint(const OverlapOperator& op, const size_t max_nprim, const size_t max_l) -> LibintOneElectronIntegralEngine<OverlapOperator::Components>;
+
+
+    /*
+     *  LIBCINT
+     */
+
+    /**
+     *  @param op               the Coulomb repulsion operator
      *  @param shell_set        the ShellSet whose information should be converted to a RawContainer, which will serve as some kind of 'global' data for the libcint engine to use in all its calculate() calls
      * 
-     *  @return a one-electron integral engine that can calculate integrals over the kinetic operator using the Libcint integral library backend
+     *  @return a two-electron integral engine that can calculate integrals over the Coulomb repulsion operator using the Libcint integral library backend
      */
-    static auto Libcint(const KineticOperator& op, const ShellSet<GTOShell>& shell_set) -> LibcintOneElectronIntegralEngine<GTOShell, KineticOperator::Components, double>;
+    static auto Libcint(const CoulombRepulsionOperator& op, const ShellSet<GTOShell>& shell_set) -> LibcintTwoElectronIntegralEngine<GTOShell, CoulombRepulsionOperator::Components, double>;
+
+    /**
+     *  @param op               the electron electronic dipole operator
+     *  @param shell_set        the ShellSet whose information should be converted to a RawContainer, which will serve as some kind of 'global' data for the libcint engine to use in all its calculate() calls
+     * 
+     *  @return a one-electron integral engine that can calculate integrals over the electronic dipole operator using the Libcint integral library backend
+     */
+    static auto Libcint(const ElectronicDipoleOperator& op, const ShellSet<GTOShell>& shell_set) -> LibcintOneElectronIntegralEngine<GTOShell, ElectronicDipoleOperator::Components, double>;
 
     /**
      *  @param op               the nuclear attraction operator
@@ -118,25 +113,20 @@ public:
     static auto Libcint(const NuclearAttractionOperator& op, const ShellSet<GTOShell>& shell_set) -> LibcintOneElectronIntegralEngine<GTOShell, NuclearAttractionOperator::Components, double>;
 
     /**
-     *  @param op               the electron electronic dipole operator
+     *  @param op               the kinetic operator
      *  @param shell_set        the ShellSet whose information should be converted to a RawContainer, which will serve as some kind of 'global' data for the libcint engine to use in all its calculate() calls
      * 
-     *  @return a one-electron integral engine that can calculate integrals over the electronic dipole operator using the Libcint integral library backend
+     *  @return a one-electron integral engine that can calculate integrals over the kinetic operator using the Libcint integral library backend
      */
-    static auto Libcint(const ElectronicDipoleOperator& op, const ShellSet<GTOShell>& shell_set) -> LibcintOneElectronIntegralEngine<GTOShell, ElectronicDipoleOperator::Components, double>;
-
-
-    /*
-     *  LIBCINT - TWO-ELECTRON ENGINES
-     */
+    static auto Libcint(const KineticOperator& op, const ShellSet<GTOShell>& shell_set) -> LibcintOneElectronIntegralEngine<GTOShell, KineticOperator::Components, double>;
 
     /**
-     *  @param op               the Coulomb repulsion operator
+     *  @param op               the overlap operator
      *  @param shell_set        the ShellSet whose information should be converted to a RawContainer, which will serve as some kind of 'global' data for the libcint engine to use in all its calculate() calls
      * 
-     *  @return a two-electron integral engine that can calculate integrals over the Coulomb repulsion operator using the Libcint integral library backend
+     *  @return a one-electron integral engine that can calculate integrals over the overlap operator using the Libcint integral library backend
      */
-    static auto Libcint(const CoulombRepulsionOperator& op, const ShellSet<GTOShell>& shell_set) -> LibcintTwoElectronIntegralEngine<GTOShell, CoulombRepulsionOperator::Components, double>;
+    static auto Libcint(const OverlapOperator& op, const ShellSet<GTOShell>& shell_set) -> LibcintOneElectronIntegralEngine<GTOShell, OverlapOperator::Components, double>;
 };
 
 

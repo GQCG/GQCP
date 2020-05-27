@@ -31,13 +31,17 @@ public:
     virtual ~GeminalCoefficientsInterface() = default;
 
 
-    // PUBLIC METHODS
+    // PUBLIC PURE VIRTUAL METHODS
+
     /**
      *  @param onv      the doubly-occupied (spin-resolved) ONV that is being projected on
      *
      *  @return the overlap of the APIG-like wave function with the given ONV, i.e. the projection of the APIG wave function onto that ONV
      */
     virtual double overlap(const SpinUnresolvedONV& onv) const = 0;
+
+
+    // PUBLIC METHODS
 
     /**
      *  @param onv_basis       the seniority-zero spin-resolved ONV basis the wave function should live in

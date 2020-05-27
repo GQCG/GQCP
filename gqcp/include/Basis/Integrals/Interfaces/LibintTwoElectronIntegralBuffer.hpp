@@ -63,6 +63,11 @@ public:
      */
 
     /**
+     *  @return if all the values of the calculated integrals are zero
+     */
+    bool areIntegralsAllZero() const override { return (this->libint2_buffer[0] == nullptr); }
+
+    /**
      *  @param i            the index of the component of the operator
      *  @param f1           the index of the basis function within shell 1
      *  @param f2           the index of the basis function within shell 2
@@ -74,13 +79,6 @@ public:
     IntegralScalar value(const size_t i, const size_t f1, const size_t f2, const size_t f3, const size_t f4) const override {
 
         return this->libint2_buffer[i][f4 + this->nbf4 * (f3 + this->nbf3 * (f2 + this->nbf2 * (f1)))];  // integrals are packed in row-major form
-    }
-
-    /**
-     *  @return if all the values of the calculated integrals are zero
-     */
-    bool areIntegralsAllZero() const override {
-        return (this->libint2_buffer[0] == nullptr);
     }
 };
 

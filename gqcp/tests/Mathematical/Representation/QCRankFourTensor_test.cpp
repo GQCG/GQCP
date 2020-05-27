@@ -51,7 +51,7 @@ BOOST_AUTO_TEST_CASE(QCRankFourTensor_basisTransformInPlace_trivial) {
 
     GQCP::QCRankFourTensor<double> G {3};
     const auto G_copy = G;  // the reference
-    G.basisTransformInPlace(T);
+    G.basisTransform(T);
 
     BOOST_CHECK(G_copy.isApprox(G, 1.0e-12));
 }
@@ -81,7 +81,7 @@ BOOST_AUTO_TEST_CASE(SQTwoElectronOperator_transform_olsens) {
             }
         }
     }
-    G.basisTransformInPlace(T);
+    G.basisTransform(T);
 
 
     // Read in the reference and check
@@ -103,12 +103,12 @@ BOOST_AUTO_TEST_CASE(QCRankFourTensor_rotate_throws) {
 
     // Check if a non-unitary matrix as transformation matrix causes a throw
     const GQCP::TransformationMatrix<double> T = GQCP::TransformationMatrix<double>::Random(dim, dim);  // chances are practically zero that a random matrix is unitary
-    BOOST_CHECK_THROW(g.basisRotateInPlace(GQCP::TransformationMatrix<double>(T)), std::invalid_argument);
+    BOOST_CHECK_THROW(g.basisRotate(GQCP::TransformationMatrix<double>(T)), std::invalid_argument);
 
 
     // Check if a unitary matrix as transformation matrix is accepted
     GQCP::TransformationMatrix<double> U = GQCP::TransformationMatrix<double>::Identity(dim, dim);
-    g.basisRotateInPlace(U);
+    g.basisRotate(U);
 }
 
 
@@ -128,8 +128,8 @@ BOOST_AUTO_TEST_CASE(QCRankFourTensor_basisRotateInPlace_JacobiRotationParameter
     const GQCP::JacobiRotationParameters jacobi_rotation_parameters(4, 2, 56.81);
     const auto U = GQCP::TransformationMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
 
-    G1.basisRotateInPlace(jacobi_rotation_parameters);
-    G2.basisRotateInPlace(U);
+    G1.basisRotate(jacobi_rotation_parameters);
+    G2.basisRotate(U);
 
 
     BOOST_CHECK(G1.isApprox(G2, 1.0e-12));

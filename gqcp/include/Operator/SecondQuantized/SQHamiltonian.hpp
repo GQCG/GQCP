@@ -473,18 +473,7 @@ public:
      *  Note that this method is only available for real matrix representations
      */
     template <typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value> randomRotate() {
-
-        // Get a random unitary matrix by diagonalizing a random symmetric matrix
-        const auto K = this->dimension();
-        TransformationMatrix<double> A_random = TransformationMatrix<double>::Random(K, K);
-        TransformationMatrix<double> A_symmetric = A_random + A_random.transpose();
-        Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> unitary_solver {A_symmetric};
-        TransformationMatrix<double> U_random = unitary_solver.eigenvectors();
-
-        this->rotate(U_random);
-    }
-
+    enable_if_t<std::is_same<Z, double>::value> randomRotate() { this->rotate(TransformationMatrix<double>::RandomUnitary(this->dimension())); }
 
     /**
      *  In-place rotate the matrix representations of Hamiltonian

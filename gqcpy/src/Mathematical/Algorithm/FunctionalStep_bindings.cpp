@@ -16,7 +16,6 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Mathematical/Algorithm/FunctionalStep.hpp"
-
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
 #include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp"
 #include "QCMethod/HF/RHF/RHFSCFEnvironment.hpp"
@@ -53,6 +52,7 @@ void bindFunctionalStep(py::module& module, const std::string& suffix, const std
                                                   description.c_str())
 
         // CONSTRUCTORS
+
         .def(py::init<std::function<void(Environment&)>, const std::string&>(),
              py::arg("function"),
              py::arg("description") = "A custom functional step.");

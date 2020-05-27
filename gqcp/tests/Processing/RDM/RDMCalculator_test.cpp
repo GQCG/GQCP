@@ -48,11 +48,11 @@ BOOST_AUTO_TEST_CASE(constructor) {
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
-    GQCP::VectorX<double> coef = ci_solver.get_eigenpair().get_eigenvector();
+    GQCP::VectorX<double> coef = ci_solver.eigenpair().eigenvector();
 
     // Check if the DOCI 1-RDM has the proper trace.
     GQCP::RDMCalculator doci_rdm {*fock_space_dy};
-    doci_rdm.set_coefficients(coef);
+    doci_rdm.setCoefficients(coef);
     GQCP::OneRDMs<double> one_rdms = doci_rdm.calculate1RDMs();
 
     BOOST_CHECK(std::abs(one_rdms.one_rdm.trace() - N) < 1.0e-12);
@@ -64,7 +64,7 @@ BOOST_AUTO_TEST_CASE(no_vector_throws) {
     size_t N = 4;
     GQCP::SpinUnresolvedONVBasis fock_space {K, N};
 
-    GQCP::VectorX<double> coeff {fock_space.get_dimension()};
+    GQCP::VectorX<double> coeff {fock_space.dimension()};
     coeff << 1, 1, -2, 4, -5;
 
     // Test if throws when no vector is set
@@ -80,10 +80,10 @@ BOOST_AUTO_TEST_CASE(operator_call_throw) {
     size_t N = 1;
     GQCP::SpinUnresolvedONVBasis fock_space {M, N};
 
-    GQCP::VectorX<double> coeff(fock_space.get_dimension());
+    GQCP::VectorX<double> coeff(fock_space.dimension());
     coeff << 1, 2, -3;
     GQCP::SpinUnresolvedRDMCalculator d {fock_space};
-    d.set_coefficients(coeff);
+    d.setCoefficients(coeff);
     BOOST_CHECK_THROW(d(0), std::invalid_argument);  // need an even number of indices
 }
 
@@ -95,10 +95,10 @@ BOOST_AUTO_TEST_CASE(operator_call) {
     size_t N = 2;
     GQCP::SpinUnresolvedONVBasis fock_space {M, N};
 
-    GQCP::VectorX<double> coeff(fock_space.get_dimension());
+    GQCP::VectorX<double> coeff(fock_space.dimension());
     coeff << 1, 2, -3;
     GQCP::SpinUnresolvedRDMCalculator d {fock_space};
-    d.set_coefficients(coeff);
+    d.setCoefficients(coeff);
 
     BOOST_CHECK(std::abs(d(0, 1, 1, 2) - (-3.0)) < 1.0e-12);  // d(0,1,1,2) : a^\dagger_0 a^\dagger_1 a_2 a_1
     BOOST_CHECK(std::abs(d(2, 0, 0, 1) - (-2.0)) < 1.0e-12);  // d(2,0,0,1) : a^\dagger_2 a^\dagger_0 a^1 a_0

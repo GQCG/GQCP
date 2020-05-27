@@ -30,9 +30,8 @@ namespace gqcpy {
 void bindHoppingMatrix(py::module& module) {
     py::class_<GQCP::HoppingMatrix<double>>(module, "HoppingMatrix", "The Hubbard hopping matrix.")
 
-        /**
-         *  The C++ constructor that is bound here takes a 'SquareMatrix' argument, but we can't implicitly convert a numpy array to our own Eigen-derived type. Therefore, we choose a Python static method for binding the C++ constructor.
-         */
+        // CONSTRUCTORS
+
         .def_static(
             "FromAdjacencyMatrix",
             [](const Eigen::MatrixXd& A, const double t, const double U) {
@@ -42,7 +41,6 @@ void bindHoppingMatrix(py::module& module) {
             py::arg("t"),
             py::arg("U"),
             "Return the Hubbard hopping matrix from an adjacency matrix and Hubbard model parameters U and t.")
-
 
         .def_static(
             "FromCSLine",

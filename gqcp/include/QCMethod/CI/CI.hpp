@@ -91,11 +91,11 @@ public:
         energies.reserve(this->number_of_states);
 
         for (const auto& eigenpair : eigenpairs) {
-            linear_expansions.emplace_back(onv_basis, eigenpair.get_eigenvector());
+            linear_expansions.emplace_back(onv_basis, eigenpair.eigenvector());
 
             // TODO: We can't check for a 'NormedHamiltonianEigenvectorObjective' to be fulfilled, because there is no uniform way to let an SQHamiltonian act on a LinearExpansion.
 
-            energies.push_back(eigenpair.get_eigenvalue());
+            energies.push_back(eigenpair.eigenvalue());
         }
 
 

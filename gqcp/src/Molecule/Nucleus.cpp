@@ -134,7 +134,7 @@ std::function<bool(const Nucleus&, const Nucleus&)> Nucleus::equalityComparer(co
  *
  *  @return the Euclidian distance between this nucleus and the other
  */
-double Nucleus::calculateDistance(const Nucleus& other) const {
+double Nucleus::calculateDistanceWith(const Nucleus& other) const {
 
     return (this->position() - other.position()).norm();
 }

@@ -31,7 +31,7 @@ namespace GQCP {
  *  @param onv_basis       the frozen ONV basis (identical for alpha and beta)
  */
 FrozenCoreDOCI::FrozenCoreDOCI(const SpinUnresolvedFrozenONVBasis& onv_basis) :
-    FrozenCoreCI(std::make_shared<DOCI>(onv_basis.get_active_fock_space()), onv_basis.get_number_of_frozen_orbitals()),
+    FrozenCoreCI(std::make_shared<DOCI>(onv_basis.activeONVBasis()), onv_basis.numberOfFrozenOrbitals()),
     onv_basis {onv_basis} {}
 
 

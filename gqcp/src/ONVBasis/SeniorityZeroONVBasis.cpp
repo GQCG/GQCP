@@ -218,14 +218,14 @@ void SeniorityZeroONVBasis::forEach(const std::function<void(const SpinUnresolve
 
     // Create the first doubly-occupied ONV. Since in DOCI, alpha == beta, we can use the proxy ONV basis to treat them as one.
     const auto proxy_onv_basis = this->proxy();
-    SpinUnresolvedONV onv = proxy_onv_basis.makeONV(0);  // ONV with address 0
+    SpinUnresolvedONV onv = proxy_onv_basis.constructONVFromAddress(0);  // ONV with address 0
 
     for (size_t I = 0; I < dim; I++) {  // I loops over addresses of spin strings
 
         callback(onv, I);
 
         if (I < dim - 1) {  // prevent the last permutation from occurring
-            proxy_onv_basis.setNextONV(onv);
+            proxy_onv_basis.transformONVToNextPermutation(onv);
         }
     }  // address (I) loop
 }

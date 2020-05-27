@@ -128,15 +128,6 @@ public:
     bool operator!=(const SpinUnresolvedONV& other) const;
 
 
-    // SETTERS
-    /**
-     *  @param unsigned_representation      the new representation as an unsigned integer
-     *
-     *  Set the representation of an spin-unresolved ONV to a new representation and call update the occupation indices accordingly
-     */
-    void set_representation(const size_t unsigned_representation);
-
-
     // PUBLIC METHODS
 
     /**
@@ -228,7 +219,7 @@ public:
      *
      *  IMPORTANT: This function does not update the occupation indices for performance reasons. If required, call updateOccupationIndices()!
      */
-    bool create(size_t p);
+    bool create(const size_t p);
 
     /**
      *  @param p            the 0-based spinor index, counted in this ONV from right to left
@@ -238,7 +229,7 @@ public:
      *
      *  IMPORTANT: This function does not update the occupation indices for performance reasons. If required, call updateOccupationIndices()!
      */
-    bool create(size_t p, int& sign);
+    bool create(const size_t p, int& sign);
 
     /**
      *  @param indices          the 0-based spinor indices, counted in this ONV from right to left
@@ -336,6 +327,13 @@ public:
      *  @return the implicit orbital space that is related to this spin-unresolved ONV by taking this as a reference determinant
      */
     OrbitalSpace orbitalSpace() const;
+
+    /**
+     *  @param unsigned_representation      the new representation as an unsigned integer
+     *
+     *  Set the representation of an spin-unresolved ONV to a new representation and call update the occupation indices accordingly
+     */
+    void replaceRepresentationWith(const size_t unsigned_representation);
 
     /**
      *  @param index_start      the starting index (included), read from right to left

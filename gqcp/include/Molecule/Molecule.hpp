@@ -120,17 +120,17 @@ public:
     // PUBLIC METHODS
 
     /**
-     *  @return the charge of this molecule (in a.u.)
-     */
-    int charge() const;
-
-    /**
      *  @param index1   the index of the first nucleus
      *  @param index2   the index of the second nucleus
      *
      *  @return the distance between the two nuclei at index1 and index2 in bohr
      */
-    double internuclearDistance(const size_t index1, const size_t index2) const { return this->nuclearFramework().internuclearDistance(index1, index2); }
+    double calculateInternuclearDistanceBetween(const size_t index1, const size_t index2) const { return this->nuclearFramework().calculateInternuclearDistanceBetween(index1, index2); }
+
+    /**
+     *  @return the charge of this molecule (in a.u.)
+     */
+    int charge() const;
 
     /**
      *  @return the underlying nuclear framework

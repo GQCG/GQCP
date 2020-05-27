@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE(decomposition_BeH_cation_STO_3G_Nuclear) {
     const GQCP::AtomicDecompositionParameters adp = GQCP::AtomicDecompositionParameters::Nuclear(molecule, "STO-3G");  // the molecular Hamiltonian in its atomic contributions
     const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
 
-    auto sq_hamiltonian = adp.get_molecular_hamiltonian_parameters();
+    auto sq_hamiltonian = adp.molecularHamiltonian();
     const auto K = sq_hamiltonian.dimension();  // number of
 
 
@@ -75,23 +75,23 @@ BOOST_AUTO_TEST_CASE(decomposition_BeH_cation_STO_3G_Nuclear) {
 
     // Calculate the RDMs (in the AO basis in which the molecular decomposition parameters are defined) in order to calculate expectation values.
     GQCP::RDMCalculator rdm_calculator {onv_basis};
-    rdm_calculator.set_coefficients(linear_expansion.coefficients());
+    rdm_calculator.setCoefficients(linear_expansion.coefficients());
 
     auto D = rdm_calculator.calculate1RDMs().one_rdm;
-    D.basisTransformInPlace(T.adjoint());  // T.adjoint() to transform BACK to AO basis
+    D.basisTransform(T.adjoint());  // T.adjoint() to transform BACK to AO basis
 
     auto d = rdm_calculator.calculate2RDMs().two_rdm;
-    d.basisTransformInPlace(T.adjoint());  // T.adjoint() to transform BACK to AO basis
+    d.basisTransform(T.adjoint());  // T.adjoint() to transform BACK to AO basis
 
 
     // Check the decomposed energy values.
     const double repulsion = GQCP::Operator::NuclearRepulsion(molecule).value();
 
-    const double self_energy_a = adp.get_net_atomic_parameters()[0].calculateExpectationValue(D, d);
-    const double self_energy_b = adp.get_net_atomic_parameters()[1].calculateExpectationValue(D, d);
-    const double interaction_energy_ab = adp.get_interaction_parameters()[0].calculateExpectationValue(D, d) + repulsion;
-    const double total_energy_a = adp.get_atomic_parameters()[0].calculateExpectationValue(D, d) + repulsion / 2;
-    const double total_energy_b = adp.get_atomic_parameters()[1].calculateExpectationValue(D, d) + repulsion / 2;
+    const double self_energy_a = adp.netAtomic()[0].calculateExpectationValue(D, d);
+    const double self_energy_b = adp.netAtomic()[1].calculateExpectationValue(D, d);
+    const double interaction_energy_ab = adp.interaction()[0].calculateExpectationValue(D, d) + repulsion;
+    const double total_energy_a = adp.atomic()[0].calculateExpectationValue(D, d) + repulsion / 2;
+    const double total_energy_b = adp.atomic()[1].calculateExpectationValue(D, d) + repulsion / 2;
 
     BOOST_CHECK(std::abs(total_energy_a + total_energy_b - electronic_energy - repulsion) < 1.0e-10);
     BOOST_CHECK(std::abs(self_energy_a + self_energy_b + interaction_energy_ab - electronic_energy - repulsion) < 1.0e-10);

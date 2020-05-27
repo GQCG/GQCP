@@ -32,13 +32,14 @@ namespace GQCP {
  *  @param M            the number of spinors
  *  @param N            the number of electrons
  */
-SpinUnresolvedONVBasis::SpinUnresolvedONVBasis(const size_t M, size_t N) :
+SpinUnresolvedONVBasis::SpinUnresolvedONVBasis(const size_t M, const size_t N) :
     BaseONVBasis(M, SpinUnresolvedONVBasis::calculateDimension(M, N)),
     ONVManipulator(N) {
-    // Create a zero matrix of dimensions (K+1)x(N+1)
-    this->vertex_weights = std::vector<std::vector<size_t>>(this->K + 1, std::vector<size_t>(this->N + 1, 0));
 
-    // K=5   N=2
+    // Create a zero matrix of dimensions (M+1)x(N+1)
+    this->vertex_weights = std::vector<std::vector<size_t>>(this->M + 1, std::vector<size_t>(this->N + 1, 0));
+
+    // M=5   N=2
     // [ 0 0 0 ]
     // [ 0 0 0 ]
     // [ 0 0 0 ]
@@ -47,16 +48,16 @@ SpinUnresolvedONVBasis::SpinUnresolvedONVBasis(const size_t M, size_t N) :
     // [ 0 0 0 ]
 
 
-    // The largest (reverse lexical) string is the one that includes the first (K-N+1) vertices of the first column
+    // The largest (reverse lexical) string is the one that includes the first (M-N+1) vertices of the first column
     //      This is because every vertical move from (p,m) to (p+1,m+1) corresponds to "orbital p+1 is unoccupied".
-    //      Therefore, the largest reverse lexical string is the one where the first (K-N) orbitals are unoccupied.
-    //      This means that there should be (K-N) vertical moves from (0,0).
-    // Therefore, we may only set the weights of first (K-N+1) vertices of the first column to 1.
-    for (size_t p = 0; p < this->K - this->N + 1; p++) {
+    //      Therefore, the largest reverse lexical string is the one where the first (M-N) orbitals are unoccupied.
+    //      This means that there should be (M-N) vertical moves from (0,0).
+    // Therefore, we may only set the weights of first (M-N+1) vertices of the first column to 1.
+    for (size_t p = 0; p < this->M - this->N + 1; p++) {
         this->vertex_weights[p][0] = 1;
     }
 
-    // K=5   N=2
+    // M=5   N=2
     // [ 1 0 0 ]
     // [ 1 0 0 ]
     // [ 1 0 0 ]
@@ -70,12 +71,12 @@ SpinUnresolvedONVBasis::SpinUnresolvedONVBasis(const size_t M, size_t N) :
     //      W(p,m) = W(p-1,m) + W(p-1,m-1)
 
     for (size_t m = 1; m < this->N + 1; m++) {
-        for (size_t p = m; p < (this->K - this->N + m) + 1; p++) {
+        for (size_t p = m; p < (this->M - this->N + m) + 1; p++) {
             this->vertex_weights[p][m] = this->vertex_weights[p - 1][m] + this->vertex_weights[p - 1][m - 1];
         }
     }
 
-    // K=5   N=2
+    // M=5   N=2
     // [ 1 0 0 ]
     // [ 1 1 0 ]
     // [ 1 2 1 ]
@@ -90,13 +91,13 @@ SpinUnresolvedONVBasis::SpinUnresolvedONVBasis(const size_t M, size_t N) :
  */
 
 /**
- *  @param K        the number of orbitals
+ *  @param M        the number of orbitals
  *  @param N        the number of electrons
  *
  *  @return the dimension of this basis
  */
-size_t SpinUnresolvedONVBasis::calculateDimension(size_t K, size_t N) {
-    auto dim_double = boost::math::binomial_coefficient<double>(static_cast<unsigned>(K), static_cast<unsigned>(N));
+size_t SpinUnresolvedONVBasis::calculateDimension(const size_t M, const size_t N) {
+    auto dim_double = boost::math::binomial_coefficient<double>(static_cast<unsigned>(M), static_cast<unsigned>(N));
     try {
         return boost::numeric::converter<size_t, double>::convert(dim_double);
     } catch (boost::numeric::bad_numeric_cast& e) {
@@ -110,33 +111,23 @@ size_t SpinUnresolvedONVBasis::calculateDimension(size_t K, size_t N) {
  */
 
 /**
- *  Calculate unsigned representation for a given address
+ *  @param representation      a representation of an ONV
  *
- *  @param address                 the address of the representation is calculated
- *
- *  @return unsigned representation of the address
+ *  @return the address (i.e. the ordering number) of the given ONV
  */
-size_t SpinUnresolvedONVBasis::calculateRepresentation(size_t address) const {
-    size_t representation = 0;
-    if (this->N != 0) {
-        representation = 0;
-        size_t m = this->N;  // counts the number of electrons in the spin string up to orbital p
+size_t SpinUnresolvedONVBasis::addressOf(const size_t representation) const {
 
-        for (size_t p = this->K; p > 0; p--) {  // p is an orbital index
-            size_t weight = get_vertex_weights(p - 1, m);
-
-            if (weight <= address) {  // the algorithm can move diagonally, so we found an occupied orbital
-                address -= weight;
-                representation |= ((1) << (p - 1));  // set the (p-1)th bit: see (https://stackoverflow.com/a/47990)
-
-                m--;  // since we found an occupied orbital, we have one electron less
-                if (m == 0) {
-                    break;
-                }
-            }
-        }
+    // An implementation of the formula in Helgaker, starting the addressing count from zero
+    size_t copy = representation;
+    size_t address = 0;
+    size_t electron_count = 0;            // counts the number of electrons in the spin string up to orbital p
+    while (copy != 0) {                   // we will remove the least significant bit each loop, we are finished when no bits are left
+        size_t p = __builtin_ctzl(copy);  // p is the orbital index counter (starting from 1)
+        electron_count++;                 // each bit is an electron hence we add it up to the electron count
+        address += this->vertexWeight(p, electron_count);
+        copy ^= copy & -copy;  // flip the least significant bit
     }
-    return representation;
+    return address;
 }
 
 
@@ -146,7 +137,8 @@ size_t SpinUnresolvedONVBasis::calculateRepresentation(size_t address) const {
  *  @return the number of ONVs (with a larger address) the ONV would couple with given a one electron operator
  */
 size_t SpinUnresolvedONVBasis::countOneElectronCouplings(const SpinUnresolvedONV& onv) const {
-    size_t V = K - N;  // number of virtual orbitals
+
+    size_t V = this->M - N;  // number of virtual orbitals
     size_t coupling_count = 0;
 
     for (size_t e1 = 0; e1 < this->N; e1++) {
@@ -159,13 +151,35 @@ size_t SpinUnresolvedONVBasis::countOneElectronCouplings(const SpinUnresolvedONV
 
 
 /**
+ *  @return the number of non-zero couplings of a one electron coupling scheme in this ONV basis
+ */
+size_t SpinUnresolvedONVBasis::countTotalOneElectronCouplings() const {
+    return (this->M - N) * N * (dim);
+}
+
+
+/**
+ *  @return the number of non-zero couplings of a two electron coupling scheme in this ONV basis
+ */
+size_t SpinUnresolvedONVBasis::countTotalTwoElectronCouplings() const {
+
+    size_t two_electron_permutation = 0;  // all distributions for two electrons over the virtual orbitals
+    if (this->M - N >= 2) {
+        two_electron_permutation = calculateDimension(this->M - N, 2) * N * (N - 1) * (dim) / 2;
+    }
+
+    return two_electron_permutation + countTotalOneElectronCouplings();
+}
+
+
+/**
  *  @param onv       the ONV
  *
  *  @return the number of ONVs (with a larger address) the ONV would couple with given a two electron operator
  */
 size_t SpinUnresolvedONVBasis::countTwoElectronCouplings(const SpinUnresolvedONV& onv) const {
 
-    size_t V = K - N;  // number of virtual orbitals
+    size_t V = this->M - N;  // number of virtual orbitals
     size_t coupling_count = 0;
 
     for (size_t e1 = 0; e1 < this->N; e1++) {
@@ -190,28 +204,6 @@ size_t SpinUnresolvedONVBasis::countTwoElectronCouplings(const SpinUnresolvedONV
 
 
 /**
- *  @return the amount non-zero couplings of a one electron coupling scheme in this ONV basis
- */
-size_t SpinUnresolvedONVBasis::countTotalOneElectronCouplings() const {
-    return (K - N) * N * (dim);
-}
-
-
-/**
- *  @return the amount non-zero couplings of a two electron coupling scheme in this ONV basis
- */
-size_t SpinUnresolvedONVBasis::countTotalTwoElectronCouplings() const {
-
-    size_t two_electron_permutation = 0;  // all distributions for two electrons over the virtual orbitals
-    if (K - N >= 2) {
-        two_electron_permutation = calculateDimension(K - N, 2) * N * (N - 1) * (dim) / 2;
-    }
-
-    return two_electron_permutation + countTotalOneElectronCouplings();
-}
-
-
-/**
  *  Evaluate the operator in a dense matrix
  *
  *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in this ONV basis
@@ -219,15 +211,15 @@ size_t SpinUnresolvedONVBasis::countTotalTwoElectronCouplings() const {
  *
  *  @return the operator's evaluation in a dense matrix with the dimensions of this ONV basis
  */
-SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const {
+SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const ScalarSQOneElectronOperator<double>& one_op, const bool diagonal_values) const {
 
     auto K = one_op.dimension();
-    if (K != this->K) {
+    if (K != this->M) {
         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDense(ScalarSQOneElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
     EvaluationIterator<SquareMatrix<double>> evaluation_iterator(this->dim);
-    this->EvaluateOperator<SquareMatrix<double>>(one_op, evaluation_iterator, diagonal_values);
+    this->evaluateOperator<SquareMatrix<double>>(one_op, evaluation_iterator, diagonal_values);
     return evaluation_iterator.evaluation();
 }
 
@@ -240,16 +232,15 @@ SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const ScalarS
  *
  *  @return the operator's evaluation in a dense matrix with the dimensions of this ONV basis
  */
-SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const {
-
+SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const ScalarSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const {
 
     const auto K = two_op.dimension();
-    if (K != this->K) {
+    if (K != this->M) {
         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDense(ScalarSQTwoElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
     EvaluationIterator<SquareMatrix<double>> evaluation_iterator(this->dim);
-    this->EvaluateOperator<SquareMatrix<double>>(two_op, evaluation_iterator, diagonal_values);
+    this->evaluateOperator<SquareMatrix<double>>(two_op, evaluation_iterator, diagonal_values);
     return evaluation_iterator.evaluation();
 }
 
@@ -262,15 +253,15 @@ SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const ScalarS
  *
  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of this ONV basis
  */
-SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const {
+SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const SQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const {
 
     auto K = sq_hamiltonian.dimension();
-    if (K != this->K) {
+    if (K != this->M) {
         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDense(SQHamiltonian<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
     EvaluationIterator<SquareMatrix<double>> evaluation_iterator(this->dim);
-    this->EvaluateOperator<SquareMatrix<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), evaluation_iterator, diagonal_values);
+    this->evaluateOperator<SquareMatrix<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), evaluation_iterator, diagonal_values);
     return evaluation_iterator.evaluation();
 }
 
@@ -286,22 +277,22 @@ VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorDiagonal(const ScalarSQO
 
     const auto K = one_op.dimension();
 
-    if (K != this->K) {
+    if (K != this->M) {
         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDiagonal(ScalarSQOneElectronOperator<double>): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
     const auto& one_op_par = one_op.parameters();
 
-    size_t N = this->get_N();
-    size_t dim = this->get_dimension();
+    size_t N = this->numberOfElectrons();
+    size_t dim = this->dimension();
 
     VectorX<double> diagonal = VectorX<double>::Zero(dim);
 
-    SpinUnresolvedONV onv = this->makeONV(0);  // onv with address 0
-    for (size_t I = 0; I < dim; I++) {         // I loops over all addresses in this ONV basis
+    SpinUnresolvedONV onv = this->constructONVFromAddress(0);  // onv with address 0
+    for (size_t I = 0; I < dim; I++) {                         // I loops over all addresses in this ONV basis
 
         if (I > 0) {
-            this->setNextONV(onv);
+            this->transformONVToNextPermutation(onv);
         }
 
         for (size_t e1 = 0; e1 < N; e1++) {  // A1 (annihilation 1)
@@ -324,23 +315,23 @@ VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorDiagonal(const ScalarSQO
 VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorDiagonal(const ScalarSQTwoElectronOperator<double>& two_op) const {
 
     auto K = two_op.dimension();
-    if (K != this->K) {
+    if (K != this->M) {
         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDiagonal(ScalarSQTwoElectronOperator<double>): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
-    size_t N = this->get_N();
-    size_t dim = this->get_dimension();
+    size_t N = this->numberOfElectrons();
+    size_t dim = this->dimension();
 
     VectorX<double> diagonal = VectorX<double>::Zero(dim);
 
     const auto k_par = two_op.effectiveOneElectronPartition().parameters();
     const auto& two_op_par = two_op.parameters();
 
-    SpinUnresolvedONV onv = this->makeONV(0);  // onv with address 0
-    for (size_t I = 0; I < dim; I++) {         // I loops over all addresses in this ONV basis
+    SpinUnresolvedONV onv = this->constructONVFromAddress(0);  // onv with address 0
+    for (size_t I = 0; I < dim; I++) {                         // I loops over all addresses in this ONV basis
 
         if (I > 0) {
-            this->setNextONV(onv);
+            this->transformONVToNextPermutation(onv);
         }
 
         for (size_t e1 = 0; e1 < N; e1++) {  // A1 (annihilation 1)
@@ -371,7 +362,7 @@ VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorDiagonal(const ScalarSQT
 VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
 
     auto K = sq_hamiltonian.dimension();
-    if (K != this->K) {
+    if (K != this->M) {
         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDiagonal(SQHamiltonian<double>): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
@@ -387,10 +378,10 @@ VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorDiagonal(const SQHamilto
  *
  *  @return the operator's evaluation in a sparse matrix with the dimensions of this ONV basis
  */
-Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const {
+Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op, const bool diagonal_values) const {
 
     auto K = one_op.dimension();
-    if (K != this->K) {
+    if (K != this->M) {
         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorSparse(ScalarSQOneElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
@@ -402,7 +393,7 @@ Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const
     }
 
     evaluation_iterator.reserve(memory);
-    this->EvaluateOperator<Eigen::SparseMatrix<double>>(one_op, evaluation_iterator, diagonal_values);
+    this->evaluateOperator<Eigen::SparseMatrix<double>>(one_op, evaluation_iterator, diagonal_values);
     evaluation_iterator.addToMatrix();
     return evaluation_iterator.evaluation();
 }
@@ -416,10 +407,10 @@ Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const
  *
  *  @return the operator's evaluation in a sparse matrix with the dimensions of this ONV basis
  */
-Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const {
+Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const {
 
     auto K = two_op.dimension();
-    if (K != this->K) {
+    if (K != this->M) {
         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorSparse(ScalarSQTwoElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
@@ -431,7 +422,7 @@ Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const
     }
 
     evaluation_iterator.reserve(memory);
-    this->EvaluateOperator<Eigen::SparseMatrix<double>>(two_op, evaluation_iterator, diagonal_values);
+    this->evaluateOperator<Eigen::SparseMatrix<double>>(two_op, evaluation_iterator, diagonal_values);
     evaluation_iterator.addToMatrix();
     return evaluation_iterator.evaluation();
 }
@@ -445,10 +436,10 @@ Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const
  *
  *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of this ONV basis
  */
-Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const {
+Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const SQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const {
 
     auto K = sq_hamiltonian.dimension();
-    if (K != this->K) {
+    if (K != this->M) {
         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorSparse(SQHamiltonian<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
@@ -460,28 +451,40 @@ Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const
     }
 
     evaluation_iterator.reserve(memory);
-    this->EvaluateOperator<Eigen::SparseMatrix<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), evaluation_iterator, diagonal_values);
+    this->evaluateOperator<Eigen::SparseMatrix<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), evaluation_iterator, diagonal_values);
     evaluation_iterator.addToMatrix();
     return evaluation_iterator.evaluation();
 }
 
 
 /**
- *  @param representation      a representation of an ONV
+ *  Calculate unsigned representation for a given address
  *
- *  @return the address (i.e. the ordering number) of the given ONV
+ *  @param address                 the address of the representation is calculated
+ *
+ *  @return unsigned representation of the address
  */
-size_t SpinUnresolvedONVBasis::getAddress(size_t unsigned_onv) const {
-    // An implementation of the formula in Helgaker, starting the addressing count from zero
-    size_t address = 0;
-    size_t electron_count = 0;                    // counts the number of electrons in the spin string up to orbital p
-    while (unsigned_onv != 0) {                   // we will remove the least significant bit each loop, we are finished when no bits are left
-        size_t p = __builtin_ctzl(unsigned_onv);  // p is the orbital index counter (starting from 1)
-        electron_count++;                         // each bit is an electron hence we add it up to the electron count
-        address += this->get_vertex_weights(p, electron_count);
-        unsigned_onv ^= unsigned_onv & -unsigned_onv;  // flip the least significant bit
+size_t SpinUnresolvedONVBasis::representationOf(size_t address) const {
+    size_t representation = 0;
+    if (this->N != 0) {
+        representation = 0;
+        size_t m = this->N;  // counts the number of electrons in the spin string up to orbital p
+
+        for (size_t p = this->M; p > 0; p--) {  // p is an orbital index
+            size_t weight = vertexWeight(p - 1, m);
+
+            if (weight <= address) {  // the algorithm can move diagonally, so we found an occupied orbital
+                address -= weight;
+                representation |= ((1) << (p - 1));  // set the (p-1)th bit: see (https://stackoverflow.com/a/47990)
+
+                m--;  // since we found an occupied orbital, we have one electron less
+                if (m == 0) {
+                    break;
+                }
+            }
+        }
     }
-    return address;
+    return representation;
 }
 
 
@@ -494,7 +497,7 @@ size_t SpinUnresolvedONVBasis::getAddress(size_t unsigned_onv) const {
  *          011 -> 101
  *          101 -> 110
  */
-size_t SpinUnresolvedONVBasis::ulongNextPermutation(size_t representation) const {
+size_t SpinUnresolvedONVBasis::nextPermutationOf(const size_t representation) const {
 
     // t gets this->representation's least significant 0 bits set to 1
     unsigned long t = representation | (representation - 1UL);
@@ -518,9 +521,9 @@ size_t SpinUnresolvedONVBasis::ulongNextPermutation(size_t representation) const
  */
 std::vector<Eigen::SparseMatrix<double>> SpinUnresolvedONVBasis::calculateOneElectronCouplings() const {
 
-    size_t K = this->get_K();
-    size_t N = this->get_N();
-    size_t dim = this->get_dimension();
+    size_t K = this->numberOfOrbitals();
+    size_t N = this->numberOfElectrons();
+    size_t dim = this->dimension();
 
     std::vector<std::vector<Eigen::Triplet<double>>> sparse_entries(K * (K + 1) / 2);
     std::vector<Eigen::SparseMatrix<double>> sparse_matrices(K * (K + 1) / 2, Eigen::SparseMatrix<double>(dim, dim));
@@ -538,12 +541,12 @@ std::vector<Eigen::SparseMatrix<double>> SpinUnresolvedONVBasis::calculateOneEle
         }
     }
 
-    SpinUnresolvedONV onv = this->makeONV(0);      // onv with address 0
-    for (size_t I = 0; I < dim; I++) {             // I loops over all the addresses of the onv
-        for (size_t e1 = 0; e1 < N; e1++) {        // e1 (electron 1) loops over the (number of) electrons
-            size_t p = onv.occupationIndexOf(e1);  // retrieve the index of a given electron
+    SpinUnresolvedONV onv = this->constructONVFromAddress(0);  // onv with address 0
+    for (size_t I = 0; I < dim; I++) {                         // I loops over all the addresses of the onv
+        for (size_t e1 = 0; e1 < N; e1++) {                    // e1 (electron 1) loops over the (number of) electrons
+            size_t p = onv.occupationIndexOf(e1);              // retrieve the index of a given electron
             // remove the weight from the initial address I, because we annihilate
-            size_t address = I - this->get_vertex_weights(p, e1 + 1);
+            size_t address = I - this->vertexWeight(p, e1 + 1);
             // The e2 iteration counts the number of encountered electrons for the creation operator
             // We only consider greater addresses than the initial one (because of symmetry)
             // Hence we only count electron after the annihilated electron (e1)
@@ -555,7 +558,7 @@ std::vector<Eigen::SparseMatrix<double>> SpinUnresolvedONVBasis::calculateOneEle
             this->shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
             size_t dex = 0;
             while (q < K) {
-                size_t J = address + this->get_vertex_weights(q, e2);
+                size_t J = address + this->vertexWeight(q, e2);
 
                 sparse_entries[p * (K + K + 1 - p) / 2 + q - p].emplace_back(I, J, sign_e2);
                 sparse_entries[p * (K + K + 1 - p) / 2 + q - p].emplace_back(J, I, sign_e2);
@@ -569,7 +572,7 @@ std::vector<Eigen::SparseMatrix<double>> SpinUnresolvedONVBasis::calculateOneEle
 
         // Prevent last permutation
         if (I < dim - 1) {
-            this->setNextONV(onv);
+            this->transformONVToNextPermutation(onv);
         }
     }
 
@@ -591,13 +594,14 @@ std::vector<Eigen::SparseMatrix<double>> SpinUnresolvedONVBasis::calculateOneEle
  *  @return the one electron operator's matrix vector product in a vector with the dimensions of this ONV basis
  */
 VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(const ScalarSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+
     auto K = one_op.dimension();
-    if (K != this->K) {
+    if (K != this->M) {
         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(ScalarSQOneElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
     EvaluationIterator<VectorX<double>> evaluation_iterator(x, diagonal);
-    this->EvaluateOperator<VectorX<double>>(one_op, evaluation_iterator, false);
+    this->evaluateOperator<VectorX<double>>(one_op, evaluation_iterator, false);
     return evaluation_iterator.evaluation();
 }
 
@@ -612,13 +616,14 @@ VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(cons
  *  @return the two electron operator's matrix vector product in a vector with the dimensions of this ONV basis
  */
 VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(const ScalarSQTwoElectronOperator<double>& two_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+
     auto K = two_op.dimension();
-    if (K != this->K) {
+    if (K != this->M) {
         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(ScalarSQTwoElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
     EvaluationIterator<VectorX<double>> evaluation_iterator(x, diagonal);
-    this->EvaluateOperator<VectorX<double>>(two_op, evaluation_iterator, false);
+    this->evaluateOperator<VectorX<double>>(two_op, evaluation_iterator, false);
     return evaluation_iterator.evaluation();
 }
 
@@ -633,13 +638,14 @@ VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(cons
  *  @return the Hamiltonian's matrix vector product in a vector with the dimensions of this ONV basis
  */
 VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+
     auto K = sq_hamiltonian.dimension();
-    if (K != this->K) {
+    if (K != this->M) {
         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
     EvaluationIterator<VectorX<double>> evaluation_iterator(x, diagonal);
-    this->EvaluateOperator<VectorX<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), evaluation_iterator, false);
+    this->evaluateOperator<VectorX<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), evaluation_iterator, false);
     return evaluation_iterator.evaluation();
 }
 
@@ -651,14 +657,14 @@ VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(cons
  */
 void SpinUnresolvedONVBasis::forEach(const std::function<void(const SpinUnresolvedONV&, const size_t)>& callback) const {
 
-    SpinUnresolvedONV onv = this->makeONV(0);
+    SpinUnresolvedONV onv = this->constructONVFromAddress(0);
 
     for (size_t I = 0; I < this->dim; I++) {  // I loops over addresses of all ONVs
 
         callback(onv, I);
 
         if (I < this->dim - 1) {  // prevent the last permutation from occurring
-            this->setNextONV(onv);
+            this->transformONVToNextPermutation(onv);
         }
     }  // address (I) loop
 }

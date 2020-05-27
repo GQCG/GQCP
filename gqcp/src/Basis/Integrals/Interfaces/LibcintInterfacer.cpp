@@ -59,17 +59,17 @@ libcint::RawContainer LibcintInterfacer::convert(const ShellSet<GTOShell>& shell
     // Configuration of shell-related data
     int nucleus_index = 0;  // index of the nucleus the shell is centered on
     const auto& shellset_vector = shell_set.asVector();
-    auto previous_nucleus = shellset_vector[0].get_nucleus();  // start with the first nucleus
+    auto previous_nucleus = shellset_vector[0].nucleus();  // start with the first nucleus
     for (size_t n = 0; n < shell_set.numberOfShells(); n++) {
 
         auto current_shell = shellset_vector[n];
-        if (current_shell.is_normalized()) {
+        if (current_shell.isNormalized()) {
             throw std::invalid_argument("LibcintInterfacer::convert(const ShellSet<GTOShell>&): The libcint integral engine requires a ShellSet with coefficients that do not hold the total normalization factor.");
         }
 
 
         // If there's a new nucleus, increment the index
-        const auto& current_nucleus = current_shell.get_nucleus();
+        const auto& current_nucleus = current_shell.nucleus();
         if (!Nucleus::equalityComparer()(current_nucleus, previous_nucleus)) {
             nucleus_index++;
             previous_nucleus = current_nucleus;
@@ -78,12 +78,12 @@ libcint::RawContainer LibcintInterfacer::convert(const ShellSet<GTOShell>& shell
 
 
         // Set shell-related data into the libcint 'basis' and into the libcint environment
-        raw_container.libcint_bas[libcint::ang_of + libcint::bas_slots * n] = static_cast<int>(current_shell.get_l());              // angular momentum
+        raw_container.libcint_bas[libcint::ang_of + libcint::bas_slots * n] = static_cast<int>(current_shell.angularMomentum());    // angular momentum
         raw_container.libcint_bas[libcint::nprim_of + libcint::bas_slots * n] = static_cast<int>(current_shell.contractionSize());  // number of primitives
-        raw_container.libcint_bas[libcint::nctr_of + libcint::bas_slots * n] = 1;                                                   // apparently, the number of contractions is always 1 (I'm still not sure what the libcint number of contractions means)
+        raw_container.libcint_bas[libcint::nctr_of + libcint::bas_slots * n] = 1;                                                   // apparently, the number of contractions is always 1 (it is still unknown exactly what the libcint number of contractions means)
         raw_container.libcint_bas[libcint::ptr_exp + libcint::bas_slots * n] = offset;                                              // pointer to the exponents of the shell inside the libcint environment
 
-        const auto& gaussian_exponents = current_shell.get_gaussian_exponents();
+        const auto& gaussian_exponents = current_shell.gaussianExponents();
         for (size_t e = 0; e < gaussian_exponents.size(); e++, offset++) {  // also increment offset
             raw_container.libcint_env[offset] = gaussian_exponents[e];
         }
@@ -91,11 +91,11 @@ libcint::RawContainer LibcintInterfacer::convert(const ShellSet<GTOShell>& shell
 
         raw_container.libcint_bas[libcint::ptr_coeff + libcint::bas_slots * n] = offset;  // pointer to the contraction coefficients inside the libcint environment
         // Input NORMALIZED contraction coefficients inside the libcint 'env'
-        if (current_shell.are_embedded_normalization_factors_of_primitives()) {
+        if (current_shell.areEmbeddedNormalizationFactorsOfPrimitives()) {
             current_shell.unEmbedNormalizationFactorsOfPrimitives();
         }
 
-        const auto& current_contraction_coefficients = current_shell.get_contraction_coefficients();
+        const auto& current_contraction_coefficients = current_shell.contractionCoefficients();
         for (size_t c = 0; c < current_contraction_coefficients.size(); c++, offset++) {  // also increment offset
 
             raw_container.libcint_env[offset] = current_contraction_coefficients[c] * CINTgto_norm(raw_container.libcint_bas[libcint::ang_of + libcint::bas_slots * n], raw_container.libcint_env[raw_container.libcint_bas[libcint::ptr_exp + libcint::bas_slots * n] + c]);  // use libcint to embed the norm of the primitives into the contraction coefficient
@@ -118,72 +118,6 @@ void LibcintInterfacer::setCommonOrigin(libcint::RawContainer& raw_container, co
     raw_container.libcint_env[libcint::ptr_common_orig + 0] = origin.x();  // input the origin inside the libcint environment
     raw_container.libcint_env[libcint::ptr_common_orig + 1] = origin.y();
     raw_container.libcint_env[libcint::ptr_common_orig + 2] = origin.z();
-}
-
-
-/*
- *  PUBLIC METHODS - INTEGRAL FUNCTIONS
- */
-
-/**
- *  @param op           the overlap operator
- * 
- *  @return the Libcint one-electron function that corresponds to the overlap operator
- */
-Libcint1eFunction LibcintInterfacer::oneElectronFunction(const OverlapOperator& op) const {
-    return cint1e_ovlp_cart;
-}
-
-
-/**
- *  @param op               the kinetic operator
- * 
- *  @return the Libcint one-electron function that corresponds to the kinetic operator
- */
-Libcint1eFunction LibcintInterfacer::oneElectronFunction(const KineticOperator& op) const {
-    return cint1e_kin_cart;
-}
-
-
-/**
- *  @param op               the nuclear attraction operator
- * 
- *  @return the Libcint one-electron function that corresponds to the nuclear attraction operator
- */
-Libcint1eFunction LibcintInterfacer::oneElectronFunction(const NuclearAttractionOperator& op) const {
-    return cint1e_nuc_cart;
-}
-
-
-/**
- *  @param op               the electronic electric dipole operator
- * 
- *  @return the Libcint one-electron function that corresponds to the electronic electric dipole operator
- */
-Libcint1eFunction LibcintInterfacer::oneElectronFunction(const ElectronicDipoleOperator& op) const {
-    return cint1e_r_cart;
-}
-
-
-/**
- *  @param op               the Coulomb repulsion operator
- * 
- *  @return the Libcint two-electron function that corresponds to the Coulomb repulsion dipole operator
- */
-Libcint2eFunction LibcintInterfacer::twoElectronFunction(const CoulombRepulsionOperator& op) const {
-
-    return cint2e_cart;
-}
-
-
-/**
- *  @param op               the Coulomb repulsion operator
- * 
- *  @return the Libcint two-electron optimizer function that corresponds to the Coulomb repulsion dipole operator
- */
-Libcint2eOptimizerFunction LibcintInterfacer::twoElectronOptimizerFunction(const CoulombRepulsionOperator& op) const {
-
-    return cint2e_cart_optimizer;
 }
 
 

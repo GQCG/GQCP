@@ -29,236 +29,15 @@ namespace GQCP {
  *  @param onv_basis                     shared pointer to active (non-frozen core) frozen ONV basis
  *  @param X                             the number of frozen orbitals
  */
-BaseFrozenCoreONVBasis::BaseFrozenCoreONVBasis(std::shared_ptr<GQCP::BaseONVBasis> onv_basis, size_t X) :
-    BaseONVBasis(onv_basis->get_K() + X, onv_basis->get_dimension()),
+BaseFrozenCoreONVBasis::BaseFrozenCoreONVBasis(const std::shared_ptr<GQCP::BaseONVBasis> onv_basis, const size_t X) :
+    BaseONVBasis(onv_basis->numberOfOrbitals() + X, onv_basis->dimension()),
     active_fock_space {std::move(onv_basis)},
     X {X} {}
 
 
 /*
- *  PUBLIC METHODS
+ *  STATIC PUBLIC METHODS
  */
-
-/**
- *  Evaluate the operator in a dense matrix
- *
- *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the frozen ONV basis
- *  @param diagonal_values      bool to indicate if diagonal values will be calculated
- *
- *  @return the operator's evaluation in a dense matrix with the dimensions of the frozen ONV basis
- */
-SquareMatrix<double> BaseFrozenCoreONVBasis::evaluateOperatorDense(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const {
-
-    // Freeze the Hamiltonian
-    ScalarSQOneElectronOperator<double> frozen_one_op = BaseFrozenCoreONVBasis::freezeOperator(one_op, this->X);
-
-    // Evaluate the frozen operator in the active space
-    auto evaluation = this->active_fock_space->evaluateOperatorDense(frozen_one_op, diagonal_values);
-
-    if (diagonal_values) {
-        // Diagonal correction
-        const auto frozen_core_diagonal = BaseFrozenCoreONVBasis::frozenCoreDiagonal(one_op, this->X, this->active_fock_space->get_dimension());
-        evaluation += frozen_core_diagonal.asDiagonal();
-    }
-
-    return evaluation;
-}
-
-
-/**
- *  Evaluate the operator in a sparse matrix
- *
- *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the frozen ONV basis
- *  @param diagonal_values      bool to indicate if diagonal values will be calculated
- *
- *  @return the operator's evaluation in a sparse matrix with the dimensions of the frozen ONV basis
- */
-Eigen::SparseMatrix<double> BaseFrozenCoreONVBasis::evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const {
-
-    // Freeze the operator
-    ScalarSQOneElectronOperator<double> frozen_one_op = BaseFrozenCoreONVBasis::freezeOperator(one_op, this->X);
-
-    // Evaluate the frozen operator in the active space
-    auto evaluation = this->active_fock_space->evaluateOperatorSparse(frozen_one_op, diagonal_values);
-
-    if (diagonal_values) {
-        // Diagonal correction
-        const auto frozen_core_diagonal = BaseFrozenCoreONVBasis::frozenCoreDiagonal(one_op, this->X, this->active_fock_space->get_dimension());
-        evaluation += frozen_core_diagonal.asDiagonal();
-    }
-
-    return evaluation;
-}
-
-
-/**
- *  Evaluate the operator in a dense matrix
- *
- *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the frozen ONV basis
- *  @param diagonal_values      bool to indicate if diagonal values will be calculated
- *
- *  @return the operator's evaluation in a dense matrix with the dimensions of the frozen ONV basis
- */
-SquareMatrix<double> BaseFrozenCoreONVBasis::evaluateOperatorDense(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const {
-
-    // Freeze the operators
-    const auto frozen_ops = BaseFrozenCoreONVBasis::freezeOperator(two_op, this->X);
-
-    // Evaluate the frozen operator in the active space
-    auto evaluation = this->active_fock_space->evaluateOperatorDense(frozen_ops.one_op, diagonal_values);
-    evaluation += this->active_fock_space->evaluateOperatorDense(frozen_ops.two_op, diagonal_values);
-
-    if (diagonal_values) {
-        // Diagonal correction
-        const auto frozen_core_diagonal = BaseFrozenCoreONVBasis::frozenCoreDiagonal(two_op, this->X, this->active_fock_space->get_dimension());
-        evaluation += frozen_core_diagonal.asDiagonal();
-    }
-
-    return evaluation;
-}
-
-
-/**
- *  Evaluate the operator in a sparse matrix
- *
- *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the frozen ONV basis
- *  @param diagonal_values      bool to indicate if diagonal values will be calculated
- *
- *  @return the operator's evaluation in a sparse matrix with the dimensions of the frozen ONV basis
- */
-Eigen::SparseMatrix<double> BaseFrozenCoreONVBasis::evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const {
-
-    // Freeze the operators
-    const auto frozen_ops = BaseFrozenCoreONVBasis::freezeOperator(two_op, this->X);
-
-    // Evaluate the frozen operator in the active space
-    auto evaluation = this->active_fock_space->evaluateOperatorSparse(frozen_ops.one_op, diagonal_values);
-    evaluation += this->active_fock_space->evaluateOperatorSparse(frozen_ops.two_op, diagonal_values);
-
-    if (diagonal_values) {
-        // Diagonal correction
-        const auto frozen_core_diagonal = BaseFrozenCoreONVBasis::frozenCoreDiagonal(two_op, this->X, this->active_fock_space->get_dimension());
-        evaluation += frozen_core_diagonal.asDiagonal();
-    }
-
-    return evaluation;
-}
-
-
-/**
- *  Evaluate the Hamiltonian in a dense matrix
- *
- *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
- *  @param diagonal_values              bool to indicate if diagonal values will be calculated
- *
- *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the frozen ONV basis
- */
-SquareMatrix<double> BaseFrozenCoreONVBasis::evaluateOperatorDense(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const {
-    // Freeze the operators
-    const auto frozen_ham_par = BaseFrozenCoreONVBasis::freezeOperator(sq_hamiltonian, this->X);
-
-    // Evaluate the frozen operator in the active space
-    auto evaluation = this->active_fock_space->evaluateOperatorDense(frozen_ham_par, diagonal_values);
-
-    if (diagonal_values) {
-        // Diagonal correction
-        const auto frozen_core_diagonal = BaseFrozenCoreONVBasis::frozenCoreDiagonal(sq_hamiltonian, this->X, this->active_fock_space->get_dimension());
-        evaluation += frozen_core_diagonal.asDiagonal();
-    }
-
-    return evaluation;
-}
-
-
-/**
- *  Evaluate the Hamiltonian in a sparse matrix
- *
- *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
- *  @param diagonal_values              bool to indicate if diagonal values will be calculated
- *
- *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the frozen ONV basis
- */
-Eigen::SparseMatrix<double> BaseFrozenCoreONVBasis::evaluateOperatorSparse(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const {
-
-    // Freeze the operators
-    const auto frozen_ham_par = BaseFrozenCoreONVBasis::freezeOperator(sq_hamiltonian, this->X);
-
-    // Evaluate the frozen operator in the active space
-    auto evaluation = this->active_fock_space->evaluateOperatorSparse(frozen_ham_par, diagonal_values);
-
-    if (diagonal_values) {
-        // Diagonal correction
-        const auto frozen_core_diagonal = BaseFrozenCoreONVBasis::frozenCoreDiagonal(sq_hamiltonian, this->X, this->active_fock_space->get_dimension());
-        evaluation += frozen_core_diagonal.asDiagonal();
-    }
-
-    return evaluation;
-}
-
-
-/**
- *  Evaluate the diagonal of the operator
- *
- *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the frozen ONV basis
- *
- *  @return the operator's diagonal evaluation in a vector with the dimension of the frozen ONV basis
- */
-VectorX<double> BaseFrozenCoreONVBasis::evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>& one_op) const {
-
-    const auto frozen_op = BaseFrozenCoreONVBasis::freezeOperator(one_op, this->X);
-
-    // Calculate diagonal in the active space with the "frozen" Hamiltonian
-    const auto diagonal = this->active_fock_space->evaluateOperatorDiagonal(frozen_op);
-
-    // Calculate diagonal for the frozen orbitals
-    const auto frozen_core_diagonal = BaseFrozenCoreONVBasis::frozenCoreDiagonal(one_op, this->X, this->active_fock_space->get_dimension());
-
-    return diagonal + frozen_core_diagonal;
-};
-
-
-/**
- *  Evaluate the diagonal of the operator
- *
- *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the frozen ONV basis
- *
- *  @return the operator's diagonal evaluation in a vector with the dimension of the frozen ONV basis
- */
-VectorX<double> BaseFrozenCoreONVBasis::evaluateOperatorDiagonal(const ScalarSQTwoElectronOperator<double>& two_op) const {
-
-    const auto frozen_ops = BaseFrozenCoreONVBasis::freezeOperator(two_op, this->X);
-
-    // Calculate diagonal in the active space with the "frozen" Hamiltonian
-    auto diagonal = this->active_fock_space->evaluateOperatorDiagonal(frozen_ops.two_op);
-    diagonal += this->active_fock_space->evaluateOperatorDiagonal(frozen_ops.one_op);
-
-    // Calculate diagonal for the frozen orbitals
-    const auto frozen_core_diagonal = BaseFrozenCoreONVBasis::frozenCoreDiagonal(two_op, this->X, this->active_fock_space->get_dimension());
-
-    return diagonal + frozen_core_diagonal;
-}
-
-
-/**
- *  Evaluate the diagonal of the Hamiltonian
- *
- *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
- *
- *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the frozen ONV basis
- */
-VectorX<double> BaseFrozenCoreONVBasis::evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
-
-    const auto frozen_ham_par = BaseFrozenCoreONVBasis::freezeOperator(sq_hamiltonian, this->X);
-
-    // Calculate diagonal in the active space with the "frozen" Hamiltonian
-    const auto diagonal = this->active_fock_space->evaluateOperatorDiagonal(frozen_ham_par);
-
-    // Calculate diagonal for the frozen orbitals
-    const auto frozen_core_diagonal = BaseFrozenCoreONVBasis::frozenCoreDiagonal(sq_hamiltonian, this->X, this->active_fock_space->get_dimension());
-
-    return diagonal + frozen_core_diagonal;
-}
-
 
 /**
  *  @param one_op       the one-electron operator in an orthonormal orbital basis
@@ -266,7 +45,7 @@ VectorX<double> BaseFrozenCoreONVBasis::evaluateOperatorDiagonal(const SQHamilto
  *
  *  @return 'frozen' one-electron operator which cover evaluations from the active and inactive orbitals
  */
-ScalarSQOneElectronOperator<double> BaseFrozenCoreONVBasis::freezeOperator(const ScalarSQOneElectronOperator<double>& one_op, size_t X) {
+ScalarSQOneElectronOperator<double> BaseFrozenCoreONVBasis::freezeOperator(const ScalarSQOneElectronOperator<double>& one_op, const size_t X) {
 
     size_t K_active = one_op.dimension() - X;
     return ScalarSQOneElectronOperator<double> {one_op.parameters().block(X, X, K_active, K_active)};
@@ -279,7 +58,7 @@ ScalarSQOneElectronOperator<double> BaseFrozenCoreONVBasis::freezeOperator(const
  *
  *  @return 'frozen' two-electron operators as a struct of a one- and two-electron operator which cover evaluations from the active and inactive orbitals
  */
-FrozenOperators BaseFrozenCoreONVBasis::freezeOperator(const ScalarSQTwoElectronOperator<double>& two_op, size_t X) {
+FrozenOperators BaseFrozenCoreONVBasis::freezeOperator(const ScalarSQTwoElectronOperator<double>& two_op, const size_t X) {
 
     size_t K_active = two_op.dimension() - X;
     QCMatrix<double> frozen_one_op_par = QCMatrix<double>::Zero(K_active, K_active);
@@ -308,10 +87,6 @@ FrozenOperators BaseFrozenCoreONVBasis::freezeOperator(const ScalarSQTwoElectron
 }
 
 
-/*
- *  STATIC PUBLIC METHODS
- */
-
 /**
  *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
  *  @param spinor_basis         the spinor basis
@@ -320,7 +95,7 @@ FrozenOperators BaseFrozenCoreONVBasis::freezeOperator(const ScalarSQTwoElectron
  *  @return a 'frozen' Hamiltonian which cover two-electron integral evaluations from the active and inactive orbitals
  *  (see https://drive.google.com/file/d/1Fnhv2XyNO9Xw9YDoJOXU21_6_x2llntI/view?usp=sharing)
  */
-SQHamiltonian<double> BaseFrozenCoreONVBasis::freezeOperator(const SQHamiltonian<double>& sq_hamiltonian, size_t X) {
+SQHamiltonian<double> BaseFrozenCoreONVBasis::freezeOperator(const SQHamiltonian<double>& sq_hamiltonian, const size_t X) {
 
     size_t K_active = sq_hamiltonian.dimension() - X;  // number of non-frozen orbitals
 
@@ -330,97 +105,6 @@ SQHamiltonian<double> BaseFrozenCoreONVBasis::freezeOperator(const SQHamiltonian
     ScalarSQTwoElectronOperator<double> g = frozen_components_g.two_op;
 
     return SQHamiltonian<double>(h, g);
-}
-
-
-/**
- *  @param one_op       the one-electron operator in an orthonormal orbital basis
- *  @param X            the number of frozen orbitals
- *
- *  @return the operator diagonal from strictly evaluating the frozen orbitals in the frozen ONV basis
- */
-VectorX<double> BaseFrozenCoreONVBasis::frozenCoreDiagonal(const ScalarSQOneElectronOperator<double>& one_op, size_t X, size_t dimension) {
-
-    const auto& one_op_par = one_op.parameters();
-
-    // The diagonal value for the frozen orbitals is the same for each frozen ONV
-    double value = 0;
-    for (size_t i = 0; i < X; i++) {
-        value += 2 * one_op_par(i, i);
-    }
-
-    return VectorX<double>::Constant(dimension, value);
-}
-
-
-/**
- *  @param two_op       the two-electron operator in an orthonormal orbital basis
- *  @param X            the number of frozen orbitals
- *
- *  @return the operator diagonal from strictly evaluating the frozen orbitals in the frozen ONV basis
- */
-VectorX<double> BaseFrozenCoreONVBasis::frozenCoreDiagonal(const ScalarSQTwoElectronOperator<double>& two_op, size_t X, size_t dimension) {
-
-    const auto& two_op_par = two_op.parameters();
-
-    // The diagonal value for the frozen orbitals is the same for each ONV
-    double value = 0;
-    for (size_t i = 0; i < X; i++) {
-        value += two_op_par(i, i, i, i);
-
-        for (size_t j = i + 1; j < X; j++) {
-            value += 2 * two_op_par(i, i, j, j) + 2 * two_op_par(j, j, i, i) - two_op_par(j, i, i, j) - two_op_par(i, j, j, i);
-        }
-    }
-
-    return VectorX<double>::Constant(dimension, value);
-}
-
-
-/**
- *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
- *  @param X                    the number of frozen orbitals
- *
- *  @return the Hamiltonian diagonal from strictly evaluating the frozen orbitals in the frozen ONV basis
- */
-VectorX<double> BaseFrozenCoreONVBasis::frozenCoreDiagonal(const SQHamiltonian<double>& sq_hamiltonian, size_t X, size_t dimension) {
-    return BaseFrozenCoreONVBasis::frozenCoreDiagonal(sq_hamiltonian.core(), X, dimension) + BaseFrozenCoreONVBasis::frozenCoreDiagonal(sq_hamiltonian.twoElectron(), X, dimension);
-}
-
-
-/*
- *  STATIC UNRESTRICTED
- */
-
-/**
- *  @param usq_hamiltonian      the Hamiltonian expressed in an unrestricted orthonormal basis
- *  @param X                    the number of frozen orbitals
- *  @param dimension            the dimension of the diagonal
- *
- *  @return the Hamiltonian diagonal from strictly evaluating the frozen orbitals in a (any) frozen ONV basis
- */
-VectorX<double> BaseFrozenCoreONVBasis::frozenCoreDiagonal(const USQHamiltonian<double>& usq_hamiltonian, size_t X, size_t dimension) {
-
-    QCMatrix<double> one_op_par_alpha = usq_hamiltonian.spinHamiltonian(Spin::alpha).core().parameters();
-    QCMatrix<double> one_op_par_beta = usq_hamiltonian.spinHamiltonian(Spin::beta).core().parameters();
-
-    const auto& two_op_par_mixed = usq_hamiltonian.twoElectronMixed().parameters();
-    const auto& two_op_par_a = usq_hamiltonian.spinHamiltonian(Spin::alpha).twoElectron().parameters();
-    const auto& two_op_par_b = usq_hamiltonian.spinHamiltonian(Spin::beta).twoElectron().parameters();
-
-    // The diagonal value for the frozen orbitals is the same for each ONV
-    double value = 0;
-    for (size_t i = 0; i < X; i++) {
-        value += two_op_par_mixed(i, i, i, i);
-        value += one_op_par_alpha(i, i) + one_op_par_beta(i, i);
-        for (size_t j = i + 1; j < X; j++) {
-            value += two_op_par_mixed(i, i, j, j) + two_op_par_mixed(j, j, i, i) +
-                     two_op_par_a(i, i, j, j) / 2 + two_op_par_a(j, j, i, i) / 2 - two_op_par_a(j, i, i, j) / 2 - two_op_par_a(i, j, j, i) / 2 +
-                     two_op_par_b(i, i, j, j) / 2 + two_op_par_b(j, j, i, i) / 2 - two_op_par_b(j, i, i, j) / 2 - two_op_par_b(i, j, j, i) / 2;
-        }
-    }
-
-    return VectorX<double>::Constant(dimension, value);
 }
 
 
@@ -472,6 +156,319 @@ USQHamiltonian<double> BaseFrozenCoreONVBasis::freezeOperator(const USQHamiltoni
     return USQHamiltonian<double>(SQHamiltonian<double>(ScalarSQOneElectronOperator<double> {frozen_one_op_par_alpha}, ScalarSQTwoElectronOperator<double> {frozen_two_op_par_alpha}),
                                   SQHamiltonian<double>(ScalarSQOneElectronOperator<double> {frozen_one_op_par_beta}, ScalarSQTwoElectronOperator<double> {frozen_two_op_par_beta}),
                                   ScalarSQTwoElectronOperator<double>(frozen_two_op_par_mixed));
+}
+
+
+/**
+ *  @param one_op       the one-electron operator in an orthonormal orbital basis
+ *  @param X            the number of frozen orbitals
+ *
+ *  @return the operator diagonal from strictly evaluating the frozen orbitals in the frozen ONV basis
+ */
+VectorX<double> BaseFrozenCoreONVBasis::frozenCoreDiagonal(const ScalarSQOneElectronOperator<double>& one_op, const size_t X, const size_t dimension) {
+
+    const auto& one_op_par = one_op.parameters();
+
+    // The diagonal value for the frozen orbitals is the same for each frozen ONV
+    double value = 0;
+    for (size_t i = 0; i < X; i++) {
+        value += 2 * one_op_par(i, i);
+    }
+
+    return VectorX<double>::Constant(dimension, value);
+}
+
+
+/**
+ *  @param two_op       the two-electron operator in an orthonormal orbital basis
+ *  @param X            the number of frozen orbitals
+ *
+ *  @return the operator diagonal from strictly evaluating the frozen orbitals in the frozen ONV basis
+ */
+VectorX<double> BaseFrozenCoreONVBasis::frozenCoreDiagonal(const ScalarSQTwoElectronOperator<double>& two_op, const size_t X, const size_t dimension) {
+
+    const auto& two_op_par = two_op.parameters();
+
+    // The diagonal value for the frozen orbitals is the same for each ONV
+    double value = 0;
+    for (size_t i = 0; i < X; i++) {
+        value += two_op_par(i, i, i, i);
+
+        for (size_t j = i + 1; j < X; j++) {
+            value += 2 * two_op_par(i, i, j, j) + 2 * two_op_par(j, j, i, i) - two_op_par(j, i, i, j) - two_op_par(i, j, j, i);
+        }
+    }
+
+    return VectorX<double>::Constant(dimension, value);
+}
+
+
+/**
+ *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
+ *  @param X                    the number of frozen orbitals
+ *
+ *  @return the Hamiltonian diagonal from strictly evaluating the frozen orbitals in the frozen ONV basis
+ */
+VectorX<double> BaseFrozenCoreONVBasis::frozenCoreDiagonal(const SQHamiltonian<double>& sq_hamiltonian, const size_t X, const size_t dimension) {
+
+    return BaseFrozenCoreONVBasis::frozenCoreDiagonal(sq_hamiltonian.core(), X, dimension) + BaseFrozenCoreONVBasis::frozenCoreDiagonal(sq_hamiltonian.twoElectron(), X, dimension);
+}
+
+
+/**
+ *  @param usq_hamiltonian      the Hamiltonian expressed in an unrestricted orthonormal basis
+ *  @param X                    the number of frozen orbitals
+ *  @param dimension            the dimension of the diagonal
+ *
+ *  @return the Hamiltonian diagonal from strictly evaluating the frozen orbitals in a (any) frozen ONV basis
+ */
+VectorX<double> BaseFrozenCoreONVBasis::frozenCoreDiagonal(const USQHamiltonian<double>& usq_hamiltonian, const size_t X, const size_t dimension) {
+
+    QCMatrix<double> one_op_par_alpha = usq_hamiltonian.spinHamiltonian(Spin::alpha).core().parameters();
+    QCMatrix<double> one_op_par_beta = usq_hamiltonian.spinHamiltonian(Spin::beta).core().parameters();
+
+    const auto& two_op_par_mixed = usq_hamiltonian.twoElectronMixed().parameters();
+    const auto& two_op_par_a = usq_hamiltonian.spinHamiltonian(Spin::alpha).twoElectron().parameters();
+    const auto& two_op_par_b = usq_hamiltonian.spinHamiltonian(Spin::beta).twoElectron().parameters();
+
+    // The diagonal value for the frozen orbitals is the same for each ONV
+    double value = 0;
+    for (size_t i = 0; i < X; i++) {
+        value += two_op_par_mixed(i, i, i, i);
+        value += one_op_par_alpha(i, i) + one_op_par_beta(i, i);
+        for (size_t j = i + 1; j < X; j++) {
+            value += two_op_par_mixed(i, i, j, j) + two_op_par_mixed(j, j, i, i) +
+                     two_op_par_a(i, i, j, j) / 2 + two_op_par_a(j, j, i, i) / 2 - two_op_par_a(j, i, i, j) / 2 - two_op_par_a(i, j, j, i) / 2 +
+                     two_op_par_b(i, i, j, j) / 2 + two_op_par_b(j, j, i, i) / 2 - two_op_par_b(j, i, i, j) / 2 - two_op_par_b(i, j, j, i) / 2;
+        }
+    }
+
+    return VectorX<double>::Constant(dimension, value);
+}
+
+
+/*
+ *  PUBLIC OVERRIDDEN METHODS
+ */
+
+/**
+ *  Evaluate the operator in a dense matrix
+ *
+ *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the frozen ONV basis
+ *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+ *
+ *  @return the operator's evaluation in a dense matrix with the dimensions of the frozen ONV basis
+ */
+SquareMatrix<double> BaseFrozenCoreONVBasis::evaluateOperatorDense(const ScalarSQOneElectronOperator<double>& one_op, const bool diagonal_values) const {
+
+    // Freeze the Hamiltonian
+    ScalarSQOneElectronOperator<double> frozen_one_op = BaseFrozenCoreONVBasis::freezeOperator(one_op, this->X);
+
+    // Evaluate the frozen operator in the active space
+    auto evaluation = this->active_fock_space->evaluateOperatorDense(frozen_one_op, diagonal_values);
+
+    if (diagonal_values) {
+        // Diagonal correction
+        const auto frozen_core_diagonal = BaseFrozenCoreONVBasis::frozenCoreDiagonal(one_op, this->X, this->active_fock_space->dimension());
+        evaluation += frozen_core_diagonal.asDiagonal();
+    }
+
+    return evaluation;
+}
+
+
+/**
+ *  Evaluate the operator in a dense matrix
+ *
+ *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the frozen ONV basis
+ *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+ *
+ *  @return the operator's evaluation in a dense matrix with the dimensions of the frozen ONV basis
+ */
+SquareMatrix<double> BaseFrozenCoreONVBasis::evaluateOperatorDense(const ScalarSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const {
+
+    // Freeze the operators
+    const auto frozen_ops = BaseFrozenCoreONVBasis::freezeOperator(two_op, this->X);
+
+    // Evaluate the frozen operator in the active space
+    auto evaluation = this->active_fock_space->evaluateOperatorDense(frozen_ops.one_op, diagonal_values);
+    evaluation += this->active_fock_space->evaluateOperatorDense(frozen_ops.two_op, diagonal_values);
+
+    if (diagonal_values) {
+        // Diagonal correction
+        const auto frozen_core_diagonal = BaseFrozenCoreONVBasis::frozenCoreDiagonal(two_op, this->X, this->active_fock_space->dimension());
+        evaluation += frozen_core_diagonal.asDiagonal();
+    }
+
+    return evaluation;
+}
+
+
+/**
+ *  Evaluate the Hamiltonian in a dense matrix
+ *
+ *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+ *  @param diagonal_values              bool to indicate if diagonal values will be calculated
+ *
+ *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the frozen ONV basis
+ */
+SquareMatrix<double> BaseFrozenCoreONVBasis::evaluateOperatorDense(const SQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const {
+    // Freeze the operators
+    const auto frozen_ham_par = BaseFrozenCoreONVBasis::freezeOperator(sq_hamiltonian, this->X);
+
+    // Evaluate the frozen operator in the active space
+    auto evaluation = this->active_fock_space->evaluateOperatorDense(frozen_ham_par, diagonal_values);
+
+    if (diagonal_values) {
+        // Diagonal correction
+        const auto frozen_core_diagonal = BaseFrozenCoreONVBasis::frozenCoreDiagonal(sq_hamiltonian, this->X, this->active_fock_space->dimension());
+        evaluation += frozen_core_diagonal.asDiagonal();
+    }
+
+    return evaluation;
+}
+
+
+/**
+ *  Evaluate the diagonal of the operator
+ *
+ *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the frozen ONV basis
+ *
+ *  @return the operator's diagonal evaluation in a vector with the dimension of the frozen ONV basis
+ */
+VectorX<double> BaseFrozenCoreONVBasis::evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>& one_op) const {
+
+    const auto frozen_op = BaseFrozenCoreONVBasis::freezeOperator(one_op, this->X);
+
+    // Calculate diagonal in the active space with the "frozen" Hamiltonian
+    const auto diagonal = this->active_fock_space->evaluateOperatorDiagonal(frozen_op);
+
+    // Calculate diagonal for the frozen orbitals
+    const auto frozen_core_diagonal = BaseFrozenCoreONVBasis::frozenCoreDiagonal(one_op, this->X, this->active_fock_space->dimension());
+
+    return diagonal + frozen_core_diagonal;
+};
+
+
+/**
+ *  Evaluate the diagonal of the operator
+ *
+ *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the frozen ONV basis
+ *
+ *  @return the operator's diagonal evaluation in a vector with the dimension of the frozen ONV basis
+ */
+VectorX<double> BaseFrozenCoreONVBasis::evaluateOperatorDiagonal(const ScalarSQTwoElectronOperator<double>& two_op) const {
+
+    const auto frozen_ops = BaseFrozenCoreONVBasis::freezeOperator(two_op, this->X);
+
+    // Calculate diagonal in the active space with the "frozen" Hamiltonian
+    auto diagonal = this->active_fock_space->evaluateOperatorDiagonal(frozen_ops.two_op);
+    diagonal += this->active_fock_space->evaluateOperatorDiagonal(frozen_ops.one_op);
+
+    // Calculate diagonal for the frozen orbitals
+    const auto frozen_core_diagonal = BaseFrozenCoreONVBasis::frozenCoreDiagonal(two_op, this->X, this->active_fock_space->dimension());
+
+    return diagonal + frozen_core_diagonal;
+}
+
+
+/**
+ *  Evaluate the diagonal of the Hamiltonian
+ *
+ *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+ *
+ *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the frozen ONV basis
+ */
+VectorX<double> BaseFrozenCoreONVBasis::evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
+
+    const auto frozen_ham_par = BaseFrozenCoreONVBasis::freezeOperator(sq_hamiltonian, this->X);
+
+    // Calculate diagonal in the active space with the "frozen" Hamiltonian
+    const auto diagonal = this->active_fock_space->evaluateOperatorDiagonal(frozen_ham_par);
+
+    // Calculate diagonal for the frozen orbitals
+    const auto frozen_core_diagonal = BaseFrozenCoreONVBasis::frozenCoreDiagonal(sq_hamiltonian, this->X, this->active_fock_space->dimension());
+
+    return diagonal + frozen_core_diagonal;
+}
+
+
+/**
+ *  Evaluate the operator in a sparse matrix
+ *
+ *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the frozen ONV basis
+ *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+ *
+ *  @return the operator's evaluation in a sparse matrix with the dimensions of the frozen ONV basis
+ */
+Eigen::SparseMatrix<double> BaseFrozenCoreONVBasis::evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op, const bool diagonal_values) const {
+
+    // Freeze the operator
+    ScalarSQOneElectronOperator<double> frozen_one_op = BaseFrozenCoreONVBasis::freezeOperator(one_op, this->X);
+
+    // Evaluate the frozen operator in the active space
+    auto evaluation = this->active_fock_space->evaluateOperatorSparse(frozen_one_op, diagonal_values);
+
+    if (diagonal_values) {
+        // Diagonal correction
+        const auto frozen_core_diagonal = BaseFrozenCoreONVBasis::frozenCoreDiagonal(one_op, this->X, this->active_fock_space->dimension());
+        evaluation += frozen_core_diagonal.asDiagonal();
+    }
+
+    return evaluation;
+}
+
+
+/**
+ *  Evaluate the operator in a sparse matrix
+ *
+ *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the frozen ONV basis
+ *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+ *
+ *  @return the operator's evaluation in a sparse matrix with the dimensions of the frozen ONV basis
+ */
+Eigen::SparseMatrix<double> BaseFrozenCoreONVBasis::evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const {
+
+    // Freeze the operators
+    const auto frozen_ops = BaseFrozenCoreONVBasis::freezeOperator(two_op, this->X);
+
+    // Evaluate the frozen operator in the active space
+    auto evaluation = this->active_fock_space->evaluateOperatorSparse(frozen_ops.one_op, diagonal_values);
+    evaluation += this->active_fock_space->evaluateOperatorSparse(frozen_ops.two_op, diagonal_values);
+
+    if (diagonal_values) {
+        // Diagonal correction
+        const auto frozen_core_diagonal = BaseFrozenCoreONVBasis::frozenCoreDiagonal(two_op, this->X, this->active_fock_space->dimension());
+        evaluation += frozen_core_diagonal.asDiagonal();
+    }
+
+    return evaluation;
+}
+
+
+/**
+ *  Evaluate the Hamiltonian in a sparse matrix
+ *
+ *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+ *  @param diagonal_values              bool to indicate if diagonal values will be calculated
+ *
+ *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the frozen ONV basis
+ */
+Eigen::SparseMatrix<double> BaseFrozenCoreONVBasis::evaluateOperatorSparse(const SQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const {
+
+    // Freeze the operators
+    const auto frozen_ham_par = BaseFrozenCoreONVBasis::freezeOperator(sq_hamiltonian, this->X);
+
+    // Evaluate the frozen operator in the active space
+    auto evaluation = this->active_fock_space->evaluateOperatorSparse(frozen_ham_par, diagonal_values);
+
+    if (diagonal_values) {
+        // Diagonal correction
+        const auto frozen_core_diagonal = BaseFrozenCoreONVBasis::frozenCoreDiagonal(sq_hamiltonian, this->X, this->active_fock_space->dimension());
+        evaluation += frozen_core_diagonal.asDiagonal();
+    }
+
+    return evaluation;
 }
 
 

@@ -15,14 +15,13 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "QCMethod/CI/CI.hpp"
-
 #include "Mathematical/Algorithm/Algorithm.hpp"
 #include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
 #include "ONVBasis/SeniorityZeroONVBasis.hpp"
 #include "ONVBasis/SpinResolvedFrozenONVBasis.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
+#include "QCMethod/CI/CI.hpp"
 #include "QCMethod/CI/CIEnvironment.hpp"
 
 #include <pybind11/pybind11.h>
@@ -53,9 +52,14 @@ void bindQCMethodCI(py::module& module, const std::string& suffix, const std::st
                                              ("CI" + suffix).c_str(),
                                              description.c_str())
 
+        // CONSTRUCTORS
+
         .def(py::init<const ONVBasis, const size_t>(),
              py::arg("onv_basis"),
              py::arg("number_of_states") = 1)
+
+
+        // PUBLIC METHODS
 
         .def(
             "optimize",

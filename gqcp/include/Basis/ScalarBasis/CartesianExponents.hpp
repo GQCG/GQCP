@@ -37,20 +37,22 @@ public:
 
 public:
     // CONSTRUCTORS
-    /**
-     *  @param x        the exponent in x
-     *  @param y        the exponent in y
-     *  @param z        the exponent in z
-     */
-    CartesianExponents(size_t x, size_t y, size_t z);
 
     /**
      *  @param arr      the array containing the x-, y- and z-exponent in that order
      */
     CartesianExponents(const std::array<size_t, 3>& arr);
 
+    /**
+     *  @param x        the exponent in x
+     *  @param y        the exponent in y
+     *  @param z        the exponent in z
+     */
+    CartesianExponents(const size_t x, const size_t y, const size_t z);
+
 
     // OPERATORS
+
     /**
      *  @param rhs      the right-hand side of the operator <
      *
@@ -78,12 +80,6 @@ public:
 
 
     // PUBLIC METHODS
-    /**
-     *  @param direction        the direction (x,y,z) whose exponent should be returned
-     *
-     *  @return the exponent in the given direction
-     */
-    size_t value(CartesianDirection direction) const;
 
     /**
      *  @return the angular momentum corresponding to these exponents
@@ -91,14 +87,21 @@ public:
     size_t angularMomentum() const;
 
     /**
-     *  @return the exponents as an array
-     */
-    const std::array<size_t, 3>& asArray() const;
-
-    /**
      *  @return a sorted list of all permutations (i.e. switching x, y, z) of these Cartesian exponents
      */
     std::vector<CartesianExponents> allPermutations() const;
+
+    /**
+     *  @return the exponents as an array
+     */
+    const std::array<size_t, 3>& asArray() const { return this->exponents; }
+
+    /**
+     *  @param direction        the direction (x,y,z) whose exponent should be returned
+     *
+     *  @return the exponent in the given direction
+     */
+    size_t value(const CartesianDirection direction) const { return this->exponents[direction]; }
 };
 
 

@@ -32,9 +32,10 @@ namespace GQCP {
  *  A base class whose derived classes are able to construct matrix representations of the Hamiltonian in an ONV basis
  *
  *  Derived classes should implement:
- *      - constructHamiltonian() which constructs the full Hamiltonian matrix in the given ONV basis
- *      - matrixVectorProduct() which gives the result of the action of the Hamiltonian on a given coefficient vector
- *      - calculateDiagonal() which gives the diagonal of the Hamiltonian matrix
+ *      - calculateDiagonal()           which gives the diagonal of the Hamiltonian matrix
+ *      - constructHamiltonian()        which constructs the full Hamiltonian matrix in the given ONV basis
+ *      - matrixVectorProduct()         which gives the result of the action of the Hamiltonian on a given coefficient vector
+ *      - onvBasis()                    which returns the ONV basis that is associated with the HamiltonianBuilder
  */
 class HamiltonianBuilder {
 public:
@@ -42,11 +43,14 @@ public:
     virtual ~HamiltonianBuilder() = default;
 
 
-    // PURE VIRTUAL GETTERS
-    virtual const BaseONVBasis* get_fock_space() const = 0;
+    // PUBLIC PURE VIRTUAL METHODS
 
-
-    // PURE VIRTUAL PUBLIC METHODS
+    /**
+     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+     *
+     *  @return the diagonal of the matrix representation of the Hamiltonian
+     */
+    virtual VectorX<double> calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const = 0;
 
     /**
      *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
@@ -65,11 +69,9 @@ public:
     virtual VectorX<double> matrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const = 0;
 
     /**
-     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
-     *
-     *  @return the diagonal of the matrix representation of the Hamiltonian
+     *  @return the ONV basis that is associated with this HamiltonianBuilder
      */
-    virtual VectorX<double> calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const = 0;
+    virtual const BaseONVBasis* onvBasis() const = 0;
 };
 
 

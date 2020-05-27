@@ -204,7 +204,6 @@
 #include "QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
 #include "QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp"
 #include "QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp"
-#include "QCMethod/QCObjective.hpp"
 #include "QCMethod/QCStructure.hpp"
 #include "QCMethod/RMP2/RMP2.hpp"
 #include "QCModel/CI/LinearExpansion.hpp"

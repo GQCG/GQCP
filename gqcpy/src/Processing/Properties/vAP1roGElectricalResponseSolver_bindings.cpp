@@ -33,8 +33,13 @@ void bindvAP1roGElectricalResponseSolver(py::module& module) {
 
     py::class_<GQCP::vAP1roGElectricalResponseSolver>(module, "vAP1roGElectricalResponseSolver", "A class whose instances can solve the response equations for vAP1roG.")
 
+        // CONSTRUCTORS
+
         .def(py::init<const GQCP::QCModel::vAP1roG>(),
              py::arg("vap1rog"))
+
+
+        // PUBLIC METHODS
 
         .def(
             "calculateWaveFunctionResponse",

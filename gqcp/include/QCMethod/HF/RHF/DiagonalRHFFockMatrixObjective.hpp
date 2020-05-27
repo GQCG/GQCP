@@ -18,7 +18,6 @@
 #pragma once
 
 
-#include "QCMethod/QCObjective.hpp"
 #include "QCModel/HF/RHF.hpp"
 
 
@@ -31,8 +30,7 @@ namespace GQCP {
  *  @tparam _Scalar                 the type of scalar used for the expansion coefficients
  */
 template <typename _Scalar>
-class DiagonalRHFFockMatrixObjective:
-    public QCObjective<DiagonalRHFFockMatrixObjective<_Scalar>> {
+class DiagonalRHFFockMatrixObjective {
 
 public:
     using Scalar = _Scalar;

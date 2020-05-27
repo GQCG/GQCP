@@ -48,11 +48,6 @@ public:
     // PUBLIC OVERRIDDEN METHODS
 
     /**
-     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
-     */
-    void prepareOrbitalDerivativesCalculation(const SQHamiltonian<double>& sq_hamiltonian) override {}
-
-    /**
      *  @param sq_hamiltonian      the current Hamiltonian
      *
      *  @return the current orbital gradient of the Edmiston-Ruedenberg localization index as a matrix
@@ -74,6 +69,11 @@ public:
      *  @return the new full set orbital generators, including the redundant parameters
      */
     OrbitalRotationGenerators calculateNewFullOrbitalGenerators(const SQHamiltonian<double>& sq_hamiltonian) const override;
+
+    /**
+     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
+     */
+    void prepareOrbitalDerivativesCalculation(const SQHamiltonian<double>& sq_hamiltonian) override {}
 
 
     // PUBLIC METHODS

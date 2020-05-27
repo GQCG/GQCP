@@ -30,17 +30,25 @@ namespace GQCP {
  *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in the frozen DOCI ONV basis
  */
 class FrozenCoreDOCIRDMBuilder: public FrozenCoreRDMBuilder {
-    SpinUnresolvedFrozenONVBasis fock_space;  // both the frozen alpha and beta spin-unresolved ONV basis
+private:
+    SpinUnresolvedFrozenONVBasis onv_basis;  // both the frozen alpha and beta spin-unresolved ONV basis
+
 
 public:
     // CONSTRUCTORS
-    /**
-     *  @param fock_space       both the frozen alpha and beta spin-unresolved ONV basis
-     */
-    explicit FrozenCoreDOCIRDMBuilder(const SpinUnresolvedFrozenONVBasis& fock_space);
 
-    // OVERRIDDEN GETTERS
-    const BaseONVBasis* get_fock_space() const override { return &fock_space; }
+    /**
+     *  @param onv_basis        both the frozen alpha and beta spin-unresolved ONV basis
+     */
+    explicit FrozenCoreDOCIRDMBuilder(const SpinUnresolvedFrozenONVBasis& onv_basis);
+
+
+    // OVERRIDDEN PUBLIC METHODS
+
+    /**
+     *  @return the ONV basis that is associated to this RDMBuilder
+     */
+    const BaseONVBasis* onvBasis() const override { return &onv_basis; }
 };
 
 

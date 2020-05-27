@@ -22,26 +22,108 @@ namespace GQCP {
 
 
 /*
- *  PRIVATE METHODS
+ *  CONSTRUCTORS
  */
 
+/**
+ *  @param onv_basis       the full spin-resolved ONV basis
+ */
+SelectedCI::SelectedCI(const SpinResolvedSelectedONVBasis& onv_basis) :
+    HamiltonianBuilder(),
+    onv_basis {onv_basis} {}
+
+
+/*
+ *  PUBLIC OVERRIDDEN METHODS
+ */
+
+/**
+ *  @param sq_hamiltonian               the SelectedCI Hamiltonian parameters in an orthonormal orbital basis
+ *
+ *  @return the diagonal of the matrix representation of the SelectedCI Hamiltonian
+ */
+VectorX<double> SelectedCI::calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
+    return this->onv_basis.evaluateOperatorDiagonal(sq_hamiltonian);
+}
+
+
+/**
+ *  @param sq_hamiltonian           the SelectedCI Hamiltonian parameters in an orthonormal orbital basis
+ *
+ *  @return the SelectedCI Hamiltonian matrix
+ */
+SquareMatrix<double> SelectedCI::constructHamiltonian(const SQHamiltonian<double>& sq_hamiltonian) const {
+    auto K = sq_hamiltonian.core().dimension();
+    if (K != this->onv_basis.numberOfOrbitals()) {
+        throw std::invalid_argument("SelectedCI::constructHamiltonian(SQHamiltonian<double>): Basis functions of the ONV basis and sq_hamiltonian are incompatible.");
+    }
+
+    auto dim = onv_basis.dimension();
+
+    SquareMatrix<double> result_matrix = SquareMatrix<double>::Zero(dim, dim);
+    result_matrix += this->calculateDiagonal(sq_hamiltonian).asDiagonal();
+
+    // We should put the calculated elements inside the result matrix
+    PassToMethod addToMatrix = [&result_matrix](size_t I, size_t J, double value) { result_matrix(I, J) += value; };
+
+    this->evaluateHamiltonianElements(sq_hamiltonian, addToMatrix);
+    return result_matrix;
+}
+
+
+/**
+ *  @param sq_hamiltonian               the SelectedCI Hamiltonian parameters in an orthonormal orbital basis
+ *  @param x                            the vector upon which the SelectedCI Hamiltonian acts
+ *  @param diagonal                     the diagonal of the SelectedCI Hamiltonian matrix
+ *
+ *  @return the action of the SelectedCI Hamiltonian on the coefficient vector
+ */
+VectorX<double> SelectedCI::matrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+
+    auto K = sq_hamiltonian.core().dimension();
+    if (K != this->onv_basis.numberOfOrbitals()) {
+        throw std::invalid_argument("SelectedCI::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the ONV basis and sq_hamiltonian are incompatible.");
+    }
+
+    VectorX<double> matvec = diagonal.cwiseProduct(x);
+
+    // We should pass the calculated elements to the resulting vector and perform the product
+    PassToMethod addToMatvec = [&matvec, &x](size_t I, size_t J, double value) { matvec(I) += value * x(J); };
+
+    this->evaluateHamiltonianElements(sq_hamiltonian, addToMatvec);
+
+    return matvec;
+}
+
+
+/*
+ *  PUBLIC METHODS
+ */
+
+/**
+ *  Evaluate all Hamiltonian elements, putting the results in the Hamiltonian matrix or matvec through the `method` function
+ *  This function is used both in `constructHamiltonian()` and `matrixVectorProduct()` to avoid duplicate code.
+ *
+ *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
+ *  @param method                   the method depending to how you wish to construct the Hamiltonian
+ */
 void SelectedCI::evaluateHamiltonianElements(const SQHamiltonian<double>& sq_hamiltonian, const PassToMethod& method) const {
 
-    const size_t dim = onv_basis.get_dimension();
-    const size_t K = onv_basis.get_K();
+    const size_t dim = onv_basis.dimension();
+    const size_t K = onv_basis.numberOfOrbitals();
 
     const auto& h = sq_hamiltonian.core().parameters();
     const auto& g = sq_hamiltonian.twoElectron().parameters();
 
     for (size_t I = 0; I < dim; I++) {  // loop over all addresses (1)
-        SpinResolvedONV configuration_I = this->onv_basis.get_configuration(I);
+        SpinResolvedONV configuration_I = this->onv_basis.onvWithIndex(I);
         SpinUnresolvedONV alpha_I = configuration_I.onv(Spin::alpha);
         SpinUnresolvedONV beta_I = configuration_I.onv(Spin::beta);
 
         // Calculate the off-diagonal elements, by going over all other ONVs
         for (size_t J = I + 1; J < dim; J++) {
 
-            SpinResolvedONV configuration_J = this->onv_basis.get_configuration(J);
+            SpinResolvedONV configuration_J = this->onv_basis.onvWithIndex(J);
             SpinUnresolvedONV alpha_J = configuration_J.onv(Spin::alpha);
             SpinUnresolvedONV beta_J = configuration_J.onv(Spin::beta);
 
@@ -176,81 +258,6 @@ void SelectedCI::evaluateHamiltonianElements(const SQHamiltonian<double>& sq_ham
             }
         }  // loop over addresses J > I
     }      // loop over addresses I
-}
-
-
-/*
- *  CONSTRUCTORS
- */
-
-/**
- *  @param onv_basis       the full spin-resolved ONV basis
- */
-SelectedCI::SelectedCI(const SpinResolvedSelectedONVBasis& onv_basis) :
-    HamiltonianBuilder(),
-    onv_basis {onv_basis} {}
-
-
-/*
- *  OVERRIDDEN PUBLIC METHODS
- */
-
-/**
- *  @param sq_hamiltonian           the SelectedCI Hamiltonian parameters in an orthonormal orbital basis
- *
- *  @return the SelectedCI Hamiltonian matrix
- */
-SquareMatrix<double> SelectedCI::constructHamiltonian(const SQHamiltonian<double>& sq_hamiltonian) const {
-    auto K = sq_hamiltonian.core().get_dim();
-    if (K != this->onv_basis.get_K()) {
-        throw std::invalid_argument("SelectedCI::constructHamiltonian(SQHamiltonian<double>): Basis functions of the ONV basis and sq_hamiltonian are incompatible.");
-    }
-
-    auto dim = onv_basis.get_dimension();
-
-    SquareMatrix<double> result_matrix = SquareMatrix<double>::Zero(dim, dim);
-    result_matrix += this->calculateDiagonal(sq_hamiltonian).asDiagonal();
-
-    // We should put the calculated elements inside the result matrix
-    PassToMethod addToMatrix = [&result_matrix](size_t I, size_t J, double value) { result_matrix(I, J) += value; };
-
-    this->evaluateHamiltonianElements(sq_hamiltonian, addToMatrix);
-    return result_matrix;
-}
-
-
-/**
- *  @param sq_hamiltonian               the SelectedCI Hamiltonian parameters in an orthonormal orbital basis
- *  @param x                            the vector upon which the SelectedCI Hamiltonian acts
- *  @param diagonal                     the diagonal of the SelectedCI Hamiltonian matrix
- *
- *  @return the action of the SelectedCI Hamiltonian on the coefficient vector
- */
-VectorX<double> SelectedCI::matrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
-
-    auto K = sq_hamiltonian.core().get_dim();
-    if (K != this->onv_basis.get_K()) {
-        throw std::invalid_argument("SelectedCI::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the ONV basis and sq_hamiltonian are incompatible.");
-    }
-
-    VectorX<double> matvec = diagonal.cwiseProduct(x);
-
-    // We should pass the calculated elements to the resulting vector and perform the product
-    PassToMethod addToMatvec = [&matvec, &x](size_t I, size_t J, double value) { matvec(I) += value * x(J); };
-
-    this->evaluateHamiltonianElements(sq_hamiltonian, addToMatvec);
-
-    return matvec;
-}
-
-
-/**
- *  @param sq_hamiltonian               the SelectedCI Hamiltonian parameters in an orthonormal orbital basis
- *
- *  @return the diagonal of the matrix representation of the SelectedCI Hamiltonian
- */
-VectorX<double> SelectedCI::calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
-    return this->onv_basis.evaluateOperatorDiagonal(sq_hamiltonian);
 }
 
 

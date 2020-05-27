@@ -39,7 +39,7 @@ private:
 
 public:
     /*
-     *  OVERRIDDEN PUBLIC METHODS
+     *  PUBLIC OVERRIDDEN METHODS
      */
 
     /**

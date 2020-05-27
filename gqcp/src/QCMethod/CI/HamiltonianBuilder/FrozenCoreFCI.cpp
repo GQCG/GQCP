@@ -31,7 +31,7 @@ namespace GQCP {
  *  @param onv_basis       the spin-resolved frozen ONV basis
  */
 FrozenCoreFCI::FrozenCoreFCI(const SpinResolvedFrozenONVBasis& onv_basis) :
-    FrozenCoreCI(std::make_shared<FCI>(onv_basis.get_active_product_fock_space()), onv_basis.get_number_of_frozen_orbitals()),
+    FrozenCoreCI(std::make_shared<FCI>(onv_basis.activeONVBasis()), onv_basis.numberOfFrozenOrbitals()),
     onv_basis {onv_basis} {}
 
 

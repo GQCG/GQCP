@@ -39,20 +39,14 @@ public:
 
 
     // DESTRUCTOR
+
+    /**
+     *  The default destructor.
+     */
     virtual ~QCMethodNewtonOrbitalOptimizer() = default;
 
 
-    // GETTERS
-    const OneRDM<double>& get_D() const { return this->D; }
-    const TwoRDM<double>& get_d() const { return this->d; }
-
-
     // PUBLIC PURE VIRTUAL METHODS
-
-    /**
-     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the 1- and 2-DMs
-     */
-    virtual void prepareDMCalculation(const SQHamiltonian<double>& sq_hamiltonian) = 0;
 
     /**
      *  @return the current 1-DM
@@ -64,15 +58,13 @@ public:
      */
     virtual TwoRDM<double> calculate2RDM() const = 0;
 
+    /**
+     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the 1- and 2-DMs
+     */
+    virtual void prepareDMCalculation(const SQHamiltonian<double>& sq_hamiltonian) = 0;
+
 
     // PUBLIC OVERRIDDEN METHODS
-
-    /**
-     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence in this Newton-based orbital optimizer for quantum chemical methods
-     * 
-     *  In the case of this uncoupled DOCI orbital optimizer, the DOCI eigenvalue problem is re-solved in every iteration using the current orbitals
-     */
-    void prepareOrbitalDerivativesCalculation(const SQHamiltonian<double>& sq_hamiltonian) override;
 
     /**
      *  @param sq_hamiltonian      the current Hamiltonian
@@ -87,6 +79,24 @@ public:
      *  @return the current orbital Hessian as a tensor
      */
     SquareRankFourTensor<double> calculateHessianTensor(const SQHamiltonian<double>& sq_hamiltonian) const override;
+
+    /**
+     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence in this Newton-based orbital optimizer for quantum chemical methods.
+     */
+    void prepareOrbitalDerivativesCalculation(const SQHamiltonian<double>& sq_hamiltonian) override;
+
+
+    // PUBLIC METHODS
+
+    /**
+     *  @return the 1-RDM calculated by this orbital optimizer
+     */
+    const OneRDM<double>& oneRDM() const { return this->D; }
+
+    /**
+     *  @return the 2-RDM calculated by this orbital optimizer
+     */
+    const TwoRDM<double>& twoRDM() const { return this->d; }
 };
 
 

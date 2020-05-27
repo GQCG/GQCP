@@ -33,7 +33,7 @@ DOCIRDMBuilder::DOCIRDMBuilder(const SeniorityZeroONVBasis& onv_basis) :
 
 
 /*
- *  OVERRIDDEN PUBLIC METHODS
+ *  PUBLIC OVERRIDDEN METHODS
  */
 
 /**
@@ -52,18 +52,18 @@ OneRDMs<double> DOCIRDMBuilder::calculate1RDMs(const VectorX<double>& x) const {
 
     // Create the first ONV (with address 0). In DOCI, the ONV basis for alpha and beta is equal, so we can use the proxy ONV basis.
     const auto onv_basis_proxy = this->onv_basis.proxy();
-    SpinUnresolvedONV onv = onv_basis_proxy.makeONV(0);
+    SpinUnresolvedONV onv = onv_basis_proxy.constructONVFromAddress(0);
     for (size_t I = 0; I < dimension; I++) {  // I loops over all the addresses of the doubly-occupied ONVs
 
-        for (size_t e1 = 0; e1 < onv_basis_proxy.get_N(); e1++) {  // e1 (electron 1) loops over the number of electrons
-            const size_t p = onv.occupationIndexOf(e1);         // retrieve the index of the orbital the electron occupies
-            const double c_I = x(I);                               // coefficient of the I-th basis vector
+        for (size_t e1 = 0; e1 < onv_basis_proxy.numberOfElectrons(); e1++) {  // e1 (electron 1) loops over the number of electrons
+            const size_t p = onv.occupationIndexOf(e1);                        // retrieve the index of the orbital the electron occupies
+            const double c_I = x(I);                                           // coefficient of the I-th basis vector
 
             D(p, p) += 2 * std::pow(c_I, 2);
         }
 
         if (I < dimension - 1) {  // prevent the last permutation from occurring
-            onv_basis_proxy.setNextONV(onv);
+            onv_basis_proxy.transformONVToNextPermutation(onv);
         }
     }
 
@@ -93,7 +93,7 @@ TwoRDMs<double> DOCIRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
 
     // Create the first ONV (with address 0). In DOCI, the ONV basis for alpha and beta is equal, so we can use the proxy ONV basis.
     const auto onv_basis_proxy = this->onv_basis.proxy();
-    SpinUnresolvedONV onv = onv_basis_proxy.makeONV(0);
+    SpinUnresolvedONV onv = onv_basis_proxy.constructONVFromAddress(0);
     for (size_t I = 0; I < dimension; I++) {  // I loops over all the addresses of the spin strings
         for (size_t p = 0; p < K; p++) {      // p loops over SOs
             if (onv.annihilate(p)) {          // if p is occupied in I
@@ -103,10 +103,10 @@ TwoRDMs<double> DOCIRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
 
                 d_aabb(p, p, p, p) += c_I_2;
 
-                for (size_t q = 0; q < p; q++) {                           // q loops over SOs with an index smaller than p
-                    if (onv.create(q)) {                                   // if q is not occupied in I
-                        const size_t J = onv_basis_proxy.getAddress(onv);  // the address of the coupling string
-                        const double c_J = x(J);                           // coefficient of the J-th basis vector
+                for (size_t q = 0; q < p; q++) {                          // q loops over SOs with an index smaller than p
+                    if (onv.create(q)) {                                  // if q is not occupied in I
+                        const size_t J = onv_basis_proxy.addressOf(onv);  // the address of the coupling string
+                        const double c_J = x(J);                          // coefficient of the J-th basis vector
 
                         d_aabb(p, q, p, q) += c_I * c_J;
                         d_aabb(q, p, q, p) += c_I * c_J;  // since we're looping for q < p
@@ -130,7 +130,7 @@ TwoRDMs<double> DOCIRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
         }
 
         if (I < dimension - 1) {  // prevent the last permutation from occurring
-            onv_basis_proxy.setNextONV(onv);
+            onv_basis_proxy.transformONVToNextPermutation(onv);
         }
     }
 

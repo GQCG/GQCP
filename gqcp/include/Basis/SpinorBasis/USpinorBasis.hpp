@@ -207,9 +207,7 @@ public:
      *  @note this method is only available for real matrix representations
      */
     template <typename Z = ExpansionScalar>
-    enable_if_t<std::is_same<Z, double>::value, ScalarSQOneElectronOperator<double>> calculateMullikenOperator(const std::vector<size_t>& ao_list, const Spin& sigma) const {
-        return this->spinor_bases[sigma].template calculateMullikenOperator<ExpansionScalar>(ao_list);
-    }
+    enable_if_t<std::is_same<Z, double>::value, ScalarSQOneElectronOperator<double>> calculateMullikenOperator(const std::vector<size_t>& ao_list, const Spin& sigma) const { return this->spinor_bases[sigma].template calculateMullikenOperator<ExpansionScalar>(ao_list); }
 
 
     /**
@@ -217,10 +215,7 @@ public:
      * 
      *  @return the coefficient matrix for the requested component, i.e. the matrix of the expansion coefficients of the requested component of the spinors in terms of its underlying scalar basis
      */
-    const MatrixX<ExpansionScalar>& coefficientMatrix(const Spin sigma) const {
-        return spinor_bases[sigma].coefficientMatrix();
-    }
-
+    const MatrixX<ExpansionScalar>& coefficientMatrix(const Spin sigma) const { return spinor_bases[sigma].coefficientMatrix(); }
 
     /**
      *  @return the total number of spinors/spin-orbitals that this spinor basis describes
@@ -238,10 +233,7 @@ public:
      * 
      *  @return the total number of sigma-spinors/spin-orbitals that this spinor basis describes
      */
-    size_t numberOfSpinors(const Spin sigma) const {
-        return this->scalarBasis(sigma).numberOfBasisFunctions();
-    }
-
+    size_t numberOfSpinors(const Spin sigma) const { return this->scalarBasis(sigma).numberOfBasisFunctions(); }
 
     /**
      *  @param sigma                alpha or beta
@@ -249,19 +241,14 @@ public:
      * 
      *  @return if this spinor basis for the requested component is orthonormal within the given precision
      */
-    bool isOrthonormal(const Spin& sigma, const double precision = 1.0e-08) const {
-        return this->spinor_bases[sigma].isOrthonormal(precision);
-    }
-
+    bool isOrthonormal(const Spin& sigma, const double precision = 1.0e-08) const { return this->spinor_bases[sigma].isOrthonormal(precision); }
 
     /**
      *  @param precision                the precision used to test orthonormality
      * 
      *  @return if this spinor basis is orthonormal within the given precision
      */
-    bool isOrthonormal(const double precision = 1.0e-08) const {
-        return this->isOrthonormal(Spin::alpha, precision) && this->isOrthonormal(Spin::beta, precision);
-    }
+    bool isOrthonormal(const double precision = 1.0e-08) const { return this->isOrthonormal(Spin::alpha, precision) && this->isOrthonormal(Spin::beta, precision); }
 
 
     /**
@@ -269,20 +256,14 @@ public:
      * 
      *  @return the transformation matrix to the Löwdin basis for the requested component: T = S_current^{-1/2}
      */
-    TransformationMatrix<double> lowdinOrthonormalizationMatrix(const Spin& sigma) const {
-        return this->spinor_bases[sigma].lowdinOrthonormalizationMatrix();
-    }
-
+    TransformationMatrix<double> lowdinOrthonormalizationMatrix(const Spin& sigma) const { return this->spinor_bases[sigma].lowdinOrthonormalizationMatrix(); }
 
     /**
      *  @param sigma                alpha or beta
      * 
      *  Transform the spinor basis to the 'Löwdin basis', which is the orthonormal basis that we transform to with T = S^{-1/2}, where S is the current overlap matrix
      */
-    void lowdinOrthonormalize(const Spin& sigma) {
-        this->spinor_bases[sigma].lowdinOrthonormalize();
-    }
-
+    void lowdinOrthonormalize(const Spin& sigma) { this->spinor_bases[sigma].lowdinOrthonormalize(); }
 
     /**
      *  Transform the spinor basis to the 'Löwdin basis', which is the orthonormal basis that we transform to with T = S^{-1/2}, where S is the current overlap matrix
@@ -298,22 +279,7 @@ public:
      * 
      *  @return the overlap (one-electron) operator of the requested component of this spinor basis
      */
-    ScalarSQOneElectronOperator<ExpansionScalar> overlap(const Spin& sigma) const {
-        return this->spinor_bases[sigma].quantize(Operator::Overlap());
-    }
-
-
-    /**
-     *  @param fq_op                the first-quantized one-electron operator
-     *  @param sigma                alpha or beta
-     * 
-     *  @return the second-quantized operator corresponding to the given first-quantized operator in the spinor basis of the requested component
-     */
-    template <typename FQOneElectronOperator>
-    auto quantize(const FQOneElectronOperator& fq_op, const Spin& sigma) const -> SQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, FQOneElectronOperator::Components> {
-        return this->spinor_bases[sigma].quantize(fq_op);
-    }
-
+    ScalarSQOneElectronOperator<ExpansionScalar> overlap(const Spin& sigma) const { return this->spinor_bases[sigma].quantize(Operator::Overlap()); }
 
     /**
      *  @param fq_op                the first-quantized Coulomb operator
@@ -323,10 +289,16 @@ public:
      * 
      *  @note This method is not (yet) capable of calculating 'mixed' integrals such as g_aabb.
      */
-    auto quantize(const CoulombRepulsionOperator& fq_op, const Spin& sigma) const -> SQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>, CoulombRepulsionOperator::Components> {
-        return this->spinor_bases[sigma].quantize(fq_op);
-    }
+    auto quantize(const CoulombRepulsionOperator& fq_op, const Spin& sigma) const -> SQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>, CoulombRepulsionOperator::Components> { return this->spinor_bases[sigma].quantize(fq_op); }
 
+    /**
+     *  @param fq_op                the first-quantized one-electron operator
+     *  @param sigma                alpha or beta
+     * 
+     *  @return the second-quantized operator corresponding to the given first-quantized operator in the spinor basis of the requested component
+     */
+    template <typename FQOneElectronOperator>
+    auto quantize(const FQOneElectronOperator& fq_op, const Spin& sigma) const -> SQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, FQOneElectronOperator::Components> { return this->spinor_bases[sigma].quantize(fq_op); }
 
     /**
      *  Rotate the spinor basis of the requested component to another one using the given unitary transformation matrix
@@ -334,9 +306,7 @@ public:
      *  @param U                        the unitary transformation matrix that transforms both the alpha or beta component
      *  @param sigma                    alpha or beta
      */
-    void rotate(const TransformationMatrix<ExpansionScalar>& U, const Spin& sigma) {
-        this->spinor_bases[sigma].rotate(U);
-    }
+    void rotate(const TransformationMatrix<ExpansionScalar>& U, const Spin& sigma) { this->spinor_bases[sigma].rotate(U); }
 
     /**
      *  Rotate the spinor basis to another one using the given unitary transformation matrix
@@ -360,10 +330,7 @@ public:
      *  @note this function is only available for real spinor bases because Jacobi rotation parameters generate real rotations
      */
     template <typename Z = ExpansionScalar>
-    enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters, const Spin& sigma) {
-        this->spinor_bases[sigma].rotate(jacobi_rotation_parameters);
-    }
-
+    enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters, const Spin& sigma) { this->spinor_bases[sigma].rotate(jacobi_rotation_parameters); }
 
     /**
      *  Rotate the spinor basis for both the alpha- and beta components to another one using the unitary transformation matrix that corresponds to the given Jacobi rotation parameters
@@ -401,9 +368,7 @@ public:
      *  @param T                        the transformation matrix that transforms the requested component
      *  @param sigma                    alpha or beta
      */
-    void transform(const TransformationMatrix<ExpansionScalar>& T, const Spin& sigma) {
-        this->spinor_bases[sigma].transform(T);
-    }
+    void transform(const TransformationMatrix<ExpansionScalar>& T, const Spin& sigma) { this->spinor_bases[sigma].transform(T); }
 
 
     /**

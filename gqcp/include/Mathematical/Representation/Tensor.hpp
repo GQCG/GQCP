@@ -63,17 +63,17 @@ public:
      *  @param j            2nd starting index
      *  @param k            3rd starting index
      *  @param l            4th starting index
-     *  @param desize       early cut-off of index iteration
+     *  @param cutoff       early cut-off of index iteration
      *
      *  @return a rank-4 tensor from an other rank-4 tensor, starting from given indices
      */
     template <int Z = Rank>
-    static enable_if_t<Z == 4, Self> FromBlock(const Self& T, size_t i, size_t j, size_t k, size_t l, size_t desize = 0) {
+    static enable_if_t<Z == 4, Self> FromBlock(const Self& T, const size_t i, const size_t j, const size_t k, const size_t l, const size_t cutoff = 0) {
 
-        Tensor<double, Rank> T_result {static_cast<long>(T.dimension(0) - i - desize),
-                                       static_cast<long>(T.dimension(1) - j - desize),
-                                       static_cast<long>(T.dimension(2) - k - desize),
-                                       static_cast<long>(T.dimension(3) - l - desize)};
+        Tensor<double, Rank> T_result {static_cast<long>(T.dimension(0) - i - cutoff),
+                                       static_cast<long>(T.dimension(1) - j - cutoff),
+                                       static_cast<long>(T.dimension(2) - k - cutoff),
+                                       static_cast<long>(T.dimension(3) - l - cutoff)};
         T_result.setZero();
 
         for (size_t p = 0; p < T_result.dimension(0); p++) {
@@ -95,26 +95,98 @@ public:
      */
 
     /**
+     *  Add a matrix to a this tensor starting from given indices
+     *
+     *  @tparam r               indicates with which tensor index axis (0,1,2,3) the row index axis of the matrix should align 
+     *  @tparam s               indicates with which tensor index axis (0,1,2,3) the column index axis of the matrix should align 
+     *
+     *  @param M                a matrix
+     *  @param i                starting index for the 1st index axis of the tensor
+     *  @param j                starting index for the 2nd index axis of the tensor
+     *  @param k                starting index for the 3rd index axis of the tensor
+     *  @param l                starting index for the 4th index axis of the tensor
+     *
+     *  @return a reference to updated this
+     *
+     *
+     *  Example:
+     *      Given a rank-4 tensor of dimensions (10,10,10,10), and a matrix M of dimensions (3,3)
+     *       Input : <2,0> (M, 0, 2, 1, 3):
+     *       <2,0> dictates that the row index axis of the matrix aligns with the 3rd index axis of the tensor (2nd starting from 0)
+     *       and that the column index axis of the matrix aligns with the 1st index axis tensor (0th starting from 0)
+     *       (0, 2, 1, 3) dictates the starting indexes to which the matrix is added, 
+     *       given the input <2,0> this means the indices of the 2nd (indicated by the "2") and the 4th (indicated by the "3") axes 
+     *       are held fixed because they do not correspond to the entries <2,0>.
+     */
+    template <size_t r, size_t s, int Z = Rank>
+    enable_if_t<Z == 4, Self&> addBlock(const MatrixX<Scalar>& M, const size_t i, const size_t j, const size_t k, const size_t l) {
+
+        // Initialize series of arrays with 1 or 0 values, so that the correct tensor indices given by the template argument correspond to the matrix indices
+        size_t ia[4] = {1, 0, 0, 0};
+        size_t ja[4] = {0, 1, 0, 0};
+        size_t ka[4] = {0, 0, 1, 0};
+        size_t la[4] = {0, 0, 0, 1};
+
+        for (size_t x = 0; x < M.rows(); x++) {
+            for (size_t y = 0; y < M.cols(); y++) {
+
+                size_t i_effective = i + x * ia[r] + y * ia[s];
+                size_t j_effective = j + x * ja[r] + y * ja[s];
+                size_t k_effective = k + x * ka[r] + y * ka[s];
+                size_t l_effective = l + x * la[r] + y * la[s];
+
+                this->operator()(i_effective, j_effective, k_effective, l_effective) += M(x, y);
+            }
+        }
+
+        return (*this);
+    }
+
+
+    /**
+     *  Add a rank-4 tensor into this, starting from given indices
+     *
+     *  @param T                a rank-4 tensor
+     *  @param i                starting index for the 1st index axis of the tensor
+     *  @param j                starting index for the 2nd index axis of the tensor
+     *  @param k                starting index for the 3rd index axis of the tensor
+     *  @param l                starting index for the 4th index axis of the tensor
+     *
+     *  @return a reference to updated this
+     */
+    template <int Z = Rank>
+    enable_if_t<Z == 4, Self&> addBlock(const Self& T, const size_t i, const size_t j, const size_t k, const size_t l) {
+
+        for (size_t p = 0; p < T.dimension(0); p++) {
+            for (size_t q = 0; q < T.dimension(1); q++) {
+                for (size_t r = 0; r < T.dimension(2); r++) {
+                    for (size_t s = 0; s < T.dimension(3); s++) {
+                        this->operator()(i + p, j + q, k + r, l + s) += T(p, q, r, s);
+                    }
+                }
+            }
+        }
+
+        return (*this);
+    }
+
+
+    /**
      *  @return this as a const Eigen::Tensor, as a work-around to fix Eigen::Tensor expressions
      */
-    const Base& Eigen() const {
-        return static_cast<const Base&>(*this);
-    }
+    const Base& Eigen() const { return static_cast<const Base&>(*this); }
 
     /**
      *  @return this as a non-const Eigen::Tensor, as a work-around to fix Eigen::Tensor expressions
      */
-    Base& Eigen() {
-        return static_cast<Base&>(*this);
-    }
-
+    Base& Eigen() { return static_cast<Base&>(*this); }
 
     /**
      *  @param other        the other tensor
      *
      *  @return if this tensor has the same dimensions as the other tensor
      */
-    bool hasEqualDimensions(const Self& other) const {
+    bool hasEqualDimensionsAs(const Self& other) const {
 
         for (size_t i = 0; i < Rank; i++) {
             if (this->dimension(i) != other.dimension(i)) {
@@ -133,9 +205,9 @@ public:
      *  @return if this is approximately equal to the other
      */
     template <int Z = Rank>
-    enable_if_t<Z == 4, bool> isApprox(const Self& other, double tolerance = 1.0e-12) const {
+    enable_if_t<Z == 4, bool> isApprox(const Self& other, const double tolerance = 1.0e-12) const {
 
-        if (!this->hasEqualDimensions(other)) {
+        if (!this->hasEqualDimensionsAs(other)) {
             throw std::invalid_argument("RankFourTensor<Scalar>::isApprox(Self, double): the tensors have different dimensions");
         }
 
@@ -157,26 +229,6 @@ public:
 
 
     /**
-     *  Print the contents of this to an output stream
-     *
-     *  @param output_stream        the stream used for outputting
-     */
-    template <int Z = Rank>
-    enable_if_t<Z == 4> print(std::ostream& output_stream = std::cout) const {
-
-        for (size_t i = 0; i < this->dimension(0); i++) {
-            for (size_t j = 0; j < this->dimension(1); j++) {
-                for (size_t k = 0; k < this->dimension(2); k++) {
-                    for (size_t l = 0; l < this->dimension(3); l++) {
-                        output_stream << i << ' ' << j << ' ' << k << ' ' << l << "  " << this->operator()(i, j, k, l) << std::endl;
-                    }
-                }
-            }
-        }
-    }
-
-
-    /**
      *  @param start_i      the index at which the first rank should start
      *  @param start_j      the index at which the second rank should start
      *  @param start_k      the index at which the third rank should start
@@ -190,7 +242,7 @@ public:
      *      n is calculated from k and l in a column-major way
      */
     template <int Z = Rank>
-    enable_if_t<Z == 4, Matrix<Scalar>> pairWiseReduce(const size_t start_i = 0, const size_t start_j = 0, const size_t start_k = 0, const size_t start_l = 0) const {
+    enable_if_t<Z == 4, Matrix<Scalar>> pairWiseReduced(const size_t start_i = 0, const size_t start_j = 0, const size_t start_k = 0, const size_t start_l = 0) const {
 
         // Initialize the resulting matrix
         const auto dims = this->dimensions();
@@ -221,79 +273,22 @@ public:
 
 
     /**
-     *  Add a rank-4 tensor into this, starting from given indices
+     *  Print the contents of this to an output stream
      *
-     *  @param T        a rank-4 tensor
-     *  @param i                starting index for the 1st index axis of the tensor
-     *  @param j                starting index for the 2nd index axis of the tensor
-     *  @param k                starting index for the 3rd index axis of the tensor
-     *  @param l                starting index for the 4th index axis of the tensor
-     *
-     *  @return a reference to updated this
+     *  @param output_stream        the stream used for outputting
      */
     template <int Z = Rank>
-    enable_if_t<Z == 4, Self&> addBlock(const Self& T, size_t i, size_t j, size_t k, size_t l) {
+    enable_if_t<Z == 4> print(std::ostream& output_stream = std::cout) const {
 
-        for (size_t p = 0; p < T.dimension(0); p++) {
-            for (size_t q = 0; q < T.dimension(1); q++) {
-                for (size_t r = 0; r < T.dimension(2); r++) {
-                    for (size_t s = 0; s < T.dimension(3); s++) {
-                        this->operator()(i + p, j + q, k + r, l + s) += T(p, q, r, s);
+        for (size_t i = 0; i < this->dimension(0); i++) {
+            for (size_t j = 0; j < this->dimension(1); j++) {
+                for (size_t k = 0; k < this->dimension(2); k++) {
+                    for (size_t l = 0; l < this->dimension(3); l++) {
+                        output_stream << i << ' ' << j << ' ' << k << ' ' << l << "  " << this->operator()(i, j, k, l) << std::endl;
                     }
                 }
             }
         }
-
-        return (*this);
-    }
-
-
-    /**
-     *  Add a matrix to a this tensor starting from given indices
-     *
-     *  @tparam r               indicates with which tensor index axis (0,1,2,3) the row index axis of the matrix should align 
-     *  @tparam s               indicates with which tensor index axis (0,1,2,3) the column index axis of the matrix should align 
-     *
-     *  @param M                a matrix
-     *  @param i                starting index for the 1st index axis of the tensor
-     *  @param j                starting index for the 2nd index axis of the tensor
-     *  @param k                starting index for the 3rd index axis of the tensor
-     *  @param l                starting index for the 4th index axis of the tensor
-     *
-     *  @return a reference to updated this
-     *
-     *
-     *  Example:
-     *      Given a rank-4 tensor of dimensions (10,10,10,10), and a matrix M of dimensions (3,3)
-     *       Input : <2,0> (M, 0, 2, 1, 3):
-     *       <2,0> dictates that the row index axis of the matrix aligns with the 3rd index axis of the tensor (2nd starting from 0)
-     *       and that the column index axis of the matrix aligns with the 1st index axis tensor (0th starting from 0)
-     *       (0, 2, 1, 3) dictates the starting indexes to which the matrix is added, 
-     *       given the input <2,0> this means the indices of the 2nd (indicated by the "2") and the 4th (indicated by the "3") axes 
-     *       are held fixed because they do not correspond to the entries <2,0>.
-     */
-    template <size_t r, size_t s, int Z = Rank>
-    enable_if_t<Z == 4, Self&> addBlock(const MatrixX<Scalar>& M, size_t i, size_t j, size_t k, size_t l) {
-
-        // Initialize series of arrays with 1 or 0 values, so that the correct tensor indices given by the template argument correspond to the matrix indices
-        size_t ia[4] = {1, 0, 0, 0};
-        size_t ja[4] = {0, 1, 0, 0};
-        size_t ka[4] = {0, 0, 1, 0};
-        size_t la[4] = {0, 0, 0, 1};
-
-        for (size_t x = 0; x < M.rows(); x++) {
-            for (size_t y = 0; y < M.cols(); y++) {
-
-                size_t i_effective = i + x * ia[r] + y * ia[s];
-                size_t j_effective = j + x * ja[r] + y * ja[s];
-                size_t k_effective = k + x * ka[r] + y * ka[s];
-                size_t l_effective = l + x * la[r] + y * la[s];
-
-                this->operator()(i_effective, j_effective, k_effective, l_effective) += M(x, y);
-            }
-        }
-
-        return (*this);
     }
 };
 

@@ -24,10 +24,15 @@ namespace GQCP {
 
 
 /*
- *  CONSTRUCTOR
+ *  CONSTRUCTORS
  */
-FrozenCoreFCIRDMBuilder::FrozenCoreFCIRDMBuilder(const SpinResolvedFrozenONVBasis& fock_space) :
-    FrozenCoreRDMBuilder(std::make_shared<FCIRDMBuilder>(fock_space.get_active_product_fock_space()), fock_space.get_number_of_frozen_orbitals()),
-    fock_space {fock_space} {}
+
+/**
+ *  @param onv_basis       the frozen spin-resolved ONV basis
+ */
+FrozenCoreFCIRDMBuilder::FrozenCoreFCIRDMBuilder(const SpinResolvedFrozenONVBasis& onv_basis) :
+    FrozenCoreRDMBuilder(std::make_shared<FCIRDMBuilder>(onv_basis.activeONVBasis()), onv_basis.numberOfFrozenOrbitals()),
+    onv_basis {onv_basis} {}
+
 
 }  // namespace GQCP

@@ -162,21 +162,6 @@ bool SpinUnresolvedONV::operator!=(const SpinUnresolvedONV& other) const {
 
 
 /*
- *  SETTERS
- */
-
-/**
- *  @param unsigned_representation      the new representation as an unsigned integer
- *
- *  Set the representation of an ONV to a new representation and call update the occupation indices accordingly
- */
-void SpinUnresolvedONV::set_representation(size_t unsigned_representation) {
-    this->unsigned_representation = unsigned_representation;
-    this->updateOccupationIndices();
-}
-
-
-/*
  *  PUBLIC METHODS
  */
 
@@ -581,6 +566,18 @@ OrbitalSpace SpinUnresolvedONV::orbitalSpace() const {
 
     // Create an occupied-virtual orbital space.
     return OrbitalSpace(this->occupiedIndices(), this->unoccupiedIndices());
+}
+
+
+/**
+ *  @param unsigned_representation      the new representation as an unsigned integer
+ *
+ *  Set the representation of an ONV to a new representation and call update the occupation indices accordingly
+ */
+void SpinUnresolvedONV::replaceRepresentationWith(const size_t unsigned_representation) {
+
+    this->unsigned_representation = unsigned_representation;
+    this->updateOccupationIndices();
 }
 
 

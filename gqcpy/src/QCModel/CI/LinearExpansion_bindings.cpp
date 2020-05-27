@@ -52,6 +52,7 @@ void bindLinearExpansion(py::module& module, const std::string& suffix, const st
                                                 description.c_str())
 
         // PUBLIC METHODS
+
         .def("coefficients",
              &GQCP::LinearExpansion<ONVBasis>::coefficients,
              "Return the expansion coefficients of this linear expansion wave function model.");
@@ -73,6 +74,7 @@ void bindLinearExpansion<GQCP::SeniorityZeroONVBasis>(py::module& module, const 
                                                                    description.c_str())
 
         // PUBLIC METHODS
+
         .def(
             "calculate1DM",
             [](const GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>& linear_expansion) {
@@ -101,6 +103,7 @@ void bindLinearExpansion<GQCP::SpinResolvedONVBasis>(py::module& module, const s
                                                                   description.c_str())
 
         // CONSTRUCTORS
+
         .def_static(
             "FromONVProjection",
             [](const GQCP::SpinResolvedONV& onv, const GQCP::RSpinorBasis<double, GQCP::GTOShell>& r_spinor_basis, const GQCP::USpinorBasis<double, GQCP::GTOShell>& u_spinor_basis) {
@@ -111,7 +114,9 @@ void bindLinearExpansion<GQCP::SpinResolvedONVBasis>(py::module& module, const s
             py::arg("u_spinor_basis"),
             "Create the linear expansion of the given spin-resolved ONV that is expressed in the given USpinorBasis, by projection onto the spin-resolved ONVs expressed with respect to the given RSpinorBasis.")
 
+
         // PUBLIC METHODS
+
         .def("coefficients",
              &GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::coefficients,
              "Return the expansion coefficients of this linear expansion wave function model.")
@@ -141,6 +146,7 @@ void bindLinearExpansion<GQCP::SpinUnresolvedONVBasis>(py::module& module, const
                                                                     description.c_str())
 
         // CONSTRUCTORS
+
         .def_static(
             "FromONVProjection",
             [](const GQCP::SpinUnresolvedONV& onv_of, const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis_on, const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis_of) {
@@ -151,7 +157,9 @@ void bindLinearExpansion<GQCP::SpinUnresolvedONVBasis>(py::module& module, const
             py::arg("spinor_basis_of"),
             "Create the linear expansion of the given spin-unresolved ONV that is expressed in the given GSpinorBasis, by projection onto the spin-resolved ONVs expressed with respect to another given GSpinorBasis.")
 
+
         // PUBLIC METHODS
+
         .def("coefficients",
              &GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>::coefficients,
              "Return the expansion coefficients of this linear expansion wave function model.");

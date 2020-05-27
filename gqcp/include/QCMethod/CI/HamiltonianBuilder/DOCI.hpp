@@ -46,6 +46,13 @@ public:
     /**
      *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
      *
+     *  @return the diagonal of the matrix representation of the DOCI Hamiltonian
+     */
+    VectorX<double> calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const;
+
+    /**
+     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+     *
      *  @return the DOCI Hamiltonian matrix
      */
     SquareMatrix<double> constructHamiltonian(const SQHamiltonian<double>& sq_hamiltonian) const;
@@ -58,13 +65,6 @@ public:
      *  @return the action of the DOCI Hamiltonian on the coefficient vector
      */
     VectorX<double> matrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
-
-    /**
-     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
-     *
-     *  @return the diagonal of the matrix representation of the DOCI Hamiltonian
-     */
-    VectorX<double> calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const;
 };
 
 

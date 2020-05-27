@@ -41,7 +41,7 @@ public:
 
 public:
     /*
-     *  OVERRIDDEN PUBLIC METHODS
+     *  PUBLIC OVERRIDDEN METHODS
      */
 
     /**
@@ -50,6 +50,7 @@ public:
     std::string description() const override {
         return "Calculate the current CCSD intermediates as described in Stanton1991.";
     }
+
 
     /**
      *  Calculate the current CCSD intermediates as described in Stanton1991.

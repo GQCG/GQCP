@@ -51,16 +51,14 @@ public:
     virtual ~BaseOrbitalOptimizer() = default;
 
 
-    // GETTERS
-    size_t get_number_of_iterations() const { return this->number_of_iterations; }
-
-
     // PUBLIC PURE VIRTUAL METHODS
 
     /**
-     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
+     *  @param sq_hamiltonian      the current Hamiltonian
+     * 
+     *  @return a unitary matrix that will be used to rotate the current Hamiltonian into the next iteration
      */
-    virtual void prepareConvergenceChecking(const SQHamiltonian<double>& sq_hamiltonian) = 0;
+    virtual TransformationMatrix<double> calculateNewRotationMatrix(const SQHamiltonian<double>& sq_hamiltonian) const = 0;
 
     /**
      *  @param sq_hamiltonian      the current Hamiltonian
@@ -70,14 +68,17 @@ public:
     virtual bool checkForConvergence(const SQHamiltonian<double>& sq_hamiltonian) const = 0;
 
     /**
-     *  @param sq_hamiltonian      the current Hamiltonian
-     * 
-     *  @return a unitary matrix that will be used to rotate the current Hamiltonian into the next iteration
+     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
      */
-    virtual TransformationMatrix<double> calculateNewRotationMatrix(const SQHamiltonian<double>& sq_hamiltonian) const = 0;
+    virtual void prepareConvergenceChecking(const SQHamiltonian<double>& sq_hamiltonian) = 0;
 
 
     // PUBLIC METHODS
+
+    /**
+     *  @return the number of iterations that this optimizer has performed
+     */
+    size_t numberOfIterations() const { return this->number_of_iterations; }
 
     /**
      *  Optimize the Hamiltonian by subsequently

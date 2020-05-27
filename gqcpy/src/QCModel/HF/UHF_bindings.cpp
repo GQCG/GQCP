@@ -30,6 +30,8 @@ namespace gqcpy {
 void bindQCModelUHF(py::module& module) {
     py::class_<GQCP::QCModel::UHF<double>>(module, "QCModel_UHF", "The unrestricted Hartree-Fock wave function model.")
 
+        // PUBLIC METHODS
+
         .def(
             "calculateOrthonormalBasis1RDM",
             [](const GQCP::QCModel::UHF<double>& uhf_parameters, const GQCP::Spin sigma) {

@@ -70,8 +70,8 @@ VectorX<double> calculateDysonOrbitalCoefficients(const LinearExpansion<SpinReso
     const auto onv_basis1 = linear_expansion1.onvBasis();
     const auto onv_basis2 = linear_expansion2.onvBasis();
 
-    if ((onv_basis1.get_N_alpha() - onv_basis2.get_N_alpha() != 0) && (onv_basis1.get_N_beta() - onv_basis2.get_N_beta() != 1)) {
-        if ((onv_basis1.get_N_alpha() - onv_basis2.get_N_alpha() != 1) && (onv_basis1.get_N_beta() - onv_basis2.get_N_beta() != 0)) {
+    if ((onv_basis1.numberOfAlphaElectrons() - onv_basis2.numberOfAlphaElectrons() != 0) && (onv_basis1.numberOfBetaElectrons() - onv_basis2.numberOfBetaElectrons() != 1)) {
+        if ((onv_basis1.numberOfAlphaElectrons() - onv_basis2.numberOfAlphaElectrons() != 1) && (onv_basis1.numberOfBetaElectrons() - onv_basis2.numberOfBetaElectrons() != 0)) {
             throw std::runtime_error("properties::calculateDysonOrbital(LinearExpansion, LinearExpansion): linear_expansion2 is not expressed in a spin-resolved ONV basis with one fewer electron than linear_expansion1");
         }
     }
@@ -81,42 +81,42 @@ VectorX<double> calculateDysonOrbitalCoefficients(const LinearExpansion<SpinReso
     // The 'passive' ONV basis is the ONV basis that is equal for both wave functions
     // The 'target' ONV basis has an electron difference of one
     // We initialize the variables for the case in which they differ in one beta electron, if this isn't the case, we will update it later
-    auto passive_onv_basis1 = onv_basis1.get_onv_basis_alpha();
-    auto passive_onv_basis2 = onv_basis2.get_onv_basis_alpha();
-    auto target_onv_basis1 = onv_basis1.get_onv_basis_beta();
-    auto target_onv_basis2 = onv_basis2.get_onv_basis_beta();
+    auto passive_onv_basis1 = onv_basis1.onvBasisAlpha();
+    auto passive_onv_basis2 = onv_basis2.onvBasisAlpha();
+    auto target_onv_basis1 = onv_basis1.onvBasisBeta();
+    auto target_onv_basis2 = onv_basis2.onvBasisBeta();
 
     // Mod variables relate to the modification of the address jump in coefficient index according to the ordering of the spin ONVs
-    size_t passive_mod1 = target_onv_basis1.get_dimension();
-    size_t passive_mod2 = target_onv_basis2.get_dimension();
+    size_t passive_mod1 = target_onv_basis1.dimension();
+    size_t passive_mod2 = target_onv_basis2.dimension();
     size_t target_mod = 1;
 
     // If instead the ONV bases differ by one alpha electron we re-assign the variables to match the algorithm
-    if ((onv_basis1.get_N_alpha() - onv_basis2.get_N_alpha() == 1) && (onv_basis1.get_N_beta() - onv_basis2.get_N_beta() == 0)) {
+    if ((onv_basis1.numberOfAlphaElectrons() - onv_basis2.numberOfAlphaElectrons() == 1) && (onv_basis1.numberOfBetaElectrons() - onv_basis2.numberOfBetaElectrons() == 0)) {
         passive_onv_basis1 = target_onv_basis1;
         passive_onv_basis2 = target_onv_basis2;
-        target_onv_basis1 = onv_basis1.get_onv_basis_alpha();
-        target_onv_basis2 = onv_basis2.get_onv_basis_alpha();
+        target_onv_basis1 = onv_basis1.onvBasisAlpha();
+        target_onv_basis2 = onv_basis2.onvBasisAlpha();
 
         passive_mod1 = 1;
         passive_mod2 = 1;
-        target_mod = passive_onv_basis1.get_dimension();
+        target_mod = passive_onv_basis1.dimension();
     }
 
     const auto& ci_coeffs1 = linear_expansion1.coefficients();
     const auto& ci_coeffs2 = linear_expansion2.coefficients();
 
-    VectorX<double> dyson_coeffs = VectorX<double>::Zero(onv_basis1.get_K());
+    VectorX<double> dyson_coeffs = VectorX<double>::Zero(onv_basis1.numberOfOrbitals());
 
     // The actual algorithm to determine the Dyson amplitudes
     // Since we want to calculate the overlap between two wave functions, the ONVs should have an equal number of electrons
     // We therefore iterate over the ONVs of the 'target' ONV basis, which all have an electron more, and annihilate in one of the orbitals (let the index of that orbital be called 'p')
     // By calculating the overlap in the (N-1)-ONV basis, we can calculate the contributions to the  'p'-th coefficient (i.e. the Dyson amplitude) of the Dyson orbital
-    SpinUnresolvedONV onv = target_onv_basis1.makeONV(0);
+    SpinUnresolvedONV onv = target_onv_basis1.constructONVFromAddress(0);
 
-    for (size_t It = 0; It < target_onv_basis1.get_dimension(); It++) {  // It loops over addresses of the target ONV basis
-        int sign = -1;                                                   // total phase factor of all the annihilations that have occurred
-        for (size_t e = 0; e < target_onv_basis1.get_N(); e++) {         // loop over electrons in the ONV
+    for (size_t It = 0; It < target_onv_basis1.dimension(); It++) {           // It loops over addresses of the target ONV basis
+        int sign = -1;                                                        // total phase factor of all the annihilations that have occurred
+        for (size_t e = 0; e < target_onv_basis1.numberOfElectrons(); e++) {  // loop over electrons in the ONV
 
             // Annihilate on the corresponding orbital, to make sure we can calculate overlaps in the (N-1)-'target' ONV basis
             sign *= -1;
@@ -125,10 +125,10 @@ VectorX<double> calculateDysonOrbitalCoefficients(const LinearExpansion<SpinReso
 
             // Now, we calculate the overlap in the (N-1)-'target' ONV basis
             // In order to access the correct coefficients for the, we need the address of the resulting (annihilated) ONV inside the 'target' ONV basis
-            size_t address = target_onv_basis2.getAddress(onv.unsignedRepresentation());
+            size_t address = target_onv_basis2.addressOf(onv.unsignedRepresentation());
 
             double coeff = 0;
-            for (size_t Ip = 0; Ip < passive_onv_basis1.get_dimension(); Ip++) {  // Ip loops over the addresses of the passive ONV basis
+            for (size_t Ip = 0; Ip < passive_onv_basis1.dimension(); Ip++) {  // Ip loops over the addresses of the passive ONV basis
 
                 coeff += sign * ci_coeffs1(It * target_mod + Ip * passive_mod1) * ci_coeffs2(address * target_mod + Ip * passive_mod2);  // access the indices of the coefficient vectors
             }
@@ -136,8 +136,8 @@ VectorX<double> calculateDysonOrbitalCoefficients(const LinearExpansion<SpinReso
             onv.create(p);  // allow the iteration to continue with the original ONV
         }
 
-        if (It < target_onv_basis1.get_dimension() - 1) {  // prevent the last permutation from occurring
-            target_onv_basis1.setNextONV(onv);
+        if (It < target_onv_basis1.dimension() - 1) {  // prevent the last permutation from occurring
+            target_onv_basis1.transformONVToNextPermutation(onv);
         }
     }  // target address (It) loop
 

@@ -30,6 +30,8 @@ namespace gqcpy {
 void bindQCModelRHF(py::module& module) {
     py::class_<GQCP::QCModel::RHF<double>>(module, "QCModel_RHF", "The restricted Hartree-Fock wave function model.")
 
+        // PUBLIC METHODS
+
         .def(
             "calculateOrthonormalBasis1RDM",
             [](const GQCP::QCModel::RHF<double>& rhf_parameters) {

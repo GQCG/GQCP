@@ -15,10 +15,9 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "QCMethod/HF/RHF/RHF.hpp"
-
 #include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
 #include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
+#include "QCMethod/HF/RHF/RHF.hpp"
 #include "QCMethod/HF/RHF/RHFSCFSolver.hpp"
 
 #include <pybind11/pybind11.h>
@@ -32,6 +31,8 @@ namespace gqcpy {
 
 void bindQCMethodRHF(py::module& module) {
     py::class_<GQCP::QCMethod::RHF<double>>(module, "RHF", "The restricted Hartree-Fock quantum chemical method.")
+
+        // PUBLIC METHODS
 
         .def_static(
             "optimize",

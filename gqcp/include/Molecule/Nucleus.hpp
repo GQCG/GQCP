@@ -91,6 +91,13 @@ public:
     // PUBLIC METHODS
 
     /**
+     *  @param other        the other nucleus
+     *
+     *  @return the Euclidian distance between this nucleus and the other
+     */
+    double calculateDistanceWith(const Nucleus& other) const;
+
+    /**
      *  @return the charge of this nucleus
      */
     size_t charge() const { return this->Z; }
@@ -99,13 +106,6 @@ public:
      *  @return the position of this nucleus
      */
     const Vector<double, 3>& position() const { return this->R; }
-
-    /**
-     *  @param other        the other nucleus
-     *
-     *  @return the Euclidian distance between this nucleus and the other
-     */
-    double calculateDistance(const Nucleus& other) const;
 };
 
 

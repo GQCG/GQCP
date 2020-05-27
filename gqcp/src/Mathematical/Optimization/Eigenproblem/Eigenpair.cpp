@@ -28,21 +28,21 @@ namespace GQCP {
  */
 
 /**
+ *  @param eigenvalue       the eigenvalue
+ *  @param eigenvector      the eigenvector
+ */
+Eigenpair::Eigenpair(const double eigenvalue, const VectorX<double>& eigenvector) :
+    m_eigenvalue {eigenvalue},
+    m_eigenvector {eigenvector} {}
+
+
+/**
  *  A constructor that sets the eigenvalue to zero and the corresponding eigenvector to zeros
  *
  *  @param dimension        the dimension of the eigenvector
  */
-Eigenpair::Eigenpair(size_t dimension) :
+Eigenpair::Eigenpair(const size_t dimension) :
     Eigenpair(0.0, VectorX<double>::Zero(dimension)) {}
-
-
-/**
- *  @param eigenvalue       the eigenvalue
- *  @param eigenvector      the eigenvector
- */
-Eigenpair::Eigenpair(double eigenvalue, const VectorX<double>& eigenvector) :
-    eigenvalue {eigenvalue},
-    eigenvector {eigenvector} {}
 
 
 /*
@@ -55,15 +55,15 @@ Eigenpair::Eigenpair(double eigenvalue, const VectorX<double>& eigenvector) :
  *
  *  @return if this Eigenpair is equal to the other: if the eigenvalues and eigenvectors are equal given the tolerance
  */
-bool Eigenpair::isEqual(const Eigenpair& other, double tolerance) const {
+bool Eigenpair::isEqualTo(const Eigenpair& other, const double tolerance) const {
 
 
-    if (this->eigenvector.size() != other.get_eigenvector().size()) {
-        throw std::invalid_argument("Eigenpair::isEqual(Eigenpair, double): Can't compare eigenpairs with eigenvectors of different dimension.");
+    if (this->eigenvector().size() != other.eigenvector().size()) {
+        throw std::invalid_argument("Eigenpair::isEqualTo(Eigenpair, double): Can't compare eigenpairs with eigenvectors of different dimension.");
     }
 
-    if (std::abs(this->eigenvalue - other.eigenvalue) < tolerance) {
-        if (areEqualEigenvectors(this->eigenvector, other.get_eigenvector(), tolerance)) {
+    if (std::abs(this->eigenvalue() - other.eigenvalue()) < tolerance) {
+        if (areEqualEigenvectors(this->eigenvector(), other.eigenvector(), tolerance)) {
             return true;
         }
     }

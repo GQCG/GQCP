@@ -29,6 +29,8 @@ namespace gqcpy {
 void bindQCModelAP1roG(py::module& module) {
     py::class_<GQCP::QCModel::AP1roG>(module, "QCModel_AP1roG", "The AP1roG wave function model.")
 
+        // PUBLIC METHODS
+
         .def("geminalCoefficients",
              &GQCP::QCModel::AP1roG::geminalCoefficients,
              "Return the corresponding geminal coefficients of these AP1roG model parameters.");

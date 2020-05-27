@@ -33,15 +33,34 @@ namespace GQCP {
  *  @param hamiltonian_builder           shared pointer to active (non-frozen core) Hamiltonian builder
  *  @param X                             the number of frozen orbitals
  */
-FrozenCoreCI::FrozenCoreCI(std::shared_ptr<GQCP::HamiltonianBuilder> hamiltonian_builder, size_t X) :
+FrozenCoreCI::FrozenCoreCI(const std::shared_ptr<GQCP::HamiltonianBuilder> hamiltonian_builder, const size_t X) :
     HamiltonianBuilder(),
     active_hamiltonian_builder {std::move(hamiltonian_builder)},
     X {X} {}
 
 
 /*
- *  OVERRIDDEN PUBLIC METHODS
+ *  PUBLIC OVERRIDDEN METHODS
  */
+
+/**
+ *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
+ *
+ *  @return the diagonal of the matrix representation of the frozen core Hamiltonian
+ */
+VectorX<double> FrozenCoreCI::calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
+
+    SQHamiltonian<double> frozen_ham_par = BaseFrozenCoreONVBasis::freezeOperator(sq_hamiltonian, this->X);
+
+    // Calculate the diagonal in the active space with the "frozen" Hamiltonian
+    VectorX<double> diagonal = this->active_hamiltonian_builder->calculateDiagonal(frozen_ham_par);
+
+    // Calculate the diagonal for the frozen orbitals
+    auto frozen_core_diagonal = BaseFrozenCoreONVBasis::frozenCoreDiagonal(sq_hamiltonian, this->X, active_hamiltonian_builder->onvBasis()->dimension());
+
+    return diagonal + frozen_core_diagonal;
+}
+
 
 /**
  *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
@@ -57,8 +76,8 @@ SquareMatrix<double> FrozenCoreCI::constructHamiltonian(const SQHamiltonian<doub
     SquareMatrix<double> total_hamiltonian = this->active_hamiltonian_builder->constructHamiltonian(frozen_ham_par);
 
     // diagonal correction
-    VectorX<double> diagonal = VectorX<double>::Ones(this->get_fock_space()->get_dimension());
-    auto frozen_core_diagonal = BaseFrozenCoreONVBasis::frozenCoreDiagonal(sq_hamiltonian, this->X, active_hamiltonian_builder->get_fock_space()->get_dimension());
+    VectorX<double> diagonal = VectorX<double>::Ones(this->onvBasis()->dimension());
+    auto frozen_core_diagonal = BaseFrozenCoreONVBasis::frozenCoreDiagonal(sq_hamiltonian, this->X, active_hamiltonian_builder->onvBasis()->dimension());
     total_hamiltonian += frozen_core_diagonal.asDiagonal();
 
     return total_hamiltonian;
@@ -78,25 +97,6 @@ VectorX<double> FrozenCoreCI::matrixVectorProduct(const SQHamiltonian<double>& s
 
     // Perform the matvec in the active space with the "frozen"
     return this->active_hamiltonian_builder->matrixVectorProduct(frozen_ham_par, x, diagonal);
-}
-
-
-/**
- *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
- *
- *  @return the diagonal of the matrix representation of the frozen core Hamiltonian
- */
-VectorX<double> FrozenCoreCI::calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
-
-    SQHamiltonian<double> frozen_ham_par = BaseFrozenCoreONVBasis::freezeOperator(sq_hamiltonian, this->X);
-
-    // Calculate the diagonal in the active space with the "frozen" Hamiltonian
-    VectorX<double> diagonal = this->active_hamiltonian_builder->calculateDiagonal(frozen_ham_par);
-
-    // Calculate the diagonal for the frozen orbitals
-    auto frozen_core_diagonal = BaseFrozenCoreONVBasis::frozenCoreDiagonal(sq_hamiltonian, this->X, active_hamiltonian_builder->get_fock_space()->get_dimension());
-
-    return diagonal + frozen_core_diagonal;
 }
 
 

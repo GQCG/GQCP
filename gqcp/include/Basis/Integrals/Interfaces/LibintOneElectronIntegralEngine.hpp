@@ -55,12 +55,18 @@ public:
      */
 
     /**
-     *  @param op               the overlap operator
+     *  @param op               the electronic electric dipole operator
      *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
      *  @param max_l            the maximum angular momentum of Gaussian shell
      */
-    LibintOneElectronIntegralEngine(const OverlapOperator& op, const size_t max_nprim, const size_t max_l) :
-        libint2_engine {LibintInterfacer::get().createEngine(op, max_nprim, max_l)} {}
+    LibintOneElectronIntegralEngine(const ElectronicDipoleOperator& op, const size_t max_nprim, const size_t max_l) :
+        libint2_engine {LibintInterfacer::get().createEngine(op, max_nprim, max_l)},
+        component_offset {1},    // emultipole1 has [overlap, x, y, z], we don't need the overlap
+        scaling_factor {-1.0} {  // apply the minus sign which comes from the charge of the electrons -e
+
+        std::array<double, 3> libint2_origin_array {op.origin().x(), op.origin().y(), op.origin().z()};
+        this->libint2_engine.set_params(libint2_origin_array);
+    }
 
     /**
      *  @param op               the kinetic operator
@@ -82,18 +88,12 @@ public:
     }
 
     /**
-     *  @param op               the electronic electric dipole operator
+     *  @param op               the overlap operator
      *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
      *  @param max_l            the maximum angular momentum of Gaussian shell
      */
-    LibintOneElectronIntegralEngine(const ElectronicDipoleOperator& op, const size_t max_nprim, const size_t max_l) :
-        libint2_engine {LibintInterfacer::get().createEngine(op, max_nprim, max_l)},
-        component_offset {1},    // emultipole1 has [overlap, x, y, z], we don't need the overlap
-        scaling_factor {-1.0} {  // apply the minus sign which comes from the charge of the electrons -e
-
-        std::array<double, 3> libint2_origin_array {op.origin().x(), op.origin().y(), op.origin().z()};
-        this->libint2_engine.set_params(libint2_origin_array);
-    }
+    LibintOneElectronIntegralEngine(const OverlapOperator& op, const size_t max_nprim, const size_t max_l) :
+        libint2_engine {LibintInterfacer::get().createEngine(op, max_nprim, max_l)} {}
 
 
     /*

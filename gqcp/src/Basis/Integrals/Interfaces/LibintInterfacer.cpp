@@ -114,24 +114,24 @@ std::vector<libint2::Atom> LibintInterfacer::interface(const std::vector<Nucleus
 libint2::Shell LibintInterfacer::interface(const GTOShell& shell) const {
 
     // Part 1: exponents
-    const std::vector<double>& libint_alpha = shell.get_gaussian_exponents();  // libint::Shell::real_t is double, so no need to use real_t
+    const std::vector<double>& libint_alpha = shell.gaussianExponents();  // libint::Shell::real_t is double, so no need to use real_t
 
 
     // Part 2: contractions
-    auto libint_l = static_cast<int>(shell.get_l());
-    bool libint_pure = shell.is_pure();
-    const std::vector<double>& libint_coeff = shell.get_contraction_coefficients();
+    auto libint_l = static_cast<int>(shell.angularMomentum());
+    bool libint_pure = shell.isPure();
+    const std::vector<double>& libint_coeff = shell.contractionCoefficients();
     libint2::Shell::Contraction libint_contraction {libint_l, libint_pure, libint_coeff};
 
 
     // Part 3: origin
-    const auto& position = shell.get_nucleus().position();
+    const auto& position = shell.nucleus().position();
     std::array<double, 3> libint_O {position.x(), position.y(), position.z()};
 
 
     // Upon construction, libint2 renorm()alizes the contraction coefficients, so we want to undo this
     libint2::Shell libint_shell {libint_alpha, {libint_contraction}, libint_O};
-    this->undo_renorm(libint_shell);
+    this->undoRenorm(libint_shell);
     return libint_shell;
 }
 
@@ -178,7 +178,7 @@ libint2::BasisSet LibintInterfacer::interface(const ShellSet<GTOShell>& shellset
  *
  *  @param libint_shell     the libint2 Shell that should be interfaced
  *  @param nuclei           the nuclei that can serve as centers of the Shells
- *  @param undo_renorm      if the libint2::Shell should be un-renorm()alized
+ *  @param undoRenorm      if the libint2::Shell should be un-renorm()alized
  *
  *  @return a vector of GQCP::Shells
  */
@@ -187,7 +187,7 @@ std::vector<GTOShell> LibintInterfacer::interface(const libint2::Shell& libint_s
     // If asked for, undo Libint2's default renorm()alization
     auto libint_shell_copy = libint_shell;
     if (undo_renorm) {
-        this->undo_renorm(libint_shell_copy);
+        this->undoRenorm(libint_shell_copy);
     }
 
 
@@ -254,70 +254,32 @@ std::vector<GTOShell> LibintInterfacer::interface(const libint2::BasisSet& libin
  */
 
 /**
- *  @param libint_shell         the libint2::Shell
- *
- *  @return the number of true shells that are contained in the libint shell
- */
-size_t LibintInterfacer::numberOfShells(const libint2::Shell& libint_shell) const {
-    return libint_shell.ncontr();
-}
-
-
-/**
- *  @param libint_basisset      the libint2::BasisSet
- *
- *  @return the number of true shells that are contained in the libint2::BasisSet
- */
-size_t LibintInterfacer::numberOfShells(const libint2::BasisSet& libint_basisset) const {
-
-    size_t nsh {};  // number of shells
-
-    for (const auto& libint_shell : libint_basisset) {
-        nsh += this->numberOfShells(libint_shell);
-    }
-
-    return nsh;
-}
-
-
-/**
- *  Undo the libint2 default renormalization (see libint2::Shell::renorm())
- *
- *  @param libint_shell         the shell that should be un-renorm()alized
- */
-void LibintInterfacer::undo_renorm(libint2::Shell& libint_shell) const {
-
-    // Instead of multiplying (what libint2 does), divide each contraction coefficient by the normalization factor
-    for (auto& contraction : libint_shell.contr) {
-        for (size_t p = 0; p != libint_shell.nprim(); p++) {
-            double alpha = libint_shell.alpha[p];
-            size_t l = contraction.l;
-
-            double N = CartesianGTO::calculateNormalizationFactor(alpha, CartesianExponents(l, 0, 0));
-
-            contraction.coeff[p] /= N;
-        }
-    }
-}
-
-
-/*
- *  PUBLIC METHODS - ENGINES
- */
-
-
-/**
  *  Construct a libint2 engine that corresponds to the given operator
  * 
- *  @param op               the overlap operator
+ *  @param op               the Coulomb repulsion operator
  *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
  *  @param max_l            the maximum angular momentum of Gaussian shell
  * 
  *  @return the proper libint2 engine
  */
-libint2::Engine LibintInterfacer::createEngine(const OverlapOperator& op, const size_t max_nprim, const size_t max_l) const {
+libint2::Engine LibintInterfacer::createEngine(const CoulombRepulsionOperator& op, const size_t max_nprim, const size_t max_l) const {
 
-    return libint2::Engine(libint2::Operator::overlap, max_nprim, static_cast<int>(max_l));
+    return libint2::Engine(libint2::Operator::coulomb, max_nprim, static_cast<int>(max_l));
+}
+
+
+/**
+ *  Construct a libint2 engine that corresponds to the given operator
+ * 
+ *  @param op               the electronic electric dipole operator
+ *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
+ *  @param max_l            the maximum angular momentum of Gaussian shell
+ * 
+ *  @return the proper libint2 engine
+ */
+libint2::Engine LibintInterfacer::createEngine(const ElectronicDipoleOperator& op, const size_t max_nprim, const size_t max_l) const {
+
+    return libint2::Engine(libint2::Operator::emultipole1, max_nprim, static_cast<int>(max_l));
 }
 
 
@@ -354,30 +316,63 @@ libint2::Engine LibintInterfacer::createEngine(const NuclearAttractionOperator& 
 /**
  *  Construct a libint2 engine that corresponds to the given operator
  * 
- *  @param op               the electronic electric dipole operator
+ *  @param op               the overlap operator
  *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
  *  @param max_l            the maximum angular momentum of Gaussian shell
  * 
  *  @return the proper libint2 engine
  */
-libint2::Engine LibintInterfacer::createEngine(const ElectronicDipoleOperator& op, const size_t max_nprim, const size_t max_l) const {
+libint2::Engine LibintInterfacer::createEngine(const OverlapOperator& op, const size_t max_nprim, const size_t max_l) const {
 
-    return libint2::Engine(libint2::Operator::emultipole1, max_nprim, static_cast<int>(max_l));
+    return libint2::Engine(libint2::Operator::overlap, max_nprim, static_cast<int>(max_l));
 }
 
 
 /**
- *  Construct a libint2 engine that corresponds to the given operator
- * 
- *  @param op               the Coulomb repulsion operator
- *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
- *  @param max_l            the maximum angular momentum of Gaussian shell
- * 
- *  @return the proper libint2 engine
+ *  @param libint_shell         the libint2::Shell
+ *
+ *  @return the number of true shells that are contained in the libint shell
  */
-libint2::Engine LibintInterfacer::createEngine(const CoulombRepulsionOperator& op, const size_t max_nprim, const size_t max_l) const {
+size_t LibintInterfacer::numberOfShells(const libint2::Shell& libint_shell) const {
+    return libint_shell.ncontr();
+}
 
-    return libint2::Engine(libint2::Operator::coulomb, max_nprim, static_cast<int>(max_l));
+
+/**
+ *  @param libint_basisset      the libint2::BasisSet
+ *
+ *  @return the number of true shells that are contained in the libint2::BasisSet
+ */
+size_t LibintInterfacer::numberOfShells(const libint2::BasisSet& libint_basisset) const {
+
+    size_t nsh {};  // number of shells
+
+    for (const auto& libint_shell : libint_basisset) {
+        nsh += this->numberOfShells(libint_shell);
+    }
+
+    return nsh;
+}
+
+
+/**
+ *  Undo the libint2 default renormalization (see libint2::Shell::renorm())
+ *
+ *  @param libint_shell         the shell that should be un-renorm()alized
+ */
+void LibintInterfacer::undoRenorm(libint2::Shell& libint_shell) const {
+
+    // Instead of multiplying (what libint2 does), divide each contraction coefficient by the normalization factor
+    for (auto& contraction : libint_shell.contr) {
+        for (size_t p = 0; p != libint_shell.nprim(); p++) {
+            double alpha = libint_shell.alpha[p];
+            size_t l = contraction.l;
+
+            double N = CartesianGTO::calculateNormalizationFactor(alpha, CartesianExponents(l, 0, 0));
+
+            contraction.coeff[p] /= N;
+        }
+    }
 }
 
 

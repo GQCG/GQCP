@@ -88,7 +88,6 @@ public:
      *  NAMED CONSTRUCTORS
      */
 
-
     /**
      *  @param GAMESSUS_filename      the name of the GAMESS-US file that contains the spin-resolved selected wave function expansion
      * 
@@ -165,7 +164,7 @@ public:
         size_t N_beta = beta_transfer.count();
 
         SpinResolvedSelectedONVBasis onv_basis {K, N_alpha, N_beta};
-        onv_basis.addConfiguration(reversed_alpha, reversed_beta);
+        onv_basis.addONV(reversed_alpha, reversed_beta);
 
 
         // Read in the ONVs and the coefficients by splitting the line on '|', and then trimming whitespace.
@@ -193,7 +192,7 @@ public:
 
             // Create a double for the third field
             coeffs(index_count) = std::stod(splitted_line[2]);
-            onv_basis.addConfiguration(reversed_alpha, reversed_beta);
+            onv_basis.addONV(reversed_alpha, reversed_beta);
 
         }  // while getline
 
@@ -215,14 +214,14 @@ public:
 
 
         // Determine the overlap matrices of the underlying scalar orbital bases, which is needed later on.
-        auto S = r_spinor_basis.overlap().parameters();                         // the overlap matrix of the restricted MOs/spin-orbitals
-        S.basisTransformInPlace(r_spinor_basis.coefficientMatrix().inverse());  // now in AO basis
+        auto S = r_spinor_basis.overlap().parameters();                  // the overlap matrix of the restricted MOs/spin-orbitals
+        S.basisTransform(r_spinor_basis.coefficientMatrix().inverse());  // now in AO basis
 
-        auto S_alpha = u_spinor_basis.overlap(Spin::alpha).parameters();                         // the overlap matrix of the alpha spin-orbitals
-        S_alpha.basisTransformInPlace(u_spinor_basis.coefficientMatrix(Spin::alpha).inverse());  // now in AO basis
+        auto S_alpha = u_spinor_basis.overlap(Spin::alpha).parameters();                  // the overlap matrix of the alpha spin-orbitals
+        S_alpha.basisTransform(u_spinor_basis.coefficientMatrix(Spin::alpha).inverse());  // now in AO basis
 
-        auto S_beta = u_spinor_basis.overlap(Spin::beta).parameters();                         // the overlap matrix of the beta spin-orbitals
-        S_beta.basisTransformInPlace(u_spinor_basis.coefficientMatrix(Spin::beta).inverse());  // now in AO basis
+        auto S_beta = u_spinor_basis.overlap(Spin::beta).parameters();                  // the overlap matrix of the beta spin-orbitals
+        S_beta.basisTransform(u_spinor_basis.coefficientMatrix(Spin::beta).inverse());  // now in AO basis
 
         if (!(S.isApprox(S_alpha, 1.0e-08)) || !(S.isApprox(S_beta, 1.0e-08))) {
             throw std::invalid_argument("LinearExpansion::FromONVProjection(const SpinResolvedONV&, const RSpinorBasis<double, GTOShell>&, const USpinorBasis<double, GTOShell>&): The given spinor bases are not expressed using the same scalar orbital basis.");
@@ -273,10 +272,10 @@ public:
 
         // Determine the overlap matrices of the underlying scalar orbital bases, which is needed later on.
         auto S_on = spinor_basis_on.overlap().parameters();
-        S_on.basisTransformInPlace(spinor_basis_on.coefficientMatrix().inverse());  // now in AO basis
+        S_on.basisTransform(spinor_basis_on.coefficientMatrix().inverse());  // now in AO basis
 
         auto S_of = spinor_basis_of.overlap().parameters();
-        S_of.basisTransformInPlace(spinor_basis_of.coefficientMatrix().inverse());  // now in AO basis
+        S_of.basisTransform(spinor_basis_of.coefficientMatrix().inverse());  // now in AO basis
 
         if (!(S_on.isApprox(S_of, 1.0e-08))) {
             throw std::invalid_argument("LinearExpansion::FromONVProjection(const SpinUnresolvedONV&, const RSpinorBasis<double, GTOShell>&, const GSpinorBasis<double, GTOShell>&): The given spinor bases are not expressed using the same scalar orbital basis.");
@@ -309,22 +308,6 @@ public:
      */
 
     /**
-     *  @return the Shannon entropy (or information content) of the wave function
-     */
-    double calculateShannonEntropy() const {
-
-        // Sum over the ONV basis dimension, and only include the term if c_k != 0
-        // We might as well replace all coeffients that are 0 by 1, since log(1) = 0 so there is no influence on the final entropy value
-        Eigen::ArrayXd coefficients_replaced = this->coeffs.unaryExpr([](double c) { return c < 1.0e-18 ? 1 : c; });  // replace 0 by 1
-
-        Eigen::ArrayXd coefficients_squared = coefficients_replaced.square();
-        Eigen::ArrayXd log_coefficients_squared = coefficients_squared.log();  // natural logarithm (ln)
-
-        return -1 / std::log(2) * (coefficients_squared * log_coefficients_squared).sum();
-    }
-
-
-    /**
      *  Update the expansion coefficients of this linear expansion so that they correspond to the situation after a transformation of the underlying spinor basis with the given transformation matrix.
      *
      *  @param T            the transformation matrix between the old and the new spinor basis
@@ -333,16 +316,16 @@ public:
      *  @note This algorithm was implemented from a description in Helgaker2000.
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value> basisTransformInPlace(const TransformationMatrix<double>& T) {
+    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value> basisTransform(const TransformationMatrix<double>& T) {
 
-        const auto K = onv_basis.get_K();  // number of spatial orbitals
+        const auto K = onv_basis.numberOfOrbitals();  // number of spatial orbitals
         if (K != T.dimension()) {
-            throw std::invalid_argument("LinearExpansion::basisTransformInPlace(const TransformationMatrix<double>&): The number of spatial orbitals does not match the dimension of the transformation matrix.");
+            throw std::invalid_argument("LinearExpansion::basisTransform(const TransformationMatrix<double>&): The number of spatial orbitals does not match the dimension of the transformation matrix.");
         }
 
 
         // LU-decompose the transformation matrix LU decomposition for T
-        const auto& lu_decomposition = T.NoPivotLUDecomposition();
+        const auto& lu_decomposition = T.noPivotLUDecompose();
 
         SquareMatrix<double> L = SquareMatrix<double>::Identity(K, K);
         L.triangularView<Eigen::StrictlyLower>() = lu_decomposition[0];
@@ -356,13 +339,13 @@ public:
 
 
         // Set up spin-unresolved ONV basis variables for the loops over the ONVs
-        const SpinUnresolvedONVBasis& alpha_onv_basis = onv_basis.get_onv_basis_alpha();
-        const SpinUnresolvedONVBasis& beta_onv_basis = onv_basis.get_onv_basis_beta();
+        const SpinUnresolvedONVBasis& alpha_onv_basis = onv_basis.onvBasisAlpha();
+        const SpinUnresolvedONVBasis& beta_onv_basis = onv_basis.onvBasisBeta();
 
-        auto dim_alpha = alpha_onv_basis.get_dimension();
-        auto dim_beta = beta_onv_basis.get_dimension();
-        auto N_alpha = alpha_onv_basis.get_N();
-        auto N_beta = beta_onv_basis.get_N();
+        auto dim_alpha = alpha_onv_basis.dimension();
+        auto dim_beta = beta_onv_basis.dimension();
+        auto N_alpha = alpha_onv_basis.numberOfElectrons();
+        auto N_beta = beta_onv_basis.numberOfElectrons();
 
 
         /** 
@@ -371,7 +354,7 @@ public:
          */
 
         VectorX<double> current_coefficients = this->coeffs;  // coefficients will be updated after each orbital transform (C^(n-1)) in Helgaker
-        VectorX<double> correction_coefficients = VectorX<double>::Zero(onv_basis.get_dimension());
+        VectorX<double> correction_coefficients = VectorX<double>::Zero(onv_basis.dimension());
 
 
         for (size_t m = 0; m < K; m++) {  // iterate over all orbitals
@@ -379,14 +362,14 @@ public:
             // Perform alpha and beta CI iterations.
 
             // 1) Alpha-branch
-            SpinUnresolvedONV alpha = alpha_onv_basis.makeONV(0);
+            SpinUnresolvedONV alpha = alpha_onv_basis.constructONVFromAddress(0);
             for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
                 if (!alpha.isOccupied(m)) {
                     for (size_t e1 = 0; e1 < N_alpha; e1++) {    // e1 (electron 1) loops over the (number of) electrons
                         size_t p = alpha.occupationIndexOf(e1);  // retrieve the index of a given electron
 
                         if (p < m) {
-                            size_t address = I_alpha - alpha_onv_basis.get_vertex_weights(p, e1 + 1);
+                            size_t address = I_alpha - alpha_onv_basis.vertexWeight(p, e1 + 1);
                             size_t e2 = e1 + 1;
                             size_t q = p + 1;
                             int sign = 1;
@@ -397,7 +380,7 @@ public:
                                 alpha_onv_basis.shiftUntilNextUnoccupiedOrbital<1>(alpha, address, q, e2, sign);
                             }
 
-                            address += alpha_onv_basis.get_vertex_weights(q, e2);
+                            address += alpha_onv_basis.vertexWeight(q, e2);
 
                             for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
                                 correction_coefficients(I_alpha * dim_beta + I_beta) += sign * t(p, m) * current_coefficients(address * dim_beta + I_beta);
@@ -405,7 +388,7 @@ public:
                         }
 
                         if (p > m) {
-                            size_t address = I_alpha - alpha_onv_basis.get_vertex_weights(p, e1 + 1);
+                            size_t address = I_alpha - alpha_onv_basis.vertexWeight(p, e1 + 1);
                             size_t e2 = e1 - 1;
                             size_t q = p - 1;
                             int sign = 1;
@@ -416,7 +399,7 @@ public:
                                 alpha_onv_basis.shiftUntilPreviousUnoccupiedOrbital<1>(alpha, address, q, e2, sign);
                             }
 
-                            address += alpha_onv_basis.get_vertex_weights(q, e2 + 2);
+                            address += alpha_onv_basis.vertexWeight(q, e2 + 2);
                             for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
                                 correction_coefficients(I_alpha * dim_beta + I_beta) += sign * t(p, m) * current_coefficients(address * dim_beta + I_beta);
                             }
@@ -431,7 +414,7 @@ public:
 
 
                 if (I_alpha < dim_alpha - 1) {  // prevent the last permutation from occurring
-                    alpha_onv_basis.setNextONV(alpha);
+                    alpha_onv_basis.transformONVToNextPermutation(alpha);
                 }
             }
 
@@ -439,7 +422,7 @@ public:
             correction_coefficients.setZero();
 
             // 2) Beta-branch
-            SpinUnresolvedONV beta = beta_onv_basis.makeONV(0);
+            SpinUnresolvedONV beta = beta_onv_basis.constructONVFromAddress(0);
 
             for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
                 if (!beta.isOccupied(m)) {
@@ -447,7 +430,7 @@ public:
                         size_t p = beta.occupationIndexOf(e1);  // retrieve the index of a given electron
 
                         if (p < m) {
-                            size_t address = I_beta - beta_onv_basis.get_vertex_weights(p, e1 + 1);
+                            size_t address = I_beta - beta_onv_basis.vertexWeight(p, e1 + 1);
                             size_t e2 = e1 + 1;
                             size_t q = p + 1;
                             int sign = 1;
@@ -458,7 +441,7 @@ public:
                                 beta_onv_basis.shiftUntilNextUnoccupiedOrbital<1>(beta, address, q, e2, sign);
                             }
 
-                            address += beta_onv_basis.get_vertex_weights(q, e2);
+                            address += beta_onv_basis.vertexWeight(q, e2);
 
                             for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
                                 correction_coefficients(I_alpha * dim_beta + I_beta) += sign * t(p, m) * current_coefficients(I_alpha * dim_beta + address);
@@ -466,7 +449,7 @@ public:
                         }
 
                         if (p > m) {
-                            size_t address = I_beta - beta_onv_basis.get_vertex_weights(p, e1 + 1);
+                            size_t address = I_beta - beta_onv_basis.vertexWeight(p, e1 + 1);
                             size_t e2 = e1 - 1;
                             size_t q = p - 1;
 
@@ -478,7 +461,7 @@ public:
                                 beta_onv_basis.shiftUntilPreviousUnoccupiedOrbital<1>(beta, address, q, e2, sign);
                             }
 
-                            address += beta_onv_basis.get_vertex_weights(q, e2 + 2);
+                            address += beta_onv_basis.vertexWeight(q, e2 + 2);
 
                             for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
                                 correction_coefficients(I_alpha * dim_beta + I_beta) += sign * t(p, m) * current_coefficients(I_alpha * dim_beta + address);
@@ -493,7 +476,7 @@ public:
                 }
 
                 if (I_beta < dim_beta - 1) {  // prevent the last permutation from occurring
-                    beta_onv_basis.setNextONV(beta);
+                    beta_onv_basis.transformONVToNextPermutation(beta);
                 }
             }
 
@@ -514,6 +497,22 @@ public:
 
         const DOCIRDMBuilder doci_rdm_builder {this->onv_basis};
         return doci_rdm_builder.calculate1RDMs(this->coefficients()).one_rdm;
+    }
+
+
+    /**
+     *  @return the Shannon entropy (or information content) of the wave function
+     */
+    double calculateShannonEntropy() const {
+
+        // Sum over the ONV basis dimension, and only include the term if c_k != 0
+        // We might as well replace all coeffients that are 0 by 1, since log(1) = 0 so there is no influence on the final entropy value
+        Eigen::ArrayXd coefficients_replaced = this->coeffs.unaryExpr([](double c) { return c < 1.0e-18 ? 1 : c; });  // replace 0 by 1
+
+        Eigen::ArrayXd coefficients_squared = coefficients_replaced.square();
+        Eigen::ArrayXd log_coefficients_squared = coefficients_squared.log();  // natural logarithm (ln)
+
+        return -1 / std::log(2) * (coefficients_squared * log_coefficients_squared).sum();
     }
 
 
@@ -553,7 +552,7 @@ public:
      */
     bool isApprox(const LinearExpansion<ONVBasis>& other, double tolerance = 1e-10) const {
 
-        if (this->onv_basis.dimension() != other.onv_basis.get_dimension()) {
+        if (this->onv_basis.dimension() != other.onv_basis.dimension()) {
             return false;
         }
 

@@ -50,32 +50,6 @@ public:
      */
 
     /**
-     *  @param threshold                            the threshold that is used in comparing the density matrices
-     *  @param maximum_number_of_iterations         the maximum number of iterations the algorithm may perform
-     * 
-     *  @return a plain RHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion
-     */
-    static IterativeAlgorithm<RHFSCFEnvironment<Scalar>> Plain(const double threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128) {
-
-        // Create the iteration cycle that effectively 'defines' a plain RHF SCF solver
-        StepCollection<RHFSCFEnvironment<Scalar>> plain_rhf_scf_cycle {};
-        plain_rhf_scf_cycle
-            .add(RHFDensityMatrixCalculation<Scalar>())
-            .add(RHFFockMatrixCalculation<Scalar>())
-            .add(RHFFockMatrixDiagonalization<Scalar>())
-            .add(RHFElectronicEnergyCalculation<Scalar>());
-
-        // Create a convergence criterion on the norm of subsequent density matrices
-        const auto density_matrix_extractor = [](const RHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices; };
-
-        using ConvergenceType = ConsecutiveIteratesNormConvergence<OneRDM<Scalar>, RHFSCFEnvironment<Scalar>>;
-        const ConvergenceType convergence_criterion {threshold, density_matrix_extractor, "the RHF density matrix in AO basis"};
-
-        return IterativeAlgorithm<RHFSCFEnvironment<Scalar>>(plain_rhf_scf_cycle, convergence_criterion, maximum_number_of_iterations);
-    }
-
-
-    /**
      *  @param alpha                                the damping factor
      *  @param threshold                            the threshold that is used in comparing the density matrices
      *  @param maximum_number_of_iterations         the maximum number of iterations the algorithm may perform
@@ -129,6 +103,32 @@ public:
         const ConvergenceType convergence_criterion {threshold, density_matrix_extractor, "the RHF density matrix in AO basis"};
 
         return IterativeAlgorithm<RHFSCFEnvironment<Scalar>>(diis_rhf_scf_cycle, convergence_criterion, maximum_number_of_iterations);
+    }
+
+
+    /**
+     *  @param threshold                            the threshold that is used in comparing the density matrices
+     *  @param maximum_number_of_iterations         the maximum number of iterations the algorithm may perform
+     * 
+     *  @return a plain RHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion
+     */
+    static IterativeAlgorithm<RHFSCFEnvironment<Scalar>> Plain(const double threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128) {
+
+        // Create the iteration cycle that effectively 'defines' a plain RHF SCF solver
+        StepCollection<RHFSCFEnvironment<Scalar>> plain_rhf_scf_cycle {};
+        plain_rhf_scf_cycle
+            .add(RHFDensityMatrixCalculation<Scalar>())
+            .add(RHFFockMatrixCalculation<Scalar>())
+            .add(RHFFockMatrixDiagonalization<Scalar>())
+            .add(RHFElectronicEnergyCalculation<Scalar>());
+
+        // Create a convergence criterion on the norm of subsequent density matrices
+        const auto density_matrix_extractor = [](const RHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices; };
+
+        using ConvergenceType = ConsecutiveIteratesNormConvergence<OneRDM<Scalar>, RHFSCFEnvironment<Scalar>>;
+        const ConvergenceType convergence_criterion {threshold, density_matrix_extractor, "the RHF density matrix in AO basis"};
+
+        return IterativeAlgorithm<RHFSCFEnvironment<Scalar>>(plain_rhf_scf_cycle, convergence_criterion, maximum_number_of_iterations);
     }
 };
 

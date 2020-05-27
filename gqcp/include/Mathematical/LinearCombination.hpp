@@ -40,8 +40,8 @@ class LinearCombination:
 
 
 protected:
-    std::vector<CoefficientScalar> coefficients;
-    std::vector<T> functions;
+    std::vector<CoefficientScalar> m_coefficients;
+    std::vector<T> m_functions;
 
 
 public:
@@ -54,8 +54,8 @@ public:
      *  @param functions        the scalar functions of the linear combination
      */
     LinearCombination(const std::vector<CoefficientScalar>& coefficients, const std::vector<T>& functions) :
-        coefficients {coefficients},
-        functions {functions} {
+        m_coefficients {coefficients},
+        m_functions {functions} {
 
         if (coefficients.size() != functions.size()) {
             throw std::invalid_argument("LinearCombination(std::vector<CoefficientScalar>, std::vector<T>): the number of coefficients and functions should match");
@@ -76,7 +76,7 @@ public:
      *  @param coefficient      the one coefficient that belongs to the function
      *  @param function         one single scalar function
      */
-    LinearCombination(CoefficientScalar coefficient, const T& function) :
+    LinearCombination(const CoefficientScalar coefficient, const T& function) :
         LinearCombination(std::vector<CoefficientScalar> {coefficient}, std::vector<T> {function}) {}
 
 
@@ -94,7 +94,7 @@ public:
      *
      *  This constructor is added to fix errors in Eigen concerning 'Scalar(0)';
      */
-    LinearCombination(int zero) :
+    LinearCombination(const int zero) :
         LinearCombination() {
 
         if (zero != 0) {
@@ -107,12 +107,9 @@ public:
      *  GETTERS
      */
 
-    const std::vector<CoefficientScalar>& get_coefficients() const { return this->coefficients; }
-    const std::vector<T>& get_functions() const { return this->functions; }
-
 
     /*
-     *  OPERATORS implementing the notion of linear combinations
+     *  OPERATORS implementing the abstract notion of linear combinations
      */
 
     /**
@@ -122,7 +119,7 @@ public:
      */
     LinearCombination operator+(const LinearCombination& rhs) const {
         LinearCombination result = *this;
-        result.append(rhs.coefficients, rhs.functions);
+        result.append(rhs.m_coefficients, rhs.m_functions);
         return result;
     }
 
@@ -132,7 +129,7 @@ public:
      *  @return the sum of this and the right-hand side
      */
     LinearCombination& operator+=(const LinearCombination& rhs) {
-        this->append(rhs.coefficients, rhs.functions);
+        this->append(rhs.m_coefficients, rhs.m_functions);
         return *this;
     }
 
@@ -141,19 +138,19 @@ public:
      *
      *  @return the product of this with a scalar
      */
-    LinearCombination operator*(CoefficientScalar scalar) const {
+    LinearCombination operator*(const CoefficientScalar scalar) const {
 
         if (std::abs(scalar) < 1.0e-16) {  // multiplication by zero returns a 'zero vector'
             return LinearCombination();
         }
 
-        auto coefficients = this->coefficients;
+        auto coefficients = this->m_coefficients;
 
         for (auto& coeff : coefficients) {
             coeff *= scalar;
         }
 
-        return LinearCombination(coefficients, this->functions);
+        return LinearCombination(coefficients, this->m_functions);
     }
 
     /**
@@ -196,11 +193,11 @@ public:
      *  @return the scalar function value of this linear combination at the given point
      */
     typename T::Valued operator()(const Vector<typename T::Scalar, T::Cols>& x) const override {
-        size_t n = this->functions.size();
+        size_t n = this->m_functions.size();
 
         CoefficientScalar value {};  // default initialization
         for (size_t i = 0; i < n; i++) {
-            value += this->coefficients[i] * this->functions[i].operator()(x);  // evaluate every function of the linear combination
+            value += this->m_coefficients[i] * this->m_functions[i].operator()(x);  // evaluate every function of the linear combination
         }
 
         return value;
@@ -213,7 +210,7 @@ public:
      *  @return whether two linear combinations are considered equal
      */
     bool operator==(const LinearCombination& rhs) const {
-        return (this->coefficients == rhs.coefficients) && (this->functions == rhs.functions);
+        return (this->m_coefficients == rhs.m_coefficients) && (this->m_functions == rhs.m_functions);
     }
 
 
@@ -233,17 +230,24 @@ public:
             throw std::invalid_argument("LinearCombination::append(std::vector<CoefficientScalar>, std::vector<T>): the number of coefficients and functions should match");
         }
 
-        this->coefficients.insert(this->coefficients.end(), coefficients.begin(), coefficients.end());
-        this->functions.insert(this->functions.end(), functions.begin(), functions.end());
+        this->m_coefficients.insert(this->m_coefficients.end(), coefficients.begin(), coefficients.end());
+        this->m_functions.insert(this->m_functions.end(), functions.begin(), functions.end());
     }
 
+    /**
+     *  @return the coefficients of the linear combination
+     */
+    const std::vector<CoefficientScalar>& coefficients() const { return this->m_coefficients; }
+
+    /**
+     *  @return the scalar functions of this linear combination
+     */
+    const std::vector<T>& functions() const { return this->m_functions; }
 
     /**
      *  @return the length of the linear combination, i.e. the number of coefficients/functions inside it
      */
-    size_t length() const {
-        return this->coefficients.size();
-    }
+    size_t length() const { return this->m_coefficients.size(); }
 };
 
 

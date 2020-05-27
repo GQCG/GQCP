@@ -33,7 +33,7 @@ class GuessVectorUpdate:
 
 public:
     /*
-     *  OVERRIDDEN PUBLIC METHODS
+     *  PUBLIC OVERRIDDEN METHODS
      */
 
     /**
@@ -42,6 +42,7 @@ public:
     std::string description() const override {
         return "Calculate new guesses for the eigenvectors from the diagonalized subspace matrix.";
     }
+
 
     /**
      *  Calculate new guesses for the eigenvectors from the diagonalized subspace matrix.

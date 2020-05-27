@@ -84,9 +84,7 @@ public:
      * 
      *  @return an environment that can be used to solve the dense eigenvalue problem for the given square matrix
      */
-    static EigenproblemEnvironment Dense(const SquareMatrix<double>& A) {
-        return EigenproblemEnvironment(A);
-    }
+    static EigenproblemEnvironment Dense(const SquareMatrix<double>& A) { return EigenproblemEnvironment(A); }
 
     /**
      *  @param matrix_vector_product            a vector function that returns the matrix-vector product (i.e. the matrix-vector product representation of the matrix)
@@ -95,10 +93,7 @@ public:
      * 
      *  @return an environment that can be used to solve the eigenvalue problem for the matrix that is represented by the given matrix-vector product
      */
-    static EigenproblemEnvironment Iterative(const VectorFunction<double>& matrix_vector_product_function, const VectorX<double>& diagonal, const MatrixX<double>& V) {
-        return EigenproblemEnvironment(matrix_vector_product_function, diagonal, V);
-    }
-
+    static EigenproblemEnvironment Iterative(const VectorFunction<double>& matrix_vector_product_function, const VectorX<double>& diagonal, const MatrixX<double>& V) { return EigenproblemEnvironment(matrix_vector_product_function, diagonal, V); }
 
     /**
      *  @param A                                the matrix whose eigenvalue problem should be solved
@@ -124,7 +119,7 @@ public:
      */
     std::vector<Eigenpair> eigenpairs(const size_t number_of_requested_eigenpairs = 1) const {
 
-        if (number_of_requested_eigenpairs > eigenvectors.cols()) {
+        if (number_of_requested_eigenpairs > this->eigenvectors.cols()) {
             throw std::invalid_argument("EigenproblemEnvironment::eigenpairs(const size_t): You cannot retrieve that many eigenpairs.");
         }
 

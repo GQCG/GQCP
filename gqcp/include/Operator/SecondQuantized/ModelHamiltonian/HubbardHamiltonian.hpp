@@ -85,12 +85,10 @@ public:
      */
     const HoppingMatrix<Scalar>& hoppingMatrix() const { return this->H; }
 
-
     /**
      *  @return the number of lattice sites corresponding used in this Hubbard model Hamiltonian
      */
     size_t numberOfLatticeSites() const { return this->H.numberOfLatticeSites(); }
-
 
     /**
      *  @return the two-electron part of the Hamiltonian (resulting from the on-site repulsion) as a two-electron operator

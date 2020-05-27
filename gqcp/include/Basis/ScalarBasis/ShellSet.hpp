@@ -74,6 +74,56 @@ public:
     const std::vector<Shell>& asVector() const { return this->shells; }
 
     /**
+     *  @param shell_index      the index of the shell
+     *
+     *  @return the (total basis function) index that corresponds to the first basis function in the given shell
+     */
+    size_t basisFunctionIndex(const size_t shell_index) const {
+
+        // Count the number of basis functions before the given index
+        size_t bf_index {};
+        for (size_t i = 0; i < shell_index; i++) {
+            bf_index += this->shells[i].numberOfBasisFunctions();
+        }
+
+        return bf_index;
+    }
+
+
+    /**
+     *  @return the basis functions that 'are' in this shell
+     */
+    std::vector<LinearCombination<double, BasisFunction>> basisFunctions() const {
+
+        throw std::runtime_error("ShellSet::basisFunctions(): This method has not been implemented yet.");
+    }
+
+
+    /**
+     *  For every of the shells, embed the total normalization factor of the corresponding linear combination of spherical (or axis-aligned Cartesian) GTOs into the contraction coefficients
+     */
+    void embedNormalizationFactors() {
+
+        for (auto& shell : this->shells) {
+            shell.embedNormalizationFactor();
+        }
+    }
+
+
+    /**
+     *  For every of the shells, embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing
+     *
+     *  Note that the normalization factor that is embedded corresponds to the spherical (or axis-aligned Cartesian) GTO
+     */
+    void embedNormalizationFactorsOfPrimitives() {
+
+        for (auto& shell : this->shells) {
+            shell.embedNormalizationFactorsOfPrimitives();
+        }
+    }
+
+
+    /**
      *  @return the maximum angular momentum of the shells
      */
     size_t maximumAngularMomentum() const {
@@ -110,25 +160,6 @@ public:
 
 
     /**
-     *  @return the number of shells in this shell set
-     */
-    size_t numberOfShells() const { return this->shells.size(); }
-
-    /**
-     *  @return the number of basis functions in this shell set
-     */
-    size_t numberOfBasisFunctions() const {
-
-        size_t value {};
-        for (const auto& shell : this->shells) {
-            value += shell.numberOfBasisFunctions();
-        }
-
-        return value;
-    }
-
-
-    /**
      *  @return an ordered vector of the unique nuclei in this shell set
      */
     std::vector<Nucleus> nuclei() const {
@@ -136,7 +167,7 @@ public:
         // Append every unique nucleus in this shell set's shells
         std::vector<Nucleus> nuclei {};
         for (const auto& shell : this->shells) {
-            const auto& nucleus = shell.get_nucleus();
+            const auto& nucleus = shell.nucleus();
 
             const auto unary_predicate = [nucleus](const Nucleus& other) {
                 return Nucleus::equalityComparer()(nucleus, other);
@@ -153,33 +184,23 @@ public:
 
 
     /**
-     *  @param shell_index      the index of the shell
-     *
-     *  @return the (total basis function) index that corresponds to the first basis function in the given shell
+     *  @return the number of basis functions in this shell set
      */
-    size_t basisFunctionIndex(size_t shell_index) const {
+    size_t numberOfBasisFunctions() const {
 
-        // Count the number of basis functions before the given index
-        size_t bf_index {};
-        for (size_t i = 0; i < shell_index; i++) {
-            bf_index += this->shells[i].numberOfBasisFunctions();
+        size_t value {};
+        for (const auto& shell : this->shells) {
+            value += shell.numberOfBasisFunctions();
         }
 
-        return bf_index;
+        return value;
     }
 
 
     /**
-     *  For every of the shells, embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing
-     *
-     *  Note that the normalization factor that is embedded corresponds to the spherical (or axis-aligned Cartesian) GTO
+     *  @return the number of shells in this shell set
      */
-    void embedNormalizationFactorsOfPrimitives() {
-
-        for (auto& shell : this->shells) {
-            shell.embedNormalizationFactorsOfPrimitives();
-        }
-    }
+    size_t numberOfShells() const { return this->shells.size(); }
 
 
     /**
@@ -192,25 +213,6 @@ public:
         for (auto& shell : this->shells) {
             shell.unEmbedNormalizationFactorsOfPrimitives();
         }
-    }
-
-
-    /**
-     *  For every of the shells, embed the total normalization factor of the corresponding linear combination of spherical (or axis-aligned Cartesian) GTOs into the contraction coefficients
-     */
-    void embedNormalizationFactors() {
-
-        for (auto& shell : this->shells) {
-            shell.embedNormalizationFactor();
-        }
-    }
-
-    /**
-     *  @return the basis functions that 'are' in this shell
-     */
-    std::vector<LinearCombination<double, BasisFunction>> basisFunctions() const {
-
-        throw std::runtime_error("ShellSet::basisFunctions(): This method has not been implemented yet.");
     }
 };
 

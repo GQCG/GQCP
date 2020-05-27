@@ -16,7 +16,6 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Mathematical/Algorithm/Algorithm.hpp"
-
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
 #include "Mathematical/Optimization/LinearEquation/LinearEquationEnvironment.hpp"
 
@@ -50,6 +49,7 @@ void bindAlgorithm(py::module& module, const std::string& suffix, const std::str
                                              description.c_str())
 
         // PUBLIC METHODS
+
         .def("description",
              &GQCP::Algorithm<Environment>::description,
              "Return a textual description of this algorithm.");

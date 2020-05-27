@@ -56,31 +56,14 @@ AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const size_t N_P, con
  *  @param maximum_number_of_iterations     the maximum number of iterations that may be used to achieve convergence
  */
 AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const AP1roGGeminalCoefficients& G, const double convergence_threshold, const size_t maximum_number_of_iterations) :
-    N_P {G.get_N_P()},
+    N_P {G.numberOfElectronPairs()},
     G {G},
-    JacobiOrbitalOptimizer(G.get_K(), convergence_threshold, maximum_number_of_iterations) {}
+    JacobiOrbitalOptimizer(G.numberOfSpatialOrbitals(), convergence_threshold, maximum_number_of_iterations) {}
 
 
 /*
  *  PUBLIC OVERRIDDEN METHODS
  */
-
-/**
- *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
- * 
- *  In the case of this uncoupled AP1roG Jacobi orbital optimizer, we should solve the AP1roG PSEs at the start at every iteration, using the current orbitals
- */
-void AP1roGJacobiOrbitalOptimizer::prepareJacobiSpecificConvergenceChecking(const SQHamiltonian<double>& sq_hamiltonian) {
-
-    // Optimize the AP1roG wave function model in this basis and update the results.
-    auto solver = GQCP::NonLinearEquationSolver<double>::Newton();
-    auto environment = GQCP::PSEnvironment::AP1roG(sq_hamiltonian, this->G);  // the initial guess are the current geminal coefficients
-    const auto qc_structure = GQCP::QCMethod::AP1roG(sq_hamiltonian, N_P).optimize(solver, environment);
-
-    this->G = qc_structure.groundStateParameters().geminalCoefficients();
-    this->E = qc_structure.groundStateEnergy();
-}
-
 
 /**
  *  Calculate the trigoniometric polynomial coefficients for the given Jacobi rotation indices
@@ -232,7 +215,7 @@ double AP1roGJacobiOrbitalOptimizer::calculateOptimalRotationAngle(const SQHamil
             queue.emplace(jacobi_rot_par, E_change);  // construct a pair_type
         }                                             // for theta
 
-        const double optimal_theta = queue.top().first.get_angle();
+        const double optimal_theta = queue.top().first.angle();
 
         VectorX<double> theta_min_vec {1};  // we can't implicitly convert a float to an VectorX<double> so we make it ourselves
         theta_min_vec << optimal_theta;
@@ -269,9 +252,9 @@ double AP1roGJacobiOrbitalOptimizer::calculateOptimalRotationAngle(const SQHamil
  */
 double AP1roGJacobiOrbitalOptimizer::calculateScalarFunctionChange(const SQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rot_par) const {
 
-    const size_t p = jacobi_rot_par.get_p();
-    const size_t q = jacobi_rot_par.get_q();
-    const double theta = jacobi_rot_par.get_angle();
+    const size_t p = jacobi_rot_par.p();
+    const size_t q = jacobi_rot_par.q();
+    const double theta = jacobi_rot_par.angle();
 
 
     // I've written everything in terms of cos(2 theta), sin(2 theta), cos(4 theta) and sin(4 theta)
@@ -303,6 +286,23 @@ double AP1roGJacobiOrbitalOptimizer::calculateScalarFunctionChange(const SQHamil
     else {  // this means that p <= q
         throw std::invalid_argument("AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(const SQHamiltonian<double>&, const size_t, const size_t): The given p and q are invalid: p must be larger than q.");
     }
+}
+
+
+/**
+ *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
+ * 
+ *  In the case of this uncoupled AP1roG Jacobi orbital optimizer, we should solve the AP1roG PSEs at the start at every iteration, using the current orbitals
+ */
+void AP1roGJacobiOrbitalOptimizer::prepareJacobiSpecificConvergenceChecking(const SQHamiltonian<double>& sq_hamiltonian) {
+
+    // Optimize the AP1roG wave function model in this basis and update the results.
+    auto solver = GQCP::NonLinearEquationSolver<double>::Newton();
+    auto environment = GQCP::PSEnvironment::AP1roG(sq_hamiltonian, this->G);  // the initial guess are the current geminal coefficients
+    const auto qc_structure = GQCP::QCMethod::AP1roG(sq_hamiltonian, N_P).optimize(solver, environment);
+
+    this->G = qc_structure.groundStateParameters().geminalCoefficients();
+    this->E = qc_structure.groundStateEnergy();
 }
 
 

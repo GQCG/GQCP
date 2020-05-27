@@ -30,14 +30,14 @@ namespace GQCP {
  *  @param rdm_builder                  shared pointer to active (non-frozen core) RDM builder
  *  @param X                            the number of frozen orbitals
  */
-FrozenCoreRDMBuilder::FrozenCoreRDMBuilder(std::shared_ptr<BaseRDMBuilder> rdm_builder, size_t X) :
+FrozenCoreRDMBuilder::FrozenCoreRDMBuilder(const std::shared_ptr<BaseRDMBuilder> rdm_builder, const size_t X) :
     BaseRDMBuilder(),
     active_rdm_builder {std::move(rdm_builder)},
     X {X} {}
 
 
 /*
- * OVERRIDDEN PUBLIC METHODS
+ * PUBLIC OVERRIDDEN METHODS
  */
 
 /**
@@ -47,7 +47,7 @@ FrozenCoreRDMBuilder::FrozenCoreRDMBuilder(std::shared_ptr<BaseRDMBuilder> rdm_b
  */
 OneRDMs<double> FrozenCoreRDMBuilder::calculate1RDMs(const VectorX<double>& x) const {
 
-    auto K = this->get_fock_space()->get_K();
+    auto K = this->onvBasis()->numberOfOrbitals();
 
     OneRDM<double> D_aa = OneRDM<double>::Zero(K, K);
     OneRDM<double> D_bb = OneRDM<double>::Zero(K, K);
@@ -77,7 +77,7 @@ OneRDMs<double> FrozenCoreRDMBuilder::calculate1RDMs(const VectorX<double>& x) c
  */
 TwoRDMs<double> FrozenCoreRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
 
-    auto K = this->get_fock_space()->get_K();
+    auto K = this->onvBasis()->numberOfOrbitals();
 
     TwoRDM<double> d_aaaa {K};
     d_aaaa.setZero();
@@ -154,20 +154,6 @@ TwoRDMs<double> FrozenCoreRDMBuilder::calculate2RDMs(const VectorX<double>& x) c
     d_bbaa.addBlock(sub_2rdms.two_rdm_bbaa, this->X, this->X, this->X, this->X);
 
     return TwoRDMs<double>(d_aaaa, d_aabb, d_bbaa, d_bbbb);
-};
-
-
-/**
- *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)
- *  @param ket_indices      the indices of the orbitals that should be annihilated on the right (on the ket)
- *  @param x                the coefficient vector representing the wave function
- *
- *  @return an element of the spin-summed (total) N-RDM, as specified by the given bra and ket indices
- *
- *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
- */
-double FrozenCoreRDMBuilder::calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const VectorX<double>& x) const {
-    throw std::runtime_error("FrozenCoreRDMBuilder::calculateElement(std::vector<size_t>, std::vector<size_t>, VectorX<double>): calculateElement is not implemented for FrozenCoreCI RDMs");
 };
 
 

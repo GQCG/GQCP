@@ -42,7 +42,7 @@ public:
 
 public:
     /*
-     *  OVERRIDDEN PUBLIC METHODS
+     *  PUBLIC OVERRIDDEN METHODS
      */
 
     /**
@@ -74,8 +74,8 @@ public:
         const auto error_matrix_alpha = QCModel::UHF<Scalar>::calculateError(F_alpha, D_alpha, S);
         const auto error_matrix_beta = QCModel::UHF<Scalar>::calculateError(F_beta, D_beta, S);
 
-        environment.error_vectors_alpha.push_back(error_matrix_alpha.pairWiseReduce());
-        environment.error_vectors_beta.push_back(error_matrix_beta.pairWiseReduce());
+        environment.error_vectors_alpha.push_back(error_matrix_alpha.pairWiseReduced());
+        environment.error_vectors_beta.push_back(error_matrix_beta.pairWiseReduced());
     }
 };
 

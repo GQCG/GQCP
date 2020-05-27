@@ -87,7 +87,7 @@ BOOST_AUTO_TEST_CASE(readArrayFromFile_tensor_example) {
 }
 
 
-BOOST_AUTO_TEST_CASE(pairWiseStrictReduce) {
+BOOST_AUTO_TEST_CASE(pairWiseStrictReduced) {
 
     // Example 1
     size_t dim1 = 2;
@@ -106,7 +106,7 @@ BOOST_AUTO_TEST_CASE(pairWiseStrictReduce) {
     GQCP::SquareMatrix<double> M1_ref {1};  // 2*(2-1)/2 = 1
     M1_ref << 10;                           // by manual inspection we find that this is the only value that should appear in the matrix
 
-    BOOST_CHECK(M1_ref.isApprox(T1.pairWiseStrictReduce()));
+    BOOST_CHECK(M1_ref.isApprox(T1.pairWiseStrictReduced()));
 
 
     // Example 2
@@ -130,7 +130,7 @@ BOOST_AUTO_TEST_CASE(pairWiseStrictReduce) {
               66, 69, 70;  // by manual inspection, these should be the elements of the reduced matrix
     // clang-format on
 
-    BOOST_CHECK(M2_ref.isApprox(T2.pairWiseStrictReduce()));
+    BOOST_CHECK(M2_ref.isApprox(T2.pairWiseStrictReduced()));
 }
 
 
@@ -163,15 +163,15 @@ BOOST_AUTO_TEST_CASE(SquareRankFourTensor_matrix_contraction_trivial) {
     // test rank-4 tensor, data from https://stackoverflow.com/questions/47556726
     GQCP::SquareRankFourTensor<double> T_test = GQCP::SquareRankFourTensor<double>::FromFile("data/tensor_contraction_test.data", 2);
 
-    T.matrixContraction(A, 0);
+    T.contractWithMatrix(A, 0);
 
     BOOST_CHECK(T_test.isApprox(T_test, 1.0e-12));
 
     // If we contract the with the last index axis of the shuffled tensor, then shuffle back the results should be the same.
-    T2.matrixContraction(A, 3);
+    T2.contractWithMatrix(A, 3);
     GQCP::SquareRankFourTensor<double> T3 = GQCP::SquareRankFourTensor<double>(T2.Eigen().shuffle(shuffle));
 
     BOOST_CHECK(T3.isApprox(T_test, 1.0e-12));
 
-    BOOST_CHECK_THROW(T3.matrixContraction(A, 5), std::invalid_argument);
+    BOOST_CHECK_THROW(T3.contractWithMatrix(A, 5), std::invalid_argument);
 }

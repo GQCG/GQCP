@@ -24,9 +24,9 @@
 
 
 /**
- *  Test the general functionality of the addConfiguration function, by testing throws and retrieving configurations.
+ *  Test the general functionality of the addONV function, by testing throws and retrieving configurations.
  */
-BOOST_AUTO_TEST_CASE(addConfiguration) {
+BOOST_AUTO_TEST_CASE(addONV) {
 
     // Create a faulty expansion: one of the orbitals is different
     GQCP::SpinResolvedSelectedONVBasis fock_space {3, 1, 1};
@@ -34,19 +34,19 @@ BOOST_AUTO_TEST_CASE(addConfiguration) {
     std::vector<std::string> alpha_set {"001", "010"};
     std::vector<std::string> beta_set {"001", "010"};
 
-    BOOST_CHECK_NO_THROW(fock_space.addConfiguration(alpha_set, beta_set));
+    BOOST_CHECK_NO_THROW(fock_space.addONV(alpha_set, beta_set));
 
     // Test throw with one of the sets is not the same size
     std::vector<std::string> beta_set_long = {"001", "010", "100"};
-    BOOST_CHECK_THROW(fock_space.addConfiguration(alpha_set, beta_set_long), std::invalid_argument);
+    BOOST_CHECK_THROW(fock_space.addONV(alpha_set, beta_set_long), std::invalid_argument);
 
     // Test throw with incompatible orbital numbers
-    BOOST_CHECK_THROW(fock_space.addConfiguration("0001", "0100"), std::invalid_argument);
+    BOOST_CHECK_THROW(fock_space.addONV("0001", "0100"), std::invalid_argument);
 
     // Test throw with incompatible electron numbers
-    BOOST_CHECK_THROW(fock_space.addConfiguration("011", "011"), std::invalid_argument);
+    BOOST_CHECK_THROW(fock_space.addONV("011", "011"), std::invalid_argument);
 
-    fock_space.addConfiguration(alpha_set, beta_set);
+    fock_space.addONV(alpha_set, beta_set);
 
 
     // Check if the expansions are equal
@@ -57,8 +57,8 @@ BOOST_AUTO_TEST_CASE(addConfiguration) {
     std::string beta2_ref = "010";
 
     // Retrieve the added results
-    GQCP::SpinResolvedONV configuration1 = fock_space.get_configuration(0);
-    GQCP::SpinResolvedONV configuration2 = fock_space.get_configuration(1);
+    GQCP::SpinResolvedONV configuration1 = fock_space.onvWithIndex(0);
+    GQCP::SpinResolvedONV configuration2 = fock_space.onvWithIndex(1);
 
     // Retrieve the string representation of the ONVs
     std::string alpha1_test = configuration1.onv(GQCP::Spin::alpha).asString();

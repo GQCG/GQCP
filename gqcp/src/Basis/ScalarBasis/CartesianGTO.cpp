@@ -35,17 +35,17 @@ namespace GQCP {
  *  @param cartesian_exponents      the exponents of x, y and z
  *  @param center                   the center of the Cartesian GTO
  */
-CartesianGTO::CartesianGTO(double gaussian_exponent, const CartesianExponents& cartesian_exponents, const Vector<double, 3>& center) :
+CartesianGTO::CartesianGTO(const double gaussian_exponent, const CartesianExponents& cartesian_exponents, const Vector<double, 3>& center) :
     gaussian_exponent {gaussian_exponent},
     cartesian_exponents {cartesian_exponents},
-    center {center} {
+    m_center {center} {
 
     if (gaussian_exponent < 0) {
         throw std::invalid_argument("CartesianGTO::CartesianGTO(double, CartesianExponents, Vector<double, 3>): the exponent must be larger than 0.");
     }
 
 
-    this->N = this->calculateNormalizationFactor();
+    this->N = CartesianGTO::calculateNormalizationFactor(gaussian_exponent, cartesian_exponents);
 }
 
 
@@ -67,7 +67,7 @@ CartesianGTO::CartesianGTO() :
  */
 double CartesianGTO::operator()(const Vector<double, 3>& r) const {
 
-    Vector<double, 3> delta_r = r - this->center;
+    Vector<double, 3> delta_r = r - this->m_center;
 
     double value = this->N;
     value *= std::pow(delta_r.x(), this->cartesian_exponents.value(CartesianDirection::x));
@@ -84,7 +84,7 @@ double CartesianGTO::operator()(const Vector<double, 3>& r) const {
  *  @return whether two ScalarFunctions are equal
  */
 bool CartesianGTO::operator==(const CartesianGTO& rhs) const {
-    return (std::abs(this->gaussian_exponent - rhs.gaussian_exponent) < 1.0e-12) && (this->cartesian_exponents == rhs.cartesian_exponents) && (this->center.isApprox(rhs.center));
+    return (std::abs(this->gaussian_exponent - rhs.gaussian_exponent) < 1.0e-12) && (this->cartesian_exponents == rhs.cartesian_exponents) && (this->m_center.isApprox(rhs.m_center));
 }
 
 
@@ -98,7 +98,7 @@ bool CartesianGTO::operator==(const CartesianGTO& rhs) const {
  *
  *  @return one of the components of the total normalization factor
  */
-double CartesianGTO::calculateNormalizationFactorComponent(double gaussian_exponent, size_t cartesian_exponent) {
+double CartesianGTO::calculateNormalizationFactorComponent(const double gaussian_exponent, const size_t cartesian_exponent) {
 
     double pi = boost::math::constants::pi<double>();
 
@@ -121,7 +121,7 @@ double CartesianGTO::calculateNormalizationFactorComponent(double gaussian_expon
  *
  *  @return the total normalization factor
  */
-double CartesianGTO::calculateNormalizationFactor(double gaussian_exponent, const CartesianExponents& cartesian_exponents) {
+double CartesianGTO::calculateNormalizationFactor(const double gaussian_exponent, const CartesianExponents& cartesian_exponents) {
 
     // The formula is separable in its three Cartesian components
 
@@ -137,27 +137,20 @@ double CartesianGTO::calculateNormalizationFactor(double gaussian_exponent, cons
  *  PUBLIC METHODS
  */
 
-/**
- *  @return the normalization factor of the Cartesian GTO
- */
-double CartesianGTO::calculateNormalizationFactor() const {
-    return CartesianGTO::calculateNormalizationFactor(this->gaussian_exponent, this->cartesian_exponents);
-}
-
 
 /**
  *  @param direction        the Cartesian direction in which the derivative should be calculated
  *
  *  @return the derivative of this Cartesian GTO (with respect to the electronic coordinates) in the x-, y-, or z-direction
  */
-LinearCombination<double, CartesianGTO> CartesianGTO::calculateDerivative(CartesianDirection direction) const {
+LinearCombination<double, CartesianGTO> CartesianGTO::calculateDerivative(const CartesianDirection direction) const {
 
     // The formula is a sum of two parts: the derivative of the exponential and the derivative of the linear term (if applicable)
 
     // Derivative of the exponential
     CartesianExponents exponential_derivative_exponents = this->cartesian_exponents;
     exponential_derivative_exponents.exponents[direction] += 1;
-    CartesianGTO exponential_derivative_gto {this->gaussian_exponent, exponential_derivative_exponents, this->center};
+    CartesianGTO exponential_derivative_gto {this->gaussian_exponent, exponential_derivative_exponents, this->m_center};
     double exponential_derivative_coefficient = -2 * this->gaussian_exponent;
 
     LinearCombination<double, CartesianGTO> lc {exponential_derivative_coefficient, exponential_derivative_gto};  // lc: linear combination
@@ -169,7 +162,7 @@ LinearCombination<double, CartesianGTO> CartesianGTO::calculateDerivative(Cartes
         CartesianExponents linear_derivative_exponents = this->cartesian_exponents;
         linear_derivative_exponents.exponents[direction] -= 1;
 
-        CartesianGTO linear_derivative_gto(this->gaussian_exponent, linear_derivative_exponents, this->center);
+        CartesianGTO linear_derivative_gto(this->gaussian_exponent, linear_derivative_exponents, this->m_center);
         double linear_derivative_coefficient = this->cartesian_exponents.value(direction);
 
         lc += LinearCombination<double, CartesianGTO>(linear_derivative_coefficient, linear_derivative_gto);

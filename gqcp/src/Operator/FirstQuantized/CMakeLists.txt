@@ -4,5 +4,4 @@ target_sources(gqcp
         BaseNuclearOperator.cpp
         NuclearDipoleOperator.cpp
         NuclearRepulsionOperator.cpp
-        Operator.cpp
 )

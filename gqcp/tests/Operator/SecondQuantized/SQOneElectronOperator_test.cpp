@@ -155,27 +155,27 @@ BOOST_AUTO_TEST_CASE(SQOneElectronOperator_of_GTOs_transform) {
 
     double coeff1 = 1.0;
     GQCP::CartesianGTO gto1 {1.0, {1, 0, 0}, center};
-    double N1 = gto1.calculateNormalizationFactor();
+    double N1 = gto1.normalizationFactor();
 
     double coeff2 = 2.0;
     GQCP::CartesianGTO gto2 {2.0, {0, 1, 0}, center};
-    double N2 = gto2.calculateNormalizationFactor();
+    double N2 = gto2.normalizationFactor();
 
     double coeff3 = -1.0;
     GQCP::CartesianGTO gto3 {1.0, {1, 1, 0}, center};
-    double N3 = gto3.calculateNormalizationFactor();
+    double N3 = gto3.normalizationFactor();
 
     double coeff4 = 1.0;
     GQCP::CartesianGTO gto4 {3.0, {0, 0, 2}, center};
-    double N4 = gto4.calculateNormalizationFactor();
+    double N4 = gto4.normalizationFactor();
 
     double coeff5 = 2.5;
     GQCP::CartesianGTO gto5 {0.5, {1, 1, 1}, center};
-    double N5 = gto5.calculateNormalizationFactor();
+    double N5 = gto5.normalizationFactor();
 
     double coeff6 = -1.0;
     GQCP::CartesianGTO gto6 {2.5, {0, 1, 1}, center};
-    double N6 = gto6.calculateNormalizationFactor();
+    double N6 = gto6.normalizationFactor();
 
 
     GQCP::LinearCombination<double, GQCP::CartesianGTO> lc1 {coeff1, gto1};
@@ -203,14 +203,14 @@ BOOST_AUTO_TEST_CASE(SQOneElectronOperator_of_GTOs_transform) {
 
     // Check the coefficients of the transformed operator with a manual calculation
     const std::vector<double> ref_coeff_result_01 {2.0, 1.0, 2.5};
-    auto coeff_result_01 = rho_transformed_par(0, 1).get_coefficients();
+    auto coeff_result_01 = rho_transformed_par(0, 1).coefficients();
     for (size_t i = 0; i < ref_coeff_result_01.size(); i++) {
         BOOST_CHECK(std::abs(ref_coeff_result_01[i] - coeff_result_01[i]) < 1.0e-12);
     }
     BOOST_CHECK(ref_coeff_result_01.size() == coeff_result_01.size());
 
     const std::vector<double> ref_coeff_result_11 {1.0};
-    auto coeff_result_11 = rho_transformed_par(1, 1).get_coefficients();
+    auto coeff_result_11 = rho_transformed_par(1, 1).coefficients();
     for (size_t i = 0; i < ref_coeff_result_11.size(); i++) {
         BOOST_CHECK(std::abs(ref_coeff_result_11[i] - coeff_result_11[i]) < 1.0e-12);
     }
@@ -230,27 +230,27 @@ BOOST_AUTO_TEST_CASE(SQOneElectronOperator_of_GTOs_evaluate) {
 
     double coeff1 = 1.0;
     GQCP::CartesianGTO gto1 {1.0, {1, 0, 0}, center};
-    double N1 = gto1.calculateNormalizationFactor();
+    double N1 = gto1.normalizationFactor();
 
     double coeff2 = 2.0;
     GQCP::CartesianGTO gto2 {2.0, {0, 1, 0}, center};
-    double N2 = gto2.calculateNormalizationFactor();
+    double N2 = gto2.normalizationFactor();
 
     double coeff3 = -1.0;
     GQCP::CartesianGTO gto3 {1.0, {1, 1, 0}, center};
-    double N3 = gto3.calculateNormalizationFactor();
+    double N3 = gto3.normalizationFactor();
 
     double coeff4 = 1.0;
     GQCP::CartesianGTO gto4 {3.0, {0, 0, 2}, center};
-    double N4 = gto4.calculateNormalizationFactor();
+    double N4 = gto4.normalizationFactor();
 
     double coeff5 = 2.5;
     GQCP::CartesianGTO gto5 {0.5, {1, 1, 1}, center};
-    double N5 = gto5.calculateNormalizationFactor();
+    double N5 = gto5.normalizationFactor();
 
     double coeff6 = -1.0;
     GQCP::CartesianGTO gto6 {2.5, {0, 1, 1}, center};
-    double N6 = gto6.calculateNormalizationFactor();
+    double N6 = gto6.normalizationFactor();
 
 
     GQCP::LinearCombination<double, GQCP::CartesianGTO> lc1 {coeff1, gto1};

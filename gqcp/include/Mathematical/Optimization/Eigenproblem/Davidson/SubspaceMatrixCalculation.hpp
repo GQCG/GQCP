@@ -35,7 +35,7 @@ class SubspaceMatrixCalculation:
 
 public:
     /*
-     *  OVERRIDDEN PUBLIC METHODS
+     *  PUBLIC OVERRIDDEN METHODS
      */
 
     /**

@@ -36,14 +36,14 @@ BOOST_AUTO_TEST_CASE(FrozenONVBasis_constructor) {
 BOOST_AUTO_TEST_CASE(coupling_count) {
 
     GQCP::SpinUnresolvedFrozenONVBasis fock_space {7, 5, 2};
-    GQCP::SpinUnresolvedONV onv = fock_space.makeONV(3);
+    GQCP::SpinUnresolvedONV onv = fock_space.constructONVFromAddress(3);
 
     // We only count couplings with larger addresses
 
     BOOST_CHECK(fock_space.countOneElectronCouplings(onv) == 3);
     BOOST_CHECK(fock_space.countTwoElectronCouplings(onv) == 3 + 3);
 
-    onv = fock_space.makeONV(0);
+    onv = fock_space.constructONVFromAddress(0);
 
     BOOST_CHECK(fock_space.countOneElectronCouplings(onv) == 6);
     BOOST_CHECK(fock_space.countTwoElectronCouplings(onv) == 6 + 3);
@@ -54,11 +54,11 @@ BOOST_AUTO_TEST_CASE(coupling_count) {
 
     size_t coupling_count1 = 0;
     size_t coupling_count2 = 0;
-    onv = fock_space2.makeONV(0);  // spin string with address 0
+    onv = fock_space2.constructONVFromAddress(0);  // spin string with address 0
 
-    for (size_t I = 0; I < fock_space2.get_dimension(); I++) {  // I_alpha loops over all addresses of alpha spin strings
+    for (size_t I = 0; I < fock_space2.dimension(); I++) {  // I_alpha loops over all addresses of alpha spin strings
         if (I > 0) {
-            fock_space2.setNextONV(onv);
+            fock_space2.transformONVToNextPermutation(onv);
         }
         coupling_count1 += fock_space2.countOneElectronCouplings(onv);
         coupling_count2 += fock_space2.countTwoElectronCouplings(onv);
@@ -81,12 +81,12 @@ BOOST_AUTO_TEST_CASE(ulongNextPermutation_getAddress_calculateRepresentation) {
     size_t bit_frozen_fock_space[6] = {7, 11, 13, 19, 21, 25};
 
     size_t bit_onv = bit_frozen_fock_space[0];
-    BOOST_CHECK(frozen_fock_space.getAddress(bit_onv) == 0);
-    for (size_t i = 1; i < frozen_fock_space.get_dimension(); i++) {
-        bit_onv = frozen_fock_space.ulongNextPermutation(bit_onv);
+    BOOST_CHECK(frozen_fock_space.addressOf(bit_onv) == 0);
+    for (size_t i = 1; i < frozen_fock_space.dimension(); i++) {
+        bit_onv = frozen_fock_space.nextPermutationOf(bit_onv);
         BOOST_CHECK(bit_onv == bit_frozen_fock_space[i]);
-        BOOST_CHECK(frozen_fock_space.getAddress(bit_onv) == i);
-        BOOST_CHECK(frozen_fock_space.calculateRepresentation(i) == bit_onv);
+        BOOST_CHECK(frozen_fock_space.addressOf(bit_onv) == i);
+        BOOST_CHECK(frozen_fock_space.representationOf(i) == bit_onv);
     }
 }
 
@@ -97,7 +97,7 @@ BOOST_AUTO_TEST_CASE(address_setNext_frozen_space) {
     GQCP::SpinUnresolvedFrozenONVBasis fock_space {15, 5, 2};
 
     // Retrieve the first ONV of the ONV basis
-    GQCP::SpinUnresolvedONV onv_test = fock_space.makeONV(0);
+    GQCP::SpinUnresolvedONV onv_test = fock_space.constructONVFromAddress(0);
 
     const size_t permutations = 285;
     bool is_correct = true;  // variable that is updated to false if an unexpected result occurs
@@ -106,13 +106,13 @@ BOOST_AUTO_TEST_CASE(address_setNext_frozen_space) {
     for (size_t i = 0; i < permutations; i++) {
 
         // Tests address
-        if (i != fock_space.getAddress(onv_test)) {
+        if (i != fock_space.addressOf(onv_test)) {
             is_correct = false;
         }
 
         // transforms the given ONV to the next ONV in the ONV basis
         if (i < permutations - 1) {
-            fock_space.setNextONV(onv_test);
+            fock_space.transformONVToNextPermutation(onv_test);
         }
     }
 

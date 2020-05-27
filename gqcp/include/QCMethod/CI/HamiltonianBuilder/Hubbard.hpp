@@ -49,6 +49,14 @@ public:
 
 
     // PUBLIC METHODS
+
+    /**
+     *  @param hubbard_hamiltonian              the Hubbard model Hamiltonian
+     *
+     *  @return the diagonal of the matrix representation of the Hubbard model Hamiltonian
+     */
+    VectorX<double> calculateDiagonal(const HubbardHamiltonian<double>& hubbard_hamiltonian) const;
+
     /**
      *  @param hubbard_hamiltonian              the Hubbard model Hamiltonian
      *
@@ -64,13 +72,6 @@ public:
      *  @return the action of the Hubbard model Hamiltonian on the coefficient vector
      */
     VectorX<double> matrixVectorProduct(const HubbardHamiltonian<double>& hubbard_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
-
-    /**
-     *  @param hubbard_hamiltonian              the Hubbard model Hamiltonian
-     *
-     *  @return the diagonal of the matrix representation of the Hubbard model Hamiltonian
-     */
-    VectorX<double> calculateDiagonal(const HubbardHamiltonian<double>& hubbard_hamiltonian) const;
 };
 
 

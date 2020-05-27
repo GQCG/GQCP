@@ -15,10 +15,9 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp"
-
 #include "Mathematical/Algorithm/Algorithm.hpp"
 #include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
+#include "QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp"
 
 #include <pybind11/pybind11.h>
 
@@ -43,6 +42,8 @@ void bindDOCINewtonOrbitalOptimizer(py::module& module, const std::string& suffi
     py::class_<GQCP::DOCINewtonOrbitalOptimizer<EigenproblemSolver>>(module,
                                                                      ("DOCINewtonOrbitalOptimizer_" + suffix).c_str(),
                                                                      "A class that performs gradient-and-Hessian-based orbital optimization for DOCI")
+
+        // PUBLIC METHODS
 
         .def(
             "optimize",

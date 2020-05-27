@@ -27,7 +27,6 @@
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "Processing/RDM/OneRDM.hpp"
-#include "QCMethod/QCObjective.hpp"
 
 
 namespace GQCP {
@@ -81,17 +80,6 @@ public:
      *  STATIC PUBLIC METHODS
      */
 
-    /**
-     *  @param F                the Fock matrix expressed in a scalar basis
-     *  @param D                the RHF density matrix in the same scalar basis
-     *  @param S                the overlap matrix of that scalar basis
-     * 
-     *  @return the RHF error matrix
-     */
-    static SquareMatrix<Scalar> calculateError(const QCMatrix<Scalar>& F, const OneRDM<Scalar>& D, const SquareMatrix<Scalar>& S) {
-        return F * D * S - S * D * F;
-    }
-
 
     /**
      *  @param D                the RHF density matrix in a scalar basis
@@ -123,50 +111,14 @@ public:
 
 
     /**
-     *  @param C    the coefficient matrix that expresses every spatial orbital (as a column) in its underlying scalar basis
-     *  @param N    the number of electrons
-     *
-     *  @return the RHF 1-RDM expressed in the underlying scalar basis
+     *  @param F                the Fock matrix expressed in a scalar basis
+     *  @param D                the RHF density matrix in the same scalar basis
+     *  @param S                the overlap matrix of that scalar basis
+     * 
+     *  @return the RHF error matrix
      */
-    static OneRDM<Scalar> calculateScalarBasis1RDM(const TransformationMatrix<double>& C, const size_t N) {
-
-        const size_t K = C.dimension();
-        const auto D_orthonormal = RHF<Scalar>::calculateOrthonormalBasis1RDM(K, N);
-
-        // Transform the 1-RDM in an orthonormal basis to the underlying scalar basis
-        return C.conjugate() * D_orthonormal * C.transpose();
-    }
-
-
-    /**
-     *  Calculate the RHF Fock matrix F = H_core + G, in which G is a contraction of the density matrix and the two-electron integrals
-     *
-     *  @param D                    the RHF density matrix in a scalar basis
-     *  @param sq_hamiltonian       the Hamiltonian expressed in the same scalar basis
-     *
-     *  @return the RHF Fock matrix expressed in the scalar basis
-     */
-    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(const OneRDM<Scalar>& D, const SQHamiltonian<Scalar>& sq_hamiltonian) {
-        // To perform the contraction, we will first have to convert the MatrixX<double> D to an Eigen::Tensor<const double, 2> D_tensor, as contractions are only implemented for Tensors
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> D_tensor {D.data(), D.rows(), D.cols()};
-
-        // Specify the contraction pairs
-        // To calculate G, we must perform two double contractions
-        //      1. (mu nu|rho lambda) P(lambda rho)
-        Eigen::array<Eigen::IndexPair<int>, 2> direct_contraction_pair = {Eigen::IndexPair<int>(3, 0), Eigen::IndexPair<int>(2, 1)};
-        //      2. -0.5 (mu lambda|rho nu) P(lambda rho)
-        Eigen::array<Eigen::IndexPair<int>, 2> exchange_contraction_pair = {Eigen::IndexPair<int>(1, 0), Eigen::IndexPair<int>(2, 1)};
-
-        // Calculate both contractions (and incorporate prefactors)
-        const auto& g = sq_hamiltonian.twoElectron().parameters();
-        Tensor<Scalar, 2> direct_contraction = g.contract(D_tensor, direct_contraction_pair);
-        Tensor<Scalar, 2> exchange_contraction = -0.5 * g.contract(D_tensor, exchange_contraction_pair);
-
-        // The previous contractions are Tensor<Scalar, 2> instances. In order to calculate the total G matrix, we will convert them back into MatrixX<double>
-        Eigen::Map<Eigen::MatrixXd> G1 {direct_contraction.data(), direct_contraction.dimension(0), direct_contraction.dimension(1)};
-        Eigen::Map<Eigen::MatrixXd> G2 {exchange_contraction.data(), exchange_contraction.dimension(0), exchange_contraction.dimension(1)};
-
-        return ScalarSQOneElectronOperator<Scalar> {sq_hamiltonian.core().parameters() + G1 + G2};
+    static SquareMatrix<Scalar> calculateError(const QCMatrix<Scalar>& F, const OneRDM<Scalar>& D, const SquareMatrix<Scalar>& S) {
+        return F * D * S - S * D * F;
     }
 
 
@@ -238,6 +190,7 @@ public:
         return hessian;
     }
 
+
     /**
      *  @param K    the number of spatial orbitals
      *  @param N    the number of electrons
@@ -261,6 +214,54 @@ public:
         D_MO.topLeftCorner(N / 2, N / 2) = 2 * SquareMatrix<double>::Identity(N / 2, N / 2);
 
         return D_MO;
+    }
+
+
+    /**
+     *  @param C    the coefficient matrix that expresses every spatial orbital (as a column) in its underlying scalar basis
+     *  @param N    the number of electrons
+     *
+     *  @return the RHF 1-RDM expressed in the underlying scalar basis
+     */
+    static OneRDM<Scalar> calculateScalarBasis1RDM(const TransformationMatrix<double>& C, const size_t N) {
+
+        const size_t K = C.dimension();
+        const auto D_orthonormal = RHF<Scalar>::calculateOrthonormalBasis1RDM(K, N);
+
+        // Transform the 1-RDM in an orthonormal basis to the underlying scalar basis
+        return C.conjugate() * D_orthonormal * C.transpose();
+    }
+
+
+    /**
+     *  Calculate the RHF Fock matrix F = H_core + G, in which G is a contraction of the density matrix and the two-electron integrals
+     *
+     *  @param D                    the RHF density matrix in a scalar basis
+     *  @param sq_hamiltonian       the Hamiltonian expressed in the same scalar basis
+     *
+     *  @return the RHF Fock matrix expressed in the scalar basis
+     */
+    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(const OneRDM<Scalar>& D, const SQHamiltonian<Scalar>& sq_hamiltonian) {
+        // To perform the contraction, we will first have to convert the MatrixX<double> D to an Eigen::Tensor<const double, 2> D_tensor, as contractions are only implemented for Tensors
+        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> D_tensor {D.data(), D.rows(), D.cols()};
+
+        // Specify the contraction pairs
+        // To calculate G, we must perform two double contractions
+        //      1. (mu nu|rho lambda) P(lambda rho)
+        Eigen::array<Eigen::IndexPair<int>, 2> direct_contraction_pair = {Eigen::IndexPair<int>(3, 0), Eigen::IndexPair<int>(2, 1)};
+        //      2. -0.5 (mu lambda|rho nu) P(lambda rho)
+        Eigen::array<Eigen::IndexPair<int>, 2> exchange_contraction_pair = {Eigen::IndexPair<int>(1, 0), Eigen::IndexPair<int>(2, 1)};
+
+        // Calculate both contractions (and incorporate prefactors)
+        const auto& g = sq_hamiltonian.twoElectron().parameters();
+        Tensor<Scalar, 2> direct_contraction = g.contract(D_tensor, direct_contraction_pair);
+        Tensor<Scalar, 2> exchange_contraction = -0.5 * g.contract(D_tensor, exchange_contraction_pair);
+
+        // The previous contractions are Tensor<Scalar, 2> instances. In order to calculate the total G matrix, we will convert them back into MatrixX<double>
+        Eigen::Map<Eigen::MatrixXd> G1 {direct_contraction.data(), direct_contraction.dimension(0), direct_contraction.dimension(1)};
+        Eigen::Map<Eigen::MatrixXd> G2 {exchange_contraction.data(), exchange_contraction.dimension(0), exchange_contraction.dimension(1)};
+
+        return ScalarSQOneElectronOperator<Scalar> {sq_hamiltonian.core().parameters() + G1 + G2};
     }
 
 

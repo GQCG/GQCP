@@ -65,9 +65,7 @@ private:
      *  @param column    column index of the matrix
      *  @param value     the value which is added to a given position in the matrix
      */
-    void addColumnwise(const size_t column, const double value) {
-        this->matrix(this->index, column) += value;
-    }
+    void addColumnwise(const size_t column, const double value) { this->matrix(this->index, column) += value; }
 
     /**
      *  Add a value to the matrix evaluation in which the current iterator index corresponds to the column and the given index corresponds to the row
@@ -75,9 +73,7 @@ private:
      *  @param row       row index of the matrix
      *  @param value     the value which is added to a given position in the matrix
      */
-    void addRowwise(const size_t row, const double value) {
-        this->matrix(row, this->index) += value;
-    }
+    void addRowwise(const size_t row, const double value) { this->matrix(row, this->index) += value; }
 
     /**
      *  @return the evaluation that is stored
@@ -87,17 +83,15 @@ private:
     /**
      *  Move to the next index in the iteration
      */
-    void increment() {
-        this->index++;
-    }
+    void increment() { this->index++; }
 
     /**
-     *  Tests if the iteration is finished, if true the index is reset to 0 
+     *  Tests if the iteration is finished, if true the index is reset to 0
      * 
      *  @return true if the iteration is finished
      */
-    bool is_finished() {
-        if (index == end) {
+    bool isFinished() {
+        if (this->index == this->end) {
             this->index = 0;
             return true;
         } else {
@@ -142,17 +136,6 @@ class EvaluationIterator<Eigen::SparseMatrix<double>> {
      */
 
     /**
-     *  Reserves an amount of memory for the triplet vector
-     *
-     *  @param n        the amount triplets that should be reserved
-     */
-    void reserve(const size_t n) {
-        this->triplet_vector.reserve(n);
-        this->matrix.reserve(n);
-    }
-
-
-    /**
      *  Add a value to the matrix evaluation in which the current iterator index corresponds to the row and the given index corresponds to the column
      *  This function adds the values to a triplet vector
      *  to add the values to the sparse matrix, one should call "addToMatrix()"
@@ -160,10 +143,7 @@ class EvaluationIterator<Eigen::SparseMatrix<double>> {
      *  @param column    column index of the matrix
      *  @param value     the value which is added to a given position in the matrix
      */
-    void addColumnwise(const size_t column, const double value) {
-        this->triplet_vector.emplace_back(this->index, column, value);
-    }
-
+    void addColumnwise(const size_t column, const double value) { this->triplet_vector.emplace_back(this->index, column, value); }
 
     /**
      *  Add a value to the matrix evaluation in which the current iterator index corresponds to the column and the given index corresponds to the row
@@ -173,10 +153,7 @@ class EvaluationIterator<Eigen::SparseMatrix<double>> {
      *  @param row       row index of the matrix
      *  @param value     the value which is added to a given position in the matrix
      */
-    void addRowwise(const size_t row, const double value) {
-        this->triplet_vector.emplace_back(row, this->index, value);
-    }
-
+    void addRowwise(const size_t row, const double value) { this->triplet_vector.emplace_back(row, this->index, value); }
 
     /**
      *  Fill the sparse matrix with the elements stored in the triplet vector
@@ -199,17 +176,15 @@ class EvaluationIterator<Eigen::SparseMatrix<double>> {
     /**
      *  Move to the next index in the iteration
      */
-    void increment() {
-        this->index++;
-    }
+    void increment() { this->index++; }
 
     /**
      *  Tests if the iteration is finished, if true the index is reset to 0 
      * 
      *  @return true if the iteration is finished
      */
-    bool is_finished() {
-        if (index == end) {
+    bool isFinished() {
+        if (this->index == this->end) {
             this->index = 0;
             return true;
         } else {
@@ -218,9 +193,20 @@ class EvaluationIterator<Eigen::SparseMatrix<double>> {
     }
 
     /**
+     *  Reserves an amount of memory for the triplet vector
+     *
+     *  @param n        the amount triplets that should be reserved
+     */
+    void reserve(const size_t n) {
+        this->triplet_vector.reserve(n);
+        this->matrix.reserve(n);
+    }
+
+    /**
      *  @return the triplet vector
      */
     const std::vector<Eigen::Triplet<double>>& triplets() const { return triplet_vector; }
+
 
     // Friend classes
     friend class SpinUnresolvedONVBasis;
@@ -270,9 +256,7 @@ class EvaluationIterator<VectorX<double>> {
      *  @param column    column index of the matrix
      *  @param value     the value which is added to a given position in the matrix
      */
-    void addColumnwise(const size_t column, const double value) {
-        sequential_double += value * coefficient_vector(column);
-    }
+    void addColumnwise(const size_t column, const double value) { sequential_double += value * coefficient_vector(column); }
 
     /**
      *  Add a value to the matrix evaluation in which the current iterator index corresponds to the column and the given index corresponds to the row
@@ -280,9 +264,7 @@ class EvaluationIterator<VectorX<double>> {
      *  @param row       row index of the matrix
      *  @param value     the value which is added to a given position in the matrix
      */
-    void addRowwise(const size_t row, const double value) {
-        this->matvec(row) += value * this->nonsequential_double;
-    }
+    void addRowwise(const size_t row, const double value) { this->matvec(row) += value * this->nonsequential_double; }
 
     /**
      *  @return the evaluation that is stored
@@ -293,7 +275,7 @@ class EvaluationIterator<VectorX<double>> {
      *  Move to the next index in the iteration, this is accompanied by an addition to the matvec and reset of the sequential double
      */
     void increment() {
-        this->matvec(this->index) += sequential_double;
+        this->matvec(this->index) += this->sequential_double;
         this->sequential_double = 0;
         this->index++;
     }
@@ -304,12 +286,12 @@ class EvaluationIterator<VectorX<double>> {
      * 
      *  @return true if the iteration is finished
      */
-    bool is_finished() {
-        if (index == end) {
+    bool isFinished() {
+        if (this->index == this->end) {
             this->index = 0;
             return true;
         } else {
-            this->nonsequential_double = coefficient_vector(this->index);
+            this->nonsequential_double = this->coefficient_vector(this->index);
             return false;
         }
     }

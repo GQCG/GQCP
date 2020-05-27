@@ -66,8 +66,8 @@ BOOST_AUTO_TEST_CASE(dense) {
     // Check if the results are equal
     BOOST_CHECK(eigenpairs.size() == number_of_requested_eigenpairs);
     for (size_t i = 0; i < number_of_requested_eigenpairs; i++) {
-        BOOST_CHECK(eigenpairs[i].isEqual(ref_eigenpairs[i]));                        // check if the found eigenpairs are equal to the reference eigenpairs
-        BOOST_CHECK(std::abs(eigenpairs[i].get_eigenvector().norm() - 1) < 1.0e-12);  // check if the found eigenpairs are normalized
+        BOOST_CHECK(eigenpairs[i].isEqualTo(ref_eigenpairs[i]));                  // check if the found eigenpairs are equal to the reference eigenpairs
+        BOOST_CHECK(std::abs(eigenpairs[i].eigenvector().norm() - 1) < 1.0e-12);  // check if the found eigenpairs are normalized
     }
 }
 

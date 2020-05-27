@@ -29,39 +29,46 @@ namespace GQCP {
  */
 class Eigenpair {
 private:
-    double eigenvalue;
-    VectorX<double> eigenvector;
+    double m_eigenvalue;
+    VectorX<double> m_eigenvector;
 
 
 public:
     // CONSTRUCTORS
-    /**
-     *  A constructor that sets the eigenvalue to zero and the corresponding eigenvector to zeros
-     *
-     *  @param dimension        the dimension of the eigenvector
-     */
-    explicit Eigenpair(size_t dimension = 1);
 
     /**
      *  @param eigenvalue       the eigenvalue
      *  @param eigenvector      the eigenvector
      */
-    Eigenpair(double eigenvalue, const VectorX<double>& eigenvector);
+    Eigenpair(const double eigenvalue, const VectorX<double>& eigenvector);
 
-
-    // GETTERS
-    double get_eigenvalue() const { return this->eigenvalue; };
-    const VectorX<double>& get_eigenvector() const { return this->eigenvector; };
+    /**
+     *  A constructor that sets the eigenvalue to zero and the corresponding eigenvector to zeros
+     *
+     *  @param dimension        the dimension of the eigenvector
+     */
+    Eigenpair(const size_t dimension = 1);
 
 
     // PUBLIC METHODS
+
+    /**
+     *  @return the eigenvalue associated to this eigenpair
+     */
+    double eigenvalue() const { return this->m_eigenvalue; };
+
+    /**
+     *  @return the eigenvector associated to this eigenpair
+     */
+    const VectorX<double>& eigenvector() const { return this->m_eigenvector; };
+
     /**
      *  @param other            the other Eigenpair
      *  @param tolerance        a tolerance for comparison
      *
      *  @return if this Eigenpair is equal to the other: if the eigenvalues and eigenvectors are equal given the tolerance
      */
-    bool isEqual(const Eigenpair& other, double tolerance = 1.0e-08) const;
+    bool isEqualTo(const Eigenpair& other, const double tolerance = 1.0e-08) const;
 };
 
 

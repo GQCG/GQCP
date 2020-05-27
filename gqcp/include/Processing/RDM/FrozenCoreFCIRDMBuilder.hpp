@@ -30,18 +30,25 @@ namespace GQCP {
  *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in the full frozen full spin-unresolved ONV basis
  */
 class FrozenCoreFCIRDMBuilder: public FrozenCoreRDMBuilder {
-    SpinResolvedFrozenONVBasis fock_space;
+private:
+    SpinResolvedFrozenONVBasis onv_basis;
 
 
 public:
     // CONSTRUCTORS
-    /**
-     *  @param fock_space       the frozen spin-resolved ONV basis
-     */
-    explicit FrozenCoreFCIRDMBuilder(const SpinResolvedFrozenONVBasis& fock_space);
 
-    // OVERRIDDEN GETTERS
-    const BaseONVBasis* get_fock_space() const override { return &fock_space; }
+    /**
+     *  @param onv_basis       the frozen spin-resolved ONV basis
+     */
+    explicit FrozenCoreFCIRDMBuilder(const SpinResolvedFrozenONVBasis& onv_basis);
+
+
+    // PUBLIC OVERRIDDEN METHODS
+
+    /**
+     *  @return the ONV basis that is associated to this RDMBuilder
+     */
+    const BaseONVBasis* onvBasis() const override { return &onv_basis; }
 };
 
 

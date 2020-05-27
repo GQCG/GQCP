@@ -35,7 +35,6 @@ void bindMolecule(py::module& module) {
              py::arg("nuclei"),
              py::arg("charge") = 0)
 
-
         .def_static(
             "HChain",
             [](const size_t n, const double spacing, const int charge) {
@@ -88,13 +87,13 @@ void bindMolecule(py::module& module) {
 
 
         // PUBLIC METHODS
+
         .def("__repr__",
              [](const GQCP::Molecule& m) {
                  std::ostringstream ss;
                  ss << m;
                  return ss.str();
              })
-
 
         .def("numberOfElectrons",
              &GQCP::Molecule::numberOfElectrons,

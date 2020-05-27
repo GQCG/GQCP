@@ -118,7 +118,7 @@ BOOST_AUTO_TEST_CASE(orbital_optimize) {
     // Do an AP1roG orbital optimization using Jacobi rotations and check if the energy is lower
     GQCP::AP1roGJacobiOrbitalOptimizer orbital_optimizer {G_initial, 1.0e-04};
     orbital_optimizer.optimize(spinor_basis, sq_hamiltonian);
-    const double optimized_energy = orbital_optimizer.get_electronic_energy();
+    const double optimized_energy = orbital_optimizer.electronicEnergy();
 
     BOOST_CHECK(optimized_energy < initial_energy);
 }

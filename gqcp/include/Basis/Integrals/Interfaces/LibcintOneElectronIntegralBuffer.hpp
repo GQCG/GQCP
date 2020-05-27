@@ -25,7 +25,7 @@ namespace GQCP {
 
 
 /**
- *  A buffer for storing Libcint one-electron integrals
+ *  A buffer for storing Libcint one-electron integrals.
  * 
  *  @tparam _IntegralScalar         the scalar representation of an integral
  *  @tparam _N                      the number of components the operator has
@@ -70,6 +70,11 @@ public:
      */
 
     /**
+     *  @return if all the values of the calculated integrals are zero
+     */
+    bool areIntegralsAllZero() const override { return (this->result == 0); }
+
+    /**
      *  @param i            the index of the component of the operator
      *  @param f1           the index of the basis function within shell 1
      *  @param f2           the index of the basis function within shell 2
@@ -77,15 +82,7 @@ public:
      *  @return a value from this integral buffer
      */
     IntegralScalar value(const size_t i, const size_t f1, const size_t f2) const override {
-        return this->scaling_factor * this->buffer[f1 + this->nbf1 * (f2 + this->nbf2 * i)];  // column-major
-    }
-
-
-    /**
-     *  @return if all the values of the calculated integrals are zero
-     */
-    bool areIntegralsAllZero() const override {
-        return (this->result == 0);
+        return this->scaling_factor * this->buffer[f1 + this->nbf1 * (f2 + this->nbf2 * i)];  // column-major ordering for libcint
     }
 };
 

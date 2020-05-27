@@ -46,7 +46,7 @@ BOOST_AUTO_TEST_CASE(QCMatrix_transform_trivial) {
 
     GQCP::QCMatrix<double> h = GQCP::QCMatrix<double>::Random(3, 3);
     const GQCP::QCMatrix<double> h_copy = h;
-    h.basisTransformInPlace(T);
+    h.basisTransform(T);
 
     BOOST_CHECK(h_copy.isApprox(h, 1.0e-12));
 }
@@ -68,8 +68,8 @@ BOOST_AUTO_TEST_CASE(QCMatrix_transform_and_inverse) {
 
     GQCP::QCMatrix<double> h = GQCP::QCMatrix<double>::Random(3, 3);
     GQCP::QCMatrix<double> h_copy = h;
-    h.basisTransformInPlace(T);
-    h.basisTransformInPlace(T_inverse);
+    h.basisTransform(T);
+    h.basisTransform(T_inverse);
 
     BOOST_CHECK(h.isApprox(h_copy, 1.0e-12));
 }
@@ -87,12 +87,12 @@ BOOST_AUTO_TEST_CASE(QCMatrix_rotate_throws) {
 
     // Check if a non-unitary matrix as transformation matrix causes a throw
     const GQCP::TransformationMatrix<double> T = GQCP::TransformationMatrix<double>::Random(dim, dim);
-    BOOST_CHECK_THROW(M.basisRotateInPlace(T), std::invalid_argument);
+    BOOST_CHECK_THROW(M.basisRotate(T), std::invalid_argument);
 
 
     // Check if a unitary matrix as transformation matrix is accepted
     const GQCP::TransformationMatrix<double> U = GQCP::TransformationMatrix<double>::Identity(dim, dim);
-    M.basisRotateInPlace(U);
+    M.basisRotate(U);
 }
 
 
@@ -112,8 +112,8 @@ BOOST_AUTO_TEST_CASE(SQOneElectronOperator_rotate_JacobiRotationParameters) {
 
 
     // Rotate and check the result
-    M1.basisRotateInPlace(jacobi_rotation_parameters);
-    M2.basisRotateInPlace(J);
+    M1.basisRotate(jacobi_rotation_parameters);
+    M2.basisRotate(J);
 
     BOOST_CHECK(M1.isApprox(M2, 1.0e-12));
 }
@@ -152,7 +152,7 @@ BOOST_AUTO_TEST_CASE(rotate_overlap_invariant) {
     // clang-format on
 
     auto S_copy = S;
-    S_copy.basisRotateInPlace(U);
+    S_copy.basisRotate(U);
     BOOST_CHECK(S_copy.isApprox(S_rotated_ref, 1.0e-08));
 }
 
@@ -183,6 +183,6 @@ BOOST_AUTO_TEST_CASE(rotate_Jacobi_manual) {
     // clang-format on
 
 
-    S.basisRotateInPlace(jacobi_rotation_parameters);
+    S.basisRotate(jacobi_rotation_parameters);
     BOOST_CHECK(S.isApprox(S_rotated_ref, 1.0e-08));
 }

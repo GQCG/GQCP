@@ -49,11 +49,6 @@ public:
     // PUBLIC METHODS
 
     /**
-     *  @return the name of the basisset
-     */
-    const std::string& name() const { return this->basisset_name; }
-
-    /**
      *  @param nuclear_framework            the nuclear framework containing the nuclei on which the shells should be centered
      * 
      *  @return the shell set by placing the shells corresponding to the basisset information on every nucleus of the nuclear framework
@@ -66,6 +61,11 @@ public:
      *  @return the shell set by placing the shells corresponding to the basisset information on every nucleus of the molecule
      */
     ShellSet<GTOShell> generate(const Molecule& molecule) const;
+
+    /**
+     *  @return the name of the basisset
+     */
+    const std::string& name() const { return this->basisset_name; }
 };
 
 

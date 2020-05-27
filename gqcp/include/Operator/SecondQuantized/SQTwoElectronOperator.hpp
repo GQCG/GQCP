@@ -106,31 +106,18 @@ public:
 
 
     /*
-     *  GETTERS
-     */
-
-    size_t get_dim() const { return this->dimension(); }
-    size_t get_K() const { return this->dimension(); }
-
-
-    /*
      *  PUBLIC METHODS
      */
 
     /**
      *  @return read-only matrix representations of all the parameters (integrals) of the different components of this second-quantized operator
      */
-    const std::array<QCRankFourTensor<Scalar>, Components>& allParameters() const {
-        return this->gs;
-    }
-
+    const std::array<QCRankFourTensor<Scalar>, Components>& allParameters() const { return this->gs; }
 
     /**
      *  @return writable matrix representations of all the parameters (integrals) of the different components of this second-quantized operator
      */
-    std::array<QCRankFourTensor<Scalar>, Components>& allParameters() {
-        return this->gs;
-    }
+    std::array<QCRankFourTensor<Scalar>, Components>& allParameters() { return this->gs; }
 
 
     /**
@@ -264,9 +251,7 @@ public:
     /**
      *  @return the dimension of the matrix representation of the parameters, i.e. the number of orbitals/sites
      */
-    size_t dimension() const {
-        return this->gs[0].dimension();  // all dimensions are the same, this is checked in the constructors
-    }
+    size_t dimension() const { return this->gs[0].dimension(); /* all dimensions are the same, this is checked in the constructors */ }
 
 
     /**
@@ -297,24 +282,23 @@ public:
 
 
     /**
+     *  @return the number of orbitals that this two-electron operator is quantized in
+     */
+    size_t numberOfOrbitals() const { return this->dimension(); }
+
+    /**
      *  @param i            the index of the component
      * 
      *  @return a read-only matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator
      */
-    const QCRankFourTensor<Scalar>& parameters(const size_t i = 0) const {
-        return this->gs[i];
-    }
-
+    const QCRankFourTensor<Scalar>& parameters(const size_t i = 0) const { return this->gs[i]; }
 
     /**
      *  @param i            the index of the component
      * 
      *  @return a writable the matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator
      */
-    QCRankFourTensor<Scalar>& parameters(const size_t i = 0) {
-        return this->gs[i];
-    }
-
+    QCRankFourTensor<Scalar>& parameters(const size_t i = 0) { return this->gs[i]; }
 
     /**
      *  In-place rotate the operator to another basis
@@ -325,7 +309,7 @@ public:
 
         // Transform the matrix representations of the components
         for (auto& g : this->allParameters()) {
-            g.basisRotateInPlace(U);
+            g.basisRotate(U);
         }
     }
 
@@ -339,7 +323,7 @@ public:
 
         // Transform the matrix representations of the components
         for (auto& g : this->allParameters()) {
-            g.basisRotateInPlace(jacobi_rotation_parameters);
+            g.basisRotate(jacobi_rotation_parameters);
         }
     }
 
@@ -353,7 +337,7 @@ public:
 
         // Transform the matrix representations of the components
         for (auto& g : this->allParameters()) {
-            g.basisTransformInPlace(T);
+            g.basisTransform(T);
         }
     }
 };

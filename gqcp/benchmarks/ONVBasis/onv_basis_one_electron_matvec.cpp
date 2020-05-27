@@ -38,7 +38,7 @@ static void matvec(benchmark::State& state) {
 
     state.counters["Spinors"] = M;
     state.counters["Electrons"] = N;
-    state.counters["Dimension"] = onv_basis.get_dimension();
+    state.counters["Dimension"] = onv_basis.dimension();
 }
 
 

@@ -134,7 +134,7 @@ BOOST_AUTO_TEST_CASE(mulliken_N2_STO_3G) {
 
 //     // Calculate the RDMs in order to evaluate expectation values
 //     GQCP::RDMCalculator rdm_calc(onv_basis);
-//     rdm_calc.set_coefficients(ds_solver.get_eigenpair().get_eigenvector());
+//     rdm_calc.setCoefficients(ds_solver.eigenpair().eigenvector());
 
 //     auto one_rdms = rdm_calc.calculate1RDMs();
 

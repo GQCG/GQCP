@@ -16,7 +16,6 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Processing/Properties/RHFElectricalResponseSolver.hpp"
-
 #include "Processing/Properties/properties.hpp"
 
 #include <pybind11/eigen.h>
@@ -33,8 +32,12 @@ void bindRHFElectricalResponseSolver(py::module& module) {
 
     py::class_<GQCP::RHFElectricalResponseSolver>(module, "RHFElectricalResponseSolver", "A class that is able to solve the electrical CPHF-equations for RHF.")
 
+        // CONSTRUCTORS
+
         .def(py::init<const size_t>(),
              py::arg("N_P"))
+
+        // PUBLIC METHODS
 
         .def(
             "calculateWaveFunctionResponse",

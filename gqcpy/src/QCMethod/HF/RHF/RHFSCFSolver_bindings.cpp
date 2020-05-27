@@ -30,15 +30,6 @@ void bindRHFSCFSolver(py::module& module) {
     py::class_<GQCP::RHFSCFSolver<double>>(module, "RHFSCFSolver", "A restricted Hartree-Fock self-consistent field solver factory.")
 
         .def_static(
-            "Plain",
-            [](const double threshold, const size_t maximum_number_of_iterations) {
-                return GQCP::RHFSCFSolver<double>::Plain(threshold, maximum_number_of_iterations);
-            },
-            py::arg("threshold") = 1.0e-08,
-            py::arg("maximum_number_of_iterations") = 128,
-            "Return a plain RHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion.")
-
-        .def_static(
             "DensityDamped",
             [](const double alpha, const double threshold, const size_t maximum_number_of_iterations) {
                 return GQCP::RHFSCFSolver<double>::DensityDamped(alpha, threshold, maximum_number_of_iterations);
@@ -56,7 +47,16 @@ void bindRHFSCFSolver(py::module& module) {
             py::arg("minimum_subspace_dimension") = 6,
             py::arg("maximum_subspace_dimension") = 6,
             py::arg("threshold") = 1.0e-08,
-            py::arg("maximum_number_of_iterations") = 128);
+            py::arg("maximum_number_of_iterations") = 128)
+
+        .def_static(
+            "Plain",
+            [](const double threshold, const size_t maximum_number_of_iterations) {
+                return GQCP::RHFSCFSolver<double>::Plain(threshold, maximum_number_of_iterations);
+            },
+            py::arg("threshold") = 1.0e-08,
+            py::arg("maximum_number_of_iterations") = 128,
+            "Return a plain RHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion.");
 }
 
 

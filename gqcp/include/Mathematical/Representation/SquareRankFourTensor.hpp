@@ -58,7 +58,7 @@ public:
      *
      *  @param dim      the dimension of the rank-4 tensor
      */
-    SquareRankFourTensor(size_t dim) :
+    SquareRankFourTensor(const size_t dim) :
         Base(dim, dim, dim, dim) {}
 
 
@@ -157,15 +157,15 @@ public:
 
 
     /*
-     *  GETTERS
-     */
-
-    size_t get_dim() const { return this->dimension(0); }  // all tensor dimensions are equal because of the constructor
-
-
-    /*
      *  PUBLIC METHODS
      */
+
+    using Base::dimension;
+
+    /**
+     *  @return the dimension of this square rank-four tensor
+     */
+    size_t dimension() const { return this->dimension(0); }  // all tensor dimensions are equal because of the constructor
 
     /**
      *  @return the pair-wise reduction of this square rank-4 tensor, i.e. the tensor analog of a strict "lower triangle" as a matrix in column major form
@@ -174,10 +174,10 @@ public:
      *      - m is compounded in a column major way from i and j, with the restriction i>j
      *      - n is compounded in a column major way from k and l, with the restriction k>l
      */
-    SquareMatrix<double> pairWiseStrictReduce() const {
+    SquareMatrix<double> pairWiseStrictReduced() const {
 
         // Initialize the resulting matrix
-        const auto K = this->get_dim();
+        const auto K = this->dimension();
         SquareMatrix<double> M = SquareMatrix<double>::Zero(K * (K - 1) / 2, K * (K - 1) / 2);
 
         // Calculate the compound indices and bring the elements from the tensor over into the matrix
@@ -221,10 +221,10 @@ public:
      *
      */
     template <typename MultiplicationScalar = Scalar>
-    void matrixContraction(const SquareMatrix<MultiplicationScalar>& M, size_t index) {
+    void contractWithMatrix(const SquareMatrix<MultiplicationScalar>& M, size_t index) {
 
         if (index >= 4) {
-            throw std::invalid_argument("SquareRankFourTensor::matrixContraction(SquareMatrix<MultiplicationScalar>, size_t): The selected index should be smaller than the rank of the tensor.");
+            throw std::invalid_argument("SquareRankFourTensor::contractWithMatrix(SquareMatrix<MultiplicationScalar>, size_t): The selected index should be smaller than the rank of the tensor.");
         }
 
         Eigen::array<Eigen::IndexPair<int>, 1> contraction_pair = {Eigen::IndexPair<int>(0, index)};

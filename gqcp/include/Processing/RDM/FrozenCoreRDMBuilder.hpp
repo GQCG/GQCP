@@ -29,19 +29,22 @@ namespace GQCP {
  *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in a frozen spin-resolved ONV basis
  */
 class FrozenCoreRDMBuilder: public BaseRDMBuilder {
+private:
     size_t X;                                            // number of frozen orbitals/electrons
     std::shared_ptr<BaseRDMBuilder> active_rdm_builder;  // active (non-frozen core) RDM builder performing the BaseRDMBuilder interface in the active space with the frozen core CI wave function
 
 public:
     // CONSTRUCTORS
+
     /**
      *  @param rdm_builder                  shared pointer to active (non-frozen core) RDM builder
      *  @param X                            the number of frozen orbitals
      */
-    FrozenCoreRDMBuilder(std::shared_ptr<BaseRDMBuilder> rdm_builder, size_t X);
+    FrozenCoreRDMBuilder(const std::shared_ptr<BaseRDMBuilder> rdm_builder, const size_t X);
 
 
-    // OVERRIDDEN PUBLIC METHODS
+    // PUBLIC OVERRIDDEN METHODS
+
     /**
      *  @param x        the coefficient vector representing the wave function
      *
@@ -65,7 +68,7 @@ public:
      *
      *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
      */
-    double calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const VectorX<double>& x) const override;
+    double calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const VectorX<double>& x) const override { throw std::runtime_error("FrozenCoreRDMBuilder::calculateElement(std::vector<size_t>, std::vector<size_t>, VectorX<double>): calculateElement is not implemented for FrozenCoreCI RDMs"); }
 };
 
 

@@ -39,12 +39,68 @@ Hubbard::Hubbard(const SpinResolvedONVBasis& onv_basis) :
 /**
  *  @param hubbard_hamiltonian              the Hubbard model Hamiltonian
  *
+ *  @return the diagonal of the matrix representation of the Hubbard model Hamiltonian
+ */
+VectorX<double> Hubbard::calculateDiagonal(const HubbardHamiltonian<double>& hubbard_hamiltonian) const {
+
+    const auto K = hubbard_hamiltonian.numberOfLatticeSites();
+    if (K != this->onv_basis.numberOfOrbitals()) {
+        throw std::invalid_argument("Hubbard::constructHamiltonian(const HubbardHamiltonian<double>&): The number of spatial orbitals of this ONV basis and the number of lattice sites for the Hubbard Hamiltonian are incompatible.");
+    }
+
+
+    // Set up ONV bases for alpha and beta
+    const SpinUnresolvedONVBasis onv_basis_alpha = onv_basis.onvBasisAlpha();
+    const auto dim_alpha = onv_basis_alpha.dimension();
+
+    SpinUnresolvedONVBasis onv_basis_beta = onv_basis.onvBasisBeta();
+    const auto dim_beta = onv_basis_beta.dimension();
+
+    const auto dim = onv_basis.dimension();
+
+
+    // Calculate the diagonal contributions resulting from the two-electron on-site interactions by iterating over all ONVs.
+    VectorX<double> diagonal = VectorX<double>::Zero(dim);
+
+    const auto& H = hubbard_hamiltonian.hoppingMatrix();
+
+
+    SpinUnresolvedONV onv_alpha = onv_basis_alpha.constructONVFromAddress(0);
+    SpinUnresolvedONV onv_beta = onv_basis_beta.constructONVFromAddress(0);
+    for (size_t Ia = 0; Ia < dim_alpha; Ia++) {  // Ia loops over the addresses of alpha ONVs
+        onv_basis_beta.transformONVCorrespondingToAddress(onv_beta, 0);
+
+        for (size_t Ib = 0; Ib < dim_beta; Ib++) {      // Ib loops over addresses of beta ONVs
+            const size_t address = Ia * dim_beta + Ib;  // compound address in the spin-resolved ONV basis
+
+            // There is a contribution for all orbital indices p that are occupied both in the alpha- and beta ONV.
+            std::vector<size_t> occupations = onv_alpha.findMatchingOccupations(onv_beta);
+            for (const auto& p : occupations) {
+                diagonal(address) += H(p, p);  // the two-electron (on-site repulsion) contributions are on the diagonal of the hopping matrix
+            }
+
+            if (Ib < dim_beta - 1) {  // prevent the last permutation from occurring
+                onv_basis_beta.transformONVToNextPermutation(onv_beta);
+            }
+        }  // beta address (Ib) loop
+
+        if (Ia < dim_alpha - 1) {  // prevent the last permutation from occurring
+            onv_basis_alpha.transformONVToNextPermutation(onv_alpha);
+        }
+    }  // alpha address (Ia) loop
+    return diagonal;
+}
+
+
+/**
+ *  @param hubbard_hamiltonian              the Hubbard model Hamiltonian
+ *
  *  @return the Hubbard Hamiltonian matrix
  */
 SquareMatrix<double> Hubbard::constructHamiltonian(const HubbardHamiltonian<double>& hubbard_hamiltonian) const {
 
     const auto K = hubbard_hamiltonian.numberOfLatticeSites();
-    if (K != this->onv_basis.get_K()) {
+    if (K != this->onv_basis.numberOfOrbitals()) {
         throw std::invalid_argument("Hubbard::constructHamiltonian(const HubbardHamiltonian<double>&): The number of spatial orbitals of this ONV basis and the number of lattice sites for the Hubbard Hamiltonian are incompatible.");
     }
 
@@ -63,17 +119,17 @@ SquareMatrix<double> Hubbard::constructHamiltonian(const HubbardHamiltonian<doub
 VectorX<double> Hubbard::matrixVectorProduct(const HubbardHamiltonian<double>& hubbard_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
     const auto K = hubbard_hamiltonian.numberOfLatticeSites();
-    if (K != this->onv_basis.get_K()) {
+    if (K != this->onv_basis.numberOfOrbitals()) {
         throw std::invalid_argument("Hubbard::constructHamiltonian(const HubbardHamiltonian<double>&): The number of spatial orbitals of this ONV basis and the number of lattice sites for the Hubbard Hamiltonian are incompatible.");
     }
 
 
     // Set up ONV bases for alpha and beta
-    const SpinUnresolvedONVBasis onv_basis_alpha = onv_basis.get_onv_basis_alpha();
-    const auto dim_alpha = onv_basis_alpha.get_dimension();
+    const SpinUnresolvedONVBasis onv_basis_alpha = onv_basis.onvBasisAlpha();
+    const auto dim_alpha = onv_basis_alpha.dimension();
 
-    const SpinUnresolvedONVBasis onv_basis_beta = onv_basis.get_onv_basis_beta();
-    const auto dim_beta = onv_basis_beta.get_dimension();
+    const SpinUnresolvedONVBasis onv_basis_beta = onv_basis.onvBasisBeta();
+    const auto dim_beta = onv_basis_beta.dimension();
 
 
     // Calculate the Hubbard matrix-vector product, which is the sum of the alpha- and beta one-electron contributions plus the diagonal (which contains the two-electron contributions).
@@ -87,62 +143,6 @@ VectorX<double> Hubbard::matrixVectorProduct(const HubbardHamiltonian<double>& h
 
     matvecmap += xmap * H_alpha + H_beta * xmap;
     return matvec;
-}
-
-
-/**
- *  @param hubbard_hamiltonian              the Hubbard model Hamiltonian
- *
- *  @return the diagonal of the matrix representation of the Hubbard model Hamiltonian
- */
-VectorX<double> Hubbard::calculateDiagonal(const HubbardHamiltonian<double>& hubbard_hamiltonian) const {
-
-    const auto K = hubbard_hamiltonian.numberOfLatticeSites();
-    if (K != this->onv_basis.get_K()) {
-        throw std::invalid_argument("Hubbard::constructHamiltonian(const HubbardHamiltonian<double>&): The number of spatial orbitals of this ONV basis and the number of lattice sites for the Hubbard Hamiltonian are incompatible.");
-    }
-
-
-    // Set up ONV bases for alpha and beta
-    const SpinUnresolvedONVBasis onv_basis_alpha = onv_basis.get_onv_basis_alpha();
-    const auto dim_alpha = onv_basis_alpha.get_dimension();
-
-    SpinUnresolvedONVBasis onv_basis_beta = onv_basis.get_onv_basis_beta();
-    const auto dim_beta = onv_basis_beta.get_dimension();
-
-    const auto dim = onv_basis.get_dimension();
-
-
-    // Calculate the diagonal contributions resulting from the two-electron on-site interactions by iterating over all ONVs.
-    VectorX<double> diagonal = VectorX<double>::Zero(dim);
-
-    const auto& H = hubbard_hamiltonian.hoppingMatrix();
-
-
-    SpinUnresolvedONV onv_alpha = onv_basis_alpha.makeONV(0);
-    SpinUnresolvedONV onv_beta = onv_basis_beta.makeONV(0);
-    for (size_t Ia = 0; Ia < dim_alpha; Ia++) {  // Ia loops over the addresses of alpha ONVs
-        onv_basis_beta.transformONV(onv_beta, 0);
-
-        for (size_t Ib = 0; Ib < dim_beta; Ib++) {      // Ib loops over addresses of beta ONVs
-            const size_t address = Ia * dim_beta + Ib;  // compound address in the spin-resolved ONV basis
-
-            // There is a contribution for all orbital indices p that are occupied both in the alpha- and beta ONV.
-            std::vector<size_t> occupations = onv_alpha.findMatchingOccupations(onv_beta);
-            for (const auto& p : occupations) {
-                diagonal(address) += H(p, p);  // the two-electron (on-site repulsion) contributions are on the diagonal of the hopping matrix
-            }
-
-            if (Ib < dim_beta - 1) {  // prevent the last permutation from occurring
-                onv_basis_beta.setNextONV(onv_beta);
-            }
-        }  // beta address (Ib) loop
-
-        if (Ia < dim_alpha - 1) {  // prevent the last permutation from occurring
-            onv_basis_alpha.setNextONV(onv_alpha);
-        }
-    }  // alpha address (Ia) loop
-    return diagonal;
 }
 
 

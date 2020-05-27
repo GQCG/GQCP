@@ -68,7 +68,7 @@ BOOST_AUTO_TEST_CASE(OO_DOCI_h2_sto_3g) {
     GQCP::DOCINewtonOrbitalOptimizer<EigenproblemSolver> orbital_optimizer {onv_basis, solver, environment, hessian_modifier};
     orbital_optimizer.optimize(spinor_basis, sq_hamiltonian);
 
-    const auto OO_DOCI_eigenvalue = orbital_optimizer.get_eigenpair().get_eigenvalue();
+    const auto OO_DOCI_eigenvalue = orbital_optimizer.eigenpair().eigenvalue();
 
 
     // Check if the OO-DOCI energy is equal to the FCI energy.
@@ -115,7 +115,7 @@ BOOST_AUTO_TEST_CASE(OO_DOCI_h2_6_31gxx_Davidson) {
     GQCP::DOCINewtonOrbitalOptimizer<EigenproblemSolver> orbital_optimizer {onv_basis, solver, environment, hessian_modifier};
     orbital_optimizer.optimize(spinor_basis, sq_hamiltonian);
 
-    const auto OO_DOCI_eigenvalue = orbital_optimizer.get_eigenpair().get_eigenvalue();
+    const auto OO_DOCI_eigenvalue = orbital_optimizer.eigenpair().eigenvalue();
 
 
     // Check if the OO-DOCI energy is equal to the FCI energy.

@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 
 
@@ -29,12 +30,12 @@ namespace GQCP {
  *      b' = b T ,
  *   in which the current orbitals are collected as elements of a row vector b
  * 
- *  @tparam TransformationScalar            the scalar representation of one of the elements of the transformation matrix
+ *  @tparam Scalar            the scalar representation of one of the elements of the transformation matrix
  */
-template <typename _TransformationScalar>
-class TransformationMatrix: public SquareMatrix<_TransformationScalar> {
+template <typename _Scalar>
+class TransformationMatrix: public SquareMatrix<_Scalar> {
 public:
-    using TransformationScalar = _TransformationScalar;
+    using Scalar = _Scalar;
 
 
 public:
@@ -42,7 +43,31 @@ public:
      *  CONSTRUCTORS
      */
 
-    using SquareMatrix<TransformationScalar>::SquareMatrix;  // inherit base constructors
+    using SquareMatrix<Scalar>::SquareMatrix;  // inherit base constructors
+
+
+    /*
+     *  NAMED CONSTRUCTORS
+     */
+
+    /**
+     *  @param jacobi_rotation_parameters       the parameters that define the Jacobi rotation matrix
+     *  @param M                                the dimension of the resulting matrix
+     *
+     *  @return the corresponding Jacobi rotation matrix. Note that we work with the (cos, sin, -sin, cos) definition
+     */
+    static TransformationMatrix<Scalar> FromJacobi(const JacobiRotationParameters& jacobi_rotation_parameters, size_t M) {
+
+        double c = std::cos(jacobi_rotation_parameters.angle());
+        double s = std::sin(jacobi_rotation_parameters.angle());
+
+        // We'll start the construction with an identity matrix
+        TransformationMatrix<Scalar> J = TransformationMatrix<Scalar>::Identity(M, M);
+
+        // And apply the Jacobi rotation as J = I * jacobi_rotation (cfr. B' = B T)
+        J.applyOnTheRight(jacobi_rotation_parameters.p(), jacobi_rotation_parameters.q(), Eigen::JacobiRotation<double>(c, s));
+        return J;
+    }
 
 
     /*
@@ -52,7 +77,7 @@ public:
     /**
      *  In-place 'transform' this transformation matrix such that the resulting transformation matrix describes this and the other transformation together
      */
-    void transform(const TransformationMatrix<TransformationScalar>& T) {
+    void transform(const TransformationMatrix<Scalar>& T) {
 
         (*this) = (*this) * T;
     }
