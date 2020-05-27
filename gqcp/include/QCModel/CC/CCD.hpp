@@ -104,14 +104,13 @@ public:
      *  @param t2                           the T2-amplitudes
      *  @param F1                           the F1-intermediate (equation (3) in Stanton1991)
      *  @param F2                           the F2-intermediate (equation (4) in Stanton1991)
-     *  @param F3                           the F3-intermediate (equation (5) in Stantion1991)
      *  @param W1                           the W1-intermediate (equation (6) in Stanton1991)
      *  @param W2                           the W2-intermediate (equation (7) in Stanton1991)
      *  @param W3                           the W3-intermediate (equation (8) in Stantion1991)
      * 
      *  @return the value for one of the CCD T2-amplitude equations
      */
-    static Scalar calculateT2AmplitudeEquation(const size_t i, const size_t j, const size_t a, const size_t b, const QCMatrix<Scalar>& f, const QCRankFourTensor<Scalar>& V_A, const T2Amplitudes<Scalar>& t2, const ImplicitMatrixSlice<Scalar>& F1, const ImplicitMatrixSlice<Scalar>& F2, const ImplicitMatrixSlice<Scalar>& F3, const ImplicitRankFourTensorSlice<Scalar>& W1, const ImplicitRankFourTensorSlice<Scalar>& W2, const ImplicitRankFourTensorSlice<Scalar>& W3) {
+    static Scalar calculateT2AmplitudeEquation(const size_t i, const size_t j, const size_t a, const size_t b, const QCMatrix<Scalar>& f, const QCRankFourTensor<Scalar>& V_A, const T2Amplitudes<Scalar>& t2, const ImplicitMatrixSlice<Scalar>& F1, const ImplicitMatrixSlice<Scalar>& F2, const ImplicitRankFourTensorSlice<Scalar>& W1, const ImplicitRankFourTensorSlice<Scalar>& W2, const ImplicitRankFourTensorSlice<Scalar>& W3) {
 
         const auto orbital_space = t2.orbitalSpace(); 
 
@@ -244,32 +243,6 @@ public:
         }
 
         return F2;
-    }
-
-
-    /**
-     *  @param f                    the (inactive) Fock matrix
-     *  @param V_A                  the antisymmetrized two-electron integrals (in physicist's notation)
-     *  @param t2                   the T2-amplitudes
-     * 
-     *  @return the F3-intermediate
-     * 
-     *  @note This is one of the intermediate quantities in the factorization of CCD. In particular, F3 represents equation (5) in Stanton1991.
-     */
-    static ImplicitMatrixSlice<Scalar> calculateF3(const QCMatrix<Scalar>& f, const QCRankFourTensor<Scalar>& V_A, const T2Amplitudes<Scalar>& t2) {
-
-        const auto& orbital_space = t2.orbitalSpace();
-
-        // Implement the formula for F3 in equation (5) in Stanton1991.
-        auto F3 = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_virtual);  // zero-initialize an occupied-virtual object
-        for (const auto& m : orbital_space.indices(OccupationType::k_occupied)) {
-            for (const auto& e : orbital_space.indices(OccupationType::k_virtual)) {
-                // Calculate the contribution from the first term.
-                F3(m, e) = f(m, e);
-            }
-        }
-
-        return F3;
     }
 
 

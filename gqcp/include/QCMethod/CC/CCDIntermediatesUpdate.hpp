@@ -66,7 +66,6 @@ public:
         // Calculate the other CCD intermediates and push them to the environment.
         environment.F1 = QCModel::CCD<Scalar>::calculateF1(f, V_A, t2);
         environment.F2 = QCModel::CCD<Scalar>::calculateF2(f, V_A, t2);
-        environment.F3 = QCModel::CCD<Scalar>::calculateF3(f, V_A, t2);
 
         environment.W1 = QCModel::CCD<Scalar>::calculateW1(V_A, t2);
         environment.W2 = QCModel::CCD<Scalar>::calculateW2(V_A, t2);
