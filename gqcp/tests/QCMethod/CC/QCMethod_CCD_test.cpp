@@ -54,12 +54,6 @@ BOOST_AUTO_TEST_CASE(h2o_crawdad) {
     r_spinor_basis.transform(rhf_parameters.coefficientMatrix());
 
 
-    // Check if the intermediate RHF results are correct. We can't continue if this isn't the case.
-    const auto rhf_energy = rhf_qc_structure.groundStateEnergy() + GQCP::Operator::NuclearRepulsion(molecule).value();
-    const double ref_rhf_energy = -74.942079928192;
-    BOOST_REQUIRE(std::abs(rhf_energy - ref_rhf_energy) < 1.0e-09);
-
-
     // Create a GSpinorBasis since we have implement spinor-CCD, and quantize the molecular Hamiltonian in it.
     const auto g_spinor_basis = GQCP::GSpinorBasis<double, GQCP::GTOShell>::FromRestricted(r_spinor_basis);
     const auto M = g_spinor_basis.numberOfSpinors();
@@ -75,7 +69,7 @@ BOOST_AUTO_TEST_CASE(h2o_crawdad) {
     BOOST_REQUIRE(orbital_space.numberOfOrbitals() == M);
 
 
-    // Initialize an environment suitable for CCSD.
+    // Initialize an environment suitable for CCD.
     auto environment = GQCP::CCSDEnvironment<double>::PerturbativeCCD(g_sq_hamiltonian, orbital_space);
     
     // Prepare the CCD solver and optimize the CCD model parameters.
