@@ -24,14 +24,18 @@ namespace GQCP {
 
 
 /*
- *  CONSTRUCTOR
+ *  CONSTRUCTORS
  */
-SelectedRDMBuilder::SelectedRDMBuilder(const SpinResolvedSelectedONVBasis& fock_space) :
-    fock_space {fock_space} {}
+
+/**
+ *  @param onv_basis                spin-resolved ONV basis containing the selected configurations
+ */
+SelectedRDMBuilder::SelectedRDMBuilder(const SpinResolvedSelectedONVBasis& onv_basis) :
+    onv_basis {onv_basis} {}
 
 
 /*
- *  OVERRIDDEN PUBLIC METHODS
+ *  PUBLIC OVERRIDDEN METHODS
  */
 
 /**
@@ -41,15 +45,15 @@ SelectedRDMBuilder::SelectedRDMBuilder(const SpinResolvedSelectedONVBasis& fock_
  */
 OneRDMs<double> SelectedRDMBuilder::calculate1RDMs(const VectorX<double>& x) const {
 
-    size_t K = this->fock_space.get_K();
-    size_t dim = fock_space.get_dimension();
+    size_t K = this->onv_basis.numberOfOrbitals();
+    size_t dim = onv_basis.dimension();
 
     OneRDM<double> D_aa = OneRDM<double>::Zero(K, K);
     OneRDM<double> D_bb = OneRDM<double>::Zero(K, K);
 
 
     for (size_t I = 0; I < dim; I++) {  // loop over all addresses (1)
-        SpinResolvedONV configuration_I = this->fock_space.get_configuration(I);
+        SpinResolvedONV configuration_I = this->onv_basis.onvWithIndex(I);
         SpinUnresolvedONV alpha_I = configuration_I.onv(Spin::alpha);
         SpinUnresolvedONV beta_I = configuration_I.onv(Spin::beta);
 
@@ -72,7 +76,7 @@ OneRDMs<double> SelectedRDMBuilder::calculate1RDMs(const VectorX<double>& x) con
         // Calculate the off-diagonal elements, by going over all other ONVs
         for (size_t J = I + 1; J < dim; J++) {
 
-            SpinResolvedONV configuration_J = this->fock_space.get_configuration(J);
+            SpinResolvedONV configuration_J = this->onv_basis.onvWithIndex(J);
             SpinUnresolvedONV alpha_J = configuration_J.onv(Spin::alpha);
             SpinUnresolvedONV beta_J = configuration_J.onv(Spin::beta);
 
@@ -120,8 +124,8 @@ OneRDMs<double> SelectedRDMBuilder::calculate1RDMs(const VectorX<double>& x) con
  */
 TwoRDMs<double> SelectedRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
 
-    size_t K = this->fock_space.get_K();
-    size_t dim = fock_space.get_dimension();
+    size_t K = this->onv_basis.numberOfOrbitals();
+    size_t dim = onv_basis.dimension();
 
 
     TwoRDM<double> d_aaaa {K};
@@ -139,7 +143,7 @@ TwoRDMs<double> SelectedRDMBuilder::calculate2RDMs(const VectorX<double>& x) con
 
     for (size_t I = 0; I < dim; I++) {  // loop over all addresses I
 
-        SpinResolvedONV configuration_I = this->fock_space.get_configuration(I);
+        SpinResolvedONV configuration_I = this->onv_basis.onvWithIndex(I);
         SpinUnresolvedONV alpha_I = configuration_I.onv(Spin::alpha);
         SpinUnresolvedONV beta_I = configuration_I.onv(Spin::beta);
 
@@ -184,7 +188,7 @@ TwoRDMs<double> SelectedRDMBuilder::calculate2RDMs(const VectorX<double>& x) con
 
         for (size_t J = I + 1; J < dim; J++) {
 
-            SpinResolvedONV configuration_J = this->fock_space.get_configuration(J);
+            SpinResolvedONV configuration_J = this->onv_basis.onvWithIndex(J);
             SpinUnresolvedONV alpha_J = configuration_J.onv(Spin::alpha);
             SpinUnresolvedONV beta_J = configuration_J.onv(Spin::beta);
 
@@ -350,20 +354,6 @@ TwoRDMs<double> SelectedRDMBuilder::calculate2RDMs(const VectorX<double>& x) con
     }  // loop over all addresses I
 
     return TwoRDMs<double>(d_aaaa, d_aabb, d_bbaa, d_bbbb);
-}
-
-
-/**
- *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)
- *  @param ket_indices      the indices of the orbitals that should be annihilated on the right (on the ket)
- *  @param x                the coefficient vector representing the 'selected" wave function
- *
- *  @return an element of the N-RDM, as specified by the given bra and ket indices
- *
- *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
- */
-double SelectedRDMBuilder::calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const VectorX<double>& x) const {
-    throw std::runtime_error("SelectedRDMBuilder::calculateElement(std::vector<size_t>, std::vector<size_t>, VectorX<double>): is not implemented for SelectedRDMs");
 }
 
 

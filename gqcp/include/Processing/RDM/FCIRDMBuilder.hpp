@@ -30,23 +30,28 @@ namespace GQCP {
  *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in the full spin-unresolved ONV basis
  */
 class FCIRDMBuilder: public BaseRDMBuilder {
-    SpinResolvedONVBasis fock_space;
+private:
+    SpinResolvedONVBasis onv_basis;  // the ONV basis that is associated to this RDMBuilder
 
 
 public:
     // CONSTRUCTORS
-    explicit FCIRDMBuilder(const SpinResolvedONVBasis& fock_space);
+
+    /**
+     *  @param onv_basis                the ONV basis that is associated to this RDMBuilder
+     */
+    explicit FCIRDMBuilder(const SpinResolvedONVBasis& onv_basis);
 
 
     // DESTRUCTOR
+
+    /**
+     *  The default destructor.
+     */
     ~FCIRDMBuilder() = default;
 
 
-    // OVERRIDDEN GETTERS
-    const BaseONVBasis* get_fock_space() const override { return &fock_space; }
-
-
-    // OVERRIDDEN PUBLIC METHODS
+    // PUBLIC OVERRIDDEN METHODS
     /**
      *  @param x        the coefficient vector representing the FCI wave function
      *
@@ -70,7 +75,12 @@ public:
      *
      *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
      */
-    double calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const VectorX<double>& x) const override;
+    double calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const VectorX<double>& x) const override { throw std::runtime_error("FCIRDMBuilder::calculateElement(std::vector<size_t>, std::vector<size_t>, VectorX<double>): is not implemented for FCIRDMs"); }
+
+    /**
+     *  @return the ONV basis that is associated to this RDMBuilder
+     */
+    const BaseONVBasis* onvBasis() const override { return &onv_basis; }
 };
 
 

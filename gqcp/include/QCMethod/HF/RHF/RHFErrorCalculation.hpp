@@ -42,7 +42,7 @@ public:
 
 public:
     /*
-     *  OVERRIDDEN PUBLIC METHODS
+     *  PUBLIC OVERRIDDEN METHODS
      */
 
     /**
@@ -67,7 +67,7 @@ public:
 
         // Calculate the error and write it to the environment (as a vector)
         const auto error_matrix = QCModel::RHF<Scalar>::calculateError(F, D, S);
-        environment.error_vectors.push_back(error_matrix.pairWiseReduce());
+        environment.error_vectors.push_back(error_matrix.pairWiseReduced());
     }
 };
 

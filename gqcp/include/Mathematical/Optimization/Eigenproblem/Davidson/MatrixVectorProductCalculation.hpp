@@ -35,7 +35,7 @@ class MatrixVectorProductCalculation:
 
 public:
     /*
-     *  OVERRIDDEN PUBLIC METHODS
+     *  PUBLIC OVERRIDDEN METHODS
      */
 
     /**

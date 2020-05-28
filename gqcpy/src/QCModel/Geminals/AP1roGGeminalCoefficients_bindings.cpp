@@ -33,7 +33,7 @@ void bindAP1roGGeminalCoefficients(py::module& module) {
                                                 "AP1roGGeminalCoefficients",
                                                 "Geminal coefficients for an AP1roG wave function.")
 
-        // Define an initializer through an Eigen::Matrix.
+        // CONSTRUCTORS
         .def(py::init(
                  [](const Eigen::MatrixXd& G) {
                      return GQCP::AP1roGGeminalCoefficients(GQCP::MatrixX<double> {G});
@@ -49,6 +49,9 @@ void bindAP1roGGeminalCoefficients(py::module& module) {
                     py::arg("sq_hamiltonian"),
                     py::arg("N_P"),
                     "Return the AP1roG geminal coefficients in the weak interaction limit.")
+
+
+        // PUBLIC METHODS
 
         .def("asMatrix",
              &GQCP::AP1roGGeminalCoefficients::asMatrix,

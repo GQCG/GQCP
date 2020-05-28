@@ -63,7 +63,7 @@ NuclearFramework::NuclearFramework(const std::vector<Nucleus>& nuclei) :
  *
  *  @return a H-chain with equal internuclear spacing
  */
-NuclearFramework NuclearFramework::HChain(const size_t n, const double spacing, CartesianDirection axis) {
+NuclearFramework NuclearFramework::HChain(const size_t n, const double spacing, const CartesianDirection axis) {
 
     if (n == 0) {
         throw std::invalid_argument("NuclearFramework::HChain(const size_t, const double): Can not create a H-chain consisting of zero nuclei.");
@@ -98,7 +98,7 @@ NuclearFramework NuclearFramework::HChain(const size_t n, const double spacing, 
  *
  *  @return a H2-chain with the specified internuclear and intermolecular distances
  */
-NuclearFramework NuclearFramework::H2Chain(const size_t n, const double a, const double b, CartesianDirection axis) {
+NuclearFramework NuclearFramework::H2Chain(const size_t n, const double a, const double b, const CartesianDirection axis) {
 
     if (n == 0) {
         throw std::invalid_argument("NuclearFramework::H2Chain(const size_t, const double, const double): Can not create a H2-chain consisting of zero H2-molecules.");
@@ -262,14 +262,14 @@ std::ostream& operator<<(std::ostream& os, const NuclearFramework& nuclear_frame
  *
  *  @return the distance between the two nuclei at index1 and index2 in bohr
  */
-double NuclearFramework::internuclearDistance(size_t index1, size_t index2) const {
+double NuclearFramework::calculateInternuclearDistanceBetween(const size_t index1, const size_t index2) const {
 
     // Check if the indices are within bounds
     if (index1 > this->nuclei.size() || index2 > this->nuclei.size()) {
-        throw std::invalid_argument("NuclearFramework::internuclearDistance(const size_t, const size_t): At least one of the given indices is out of bounds.");
+        throw std::invalid_argument("NuclearFramework::calculateInternuclearDistanceBetween(const size_t, const size_t): At least one of the given indices is out of bounds.");
     }
 
-    return this->nuclei[index1].calculateDistance(this->nuclei[index2]);
+    return this->nuclei[index1].calculateDistanceWith(this->nuclei[index2]);
 }
 
 

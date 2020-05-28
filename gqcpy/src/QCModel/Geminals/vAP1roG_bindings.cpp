@@ -30,6 +30,7 @@ namespace gqcpy {
 void bindQCModelvAP1roG(py::module& module) {
     py::class_<GQCP::QCModel::vAP1roG>(module, "QCModel_vAP1roG", "The variationally optimized AP1roG wave function model.")
 
+        // PUBLIC METHODS
         .def(
             "calculate1RDM",
             [](const GQCP::QCModel::vAP1roG& qc_model) {

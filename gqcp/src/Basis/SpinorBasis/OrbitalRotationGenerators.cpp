@@ -32,14 +32,14 @@ namespace GQCP {
  */
 OrbitalRotationGenerators::OrbitalRotationGenerators(const VectorX<double>& kappa_vector) :
     kappa_vector {kappa_vector},
-    number_of_spatial_orbitals {strictTriangularRoot(kappa_vector.size())} {}
+    number_of_spatial_orbitals {strictTriangularRootOf(kappa_vector.size())} {}
 
 
 /**
  *  @param  kappa_vector        the orbital rotation generators represented as the full antisymmetric matrix kappa
  */
 OrbitalRotationGenerators::OrbitalRotationGenerators(const SquareMatrix<double>& kappa_matrix) :
-    OrbitalRotationGenerators(kappa_matrix.pairWiseStrictReduce()) {}
+    OrbitalRotationGenerators(kappa_matrix.pairWiseStrictReduced()) {}
 
 
 /*

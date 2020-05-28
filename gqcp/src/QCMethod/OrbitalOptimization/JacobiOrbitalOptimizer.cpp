@@ -42,14 +42,13 @@ JacobiOrbitalOptimizer::JacobiOrbitalOptimizer(const size_t dim, const double co
  */
 
 /**
- *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
+ *  @param sq_hamiltonian           the current Hamiltonian
+ * 
+ *  @return a unitary matrix that will be used to rotate the current Hamiltonian into the next iteration
  */
-void JacobiOrbitalOptimizer::prepareConvergenceChecking(const SQHamiltonian<double>& sq_hamiltonian) {
+TransformationMatrix<double> JacobiOrbitalOptimizer::calculateNewRotationMatrix(const SQHamiltonian<double>& sq_hamiltonian) const {
 
-    this->prepareJacobiSpecificConvergenceChecking(sq_hamiltonian);
-
-    // Every Jacobi orbital optimizer should set a pair_type with the best Jacobi rotation parameters
-    this->optimal_jacobi_with_scalar = this->calculateOptimalJacobiParameters(sq_hamiltonian);
+    return TransformationMatrix<double>::FromJacobi(this->optimal_jacobi_with_scalar.first, sq_hamiltonian.dimension());
 }
 
 
@@ -71,12 +70,14 @@ bool JacobiOrbitalOptimizer::checkForConvergence(const SQHamiltonian<double>& sq
 
 
 /**
- *  @param sq_hamiltonian           the current Hamiltonian
- * 
- *  @return a unitary matrix that will be used to rotate the current Hamiltonian into the next iteration
+ *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
  */
-TransformationMatrix<double> JacobiOrbitalOptimizer::calculateNewRotationMatrix(const SQHamiltonian<double>& sq_hamiltonian) const {
-    return TransformationMatrix<double>::FromJacobi(this->optimal_jacobi_with_scalar.first, sq_hamiltonian.dimension());
+void JacobiOrbitalOptimizer::prepareConvergenceChecking(const SQHamiltonian<double>& sq_hamiltonian) {
+
+    this->prepareJacobiSpecificConvergenceChecking(sq_hamiltonian);
+
+    // Every Jacobi orbital optimizer should set a pair_type with the best Jacobi rotation parameters
+    this->optimal_jacobi_with_scalar = this->calculateOptimalJacobiParameters(sq_hamiltonian);
 }
 
 

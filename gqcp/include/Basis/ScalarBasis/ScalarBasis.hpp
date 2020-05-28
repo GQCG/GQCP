@@ -70,7 +70,8 @@ public:
      *  @note This constructor is only available for GTOShells (for the std::enable_if, see https://stackoverflow.com/a/17842695/7930415)
      */
     template <typename Z = GTOShell>
-    ScalarBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name, typename std::enable_if<std::is_same<Z, GTOShell>::value>::type* = 0) :
+    ScalarBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name,
+                typename std::enable_if<std::is_same<Z, GTOShell>::value>::type* = 0) :
         ScalarBasis(GTOBasisSet(basisset_name).generate(nuclear_framework)) {
 
         this->shell_set.embedNormalizationFactorsOfPrimitives();
@@ -88,7 +89,8 @@ public:
      *  @note This constructor is only available for GTOShells (for the std::enable_if, see https://stackoverflow.com/a/17842695/7930415).
      */
     template <typename Z = GTOShell>
-    ScalarBasis(const Molecule& molecule, const std::string& basisset_name, typename std::enable_if<std::is_same<Z, GTOShell>::value>::type* = 0) :
+    ScalarBasis(const Molecule& molecule, const std::string& basisset_name,
+                typename std::enable_if<std::is_same<Z, GTOShell>::value>::type* = 0) :
         ScalarBasis(molecule.nuclearFramework(), basisset_name) {}
 
 
@@ -97,14 +99,11 @@ public:
      */
 
     /**
-     *  @return the underlying set of shells
+     *  @param i            the index of the requested basis function
+     * 
+     *  @return the basis function with the given index that 'is' in this scalar basis
      */
-    const ShellSet<Shell>& shellSet() const { return this->shell_set; }
-
-    /**
-     *  @return the number of basis functions that 'are' in this scalar basis
-     */
-    size_t numberOfBasisFunctions() const { return this->shell_set.numberOfBasisFunctions(); }
+    LinearCombination<double, BasisFunction> basisFunction(const size_t i) const { return this->basisFunctions()[i]; }
 
     /**
      *  @return the basis functions that 'are' in this scalar basis
@@ -112,11 +111,14 @@ public:
     std::vector<LinearCombination<double, BasisFunction>> basisFunctions() const { return this->shell_set.basisFunctions(); }
 
     /**
-     *  @param i            the index of the requested basis function
-     * 
-     *  @return the basis function with the given index that 'is' in this scalar basis
+     *  @return the number of basis functions that 'are' in this scalar basis
      */
-    LinearCombination<double, BasisFunction> basisFunction(const size_t i) const { return this->basisFunctions()[i]; }
+    size_t numberOfBasisFunctions() const { return this->shell_set.numberOfBasisFunctions(); }
+
+    /**
+     *  @return the underlying set of shells
+     */
+    const ShellSet<Shell>& shellSet() const { return this->shell_set; }
 };
 
 

@@ -31,6 +31,7 @@ void bindRHFSCFEnvironment(py::module& module) {
     py::class_<GQCP::RHFSCFEnvironment<double>>(module, "RHFSCFEnvironment", "An algorithm environment that can be used with standard RHF SCF solvers.")
 
         // CONSTRUCTORS
+
         .def_static(
             "WithCoreGuess",
             [](const size_t N, const GQCP::SQHamiltonian<double>& sq_hamiltonian, const Eigen::MatrixXd& S) {  // use an itermediary Eigen matrix for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Matrix

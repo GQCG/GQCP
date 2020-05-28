@@ -45,7 +45,7 @@ BOOST_AUTO_TEST_CASE(FrozenCoreDOCI_one_rdms) {
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
-    GQCP::VectorX<double> coef = ci_solver.get_eigenpair().get_eigenvector();
+    GQCP::VectorX<double> coef = ci_solver.eigenpair().eigenvector();
 
     // Get the frozen core DOCI and SelectedCI 1-RDMS
     GQCP::SelectedRDMBuilder sci_rdm {selected_fock_space};
@@ -76,7 +76,7 @@ BOOST_AUTO_TEST_CASE(FrozenCoreDOCI_two_rdms) {
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
-    GQCP::VectorX<double> coef = ci_solver.get_eigenpair().get_eigenvector();
+    GQCP::VectorX<double> coef = ci_solver.eigenpair().eigenvector();
 
     // Get the frozen core DOCI and SelectedCI 2-RDMS
     GQCP::SelectedRDMBuilder sci_rdm {selected_fock_space};

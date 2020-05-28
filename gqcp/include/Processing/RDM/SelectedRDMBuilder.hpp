@@ -30,23 +30,29 @@ namespace GQCP {
  *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in a selected spin-resolved basis
  */
 class SelectedRDMBuilder: public BaseRDMBuilder {
-    SpinResolvedSelectedONVBasis fock_space;  // spin-resolved ONV basis containing the selected configurations
+private:
+    SpinResolvedSelectedONVBasis onv_basis;  // spin-resolved ONV basis containing the selected configurations
 
 
 public:
     // CONSTRUCTORS
-    explicit SelectedRDMBuilder(const SpinResolvedSelectedONVBasis& fock_space);
+
+    /**
+     *  @param onv_basis                spin-resolved ONV basis containing the selected configurations
+     */
+    explicit SelectedRDMBuilder(const SpinResolvedSelectedONVBasis& onv_basis);
 
 
     // DESTRUCTOR
+
+    /**
+     *  The default destructor.
+     */
     ~SelectedRDMBuilder() = default;
 
 
-    // OVERRIDDEN GETTERS
-    const BaseONVBasis* get_fock_space() const override { return &fock_space; }
+    // PUBLIC OVERRIDDEN METHODS
 
-
-    // OVERRIDDEN PUBLIC METHODS
     /**
      *  @param x        the coefficient vector representing the 'selected' wave function
      *
@@ -70,7 +76,12 @@ public:
      *
      *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
      */
-    double calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const VectorX<double>& x) const override;
+    double calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const VectorX<double>& x) const override { throw std::runtime_error("SelectedRDMBuilder::calculateElement(std::vector<size_t>, std::vector<size_t>, VectorX<double>): is not implemented for SelectedRDMs"); }
+
+    /**
+     *  @return the ONV basis that is associated to this RDMBuilder
+     */
+    const BaseONVBasis* onvBasis() const override { return &onv_basis; }
 };
 
 

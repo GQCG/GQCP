@@ -63,19 +63,7 @@ public:
     AP1roGJacobiOrbitalOptimizer(const AP1roGGeminalCoefficients& G, const double convergence_threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128);
 
 
-    // GETTERS
-
-    double get_electronic_energy() const { return this->E; }
-
-
     // PUBLIC OVERRIDDEN METHODS
-
-    /**
-     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
-     * 
-     *  In the case of this uncoupled AP1roG Jacobi orbital optimizer, we should solve the AP1roG PSEs at the start at every iteration, using the current orbitals
-     */
-    void prepareJacobiSpecificConvergenceChecking(const SQHamiltonian<double>& sq_hamiltonian) override;
 
     /**
      *  Calculate the trigoniometric polynomial coefficients for the given Jacobi rotation indices
@@ -101,6 +89,21 @@ public:
      *  @return the change in the value of the scalar function (i.e. the AP1roG energy) if the given Jacobi rotation parameters would be used to rotate the given Hamiltonian
      */
     double calculateScalarFunctionChange(const SQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rot_par) const override;
+
+    /**
+     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
+     * 
+     *  In the case of this uncoupled AP1roG Jacobi orbital optimizer, we should solve the AP1roG PSEs at the start at every iteration, using the current orbitals
+     */
+    void prepareJacobiSpecificConvergenceChecking(const SQHamiltonian<double>& sq_hamiltonian) override;
+
+
+    // PUBLIC METHODS
+
+    /**
+     *  @return the electronic energy calculated by this orbital optimizer
+     */
+    double electronicEnergy() const { return this->E; }
 };
 
 

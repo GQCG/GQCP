@@ -15,9 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Basis/SpinorBasis/USpinorBasis.hpp"
-
 #include "Basis/ScalarBasis/GTOShell.hpp"
+#include "Basis/SpinorBasis/USpinorBasis.hpp"
 #include "Molecule/Molecule.hpp"
 
 #include <pybind11/eigen.h>
@@ -35,12 +34,11 @@ void bindUSpinorBasis(py::module& module) {
     py::class_<GQCP::USpinorBasis<double, GQCP::GTOShell>>(module, "USpinorBasis", "A class that represents a real, unrestricted spinor basis with underlying GTO shells.")
 
         // CONSTRUCTORS
+
         .def(py::init<const GQCP::Molecule&, const std::string&>(),
              py::arg("molecule"),
              py::arg("basisset_name"))
 
-
-        // NAMED CONSTRUCTORS
         .def_static(
             "FromRestricted",
             [](const GQCP::RSpinorBasis<double, GQCP::GTOShell>& r_spinor_basis) {
@@ -51,6 +49,7 @@ void bindUSpinorBasis(py::module& module) {
 
 
         // PUBLIC METHODS
+
         .def(
             "calculateMullikenOperator",
             [](GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, const std::vector<size_t>& ao_list, const GQCP::Spin sigma) {

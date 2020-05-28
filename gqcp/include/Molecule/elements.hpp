@@ -26,19 +26,19 @@ namespace elements {
 
 
 /**
+ *  @param atomic_number    the atomic number of an element
+ *
+ *  @return the symbol of the corresponding element
+ */
+const std::string& atomicNumberToElement(const size_t atomic_number);
+
+
+/**
  *  @param symbol       the name of an element
  *
  *  @return the atomic number of the corresponding element
  */
 size_t elementToAtomicNumber(const std::string& symbol);
-
-
-/**
- *  @param atomic_number    the atomic number of an element
- *
- *  @return the symbol of the corresponding element
- */
-const std::string& atomicNumberToElement(size_t atomic_number);
 
 
 }  // namespace elements

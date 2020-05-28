@@ -28,27 +28,27 @@ namespace GQCP {
  */
 
 /**
- *  Default constructor
- */
-JacobiRotationParameters::JacobiRotationParameters() :
-    JacobiRotationParameters(1, 0, 0.0) {}
-
-
-/**
  *  @param p        the index of the first rotated orbital
  *  @param q        the index of the second rotated orbital
  *  @param angle    the angle of rotation, in radians
  */
-JacobiRotationParameters::JacobiRotationParameters(size_t p, size_t q, double angle) :
-    p {p},
-    q {q},
-    angle {angle} {
+JacobiRotationParameters::JacobiRotationParameters(const size_t p, const size_t q, const double angle) :
+    m_p {p},
+    m_q {q},
+    m_angle {angle} {
 
     // Check if p > q
-    if (this->p <= this->q) {
+    if (this->m_p <= this->m_q) {
         throw std::invalid_argument("JacobiRotationParameters::JacobiRotationParameters(size_t, size_t, double): Can't construct a JacobiRotationParameter with p < q.");
     }
 }
+
+
+/**
+ *  Default constructor
+ */
+JacobiRotationParameters::JacobiRotationParameters() :
+    JacobiRotationParameters(1, 0, 0.0) {}
 
 
 /*
@@ -62,7 +62,7 @@ JacobiRotationParameters::JacobiRotationParameters(size_t p, size_t q, double an
  */
 std::ostream& operator<<(std::ostream& os, const JacobiRotationParameters& jacobi_rotation_parameters) {
 
-    os << "p: " << jacobi_rotation_parameters.p << ", q: " << jacobi_rotation_parameters.q << ", angle: " << jacobi_rotation_parameters.angle;
+    os << "p: " << jacobi_rotation_parameters.p() << ", q: " << jacobi_rotation_parameters.q() << ", angle: " << jacobi_rotation_parameters.angle();
     return os;
 }
 

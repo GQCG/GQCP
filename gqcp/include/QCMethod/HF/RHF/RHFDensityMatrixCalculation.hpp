@@ -42,7 +42,7 @@ public:
 
 public:
     /*
-     *  OVERRIDDEN PUBLIC METHODS
+     *  PUBLIC OVERRIDDEN METHODS
      */
 
     /**
@@ -51,6 +51,7 @@ public:
     std::string description() const override {
         return "Calculate the current RHF density matrix and place it in the environment.";
     }
+
 
     /**
      *  Calculate the current RHF density matrix and place it in the environment.

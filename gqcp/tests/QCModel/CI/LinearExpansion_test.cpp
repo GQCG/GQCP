@@ -49,14 +49,14 @@ BOOST_AUTO_TEST_CASE(reader_test) {
     BOOST_CHECK(linear_expansion.coefficients().isApprox(ref_coefficients, 1.0e-08));
 
     // Check if the parsed ONVs are correct.
-    const auto onv1 = linear_expansion.onvBasis().get_configuration(0);
+    const auto onv1 = linear_expansion.onvBasis().onvWithIndex(0);
     const auto onv1_alpha = onv1.onv(GQCP::Spin::alpha).asString();
     const auto onv1_beta = onv1.onv(GQCP::Spin::beta).asString();
 
     BOOST_CHECK(onv1_alpha == alpha1_ref);
     BOOST_CHECK(onv1_beta == beta1_ref);
 
-    const auto onv2 = linear_expansion.onvBasis().get_configuration(1);
+    const auto onv2 = linear_expansion.onvBasis().onvWithIndex(1);
     const auto onv2_alpha = onv2.onv(GQCP::Spin::alpha).asString();
     const auto onv2_beta = onv2.onv(GQCP::Spin::beta).asString();
 
@@ -81,7 +81,7 @@ BOOST_AUTO_TEST_CASE(shannon_entropy) {
 
     // Check the maximal entropy (corresponding to a wave function with all equal coefficients different from zero)
     GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis> constant_expansion {onv_basis, onv_basis.constantExpansion()};
-    const double reference_entropy = std::log2(onv_basis.get_dimension());  // manual derivation
+    const double reference_entropy = std::log2(onv_basis.dimension());  // manual derivation
     BOOST_CHECK(std::abs(constant_expansion.calculateShannonEntropy() - reference_entropy) < 1.0e-12);
 }
 
@@ -114,7 +114,7 @@ BOOST_AUTO_TEST_CASE(transform_wave_function_h3) {
 
     // Generate a random rotation matrix and calculate the transformation of the linear expansion coefficients.
     const GQCP::TransformationMatrix<double> U_random = GQCP::TransformationMatrix<double>::RandomUnitary(K);
-    linear_expansion_direct.basisTransformInPlace(U_random);
+    linear_expansion_direct.basisTransform(U_random);
 
 
     // Calculate a new linear expansion by rotation the underlying spinor basis and doing another dense calculation, and check if they deviate.
@@ -156,7 +156,7 @@ BOOST_AUTO_TEST_CASE(transform_wave_function_h4) {
 
     // Generate a random rotation matrix and calculate the transformation of the linear expansion coefficients.
     const GQCP::TransformationMatrix<double> U_random = GQCP::TransformationMatrix<double>::RandomUnitary(K);
-    linear_expansion_direct.basisTransformInPlace(U_random);
+    linear_expansion_direct.basisTransform(U_random);
 
 
     // Calculate a new linear expansion by rotation the underlying spinor basis and doing another dense calculation, and check if they deviate.
@@ -199,7 +199,7 @@ BOOST_AUTO_TEST_CASE(transform_wave_function_h5) {
 
     // Generate a random rotation matrix and calculate the transformation of the linear expansion coefficients.
     const GQCP::TransformationMatrix<double> U_random = GQCP::TransformationMatrix<double>::RandomUnitary(K);
-    linear_expansion_direct.basisTransformInPlace(U_random);
+    linear_expansion_direct.basisTransform(U_random);
 
 
     // Calculate a new linear expansion by rotation the underlying spinor basis and doing another dense calculation, and check if they deviate.

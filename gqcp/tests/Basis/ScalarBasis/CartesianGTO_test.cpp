@@ -87,12 +87,12 @@ BOOST_AUTO_TEST_CASE(calculateNormalizationFactor) {
     GQCP::Vector<double, 3> center = GQCP::Vector<double, 3>::Zero();
     GQCP::CartesianGTO gto1 {1.0, exponents1, center};
 
-    BOOST_CHECK(std::abs(gto1.calculateNormalizationFactor() - 2.8508218814) < 1.0e-09);  // 'manual' calculation
+    BOOST_CHECK(std::abs(gto1.normalizationFactor() - 2.8508218814) < 1.0e-09);  // 'manual' calculation
 
     GQCP::CartesianExponents exponents2 {1, 2, 3};
     GQCP::CartesianGTO gto2 {2.5, exponents2, center};
 
-    BOOST_CHECK(std::abs(gto2.calculateNormalizationFactor() - 211.2315772257) < 1.0e-09);  // 'manual' calculation
+    BOOST_CHECK(std::abs(gto2.normalizationFactor() - 211.2315772257) < 1.0e-09);  // 'manual' calculation
 }
 
 
@@ -109,10 +109,10 @@ BOOST_AUTO_TEST_CASE(calculateDerivative) {
     GQCP::CartesianExponents ref_exp1_x1 {2, 0, 1};
     GQCP::CartesianExponents ref_exp2_x1 {0, 0, 1};
 
-    BOOST_CHECK(std::abs(x_derivative1.get_coefficients()[0] - ref_coeff1_x1) < 1.0e-12);
-    BOOST_CHECK(std::abs(x_derivative1.get_coefficients()[1] - ref_coeff2_x1) < 1.0e-12);
-    BOOST_CHECK(x_derivative1.get_functions()[0].get_cartesian_exponents() == ref_exp1_x1);
-    BOOST_CHECK(x_derivative1.get_functions()[1].get_cartesian_exponents() == ref_exp2_x1);
+    BOOST_CHECK(std::abs(x_derivative1.coefficients()[0] - ref_coeff1_x1) < 1.0e-12);
+    BOOST_CHECK(std::abs(x_derivative1.coefficients()[1] - ref_coeff2_x1) < 1.0e-12);
+    BOOST_CHECK(x_derivative1.functions()[0].cartesianExponents() == ref_exp1_x1);
+    BOOST_CHECK(x_derivative1.functions()[1].cartesianExponents() == ref_exp2_x1);
 
 
     // GTO1 - y-component
@@ -120,8 +120,8 @@ BOOST_AUTO_TEST_CASE(calculateDerivative) {
     double ref_coeff1_y1 = -2.0;
     GQCP::CartesianExponents ref_exp1_y1 {1, 1, 1};
 
-    BOOST_CHECK(std::abs(y_derivative1.get_coefficients()[0] - ref_coeff1_y1) < 1.0e-12);
-    BOOST_CHECK(y_derivative1.get_functions()[0].get_cartesian_exponents() == ref_exp1_y1);
+    BOOST_CHECK(std::abs(y_derivative1.coefficients()[0] - ref_coeff1_y1) < 1.0e-12);
+    BOOST_CHECK(y_derivative1.functions()[0].cartesianExponents() == ref_exp1_y1);
 
 
     GQCP::CartesianExponents exponents2 {1, 2, 3};
@@ -134,10 +134,10 @@ BOOST_AUTO_TEST_CASE(calculateDerivative) {
     GQCP::CartesianExponents ref_exp1_x2 {2, 2, 3};
     GQCP::CartesianExponents ref_exp2_x2 {0, 2, 3};
 
-    BOOST_CHECK(std::abs(x_derivative2.get_coefficients()[0] - ref_coeff1_x2) < 1.0e-12);
-    BOOST_CHECK(std::abs(x_derivative2.get_coefficients()[1] - ref_coeff2_x2) < 1.0e-12);
-    BOOST_CHECK(x_derivative2.get_functions()[0].get_cartesian_exponents() == ref_exp1_x2);
-    BOOST_CHECK(x_derivative2.get_functions()[1].get_cartesian_exponents() == ref_exp2_x2);
+    BOOST_CHECK(std::abs(x_derivative2.coefficients()[0] - ref_coeff1_x2) < 1.0e-12);
+    BOOST_CHECK(std::abs(x_derivative2.coefficients()[1] - ref_coeff2_x2) < 1.0e-12);
+    BOOST_CHECK(x_derivative2.functions()[0].cartesianExponents() == ref_exp1_x2);
+    BOOST_CHECK(x_derivative2.functions()[1].cartesianExponents() == ref_exp2_x2);
 
     // GTO2 - z-component
     auto z_derivative2 = gto2.calculateDerivative(GQCP::CartesianDirection::z);
@@ -146,8 +146,8 @@ BOOST_AUTO_TEST_CASE(calculateDerivative) {
     GQCP::CartesianExponents ref_exp1_z2 {1, 2, 4};
     GQCP::CartesianExponents ref_exp2_z2 {1, 2, 2};
 
-    BOOST_CHECK(std::abs(z_derivative2.get_coefficients()[0] - ref_coeff1_z2) < 1.0e-12);
-    BOOST_CHECK(std::abs(z_derivative2.get_coefficients()[1] - ref_coeff2_z2) < 1.0e-12);
-    BOOST_CHECK(z_derivative2.get_functions()[0].get_cartesian_exponents() == ref_exp1_z2);
-    BOOST_CHECK(z_derivative2.get_functions()[1].get_cartesian_exponents() == ref_exp2_z2);
+    BOOST_CHECK(std::abs(z_derivative2.coefficients()[0] - ref_coeff1_z2) < 1.0e-12);
+    BOOST_CHECK(std::abs(z_derivative2.coefficients()[1] - ref_coeff2_z2) < 1.0e-12);
+    BOOST_CHECK(z_derivative2.functions()[0].cartesianExponents() == ref_exp1_z2);
+    BOOST_CHECK(z_derivative2.functions()[1].cartesianExponents() == ref_exp2_z2);
 }

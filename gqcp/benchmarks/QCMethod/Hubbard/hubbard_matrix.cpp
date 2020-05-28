@@ -38,7 +38,7 @@ static void constructHamiltonian(benchmark::State& state) {
 
     state.counters["Sites"] = K;
     state.counters["Electron pairs"] = N_P;
-    state.counters["Dimension"] = onv_basis.get_dimension();
+    state.counters["Dimension"] = onv_basis.dimension();
 }
 
 

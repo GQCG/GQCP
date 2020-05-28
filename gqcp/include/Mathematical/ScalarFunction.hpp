@@ -61,9 +61,8 @@ private:
 public:
     using Valued = product_t<typename T1::Valued, typename T2::Valued>;
     using Scalar = typename T1::Scalar;  // equal to T2::Scalar
-    enum {
-        Cols = T1::Cols  // equal to T2::Cols
-    };
+
+    static const auto Cols = T1::Cols;  // equal to T2::Cols
 
 
 public:
@@ -111,9 +110,8 @@ class ScalarFunction {
 public:
     using Valued = _Valued;
     using Scalar = _Scalar;
-    enum {
-        Cols = _Cols,
-    };
+
+    static const auto Cols = _Cols;
 
 
 public:

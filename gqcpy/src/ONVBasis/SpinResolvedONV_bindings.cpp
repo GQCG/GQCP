@@ -31,6 +31,7 @@ void bindSpinResolvedONV(py::module& module) {
     py::class_<GQCP::SpinResolvedONV>(module, "SpinResolvedONV", "An occupation number vector that is spin-resolved into alpha- and beta-constituents.")
 
         // CONSTRUCTORS
+
         .def_static(
             "RHF",
             [](const size_t K, const size_t N_P) {
@@ -52,6 +53,7 @@ void bindSpinResolvedONV(py::module& module) {
 
 
         // PUBLIC METHODS
+
         .def("__repr__",
              &GQCP::SpinResolvedONV::asString)
 

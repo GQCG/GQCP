@@ -31,7 +31,7 @@ namespace GQCP {
  *  @param atomic_parameters                    collection of the atomic Hamiltonian
  */
 AtomicDecompositionParameters::AtomicDecompositionParameters(const SQHamiltonian<double>& molecular_hamiltonian_parameters, const std::vector<SQHamiltonian<double>>& net_atomic_parameters, const std::vector<SQHamiltonian<double>>& interaction_parameters, const std::vector<SQHamiltonian<double>>& atomic_parameters) :
-    molecular_hamiltonian_parameters {molecular_hamiltonian_parameters},
+    molecular_hamiltonian {molecular_hamiltonian_parameters},
     net_atomic_parameters {net_atomic_parameters},
     interaction_parameters {interaction_parameters},
     atomic_parameters {atomic_parameters} {}
@@ -116,17 +116,17 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
     auto g_ab = g;
     auto g_ba = g;
 
-    g_a.matrixContraction<double>(p_a, 0);
-    g_a.matrixContraction<double>(p_a, 2);
+    g_a.contractWithMatrix<double>(p_a, 0);
+    g_a.contractWithMatrix<double>(p_a, 2);
 
-    g_b.matrixContraction<double>(p_b, 0);
-    g_b.matrixContraction<double>(p_b, 2);
+    g_b.contractWithMatrix<double>(p_b, 0);
+    g_b.contractWithMatrix<double>(p_b, 2);
 
-    g_ab.matrixContraction<double>(p_a, 0);
-    g_ab.matrixContraction<double>(p_b, 2);
+    g_ab.contractWithMatrix<double>(p_a, 0);
+    g_ab.contractWithMatrix<double>(p_b, 2);
 
-    g_ba.matrixContraction<double>(p_b, 0);
-    g_ba.matrixContraction<double>(p_a, 2);
+    g_ba.contractWithMatrix<double>(p_b, 0);
+    g_ba.contractWithMatrix<double>(p_a, 2);
 
     QCRankFourTensor<double> g_abba = g_ab.Eigen() + g_ba.Eigen();
 

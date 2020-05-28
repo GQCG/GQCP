@@ -190,6 +190,14 @@ public:
 
 
     /**
+     *  @return the sum of the alpha and beta dimensions
+     */
+    size_t dimension() const {
+        return this->dimension(GQCP::Spin::alpha) + this->dimension(GQCP::Spin::beta);
+    }
+
+
+    /**
      *  @param sigma                The requested spin component. This can be either alpha or beta.
      * 
      *  @return the dimension of the matrices for the requested spin component.
@@ -245,10 +253,10 @@ public:
 
         // Transform the matrix representations of the components
         for (auto& f_a : this->allParameters(GQCP::Spin::alpha)) {
-            f_a.basisRotateInPlace(U);
+            f_a.basisRotate(U);
         }
         for (auto& f_b : this->allParameters(GQCP::Spin::beta)) {
-            f_b.basisRotateInPlace(U);
+            f_b.basisRotate(U);
         }
     }
 
@@ -262,19 +270,11 @@ public:
 
         // Transform the matrix representations of the components
         for (auto& f_a : this->allParameters(GQCP::Spin::alpha)) {
-            f_a.basisRotateInPlace(jacobi_rotation_parameters);
+            f_a.basisRotate(jacobi_rotation_parameters);
         }
         for (auto& f_b : this->allParameters(GQCP::Spin::beta)) {
-            f_b.basisRotateInPlace(jacobi_rotation_parameters);
+            f_b.basisRotate(jacobi_rotation_parameters);
         }
-    }
-
-
-    /**
-     *  @return the sum of the alpha and beta dimensions
-     */
-    size_t sumOfDimensions() const {
-        return this->dimension(GQCP::Spin::alpha) + this->dimension(GQCP::Spin::beta);
     }
 
 
@@ -287,10 +287,10 @@ public:
 
         // Transform the matrix representations of the components
         for (auto& f_a : this->allParameters(GQCP::Spin::alpha)) {
-            f_a.basisTransformInPlace(T);
+            f_a.basisTransform(T);
         }
         for (auto& f_b : this->allParameters(GQCP::Spin::beta)) {
-            f_b.basisTransformInPlace(T);
+            f_b.basisTransform(T);
         }
     }
 };

@@ -137,10 +137,6 @@ public:
         return mulliken_op;
     }
 
-
-
-
-
     /**
      *  @return the number of different spatial orbitals that are used in this restricted spinor basis
      */
@@ -149,9 +145,23 @@ public:
     /**
      *  @return the number of spinors that 'are' in this restricted spinor basis
      */
-    size_t numberOfSpinors() const {
+    size_t numberOfSpinors() const { return 2 * this->numberOfSpatialOrbitals(); /* alpha and beta spinors are equal*/ }
 
-        return 2 * this->numberOfSpatialOrbitals();  // alpha and beta spinors are equal
+
+    /**
+     *  @param fq_op        the first-quantized Coulomb operator
+     * 
+     *  @return the second-quantized operator corresponding to the Coulomb operator
+     */
+    auto quantize(const CoulombRepulsionOperator& fq_op) const -> SQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>, CoulombRepulsionOperator::Components> {
+
+        using ResultScalar = product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>;
+        using ResultOperator = SQTwoElectronOperator<ResultScalar, CoulombRepulsionOperator::Components>;
+
+        const auto one_op_par = IntegralCalculator::calculateLibintIntegrals(fq_op, this->scalarBasis());
+        ResultOperator op {one_op_par};  // op for 'operator'
+        op.transform(this->coefficientMatrix());
+        return op;
     }
 
 
@@ -169,23 +179,6 @@ public:
         using ResultOperator = SQOneElectronOperator<ResultScalar, FQOneElectronOperator::Components>;
 
         const auto one_op_par = IntegralCalculator::calculateLibintIntegrals(fq_one_op, this->scalarBasis());
-        ResultOperator op {one_op_par};  // op for 'operator'
-        op.transform(this->coefficientMatrix());
-        return op;
-    }
-
-
-    /**
-     *  @param fq_op        the first-quantized Coulomb operator
-     * 
-     *  @return the second-quantized operator corresponding to the Coulomb operator
-     */
-    auto quantize(const CoulombRepulsionOperator& fq_op) const -> SQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>, CoulombRepulsionOperator::Components> {
-
-        using ResultScalar = product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>;
-        using ResultOperator = SQTwoElectronOperator<ResultScalar, CoulombRepulsionOperator::Components>;
-
-        const auto one_op_par = IntegralCalculator::calculateLibintIntegrals(fq_op, this->scalarBasis());
         ResultOperator op {one_op_par};  // op for 'operator'
         op.transform(this->coefficientMatrix());
         return op;

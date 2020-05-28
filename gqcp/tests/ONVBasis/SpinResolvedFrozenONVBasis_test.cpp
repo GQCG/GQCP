@@ -46,14 +46,14 @@ BOOST_AUTO_TEST_CASE(FrozenProductONVBasis_member_test) {
 
     GQCP::SpinResolvedFrozenONVBasis frozen_space {10, 5, 5, 2};
 
-    const GQCP::SpinUnresolvedFrozenONVBasis& alpha_member = frozen_space.get_frozen_fock_space_alpha();
-    const GQCP::SpinUnresolvedFrozenONVBasis& beta_member = frozen_space.get_frozen_fock_space_beta();
+    const GQCP::SpinUnresolvedFrozenONVBasis& alpha_member = frozen_space.frozenONVBasisAlpha();
+    const GQCP::SpinUnresolvedFrozenONVBasis& beta_member = frozen_space.frozenONVBasisBeta();
 
-    BOOST_CHECK(alpha_member.get_N() == 5);
-    BOOST_CHECK(beta_member.get_N() == 5);
+    BOOST_CHECK(alpha_member.numberOfElectrons() == 5);
+    BOOST_CHECK(beta_member.numberOfElectrons() == 5);
 
-    BOOST_CHECK(alpha_member.get_K() == 10);
-    BOOST_CHECK(beta_member.get_K() == 10);
+    BOOST_CHECK(alpha_member.numberOfOrbitals() == 10);
+    BOOST_CHECK(beta_member.numberOfOrbitals() == 10);
 }
 
 

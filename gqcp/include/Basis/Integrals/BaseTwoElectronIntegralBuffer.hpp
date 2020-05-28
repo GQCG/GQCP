@@ -77,6 +77,11 @@ public:
      */
 
     /**
+     *  @return if all the values of the calculated integrals are zero
+     */
+    virtual bool areIntegralsAllZero() const = 0;
+
+    /**
      *  @param i            the index of the component of the operator
      *  @param f1           the index of the basis function within shell 1
      *  @param f2           the index of the basis function within shell 2
@@ -87,35 +92,10 @@ public:
      */
     virtual IntegralScalar value(const size_t i, const size_t f1, const size_t f2, const size_t f3, const size_t f4) const = 0;
 
-    /**
-     *  @return if all the values of the calculated integrals are zero
-     */
-    virtual bool areIntegralsAllZero() const = 0;
-
 
     /*
      *  PUBLIC METHODS
      */
-
-    /**
-     *  @return the number of basis functions that are in the first shell
-     */
-    size_t numberOfBasisFunctionsInShell1() const { return this->nbf1; }
-
-    /**
-     *  @return the number of basis functions that are in the second shell
-     */
-    size_t numberOfBasisFunctionsInShell2() const { return this->nbf2; }
-
-    /**
-     *  @return the number of basis functions that are in the third shell
-     */
-    size_t numberOfBasisFunctionsInShell3() const { return this->nbf3; }
-
-    /**
-     *  @return the number of basis functions that are in the fourth shell
-     */
-    size_t numberOfBasisFunctionsInShell4() const { return this->nbf4; }
 
     /**
      *  Place the calculated integrals inside the matrix representation of the integrals
@@ -143,6 +123,28 @@ public:
             }          // f3
         }              // f4
     }
+
+
+    /**
+     *  @return the number of basis functions that are in the first shell
+     */
+    size_t numberOfBasisFunctionsInShell1() const { return this->nbf1; }
+
+    /**
+     *  @return the number of basis functions that are in the second shell
+     */
+    size_t numberOfBasisFunctionsInShell2() const { return this->nbf2; }
+
+    /**
+     *  @return the number of basis functions that are in the third shell
+     */
+    size_t numberOfBasisFunctionsInShell3() const { return this->nbf3; }
+
+    /**
+     *  @return the number of basis functions that are in the fourth shell
+     */
+    size_t numberOfBasisFunctionsInShell4() const { return this->nbf4; }
+
 };
 
 

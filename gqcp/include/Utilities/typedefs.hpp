@@ -41,11 +41,12 @@ using cd = std::complex<double>;
 /*
  *  TEMPLATE ALIASES
  */
-template <typename T, typename U>
-using sum_t = decltype(std::declval<T>() + std::declval<U>());
 
 template <typename T, typename U>
 using product_t = decltype(std::declval<T>() * std::declval<U>());
+
+template <typename T, typename U>
+using sum_t = decltype(std::declval<T>() + std::declval<U>());
 
 
 }  // namespace GQCP

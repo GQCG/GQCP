@@ -30,6 +30,8 @@ namespace gqcpy {
 void bindHubbardHamiltonian(py::module& module) {
     py::class_<GQCP::HubbardHamiltonian<double>>(module, "HubbardHamiltonian", "The Hubbard model Hamiltonian.")
 
+        // CONSTRUCTORS
+
         .def(py::init<const GQCP::HoppingMatrix<double>&>(),
              py::arg("H"));
 }

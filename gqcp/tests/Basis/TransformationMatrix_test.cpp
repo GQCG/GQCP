@@ -21,6 +21,8 @@
 
 #include "Basis/TransformationMatrix.hpp"
 
+#include <boost/math/constants/constants.hpp>
+
 
 /**
  *  Check if the 'product' of two transformation matrices behaves as expected
@@ -50,4 +52,25 @@ BOOST_AUTO_TEST_CASE(transform) {
 
     T1.transform(T2);  // first do T1, then T2
     BOOST_CHECK(T1.isApprox(T_total, 1.0e-08));
+}
+
+
+/**
+ *  Check the construction of Jacobi rotation matrices from JacobiRotationParameters.
+ */
+BOOST_AUTO_TEST_CASE(FromJacobi) {
+
+    // A random Jacobi matrix is unitary
+    BOOST_CHECK(GQCP::TransformationMatrix<double>::FromJacobi(GQCP::JacobiRotationParameters(7, 4, 6.9921), 10).isUnitary());
+    BOOST_CHECK(GQCP::TransformationMatrix<double>::FromJacobi(GQCP::JacobiRotationParameters(9, 1, 78.00166), 22).isUnitary());
+
+
+    // Check the cos, sin, -sin, cos convention. Since p>q, this means we should end up with cos, -sin, sin, cos in the Jacobi rotation matrix
+    const auto half_pi = boost::math::constants::half_pi<double>();
+    const auto J = GQCP::TransformationMatrix<double>::FromJacobi(GQCP::JacobiRotationParameters(1, 0, half_pi), 2);
+
+    BOOST_CHECK(std::abs(J(0, 0) - 0) < 1.0e-12);
+    BOOST_CHECK(std::abs(J(0, 1) - (-1)) < 1.0e-12);
+    BOOST_CHECK(std::abs(J(1, 0) - 1) < 1.0e-12);
+    BOOST_CHECK(std::abs(J(0, 0) - 0) < 1.0e-12);
 }

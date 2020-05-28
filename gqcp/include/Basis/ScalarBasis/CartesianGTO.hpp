@@ -38,17 +38,18 @@ private:
     double gaussian_exponent;                // exponent of the exponential
     double N;                                // normalization factor
     CartesianExponents cartesian_exponents;  // exponents of (x-X), (y-Y), (z-Z)
-    Vector<double, 3> center;                // center of the GTO (X, Y, Z)
+    Vector<double, 3> m_center;              // center of the GTO (X, Y, Z)
 
 
 public:
     // CONSTRUCTORS
+
     /**
      *  @param gaussian_exponent        the exponent of the exponential
      *  @param cartesian_exponents      the exponents of x, y and z
      *  @param center                   the center of the Cartesian GTO
      */
-    CartesianGTO(double gaussian_exponent, const CartesianExponents& cartesian_exponents, const Vector<double, 3>& center);
+    CartesianGTO(const double gaussian_exponent, const CartesianExponents& cartesian_exponents, const Vector<double, 3>& center);
 
     /**
      *  Default constructor setting everything to zero
@@ -56,14 +57,8 @@ public:
     CartesianGTO();
 
 
-    // GETTERS
-    double get_N() const { return this->N; }
-    double get_gaussian_exponent() const { return this->gaussian_exponent; }
-    const CartesianExponents& get_cartesian_exponents() const { return this->cartesian_exponents; }
-    const Vector<double, 3>& get_center() const { return this->center; }
-
-
     // OPERATORS
+
     /**
      *  @param r        the value at which the GTO should be evaluated
      *
@@ -80,13 +75,14 @@ public:
 
 
     // STATIC PUBLIC METHODS
+
     /**
      *  @param gaussian_exponent        the exponent of the GTO
      *  @param cartesian_exponent       the exponent of the Cartesian function x, y, z
      *
      *  @return one of the components of the total normalization factor
      */
-    static double calculateNormalizationFactorComponent(double gaussian_exponent, size_t cartesian_exponent);
+    static double calculateNormalizationFactorComponent(const double gaussian_exponent, const size_t cartesian_exponent);
 
     /**
      *  @param gaussian_exponent        the exponent of the GTO
@@ -94,26 +90,42 @@ public:
      *
      *  @return the total normalization factor
      */
-    static double calculateNormalizationFactor(double gaussian_exponent, const CartesianExponents& cartesian_exponents);
+    static double calculateNormalizationFactor(const double gaussian_exponent, const CartesianExponents& cartesian_exponents);
 
 
     // PUBLIC METHODS
+
     /**
-     *  @return the total normalization factor of the Cartesian GTO
+     *  @return the Cartesian exponents for this Cartesian GTO
      */
-    double calculateNormalizationFactor() const;
+    const CartesianExponents& cartesianExponents() const { return this->cartesian_exponents; }
 
     /**
      *  @param direction        the Cartesian direction in which the derivative should be calculated
      *
      *  @return the derivative of this Cartesian GTO (with respect to the electronic coordinates) in the x-, y-, or z-direction
      */
-    LinearCombination<double, CartesianGTO> calculateDerivative(CartesianDirection direction) const;
+    LinearCombination<double, CartesianGTO> calculateDerivative(const CartesianDirection direction) const;
 
     /**
      *  @return the gradient of this Cartesian GTO with respect to the electronic coordinates
      */
     Vector<LinearCombination<double, CartesianGTO>, 3> calculateGradient() const;
+
+    /**
+     *  @return the center of this Cartesian GTO
+     */
+    const Vector<double, 3>& center() const { return this->m_center; }
+
+    /**
+     *  @return the Gaussian exponent for this Cartesian GTO
+     */
+    double gaussianExponent() const { return this->gaussian_exponent; }
+
+    /**
+     *  @return the total normalization factor for this Cartesian GTO
+     */
+    double normalizationFactor() const { return this->N; }
 };
 
 

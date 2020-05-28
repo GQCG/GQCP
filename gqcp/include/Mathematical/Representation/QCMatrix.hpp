@@ -57,14 +57,14 @@ public:
      * 
      *  @param T                            the transformation matrix
      */
-    void basisRotateInPlace(const TransformationMatrix<Scalar>& U) {
+    void basisRotate(const TransformationMatrix<Scalar>& U) {
 
         // Check if the given matrix is actually unitary
         if (!U.isUnitary(1.0e-12)) {
-            throw std::invalid_argument("QCMatrix::basisRotateInPlace(const TransformationMatrix<Scalar>&): The given transformation matrix is not unitary.");
+            throw std::invalid_argument("QCMatrix::basisRotate(const TransformationMatrix<Scalar>&): The given transformation matrix is not unitary.");
         }
 
-        this->basisTransformInPlace(U);
+        this->basisTransform(U);
     }
 
 
@@ -75,11 +75,11 @@ public:
      *
      *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix. See transform() for how the transformation matrix between the two bases should be represented
      */
-    void basisRotateInPlace(const JacobiRotationParameters& jacobi_rotation_parameters) {
+    void basisRotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
 
-        const auto p = jacobi_rotation_parameters.get_p();
-        const auto q = jacobi_rotation_parameters.get_q();
-        const auto angle = jacobi_rotation_parameters.get_angle();
+        const auto p = jacobi_rotation_parameters.p();
+        const auto q = jacobi_rotation_parameters.q();
+        const auto angle = jacobi_rotation_parameters.angle();
 
         const double c = std::cos(angle);
         const double s = std::sin(angle);
@@ -98,7 +98,7 @@ public:
      * 
      *  @param T                            the transformation matrix
      */
-    void basisTransformInPlace(const TransformationMatrix<Scalar>& T) {
+    void basisTransform(const TransformationMatrix<Scalar>& T) {
 
         (*this) = Self(T.adjoint() * (*this) * T);  // has no aliasing issues (https://eigen.tuxfamily.org/dox/group__TopicAliasing.html)
     }
@@ -107,9 +107,7 @@ public:
     /**
      *  @return the dimension of this matrix representation of the parameters, i.e. the number of orbitals/sites
      */
-    size_t dimension() const {
-        return this->cols();
-    }
+    size_t dimension() const { return this->cols(); }
 };
 
 

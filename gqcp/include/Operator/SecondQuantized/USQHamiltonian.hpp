@@ -120,127 +120,9 @@ public:
      */
 
     /**
-     *  @return the dimension of the Hamiltonian, i.e. the number of spinors in which it is expressed
-     */
-    size_t dimension() const { return this->sq_hamiltonians[Spin::alpha].dimension() + this->sq_hamiltonians[Spin::beta].dimension(); }
-
-    /**
      *  @return if the alpha and beta components of the unrestricted Hamiltonian are of the same dimension
      */
-    bool areSpinHamiltoniansOfSameDimension() const {
-        return this->spinHamiltonian(Spin::alpha).dimension() == this->spinHamiltonian(Spin::beta).dimension();
-    }
-
-    /**
-     *  @param component                    the spin component
-     * 
-     *  @return the pure contributions of the requested component of the unrestricted Hamiltonian 
-     */
-    const SQHamiltonian<Scalar>& spinHamiltonian(const Spin& component) const { return this->sq_hamiltonians[component]; }
-
-    /**
-     *  @return the total contributions to the mixed alpha & beta two-electron part of the unrestricted Hamiltonian
-     */
-    const ScalarSQTwoElectronOperator<Scalar>& twoElectronMixed() const { return this->total_two_op_mixed; }
-
-    /**
-     *  @return the total contributions to the mixed alpha & beta two-electron part of the unrestricted Hamiltonian
-     */
-    const std::vector<ScalarSQTwoElectronOperator<Scalar>>& twoElectronContributionsMixed() const { return this->two_op_mixed; }
-
-    /**
-     *  In-place transform the matrix representations of the unrestricted Hamiltonian
-     *
-     *  @param T    the transformation matrix between the old and the new orbital basis
-     */
-    void transform(const TransformationMatrix<Scalar>& T) {
-
-        this->sq_hamiltonians[Spin::alpha].transform(T);
-        this->sq_hamiltonians[Spin::beta].transform(T);
-
-        // Transform the mixed
-        this->total_two_op_mixed.transform(T);
-        for (auto& two_op : this->two_op_mixed) {
-            two_op.transform(T);
-        }
-    }
-
-    /**
-     *  In-place transform the matrix representations of a single spin component of the unrestricted Hamiltonian
-     * 
-     *  @param T                        the transformation matrix between the old and the new orbital basis
-     *  @param component                the spin component
-     */
-    void transform(const TransformationMatrix<Scalar>& T, const Spin& component) {
-
-        this->sq_hamiltonians[component].transform(T);
-
-        // Transform the mixed two-electron operators and their total
-        auto new_two_electron_parameters = this->total_two_op_mixed.parameters();
-
-        // transform the two electron parameters "g_aabb" to "g_a'a'bb" when alpha is chosen or to "g_aab'b'" for beta.
-        const size_t first_contraction_index = 2 * component;
-        const size_t second_contraction_index = 2 * component + 1;
-        new_two_electron_parameters.template matrixContraction<Scalar>(T, first_contraction_index);
-        new_two_electron_parameters.template matrixContraction<Scalar>(T, second_contraction_index);
-        this->total_two_op_mixed = ScalarSQTwoElectronOperator<Scalar>(new_two_electron_parameters);
-
-        for (auto& two_op : this->two_op_mixed) {
-
-            auto new_two_electron_parameters = two_op.parameters();
-            // transform the two electron parameters "g_aabb" to "g_a'a'bb"
-            new_two_electron_parameters.template matrixContraction<Scalar>(T, first_contraction_index);
-            new_two_electron_parameters.template matrixContraction<Scalar>(T, second_contraction_index);
-            two_op = ScalarSQTwoElectronOperator<Scalar>(new_two_electron_parameters);
-        }
-    }
-
-
-    /**
-     *  In-place rotate the matrix representations of the Hamiltonian
-     *      
-     *  @param U    the unitary rotation matrix between the old and the new orbital basis
-     */
-    void rotate(const TransformationMatrix<Scalar>& U) {
-        this->sq_hamiltonians[Spin::alpha].rotate(U);
-        this->sq_hamiltonians[Spin::beta].rotate(U);
-    }
-
-
-    /**
-     *  In-place rotate the matrix representation of one of the spin components of the Hamiltonian
-     *
-     *  @param U                    the unitary rotation matrix between the old and the new orbital basis
-     *  @param component            the spin component
-     */
-    void rotate(const TransformationMatrix<Scalar>& U, const Spin& component) {
-        this->transform(U, component);
-    }
-
-
-    /**
-     *  In-place rotate the matrix representations of the Hamiltonian using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters. Note that this function is only available for real (double) matrix representations
-     *
-     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
-     */
-    template <typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
-        this->sq_hamiltonians[Spin::alpha].rotate(jacobi_rotation_parameters);
-        this->sq_hamiltonians[Spin::beta].rotate(jacobi_rotation_parameters);
-    }
-
-
-    /**
-     *  In-place rotate the matrix representation of one of the spin components of the Hamiltonian using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters. Note that this function is only available for real (double) matrix representations
-     *
-     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
-     *  @param component                        the spin component
-     */
-    template <typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters, const Spin& component) {
-        this->transform(jacobi_rotation_parameters, component);
-    }
-
+    bool areSpinHamiltoniansOfSameDimension() const { return this->spinHamiltonian(Spin::alpha).dimension() == this->spinHamiltonian(Spin::beta).dimension(); }
 
     /**
      *  Constrain a spin component of the unrestricted Hamiltonian according to the convention: - lambda * constraint
@@ -263,6 +145,124 @@ public:
         } else {
             return USQHamiltonian(constrained_component, this->sq_hamiltonians[Spin::beta], this->two_op_mixed);
         }
+    }
+
+
+    /**
+     *  @return the dimension of the Hamiltonian, i.e. the number of spinors in which it is expressed
+     */
+    size_t dimension() const { return this->sq_hamiltonians[Spin::alpha].dimension() + this->sq_hamiltonians[Spin::beta].dimension(); }
+
+    /**
+     *  In-place rotate the matrix representations of the Hamiltonian
+     *      
+     *  @param U    the unitary rotation matrix between the old and the new orbital basis
+     */
+    void rotate(const TransformationMatrix<Scalar>& U) {
+
+        this->sq_hamiltonians[Spin::alpha].rotate(U);
+        this->sq_hamiltonians[Spin::beta].rotate(U);
+    }
+
+
+    /**
+     *  In-place rotate the matrix representation of one of the spin components of the Hamiltonian
+     *
+     *  @param U                    the unitary rotation matrix between the old and the new orbital basis
+     *  @param component            the spin component
+     */
+    void rotate(const TransformationMatrix<Scalar>& U, const Spin& component) { this->transform(U, component); }
+
+
+    /**
+     *  In-place rotate the matrix representations of the Hamiltonian using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters. Note that this function is only available for real (double) matrix representations
+     *
+     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
+     */
+    template <typename Z = Scalar>
+    enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
+
+        this->sq_hamiltonians[Spin::alpha].rotate(jacobi_rotation_parameters);
+        this->sq_hamiltonians[Spin::beta].rotate(jacobi_rotation_parameters);
+    }
+
+
+    /**
+     *  @param component                    the spin component
+     * 
+     *  @return the pure contributions of the requested component of the unrestricted Hamiltonian 
+     */
+    const SQHamiltonian<Scalar>& spinHamiltonian(const Spin& component) const { return this->sq_hamiltonians[component]; }
+
+    /**
+     *  In-place transform the matrix representations of the unrestricted Hamiltonian
+     *
+     *  @param T    the transformation matrix between the old and the new orbital basis
+     */
+    void transform(const TransformationMatrix<Scalar>& T) {
+
+        this->sq_hamiltonians[Spin::alpha].transform(T);
+        this->sq_hamiltonians[Spin::beta].transform(T);
+
+        // Transform the mixed
+        this->total_two_op_mixed.transform(T);
+        for (auto& two_op : this->two_op_mixed) {
+            two_op.transform(T);
+        }
+    }
+
+
+    /**
+     *  In-place transform the matrix representations of a single spin component of the unrestricted Hamiltonian
+     * 
+     *  @param T                        the transformation matrix between the old and the new orbital basis
+     *  @param component                the spin component
+     */
+    void transform(const TransformationMatrix<Scalar>& T, const Spin& component) {
+
+        this->sq_hamiltonians[component].transform(T);
+
+        // Transform the mixed two-electron operators and their total
+        auto new_two_electron_parameters = this->total_two_op_mixed.parameters();
+
+        // transform the two electron parameters "g_aabb" to "g_a'a'bb" when alpha is chosen or to "g_aab'b'" for beta.
+        const size_t first_contraction_index = 2 * component;
+        const size_t second_contraction_index = 2 * component + 1;
+        new_two_electron_parameters.template contractWithMatrix<Scalar>(T, first_contraction_index);
+        new_two_electron_parameters.template contractWithMatrix<Scalar>(T, second_contraction_index);
+        this->total_two_op_mixed = ScalarSQTwoElectronOperator<Scalar>(new_two_electron_parameters);
+
+        for (auto& two_op : this->two_op_mixed) {
+
+            auto new_two_electron_parameters = two_op.parameters();
+            // transform the two electron parameters "g_aabb" to "g_a'a'bb"
+            new_two_electron_parameters.template contractWithMatrix<Scalar>(T, first_contraction_index);
+            new_two_electron_parameters.template contractWithMatrix<Scalar>(T, second_contraction_index);
+            two_op = ScalarSQTwoElectronOperator<Scalar>(new_two_electron_parameters);
+        }
+    }
+
+
+    /**
+     *  @return the total contributions to the mixed alpha & beta two-electron part of the unrestricted Hamiltonian
+     */
+    const std::vector<ScalarSQTwoElectronOperator<Scalar>>& twoElectronContributionsMixed() const { return this->two_op_mixed; }
+
+    /**
+     *  @return the total contributions to the mixed alpha & beta two-electron part of the unrestricted Hamiltonian
+     */
+    const ScalarSQTwoElectronOperator<Scalar>& twoElectronMixed() const { return this->total_two_op_mixed; }
+
+
+    /**
+     *  In-place rotate the matrix representation of one of the spin components of the Hamiltonian using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters. Note that this function is only available for real (double) matrix representations
+     *
+     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
+     *  @param component                        the spin component
+     */
+    template <typename Z = Scalar>
+    enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters, const Spin& component) {
+        this->transform(jacobi_rotation_parameters, component);
     }
 };
 

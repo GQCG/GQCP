@@ -68,7 +68,7 @@ static void fci_dense_molecule(benchmark::State& state) {
 
     state.counters["Hydrogen nuclei"] = number_of_H_atoms;
     state.counters["Electrons"] = N;
-    state.counters["Dimension"] = onv_basis.get_dimension();
+    state.counters["Dimension"] = onv_basis.dimension();
 }
 
 
@@ -117,7 +117,7 @@ static void fci_davidson_molecule(benchmark::State& state) {
 
     state.counters["Hydrogen nuclei"] = K;
     state.counters["Electrons"] = N;
-    state.counters["Dimension"] = onv_basis.get_dimension();
+    state.counters["Dimension"] = onv_basis.dimension();
 }
 
 

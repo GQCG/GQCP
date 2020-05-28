@@ -22,34 +22,19 @@ namespace GQCP {
 
 
 /*
- *  CONSTRUCTOR
+ *  CONSTRUCTORS
  */
-SpinUnresolvedFCIRDMBuilder::SpinUnresolvedFCIRDMBuilder(const SpinUnresolvedONVBasis& fock_space) :
-    fock_space {fock_space} {}
+
+/**
+ *  @param onv_basis                spin-unresolved ONV basis
+ */
+SpinUnresolvedFCIRDMBuilder::SpinUnresolvedFCIRDMBuilder(const SpinUnresolvedONVBasis& onv_basis) :
+    onv_basis {onv_basis} {}
 
 
 /*
- *  OVERRIDDEN PUBLIC METHODS
+ *  PUBLIC OVERRIDDEN METHODS
  */
-
-/**
- *  @param x        the coefficient vector representing the UnresolvedCI wave function
- *
- *  @return the 1-RDM given a coefficient vector
- */
-OneRDM<double> SpinUnresolvedFCIRDMBuilder::calculate1RDM(const VectorX<double>& x) const {
-    throw std::runtime_error("SpinUnresolvedFCIRDMBuilder::calculate1RDMs(VectorX<double>): not implemented yet");
-}
-
-
-/**
-     *  @param x        the coefficient vector representing the UnresolvedCI wave function
-     *
-     *  @return the 2-RDM given a coefficient vector
-     */
-TwoRDM<double> SpinUnresolvedFCIRDMBuilder::calculate2RDM(const VectorX<double>& x) const {
-    throw std::runtime_error("SpinUnresolvedFCIRDMBuilder::calculate2RDMs(VectorX<double>): not implemented yet");
-}
 
 
 /**
@@ -69,11 +54,11 @@ double SpinUnresolvedFCIRDMBuilder::calculateElement(const std::vector<size_t>& 
 
     double value = 0.0;
     int sign = 1;
-    SpinUnresolvedONVBasis fock_space = this->fock_space;  // make a copy because this method is marked const
-    size_t dim = fock_space.get_dimension();
+    SpinUnresolvedONVBasis onv_basis = this->onv_basis;  // make a copy because this method is marked const
+    size_t dim = onv_basis.dimension();
 
 
-    SpinUnresolvedONV bra = fock_space.makeONV(0);
+    SpinUnresolvedONV bra = onv_basis.constructONVFromAddress(0);
     size_t I = 0;
     while (I < dim) {  // loop over all bra addresses
 
@@ -82,7 +67,7 @@ double SpinUnresolvedFCIRDMBuilder::calculateElement(const std::vector<size_t>& 
 
             // Go to the beginning of the outer while loop with the next bra
             if (I < dim - 1) {  // prevent the last permutation from occurring
-                fock_space.setNextONV(bra);
+                onv_basis.transformONVToNextPermutation(bra);
                 I++;
                 sign = 1;
                 continue;
@@ -92,7 +77,7 @@ double SpinUnresolvedFCIRDMBuilder::calculateElement(const std::vector<size_t>& 
         }
 
 
-        SpinUnresolvedONV ket = fock_space.makeONV(0);
+        SpinUnresolvedONV ket = onv_basis.constructONVFromAddress(0);
         size_t J = 0;
         while (J < dim) {  // loop over all ket indices
 
@@ -101,7 +86,7 @@ double SpinUnresolvedFCIRDMBuilder::calculateElement(const std::vector<size_t>& 
 
                 // Go to the beginning of this (the inner) while loop with the next bra
                 if (J < dim - 1) {  // prevent the last permutation from occurring
-                    fock_space.setNextONV(ket);
+                    onv_basis.transformONVToNextPermutation(ket);
                     J++;
                     sign = 1;
                     continue;
@@ -119,7 +104,7 @@ double SpinUnresolvedFCIRDMBuilder::calculateElement(const std::vector<size_t>& 
                 break;           // out of the J-loop
             }
             ket.createAll(ket_indices_reversed);
-            fock_space.setNextONV(ket);
+            onv_basis.transformONVToNextPermutation(ket);
             sign = 1;
             J++;
         }  // while J loop
@@ -129,7 +114,7 @@ double SpinUnresolvedFCIRDMBuilder::calculateElement(const std::vector<size_t>& 
             break;           // out of the I-loop
         }
         bra.createAll(bra_indices);
-        fock_space.setNextONV(bra);
+        onv_basis.transformONVToNextPermutation(bra);
         sign = 1;
         I++;
     }  // while I loop

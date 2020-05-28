@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE(ONV_constructor) {
     GQCP::SpinUnresolvedONVBasis fock_space {10, 5};
 
     // Ask for the first SpinUnresolvedONV in reverse lexicographic order : "0000011111" = 31
-    GQCP::SpinUnresolvedONV onv2 = fock_space.makeONV(0);
+    GQCP::SpinUnresolvedONV onv2 = fock_space.constructONVFromAddress(0);
 
     // Check if both unsigned representations match (are equal to 31 and have the same considered bits)
     BOOST_CHECK(onv1 == onv2);
@@ -50,7 +50,7 @@ BOOST_AUTO_TEST_CASE(ONV_constructor) {
     BOOST_CHECK(ref_indices == onv1.occupiedIndices());
 
     // Test if setting incompatible representation throws an error
-    BOOST_CHECK_THROW(onv1.set_representation(1), std::invalid_argument);
+    BOOST_CHECK_THROW(onv1.replaceRepresentationWith(1), std::invalid_argument);
 }
 
 
@@ -622,7 +622,7 @@ BOOST_AUTO_TEST_CASE(GHF_overlap) {
     const auto& C_of = g_spinor_basis_of.coefficientMatrix();
 
     auto S = g_spinor_basis_of.overlap().parameters();  // in MO basis
-    S.basisTransformInPlace(C_on.inverse());            // now in AO basis
+    S.basisTransform(C_on.inverse());                   // now in AO basis
 
 
     // Check if the one GHF determinant has overlap 1 with the other corresponding GHF determinant, and overlap 0 with the other excitations.
@@ -709,7 +709,7 @@ BOOST_AUTO_TEST_CASE(RHF_UHF_projection) {
     const auto& C_on = g_spinor_basis_on.coefficientMatrix();
 
     auto S_generalized = g_spinor_basis_of.overlap().parameters();  // in MO basis
-    S_generalized.basisTransformInPlace(C_of.inverse());            // in AO basis
+    S_generalized.basisTransform(C_of.inverse());                   // in AO basis
 
     const auto onv_on = GQCP::SpinUnresolvedONV::FromString("00110011");
     const auto onv_of = GQCP::SpinUnresolvedONV::FromString("00110011");

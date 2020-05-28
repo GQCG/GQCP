@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/SpinorBasis/Spin.hpp"
 #include "ONVBasis/BaseFrozenCoreONVBasis.hpp"
 #include "ONVBasis/BaseONVBasis.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
@@ -35,8 +36,8 @@ class SpinResolvedFrozenONVBasis: public BaseFrozenCoreONVBasis {
 private:
     size_t X;  // number of frozen orbitals/electrons
 
-    SpinUnresolvedFrozenONVBasis frozen_fock_space_alpha;
-    SpinUnresolvedFrozenONVBasis frozen_fock_space_beta;
+    SpinUnresolvedFrozenONVBasis frozen_onv_basis_alpha;
+    SpinUnresolvedFrozenONVBasis frozen_onv_basis_beta;
 
     SpinResolvedONVBasis active_onv_basis;  // active (non-frozen) spin-resolved ONV basis containing only the active electrons (N_alpha-X, N_beta-X) and orbitals (K-X)
 
@@ -49,31 +50,32 @@ public:
      *  @param N_beta       the total number of beta electrons
      *  @param X            the number of frozen orbitals and electrons (equal for alpha and beta)
      */
-    SpinResolvedFrozenONVBasis(size_t K, size_t N_alpha, size_t N_beta, size_t X);
+    SpinResolvedFrozenONVBasis(const size_t K, const size_t N_alpha, const size_t N_beta, const size_t X);
 
     /**
-     *  @param fock_space       (to be frozen) full product spin-resolved ONV basis
+     *  @param onv_basis        (to be frozen) full product spin-resolved ONV basis
      *  @param X                the number of frozen orbitals and electrons (equal for alpha and beta)
      */
-    SpinResolvedFrozenONVBasis(const SpinResolvedONVBasis& fock_space, size_t X);
+    SpinResolvedFrozenONVBasis(const SpinResolvedONVBasis& onv_basis, const size_t X);
 
 
-    // GETTERS
-    size_t get_N_alpha() const { return this->frozen_fock_space_alpha.get_N(); }
-    size_t get_N_beta() const { return this->frozen_fock_space_beta.get_N(); }
-    size_t get_number_of_frozen_orbitals() const { return this->X; }
+    // PUBLIC OVERRIDDEN METHODS
 
-    const SpinUnresolvedFrozenONVBasis& get_frozen_fock_space_alpha() const { return this->frozen_fock_space_alpha; }
-    const SpinUnresolvedFrozenONVBasis& get_frozen_fock_space_beta() const { return this->frozen_fock_space_beta; }
+    /**
+     *  @return the type of this ONV basis
+     */
+    ONVBasisType type() const override { return ONVBasisType::SpinResolvedFrozenONVBasis; }
 
-    const SpinResolvedONVBasis& get_active_product_fock_space() const { return this->active_onv_basis; }
-    ONVBasisType get_type() const override { return ONVBasisType::SpinResolvedFrozenONVBasis; }
+
+    // PUBLIC METHODS
+
+    /**
+     *  @return the active ONV basis
+     */
+    const SpinResolvedONVBasis& activeONVBasis() const { return this->active_onv_basis; }
 
     using BaseFrozenCoreONVBasis::evaluateOperatorDense;
-    using BaseFrozenCoreONVBasis::evaluateOperatorDiagonal;
 
-
-    // UNRESTRICTED
     /**
      *  Evaluate the Hamiltonian in a dense matrix
      *
@@ -82,7 +84,9 @@ public:
      *
      *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of this spin-resolved ONV basis
      */
-    SquareMatrix<double> evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const;
+    SquareMatrix<double> evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, const bool diagonal_values) const;
+
+    using BaseFrozenCoreONVBasis::evaluateOperatorDiagonal;
 
     /**
      *  Evaluate the diagonal of the Hamiltonian
@@ -103,6 +107,31 @@ public:
      *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of this spin-resolved basis
      */
     VectorX<double> evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+
+    /**
+     *  @return the frozen ONV basis for the alpha-spinors
+     */
+    const SpinUnresolvedFrozenONVBasis& frozenONVBasisAlpha() const { return this->frozen_onv_basis_alpha; }
+
+    /**
+     *  @return the frozen ONV basis for the beta-spinors
+     */
+    const SpinUnresolvedFrozenONVBasis& frozenONVBasisBeta() const { return this->frozen_onv_basis_beta; }
+
+    /**
+     *  @return the number of alpha-electrons that this ONV basis describes
+     */
+    size_t numberOfAlphaElectrons() const { return this->frozen_onv_basis_alpha.numberOfElectrons(); }
+
+    /**
+     *  @return the number of beta-electrons that this ONV basis describes
+     */
+    size_t numberOfBetaElectrons() const { return this->frozen_onv_basis_beta.numberOfElectrons(); }
+
+    /**
+     *  @return the number of frozen orbitals that are in this ONV basis
+     */
+    size_t numberOfFrozenOrbitals() const { return this->X; }
 };
 
 

@@ -50,6 +50,8 @@ py::array_t<T> asNumpyArray(const Eigen::Tensor<T, 4>& tensor) {
 void bindSQTwoElectronOperator(py::module& module) {
     py::class_<GQCP::SQTwoElectronOperator<double, 1>>(module, "SQTwoElectronOperator", "A class that represents a real, second-quantized two-electron operator")
 
+        // PUBLIC METHODS
+
         .def(
             "calculateExpectationValue",
             [](const GQCP::SQTwoElectronOperator<double, 1>& op, const Eigen::Tensor<double, 4>& d) {  // use an itermediary Eigen Tensor for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Tensor

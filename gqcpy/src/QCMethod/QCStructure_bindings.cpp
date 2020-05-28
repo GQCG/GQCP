@@ -57,6 +57,8 @@ void bindQCStructure(py::module& module, const std::string& suffix, const std::s
                                            ("QCStructure_" + suffix).c_str(),
                                            description.c_str())
 
+        // PUBLIC METHODS
+
         .def(
             "energy",
             [](const GQCP::QCStructure<QCModel>& qc_structure, const size_t i) {

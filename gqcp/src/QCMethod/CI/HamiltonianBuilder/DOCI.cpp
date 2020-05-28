@@ -36,6 +36,61 @@ DOCI::DOCI(const SeniorityZeroONVBasis& onv_basis) :
  *  PUBLIC METHODS
  */
 
+
+/**
+ *  @param sq_hamiltonian               the Hamiltonian parameters in an orthonormal orbital basis
+ *
+ *  @return the diagonal of the matrix representation of the DOCI Hamiltonian
+ */
+VectorX<double> DOCI::calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
+
+    const auto K = sq_hamiltonian.dimension();  // number of spatial orbitals
+
+    if (K != this->onv_basis.numberOfSpatialOrbitals()) {
+        throw std::invalid_argument("DOCI::calculateDiagonal(const SQHamiltonian<double>&): The number of spatial orbitals for the ONV basis and Hamiltonian are incompatible.");
+    }
+
+    // Prepare some variables to be used in the algorithm.
+    const auto N_P = this->onv_basis.numberOfElectronPairs();
+    const auto dim = this->onv_basis.dimension();
+
+    const auto& h = sq_hamiltonian.core().parameters();
+    const auto& g = sq_hamiltonian.twoElectron().parameters();
+
+    VectorX<double> diagonal = VectorX<double>::Zero(dim);
+
+
+    // Create the first doubly-occupied ONV basis. Since in DOCI, alpha == beta, we can use the proxy ONV basis to treat them as one and multiply all contributions by 2.
+    const auto proxy_onv_basis = this->onv_basis.proxy();
+    SpinUnresolvedONV onv = proxy_onv_basis.constructONVFromAddress(0);  // ONV with address 0
+
+    for (size_t I = 0; I < dim; I++) {  // I loops over addresses of spin strings
+
+        double value = 0;  // to be added to the diagonal
+
+        for (size_t e1 = 0; e1 < N_P; e1++) {            // e1 (electron 1) loops over the number of electrons
+            const size_t p = onv.occupationIndexOf(e1);  // retrieve the index of the orbital that the electron occupies
+            value += 2 * h(p, p) + g(p, p, p, p);
+
+            for (size_t e2 = 0; e2 < e1; e2++) {  // e2 (electron 2) loops over the number of electrons
+
+                // Since we are doing a restricted summation (e2 < e1), we should multiply by 2 since the summand argument is symmetric.
+                const size_t q = onv.occupationIndexOf(e2);  // retrieve the index of the orbital the electron occupies
+                value += 2 * (2 * g(p, p, q, q) - g(p, q, q, p));
+            }  // q or e2 loop
+        }      // p or e1 loop
+
+        diagonal(I) += value;
+
+        if (I < dim - 1) {  // prevent the last permutation from occurring
+            proxy_onv_basis.transformONVToNextPermutation(onv);
+        }
+    }  // address (I) loop
+
+    return diagonal;
+}
+
+
 /**
  *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
  *
@@ -62,16 +117,16 @@ SquareMatrix<double> DOCI::constructHamiltonian(const SQHamiltonian<double>& sq_
     // Create the first doubly-occupied ONV basis. Since in DOCI, alpha == beta, we can use the proxy ONV basis to treat them as one and multiply all contributions by 2.
     const auto proxy_onv_basis = this->onv_basis.proxy();
 
-    auto onv = proxy_onv_basis.makeONV(0);  // ONV with address 0
-    for (size_t I = 0; I < dim; I++) {      // I loops over all the addresses of the onv
+    auto onv = proxy_onv_basis.constructONVFromAddress(0);  // ONV with address 0
+    for (size_t I = 0; I < dim; I++) {                      // I loops over all the addresses of the onv
 
         result_matrix(I, I) += diagonal(I);
 
-        for (size_t e1 = 0; e1 < N_P; e1++) {               // e1 (electron 1) loops over the number of electrons
+        for (size_t e1 = 0; e1 < N_P; e1++) {            // e1 (electron 1) loops over the number of electrons
             const size_t p = onv.occupationIndexOf(e1);  // retrieve the index of the orbital that the electron occupies
 
             // Remove the weight from the initial address I, because we annihilate
-            size_t address = I - proxy_onv_basis.get_vertex_weights(p, e1 + 1);
+            size_t address = I - proxy_onv_basis.vertexWeight(p, e1 + 1);
 
             // The e2 iteration counts the number of encountered electrons for the creation operator.
             // We only consider greater addresses than the initial one (because of symmetry), hence we only count electron after the annihilated electron (e1).
@@ -82,7 +137,7 @@ SquareMatrix<double> DOCI::constructHamiltonian(const SQHamiltonian<double>& sq_
             proxy_onv_basis.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2);
 
             while (q < K) {
-                const size_t J = address + proxy_onv_basis.get_vertex_weights(q, e2);
+                const size_t J = address + proxy_onv_basis.vertexWeight(q, e2);
 
                 result_matrix(I, J) += g(p, q, p, q);
                 result_matrix(J, I) += g(p, q, p, q);
@@ -95,7 +150,7 @@ SquareMatrix<double> DOCI::constructHamiltonian(const SQHamiltonian<double>& sq_
         }      // e1 loop (annihilation)
 
         if (I < dim - 1) {  // prevent the last permutation from occurring
-            proxy_onv_basis.setNextONV(onv);
+            proxy_onv_basis.transformONVToNextPermutation(onv);
         }
     }  // address (I) loop
 
@@ -129,18 +184,18 @@ VectorX<double> DOCI::matrixVectorProduct(const SQHamiltonian<double>& sq_hamilt
 
     // Create the first doubly-occupied ONV basis. Since in DOCI, alpha == beta, we can use the proxy ONV basis to treat them as one and multiply all contributions by 2.
     const auto proxy_onv_basis = this->onv_basis.proxy();
-    auto onv = proxy_onv_basis.makeONV(0);  // ONV with address 0
-    for (size_t I = 0; I < dim; I++) {      // I loops over all the addresses of the onv
+    auto onv = proxy_onv_basis.constructONVFromAddress(0);  // ONV with address 0
+    for (size_t I = 0; I < dim; I++) {                      // I loops over all the addresses of the onv
 
         // Using container values of type double reduce the number of times a vector has to be read from/written to
         double value = 0;
         const double x_I = x(I);
 
-        for (size_t e1 = 0; e1 < N_P; e1++) {               // e1 (electron 1) loops over the (number of) electrons
+        for (size_t e1 = 0; e1 < N_P; e1++) {            // e1 (electron 1) loops over the (number of) electrons
             const size_t p = onv.occupationIndexOf(e1);  // retrieve the index of a given electron
 
             // Remove the weight from the initial address I, because we annihilate
-            size_t address = I - proxy_onv_basis.get_vertex_weights(p, e1 + 1);
+            size_t address = I - proxy_onv_basis.vertexWeight(p, e1 + 1);
 
             // The e2 iteration counts the number of encountered electrons for the creation operator.
             // We only consider greater addresses than the initial one (because of symmetry), hence we only count electron after the annihilated electron (e1).
@@ -151,7 +206,7 @@ VectorX<double> DOCI::matrixVectorProduct(const SQHamiltonian<double>& sq_hamilt
             proxy_onv_basis.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2);
 
             while (q < K) {
-                const size_t J = address + proxy_onv_basis.get_vertex_weights(q, e2);
+                const size_t J = address + proxy_onv_basis.vertexWeight(q, e2);
 
                 value += g(p, q, p, q) * x(J);
                 matvec(J) += g(p, q, p, q) * x_I;
@@ -164,67 +219,13 @@ VectorX<double> DOCI::matrixVectorProduct(const SQHamiltonian<double>& sq_hamilt
         }      // e1 loop (annihilation)
 
         if (I < dim - 1) {  // prevent last permutation
-            proxy_onv_basis.setNextONV(onv);
+            proxy_onv_basis.transformONVToNextPermutation(onv);
         }
 
         matvec(I) += value;
     }  // address (I) loop
 
     return matvec;
-}
-
-
-/**
- *  @param sq_hamiltonian               the Hamiltonian parameters in an orthonormal orbital basis
- *
- *  @return the diagonal of the matrix representation of the DOCI Hamiltonian
- */
-VectorX<double> DOCI::calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
-
-    const auto K = sq_hamiltonian.dimension();  // number of spatial orbitals
-
-    if (K != this->onv_basis.numberOfSpatialOrbitals()) {
-        throw std::invalid_argument("DOCI::calculateDiagonal(const SQHamiltonian<double>&): The number of spatial orbitals for the ONV basis and Hamiltonian are incompatible.");
-    }
-
-    // Prepare some variables to be used in the algorithm.
-    const auto N_P = this->onv_basis.numberOfElectronPairs();
-    const auto dim = this->onv_basis.dimension();
-
-    const auto& h = sq_hamiltonian.core().parameters();
-    const auto& g = sq_hamiltonian.twoElectron().parameters();
-
-    VectorX<double> diagonal = VectorX<double>::Zero(dim);
-
-
-    // Create the first doubly-occupied ONV basis. Since in DOCI, alpha == beta, we can use the proxy ONV basis to treat them as one and multiply all contributions by 2.
-    const auto proxy_onv_basis = this->onv_basis.proxy();
-    SpinUnresolvedONV onv = proxy_onv_basis.makeONV(0);  // ONV with address 0
-
-    for (size_t I = 0; I < dim; I++) {  // I loops over addresses of spin strings
-
-        double value = 0;  // to be added to the diagonal
-
-        for (size_t e1 = 0; e1 < N_P; e1++) {               // e1 (electron 1) loops over the number of electrons
-            const size_t p = onv.occupationIndexOf(e1);  // retrieve the index of the orbital that the electron occupies
-            value += 2 * h(p, p) + g(p, p, p, p);
-
-            for (size_t e2 = 0; e2 < e1; e2++) {  // e2 (electron 2) loops over the number of electrons
-
-                // Since we are doing a restricted summation (e2 < e1), we should multiply by 2 since the summand argument is symmetric.
-                const size_t q = onv.occupationIndexOf(e2);  // retrieve the index of the orbital the electron occupies
-                value += 2 * (2 * g(p, p, q, q) - g(p, q, q, p));
-            }  // q or e2 loop
-        }      // p or e1 loop
-
-        diagonal(I) += value;
-
-        if (I < dim - 1) {  // prevent the last permutation from occurring
-            proxy_onv_basis.setNextONV(onv);
-        }
-    }  // address (I) loop
-
-    return diagonal;
 }
 
 

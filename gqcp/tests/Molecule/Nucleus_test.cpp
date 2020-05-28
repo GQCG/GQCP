@@ -84,7 +84,7 @@ BOOST_AUTO_TEST_CASE(Nucleus_operator_ostream) {
 }
 
 
-BOOST_AUTO_TEST_CASE(calculateDistance) {
+BOOST_AUTO_TEST_CASE(calculateDistanceWith) {
 
     // Create some nuclei
     GQCP::Nucleus nucleus1 {1, 0, 3, 0};
@@ -94,14 +94,14 @@ BOOST_AUTO_TEST_CASE(calculateDistance) {
 
 
     // Check their distances
-    BOOST_CHECK(std::abs(nucleus1.calculateDistance(nucleus2) - 5) < 1.0e-12);
-    BOOST_CHECK(std::abs(nucleus1.calculateDistance(nucleus3) - std::sqrt(18.0)) < 1.0e-12);
-    BOOST_CHECK(std::abs(nucleus1.calculateDistance(nucleus2) - nucleus2.calculateDistance(nucleus3)) < 1.0e-12);
-    BOOST_CHECK(std::abs(nucleus2.calculateDistance(nucleus3) - 5) < 1.0e-12);
-    BOOST_CHECK(std::abs(nucleus2.calculateDistance(nucleus4) - 1) < 1.0e-12);
+    BOOST_CHECK(std::abs(nucleus1.calculateDistanceWith(nucleus2) - 5) < 1.0e-12);
+    BOOST_CHECK(std::abs(nucleus1.calculateDistanceWith(nucleus3) - std::sqrt(18.0)) < 1.0e-12);
+    BOOST_CHECK(std::abs(nucleus1.calculateDistanceWith(nucleus2) - nucleus2.calculateDistanceWith(nucleus3)) < 1.0e-12);
+    BOOST_CHECK(std::abs(nucleus2.calculateDistanceWith(nucleus3) - 5) < 1.0e-12);
+    BOOST_CHECK(std::abs(nucleus2.calculateDistanceWith(nucleus4) - 1) < 1.0e-12);
 
     // Check that the distances are symmetric
-    BOOST_CHECK(std::abs(nucleus1.calculateDistance(nucleus2) - nucleus2.calculateDistance(nucleus1)) < 1.0e-12);
-    BOOST_CHECK(std::abs(nucleus1.calculateDistance(nucleus3) - nucleus3.calculateDistance(nucleus1)) < 1.0e-12);
-    BOOST_CHECK(std::abs(nucleus2.calculateDistance(nucleus3) - nucleus3.calculateDistance(nucleus2)) < 1.0e-12);
+    BOOST_CHECK(std::abs(nucleus1.calculateDistanceWith(nucleus2) - nucleus2.calculateDistanceWith(nucleus1)) < 1.0e-12);
+    BOOST_CHECK(std::abs(nucleus1.calculateDistanceWith(nucleus3) - nucleus3.calculateDistanceWith(nucleus1)) < 1.0e-12);
+    BOOST_CHECK(std::abs(nucleus2.calculateDistanceWith(nucleus3) - nucleus3.calculateDistanceWith(nucleus2)) < 1.0e-12);
 }

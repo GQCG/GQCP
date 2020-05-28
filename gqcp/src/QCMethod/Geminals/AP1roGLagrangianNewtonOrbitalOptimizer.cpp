@@ -54,7 +54,7 @@ AP1roGLagrangianNewtonOrbitalOptimizer::AP1roGLagrangianNewtonOrbitalOptimizer(c
  *  @param pse_maximum_number_of_iterations         the maximum number of Newton steps that may be used to achieve convergence of the PSEs
  */
 AP1roGLagrangianNewtonOrbitalOptimizer::AP1roGLagrangianNewtonOrbitalOptimizer(const AP1roGGeminalCoefficients& G, std::shared_ptr<BaseHessianModifier> hessian_modifier, const double oo_convergence_threshold, const size_t oo_maximum_number_of_iterations, const double pse_convergence_threshold, const size_t pse_maximum_number_of_iterations) :
-    N_P {G.get_N_P()},
+    N_P {G.numberOfElectronPairs()},
     G {G},
     pse_convergence_threshold {pse_convergence_threshold},
     pse_maximum_number_of_iterations {pse_maximum_number_of_iterations},
@@ -80,7 +80,7 @@ void AP1roGLagrangianNewtonOrbitalOptimizer::prepareDMCalculation(const SQHamilt
     const auto qc_structure = GQCP::QCMethod::vAP1roG(sq_hamiltonian, N_P).optimize(non_linear_solver, non_linear_environment, linear_solver);
 
     this->G = qc_structure.groundStateParameters().geminalCoefficients();
-    this->multipliers = qc_structure.groundStateParameters().lagrangeMultipliers();
+    this->m_multipliers = qc_structure.groundStateParameters().lagrangeMultipliers();
     this->E = qc_structure.groundStateEnergy();
 }
 
@@ -89,7 +89,7 @@ void AP1roGLagrangianNewtonOrbitalOptimizer::prepareDMCalculation(const SQHamilt
  *  @return the current 1-DM
  */
 OneRDM<double> AP1roGLagrangianNewtonOrbitalOptimizer::calculate1RDM() const {
-    return GQCP::QCModel::vAP1roG::calculate1RDM(this->G, this->multipliers);
+    return GQCP::QCModel::vAP1roG::calculate1RDM(this->G, this->m_multipliers);
 }
 
 
@@ -97,7 +97,7 @@ OneRDM<double> AP1roGLagrangianNewtonOrbitalOptimizer::calculate1RDM() const {
  *  @return the current 2-DM
  */
 TwoRDM<double> AP1roGLagrangianNewtonOrbitalOptimizer::calculate2RDM() const {
-    return GQCP::QCModel::vAP1roG::calculate2RDM(this->G, this->multipliers);
+    return GQCP::QCModel::vAP1roG::calculate2RDM(this->G, this->m_multipliers);
 }
 
 

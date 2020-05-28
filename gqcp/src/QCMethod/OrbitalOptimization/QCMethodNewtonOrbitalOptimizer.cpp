@@ -26,20 +26,6 @@ namespace GQCP {
  */
 
 /**
- *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence in this Newton-based orbital optimizer for quantum chemical methods
- * 
- *  In the case of this uncoupled DOCI orbital optimizer, the DOCI eigenvalue problem is re-solved in every iteration using the current orbitals
- */
-void QCMethodNewtonOrbitalOptimizer::prepareOrbitalDerivativesCalculation(const SQHamiltonian<double>& sq_hamiltonian) {
-
-    this->prepareDMCalculation(sq_hamiltonian);  // this should prepare the calculation of the 1- and 2-DMs
-
-    this->D = this->calculate1RDM();
-    this->d = this->calculate2RDM();
-}
-
-
-/**
  *  @param sq_hamiltonian           the current Hamiltonian
  * 
  *  @return the current orbital gradient as a matrix
@@ -80,6 +66,18 @@ SquareRankFourTensor<double> QCMethodNewtonOrbitalOptimizer::calculateHessianTen
 
 
     return hessian_tensor;
+}
+
+
+/**
+ *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence in this Newton-based orbital optimizer for quantum chemical methods.
+ */
+void QCMethodNewtonOrbitalOptimizer::prepareOrbitalDerivativesCalculation(const SQHamiltonian<double>& sq_hamiltonian) {
+
+    this->prepareDMCalculation(sq_hamiltonian);  // this should prepare the calculation of the 1- and 2-DMs
+
+    this->D = this->calculate1RDM();
+    this->d = this->calculate2RDM();
 }
 
 

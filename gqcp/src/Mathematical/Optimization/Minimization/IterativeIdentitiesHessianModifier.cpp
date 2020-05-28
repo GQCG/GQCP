@@ -57,7 +57,7 @@ SquareMatrix<double> IterativeIdentitiesHessianModifier::operator()(const Square
 
 
     // Update the modified hessian with multiples of the identity matrix until it is positive/negative definite
-    const size_t dim = hessian.get_dim();
+    const size_t dim = hessian.dimension();
     SquareMatrix<double> modified_hessian = hessian;
     Eigen::LLT<Eigen::MatrixXd> llt_factorizer {};  // use Cholesky decomposition to check for positive/negative definiteness
 

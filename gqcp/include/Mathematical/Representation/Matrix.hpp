@@ -50,6 +50,7 @@ public:
     using Scalar = _Scalar;
     static constexpr auto Rows = _Rows;
     static constexpr auto Cols = _Cols;
+
     using Self = Matrix<Scalar, Rows, Cols>;
     using Base = Eigen::Matrix<Scalar, Rows, Cols>;
 
@@ -70,6 +71,20 @@ public:
     /*
      *  NAMED CONSTRUCTORS
      */
+
+    /**
+     *  Convert a given column-major vector to a matrix with the given number of rows
+     * 
+     *  @param v            a vector that is supposed to be in a column-major ordering
+     *  @param rows         the number of rows the resulting matrix should have
+     *  @param cols         the number of columns the resulting matrix should have
+     */
+    template <typename Z = Self>
+    static enable_if_t<(Cols == Dynamic) && (Rows == Dynamic), Z> FromColumnMajorVector(const Matrix<Scalar, Dynamic, 1>& v, const size_t rows, const size_t cols) {
+
+        return Self(Eigen::Map<const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>>(v.data(), rows, cols));
+    }
+
 
     /**
      *  Construct a vector by reading in a file
@@ -156,20 +171,6 @@ public:
 
 
     /**
-     *  Convert a given column-major vector to a matrix with the given number of rows
-     * 
-     *  @param v            a vector that is supposed to be in a column-major ordering
-     *  @param rows         the number of rows the resulting matrix should have
-     *  @param cols         the number of columns the resulting matrix should have
-     */
-    template <typename Z = Self>
-    static enable_if_t<(Cols == Dynamic) && (Rows == Dynamic), Z> FromColumnMajorVector(const Matrix<Scalar, Dynamic, 1>& v, const size_t rows, const size_t cols) {
-
-        return Self(Eigen::Map<const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>>(v.data(), rows, cols));
-    }
-
-
-    /**
      *  Convert a given row-major vector to a matrix with the given number of rows
      * 
      *  @param v            a vector that is supposed to be in a column-major ordering
@@ -204,9 +205,9 @@ public:
      *  @return the value in the vector that corresponds to the given direction
      */
     template <typename Z = Scalar>
-    enable_if_t<Self::is_vector && (Rows == 3), Z> operator()(CartesianDirection direction) const {
+    enable_if_t<Self::is_vector && (Rows == 3), Z> operator()(const CartesianDirection direction) const {
 
-        const auto& index = static_cast<size_t>(direction);  // 0, 1, or 2
+        const auto index = static_cast<size_t>(direction);  // 0, 1, or 2
         return this->operator()(index);
     }
 
@@ -216,9 +217,9 @@ public:
      *  @return a modifiable value in the vector that corresponds to the given direction
      */
     template <typename Z = Scalar&>
-    enable_if_t<Self::is_vector && (Rows == 3), Z> operator()(CartesianDirection direction) {
+    enable_if_t<Self::is_vector && (Rows == 3), Z> operator()(const CartesianDirection direction) {
 
-        const auto& index = static_cast<size_t>(direction);  // 0, 1, or 2
+        const auto index = static_cast<size_t>(direction);  // 0, 1, or 2
         return this->operator()(index);
     }
 
@@ -231,29 +232,13 @@ public:
 
 
     /**
-     *  @return this as a const Eigen::Matrix
-     */
-    const Base& Eigen() const {
-        return static_cast<const Base&>(*this);
-    }
-
-
-    /**
-     *  @return this as a non-const Eigen::Matrix
-     */
-    Base& Eigen() {
-        return static_cast<Base&>(*this);
-    }
-
-
-    /**
      *  @param i    row index (starting from 0)
      *  @param j    column index (starting from 0)
      *
      *  @return the i-j minor (i.e. delete the i-th row and j-th column)
      */
     template <typename Z = Self>
-    enable_if_t<Self::is_matrix, Z> matrixMinor(size_t i, size_t j) const {
+    enable_if_t<Self::is_matrix, Z> calculateMinor(size_t i, size_t j) const {
 
         Self this_copy = *this;
 
@@ -262,6 +247,17 @@ public:
 
         return this_copy;
     }
+
+
+    /**
+     *  @return this as a const Eigen::Matrix
+     */
+    const Base& Eigen() const { return static_cast<const Base&>(*this); }
+
+    /**
+     *  @return this as a non-const Eigen::Matrix
+     */
+    Base& Eigen() { return static_cast<Base&>(*this); }
 
 
     /**
@@ -275,7 +271,7 @@ public:
      *      m is calculated from i and j in a column-major way
      */
     template <typename Z = Matrix<Scalar, Rows, 1>>
-    enable_if_t<Self::is_matrix, Z> pairWiseReduce(const size_t start_i = 0, size_t start_j = 0) const {
+    enable_if_t<Self::is_matrix, Z> pairWiseReduced(const size_t start_i = 0, size_t start_j = 0) const {
 
         // Initialize the resulting vector
         Matrix<Scalar, Rows, 1> v((this->rows() - start_i) * (this->cols() - start_j));
@@ -308,6 +304,7 @@ public:
             }
         }
     }
+
 
     /**
      *  Remove the i-th column of this matrix.
@@ -383,19 +380,17 @@ public:
 
 
 /*
- *  Convenience typedefs related to Matrix
+ *  Convenience typedefs related to Matrix. These have to be in order.
  */
-
-template <typename Scalar>
-using MatrixX = Matrix<Scalar, Dynamic, Dynamic>;
 
 template <typename Scalar, int Rows>
 using Vector = Matrix<Scalar, Rows, 1>;
 
 template <typename Scalar>
-using VectorX = Vector<Scalar, Dynamic>;
+using MatrixX = Matrix<Scalar, Dynamic, Dynamic>;
 
-using VectorXs = VectorX<size_t>;
+template <typename Scalar>
+using VectorX = Vector<Scalar, Dynamic>;
 
 template <typename Scalar>
 using VectorFunction = std::function<VectorX<Scalar>(const VectorX<Scalar>&)>;

@@ -33,16 +33,22 @@ class FrozenCoreFCI: public FrozenCoreCI {
 private:
     SpinResolvedFrozenONVBasis onv_basis;  // the frozen spin-resolved ONV
 
+
 public:
     // CONSTRUCTORS
+
     /**
      *  @param onv_basis       the frozen spin-resolved ONV
      */
     explicit FrozenCoreFCI(const SpinResolvedFrozenONVBasis& onv_basis);
 
 
-    // OVERRIDDEN GETTERS
-    const BaseONVBasis* get_fock_space() const override { return &onv_basis; }
+    // PUBLIC METHODS
+
+    /**
+     *  @return the ONV basis that is associated to this HamiltonianBuilder
+     */
+    const BaseONVBasis* onvBasis() const override { return &onv_basis; }
 };
 
 

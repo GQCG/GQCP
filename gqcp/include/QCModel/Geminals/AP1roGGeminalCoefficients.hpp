@@ -61,6 +61,10 @@ public:
 
 
     // DESTRUCTOR
+
+    /**
+     *  The default destructor.
+     */
     ~AP1roGGeminalCoefficients() override;
 
 
@@ -113,19 +117,6 @@ public:
     static size_t numberOfGeminalCoefficients(const size_t N_P, const size_t K);
 
 
-    // GETTERS
-
-    /**
-     *  @return the number of electron pairs that these geminal coefficients describe
-     */
-    size_t get_N_P() const { return this->numberOfElectronPairs(); }
-
-    /**
-     *  @return the number of spatial orbitals each geminal is expanded in
-     */
-    size_t get_K() const { return this->numberOfSpatialOrbitals(); }
-
-
     // PUBLIC METHODS
 
     /**
@@ -136,7 +127,7 @@ public:
     /**
      *  @return the geminal coefficients as a column-major vector, excluding the identity block
      */
-    VectorX<double> asVector() const;
+    VectorX<double> asVector() const { return this->G.asVector(); }
 
     /**
      *  @return the number of geminal coefficients that this instance encapsulates.
@@ -154,16 +145,16 @@ public:
     size_t numberOfSpatialOrbitals() const { return this->K; }
 
     /**
+     *  @return the implicit (i.e. with ascending and contiguous orbital indices) occupied-virtual orbital space that is associated with these geminal coefficients
+     */
+    OrbitalSpace orbitalSpace() const;
+
+    /**
      *  @param onv      the doubly-occupied (spin-resolved) ONV that is being projected on
      *
      *  @return the overlap of the AP1roG wave function with the given ONV, i.e. the projection of the APIG wave function onto that ONV
      */
     double overlap(const SpinUnresolvedONV& onv) const override;
-
-    /**
-     *  @return the implicit (i.e. with ascending and contiguous orbital indices) occupied-virtual orbital space that is associated with these geminal coefficients
-     */
-    OrbitalSpace orbitalSpace() const;
 };
 
 

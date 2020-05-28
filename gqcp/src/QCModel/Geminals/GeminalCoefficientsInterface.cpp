@@ -36,13 +36,13 @@ LinearExpansion<SeniorityZeroONVBasis> GeminalCoefficientsInterface::toLinearExp
     VectorX<double> coefficients = VectorX<double>::Zero(dim);  // the expansion coefficient vector
 
     const auto onv_basis_proxy = onv_basis.proxy();
-    SpinUnresolvedONV onv = onv_basis_proxy.makeONV(0);  // start with address 0
+    SpinUnresolvedONV onv = onv_basis_proxy.constructONVFromAddress(0);  // start with address 0
     for (size_t I = 0; I < dim; I++) {
 
         coefficients(I) = this->overlap(onv);
 
         if (I < dim - 1) {  // prevent the last permutation from occurring
-            onv_basis_proxy.setNextONV(onv);
+            onv_basis_proxy.transformONVToNextPermutation(onv);
         }
     }
 

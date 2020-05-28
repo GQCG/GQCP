@@ -53,18 +53,6 @@ public:
      */
 
     /**
-     *  Execute all the steps in this collection.
-     * 
-     *  @param environment              the environment that this step can read from and write to
-     */
-    void execute(Environment& environment) override {
-        for (const auto& step : this->steps) {
-            step->execute(environment);
-        }
-    }
-
-
-    /**
      *  @return a textual description of this algorithmic step
      */
     std::string description() const override {
@@ -76,6 +64,18 @@ public:
             description_string += (boost::format("\t%s. %s\n") % std::to_string(i + 1) % step->description()).str();
         }
         return description_string;
+    }
+
+
+    /**
+     *  Execute all the steps in this collection.
+     * 
+     *  @param environment              the environment that this step can read from and write to
+     */
+    void execute(Environment& environment) override {
+        for (const auto& step : this->steps) {
+            step->execute(environment);
+        }
     }
 
 

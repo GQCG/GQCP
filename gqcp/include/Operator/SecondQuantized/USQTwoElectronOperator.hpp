@@ -143,7 +143,7 @@ public:
      * 
      *  @return read-only tensor representations of all the parameters (integrals) of the different components of this second-quantized operator, for the requested spin components.
      */
-    const std::array<QCRankFourTensor<Scalar>, Components>& allParameters(Spin left, Spin right) const {
+    const std::array<QCRankFourTensor<Scalar>, Components>& allParameters(const Spin left, const Spin right) const {
 
         if (left == Spin::alpha && right == Spin::alpha) {
             return this->gs_aa;
@@ -169,7 +169,7 @@ public:
      * 
      *  @return the writable tensor representations of all the parameters (integrals) of the different components of this second-quantized operator, for the requested spin components.
      */
-    std::array<QCRankFourTensor<Scalar>, Components>& allParameters(Spin left, Spin right) {
+    std::array<QCRankFourTensor<Scalar>, Components>& allParameters(const Spin left, const Spin right) {
 
         if (left == Spin::alpha && right == Spin::alpha) {
             return this->gs_aa;
@@ -230,7 +230,7 @@ public:
      * 
      *  @return the dimension of the tensors for the requested spin components.
      */
-    size_t dimension(Spin left, Spin right) const {
+    size_t dimension(const Spin left, const Spin right) const {
 
         if (left == Spin::alpha && right == Spin::alpha) {
             return this->gs_aa[0].dimension();
@@ -257,7 +257,7 @@ public:
      * 
      *  @return a read-only tensor representation of the parameters (integrals) of one of the the different components of this second-quantized operator, for the requested spin components.
      */
-    const QCRankFourTensor<Scalar>& parameters(Spin left, Spin right, const size_t i = 0) const {
+    const QCRankFourTensor<Scalar>& parameters(const Spin left, const Spin right, const size_t i = 0) const {
 
         if (left == Spin::alpha && right == Spin::alpha) {
             return this->gs_aa[i];
@@ -284,7 +284,7 @@ public:
      * 
      *  @return a writable tensor representation of the parameters (integrals) of one of the the different components of this second-quantized operator, for the requested spin components.
      */
-    QCRankFourTensor<Scalar>& parameters(Spin left, Spin right, const size_t i = 0) {
+    QCRankFourTensor<Scalar>& parameters(const Spin left, const Spin right, const size_t i = 0) {
 
         if (left == Spin::alpha && right == Spin::alpha) {
             return this->gs_aa[i];
@@ -313,16 +313,16 @@ public:
 
         // Transform the matrix representations of the components
         for (auto& g_aa : this->allParameters(GQCP::Spin::alpha, GQCP::Spin::alpha)) {
-            g_aa.basisRotateInPlace(U);
+            g_aa.basisRotate(U);
         }
         for (auto& g_ab : this->allParameters(GQCP::Spin::alpha, GQCP::Spin::beta)) {
-            g_ab.basisRotateInPlace(U);
+            g_ab.basisRotate(U);
         }
         for (auto& g_ba : this->allParameters(GQCP::Spin::beta, GQCP::Spin::alpha)) {
-            g_ba.basisRotateInPlace(U);
+            g_ba.basisRotate(U);
         }
         for (auto& g_bb : this->allParameters(GQCP::Spin::beta, GQCP::Spin::beta)) {
-            g_bb.basisRotateInPlace(U);
+            g_bb.basisRotate(U);
         }
     }
 
@@ -336,16 +336,16 @@ public:
 
         // Transform the matrix representations of the components
         for (auto& g_aa : this->allParameters(GQCP::Spin::alpha, GQCP::Spin::alpha)) {
-            g_aa.basisRotateInPlace(jacobi_rotation_parameters);
+            g_aa.basisRotate(jacobi_rotation_parameters);
         }
         for (auto& g_ab : this->allParameters(GQCP::Spin::alpha, GQCP::Spin::beta)) {
-            g_ab.basisRotateInPlace(jacobi_rotation_parameters);
+            g_ab.basisRotate(jacobi_rotation_parameters);
         }
         for (auto& g_ba : this->allParameters(GQCP::Spin::beta, GQCP::Spin::alpha)) {
-            g_ba.basisRotateInPlace(jacobi_rotation_parameters);
+            g_ba.basisRotate(jacobi_rotation_parameters);
         }
         for (auto& g_bb : this->allParameters(GQCP::Spin::beta, GQCP::Spin::beta)) {
-            g_bb.basisRotateInPlace(jacobi_rotation_parameters);
+            g_bb.basisRotate(jacobi_rotation_parameters);
         }
     }
 
@@ -359,16 +359,16 @@ public:
 
         // Transform the matrix representations of the components
         for (auto& g_aa : this->allParameters(GQCP::Spin::alpha, GQCP::Spin::alpha)) {
-            g_aa.basisTransformInPlace(T);
+            g_aa.basisTransform(T);
         }
         for (auto& g_ab : this->allParameters(GQCP::Spin::alpha, GQCP::Spin::beta)) {
-            g_ab.basisTransformInPlace(T);
+            g_ab.basisTransform(T);
         }
         for (auto& g_ba : this->allParameters(GQCP::Spin::beta, GQCP::Spin::alpha)) {
-            g_ba.basisTransformInPlace(T);
+            g_ba.basisTransform(T);
         }
         for (auto& g_bb : this->allParameters(GQCP::Spin::beta, GQCP::Spin::beta)) {
-            g_bb.basisTransformInPlace(T);
+            g_bb.basisTransform(T);
         }
     }
 };

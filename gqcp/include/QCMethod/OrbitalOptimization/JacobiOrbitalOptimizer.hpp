@@ -48,15 +48,14 @@ public:
 
 
     // DESTRUCTOR
+
+    /**
+     *  The default destructor.
+     */
     virtual ~JacobiOrbitalOptimizer() = default;
 
 
     // PUBLIC PURE VIRTUAL METHODS
-
-    /**
-     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence in this Jacobi-based orbital optimizer
-     */
-    virtual void prepareJacobiSpecificConvergenceChecking(const SQHamiltonian<double>& sq_hamiltonian) = 0;
 
     /**
      *  Calculate the trigoniometric polynomial coefficients for the given Jacobi rotation indices
@@ -83,13 +82,20 @@ public:
      */
     virtual double calculateScalarFunctionChange(const SQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rot_par) const = 0;
 
+    /**
+     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence in this Jacobi-based orbital optimizer
+     */
+    virtual void prepareJacobiSpecificConvergenceChecking(const SQHamiltonian<double>& sq_hamiltonian) = 0;
+
 
     // PUBLIC OVERRIDDEN METHODS
 
     /**
-     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
+     *  @param sq_hamiltonian           the current Hamiltonian
+     * 
+     *  @return a unitary matrix that will be used to rotate the current Hamiltonian into the next iteration
      */
-    void prepareConvergenceChecking(const SQHamiltonian<double>& sq_hamiltonian) override;
+    TransformationMatrix<double> calculateNewRotationMatrix(const SQHamiltonian<double>& sq_hamiltonian) const override;
 
     /**
      *  @param sq_hamiltonian           the current Hamiltonian
@@ -99,11 +105,9 @@ public:
     bool checkForConvergence(const SQHamiltonian<double>& sq_hamiltonian) const override;
 
     /**
-     *  @param sq_hamiltonian           the current Hamiltonian
-     * 
-     *  @return a unitary matrix that will be used to rotate the current Hamiltonian into the next iteration
+     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
      */
-    TransformationMatrix<double> calculateNewRotationMatrix(const SQHamiltonian<double>& sq_hamiltonian) const override;
+    void prepareConvergenceChecking(const SQHamiltonian<double>& sq_hamiltonian) override;
 
 
     // PUBLIC METHODS

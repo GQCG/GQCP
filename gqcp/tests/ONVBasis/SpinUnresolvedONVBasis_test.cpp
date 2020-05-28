@@ -81,7 +81,7 @@ BOOST_AUTO_TEST_CASE(vertex_weights_K5_N3) {
                                                            {0, 3, 3, 1},
                                                            {0, 0, 6, 4},
                                                            {0, 0, 0, 10}};
-    BOOST_CHECK(ref_vertex_weights == fock_space.get_vertex_weights());
+    BOOST_CHECK(ref_vertex_weights == fock_space.vertexWeights());
 }
 
 
@@ -93,7 +93,7 @@ BOOST_AUTO_TEST_CASE(vertex_weights_K5_N3) {
 BOOST_AUTO_TEST_CASE(iterateToNextUnoccupiedOrbital) {
 
     GQCP::SpinUnresolvedONVBasis fock_space {5, 3};
-    GQCP::SpinUnresolvedONV onv = fock_space.makeONV(3);  // 01110
+    GQCP::SpinUnresolvedONV onv = fock_space.constructONVFromAddress(3);  // 01110
 
     size_t address_shift = 0;
     // test shift if we annihilate one electron and start from orbital index 2
@@ -135,7 +135,7 @@ BOOST_AUTO_TEST_CASE(iterateToNextUnoccupiedOrbital) {
 BOOST_AUTO_TEST_CASE(iterateToNextUnoccupiedOrbital_signed) {
 
     GQCP::SpinUnresolvedONVBasis fock_space {5, 3};
-    GQCP::SpinUnresolvedONV onv = fock_space.makeONV(3);  // 01110
+    GQCP::SpinUnresolvedONV onv = fock_space.constructONVFromAddress(3);  // 01110
 
     size_t address_shift = 0;
     int sign = 1;
@@ -180,7 +180,7 @@ BOOST_AUTO_TEST_CASE(iterateToNextUnoccupiedOrbital_signed) {
 BOOST_AUTO_TEST_CASE(shiftToPreviousOrbital_signed) {
 
     GQCP::SpinUnresolvedONVBasis fock_space {5, 3};
-    GQCP::SpinUnresolvedONV onv = fock_space.makeONV(6);  // 10110
+    GQCP::SpinUnresolvedONV onv = fock_space.constructONVFromAddress(6);  // 10110
 
     size_t address_shift = 0;
     int sign = 1;
@@ -203,7 +203,7 @@ BOOST_AUTO_TEST_CASE(shiftToPreviousOrbital_signed) {
 
     sign = 1;
     address_shift = 0;
-    onv = fock_space.makeONV(9);  // 11100
+    onv = fock_space.constructONVFromAddress(9);  // 11100
     // test shift if we plan on creating two electrons and start from orbital index 2
     e = 0;  // count starts at 1 (translates to orbital index 2)
     q = 2;  // index starts at orbital index 2
@@ -228,14 +228,14 @@ BOOST_AUTO_TEST_CASE(shiftToPreviousOrbital_signed) {
 BOOST_AUTO_TEST_CASE(coupling_count) {
 
     GQCP::SpinUnresolvedONVBasis fock_space {5, 3};
-    GQCP::SpinUnresolvedONV onv = fock_space.makeONV(3);  // 01110
+    GQCP::SpinUnresolvedONV onv = fock_space.constructONVFromAddress(3);  // 01110
 
     // We only count couplings with larger addresses
 
     BOOST_CHECK(fock_space.countOneElectronCouplings(onv) == 3);      // 11100, 11010, 10110
     BOOST_CHECK(fock_space.countTwoElectronCouplings(onv) == 3 + 3);  // 11100, 11010, 10110, 11001, 10101, 10011
 
-    onv = fock_space.makeONV(0);  // 00111
+    onv = fock_space.constructONVFromAddress(0);  // 00111
 
     BOOST_CHECK(fock_space.countOneElectronCouplings(onv) == 6);
     BOOST_CHECK(fock_space.countTwoElectronCouplings(onv) == 6 + 3);  // all of them
@@ -246,10 +246,10 @@ BOOST_AUTO_TEST_CASE(coupling_count) {
 
     size_t coupling_count1 = 0;
     size_t coupling_count2 = 0;
-    onv = fock_space2.makeONV(0);                               // spin string with address 0
-    for (size_t I = 0; I < fock_space2.get_dimension(); I++) {  // I_alpha loops over all addresses of alpha spin strings
+    onv = fock_space2.constructONVFromAddress(0);           // spin string with address 0
+    for (size_t I = 0; I < fock_space2.dimension(); I++) {  // I_alpha loops over all addresses of alpha spin strings
         if (I > 0) {
-            fock_space2.setNextONV(onv);
+            fock_space2.transformONVToNextPermutation(onv);
         }
         coupling_count1 += fock_space2.countOneElectronCouplings(onv);
         coupling_count2 += fock_space2.countTwoElectronCouplings(onv);
@@ -262,7 +262,7 @@ BOOST_AUTO_TEST_CASE(coupling_count) {
 
 /**
  *  In this test we iterate over the entire SpinUnresolvedONV basis using the SpinUnresolvedONVBasis::setNextONV(SpinUnresolvedONV&) 
- *  and test wether the address is correct using SpinUnresolvedONVBasis::getAddress(const SpinUnresolvedONV&) 
+ *  and test wether the address is correct using SpinUnresolvedONVBasis::address(const SpinUnresolvedONV&) 
  */
 BOOST_AUTO_TEST_CASE(ONV_address_setNext_fullspace) {
 
@@ -270,7 +270,7 @@ BOOST_AUTO_TEST_CASE(ONV_address_setNext_fullspace) {
     GQCP::SpinUnresolvedONVBasis fock_space {15, 5};
 
     // Retrieve the first SpinUnresolvedONV of the SpinUnresolvedONV basis
-    GQCP::SpinUnresolvedONV onv_test = fock_space.makeONV(0);
+    GQCP::SpinUnresolvedONV onv_test = fock_space.constructONVFromAddress(0);
 
     const size_t dimension_fock_space = 3003;
     bool is_correct = true;  // variable that is updated to false if an unexpected result occurs
@@ -279,13 +279,13 @@ BOOST_AUTO_TEST_CASE(ONV_address_setNext_fullspace) {
     for (size_t i = 0; i < dimension_fock_space; i++) {
 
         // Tests address
-        if (i != fock_space.getAddress(onv_test)) {
+        if (i != fock_space.addressOf(onv_test)) {
             is_correct = false;
         }
 
         // transforms the given SpinUnresolvedONV to the next SpinUnresolvedONV in the SpinUnresolvedONV basis
         if (i < dimension_fock_space - 1) {
-            fock_space.setNextONV(onv_test);
+            fock_space.transformONVToNextPermutation(onv_test);
         }
     }
 
@@ -304,7 +304,7 @@ BOOST_AUTO_TEST_CASE(ONVBasis_getAddress) {
     // The address of the string "010011" (19) should be 4
     GQCP::SpinUnresolvedONV onv {6, 3, 19};
 
-    BOOST_CHECK_EQUAL(fock_space.getAddress(onv), 4);
+    BOOST_CHECK_EQUAL(fock_space.addressOf(onv), 4);
 }
 
 
@@ -315,22 +315,22 @@ BOOST_AUTO_TEST_CASE(ONVBasis_setNext) {
 
     GQCP::SpinUnresolvedONVBasis fock_space {5, 3};
     // K = 5, N = 3 <-> "00111"
-    GQCP::SpinUnresolvedONV onv = fock_space.makeONV(0);
+    GQCP::SpinUnresolvedONV onv = fock_space.constructONVFromAddress(0);
     // The lexical permutations are: "00111" (7), "01011" (11), "01101" (13), "01110" (14), etc.
 
     // Check permutations one after the other
 
-    fock_space.setNextONV(onv);  // "01011" (11)
+    fock_space.transformONVToNextPermutation(onv);  // "01011" (11)
     BOOST_CHECK_EQUAL(onv.unsignedRepresentation(), 11);
     std::vector<size_t> ref_indices1 {0, 1, 3};
     BOOST_CHECK(ref_indices1 == onv.occupiedIndices());
 
-    fock_space.setNextONV(onv);  // "01101" (13)
+    fock_space.transformONVToNextPermutation(onv);  // "01101" (13)
     BOOST_CHECK_EQUAL(onv.unsignedRepresentation(), 13);
     std::vector<size_t> ref_indices2 {0, 2, 3};
     BOOST_CHECK(ref_indices2 == onv.occupiedIndices());
 
-    fock_space.setNextONV(onv);  // "01110" (14)
+    fock_space.transformONVToNextPermutation(onv);  // "01110" (14)
     BOOST_CHECK_EQUAL(onv.unsignedRepresentation(), 14);
     std::vector<size_t> ref_indices3 {1, 2, 3};
     BOOST_CHECK(ref_indices3 == onv.occupiedIndices());

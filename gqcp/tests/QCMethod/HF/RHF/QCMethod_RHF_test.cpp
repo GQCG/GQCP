@@ -104,7 +104,7 @@ BOOST_AUTO_TEST_CASE(crawdad_h2o_sto3g_plain) {
     // Do our own RHF calculation
     const auto water = GQCP::Molecule::ReadXYZ("data/h2o_crawdad.xyz");
     // Check if the internuclear distance between O and H is really 1.1 A (= 2.07869 bohr), as specified in the text
-    BOOST_REQUIRE(std::abs(water.internuclearDistance(0, 1) - 2.07869) < 1.0e-4);
+    BOOST_REQUIRE(std::abs(water.calculateInternuclearDistanceBetween(0, 1) - 2.07869) < 1.0e-4);
 
     const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {water, "STO-3G"};
     const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, water);  // in an AO basis
@@ -130,7 +130,7 @@ BOOST_AUTO_TEST_CASE(crawdad_ch4_sto3g_plain) {
     // Do our own RHF calculation
     const auto methane = GQCP::Molecule::ReadXYZ("data/ch4_crawdad.xyz");
     // Check if the internuclear distance between C and H is really around 2.05 bohr, which is the bond distance Wikipedia (108.7 pm) specifies
-    BOOST_CHECK(std::abs(methane.internuclearDistance(0, 1) - 2.05) < 1.0e-1);
+    BOOST_CHECK(std::abs(methane.calculateInternuclearDistanceBetween(0, 1) - 2.05) < 1.0e-1);
 
     const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {methane, "STO-3G"};
     const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, methane);  // in an AO basis
@@ -282,7 +282,7 @@ BOOST_AUTO_TEST_CASE(crawdad_h2o_sto3g_diis) {
     // Do our own RHF calculation
     const auto water = GQCP::Molecule::ReadXYZ("data/h2o_crawdad.xyz");
     // Check if the internuclear distance between O and H is really 1.1 A (= 2.07869 bohr), as specified in the text
-    BOOST_REQUIRE(std::abs(water.internuclearDistance(0, 1) - 2.07869) < 1.0e-4);
+    BOOST_REQUIRE(std::abs(water.calculateInternuclearDistanceBetween(0, 1) - 2.07869) < 1.0e-4);
 
     const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {water, "STO-3G"};
     const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, water);  // in an AO basis
@@ -309,7 +309,7 @@ BOOST_AUTO_TEST_CASE(crawdad_ch4_sto3g_diis) {
     // Do our own RHF calculation
     const auto methane = GQCP::Molecule::ReadXYZ("data/ch4_crawdad.xyz");
     // Check if the internuclear distance between C and H is really around 2.05 bohr, which is the bond distance Wikipedia (108.7 pm) specifies
-    BOOST_CHECK(std::abs(methane.internuclearDistance(0, 1) - 2.05) < 1.0e-1);
+    BOOST_CHECK(std::abs(methane.calculateInternuclearDistanceBetween(0, 1) - 2.05) < 1.0e-1);
 
     const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {methane, "STO-3G"};
     const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, methane);  // in an AO basis

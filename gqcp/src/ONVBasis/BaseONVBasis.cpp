@@ -30,11 +30,11 @@ namespace GQCP {
  */
 
 /**
- *  @param K        the number of orbitals
- *  @param dim      the dimension of the ONV basis
+ *  @param M            the number of orbitals
+ *  @param dim          the dimension of the ONV basis
  */
-BaseONVBasis::BaseONVBasis(size_t K, size_t dim) :
-    K {K},
+BaseONVBasis::BaseONVBasis(const size_t M, const size_t dim) :
+    M {M},
     dim {dim} {}
 
 
@@ -53,7 +53,7 @@ std::shared_ptr<BaseONVBasis> BaseONVBasis::CloneToHeap(const BaseONVBasis& fock
 
     std::shared_ptr<BaseONVBasis> fock_space_ptr;
 
-    switch (fock_space.get_type()) {
+    switch (fock_space.type()) {
 
     case ONVBasisType::SpinUnresolvedONVBasis: {
         fock_space_ptr = std::make_shared<SpinUnresolvedONVBasis>(SpinUnresolvedONVBasis(dynamic_cast<const SpinUnresolvedONVBasis&>(fock_space)));
@@ -86,8 +86,18 @@ std::shared_ptr<BaseONVBasis> BaseONVBasis::CloneToHeap(const BaseONVBasis& fock
 
 
 /*
- *  PUBLIC
+ *  PUBLIC METHODS
  */
+
+/**
+ *  @return a constant normalized coefficients vector (i.e. all the coefficients are equal)
+ */
+VectorX<double> BaseONVBasis::constantExpansion() const {
+    VectorX<double> constant = VectorX<double>::Ones(this->dim);
+    constant.normalize();
+    return constant;
+}
+
 
 /**
  *  @return the coefficient vector for the Hartree-Fock wave function (i.e. the 'first' ONV/Slater determinant)
@@ -106,16 +116,6 @@ VectorX<double> BaseONVBasis::randomExpansion() const {
     VectorX<double> random = VectorX<double>::Random(this->dim);
     random.normalize();
     return random;
-}
-
-
-/**
- *  @return a constant normalized coefficients vector (i.e. all the coefficients are equal)
- */
-VectorX<double> BaseONVBasis::constantExpansion() const {
-    VectorX<double> constant = VectorX<double>::Ones(this->dim);
-    constant.normalize();
-    return constant;
 }
 
 

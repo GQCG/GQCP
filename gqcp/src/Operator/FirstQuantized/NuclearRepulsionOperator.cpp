@@ -41,7 +41,7 @@ double NuclearRepulsionOperator::value() const {
             const auto nucleus2 = nuclei[j];
 
             // The internuclear repulsion energy (Coulomb) for every nucleus pair is Z1 * Z2 / |R1 - R2|
-            value += nucleus1.charge() * nucleus2.charge() / nucleus1.calculateDistance(nucleus2);
+            value += nucleus1.charge() * nucleus2.charge() / nucleus1.calculateDistanceWith(nucleus2);
         }
     }
 

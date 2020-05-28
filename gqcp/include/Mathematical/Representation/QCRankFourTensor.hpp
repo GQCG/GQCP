@@ -104,14 +104,14 @@ public:
      * 
      *  @param U            the unitary transformation matrix
      */
-    void basisRotateInPlace(const TransformationMatrix<double>& U) {
+    void basisRotate(const TransformationMatrix<double>& U) {
 
         // Check if the given matrix is actually unitary
         if (!U.isUnitary(1.0e-12)) {
-            throw std::invalid_argument("QCRankFourTensor::basisRotateInPlace(const TransformationMatrix<Scalar>&): The given transformation matrix is not unitary.");
+            throw std::invalid_argument("QCRankFourTensor::basisRotate(const TransformationMatrix<Scalar>&): The given transformation matrix is not unitary.");
         }
 
-        this->basisTransformInPlace(U);
+        this->basisTransform(U);
     }
 
 
@@ -120,7 +120,7 @@ public:
      * 
      *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
      */
-    void basisRotateInPlace(const JacobiRotationParameters& jacobi_rotation_parameters) {
+    void basisRotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
 
         /**
          *  While waiting for an analogous Eigen::Tensor Jacobi module, we implement this rotation by constructing a Jacobi rotation matrix and then simply doing a rotation with it
@@ -128,7 +128,7 @@ public:
 
         const auto dim = this->dimension();
         const auto J = TransformationMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
-        this->basisRotateInPlace(J);
+        this->basisRotate(J);
     }
 
 
@@ -137,7 +137,7 @@ public:
      *
      *  @param T    the transformation matrix between the old and the new orbital basis
      */
-    void basisTransformInPlace(const TransformationMatrix<Scalar>& T) {
+    void basisTransform(const TransformationMatrix<Scalar>& T) {
 
         // Since we're only getting T as a matrix, we should convert it to an appropriate tensor to perform contractions.
         Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> T_tensor {T.data(), T.rows(), T.cols()};  // since T is const, we need const in the template (https://stackoverflow.com/questions/45283468/eigen-const-tensormap)
@@ -222,11 +222,6 @@ public:
      *  In-place change the integrals to physicist's notation (from chemist's notation).
      */
     void convertToPhysicistsNotation() { *this = this->convertedToPhysicistsNotation(); }
-
-    /**
-     *  @return the dimension of this matrix representation of the parameters, i.e. the number of orbitals/sites
-     */
-    size_t dimension() const { return static_cast<size_t>(this->Base::dimension(0)); }
 
     /**
      *  @return if these two-electron integrals are considered to be antisymmetrized.

@@ -15,9 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.hpp"
-
 #include "Mathematical/Optimization/Minimization/IterativeIdentitiesHessianModifier.hpp"
+#include "QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
@@ -34,6 +33,8 @@ void bindAP1roGLagrangianNewtonOrbitalOptimizer(py::module& module) {
                                                              "AP1roGLagrangianNewtonOrbitalOptimizer",
                                                              "An orbital optimizer for vAP1roG.")
 
+        // CONSTRUCTORS
+
         // Use a standard Hessian modifier for the Python bindings.
         .def(py::init([](const GQCP::AP1roGGeminalCoefficients& G, const double oo_convergence_threshold = 1.0e-08, const size_t oo_maximum_number_of_iterations = 128, const double pse_convergence_threshold = 1.0e-08, const size_t pse_maximum_number_of_iterations = 128) {
                  auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
@@ -45,15 +46,18 @@ void bindAP1roGLagrangianNewtonOrbitalOptimizer(py::module& module) {
              py::arg("pse_convergence_threshold") = 1.0e-08,
              py::arg("pse_maximum_number_of_iterations") = 128)
 
-        .def("get_electronic_energy",
-             &GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::get_electronic_energy)
 
-        .def("get_geminal_coefficients",
-             &GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::get_geminal_coefficients)
+        // PUBLIC METHODS
 
-        .def("get_multipliers",
+        .def("electronicEnergy",
+             &GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::electronicEnergy)
+
+        .def("geminalCoefficients",
+             &GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::geminalCoefficients)
+
+        .def("multipliers",
              [](const GQCP::AP1roGLagrangianNewtonOrbitalOptimizer& optimizer) {
-                 return optimizer.get_multipliers().asMatrix();
+                 return optimizer.multipliers().asMatrix();
              })
 
         .def("optimize",

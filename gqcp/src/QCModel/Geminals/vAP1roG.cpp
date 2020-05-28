@@ -21,6 +21,20 @@
 
 
 namespace GQCP {
+namespace QCModel {
+
+
+/*
+ *  CONSTRUCTORS
+ */
+
+/**
+ *  @param G                    the optimal geminal coefficients
+ *  @param multipliers          the optimized Lagrange multipliers
+ */
+vAP1roG::vAP1roG(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<double>& multipliers) :
+    G {G},
+    multipliers {multipliers} {}
 
 
 /*
@@ -33,10 +47,10 @@ namespace GQCP {
  *
  *  @return the AP1roG response 1-DM
  */
-OneRDM<double> QCModel::vAP1roG::calculate1RDM(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<double>& multipliers) {
+OneRDM<double> vAP1roG::calculate1RDM(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<double>& multipliers) {
 
     // KISS-implementation of the formulas.
-    OneRDM<double> D = OneRDM<double>::Zero(G.get_K(), G.get_K());
+    OneRDM<double> D = OneRDM<double>::Zero(G.numberOfSpatialOrbitals(), G.numberOfSpatialOrbitals());
 
     const auto orbital_space = G.orbitalSpace();
 
@@ -74,7 +88,7 @@ OneRDM<double> QCModel::vAP1roG::calculate1RDM(const AP1roGGeminalCoefficients& 
  * 
  *  @return the response force (-F_lambda) that is used to solve the linear equations for the Lagrange multipliers lambda in [k_lambda lambda = -F_lambda]
  */
-ImplicitMatrixSlice<double> QCModel::vAP1roG::calculateMultiplierResponseForce(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P) {
+ImplicitMatrixSlice<double> vAP1roG::calculateMultiplierResponseForce(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P) {
 
     // Prepare some variables.
     const auto& g = sq_hamiltonian.twoElectron().parameters();
@@ -100,7 +114,7 @@ ImplicitMatrixSlice<double> QCModel::vAP1roG::calculateMultiplierResponseForce(c
  * 
  *  @return the response force constant (k_lambda) that is used to solve the linear equations for the Lagrange multipliers lambda in [k_lambda lambda = -F_lambda]
  */
-MatrixX<double> QCModel::vAP1roG::calculateMultiplierResponseForceConstant(const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G) {
+MatrixX<double> vAP1roG::calculateMultiplierResponseForceConstant(const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G) {
 
     const auto N_P = G.numberOfElectronPairs();
 
@@ -115,9 +129,9 @@ MatrixX<double> QCModel::vAP1roG::calculateMultiplierResponseForceConstant(const
  *
  *  @return the AP1roG response number 2-RDM (the Delta-matrix in the notes)
  */
-SquareMatrix<double> QCModel::vAP1roG::calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<double>& multipliers) {
+SquareMatrix<double> vAP1roG::calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<double>& multipliers) {
 
-    const size_t K = G.get_K();
+    const size_t K = G.numberOfSpatialOrbitals();
     const auto orbital_space = G.orbitalSpace();
 
     SquareMatrix<double> Delta = SquareMatrix<double>::Zero(K, K);
@@ -191,9 +205,9 @@ SquareMatrix<double> QCModel::vAP1roG::calculateNumber2RDM(const AP1roGGeminalCo
  *
  *  @return the vAP1roG response pair 2-RDM (the Pi-matrix in the notes)
  */
-SquareMatrix<double> QCModel::vAP1roG::calculatePair2RDM(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<double>& multipliers) {
+SquareMatrix<double> vAP1roG::calculatePair2RDM(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<double>& multipliers) {
 
-    const size_t K = G.get_K();
+    const size_t K = G.numberOfSpatialOrbitals();
     const auto orbital_space = G.orbitalSpace();
 
 
@@ -280,9 +294,9 @@ SquareMatrix<double> QCModel::vAP1roG::calculatePair2RDM(const AP1roGGeminalCoef
  *
  *  @return the AP1roG response 2-DM
  */
-TwoRDM<double> QCModel::vAP1roG::calculate2RDM(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<double>& multipliers) {
+TwoRDM<double> vAP1roG::calculate2RDM(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<double>& multipliers) {
 
-    const size_t K = G.get_K();
+    const size_t K = G.numberOfSpatialOrbitals();
     const auto orbital_space = G.orbitalSpace();
 
     TwoRDM<double> d {K};
@@ -318,4 +332,5 @@ TwoRDM<double> QCModel::vAP1roG::calculate2RDM(const AP1roGGeminalCoefficients& 
 }
 
 
+}  // namespace QCModel
 }  // namespace GQCP

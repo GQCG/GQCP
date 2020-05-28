@@ -32,15 +32,15 @@ BOOST_AUTO_TEST_CASE(ScalarFunctionProduct) {
 
     GQCP::CartesianGTO gto1 {1.0, {1, 0, 0}, center};
     double coefficient1 = 1.0;
-    double N1 = gto1.calculateNormalizationFactor();
+    double N1 = gto1.normalizationFactor();
 
     GQCP::CartesianGTO gto2 {2.00, {2, 0, 0}, center};
     double coefficient2 = -2.0;
-    double N2 = gto2.calculateNormalizationFactor();
+    double N2 = gto2.normalizationFactor();
 
     GQCP::CartesianGTO gto3 {0.50, {0, 0, 1}, center};
     double coefficient3 = 0.75;
-    double N3 = gto3.calculateNormalizationFactor();
+    double N3 = gto3.normalizationFactor();
 
 
     GQCP::LinearCombination<double, GQCP::CartesianGTO> lc1 {coefficient1, gto1};

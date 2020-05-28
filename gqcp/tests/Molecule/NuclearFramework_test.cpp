@@ -63,9 +63,9 @@ BOOST_AUTO_TEST_CASE(totalNucleicCharge) {
 
 
 /**
- *  Check if internuclearDistance() works as expected.
+ *  Check if calculateInternuclearDistanceBetween() works as expected.
  */
-BOOST_AUTO_TEST_CASE(internuclearDistance) {
+BOOST_AUTO_TEST_CASE(calculateInternuclearDistanceBetween) {
 
     // Create a fictitious molecule from some nuclei (charge, x, y ,z)
     const std::vector<GQCP::Nucleus> nuclei = {
@@ -77,14 +77,14 @@ BOOST_AUTO_TEST_CASE(internuclearDistance) {
 
 
     // Check if we get throws when the indices are out of bounds
-    BOOST_CHECK_THROW(nuclear_framework.internuclearDistance(0, 5), std::invalid_argument);
-    BOOST_CHECK_THROW(nuclear_framework.internuclearDistance(8, 2), std::invalid_argument);
+    BOOST_CHECK_THROW(nuclear_framework.calculateInternuclearDistanceBetween(0, 5), std::invalid_argument);
+    BOOST_CHECK_THROW(nuclear_framework.calculateInternuclearDistanceBetween(8, 2), std::invalid_argument);
 
     // Check if we don't get throws when the indices behave correctly
-    BOOST_CHECK_NO_THROW(nuclear_framework.internuclearDistance(0, 0));
+    BOOST_CHECK_NO_THROW(nuclear_framework.calculateInternuclearDistanceBetween(0, 0));
 
     // Check if the function works
-    BOOST_CHECK(std::abs(nuclear_framework.internuclearDistance(1, 3) - 1) < 1.0e-12);
+    BOOST_CHECK(std::abs(nuclear_framework.calculateInternuclearDistanceBetween(1, 3) - 1) < 1.0e-12);
 }
 
 
@@ -147,8 +147,8 @@ BOOST_AUTO_TEST_CASE(HChain) {
     BOOST_CHECK(h_chain1.numberOfNuclei() == 3);
     BOOST_CHECK(h_chain1.totalNucleicCharge() == 3);
 
-    BOOST_CHECK(std::abs(h_chain1.internuclearDistance(0, 1) - 1.0) < 1.0e-12);
-    BOOST_CHECK(std::abs(h_chain1.internuclearDistance(0, 2) - 2.0) < 1.0e-12);
+    BOOST_CHECK(std::abs(h_chain1.calculateInternuclearDistanceBetween(0, 1) - 1.0) < 1.0e-12);
+    BOOST_CHECK(std::abs(h_chain1.calculateInternuclearDistanceBetween(0, 2) - 2.0) < 1.0e-12);
 
 
     // Check the construction for a H4-chain.
@@ -156,12 +156,12 @@ BOOST_AUTO_TEST_CASE(HChain) {
     BOOST_CHECK(h_chain1.numberOfNuclei() == 3);
     BOOST_CHECK(h_chain2.totalNucleicCharge() == 4);
 
-    BOOST_CHECK(std::abs(h_chain2.internuclearDistance(0, 1) - 1.5) < 1.0e-12);
-    BOOST_CHECK(std::abs(h_chain2.internuclearDistance(0, 2) - 3.0) < 1.0e-12);
-    BOOST_CHECK(std::abs(h_chain2.internuclearDistance(0, 3) - 4.5) < 1.0e-12);
-    BOOST_CHECK(std::abs(h_chain2.internuclearDistance(1, 2) - 1.5) < 1.0e-12);
-    BOOST_CHECK(std::abs(h_chain2.internuclearDistance(1, 3) - 3.0) < 1.0e-12);
-    BOOST_CHECK(std::abs(h_chain2.internuclearDistance(2, 3) - 1.5) < 1.0e-12);
+    BOOST_CHECK(std::abs(h_chain2.calculateInternuclearDistanceBetween(0, 1) - 1.5) < 1.0e-12);
+    BOOST_CHECK(std::abs(h_chain2.calculateInternuclearDistanceBetween(0, 2) - 3.0) < 1.0e-12);
+    BOOST_CHECK(std::abs(h_chain2.calculateInternuclearDistanceBetween(0, 3) - 4.5) < 1.0e-12);
+    BOOST_CHECK(std::abs(h_chain2.calculateInternuclearDistanceBetween(1, 2) - 1.5) < 1.0e-12);
+    BOOST_CHECK(std::abs(h_chain2.calculateInternuclearDistanceBetween(1, 3) - 3.0) < 1.0e-12);
+    BOOST_CHECK(std::abs(h_chain2.calculateInternuclearDistanceBetween(2, 3) - 1.5) < 1.0e-12);
 }
 
 
@@ -175,12 +175,12 @@ BOOST_AUTO_TEST_CASE(H2Chain) {
     BOOST_CHECK(h2_chain1.numberOfNuclei() == 4);
     BOOST_CHECK(h2_chain1.totalNucleicCharge() == 4);
 
-    BOOST_CHECK(std::abs(h2_chain1.internuclearDistance(0, 1) - 1.0) < 1.0e-12);
-    BOOST_CHECK(std::abs(h2_chain1.internuclearDistance(0, 2) - 2.5) < 1.0e-12);
-    BOOST_CHECK(std::abs(h2_chain1.internuclearDistance(0, 3) - 3.5) < 1.0e-12);
-    BOOST_CHECK(std::abs(h2_chain1.internuclearDistance(1, 2) - 1.5) < 1.0e-12);
-    BOOST_CHECK(std::abs(h2_chain1.internuclearDistance(1, 3) - 2.5) < 1.0e-12);
-    BOOST_CHECK(std::abs(h2_chain1.internuclearDistance(2, 3) - 1.0) < 1.0e-12);
+    BOOST_CHECK(std::abs(h2_chain1.calculateInternuclearDistanceBetween(0, 1) - 1.0) < 1.0e-12);
+    BOOST_CHECK(std::abs(h2_chain1.calculateInternuclearDistanceBetween(0, 2) - 2.5) < 1.0e-12);
+    BOOST_CHECK(std::abs(h2_chain1.calculateInternuclearDistanceBetween(0, 3) - 3.5) < 1.0e-12);
+    BOOST_CHECK(std::abs(h2_chain1.calculateInternuclearDistanceBetween(1, 2) - 1.5) < 1.0e-12);
+    BOOST_CHECK(std::abs(h2_chain1.calculateInternuclearDistanceBetween(1, 3) - 2.5) < 1.0e-12);
+    BOOST_CHECK(std::abs(h2_chain1.calculateInternuclearDistanceBetween(2, 3) - 1.0) < 1.0e-12);
 
 
     // Check the construction for 4 H2-molecules
@@ -211,10 +211,10 @@ BOOST_AUTO_TEST_CASE(HRingFromRadius) {
     BOOST_CHECK(ring.numberOfNuclei() == 4);
     BOOST_CHECK(ring.totalNucleicCharge() == 4);
 
-    BOOST_CHECK(std::abs(ring.internuclearDistance(0, 1) - distance) < 1.0e-12);
-    BOOST_CHECK(std::abs(ring.internuclearDistance(1, 2) - distance) < 1.0e-12);
-    BOOST_CHECK(std::abs(ring.internuclearDistance(2, 3) - distance) < 1.0e-12);
-    BOOST_CHECK(std::abs(ring.internuclearDistance(3, 0) - distance) < 1.0e-12);
+    BOOST_CHECK(std::abs(ring.calculateInternuclearDistanceBetween(0, 1) - distance) < 1.0e-12);
+    BOOST_CHECK(std::abs(ring.calculateInternuclearDistanceBetween(1, 2) - distance) < 1.0e-12);
+    BOOST_CHECK(std::abs(ring.calculateInternuclearDistanceBetween(2, 3) - distance) < 1.0e-12);
+    BOOST_CHECK(std::abs(ring.calculateInternuclearDistanceBetween(3, 0) - distance) < 1.0e-12);
 }
 
 
@@ -229,8 +229,8 @@ BOOST_AUTO_TEST_CASE(HRingFromDistance) {
     BOOST_CHECK(ring.numberOfNuclei() == 4);
     BOOST_CHECK(ring.totalNucleicCharge() == 4);
 
-    BOOST_CHECK(std::abs(ring.internuclearDistance(0, 1) - distance) < 1.0e-12);
-    BOOST_CHECK(std::abs(ring.internuclearDistance(1, 2) - distance) < 1.0e-12);
-    BOOST_CHECK(std::abs(ring.internuclearDistance(2, 3) - distance) < 1.0e-12);
-    BOOST_CHECK(std::abs(ring.internuclearDistance(3, 0) - distance) < 1.0e-12);
+    BOOST_CHECK(std::abs(ring.calculateInternuclearDistanceBetween(0, 1) - distance) < 1.0e-12);
+    BOOST_CHECK(std::abs(ring.calculateInternuclearDistanceBetween(1, 2) - distance) < 1.0e-12);
+    BOOST_CHECK(std::abs(ring.calculateInternuclearDistanceBetween(2, 3) - distance) < 1.0e-12);
+    BOOST_CHECK(std::abs(ring.calculateInternuclearDistanceBetween(3, 0) - distance) < 1.0e-12);
 }

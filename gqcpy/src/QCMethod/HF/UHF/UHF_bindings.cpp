@@ -15,9 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "QCMethod/HF/UHF/UHF.hpp"
-
 #include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
+#include "QCMethod/HF/UHF/UHF.hpp"
 #include "QCMethod/HF/UHF/UHFSCFSolver.hpp"
 
 #include <pybind11/pybind11.h>
@@ -31,6 +30,8 @@ namespace gqcpy {
 
 void bindQCMethodUHF(py::module& module) {
     py::class_<GQCP::QCMethod::UHF<double>>(module, "UHF", "The unrestricted Hartree-Fock quantum chemical method.")
+
+        // PUBLIC METHODS
 
         .def_static(
             "optimize",

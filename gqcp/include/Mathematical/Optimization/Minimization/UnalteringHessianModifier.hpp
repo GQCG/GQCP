@@ -37,7 +37,7 @@ public:
      * 
      *  @return the given Hessian, i.e. do not alter the current hessian
      */
-    SquareMatrix<double> operator()(const SquareMatrix<double>& hessian) override;
+    SquareMatrix<double> operator()(const SquareMatrix<double>& hessian) override { return hessian; }
 };
 
 

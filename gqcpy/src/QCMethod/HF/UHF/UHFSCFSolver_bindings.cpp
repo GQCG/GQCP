@@ -29,14 +29,7 @@ namespace gqcpy {
 void bindUHFSCFSolver(py::module& module) {
     py::class_<GQCP::UHFSCFSolver<double>>(module, "UHFSCFSolver", "An unrestricted Hartree-Fock self-consistent field solver factory.")
 
-        .def_static(
-            "Plain",
-            [](const double threshold, const size_t maximum_number_of_iterations) {
-                return GQCP::UHFSCFSolver<double>::Plain(threshold, maximum_number_of_iterations);
-            },
-            py::arg("threshold") = 1.0e-08,
-            py::arg("maximum_number_of_iterations") = 128,
-            "Plain UHF SCF solver that uses the combination of norm of the difference of two consecutive alpha and beta density matrices as a convergence criterion.")
+        // PUBLIC METHODS
 
         .def_static(
             "DIIS",
@@ -47,7 +40,16 @@ void bindUHFSCFSolver(py::module& module) {
             py::arg("maximum_subspace_dimension") = 6,
             py::arg("threshold") = 1.0e-08,
             py::arg("maximum_number_of_iterations") = 128,
-            "Return a DIIS UHF SCF solver that uses the combination of norm of the difference of two consecutive alpha and beta density matrices as a convergence criterion.");
+            "Return a DIIS UHF SCF solver that uses the combination of norm of the difference of two consecutive alpha and beta density matrices as a convergence criterion.")
+
+        .def_static(
+            "Plain",
+            [](const double threshold, const size_t maximum_number_of_iterations) {
+                return GQCP::UHFSCFSolver<double>::Plain(threshold, maximum_number_of_iterations);
+            },
+            py::arg("threshold") = 1.0e-08,
+            py::arg("maximum_number_of_iterations") = 128,
+            "Plain UHF SCF solver that uses the combination of norm of the difference of two consecutive alpha and beta density matrices as a convergence criterion.");
 }
 
 

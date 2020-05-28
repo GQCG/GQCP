@@ -51,7 +51,7 @@ public:
      *  @param initial_guess                the initial guess for the variables
      */
     OptimizationEnvironment(const Iterate& initial_guess) :
-        variables {1, initial_guess} {}
+        variables {initial_guess} {}
 };
 
 

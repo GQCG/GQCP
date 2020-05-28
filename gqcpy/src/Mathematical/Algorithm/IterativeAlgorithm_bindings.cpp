@@ -53,9 +53,11 @@ void bindIterativeAlgorithm(py::module& module, const std::string& suffix, const
                                                       description.c_str())
 
         // PUBLIC METHODS
-        .def("description",
-             &GQCP::IterativeAlgorithm<Environment>::description,
-             "Return a textual description of this iterative algorithm.")
+
+        .def(
+            "description",
+            &GQCP::IterativeAlgorithm<Environment>::description,
+            "Return a textual description of this iterative algorithm.")
 
         .def(
             "insert",
@@ -66,9 +68,10 @@ void bindIterativeAlgorithm(py::module& module, const std::string& suffix, const
             py::arg("index"),
             "Insert an algorithm step at the given index.")
 
-        .def("maximumNumberOfIterations",
-             &GQCP::IterativeAlgorithm<Environment>::maximumNumberOfIterations,
-             "Return the maximum number of iterations the algorithm may perform")
+        .def(
+            "maximumNumberOfIterations",
+            &GQCP::IterativeAlgorithm<Environment>::maximumNumberOfIterations,
+            "Return the maximum number of iterations the algorithm may perform")
 
         .def(
             "numberOfIterations",

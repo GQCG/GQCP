@@ -238,14 +238,14 @@ public:
      */
 
     /**
-     *  @return this as a (column-major) vector
-     */
-    VectorX<Scalar> asVector() const { return this->M.pairWiseReduce(); }
-
-    /**
      *  @return this as a matrix
      */
     const MatrixX<Scalar>& asMatrix() const { return this->M; }
+
+    /**
+     *  @return this as a (column-major) vector
+     */
+    VectorX<Scalar> asVector() const { return this->M.pairWiseReduced(); }
 
     /**
      *  @return the map between the column indices of the implicit matrix and the column indices of the dense representation of the slice

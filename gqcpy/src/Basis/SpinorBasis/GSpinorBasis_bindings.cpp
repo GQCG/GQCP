@@ -36,6 +36,7 @@ void bindGSpinorBasis(py::module& module) {
     py::class_<GQCP::GSpinorBasis<double, GQCP::GTOShell>>(module, "GSpinorBasis", "A class that represents a real, (generalized) spinor basis with underlying GTO shells.")
 
         // CONSTRUCTORS
+
         .def(py::init<const GQCP::Molecule&, const std::string&>(),
              py::arg("molecule"),
              py::arg("basisset_name"))
@@ -47,6 +48,7 @@ void bindGSpinorBasis(py::module& module) {
                     })
 
         // INHERITED METHODS
+
         .def(
             "coefficientMatrix",
             [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {

@@ -35,18 +35,19 @@ struct CODATA2014 {
 
 
 /**
- *  @param value_in_bohr        a distance expressed in bohr
- *
- *  @return the value in angstrom
- */
-inline double bohr_to_angstrom(double value_in_bohr) { return value_in_bohr * constants::CODATA2014::angstrom_per_bohr; }
-
-/**
  *  @param value_in_angstrom        a distance expressed in angstrom
  *
  *  @return the value in bohr (a.u.)
  */
 inline double angstrom_to_bohr(double value_in_angstrom) { return value_in_angstrom * constants::CODATA2014::bohr_per_angstrom; }
+
+
+/**
+ *  @param value_in_bohr        a distance expressed in bohr
+ *
+ *  @return the value in angstrom
+ */
+inline double bohr_to_angstrom(double value_in_bohr) { return value_in_bohr * constants::CODATA2014::angstrom_per_bohr; }
 
 
 }  // namespace units

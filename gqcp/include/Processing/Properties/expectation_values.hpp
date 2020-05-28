@@ -37,6 +37,7 @@ namespace GQCP {
  */
 template <typename Scalar>
 double calculateSpinSquared(const OneRDMs<Scalar>& one_rdms, const TwoRDMs<Scalar>& two_rdms) {
+
     double sz = calculateSpinZ(one_rdms);
     double s_squared = -sz;
     const size_t K = one_rdms.dimension();

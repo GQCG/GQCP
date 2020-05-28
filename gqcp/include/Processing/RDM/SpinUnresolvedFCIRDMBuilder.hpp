@@ -30,40 +30,49 @@ namespace GQCP {
  *  A class capable of calculating RDMs from wave functions expanded in the full CI spin-unresolved ONV basis
  */
 class SpinUnresolvedFCIRDMBuilder: public BaseSpinUnresolvedRDMBuilder {
-    SpinUnresolvedONVBasis fock_space;  // spin-unresolved ONV basis
+private:
+    SpinUnresolvedONVBasis onv_basis;  // spin-unresolved ONV basis
+
 
 public:
     /*
      *  CONSTRUCTORS
      */
 
-    SpinUnresolvedFCIRDMBuilder() = default;
+    /**
+     *  @param onv_basis                spin-unresolved ONV basis
+     */
+    explicit SpinUnresolvedFCIRDMBuilder(const SpinUnresolvedONVBasis& onv_basis);
 
-    explicit SpinUnresolvedFCIRDMBuilder(const SpinUnresolvedONVBasis& fock_space);
+    /**
+     *  The default constructor.
+     */
+    SpinUnresolvedFCIRDMBuilder() = default;
 
 
     // DESTRUCTOR
+
+    /**
+     *  The default destructor.
+     */
     ~SpinUnresolvedFCIRDMBuilder() = default;
 
 
-    // OVERRIDDEN GETTERS
-    const BaseONVBasis* get_fock_space() const override { return &fock_space; }
+    // PUBLIC OVERRIDDEN METHODS
 
-
-    // OVERRIDDEN PUBLIC METHODS
     /**
      *  @param x        the coefficient vector representing the UnresolvedCI wave function
      *
      *  @return the 1-RDM given a coefficient vector
      */
-    OneRDM<double> calculate1RDM(const VectorX<double>& x) const override;
+    OneRDM<double> calculate1RDM(const VectorX<double>& x) const override { throw std::runtime_error("SpinUnresolvedFCIRDMBuilder::calculate1RDMs(VectorX<double>): not implemented yet"); }
 
     /**
      *  @param x        the coefficient vector representing the UnresolvedCI wave function
      *
      *  @return the 2-RDM given a coefficient vector
      */
-    TwoRDM<double> calculate2RDM(const VectorX<double>& x) const override;
+    TwoRDM<double> calculate2RDM(const VectorX<double>& x) const override { throw std::runtime_error("SpinUnresolvedFCIRDMBuilder::calculate2RDMs(VectorX<double>): not implemented yet"); }
 
     /**
      *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)
@@ -75,6 +84,11 @@ public:
      *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
      */
     double calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const VectorX<double>& x) const override;
+
+    /**
+     *  @return the ONV basis that is associated to this RDMBuilder
+     */
+    const BaseONVBasis* onvBasis() const override { return &onv_basis; }
 };
 
 

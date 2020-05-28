@@ -15,9 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "QCMethod/Geminals/AP1roG.hpp"
-
 #include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
+#include "QCMethod/Geminals/AP1roG.hpp"
 
 #include <pybind11/pybind11.h>
 
@@ -31,9 +30,14 @@ namespace gqcpy {
 void bindQCMethodAP1roG(py::module& module) {
     py::class_<GQCP::QCMethod::AP1roG>(module, "AP1roG", "The AP1roG quantum chemical method.")
 
+        // CONSTRUCTORS
+
         .def(py::init<GQCP::SQHamiltonian<double>, size_t>(),
              py::arg("sq_hamiltonian"),
              py::arg("N_P"))
+
+
+        // PUBLIC METHODS
 
         .def(
             "optimize",

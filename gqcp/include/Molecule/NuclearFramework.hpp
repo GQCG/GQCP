@@ -55,7 +55,7 @@ public:
      *
      *  @return a H-chain with equal internuclear spacing
      */
-    static NuclearFramework HChain(const size_t n, const double spacing, CartesianDirection axis = CartesianDirection::z);
+    static NuclearFramework HChain(const size_t n, const double spacing, const CartesianDirection axis = CartesianDirection::z);
 
     /**
      *  @param n        the number of H2-molecules
@@ -65,7 +65,7 @@ public:
      * 
      *  @return a H2-chain with the specified internuclear and intermolecular distances
      */
-    static NuclearFramework H2Chain(const size_t n, const double a, const double b, CartesianDirection axis = CartesianDirection::z);
+    static NuclearFramework H2Chain(const size_t n, const double a, const double b, const CartesianDirection axis = CartesianDirection::z);
 
 
     /**
@@ -111,7 +111,7 @@ public:
      *
      *  @return the distance between the two nuclei at index1 and index2 in bohr
      */
-    double internuclearDistance(const size_t index1, const size_t index2) const;
+    double calculateInternuclearDistanceBetween(const size_t index1, const size_t index2) const;
 
     /**
      *  @return the nuclei in this nuclear framework as a std::vector

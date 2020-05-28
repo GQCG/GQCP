@@ -34,14 +34,14 @@ BOOST_AUTO_TEST_CASE(constructor_assignment) {
 }
 
 
-BOOST_AUTO_TEST_CASE(hasEqualDimensions) {
+BOOST_AUTO_TEST_CASE(hasEqualDimensionsAs) {
 
     GQCP::Tensor<double, 4> T1 {1, 2, 3, 4};
     GQCP::Tensor<double, 4> T2 {1, 2, 3, 4};
     GQCP::Tensor<double, 4> T3 {2, 2, 3, 4};
 
-    BOOST_CHECK(T1.hasEqualDimensions(T2));
-    BOOST_CHECK(!T1.hasEqualDimensions(T3));
+    BOOST_CHECK(T1.hasEqualDimensionsAs(T2));
+    BOOST_CHECK(!T1.hasEqualDimensionsAs(T3));
 }
 
 
@@ -128,7 +128,7 @@ BOOST_AUTO_TEST_CASE(print) {
 }
 
 
-BOOST_AUTO_TEST_CASE(pairWiseReduce) {
+BOOST_AUTO_TEST_CASE(pairWiseReduced) {
 
     // Create an example 2x2x2x2 tensor
     GQCP::Tensor<double, 4> T1 {2, 2, 2, 2};
@@ -143,7 +143,7 @@ BOOST_AUTO_TEST_CASE(pairWiseReduce) {
         }
     }
 
-    // Test default pairWiseReduce behavior
+    // Test default pairWiseReduced behavior
     GQCP::MatrixX<double> M1_ref1 {4, 4};
     // clang-format off
     M1_ref1 <<  0,  2,  1,  3,
@@ -152,18 +152,18 @@ BOOST_AUTO_TEST_CASE(pairWiseReduce) {
                12, 14, 13, 15;
     // clang-format on
 
-    BOOST_CHECK(M1_ref1.isApprox(T1.pairWiseReduce(), 1.0e-12));
+    BOOST_CHECK(M1_ref1.isApprox(T1.pairWiseReduced(), 1.0e-12));
 
 
-    // Test non-default pairWiseReduce behavior
+    // Test non-default pairWiseReduced behavior
     GQCP::MatrixX<double> M1_ref2 {2, 4};
     // clang-format off
     M1_ref2 <<  4,  6,  5,  7,
                12, 14, 13, 15;
     // clang-format on
 
-    BOOST_CHECK(M1_ref2.isApprox(T1.pairWiseReduce(0, 1, 0, 0), 1.0e-12));
-    std::cout << T1.pairWiseReduce(0, 1, 0, 0) << std::endl;
+    BOOST_CHECK(M1_ref2.isApprox(T1.pairWiseReduced(0, 1, 0, 0), 1.0e-12));
+    std::cout << T1.pairWiseReduced(0, 1, 0, 0) << std::endl;
 
 
     // Create an example 3x3x3x3 tensor
@@ -191,7 +191,7 @@ BOOST_AUTO_TEST_CASE(pairWiseReduce) {
               72, 75, 78, 73, 76, 79, 74, 77, 80;
     // clang-format on
 
-    BOOST_CHECK(M2_ref.isApprox(T2.pairWiseReduce(), 1.0e-12));
+    BOOST_CHECK(M2_ref.isApprox(T2.pairWiseReduced(), 1.0e-12));
 }
 
 

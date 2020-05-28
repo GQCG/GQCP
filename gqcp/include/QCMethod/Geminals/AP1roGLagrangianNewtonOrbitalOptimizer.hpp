@@ -33,9 +33,9 @@ private:
     double pse_convergence_threshold;         // the threshold used to check for convergence on the geminal coefficients
     size_t pse_maximum_number_of_iterations;  // maximum number of Newton steps that may be used to achieve convergence of the PSEs
 
-    double E;                                 // the electronic energy
-    AP1roGGeminalCoefficients G;              // the current geminal coefficients
-    ImplicitMatrixSlice<double> multipliers;  // the current Lagrangian multipliers
+    double E;                                   // the electronic energy
+    AP1roGGeminalCoefficients G;                // the current geminal coefficients
+    ImplicitMatrixSlice<double> m_multipliers;  // the current Lagrangian m_multipliers
 
 
 public:
@@ -65,14 +65,7 @@ public:
     AP1roGLagrangianNewtonOrbitalOptimizer(const AP1roGGeminalCoefficients& G, std::shared_ptr<BaseHessianModifier> hessian_modifier, const double oo_convergence_threshold = 1.0e-08, const size_t oo_maximum_number_of_iterations = 128, const double pse_convergence_threshold = 1.0e-08, const size_t pse_maximum_number_of_iterations = 128);
 
 
-    // GETTERS
-
-    double get_electronic_energy() const { return this->E; }
-    const AP1roGGeminalCoefficients& get_geminal_coefficients() const { return this->G; }
-    const ImplicitMatrixSlice<double>& get_multipliers() const { return this->multipliers; }
-
-
-    // OVERRIDDEN PUBLIC METHODS
+    // PUBLIC OVERRIDDEN METHODS
 
     /**
      *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence in this Newton-based orbital optimizer
@@ -99,6 +92,24 @@ public:
      *  @return the new full set orbital generators, including the redundant parameters
      */
     OrbitalRotationGenerators calculateNewFullOrbitalGenerators(const SQHamiltonian<double>& sq_hamiltonian) const override;
+
+
+    // PUBLIC METHODS
+
+    /**
+     *  @return the electronic energy calculated by this orbital optimizer
+     */
+    double electronicEnergy() const { return this->E; }
+
+    /**
+     *  @return the geminal coefficients calculated by this orbital optimizer
+     */
+    const AP1roGGeminalCoefficients& geminalCoefficients() const { return this->G; }
+
+    /**
+     *  @return the Lagrange multipliers calculated by this orbital optimizer
+     */
+    const ImplicitMatrixSlice<double>& multipliers() const { return this->m_multipliers; }
 };
 
 

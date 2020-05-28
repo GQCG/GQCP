@@ -71,6 +71,14 @@ public:
     }
 
 
+    /**
+     *  A default constructor setting everything to zero.
+     */
+    ImplicitRankFourTensorSlice() :
+        // Use a named constructor for the default initialization.
+        ImplicitRankFourTensorSlice(ImplicitRankFourTensorSlice<Scalar>::ZeroFromIndices({}, {}, {}, {})) {}
+
+
     /*
      *  NAMED CONSTRUCTORS
      */
@@ -107,14 +115,6 @@ public:
 
         return ImplicitRankFourTensorSlice<Scalar>::FromIndices(axis1_indices, axis2_indices, axis3_indices, axis4_indices, T);
     }
-
-
-    /**
-     *  A default constructor setting everything to zero.
-     */
-    ImplicitRankFourTensorSlice() :
-        // Use a named constructor for the default initialization.
-        ImplicitRankFourTensorSlice(ImplicitRankFourTensorSlice<Scalar>::ZeroFromIndices({}, {}, {}, {})) {}
 
 
     /**
@@ -272,7 +272,7 @@ public:
     /**
      *  @return this as a (column-major) matrix
      */
-    MatrixX<Scalar> asMatrix() const { return this->T.pairWiseReduce(); }
+    MatrixX<Scalar> asMatrix() const { return this->T.pairWiseReduced(); }
 
     /**
      *  @return this as a tensor

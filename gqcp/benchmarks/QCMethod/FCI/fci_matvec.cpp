@@ -39,7 +39,7 @@ static void matvec(benchmark::State& state) {
 
     state.counters["Spatial orbitals"] = K;
     state.counters["Electron pairs"] = N_P;
-    state.counters["Dimension"] = onv_basis.get_dimension();
+    state.counters["Dimension"] = onv_basis.dimension();
 }
 
 

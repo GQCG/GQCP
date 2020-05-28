@@ -1,6 +1,5 @@
 target_sources(gqcp
     PRIVATE
-        QCObjective.hpp
         QCStructure.hpp
 )
 

@@ -106,7 +106,7 @@ BOOST_AUTO_TEST_CASE(Shell_to_libint) {
 
 
     // Check if the interfacing from a GQCP::GTOShell to a libint2::GTOShell works
-    // Note that this function also tests LibintInterfacer::undo_renorm()
+    // Note that this function also tests LibintInterfacer::undoRenorm()
     auto libint_shell = GQCP::LibintInterfacer::get().interface(shell);
 
     BOOST_CHECK(std::equal(ref_libint_shell.alpha.begin(), ref_libint_shell.alpha.end(),

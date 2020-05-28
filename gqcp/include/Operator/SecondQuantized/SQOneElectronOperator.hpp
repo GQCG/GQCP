@@ -109,8 +109,6 @@ public:
     /*
      *  GETTERS
      */
-    size_t get_dim() const { return this->dimension(); }
-    size_t get_K() const { return this->dimension(); }
 
 
     /*
@@ -139,18 +137,12 @@ public:
     /**
      *  @return read-only matrix representations of all the parameters (integrals) of the different components of this second-quantized operator
      */
-    const std::array<QCMatrix<Scalar>, Components>& allParameters() const {
-        return this->fs;
-    }
-
+    const std::array<QCMatrix<Scalar>, Components>& allParameters() const { return this->fs; }
 
     /**
      *  @return writable matrix representations of all the parameters (integrals) of the different components of this second-quantized operator
      */
-    std::array<QCMatrix<Scalar>, Components>& allParameters() {
-        return this->fs;
-    }
-
+    std::array<QCMatrix<Scalar>, Components>& allParameters() { return this->fs; }
 
     /**
      *  @param D                the 1-RDM that represents the wave function
@@ -266,10 +258,7 @@ public:
     /**
      *  @return the dimension of the matrix representation of the parameters, i.e. the number of orbitals/sites
      */
-    size_t dimension() const {
-        return this->fs[0].dimension();  // all the dimensions are the same, this is checked in the constructor
-    }
-
+    size_t dimension() const { return this->fs[0].dimension(); /* all the dimensions are the same, this is checked in the constructor */ }
 
     /**
      *  @param a        the vector
@@ -320,15 +309,17 @@ public:
         return SQOneElectronOperator<typename Z::Valued, Components>(F_evaluated);
     }
 
+    /**
+     *  @return the number of orbitals that this one-electron operator is quantized in
+     */
+    size_t numberOfOrbitals() const { return this->dimension(); }
 
     /**
      *  @param i            the index of the component
      * 
      *  @return a read-only the matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator
      */
-    const QCMatrix<Scalar>& parameters(const size_t i = 0) const {
-        return this->fs[i];
-    }
+    const QCMatrix<Scalar>& parameters(const size_t i = 0) const { return this->fs[i]; }
 
 
     /**
@@ -336,9 +327,7 @@ public:
      * 
      *  @return a writable matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator
      */
-    QCMatrix<Scalar>& parameters(const size_t i = 0) {
-        return this->fs[i];
-    }
+    QCMatrix<Scalar>& parameters(const size_t i = 0) { return this->fs[i]; }
 
 
     /**
@@ -350,7 +339,7 @@ public:
 
         // Transform the matrix representations of the components
         for (auto& f : this->allParameters()) {
-            f.basisRotateInPlace(U);
+            f.basisRotate(U);
         }
     }
 
@@ -364,7 +353,7 @@ public:
 
         // Transform the matrix representations of the components
         for (auto& f : this->allParameters()) {
-            f.basisRotateInPlace(jacobi_rotation_parameters);
+            f.basisRotate(jacobi_rotation_parameters);
         }
     }
 
@@ -378,7 +367,7 @@ public:
 
         // Transform the matrix representations of the components
         for (auto& f : this->allParameters()) {
-            f.basisTransformInPlace(T);
+            f.basisTransform(T);
         }
     }
 };

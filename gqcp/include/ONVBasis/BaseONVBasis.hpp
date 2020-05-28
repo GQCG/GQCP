@@ -36,20 +36,33 @@ namespace GQCP {
  */
 class BaseONVBasis {
 protected:
-    size_t K;    // number of spatial orbitals
+    size_t M;    // number of orbitals
     size_t dim;  // dimension of the ONV basis
 
 
-    // PROTECTED CONSTRUCTORS
-    BaseONVBasis() = default;
+public:
+    // CONSTRUCTORS
+
     /**
-     *  @param K        the number of orbitals
+     *  @param M        the number of orbitals
      *  @param dim      the dimension of the ONV basis
      */
-    BaseONVBasis(size_t K, size_t dim);
+    BaseONVBasis(const size_t M, const size_t dim);
+
+    /**
+     *  The default constructor.
+     */
+    BaseONVBasis() = default;
 
 
-public:
+    // DESTRUCTOR
+
+    /**
+     *  The default destructor.
+     */
+    virtual ~BaseONVBasis() = default;
+
+
     // NAMED CONSTRUCTORS
 
     /**
@@ -62,100 +75,12 @@ public:
     static std::shared_ptr<BaseONVBasis> CloneToHeap(const BaseONVBasis& fock_space);
 
 
-    // DESTRUCTOR
-    virtual ~BaseONVBasis() = default;
-
-
-    // GETTERS
-    size_t get_dimension() const { return this->dimension(); }
-    size_t get_K() const { return K; }
-    virtual ONVBasisType get_type() const = 0;
-
-
-    // PUBLIC METHODS
+    // PUBLIC PURE VIRTUAL METHODS
 
     /**
-     *  @return the dimension of this spin-unresolved ONV basis
+     *  @return the type of this ONV basis
      */
-    size_t dimension() const { return this->dim; }
-
-    /**
-     *  @return the coefficient vector for the Hartree-Fock wave function (i.e. the 'first' ONV/Slater determinant)
-     */
-    VectorX<double> hartreeFockExpansion() const;
-
-    /**
-     *  @return a random normalized coefficient vector, with coefficients uniformly distributed in [-1, 1]
-     */
-    VectorX<double> randomExpansion() const;
-
-    /**
-     *  @return a constant normalized coefficients vector (i.e. all the coefficients are equal)
-     */
-    VectorX<double> constantExpansion() const;
-
-
-    // PUBLIC VIRTUAL METHODS
-
-    /**
-     *  Evaluate the operator in a dense matrix
-     *
-     *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
-     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
-     *
-     *  @return the operator's evaluation in a dense matrix with the dimensions of the ONV basis
-     */
-    virtual SquareMatrix<double> evaluateOperatorDense(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const = 0;
-
-    /**
-     *  Evaluate the operator in a sparse matrix
-     *
-     *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
-     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
-     *
-     *  @return the operator's evaluation in a sparse matrix with the dimensions of the ONV basis
-     */
-    virtual Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const = 0;
-
-    /**
-     *  Evaluate the operator in a dense matrix
-     *
-     *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
-     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
-     *
-     *  @return the operator's evaluation in a dense matrix with the dimensions of the ONV basis
-     */
-    virtual SquareMatrix<double> evaluateOperatorDense(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const = 0;
-
-    /**
-     *  Evaluate the operator in a sparse matrix
-     *
-     *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
-     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
-     *
-     *  @return the operator's evaluation in a sparse matrix with the dimensions of the ONV basis
-     */
-    virtual Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const = 0;
-
-    /**
-     *  Evaluate the Hamiltonian in a dense matrix
-     *
-     *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
-     *  @param diagonal_values          bool to indicate if diagonal values will be calculated
-     *
-     *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the ONV basis
-     */
-    virtual SquareMatrix<double> evaluateOperatorDense(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const = 0;
-
-    /**
-     *  Evaluate the Hamiltonian in a sparse matrix
-     *
-     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
-     *  @param diagonal_values              bool to indicate if diagonal values will be calculated
-     *
-     *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the ONV basis
-     */
-    virtual Eigen::SparseMatrix<double> evaluateOperatorSparse(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const = 0;
+    virtual ONVBasisType type() const = 0;
 
     /**
      *  Evaluate the diagonal of the operator
@@ -183,6 +108,94 @@ public:
      *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the ONV basis
      */
     virtual VectorX<double> evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const = 0;
+
+    /**
+     *  Evaluate the operator in a dense matrix
+     *
+     *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
+     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *
+     *  @return the operator's evaluation in a dense matrix with the dimensions of the ONV basis
+     */
+    virtual SquareMatrix<double> evaluateOperatorDense(const ScalarSQOneElectronOperator<double>& one_op, const bool diagonal_values) const = 0;
+
+    /**
+     *  Evaluate the operator in a dense matrix
+     *
+     *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
+     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *
+     *  @return the operator's evaluation in a dense matrix with the dimensions of the ONV basis
+     */
+    virtual SquareMatrix<double> evaluateOperatorDense(const ScalarSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const = 0;
+
+    /**
+     *  Evaluate the Hamiltonian in a dense matrix
+     *
+     *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
+     *  @param diagonal_values          bool to indicate if diagonal values will be calculated
+     *
+     *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the ONV basis
+     */
+    virtual SquareMatrix<double> evaluateOperatorDense(const SQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const = 0;
+
+    /**
+     *  Evaluate the operator in a sparse matrix
+     *
+     *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
+     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *
+     *  @return the operator's evaluation in a sparse matrix with the dimensions of the ONV basis
+     */
+    virtual Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op, const bool diagonal_values) const = 0;
+
+    /**
+     *  Evaluate the operator in a sparse matrix
+     *
+     *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
+     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *
+     *  @return the operator's evaluation in a sparse matrix with the dimensions of the ONV basis
+     */
+    virtual Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const = 0;
+
+    /**
+     *  Evaluate the Hamiltonian in a sparse matrix
+     *
+     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+     *  @param diagonal_values              bool to indicate if diagonal values will be calculated
+     *
+     *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the ONV basis
+     */
+    virtual Eigen::SparseMatrix<double> evaluateOperatorSparse(const SQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const = 0;
+
+
+    // PUBLIC METHODS
+
+    /**
+     *  @return a constant normalized coefficients vector (i.e. all the coefficients are equal)
+     */
+    VectorX<double> constantExpansion() const;
+
+    /**
+     *  @return the dimension of this spin-unresolved ONV basis
+     */
+    size_t dimension() const { return this->dim; }
+
+    /**
+     *  @return the coefficient vector for the Hartree-Fock wave function (i.e. the 'first' ONV/Slater determinant)
+     */
+    VectorX<double> hartreeFockExpansion() const;
+
+    /**
+     *  @return the number of orbitals that this ONV basis describes
+     */
+    size_t numberOfOrbitals() const { return M; }
+
+    /**
+     *  @return a random normalized coefficient vector, with coefficients uniformly distributed in [-1, 1]
+     */
+    VectorX<double> randomExpansion() const;
 };
 
 

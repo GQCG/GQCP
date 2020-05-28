@@ -43,20 +43,9 @@ private:
     SpinResolvedSelectedONVBasis onv_basis;  // the spin-resolved selected ONV basis
 
 
-private:
-    // PRIVATE METHODS
-    /**
-     *  Evaluate all Hamiltonian elements, putting the results in the Hamiltonian matrix or matvec through the `method` function
-     *  This function is used both in `constructHamiltonian()` and `matrixVectorProduct()` to avoid duplicate code.
-     *
-     *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
-     *  @param method                   the method depending to how you wish to construct the Hamiltonian
-     */
-    void evaluateHamiltonianElements(const SQHamiltonian<double>& sq_hamiltonian, const PassToMethod& method) const;
-
-
 public:
     // CONSTRUCTORS
+
     /**
      *  @param onv_basis               the spin-resolved selected ONV basis
      */
@@ -64,14 +53,22 @@ public:
 
 
     // DESTRUCTOR
+
+    /**
+     *  The default destructor.
+     */
     ~SelectedCI() = default;
 
 
-    // OVERRIDDEN GETTERS
-    const BaseONVBasis* get_fock_space() const override { return &onv_basis; }
+    // PUBLIC OVERRIDDEN METHODS
 
+    /**
+     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+     *
+     *  @return the diagonal of the matrix representation of the SelectedCI Hamiltonian
+     */
+    VectorX<double> calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const override;
 
-    // OVERRIDDEN PUBLIC METHODS
     /**
      *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
      *
@@ -89,11 +86,21 @@ public:
     VectorX<double> matrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const override;
 
     /**
-     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
-     *
-     *  @return the diagonal of the matrix representation of the SelectedCI Hamiltonian
+     *  @return the ONV basis that is associated with this HamiltonianBuilder
      */
-    VectorX<double> calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const override;
+    const BaseONVBasis* onvBasis() const override { return &onv_basis; }
+
+
+    // PUBLIC METHODS
+
+    /**
+     *  Evaluate all Hamiltonian elements, putting the results in the Hamiltonian matrix or matvec through the `method` function
+     *  This function is used both in `constructHamiltonian()` and `matrixVectorProduct()` to avoid duplicate code.
+     *
+     *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
+     *  @param method                   the method depending to how you wish to construct the Hamiltonian
+     */
+    void evaluateHamiltonianElements(const SQHamiltonian<double>& sq_hamiltonian, const PassToMethod& method) const;
 };
 
 

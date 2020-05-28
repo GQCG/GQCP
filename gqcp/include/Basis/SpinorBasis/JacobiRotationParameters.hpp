@@ -30,26 +30,28 @@ namespace GQCP {
  */
 class JacobiRotationParameters {
 private:
-    size_t p;      // p > q, starts from 0
-    size_t q;      // starts from 0
-    double angle;  // expressed in radians
+    size_t m_p;      // p > q, starts from 0
+    size_t m_q;      // starts from 0
+    double m_angle;  // expressed in radians
 
 public:
     // CONSTRUCTORS
-    /**
-     *  Default constructor
-     */
-    JacobiRotationParameters();
 
     /**
      *  @param p        the index of the first rotated orbital
      *  @param q        the index of the second rotated orbital
      *  @param angle    the angle of rotation, in radians
      */
-    JacobiRotationParameters(size_t p, size_t q, double angle);
+    JacobiRotationParameters(const size_t p, const size_t q, const double angle);
+
+    /**
+     *  Default constructor setting everything to zero
+     */
+    JacobiRotationParameters();
 
 
     // OPERATORS
+
     /**
      *  @param os                               the output stream which the parameters should be concatenated to
      *  @param jacobi_rotation_parameters       the parameters that should be concatenated to the output stream
@@ -59,10 +61,22 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const JacobiRotationParameters& jacobi_rotation_parameters);
 
 
-    // GETTERS
-    size_t get_p() const { return this->p; }
-    size_t get_q() const { return this->q; }
-    double get_angle() const { return this->angle; }
+    // PUBLIC METHODS
+
+    /**
+     *  @return the angle of rotation, in radians
+     */
+    double angle() const { return this->m_angle; }
+
+    /**
+     *  @return the index of the first rotated orbital
+     */
+    size_t p() const { return this->m_p; }
+
+    /**
+     *  @return the index of the second rotated orbital
+     */
+    size_t q() const { return this->m_q; }
 };
 
 

@@ -30,9 +30,13 @@ namespace gqcpy {
 void bindSeniorityZeroONVBasis(py::module& module) {
     py::class_<GQCP::SeniorityZeroONVBasis>(module, "SeniorityZeroONVBasis", "A full seniority-zero ONV basis.")
 
+        // CONSTRUCTORS
+
         .def(py::init<const size_t, const size_t>(),
              py::arg("K"),
              py::arg("N_P"))
+
+        // PUBLIC METHODS
 
         .def("dimension",
              &GQCP::SeniorityZeroONVBasis::dimension)

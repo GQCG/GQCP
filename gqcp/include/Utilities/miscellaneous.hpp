@@ -31,48 +31,27 @@ namespace GQCP {
 
 
 /**
- *  Print the time a function takes to be executed
- *
- *  @param method_name      the name of function that is to be executed
- *  @param function         the function call to be made
+ *  A generalization of std::find
+ * 
+ *  @tparam T           the type of elements stored in the vector
+ * 
+ *  @param vector       the vector containing the elements
+ *  @apram value        the value that should be found
+ * 
+ *  @return the index of the element that should be found in the given vector
  */
-void printExecutionTime(const std::string& method_name, const std::function<void()>& function);
+template <typename T>
+size_t findElementIndex(const std::vector<T>& vector, const T& value) {
 
+    const auto& it = std::find(vector.begin(), vector.end(), value);  // 'it' for iterator
 
-/**
- *  @param S    the positive integer to be converted to Gray code
- *
- *  @return the Gray code of the given integer number as a bitset
- */
-size_t gray_code(size_t S);
+    // Check if the value was found
+    if (it == vector.end()) {
+        throw std::out_of_range("findElementIndex(const std::vector<T>&, const T&): the given value was not found in the given vector");
+    }
 
-/**
- *  @param v            the vector index
- *  @param cols         the number of columns in the matrix
- *  @param skipped      the number of columns that are skipped in the matrix representation
- *
- *  @return the row-major major (non-contiguous) index given the corresponding vector index
- */
-size_t matrixIndexMajor(size_t v, size_t cols, size_t skipped = 0);
-
-/**
- *  @param v            the vector index
- *  @param cols         the number of columns in the matrix
- *  @param skipped      the number of columns that are skipped in the matrix representation
- *
- *  @return the row-major minor (contiguous) index given the corresponding vector index
- */
-size_t matrixIndexMinor(size_t v, size_t cols, size_t skipped = 0);
-
-/**
- *  @param i            the row index
- *  @param j            the column index
- *  @param cols         the number of columns in de matrix
- *  @param skipped      the number of columns that are skipped in the matrix representation
- *
- *  @return the vector index given the corresponding row-major matrix indices
- */
-size_t vectorIndex(size_t i, size_t j, size_t cols, size_t skipped = 0);
+    return std::distance(vector.begin(), it);  // the 'difference' between two iterators is an index
+}
 
 
 /**
@@ -85,9 +64,9 @@ size_t vectorIndex(size_t i, size_t j, size_t cols, size_t skipped = 0);
  *  @return the vector of the k-sized partitions
  */
 template <size_t k>
-std::vector<std::array<size_t, k>> uniquePartitions(size_t n) {
+std::vector<std::array<size_t, k>> generateUniquePartitionsOf(const size_t n) {
 
-    static_assert(k > 0, "template<size_t> uniquePartitions(size_t): the template parameter must be larger than zero");
+    static_assert(k > 0, "template<size_t> generateUniquePartitionsOf(size_t): the template parameter must be larger than zero");
 
 
     // The main algorithm starts from {n, 0, ..., 0} and moves a 1 from the right-most number (>1) to the left-most position that holds a value at least 2 smaller. If there are none such numbers left, the algorithm is finished
@@ -129,19 +108,51 @@ std::vector<std::array<size_t, k>> uniquePartitions(size_t n) {
 
 
 /**
- *  @param x        the number
+ *  @param S    the positive integer to be converted to Gray code
  *
- *  @return the triangular root of the given number. This is also the dimension of the square matrix whose lower/upper triangle has the given number of elements
+ *  @return the Gray code of the given integer number as a bitset
  */
-size_t triangularRoot(const size_t x);
+size_t grayCodeOf(const size_t S);
+
+/**
+ *  @param v            the vector index
+ *  @param cols         the number of columns in the matrix
+ *  @param skipped      the number of columns that are skipped in the matrix representation
+ *
+ *  @return the row-major major (non-contiguous) index given the corresponding vector index
+ */
+size_t matrixIndexMajor(const size_t v, const size_t cols, const size_t skipped = 0);
+
+/**
+ *  @param v            the vector index
+ *  @param cols         the number of columns in the matrix
+ *  @param skipped      the number of columns that are skipped in the matrix representation
+ *
+ *  @return the row-major minor (contiguous) index given the corresponding vector index
+ */
+size_t matrixIndexMinor(const size_t v, const size_t cols, const size_t skipped = 0);
+
+/**
+ *  Print the time a function takes to be executed
+ *
+ *  @param method_name      the name of function that is to be executed
+ *  @param function         the function call to be made
+ */
+void printExecutionTime(const std::string& method_name, const std::function<void()>& function);
 
 /**
  *  @param x        the number
  *
  *  @return the strict triangular root of the given number. This is also the dimension of the square matrix whose strict lower/upper triangle has the given number of elements
  */
-size_t strictTriangularRoot(const size_t x);
+size_t strictTriangularRootOf(const size_t x);
 
+/**
+ *  @param x        the number
+ *
+ *  @return the triangular root of the given number. This is also the dimension of the square matrix whose lower/upper triangle has the given number of elements
+ */
+size_t triangularRootOf(const size_t x);
 
 /**
  *  @param filename         the name of the file that should be opened
@@ -149,29 +160,15 @@ size_t strictTriangularRoot(const size_t x);
  */
 std::ifstream validateAndOpen(const std::string& filename, const std::string& extension);
 
-
 /**
- *  A generalization of std::find
- * 
- *  @tparam T           the type of elements stored in the vector
- * 
- *  @param vector       the vector containing the elements
- *  @apram value        the value that should be found
- * 
- *  @return the index of the element that should be found in the given vector
+ *  @param i            the row index
+ *  @param j            the column index
+ *  @param cols         the number of columns in de matrix
+ *  @param skipped      the number of columns that are skipped in the matrix representation
+ *
+ *  @return the vector index given the corresponding row-major matrix indices
  */
-template <typename T>
-size_t findElementIndex(const std::vector<T>& vector, const T& value) {
-
-    const auto& it = std::find(vector.begin(), vector.end(), value);  // 'it' for iterator
-
-    // Check if the value was found
-    if (it == vector.end()) {
-        throw std::out_of_range("findElementIndex(const std::vector<T>&, const T&): the given value was not found in the given vector");
-    }
-
-    return std::distance(vector.begin(), it);  // the 'difference' between two iterators is an index
-}
+size_t vectorIndex(const size_t i, const size_t j, const size_t cols, size_t skipped = 0);
 
 
 }  // namespace GQCP

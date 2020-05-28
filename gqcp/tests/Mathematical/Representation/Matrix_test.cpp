@@ -116,7 +116,7 @@ BOOST_AUTO_TEST_CASE(print) {
 }
 
 
-BOOST_AUTO_TEST_CASE(matrixMinor) {
+BOOST_AUTO_TEST_CASE(calculateMinor) {
 
     GQCP::MatrixX<double> A {3, 4};
     // clang-format off
@@ -131,18 +131,18 @@ BOOST_AUTO_TEST_CASE(matrixMinor) {
     A_00 <<  6,  7,  8,
             10, 11, 12;
     // clang-format on
-    BOOST_CHECK(A_00.isApprox(A.matrixMinor(0, 0)));
+    BOOST_CHECK(A_00.isApprox(A.calculateMinor(0, 0)));
 
     GQCP::MatrixX<double> A_21 {2, 3};
     // clang-format off
     A_21 << 1, 3, 4,
             5, 7, 8;
     // clang-format on
-    BOOST_CHECK(A_21.isApprox(A.matrixMinor(2, 1)));
+    BOOST_CHECK(A_21.isApprox(A.calculateMinor(2, 1)));
 }
 
 
-BOOST_AUTO_TEST_CASE(pairWiseReduce) {
+BOOST_AUTO_TEST_CASE(pairWiseReduced) {
 
     GQCP::MatrixX<double> M {4, 4};
     // clang-format off
@@ -157,14 +157,14 @@ BOOST_AUTO_TEST_CASE(pairWiseReduce) {
     GQCP::VectorX<double> v_ref_1 {16};
     v_ref_1 << 0, 4, 8, 12, 1, 5, 9, 13, 2, 6, 10, 14, 3, 7, 11, 15;
 
-    BOOST_CHECK(v_ref_1.isApprox(M.pairWiseReduce(), 1.0e-12));
+    BOOST_CHECK(v_ref_1.isApprox(M.pairWiseReduced(), 1.0e-12));
 
 
     // Test non-default behavior
     GQCP::VectorX<double> v_ref_2 {9};
     v_ref_2 << 5, 9, 13, 6, 10, 14, 7, 11, 15;
 
-    BOOST_CHECK(v_ref_2.isApprox(M.pairWiseReduce(1, 1), 1.0e-12));
+    BOOST_CHECK(v_ref_2.isApprox(M.pairWiseReduced(1, 1), 1.0e-12));
 }
 
 

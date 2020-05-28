@@ -41,7 +41,7 @@ public:
 
 public:
     /*
-     *  OVERRIDDEN PUBLIC METHODS
+     *  PUBLIC OVERRIDDEN METHODS
      */
 
     /**
@@ -50,6 +50,7 @@ public:
     std::string description() const override {
         return "Calculate the new T1 and T2-amplitudes using an update formula from the current T1- and T2-amplitudes.";
     }
+
 
     /**
      *  Calculate the new T1 and T2-amplitudes using an update formula from the current T1- and T2-amplitudes.

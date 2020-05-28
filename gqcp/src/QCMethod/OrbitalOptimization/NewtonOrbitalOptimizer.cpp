@@ -45,15 +45,24 @@ NewtonOrbitalOptimizer::NewtonOrbitalOptimizer(std::shared_ptr<BaseHessianModifi
  */
 
 /**
- *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
+ *  Produce a new rotation matrix by either
+ *      - continuing in the direction of the largest (in absolute value) non-conforming eigenvalue (i.e. the smallest (negative) eigenvalue for minimization algorithms and the largest (positive) eigenvalue for maximization algorithms)
+ *      - using the Newton step if it is well-defined
+ * 
+ *  @param sq_hamiltonian           the current Hamiltonian
+ * 
+ *  @return a unitary matrix that will be used to rotate the current Hamiltonian into the next iteration
  */
-void NewtonOrbitalOptimizer::prepareConvergenceChecking(const SQHamiltonian<double>& sq_hamiltonian) {
+TransformationMatrix<double> NewtonOrbitalOptimizer::calculateNewRotationMatrix(const SQHamiltonian<double>& sq_hamiltonian) const {
 
-    this->prepareOrbitalDerivativesCalculation(sq_hamiltonian);
+    // The general goal of this function is to:
+    //      1) determine the free orbital rotation generators, using gradient and Hessian information
+    //      2) determine the full orbital rotation generators, by also including any redundant parameters
+    //      3) calculate the unitary rotation matrix from the full orbital rotation generators
 
-    // All Newton-based orbital optimizers need to calculate a gradient and Hessian
-    this->gradient = this->calculateGradientVector(sq_hamiltonian);
-    this->hessian = this->calculateHessianMatrix(sq_hamiltonian);
+    const auto full_kappa = this->calculateNewFullOrbitalGenerators(sq_hamiltonian);  // should internally calculate the free orbital rotation generators
+
+    return full_kappa.calculateRotationMatrix();  // matrix exponential
 }
 
 
@@ -85,24 +94,15 @@ bool NewtonOrbitalOptimizer::checkForConvergence(const SQHamiltonian<double>& sq
 
 
 /**
- *  Produce a new rotation matrix by either
- *      - continuing in the direction of the largest (in absolute value) non-conforming eigenvalue (i.e. the smallest (negative) eigenvalue for minimization algorithms and the largest (positive) eigenvalue for maximization algorithms)
- *      - using the Newton step if it is well-defined
- * 
- *  @param sq_hamiltonian           the current Hamiltonian
- * 
- *  @return a unitary matrix that will be used to rotate the current Hamiltonian into the next iteration
+ *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
  */
-TransformationMatrix<double> NewtonOrbitalOptimizer::calculateNewRotationMatrix(const SQHamiltonian<double>& sq_hamiltonian) const {
+void NewtonOrbitalOptimizer::prepareConvergenceChecking(const SQHamiltonian<double>& sq_hamiltonian) {
 
-    // The general goal of this function is to:
-    //      1) determine the free orbital rotation generators, using gradient and Hessian information
-    //      2) determine the full orbital rotation generators, by also including any redundant parameters
-    //      3) calculate the unitary rotation matrix from the full orbital rotation generators
+    this->prepareOrbitalDerivativesCalculation(sq_hamiltonian);
 
-    const auto full_kappa = this->calculateNewFullOrbitalGenerators(sq_hamiltonian);  // should internally calculate the free orbital rotation generators
-
-    return full_kappa.calculateRotationMatrix();  // matrix exponential
+    // All Newton-based orbital optimizers need to calculate a gradient and Hessian
+    this->gradient = this->calculateGradientVector(sq_hamiltonian);
+    this->hessian = this->calculateHessianMatrix(sq_hamiltonian);
 }
 
 
@@ -116,7 +116,7 @@ TransformationMatrix<double> NewtonOrbitalOptimizer::calculateNewRotationMatrix(
  *  @return the current orbital gradient as a vector
  */
 VectorX<double> NewtonOrbitalOptimizer::calculateGradientVector(const SQHamiltonian<double>& sq_hamiltonian) const {
-    return this->calculateGradientMatrix(sq_hamiltonian).pairWiseStrictReduce();
+    return this->calculateGradientMatrix(sq_hamiltonian).pairWiseStrictReduced();
 }
 
 
@@ -126,34 +126,7 @@ VectorX<double> NewtonOrbitalOptimizer::calculateGradientVector(const SQHamilton
  *  @return the current orbital Hessian as a matrix
  */
 SquareMatrix<double> NewtonOrbitalOptimizer::calculateHessianMatrix(const SQHamiltonian<double>& sq_hamiltonian) const {
-    return this->calculateHessianTensor(sq_hamiltonian).pairWiseStrictReduce();
-}
-
-
-/**
- *  @return if a Newton step would be well-defined, i.e. the Hessian is positive definite
- */
-bool NewtonOrbitalOptimizer::newtonStepIsWellDefined() const {
-
-    // Can only produce a well-defined descending Newton step if the Hessian is positive definite
-    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> hessian_diagonalizer {this->hessian};
-    if (hessian_diagonalizer.eigenvalues()(0) < -1.0e-04) {  // not enough negative curvature to continue; can we change this to -this->convergence_threshold?
-        return false;
-    } else {
-        return true;
-    }
-}
-
-
-/**
- *  If the Newton step is ill-defined, examine the Hessian and produce a new direction from it: the eigenvector that corresponds to the smallest (negative) eigenvalue of the Hessian
- * 
- *  @return the new direction from the Hessian if the Newton step is ill-defined
- */
-VectorX<double> NewtonOrbitalOptimizer::directionFromIndefiniteHessian() const {
-
-    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> hessian_diagonalizer {this->hessian};
-    return hessian_diagonalizer.eigenvectors().col(0);
+    return this->calculateHessianTensor(sq_hamiltonian).pairWiseStrictReduced();
 }
 
 
@@ -184,6 +157,33 @@ OrbitalRotationGenerators NewtonOrbitalOptimizer::calculateNewFreeOrbitalGenerat
     else {  // the gradient has converged but the Hessian is indefinite, so we have to 'push the algorithm over'
         // We're sure that if the program reaches this step, the Newton step is ill-defined
         return OrbitalRotationGenerators(this->directionFromIndefiniteHessian());
+    }
+}
+
+
+/**
+ *  If the Newton step is ill-defined, examine the Hessian and produce a new direction from it: the eigenvector that corresponds to the smallest (negative) eigenvalue of the Hessian
+ * 
+ *  @return the new direction from the Hessian if the Newton step is ill-defined
+ */
+VectorX<double> NewtonOrbitalOptimizer::directionFromIndefiniteHessian() const {
+
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> hessian_diagonalizer {this->hessian};
+    return hessian_diagonalizer.eigenvectors().col(0);
+}
+
+
+/**
+ *  @return if a Newton step would be well-defined, i.e. the Hessian is positive definite
+ */
+bool NewtonOrbitalOptimizer::newtonStepIsWellDefined() const {
+
+    // Can only produce a well-defined descending Newton step if the Hessian is positive definite
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> hessian_diagonalizer {this->hessian};
+    if (hessian_diagonalizer.eigenvalues()(0) < -1.0e-04) {  // not enough negative curvature to continue; can we change this to -this->convergence_threshold?
+        return false;
+    } else {
+        return true;
     }
 }
 

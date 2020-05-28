@@ -22,14 +22,18 @@ namespace GQCP {
 
 
 /*
- *  CONSTRUCTOR
+ *  CONSTRUCTORS
  */
-FCIRDMBuilder::FCIRDMBuilder(const SpinResolvedONVBasis& fock_space) :
-    fock_space {fock_space} {}
+
+/**
+ *  @param onv_basis                the ONV basis that is associated to this RDMBuilder
+ */
+FCIRDMBuilder::FCIRDMBuilder(const SpinResolvedONVBasis& onv_basis) :
+    onv_basis {onv_basis} {}
 
 
 /*
- *  OVERRIDDEN PUBLIC METHODS
+ *  PUBLIC OVERRIDDEN METHODS
  */
 
 /**
@@ -40,21 +44,21 @@ FCIRDMBuilder::FCIRDMBuilder(const SpinResolvedONVBasis& fock_space) :
 OneRDMs<double> FCIRDMBuilder::calculate1RDMs(const VectorX<double>& x) const {
 
     // Initialize as zero matrices
-    size_t K = this->fock_space.get_K();
+    size_t K = this->onv_basis.numberOfOrbitals();
 
     OneRDM<double> D_aa = OneRDM<double>::Zero(K, K);
     OneRDM<double> D_bb = OneRDM<double>::Zero(K, K);
 
-    SpinUnresolvedONVBasis fock_space_alpha = fock_space.get_onv_basis_alpha();
-    SpinUnresolvedONVBasis fock_space_beta = fock_space.get_onv_basis_beta();
+    SpinUnresolvedONVBasis onv_basis_alpha = onv_basis.onvBasisAlpha();
+    SpinUnresolvedONVBasis onv_basis_beta = onv_basis.onvBasisBeta();
 
-    auto dim_alpha = fock_space_alpha.get_dimension();
-    auto dim_beta = fock_space_beta.get_dimension();
+    auto dim_alpha = onv_basis_alpha.dimension();
+    auto dim_beta = onv_basis_beta.dimension();
 
     // ALPHA
-    SpinUnresolvedONV spin_string_alpha = fock_space_alpha.makeONV(0);  // alpha spin string with address 0
-    for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {          // I_alpha loops over all the addresses of the alpha spin strings
-        for (size_t p = 0; p < K; p++) {                                // p loops over SOs
+    SpinUnresolvedONV spin_string_alpha = onv_basis_alpha.constructONVFromAddress(0);  // alpha spin string with address 0
+    for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {                         // I_alpha loops over all the addresses of the alpha spin strings
+        for (size_t p = 0; p < K; p++) {                                               // p loops over SOs
             int sign_p = 1;
             if (spin_string_alpha.annihilate(p, sign_p)) {  // if p is in I_alpha
                 double diagonal_contribution = 0;
@@ -70,8 +74,8 @@ OneRDMs<double> FCIRDMBuilder::calculate1RDMs(const VectorX<double>& x) const {
                 // Off-diagonal contributions for the 1-DM, i.e. D_pq (p!=q)
                 for (size_t q = 0; q < p; q++) {  // q < p loops over SOs
                     int sign_pq = sign_p;
-                    if (spin_string_alpha.create(q, sign_pq)) {                           // if q is not occupied in I_alpha
-                        size_t J_alpha = fock_space_alpha.getAddress(spin_string_alpha);  // find all strings J_alpha that couple to I_alpha
+                    if (spin_string_alpha.create(q, sign_pq)) {                         // if q is not occupied in I_alpha
+                        size_t J_alpha = onv_basis_alpha.addressOf(spin_string_alpha);  // find all strings J_alpha that couple to I_alpha
 
                         double off_diagonal_contribution = 0;
                         for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
@@ -93,16 +97,16 @@ OneRDMs<double> FCIRDMBuilder::calculate1RDMs(const VectorX<double>& x) const {
         }      // p loop
 
         if (I_alpha < dim_alpha - 1) {  // prevent the last permutation from occurring
-            fock_space_alpha.setNextONV(spin_string_alpha);
+            onv_basis_alpha.transformONVToNextPermutation(spin_string_alpha);
         }
 
     }  // I_alpha loop
 
 
     // BETA
-    SpinUnresolvedONV spin_string_beta = fock_space_beta.makeONV(0);  // spin string with address 0
-    for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {            // I_beta loops over all the addresses of the spin strings
-        for (size_t p = 0; p < K; p++) {                              // p loops over SOs
+    SpinUnresolvedONV spin_string_beta = onv_basis_beta.constructONVFromAddress(0);  // spin string with address 0
+    for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {                           // I_beta loops over all the addresses of the spin strings
+        for (size_t p = 0; p < K; p++) {                                             // p loops over SOs
             int sign_p = 1;
             if (spin_string_beta.annihilate(p, sign_p)) {  // if p is in I_beta
                 double diagonal_contribution = 0;
@@ -119,8 +123,8 @@ OneRDMs<double> FCIRDMBuilder::calculate1RDMs(const VectorX<double>& x) const {
                 // Off-diagonal contributions for the 1-DM
                 for (size_t q = 0; q < p; q++) {  // q < p loops over SOs
                     int sign_pq = sign_p;
-                    if (spin_string_beta.create(q, sign_pq)) {                         // if q is not in I_beta
-                        size_t J_beta = fock_space_beta.getAddress(spin_string_beta);  // find all strings J_beta that couple to I_beta
+                    if (spin_string_beta.create(q, sign_pq)) {                       // if q is not in I_beta
+                        size_t J_beta = onv_basis_beta.addressOf(spin_string_beta);  // find all strings J_beta that couple to I_beta
 
                         double off_diagonal_contribution = 0;
                         for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
@@ -142,7 +146,7 @@ OneRDMs<double> FCIRDMBuilder::calculate1RDMs(const VectorX<double>& x) const {
         }      // loop over p
 
         if (I_beta < dim_beta - 1) {  // prevent the last permutation from occurring
-            fock_space_beta.setNextONV(spin_string_beta);
+            onv_basis_beta.transformONVToNextPermutation(spin_string_beta);
         }
 
     }  // I_beta loop
@@ -160,14 +164,14 @@ TwoRDMs<double> FCIRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
 
     // KISS implementation of the 2-DMs (no symmetry relations are used yet)
 
-    SpinUnresolvedONVBasis fock_space_alpha = fock_space.get_onv_basis_alpha();
-    SpinUnresolvedONVBasis fock_space_beta = fock_space.get_onv_basis_beta();
+    SpinUnresolvedONVBasis onv_basis_alpha = onv_basis.onvBasisAlpha();
+    SpinUnresolvedONVBasis onv_basis_beta = onv_basis.onvBasisBeta();
 
-    auto dim_alpha = fock_space_alpha.get_dimension();
-    auto dim_beta = fock_space_beta.get_dimension();
+    auto dim_alpha = onv_basis_alpha.dimension();
+    auto dim_beta = onv_basis_beta.dimension();
 
     // Initialize as zero matrices
-    size_t K = this->fock_space.get_K();
+    size_t K = this->onv_basis.numberOfOrbitals();
 
     TwoRDM<double> d_aaaa {K};
     d_aaaa.setZero();
@@ -180,8 +184,8 @@ TwoRDMs<double> FCIRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
 
 
     // ALPHA-ALPHA-ALPHA-ALPHA
-    SpinUnresolvedONV spin_string_alpha_aaaa = fock_space_alpha.makeONV(0);  // spin string with address 0
-    for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {               // I_alpha loops over all the addresses of the alpha spin strings
+    SpinUnresolvedONV spin_string_alpha_aaaa = onv_basis_alpha.constructONVFromAddress(0);  // spin string with address 0
+    for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {                              // I_alpha loops over all the addresses of the alpha spin strings
 
         for (size_t p = 0; p < K; p++) {  // p loops over SOs
             int sign_p = 1;               // sign of the operator a_p
@@ -201,8 +205,8 @@ TwoRDMs<double> FCIRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
                                 for (size_t q = 0; q < K; q++) {  // q loops over SOs
                                     int sign_prsq = sign_prs;     // sign of the operator a^dagger_q a^dagger_s a_r a_p
 
-                                    if (spin_string_alpha_aaaa.create(q, sign_prsq)) {                         // if q is not in I_alpha
-                                        size_t J_alpha = fock_space_alpha.getAddress(spin_string_alpha_aaaa);  // address of the coupling string
+                                    if (spin_string_alpha_aaaa.create(q, sign_prsq)) {                       // if q is not in I_alpha
+                                        size_t J_alpha = onv_basis_alpha.addressOf(spin_string_alpha_aaaa);  // address of the coupling string
 
                                         double contribution = 0.0;
                                         for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
@@ -231,15 +235,15 @@ TwoRDMs<double> FCIRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
         }  // loop over p
 
         if (I_alpha < dim_alpha - 1) {  // prevent the last permutation from occurring
-            fock_space_alpha.setNextONV(spin_string_alpha_aaaa);
+            onv_basis_alpha.transformONVToNextPermutation(spin_string_alpha_aaaa);
         }
 
     }  // loop over I_alpha
 
 
     // ALPHA-ALPHA-BETA-BETA
-    SpinUnresolvedONV spin_string_alpha_aabb = fock_space_alpha.makeONV(0);  // spin string with address 0
-    for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {               // I_alpha loops over all the addresses of the alpha spin strings
+    SpinUnresolvedONV spin_string_alpha_aabb = onv_basis_alpha.constructONVFromAddress(0);  // spin string with address 0
+    for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {                              // I_alpha loops over all the addresses of the alpha spin strings
 
         for (size_t p = 0; p < K; p++) {  // p loops over SOs
             int sign_p = 1;               // sign of the operator a_p_alpha
@@ -249,12 +253,12 @@ TwoRDMs<double> FCIRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
                 for (size_t q = 0; q < K; q++) {  // q loops over SOs
                     int sign_pq = sign_p;         // sign of the operator a^dagger_p_alpha a_p_alpha
 
-                    if (spin_string_alpha_aabb.create(q, sign_pq)) {                           // if q is not in I_alpha
-                        size_t J_alpha = fock_space_alpha.getAddress(spin_string_alpha_aabb);  // the string that couples to I_alpha
+                    if (spin_string_alpha_aabb.create(q, sign_pq)) {                         // if q is not in I_alpha
+                        size_t J_alpha = onv_basis_alpha.addressOf(spin_string_alpha_aabb);  // the string that couples to I_alpha
 
 
-                        SpinUnresolvedONV spin_string_beta_aabb = fock_space_beta.makeONV(0);  // spin string with address 0
-                        for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {                 // I_beta loops over all addresses of beta spin strings
+                        SpinUnresolvedONV spin_string_beta_aabb = onv_basis_beta.constructONVFromAddress(0);  // spin string with address 0
+                        for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {                                // I_beta loops over all addresses of beta spin strings
 
                             for (size_t r = 0; r < K; r++) {  // r loops over all SOs
                                 int sign_r = 1;               // sign of the operator a_r_beta
@@ -265,7 +269,7 @@ TwoRDMs<double> FCIRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
                                         int sign_rs = sign_r;         // sign of the operator a^dagger_s_beta a_r_beta
 
                                         if (spin_string_beta_aabb.create(s, sign_rs)) {
-                                            size_t J_beta = fock_space_beta.getAddress(spin_string_beta_aabb);  // the string that couples to I_beta
+                                            size_t J_beta = onv_basis_beta.addressOf(spin_string_beta_aabb);  // the string that couples to I_beta
 
                                             double c_I_alpha_I_beta = x(I_alpha * dim_beta + I_beta);  // alpha addresses are 'major'
                                             double c_J_alpha_J_beta = x(J_alpha * dim_beta + J_beta);
@@ -282,7 +286,7 @@ TwoRDMs<double> FCIRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
                             }  // loop over r
 
                             if (I_beta < dim_beta - 1) {  // prevent the last permutation from occurring
-                                fock_space_beta.setNextONV(spin_string_beta_aabb);
+                                onv_basis_beta.transformONVToNextPermutation(spin_string_beta_aabb);
                             }
 
                         }  // loop over beta addresses
@@ -296,7 +300,7 @@ TwoRDMs<double> FCIRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
         }  // loop over p
 
         if (I_alpha < dim_alpha - 1) {  // prevent the last permutation from occurring
-            fock_space_alpha.setNextONV(spin_string_alpha_aabb);
+            onv_basis_alpha.transformONVToNextPermutation(spin_string_alpha_aabb);
         }
 
     }  // loop over alpha addresses
@@ -309,8 +313,8 @@ TwoRDMs<double> FCIRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
 
 
     // BETA-BETA-BETA-BETA
-    SpinUnresolvedONV spin_string_beta_bbbb = fock_space_beta.makeONV(0);  // spin string with address 0
-    for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {                 // I_beta loops over all the addresses of the beta spin strings
+    SpinUnresolvedONV spin_string_beta_bbbb = onv_basis_beta.constructONVFromAddress(0);  // spin string with address 0
+    for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {                                // I_beta loops over all the addresses of the beta spin strings
 
         for (size_t p = 0; p < K; p++) {  // p loops over SOs
             int sign_p = 1;               // sign of the operator a_p
@@ -330,8 +334,8 @@ TwoRDMs<double> FCIRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
                                 for (size_t q = 0; q < K; q++) {  // q loops over SOs
                                     int sign_prsq = sign_prs;     // sign of the operator a^dagger_q a^dagger_s a_r a_p
 
-                                    if (spin_string_beta_bbbb.create(q, sign_prsq)) {                       // if q is not in I_beta
-                                        size_t J_beta = fock_space_beta.getAddress(spin_string_beta_bbbb);  // address of the coupling string
+                                    if (spin_string_beta_bbbb.create(q, sign_prsq)) {                     // if q is not in I_beta
+                                        size_t J_beta = onv_basis_beta.addressOf(spin_string_beta_bbbb);  // address of the coupling string
 
                                         double contribution = 0.0;
                                         for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
@@ -360,26 +364,12 @@ TwoRDMs<double> FCIRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
         }  // loop over p
 
         if (I_beta < dim_beta - 1) {  // prevent the last permutation from occurring
-            fock_space_beta.setNextONV(spin_string_beta_bbbb);
+            onv_basis_beta.transformONVToNextPermutation(spin_string_beta_bbbb);
         }
 
     }  // loop over I_beta
 
     return TwoRDMs<double>(d_aaaa, d_aabb, d_bbaa, d_bbbb);
-}
-
-
-/**
- *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)
- *  @param ket_indices      the indices of the orbitals that should be annihilated on the right (on the ket)
- *  @param x                the coefficient vector representing the FCI wave function
- *
- *  @return an element of the N-RDM, as specified by the given bra and ket indices
- *
- *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
- */
-double FCIRDMBuilder::calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const VectorX<double>& x) const {
-    throw std::runtime_error("FCIRDMBuilder::calculateElement(std::vector<size_t>, std::vector<size_t>, VectorX<double>): is not implemented for FCIRDMs");
 }
 
 

@@ -21,8 +21,6 @@
 
 #include "Mathematical/Representation/SquareMatrix.hpp"
 
-#include <boost/math/constants/constants.hpp>
-
 
 BOOST_AUTO_TEST_CASE(constructor) {
 
@@ -103,28 +101,8 @@ BOOST_AUTO_TEST_CASE(FromTriangle) {
     BOOST_CHECK(H_ref.isApprox(GQCP::SquareMatrix<double>::SymmetricFromUpperTriangle(upper_triangle)));
 }
 
-/**
- *  Check the construction of Jacobi rotation matrices from JacobiRotationParameters
- */
-BOOST_AUTO_TEST_CASE(FromJacobi) {
 
-    // A random Jacobi matrix is unitary
-    BOOST_CHECK(GQCP::SquareMatrix<double>::FromJacobi(GQCP::JacobiRotationParameters(7, 4, 6.9921), 10).isUnitary());
-    BOOST_CHECK(GQCP::SquareMatrix<double>::FromJacobi(GQCP::JacobiRotationParameters(9, 1, 78.00166), 22).isUnitary());
-
-
-    // Check the cos, sin, -sin, cos convention. Since p>q, this means we should end up with cos, -sin, sin, cos in the Jacobi rotation matrix
-    const auto half_pi = boost::math::constants::half_pi<double>();
-    const auto J = GQCP::SquareMatrix<double>::FromJacobi(GQCP::JacobiRotationParameters(1, 0, half_pi), 2);
-
-    BOOST_CHECK(std::abs(J(0, 0) - 0) < 1.0e-12);
-    BOOST_CHECK(std::abs(J(0, 1) - (-1)) < 1.0e-12);
-    BOOST_CHECK(std::abs(J(1, 0) - 1) < 1.0e-12);
-    BOOST_CHECK(std::abs(J(0, 0) - 0) < 1.0e-12);
-}
-
-
-BOOST_AUTO_TEST_CASE(pairWiseStrictReduce) {
+BOOST_AUTO_TEST_CASE(pairWiseStrictReduced) {
 
     GQCP::SquareMatrix<double> A {3};
     // clang-format off
@@ -136,7 +114,7 @@ BOOST_AUTO_TEST_CASE(pairWiseStrictReduce) {
     GQCP::VectorX<double> ref_strict_lower_triangle_A {3};
     ref_strict_lower_triangle_A << 4, 7, 8;
 
-    BOOST_CHECK(ref_strict_lower_triangle_A.isApprox(A.pairWiseStrictReduce()));
+    BOOST_CHECK(ref_strict_lower_triangle_A.isApprox(A.pairWiseStrictReduced()));
 
 
     GQCP::SquareMatrix<double> B {4};
@@ -150,18 +128,18 @@ BOOST_AUTO_TEST_CASE(pairWiseStrictReduce) {
     GQCP::VectorX<double> ref_strict_lower_triangle_B {6};
     ref_strict_lower_triangle_B << 5, 9, 13, 10, 14, 15;
 
-    BOOST_CHECK(ref_strict_lower_triangle_B.isApprox(B.pairWiseStrictReduce()));
+    BOOST_CHECK(ref_strict_lower_triangle_B.isApprox(B.pairWiseStrictReduced()));
 }
 
 
-BOOST_AUTO_TEST_CASE(permanent_combinatorial) {
+BOOST_AUTO_TEST_CASE(calculatePermanentCombinatorial) {
 
     GQCP::SquareMatrix<double> A {2};
     // clang-format off
     A << 2, 3,
          9, 1;
     // clang-format on
-    BOOST_CHECK(std::abs(A.permanent_combinatorial() - 29.0) < 1.0e-12);
+    BOOST_CHECK(std::abs(A.calculatePermanentCombinatorial() - 29.0) < 1.0e-12);
 
 
     GQCP::SquareMatrix<double> B {3};
@@ -170,18 +148,18 @@ BOOST_AUTO_TEST_CASE(permanent_combinatorial) {
          4, -5,  6,
          7, -8,  9;
     // clang-format on
-    BOOST_CHECK(std::abs(B.permanent_combinatorial() - 264.0) < 1.0e-12);
+    BOOST_CHECK(std::abs(B.calculatePermanentCombinatorial() - 264.0) < 1.0e-12);
 }
 
 
-BOOST_AUTO_TEST_CASE(permanent_ryser) {
+BOOST_AUTO_TEST_CASE(calculatePermanentRyser) {
 
     GQCP::SquareMatrix<double> A {2};
     // clang-format off
     A << 2, 3,
          9, 1;
     // clang-format on
-    BOOST_CHECK(std::abs(A.permanent_ryser() - 29.0) < 1.0e-12);
+    BOOST_CHECK(std::abs(A.calculatePermanentRyser() - 29.0) < 1.0e-12);
 
 
     GQCP::SquareMatrix<double> B {3};
@@ -190,15 +168,15 @@ BOOST_AUTO_TEST_CASE(permanent_ryser) {
          4, -5,  6,
          7, -8,  9;
     // clang-format on
-    BOOST_CHECK(std::abs(B.permanent_ryser() - 264.0) < 1.0e-12);
+    BOOST_CHECK(std::abs(B.calculatePermanentRyser() - 264.0) < 1.0e-12);
 
 
     GQCP::SquareMatrix<double> C = GQCP::SquareMatrix<double>::Random(5, 5);
-    BOOST_CHECK(std::abs(C.permanent_combinatorial() - C.permanent_ryser()) < 1.0e-12);
+    BOOST_CHECK(std::abs(C.calculatePermanentCombinatorial() - C.calculatePermanentRyser()) < 1.0e-12);
 }
 
 
-BOOST_AUTO_TEST_CASE(NoPivotLUDecomposition) {
+BOOST_AUTO_TEST_CASE(noPivotLUDecompose) {
 
     // Reference data from https://stackoverflow.com/questions/41150997/perform-lu-decomposition-without-pivoting-in-matlab
     GQCP::SquareMatrix<double> A {3};
@@ -218,7 +196,7 @@ BOOST_AUTO_TEST_CASE(NoPivotLUDecomposition) {
               0, 0,     -0.5000;
     // clang-format on
 
-    const auto& LU = A.NoPivotLUDecomposition();
+    const auto& LU = A.noPivotLUDecompose();
 
     const auto& L = LU[0];
     const auto& U = LU[1];
@@ -246,7 +224,7 @@ BOOST_AUTO_TEST_CASE(NoPivotLUDecomposition) {
     // clang-format on
 
 
-    const auto& LU2 = A2.NoPivotLUDecomposition();
+    const auto& LU2 = A2.noPivotLUDecompose();
 
     const auto& L2 = LU2[0];
     const auto& U2 = LU2[1];

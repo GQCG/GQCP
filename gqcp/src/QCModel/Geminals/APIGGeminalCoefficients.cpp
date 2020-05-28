@@ -52,6 +52,9 @@ APIGGeminalCoefficients::APIGGeminalCoefficients(const size_t N_P, const size_t 
  *  DESTRUCTOR
  */
 
+/**
+ *  The default destructor.
+ */
 APIGGeminalCoefficients::~APIGGeminalCoefficients() {}
 
 
@@ -107,7 +110,7 @@ APIGGeminalCoefficients APIGGeminalCoefficients::FromRowMajor(const VectorX<doub
  *
  *  @return the number of 'free' geminal coefficients
  */
-size_t APIGGeminalCoefficients::numberOfGeminalCoefficients(size_t N_P, size_t K) {
+size_t APIGGeminalCoefficients::numberOfGeminalCoefficients(const size_t N_P, const size_t K) {
 
     // Check if we can have N_P geminals in K orbitals
     if (N_P >= K) {
@@ -145,7 +148,7 @@ double APIGGeminalCoefficients::overlap(const SpinUnresolvedONV& onv) const {
 
 
     // Calculate the permanent of Gm to obtain the coefficient
-    return Gm.permanent_ryser();
+    return Gm.calculatePermanentRyser();
 }
 
 

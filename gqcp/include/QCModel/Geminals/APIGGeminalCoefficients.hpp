@@ -52,13 +52,12 @@ public:
      */
     APIGGeminalCoefficients(const size_t N_P, const size_t K);
 
-    // /**
-    //  *  Default constructor setting everything to zero
-    //  */
-    // APIGGeminalCoefficients();  // default constructor needed
-
 
     // DESTRUCTOR
+
+    /**
+     *  The default destructor.
+     */
     ~APIGGeminalCoefficients() override;
 
 
@@ -98,7 +97,7 @@ public:
      *
      *  @return the number of 'free' geminal coefficients
      */
-    static size_t numberOfGeminalCoefficients(size_t N_P, size_t K);
+    static size_t numberOfGeminalCoefficients(const size_t N_P, const size_t K);
 
 
     // PUBLIC METHODS

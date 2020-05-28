@@ -35,6 +35,7 @@ private:
 
 public:
     // CONSTRUCTORS
+
     /**
      *  @param onv_basis       // the full spin-resolved ONV basis
      */
@@ -42,14 +43,22 @@ public:
 
 
     // DESTRUCTOR
+
+    /**
+     *  The default destructor.
+     */
     ~FCI() = default;
 
 
-    // OVERRIDDEN GETTERS
-    const BaseONVBasis* get_fock_space() const override { return &onv_basis; }
+    // PUBLIC OVERRIDDEN METHODS
 
+    /**
+     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+     *
+     *  @return the diagonal of the matrix representation of the Hamiltonian
+     */
+    VectorX<double> calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const override;
 
-    // OVERRIDDEN PUBLIC METHODS
     /**
      *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
      *
@@ -67,11 +76,9 @@ public:
     VectorX<double> matrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const override;
 
     /**
-     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
-     *
-     *  @return the diagonal of the matrix representation of the Hamiltonian
+     *  @return the ONV basis that is associated to this HamiltonianBuilder
      */
-    VectorX<double> calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const override;
+    const BaseONVBasis* onvBasis() const override { return &onv_basis; }
 };
 
 

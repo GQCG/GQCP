@@ -40,11 +40,6 @@ public:
     // PUBLIC OVERRIDDEN METHODS
 
     /**
-     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
-     */
-    void prepareJacobiSpecificConvergenceChecking(const SQHamiltonian<double>& sq_hamiltonian) override {}
-
-    /**
      *  Calculate the trigoniometric polynomial coefficients for the given Jacobi rotation indices
      *
      *  @param i            the index of spatial orbital 1
@@ -68,6 +63,11 @@ public:
      *  @return the change in the value of the scalar function (i.e. minus the ER localization index) if the given Jacobi rotation parameters would be used to rotate the given Hamiltonian
      */
     double calculateScalarFunctionChange(const SQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rot_par) const override;
+
+    /**
+     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
+     */
+    void prepareJacobiSpecificConvergenceChecking(const SQHamiltonian<double>& sq_hamiltonian) override {}
 };
 
 

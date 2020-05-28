@@ -16,7 +16,6 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
-
 #include "Utilities/typedefs.hpp"
 
 #include <pybind11/eigen.h>
@@ -49,6 +48,8 @@ void bindSQOneElectronOperator(py::module& module, const std::string& suffix) {
     py::class_<GQCP::SQOneElectronOperator<Scalar, 1>>(module,
                                                        ("ScalarSQOneElectronOperator_" + suffix).c_str(),
                                                        "A class that represents a second-quantized one-electron operator")
+
+        // PUBLIC METHODS
 
         .def(double() * py::self)
 
@@ -87,6 +88,8 @@ void bindSQOneElectronOperator(py::module& module, const std::string& suffix) {
     py::class_<GQCP::SQOneElectronOperator<Scalar, 3>>(module,
                                                        ("VectorSQOneElectronOperator_" + suffix).c_str(),
                                                        "A class that represents a second-quantized one-electron operator with three components.")
+
+        // PUBLIC METHODS
 
         .def(
             "allParameters",

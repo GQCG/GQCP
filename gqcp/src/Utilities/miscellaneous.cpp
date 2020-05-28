@@ -28,6 +28,42 @@ namespace GQCP {
 
 
 /**
+ *  @param S    the positive integer to be converted to Gray code
+ *
+ *  @return the Gray code of the given integer number as a bitset
+ */
+size_t grayCodeOf(const size_t S) {
+
+    // See (https://en.wikipedia.org/wiki/Gray_code#Converting_to_and_from_Gray_code)
+    return S ^ (S >> 1);
+}
+
+
+/**
+ *  @param v            the vector index
+ *  @param cols         the number of columns in the matrix
+ *  @param skipped      the number of columns that are skipped in the matrix representation
+ *
+ *  @return the row-major major (non-contiguous) index given the corresponding vector index
+ */
+size_t matrixIndexMajor(const size_t v, const size_t cols, const size_t skipped) {
+    return v / (cols - skipped);
+}
+
+
+/**
+ *  @param v            the vector index
+ *  @param cols         the number of columns in the matrix
+ *  @param skipped      the number of columns that are skipped in the matrix representation
+ *
+ *  @return the row-major minor (contiguous) index given the corresponding vector index
+ */
+size_t matrixIndexMinor(const size_t v, const size_t cols, const size_t skipped) {
+    return v % (cols - skipped) + skipped;
+}
+
+
+/**
  *  Print the time a function takes to be executed
  *
  *  @param method_name      the name of function that is to be executed
@@ -53,38 +89,30 @@ void printExecutionTime(const std::string& method_name, const std::function<void
 
 
 /**
- *  @param S    the positive integer to be converted to Gray code
+ *  @param x        the number
  *
- *  @return the Gray code of the given integer number as a bitset
+ *  @return the strict triangular root of the given number. This is also the dimension of the square matrix whose strict lower/upper triangle has the given number of elements
  */
-size_t gray_code(size_t S) {
+size_t strictTriangularRootOf(const size_t x) {
 
-    // See (https://en.wikipedia.org/wiki/Gray_code#Converting_to_and_from_Gray_code)
-    return S ^ (S >> 1);
+    return triangularRootOf(x) + 1;
 }
 
 
 /**
- *  @param v            the vector index
- *  @param cols         the number of columns in the matrix
- *  @param skipped      the number of columns that are skipped in the matrix representation
+ *  @param x        the number
  *
- *  @return the row-major major (non-contiguous) index given the corresponding vector index
+ *  @return the triangular root of the given number. This is also the dimension of the square matrix whose lower/upper triangle has the given number of elements
  */
-size_t matrixIndexMajor(size_t v, size_t cols, size_t skipped) {
-    return v / (cols - skipped);
-}
+size_t triangularRootOf(const size_t x) {
 
+    size_t n = static_cast<size_t>((std::sqrt(8 * x + 1) - 1) / 2);
 
-/**
- *  @param v            the vector index
- *  @param cols         the number of columns in the matrix
- *  @param skipped      the number of columns that are skipped in the matrix representation
- *
- *  @return the row-major minor (contiguous) index given the corresponding vector index
- */
-size_t matrixIndexMinor(size_t v, size_t cols, size_t skipped) {
-    return v % (cols - skipped) + skipped;
+    if (n * (n + 1) != 2 * x) {
+        throw std::invalid_argument("triangularRootOf(const size_t): The given number does not have a triangular root.");
+    }
+
+    return n;
 }
 
 
@@ -96,36 +124,8 @@ size_t matrixIndexMinor(size_t v, size_t cols, size_t skipped) {
  *
  *  @return the vector index given the corresponding row-major matrix indices
  */
-size_t vectorIndex(size_t i, size_t j, size_t cols, size_t skipped) {
+size_t vectorIndex(const size_t i, const size_t j, const size_t cols, const size_t skipped) {
     return (j - skipped) + (cols - skipped) * i;
-}
-
-
-/**
- *  @param x        the number
- *
- *  @return the triangular root of the given number. This is also the dimension of the square matrix whose lower/upper triangle has the given number of elements
- */
-size_t triangularRoot(const size_t x) {
-
-    size_t n = static_cast<size_t>((std::sqrt(8 * x + 1) - 1) / 2);
-
-    if (n * (n + 1) != 2 * x) {
-        throw std::invalid_argument("triangularRoot(const size_t): The given number does not have a triangular root.");
-    }
-
-    return n;
-}
-
-
-/**
- *  @param x        the number
- *
- *  @return the strict triangular root of the given number. This is also the dimension of the square matrix whose strict lower/upper triangle has the given number of elements
- */
-size_t strictTriangularRoot(const size_t x) {
-
-    return triangularRoot(x) + 1;
 }
 
 

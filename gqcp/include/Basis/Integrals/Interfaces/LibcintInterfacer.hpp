@@ -36,9 +36,9 @@ extern "C" {
 /*
  *  The following functions are not inside the include header <cint.h>, so we should define them in order to be able to use them in our source code
  */
-FINT cint1e_ovlp_cart(double* buf, const int* shls, const int* atm, int natm, const int* bas, int nbas, const double* env);  // overlap
 FINT cint1e_kin_cart(double* buf, const int* shls, const int* atm, int natm, const int* bas, int nbas, const double* env);   // kinetic energy
 FINT cint1e_nuc_cart(double* buf, const int* shls, const int* atm, int natm, const int* bas, int nbas, const double* env);   // nuclear attraction energy
+FINT cint1e_ovlp_cart(double* buf, const int* shls, const int* atm, int natm, const int* bas, int nbas, const double* env);  // overlap
 FINT cint1e_r_cart(double* buf, const int* shls, const int* atm, int natm, const int* bas, int nbas, const double* env);     // dipole integrals
 
 
@@ -92,57 +92,50 @@ public:
      */
     void setCommonOrigin(libcint::RawContainer& raw_container, const Vector<double, 3>& origin) const;
 
-    /**
-     *  @param libcint_optimizer                the pointer to the raw libcint_optimizer struct
-     *  @param libcint_optimizer_function       the function with which the raw_optimizer should be initialized
-     *  @param raw_container                    the libcint::RawContainer that holds the data needed by libcint
-     */
-    void initializeOptimizer(CINTOpt* libcint_optimizer, const Libcint2eOptimizerFunction& libcint_optimizer_function, const libcint::RawContainer& raw_container) const;
-
 
     //  PUBLIC METHODS - INTEGRAL FUNCTIONS
-
-    /**
-     *  @param op           the overlap operator
-     * 
-     *  @return the Libcint one-electron function that corresponds to the overlap operator
-     */
-    Libcint1eFunction oneElectronFunction(const OverlapOperator& op) const;
-
-    /**
-     *  @param op               the kinetic operator
-     * 
-     *  @return the Libcint one-electron function that corresponds to the kinetic operator
-     */
-    Libcint1eFunction oneElectronFunction(const KineticOperator& op) const;
-
-    /**
-     *  @param op               the nuclear attraction operator
-     * 
-     *  @return the Libcint one-electron function that corresponds to the nuclear attraction operator
-     */
-    Libcint1eFunction oneElectronFunction(const NuclearAttractionOperator& op) const;
 
     /**
      *  @param op               the electronic electric dipole operator
      * 
      *  @return the Libcint one-electron function that corresponds to the electronic electric dipole operator
      */
-    Libcint1eFunction oneElectronFunction(const ElectronicDipoleOperator& op) const;
+    Libcint1eFunction oneElectronFunction(const ElectronicDipoleOperator& op) const { return cint1e_r_cart; }
+
+    /**
+     *  @param op               the kinetic operator
+     * 
+     *  @return the Libcint one-electron function that corresponds to the kinetic operator
+     */
+    Libcint1eFunction oneElectronFunction(const KineticOperator& op) const { return cint1e_kin_cart; }
+
+    /**
+     *  @param op               the nuclear attraction operator
+     * 
+     *  @return the Libcint one-electron function that corresponds to the nuclear attraction operator
+     */
+    Libcint1eFunction oneElectronFunction(const NuclearAttractionOperator& op) const { return cint1e_nuc_cart; }
+
+    /**
+     *  @param op           the overlap operator
+     * 
+     *  @return the Libcint one-electron function that corresponds to the overlap operator
+     */
+    Libcint1eFunction oneElectronFunction(const OverlapOperator& op) const { return cint1e_ovlp_cart; }
 
     /**
      *  @param op               the Coulomb repulsion operator
      * 
      *  @return the Libcint two-electron function that corresponds to the Coulomb repulsion dipole operator
      */
-    Libcint2eFunction twoElectronFunction(const CoulombRepulsionOperator& op) const;
+    Libcint2eFunction twoElectronFunction(const CoulombRepulsionOperator& op) const { return cint2e_cart; }
 
     /**
      *  @param op               the Coulomb repulsion operator
      * 
      *  @return the Libcint two-electron optimizer function that corresponds to the Coulomb repulsion dipole operator
      */
-    Libcint2eOptimizerFunction twoElectronOptimizerFunction(const CoulombRepulsionOperator& op) const;
+    Libcint2eOptimizerFunction twoElectronOptimizerFunction(const CoulombRepulsionOperator& op) const { return cint2e_cart_optimizer; }
 };
 
 
@@ -171,6 +164,8 @@ static constexpr int ptr_coeff = PTR_COEFF;  // slot offset for a 'pointer' to t
 
 /**
  *  A wrapper that owns raw libcint 'atm', 'bas' and 'env' arrays
+ * 
+ *  @note The members are named after the libcint variables.
  */
 class RawContainer {
 private:
@@ -219,14 +214,39 @@ public:
 
 
     /*
-     *  GETTERS
+     *  PUBLIC METHODS
+     */
+
+    /**
+     *  @return (a pointer to) the atomic data in this libcint container
+     */
+    const int* atmData() const { return this->libcint_atm; }
+
+    /**
+     *  @return (a pointer to) the basis data in this libcint container
+     */
+    const int* basData() const { return this->libcint_bas; }
+
+    /**
+     *  @return (a pointer to) the environment data in this libcint container
+     */
+    const double* envData() const { return this->libcint_env; }
+
+    /**
+     *  @return the number of atoms in this libcint container
      */
     int numberOfAtoms() const { return this->natm; }
+
+    /**
+     *  @return the number of basis functions in this libcint container
+     */
     int numberOfBasisFunctions() const { return this->nbf; }
+
+    /**
+     *  @return the number of shells in this libcint container
+     */
     int numberOfShells() const { return this->nsh; }
-    const int* atmData() const { return this->libcint_atm; }
-    const int* basData() const { return this->libcint_bas; }
-    const double* envData() const { return this->libcint_env; }
+
 
     /*
      *  FRIENDS
