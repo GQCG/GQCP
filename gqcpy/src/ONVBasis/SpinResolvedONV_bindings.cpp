@@ -17,6 +17,7 @@
 
 #include "ONVBasis/SpinResolvedONV.hpp"
 
+#include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
 
 
@@ -58,8 +59,8 @@ void bindSpinResolvedONV(py::module& module) {
 
         .def(
             "calculateProjection",
-            [](const GQCP::SpinResolvedONV& onv_of, const GQCP::SpinResolvedONV& onv_on, const GQCP::TransformationMatrix<double>& C_alpha, const GQCP::TransformationMatrix<double>& C_beta, const GQCP::TransformationMatrix<double>& C, const GQCP::QCMatrix<double>& S) {
-                return onv_of.calculateProjection(onv_on, C_alpha, C_beta, C, S);
+            [](const GQCP::SpinResolvedONV& onv_of, const GQCP::SpinResolvedONV& onv_on, const Eigen::MatrixXd& C_alpha, const Eigen::MatrixXd& C_beta, const Eigen::MatrixXd& C, const Eigen::MatrixXd& S) {
+                return onv_of.calculateProjection(onv_on, GQCP::TransformationMatrix<double>(C_alpha), GQCP::TransformationMatrix<double>(C_beta), GQCP::TransformationMatrix<double>(C), GQCP::QCMatrix<double>(S));
             },
             py::arg("onv_on"),
             py::arg("C_alpha"),

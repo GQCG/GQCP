@@ -356,7 +356,7 @@ public:
     size_t numberOfSpatialOrbitals() const { return this->coefficientMatrix().dimension(); }
 
     /**
-     *  @return the orbital energies
+     *  @return all the spatial orbital energies
      */
     const VectorX<double>& orbitalEnergies() const { return this->orbital_energies; }
 
@@ -371,6 +371,37 @@ public:
      *  @return the implicit occupied-virtual orbital space that is associated to these RHF model parameters
      */
     OrbitalSpace orbitalSpace() const { return RHF<Scalar>::orbitalSpace(this->numberOfSpatialOrbitals(), this->numberOfElectronPairs()); }
+
+    /**
+     *  @return all the spin-orbital energies, with the alpha spin-orbital energies appearing before the beta spin-orbital energies
+     */
+    VectorX<double> spinOrbitalEnergiesBlocked() const {
+
+        const auto K = this->numberOfSpatialOrbitals();
+
+        GQCP::VectorX<double> total_orbital_energies {2 * K};
+        total_orbital_energies.head(K) = this->orbitalEnergies();
+        total_orbital_energies.tail(K) = this->orbitalEnergies();
+
+        return total_orbital_energies;
+    }
+
+
+    /**
+     *  @return all the spin-orbital energies, with the alpha and beta-spinorbital energies interleaved
+     */
+    VectorX<double> spinOrbitalEnergiesInterleaved() const {
+
+        const auto K = this->numberOfSpatialOrbitals();
+
+        GQCP::VectorX<double> total_orbital_energies {2 * K};
+        for (size_t p = 0; p < K; p++) {
+            total_orbital_energies(2 * p) = this->orbitalEnergy(p);
+            total_orbital_energies(2 * p + 1) = this->orbitalEnergy(p);
+        }
+
+        return total_orbital_energies;
+    }
 };
 
 

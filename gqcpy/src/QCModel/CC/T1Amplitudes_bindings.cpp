@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "ONVBasis/SpinResolvedONVBasis.hpp"
+#include "QCModel/CC/T1Amplitudes.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
@@ -27,31 +27,26 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
-void bindSpinResolvedONVBasis(py::module& module) {
-    py::class_<GQCP::SpinResolvedONVBasis>(module, "SpinResolvedONVBasis", "A full spin-resolved ONV basis.")
+void bindT1Amplitudes(py::module& module) {
+
+    py::class_<GQCP::T1Amplitudes<double>>(module, "T1Amplitudes", "The coupled-cluster T1 amplitudes t_i^a.")
 
         // CONSTRUCTORS
+        .def(py::init<>(
+                 [](const Eigen::MatrixXd& T, const GQCP::OrbitalSpace& orbital_space) {
+                     const auto t = orbital_space.createRepresentableObjectFor<double>(GQCP::OccupationType::k_occupied, GQCP::OccupationType::k_virtual, T);
 
-        .def(py::init<const size_t, const size_t, const size_t>(),
-             py::arg("K"),
-             py::arg("N_alpha"),
-             py::arg("N_beta"))
-
+                     return GQCP::T1Amplitudes<double>(t, orbital_space);
+                 }),
+             "Construct T1-amplitudes given their dense representation.")
 
         // PUBLIC METHODS
-
-        .def("dimension",
-             &GQCP::SpinResolvedONVBasis::dimension)
-
-        .def("hartreeFockExpansion",
-             [](const GQCP::SpinResolvedONVBasis& onv_basis) {
-                 return onv_basis.hartreeFockExpansion();
-             })
-
-        .def("randomExpansion",
-             [](const GQCP::SpinResolvedONVBasis& onv_basis) {
-                 return onv_basis.randomExpansion();
-             });
+        .def(
+            "asMatrix",
+            [](const GQCP::T1Amplitudes<double>& t1_amplitudes) {
+                return t1_amplitudes.asImplicitMatrixSlice().asMatrix();
+            },
+            "Return the T1-amplitudes as a matrix.");
 }
 
 

@@ -20,6 +20,7 @@
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "QCMethod/QCStructure.hpp"
+#include "QCModel/CC/CCSD.hpp"
 #include "QCModel/CI/LinearExpansion.hpp"
 #include "QCModel/Geminals/AP1roG.hpp"
 #include "QCModel/Geminals/vAP1roG.hpp"
@@ -102,6 +103,8 @@ void bindQCStructures(py::module& module) {
 
     bindQCStructure<GQCP::QCModel::RHF<double>>(module, "RHF", "A quantum chemical structure for RHF parameters.");
     bindQCStructure<GQCP::QCModel::UHF<double>>(module, "UHF", "A quantum chemical structure for UHF parameters.");
+
+    bindQCStructure<GQCP::QCModel::CCSD<double>>(module, "CCSD", "A quantum chemical structure for CCSD parameters.");
 }
 
 

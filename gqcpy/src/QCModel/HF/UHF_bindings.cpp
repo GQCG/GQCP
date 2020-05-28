@@ -53,6 +53,7 @@ void bindQCModelUHF(py::module& module) {
             [](const GQCP::QCModel::UHF<double>& uhf_parameters, const GQCP::Spin sigma) {
                 return uhf_parameters.coefficientMatrix(sigma);
             },
+            py::arg("sigma"),
             "Return the coefficient matrix that expresses the sigma spin-orbitals (as a column) in its underlying scalar basis.")
 
         .def(
@@ -60,21 +61,36 @@ void bindQCModelUHF(py::module& module) {
             [](const GQCP::QCModel::UHF<double>& uhf_parameters, const GQCP::Spin sigma) {
                 return uhf_parameters.numberOfElectrons(sigma);
             },
+            py::arg("sigma"),
             "Return the number of sigma electrons that these UHF model parameters describe, i.e. the number of occupied sigma-spin-orbitals.")
 
         .def(
-            "numberOfElectrons",
+            "numberOfSpinOrbitals",
             [](const GQCP::QCModel::UHF<double>& uhf_parameters, const GQCP::Spin sigma) {
                 return uhf_parameters.numberOfSpinOrbitals(sigma);
             },
+            py::arg("sigma"),
             "Return the number of sigma spin-orbitals that these UHF model parameters describe.")
+
+        .def(
+            "numberOfSpinOrbitals",
+            [](const GQCP::QCModel::UHF<double>& uhf_parameters) {
+                return uhf_parameters.numberOfSpinOrbitals();
+            },
+            "Return the number of spin-orbitals that these UHF model parameters describe.")
 
         .def(
             "orbitalEnergies",
             [](const GQCP::QCModel::UHF<double>& uhf_parameters, const GQCP::Spin sigma) {
                 return uhf_parameters.orbitalEnergies(sigma);
             },
-            "Return the orbital energies of the sigma-spin-orbitals.");
+            py::arg("sigma"),
+            "Return the orbital energies of the sigma-spin-orbitals.")
+
+        .def(
+            "spinOrbitalEnergiesBlocked",
+            &GQCP::QCModel::UHF<double>::spinOrbitalEnergiesBlocked,
+            "Return all the spin-orbital energies, with the alpha spin-orbital energies appearing before the beta spin-orbital energies");
 }
 
 

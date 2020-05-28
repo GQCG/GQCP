@@ -368,6 +368,16 @@ public:
         }
     }
 
+
+    /**
+     *  @return the total number of spin-orbitals that these UHF model parameters describe
+     */
+    size_t numberOfSpinOrbitals() const {
+
+        return this->numberOfSpinOrbitals(Spin::alpha) + this->numberOfSpinOrbitals(Spin::beta);
+    }
+
+
     /**
      *  @param sigma            alpha or beta
      * 
@@ -407,6 +417,19 @@ public:
             break;
         }
         }
+    }
+
+
+    /**
+     *  @return all the spin-orbital energies, with the alpha spin-orbital energies appearing before the beta spin-orbital energies
+     */
+    VectorX<double> spinOrbitalEnergiesBlocked() const {
+
+        GQCP::VectorX<double> total_orbital_energies {this->numberOfSpinOrbitals()};
+        total_orbital_energies.head(this->numberOfSpinOrbitals(Spin::alpha)) = this->orbitalEnergies(Spin::alpha);
+        total_orbital_energies.tail(this->numberOfSpinOrbitals(Spin::beta)) = this->orbitalEnergies(Spin::beta);
+
+        return total_orbital_energies;
     }
 };
 
