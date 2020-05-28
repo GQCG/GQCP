@@ -47,7 +47,7 @@ public:
      *
      *  @param dimension        the dimension of the eigenvector
      */
-    Eigenpair(const size_t dimension = 1);
+    explicit Eigenpair(const size_t dimension = 1);
 
 
     // PUBLIC METHODS
