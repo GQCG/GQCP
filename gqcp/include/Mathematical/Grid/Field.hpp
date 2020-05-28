@@ -104,7 +104,7 @@ public:
 
         // Write the values of the scalar function.
         size_t index = 0;
-        this->grid.loop([&index, &cubefile, this](const size_t i, const size_t j, const size_t k) {
+        this->grid.forEach([&index, &cubefile, this](const size_t i, const size_t j, const size_t k) {
             cubefile << this->values[index] << " ";  // write one value
 
             // There can only be 5 values on one line.

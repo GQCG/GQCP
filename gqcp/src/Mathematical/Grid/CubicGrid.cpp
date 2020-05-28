@@ -53,7 +53,7 @@ size_t CubicGrid::numberOfPoints() const {
  * 
  *  @param callback         the function you would like to apply to each incoming (i,j,k)-tuple of numbers of steps taken in the x,y,z-direction.
  */
-void CubicGrid::loop(const std::function<void(const size_t, const size_t, const size_t)>& callback) const {
+void CubicGrid::forEach(const std::function<void(const size_t, const size_t, const size_t)>& callback) const {
 
     for (size_t i = 0; i < this->m_steps[0]; i++) {
         for (size_t j = 0; j < this->m_steps[1]; j++) {
@@ -70,10 +70,10 @@ void CubicGrid::loop(const std::function<void(const size_t, const size_t, const 
  * 
  *  @param callback         the function you would like to apply to each incoming position vector
  */
-void CubicGrid::loop(const std::function<void(const Vector<double, 3>&)>& callback) const {
+void CubicGrid::forEach(const std::function<void(const Vector<double, 3>&)>& callback) const {
 
     const auto this_copy = *this;
-    this->loop([this_copy, callback](const size_t i, const size_t j, const size_t k) {
+    this->forEach([this_copy, callback](const size_t i, const size_t j, const size_t k) {
         const auto position = this_copy.position(i, j, k);
         callback(position);
     });

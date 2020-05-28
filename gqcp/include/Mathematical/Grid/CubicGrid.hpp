@@ -35,8 +35,8 @@ namespace GQCP {
  */
 class CubicGrid {
 private:
-    Vector<double, 3> m_origin;  // the origin of the grid
-    std::array<size_t, 3> m_steps;  // the number of steps in the x, y, z-directions
+    Vector<double, 3> m_origin;        // the origin of the grid
+    std::array<size_t, 3> m_steps;     // the number of steps in the x, y, z-directions
     std::array<double, 3> step_sizes;  // the step sizes in the x, y, z-directions
 
 
@@ -66,11 +66,11 @@ public:
         std::vector<Valued> values;  // the evaluated values of the scalar function
         values.reserve(this->numberOfPoints());
 
-        this->loop( [&values, &scalar_function] (const Vector<double, 3>& r) {
+        this->forEach([&values, &scalar_function](const Vector<double, 3>& r) {
             values.push_back(scalar_function(r));
         });
 
-        return Field<Valued, CubicGrid>{values, *this};
+        return Field<Valued, CubicGrid> {values, *this};
     }
 
     /**
@@ -78,14 +78,14 @@ public:
      * 
      *  @param callback         the function you would like to apply to each incoming (i,j,k)-tuple of numbers of steps taken in the x,y,z-direction.
      */
-    void loop(const std::function<void (const size_t, const size_t, const size_t)>& callback) const;
+    void forEach(const std::function<void(const size_t, const size_t, const size_t)>& callback) const;
 
     /**
      *  Loop over the points of this grid by position (relative to the origin of this grid).
      * 
      *  @param callback         the function you would like to apply to each incoming position vector
      */
-    void loop(const std::function<void (const Vector<double, 3>&)>& callback) const;
+    void forEach(const std::function<void(const Vector<double, 3>&)>& callback) const;
 
     /**
      *  @return the number of points that are in this grid
