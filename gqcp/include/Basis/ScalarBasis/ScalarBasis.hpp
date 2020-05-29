@@ -21,7 +21,7 @@
 #include "Basis/ScalarBasis/GTOBasisSet.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Basis/ScalarBasis/ShellSet.hpp"
-#include "Mathematical/LinearCombination.hpp"
+#include "Mathematical/AbstractFunction/LinearCombination.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Molecule/NuclearFramework.hpp"
 

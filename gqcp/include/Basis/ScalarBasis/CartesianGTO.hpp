@@ -19,8 +19,8 @@
 
 
 #include "Basis/ScalarBasis/CartesianExponents.hpp"
-#include "Mathematical/LinearCombination.hpp"
-#include "Mathematical/ScalarFunction.hpp"
+#include "Mathematical/AbstractFunction/LinearCombination.hpp"
+#include "Mathematical/AbstractFunction/ScalarFunction.hpp"
 
 
 namespace GQCP {

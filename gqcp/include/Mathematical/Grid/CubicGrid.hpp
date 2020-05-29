@@ -20,7 +20,7 @@
 
 #include "Mathematical/Grid/Field.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
-#include "Mathematical/ScalarFunction.hpp"
+#include "Mathematical/AbstractFunction/ScalarFunction.hpp"
 
 #include <array>
 #include <functional>

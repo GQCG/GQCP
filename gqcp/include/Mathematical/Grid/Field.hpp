@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Mathematical/Representation/Array.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Utilities/type_traits.hpp"
 
@@ -51,8 +52,9 @@ public:
      */
 
     /**
-     *  @param values           the evaluated function values, in the order of the grid's loop
-     *  @param grid             the grid associated with this field
+     *  The memberwise constructor.
+     * 
+     *  @param values           a 1-D array of evaluated function values, in the order of the grid's loop
      */
     Field(const std::vector<T>& values, const Grid& grid) :
         values {values},

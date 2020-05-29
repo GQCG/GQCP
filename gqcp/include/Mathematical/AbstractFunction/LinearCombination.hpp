@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Mathematical/ScalarFunction.hpp"
+#include "Mathematical/AbstractFunction/ScalarFunction.hpp"
 
 #include <vector>
 

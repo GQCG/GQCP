@@ -21,7 +21,7 @@
 #include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
 #include "Basis/TransformationMatrix.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
-#include "Mathematical/ScalarFunction.hpp"
+#include "Mathematical/AbstractFunction/ScalarFunction.hpp"
 #include "Processing/RDM/OneRDM.hpp"
 #include "Processing/RDM/TwoRDM.hpp"
 #include "Utilities/type_traits.hpp"
