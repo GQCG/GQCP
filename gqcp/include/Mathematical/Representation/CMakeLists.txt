@@ -1,5 +1,6 @@
 target_sources(gqcp
     PRIVATE
+        Array.hpp
         ImplicitMatrixSlice.hpp
         ImplicitRankFourTensorSlice.hpp
         Matrix.hpp
