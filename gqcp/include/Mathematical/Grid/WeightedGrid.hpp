@@ -50,13 +50,56 @@ public:
 
 
     /*
+     *  NAMED CONSTRUCTORS
+     */
+
+    /**
+     *  Parse an .igrid-file and create the WeightedGrid that is contained in it. The values for the scalar field or vector field are discarded.
+     * 
+     *  @param filename             the name of the .igrid-file
+     * 
+     *  @note An integration grid (.igrid) file is a headerless file and contains the following data:
+     *      - Each row relates to one grid point.
+     *      - Column specification:
+     *          - Column 1: The index from 1 to the number of grid points
+     *          - Columns 2-4: The position of the grid point: x, y, and z
+     *          - Optional: Column 5 or columns 5-7: 1 value for a scalar field, 3 values for a vector field
+     *          - Column 5, 6 or 8: The integration weight associated to the grid point
+     */
+    static WeightedGrid ReadIntegrationGridFile(const std::string& filename);
+
+
+    /*
      *  PUBLIC METHODS
      */
+
+    /**
+     *  @return the size of the grid, i.e. the number of grid points/weights
+     */
+    size_t size() const { return this->m_points.size(); }
+
+    /**
+     *  Access one of the grid's points.
+     * 
+     *  @param index                the index of the grid point
+     * 
+     *  @return a read-only grid point, corresponding to the given index
+     */
+    const Vector<double, 3>& point(const size_t index) const { return this->m_points[index]; }
 
     /**
      *  @return the grid points
      */
     const std::vector<Vector<double, 3>>& points() const { return this->m_points; }
+
+    /**
+     *  Access one of the grid's weights.
+     * 
+     *  @param index                the index of the weight
+     * 
+     *  @return a read-only grid weight, corresponding to the given index
+     */
+    double weight(const size_t index) const { return this->m_weights(index); }
 
     /**
      *  @return a 1-D array containing the weights for each of the grid points

@@ -53,3 +53,23 @@ BOOST_AUTO_TEST_CASE(constructor) {
     BOOST_CHECK_THROW(GQCP::WeightedGrid(points1, weights2), std::invalid_argument);
     BOOST_CHECK_THROW(GQCP::WeightedGrid(points2, weights1), std::invalid_argument);
 }
+
+
+/**
+ *  Test if reading an .igrid-file works as expected.
+ */
+BOOST_AUTO_TEST_CASE(ReadIntegrationGridFile) {
+
+    // Read in the grid and check some basic properties.
+    const auto grid = GQCP::WeightedGrid::ReadIntegrationGridFile("data/benzene.igrid");
+
+    BOOST_CHECK(grid.size() == 25905);
+
+    BOOST_CHECK(std::abs(grid.weight(0) - (-2342234.0963512673)) < 1.0e-09);
+    BOOST_CHECK(std::abs(grid.weight(25904) - 0.35024560594160498) < 1.0e-09);
+
+    const GQCP::Vector<double, 3> ref_point1 {-4.9999999999997158E-002, 4.9999999999997158E-002, -96.312500000000014};
+    const GQCP::Vector<double, 3> ref_point2 {-0.67423626739784881, -2.2644618836989281, 3.8046348762767996};
+    BOOST_CHECK(grid.point(0).isApprox(ref_point1, 1.0e-08));
+    BOOST_CHECK(grid.point(25904).isApprox(ref_point2, 1.0e-08));
+}
