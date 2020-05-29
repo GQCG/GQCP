@@ -55,7 +55,16 @@ public:
     // NAMED CONSTRUCTORS
 
     /**
-     *  Parse an .rgrid-file and create the CubicGrid that is contained in it. The values for the scalar field or vector field are discarded.
+     *  Parse a GAUSSIAN Cube file (http://paulbourke.net/dataformats/cube/). The values for the contained scalar field are ignored.
+     *
+     *  @param filename                 the name of the cubefile
+     * 
+     *  @note The Cube file is assumed to have grid axes oriented along the x-, y-, and z-axes.
+     */
+    static CubicGrid ReadCubeFile(const std::string& filename);
+
+    /**
+     *  Parse an .rgrid-file and create the CubicGrid that is contained in it. The values for the scalar field or vector field are ignored.
      * 
      *  @param filename             the name of the .igrid-file
      * 

@@ -75,3 +75,25 @@ BOOST_AUTO_TEST_CASE(ReadRegularGridFile) {
     }
 }
 
+
+/**
+ *  Check if reading in the data in a GAUSSIAN Cube file is correct.
+ */
+BOOST_AUTO_TEST_CASE(ReadCubeFile) {
+
+    // Read in the Cube, provide the reference values and check if it was parsed correctly.
+    const auto grid = GQCP::CubicGrid::ReadCubeFile("data/benzene.cube");
+
+    const GQCP::Vector<double, 3> ref_origin {-6.0, -6.0, -6.0};
+    const std::array<double, 3> ref_step_sizes {0.2, 0.2, 0.2};
+    const std::array<size_t, 3> ref_number_of_steps {60, 60, 60};
+
+
+    // Check the results.
+    BOOST_CHECK(grid.origin().isApprox(ref_origin, 1.0e-08));
+
+    for (size_t i = 0; i < 3; i++) {
+        BOOST_CHECK(grid.numberOfSteps(i) == ref_number_of_steps[i]);
+        BOOST_CHECK(std::abs(grid.stepSize(i) - ref_step_sizes[i]) < 1.0e-08);
+    }
+}

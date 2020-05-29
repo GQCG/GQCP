@@ -43,7 +43,71 @@ CubicGrid::CubicGrid(const Vector<double, 3>& origin, const std::array<size_t, 3
  */
 
 /**
- *  Parse an .rgrid-file and create the CubicGrid that is contained in it. The values for the scalar field or vector field are discarded.
+ *  Parse a GAUSSIAN Cube file (http://paulbourke.net/dataformats/cube/). The values for the contained scalar field are ignored.
+ *
+ *  @param filename                 the name of the cubefile
+ * 
+ *  @note The Cube file is assumed to have grid axes oriented along the x-, y-, and z-axes.
+ */
+CubicGrid CubicGrid::ReadCubeFile(const std::string& filename) {
+
+    // Prepare the input file stream and some variables.
+    std::ifstream input_file_stream = validateAndOpen(filename, "cube");
+
+    Vector<double, 3> origin = Vector<double, 3>::Zero();
+    std::array<double, 3> step_sizes {0.0, 0.0, 0.0};
+    std::array<size_t, 3> number_of_steps {0, 0, 0};
+
+
+    // Do the actual parsing.
+    std::string line;
+
+
+    // Skip the first two comment lines.
+    std::getline(input_file_stream, line);
+    std::getline(input_file_stream, line);
+
+
+    // Read in the origin of the grid.
+    std::getline(input_file_stream, line);
+
+    // Split the line on any whitespace or tabs.
+    std::vector<std::string> splitted_line;  // create a container for the line to be split in
+
+    boost::trim_if(line, boost::is_any_of(" \t"));
+    boost::split(splitted_line, line, boost::is_any_of(" \t"), boost::token_compress_on);
+
+    const auto x = std::stod(splitted_line[1]);
+    const auto y = std::stod(splitted_line[2]);
+    const auto z = std::stod(splitted_line[3]);
+
+    origin << x, y, z;
+
+
+    // The next three lines contain the step sizes and the number of steps.
+    for (size_t i = 0; i < 3; i++) {
+        std::getline(input_file_stream, line);
+
+        // Split the line on any whitespace or tabs.
+        boost::trim_if(line, boost::is_any_of(" \t"));
+        boost::split(splitted_line, line, boost::is_any_of(" \t"), boost::token_compress_on);
+
+        // The first column contains the number of steps.
+        number_of_steps[i] = static_cast<size_t>(std::stoll(splitted_line[0]));
+
+        // The next three columns contain the step size.
+        step_sizes[i] = std::stod(splitted_line[i + 1]);  //
+    }
+
+    input_file_stream.close();
+
+
+    return CubicGrid(origin, number_of_steps, step_sizes);
+}
+
+
+/**
+ *  Parse an .rgrid-file and create the CubicGrid that is contained in it. The values for the scalar field or vector field are ignored.
  * 
  *  @param filename             the name of the .igrid-file
  * 
