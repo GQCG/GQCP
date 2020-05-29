@@ -1,6 +1,7 @@
 target_sources(gqcp
     PRIVATE
         CRTP.hpp
+        Eigen.hpp
         linalg.hpp
         memory.hpp
         miscellaneous.hpp

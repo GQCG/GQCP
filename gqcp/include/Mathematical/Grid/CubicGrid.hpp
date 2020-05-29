@@ -18,9 +18,10 @@
 #pragma once
 
 
+#include "Mathematical/AbstractFunction/ScalarFunction.hpp"
 #include "Mathematical/Grid/Field.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
-#include "Mathematical/AbstractFunction/ScalarFunction.hpp"
+#include "Molecule/Molecule.hpp"
 
 #include <array>
 #include <functional>
@@ -61,7 +62,7 @@ public:
      *  @return a field with the calculated evaluations
      */
     template <typename Valued>
-    Field<Valued, CubicGrid> evaluate(const ScalarFunction<Valued, double, 3>& scalar_function) const {
+    Field<Valued> evaluate(const ScalarFunction<Valued, double, 3>& scalar_function) const {
 
         std::vector<Valued> values;  // the evaluated values of the scalar function
         values.reserve(this->numberOfPoints());
@@ -70,8 +71,9 @@ public:
             values.push_back(scalar_function(r));
         });
 
-        return Field<Valued, CubicGrid> {values, *this};
+        return Field<Valued>(values);
     }
+
 
     /**
      *  Loop over the points of this grid by index number.
@@ -115,6 +117,66 @@ public:
      *  @return the step sizes in the x, y, z-directions
      */
     const std::array<double, 3>& stepSizes() const { return this->step_sizes; }
+
+    /**
+     *  Write a field's values to a GAUSSIAN Cube file (http://paulbourke.net/dataformats/cube/).
+     *
+     *  @param scalar_field             the scalar field that should be written to the cubefile
+     *  @param filename                 the name of the cubefile that has to be generated
+     *  @param molecule                 the molecule that should be placed in the cubefile
+     */
+    void writeToCubeFile(const Field<double>& scalar_field, const std::string& filename, const Molecule& molecule) const {
+
+        // Prepare some variables.
+        std::ofstream cubefile;
+        cubefile.open(filename, std::fstream::out);
+
+        const auto& steps = this->steps();
+        const auto& origin = this->origin();
+        const auto& step_sizes = this->stepSizes();
+        const auto& nuclei = molecule.nuclearFramework().nucleiAsVector();
+
+
+        // Write the necessary header lines.
+
+        // The first two lines are comment lines.
+        cubefile << "COMMENT LINE -- GAUSSIAN Cube file" << std::endl;
+        cubefile << "COMMENT LINE -- OUTER LOOP: X, MIDDLE LOOP: Y, INNER LOOP: Z" << std::endl;
+
+        cubefile << std::scientific;
+
+        // The next line has the number of atoms and the origin of the volumetric data.
+        cubefile << nuclei.size() << " " << origin(0) << " " << origin(1) << " " << origin(2) << std::endl;
+
+        // The next three lines give the number of voxels along the respective axes.
+        // We're choosing the x-, y- and z-axes, and since the number of steps is positive, the units are Bohr.
+        cubefile << steps[0] << " " << step_sizes[0] << " " << 0.0 << " " << 0.0 << std::endl;
+        cubefile << steps[1] << " " << 0.0 << " " << step_sizes[1] << " " << 0.0 << std::endl;
+        cubefile << steps[2] << " " << 0.0 << " " << 0.0 << " " << step_sizes[2] << std::endl;
+        for (const auto& nucleus : nuclei) {
+            cubefile << nucleus.charge() << " " << 0.0 << " " << nucleus.position()(0) << " " << nucleus.position()(1) << " " << nucleus.position()(2) << std::endl;
+        }
+
+
+        // Write the values of the scalar function.
+        size_t index = 0;
+        this->forEach([&index, &cubefile, &scalar_field](const size_t i, const size_t j, const size_t k) {
+            cubefile << scalar_field.value(index) << " ";  // write one value
+
+            // There can only be 5 values on one line.
+            if (k % 6 == 5) {
+                cubefile << std::endl;
+            }
+
+            if (j == 0) {
+                cubefile << std::endl;
+            }
+
+            index++;  // move to the next value
+        });
+
+        cubefile.close();
+    }
 };
 
 

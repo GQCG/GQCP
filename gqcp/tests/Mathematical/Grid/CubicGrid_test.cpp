@@ -15,20 +15,19 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#define BOOST_TEST_MODULE "Field"
+#define BOOST_TEST_MODULE "CubicGrid_test"
 
 #include <boost/test/unit_test.hpp>
 
 #include "Basis/ScalarBasis/CartesianGTO.hpp"
 #include "Mathematical/Grid/CubicGrid.hpp"
-#include "Mathematical/Grid/Field.hpp"
 #include "Utilities/units.hpp"
 
 
 /**
  *  Check if a cube file is made when writing field information.
  */
-BOOST_AUTO_TEST_CASE(toCubeFile) {
+BOOST_AUTO_TEST_CASE(writeToCubeFile) {
 
     // Create a test molecule.
     const GQCP::Nucleus C {6, 0.0, 0.0, 0.0};
@@ -49,5 +48,6 @@ BOOST_AUTO_TEST_CASE(toCubeFile) {
     const GQCP::CubicGrid grid {origin, steps, step_sizes};
 
     // Evaluate the GTO on the cubic grid, and write the results to a cube file.
-    grid.evaluate(gto).toCubeFile("test_file.cube", molecule);
+    const auto scalar_field = grid.evaluate(gto);
+    grid.writeToCubeFile(scalar_field, "test_file.cube", molecule);
 }

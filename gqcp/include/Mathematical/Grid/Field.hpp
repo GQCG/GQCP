@@ -18,11 +18,8 @@
 #pragma once
 
 
-#include "Mathematical/Representation/Array.hpp"
-#include "Molecule/Molecule.hpp"
-#include "Utilities/type_traits.hpp"
+#include "Mathematical/Representation/Matrix.hpp"
 
-#include <string>
 #include <vector>
 
 
@@ -33,17 +30,11 @@ namespace GQCP {
  *  A set of function values corresponding to points in space.
  * 
  *  @tparam T           the type of the evaluated function values
- *  @tparam _Grid       the type of grid that is used to represent the points in space
  */
-template <typename T, typename _Grid>
+template <typename T>
 class Field {
-public:
-    using Grid = _Grid;
-
-
 private:
-    std::vector<T> values;  // the evaluated function values, in the order of the grid's loop
-    Grid grid;              // the grid associated with this field
+    std::vector<T> m_values;  // the evaluated function values, in the order of the grid's loop
 
 
 public:
@@ -54,11 +45,10 @@ public:
     /**
      *  The memberwise constructor.
      * 
-     *  @param values           a 1-D array of evaluated function values, in the order of the grid's loop
+     *  @param values           the evaluated function values, in the order of the grid's loop
      */
-    Field(const std::vector<T>& values, const Grid& grid) :
-        values {values},
-        grid {grid} {}
+    Field(const std::vector<T>& values) :
+        m_values {values} {}
 
 
     /*
@@ -66,64 +56,39 @@ public:
      */
 
     /**
-     *  Write this field's values to a GAUSSIAN Cube file (http://paulbourke.net/dataformats/cube/).
-     *
-     *  @param filename     the name of the cubefile that has to be generated
-     *  @param molecule     the molecule that should be placed in the cubefile
+     *  Access one of the field's values.
+     * 
+     *  @param index                the index of the function value
+     * 
+     *  @return a read-only field value, corresponding to the given index
      */
-    void toCubeFile(const std::string& filename, const Molecule& molecule) const {
+    const T& value(const size_t index) const { return this->m_values[index]; }
 
-        // Prepare some variables.
-        std::ofstream cubefile;
-        cubefile.open(filename, std::fstream::out);
+    /**
+     *  Access one of the field's values.
+     * 
+     *  @param index                the index of the function value
+     * 
+     *  @return a writable field value, corresponding to the given index
+     */
+    T& value(const size_t index) { return this->m_values[index]; }
 
-        const auto& steps = this->grid.steps();
-        const auto& origin = this->grid.origin();
-        const auto& step_sizes = this->grid.stepSizes();
-        const auto& nuclei = molecule.nuclearFramework().nucleiAsVector();
-
-
-        // Write the necessary header lines.
-
-        // The first two lines are comment lines.
-        cubefile << "COMMENT LINE -- GAUSSIAN Cube file" << std::endl;
-        cubefile << "COMMENT LINE -- OUTER LOOP: X, MIDDLE LOOP: Y, INNER LOOP: Z" << std::endl;
-
-        cubefile << std::scientific;
-
-        // The next line has the number of atoms and the origin of the volumetric data.
-        cubefile << nuclei.size() << " " << origin(0) << " " << origin(1) << " " << origin(2) << std::endl;
-
-        // The next three lines give the number of voxels along the respective axes.
-        // We're choosing the x-, y- and z-axes, and since the number of steps is positive, the units are Bohr.
-        cubefile << steps[0] << " " << step_sizes[0] << " " << 0.0 << " " << 0.0 << std::endl;
-        cubefile << steps[1] << " " << 0.0 << " " << step_sizes[1] << " " << 0.0 << std::endl;
-        cubefile << steps[2] << " " << 0.0 << " " << 0.0 << " " << step_sizes[2] << std::endl;
-        for (const auto& nucleus : nuclei) {
-            cubefile << nucleus.charge() << " " << 0.0 << " " << nucleus.position()(0) << " " << nucleus.position()(1) << " " << nucleus.position()(2) << std::endl;
-        }
-
-
-        // Write the values of the scalar function.
-        size_t index = 0;
-        this->grid.forEach([&index, &cubefile, this](const size_t i, const size_t j, const size_t k) {
-            cubefile << this->values[index] << " ";  // write one value
-
-            // There can only be 5 values on one line.
-            if (k % 6 == 5) {
-                cubefile << std::endl;
-            }
-
-            if (j == 0) {
-                cubefile << std::endl;
-            }
-
-            index++;  // move to the next value
-        });
-
-        cubefile.close();
-    }
+    /**
+     *  @return the evaluated function values, in the order of the grid's loop
+     */
+    const std::vector<T>& values() const { return this->m_values; }
 };
+
+
+/*
+ *  Convenience aliases for fields.
+ */
+
+template <typename Scalar>
+using MatrixField = Field<Matrix<Scalar, 3, 3>>;
+
+template <typename Scalar>
+using VectorField = Field<Vector<Scalar, 3>>;
 
 
 }  // namespace GQCP
