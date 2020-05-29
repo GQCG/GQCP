@@ -17,6 +17,8 @@
 
 #include "Mathematical/Grid/CubicGrid.hpp"
 
+#include "Utilities/miscellaneous.hpp"
+
 
 namespace GQCP {
 
@@ -32,13 +34,138 @@ namespace GQCP {
  */
 CubicGrid::CubicGrid(const Vector<double, 3>& origin, const std::array<size_t, 3>& steps, const std::array<double, 3>& step_sizes) :
     m_origin {origin},
-    m_steps {steps},
+    number_of_steps {steps},
     step_sizes {step_sizes} {}
+
+
+/*
+ *  NAMED CONSTRUCTORS
+ */
+
+/**
+ *  Parse an .rgrid-file and create the CubicGrid that is contained in it. The values for the scalar field or vector field are discarded.
+ * 
+ *  @param filename             the name of the .igrid-file
+ * 
+ *  @note An integration grid (.igrid) file is a headerless file and contains the following data:
+ *      - Each row relates to one grid point, where the fastest changing values are z > y > x.
+ *      - Column specification:
+ *          - Column 1: The index from 1 to the number of grid points
+ *          - Columns 2-4: The position of the grid point: x, y, and z
+ *          - Optional: Column 5 or columns 5-7: 1 value for a scalar field, 3 values for a vector field
+ */
+CubicGrid CubicGrid::ReadRegularGridFile(const std::string& filename) {
+
+    // Prepare the input file stream and some variables.
+    std::ifstream input_file_stream = validateAndOpen(filename, "rgrid");
+
+    Vector<double, 3> origin = Vector<double, 3>::Zero();
+    std::array<double, 3> step_sizes {0.0, 0.0, 0.0};
+    std::array<size_t, 3> number_of_steps {0, 0, 0};
+
+
+    // Do the actual parsing.
+    std::string line;
+
+
+    // We'll treat the first line as the origin.
+    std::getline(input_file_stream, line);
+
+    // Split the line on any whitespace or tabs.
+    std::vector<std::string> splitted_line;  // create a container for the line to be split in
+
+    boost::trim_if(line, boost::is_any_of(" \t"));
+    boost::split(splitted_line, line, boost::is_any_of(" \t"), boost::token_compress_on);
+
+    // Read the coordinates of the grid point.
+    auto x = std::stod(splitted_line[1]);
+    auto y = std::stod(splitted_line[2]);
+    auto z = std::stod(splitted_line[3]);
+
+    origin << x, y, z;
+
+
+    // Continue parsing, by figuring out the step sizes and the number of steps in each Cartesian direction.
+    // Assume that the fastest varying axis are z > y > x.
+
+    // If we read one line, we can figure out the step size in the z-direction.
+    std::getline(input_file_stream, line);
+    boost::trim_if(line, boost::is_any_of(" \t"));
+    boost::split(splitted_line, line, boost::is_any_of(" \t"), boost::token_compress_on);
+
+    z = std::stod(splitted_line[3]);
+
+    step_sizes[2] = z - origin(2);
+
+
+    // Keep reading lines until the y-coordinate changes.
+    while (std::getline(input_file_stream, line)) {
+
+        // Split the line on any whitespace or tabs.
+        boost::trim_if(line, boost::is_any_of(" \t"));
+        boost::split(splitted_line, line, boost::is_any_of(" \t"), boost::token_compress_on);
+
+        // Read the y-coordinate of the grid point. If it has changed, count the number of steps taken in the z-dimension
+        y = std::stod(splitted_line[2]);
+        if (y != origin(1)) {
+            // Read the index column and fill in the number of steps in the z-direction.
+            const auto index = static_cast<size_t>(std::stoll(splitted_line[0]));
+
+            number_of_steps[2] = index - 1;
+
+            // Since the y-coordinate changed, we can figure out the step size in the y-direction.
+            step_sizes[1] = y - origin(1);
+            break;
+        }
+    }
+
+
+    // Keep reading lines until the x-coordinate changes.
+    while (std::getline(input_file_stream, line)) {
+
+        // Split the line on any whitespace or tabs.
+        boost::trim_if(line, boost::is_any_of(" \t"));
+        boost::split(splitted_line, line, boost::is_any_of(" \t"), boost::token_compress_on);
+
+        // Read the x-coordinate of the grid point. If it has changed, count the number of steps taken in the y-direction.
+        x = std::stod(splitted_line[1]);
+        if (x != origin(0)) {
+            // Read the index column and fill in the number of steps in the y-direction.
+            const auto index = static_cast<size_t>(std::stoll(splitted_line[0]));
+
+            number_of_steps[1] = (index - 1) / number_of_steps[2];
+
+            // Since the x-coordinate changed, we can figure out the step size in the x-direction.
+            step_sizes[0] = x - origin(0);
+            break;
+        }
+    }
+
+
+    // Read until the end of the file to figure out the number of steps taken in the x-direction.
+    size_t final_index;  // will eventually contain the final index
+    while (std::getline(input_file_stream, line)) {
+
+        // Split the line on any whitespace or tabs.
+        boost::trim_if(line, boost::is_any_of(" \t"));
+        boost::split(splitted_line, line, boost::is_any_of(" \t"), boost::token_compress_on);
+
+        final_index = static_cast<size_t>(std::stoll(splitted_line[0]));  // will eventually contain the final index
+    }
+    number_of_steps[0] = final_index / (number_of_steps[1] * number_of_steps[2]);
+
+
+    // We're done parsing now.
+    input_file_stream.close();
+
+    return CubicGrid(origin, number_of_steps, step_sizes);
+}
 
 
 /*
  *  PUBLIC METHODS
  */
+
 /**
  *  @return the number of points that are in this grid
  */
@@ -55,9 +182,9 @@ size_t CubicGrid::numberOfPoints() const {
  */
 void CubicGrid::forEach(const std::function<void(const size_t, const size_t, const size_t)>& callback) const {
 
-    for (size_t i = 0; i < this->m_steps[0]; i++) {
-        for (size_t j = 0; j < this->m_steps[1]; j++) {
-            for (size_t k = 0; k < this->m_steps[2]; k++) {
+    for (size_t i = 0; i < this->number_of_steps[0]; i++) {
+        for (size_t j = 0; j < this->number_of_steps[1]; j++) {
+            for (size_t k = 0; k < this->number_of_steps[2]; k++) {
                 callback(i, j, k);
             }
         }

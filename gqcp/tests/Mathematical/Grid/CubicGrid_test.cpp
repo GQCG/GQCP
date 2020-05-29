@@ -51,3 +51,27 @@ BOOST_AUTO_TEST_CASE(writeToCubeFile) {
     const auto scalar_field = grid.evaluate(gto);
     grid.writeToCubeFile(scalar_field, "test_file.cube", molecule);
 }
+
+
+/**
+ *  Check if reading in the data in an .rgrid-file is correct.
+ */
+BOOST_AUTO_TEST_CASE(ReadRegularGridFile) {
+
+    // Read in the .rgrid-file, provide the reference values and check if it was parsed correctly.
+    const auto grid = GQCP::CubicGrid::ReadRegularGridFile("data/benzene.rgrid");
+
+    const GQCP::Vector<double, 3> ref_origin {-5.556445, -5.957031, -5.565039};
+    const std::array<double, 3> ref_step_sizes {0.500586, 0.500586, 0.501367};
+    const std::array<size_t, 3> ref_number_of_steps {24, 24, 24};
+
+
+    // Check the results.
+    BOOST_CHECK(grid.origin().isApprox(ref_origin, 1.0e-08));
+
+    for (size_t i = 0; i < 3; i++) {
+        BOOST_CHECK(grid.numberOfSteps(i) == ref_number_of_steps[i]);
+        BOOST_CHECK(std::abs(grid.stepSize(i) - ref_step_sizes[i]) < 1.0e-08);
+    }
+}
+

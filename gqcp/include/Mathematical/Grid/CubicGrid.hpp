@@ -36,9 +36,9 @@ namespace GQCP {
  */
 class CubicGrid {
 private:
-    Vector<double, 3> m_origin;        // the origin of the grid
-    std::array<size_t, 3> m_steps;     // the number of steps in the x, y, z-directions
-    std::array<double, 3> step_sizes;  // the step sizes in the x, y, z-directions
+    Vector<double, 3> m_origin;             // the origin of the grid
+    std::array<size_t, 3> number_of_steps;  // the number of steps in the x, y, z-directions
+    std::array<double, 3> step_sizes;       // the step sizes in the x, y, z-directions
 
 
 public:
@@ -50,6 +50,23 @@ public:
      *  @param step_sizes           the step sizes in the x, y, z-directions
      */
     CubicGrid(const Vector<double, 3>& origin, const std::array<size_t, 3>& steps, const std::array<double, 3>& step_sizes);
+
+
+    // NAMED CONSTRUCTORS
+
+    /**
+     *  Parse an .rgrid-file and create the CubicGrid that is contained in it. The values for the scalar field or vector field are discarded.
+     * 
+     *  @param filename             the name of the .igrid-file
+     * 
+     *  @note An integration grid (.igrid) file is a headerless file and contains the following data:
+     *      - Each row relates to one grid point, where the fastest changing values are z > y > x.
+     *      - Column specification:
+     *          - Column 1: The index from 1 to the number of grid points
+     *          - Columns 2-4: The position of the grid point: x, y, and z
+     *          - Optional: Column 5 or columns 5-7: 1 value for a scalar field, 3 values for a vector field
+     */
+    static CubicGrid ReadRegularGridFile(const std::string& filename);
 
 
     // PUBLIC METHODS
@@ -109,9 +126,23 @@ public:
     Vector<double, 3> position(const size_t i, const size_t j, const size_t k) const;
 
     /**
+     *  @param axis         0, 1, 2 representing the x-, y-, or z-axis
+     * 
+     *  @return the number of steps that can be taken in the direction of the specified axis
+     */
+    size_t numberOfSteps(const size_t axis) const { return this->number_of_steps[axis]; }
+
+    /**
      *  @return the number of steps in the x, y, z-directions
      */
-    const std::array<size_t, 3>& steps() const { return this->m_steps; }
+    const std::array<size_t, 3>& numberOfSteps() const { return this->number_of_steps; }
+
+    /**
+     *  @param axis         0, 1, 2 representing the x-, y-, or z-axis
+     * 
+     *  @return the step size that is taken in the direction of the specified axis
+     */
+    double stepSize(const size_t axis) const { return this->step_sizes[axis]; }
 
     /**
      *  @return the step sizes in the x, y, z-directions
@@ -131,7 +162,7 @@ public:
         std::ofstream cubefile;
         cubefile.open(filename, std::fstream::out);
 
-        const auto& steps = this->steps();
+        const auto& steps = this->numberOfSteps();
         const auto& origin = this->origin();
         const auto& step_sizes = this->stepSizes();
         const auto& nuclei = molecule.nuclearFramework().nucleiAsVector();
