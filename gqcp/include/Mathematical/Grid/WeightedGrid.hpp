@@ -36,9 +36,7 @@ private:
 
 
 public:
-    /*
-     *  CONSTRUCTORS
-     */
+    // CONSTRUCTORS
 
     /**
      *  A memberwise constructor.
@@ -49,9 +47,7 @@ public:
     WeightedGrid(const std::vector<Vector<double, 3>>& points, const ArrayX<double>& weights);
 
 
-    /*
-     *  NAMED CONSTRUCTORS
-     */
+    // NAMED CONSTRUCTORS
 
     /**
      *  Parse an .igrid-file and create the WeightedGrid that is contained in it. The values for the scalar field or vector field are discarded.
@@ -69,9 +65,7 @@ public:
     static WeightedGrid ReadIntegrationGridFile(const std::string& filename);
 
 
-    /*
-     *  PUBLIC METHODS
-     */
+    // PUBLIC METHODS
 
     /**
      *  @return the size of the grid, i.e. the number of grid points/weights
