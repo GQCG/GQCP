@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#define BOOST_TEST_MODULE "RHFSCFSolver"
+#define BOOST_TEST_MODULE "QCMethod_GHF_test"
 
 #include <boost/test/unit_test.hpp>
 

@@ -824,6 +824,7 @@ INPUT = "@CMAKE_SOURCE_DIR@/gqcp/include" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod/CI/HamiltonianBuilder" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod/Geminals" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod/HF" \
+        "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod/HF/GHF" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod/HF/RHF" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod/HF/UHF" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod/OrbitalOptimization" \
