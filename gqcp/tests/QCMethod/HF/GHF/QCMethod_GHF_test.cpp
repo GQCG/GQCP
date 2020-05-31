@@ -149,3 +149,63 @@ BOOST_AUTO_TEST_CASE(H3_test_2) {
     BOOST_CHECK(std::abs(s_z1 - reference_s_z) < 1.0e-04);  // since the reference value is about 1.0e-05, this is the minimum threshold we can use
     BOOST_CHECK(std::abs(s_z2 - reference_s_z) < 1.0e-04);  // since the reference value is about 1.0e-05, this is the minimum threshold we can use
 }
+
+
+/**
+ *  Check if the plain GHF SCF solver finds a correct solution.
+ * 
+ *  The system of interest is a H3-triangle, 1 bohr apart and the reference implementation was done by @xdvriend.
+ */
+BOOST_AUTO_TEST_CASE(H3_test_DIIS) {
+
+    // Set up a general spinor basis to obtain a spin-blocked second-quantized molecular Hamiltonian.
+    const auto molecule = GQCP::Molecule::HRingFromDistance(3, 1.0);  // H3-triangle, 1 bohr apart
+    const auto N = molecule.numberOfElectrons();
+
+    const GQCP::GSpinorBasis<double, GQCP::GTOShell> g_spinor_basis {molecule, "STO-3G"};
+    const auto S = g_spinor_basis.overlap().parameters();
+
+    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(g_spinor_basis, molecule);
+
+
+    // Create a solver and associated environment and let the QCMethod do its job.
+    GQCP::TransformationMatrix<double> C_initial {6};
+    // clang-format off
+    C_initial << -0.3585282,  0.0,        0.89935394,  0.0,         0.0,        1.57117404,
+                 -0.3585282,  0.0,       -1.81035361,  0.0,         0.0,        0.00672366,
+                 -0.3585282,  0.0,        0.91099966,  0.0,         0.0,        1.56445038,
+                  0.0,       -0.3585282,  0.0,         0.89935394, -1.57117404, 0.0,
+                  0.0,       -0.3585282,  0.0,        -1.81035361,  0.00672366, 0.0,
+                  0.0,       -0.3585282,  0.0,         0.91099966,  1.56445038, 0.0;
+    // clang-format on
+    GQCP::GHFSCFEnvironment<double> environment {N, sq_hamiltonian, S, C_initial};
+
+    auto solver = GQCP::GHFSCFSolver<double>::DIIS(1.0e-08, 3000);
+    const auto qc_structure = GQCP::QCMethod::GHF<double>().optimize(solver, environment);
+    const auto ghf_parameters = qc_structure.groundStateParameters();
+
+
+    // Provide reference values (from @xdvriend implmentation) and check the results.
+    const double ref_total_energy = -0.6311463202867755;
+    GQCP::VectorX<double> ref_orbital_energies {6};
+    ref_orbital_energies << -1.03323449, -0.89036198, 0.18717436, 0.76901002, 0.82078082, 0.93703294;
+
+    const auto total_energy = qc_structure.groundStateEnergy() + GQCP::Operator::NuclearRepulsion(molecule).value();
+    BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-08);
+
+    const auto orbital_energies = ghf_parameters.orbitalEnergies();
+    BOOST_CHECK(orbital_energies.isApprox(ref_orbital_energies, 1.0e-06));
+
+
+    // Check the reference value for S_z based on two different implementations.
+    const double reference_s_z = 0.5;  // an UHF solution
+
+    const auto P = ghf_parameters.calculateScalarBasis1RDM();                     // AO density matrix
+    const auto S_op = g_spinor_basis.quantize(GQCP::Operator::ElectronicSpin());  // AO representation of the spin operator
+
+    const auto s_z1 = S_op.calculateExpectationValue(P)(GQCP::CartesianDirection::z);
+    const auto s_z2 = ghf_parameters.calculateExpectationValueOf(GQCP::ElectronicSpinOperator(), S)(GQCP::CartesianDirection::z);
+
+    BOOST_CHECK(std::abs(s_z1 - reference_s_z) < 1.0e-08);
+    BOOST_CHECK(std::abs(s_z2 - reference_s_z) < 1.0e-08);
+}

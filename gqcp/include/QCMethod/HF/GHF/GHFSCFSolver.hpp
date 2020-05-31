@@ -22,8 +22,10 @@
 #include "Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp"
 #include "QCMethod/HF/GHF/GHFDensityMatrixCalculation.hpp"
 #include "QCMethod/HF/GHF/GHFElectronicEnergyCalculation.hpp"
+#include "QCMethod/HF/GHF/GHFErrorCalculation.hpp"
 #include "QCMethod/HF/GHF/GHFFockMatrixCalculation.hpp"
 #include "QCMethod/HF/GHF/GHFFockMatrixDiagonalization.hpp"
+#include "QCMethod/HF/GHF/GHFFockMatrixDIIS.hpp"
 #include "QCMethod/HF/GHF/GHFSCFEnvironment.hpp"
 
 
@@ -69,6 +71,35 @@ public:
         const ConvergenceType convergence_criterion {threshold, density_matrix_extractor, "the GHF density matrix in AO basis"};
 
         return IterativeAlgorithm<GHFSCFEnvironment<Scalar>>(plain_ghf_scf_cycle, convergence_criterion, maximum_number_of_iterations);
+    }
+
+
+    /**
+     *  @param minimum_subspace_dimension           the minimum number of Fock matrices that have to be in the subspace before enabling DIIS
+     *  @param maximum_subspace_dimension           the maximum number of Fock matrices that can be handled by DIIS
+     *  @param threshold                            the threshold that is used in comparing the density matrices
+     *  @param maximum_number_of_iterations         the maximum number of iterations the algorithm may perform
+     * 
+     *  @return a DIIS GHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion
+     */
+    static IterativeAlgorithm<GHFSCFEnvironment<Scalar>> DIIS(const size_t minimum_subspace_dimension = 6, const size_t maximum_subspace_dimension = 6, const double threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128) {
+
+        // Create the iteration cycle that effectively 'defines' a DIIS GHF SCF solver
+        StepCollection<GHFSCFEnvironment<Scalar>> diis_ghf_scf_cycle {};
+        diis_ghf_scf_cycle
+            .add(GHFDensityMatrixCalculation<Scalar>())
+            .add(GHFFockMatrixCalculation<Scalar>())
+            .add(GHFErrorCalculation<Scalar>())
+            .add(GHFFockMatrixDIIS<Scalar>(minimum_subspace_dimension, maximum_subspace_dimension))  // this also calculates the next coefficient matrix
+            .add(GHFElectronicEnergyCalculation<Scalar>());
+
+        // Create a convergence criterion on the norm of subsequent density matrices
+        const std::function<std::deque<OneRDM<Scalar>>(const GHFSCFEnvironment<Scalar>&)> density_matrix_extractor = [](const GHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices; };
+
+        using ConvergenceType = ConsecutiveIteratesNormConvergence<OneRDM<Scalar>, GHFSCFEnvironment<Scalar>>;
+        const ConvergenceType convergence_criterion {threshold, density_matrix_extractor, "the GHF density matrix in AO basis"};
+
+        return IterativeAlgorithm<GHFSCFEnvironment<Scalar>>(diis_ghf_scf_cycle, convergence_criterion, maximum_number_of_iterations);
     }
 };
 
