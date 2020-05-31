@@ -63,7 +63,7 @@ BOOST_AUTO_TEST_CASE(H3_test_1) {
     const auto ghf_parameters = qc_structure.groundStateParameters();
 
 
-    // Provide reference values (from @xdvriend implmentation) and check the results.
+    // Provide reference values (from @xdvriend implementation) and check the results.
     const double ref_total_energy = -0.6311463202867755;
     GQCP::VectorX<double> ref_orbital_energies {6};
     ref_orbital_energies << -1.03323449, -0.89036198, 0.18717436, 0.76901002, 0.82078082, 0.93703294;
@@ -124,7 +124,7 @@ BOOST_AUTO_TEST_CASE(H3_test_2) {
     const auto ghf_parameters = qc_structure.groundStateParameters();
 
 
-    // Provide reference values (from @xdvriend implmentation) and check the results.
+    // Provide reference values (from @xdvriend implementation) and check the results.
     const double ref_total_energy = -0.6318365550450893;
     GQCP::VectorX<double> ref_orbital_energies {6};
     ref_orbital_energies << -0.96265264, -0.96265, 0.18610318, 0.82147981, 0.82147982, 0.8866645;
@@ -185,10 +185,10 @@ BOOST_AUTO_TEST_CASE(H3_test_DIIS) {
     const auto ghf_parameters = qc_structure.groundStateParameters();
 
 
-    // Provide reference values (from @xdvriend implmentation) and check the results.
-    const double ref_total_energy = -0.6311463202867755;
+    // Provide reference values (from @xdvriend implementation) and check the results.
+    const double ref_total_energy = -0.630521948908159;
     GQCP::VectorX<double> ref_orbital_energies {6};
-    ref_orbital_energies << -1.03323449, -0.89036198, 0.18717436, 0.76901002, 0.82078082, 0.93703294;
+    ref_orbital_energies << -1.03313925, -0.88946247,  0.18899685,  0.76709853,  0.81828059,  0.93860157;
 
     const auto total_energy = qc_structure.groundStateEnergy() + GQCP::Operator::NuclearRepulsion(molecule).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-08);
@@ -198,7 +198,7 @@ BOOST_AUTO_TEST_CASE(H3_test_DIIS) {
 
 
     // Check the reference value for S_z based on two different implementations.
-    const double reference_s_z = 0.5;  // an UHF solution
+    const double reference_s_z = 0.4999999999999999;  // an UHF solution
 
     const auto P = ghf_parameters.calculateScalarBasis1RDM();                     // AO density matrix
     const auto S_op = g_spinor_basis.quantize(GQCP::Operator::ElectronicSpin());  // AO representation of the spin operator
