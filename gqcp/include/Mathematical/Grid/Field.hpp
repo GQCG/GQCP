@@ -19,6 +19,8 @@
 
 
 #include "Mathematical/Representation/Matrix.hpp"
+#include "Utilities/miscellaneous.hpp"
+#include "Utilities/type_traits.hpp"
 
 #include <vector>
 
@@ -52,8 +54,91 @@ public:
 
 
     /*
+     *  NAMED CONSTRUCTORS
+     */
+
+    /**
+     *  Parse a GAUSSIAN Cube file (http://paulbourke.net/dataformats/cube/) for scalar field values. The grid-associated information is discarded.
+     *
+     *  @param filename                 the name of the cubefile
+     * 
+     *  @note This named constructor is only enabled for Field<double>
+     */
+    template <typename Z = T>
+    static enable_if_t<std::is_same<Z, double>::value, Field<double>> ReadCubeFile(const std::string& filename) {
+
+        // Prepare the input file.
+        std::ifstream input_file_stream = validateAndOpen(filename, "cube");
+
+
+        // Skip the first two comment lines.
+        std::string line;
+        std::getline(input_file_stream, line);
+        std::getline(input_file_stream, line);
+
+
+        // Figure out the number of atoms, in order to ignore that information later on.
+        std::getline(input_file_stream, line);
+
+        // Split the line on any whitespace or tabs.
+        std::vector<std::string> splitted_line;  // create a container for the line to be split in
+
+        boost::trim_if(line, boost::is_any_of(" \t"));
+        boost::split(splitted_line, line, boost::is_any_of(" \t"), boost::token_compress_on);
+
+        const auto number_of_atoms = std::stoi(splitted_line[0]);
+
+
+        // The next three lines contain the number of steps.
+        size_t grid_size {1};  // will contain the total grid size after parsing
+        for (size_t i = 0; i < 3; i++) {
+            std::getline(input_file_stream, line);
+
+            // Split the line on any whitespace or tabs.
+            boost::trim_if(line, boost::is_any_of(" \t"));
+            boost::split(splitted_line, line, boost::is_any_of(" \t"), boost::token_compress_on);
+
+            // The first column contains the number of steps.
+            grid_size *= static_cast<size_t>(std::stoll(splitted_line[0]));
+        }
+
+
+        // Skip the lines containing atomic information.
+        for (size_t i = 0; i < number_of_atoms; i++) {
+            std::getline(input_file_stream, line);
+        }
+
+
+        // Finally, read in all field values.
+        std::vector<double> field_values;
+        field_values.reserve(grid_size);  // allocate memory for all the grid points
+
+        while (std::getline(input_file_stream, line)) {
+
+            // Split the line on any whitespace or tabs.
+            boost::trim_if(line, boost::is_any_of(" \t"));
+            boost::split(splitted_line, line, boost::is_any_of(" \t"), boost::token_compress_on);
+
+            // Add the field values from this line to the total array.
+            for (const auto& value : splitted_line) {
+                field_values.push_back(std::stod(value));  // no worries about push_back, since we have reserved enough memory up-front
+            }
+        }
+
+        input_file_stream.close();
+
+        return Field<double>(field_values);
+    }
+
+
+    /*
      *  PUBLIC METHODS
      */
+
+    /**
+     *  @return the size of this field, i.e. the number of field values
+     */
+    size_t size() const { return this->m_values.size(); }
 
     /**
      *  Access one of the field's values.
