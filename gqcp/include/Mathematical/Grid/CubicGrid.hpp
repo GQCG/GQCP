@@ -68,7 +68,7 @@ public:
      * 
      *  @param filename             the name of the .igrid-file
      * 
-     *  @note An integration grid (.igrid) file is a headerless file and contains the following data:
+     *  @note A regular grid (.rgrid) file is a headerless file and contains the following data:
      *      - Each row relates to one grid point, where the fastest changing values are z > y > x.
      *      - Column specification:
      *          - Column 1: The index from 1 to the number of grid points

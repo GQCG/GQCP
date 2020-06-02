@@ -131,6 +131,85 @@ public:
     }
 
 
+    /**
+     *  Parse an .igrid- or .rgrid-file and create the Field that is contained in it. The values for the grid are discarded.
+     * 
+     *  @param filename             the name of the .igrid-file
+     * 
+     *  @note An integration grid (.igrid) file is a headerless file and contains the following data:
+     *      - Each row relates to one grid point.
+     *      - Column specification:
+     *          - Column 1: The index from 1 to the number of grid points
+     *          - Columns 2-4: The position of the grid point: x, y, and z
+     *          - Optional: Column 5 or columns 5-7: 1 value for a scalar field, 3 values for a vector field
+     *          - Column 5, 6 or 8: The integration weight associated to the grid point
+     * 
+     *  @note A regular grid (.rgrid) file is a headerless file and contains the following data:
+     *      - Each row relates to one grid point, where the fastest changing values are z > y > x.
+     *      - Column specification:
+     *          - Column 1: The index from 1 to the number of grid points
+     *          - Columns 2-4: The position of the grid point: x, y, and z
+     *          - Optional: Column 5 or columns 5-7: 1 value for a scalar field, 3 values for a vector field
+     */
+    template <int N>
+    static Field<Vector<double, N>> ReadGridFile(const std::string& filename) {
+
+        // Find the extension of the given path (https://stackoverflow.com/a/51992).
+        std::string filename_extension;  // will contain the extension of the given filename
+        std::string::size_type idx = filename.rfind('.');
+
+        if (idx != std::string::npos) {
+            filename_extension = filename.substr(idx + 1);
+        } else {
+            throw std::invalid_argument("Field::ReadGridFile(const std::string&): I did not find an extension in your given file name.");
+        }
+
+
+        // Check if the user supplied an .rgrid- or .igrid-file.
+        if ((filename_extension != "rgrid") && (filename_extension != "igrid")) {
+            throw std::invalid_argument("Field::ReadGridFile(const std::string&): The given file is not an .igrid- or .rgrid-file.");
+        }
+
+
+        // If the filename isn't properly converted into an input file stream, we assume the user supplied a wrong file
+        std::ifstream input_file_stream {filename};
+        if (!input_file_stream.good()) {
+            throw std::invalid_argument("validateAndOpen(const std::string&, const std::string&): The provided file name is illegible. Maybe you specified a wrong path?");
+        }
+
+
+        // Do the actual parsing.
+        std::vector<Vector<double, N>> field_values;
+
+        std::string line;
+        while (std::getline(input_file_stream, line)) {
+            std::vector<std::string> splitted_line;  // create a container for the line to be split in
+
+            // Split the line on any whitespace or tabs.
+            boost::trim_if(line, boost::is_any_of(" \t"));
+            boost::split(splitted_line, line, boost::is_any_of(" \t"), boost::token_compress_on);
+
+            // We can skip the first 4 columns (index and grid point coordinates).
+
+            // Read the field value by converting the string(s) to a double and using Eigen::Map to instantiate the correct Vector.
+            std::vector<double> field_value_vector;
+            for (size_t index = 4; index < 4 + N; index++) {
+                field_value_vector.push_back(std::stod(splitted_line[index]));
+            }
+            Eigen::Map<Eigen::VectorXd> field_value {field_value_vector.data(), N};
+            field_values.push_back(Vector<double, N>(field_value));
+
+
+            // We can skip the weight column as well.
+        }
+        input_file_stream.close();
+
+
+        // Convert the std::vector of weights to an Array.
+        return Field<Vector<double, N>>(field_values);
+    }
+
+
     /*
      *  PUBLIC METHODS
      */
