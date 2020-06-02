@@ -102,6 +102,27 @@ public:
 
 
     /**
+     *  Integrate a Field over this grid.
+     * 
+     *  @param field            the field that should be integrated, i.e. provided as the integrand
+     * 
+     *  @return the value of the integral
+     */
+    template <typename T>
+    T integrate(const Field<T>& field) const {
+
+        // A KISS-implementation of integration: multiplying every field value by the weight of the associated grid point.
+        // For cubic grids, the weight is just the voxel volume.
+        auto result = field.value(0) * this->voxelVolume();  // this makes sure that 'result' is already initialized to the correct type, e.g. when a Vector is initialized, it doesn't automatically have the required size
+        for (size_t i = 1; i < this->numberOfPoints(); i++) {
+            result += field.value(i) * this->voxelVolume();
+        }
+
+        return result;
+    }
+
+
+    /**
      *  Loop over the points of this grid by index number.
      * 
      *  @param callback         the function you would like to apply to each incoming (i,j,k)-tuple of numbers of steps taken in the x,y,z-direction.

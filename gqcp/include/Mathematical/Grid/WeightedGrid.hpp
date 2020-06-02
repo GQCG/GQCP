@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Mathematical/Grid/Field.hpp"
 #include "Mathematical/Representation/Array.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 
@@ -68,9 +69,34 @@ public:
     // PUBLIC METHODS
 
     /**
+     *  Integrate a Field over this grid.
+     * 
+     *  @param field            the field that should be integrated, i.e. provided as the integrand
+     * 
+     *  @return the value of the integral
+     */
+    template <typename T>
+    T integrate(const Field<T>& field) const {
+
+        // A KISS-implementation of integration: multiplying every field value by the weight of the associated grid point.
+        auto result = field.value(0) * this->weight(0);  // this makes sure that 'result' is already initialized to the correct type, e.g. when a Vector is initialized, it doesn't automatically have the required size
+        for (size_t i = 1; i < this->size(); i++) {
+            result += field.value(i) * this->weight(i);
+        }
+
+        return result;
+    }
+
+
+    /**
+     *  @return the number of grid points/weights
+     */
+    size_t numberOfPoints() const { return this->m_points.size(); }
+
+    /**
      *  @return the size of the grid, i.e. the number of grid points/weights
      */
-    size_t size() const { return this->m_points.size(); }
+    size_t size() const { return this->numberOfPoints(); }
 
     /**
      *  Access one of the grid's points.

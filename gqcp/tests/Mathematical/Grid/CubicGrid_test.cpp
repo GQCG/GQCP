@@ -97,3 +97,29 @@ BOOST_AUTO_TEST_CASE(ReadCubeFile) {
         BOOST_CHECK(std::abs(grid.stepSize(i) - ref_step_sizes[i]) < 1.0e-08);
     }
 }
+
+
+/**
+ *  Check if CubicGrid's integrate() method works as expected.
+ */
+BOOST_AUTO_TEST_CASE(integrate) {
+
+    // Set up an example cubic grid.
+    const GQCP::Vector<double, 3> origin = GQCP::Vector<double, 3>::Zero();
+    const std::array<size_t, 3> number_of_steps {60, 60, 60};
+    const std::array<double, 3> step_sizes {1.0, 1.0, 1.0};
+
+    const GQCP::CubicGrid grid {origin, number_of_steps, step_sizes};
+
+
+    // As an easy example, the scalar field f(r) = 1 should integrate to the total volume if the cubic grid.
+    std::vector<double> field_values(grid.numberOfPoints(), 1.0);
+    const GQCP::Field<double> scalar_field {field_values};
+
+    BOOST_CHECK(std::abs(grid.integrate(scalar_field) - grid.totalVolume()) < 1.0e-12);
+}
+
+
+/**
+ *  Check if an integration through CubicGrid equals an integration through an equivalent WeightedGrid.
+ */

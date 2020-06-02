@@ -73,3 +73,29 @@ BOOST_AUTO_TEST_CASE(ReadIntegrationGridFile) {
     BOOST_CHECK(grid.point(0).isApprox(ref_point1, 1.0e-08));
     BOOST_CHECK(grid.point(25904).isApprox(ref_point2, 1.0e-08));
 }
+
+
+/**
+ *  Check if the integrate() method works as expected.
+ */
+BOOST_AUTO_TEST_CASE(integrate) {
+
+    // Set up a toy WeightedGrid.
+    std::vector<GQCP::Vector<double, 3>> points {
+        {0.0, 0.0, 0.0},
+        {0.0, 1.0, 2.0},
+        {2.0, 3.0, 4.0}};
+    GQCP::ArrayX<double> weights {3};
+    weights << 1.0, 2.0, 3.0;
+
+    const GQCP::WeightedGrid grid {points, weights};
+
+    // Set up a toy scalar Field, from evaluated function values.
+    const GQCP::Field<double> scalar_field {
+        {2.0, 3.0, 4.0}};
+
+
+    // Provide the reference value and check the result.
+    const double ref_value {20.0};
+    BOOST_CHECK(std::abs(grid.integrate(scalar_field) - ref_value) < 1.0e-12);
+}
