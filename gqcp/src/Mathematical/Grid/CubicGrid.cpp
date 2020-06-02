@@ -96,11 +96,10 @@ CubicGrid CubicGrid::ReadCubeFile(const std::string& filename) {
         number_of_steps[i] = static_cast<size_t>(std::stoll(splitted_line[0]));
 
         // The next three columns contain the step size.
-        step_sizes[i] = std::stod(splitted_line[i + 1]);  //
+        step_sizes[i] = std::stod(splitted_line[i + 1]);
     }
 
     input_file_stream.close();
-
 
     return CubicGrid(origin, number_of_steps, step_sizes);
 }

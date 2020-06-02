@@ -62,7 +62,7 @@ public:
      *
      *  @param filename                 the name of the cubefile
      * 
-     *  @note This named constructor is only enabled for Field<double>
+     *  @note This named constructor is only enabled for Field<double>.
      */
     template <typename Z = T>
     static enable_if_t<std::is_same<Z, double>::value, Field<double>> ReadCubeFile(const std::string& filename) {
