@@ -78,3 +78,55 @@ BOOST_AUTO_TEST_CASE(ReadRegularGridFile) {
     GQCP::Vector<double, 3> ref_value_last {0.000003, -0.000004, -0.000001};
     BOOST_CHECK(J.values().back().isApprox(ref_value_last, 1.0e-08));
 }
+
+
+/**
+ *  Check if operator+ is correctly implemented.
+ */
+BOOST_AUTO_TEST_CASE(operator_plus) {
+
+    // Set up two fields.
+    GQCP::Field<unsigned> lhs {{8, 5, 5}};
+    GQCP::Field<unsigned> rhs {{1, 2, 3}};
+
+
+    // Check if operator+ works as expected.
+    const std::vector<unsigned> ref_sum_values1 {9, 7, 8};
+    auto sum = lhs + rhs;
+    BOOST_CHECK_EQUAL_COLLECTIONS(sum.values().begin(), sum.values().end(), ref_sum_values1.begin(), ref_sum_values1.end());
+
+
+    // Check if operator+= works as expected.
+    const std::vector<unsigned> ref_sum_values2 {10, 9, 11};
+    sum += rhs;
+    BOOST_CHECK_EQUAL_COLLECTIONS(sum.values().begin(), sum.values().end(), ref_sum_values2.begin(), ref_sum_values2.end());
+}
+
+
+/**
+ *  Check if operator- is correctly implemented.
+ */
+BOOST_AUTO_TEST_CASE(operator_minus) {
+
+    // Set up two fields.
+    GQCP::Field<int> lhs {{8, 5, 5}};
+    GQCP::Field<int> rhs {{1, 2, 3}};
+
+
+    // Check if the unary operator- works as expected.
+    const std::vector<int> ref_unary_minus_values {-8, -5, -5};
+    const auto unary_minus = -lhs;
+    BOOST_CHECK_EQUAL_COLLECTIONS(unary_minus.values().begin(), unary_minus.values().end(), ref_unary_minus_values.begin(), ref_unary_minus_values.end());
+
+
+    // Check if binary operator- works as expected.
+    const std::vector<int> ref_difference_values1 {7, 3, 2};
+    auto difference = lhs - rhs;
+    BOOST_CHECK_EQUAL_COLLECTIONS(difference.values().begin(), difference.values().end(), ref_difference_values1.begin(), ref_difference_values1.end());
+
+
+    // Check if operator-= works as expected.
+    const std::vector<int> ref_difference_values2 {6, 1, -1};
+    difference -= rhs;
+    BOOST_CHECK_EQUAL_COLLECTIONS(difference.values().begin(), difference.values().end(), ref_difference_values2.begin(), ref_difference_values2.end());
+}

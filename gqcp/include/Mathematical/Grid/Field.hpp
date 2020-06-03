@@ -22,6 +22,8 @@
 #include "Utilities/miscellaneous.hpp"
 #include "Utilities/type_traits.hpp"
 
+#include <algorithm>
+#include <functional>
 #include <vector>
 
 
@@ -207,6 +209,98 @@ public:
 
         // Convert the std::vector of weights to an Array.
         return Field<Vector<double, N>>(field_values);
+    }
+
+
+    /*
+     *  OPERATORS
+     * 
+     *  Canonical implementations of mathematical operators. (https://en.cppreference.com/w/cpp/language/operators)
+     */
+
+    /**
+     *  Add a field to this one by a point-wise addition.
+     * 
+     *  @param rhs          the right-hand side of the addition
+     * 
+     *  @return a reference to the modified this
+     * 
+     *  @note The fields are supposed to be defined on the same grid.
+     */
+    Field<T>& operator+=(const Field<T>& rhs) {
+
+        std::transform(this->m_values.begin(), this->m_values.end(), rhs.values().begin(),
+                       this->m_values.begin(), std::plus<T>());
+
+        return *this;
+    }
+
+
+    /**
+     *  Add two fields by a point-wise addition.
+     * 
+     *  @param lhs          the left-hand side of the addition
+     *  @param rhs          the right-hand side of the addition
+     * 
+     *  @return the sum of the two fields
+     * 
+     *  @note The fields are supposed to be defined on the same grid.
+     */
+    friend Field<T> operator+(Field<T> lhs, const Field<T>& rhs) {
+
+        lhs += rhs;
+        return lhs;
+    }
+
+
+    /**
+     *  Negate the values of this field.
+     * 
+     *  @return a negated version of this field
+     */
+    Field<T> operator-() const {
+
+        std::vector<T> result;
+        result.reserve(this->size());
+
+        std::transform(this->m_values.begin(), this->m_values.end(),
+                       std::back_inserter(result), std::negate<T>());
+
+        return result;
+    }
+
+
+    /**
+     *  Subtract another field from this field by point-wise subtraction.
+     * 
+     *  @param rhs              the right-hand side of the subtraction
+     * 
+     *  @return a reference to the modified this
+     * 
+     *  @note The fields are supposed to be defined on the same grid.
+     */
+    Field<T>& operator-=(const Field<T>& rhs) {
+
+        // Define subtraction as addition with the negation.
+        *this += (-rhs);
+        return *this;
+    }
+
+
+    /**
+     *  Subtract one field from another by point-wise subtraction.
+     * 
+     *  @param lhs          the left-hand side of the subtraction
+     *  @param rhs          the right-hand side of the subtraction
+     * 
+     *  @return the difference of the two fields
+     * 
+     *  @note The fields are supposed to be defined on the same grid.
+     */
+    friend Field<T> operator-(Field<T> lhs, const Field<T>& rhs) {
+
+        lhs -= rhs;
+        return lhs;
     }
 
 
