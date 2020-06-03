@@ -63,6 +63,7 @@
 #include "Mathematical/CartesianDirection.hpp"
 #include "Mathematical/Grid/CubicGrid.hpp"
 #include "Mathematical/Grid/Field.hpp"
+#include "Mathematical/Grid/WeightedGrid.hpp"
 #include "Mathematical/Optimization/Accelerator/ConstantDamper.hpp"
 #include "Mathematical/Optimization/Accelerator/DIIS.hpp"
 #include "Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp"

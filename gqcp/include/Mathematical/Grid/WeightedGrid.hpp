@@ -94,11 +94,6 @@ public:
     size_t numberOfPoints() const { return this->m_points.size(); }
 
     /**
-     *  @return the size of the grid, i.e. the number of grid points/weights
-     */
-    size_t size() const { return this->numberOfPoints(); }
-
-    /**
      *  Access one of the grid's points.
      * 
      *  @param index                the index of the grid point
@@ -113,6 +108,11 @@ public:
     const std::vector<Vector<double, 3>>& points() const { return this->m_points; }
 
     /**
+     *  @return the size of the grid, i.e. the number of grid points/weights
+     */
+    size_t size() const { return this->numberOfPoints(); }
+
+    /**
      *  Access one of the grid's weights.
      * 
      *  @param index                the index of the weight
@@ -124,7 +124,7 @@ public:
     /**
      *  @return a 1-D array containing the weights for each of the grid points
      */
-    const ArrayX<double> weights() const { return this->m_weights; };
+    const ArrayX<double>& weights() const { return this->m_weights; };
 };
 
 

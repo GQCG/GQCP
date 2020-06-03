@@ -46,10 +46,10 @@ IncludeCategories:  # The corresponding header of a .cpp-file gets priority 0
     Priority: 2
   - Regex: '<(Eigen|unsupported/Eigen)'  # Eigen headers
     Priority: 3
-  - Regex: '<(algorithm|array|cmath|chrono|complex|cstddef|cstdlib|deque|fstream|functional|initializer_list|iomanip|iostream|iterator|map|memory|numeric|ostream|queue|sstream|string|type_traits|unordered_map|utility|vector)'  # std headers
-    Priority: 4
-  - Regex: '<'  # any other system-installed headers are grouped and should appear second-to-last
+  - Regex: '<(algorithm|array|cmath|chrono|complex|cstddef|cstdlib|deque|fstream|functional|initializer_list|iomanip|iostream|iterator|map|memory|numeric|ostream|queue|sstream|string|type_traits|unordered_map|utility|vector)'  # STL headers
     Priority: 5
+  - Regex: '<'  # any other system-installed headers are grouped and should appear just before the STL headers
+    Priority: 4
   - Regex: '<libint2'  # libint2 always goes last
     Priority: 6
   - Regex: '.'  # all files that aren't included in one of the previous categories are considered to be project sources and appear first
