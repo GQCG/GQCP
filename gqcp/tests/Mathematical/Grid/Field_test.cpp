@@ -130,3 +130,41 @@ BOOST_AUTO_TEST_CASE(operator_minus) {
     difference -= rhs;
     BOOST_CHECK_EQUAL_COLLECTIONS(difference.values().begin(), difference.values().end(), ref_difference_values2.begin(), ref_difference_values2.end());
 }
+
+
+/**
+ *  Check if the mapping functionality is correctly implemented by mapping positive or negative values to zero and checking the results.
+ */
+BOOST_AUTO_TEST_CASE(map) {
+
+    // Set up a test field and two test unary functions.
+    GQCP::Field<int> field {{1, -1}};
+
+    const auto positive_to_zero = [](const int a) {
+        if (a >= 0) {
+            return 0;
+        } else {
+            return a;
+        }
+    };
+
+    const auto negative_to_zero = [](const int a) {
+        if (a <= 0) {
+            return 0;
+        } else {
+            return a;
+        }
+    };
+
+
+    // Provide the reference values and check the result of the mappings.
+    const std::vector<int> ref_positive_only_values {1, 0};
+    const auto positive_only_field = field.mapped(negative_to_zero);
+
+    BOOST_CHECK_EQUAL_COLLECTIONS(positive_only_field.values().begin(), positive_only_field.values().end(), ref_positive_only_values.begin(), ref_positive_only_values.end());
+
+    const std::vector<int> ref_negative_only_values {0, -1};
+    const auto negative_only_field = field.mapped(positive_to_zero);
+
+    BOOST_CHECK_EQUAL_COLLECTIONS(negative_only_field.values().begin(), negative_only_field.values().end(), ref_negative_only_values.begin(), ref_negative_only_values.end());
+}

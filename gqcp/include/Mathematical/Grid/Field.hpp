@@ -308,6 +308,35 @@ public:
      *  PUBLIC METHODS
      */
 
+
+    /**
+     *  Apply a given function on each of this field's values, in-place.
+     * 
+     *  @param function             the function to be used on each of the values
+     */
+    void map(const std::function<T(const T&)>& function) {
+
+        std::transform(this->m_values.begin(), this->m_values.end(), this->m_values.begin(),
+                       function);
+    }
+
+
+    /**
+     *  Apply a given function on each of this field's values.
+     * 
+     *  @param function             the function to be used on each of the values
+     * 
+     *  @return a field with the mapped values
+     */
+    Field<T> mapped(const std::function<T(const T&)>& function) const {
+
+        auto this_copy = *this;
+        this_copy.map(function);
+
+        return this_copy;
+    }
+
+
     /**
      *  @return the size of this field, i.e. the number of field values
      */
