@@ -70,7 +70,7 @@ BOOST_AUTO_TEST_CASE(ReadRegularGridFile) {
     BOOST_CHECK(grid.origin().isApprox(ref_origin, 1.0e-08));
 
     for (size_t i = 0; i < 3; i++) {
-        BOOST_CHECK(grid.numberOfSteps(i) == ref_number_of_steps[i]);
+        BOOST_CHECK(grid.numbersOfSteps(i) == ref_number_of_steps[i]);
         BOOST_CHECK(std::abs(grid.stepSize(i) - ref_step_sizes[i]) < 1.0e-08);
     }
 }
@@ -93,7 +93,7 @@ BOOST_AUTO_TEST_CASE(ReadCubeFile) {
     BOOST_CHECK(grid.origin().isApprox(ref_origin, 1.0e-08));
 
     for (size_t i = 0; i < 3; i++) {
-        BOOST_CHECK(grid.numberOfSteps(i) == ref_number_of_steps[i]);
+        BOOST_CHECK(grid.numbersOfSteps(i) == ref_number_of_steps[i]);
         BOOST_CHECK(std::abs(grid.stepSize(i) - ref_step_sizes[i]) < 1.0e-08);
     }
 }
@@ -123,3 +123,23 @@ BOOST_AUTO_TEST_CASE(integrate) {
 /**
  *  Check if an integration through CubicGrid equals an integration through an equivalent WeightedGrid.
  */
+
+
+
+/**
+ *  Check if the named constructor CubicGrid::Centered is correctly implemented
+ */
+BOOST_AUTO_TEST_CASE(Centered) {
+
+    // We'll try to center a grid around (0,0,0) with 5 steps and a step size of 0.1.
+    const size_t number_of_steps = 5;
+    const double step_size = 0.1;
+    const GQCP::Vector<double, 3> point = GQCP::Vector<double, 3>::Zero();
+
+    const auto grid = GQCP::CubicGrid::Centered(point, number_of_steps, step_size);
+
+
+    // Check if the origin of the grid appears to be correct.
+    const GQCP::Vector<double, 3> ref_origin {-0.25, -0.25, -0.25};
+    BOOST_CHECK(grid.origin().isApprox(ref_origin, 1.0e-08));
+}

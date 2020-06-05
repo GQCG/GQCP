@@ -102,17 +102,17 @@ void bindCubicGrid(py::module& module) {
             "Return the position vector associated to the given indices.")
 
         .def(
-            "numberOfSteps",
+            "numbersOfSteps",
             [](const GQCP::CubicGrid& cubic_grid, const size_t axis) {
-                return cubic_grid.numberOfSteps(axis);
+                return cubic_grid.numbersOfSteps(axis);
             },
             py::arg("axis"),
             "Return the number of steps that can be taken in the direction of the specified axis.")
 
         .def(
-            "numberOfSteps",
+            "numbersOfSteps",
             [](const GQCP::CubicGrid& cubic_grid) {
-                return cubic_grid.numberOfSteps();
+                return cubic_grid.numbersOfSteps();
             },
             "Return the number of steps in the x, y, z-directions.")
 

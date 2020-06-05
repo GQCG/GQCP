@@ -99,13 +99,6 @@ public:
      */
 
     /**
-     *  @param i            the index of the requested basis function
-     * 
-     *  @return the basis function with the given index that 'is' in this scalar basis
-     */
-    LinearCombination<double, BasisFunction> basisFunction(const size_t i) const { return this->basisFunctions()[i]; }
-
-    /**
      *  @return the basis functions that 'are' in this scalar basis
      */
     std::vector<LinearCombination<double, BasisFunction>> basisFunctions() const { return this->shell_set.basisFunctions(); }

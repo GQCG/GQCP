@@ -89,14 +89,14 @@ public:
     size_t contractionSize() const { return this->contraction_coefficients.size(); }
 
     /**
-     *  Embed the total normalization factor of the corresponding linear combination of spherical (or axis-aligned Cartesian) GTOs into the contraction coefficients
+     *  Embed the total normalization factor of the corresponding linear combination of spherical (or axis-aligned Cartesian) GTOs into the contraction coefficients.
      */
     void embedNormalizationFactor();
 
     /**
-     *  Embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing
+     *  Embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing.
      *
-     *  Note that the normalization factor that is embedded corresponds to the spherical (or axis-aligned Cartesian) GTO
+     *  @note The normalization factor that is embedded, corresponds to the spherical (or axis-aligned Cartesian) GTO
      */
     void embedNormalizationFactorsOfPrimitives();
 
@@ -126,9 +126,9 @@ public:
     size_t numberOfBasisFunctions() const;
 
     /**
-     *  Embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing
+     *  Embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing.
      *
-     *  Note that the normalization factor that is embedded corresponds to the spherical (or axis-aligned Cartesian) GTO
+     *  @note The the normalization factor that is embedded corresponds to the spherical (or axis-aligned Cartesian) GTO
      */
     void unEmbedNormalizationFactorsOfPrimitives();
 };

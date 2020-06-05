@@ -20,6 +20,9 @@
 
 #include "Mathematical/AbstractFunction/ScalarFunction.hpp"
 
+#include <boost/format.hpp>
+#include <boost/lexical_cast.hpp>
+
 #include <vector>
 
 
@@ -27,21 +30,25 @@ namespace GQCP {
 
 
 /**
- *  A class template representing a linear combination of scalar functions
+ *  A class template representing a linear combination of scalar functions.
  *
- *  @tparam T                       the type of scalar function
- *  @tparam CoefficientScalar       the type of scalar that is used as coefficient
+ *  @tparam _Function                   the type of scalar function
+ *  @tparam _CoefficientScalar          the type of scalar that is used as coefficient
  */
-template <typename CoefficientScalar, typename T>
+template <typename _CoefficientScalar, typename _Function>
 class LinearCombination:
-    public ScalarFunction<typename T::Valued, typename T::Scalar, T::Cols> {
+    public ScalarFunction<typename _Function::Valued, typename _Function::Scalar, _Function::Cols> {
 
-    static_assert(std::is_base_of<ScalarFunction<typename T::Valued, typename T::Scalar, T::Cols>, T>::value, "LinearCombination: T must derive from ScalarFunction");
+public:
+    using CoefficientScalar = _CoefficientScalar;
+    using Function = _Function;
+
+    static_assert(std::is_base_of<ScalarFunction<typename Function::Valued, typename Function::Scalar, Function::Cols>, Function>::value, "LinearCombination: Function must derive from ScalarFunction");
 
 
 protected:
     std::vector<CoefficientScalar> m_coefficients;
-    std::vector<T> m_functions;
+    std::vector<Function> m_functions;
 
 
 public:
@@ -53,12 +60,12 @@ public:
      *  @param coefficients     the coefficients of the linear combination
      *  @param functions        the scalar functions of the linear combination
      */
-    LinearCombination(const std::vector<CoefficientScalar>& coefficients, const std::vector<T>& functions) :
+    LinearCombination(const std::vector<CoefficientScalar>& coefficients, const std::vector<Function>& functions) :
         m_coefficients {coefficients},
         m_functions {functions} {
 
         if (coefficients.size() != functions.size()) {
-            throw std::invalid_argument("LinearCombination(std::vector<CoefficientScalar>, std::vector<T>): the number of coefficients and functions should match");
+            throw std::invalid_argument("LinearCombination(std::vector<CoefficientScalar>, std::vector<Function>): the number of coefficients and functions should match");
         }
     }
 
@@ -67,7 +74,7 @@ public:
      *  Default constructor: construct a 'zero vector', i.e. an empty linear combination
      */
     LinearCombination() :
-        LinearCombination(std::vector<CoefficientScalar> {}, std::vector<T> {}) {}
+        LinearCombination(std::vector<CoefficientScalar> {}, std::vector<Function> {}) {}
 
 
     /**
@@ -76,8 +83,8 @@ public:
      *  @param coefficient      the one coefficient that belongs to the function
      *  @param function         one single scalar function
      */
-    LinearCombination(const CoefficientScalar coefficient, const T& function) :
-        LinearCombination(std::vector<CoefficientScalar> {coefficient}, std::vector<T> {function}) {}
+    LinearCombination(const CoefficientScalar coefficient, const Function& function) :
+        LinearCombination(std::vector<CoefficientScalar> {coefficient}, std::vector<Function> {function}) {}
 
 
     /**
@@ -85,7 +92,7 @@ public:
      *
      *  @param function         one single scalar function
      */
-    LinearCombination(const T& function) :
+    LinearCombination(const Function& function) :
         LinearCombination(1.0, function) {}
 
 
@@ -117,7 +124,7 @@ public:
      *
      *  @return the sum of this and the right-hand side
      */
-    LinearCombination operator+(const LinearCombination& rhs) const {
+    LinearCombination<CoefficientScalar, Function> operator+(const LinearCombination<CoefficientScalar, Function>& rhs) const {
         LinearCombination result = *this;
         result.append(rhs.m_coefficients, rhs.m_functions);
         return result;
@@ -128,7 +135,7 @@ public:
      *
      *  @return the sum of this and the right-hand side
      */
-    LinearCombination& operator+=(const LinearCombination& rhs) {
+    LinearCombination<CoefficientScalar, Function>& operator+=(const LinearCombination<CoefficientScalar, Function>& rhs) {
         this->append(rhs.m_coefficients, rhs.m_functions);
         return *this;
     }
@@ -138,7 +145,7 @@ public:
      *
      *  @return the product of this with a scalar
      */
-    LinearCombination operator*(const CoefficientScalar scalar) const {
+    LinearCombination<CoefficientScalar, Function> operator*(const CoefficientScalar& scalar) const {
 
         if (std::abs(scalar) < 1.0e-16) {  // multiplication by zero returns a 'zero vector'
             return LinearCombination();
@@ -159,17 +166,17 @@ public:
      *
      *  @return the product of a LinearCombination with a scalar
      */
-    friend LinearCombination operator*(CoefficientScalar scalar, const LinearCombination& rhs) {
+    friend LinearCombination<CoefficientScalar, Function> operator*(CoefficientScalar scalar, const LinearCombination<CoefficientScalar, Function>& rhs) {
         return rhs.operator*(scalar);
     }
 
-    using ScalarFunction<typename T::Valued, typename T::Scalar, T::Cols>::operator*;
+    using ScalarFunction<typename Function::Valued, typename Function::Scalar, Function::Cols>::operator*;
 
 
     /**
      *  @return the negative of the linear combination
      */
-    LinearCombination operator-() const {
+    LinearCombination<CoefficientScalar, Function> operator-() const {
         return this->operator*(-1.0);
     }
 
@@ -178,7 +185,7 @@ public:
      *
      *  @return the difference of this and a right-hand side
      */
-    LinearCombination operator-(const LinearCombination& rhs) const {
+    LinearCombination<CoefficientScalar, Function> operator-(const LinearCombination<CoefficientScalar, Function>& rhs) const {
         return this->operator+(-rhs);
     }
 
@@ -192,7 +199,7 @@ public:
      *
      *  @return the scalar function value of this linear combination at the given point
      */
-    typename T::Valued operator()(const Vector<typename T::Scalar, T::Cols>& x) const override {
+    typename Function::Valued operator()(const Vector<typename Function::Scalar, Function::Cols>& x) const override {
         size_t n = this->m_functions.size();
 
         CoefficientScalar value {};  // default initialization
@@ -209,7 +216,7 @@ public:
      *
      *  @return whether two linear combinations are considered equal
      */
-    bool operator==(const LinearCombination& rhs) const {
+    bool operator==(const LinearCombination<CoefficientScalar, Function>& rhs) const {
         return (this->m_coefficients == rhs.m_coefficients) && (this->m_functions == rhs.m_functions);
     }
 
@@ -224,15 +231,23 @@ public:
      *  @param coefficients     the coefficients that should be appended to this linear combination
      *  @param functions        the functions that should be appended to this linear combination
      */
-    void append(const std::vector<CoefficientScalar>& coefficients, const std::vector<T>& functions) {
+    void append(const std::vector<CoefficientScalar>& coefficients, const std::vector<Function>& functions) {
 
         if (coefficients.size() != functions.size()) {
-            throw std::invalid_argument("LinearCombination::append(std::vector<CoefficientScalar>, std::vector<T>): the number of coefficients and functions should match");
+            throw std::invalid_argument("LinearCombination::append(std::vector<CoefficientScalar>, std::vector<Function>): the number of coefficients and functions should match");
         }
 
         this->m_coefficients.insert(this->m_coefficients.end(), coefficients.begin(), coefficients.end());
         this->m_functions.insert(this->m_functions.end(), functions.begin(), functions.end());
     }
+
+
+    /**
+     *  @param i                the index
+     * 
+     *  @return the coefficient of this linear combination that corresponds to the given index
+     */
+    const CoefficientScalar& coefficient(const size_t i) const { return this->m_coefficients[i]; }
 
     /**
      *  @return the coefficients of the linear combination
@@ -240,9 +255,36 @@ public:
     const std::vector<CoefficientScalar>& coefficients() const { return this->m_coefficients; }
 
     /**
+     *  @return a textual description of self
+     */
+    std::string description() const {
+
+        std::string description {};
+        for (size_t i = 0; i < this->length(); i++) {
+            // Provide the coefficient and the function's description.
+            description += (boost::format("(%|.3f|) %s") % this->coefficient(i) % this->function(i).description()).str();
+
+            // Add a '+' when we're not at the end.
+            if (i != this->length() - 1) {
+                description += " + ";
+            }
+        }
+
+        return description;
+    }
+
+
+    /**
+     *  @param i                the index
+     * 
+     *  @return the function of this linear combination that corresponds to the given index
+     */
+    const Function& function(const size_t i) const { return this->m_functions[i]; }
+
+    /**
      *  @return the scalar functions of this linear combination
      */
-    const std::vector<T>& functions() const { return this->m_functions; }
+    const std::vector<Function>& functions() const { return this->m_functions; }
 
     /**
      *  @return the length of the linear combination, i.e. the number of coefficients/functions inside it
@@ -255,17 +297,17 @@ public:
 
 
 /*
- *  Make GQCP::LinearCombination<T> an Eigen scalar type
+ *  Make GQCP::LinearCombination<Function> an Eigen scalar type
  */
 
 namespace Eigen {
 
-template <typename CoefficientScalar, typename T>
-struct NumTraits<GQCP::LinearCombination<CoefficientScalar, T>>: public NumTraits<double> {  // permits to get the epsilon, dummy_precision, lowest, highest functions
+template <typename CoefficientScalar, typename Function>
+struct NumTraits<GQCP::LinearCombination<CoefficientScalar, Function>>: public NumTraits<double> {  // permits to get the epsilon, dummy_precision, lowest, highest functions
 
-    using Real = GQCP::LinearCombination<CoefficientScalar, T>;
-    using NonInteger = GQCP::LinearCombination<CoefficientScalar, T>;
-    using Nested = GQCP::LinearCombination<CoefficientScalar, T>;
+    using Real = GQCP::LinearCombination<CoefficientScalar, Function>;
+    using NonInteger = GQCP::LinearCombination<CoefficientScalar, Function>;
+    using Nested = GQCP::LinearCombination<CoefficientScalar, Function>;
 
     enum {
         IsComplex = 0,
@@ -279,20 +321,20 @@ struct NumTraits<GQCP::LinearCombination<CoefficientScalar, T>>: public NumTrait
 };
 
 
-// Enable the scalar product of a LinearCombination<CoefficientScalar, T> with its own CoefficientScalar (both sides)
+// Enable the scalar product of a LinearCombination<CoefficientScalar, Function> with its own CoefficientScalar (both sides)
 
-template <typename CoefficientScalar, typename T>
-struct ScalarBinaryOpTraits<GQCP::LinearCombination<CoefficientScalar, T>, CoefficientScalar,
-                            Eigen::internal::scalar_product_op<GQCP::LinearCombination<CoefficientScalar, T>, CoefficientScalar>> {
+template <typename CoefficientScalar, typename Function>
+struct ScalarBinaryOpTraits<GQCP::LinearCombination<CoefficientScalar, Function>, CoefficientScalar,
+                            Eigen::internal::scalar_product_op<GQCP::LinearCombination<CoefficientScalar, Function>, CoefficientScalar>> {
 
-    using ReturnType = GQCP::LinearCombination<CoefficientScalar, T>;
+    using ReturnType = GQCP::LinearCombination<CoefficientScalar, Function>;
 };
 
-template <typename CoefficientScalar, typename T>
-struct ScalarBinaryOpTraits<CoefficientScalar, GQCP::LinearCombination<CoefficientScalar, T>,
-                            Eigen::internal::scalar_product_op<CoefficientScalar, GQCP::LinearCombination<CoefficientScalar, T>>> {
+template <typename CoefficientScalar, typename Function>
+struct ScalarBinaryOpTraits<CoefficientScalar, GQCP::LinearCombination<CoefficientScalar, Function>,
+                            Eigen::internal::scalar_product_op<CoefficientScalar, GQCP::LinearCombination<CoefficientScalar, Function>>> {
 
-    using ReturnType = GQCP::LinearCombination<CoefficientScalar, T>;
+    using ReturnType = GQCP::LinearCombination<CoefficientScalar, Function>;
 };
 
 

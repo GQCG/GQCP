@@ -39,9 +39,9 @@ public:
     // CONSTRUCTORS
 
     /**
-     *  @param arr      the array containing the x-, y- and z-exponent in that order
+     *  @param array            the array containing the x-, y- and z-exponent (in that order)
      */
-    CartesianExponents(const std::array<size_t, 3>& arr);
+    CartesianExponents(const std::array<size_t, 3>& array);
 
     /**
      *  @param x        the exponent in x
@@ -49,6 +49,11 @@ public:
      *  @param z        the exponent in z
      */
     CartesianExponents(const size_t x, const size_t y, const size_t z);
+
+    /**
+     *  @param vector           the vector containing the x-, y- and z-exponent (in that order) 
+     */
+    CartesianExponents(const std::vector<size_t>& vector);
 
 
     // OPERATORS
@@ -95,6 +100,11 @@ public:
      *  @return the exponents as an array
      */
     const std::array<size_t, 3>& asArray() const { return this->exponents; }
+
+    /**
+     *  @return a textual description of self
+     */
+    std::string description() const;
 
     /**
      *  @param direction        the direction (x,y,z) whose exponent should be returned

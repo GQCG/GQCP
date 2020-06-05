@@ -118,6 +118,11 @@ public:
     const Vector<double, 3>& center() const { return this->m_center; }
 
     /**
+     *  @return a textual description of self
+     */
+    std::string description() const;
+
+    /**
      *  @return the Gaussian exponent for this Cartesian GTO
      */
     double gaussianExponent() const { return this->gaussian_exponent; }

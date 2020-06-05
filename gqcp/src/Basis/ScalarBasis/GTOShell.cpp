@@ -128,9 +128,9 @@ void GTOShell::embedNormalizationFactor() {
 
 
 /**
- *  Embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing
+ *  Embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing.
  *
- *  Note that the normalization factor that is embedded corresponds to the spherical (or axis-aligned Cartesian) GTO
+ *  @note The normalization factor that is embedded, corresponds to the spherical (or axis-aligned Cartesian) GTO
  */
 void GTOShell::embedNormalizationFactorsOfPrimitives() {
 
@@ -158,9 +158,9 @@ size_t GTOShell::numberOfBasisFunctions() const {
 
 
 /**
- *  Embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing
+ *  Embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing.
  *
- *  Note that the normalization factor that is embedded corresponds to the spherical (or axis-aligned Cartesian) GTO
+ *  @note The the normalization factor that is embedded corresponds to the spherical (or axis-aligned Cartesian) GTO
  */
 void GTOShell::unEmbedNormalizationFactorsOfPrimitives() {
 

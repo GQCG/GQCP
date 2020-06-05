@@ -36,23 +36,32 @@ namespace GQCP {
  */
 class CubicGrid {
 private:
-    Vector<double, 3> m_origin;             // the origin of the grid
-    std::array<size_t, 3> number_of_steps;  // the number of steps in the x, y, z-directions
-    std::array<double, 3> step_sizes;       // the step sizes in the x, y, z-directions
+    Vector<double, 3> m_origin;              // the origin of the grid
+    std::array<size_t, 3> numbers_of_steps;  // the number of steps in the x, y, z-directions
+    std::array<double, 3> step_sizes;        // the step sizes in the x, y, z-directions
 
 
 public:
     // CONSTRUCTORS
 
     /**
-     *  @param origin               the origin of the grid
-     *  @param steps                the number of steps in the x, y, z-directions
-     *  @param step_sizes           the step sizes in the x, y, z-directions
+     *  @param origin                       the origin of the grid
+     *  @param numbers_of_steps             the number of steps in the x, y, z-directions
+     *  @param step_sizes                   the step sizes in the x, y, z-directions
      */
-    CubicGrid(const Vector<double, 3>& origin, const std::array<size_t, 3>& steps, const std::array<double, 3>& step_sizes);
+    CubicGrid(const Vector<double, 3>& origin, const std::array<size_t, 3>& numbers_of_steps, const std::array<double, 3>& step_sizes);
 
 
     // NAMED CONSTRUCTORS
+
+    /**
+     *  Create a cubic ground that is centered around the given point. Equal numbers of steps and step sizes are taken in the x-, y- and z-directions.
+     * 
+     *  @param point                        the point around which the grid should be centered
+     *  @param number_of_steps              the number of steps that should be taken in the x-, y- and z-directions
+     *  @param step_size                    the size of the steps that should be taken in the x-, y- and z-directions
+     */
+    static CubicGrid Centered(const Vector<double, 3>& point, const size_t number_of_steps, const double step_size);
 
     /**
      *  Parse a GAUSSIAN Cube file (http://paulbourke.net/dataformats/cube/). The values for the contained scalar field are ignored.
@@ -160,12 +169,12 @@ public:
      * 
      *  @return the number of steps that can be taken in the direction of the specified axis
      */
-    size_t numberOfSteps(const size_t axis) const { return this->number_of_steps[axis]; }
+    size_t numbersOfSteps(const size_t axis) const { return this->numbers_of_steps[axis]; }
 
     /**
      *  @return the number of steps in the x, y, z-directions
      */
-    const std::array<size_t, 3>& numberOfSteps() const { return this->number_of_steps; }
+    const std::array<size_t, 3>& numbersOfSteps() const { return this->numbers_of_steps; }
 
     /**
      *  @param axis         0, 1, 2 representing the x-, y-, or z-axis

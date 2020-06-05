@@ -65,11 +65,11 @@ BOOST_AUTO_TEST_CASE(HOMO_LUMO_index) {
     const size_t K = 7;   // number of spatial orbitals
     const size_t N = 10;  // number of electrons
 
-    BOOST_CHECK_EQUAL(GQCP::QCModel::RHF<double>::HOMOIndex(N), 4);
-    BOOST_CHECK_EQUAL(GQCP::QCModel::RHF<double>::LUMOIndex(K, N), 5);
+    BOOST_CHECK_EQUAL(GQCP::QCModel::RHF<double>::homoIndex(N), 4);
+    BOOST_CHECK_EQUAL(GQCP::QCModel::RHF<double>::lumoIndex(K, N), 5);
 
-    BOOST_CHECK_THROW(GQCP::QCModel::RHF<double>::HOMOIndex(N + 1), std::invalid_argument);
-    BOOST_CHECK_THROW(GQCP::QCModel::RHF<double>::LUMOIndex(K, N + 1), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::QCModel::RHF<double>::homoIndex(N + 1), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::QCModel::RHF<double>::lumoIndex(K, N + 1), std::invalid_argument);
 }
 
 /**

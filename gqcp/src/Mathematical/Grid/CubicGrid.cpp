@@ -28,19 +28,41 @@ namespace GQCP {
  */
 
 /**
- *  @param origin               the origin of the grid
- *  @param steps                the number of steps in the x, y, z-directions
- *  @param step_sizes           the step sizes in the x, y, z-directions
+ *  @param origin                       the origin of the grid
+ *  @param numbers_of_steps             the number of steps in the x, y, z-directions
+ *  @param step_sizes                   the step sizes in the x, y, z-directions
  */
-CubicGrid::CubicGrid(const Vector<double, 3>& origin, const std::array<size_t, 3>& steps, const std::array<double, 3>& step_sizes) :
+CubicGrid::CubicGrid(const Vector<double, 3>& origin, const std::array<size_t, 3>& numbers_of_steps, const std::array<double, 3>& step_sizes) :
     m_origin {origin},
-    number_of_steps {steps},
+    numbers_of_steps {numbers_of_steps},
     step_sizes {step_sizes} {}
 
 
 /*
  *  NAMED CONSTRUCTORS
  */
+
+/**
+ *  Create a cubic ground that is centered around the given point. Equal numbers of steps and step sizes are taken in the x-, y- and z-directions.
+ * 
+ *  @param point                        the point around which the grid should be centered
+ *  @param number_of_steps              the number of steps that should be taken in the x-, y- and z-directions
+ *  @param step_size                    the size of the steps that should be taken in the x-, y- and z-directions
+ */
+CubicGrid CubicGrid::Centered(const Vector<double, 3>& point, const size_t number_of_steps, const double step_size) {
+
+    // The numbers of steps and step sizes are equal for the x-, y- and z-directions.
+    const std::array<size_t, 3> numbers_of_steps {number_of_steps, number_of_steps, number_of_steps};
+    const std::array<double, 3> step_sizes {step_size, step_size, step_size};
+
+
+    // Figure out the origin of the grid
+    const Vector<double, 3> offset = Vector<double, 3>::Constant(0.5 * number_of_steps * step_size);  // the extent of the grid to the right or left of the point
+    const Vector<double, 3> origin = point - offset;
+
+    return CubicGrid(origin, numbers_of_steps, step_sizes);
+}
+
 
 /**
  *  Parse a GAUSSIAN Cube file (http://paulbourke.net/dataformats/cube/). The values for the contained scalar field are ignored.
@@ -56,7 +78,7 @@ CubicGrid CubicGrid::ReadCubeFile(const std::string& filename) {
 
     Vector<double, 3> origin = Vector<double, 3>::Zero();
     std::array<double, 3> step_sizes {0.0, 0.0, 0.0};
-    std::array<size_t, 3> number_of_steps {0, 0, 0};
+    std::array<size_t, 3> numbers_of_steps {0, 0, 0};
 
 
     // Do the actual parsing.
@@ -93,7 +115,7 @@ CubicGrid CubicGrid::ReadCubeFile(const std::string& filename) {
         boost::split(splitted_line, line, boost::is_any_of(" \t"), boost::token_compress_on);
 
         // The first column contains the number of steps.
-        number_of_steps[i] = static_cast<size_t>(std::stoll(splitted_line[0]));
+        numbers_of_steps[i] = static_cast<size_t>(std::stoll(splitted_line[0]));
 
         // The next three columns contain the step size.
         step_sizes[i] = std::stod(splitted_line[i + 1]);
@@ -101,7 +123,7 @@ CubicGrid CubicGrid::ReadCubeFile(const std::string& filename) {
 
     input_file_stream.close();
 
-    return CubicGrid(origin, number_of_steps, step_sizes);
+    return CubicGrid(origin, numbers_of_steps, step_sizes);
 }
 
 
@@ -124,7 +146,7 @@ CubicGrid CubicGrid::ReadRegularGridFile(const std::string& filename) {
 
     Vector<double, 3> origin = Vector<double, 3>::Zero();
     std::array<double, 3> step_sizes {0.0, 0.0, 0.0};
-    std::array<size_t, 3> number_of_steps {0, 0, 0};
+    std::array<size_t, 3> numbers_of_steps {0, 0, 0};
 
 
     // Do the actual parsing.
@@ -174,7 +196,7 @@ CubicGrid CubicGrid::ReadRegularGridFile(const std::string& filename) {
             // Read the index column and fill in the number of steps in the z-direction.
             const auto index = static_cast<size_t>(std::stoll(splitted_line[0]));
 
-            number_of_steps[2] = index - 1;
+            numbers_of_steps[2] = index - 1;
 
             // Since the y-coordinate changed, we can figure out the step size in the y-direction.
             step_sizes[1] = y - origin(1);
@@ -196,7 +218,7 @@ CubicGrid CubicGrid::ReadRegularGridFile(const std::string& filename) {
             // Read the index column and fill in the number of steps in the y-direction.
             const auto index = static_cast<size_t>(std::stoll(splitted_line[0]));
 
-            number_of_steps[1] = (index - 1) / number_of_steps[2];
+            numbers_of_steps[1] = (index - 1) / numbers_of_steps[2];
 
             // Since the x-coordinate changed, we can figure out the step size in the x-direction.
             step_sizes[0] = x - origin(0);
@@ -215,13 +237,13 @@ CubicGrid CubicGrid::ReadRegularGridFile(const std::string& filename) {
 
         final_index = static_cast<size_t>(std::stoll(splitted_line[0]));  // will eventually contain the final index
     }
-    number_of_steps[0] = final_index / (number_of_steps[1] * number_of_steps[2]);
+    numbers_of_steps[0] = final_index / (numbers_of_steps[1] * numbers_of_steps[2]);
 
 
     // We're done parsing now.
     input_file_stream.close();
 
-    return CubicGrid(origin, number_of_steps, step_sizes);
+    return CubicGrid(origin, numbers_of_steps, step_sizes);
 }
 
 
@@ -245,9 +267,9 @@ size_t CubicGrid::numberOfPoints() const {
  */
 void CubicGrid::forEach(const std::function<void(const size_t, const size_t, const size_t)>& callback) const {
 
-    for (size_t i = 0; i < this->number_of_steps[0]; i++) {
-        for (size_t j = 0; j < this->number_of_steps[1]; j++) {
-            for (size_t k = 0; k < this->number_of_steps[2]; k++) {
+    for (size_t i = 0; i < this->numbers_of_steps[0]; i++) {
+        for (size_t j = 0; j < this->numbers_of_steps[1]; j++) {
+            for (size_t k = 0; k < this->numbers_of_steps[2]; k++) {
                 callback(i, j, k);
             }
         }
@@ -300,7 +322,7 @@ void CubicGrid::writeToCubeFile(const Field<double>& scalar_field, const std::st
     std::ofstream cubefile;
     cubefile.open(filename, std::fstream::out);
 
-    const auto& steps = this->numberOfSteps();
+    const auto& numbers_of_steps = this->numbersOfSteps();
     const auto& origin = this->origin();
     const auto& step_sizes = this->stepSizes();
     const auto& nuclei = molecule.nuclearFramework().nucleiAsVector();
@@ -319,9 +341,9 @@ void CubicGrid::writeToCubeFile(const Field<double>& scalar_field, const std::st
 
     // The next three lines give the number of voxels along the respective axes.
     // We're choosing the x-, y- and z-axes, and since the number of steps is positive, the units are Bohr.
-    cubefile << steps[0] << " " << step_sizes[0] << " " << 0.0 << " " << 0.0 << std::endl;
-    cubefile << steps[1] << " " << 0.0 << " " << step_sizes[1] << " " << 0.0 << std::endl;
-    cubefile << steps[2] << " " << 0.0 << " " << 0.0 << " " << step_sizes[2] << std::endl;
+    cubefile << numbers_of_steps[0] << " " << step_sizes[0] << " " << 0.0 << " " << 0.0 << std::endl;
+    cubefile << numbers_of_steps[1] << " " << 0.0 << " " << step_sizes[1] << " " << 0.0 << std::endl;
+    cubefile << numbers_of_steps[2] << " " << 0.0 << " " << 0.0 << " " << step_sizes[2] << std::endl;
     for (const auto& nucleus : nuclei) {
         cubefile << nucleus.charge() << " " << 0.0 << " " << nucleus.position()(0) << " " << nucleus.position()(1) << " " << nucleus.position()(2) << std::endl;
     }
