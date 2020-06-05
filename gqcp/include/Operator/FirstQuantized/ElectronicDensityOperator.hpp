@@ -18,40 +18,16 @@
 #pragma once
 
 
-#include "Mathematical/Representation/Matrix.hpp"
+#include "Operator/FirstQuantized/BaseFQOneElectronOperator.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  A base class used to represent first-quantized multipole operators.
+ *  The (one-electron) electronic density operator.
  */
-class BaseMultipoleOperator {
-protected:
-    Vector<double, 3> o;  // the origin of the multipole
-
-
-public:
-    // CONSTRUCTORS
-
-    /**
-     *  @param o        the origin of the multipole
-     */
-    BaseMultipoleOperator(const Vector<double, 3>& o = Vector<double, 3>::Zero());
-
-
-    // DESTRUCTOR
-    virtual ~BaseMultipoleOperator() = 0;
-
-
-    // PUBLIC METHODS
-
-    /**
-     *  @return the origin of the multipole operator
-     */
-    const Vector<double, 3>& origin() const { return this->o; }
-};
+class KineticOperator: public BaseFQOneElectronOperator<double, 1> {};
 
 
 }  // namespace GQCP

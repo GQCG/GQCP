@@ -25,7 +25,7 @@ namespace GQCP {
 
 
 /**
- *  A base class to represent nuclear first-quantized operators
+ *  A base class used to represent nuclear first-quantized operators.
  */
 class BaseNuclearOperator {
 protected:

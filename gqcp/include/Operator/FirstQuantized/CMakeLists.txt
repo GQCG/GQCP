@@ -5,6 +5,7 @@ target_sources(gqcp
         BaseMultipoleOperator.hpp
         BaseNuclearOperator.hpp
         CoulombRepulsionOperator.hpp
+        ElectronicDensityOperator.hpp
         ElectronicDipoleOperator.hpp
         ElectronicSpinOperator.hpp
         KineticOperator.hpp
