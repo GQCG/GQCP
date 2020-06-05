@@ -95,7 +95,16 @@ public:
      */
     std::vector<LinearCombination<double, BasisFunction>> basisFunctions() const {
 
-        throw std::runtime_error("ShellSet::basisFunctions(): This method has not been implemented yet.");
+        std::vector<LinearCombination<double, BasisFunction>> basis_functions;
+        basis_functions.reserve(this->numberOfBasisFunctions());
+        for (const auto& shell : this->shells) {
+            const auto shell_basis_functions = shell.basisFunctions();
+            for (const auto& shell_basis_function : shell_basis_functions) {
+                basis_functions.push_back(shell_basis_function);
+            }
+        }
+
+        return basis_functions;
     }
 
 

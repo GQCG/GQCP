@@ -19,6 +19,7 @@
 
 
 #include "Basis/ScalarBasis/CartesianGTO.hpp"
+#include "Mathematical/AbstractFunction/LinearCombination.hpp"
 #include "Molecule/Nucleus.hpp"
 
 
@@ -77,6 +78,13 @@ public:
      *  @return if the normalization factors of the primitives are embedded in the contraction coefficients
      */
     bool areEmbeddedNormalizationFactorsOfPrimitives() const { return this->embedded_normalization_factors_of_primitives; }
+
+    /**
+     *  @return the basis functions that correspond to this shell
+     * 
+     *  @note The basis functions are ordered lexicographically. This means x < y < z.
+     */
+    std::vector<LinearCombination<double, CartesianGTO>> basisFunctions() const;
 
     /**
      *  @return the contraction coefficients for this shell

@@ -22,6 +22,7 @@
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
 #include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
 #include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
+#include "Basis/SpinorBasis/Spinor.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Molecule/NuclearFramework.hpp"
@@ -189,6 +190,38 @@ public:
      *  @return the underlying scalar basis, which is equal for the alpha and beta components
      */
     const ScalarBasis<Shell>& scalarBasis() const { return this->scalar_basis; }
+
+    /**
+     *  @return the set of spin-orbitals that are associated to this spin-orbital basis
+     */
+    std::vector<Spinor<ExpansionScalar, BasisFunction>> spinOrbitals() const {
+
+        // The components of the spin-orbitals are a linear combination of the basis functions, where every column of the coefficient matrix describes one expansion of a spin-orbital component in terms of the basis functions.
+        const auto basis_functions = this->scalar_basis.basisFunctions();
+        const auto& C = this->C;
+
+
+        // For all spin-orbitals, proceed to calculate the contraction between the associated coefficient matrix column and the basis functions.
+        std::vector<Spinor<ExpansionScalar, BasisFunction>> spin_orbitals;
+        spin_orbitals.reserve(this->numberOfSpinors());
+        for (size_t p = 0; p < this->numberOfSpatialOrbitals(); p++) {
+
+            // Calculate the component of the spin-orbital as a contraction between a column of the coefficient matrix and the basis functions.
+            auto sigma_component = basis_functions[0] * this->C.col(p)(0);
+            for (size_t mu = 1; mu < basis_functions.size(); mu++) {
+                sigma_component += basis_functions[mu] * this->C.col(p)(mu);
+            }
+
+            // Add the alpha- and beta-spin-orbitals accordingly.
+            const Spinor<ExpansionScalar, BasisFunction> alpha_spin_orbital {sigma_component, 0};  // the '0' int literal can be converted to a zero LinearCombination
+            spin_orbitals.push_back(alpha_spin_orbital);
+
+            const Spinor<ExpansionScalar, BasisFunction> beta_spin_orbital {0, sigma_component};
+            spin_orbitals.push_back(beta_spin_orbital);
+        }
+
+        return spin_orbitals;
+    }
 };
 
 

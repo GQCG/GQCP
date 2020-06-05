@@ -97,7 +97,48 @@ bool GTOShell::operator==(const GTOShell& rhs) const {
  */
 
 /**
- *  Embed the total normalization factor of the corresponding linear combination of spherical (or axis-aligned Cartesian) GTOs into the contraction coefficients
+ *  @return the basis functions that correspond to this shell
+ * 
+ *  @note The basis functions are ordered lexicographically. This means x < y < z.
+ */
+std::vector<LinearCombination<double, CartesianGTO>> GTOShell::basisFunctions() const {
+
+    // Since CartesianGTO::operator(r) returns the function value of a normalized Cartesian GTO (=primitive), we should unembed the normalization coefficients in the contraction coeffients.
+    auto this_copy = *this;
+    this_copy.unEmbedNormalizationFactorsOfPrimitives();  // does nothing if the normalization factors are not embedded
+    const auto& contraction_coefficients = this_copy.contractionCoefficients();
+    const auto& gaussian_exponents = this_copy.gaussianExponents();
+
+
+    // Generate the Cartesian exponents in a lexicographical ordering.
+    // The different Cartesian exponents are the ways the angular momentum can be divided in 3 (x,y,z) partitions.
+    const auto partitions = generatePartitionsOf(this_copy.angularMomentum(), 3);
+
+
+    // Do the actual 'contraction' of the primitives and the contraction coefficients.
+    std::vector<LinearCombination<double, CartesianGTO>> basis_functions;
+    basis_functions.reserve(this_copy.numberOfBasisFunctions());
+    for (const auto& partition : partitions) {
+        const CartesianExponents cartesian_exponents {partition};
+
+        LinearCombination<double, CartesianGTO> basis_function;
+        for (size_t d = 0; d < this_copy.contractionSize(); d++) {
+            const auto coefficient = contraction_coefficients[d];
+            const CartesianGTO function {gaussian_exponents[d], cartesian_exponents, this_copy.nucleus().position()};
+
+            basis_function.append({coefficient}, {function});
+        }
+
+        basis_functions.push_back(basis_function);
+    }
+
+
+    return basis_functions;
+}
+
+
+/**
+ *  Embed the total normalization factor of the corresponding linear combination of spherical (or axis-aligned Cartesian) GTOs into the contraction coefficients.
  */
 void GTOShell::embedNormalizationFactor() {
 
