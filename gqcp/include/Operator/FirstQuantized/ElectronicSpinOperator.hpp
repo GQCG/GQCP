@@ -19,7 +19,7 @@
 
 
 #include "Operator/FirstQuantized/BaseFQOneElectronOperator.hpp"
-#include "Utilities/typedefs.hpp"
+#include "Utilities/aliases.hpp"
 
 
 namespace GQCP {

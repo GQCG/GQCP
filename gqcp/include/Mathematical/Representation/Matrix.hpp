@@ -20,8 +20,8 @@
 
 #include "Mathematical/CartesianDirection.hpp"
 #include "Utilities/Eigen.hpp"
+#include "Utilities/aliases.hpp"
 #include "Utilities/type_traits.hpp"
-#include "Utilities/typedefs.hpp"
 
 #include <boost/algorithm/string.hpp>
 

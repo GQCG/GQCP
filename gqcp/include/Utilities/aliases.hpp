@@ -25,7 +25,7 @@
 
 
 /**
- *  A header that contains general typedefs inside the GQCP namespace
+ *  A header that contains general typedefs inside the GQCP namespace.
  */
 
 

@@ -16,7 +16,7 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
-#include "Utilities/typedefs.hpp"
+#include "Utilities/aliases.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/operators.h>
