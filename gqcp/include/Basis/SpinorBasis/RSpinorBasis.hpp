@@ -170,6 +170,33 @@ public:
 
 
     /**
+     *  Quantize the (one-electron) electronic density operator.
+     * 
+     *  @param fq_density_op                    the first-quantized density operator
+     * 
+     *  @return the second-quantized density operator
+     */
+    SQOneElectronOperator<ScalarFunctionProduct<LinearCombination<double, BasisFunction>>, ElectronicDensityOperator::Components> quantize(const ElectronicDensityOperator& fq_density_op) const {
+
+        using ResultScalar = ScalarFunctionProduct<LinearCombination<double, BasisFunction>>;  // the 'scalar' for the density operator is again a linear combination
+        using ResultOperator = SQOneElectronOperator<ScalarFunctionProduct<LinearCombination<double, BasisFunction>>, ElectronicDensityOperator::Components>;
+
+        // There aren't any 'integrals' to be calculated for the density operator: we can just multiply every pair of spatial orbitals.
+        const auto phi = this->spatialOrbitals();
+        const auto K = this->numberOfSpatialOrbitals();
+
+        QCMatrix<ResultScalar> rho_par {K};  // the matrix representation ('par' for 'parameters') of the second-quantized (one-electron) density operator
+        for (size_t p = 0; p < K; p++) {
+            for (size_t q = 0; q < K; q++) {
+                rho_par(p, q) = phi[p] * phi[q];
+            }
+        }
+
+        return ResultOperator(rho_par);
+    }
+
+
+    /**
      *  @param fq_one_op                            the first-quantized one-electron operator
      * 
      *  @tparam FQOneElectronOperator               the type of the first-quantized one-electron operator
@@ -196,31 +223,59 @@ public:
     const ScalarBasis<Shell>& scalarBasis() const { return this->scalar_basis; }
 
     /**
-     *  @return the set of spin-orbitals that are associated to this spin-orbital basis
+     *  @return the set of spatial orbitals that is associated to this spin-orbital basis
+     */
+    std::vector<SpatialOrbital> spatialOrbitals() const {
+
+        // The spatial orbitals are a linear combination of the basis functions, where every column of the coefficient matrix describes one expansion of a spatial orbital in terms of the basis functions.
+        const auto basis_functions = this->scalar_basis.basisFunctions();
+        std::cout << "number of basis functions: " << basis_functions.size() << std::endl;
+        const auto& C = this->C;
+
+        std::cout << "C: " << std::endl
+                  << C << std::endl
+                  << std::endl;
+
+
+        // For all spatial orbitals, proceed to calculate the contraction between the associated coefficient matrix column and the basis functions.
+        std::vector<SpatialOrbital> spatial_orbitals;
+        spatial_orbitals.reserve(this->numberOfSpatialOrbitals());
+        for (size_t p = 0; p < this->numberOfSpatialOrbitals(); p++) {
+
+            // Calculate the spatial orbitals as a contraction between a column of the coefficient matrix and the basis functions.
+            SpatialOrbital spatial_orbital {};
+            for (size_t mu = 0; mu < basis_functions.size(); mu++) {
+                std::cout << "other bf length: " << basis_functions[mu].length() << std::endl;
+                const auto coefficient = this->C.col(p)(mu);
+                const auto& function = basis_functions[mu];
+                spatial_orbital.append({coefficient}, {function});
+            }
+
+            spatial_orbitals.push_back(spatial_orbital);
+            std::cout << "spatial orbital LC length: " << spatial_orbital.length() << std::endl;
+        }
+
+        return spatial_orbitals;
+    }
+
+
+    /**
+     *  @return the set of spin-orbitals that is associated to this spin-orbital basis
      */
     std::vector<Spinor<ExpansionScalar, BasisFunction>> spinOrbitals() const {
 
-        // The components of the spin-orbitals are a linear combination of the basis functions, where every column of the coefficient matrix describes one expansion of a spin-orbital component in terms of the basis functions.
-        const auto basis_functions = this->scalar_basis.basisFunctions();
-        const auto& C = this->C;
+        // The spin-orbitals for a restricted spin-orbital basis can be easily constructed from the spatial orbitals, by assigning a zero component once for the beta component of the spin-orbital and once for the alpha component of the spin-orbital.
+        const auto spatial_orbitals = this->spatialOrbitals();
 
-
-        // For all spin-orbitals, proceed to calculate the contraction between the associated coefficient matrix column and the basis functions.
         std::vector<Spinor<ExpansionScalar, BasisFunction>> spin_orbitals;
         spin_orbitals.reserve(this->numberOfSpinors());
-        for (size_t p = 0; p < this->numberOfSpatialOrbitals(); p++) {
-
-            // Calculate the component of the spin-orbital as a contraction between a column of the coefficient matrix and the basis functions.
-            auto sigma_component = basis_functions[0] * this->C.col(p)(0);
-            for (size_t mu = 1; mu < basis_functions.size(); mu++) {
-                sigma_component += basis_functions[mu] * this->C.col(p)(mu);
-            }
+        for (const auto& spatial_orbital : spatial_orbitals) {
 
             // Add the alpha- and beta-spin-orbitals accordingly.
-            const Spinor<ExpansionScalar, BasisFunction> alpha_spin_orbital {sigma_component, 0};  // the '0' int literal can be converted to a zero LinearCombination
+            const Spinor<ExpansionScalar, BasisFunction> alpha_spin_orbital {spatial_orbital, 0};  // the '0' int literal can be converted to a zero LinearCombination
             spin_orbitals.push_back(alpha_spin_orbital);
 
-            const Spinor<ExpansionScalar, BasisFunction> beta_spin_orbital {0, sigma_component};
+            const Spinor<ExpansionScalar, BasisFunction> beta_spin_orbital {0, spatial_orbital};
             spin_orbitals.push_back(beta_spin_orbital);
         }
 

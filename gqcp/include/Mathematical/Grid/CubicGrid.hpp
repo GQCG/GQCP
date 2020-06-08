@@ -25,6 +25,7 @@
 
 #include <array>
 #include <functional>
+#include <numeric>
 #include <type_traits>
 
 
@@ -120,14 +121,11 @@ public:
     template <typename T>
     T integrate(const Field<T>& field) const {
 
-        // A KISS-implementation of integration: multiplying every field value by the weight of the associated grid point.
-        // For cubic grids, the weight is just the voxel volume.
+        // Using field.value(0) as the initial value makes sure that the initialization is already correct: e.g. when a Vector is initialized, it doesn't automatically have the required size due to the default constructor
+        auto result = std::accumulate(field.values().begin(), field.values().end(), field.value(0));
+        result -= field.value(0);  // subtract the initial value of result
 
-        T result = field.value(0);  // this makes sure that 'result' is already initialized to the correct type, e.g. when a Vector is initialized, it doesn't automatically have the required size
-        for (size_t i = 1; i < this->numberOfPoints(); i++) {
-            result += field.value(i);
-        }
-
+        // For cubic grids, the weight of each point is the voxel volume, so we'll have to multiply the final result by this.
         return result * this->voxelVolume();
     }
 

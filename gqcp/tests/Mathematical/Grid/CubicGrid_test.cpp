@@ -67,6 +67,7 @@ BOOST_AUTO_TEST_CASE(ReadRegularGridFile) {
 
 
     // Check the results.
+    BOOST_CHECK(grid.numberOfPoints() == 13824);
     BOOST_CHECK(grid.origin().isApprox(ref_origin, 1.0e-08));
 
     for (size_t i = 0; i < 3; i++) {
@@ -90,6 +91,7 @@ BOOST_AUTO_TEST_CASE(ReadCubeFile) {
 
 
     // Check the results.
+    BOOST_CHECK(grid.numberOfPoints() == 216000);
     BOOST_CHECK(grid.origin().isApprox(ref_origin, 1.0e-08));
 
     for (size_t i = 0; i < 3; i++) {
@@ -123,7 +125,6 @@ BOOST_AUTO_TEST_CASE(integrate) {
 /**
  *  Check if an integration through CubicGrid equals an integration through an equivalent WeightedGrid.
  */
-
 
 
 /**

@@ -20,6 +20,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
+#include "Mathematical/Grid/CubicGrid.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF/RHF.hpp"
@@ -50,22 +51,52 @@ BOOST_AUTO_TEST_CASE(RHF_orbitals_are_orthonormal) {
 }
 
 
-#include "Mathematical/Grid/CubicGrid.hpp"
+/**
+ *  Check if a numerical integration over a grid yields overlap values equal to those from Libint. In this test, we won't be using a very high-resolution grid, so so we can't expect very much about the accuracy of the integration.
+ * 
+ *  The test system is H2//STO-3G.
+ */
+BOOST_AUTO_TEST_CASE(basisFunctions_integration) {
+
+    // Calculate the overlap matrix through Libint2.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2.xyz");
+    const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+    const auto S = spinor_basis.overlap().parameters();
+
+
+    // Calculate the basis functions that are in the restricted spin-orbital basis.
+    const auto basis_functions = spinor_basis.scalarBasis().basisFunctions();
+    const auto& bf1 = basis_functions[0];
+    const auto& bf2 = basis_functions[1];
+
+
+    // Integrate the basis functions over a cubic grid and check if the integration values match Libint's calculations.
+    const auto grid = GQCP::CubicGrid::Centered(GQCP::Vector<double, 3>::Zero(), 50, 0.2);
+
+    const auto bf1_squared_evaluated = grid.evaluate(bf1 * bf1);
+    const auto bf1_bf2_evaluated = grid.evaluate(bf1 * bf2);
+    const auto bf2_squared_evaluated = grid.evaluate(bf2 * bf2);
+
+    BOOST_CHECK(std::abs(grid.integrate(bf1_squared_evaluated) - S(0, 0)) < 1.0e-04);  // 1.0e-04 is still reasonable given the accuracy of the grid
+    BOOST_CHECK(std::abs(grid.integrate(bf2_squared_evaluated) - S(1, 1)) < 1.0e-04);
+    BOOST_CHECK(std::abs(grid.integrate(bf1_bf2_evaluated) - S(0, 1)) < 1.0e-04);
+}
 
 
 /**
- *  Check if the orbitals in an AO basis are not orthonormal, but after a transformation to the canonical RHF orbitals, they are
+ *  Check the RHF density integrated over the whole space equals the number of electrons. In this test, we won't be using a very high-resolution grid, so so we can't expect very much about the accuracy of the integration.
+ * 
+ *  The subject of interest is H2//STO-3G.
  */
-BOOST_AUTO_TEST_CASE(sandbox) {
+BOOST_AUTO_TEST_CASE(integrated_density) {
 
-    // The orbitals in an AO basis are not orthonormal
-    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    // Prepare the molecular Hamiltonian (in AO basis).
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2.xyz");
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
 
-
-    // The orbitals in the RHF basis should be orthonormal
     const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in the scalar/AO basis
 
+    // Prepare the canonical RHF orbitals.
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
@@ -74,22 +105,17 @@ BOOST_AUTO_TEST_CASE(sandbox) {
     spinor_basis.transform(rhf_parameters.coefficientMatrix());
 
 
-    const auto spin_orbitals = spinor_basis.spinOrbitals();
-    // const auto lumo_index = 2 * rhf_parameters.lumoIndex();  // convert spatial orbital to spin-orbital index
-    // const auto homo_index = 2 * rhf_parameters.homoIndex();
-    const size_t homo_alpha_index = 8;
-    const size_t lumo_alpha_index = 10;
+    // Calculate the RHF density.
+    const auto rho_op = spinor_basis.quantize(GQCP::Operator::ElectronicDensity());
+    const auto D = rhf_parameters.calculateOrthonormalBasis1RDM();  // the (orthonormal) 1-DM for RHF
 
+    GQCP::LinearCombination<double, GQCP::ScalarFunctionProduct<GQCP::RSpinorBasis<double, GQCP::GTOShell>::SpatialOrbital>> density;
+    const auto coefficient = D(0, 0);
+    const auto function = rho_op.parameters()(0, 0);
+    density.append({coefficient}, {function});
 
-    const auto& alpha_homo = spin_orbitals[homo_alpha_index].component(GQCP::Spin::alpha);
-    const auto& alpha_lumo = spin_orbitals[lumo_alpha_index].component(GQCP::Spin::alpha);
+    const auto grid = GQCP::CubicGrid::Centered(GQCP::Vector<double, 3>::Zero(), 50, 0.2);
 
-
-    const auto grid = GQCP::CubicGrid::Centered(molecule.nuclearFramework().nucleiAsVector()[0].position(), 50, 0.1);
-    const auto lumo_field = grid.evaluate(alpha_homo);
-    const auto homo_field = grid.evaluate(alpha_lumo);
-
-
-    grid.writeToCubeFile(homo_field, "homo.cube", molecule);
-    grid.writeToCubeFile(lumo_field, "lumo.cube", molecule);
+    const auto density_evaluated = grid.evaluate(density);
+    BOOST_CHECK(std::abs(grid.integrate(density_evaluated) - molecule.numberOfElectrons()) < 1.0e-04);  // 1.0e-04 is still reasonable given the accuracy of the grid
 }
