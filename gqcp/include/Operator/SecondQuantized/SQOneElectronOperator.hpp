@@ -18,8 +18,10 @@
 #pragma once
 
 
+#include "Basis/ScalarBasis/CartesianGTO.hpp"
 #include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
 #include "Basis/TransformationMatrix.hpp"
+#include "Mathematical/AbstractFunction/LinearCombination.hpp"
 #include "Mathematical/AbstractFunction/ScalarFunction.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Processing/RDM/OneRDM.hpp"
@@ -161,6 +163,40 @@ public:
         }
 
         return Eigen::Map<Eigen::Matrix<Scalar, Components, 1>>(expectation_values.data());  // convert std::array to Vector
+    }
+
+
+    /**
+     *  Evaluate the expectation value of this second-quantized (one-electron) density operator.
+     * 
+     *  @param D                the 1-DM
+     * 
+     *  @return the expectation value of this second-quantized (one-electron) density operator, i.e. the electron density
+     * 
+     *  @note This method is only enabled for SQOneElectronOperators that represent second-quantized electron density operators.
+     */
+    template <typename S = Scalar, typename = enable_if_t<std::is_same<S, ScalarFunctionProduct<LinearCombination<double, LinearCombination<double, CartesianGTO>>>>::value>>
+    LinearCombination<double, ScalarFunctionProduct<LinearCombination<double, LinearCombination<double, CartesianGTO>>>> calculateDensity(const OneRDM<double>& D) const {
+
+        using Primitive = CartesianGTO;
+        using BasisFunction = LinearCombination<double, Primitive>;
+        using SpatialOrbital = LinearCombination<double, BasisFunction>;
+        using SchrodingerDistribution = ScalarFunctionProduct<SpatialOrbital>;
+        using DensityType = LinearCombination<double, SchrodingerDistribution>;
+
+
+        // Create the density as a linear combination of 'density matrix elements'.
+        const auto dimension = D.dimension();
+        DensityType density;
+        for (size_t p = 0; p < dimension; p++) {
+            for (size_t q = 0; q < dimension; q++) {
+                const auto coefficient = D(p, q);
+                const auto function = this->parameters()(p, q);
+                density.append(coefficient, function);
+            }
+        }
+
+        return density;
     }
 
 

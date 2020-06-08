@@ -222,6 +222,24 @@ public:
      */
 
     /**
+     *  Append the given coefficient and function to this linear combination
+     *
+     *  @param coefficients     the coefficient that should be appended to this linear combination
+     *  @param functions        the function that should be appended to this linear combination
+     */
+    void append(const CoefficientScalar& coefficient, const Function& function) {
+
+        // Only enlarge the linear combination for sufficiently large coefficients.
+        if (std::abs(coefficient) < 1.0e-16) {
+            return;
+        } else {
+            this->m_coefficients.push_back(coefficient);
+            this->m_functions.push_back(function);
+        }
+    }
+
+
+    /**
      *  Append the given coefficients and functions to this linear combination
      *
      *  @param coefficients     the coefficients that should be appended to this linear combination
@@ -230,8 +248,9 @@ public:
     void append(const std::vector<CoefficientScalar>& coefficients, const std::vector<Function>& functions) {
 
         if (coefficients.size() != functions.size()) {
-            throw std::invalid_argument("LinearCombination::append(std::vector<CoefficientScalar>, std::vector<Function>): the number of coefficients and functions should match");
+            throw std::invalid_argument("LinearCombination::append(const std::vector<CoefficientScalar>&, const std::vector<Function>&): the number of coefficients and functions should match");
         }
+
 
         this->m_coefficients.insert(this->m_coefficients.end(), coefficients.begin(), coefficients.end());
         this->m_functions.insert(this->m_functions.end(), functions.begin(), functions.end());

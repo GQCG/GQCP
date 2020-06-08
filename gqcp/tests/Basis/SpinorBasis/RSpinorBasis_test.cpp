@@ -108,14 +108,10 @@ BOOST_AUTO_TEST_CASE(integrated_density) {
     // Calculate the RHF density.
     const auto rho_op = spinor_basis.quantize(GQCP::Operator::ElectronicDensity());
     const auto D = rhf_parameters.calculateOrthonormalBasis1RDM();  // the (orthonormal) 1-DM for RHF
-
-    GQCP::LinearCombination<double, GQCP::ScalarFunctionProduct<GQCP::RSpinorBasis<double, GQCP::GTOShell>::SpatialOrbital>> density;
-    const auto coefficient = D(0, 0);
-    const auto function = rho_op.parameters()(0, 0);
-    density.append({coefficient}, {function});
+    const auto density = rho_op.calculateDensity(D);
 
     const auto grid = GQCP::CubicGrid::Centered(GQCP::Vector<double, 3>::Zero(), 50, 0.2);
-
     const auto density_evaluated = grid.evaluate(density);
+
     BOOST_CHECK(std::abs(grid.integrate(density_evaluated) - molecule.numberOfElectrons()) < 1.0e-04);  // 1.0e-04 is still reasonable given the accuracy of the grid
 }
