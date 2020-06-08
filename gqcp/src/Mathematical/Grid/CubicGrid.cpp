@@ -19,6 +19,8 @@
 
 #include "Utilities/miscellaneous.hpp"
 
+#include <numeric>
+
 
 namespace GQCP {
 
@@ -256,7 +258,7 @@ CubicGrid CubicGrid::ReadRegularGridFile(const std::string& filename) {
  */
 size_t CubicGrid::numberOfPoints() const {
 
-    return (this->step_sizes[0] + 1) * (this->step_sizes[1] + 1) * (this->step_sizes[2] + 1);
+    return std::accumulate(this->numbers_of_steps.begin(), this->numbers_of_steps.end(), 1.0, std::multiplies<double>());
 }
 
 
@@ -371,15 +373,11 @@ void CubicGrid::writeToCubeFile(const Field<double>& scalar_field, const std::st
 
 
 /**
- *  @return the volume of the voxels in this grid
+ *  @return the volume of one voxel in this grid
  */
 double CubicGrid::voxelVolume() const {
 
-    double volume = 1.0;
-    for (const auto& step_size : this->step_sizes) {
-        volume *= step_size;
-    }
-    return volume;
+    return std::accumulate(this->step_sizes.begin(), this->step_sizes.end(), 1.0, std::multiplies<double>());
 }
 
 

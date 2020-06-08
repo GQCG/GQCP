@@ -109,7 +109,7 @@ public:
      *  @return a textual description of self
      */
     std::string description() const {
-        return (boost::format("(%s * %s)") % this->m_lhs.description() % this->m_rhs.description()).str();
+        return (boost::format("((%s) * (%s))") % this->m_lhs.description() % this->m_rhs.description()).str();
     }
 
     /**

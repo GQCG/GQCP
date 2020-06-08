@@ -122,12 +122,13 @@ public:
 
         // A KISS-implementation of integration: multiplying every field value by the weight of the associated grid point.
         // For cubic grids, the weight is just the voxel volume.
-        auto result = field.value(0) * this->voxelVolume();  // this makes sure that 'result' is already initialized to the correct type, e.g. when a Vector is initialized, it doesn't automatically have the required size
+
+        T result = field.value(0);  // this makes sure that 'result' is already initialized to the correct type, e.g. when a Vector is initialized, it doesn't automatically have the required size
         for (size_t i = 1; i < this->numberOfPoints(); i++) {
-            result += field.value(i) * this->voxelVolume();
+            result += field.value(i);
         }
 
-        return result;
+        return result * this->voxelVolume();
     }
 
 
@@ -203,7 +204,7 @@ public:
     void writeToCubeFile(const Field<double>& scalar_field, const std::string& filename, const Molecule& molecule) const;
 
     /**
-     *  @return the volume of the voxels in this grid
+     *  @return the volume of one voxel in this grid
      */
     double voxelVolume() const;
 };

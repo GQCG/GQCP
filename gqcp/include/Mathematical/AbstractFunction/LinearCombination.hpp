@@ -255,7 +255,7 @@ public:
      */
     std::string description() const {
 
-        std::string description {};
+        std::string description = "[";
         for (size_t i = 0; i < this->length(); i++) {
             // Provide the coefficient and the function's description.
             description += (boost::format("(%|.3f|) %s") % this->coefficient(i) % this->function(i).description()).str();
@@ -263,6 +263,8 @@ public:
             // Add a '+' when we're not at the end.
             if (i != this->length() - 1) {
                 description += " + ";
+            } else {
+                description += "]";
             }
         }
 
