@@ -151,10 +151,10 @@ public:
      *
      *  @return the expectation values of all components of the one-electron operator
      */
-    Vector<Scalar, Components> calculateExpectationValue(const OneRDM<double>& D) const {
+    Vector<Scalar, Components> calculateExpectationValue(const OneRDM<Scalar>& D) const {
 
         if (this->dimension() != D.dimension()) {
-            throw std::invalid_argument("SQOneElectronOperator::calculateExpectationValue(const OneRDM<double>&): The given 1-RDM is not compatible with the one-electron operator.");
+            throw std::invalid_argument("SQOneElectronOperator::calculateExpectationValue(const OneRDM<Scalar>&): The given 1-RDM is not compatible with the one-electron operator.");
         }
 
         std::array<Scalar, Components> expectation_values {};  // zero initialization
