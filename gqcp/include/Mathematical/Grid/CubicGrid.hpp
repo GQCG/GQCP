@@ -164,6 +164,11 @@ public:
     Vector<double, 3> position(const size_t i, const size_t j, const size_t k) const;
 
     /**
+     *  @return a vector of the points that are described by this grid
+     */
+    std::vector<Vector<double, 3>> points() const;
+
+    /**
      *  @param axis         0, 1, 2 representing the x-, y-, or z-axis
      * 
      *  @return the number of steps that can be taken in the direction of the specified axis

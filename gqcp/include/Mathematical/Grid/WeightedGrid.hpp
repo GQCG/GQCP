@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Mathematical/Grid/CubicGrid.hpp"
 #include "Mathematical/Grid/Field.hpp"
 #include "Mathematical/Representation/Array.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
@@ -49,6 +50,13 @@ public:
 
 
     // NAMED CONSTRUCTORS
+
+    /**
+     *  Convert a cubic grid into a weighted grid, where the weights are all equal to the CubicGrid's voxel volume.
+     * 
+     *  @param cubic_grid               the cubic grid
+     */
+    static WeightedGrid FromCubicGrid(const CubicGrid& cubic_grid);
 
     /**
      *  Parse an .igrid-file and create the WeightedGrid that is contained in it. The values for the scalar field or vector field are discarded.

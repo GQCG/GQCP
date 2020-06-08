@@ -50,6 +50,21 @@ WeightedGrid::WeightedGrid(const std::vector<Vector<double, 3>>& points, const A
  */
 
 /**
+ *  Convert a cubic grid into a weighted grid, where the weights are all equal to the CubicGrid's voxel volume.
+ * 
+ *  @param cubic_grid               the cubic grid
+ */
+WeightedGrid WeightedGrid::FromCubicGrid(const CubicGrid& cubic_grid) {
+
+    // Generate the grid points and associated weights.
+    const auto points = cubic_grid.points();
+    ArrayX<double> weights = ArrayX<double>::Constant(cubic_grid.numberOfPoints(), cubic_grid.voxelVolume());
+
+    return WeightedGrid(points, weights);
+}
+
+
+/**
  *  Parse an .igrid-file and create the WeightedGrid that is contained in it. The values for the scalar field or vector field are discarded.
  * 
  *  @param filename             the name of the .igrid-file

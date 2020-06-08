@@ -99,3 +99,24 @@ BOOST_AUTO_TEST_CASE(integrate) {
     const double ref_value {20.0};
     BOOST_CHECK(std::abs(grid.integrate(scalar_field) - ref_value) < 1.0e-12);
 }
+
+
+/**
+ *  Check if an integration through CubicGrid equals an integration through an equivalent WeightedGrid.
+ */
+BOOST_AUTO_TEST_CASE(FromCubicGrid_integration) {
+
+    // Set up a cubic grid and convert it to an equivalent weighted grid.
+    const auto cubic_grid = GQCP::CubicGrid::Centered(GQCP::Vector<double, 3>::Zero(), 10, 0.1);
+    const auto weighted_grid = GQCP::WeightedGrid::FromCubicGrid(cubic_grid);
+    BOOST_REQUIRE(cubic_grid.numberOfPoints() == weighted_grid.numberOfPoints());
+
+
+    // Set up the scalar field f(r) = 1.
+    std::vector<double> field_values(cubic_grid.numberOfPoints(), 1.0);
+    const GQCP::Field<double> field {field_values};
+
+
+    // Determine the value of the numeric integration over the cubic and weighted grid, and check if they are equal.
+    BOOST_CHECK(std::abs(cubic_grid.integrate(field) - weighted_grid.integrate(field)) < 1.0e-12);
+}

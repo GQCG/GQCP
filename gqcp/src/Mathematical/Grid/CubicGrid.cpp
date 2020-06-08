@@ -254,15 +254,6 @@ CubicGrid CubicGrid::ReadRegularGridFile(const std::string& filename) {
  */
 
 /**
- *  @return the number of points that are in this grid
- */
-size_t CubicGrid::numberOfPoints() const {
-
-    return std::accumulate(this->numbers_of_steps.begin(), this->numbers_of_steps.end(), 1.0, std::multiplies<double>());
-}
-
-
-/**
  *  Loop over the points of this grid by index number.
  * 
  *  @param callback         the function you would like to apply to each incoming (i,j,k)-tuple of numbers of steps taken in the x,y,z-direction.
@@ -295,6 +286,15 @@ void CubicGrid::forEach(const std::function<void(const Vector<double, 3>&)>& cal
 
 
 /**
+ *  @return the number of points that are in this grid
+ */
+size_t CubicGrid::numberOfPoints() const {
+
+    return std::accumulate(this->numbers_of_steps.begin(), this->numbers_of_steps.end(), 1.0, std::multiplies<double>());
+}
+
+
+/**
  *  @param i        the number of steps taken in the x-direction
  *  @param j        the number of steps taken in the y-direction
  *  @param k        the number of steps taken in the z-direction
@@ -308,6 +308,23 @@ Vector<double, 3> CubicGrid::position(const size_t i, const size_t j, const size
     const double z = this->m_origin(2) + k * this->step_sizes[2];
 
     return Vector<double, 3>(x, y, z);
+}
+
+
+/**
+ *  @return a vector of the points that are described by this grid
+ */
+std::vector<Vector<double, 3>> CubicGrid::points() const {
+
+    // Allocate memory to store all the grid points.
+    std::vector<Vector<double, 3>> points;
+    points.reserve(this->numberOfPoints());
+
+    this->forEach([&points](const Vector<double, 3>& point) {
+        points.push_back(point);
+    });
+
+    return points;
 }
 
 

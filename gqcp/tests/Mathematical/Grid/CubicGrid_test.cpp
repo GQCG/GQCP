@@ -123,11 +123,6 @@ BOOST_AUTO_TEST_CASE(integrate) {
 
 
 /**
- *  Check if an integration through CubicGrid equals an integration through an equivalent WeightedGrid.
- */
-
-
-/**
  *  Check if the named constructor CubicGrid::Centered is correctly implemented
  */
 BOOST_AUTO_TEST_CASE(Centered) {
@@ -143,4 +138,31 @@ BOOST_AUTO_TEST_CASE(Centered) {
     // Check if the origin of the grid appears to be correct.
     const GQCP::Vector<double, 3> ref_origin {-0.25, -0.25, -0.25};
     BOOST_CHECK(grid.origin().isApprox(ref_origin, 1.0e-08));
+}
+
+
+/**
+ *  Check if the points in CubicGrid::points() are generated in the expected order.
+ */
+BOOST_AUTO_TEST_CASE(points) {
+
+    // Set up a small grid and reference points.
+    const GQCP::CubicGrid grid {GQCP::Vector<double, 3>::Zero(), {2, 2, 2}, {1.0, 1.0, 1.0}};
+    const std::vector<GQCP::Vector<double, 3>> ref_points {
+        {0.0, 0.0, 0.0},
+        {0.0, 0.0, 1.0},
+        {0.0, 1.0, 0.0},
+        {0.0, 1.0, 1.0},
+        {1.0, 0.0, 0.0},
+        {1.0, 0.0, 1.0},
+        {1.0, 1.0, 0.0},
+        {1.0, 1.0, 1.0},
+    };
+    BOOST_REQUIRE(grid.numberOfPoints() == 8);
+
+    // Generate all grid points and check if they are in the expected order.
+    const auto points = grid.points();
+    for (size_t i = 0; i < grid.numberOfPoints(); i++) {
+        BOOST_CHECK(points[i].isApprox(ref_points[i], 1.0e-12));
+    }
 }
