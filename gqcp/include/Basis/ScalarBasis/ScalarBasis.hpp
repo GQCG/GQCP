@@ -40,7 +40,9 @@ template <typename _Shell>
 class ScalarBasis {
 public:
     using Shell = _Shell;
-    using BasisFunction = typename Shell::BasisFunction;
+
+    using Primitive = typename Shell::Primitive;          // the type of the primitive functions that underlie this scalar basis
+    using BasisFunction = typename Shell::BasisFunction;  // the type of basis functions that this scalar basis consists of
 
 
 private:
@@ -101,7 +103,7 @@ public:
     /**
      *  @return the basis functions that 'are' in this scalar basis
      */
-    std::vector<LinearCombination<double, BasisFunction>> basisFunctions() const { return this->shell_set.basisFunctions(); }
+    std::vector<BasisFunction> basisFunctions() const { return this->shell_set.basisFunctions(); }
 
     /**
      *  @return the number of basis functions that 'are' in this scalar basis

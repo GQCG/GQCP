@@ -20,8 +20,8 @@
 
 #include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
 #include "Basis/TransformationMatrix.hpp"
-#include "Mathematical/Representation/QCMatrix.hpp"
 #include "Mathematical/AbstractFunction/ScalarFunction.hpp"
+#include "Mathematical/Representation/QCMatrix.hpp"
 #include "Processing/RDM/OneRDM.hpp"
 #include "Processing/RDM/TwoRDM.hpp"
 #include "Utilities/type_traits.hpp"
@@ -149,7 +149,7 @@ public:
      *
      *  @return the expectation values of all components of the one-electron operator
      */
-    Vector<Scalar, Components> calculateExpectationValue(const OneRDM<Scalar>& D) const {
+    Vector<Scalar, Components> calculateExpectationValue(const OneRDM<double>& D) const {
 
         if (this->dimension() != D.dimension()) {
             throw std::invalid_argument("SQOneElectronOperator::calculateExpectationValue(const OneRDM<double>&): The given 1-RDM is not compatible with the one-electron operator.");

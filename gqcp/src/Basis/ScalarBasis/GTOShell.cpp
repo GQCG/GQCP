@@ -101,7 +101,7 @@ bool GTOShell::operator==(const GTOShell& rhs) const {
  * 
  *  @note The basis functions are ordered lexicographically. This means x < y < z.
  */
-std::vector<LinearCombination<double, CartesianGTO>> GTOShell::basisFunctions() const {
+std::vector<GTOShell::BasisFunction> GTOShell::basisFunctions() const {
 
     // Since CartesianGTO::operator(r) returns the function value of a normalized Cartesian GTO (=primitive), we should unembed the normalization coefficients in the contraction coeffients.
     auto this_copy = *this;
@@ -116,12 +116,12 @@ std::vector<LinearCombination<double, CartesianGTO>> GTOShell::basisFunctions() 
 
 
     // Do the actual 'contraction' of the primitives and the contraction coefficients.
-    std::vector<LinearCombination<double, CartesianGTO>> basis_functions;
+    std::vector<GTOShell::BasisFunction> basis_functions;
     basis_functions.reserve(this_copy.numberOfBasisFunctions());
     for (const auto& partition : partitions) {
         const CartesianExponents cartesian_exponents {partition};
 
-        LinearCombination<double, CartesianGTO> basis_function;
+        GTOShell::BasisFunction basis_function;
         for (size_t d = 0; d < this_copy.contractionSize(); d++) {
             const auto coefficient = contraction_coefficients[d];
             const CartesianGTO function {gaussian_exponents[d], cartesian_exponents, this_copy.nucleus().position()};

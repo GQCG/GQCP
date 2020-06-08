@@ -19,7 +19,10 @@
 
 
 #include "Mathematical/Representation/Matrix.hpp"
+#include "Utilities/type_traits.hpp"
 #include "Utilities/typedefs.hpp"
+
+#include <boost/format.hpp>
 
 
 namespace GQCP {
@@ -54,8 +57,8 @@ class ScalarFunctionProduct:
 
 
 private:
-    const T1& lhs;  // left-hand side
-    const T2& rhs;  // right-hand side
+    T1 m_lhs;  // left-hand side
+    T2 m_rhs;  // right-hand side
 
 
 public:
@@ -75,13 +78,44 @@ public:
      *  @param rhs      the right-hand side of the product
      */
     ScalarFunctionProduct(const T1& lhs, const T2& rhs) :
-        lhs {lhs},
-        rhs {rhs} {}
+        m_lhs {lhs},
+        m_rhs {rhs} {}
+
+
+    /**
+     *  The default constructor.
+     */
+    ScalarFunctionProduct() = default;
+
+
+    /**
+     *  The constructor for a 'zero' instance given the '0' integer literal.
+     */
+    ScalarFunctionProduct(const int literal) :
+        ScalarFunctionProduct() {
+
+        if (literal != 0) {
+            throw std::invalid_argument("ScalarFunctionProduct(const int): Can't convert a non-zero integer to a 'zero' instance.");
+        }
+    }
 
 
     /*
      *  OPERATORS
      */
+
+
+    /**
+     *  @return a textual description of self
+     */
+    std::string description() const {
+        return (boost::format("(%s * %s)") % this->m_lhs.description() % this->m_rhs.description()).str();
+    }
+
+    /**
+     *  @return the left-hand side of this product
+     */
+    const T1& lhs() const { return this->m_lhs; }
 
     /**
      *  @param x        the vector/point at which the scalar function product is to be evaluated
@@ -89,8 +123,14 @@ public:
      *  @return the product of the evaluated left-hand and right-hand side scalar functions
      */
     Valued operator()(const Vector<Scalar, Cols>& x) const override {
-        return this->lhs(x) * this->rhs(x);
+        return this->m_lhs(x) * this->m_rhs(x);
     }
+
+
+    /**
+     *  @return the right-hand side of this product
+     */
+    const T2& rhs() const { return this->m_rhs; }
 };
 
 
@@ -131,17 +171,25 @@ public:
      *  @return the scalar function value at the given point
      */
     virtual _Valued operator()(const Vector<_Scalar, _Cols>& x) const = 0;
-
-
-    /**
-     *  @param rhs      the right-hand side of the product
-     *
-     *  @return the product of this and the right-hand side scalar function
-     */
-    ScalarFunctionProduct<ScalarFunction<_Valued, _Scalar, _Cols>> operator*(const ScalarFunction<_Valued, _Scalar, _Cols>& rhs) const {
-        return ScalarFunctionProduct<ScalarFunction<_Valued, _Scalar, _Cols>>(*this, rhs);
-    }
 };
+
+
+/**
+ *  Multiply one scalar function by another.
+ * 
+ *  @tparam SF1             the type of the first scalar function
+ *  @tparam SF2             the type of the second scalar function
+ * 
+ *  @note This function is only enabled for actual scalar functions, i.e. functions that derive from ScalarFunction.
+ */
+template <typename SF1, typename SF2>
+enable_if_t<std::is_base_of<ScalarFunction<typename SF1::Valued, typename SF1::Scalar, SF1::Cols>, SF1>::value &&
+                std::is_base_of<ScalarFunction<typename SF2::Valued, typename SF2::Scalar, SF2::Cols>, SF2>::value,
+            ScalarFunctionProduct<SF1, SF2>>
+operator*(const SF1& lhs, const SF2& rhs) {
+
+    return ScalarFunctionProduct<SF1, SF2>(lhs, rhs);
+}
 
 
 }  // namespace GQCP

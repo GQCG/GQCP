@@ -97,15 +97,13 @@ public:
 
 
     /**
-     *  The constructor for a 'zero vector' given an integer argument
-     *
-     *  This constructor is added to fix errors in Eigen concerning 'Scalar(0)';
+     *  The constructor for a 'zero vector' given the '0' integer literal.
      */
-    LinearCombination(const int zero) :
+    LinearCombination(const int literal) :
         LinearCombination() {
 
-        if (zero != 0) {
-            throw std::invalid_argument("LinearCombination(int): Can't convert a non-zero integer to a zero vector");
+        if (literal != 0) {
+            throw std::invalid_argument("LinearCombination(const int): Can't convert a non-zero integer to a 'zero' instance.");
         }
     }
 
@@ -169,8 +167,6 @@ public:
     friend LinearCombination<CoefficientScalar, Function> operator*(CoefficientScalar scalar, const LinearCombination<CoefficientScalar, Function>& rhs) {
         return rhs.operator*(scalar);
     }
-
-    using ScalarFunction<typename Function::Valued, typename Function::Scalar, Function::Cols>::operator*;
 
 
     /**
@@ -297,13 +293,15 @@ public:
 
 
 /*
- *  Make GQCP::LinearCombination<Function> an Eigen scalar type
+ *  Make GQCP::LinearCombination<Function> an Eigen scalar type.
  */
 
 namespace Eigen {
 
+
 template <typename CoefficientScalar, typename Function>
-struct NumTraits<GQCP::LinearCombination<CoefficientScalar, Function>>: public NumTraits<double> {  // permits to get the epsilon, dummy_precision, lowest, highest functions
+struct NumTraits<GQCP::LinearCombination<CoefficientScalar, Function>>:
+    public NumTraits<double> {  // permits to get the epsilon, dummy_precision, lowest, highest functions
 
     using Real = GQCP::LinearCombination<CoefficientScalar, Function>;
     using NonInteger = GQCP::LinearCombination<CoefficientScalar, Function>;
@@ -321,7 +319,7 @@ struct NumTraits<GQCP::LinearCombination<CoefficientScalar, Function>>: public N
 };
 
 
-// Enable the scalar product of a LinearCombination<CoefficientScalar, Function> with its own CoefficientScalar (both sides)
+// Enable the scalar product of a LinearCombination<CoefficientScalar, Function> with its own CoefficientScalar (both sides).
 
 template <typename CoefficientScalar, typename Function>
 struct ScalarBinaryOpTraits<GQCP::LinearCombination<CoefficientScalar, Function>, CoefficientScalar,

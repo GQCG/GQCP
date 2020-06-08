@@ -27,7 +27,7 @@ namespace GQCP {
 
 
 /**
- *  A class that represents a shell of GTOs: it specifies in a condensed way which GTOs are on an nucleus
+ *  A class that represents a shell of GTOs: it specifies in a condensed way which GTOs are on an nucleus.
  */
 class GTOShell {
 private:
@@ -41,7 +41,8 @@ private:
 
 
 public:
-    using BasisFunction = CartesianGTO;
+    using Primitive = CartesianGTO;                              // the type of primitives that this shell is made up with
+    using BasisFunction = LinearCombination<double, Primitive>;  // the type of basis functions that this shell can produce
 
 
 public:
@@ -84,7 +85,7 @@ public:
      * 
      *  @note The basis functions are ordered lexicographically. This means x < y < z.
      */
-    std::vector<LinearCombination<double, CartesianGTO>> basisFunctions() const;
+    std::vector<BasisFunction> basisFunctions() const;
 
     /**
      *  @return the contraction coefficients for this shell

@@ -50,10 +50,12 @@ class RSpinorBasis:
 
 public:
     using Shell = _Shell;
-    using BasisFunction = typename Shell::BasisFunction;
     using ExpansionScalar = _ExpansionScalar;
-
     using Base = SimpleSpinorBasis<_ExpansionScalar, RSpinorBasis<_ExpansionScalar, _Shell>>;
+
+    using Primitive = typename Shell::Primitive;
+    using BasisFunction = typename Shell::BasisFunction;
+    using SpatialOrbital = LinearCombination<product_t<ExpansionScalar, typename BasisFunction::CoefficientScalar>, BasisFunction>;
 
 
 private:
@@ -159,9 +161,10 @@ public:
         using ResultScalar = product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>;
         using ResultOperator = SQTwoElectronOperator<ResultScalar, CoulombRepulsionOperator::Components>;
 
-        const auto one_op_par = IntegralCalculator::calculateLibintIntegrals(fq_op, this->scalarBasis());
-        ResultOperator op {one_op_par};  // op for 'operator'
-        op.transform(this->coefficientMatrix());
+        const auto one_op_par = IntegralCalculator::calculateLibintIntegrals(fq_op, this->scalarBasis());  // in AO/scalar basis
+
+        ResultOperator op {one_op_par};           // op for 'operator'
+        op.transform(this->coefficientMatrix());  // now in spatial/spin-orbital basis
         return op;
     }
 
@@ -179,9 +182,10 @@ public:
         using ResultScalar = product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>;
         using ResultOperator = SQOneElectronOperator<ResultScalar, FQOneElectronOperator::Components>;
 
-        const auto one_op_par = IntegralCalculator::calculateLibintIntegrals(fq_one_op, this->scalarBasis());
-        ResultOperator op {one_op_par};  // op for 'operator'
-        op.transform(this->coefficientMatrix());
+        const auto one_op_par = IntegralCalculator::calculateLibintIntegrals(fq_one_op, this->scalarBasis());  // in AO/scalar basis
+
+        ResultOperator op {one_op_par};           // op for 'operator'
+        op.transform(this->coefficientMatrix());  // now in the spatial/spin-orbital basis
         return op;
     }
 

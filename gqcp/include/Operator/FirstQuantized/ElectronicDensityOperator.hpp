@@ -27,7 +27,7 @@ namespace GQCP {
 /**
  *  The (one-electron) electronic density operator.
  */
-class KineticOperator: public BaseFQOneElectronOperator<double, 1> {};
+class ElectronicDensityOperator: public BaseFQOneElectronOperator<double, 1> {};
 
 
 }  // namespace GQCP

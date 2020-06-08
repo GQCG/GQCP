@@ -37,8 +37,10 @@ namespace GQCP {
 template <typename _Shell>
 class ShellSet {
 public:
-    using Shell = _Shell;                                 // the type of shell that is contained in this set
-    using BasisFunction = typename Shell::BasisFunction;  // the type of basis function that the shell can produce
+    using Shell = _Shell;  // the type of shell that is contained in this set
+
+    using Primitive = typename Shell::Primitive;          // the type of primitives that this shell set contains
+    using BasisFunction = typename Shell::BasisFunction;  // the type of basis functions that this shell can produce
 
 
 private:
@@ -93,9 +95,9 @@ public:
     /**
      *  @return the basis functions that 'are' in this shell
      */
-    std::vector<LinearCombination<double, BasisFunction>> basisFunctions() const {
+    std::vector<BasisFunction> basisFunctions() const {
 
-        std::vector<LinearCombination<double, BasisFunction>> basis_functions;
+        std::vector<BasisFunction> basis_functions;
         basis_functions.reserve(this->numberOfBasisFunctions());
         for (const auto& shell : this->shells) {
             const auto shell_basis_functions = shell.basisFunctions();
