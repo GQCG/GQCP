@@ -29,14 +29,14 @@ namespace GQCP {
 
 
 /*
- *  Forward declaration of ScalarFunction to be used in ScalarFunctionProduct
+ *  Forward declaration of ScalarFunction to be used in ScalarFunctionProduct.
  */
 template <typename _Valued, typename _Scalar, int _Cols>
 class ScalarFunction;
 
 
 /*
- *  ScalarFunctionProduct
+ *  Implementation of ScalarFunctionProduct.
  */
 
 /**
@@ -135,7 +135,7 @@ public:
 
 
 /*
- *  ScalarFunction
+ *  Implementation of ScalarFunction
  */
 
 /**
@@ -174,6 +174,17 @@ public:
 };
 
 
+/*
+ *  Aliases related to ScalarFunction.
+ */
+
+/**
+ *  A SFINAE expression that checks if the type T is a scalar function, i.e. if it derives from ScalarFunction.
+ */
+template <typename T>
+using IsScalarFunction = enable_if_t<std::is_base_of<ScalarFunction<typename T::Valued, typename T::Scalar, T::Cols>, T>::value>;
+
+
 /**
  *  Multiply one scalar function by another.
  * 
@@ -182,11 +193,8 @@ public:
  * 
  *  @note This function is only enabled for actual scalar functions, i.e. functions that derive from ScalarFunction.
  */
-template <typename SF1, typename SF2>
-enable_if_t<std::is_base_of<ScalarFunction<typename SF1::Valued, typename SF1::Scalar, SF1::Cols>, SF1>::value &&
-                std::is_base_of<ScalarFunction<typename SF2::Valued, typename SF2::Scalar, SF2::Cols>, SF2>::value,
-            ScalarFunctionProduct<SF1, SF2>>
-operator*(const SF1& lhs, const SF2& rhs) {
+template <typename SF1, typename SF2, typename = IsScalarFunction<SF1>, typename = IsScalarFunction<SF2>>
+ScalarFunctionProduct<SF1, SF2> operator*(const SF1& lhs, const SF2& rhs) {
 
     return ScalarFunctionProduct<SF1, SF2>(lhs, rhs);
 }

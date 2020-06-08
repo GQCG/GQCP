@@ -123,10 +123,10 @@ public:
      * 
      *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
      * 
-     *  @note this function is only available for real spinor bases because Jacobi rotation parameters generate real rotations
+     *  @note This function is only available for real spinor bases because Jacobi rotation parameters generate real rotations.
      */
-    template <typename Z = ExpansionScalar>
-    enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
+    template <typename S = ExpansionScalar, typename = IsReal<S>>
+    void rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
 
         const auto dim = this->simpleDimension();
         const auto J = TransformationMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);

@@ -18,29 +18,30 @@
 #pragma once
 
 
+#include "Utilities/type_traits.hpp"
+
 #include <complex>
 #include <cstdlib>
-#include <type_traits>
 #include <vector>
 
 
 /**
- *  A header that contains general typedefs inside the GQCP namespace.
+ *  A header that contains general aliases inside the GQCP namespace.
  */
 
 
 namespace GQCP {
 
 
-/*
- *  SCALARS
- */
 using cd = std::complex<double>;
 
 
-/*
- *  TEMPLATE ALIASES
+/**
+ *  A SFINAE expression that checks if the given type T is real, a.k.a. 'double'.
  */
+template <typename T>
+using IsReal = enable_if_t<std::is_same<T, double>::value>;
+
 
 template <typename T, typename U>
 using product_t = decltype(std::declval<T>() * std::declval<U>());
