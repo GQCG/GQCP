@@ -350,7 +350,7 @@ void CubicGrid::writeToCubeFile(const Field<double>& scalar_field, const std::st
     // Write the necessary header lines.
 
     // The first two lines are comment lines.
-    cubefile << "COMMENT LINE -- GAUSSIAN Cube file" << std::endl;
+    cubefile << "COMMENT LINE -- GAUSSIAN Cube file -- Check (http://paulbourke.net/dataformats/cube/) for formatting information." << std::endl;
     cubefile << "COMMENT LINE -- OUTER LOOP: X, MIDDLE LOOP: Y, INNER LOOP: Z" << std::endl;
 
     cubefile << std::scientific;
@@ -371,14 +371,10 @@ void CubicGrid::writeToCubeFile(const Field<double>& scalar_field, const std::st
     // Write the values of the scalar function.
     size_t index = 0;
     this->forEach([&index, &cubefile, &scalar_field](const size_t i, const size_t j, const size_t k) {
-        cubefile << scalar_field.value(index) << " ";  // write one value
+        cubefile << scalar_field.value(index) << " ";  // write a value
 
-        // There can only be 5 values on one line.
-        if (k % 6 == 5) {
-            cubefile << std::endl;
-        }
-
-        if (j == 0) {
+        // There may only be 5 values on one line.
+        if (index % 5 == 4) {
             cubefile << std::endl;
         }
 

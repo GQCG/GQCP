@@ -166,3 +166,50 @@ BOOST_AUTO_TEST_CASE(points) {
         BOOST_CHECK(points[i].isApprox(ref_points[i], 1.0e-12));
     }
 }
+
+
+/**
+ *  Check if we can read in our own written CUBE files.
+ */
+BOOST_AUTO_TEST_CASE(write_and_read_cube) {
+
+    // Create a test molecule.
+    const GQCP::Nucleus C {6, 0.0, 0.0, 0.0};
+    const GQCP::Nucleus O {8, 0.0, 0.0, GQCP::units::angstrom_to_bohr(1.145)};  // from CCCBDB, STO-3G geometry
+    const std::vector<GQCP::Nucleus> nuclei {C, O};
+    const GQCP::Molecule molecule {{nuclei}};
+
+    // Create a test scalar function to evaluate. In this case, we choose a GTO.
+    const GQCP::CartesianExponents exponents {1, 0, 1};  // an x,z p-type GTO
+    GQCP::Vector<double, 3> center;
+    center << 5.0, 5.0, 5.5;
+    const GQCP::CartesianGTO gto {1.0, exponents, center};
+
+    // Set up a test cubic grid.
+    GQCP::Vector<double, 3> origin = GQCP::Vector<double, 3>::Zero();
+    const std::array<size_t, 3> steps {40, 40, 40};
+    const std::array<double, 3> step_sizes {0.25, 0.25, 0.25};
+    const GQCP::CubicGrid grid {origin, steps, step_sizes};
+    const auto grid_points = grid.points();
+
+    // Evaluate the GTO on the cubic grid, and write the results to a cube file.
+    const auto scalar_field = grid.evaluate(gto);
+    const auto& scalar_field_values = scalar_field.values();
+    grid.writeToCubeFile(scalar_field, "test_file.cube", molecule);
+
+    // Re-read the written Cube File and check if the grid and field are the same.
+    const auto read_grid = GQCP::CubicGrid::ReadCubeFile("test_file.cube");  // 'read': past tense
+    const auto read_grid_points = read_grid.points();
+    BOOST_CHECK(read_grid_points.size() == grid_points.size());
+    for (size_t i = 0; i < grid.numberOfPoints(); i++) {
+        BOOST_CHECK(read_grid_points[i].isApprox(grid_points[i], 1.0e-12));
+    }
+    BOOST_CHECK_EQUAL_COLLECTIONS(grid_points.begin(), grid_points.end(), read_grid_points.begin(), read_grid_points.end());
+
+    const auto read_scalar_field = GQCP::Field<double>::ReadCubeFile("test_file.cube");
+    const auto& read_scalar_field_values = read_scalar_field.values();
+    BOOST_CHECK(read_scalar_field_values.size() == scalar_field_values.size());
+    for (size_t i = 0; i < scalar_field.size(); i++) {
+        BOOST_CHECK(std::abs(read_scalar_field_values[i] - scalar_field_values[i]) < 1.0e-06);
+    }
+}
