@@ -20,15 +20,20 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Basis/transform.hpp"
+#include "Mathematical/Algorithm/FunctionalStep.hpp"
 #include "ONVBasis/SpinUnresolvedONV.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CC/CCD.hpp"
+#include "QCMethod/CC/CCSD.hpp"
 #include "QCMethod/CC/CCSDEnvironment.hpp"
 #include "QCMethod/CC/CCDSolver.hpp"
+#include "QCMethod/CC/CCSDSolver.hpp"
 #include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF/RHF.hpp"
 #include "QCMethod/HF/RHF/RHFSCFSolver.hpp"
+#include "QCModel/CC/T1Amplitudes.hpp"
 
+#include <functional>
 
 /**
  *  Check if the implementation of spinor-CCSD is correct, by comparing with a reference by crawdad (https://github.com/CrawfordGroup/ProgrammingProjects/tree/master/Project%2305).
@@ -77,17 +82,29 @@ BOOST_AUTO_TEST_CASE(h2o_crawdad) {
     // Initialize an environment suitable for CCD.
     auto environment_ccd = GQCP::CCSDEnvironment<double>::PerturbativeCCD(g_sq_hamiltonian, orbital_space);
     auto environment_ccsd_ref = GQCP::CCSDEnvironment<double>::PerturbativeCCSD(g_sq_hamiltonian, orbital_space);
-    
+
+    // Functional step that sets the T1-amplitudes to zero, needed for our reference CCD solver.
+    //GQCP::FunctionalStep<GQCP::CCSDEnvironment<double>> set_T1_zero([GQCP::OrbitalSpace orbital_space](GQCP::CCSDEnvironment<double> environment_ccsd_ref){
+    //   environment_ccsd_ref.t1_amplitudes.back() = GQCP::T1Amplitudes<double>(orbital_space.initializeRepresentableObjectFor<double>(GQCP::OccupationType::k_occupied, GQCP::OccupationType::k_virtual), orbital_space);
+    //    }, "Set the T1-amplitudes to zero.");
+    GQCP::FunctionalStep<GQCP::CCSDEnvironment<double>> set_T1_zero([](GQCP::CCSDEnvironment<double> environment_ccsd_ref){
+        const auto& orbital_space = environment_ccsd_ref.t1_amplitudes.back().orbitalSpace();
+        environment_ccsd_ref.t1_amplitudes.back() = GQCP::T1Amplitudes<double>(environment_ccsd_ref.t1_amplitudes.back().orbitalSpace().initializeRepresentableObjectFor<double>(GQCP::OccupationType::k_occupied, GQCP::OccupationType::k_virtual), orbital_space);
+    }, "Set the T1-amplitudes to zero.");
+
     // Prepare the CCD solver and optimize the CCD model parameters.
     auto solver_ccd = GQCP::CCDSolver<double>::Plain();
     const auto ccd_qc_structure = GQCP::QCMethod::CCD<double>().optimize(solver_ccd, environment_ccd);
 
     // Prepare the CCSD reference solver and optimize the CCSD model parameters but with T1-amplitudes all 0.
-    auto solver_ref = GQCP::CCDSolver<double>::Plain();
-    const auto ref_qc_structure = GQCP::QCMethod::CCD<double>().optimize(solver_ref, environment_ccsd_ref);
+    auto solver_ref = GQCP::CCSDSolver<double>::Plain();
+    solver_ref.insert(set_T1_zero, 2);
+    const auto ref_qc_structure = GQCP::QCMethod::CCSD<double>().optimize(solver_ref, environment_ccsd_ref);
 
     const auto ccd_correlation_energy = ccd_qc_structure.groundStateEnergy();
     const double ref_ccd_correlation_energy = ref_qc_structure.groundStateEnergy();
 
+    std::cout<<ccd_correlation_energy<<std::endl;
+    std::cout<<ref_ccd_correlation_energy<<std::endl;
     BOOST_CHECK(std::abs(ccd_correlation_energy - ref_ccd_correlation_energy) < 1.0e-08);
 }
