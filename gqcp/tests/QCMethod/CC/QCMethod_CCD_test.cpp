@@ -87,7 +87,7 @@ BOOST_AUTO_TEST_CASE(h2o_crawdad) {
     //GQCP::FunctionalStep<GQCP::CCSDEnvironment<double>> set_T1_zero([GQCP::OrbitalSpace orbital_space](GQCP::CCSDEnvironment<double> environment_ccsd_ref){
     //   environment_ccsd_ref.t1_amplitudes.back() = GQCP::T1Amplitudes<double>(orbital_space.initializeRepresentableObjectFor<double>(GQCP::OccupationType::k_occupied, GQCP::OccupationType::k_virtual), orbital_space);
     //    }, "Set the T1-amplitudes to zero.");
-    GQCP::FunctionalStep<GQCP::CCSDEnvironment<double>> set_T1_zero([](GQCP::CCSDEnvironment<double> environment_ccsd_ref){
+    GQCP::FunctionalStep<GQCP::CCSDEnvironment<double>> set_T1_zero([](GQCP::CCSDEnvironment<double>& environment_ccsd_ref){
         const auto& orbital_space = environment_ccsd_ref.t1_amplitudes.back().orbitalSpace();
         environment_ccsd_ref.t1_amplitudes.back() = GQCP::T1Amplitudes<double>(environment_ccsd_ref.t1_amplitudes.back().orbitalSpace().initializeRepresentableObjectFor<double>(GQCP::OccupationType::k_occupied, GQCP::OccupationType::k_virtual), orbital_space);
     }, "Set the T1-amplitudes to zero.");
@@ -99,6 +99,7 @@ BOOST_AUTO_TEST_CASE(h2o_crawdad) {
     // Prepare the CCSD reference solver and optimize the CCSD model parameters but with T1-amplitudes all 0.
     auto solver_ref = GQCP::CCSDSolver<double>::Plain();
     solver_ref.insert(set_T1_zero, 2);
+    std::cout<<solver_ref.description()<<std::endl;
     const auto ref_qc_structure = GQCP::QCMethod::CCSD<double>().optimize(solver_ref, environment_ccsd_ref);
 
     const auto ccd_correlation_energy = ccd_qc_structure.groundStateEnergy();
@@ -106,5 +107,7 @@ BOOST_AUTO_TEST_CASE(h2o_crawdad) {
 
     std::cout<<ccd_correlation_energy<<std::endl;
     std::cout<<ref_ccd_correlation_energy<<std::endl;
+
+    //environment_ccsd_ref.t1_amplitudes.back().asImplicitMatrixSlice().asMatrix().print();
     BOOST_CHECK(std::abs(ccd_correlation_energy - ref_ccd_correlation_energy) < 1.0e-08);
 }

@@ -35,7 +35,7 @@ void bindCCSDEnvironment(py::module& module) {
         .def_static(
             "Perturbative",
             [](const GQCP::SQHamiltonian<double>& sq_hamiltonian, const GQCP::OrbitalSpace& orbital_space) {
-                return GQCP::CCSDEnvironment<double>::Perturbative(sq_hamiltonian, orbital_space);
+                return GQCP::CCSDEnvironment<double>::PerturbativeCCSD(sq_hamiltonian, orbital_space);
             },
             "Initialize a CCSD algorithmic environment with initial guesses for the T1- and T2-amplitudes based on perturbation theory.")
 
