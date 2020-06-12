@@ -20,6 +20,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Basis/transform.hpp"
+<<<<<<< HEAD
 #include "Mathematical/Algorithm/FunctionalStep.hpp"
 #include "ONVBasis/SpinUnresolvedONV.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
@@ -34,6 +35,17 @@
 #include "QCModel/CC/T1Amplitudes.hpp"
 
 #include <functional>
+=======
+#include "ONVBasis/SpinUnresolvedONV.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "QCMethod/CC/CCD.hpp"
+#include "QCMethod/CC/CCSDEnvironment.hpp"
+#include "QCMethod/CC/CCDSolver.hpp"
+#include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
+#include "QCMethod/HF/RHF/RHF.hpp"
+#include "QCMethod/HF/RHF/RHFSCFSolver.hpp"
+
+>>>>>>> 1e4cebb9701c148e56f0a7e39d2efabca3371a62
 
 /**
  *  Check if the implementation of spinor-CCSD is correct, by comparing with a reference by crawdad (https://github.com/CrawfordGroup/ProgrammingProjects/tree/master/Project%2305).
