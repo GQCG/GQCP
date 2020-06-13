@@ -83,7 +83,6 @@ public:
         for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 E += f(i, a) * t1(i, a);
-                std::cout<<E<<"  ";
             }
         }
 
@@ -92,9 +91,7 @@ public:
                 for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                     for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
                         E += 0.25 * V_A(i, j, a, b) * t2(i, j, a, b);
-                        std::cout<<E<<"  ";
                         E += 0.5 * V_A(i, j, a, b) * t1(i, a) * t1(j, b);
-                        std::cout<<E<<"\n";
                     }
                 }
             }

@@ -20,7 +20,6 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Basis/transform.hpp"
-<<<<<<< HEAD
 #include "Mathematical/Algorithm/FunctionalStep.hpp"
 #include "ONVBasis/SpinUnresolvedONV.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
@@ -35,17 +34,6 @@
 #include "QCModel/CC/T1Amplitudes.hpp"
 
 #include <functional>
-=======
-#include "ONVBasis/SpinUnresolvedONV.hpp"
-#include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "QCMethod/CC/CCD.hpp"
-#include "QCMethod/CC/CCSDEnvironment.hpp"
-#include "QCMethod/CC/CCDSolver.hpp"
-#include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
-#include "QCMethod/HF/RHF/RHF.hpp"
-#include "QCMethod/HF/RHF/RHFSCFSolver.hpp"
-
->>>>>>> 1e4cebb9701c148e56f0a7e39d2efabca3371a62
 
 /**
  *  Check if the implementation of spinor-CCSD is correct, by comparing with a reference by crawdad (https://github.com/CrawfordGroup/ProgrammingProjects/tree/master/Project%2305).
@@ -111,15 +99,10 @@ BOOST_AUTO_TEST_CASE(h2o_crawdad) {
     // Prepare the CCSD reference solver and optimize the CCSD model parameters but with T1-amplitudes all 0.
     auto solver_ref = GQCP::CCSDSolver<double>::Plain();
     solver_ref.insert(set_T1_zero, 2);
-    std::cout<<solver_ref.description()<<std::endl;
     const auto ref_qc_structure = GQCP::QCMethod::CCSD<double>().optimize(solver_ref, environment_ccsd_ref);
 
     const auto ccd_correlation_energy = ccd_qc_structure.groundStateEnergy();
     const double ref_ccd_correlation_energy = ref_qc_structure.groundStateEnergy();
 
-    std::cout<<ccd_correlation_energy<<std::endl;
-    std::cout<<ref_ccd_correlation_energy<<std::endl;
-
-    //environment_ccsd_ref.t1_amplitudes.back().asImplicitMatrixSlice().asMatrix().print();
     BOOST_CHECK(std::abs(ccd_correlation_energy - ref_ccd_correlation_energy) < 1.0e-08);
 }

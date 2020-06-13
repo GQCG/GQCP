@@ -352,7 +352,7 @@ public:
                         // Calculate the contribution from the fourth term.
                         for (const auto& n : orbital_space.indices(OccupationType::k_occupied)) {
                             for (const auto& f : orbital_space.indices(OccupationType::k_virtual)) {
-                                value -= 0.5 * t2(j, n, f, b);
+                                value -= 0.5 * t2(j, n, f, b) * V_A(m, n, e, f);
                             }
                         }
 
