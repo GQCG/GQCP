@@ -93,8 +93,10 @@ void bindvAP1roGElectricalResponseSolver(py::module& module);
 
 
 // QCMethod - CC
+void bindQCMethodCCD(py::module& module);
 void bindQCMethodCCSD(py::module& module);
 void bindCCSDEnvironment(py::module& module);
+void bindCCDSolver(py::module& module);
 void bindCCSDSolver(py::module& module);
 
 
@@ -131,6 +133,7 @@ void bindQCStructures(py::module& module);
 
 
 // QCModel - CC
+void bindQCModelCCD(py::module& module);
 void bindQCModelCCSD(py::module& module);
 void bindT1Amplitudes(py::module& module);
 void bindT2Amplitudes(py::module& module);
@@ -230,8 +233,10 @@ PYBIND11_MODULE(gqcpy, module) {
 
 
     // QCMethod - CC
+    gqcpy::bindQCMethodCCD(module);
     gqcpy::bindQCMethodCCSD(module);
     gqcpy::bindCCSDEnvironment(module);
+    gqcpy::bindCCDSolver(module);
     gqcpy::bindCCSDSolver(module);
 
 
@@ -268,6 +273,7 @@ PYBIND11_MODULE(gqcpy, module) {
 
 
     // QCModel - CC
+    gqcpy::bindQCModelCCD(module);
     gqcpy::bindQCModelCCSD(module);
     gqcpy::bindT1Amplitudes(module);
     gqcpy::bindT2Amplitudes(module);
