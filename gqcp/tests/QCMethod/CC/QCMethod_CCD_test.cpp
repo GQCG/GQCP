@@ -75,10 +75,6 @@ BOOST_AUTO_TEST_CASE(h2o_crawdad) {
     // Use a manually-made orbital space (#FIXME in develop).
     const auto orbital_space = GQCP::OrbitalSpace({0, 1, 2, 3, 4, 7, 8, 9, 10, 11}, {5, 6, 12, 13});  // occupied and virtual indices
 
-
-    BOOST_REQUIRE(orbital_space.numberOfOrbitals() == M);
-
-
     // Initialize an environment suitable for CCD.
     auto environment_ccd = GQCP::CCSDEnvironment<double>::PerturbativeCCD(g_sq_hamiltonian, orbital_space);
     auto environment_ccsd_ref = GQCP::CCSDEnvironment<double>::PerturbativeCCSD(g_sq_hamiltonian, orbital_space);
