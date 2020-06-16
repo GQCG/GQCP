@@ -63,7 +63,7 @@ public:
             .add(CCDEnergyCalculation<Scalar>());
 
 
-        // Create a compound convergence criterion on the norm of subsequent T2-amplitudes, which is facilitated by the .norm() API of the T2-amplitudes.
+        // Create a convergence criterion on the norm of subsequent T2-amplitudes, which is facilitated by the .norm() API of the T2-amplitudes.
         using T2ConvergenceType = ConsecutiveIteratesNormConvergence<T2Amplitudes<Scalar>, CCSDEnvironment<Scalar>>;
         const auto t2_extractor = [](const CCSDEnvironment<Scalar>& environment) { return environment.t2_amplitudes; };
         const T2ConvergenceType t2_convergence_criterion {threshold, t2_extractor, "the T2 amplitudes"};
