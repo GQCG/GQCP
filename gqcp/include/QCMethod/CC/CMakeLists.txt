@@ -7,10 +7,8 @@ target_sources(gqcp
         CCDSolver.hpp
         CCSD.hpp
         CCSDAmplitudesUpdate.hpp
-        CCSDT2AmplitudesUpdate.hpp
         CCSDEnergyCalculation.hpp
         CCSDEnvironment.hpp
         CCSDIntermediatesUpdate.hpp
         CCSDSolver.hpp
-        CCSDWithoutSSolver.hpp
 )

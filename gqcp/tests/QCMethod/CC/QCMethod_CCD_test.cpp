@@ -70,11 +70,8 @@ BOOST_AUTO_TEST_CASE(h2o_crawdad) {
     const auto g_sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(g_spinor_basis, molecule);  // in the canonical restricted spin-orbitals
 
     // Create the GHF ONV (which is actually just the RHF ONV, since we're using the canonical RHF orbitals) and the corresponding orbital space.
-    //const auto reference_onv = GQCP::SpinUnresolvedONV::GHF(2 * K, N, rhf_parameters.spinOrbitalEnergiesBlocked());
-    //const auto orbital_space = reference_onv.orbitalSpace();
-    // Use a manually-made orbital space (#FIXME in develop).
-    const auto orbital_space = GQCP::OrbitalSpace({0, 1, 2, 3, 4, 7, 8, 9, 10, 11}, {5, 6, 12, 13});  // occupied and virtual indices
-
+    const auto reference_onv = GQCP::SpinUnresolvedONV::GHF(2 * K, N, rhf_parameters.spinOrbitalEnergiesBlocked());
+    const auto orbital_space = reference_onv.orbitalSpace();
 
     BOOST_REQUIRE(orbital_space.numberOfOrbitals() == M);
 
