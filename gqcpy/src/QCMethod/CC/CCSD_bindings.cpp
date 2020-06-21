@@ -36,6 +36,8 @@ void bindQCMethodCCSD(py::module& module) {
             [](GQCP::IterativeAlgorithm<GQCP::CCSDEnvironment<double>>& solver, GQCP::CCSDEnvironment<double>& environment) {
                 return GQCP::QCMethod::CCSD<double>().optimize(solver, environment);
             },
+            py::arg("solver"),
+            py::arg("environment"),
             "Optimize the CCSD wave function model.");
 }
 
