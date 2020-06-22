@@ -36,7 +36,7 @@
 #include <functional>
 
 /**
- *  Check if the implementation of spinor-CCSD is correct, by comparing with a reference by crawdad (https://github.com/CrawfordGroup/ProgrammingProjects/tree/master/Project%2305).
+ *  Check if the implementation of spinor-CCD is correct, by comparing with a reference CCSD algorithm where the T1-amplitudes are set to zero.
  *
  *  The system under consideration is H2O in an STO-3G basisset.
  */
@@ -96,6 +96,7 @@ BOOST_AUTO_TEST_CASE(h2o_crawdad) {
 
     const auto ccd_correlation_energy = ccd_qc_structure.groundStateEnergy();
     const double ref_ccd_correlation_energy = ref_qc_structure.groundStateEnergy();
-    std::cout<<ccd_correlation_energy;
+    
     BOOST_CHECK(std::abs(ccd_correlation_energy - ref_ccd_correlation_energy) < 1.0e-08);
+    BOOST_CHECK(environment_ccd.t2_amplitudes.back().asImplicitRankFourTensorSlice().asTensor().isApprox(environment_ccsd_ref.t2_amplitudes.back().asImplicitRankFourTensorSlice().asTensor())==true);
 }
