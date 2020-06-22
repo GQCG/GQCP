@@ -25,7 +25,7 @@ namespace GQCP {
 
 
 /**
- *  A base class to represent first-quantized multipole operators
+ *  A base class used to represent first-quantized multipole operators.
  */
 class BaseMultipoleOperator {
 protected:

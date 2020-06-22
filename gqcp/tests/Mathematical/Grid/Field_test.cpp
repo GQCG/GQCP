@@ -15,39 +15,156 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#define BOOST_TEST_MODULE "Field"
+#define BOOST_TEST_MODULE "Field_test"
 
 #include <boost/test/unit_test.hpp>
 
-#include "Basis/ScalarBasis/CartesianGTO.hpp"
-#include "Mathematical/Grid/CubicGrid.hpp"
 #include "Mathematical/Grid/Field.hpp"
-#include "Utilities/units.hpp"
 
 
 /**
- *  Check if a cube file is made when writing field information.
+ *  Check if reading in the data in a GAUSSIAN Cube file is correct.
  */
-BOOST_AUTO_TEST_CASE(toCubeFile) {
+BOOST_AUTO_TEST_CASE(ReadCubeFile) {
 
-    // Create a test molecule.
-    const GQCP::Nucleus C {6, 0.0, 0.0, 0.0};
-    const GQCP::Nucleus O {8, 0.0, 0.0, GQCP::units::angstrom_to_bohr(1.145)};  // from CCCBDB, STO-3G geometry
-    const std::vector<GQCP::Nucleus> nuclei {C, O};
-    const GQCP::Molecule molecule {{nuclei}};
+    // Read in the Cube file, provide the reference values and check if it was parsed correctly.
+    const auto scalar_field = GQCP::Field<double>::ReadCubeFile("data/benzene.cube");
 
-    // Create a test scalar function to evaluate. In this case, we choose a GTO.
-    const GQCP::CartesianExponents exponents {1, 0, 1};  // an x,z p-type GTO
-    GQCP::Vector<double, 3> center;
-    center << 5.0, 5.0, 5.5;
-    const GQCP::CartesianGTO gto {1.0, exponents, center};
 
-    // Set up a test cubic grid.
-    GQCP::Vector<double, 3> origin = GQCP::Vector<double, 3>::Zero();
-    const std::array<size_t, 3> steps {40, 40, 40};
-    const std::array<double, 3> step_sizes {0.25, 0.25, 0.25};
-    const GQCP::CubicGrid grid {origin, steps, step_sizes};
+    // Check the results.
+    BOOST_CHECK(scalar_field.size() == 60 * 60 * 60);
+    BOOST_CHECK(std::abs(scalar_field.value(0) - (-1.38100446455e-06)) < 1.0e-08);
+    BOOST_CHECK(std::abs(scalar_field.values().back() - (-9.58547463676e-07)) < 1.0e-08);
+}
 
-    // Evaluate the GTO on the cubic grid, and write the results to a cube file.
-    grid.evaluate(gto).toCubeFile("test_file.cube", molecule);
+
+/**
+ *  Check if reading in an integration grid file works as expected.
+ */
+BOOST_AUTO_TEST_CASE(ReadIntegrationGridFile) {
+
+    // Read in the integration grid file and check if the parsing went correctly.
+    const auto J = GQCP::Field<GQCP::Vector<double, 3>>::ReadGridFile<3>("data/benzene_current.igrid");
+
+    BOOST_CHECK(J.size() == 25905);
+
+
+    // Check the first field value.
+    GQCP::Vector<double, 3> ref_value_first {0, 0, 0};
+    BOOST_CHECK(J.value(0).isApprox(ref_value_first, 1.0e-08));
+
+    // Check the last field value.
+    GQCP::Vector<double, 3> ref_value_last {-1.4694209851333318E-003, 5.1869592466737078E-004, 1.2283072801926104E-005};
+    BOOST_CHECK(J.values().back().isApprox(ref_value_last, 1.0e-08));
+}
+
+
+/**
+ *  Check if reading in a regular grid file works as expected.
+ */
+BOOST_AUTO_TEST_CASE(ReadRegularGridFile) {
+
+    // Read in the regular grid file and check if the parsing went correctly.
+    const auto J = GQCP::Field<GQCP::Vector<double, 3>>::ReadGridFile<3>("data/benzene_current.rgrid");
+
+    BOOST_CHECK(J.size() == 13824);
+
+
+    // Check the first field value.
+    GQCP::Vector<double, 3> ref_value_first {-0.000002, 0.000002, 0.000000};
+    BOOST_CHECK(J.value(0).isApprox(ref_value_first, 1.0e-08));
+
+    // Check the last field value.
+    GQCP::Vector<double, 3> ref_value_last {0.000003, -0.000004, -0.000001};
+    BOOST_CHECK(J.values().back().isApprox(ref_value_last, 1.0e-08));
+}
+
+
+/**
+ *  Check if operator+ is correctly implemented.
+ */
+BOOST_AUTO_TEST_CASE(operator_plus) {
+
+    // Set up two fields.
+    GQCP::Field<unsigned> lhs {{8, 5, 5}};
+    GQCP::Field<unsigned> rhs {{1, 2, 3}};
+
+
+    // Check if operator+ works as expected.
+    const std::vector<unsigned> ref_sum_values1 {9, 7, 8};
+    auto sum = lhs + rhs;
+    BOOST_CHECK_EQUAL_COLLECTIONS(sum.values().begin(), sum.values().end(), ref_sum_values1.begin(), ref_sum_values1.end());
+
+
+    // Check if operator+= works as expected.
+    const std::vector<unsigned> ref_sum_values2 {10, 9, 11};
+    sum += rhs;
+    BOOST_CHECK_EQUAL_COLLECTIONS(sum.values().begin(), sum.values().end(), ref_sum_values2.begin(), ref_sum_values2.end());
+}
+
+
+/**
+ *  Check if operator- is correctly implemented.
+ */
+BOOST_AUTO_TEST_CASE(operator_minus) {
+
+    // Set up two fields.
+    GQCP::Field<int> lhs {{8, 5, 5}};
+    GQCP::Field<int> rhs {{1, 2, 3}};
+
+
+    // Check if the unary operator- works as expected.
+    const std::vector<int> ref_unary_minus_values {-8, -5, -5};
+    const auto unary_minus = -lhs;
+    BOOST_CHECK_EQUAL_COLLECTIONS(unary_minus.values().begin(), unary_minus.values().end(), ref_unary_minus_values.begin(), ref_unary_minus_values.end());
+
+
+    // Check if binary operator- works as expected.
+    const std::vector<int> ref_difference_values1 {7, 3, 2};
+    auto difference = lhs - rhs;
+    BOOST_CHECK_EQUAL_COLLECTIONS(difference.values().begin(), difference.values().end(), ref_difference_values1.begin(), ref_difference_values1.end());
+
+
+    // Check if operator-= works as expected.
+    const std::vector<int> ref_difference_values2 {6, 1, -1};
+    difference -= rhs;
+    BOOST_CHECK_EQUAL_COLLECTIONS(difference.values().begin(), difference.values().end(), ref_difference_values2.begin(), ref_difference_values2.end());
+}
+
+
+/**
+ *  Check if the mapping functionality is correctly implemented by mapping positive or negative values to zero and checking the results.
+ */
+BOOST_AUTO_TEST_CASE(map) {
+
+    // Set up a test field and two test unary functions.
+    GQCP::Field<int> field {{1, -1}};
+
+    const auto positive_to_zero = [](const int a) {
+        if (a >= 0) {
+            return 0;
+        } else {
+            return a;
+        }
+    };
+
+    const auto negative_to_zero = [](const int a) {
+        if (a <= 0) {
+            return 0;
+        } else {
+            return a;
+        }
+    };
+
+
+    // Provide the reference values and check the result of the mappings.
+    const std::vector<int> ref_positive_only_values {1, 0};
+    const auto positive_only_field = field.mapped(negative_to_zero);
+
+    BOOST_CHECK_EQUAL_COLLECTIONS(positive_only_field.values().begin(), positive_only_field.values().end(), ref_positive_only_values.begin(), ref_positive_only_values.end());
+
+    const std::vector<int> ref_negative_only_values {0, -1};
+    const auto negative_only_field = field.mapped(positive_to_zero);
+
+    BOOST_CHECK_EQUAL_COLLECTIONS(negative_only_field.values().begin(), negative_only_field.values().end(), ref_negative_only_values.begin(), ref_negative_only_values.end());
 }

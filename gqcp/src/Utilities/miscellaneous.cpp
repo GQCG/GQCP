@@ -28,6 +28,136 @@ namespace GQCP {
 
 
 /**
+ *  Partition a positive integer into its partitions.
+ *
+ *  @param n        the integer whose partitions are sought
+ *  @param k        the partition size
+ *
+ *  @return a vector of the k-sized partitions
+ * 
+ *  @example An examples of a 3-way partitions of '2' is:
+ *              {2, 0, 0} - {1, 1, 0} - {1, 0, 1} - {0, 2, 0} - {0, 1, 1} - {0, 0, 2}
+ */
+std::vector<std::vector<size_t>> generatePartitionsOf(const size_t n, const size_t k) {
+
+    // Let's take an example generatePartitionsOf(3, 3) to explain why we can use a recursion algorithm. Here are the 3-way partitions of 3:
+    //  3 0 0       this is the standard case
+    //
+    //  2 1 0       this is of the form {2, [2-way partitions of 1]}
+    //  2 0 1
+    //
+    //  1 2 0       this is of the form {1, [2-way partitions of 2]}
+    //  1 1 1
+    //  1 0 2
+    //
+    //  0 3 0       this is of the form {0, [2-way partitions of 3]}
+    //  0 2 1
+    //  0 1 2
+    //  0 0 3
+
+
+    // A base recursion case for k == 1 or k == 0.
+    if (k <= 1) {
+        return {{n}};
+    }
+
+    // A base recursion case for n == 1:  a k-way partition of 1.
+    if (n == 1) {
+        std::vector<std::vector<size_t>> base_partitions;
+
+        // A k-way partition of 1 is like
+        //      {1, 0, 0}
+        //      {0, 1, 0}
+        //      {0, 0, 1}
+        for (size_t i = 0; i < k; i++) {
+            std::vector<size_t> partition(k, 0);  // zero-initialize a size-k vector
+            partition[i] = 1;
+
+            base_partitions.push_back(partition);
+        }
+
+        return base_partitions;
+    }
+
+
+    // If we're here, this means n >= 2 and the actual recursion should start.
+    std::vector<size_t> partition(k, 0);
+
+    partition[0] = n;  // start with {n, 0, ..., 0}
+    std::vector<std::vector<size_t>> partitions {partition};
+
+    for (int i = n - 1; i >= 0; i--) {
+
+        // Update the leading number.
+        partition[0] = i;
+
+        // We must now collect all sub-partitions of size (k-1) of the number (n-i).
+        const auto sub_partitions = generatePartitionsOf(n - i, k - 1);
+
+        // And then we append all partitions of the form {i-1, [subpartition]}.
+        for (const auto& sub_partition : sub_partitions) {
+            std::copy_n(sub_partition.begin(), k - 1, partition.begin() + 1);
+
+            partitions.push_back(partition);
+        }
+    }
+
+    return partitions;
+}
+
+
+/**
+ *  Partition a positive integer into its unique partitions.
+ *
+ *  @param n        the integer whose partitions are sought
+ *  @param k        the partition size
+ *
+ *  @return a vector of the k-sized partitions
+ * 
+ *  @example Some examples of unique 3-way partitions are:
+ *              {3, 0, 0} - {2, 1, 0} - {1, 1, 1}
+ *              {4, 0, 0} - {3, 1, 0} - {2, 2, 0} - {2, 1, 1}
+ */
+std::vector<std::vector<size_t>> generateUniquePartitionsOf(const size_t n, const size_t k) {
+
+    // The main algorithm starts from {n, 0, ..., 0} and moves a 1 from the right-most number (>1) to the left-most position that holds a value at least 2 smaller. If there are none such numbers left, the algorithm is finished.
+    // Note that:
+    //  - The largest number L in the partition will always be at the first position; the partition will always be sorted from largest to smallest value.
+    //  - The right-most 1s can be ignored, since moving a 1 cannot create a new partition.
+    //  - Moving a 1 to a position that holds a value L-1 or higher can be ignored, since it will always create a permutation of a previous partition.
+
+
+    std::vector<size_t> partition(k, 0);
+    partition.reserve(k);
+
+    partition[0] = n;  // start with {n, 0, ..., 0}
+    std::vector<std::vector<size_t>> unique_partitions {partition};
+    while (true) {
+
+        // Find the right-most position that holds a value larger than 1.
+        auto subtraction_it = std::find_if(partition.rbegin(), partition.rend(), [](const size_t x) { return x > 1; });
+        if (subtraction_it == partition.rend()) {
+            break;
+        }
+
+        // Find the left-most position that is smaller than (value - 1).
+        size_t value = *subtraction_it;
+        auto addition_it = std::find_if(partition.begin(), partition.end(), [value](const size_t x) { return x < value - 1; });
+        if (addition_it == partition.end()) {
+            break;
+        }
+
+        // If there are such positions, proceed to move a 1.
+        (*subtraction_it)--;
+        (*addition_it)++;
+        unique_partitions.push_back(partition);
+    }
+
+    return unique_partitions;
+}
+
+
+/**
  *  @param S    the positive integer to be converted to Gray code
  *
  *  @return the Gray code of the given integer number as a bitset

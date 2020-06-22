@@ -19,6 +19,7 @@
 
 
 #include "Basis/ScalarBasis/CartesianGTO.hpp"
+#include "Mathematical/AbstractFunction/LinearCombination.hpp"
 #include "Molecule/Nucleus.hpp"
 
 
@@ -26,7 +27,7 @@ namespace GQCP {
 
 
 /**
- *  A class that represents a shell of GTOs: it specifies in a condensed way which GTOs are on an nucleus
+ *  A class that represents a shell of GTOs: it specifies in a condensed way which GTOs are on an nucleus.
  */
 class GTOShell {
 private:
@@ -40,7 +41,8 @@ private:
 
 
 public:
-    using BasisFunction = CartesianGTO;
+    using Primitive = CartesianGTO;                              // the type of primitives that this shell is made up with
+    using BasisFunction = LinearCombination<double, Primitive>;  // the type of basis functions that this shell can produce
 
 
 public:
@@ -79,6 +81,13 @@ public:
     bool areEmbeddedNormalizationFactorsOfPrimitives() const { return this->embedded_normalization_factors_of_primitives; }
 
     /**
+     *  @return the basis functions that correspond to this shell
+     * 
+     *  @note The basis functions are ordered lexicographically. This means x < y < z.
+     */
+    std::vector<BasisFunction> basisFunctions() const;
+
+    /**
      *  @return the contraction coefficients for this shell
      */
     const std::vector<double>& contractionCoefficients() const { return this->contraction_coefficients; }
@@ -89,14 +98,14 @@ public:
     size_t contractionSize() const { return this->contraction_coefficients.size(); }
 
     /**
-     *  Embed the total normalization factor of the corresponding linear combination of spherical (or axis-aligned Cartesian) GTOs into the contraction coefficients
+     *  Embed the total normalization factor of the corresponding linear combination of spherical (or axis-aligned Cartesian) GTOs into the contraction coefficients.
      */
     void embedNormalizationFactor();
 
     /**
-     *  Embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing
+     *  Embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing.
      *
-     *  Note that the normalization factor that is embedded corresponds to the spherical (or axis-aligned Cartesian) GTO
+     *  @note The normalization factor that is embedded, corresponds to the spherical (or axis-aligned Cartesian) GTO
      */
     void embedNormalizationFactorsOfPrimitives();
 
@@ -126,9 +135,9 @@ public:
     size_t numberOfBasisFunctions() const;
 
     /**
-     *  Embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing
+     *  Embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing.
      *
-     *  Note that the normalization factor that is embedded corresponds to the spherical (or axis-aligned Cartesian) GTO
+     *  @note The the normalization factor that is embedded corresponds to the spherical (or axis-aligned Cartesian) GTO
      */
     void unEmbedNormalizationFactorsOfPrimitives();
 };

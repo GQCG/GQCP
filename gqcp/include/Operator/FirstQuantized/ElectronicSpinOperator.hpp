@@ -19,14 +19,14 @@
 
 
 #include "Operator/FirstQuantized/BaseFQOneElectronOperator.hpp"
-#include "Utilities/typedefs.hpp"
+#include "Utilities/aliases.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  The vector operator for electron spin.
+ *  The (one-electron) vector operator for electron spin.
  */
 class ElectronicSpinOperator: public BaseFQOneElectronOperator<cd, 3> {};
 

@@ -25,7 +25,7 @@ namespace GQCP {
 
 
 /**
- *  A class that represents the Coulomb interaction energy operator between the electrons
+ *  The two-electron Coulomb repulsion operator.
  */
 class CoulombRepulsionOperator: public BaseFQTwoElectronOperator<double, 1> {};
 

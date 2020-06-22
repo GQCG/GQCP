@@ -17,6 +17,7 @@
 
 #include "Basis/ScalarBasis/CartesianGTO.hpp"
 
+#include <boost/format.hpp>
 #include <boost/math/constants/constants.hpp>
 #include <boost/math/special_functions/factorials.hpp>
 
@@ -183,6 +184,15 @@ Vector<LinearCombination<double, CartesianGTO>, 3> CartesianGTO::calculateGradie
     }
 
     return gradient;
+}
+
+
+/**
+ *  @return a textual description of self
+ */
+std::string CartesianGTO::description() const {
+
+    return (boost::format("CartesianGTO %s (%|.3f|)") % this->cartesian_exponents.description() % this->gaussian_exponent).str();
 }
 
 

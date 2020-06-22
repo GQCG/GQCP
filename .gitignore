@@ -27,6 +27,8 @@ debug*/
 *backup*/
 *back-up*/
 
+.ipynb_checkpoints/
+
 __pycache__
 
 # Output files

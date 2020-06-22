@@ -26,7 +26,7 @@ namespace GQCP {
 
 
 /**
- *  A class that represents the electronic dipole operator for the electrons
+ *  The (one-electron) electronic dipole operator.
  */
 class ElectronicDipoleOperator: public BaseFQOneElectronOperator<double, 3>, public BaseMultipoleOperator {
 public:

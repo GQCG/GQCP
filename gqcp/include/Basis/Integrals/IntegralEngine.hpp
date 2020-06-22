@@ -23,7 +23,7 @@
 #include "Basis/Integrals/Interfaces/LibintOneElectronIntegralEngine.hpp"
 #include "Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
-#include "Utilities/typedefs.hpp"
+#include "Utilities/aliases.hpp"
 
 
 namespace GQCP {

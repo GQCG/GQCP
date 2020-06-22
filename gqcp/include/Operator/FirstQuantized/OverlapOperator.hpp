@@ -25,7 +25,7 @@ namespace GQCP {
 
 
 /**
- *  A class that represents the overlap operator
+ *  The (one-electron) overlap operator.
  */
 class OverlapOperator: public BaseFQOneElectronOperator<double, 1> {};
 

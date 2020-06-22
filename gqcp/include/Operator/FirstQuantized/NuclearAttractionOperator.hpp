@@ -26,7 +26,7 @@ namespace GQCP {
 
 
 /**
- *  A class that represents the nuclear attraction energy operator for the electrons
+ *  The (one-electron) nuclear attraction energy operator.
  */
 class NuclearAttractionOperator: public BaseNuclearOperator, public BaseFQOneElectronOperator<double, 1> {
 public:

@@ -21,7 +21,7 @@
 #include "Basis/ScalarBasis/GTOBasisSet.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Basis/ScalarBasis/ShellSet.hpp"
-#include "Mathematical/LinearCombination.hpp"
+#include "Mathematical/AbstractFunction/LinearCombination.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Molecule/NuclearFramework.hpp"
 
@@ -40,7 +40,9 @@ template <typename _Shell>
 class ScalarBasis {
 public:
     using Shell = _Shell;
-    using BasisFunction = typename Shell::BasisFunction;
+
+    using Primitive = typename Shell::Primitive;          // the type of the primitive functions that underlie this scalar basis
+    using BasisFunction = typename Shell::BasisFunction;  // the type of basis functions that this scalar basis consists of
 
 
 private:
@@ -99,16 +101,9 @@ public:
      */
 
     /**
-     *  @param i            the index of the requested basis function
-     * 
-     *  @return the basis function with the given index that 'is' in this scalar basis
-     */
-    LinearCombination<double, BasisFunction> basisFunction(const size_t i) const { return this->basisFunctions()[i]; }
-
-    /**
      *  @return the basis functions that 'are' in this scalar basis
      */
-    std::vector<LinearCombination<double, BasisFunction>> basisFunctions() const { return this->shell_set.basisFunctions(); }
+    std::vector<BasisFunction> basisFunctions() const { return this->shell_set.basisFunctions(); }
 
     /**
      *  @return the number of basis functions that 'are' in this scalar basis

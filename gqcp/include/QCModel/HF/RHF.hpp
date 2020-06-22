@@ -266,14 +266,14 @@ public:
 
 
     /**
-     *  @param N    the number of electrons
+     *  @param N            the number of electrons
      *
-     *  @return the RHF HOMO index
+     *  @return the (spatial orbital, not spin-orbital) index of the RHF HOMO in an implicit orbital space
      */
-    static size_t HOMOIndex(const size_t N) {
+    static size_t homoIndex(const size_t N) {
 
         if (N % 2 != 0) {
-            throw std::invalid_argument("QCModel::RHF::HOMOIndex(size_t): Can't calculate the RHF HOMO index for an odd number of electrons N.");
+            throw std::invalid_argument("QCModel::RHF::homoIndex(const size_t): Can't calculate the RHF HOMO index for an odd number of electrons N.");
         }
 
         return N / 2 - 1;  // need to subtract 1 because computer indices start at 0
@@ -281,18 +281,18 @@ public:
 
 
     /**
-     *  @param K    the number of spatial orbitals
-     *  @param N    the number of electrons
+     *  @param K            the number of spatial orbitals
+     *  @param N            the number of electrons
      *
-     *  @return the RHF LUMO index
+     *  @return the (spatial orbital, not spin-orbital) index of the RHF LUMO in an implicit orbital space
      */
-    static size_t LUMOIndex(const size_t K, const size_t N) {
+    static size_t lumoIndex(const size_t K, const size_t N) {
 
         if (N >= 2 * K) {
-            throw std::invalid_argument("QCModel::RHF::LUMOIndex(size_t, size_t): There is no LUMO for the given number of electrons N and spatial orbitals K");
+            throw std::invalid_argument("QCModel::RHF::lumoIndex(const size_t, constsize_t): There is no LUMO for the given number of electrons N and spatial orbitals K");
         }
 
-        return RHF<Scalar>::HOMOIndex(N) + 1;
+        return RHF<Scalar>::homoIndex(N) + 1;
     }
 
 
@@ -339,12 +339,32 @@ public:
     const TransformationMatrix<Scalar>& coefficientMatrix() const { return this->C; }
 
     /**
+     *  @param N            the number of electrons
+     *
+     *  @return the (spatial orbital, not spin-orbital) index of the RHF HOMO in an implicit orbital space
+     */
+    size_t homoIndex() const { return RHF<Scalar>::homoIndex(this->numberOfElectrons()); }
+
+    /**
+     *  @param K            the number of spatial orbitals
+     *  @param N            the number of electrons
+     *
+     *  @return the (spatial orbital, not spin-orbital) index of the RHF LUMO in an implicit orbital space
+     */
+    size_t lumoIndex() const { return RHF<Scalar>::lumoIndex(this->numberOfSpatialOrbitals(), this->numberOfElectrons()); }
+
+    /**
      *  @return the number of electron pairs that these RHF model parameters describe
      */
     size_t numberOfElectronPairs() const { return this->N_P; }
 
     /**
-     *  @param sigma            the spin of the electrons (::ALPHA or ::BETA)
+     *  @return the total number of electrons that these RHF model parameters describe
+     */
+    size_t numberOfElectrons() const { return 2 * this->numberOfElectronPairs(); }
+
+    /**
+     *  @param sigma            the spin of the electrons (alpha or beta)
      * 
      *  @return the number of sigma-electrons that these RHF model parameters describe
      */

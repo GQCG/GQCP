@@ -24,17 +24,11 @@
 #include "Operator/FirstQuantized/Operator.hpp"
 
 
-BOOST_AUTO_TEST_CASE(Scalar_basis_constructor) {
-
-    // Check if we can construct an ScalarBasis<GTOShell> object
-    auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    GQCP::ScalarBasis<GQCP::GTOShell> basis {water, "STO-3G"};
-}
-
-
+/**
+ *  Check if the number of basis functions for H2O//STO-3G is correctly implemented.
+ */
 BOOST_AUTO_TEST_CASE(numberOfBasisFunctions) {
 
-    // Check the number of basis functions in water
     auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
     GQCP::ScalarBasis<GQCP::GTOShell> basis {water, "STO-3G"};
 
@@ -43,28 +37,61 @@ BOOST_AUTO_TEST_CASE(numberOfBasisFunctions) {
 
 
 /**
- *  Check if the underlying shell set created from a molecule is the same as the one created from a nuclear framework
+ *  Check if we can succesfully initialize a ScalarBasis for NO+ as large interatomic distances.
  */
-BOOST_AUTO_TEST_CASE(molecule_nuclear_framework) {
+BOOST_AUTO_TEST_CASE(dissociated_scalar_basis) {
 
-    // Create the two scalar bases and check if the underlying shell sets are equal
-    const auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    // Test if we can succesfully initialize NO+ at long intra molecular distance
+    const GQCP::Nucleus N {7, 3.5, 0, 0};
+    const GQCP::Nucleus O {8, -3.5, 0, 0};
+    const std::vector<GQCP::Nucleus> nuclei {N, O};
+    const auto molecule = GQCP::Molecule(nuclei, +1);
 
-    GQCP::ScalarBasis<GQCP::GTOShell> basis_molecule {water, "STO-3G"};
-    GQCP::ScalarBasis<GQCP::GTOShell> basis_nuclear_framework {water.nuclearFramework(), "STO-3G"};
-
-    BOOST_CHECK(basis_molecule.shellSet().asVector() == basis_nuclear_framework.shellSet().asVector());
+    BOOST_CHECK_NO_THROW(GQCP::ScalarBasis<GQCP::GTOShell>(molecule, "STO-3G"));
 }
 
 
-BOOST_AUTO_TEST_CASE(dissociatedMoleculeBasis) {
+/**
+ *  Check if the basis functions for H2O//STO-3G are correctly implemented.
+ * 
+ *  The example we're taking is a scalar basis derived from H2O//STO-3G.
+ * 
+ *  The relevant STO-3G basisset info is as follows:
+ * 
+ *      EXPONENTS              COEFFICIENTS (S)       COEFFICIENTS (P)
+ * H
+ * S
+ *      3.42525091             0.15432897
+ *      0.62391373             0.53532814
+ *      0.16885540             0.44463454
+ *
+ * O
+ * S
+ *    130.7093200              0.15432897
+ *     23.8088610              0.53532814
+ *      6.4436083              0.44463454
+ * SP
+ *      5.0331513             -0.09996723             0.15591627
+ *      1.1695961              0.39951283             0.60768372
+ *      0.3803890              0.70011547             0.39195739
+ */
+BOOST_AUTO_TEST_CASE(basisFunctions) {
 
-    // Test if we can succesfully initialize NO+ at long intra molecular distance
-    auto N = GQCP::Nucleus(7, 3.5, 0, 0);
-    auto O = GQCP::Nucleus(8, -3.5, 0, 0);
-    std::vector<GQCP::Nucleus> nuclei {N, O};
-    auto NO = GQCP::Molecule(nuclei, +1);
-    GQCP::ScalarBasis<GQCP::GTOShell> basis {NO, "STO-3G"};
+    // Set up the restricted spin-orbital basis from the basisset specification.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    const GQCP::ScalarBasis<GQCP::GTOShell> scalar_basis {molecule, "STO-3G"};
 
-    BOOST_CHECK_NO_THROW(GQCP::ScalarBasis<GQCP::GTOShell> basis (NO, "STO-3G"));
+    const auto basis_functions = scalar_basis.basisFunctions();
+
+
+    // In this set of basis functions, the 1py-function on O has the fourth index.
+    const auto bf = basis_functions[4];
+
+    // Check the coefficients and Gaussian exponents according to the basis set specification.
+    const std::vector<double> ref_coefficients {0.15591627, 0.60768372, 0.39195739};
+    const std::vector<double> ref_gaussian_exponents {5.0331513, 1.1695961, 0.3803890};
+    for (size_t i = 0; i < 3; i++) {
+        BOOST_CHECK(std::abs(bf.coefficient(i) - ref_coefficients[i]) < 1.0e-07);
+        BOOST_CHECK(std::abs(bf.function(i).gaussianExponent() - ref_gaussian_exponents[i]) < 1.0e-07);
+    }
 }

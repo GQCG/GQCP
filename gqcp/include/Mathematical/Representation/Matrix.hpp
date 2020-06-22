@@ -19,12 +19,11 @@
 
 
 #include "Mathematical/CartesianDirection.hpp"
+#include "Utilities/Eigen.hpp"
+#include "Utilities/aliases.hpp"
 #include "Utilities/type_traits.hpp"
-#include "Utilities/typedefs.hpp"
 
 #include <boost/algorithm/string.hpp>
-
-#include <Eigen/Dense>
 
 #include <fstream>
 #include <iostream>
@@ -32,8 +31,6 @@
 
 namespace GQCP {
 
-
-constexpr auto Dynamic = Eigen::Dynamic;
 
 /**
  *  An extension of the Eigen::Matrix class, with extra operations
@@ -45,7 +42,9 @@ constexpr auto Dynamic = Eigen::Dynamic;
  *  We have decided to inherit from Eigen::Matrix, because we will use different hierarchies: see also: https://eigen.tuxfamily.org/dox-devel/TopicCustomizing_InheritingMatrix.html
  */
 template <typename _Scalar = double, int _Rows = Dynamic, int _Cols = Dynamic>
-class Matrix: public Eigen::Matrix<_Scalar, _Rows, _Cols> {
+class Matrix:
+    public Eigen::Matrix<_Scalar, _Rows, _Cols> {
+
 public:
     using Scalar = _Scalar;
     static constexpr auto Rows = _Rows;
@@ -65,7 +64,7 @@ public:
      *  CONSTRUCTORS
      */
 
-    using Eigen::Matrix<Scalar, _Rows, _Cols>::Matrix;  // inherit base constructors
+    using Eigen::Matrix<Scalar, Rows, Cols>::Matrix;  // inherit base constructors
 
 
     /*

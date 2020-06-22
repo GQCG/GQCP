@@ -25,7 +25,7 @@ namespace GQCP {
 
 
 /**
- *  A class that represents the (non-relativistic) kinetic energy operator for the electrons
+ *  The (one-electron) (non-relativistic) kinetic energy operator.
  */
 class KineticOperator: public BaseFQOneElectronOperator<double, 1> {};
 

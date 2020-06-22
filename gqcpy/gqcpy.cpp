@@ -45,6 +45,12 @@ void bindFunctionalSteps(py::module& module);
 void bindIterativeAlgorithms(py::module& module);
 
 
+// Mathematical - Grid
+void bindCubicGrid(py::module& module);
+void bindField(py::module& module);
+void bindWeightedGrid(py::module& module);
+
+
 // Mathematical - Optimization - Eigenproblem
 void bindEigenproblemEnvironment(py::module& module);
 void bindEigenproblemSolver(py::module& module);
@@ -180,6 +186,12 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindAlgorithms(module);
     gqcpy::bindFunctionalSteps(module);
     gqcpy::bindIterativeAlgorithms(module);
+
+
+    // Mathematical - Grid
+    gqcpy::bindCubicGrid(module);
+    gqcpy::bindField(module);
+    gqcpy::bindWeightedGrid(module);
 
 
     // Mathematical - Optimization - Eigenproblem

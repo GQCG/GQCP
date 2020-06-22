@@ -186,10 +186,10 @@ public:
      *
      *  @return the SQ atomic spin operator in the z-direction for a set of AOs
      *
-     *  Note that this method is only available for real SQoperators
+     *  @note This method is only available for real SQOperators.
      */
-    template <typename Z = ExpansionScalar>
-    enable_if_t<std::is_same<Z, double>::value, ScalarSQOneElectronOperator<double>> calculateAtomicSpinZ(const std::vector<size_t>& ao_list, const Spin& sigma) const {
+    template <typename S = ExpansionScalar, typename = IsReal<S>>
+    ScalarSQOneElectronOperator<double> calculateAtomicSpinZ(const std::vector<size_t>& ao_list, const Spin& sigma) const {
 
         // The atomic spin operator can be calculated as as the atomic Mulliken operator divided by 2, multiplied by the correct sign factor
         int sign = 1 - 2 * sigma;  // 1 for ALPHA, -1 for BETA
@@ -204,10 +204,10 @@ public:
      *
      *  @return the Mulliken operator for a set of AOs and the requested component
      *
-     *  @note this method is only available for real matrix representations
+     *  @note This method is only available for real matrix representations.
      */
-    template <typename Z = ExpansionScalar>
-    enable_if_t<std::is_same<Z, double>::value, ScalarSQOneElectronOperator<double>> calculateMullikenOperator(const std::vector<size_t>& ao_list, const Spin& sigma) const { return this->spinor_bases[sigma].template calculateMullikenOperator<ExpansionScalar>(ao_list); }
+    template <typename S = ExpansionScalar, typename = IsReal<S>>
+    ScalarSQOneElectronOperator<double> calculateMullikenOperator(const std::vector<size_t>& ao_list, const Spin& sigma) const { return this->spinor_bases[sigma].template calculateMullikenOperator<ExpansionScalar>(ao_list); }
 
 
     /**
@@ -327,21 +327,22 @@ public:
      *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
      *  @param sigma                            alpha or beta
      * 
-     *  @note this function is only available for real spinor bases because Jacobi rotation parameters generate real rotations
+     *  @note This function is only available for real spinor bases because Jacobi rotation parameters generate real rotations.
      */
-    template <typename Z = ExpansionScalar>
-    enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters, const Spin& sigma) { this->spinor_bases[sigma].rotate(jacobi_rotation_parameters); }
+    template <typename S = ExpansionScalar, typename = IsReal<S>>
+    void rotate(const JacobiRotationParameters& jacobi_rotation_parameters, const Spin& sigma) { this->spinor_bases[sigma].rotate(jacobi_rotation_parameters); }
 
     /**
      *  Rotate the spinor basis for both the alpha- and beta components to another one using the unitary transformation matrix that corresponds to the given Jacobi rotation parameters
      * 
      *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
      * 
-     *  @note this function is only available for real spinor bases because Jacobi rotation parameters generate real rotations
+     *  @note This function is only available for real spinor bases because Jacobi rotation parameters generate real rotations.
+     * 
      *  @note this method is only valid when the beta and alpha component are of the same dimension, and will only accept parameters of the same dimension as the individual component.
      */
-    template <typename Z = ExpansionScalar>
-    enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
+    template <typename S = ExpansionScalar, typename = IsReal<S>>
+    void rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
         this->rotate(jacobi_rotation_parameters, Spin::alpha);
         this->rotate(jacobi_rotation_parameters, Spin::beta);
     }

@@ -20,6 +20,7 @@
 
 #include "Molecule/Molecule.hpp"
 #include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"
+#include "Operator/FirstQuantized/ElectronicDensityOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicDipoleOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicSpinOperator.hpp"
 #include "Operator/FirstQuantized/KineticOperator.hpp"
@@ -33,7 +34,7 @@ namespace GQCP {
 
 
 /**
- *  A class that is used to construct operators using static methods, much like a factory class.
+ *  A factory class for easily creating various types of first-quantized operators.
  */
 class Operator {
 public:
@@ -43,6 +44,11 @@ public:
      *  @return a CoulombRepulsionOperator
      */
     static CoulombRepulsionOperator Coulomb() { return CoulombRepulsionOperator(); }
+
+    /**
+     *  @return an ElectronicDensityOperator
+     */
+    static ElectronicDensityOperator ElectronicDensity() { return ElectronicDensityOperator(); }
 
     /**
      *  @param origin               the origin of the dipole operator

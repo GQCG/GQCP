@@ -19,8 +19,8 @@
 
 
 #include "Basis/ScalarBasis/CartesianExponents.hpp"
-#include "Mathematical/LinearCombination.hpp"
-#include "Mathematical/ScalarFunction.hpp"
+#include "Mathematical/AbstractFunction/LinearCombination.hpp"
+#include "Mathematical/AbstractFunction/ScalarFunction.hpp"
 
 
 namespace GQCP {
@@ -116,6 +116,11 @@ public:
      *  @return the center of this Cartesian GTO
      */
     const Vector<double, 3>& center() const { return this->m_center; }
+
+    /**
+     *  @return a textual description of self
+     */
+    std::string description() const;
 
     /**
      *  @return the Gaussian exponent for this Cartesian GTO

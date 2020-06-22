@@ -20,6 +20,7 @@
 
 #include "Operator/FirstQuantized/BaseMultipoleOperator.hpp"
 #include "Operator/FirstQuantized/BaseNuclearOperator.hpp"
+
 #include <cstddef>
 
 
@@ -27,7 +28,7 @@ namespace GQCP {
 
 
 /**
- *  A class that represents the nuclear dipole operator
+ *  The nuclear dipole operator.
  */
 class NuclearDipoleOperator: public BaseNuclearOperator, public BaseMultipoleOperator {
 public:

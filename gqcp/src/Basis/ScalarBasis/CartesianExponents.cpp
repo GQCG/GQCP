@@ -17,6 +17,8 @@
 
 #include "Basis/ScalarBasis/CartesianExponents.hpp"
 
+#include <boost/format.hpp>
+
 #include <algorithm>
 
 
@@ -27,10 +29,10 @@ namespace GQCP {
  */
 
 /**
- *  @param arr      the array containing the x-, y- and z-exponent in that order
+ *  @param array            the array containing the x-, y- and z-exponent (in that order)
  */
-CartesianExponents::CartesianExponents(const std::array<size_t, 3>& arr) :
-    exponents {arr} {}
+CartesianExponents::CartesianExponents(const std::array<size_t, 3>& array) :
+    exponents {array} {}
 
 
 /**
@@ -40,6 +42,13 @@ CartesianExponents::CartesianExponents(const std::array<size_t, 3>& arr) :
  */
 CartesianExponents::CartesianExponents(const size_t x, const size_t y, const size_t z) :
     exponents {x, y, z} {}
+
+
+/**
+ *  @param vector           the vector containing the x-, y- and z-exponent (in that order) 
+ */
+CartesianExponents::CartesianExponents(const std::vector<size_t>& vector) :
+    CartesianExponents(vector[0], vector[1], vector[2]) {}
 
 
 /*
@@ -132,6 +141,19 @@ std::vector<CartesianExponents> CartesianExponents::allPermutations() const {
 
     std::sort(all_permutations.begin(), all_permutations.end());
     return all_permutations;
+}
+
+
+/**
+ *  @return a textual description of self
+ */
+std::string CartesianExponents::description() const {
+
+    const auto x = this->value(CartesianDirection::x);
+    const auto y = this->value(CartesianDirection::y);
+    const auto z = this->value(CartesianDirection::z);
+
+    return (boost::format("{%s, %s, %s}") % x % y % z).str();
 }
 
 

@@ -25,10 +25,10 @@ namespace GQCP {
 
 
 /**
- *  A base class used to represent two-electron operators
+ *  A base class used to represent two-electron operators.
  * 
- *  @tparam _Scalar         the scalar representation of the operator
- *  @tparam _Components     the number of components the operator has
+ *  @tparam _Scalar             the scalar representation of the operator
+ *  @tparam _Components         the number of components the operator has
  */
 template <typename _Scalar, size_t _Components>
 class BaseFQTwoElectronOperator {
