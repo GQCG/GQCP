@@ -18,6 +18,7 @@
 #include "Mathematical/Algorithm/FunctionalStep.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
 #include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp"
+#include "QCMethod/CC/CCSDEnvironment.hpp"
 #include "QCMethod/HF/RHF/RHFSCFEnvironment.hpp"
 #include "QCMethod/HF/UHF/UHFSCFEnvironment.hpp"
 
@@ -66,6 +67,8 @@ void bindFunctionalSteps(py::module& module) {
 
     bindFunctionalStep<GQCP::RHFSCFEnvironment<double>>(module, "RHFSCFEnvironment", "A functional step that uses an RHFSCFEnvironment.");
     bindFunctionalStep<GQCP::UHFSCFEnvironment<double>>(module, "UHFSCFEnvironment", "A functional step that uses an UHFSCFEnvironment.");
+
+    bindFunctionalStep<GQCP::CCSDEnvironment<double>>(module, "CCSDEnvironment", "A functional step that uses an CCSDEnvironment.");
 }
 
 
