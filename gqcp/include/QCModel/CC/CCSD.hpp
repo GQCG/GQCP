@@ -75,7 +75,6 @@ public:
      *  @return the CCSD correlation energy
      */
     static Scalar calculateCorrelationEnergy(const QCMatrix<Scalar>& f, const QCRankFourTensor<Scalar>& V_A, const T1Amplitudes<Scalar>& t1, const T2Amplitudes<Scalar>& t2) {
-
         const auto orbital_space = t1.orbitalSpace();  // assume t1 and t2 have the same orbital space.
 
         // A KISS implementation of the CCSD energy correction.
@@ -92,7 +91,6 @@ public:
                 for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                     for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
                         E += 0.25 * V_A(i, j, a, b) * t2(i, j, a, b);
-
                         E += 0.5 * V_A(i, j, a, b) * t1(i, a) * t1(j, b);
                     }
                 }

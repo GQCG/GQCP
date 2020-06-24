@@ -33,12 +33,18 @@ void bindCCSDEnvironment(py::module& module) {
 
         // CONSTRUCTORS
         .def_static(
-            "Perturbative",
+            "PerturbativeCCSD",
             [](const GQCP::SQHamiltonian<double>& sq_hamiltonian, const GQCP::OrbitalSpace& orbital_space) {
-                return GQCP::CCSDEnvironment<double>::Perturbative(sq_hamiltonian, orbital_space);
+                return GQCP::CCSDEnvironment<double>::PerturbativeCCSD(sq_hamiltonian, orbital_space);
             },
             "Initialize a CCSD algorithmic environment with initial guesses for the T1- and T2-amplitudes based on perturbation theory.")
 
+        .def_static(
+            "PerturbativeCCD",
+            [](const GQCP::SQHamiltonian<double>& sq_hamiltonian, const GQCP::OrbitalSpace& orbital_space) {
+                return GQCP::CCSDEnvironment<double>::PerturbativeCCD(sq_hamiltonian, orbital_space);
+            },
+            "Initialize a CCD algorithmic environment with initial guesses for the T2-amplitudes based on perturbation theory.")
 
         // Bind read-write members/properties, exposing intermediary environment variables to the Python interface.
         .def_readwrite("electronic_energies", &GQCP::CCSDEnvironment<double>::electronic_energies)

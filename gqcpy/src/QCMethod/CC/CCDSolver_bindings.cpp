@@ -15,9 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
-#include "QCMethod/CC/CCSD.hpp"
-#include "QCMethod/CC/CCSDSolver.hpp"
+#include "QCMethod/CC/CCDSolver.hpp"
 
 #include <pybind11/pybind11.h>
 
@@ -28,17 +26,17 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
-void bindQCMethodCCSD(py::module& module) {
-    py::class_<GQCP::QCMethod::CCSD<double>>(module, "CCSD", "The CCSD quantum chemical method.")
+void bindCCDSolver(py::module& module) {
+    py::class_<GQCP::CCDSolver<double>>(module, "CCDSolver", "A factory class that can construct CCD solvers in an easy way.")
 
         .def_static(
-            "optimize",
-            [](GQCP::IterativeAlgorithm<GQCP::CCSDEnvironment<double>>& solver, GQCP::CCSDEnvironment<double>& environment) {
-                return GQCP::QCMethod::CCSD<double>().optimize(solver, environment);
+            "Plain",
+            [](const double threshold, const size_t maximum_number_of_iterations) {
+                return GQCP::CCDSolver<double>::Plain(threshold, maximum_number_of_iterations);
             },
-            py::arg("solver"),
-            py::arg("environment"),
-            "Optimize the CCSD wave function model.");
+            py::arg("threshold") = 1.0e-08,
+            py::arg("maximum_number_of_iterations") = 128,
+            "Return a plain CCD solver that uses the norm of the difference of consecutive amplitudes as a convergence criterion.");
 }
 
 

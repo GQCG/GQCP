@@ -16,8 +16,8 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
-#include "QCMethod/CC/CCSD.hpp"
-#include "QCMethod/CC/CCSDSolver.hpp"
+#include "QCMethod/CC/CCD.hpp"
+#include "QCMethod/CC/CCDSolver.hpp"
 
 #include <pybind11/pybind11.h>
 
@@ -28,17 +28,17 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
-void bindQCMethodCCSD(py::module& module) {
-    py::class_<GQCP::QCMethod::CCSD<double>>(module, "CCSD", "The CCSD quantum chemical method.")
+void bindQCMethodCCD(py::module& module) {
+    py::class_<GQCP::QCMethod::CCD<double>>(module, "CCD", "The CCD quantum chemical method.")
 
         .def_static(
             "optimize",
             [](GQCP::IterativeAlgorithm<GQCP::CCSDEnvironment<double>>& solver, GQCP::CCSDEnvironment<double>& environment) {
-                return GQCP::QCMethod::CCSD<double>().optimize(solver, environment);
+                return GQCP::QCMethod::CCD<double>().optimize(solver, environment);
             },
             py::arg("solver"),
             py::arg("environment"),
-            "Optimize the CCSD wave function model.");
+            "Optimize the CCD wave function model.");
 }
 
 
