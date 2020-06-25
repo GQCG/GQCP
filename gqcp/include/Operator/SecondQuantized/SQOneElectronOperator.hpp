@@ -301,17 +301,18 @@ public:
      * 
      *  @return the dot product of this second-quantized one-electron operator with the given vector
      */
-    SQOneElectronOperator<Scalar, Components> dot(const Vector<Scalar, Components>& a) const {
+    SQOneElectronOperator<Scalar, 1> dot(const Vector<Scalar, Components>& a) const {
 
         const auto dim = this->dimension();
-        SQOneElectronOperator<Scalar, Components> result {dim};
+        QCMatrix<Scalar> result_par {dim};
+        result_par.setZero();
 
         // Calculate the inner product
         for (size_t i = 0; i < Components; i++) {
-            result += a(i) * this->operator[](i);
+            result_par += a(i) * this->parameters(i);
         }
 
-        return result;
+        return SQOneElectronOperator<Scalar, 1>(result_par);
     }
 
 

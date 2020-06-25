@@ -436,3 +436,37 @@ BOOST_AUTO_TEST_CASE(transform_with_jacobi_matrix) {
     op.rotate(J);
     BOOST_CHECK(op.parameters().isApprox(ref, 1.0e-08));
 }
+
+
+/**
+ *  Check if the multiplication of a SQOneElectronOperator with a Vector with the same components is correctly implemented.
+ */
+BOOST_AUTO_TEST_CASE(dot) {
+
+    // Set up a toy SQOneElectronOperator with two components.
+    GQCP::QCMatrix<double> h_x {2};
+    // clang-format off
+    h_x << 1.0, 2.0,
+           3.0, 4.0;
+    // clang-format on
+
+    GQCP::QCMatrix<double> h_y {2};
+    // clang-format off
+    h_y << -1.0,  2.0,
+            3.0, -4.0;
+    // clang-format on
+
+    GQCP::SQOneElectronOperator<double, 2> h_op {{h_x, h_y}};
+
+
+    // Define a vector to do the dot product with, and check the result.
+    GQCP::Vector<double, 2> a {1.0, 2.0};
+
+    GQCP::QCMatrix<double> h_dot {2};
+    // clang-format off
+    h_dot << -1.0,  6.0,
+              9.0, -4.0;
+    // clang-format on
+
+    BOOST_CHECK(h_op.dot(a).parameters().isApprox(h_dot, 1.0e-12));
+}
