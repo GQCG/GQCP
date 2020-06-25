@@ -35,7 +35,16 @@ namespace GQCP {
  * 
  *  @note This feature is only added in C++14, which is why we provide it ourselves.
  */
-constexpr std::complex<double> operator"" ii(long double d) {
+constexpr std::complex<double> operator"" _ii(unsigned long long d) {
+    return std::complex<double> {0.0, static_cast<double>(d)};
+}
+
+/**
+ *  A literal for the imaginary unit.
+ * 
+ *  @note This feature is only added in C++14, which is why we provide it ourselves.
+ */
+constexpr std::complex<double> operator"" _ii(long double d) {
     return std::complex<double> {0.0, static_cast<double>(d)};
 }
 
