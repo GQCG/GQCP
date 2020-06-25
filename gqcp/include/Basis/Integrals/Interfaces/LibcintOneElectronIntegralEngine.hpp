@@ -74,7 +74,7 @@ public:
         shell_set {shell_set},
         scaling_factor {-1.0} {  // apply the minus sign which comes from the charge of the electrons -e
 
-        LibcintInterfacer().setCommonOrigin(this->libcint_raw_container, op.origin());
+        LibcintInterfacer().setCommonOrigin(this->libcint_raw_container, op.reference());
     }
 
     /**

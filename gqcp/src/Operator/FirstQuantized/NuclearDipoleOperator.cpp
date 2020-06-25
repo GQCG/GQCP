@@ -31,7 +31,7 @@ namespace GQCP {
  */
 NuclearDipoleOperator::NuclearDipoleOperator(const NuclearFramework& nuclear_framework, const Vector<double, 3>& o) :
     BaseNuclearOperator(nuclear_framework),
-    BaseMultipoleOperator(o) {}
+    BaseReferenceDependentOperator(o) {}
 
 
 /*

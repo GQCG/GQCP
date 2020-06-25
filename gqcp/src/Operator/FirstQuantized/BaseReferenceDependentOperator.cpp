@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Operator/FirstQuantized/BaseMultipoleOperator.hpp"
+#include "Operator/FirstQuantized/BaseReferenceDependentOperator.hpp"
 
 
 namespace GQCP {
@@ -26,16 +26,16 @@ namespace GQCP {
  */
 
 /**
- *  @param o        the origin of the multipole
+ *  @param reference            the point that is used as a reference to define the operator
  */
-BaseMultipoleOperator::BaseMultipoleOperator(const Vector<double, 3>& o) :
-    o {o} {}
+BaseReferenceDependentOperator::BaseReferenceDependentOperator(const Vector<double, 3>& reference) :
+    m_reference {reference} {}
 
 
 /*
  *  DESTRUCTOR
  */
 
-BaseMultipoleOperator::~BaseMultipoleOperator() {};  // pure virtual destructor should have an empty implementation
+BaseReferenceDependentOperator::~BaseReferenceDependentOperator() {};  // pure virtual destructor should have an empty implementation
 
 }  // namespace GQCP

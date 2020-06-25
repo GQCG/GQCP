@@ -18,8 +18,8 @@
 #pragma once
 
 
-#include "Operator/FirstQuantized/BaseMultipoleOperator.hpp"
 #include "Operator/FirstQuantized/BaseNuclearOperator.hpp"
+#include "Operator/FirstQuantized/BaseReferenceDependentOperator.hpp"
 
 #include <cstddef>
 
@@ -30,7 +30,7 @@ namespace GQCP {
 /**
  *  The nuclear dipole operator.
  */
-class NuclearDipoleOperator: public BaseNuclearOperator, public BaseMultipoleOperator {
+class NuclearDipoleOperator: public BaseNuclearOperator, public BaseReferenceDependentOperator {
 public:
     // CONSTRUCTORS
 

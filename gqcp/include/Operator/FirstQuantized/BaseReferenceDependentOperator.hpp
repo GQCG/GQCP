@@ -25,32 +25,34 @@ namespace GQCP {
 
 
 /**
- *  A base class used to represent first-quantized multipole operators.
+ *  A base class used to represent first-quantized operators that are dependent on a point of reference.
+ * 
+ *  @example Some examples of reference-dependent operators are the multipole operators and the angular momentum operator
  */
-class BaseMultipoleOperator {
+class BaseReferenceDependentOperator {
 protected:
-    Vector<double, 3> o;  // the origin of the multipole
+    Vector<double, 3> m_reference;  // the point that is used as a reference to define the operator
 
 
 public:
     // CONSTRUCTORS
 
     /**
-     *  @param o        the origin of the multipole
+     *  @param reference            the point that is used as a reference to define the operator
      */
-    BaseMultipoleOperator(const Vector<double, 3>& o = Vector<double, 3>::Zero());
+    BaseReferenceDependentOperator(const Vector<double, 3>& reference = Vector<double, 3>::Zero());
 
 
     // DESTRUCTOR
-    virtual ~BaseMultipoleOperator() = 0;
+    virtual ~BaseReferenceDependentOperator() = 0;
 
 
     // PUBLIC METHODS
 
     /**
-     *  @return the origin of the multipole operator
+     *  @return the point that is used as a reference to define the operator
      */
-    const Vector<double, 3>& origin() const { return this->o; }
+    const Vector<double, 3>& reference() const { return this->m_reference; }
 };
 
 

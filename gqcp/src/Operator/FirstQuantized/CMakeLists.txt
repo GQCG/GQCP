@@ -1,7 +1,7 @@
 target_sources(gqcp
     PRIVATE
-        BaseMultipoleOperator.cpp
         BaseNuclearOperator.cpp
+        BaseReferenceDependentOperator.cpp
         NuclearDipoleOperator.cpp
         NuclearRepulsionOperator.cpp
 )
