@@ -18,17 +18,26 @@
 #pragma once
 
 
-#include "Operator/FirstQuantized/BaseFQOneElectronOperator.hpp"
-#include "Utilities/aliases.hpp"
+#include "Utilities/type_traits.hpp"
 
+#include <complex>
+
+
+/**
+ *  A header that contains special literals inside the GQCP namespace.
+ */
 
 namespace GQCP {
 
 
 /**
- *  The (one-electron) vector operator for an electron's linear momentum.
+ *  A literal for the imaginary unit.
+ * 
+ *  @note This feature is only added in C++14, which is why we provide it ourselves.
  */
-class LinearMomentumOperator: public BaseFQOneElectronOperator<complex, 3> {};
+constexpr std::complex<double> operator"" ii(long double d) {
+    return std::complex<double> {0.0, static_cast<double>(d)};
+}
 
 
 }  // namespace GQCP

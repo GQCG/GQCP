@@ -28,7 +28,7 @@ namespace GQCP {
 /**
  *  The (one-electron) vector operator for electron spin.
  */
-class ElectronicSpinOperator: public BaseFQOneElectronOperator<cd, 3> {};
+class ElectronicSpinOperator: public BaseFQOneElectronOperator<complex, 3> {};
 
 
 }  // namespace GQCP

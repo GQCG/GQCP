@@ -27,9 +27,9 @@ namespace GQCP {
 
 
 /**
- *  The (one-electron) electronic dipole operator.
+ *  The (one-electron) orbital angular momentum operator.
  */
-class AngularMomentumOperator: public BaseFQOneElectronOperator<cd, 3>, public BaseReferenceDependentOperator {
+class AngularMomentumOperator: public BaseFQOneElectronOperator<complex, 3>, public BaseReferenceDependentOperator {
 public:
     // CONSTRUCTORS
     using BaseReferenceDependentOperator::BaseReferenceDependentOperator;  // inherit base constructors
