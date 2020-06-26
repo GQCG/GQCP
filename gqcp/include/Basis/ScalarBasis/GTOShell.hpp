@@ -115,6 +115,11 @@ public:
     const std::vector<double>& gaussianExponents() const { return this->gaussian_exponents; }
 
     /**
+     *  @return a list of the Cartesian exponents that have this shell's angular momentum (in lexicographical ordering).
+     */
+    std::vector<CartesianExponents> generateCartesianExponents() const;
+
+    /**
      *  @return if the total normalization factor is already embedded in the contraction coefficients
      */
     bool isNormalized() const { return this->normalized; }

@@ -19,11 +19,13 @@
 
 
 #include "Molecule/Molecule.hpp"
+#include "Operator/FirstQuantized/AngularMomentumOperator.hpp"
 #include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicDensityOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicDipoleOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicSpinOperator.hpp"
 #include "Operator/FirstQuantized/KineticOperator.hpp"
+#include "Operator/FirstQuantized/LinearMomentumOperator.hpp"
 #include "Operator/FirstQuantized/NuclearAttractionOperator.hpp"
 #include "Operator/FirstQuantized/NuclearDipoleOperator.hpp"
 #include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
@@ -39,6 +41,13 @@ namespace GQCP {
 class Operator {
 public:
     // PUBLIC STATIC METHODS
+
+    /**
+     *  @param reference                the reference point about which the angular momentum is defined
+     * 
+     *  @return an AngularMomentumOperator
+     */
+    static AngularMomentumOperator AngularMomentum(const Vector<double, 3>& reference = Vector<double, 3>::Zero()) { return AngularMomentumOperator(reference); }
 
     /**
      *  @return a CoulombRepulsionOperator
@@ -66,6 +75,11 @@ public:
      *  @return a KineticOperator
      */
     static KineticOperator Kinetic() { return KineticOperator(); }
+
+    /**
+     *  @return a LinearMomentumOperator
+     */
+    static LinearMomentumOperator LinearMomentum() { return LinearMomentumOperator(); }
 
     /**
      *  @param nuclear_framework            the nuclear framework

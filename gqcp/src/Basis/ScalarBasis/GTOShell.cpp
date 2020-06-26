@@ -111,15 +111,13 @@ std::vector<GTOShell::BasisFunction> GTOShell::basisFunctions() const {
 
 
     // Generate the Cartesian exponents in a lexicographical ordering.
-    // The different Cartesian exponents are the ways the angular momentum can be divided in 3 (x,y,z) partitions.
-    const auto partitions = generatePartitionsOf(this_copy.angularMomentum(), 3);
+    const auto all_cartesian_exponents = this->generateCartesianExponents();
 
 
     // Do the actual 'contraction' of the primitives and the contraction coefficients.
     std::vector<GTOShell::BasisFunction> basis_functions;
     basis_functions.reserve(this_copy.numberOfBasisFunctions());
-    for (const auto& partition : partitions) {
-        const CartesianExponents cartesian_exponents {partition};
+    for (const auto& cartesian_exponents : all_cartesian_exponents) {
 
         GTOShell::BasisFunction basis_function;
         for (size_t d = 0; d < this_copy.contractionSize(); d++) {
@@ -182,6 +180,29 @@ void GTOShell::embedNormalizationFactorsOfPrimitives() {
 
         this->embedded_normalization_factors_of_primitives = true;
     }
+}
+
+
+/**
+ *  @return a list of the Cartesian exponents that have this shell's angular momentum (in lexicographical ordering).
+ */
+std::vector<CartesianExponents> GTOShell::generateCartesianExponents() const {
+
+    // The different Cartesian exponents are the ways the angular momentum can be divided in 3 (x,y,z) partitions.
+    const auto partitions = generatePartitionsOf(this->angularMomentum(), 3);
+
+
+    // Cast the triples into CartesianExponents.
+    std::vector<CartesianExponents> all_cartesian_exponents;
+    all_cartesian_exponents.reserve(partitions.size());
+
+    std::transform(partitions.begin(), partitions.end(),
+                   std::back_inserter(all_cartesian_exponents),
+                   [](const std::vector<size_t>& partition) {
+                       return CartesianExponents(partition);
+                   });
+
+    return all_cartesian_exponents;
 }
 
 
