@@ -28,6 +28,29 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
+/**
+ *  Convert a NumPy array to a rank-four Eigen::Tensor since the automatic conversion from a NumPy array 
+ *  to an Eigen::Tensor is not supported yet.
+ * 
+ *  @param array       the NumPy array that should be converted to a tensor
+ * 
+ *  @return the corresponding rank-four Eigen::Tensor
+ */
+template <typename T>
+Eigen::Tensor<T, 4> asTensor(const py::array_t<T> array) {
+    // request a buffer descriptor from Python
+    py::buffer_info buffer_info = array.request();
+
+    // extract data an shape of input array
+    double *data = static_cast<double *>(buffer_info.ptr);
+    std::vector<ssize_t> shape = buffer_info.shape;
+
+    // wrap ndarray in Eigen::Map
+    Eigen::TensorMap<Eigen::Tensor<T, 4>> in_tensor(data, shape[0], shape[1], shape[2], shape[3]);
+    return in_tensor;
+}
+
+
 void bindCCSDEnvironment(py::module& module) {
     py::class_<GQCP::CCSDEnvironment<double>>(module, "CCSDEnvironment", "An algorithmic environment suitable for coupled-cluster calculations up to the CCSD level.")
 
@@ -74,8 +97,16 @@ void bindCCSDEnvironment(py::module& module) {
              })
 
         .def("replace_current_t2_amplitudes",
-            [](GQCP::CCSDEnvironment<double>& environment, const Eigen::Tensor<double, 4>& new_t2_amplitudes, const size_t N, const size_t M) {
-                GQCP::T2Amplitudes<double> t2(GQCP::ImplicitRankFourTensorSlice<double>::FromBlockRanges(0, N, 0, N, 0, M, 0, M, new_t2_amplitudes), GQCP::OrbitalSpace::Implicit({{GQCP::OccupationType::k_occupied, N}, {GQCP::OccupationType::k_virtual, M - N}}));
+            [](GQCP::CCSDEnvironment<double>& environment, py::array_t<double>& new_t2_amplitudes, const size_t N, const size_t M) {
+                const auto orbital_space = GQCP::OrbitalSpace::Implicit({{GQCP::OccupationType::k_occupied, N}, {GQCP::OccupationType::k_virtual, M}});
+                
+                // Prepare the necessary members for ImplicitRankFourTensor.
+                const auto axis1_indices = orbital_space.indices(GQCP::OccupationType::k_occupied);
+                const auto axis2_indices = orbital_space.indices(GQCP::OccupationType::k_occupied);
+                const auto axis3_indices = orbital_space.indices(GQCP::OccupationType::k_virtual);
+                const auto axis4_indices = orbital_space.indices(GQCP::OccupationType::k_virtual);
+
+                GQCP::T2Amplitudes<double> t2(GQCP::ImplicitRankFourTensorSlice<double>::FromIndices(axis1_indices, axis2_indices, axis3_indices, axis4_indices, asTensor(new_t2_amplitudes)), orbital_space);
                 environment.t2_amplitudes.pop_back();
                 environment.t2_amplitudes.push_back(t2);
              });
@@ -83,3 +114,4 @@ void bindCCSDEnvironment(py::module& module) {
 
 
 }  // namespace gqcpy
+
