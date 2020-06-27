@@ -37,12 +37,13 @@ namespace gqcpy {
  *  @return the corresponding rank-four Eigen::Tensor
  */
 template <typename T>
-Eigen::Tensor<T, 4> asTensor(const py::array_t<T> array) {
+Eigen::Tensor<T, 4> asTensor(const py::array_t<T> inArray) {
+    // based on https://github.com/pybind/pybind11/issues/1377
     // request a buffer descriptor from Python
-    py::buffer_info buffer_info = array.request();
+    py::buffer_info buffer_info = inArray.request();
 
     // extract data an shape of input array
-    double *data = static_cast<double *>(buffer_info.ptr);
+    T *data = static_cast<T *>(buffer_info.ptr);
     std::vector<ssize_t> shape = buffer_info.shape;
 
     // wrap ndarray in Eigen::Map
@@ -105,8 +106,9 @@ void bindCCSDEnvironment(py::module& module) {
                 const auto axis2_indices = orbital_space.indices(GQCP::OccupationType::k_occupied);
                 const auto axis3_indices = orbital_space.indices(GQCP::OccupationType::k_virtual);
                 const auto axis4_indices = orbital_space.indices(GQCP::OccupationType::k_virtual);
-
-                GQCP::T2Amplitudes<double> t2(GQCP::ImplicitRankFourTensorSlice<double>::FromIndices(axis1_indices, axis2_indices, axis3_indices, axis4_indices, asTensor(new_t2_amplitudes)), orbital_space);
+                
+                GQCP::Tensor<double, 4> t2_tensor = asTensor(new_t2_amplitudes);
+                GQCP::T2Amplitudes<double> t2(GQCP::ImplicitRankFourTensorSlice<double>::FromIndices(axis1_indices, axis2_indices, axis3_indices, axis4_indices, t2_tensor), orbital_space);
                 environment.t2_amplitudes.pop_back();
                 environment.t2_amplitudes.push_back(t2);
              });
