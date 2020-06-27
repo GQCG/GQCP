@@ -62,15 +62,22 @@ void bindCCSDEnvironment(py::module& module) {
 
         // Bind methods for the replacement of the most current iterates.
         .def("replace_current_t1_amplitudes",
-             [](GQCP::CCSDEnvironment<double>& environment, const GQCP::T1Amplitudes<double>& new_t1_amplitudes) {
+            [](GQCP::CCSDEnvironment<double>& environment, const GQCP::T1Amplitudes<double>& new_t1_amplitudes) {
                  environment.t1_amplitudes.pop_back();
                  environment.t1_amplitudes.push_back(new_t1_amplitudes);
              })
 
         .def("replace_current_t2_amplitudes",
-             [](GQCP::CCSDEnvironment<double>& environment, const GQCP::T2Amplitudes<double>& new_t2_amplitudes) {
+            [](GQCP::CCSDEnvironment<double>& environment, const GQCP::T2Amplitudes<double>& new_t2_amplitudes) {
                  environment.t2_amplitudes.pop_back();
                  environment.t2_amplitudes.push_back(new_t2_amplitudes);
+             })
+
+        .def("replace_current_t2_amplitudes",
+            [](GQCP::CCSDEnvironment<double>& environment, const Eigen::Tensor<double, 4>& new_t2_amplitudes, const size_t N, const size_t M) {
+                GQCP::T2Amplitudes<double> t2(GQCP::ImplicitRankFourTensorSlice<double>::FromBlockRanges(0, N, 0, N, 0, M, 0, M, new_t2_amplitudes), GQCP::OrbitalSpace::Implicit({{GQCP::OccupationType::k_occupied, N}, {GQCP::OccupationType::k_virtual, M - N}}));
+                environment.t2_amplitudes.pop_back();
+                environment.t2_amplitudes.push_back(t2);
              });
 }
 

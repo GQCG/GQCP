@@ -26,6 +26,24 @@ namespace py = pybind11;
 
 namespace gqcpy {
 
+/**
+ *  Convert a rank-four Eigen::Tensor as a numpy array
+ * 
+ *  @param tensor       the tensor that should be converted to the numpy array
+ * 
+ *  @return the corresponding numpy array
+ */
+template <typename T>
+py::array_t<T> asNumpyArray(const Eigen::Tensor<T, 4>& tensor) {
+
+    // Implementation adapted from https://github.com/pybind/pybind11/issues/1377
+    const auto shape = tensor.dimensions();
+
+    return py::array_t<T>(shape,
+                          {shape[0] * shape[1] * shape[2] * sizeof(T), shape[1] * shape[2] * sizeof(T), shape[2] * sizeof(T), sizeof(T)},  // strides
+                          tensor.data()                                                                                                    // data pointer
+    );
+}
 
 void bindT2Amplitudes(py::module& module) {
 
@@ -44,9 +62,9 @@ void bindT2Amplitudes(py::module& module) {
         .def(
             "asTensor",
             [](const GQCP::T2Amplitudes<double>& t2_amplitudes) {
-                return t2_amplitudes.asImplicitRankFourTensorSlice().asTensor();
+                return asNumpyArray(t2_amplitudes.asImplicitRankFourTensorSlice().asTensor().Eigen());
             },
-            "Return the T2-amplitudes as a tensor.");
+            "Return the T2-amplitudes as a NumPy array.");
 }
 
 
