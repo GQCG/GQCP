@@ -6,6 +6,9 @@ target_sources(gqcp
         BaseTwoElectronIntegralEngine.hpp
         IntegralCalculator.hpp
         IntegralEngine.hpp
+        McMurchieDavidsonCoefficient.hpp
+        OneElectronIntegralBuffer.hpp
+        OneElectronIntegralEngine.hpp
 )
 
 add_subdirectory(Interfaces)

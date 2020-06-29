@@ -169,136 +169,21 @@ BOOST_AUTO_TEST_CASE(libcint_vs_libint2_dipole_origin) {
 
 
 /**
- *  Check for the correctness of the angular momentum integrals that libcint produces.
+ *  Check if our implementation of the overlap integrals yields the same result as Libint.
  */
-// BOOST_AUTO_TEST_CASE(libcint_angular_momentum) {
+BOOST_AUTO_TEST_CASE(OverlapIntegralEngine) {
 
-//     // Set up the example scalar basis.
-//     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
-//     const GQCP::ScalarBasis<GQCP::GTOShell> scalar_basis {molecule, "STO-3G"};
-
-//     // const auto s = scalar_basis.basisFunctions()[0];
-
-//     // std::cout << "1s_L: " << std::endl
-//     //           << s.description() << std::endl
-//     //           << std::endl;
-
-
-//     const auto L = GQCP::IntegralCalculator::calculateLibcintIntegrals(GQCP::Operator::AngularMomentum(), scalar_basis);
-
-//     std::cout << "Lx integrals: " << std::endl
-//               << L[0] << std::endl
-//               << std::endl;
-// }
-
-
-#include <boost/math/constants/constants.hpp>
-#include "Mathematical/CartesianDirection.hpp"
-
-
-/**
- *  Calculate the McMurchie-Davidson expansion coefficient E_t^{ij} for one of the Cartesian directions.
- * 
- *  K: K_x
- *  L: L_x
- * 
- *  a,b exponents
- */
-double calculateE(const size_t i, const size_t j, const int t, const double K, const double L, const double a, const double b) {
-
-    // std::cout << "Calculating E^{ij}_t" << i << ' ' << j << ' ' << t << std::endl;
-
-    const double Delta = K - L;
-
-    // Check if t is out of bounds: 0 <= t <= i+j.
-    if ((t < 0) || (t > (i + j))) {
-        return 0.0;
-    }
-
-
-    // Provide the base recurrence case.
-    else if ((t == 0) && (i == 0) && (j == 0)) {
-        const double mu = a * b / (a + b);
-
-        return std::exp(-mu * std::pow(Delta, 2));
-    }
-
-    // Do the recurrence for E^{i+1, j}_t.
-    else if ((j == 0)) {
-        // Do the actual recursion, but calculate the equal terms in the two cases first.
-        const double p = a + b;
-
-        double value = 1.0 / (2 * p) * calculateE(i - 1, j, t - 1, K, L, a, b) + (t + 1) * calculateE(i - 1, j, t + 1, K, L, a, b);
-
-        return value -= b / p * Delta * calculateE(i - 1, j, t, K, L, a, b);
-    }
-
-    else {  // do the recurrence for E^{i, j+1}_t
-
-        // Do the actual recursion, but calculate the equal terms in the two cases first.
-        const double p = a + b;
-
-        double value = 1.0 / (2 * p) * calculateE(i, j - 1, t - 1, K, L, a, b) + (t + 1) * calculateE(i, j - 1, t + 1, K, L, a, b);
-
-        return value += a / p * Delta * calculateE(i, j - 1, t, K, L, a, b);
-    }
-}
-
-
-BOOST_AUTO_TEST_CASE(overlap) {
-
-    // Set up an AO basis
+    // Set up an AO basis.
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
     const GQCP::ScalarBasis<GQCP::GTOShell> scalar_basis {molecule, "STO-3G"};
+    const auto nbf = scalar_basis.numberOfBasisFunctions();
+
+
+    // Calculate the overlap integrals and check if they are equal.
     const auto S_libint2 = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::Overlap(), scalar_basis);
 
-    std::cout << "S: " << std::endl
-              << S_libint2 << std::endl
-              << std::endl;
+    auto engine = GQCP::IntegralEngine::Overlap();
+    const auto S = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
 
-    std::vector<double> integrals;
-    for (const auto sh1 : scalar_basis.shellSet().asVector()) {
-        const auto K = sh1.nucleus().position();
-
-        for (const auto sh2 : scalar_basis.shellSet().asVector()) {
-            const auto L = sh2.nucleus().position();
-
-            for (const auto cartesian_exponents1 : sh1.generateCartesianExponents()) {
-
-                for (const auto cartesian_exponents2 : sh2.generateCartesianExponents()) {
-                    std::cout << cartesian_exponents1.description() << ' ' << cartesian_exponents2.description() << std::endl;
-
-                    double integral = 0.0;
-
-                    for (size_t c1 = 0; c1 < sh1.contractionSize(); c1++) {
-                        for (size_t c2 = 0; c2 < sh2.contractionSize(); c2++) {
-                            const auto a = sh1.gaussianExponents()[c1];
-                            const auto b = sh2.gaussianExponents()[c2];
-
-                            const auto d1 = sh1.contractionCoefficients()[c1];
-                            const auto d2 = sh2.contractionCoefficients()[c2];
-
-                            const auto p = a + b;
-                            double primitive_integral = std::pow(boost::math::constants::pi<double>() / p, 1.5);
-
-                            for (const auto& direction : {GQCP::CartesianDirection::x, GQCP::CartesianDirection::y, GQCP::CartesianDirection::z}) {
-                                primitive_integral *= calculateE(cartesian_exponents1.value(direction), cartesian_exponents2.value(direction), 0, K(direction), L(direction), a, b);
-                            }
-
-                            integral += d1 * d2 * primitive_integral;
-                        }
-                    }
-
-                    integrals.push_back(integral);
-                }
-            }
-        }
-    }
-
-
-    for (const auto integral : integrals) {
-        std::cout << integral << std::endl;
-    }
-
-    std::cout << integrals.size() << std::endl;
+    BOOST_CHECK(S.isApprox(S_libint2, 1.0e-12));
 }

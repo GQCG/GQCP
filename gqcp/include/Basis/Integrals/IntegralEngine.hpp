@@ -24,6 +24,7 @@
 #include "Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "Utilities/aliases.hpp"
+#include "OneElectronIntegralEngine.hpp"
 
 
 namespace GQCP {
@@ -34,6 +35,15 @@ namespace GQCP {
  */
 class IntegralEngine {
 public:
+    /*
+     *  GQCP (our own IntegralEngines)
+     */
+
+    /**
+     *  @return a one-electron integral engine that can calculate integrals over the overlap operator
+     */
+    static OverlapIntegralEngine Overlap() { return OverlapIntegralEngine(); }
+
     /*
      *  LIBINT
      */
