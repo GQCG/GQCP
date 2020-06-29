@@ -37,7 +37,7 @@ namespace gqcpy {
  *  @return the corresponding rank-four Eigen::Tensor
  */
 template <typename T>
-Eigen::Tensor<T, 4> asTensor(const py::array_t<T> inArray) {
+Eigen::Tensor<T, 4> asTensor(const py::array_t<T>& inArray) {
     // based on https://github.com/pybind/pybind11/issues/1377
     // request a buffer descriptor from Python
     py::buffer_info buffer_info = inArray.request();
@@ -47,7 +47,7 @@ Eigen::Tensor<T, 4> asTensor(const py::array_t<T> inArray) {
     std::vector<ssize_t> shape = buffer_info.shape;
 
     // wrap ndarray in Eigen::Map
-    Eigen::TensorMap<Eigen::Tensor<T, 4>> in_tensor(data, shape[0], shape[1], shape[2], shape[3]);
+    Eigen::Tensor<T, 4>  in_tensor = Eigen::TensorMap<Eigen::Tensor<T, 4>>(data, shape[0], shape[1], shape[2], shape[3]);
     return in_tensor;
 }
 
@@ -99,6 +99,7 @@ void bindCCSDEnvironment(py::module& module) {
 
         .def("replace_current_t2_amplitudes",
             [](GQCP::CCSDEnvironment<double>& environment, py::array_t<double>& new_t2_amplitudes, const size_t N, const size_t M) {
+                // Prepare the OrbitalSpace object for the T2Amplitudes later.
                 const auto orbital_space = GQCP::OrbitalSpace::Implicit({{GQCP::OccupationType::k_occupied, N}, {GQCP::OccupationType::k_virtual, M}});
                 
                 // Prepare the necessary members for ImplicitRankFourTensor.
@@ -107,11 +108,11 @@ void bindCCSDEnvironment(py::module& module) {
                 const auto axis3_indices = orbital_space.indices(GQCP::OccupationType::k_virtual);
                 const auto axis4_indices = orbital_space.indices(GQCP::OccupationType::k_virtual);
                 
-                GQCP::Tensor<double, 4> t2_tensor = asTensor(new_t2_amplitudes);
-                GQCP::T2Amplitudes<double> t2(GQCP::ImplicitRankFourTensorSlice<double>::FromIndices(axis1_indices, axis2_indices, axis3_indices, axis4_indices, t2_tensor), orbital_space);
+                Eigen::Tensor<double, 4> t2_tensor = asTensor(new_t2_amplitudes);
+                GQCP::T2Amplitudes<double> t2{GQCP::ImplicitRankFourTensorSlice<double>::FromIndices(axis1_indices, axis2_indices, axis3_indices, axis4_indices, t2_tensor), orbital_space};
                 environment.t2_amplitudes.pop_back();
                 environment.t2_amplitudes.push_back(t2);
-             });
+            });
 }
 
 
