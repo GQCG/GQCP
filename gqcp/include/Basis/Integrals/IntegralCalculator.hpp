@@ -329,26 +329,6 @@ public:
 
 
     /**
-     *  Calculate the integrals over the given angular momentum operator, within a given scalar basis, using libcint.
-     *
-     *  @param fq_one_op                            the angular momentum operator
-     *  @param scalar_basis                         the scalar basis that contains the shells over which the integrals should be calculated
-     *
-     *  @note Only use this function for all-Cartesian ShellSets.
-     *
-     *  @return the matrix representation of the Cartesian components of the angular momentum operator in this AO basis, using the libcint integral engine
-     */
-    static std::array<QCMatrix<complex>, 3> calculateLibcintIntegrals(const AngularMomentumOperator& fq_one_op, const ScalarBasis<GTOShell>& scalar_basis) {
-
-        const auto shell_set = scalar_basis.shellSet();
-
-        auto engine = IntegralEngine::Libcint(fq_one_op, shell_set);
-        const auto integrals = IntegralCalculator::calculate(engine, shell_set, shell_set);
-        return {integrals[0], integrals[1], integrals[2]};
-    }
-
-
-    /**
      *  Calculate the integrals over the given electronic dipole operator, within a given scalar basis, using libcint.
      *
      *  @param fq_one_op                            the electronic dipole operator

@@ -67,25 +67,6 @@ public:
      */
 
     /**
-     *  Construct an integral engine for the orbital angular momentum operator using libcint as a backend.
-     * 
-     *  @param op               the orbital angular momentum operator
-     *  @param shell_set        the ShellSet whose information should be converted to a RawContainer, which will serve as some kind of 'global' data for the libcint engine to use in all its calculate() calls
-     * 
-     *  @note This constructor is only enabled in the case IntegralScalar is allowed to be complex-valued.
-     */
-    template <typename Z = complex>
-    LibcintOneElectronIntegralEngine(const AngularMomentumOperator& op, const ShellSet<Shell>& shell_set,
-                                     typename std::enable_if<std::is_same<Z, IntegralScalar>::value>::type* = 0) :
-        libcint_function {LibcintInterfacer().oneElectronFunction(op)},
-        libcint_raw_container {LibcintInterfacer().convert(shell_set)},
-        shell_set {shell_set},
-        scaling_factor {-1_ii} {  // libcint calculates the integrals for [(r - R) x nabla], we need [-i(r - R) x nabla]
-
-        LibcintInterfacer().setCommonOrigin(this->libcint_raw_container, op.reference());
-    }
-
-    /**
      *  Construct an integral engine for the electronic dipole operator using libcint as a backend.
      * 
      *  @param op               the electronic electric dipole operator
@@ -153,7 +134,7 @@ public:
         // Pre-allocate a raw buffer, because libcint functions expect a data pointer
         const size_t nbf1 = shell1.numberOfBasisFunctions();
         const size_t nbf2 = shell2.numberOfBasisFunctions();
-        double libcint_buffer[2*N * nbf1 * nbf2];
+        double libcint_buffer[2 * N * nbf1 * nbf2];
 
 
         // Let libcint compute the integrals and return the corresponding buffer
