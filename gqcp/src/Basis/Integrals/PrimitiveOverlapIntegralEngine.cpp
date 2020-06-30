@@ -30,26 +30,42 @@ namespace GQCP {
  */
 
 /**
- *  @param K                                the coordinate of the left primitive Cartesian GTO
- *  @param alpha                            the Gaussian exponent of the left primitive Cartesian GTO
- *  @param left_cartesian_exponents         the Cartesian exponents (x,y,z) of the left primitive Cartesian GTO
- *  @param L                                the coordinate of the right primitive Cartesian GTO
- *  @param beta                             the Gaussian exponent of the right primitive Cartesian GTO
- *  @param right_cartesian_exponents        the Cartesian exponent (x,y,z) of the right primitive Cartesian GTO
+ *  @param left             the left Cartesian GTO (primitive)
+ *  @param right            the right Cartesian GTO (primitive)
+ * 
+ *  @return the overlap integral over the two given primitives
  */
-double PrimitiveOverlapIntegralEngine::calculate(const Vector<double, 3>& K, const double alpha, const CartesianExponents& left_cartesian_exponents, const Vector<double, 3>& L, const double beta, const CartesianExponents& right_cartesian_exponents) {
-    const auto p = alpha + beta;
-    double primitive_integral = std::pow(boost::math::constants::pi<double>() / p, 1.5);
+double PrimitiveOverlapIntegralEngine::calculate(const CartesianGTO& left, const CartesianGTO& right) {
 
+    double primitive_integral = 1.0;
     for (const auto& direction : {GQCP::CartesianDirection::x, GQCP::CartesianDirection::y, GQCP::CartesianDirection::z}) {
-        const McMurchieDavidsonCoefficient E {K(direction), alpha, L(direction), beta};
-        const auto i = left_cartesian_exponents.value(direction);
-        const auto j = right_cartesian_exponents.value(direction);
+        const auto i = left.cartesianExponents().value(direction);
+        const auto j = right.cartesianExponents().value(direction);
 
-        primitive_integral *= E(i, j, 0);
+        primitive_integral *= this->calculate1D(left.gaussianExponent(), left.center()(direction), i, right.gaussianExponent(), right.center()(direction), j);
     }
 
     return primitive_integral;
 }
+
+
+/**
+ *  @param alpha            the Gaussian exponent of the left 1-D primitive
+ *  @param K                the (directional coordinate of the) center of the left 1-D primitive
+ *  @param i                the Cartesian exponent of the left 1-D primitive
+ *  @param beta             the Gaussian exponent of the right 1-D primitive
+ *  @param L                the (directional coordinate of the) center of the right 1-D primitive
+ *  @param j                the Cartesian exponent of the right 1-D primitive
+ * 
+ *  @return the overlap integral over the two given 1-D primitives
+ */
+double PrimitiveOverlapIntegralEngine::calculate1D(const double alpha, const double K, const int i, const double beta, const double L, const int j) {
+
+    const auto p = alpha + beta;
+    const McMurchieDavidsonCoefficient E {K, alpha, L, beta};
+
+    return std::pow(boost::math::constants::pi<double>() / p, 0.5) * E(i, j, 0);
+}
+
 
 }  // namespace GQCP

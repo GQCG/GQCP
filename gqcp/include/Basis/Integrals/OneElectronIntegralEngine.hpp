@@ -91,13 +91,18 @@ public:
                 double integral = 0.0;
                 for (size_t c1 = 0; c1 < shell1.contractionSize(); c1++) {
                     const auto alpha = gaussian_exponents1[c1];
+                    const CartesianGTO primitive1 {alpha, cartesian_exponents1, K};
+
                     const auto d1 = contraction_coefficients1[c1];
+
 
                     for (size_t c2 = 0; c2 < shell2.contractionSize(); c2++) {
                         const auto beta = gaussian_exponents2[c2];
+                        const CartesianGTO primitive2 {beta, cartesian_exponents2, L};
+
                         const auto d2 = contraction_coefficients2[c2];
 
-                        const double primitive_integral = this->primitive_engine.calculate(K, alpha, cartesian_exponents1, L, beta, cartesian_exponents2);
+                        const double primitive_integral = this->primitive_engine.calculate(primitive1, primitive2);
                         integral += d1 * d2 * primitive_integral;
                     }
                 }

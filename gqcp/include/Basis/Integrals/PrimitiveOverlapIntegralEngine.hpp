@@ -17,9 +17,7 @@
 
 #pragma once
 
-#include "Mathematical/Functions/CartesianDirection.hpp"
-#include "Mathematical/Functions/CartesianExponents.hpp"
-#include "Mathematical/Representation/Matrix.hpp"
+#include "Mathematical/Functions/CartesianGTO.hpp"
 
 
 namespace GQCP {
@@ -33,14 +31,24 @@ public:
     // PUBLIC METHODS
 
     /**
-     *  @param K                                the coordinate of the left primitive Cartesian GTO
-     *  @param alpha                            the Gaussian exponent of the left primitive Cartesian GTO
-     *  @param left_cartesian_exponents         the Cartesian exponents (x,y,z) of the left primitive Cartesian GTO
-     *  @param L                                the coordinate of the right primitive Cartesian GTO
-     *  @param beta                             the Gaussian exponent of the right primitive Cartesian GTO
-     *  @param right_cartesian_exponents        the Cartesian exponent (x,y,z) of the right primitive Cartesian GTO
+     *  @param left             the left Cartesian GTO (primitive)
+     *  @param right            the right Cartesian GTO (primitive)
+     * 
+     *  @return the overlap integral over the two given primitives
      */
-    double calculate(const Vector<double, 3>& K, const double alpha, const CartesianExponents& left_cartesian_exponents, const Vector<double, 3>& L, const double beta, const CartesianExponents& right_cartesian_exponents);
+    double calculate(const CartesianGTO& left, const CartesianGTO& right);
+
+    /**
+     *  @param alpha            the Gaussian exponent of the left 1-D primitive
+     *  @param K                the (directional coordinate of the) center of the left 1-D primitive
+     *  @param i                the Cartesian exponent of the left 1-D primitive
+     *  @param beta             the Gaussian exponent of the right 1-D primitive
+     *  @param L                the (directional coordinate of the) center of the right 1-D primitive
+     *  @param j                the Cartesian exponent of the right 1-D primitive
+     * 
+     *  @return the overlap integral over the two given 1-D primitives
+     */
+    double calculate1D(const double alpha, const double K, const int i, const double beta, const double L, const int j);
 };
 
 
