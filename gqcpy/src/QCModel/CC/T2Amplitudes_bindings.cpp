@@ -64,7 +64,14 @@ void bindT2Amplitudes(py::module& module) {
             [](const GQCP::T2Amplitudes<double>& t2_amplitudes) {
                 return asNumpyArray(t2_amplitudes.asImplicitRankFourTensorSlice().asTensor().Eigen());
             },
-            "Return the T2-amplitudes as a NumPy array.");
+            "Return the T2-amplitudes as a NumPy array.")
+        
+        .def(
+            "orbitalSpace",
+            [](const GQCP::T2Amplitudes<double>& t2_amplitudes) {
+                return t2_amplitudes.orbitalSpace();
+            },
+            "Return the OrbitalSpace associated with the T2-amplitudes.");
 }
 
 

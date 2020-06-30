@@ -98,9 +98,9 @@ void bindCCSDEnvironment(py::module& module) {
              })
 
         .def("replace_current_t2_amplitudes",
-            [](GQCP::CCSDEnvironment<double>& environment, py::array_t<double>& new_t2_amplitudes, const size_t N, const size_t M) {
+            [](GQCP::CCSDEnvironment<double>& environment, py::array_t<double>& new_t2_amplitudes, const GQCP::OrbitalSpace& orbital_space) {
                 // Prepare the OrbitalSpace object for the T2Amplitudes later.
-                const auto orbital_space = GQCP::OrbitalSpace::Implicit({{GQCP::OccupationType::k_occupied, N}, {GQCP::OccupationType::k_virtual, M}});
+                //const auto orbital_space = GQCP::OrbitalSpace::Implicit({{GQCP::OccupationType::k_occupied, N}, {GQCP::OccupationType::k_virtual, M}});
                 
                 // Prepare the necessary members for ImplicitRankFourTensor.
                 const auto axis1_indices = orbital_space.indices(GQCP::OccupationType::k_occupied);
