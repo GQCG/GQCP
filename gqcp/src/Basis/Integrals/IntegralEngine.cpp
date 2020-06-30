@@ -22,6 +22,19 @@ namespace GQCP {
 
 
 /*
+ *  GQCP
+ */
+
+/**
+ *  @return a one-electron integral engine that can calculate integrals over the overlap operator
+ */
+OneElectronIntegralEngine<PrimitiveOverlapIntegralEngine> IntegralEngine::Overlap() {
+
+    return OneElectronIntegralEngine<PrimitiveOverlapIntegralEngine>(PrimitiveOverlapIntegralEngine());
+}
+
+
+/*
  *  LIBINT
  */
 

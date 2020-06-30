@@ -9,6 +9,7 @@ target_sources(gqcp
         McMurchieDavidsonCoefficient.hpp
         OneElectronIntegralBuffer.hpp
         OneElectronIntegralEngine.hpp
+        PrimitiveOverlapIntegralEngine.hpp
 )
 
 add_subdirectory(Interfaces)

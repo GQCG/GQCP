@@ -19,24 +19,43 @@
 
 
 #include "Basis/Integrals/BaseOneElectronIntegralEngine.hpp"
-#include "Basis/Integrals/McMurchieDavidsonCoefficient.hpp"
 #include "Basis/Integrals/OneElectronIntegralBuffer.hpp"
+#include "Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
-#include "Mathematical/CartesianDirection.hpp"
-
-#include <boost/math/constants/constants.hpp>
 
 
 namespace GQCP {
 
 
 /**
- *  An integral engine that can calculate overlap integrals over shells.
+ *  An integral engine that can calculate one-electron integrals over shells.
+ * 
+ *  @tparam _PrimitiveIntegralEngine            the type of integral engine that is used for calculating integrals over primitives
  */
-class OverlapIntegralEngine:
+template <typename _PrimitiveIntegralEngine>
+class OneElectronIntegralEngine:
     public BaseOneElectronIntegralEngine<GTOShell, 1, double> {
 public:
-    // PUBLIC OVERRIDDEN METHODS
+    using PrimitiveIntegralEngine = _PrimitiveIntegralEngine;
+
+private:
+    PrimitiveIntegralEngine primitive_engine;  // the integral engine that is used for calculating integrals over primitives
+
+public:
+    /*
+     *  CONSTRUCTORS
+     */
+
+    /**
+     *  @param primitive_engine             the integral engine that is used for calculating integrals over primitives
+     */
+    OneElectronIntegralEngine(const PrimitiveIntegralEngine& primitive_engine) :
+        primitive_engine {primitive_engine} {}
+
+
+    /*
+     *  PUBLIC OVERRIDDEN METHODS
+     */
 
     /**
      *  Calculate all the overlap integrals over the given shells.
@@ -78,21 +97,7 @@ public:
                         const auto beta = gaussian_exponents2[c2];
                         const auto d2 = contraction_coefficients2[c2];
 
-                        // THIS IS THE INTEGRAL OVER TWO GAUSSIAN PRIMITIVES
-                        // THIS BEHAVIOUR CAN BE OVERRIDDEN BY DIFFERENT INTEGRAL ENGINES
-                        const auto p = alpha + beta;
-                        double primitive_integral = std::pow(boost::math::constants::pi<double>() / p, 1.5);
-
-                        for (const auto& direction : {GQCP::CartesianDirection::x, GQCP::CartesianDirection::y, GQCP::CartesianDirection::z}) {
-                            const McMurchieDavidsonCoefficient E {K(direction), alpha, L(direction), beta};
-                            const auto i = cartesian_exponents1.value(direction);
-                            const auto j = cartesian_exponents2.value(direction);
-
-                            primitive_integral *= E(i, j, 0);
-                        }
-                        // THIS IS THE INTEGRAL OVER TWO GAUSSIAN PRIMITIVES
-
-
+                        const double primitive_integral = this->primitive_engine.calculate(K, alpha, cartesian_exponents1, L, beta, cartesian_exponents2);
                         integral += d1 * d2 * primitive_integral;
                     }
                 }
