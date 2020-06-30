@@ -40,7 +40,7 @@ py::array_t<T> asNumpyArray(const Eigen::Tensor<T, 4>& tensor) {
     const auto shape = tensor.dimensions();
 
     return py::array_t<T>(shape,
-                          {shape[0] * shape[1] * shape[2] * sizeof(T), shape[1] * shape[2] * sizeof(T), shape[2] * sizeof(T), sizeof(T)},  // strides
+                          {shape[1] * shape[2] * shape[3] * sizeof(T), shape[1] * shape[2] * sizeof(T), shape[2] * sizeof(T), sizeof(T)},  // strides
                           tensor.data()                                                                                                    // data pointer
     );
 }
@@ -60,9 +60,10 @@ void bindT2Amplitudes(py::module& module) {
 
         // PUBLIC METHODS
         .def(
-            "asTensor",
+            "asArray",
             [](const GQCP::T2Amplitudes<double>& t2_amplitudes) {
-                return asNumpyArray(t2_amplitudes.asImplicitRankFourTensorSlice().asTensor().Eigen());
+                const auto t2_tensor = t2_amplitudes.asImplicitRankFourTensorSlice().asTensor().Eigen();
+                return asNumpyArray(t2_tensor);
             },
             "Return the T2-amplitudes as a NumPy array.")
         
