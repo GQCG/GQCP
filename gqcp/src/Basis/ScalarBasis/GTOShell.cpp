@@ -17,7 +17,7 @@
 
 #include "Basis/ScalarBasis/GTOShell.hpp"
 
-#include "Basis/ScalarBasis/CartesianGTO.hpp"
+#include "Mathematical/Functions/CartesianGTO.hpp"
 #include "Utilities/miscellaneous.hpp"
 
 #include <algorithm>
@@ -103,11 +103,9 @@ bool GTOShell::operator==(const GTOShell& rhs) const {
  */
 std::vector<GTOShell::BasisFunction> GTOShell::basisFunctions() const {
 
-    // Since CartesianGTO::operator(r) returns the function value of a normalized Cartesian GTO (=primitive), we should unembed the normalization coefficients in the contraction coeffients.
-    auto this_copy = *this;
-    this_copy.unEmbedNormalizationFactorsOfPrimitives();  // does nothing if the normalization factors are not embedded
-    const auto& contraction_coefficients = this_copy.contractionCoefficients();
-    const auto& gaussian_exponents = this_copy.gaussianExponents();
+    // Prepare some variables.
+    const auto& contraction_coefficients = this->contractionCoefficients();
+    const auto& gaussian_exponents = this->gaussianExponents();
 
 
     // Generate the Cartesian exponents in a lexicographical ordering.
@@ -116,13 +114,19 @@ std::vector<GTOShell::BasisFunction> GTOShell::basisFunctions() const {
 
     // Do the actual 'contraction' of the primitives and the contraction coefficients.
     std::vector<GTOShell::BasisFunction> basis_functions;
-    basis_functions.reserve(this_copy.numberOfBasisFunctions());
+    basis_functions.reserve(this->numberOfBasisFunctions());
     for (const auto& cartesian_exponents : all_cartesian_exponents) {
 
         GTOShell::BasisFunction basis_function;
-        for (size_t d = 0; d < this_copy.contractionSize(); d++) {
-            const auto coefficient = contraction_coefficients[d];
-            const CartesianGTO function {gaussian_exponents[d], cartesian_exponents, this_copy.nucleus().position()};
+        for (size_t d = 0; d < this->contractionSize(); d++) {
+            const CartesianGTO function {gaussian_exponents[d], cartesian_exponents, this->nucleus().position()};
+
+
+            auto coefficient = contraction_coefficients[d];
+            if (!(this->areEmbeddedNormalizationFactorsOfPrimitives())) {
+                coefficient *= CartesianGTO::calculateNormalizationFactor(gaussian_exponents[d], CartesianExponents(this->l, 0, 0));
+            }
+
 
             basis_function.append({coefficient}, {function});
         }

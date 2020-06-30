@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Mathematical/AbstractFunction/ScalarFunction.hpp"
+#include "Mathematical/Functions/ScalarFunction.hpp"
 #include "Mathematical/Grid/Field.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 #include "Molecule/Molecule.hpp"

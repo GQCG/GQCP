@@ -19,7 +19,7 @@
 
 
 #include "Basis/SpinorBasis/Spin.hpp"
-#include "Mathematical/AbstractFunction/LinearCombination.hpp"
+#include "Mathematical/Functions/LinearCombination.hpp"
 
 
 namespace GQCP {

@@ -18,8 +18,8 @@
 #pragma once
 
 
-#include "Basis/ScalarBasis/CartesianGTO.hpp"
-#include "Mathematical/AbstractFunction/LinearCombination.hpp"
+#include "Mathematical/Functions/CartesianGTO.hpp"
+#include "Mathematical/Functions/LinearCombination.hpp"
 #include "Molecule/Nucleus.hpp"
 
 

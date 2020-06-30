@@ -17,8 +17,8 @@
 
 #pragma once
 
-#include "Basis/ScalarBasis/CartesianExponents.hpp"
-#include "Mathematical/CartesianDirection.hpp"
+#include "Mathematical/Functions/CartesianDirection.hpp"
+#include "Mathematical/Functions/CartesianExponents.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 
 

@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Mathematical/CartesianDirection.hpp"
+#include "Mathematical/Functions/CartesianDirection.hpp"
 #include "Utilities/Eigen.hpp"
 #include "Utilities/aliases.hpp"
 #include "Utilities/type_traits.hpp"

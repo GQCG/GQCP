@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Mathematical/CartesianDirection.hpp"
+#include "Mathematical/Functions/CartesianDirection.hpp"
 #include "Molecule/Nucleus.hpp"
 
 #include <vector>

@@ -88,8 +88,12 @@ BOOST_AUTO_TEST_CASE(basisFunctions) {
     const auto bf = basis_functions[4];
 
     // Check the coefficients and Gaussian exponents according to the basis set specification.
-    const std::vector<double> ref_coefficients {0.15591627, 0.60768372, 0.39195739};
+    // Since the contraction coefficients correspond to normalized primitives, we'll have to convert them to match unnormalized primitives since CartesianGTO is an unnormalized Cartesian Gaussian.
+    std::vector<double> ref_coefficients {0.15591627, 0.60768372, 0.39195739};
     const std::vector<double> ref_gaussian_exponents {5.0331513, 1.1695961, 0.3803890};
+    for (size_t d = 0; d < 3; d++) {
+        ref_coefficients[d] *= GQCP::CartesianGTO::calculateNormalizationFactor(ref_gaussian_exponents[d], GQCP::CartesianExponents(0, 1, 0));
+    }
     for (size_t i = 0; i < 3; i++) {
         BOOST_CHECK(std::abs(bf.coefficient(i) - ref_coefficients[i]) < 1.0e-07);
         BOOST_CHECK(std::abs(bf.function(i).gaussianExponent() - ref_gaussian_exponents[i]) < 1.0e-07);
