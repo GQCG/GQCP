@@ -37,7 +37,7 @@
 #include "Basis/Integrals/McMurchieDavidsonCoefficient.hpp"
 #include "Basis/Integrals/OneElectronIntegralBuffer.hpp"
 #include "Basis/Integrals/OneElectronIntegralEngine.hpp"
-#include "Basis/Integrals/PrimitiveElectronicDipoleIntegralEngine.hpp"
+#include "Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp"
 #include "Basis/Integrals/PrimitiveKineticEnergyIntegralEngine.hpp"
 #include "Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp"
 #include "Basis/ScalarBasis/GTOBasisSet.hpp"
