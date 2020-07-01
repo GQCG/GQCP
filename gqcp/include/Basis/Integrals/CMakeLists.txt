@@ -9,6 +9,8 @@ target_sources(gqcp
         McMurchieDavidsonCoefficient.hpp
         OneElectronIntegralBuffer.hpp
         OneElectronIntegralEngine.hpp
+        PrimitiveDipoleIntegralEngine.hpp
+        PrimitiveKineticEnergyIntegralEngine.hpp
         PrimitiveOverlapIntegralEngine.hpp
 )
 

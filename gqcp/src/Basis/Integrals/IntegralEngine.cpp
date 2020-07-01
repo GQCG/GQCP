@@ -27,18 +27,33 @@ namespace GQCP {
 
 
 /**
+ *  @param op               the electroncic dipole operator
+ * 
+ *  @return a one-electron integral engine that can calculate integrals over the electronic dipole operator
+ */
+OneElectronIntegralEngine<PrimitiveDipoleIntegralEngine> IntegralEngine::InHouse(const ElectronicDipoleOperator& op) {
+
+    return OneElectronIntegralEngine<PrimitiveDipoleIntegralEngine>(PrimitiveDipoleIntegralEngine(op));
+}
+
+
+/**
+ *  @param op               the kinetic energy operator
+ * 
  *  @return a one-electron integral engine that can calculate integrals over the kinetic energy operator
  */
-OneElectronIntegralEngine<PrimitiveKineticEnergyIntegralEngine> IntegralEngine::Kinetic() {
+OneElectronIntegralEngine<PrimitiveKineticEnergyIntegralEngine> IntegralEngine::InHouse(const KineticOperator& op) {
 
     return OneElectronIntegralEngine<PrimitiveKineticEnergyIntegralEngine>(PrimitiveKineticEnergyIntegralEngine());
 }
 
 
 /**
+ *  @param op               the overlap operator
+ * 
  *  @return a one-electron integral engine that can calculate integrals over the overlap operator
  */
-OneElectronIntegralEngine<PrimitiveOverlapIntegralEngine> IntegralEngine::Overlap() {
+OneElectronIntegralEngine<PrimitiveOverlapIntegralEngine> IntegralEngine::InHouse(const OverlapOperator& op) {
 
     return OneElectronIntegralEngine<PrimitiveOverlapIntegralEngine>(PrimitiveOverlapIntegralEngine());
 }

@@ -23,6 +23,7 @@
 #include "Basis/Integrals/Interfaces/LibintOneElectronIntegralEngine.hpp"
 #include "Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp"
 #include "Basis/Integrals/OneElectronIntegralEngine.hpp"
+#include "Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp"
 #include "Basis/Integrals/PrimitiveKineticEnergyIntegralEngine.hpp"
 #include "Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
@@ -33,23 +34,34 @@ namespace GQCP {
 
 
 /**
- *  A class that creates integral engines, much like a factory class would do
+ *  A class that creates integral engines, like a factory class.
  */
 class IntegralEngine {
 public:
     /*
-     *  GQCP
+     *  GQCP ("In-house")
      */
 
     /**
+     *  @param op               the electroncic dipole operator
+     * 
+     *  @return a one-electron integral engine that can calculate integrals over the electronic dipole operator
+     */
+    static OneElectronIntegralEngine<PrimitiveDipoleIntegralEngine> InHouse(const ElectronicDipoleOperator& op);
+
+    /**
+     *  @param op               the kinetic energy operator
+     * 
      *  @return a one-electron integral engine that can calculate integrals over the kinetic energy operator
      */
-    static OneElectronIntegralEngine<PrimitiveKineticEnergyIntegralEngine> Kinetic();
+    static OneElectronIntegralEngine<PrimitiveKineticEnergyIntegralEngine> InHouse(const KineticOperator& op);
 
     /**
+     *  @param op               the overlap operator
+     * 
      *  @return a one-electron integral engine that can calculate integrals over the overlap operator
      */
-    static OneElectronIntegralEngine<PrimitiveOverlapIntegralEngine> Overlap();
+    static OneElectronIntegralEngine<PrimitiveOverlapIntegralEngine> InHouse(const OverlapOperator& op);
 
 
     /*

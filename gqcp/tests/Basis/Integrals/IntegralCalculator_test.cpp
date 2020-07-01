@@ -153,11 +153,10 @@ BOOST_AUTO_TEST_CASE(libcint_vs_libint2_H2O_STO_3G) {
  */
 BOOST_AUTO_TEST_CASE(libcint_vs_libint2_dipole_origin) {
 
-    auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    GQCP::ScalarBasis<GQCP::GTOShell> scalar_basis {molecule, "STO-3G"};
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    const GQCP::ScalarBasis<GQCP::GTOShell> scalar_basis {molecule, "STO-3G"};
 
-    GQCP::Vector<double, 3> origin;
-    origin << 0.0, 1.0, -0.5;
+    const GQCP::Vector<double, 3> origin {0.0, 1.0, -0.5};
 
     const auto dipole_libint2 = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::ElectronicDipole(origin), scalar_basis);
     const auto dipole_libcint = GQCP::IntegralCalculator::calculateLibcintIntegrals(GQCP::Operator::ElectronicDipole(origin), scalar_basis);
@@ -181,7 +180,7 @@ BOOST_AUTO_TEST_CASE(overlap_integrals) {
     // Calculate the overlap integrals and check if they are equal.
     const auto S_libint2 = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::Overlap(), scalar_basis);
 
-    auto engine = GQCP::IntegralEngine::Overlap();
+    auto engine = GQCP::IntegralEngine::InHouse(GQCP::Operator::Overlap());
     const auto S = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
 
     BOOST_CHECK(S.isApprox(S_libint2, 1.0e-12));
@@ -198,11 +197,34 @@ BOOST_AUTO_TEST_CASE(kinetic_energy_integrals) {
     const GQCP::ScalarBasis<GQCP::GTOShell> scalar_basis {molecule, "STO-3G"};
 
 
-    // Calculate the overlap integrals and check if they are equal.
+    // Calculate the kinetic energy integrals and check if they are equal.
     const auto T_libint2 = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::Kinetic(), scalar_basis);
 
-    auto engine = GQCP::IntegralEngine::Kinetic();
+    auto engine = GQCP::IntegralEngine::InHouse(GQCP::Operator::Kinetic());
     const auto T = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
 
     BOOST_CHECK(T.isApprox(T_libint2, 1.0e-12));
+}
+
+
+/**
+ *  Check if our implementation of the electronic dipole integrals yields the same result as Libint.
+ */
+BOOST_AUTO_TEST_CASE(electronic_dipole_integrals) {
+
+    // Set up an AO basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    const GQCP::ScalarBasis<GQCP::GTOShell> scalar_basis {molecule, "STO-3G"};
+
+
+    // Calculate the electronic dipole integrals (with a non-zero origin) and check if they are equal.
+    const GQCP::Vector<double, 3> origin {0.0, 1.0, -0.5};
+    const auto dipole_integrals_libint2 = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::ElectronicDipole(origin), scalar_basis);
+
+    auto engine = GQCP::IntegralEngine::InHouse(GQCP::Operator::ElectronicDipole(origin));
+    const auto dipole_integrals = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet());
+
+    for (size_t i = 0; i < 3; i++) {
+        BOOST_CHECK(dipole_integrals[i].isApprox(dipole_integrals_libint2[i], 1.0e-12));
+    }
 }
