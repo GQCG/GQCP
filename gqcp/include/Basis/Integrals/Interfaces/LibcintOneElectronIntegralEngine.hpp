@@ -140,41 +140,9 @@ public:
         // Let libcint compute the integrals and return the corresponding buffer
         const auto result = this->libcint_function(libcint_buffer, shell_indices, libcint_raw_container.atmData(), libcint_raw_container.numberOfAtoms(), libcint_raw_container.basData(), libcint_raw_container.numberOfBasisFunctions(), libcint_raw_container.envData());
 
-        const auto buffer_converted = this->convertRawBuffer<IntegralScalar>(libcint_buffer, nbf1, nbf2);
+        const std::vector<double> buffer_converted {libcint_buffer, libcint_buffer + N * nbf1 * nbf2};  // std::vector constructor from .begin() and .end()
 
         return std::make_shared<LibcintOneElectronIntegralBuffer<IntegralScalar, N>>(buffer_converted, nbf1, nbf2, result, this->scaling_factor);
-    }
-
-
-    template <typename Z>
-    std::vector<Z> convertRawBuffer(double* libcint_buffer, const size_t nbf1, const size_t nbf2);
-
-
-    template <>
-    std::vector<double> convertRawBuffer(double* libcint_buffer, const size_t nbf1, const size_t nbf2) {
-
-        // For real results, each element in the raw buffer is a calculated integral.
-        return std::vector<double> {libcint_buffer, libcint_buffer + N * nbf1 * nbf2};  // std::vector constructor from .begin() and .end()
-    }
-
-
-    template <>
-    std::vector<complex> convertRawBuffer(double* libcint_buffer, const size_t nbf1, const size_t nbf2) {
-
-        // For complex results, two adjacent elements (the real and imaginary components) form one calculated integral.
-        const auto all_values = this->convertRawBuffer<double>(libcint_buffer, nbf1, nbf2);
-
-
-        // Now we'll have to reduce two adjacent elements into one.
-        const size_t number_of_integrals = N * nbf1 * nbf2;
-        std::vector<complex> buffer_converted {number_of_integrals};
-        for (size_t i = 0; i < number_of_integrals; i++) {
-            const auto real = all_values[i];
-            const auto imag = all_values[i + 1];
-            buffer_converted[i] = complex(real, imag);
-        }
-
-        return buffer_converted;
     }
 };
 

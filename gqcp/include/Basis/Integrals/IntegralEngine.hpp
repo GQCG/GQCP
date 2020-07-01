@@ -119,14 +119,6 @@ public:
      */
 
     /**
-     *  @param op               the angular momentum operator
-     *  @param shell_set        the ShellSet whose information should be converted to a RawContainer, which will serve as some kind of 'global' data for the libcint engine to use in all its calculate() calls
-     *
-     *  @return a one-electron integral engine that can calculate integrals over the angular momentum operator using the Libcint integral library backend
-     */
-    static auto Libcint(const AngularMomentumOperator& op, const ShellSet<GTOShell>& shell_set) -> LibcintOneElectronIntegralEngine<GTOShell, ElectronicDipoleOperator::Components, complex>;
-
-    /**
      *  @param op               the Coulomb repulsion operator
      *  @param shell_set        the ShellSet whose information should be converted to a RawContainer, which will serve as some kind of 'global' data for the libcint engine to use in all its calculate() calls
      * 
