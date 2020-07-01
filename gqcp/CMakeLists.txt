@@ -38,10 +38,10 @@ target_include_directories(gqcp
 target_link_libraries(gqcp
     PUBLIC
         Eigen3::Eigen
+        Boost::Boost
         Int2::Int2
         cint::cint
         MKL::MKL
-        Boost::Boost
 )
 
 # Add rt library on Linux environments
