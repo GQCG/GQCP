@@ -29,7 +29,7 @@ namespace GQCP {
  * 
  *  @return the kinetic energy integral over the two given primitives
  */
-double PrimitiveKineticEnergyIntegralEngine::calculate(const CartesianGTO& left, const CartesianGTO& right) {
+PrimitiveKineticEnergyIntegralEngine::IntegralScalar PrimitiveKineticEnergyIntegralEngine::calculate(const CartesianGTO& left, const CartesianGTO& right) {
 
     // Prepare some variables.
     const auto i = static_cast<int>(left.cartesianExponents().value(CartesianDirection::x));
@@ -55,7 +55,7 @@ double PrimitiveKineticEnergyIntegralEngine::calculate(const CartesianGTO& left,
     // The 3D kinetic energy integral is a sum of three contributions (dx^2, dy^2, dz^2).
     PrimitiveOverlapIntegralEngine primitive_overlap_engine;
 
-    double primitive_integral = 1.0;
+    IntegralScalar primitive_integral = 1.0;
     return this->calculate1D(alpha, K_x, i, beta, L_x, j) * primitive_overlap_engine.calculate1D(alpha, K_y, k, beta, L_y, l) * primitive_overlap_engine.calculate1D(alpha, K_z, m, beta, L_z, n) +
            primitive_overlap_engine.calculate1D(alpha, K_x, i, beta, L_x, j) * this->calculate1D(alpha, K_y, k, beta, L_y, l) * primitive_overlap_engine.calculate1D(alpha, K_z, m, beta, L_z, n) +
            primitive_overlap_engine.calculate1D(alpha, K_x, i, beta, L_x, j) * primitive_overlap_engine.calculate1D(alpha, K_y, k, beta, L_y, l) * this->calculate1D(alpha, K_z, m, beta, L_z, n);
@@ -71,7 +71,7 @@ double PrimitiveKineticEnergyIntegralEngine::calculate(const CartesianGTO& left,
  * 
  *  @return the kinetic energy integral over the two given 1-D primitives
  */
-double PrimitiveKineticEnergyIntegralEngine::calculate1D(const double alpha, const double K, const int i, const double beta, const double L, const int j) {
+PrimitiveKineticEnergyIntegralEngine::IntegralScalar PrimitiveKineticEnergyIntegralEngine::calculate1D(const double alpha, const double K, const int i, const double beta, const double L, const int j) {
 
     // The kinetic 1D integral is a sum of three 1D overlap integrals.
     PrimitiveOverlapIntegralEngine primitive_overlap_engine;

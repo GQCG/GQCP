@@ -35,10 +35,10 @@ namespace GQCP {
  * 
  *  @return the overlap integral over the two given primitives
  */
-double PrimitiveOverlapIntegralEngine::calculate(const CartesianGTO& left, const CartesianGTO& right) {
+PrimitiveOverlapIntegralEngine::IntegralScalar PrimitiveOverlapIntegralEngine::calculate(const CartesianGTO& left, const CartesianGTO& right) {
 
     // The 3D integral is separable in three 1D integrals.
-    double primitive_integral = 1.0;
+    IntegralScalar primitive_integral = 1.0;
     for (const auto& direction : {GQCP::CartesianDirection::x, GQCP::CartesianDirection::y, GQCP::CartesianDirection::z}) {
         const auto i = left.cartesianExponents().value(direction);
         const auto j = right.cartesianExponents().value(direction);
@@ -60,7 +60,7 @@ double PrimitiveOverlapIntegralEngine::calculate(const CartesianGTO& left, const
  * 
  *  @return the overlap integral over the two given 1-D primitives
  */
-double PrimitiveOverlapIntegralEngine::calculate1D(const double alpha, const double K, const int i, const double beta, const double L, const int j) {
+PrimitiveOverlapIntegralEngine::IntegralScalar PrimitiveOverlapIntegralEngine::calculate1D(const double alpha, const double K, const int i, const double beta, const double L, const int j) {
 
     // Negative Cartesian exponents should be ignored: the correct value for the corresponding integral is 0.
     if ((i < 0) || (j < 0)) {
@@ -71,7 +71,7 @@ double PrimitiveOverlapIntegralEngine::calculate1D(const double alpha, const dou
     const auto p = alpha + beta;
     const McMurchieDavidsonCoefficient E {K, alpha, L, beta};
 
-    return std::pow(boost::math::constants::pi<double>() / p, 0.5) * E(i, j, 0);
+    return std::pow(boost::math::constants::pi<IntegralScalar>() / p, 0.5) * E(i, j, 0);
 }
 
 

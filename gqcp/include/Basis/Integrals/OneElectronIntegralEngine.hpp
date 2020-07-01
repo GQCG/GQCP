@@ -17,10 +17,8 @@
 
 #pragma once
 
-
 #include "Basis/Integrals/BaseOneElectronIntegralEngine.hpp"
 #include "Basis/Integrals/OneElectronIntegralBuffer.hpp"
-#include "Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
 
 
@@ -34,12 +32,18 @@ namespace GQCP {
  */
 template <typename _PrimitiveIntegralEngine>
 class OneElectronIntegralEngine:
-    public BaseOneElectronIntegralEngine<GTOShell, 1, double> {
+    public BaseOneElectronIntegralEngine<GTOShell, _PrimitiveIntegralEngine::Components, typename _PrimitiveIntegralEngine::IntegralScalar> {
 public:
     using PrimitiveIntegralEngine = _PrimitiveIntegralEngine;
+    using Shell = GTOShell;
+    using IntegralScalar = typename _PrimitiveIntegralEngine::IntegralScalar;
+
+    static constexpr auto N = _PrimitiveIntegralEngine::Components;
+
 
 private:
     PrimitiveIntegralEngine primitive_engine;  // the integral engine that is used for calculating integrals over primitives
+
 
 public:
     /*
@@ -83,36 +87,37 @@ public:
         // Loop over all basis functions that are contained in the shell. Since they are contracted GTOs, we will have to generate all the primitives.
         const auto all_cartesian_exponents1 = shell1.generateCartesianExponents();
         const auto all_cartesian_exponents2 = shell2.generateCartesianExponents();
-        std::vector<double> integrals;  // a buffer that stores the calculated integrals
-        for (const auto cartesian_exponents1 : all_cartesian_exponents1) {
-            for (const auto cartesian_exponents2 : all_cartesian_exponents2) {
+        std::array<std::vector<IntegralScalar>, N> integrals;  // a "buffer" that stores the calculated integrals
 
-                // Calculate the contracted integral as a contraction over the contraction coefficients and the primitive integrals.
-                double integral = 0.0;
-                for (size_t c1 = 0; c1 < shell1.contractionSize(); c1++) {
-                    const auto alpha = gaussian_exponents1[c1];
-                    const CartesianGTO primitive1 {alpha, cartesian_exponents1, K};
+        for (size_t i = 0; i < N; i++) {  // loop over all components of the operator
+            this->primitive_engine.prepareStateForComponent(i);
 
-                    const auto d1 = contraction_coefficients1[c1];
+            for (const auto cartesian_exponents1 : all_cartesian_exponents1) {
+                for (const auto cartesian_exponents2 : all_cartesian_exponents2) {
 
+                    // Calculate the contracted integral as a contraction over the contraction coefficients and the primitive integrals.
+                    IntegralScalar integral = 0.0;
+                    for (size_t c1 = 0; c1 < shell1.contractionSize(); c1++) {
+                        const auto alpha = gaussian_exponents1[c1];
+                        const CartesianGTO primitive1 {alpha, cartesian_exponents1, K};
+                        const auto d1 = contraction_coefficients1[c1];
 
-                    for (size_t c2 = 0; c2 < shell2.contractionSize(); c2++) {
-                        const auto beta = gaussian_exponents2[c2];
-                        const CartesianGTO primitive2 {beta, cartesian_exponents2, L};
+                        for (size_t c2 = 0; c2 < shell2.contractionSize(); c2++) {
+                            const auto beta = gaussian_exponents2[c2];
+                            const CartesianGTO primitive2 {beta, cartesian_exponents2, L};
+                            const auto d2 = contraction_coefficients2[c2];
 
-                        const auto d2 = contraction_coefficients2[c2];
-
-                        const double primitive_integral = this->primitive_engine.calculate(primitive1, primitive2);
-                        integral += d1 * d2 * primitive_integral;
+                            const auto primitive_integral = this->primitive_engine.calculate(primitive1, primitive2);
+                            integral += d1 * d2 * primitive_integral;
+                        }
                     }
-                }
 
-                integrals.push_back(integral);
+                    integrals[i].push_back(integral);
+                }
             }
         }
 
-        std::array<std::vector<IntegralScalar>, N> buffer {integrals};
-        return std::make_shared<OneElectronIntegralBuffer<double, 1>>(shell1.numberOfBasisFunctions(), shell2.numberOfBasisFunctions(), buffer);
+        return std::make_shared<OneElectronIntegralBuffer<IntegralScalar, N>>(shell1.numberOfBasisFunctions(), shell2.numberOfBasisFunctions(), integrals);
     }
 };
 

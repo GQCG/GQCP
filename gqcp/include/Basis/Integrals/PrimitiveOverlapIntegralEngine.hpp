@@ -18,6 +18,7 @@
 #pragma once
 
 #include "Mathematical/Functions/CartesianGTO.hpp"
+#include "Operator/FirstQuantized/OverlapOperator.hpp"
 
 
 namespace GQCP {
@@ -28,6 +29,11 @@ namespace GQCP {
  */
 class PrimitiveOverlapIntegralEngine {
 public:
+    static constexpr auto Components = OverlapOperator::Components;
+    using IntegralScalar = OverlapOperator::Scalar;
+
+
+public:
     // PUBLIC METHODS
 
     /**
@@ -36,7 +42,7 @@ public:
      * 
      *  @return the overlap integral over the two given primitives
      */
-    double calculate(const CartesianGTO& left, const CartesianGTO& right);
+    IntegralScalar calculate(const CartesianGTO& left, const CartesianGTO& right);
 
     /**
      *  @param alpha            the Gaussian exponent of the left 1-D primitive
@@ -48,7 +54,16 @@ public:
      * 
      *  @return the overlap integral over the two given 1-D primitives
      */
-    double calculate1D(const double alpha, const double K, const int i, const double beta, const double L, const int j);
+    IntegralScalar calculate1D(const double alpha, const double K, const int i, const double beta, const double L, const int j);
+
+    /**
+     *  Prepare this engine's internal state such that it is able to calculate integrals over the given component of the operator.
+     * 
+     *  @param component                the index of the component of the operator
+     * 
+     *  @note Since the overlap operator has only 1 component, this method has no effect.
+     */
+    void prepareStateForComponent(const size_t component) {};
 };
 
 
