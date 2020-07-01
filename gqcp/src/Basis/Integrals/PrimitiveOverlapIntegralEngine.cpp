@@ -37,6 +37,7 @@ namespace GQCP {
  */
 double PrimitiveOverlapIntegralEngine::calculate(const CartesianGTO& left, const CartesianGTO& right) {
 
+    // The 3D integral is separable in three 1D integrals.
     double primitive_integral = 1.0;
     for (const auto& direction : {GQCP::CartesianDirection::x, GQCP::CartesianDirection::y, GQCP::CartesianDirection::z}) {
         const auto i = left.cartesianExponents().value(direction);
@@ -61,6 +62,12 @@ double PrimitiveOverlapIntegralEngine::calculate(const CartesianGTO& left, const
  */
 double PrimitiveOverlapIntegralEngine::calculate1D(const double alpha, const double K, const int i, const double beta, const double L, const int j) {
 
+    // Negative Cartesian exponents should be ignored: the correct value for the corresponding integral is 0.
+    if ((i < 0) || (j < 0)) {
+        return 0.0;
+    }
+
+    // Use the McMurchie-Davidson recursion to calculate the overlap integral.
     const auto p = alpha + beta;
     const McMurchieDavidsonCoefficient E {K, alpha, L, beta};
 

@@ -25,6 +25,16 @@ namespace GQCP {
  *  GQCP
  */
 
+
+/**
+ *  @return a one-electron integral engine that can calculate integrals over the kinetic energy operator
+ */
+OneElectronIntegralEngine<PrimitiveKineticEnergyIntegralEngine> IntegralEngine::Kinetic() {
+
+    return OneElectronIntegralEngine<PrimitiveKineticEnergyIntegralEngine>(PrimitiveKineticEnergyIntegralEngine());
+}
+
+
 /**
  *  @return a one-electron integral engine that can calculate integrals over the overlap operator
  */

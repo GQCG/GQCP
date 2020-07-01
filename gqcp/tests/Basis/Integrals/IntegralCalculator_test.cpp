@@ -171,12 +171,11 @@ BOOST_AUTO_TEST_CASE(libcint_vs_libint2_dipole_origin) {
 /**
  *  Check if our implementation of the overlap integrals yields the same result as Libint.
  */
-BOOST_AUTO_TEST_CASE(OverlapIntegralEngine) {
+BOOST_AUTO_TEST_CASE(overlap_integrals) {
 
     // Set up an AO basis.
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
     const GQCP::ScalarBasis<GQCP::GTOShell> scalar_basis {molecule, "STO-3G"};
-    const auto nbf = scalar_basis.numberOfBasisFunctions();
 
 
     // Calculate the overlap integrals and check if they are equal.
@@ -186,4 +185,24 @@ BOOST_AUTO_TEST_CASE(OverlapIntegralEngine) {
     const auto S = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
 
     BOOST_CHECK(S.isApprox(S_libint2, 1.0e-12));
+}
+
+
+/**
+ *  Check if our implementation of the kinetic energy integrals yields the same result as Libint.
+ */
+BOOST_AUTO_TEST_CASE(kinetic_energy_integrals) {
+
+    // Set up an AO basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    const GQCP::ScalarBasis<GQCP::GTOShell> scalar_basis {molecule, "STO-3G"};
+
+
+    // Calculate the overlap integrals and check if they are equal.
+    const auto T_libint2 = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::Kinetic(), scalar_basis);
+
+    auto engine = GQCP::IntegralEngine::Kinetic();
+    const auto T = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
+
+    BOOST_CHECK(T.isApprox(T_libint2, 1.0e-12));
 }

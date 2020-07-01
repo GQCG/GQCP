@@ -23,6 +23,7 @@
 #include "Basis/Integrals/Interfaces/LibintOneElectronIntegralEngine.hpp"
 #include "Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp"
 #include "Basis/Integrals/OneElectronIntegralEngine.hpp"
+#include "Basis/Integrals/PrimitiveKineticEnergyIntegralEngine.hpp"
 #include "Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "Utilities/aliases.hpp"
@@ -39,6 +40,11 @@ public:
     /*
      *  GQCP
      */
+
+    /**
+     *  @return a one-electron integral engine that can calculate integrals over the kinetic energy operator
+     */
+    static OneElectronIntegralEngine<PrimitiveKineticEnergyIntegralEngine> Kinetic();
 
     /**
      *  @return a one-electron integral engine that can calculate integrals over the overlap operator

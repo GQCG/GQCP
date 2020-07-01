@@ -3,6 +3,7 @@ target_sources(gqcp
         IntegralEngine.cpp
         McMurchieDavidsonCoefficient.cpp
         PrimitiveOverlapIntegralEngine.cpp
+        PrimitiveKineticEnergyIntegralEngine.cpp
 )
 
 add_subdirectory(Interfaces)
