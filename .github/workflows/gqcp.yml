@@ -7,8 +7,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        #os: [ubuntu-latest, macos-latest] # disabled -> macOS runs stall on build phase without output
-        os: [ubuntu-20.04]
+        os: [ubuntu-20.04, macos-latest]
     steps:
     - uses: actions/setup-python@v1
       with:
