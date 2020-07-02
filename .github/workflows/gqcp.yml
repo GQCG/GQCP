@@ -7,14 +7,14 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-20.04, macos-latest]
+        os: [ubuntu-latest, macos-latest]
     steps:
     - uses: actions/setup-python@v1
       with:
         python-version: '3.8' 
     - uses: actions/checkout@v1
     - name: Download conda (Linux)
-      if: matrix.os == 'ubuntu-20.04'
+      if: matrix.os == 'ubuntu-latest'
       run: wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $HOME/miniconda.sh
     - name: Download conda (macOS)
       if: matrix.os == 'macos-latest'
@@ -23,7 +23,14 @@ jobs:
       run: |  
         bash $HOME/miniconda.sh -b -u -p $HOME/miniconda
         echo "::add-path::$HOME/miniconda/bin"
-    - name: Install conda dependencies 
+    - name: Install conda dependencies (Linux)
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        conda install -c conda-forge openmp=8.0.1 cmake=3.14 boost-cpp=1.69.0 eigen=3.3.7 blas=2.15 mkl=2019.0 pybind11=2.4.3 benchmark numpy=1.18.1;
+        conda install -c gqcg libint=2.3.1 cint=3.0.17;
+        conda install -c intel mkl-include=2019.0 mkl-static=2019.0 intel-openmp=2019.0;
+    - name: Install conda dependencies (Linux)
+      if: matrix.os == 'macos-latest'
       run: |
         conda install -c conda-forge cmake=3.14 boost-cpp=1.69.0 eigen=3.3.7 blas=2.15 mkl=2019.0 pybind11=2.4.3 benchmark numpy=1.18.1;
         conda install -c gqcg libint=2.3.1 cint=3.0.17;
