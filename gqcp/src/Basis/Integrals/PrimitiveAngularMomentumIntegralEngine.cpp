@@ -114,7 +114,7 @@ PrimitiveAngularMomentumIntegralEngine::IntegralScalar PrimitiveAngularMomentumI
 
         linear_momentum_engine.prepareStateForComponent(CartesianDirection::x);
         dipole_engine.prepareStateForComponent(CartesianDirection::y);
-        const IntegralScalar term2 = -linear_momentum_engine.calculate1D(alpha, K_x, i, beta, L_x, j) * dipole_engine.calculate1D(alpha, K_y, k, beta, L_y, m);  // incorporate the sign
+        const IntegralScalar term2 = -linear_momentum_engine.calculate1D(alpha, K_x, i, beta, L_x, j) * dipole_engine.calculate1D(alpha, K_y, k, beta, L_y, l);  // incorporate the sign
 
         return overlap_engine.calculate1D(alpha, K_z, m, beta, L_z, n) * (term1 - term2);  // the cross product
         break;
