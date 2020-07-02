@@ -251,6 +251,35 @@ BOOST_AUTO_TEST_CASE(linear_momentum_integrals) {
 
     for (size_t i = 0; i < 3; i++) {
         // BOOST_CHECK(linear_momentum_integrals[i].isApprox(ref_linear_momentum_integrals[i], 1.0e-12));
-        std::cout << linear_momentum_integrals[i] << std::endl << std::endl;
+        std::cout << linear_momentum_integrals[i] << std::endl
+                  << std::endl;
+    }
+}
+
+
+/**
+ *  Check if our implementation of the angular momentum integrals are correct.
+ */
+BOOST_AUTO_TEST_CASE(angular_momentum_integrals) {
+
+    // Set up an AO basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    const GQCP::ScalarBasis<GQCP::GTOShell> scalar_basis {molecule, "STO-3G"};
+
+
+    // Provide the reference angular momentum integrals.
+    BOOST_CHECK(false);
+
+
+    // Calculate our own angular momentum integrals (with respect to a reference different from the origin) and check if they are correct.
+    const GQCP::Vector<double, 3> origin {0.0, 1.0, -0.5};
+    auto engine = GQCP::IntegralEngine::InHouse(GQCP::Operator::AngularMomentum(origin));
+    const auto angular_momentum_integrals = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet());
+
+
+    for (size_t i = 0; i < 3; i++) {
+        // BOOST_CHECK(angular_momentum_integrals[i].isApprox(ref_angular_momentum_integrals[i], 1.0e-12));
+        std::cout << angular_momentum_integrals[i] << std::endl
+                  << std::endl;
     }
 }

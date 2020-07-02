@@ -23,6 +23,7 @@
 #include "Basis/Integrals/Interfaces/LibintOneElectronIntegralEngine.hpp"
 #include "Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp"
 #include "Basis/Integrals/OneElectronIntegralEngine.hpp"
+#include "Basis/Integrals/PrimitiveAngularMomentumIntegralEngine.hpp"
 #include "Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp"
 #include "Basis/Integrals/PrimitiveKineticEnergyIntegralEngine.hpp"
 #include "Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp"
@@ -44,7 +45,14 @@ public:
      */
 
     /**
-     *  @param op               the electroncic dipole operator
+     *  @param op               the angular momentum operator
+     * 
+     *  @return a one-electron integral engine that can calculate integrals over the angular momentum operator
+     */
+    static OneElectronIntegralEngine<PrimitiveAngularMomentumIntegralEngine> InHouse(const AngularMomentumOperator& op);
+
+    /**
+     *  @param op               the electronic dipole operator
      * 
      *  @return a one-electron integral engine that can calculate integrals over the electronic dipole operator
      */

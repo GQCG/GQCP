@@ -25,9 +25,19 @@ namespace GQCP {
  *  GQCP
  */
 
+/**
+ *  @param op               the angular momentum operator
+ * 
+ *  @return a one-electron integral engine that can calculate integrals over the angular momentum operator
+ */
+OneElectronIntegralEngine<PrimitiveAngularMomentumIntegralEngine> IntegralEngine::InHouse(const AngularMomentumOperator& op) {
+
+    return OneElectronIntegralEngine<PrimitiveAngularMomentumIntegralEngine>(PrimitiveAngularMomentumIntegralEngine(op));
+}
+
 
 /**
- *  @param op               the electroncic dipole operator
+ *  @param op               the electronic dipole operator
  * 
  *  @return a one-electron integral engine that can calculate integrals over the electronic dipole operator
  */

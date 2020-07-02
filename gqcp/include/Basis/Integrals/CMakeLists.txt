@@ -9,6 +9,7 @@ target_sources(gqcp
         McMurchieDavidsonCoefficient.hpp
         OneElectronIntegralBuffer.hpp
         OneElectronIntegralEngine.hpp
+        PrimitiveAngularMomentumIntegralEngine.hpp
         PrimitiveCartesianOperatorIntegralEngine.hpp
         PrimitiveDipoleIntegralEngine.hpp
         PrimitiveKineticEnergyIntegralEngine.hpp
