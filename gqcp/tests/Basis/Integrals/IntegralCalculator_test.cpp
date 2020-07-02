@@ -228,3 +228,29 @@ BOOST_AUTO_TEST_CASE(electronic_dipole_integrals) {
         BOOST_CHECK(dipole_integrals[i].isApprox(dipole_integrals_libint2[i], 1.0e-12));
     }
 }
+
+
+/**
+ *  Check if our implementation of the linear momentum integrals are correct.
+ */
+BOOST_AUTO_TEST_CASE(linear_momentum_integrals) {
+
+    // Set up an AO basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    const GQCP::ScalarBasis<GQCP::GTOShell> scalar_basis {molecule, "STO-3G"};
+
+
+    // Provide the reference linear momentum integrals.
+    BOOST_CHECK(false);
+
+
+    // Calculate our own linear momentum integrals and check if they are correct.
+    auto engine = GQCP::IntegralEngine::InHouse(GQCP::Operator::LinearMomentum());
+    const auto linear_momentum_integrals = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet());
+
+
+    for (size_t i = 0; i < 3; i++) {
+        // BOOST_CHECK(linear_momentum_integrals[i].isApprox(ref_linear_momentum_integrals[i], 1.0e-12));
+        std::cout << linear_momentum_integrals[i] << std::endl;
+    }
+}

@@ -49,6 +49,17 @@ OneElectronIntegralEngine<PrimitiveKineticEnergyIntegralEngine> IntegralEngine::
 
 
 /**
+ *  @param op               the linear momentum operator
+ * 
+ *  @return a one-electron integral engine that can calculate integrals over the linear momentum operator
+ */
+OneElectronIntegralEngine<PrimitiveLinearMomentumIntegralEngine> IntegralEngine::InHouse(const LinearMomentumOperator& op) {
+
+    return OneElectronIntegralEngine<PrimitiveLinearMomentumIntegralEngine>(PrimitiveLinearMomentumIntegralEngine());
+}
+
+
+/**
  *  @param op               the overlap operator
  * 
  *  @return a one-electron integral engine that can calculate integrals over the overlap operator

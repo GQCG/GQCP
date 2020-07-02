@@ -25,6 +25,7 @@
 #include "Basis/Integrals/OneElectronIntegralEngine.hpp"
 #include "Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp"
 #include "Basis/Integrals/PrimitiveKineticEnergyIntegralEngine.hpp"
+#include "Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp"
 #include "Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "Utilities/aliases.hpp"
@@ -55,6 +56,13 @@ public:
      *  @return a one-electron integral engine that can calculate integrals over the kinetic energy operator
      */
     static OneElectronIntegralEngine<PrimitiveKineticEnergyIntegralEngine> InHouse(const KineticOperator& op);
+
+    /**
+     *  @param op               the linear momentum operator
+     * 
+     *  @return a one-electron integral engine that can calculate integrals over the linear momentum operator
+     */
+    static OneElectronIntegralEngine<PrimitiveLinearMomentumIntegralEngine> InHouse(const LinearMomentumOperator& op);
 
     /**
      *  @param op               the overlap operator
