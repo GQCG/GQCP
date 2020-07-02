@@ -56,7 +56,7 @@ public:
      *  @param left             the left Cartesian GTO (primitive)
      *  @param right            the right Cartesian GTO (primitive)
      * 
-     *  @return the dipole integral over the two given primitives
+     *  @return the dipole integral (of the current component) over the two given primitives
      */
     IntegralScalar calculate(const CartesianGTO& left, const CartesianGTO& right);
 

@@ -251,6 +251,6 @@ BOOST_AUTO_TEST_CASE(linear_momentum_integrals) {
 
     for (size_t i = 0; i < 3; i++) {
         // BOOST_CHECK(linear_momentum_integrals[i].isApprox(ref_linear_momentum_integrals[i], 1.0e-12));
-        std::cout << linear_momentum_integrals[i] << std::endl;
+        std::cout << linear_momentum_integrals[i] << std::endl << std::endl;
     }
 }

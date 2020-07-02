@@ -31,7 +31,7 @@ namespace GQCP {
  *  @param left             the left Cartesian GTO (primitive)
  *  @param right            the right Cartesian GTO (primitive)
  * 
- *  @return the linear momentum integral over the two given primitives
+ *  @return the linear momentum integral (of the current component) over the two given primitives
  */
 PrimitiveLinearMomentumIntegralEngine::IntegralScalar PrimitiveLinearMomentumIntegralEngine::calculate(const CartesianGTO& left, const CartesianGTO& right) {
 

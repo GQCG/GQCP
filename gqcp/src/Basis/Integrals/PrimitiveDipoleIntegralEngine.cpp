@@ -43,7 +43,7 @@ PrimitiveDipoleIntegralEngine::PrimitiveDipoleIntegralEngine(const ElectronicDip
  *  @param left             the left Cartesian GTO (primitive)
  *  @param right            the right Cartesian GTO (primitive)
  * 
- *  @return the overlap integral over the two given primitives
+ *  @return the dipole integral (of the current component) over the two given primitives
  */
 PrimitiveDipoleIntegralEngine::IntegralScalar PrimitiveDipoleIntegralEngine::calculate(const CartesianGTO& left, const CartesianGTO& right) {
 
@@ -97,7 +97,7 @@ PrimitiveDipoleIntegralEngine::IntegralScalar PrimitiveDipoleIntegralEngine::cal
  *  @param L                the (directional coordinate of the) center of the right 1-D primitive
  *  @param j                the Cartesian exponent of the right 1-D primitive
  * 
- *  @return the overlap integral over the two given 1-D primitives
+ *  @return the dipole integral over the two given 1-D primitives
  */
 PrimitiveDipoleIntegralEngine::IntegralScalar PrimitiveDipoleIntegralEngine::calculate1D(const double alpha, const double K, const int i, const double beta, const double L, const int j) {
 
