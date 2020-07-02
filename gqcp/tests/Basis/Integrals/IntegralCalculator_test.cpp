@@ -293,7 +293,7 @@ BOOST_AUTO_TEST_CASE(linear_momentum_integrals) {
 /**
  *  Check if our implementation of the angular momentum integrals are correct.
  * 
- *  The reference integrals have been calculated by multiplying by (-i) the intor='int1e_ipovlp' libcint/PySCF integrals.
+ *  The reference integrals have been calculated by multiplying by (-i) the intor='int1e_cg_irxp' libcint/PySCF integrals.
  */
 BOOST_AUTO_TEST_CASE(angular_momentum_integrals) {
 
