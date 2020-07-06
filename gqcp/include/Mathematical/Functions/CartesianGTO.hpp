@@ -34,6 +34,10 @@ namespace GQCP {
  *  @note Contracted GTOs can be expressed as linear combinations of GTOs: LinearCombination<CartesianGTO>.
  */
 class CartesianGTO: public ScalarFunction<double, double, 3> {
+public:
+    using Gradient = Vector<LinearCombination<double, CartesianGTO>, 3>;  // the type that accommodates the gradient of this scalar function
+
+
 private:
     double gaussian_exponent;                // exponent of the exponential
     CartesianExponents cartesian_exponents;  // exponents of (x-X), (y-Y), (z-Z)
@@ -106,12 +110,18 @@ public:
      *
      *  @return the derivative of this Cartesian GTO with respect to the position coordinate in the x-, y-, or z-direction
      */
-    LinearCombination<double, CartesianGTO> calculatePositionDerivative(const CartesianDirection direction) const;
+    using Derivative = LinearCombination<double, CartesianGTO>;
+    Derivative calculatePositionDerivative(const CartesianDirection direction) const;
 
     /**
      *  @return the gradient of this Cartesian GTO with respect to the position coordinate
      */
-    Vector<LinearCombination<double, CartesianGTO>, 3> calculatePositionGradient() const;
+    Gradient calculatePositionGradient() const;
+
+    /**
+     *  @return the gradient of this Cartesian GTO with respect to the position coordinate
+     */
+    Gradient calculateGradient() const { return this->calculatePositionGradient(); }
 
     /**
      *  @return the center of this Cartesian GTO

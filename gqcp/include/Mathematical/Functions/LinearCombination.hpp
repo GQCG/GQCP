@@ -109,11 +109,6 @@ public:
 
 
     /*
-     *  GETTERS
-     */
-
-
-    /*
      *  OPERATORS implementing the abstract notion of linear combinations
      */
 
@@ -230,12 +225,15 @@ public:
     void append(const CoefficientScalar& coefficient, const Function& function) {
 
         // Only enlarge the linear combination for sufficiently large coefficients.
-        if (std::abs(coefficient) < 1.0e-16) {
-            return;
-        } else {
-            this->m_coefficients.push_back(coefficient);
-            this->m_functions.push_back(function);
-        }
+        // if (std::abs(coefficient) < 1.0e-16) {
+        //     return;
+        // } else {
+        //     this->m_coefficients.push_back(coefficient);
+        //     this->m_functions.push_back(function);
+        // }
+
+        this->m_coefficients.push_back(coefficient);
+        this->m_functions.push_back(function);
     }
 
 

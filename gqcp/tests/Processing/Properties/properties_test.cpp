@@ -191,3 +191,337 @@ BOOST_AUTO_TEST_CASE(dyson_coefficients) {
     BOOST_CHECK(dyson_coefficients_beta.isApprox(reference_amplitudes_beta, 1.0e-6));
     BOOST_CHECK(dyson_coefficients_alpha.isApprox(reference_amplitudes_alpha, 1.0e-6));
 }
+
+#include "Basis/Integrals/IntegralCalculator.hpp"
+#include "Mathematical/Grid/CubicGrid.hpp"
+#include "Mathematical/Optimization/LinearEquation/LinearEquationEnvironment.hpp"
+#include "Mathematical/Optimization/LinearEquation/LinearEquationSolver.hpp"
+#include "Utilities/aliases.hpp"
+#include "Utilities/literals.hpp"
+
+using namespace GQCP::literals;
+
+
+#include <unsupported/Eigen/CXX11/TensorSymmetry>
+
+
+class LeviCivitaTensor {
+private:
+    GQCP::Tensor<double, 3> epsilon;
+
+
+public:
+    LeviCivitaTensor() {
+        this->epsilon = GQCP::Tensor<double, 3>(3, 3, 3);
+        this->epsilon.setZero();
+
+        Eigen::SGroup<Eigen::AntiSymmetry<0, 1>, Eigen::AntiSymmetry<1, 2>> symmetry;
+        symmetry(this->epsilon, 0, 1, 2) = 1.0;
+    }
+
+
+    double operator()(const size_t i, const size_t j, const size_t k) const {
+        return this->epsilon(i, j, k);
+    }
+
+
+    /**
+     *  Find the index k such that the Levi-Civita tensor epsilon(i,j,k) (or any permutations thereof) does not vanish.
+     * 
+     *  @param i            an index of the Levi-Civita tensor
+     *  @param j            an index of the Levi-Civita tensor
+     * 
+     *  @return the index that doesn't make the Levi-Civita tensor vanish
+     */
+    size_t nonZeroIndex(const size_t i, const size_t j) const {
+
+        if (i == j) {
+            throw std::invalid_argument("LeviCivitaTensor::nonZeroIndex(const size_t, const size_t): The given indices cannot be equal.");
+        }
+
+        return 3 - (i + j);
+    }
+};
+
+const LeviCivitaTensor epsilon;
+
+
+BOOST_AUTO_TEST_CASE(current_sandbox) {
+
+    // Set up the molecular Hamiltonian in the AO spin-orbital basis.
+    const auto molecule = GQCP::Molecule::HChain(2, 1.0);
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "6-31G**"};
+    const auto& scalar_basis = spinor_basis.scalarBasis();
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in the AO basis
+
+
+    // Find the RHF canonical orbitals and transform the integrals to that basis.
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
+    auto rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective(sq_hamiltonian);
+    const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, rhf_scf_solver, rhf_environment).groundStateParameters();
+
+    GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
+
+
+    /*
+     *  CALCULATE THE RESPONSES.
+     */
+
+    const auto N_P = molecule.numberOfElectronPairs();
+    const auto K = spinor_basis.numberOfSpatialOrbitals();
+    const auto orbital_space = GQCP::OrbitalSpace::Implicit({{GQCP::OccupationType::k_occupied, N_P}, {GQCP::OccupationType::k_virtual, K - N_P}});  // N_P occupied (spatial) orbitals, K-N_P virtual (spatial) orbitals
+    const auto dim = orbital_space.numberOfExcitations(GQCP::OccupationType::k_occupied, GQCP::OccupationType::k_virtual);
+    std::cout << orbital_space.description() << std::endl;
+
+
+    // Calculate the response force constant for RHF.
+    const auto& g = sq_hamiltonian.twoElectron().parameters();
+    auto k_kappa = orbital_space.initializeRepresentableObjectFor<GQCP::complex>(GQCP::OccupationType::k_virtual, GQCP::OccupationType::k_occupied, GQCP::OccupationType::k_virtual, GQCP::OccupationType::k_occupied);
+    for (const auto& a : orbital_space.indices(GQCP::OccupationType::k_virtual)) {
+        for (const auto& i : orbital_space.indices(GQCP::OccupationType::k_occupied)) {
+            for (const auto& b : orbital_space.indices(GQCP::OccupationType::k_virtual)) {
+                for (const auto& j : orbital_space.indices(GQCP::OccupationType::k_occupied)) {
+                    GQCP::complex value {};
+
+                    // Add the contribution from the diagonal term.
+                    if ((a == b) && (i == j)) {
+                        value += rhf_parameters.orbitalEnergy(a) - rhf_parameters.orbitalEnergy(i);
+                    }
+
+                    // Add the contributions from the other terms.
+                    value += g(i, b, j, a) - g(i, j, b, a);
+
+                    k_kappa(a, i, b, j) = -(4_ii) * value;
+                }
+            }
+        }
+    }
+
+    std::cout << "k_kappa: " << std::endl
+              << k_kappa.asMatrix() << std::endl
+              << std::endl;
+
+
+    // Calculate the response force for the magnetic field perturbation.
+    auto angular_momentum_engine = GQCP::IntegralEngine::InHouse(GQCP::Operator::AngularMomentum());  // gauge origin == zero
+    const auto L = GQCP::IntegralCalculator::calculate(angular_momentum_engine, scalar_basis.shellSet(), scalar_basis.shellSet());
+
+    GQCP::Matrix<GQCP::complex, GQCP::Dynamic, 3> F_kappa_B = GQCP::Matrix<GQCP::complex, GQCP::Dynamic, 3>::Zero(dim, 3);
+
+    for (size_t m = 0; m < 3; m++) {
+        auto F_kappa_B_m = orbital_space.initializeRepresentableObjectFor<GQCP::complex>(GQCP::OccupationType::k_virtual, GQCP::OccupationType::k_occupied);
+
+        for (const auto& a : orbital_space.indices(GQCP::OccupationType::k_virtual)) {
+            for (const auto& i : orbital_space.indices(GQCP::OccupationType::k_occupied)) {
+                F_kappa_B_m(a, i) = -2.0 * L[m](i, a);
+            }
+        }
+        F_kappa_B.col(m) = F_kappa_B_m.asVector();
+    }
+
+
+    std::cout << "F_kappa_B: " << std::endl
+              << F_kappa_B << std::endl
+              << std::endl;
+
+
+    // Calculate the response force for the gauge origin perturbation.
+    auto linear_momentum_engine = GQCP::IntegralEngine::InHouse(GQCP::Operator::LinearMomentum());
+    const auto p = GQCP::IntegralCalculator::calculate(linear_momentum_engine, scalar_basis.shellSet(), scalar_basis.shellSet());
+
+    GQCP::Matrix<GQCP::complex, GQCP::Dynamic, 6> F_kappa_G = GQCP::Matrix<GQCP::complex, GQCP::Dynamic, 6>::Zero(dim, 6);  // don't include the diagonal xx, yy, zz
+
+    size_t column_index = 0;
+    for (size_t m = 0; m < 3; m++) {
+        for (size_t n = 0; n < 3; n++) {
+            if (m == n) {  // skip the diagonal xx, yy, zz
+                continue;
+            }
+
+            auto F_kappa_G_mn = orbital_space.initializeRepresentableObjectFor<GQCP::complex>(GQCP::OccupationType::k_virtual, GQCP::OccupationType::k_occupied);
+
+            for (const auto& a : orbital_space.indices(GQCP::OccupationType::k_virtual)) {
+                for (const auto& i : orbital_space.indices(GQCP::OccupationType::k_occupied)) {
+                    const auto f = epsilon.nonZeroIndex(m, n);
+
+                    F_kappa_G_mn(a, i) = -2.0 * epsilon(m, n, f) * p[f](i, a);
+                }
+            }
+
+            F_kappa_G.col(column_index) = F_kappa_G_mn.asVector();
+            column_index++;
+        }
+    }
+
+
+    std::cout << "F_kappa_G: " << std::endl
+              << F_kappa_G << std::endl
+              << std::endl;
+
+
+    // Solve the linear response equations.
+    auto environment_B = GQCP::LinearEquationEnvironment<GQCP::complex>(k_kappa.asMatrix(), -F_kappa_B);
+    auto solver_B = GQCP::LinearEquationSolver<GQCP::complex>::HouseholderQR();
+    solver_B.perform(environment_B);
+
+    const auto x_B = environment_B.x;
+
+    auto environment_G = GQCP::LinearEquationEnvironment<GQCP::complex>(k_kappa.asMatrix(), -F_kappa_G);
+    auto solver_G = GQCP::LinearEquationSolver<GQCP::complex>::HouseholderQR();
+    solver_G.perform(environment_G);
+
+    const auto x_G = environment_G.x;
+
+
+    std::cout << "x_B: " << std::endl
+              << x_B << std::endl
+              << std::endl;
+    std::cout << "x_G: " << std::endl
+              << x_G << std::endl
+              << std::endl;
+
+
+    /*
+     *  EVALUATE THE FIELD-FREE CURRENT DENSITY MATRIX ELEMENTS
+     */
+    // We require the spatial orbitals and their gradients.
+    const auto spatial_orbitals = spinor_basis.spatialOrbitals();
+
+    using Primitive = GQCP::CartesianGTO;                                   // the primitives are Cartesian GTOs
+    using BasisFunction = GQCP::LinearCombination<double, Primitive>;       // the basis functions are contracted GTOs
+    using SpatialOrbital = GQCP::LinearCombination<double, BasisFunction>;  // spatial orbitals are linear combinations of basis functions
+
+
+    using PrimitiveDerivative = GQCP::LinearCombination<double, Primitive>;  // the derivative of a Cartesian GTO is a linear combination of Cartesian GTOs
+    using BasisFunctionDerivative = GQCP::LinearCombination<double, PrimitiveDerivative>;
+    using SpatialOrbitalDerivative = GQCP::LinearCombination<double, BasisFunctionDerivative>;
+
+    // Calculate the gradients of the spatial orbitals.
+    std::vector<GQCP::Vector<SpatialOrbitalDerivative, 3>> spatial_orbital_gradients {K};
+    for (size_t m = 0; m < 3; m++) {
+        for (size_t p = 0; p < K; p++) {
+            std::cout << "p: " << p << std::endl;
+            const auto& spatial_orbital = spatial_orbitals[p];
+
+            // A spatial orbital is a linear combination of basis functions (which are contracted GTOs).
+            const auto& expansion_coefficients = spatial_orbital.coefficients();
+            const auto& basis_functions = spatial_orbital.functions();
+
+            std::vector<GQCP::Vector<BasisFunctionDerivative, 3>> basis_function_gradients {K};
+            for (size_t mu = 0; mu < K; mu++) {
+                std::cout << "mu: " << mu << std::endl;
+                const auto& expansion_coefficient = expansion_coefficients[mu];
+                const auto& basis_function = basis_functions[mu];
+                std::cout << "basis function: " << basis_function.description() << std::endl;
+                const auto contraction_length = basis_function.length();
+
+                // A basis function (a.k.a a contracted GTO) is a contraction of Cartesian GTOs.
+                const auto& contraction_coefficients = basis_function.coefficients();
+                const auto& primitives = basis_function.functions();
+
+                for (size_t d = 0; d < contraction_length; d++) {
+                    const auto& contraction_coefficient = contraction_coefficients[d];
+                    const auto primitive_gradient = primitives[d].calculateGradient();
+
+                    std::cout << "d: " << d << std::endl;
+
+                    basis_function_gradients[mu](m).append(contraction_coefficient, primitive_gradient(m));
+                }
+
+                spatial_orbital_gradients[p](m).append(expansion_coefficient, basis_function_gradients[mu](m));
+            }
+        }
+    }
+
+    std::cout << spatial_orbital_gradients[0](2).description() << std::endl
+              << std::endl;
+
+
+    /*
+     *  EVALUATE THE MAGNETIC INDUCIBILITY USING THE IPSOCENTRIC CSGT.
+     */
+    const auto grid = GQCP::CubicGrid::Centered(GQCP::Vector<double, 3>::Zero(), 10, 0.1);
+    std::vector<GQCP::Matrix<GQCP::complex, 3, 3>> J_field_values;
+    J_field_values.reserve(1000);
+
+    grid.forEach([&orbital_space, &x_B, &x_G, &J_field_values, &spatial_orbitals, &spatial_orbital_gradients](const GQCP::Vector<double, 3>& r) {
+        for (size_t u = 0; u < 3; u++) {
+            for (size_t m = 0; m < 3; m++) {
+                GQCP::Matrix<GQCP::complex, 3, 3> J = GQCP::Matrix<GQCP::complex, 3, 3>::Zero();
+
+                auto D_m = orbital_space.initializeRepresentableObjectFor<GQCP::complex>(GQCP::OccupationType::k_virtual, GQCP::OccupationType::k_occupied);
+                auto x_m_matrix = GQCP::MatrixX<GQCP::complex>::FromColumnMajorVector(x_B.col(m), orbital_space.numberOfOrbitals(GQCP::OccupationType::k_virtual), orbital_space.numberOfOrbitals(GQCP::OccupationType::k_occupied));
+                auto x_m = orbital_space.createRepresentableObjectFor<GQCP::complex>(GQCP::OccupationType::k_virtual, GQCP::OccupationType::k_occupied, x_m_matrix);
+
+                for (const auto& a : orbital_space.indices(GQCP::OccupationType::k_virtual)) {
+                    for (const auto& i : orbital_space.indices(GQCP::OccupationType::k_occupied)) {
+                        GQCP::complex left_value;
+                        GQCP::complex right_value;
+
+                        left_value = spatial_orbitals[i](r) * spatial_orbital_gradients[a](u)(r) - spatial_orbital_gradients[i](u)(r) * spatial_orbitals[a](r);
+
+                        right_value = -1.0_ii * x_m(a, i);
+                        for (size_t n = 0; n != m; n++) {
+                            const auto row_major_index = 3 * m + n;
+                            const auto mn = row_major_index < 4 ? row_major_index - 1 : row_major_index - 2;  // The compount index 'mn'.
+
+                            auto epsilon_mn_matrix = GQCP::MatrixX<GQCP::complex>::FromColumnMajorVector(x_G.col(mn), orbital_space.numberOfOrbitals(GQCP::OccupationType::k_virtual), orbital_space.numberOfOrbitals(GQCP::OccupationType::k_occupied));
+                            auto epsilon_mn = orbital_space.createRepresentableObjectFor<GQCP::complex>(GQCP::OccupationType::k_virtual, GQCP::OccupationType::k_occupied, epsilon_mn_matrix);
+
+                            right_value += -1.0_ii * epsilon_mn(a, i) * r(n);  // d = r - G_0, and we have used G_0 = O; this is the ipsocentric CSGT step
+                        }
+
+                        J(u, m) += -2_ii * left_value * right_value;
+                        assert(J(u, m).imag() < 1.0e-12);
+                    }
+                }
+                J_field_values.push_back(J);
+            }
+        }
+    });
+
+    std::cout << "J_field_values: " << std::endl;
+    for (const auto& each : J_field_values) {
+        std::cout << each << ' ';
+    }
+    std::cout << std::endl
+              << std::endl;
+
+
+    GQCP::Field<GQCP::Matrix<GQCP::complex, 3, 3>> J {J_field_values};
+
+
+    /*
+     *  CALCULATE THE NICSD_ZZ VALUES.
+     */
+    const double prefactor = std::pow(1.0 / 137.0, 2);
+    std::vector<GQCP::complex> NICSD_zz_values;
+    NICSD_zz_values.reserve(1000);
+
+    const auto positions = grid.points();
+    const GQCP::Vector<double, 3> R_K = {0.003, 0.003, 0.003};  // reference point for NICSD_zz(R_K)
+
+    for (size_t i = 0; i < positions.size(); i++) {
+        const auto& r = positions[i];
+
+        GQCP::complex value {};
+        value += J_field_values[i](0, 2) * (r - R_K)(1) - J_field_values[i](1, 2) * (r - R_K)(0);
+
+        NICSD_zz_values.push_back(prefactor * value / std::pow((r - R_K).norm(), 3));
+    }
+
+
+    std::cout << "NICSD_zz_values: " << std::endl;
+    for (const auto& each : NICSD_zz_values) {
+        std::cout << each << ' ';
+    }
+    std::cout << std::endl
+              << std::endl;
+
+
+    GQCP::Field<GQCP::complex> NICSD_zz {NICSD_zz_values};
+    const auto NICS_zz = grid.integrate(NICSD_zz);
+
+    std::cout << "NICS_zz (at {0.003, 0.003, 0.003}): " << NICS_zz << std::endl;
+}
