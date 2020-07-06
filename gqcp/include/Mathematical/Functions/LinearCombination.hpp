@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Mathematical/AbstractFunction/ScalarFunction.hpp"
+#include "Mathematical/Functions/ScalarFunction.hpp"
 
 #include <boost/format.hpp>
 #include <boost/lexical_cast.hpp>

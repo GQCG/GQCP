@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Basis/ScalarBasis/CartesianExponents.hpp"
+#include "Mathematical/Functions/CartesianExponents.hpp"
 
 #include <boost/format.hpp>
 

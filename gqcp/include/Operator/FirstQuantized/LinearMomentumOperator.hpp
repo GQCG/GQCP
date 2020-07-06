@@ -15,27 +15,20 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Operator/FirstQuantized/BaseMultipoleOperator.hpp"
+#pragma once
+
+
+#include "Operator/FirstQuantized/BaseFQOneElectronOperator.hpp"
+#include "Utilities/aliases.hpp"
 
 
 namespace GQCP {
 
 
-/*
- *  CONSTRUCTORS
- */
-
 /**
- *  @param o        the origin of the multipole
+ *  The (one-electron) vector operator for an electron's linear momentum.
  */
-BaseMultipoleOperator::BaseMultipoleOperator(const Vector<double, 3>& o) :
-    o {o} {}
+class LinearMomentumOperator: public BaseFQOneElectronOperator<complex, 3> {};
 
-
-/*
- *  DESTRUCTOR
- */
-
-BaseMultipoleOperator::~BaseMultipoleOperator() {};  // pure virtual destructor should have an empty implementation
 
 }  // namespace GQCP

@@ -6,6 +6,15 @@ target_sources(gqcp
         BaseTwoElectronIntegralEngine.hpp
         IntegralCalculator.hpp
         IntegralEngine.hpp
+        McMurchieDavidsonCoefficient.hpp
+        OneElectronIntegralBuffer.hpp
+        OneElectronIntegralEngine.hpp
+        PrimitiveAngularMomentumIntegralEngine.hpp
+        PrimitiveCartesianOperatorIntegralEngine.hpp
+        PrimitiveDipoleIntegralEngine.hpp
+        PrimitiveKineticEnergyIntegralEngine.hpp
+        PrimitiveLinearMomentumIntegralEngine.hpp
+        PrimitiveOverlapIntegralEngine.hpp
 )
 
 add_subdirectory(Interfaces)

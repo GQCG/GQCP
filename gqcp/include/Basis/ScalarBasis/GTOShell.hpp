@@ -18,8 +18,8 @@
 #pragma once
 
 
-#include "Basis/ScalarBasis/CartesianGTO.hpp"
-#include "Mathematical/AbstractFunction/LinearCombination.hpp"
+#include "Mathematical/Functions/CartesianGTO.hpp"
+#include "Mathematical/Functions/LinearCombination.hpp"
 #include "Molecule/Nucleus.hpp"
 
 
@@ -113,6 +113,11 @@ public:
      *  @return the Gaussian exponents (i.e. for the exponential) for this shell, shared for every contraction
      */
     const std::vector<double>& gaussianExponents() const { return this->gaussian_exponents; }
+
+    /**
+     *  @return a list of the Cartesian exponents that have this shell's angular momentum (in lexicographical ordering).
+     */
+    std::vector<CartesianExponents> generateCartesianExponents() const;
 
     /**
      *  @return if the total normalization factor is already embedded in the contraction coefficients

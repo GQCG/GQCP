@@ -18,25 +18,24 @@
 #pragma once
 
 
-#include "Basis/ScalarBasis/CartesianExponents.hpp"
-#include "Mathematical/AbstractFunction/LinearCombination.hpp"
-#include "Mathematical/AbstractFunction/ScalarFunction.hpp"
+#include "Mathematical/Functions/CartesianExponents.hpp"
+#include "Mathematical/Functions/LinearCombination.hpp"
+#include "Mathematical/Functions/ScalarFunction.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  A class representing a Cartesian Gaussian-type orbital (GTO), which is often referred to as a Cartesian 'primitive'
+ *  A Cartesian Gaussian-type orbital (GTO), often referred to as a Cartesian 'primitive'.
  *
- *  Mathematically speaking, a Cartesian GTO is a real-valued scalar function taking an Euclidean vector (3D-vector) as argument
- *
- *  Contracted GTOs can be expressed as linear combinations of GTOs: LinearCombination<CartesianGTO>
+ *  @note Mathematically speaking, a Cartesian GTO is a real-valued scalar function taking an Euclidean vector (3D-vector) as argument, which is why we inherit from ScalarFunction.
+ *  @note Calling operator() returns the value of the unnormalized Cartesian Gaussian.
+ *  @note Contracted GTOs can be expressed as linear combinations of GTOs: LinearCombination<CartesianGTO>.
  */
 class CartesianGTO: public ScalarFunction<double, double, 3> {
 private:
     double gaussian_exponent;                // exponent of the exponential
-    double N;                                // normalization factor
     CartesianExponents cartesian_exponents;  // exponents of (x-X), (y-Y), (z-Z)
     Vector<double, 3> m_center;              // center of the GTO (X, Y, Z)
 
@@ -45,6 +44,8 @@ public:
     // CONSTRUCTORS
 
     /**
+     *  Construct a Cartesian GTO from its members.
+     * 
      *  @param gaussian_exponent        the exponent of the exponential
      *  @param cartesian_exponents      the exponents of x, y and z
      *  @param center                   the center of the Cartesian GTO
@@ -52,7 +53,7 @@ public:
     CartesianGTO(const double gaussian_exponent, const CartesianExponents& cartesian_exponents, const Vector<double, 3>& center);
 
     /**
-     *  Default constructor setting everything to zero
+     *  The default constructor setting everything to zero.
      */
     CartesianGTO();
 
@@ -62,25 +63,25 @@ public:
     /**
      *  @param r        the value at which the GTO should be evaluated
      *
-     *  @return the value of the normalized GTO at the given position
+     *  @return the value of the unnormalized GTO at the given position
      */
     double operator()(const Vector<double, 3>& r) const override;
 
     /**
-     *  @param rhs      the right-hand side of the operator ==
+     *  @param other        the other CartesianGTO
      *
-     *  @return whether two ScalarFunctions are equal
+     *  @return if this CartesianGTO is equal to the other CartesianGTO
      */
-    bool operator==(const CartesianGTO& rhs) const;
+    bool operator==(const CartesianGTO& other) const;
 
 
     // STATIC PUBLIC METHODS
 
     /**
      *  @param gaussian_exponent        the exponent of the GTO
-     *  @param cartesian_exponent       the exponent of the Cartesian function x, y, z
+     *  @param cartesian_exponent       the exponent of the Cartesian function (x, y, z)
      *
-     *  @return one of the components of the total normalization factor
+     *  @return one of the components (x, y, z) of the total normalization factor of a Cartesian GTO with the given exponents
      */
     static double calculateNormalizationFactorComponent(const double gaussian_exponent, const size_t cartesian_exponent);
 
@@ -88,7 +89,7 @@ public:
      *  @param gaussian_exponent        the exponent of the GTO
      *  @param cartesian_exponents      the exponents of the Cartesian functions x, y, z
      *
-     *  @return the total normalization factor
+     *  @return the total normalization factor of a Cartesian GTO with the given exponents
      */
     static double calculateNormalizationFactor(const double gaussian_exponent, const CartesianExponents& cartesian_exponents);
 
@@ -101,16 +102,16 @@ public:
     const CartesianExponents& cartesianExponents() const { return this->cartesian_exponents; }
 
     /**
-     *  @param direction        the Cartesian direction in which the derivative should be calculated
+     *  @param direction            the Cartesian direction in which the derivative should be calculated
      *
-     *  @return the derivative of this Cartesian GTO (with respect to the electronic coordinates) in the x-, y-, or z-direction
+     *  @return the derivative of this Cartesian GTO with respect to the position coordinate in the x-, y-, or z-direction
      */
-    LinearCombination<double, CartesianGTO> calculateDerivative(const CartesianDirection direction) const;
+    LinearCombination<double, CartesianGTO> calculatePositionDerivative(const CartesianDirection direction) const;
 
     /**
-     *  @return the gradient of this Cartesian GTO with respect to the electronic coordinates
+     *  @return the gradient of this Cartesian GTO with respect to the position coordinate
      */
-    Vector<LinearCombination<double, CartesianGTO>, 3> calculateGradient() const;
+    Vector<LinearCombination<double, CartesianGTO>, 3> calculatePositionGradient() const;
 
     /**
      *  @return the center of this Cartesian GTO
@@ -130,7 +131,7 @@ public:
     /**
      *  @return the total normalization factor for this Cartesian GTO
      */
-    double normalizationFactor() const { return this->N; }
+    double normalizationFactor() const { return CartesianGTO::calculateNormalizationFactor(this->gaussianExponent(), this->cartesianExponents()); }
 };
 
 

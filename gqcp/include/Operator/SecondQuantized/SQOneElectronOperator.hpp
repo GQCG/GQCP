@@ -18,11 +18,11 @@
 #pragma once
 
 
-#include "Basis/ScalarBasis/CartesianGTO.hpp"
 #include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
 #include "Basis/TransformationMatrix.hpp"
-#include "Mathematical/AbstractFunction/LinearCombination.hpp"
-#include "Mathematical/AbstractFunction/ScalarFunction.hpp"
+#include "Mathematical/Functions/CartesianGTO.hpp"
+#include "Mathematical/Functions/LinearCombination.hpp"
+#include "Mathematical/Functions/ScalarFunction.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Processing/RDM/OneRDM.hpp"
 #include "Processing/RDM/TwoRDM.hpp"

@@ -1,9 +1,4 @@
-target_sources(gqcp
-    PRIVATE
-        CartesianDirection.hpp
-)
-
-add_subdirectory(AbstractFunction)
+add_subdirectory(Functions)
 add_subdirectory(Algorithm)
 add_subdirectory(Grid)
 add_subdirectory(Optimization)

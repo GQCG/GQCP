@@ -18,35 +18,21 @@
 #pragma once
 
 
-#include "Operator/FirstQuantized/BaseNuclearOperator.hpp"
+#include "Operator/FirstQuantized/BaseFQOneElectronOperator.hpp"
 #include "Operator/FirstQuantized/BaseReferenceDependentOperator.hpp"
-
-#include <cstddef>
+#include "Utilities/aliases.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  The nuclear dipole operator.
+ *  The (one-electron) orbital angular momentum operator.
  */
-class NuclearDipoleOperator: public BaseNuclearOperator, public BaseReferenceDependentOperator {
+class AngularMomentumOperator: public BaseFQOneElectronOperator<complex, 3>, public BaseReferenceDependentOperator {
 public:
     // CONSTRUCTORS
-
-    /**
-     *  @param nuclear_framework            the nuclear framework underlying a nuclear operator
-     *  @param o                            the origin of the multipole
-     */
-    NuclearDipoleOperator(const NuclearFramework& nuclear_framework, const Vector<double, 3>& o = Vector<double, 3>::Zero());
-
-
-    // PUBLIC METHODS
-
-    /**
-     *  @return the value of this nuclear dipole operator
-     */
-    Vector<double, 3> value() const;
+    using BaseReferenceDependentOperator::BaseReferenceDependentOperator;  // inherit base constructors
 };
 
 

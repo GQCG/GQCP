@@ -153,16 +153,199 @@ BOOST_AUTO_TEST_CASE(libcint_vs_libint2_H2O_STO_3G) {
  */
 BOOST_AUTO_TEST_CASE(libcint_vs_libint2_dipole_origin) {
 
-    auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    GQCP::ScalarBasis<GQCP::GTOShell> scalar_basis {molecule, "STO-3G"};
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    const GQCP::ScalarBasis<GQCP::GTOShell> scalar_basis {molecule, "STO-3G"};
 
-    GQCP::Vector<double, 3> origin;
-    origin << 0.0, 1.0, -0.5;
+    const GQCP::Vector<double, 3> origin {0.0, 1.0, -0.5};
 
     const auto dipole_libint2 = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::ElectronicDipole(origin), scalar_basis);
     const auto dipole_libcint = GQCP::IntegralCalculator::calculateLibcintIntegrals(GQCP::Operator::ElectronicDipole(origin), scalar_basis);
 
     for (size_t i = 0; i < 3; i++) {
         BOOST_CHECK(dipole_libcint[i].isApprox(dipole_libint2[i], 1.0e-08));
+    }
+}
+
+
+/**
+ *  Check if our implementation of the overlap integrals yields the same result as Libint.
+ */
+BOOST_AUTO_TEST_CASE(overlap_integrals) {
+
+    // Set up an AO basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    const GQCP::ScalarBasis<GQCP::GTOShell> scalar_basis {molecule, "STO-3G"};
+
+
+    // Calculate the overlap integrals and check if they are equal.
+    const auto ref_S = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::Overlap(), scalar_basis);
+
+    auto engine = GQCP::IntegralEngine::InHouse(GQCP::Operator::Overlap());
+    const auto S = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
+
+    BOOST_CHECK(S.isApprox(ref_S, 1.0e-12));
+}
+
+
+/**
+ *  Check if our implementation of the kinetic energy integrals yields the same result as Libint.
+ */
+BOOST_AUTO_TEST_CASE(kinetic_energy_integrals) {
+
+    // Set up an AO basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    const GQCP::ScalarBasis<GQCP::GTOShell> scalar_basis {molecule, "STO-3G"};
+
+
+    // Calculate the kinetic energy integrals and check if they are equal.
+    const auto ref_T = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::Kinetic(), scalar_basis);
+
+    auto engine = GQCP::IntegralEngine::InHouse(GQCP::Operator::Kinetic());
+    const auto T = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
+
+    BOOST_CHECK(T.isApprox(ref_T, 1.0e-12));
+}
+
+
+/**
+ *  Check if our implementation of the electronic dipole integrals yields the same result as Libint.
+ */
+BOOST_AUTO_TEST_CASE(electronic_dipole_integrals) {
+
+    // Set up an AO basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    const GQCP::ScalarBasis<GQCP::GTOShell> scalar_basis {molecule, "STO-3G"};
+
+
+    // Calculate the electronic dipole integrals (with a non-zero origin) and check if they are equal.
+    const GQCP::Vector<double, 3> origin {0.0, 1.0, -0.5};
+    const auto ref_dipole_integrals = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::ElectronicDipole(origin), scalar_basis);
+
+    auto engine = GQCP::IntegralEngine::InHouse(GQCP::Operator::ElectronicDipole(origin));
+    const auto dipole_integrals = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet());
+
+    for (size_t i = 0; i < 3; i++) {
+        BOOST_CHECK(dipole_integrals[i].isApprox(ref_dipole_integrals[i], 1.0e-12));
+    }
+}
+
+
+/**
+ *  Check if our implementation of the linear momentum integrals are correct.
+ * 
+ *  The reference integrals have been calculated by transposing and multiplying by (-i) the intor='int1e_ipovlp' libcint/PySCF integrals.
+ */
+BOOST_AUTO_TEST_CASE(linear_momentum_integrals) {
+
+    // Set up an AO basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    const GQCP::ScalarBasis<GQCP::GTOShell> scalar_basis {molecule, "STO-3G"};
+
+
+    // Provide the reference linear momentum integrals.
+    GQCP::MatrixX<GQCP::complex> ref_px {7, 7};
+    // clang-format off
+    ref_px << GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -1.00208382876844e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -3.81198221642141e-02), GQCP::complex(0, +3.81198221642141e-02),
+              GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -6.52384267435559e-01), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -2.43165315952177e-01), GQCP::complex(0, +2.43165315952177e-01),
+              GQCP::complex(0, +1.00208382876844e+00), GQCP::complex(0, +6.52384267435559e-01), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -1.40834875742559e-17), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -6.37270069213999e-02), GQCP::complex(0, -6.37270069213999e-02),
+              GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, +1.40834875742559e-17), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -1.77825513632359e-01), GQCP::complex(0, +1.77825513632359e-01),
+              GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00),
+              GQCP::complex(0, +3.81198221642141e-02), GQCP::complex(0, +2.43165315952177e-01), GQCP::complex(0, +6.37270069213999e-02), GQCP::complex(0, +1.77825513632359e-01), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, +1.46856864757787e-01),
+              GQCP::complex(0, -3.81198221642141e-02), GQCP::complex(0, -2.43165315952177e-01), GQCP::complex(0, +6.37270069213999e-02), GQCP::complex(0, -1.77825513632359e-01), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -1.46856864757787e-01), GQCP::complex(0, -0.00000000000000e+00);
+    // clang-format on
+
+    GQCP::MatrixX<GQCP::complex> ref_py {7, 7};
+    // clang-format off
+    ref_py << GQCP::complex(0, +4.34797300312354e-16), GQCP::complex(0, -1.21973924110322e-17), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -1.00208382876844e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -2.97826365227336e-02), GQCP::complex(0, -2.97826365227336e-02),
+              GQCP::complex(0, +1.19442746331320e-17), GQCP::complex(0, -1.92158568634595e-17), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -6.52384267435559e-01), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -1.89982633936264e-01), GQCP::complex(0, -1.89982633936264e-01),
+              GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -1.40834875742559e-17), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -1.77825513632359e-01), GQCP::complex(0, +1.77825513632359e-01),
+              GQCP::complex(0, +1.00208382876844e+00), GQCP::complex(0, +6.52384267435559e-01), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -1.40834875742559e-17), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, +2.49446934333875e-02), GQCP::complex(0, +2.49446934333875e-02),
+              GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -1.40834875742559e-17), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00),
+              GQCP::complex(0, +2.97826365227336e-02), GQCP::complex(0, +1.89982633936264e-01), GQCP::complex(0, +1.77825513632359e-01), GQCP::complex(0, -2.49446934333875e-02), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, +9.11512715720799e-17), GQCP::complex(0, +3.16029272460888e-19),
+              GQCP::complex(0, +2.97826365227336e-02), GQCP::complex(0, +1.89982633936264e-01), GQCP::complex(0, -1.77825513632359e-01), GQCP::complex(0, -2.49446934333875e-02), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, +3.16029272460888e-19), GQCP::complex(0, +9.11512715720799e-17);
+    // clang-format on
+
+    GQCP::MatrixX<GQCP::complex> ref_pz {7, 7};
+    // clang-format off
+    ref_pz << GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -1.00208382876844e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00),
+              GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -6.52384267435559e-01), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00),
+              GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00),
+              GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, +1.40834875742559e-17), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00),
+              GQCP::complex(0, +1.00208382876844e+00), GQCP::complex(0, +6.52384267435559e-01), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -1.40834875742559e-17), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, +1.63877992076968e-01), GQCP::complex(0, +1.63877992076968e-01),
+              GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -1.63877992076968e-01), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00),
+              GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -1.63877992076968e-01), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00);
+    // clang-format on
+
+    const std::array<GQCP::MatrixX<GQCP::complex>, 3> ref_linear_momentum_integrals {ref_px, ref_py, ref_pz};
+
+
+    // Calculate our own linear momentum integrals and check if they are correct.
+    auto engine = GQCP::IntegralEngine::InHouse(GQCP::Operator::LinearMomentum());
+    const auto linear_momentum_integrals = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet());
+
+
+    for (size_t i = 0; i < 3; i++) {
+        BOOST_CHECK(linear_momentum_integrals[i].isApprox(ref_linear_momentum_integrals[i], 1.0e-07));
+    }
+}
+
+
+/**
+ *  Check if our implementation of the angular momentum integrals are correct.
+ * 
+ *  The reference integrals have been calculated by multiplying by (-i) the intor='int1e_cg_irxp' libcint/PySCF integrals.
+ */
+BOOST_AUTO_TEST_CASE(angular_momentum_integrals) {
+
+    // Set up an AO basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    const GQCP::ScalarBasis<GQCP::GTOShell> scalar_basis {molecule, "STO-3G"};
+
+
+    // Provide the reference angular momentum integrals.
+    GQCP::MatrixX<GQCP::complex> ref_lx {7, 7};
+    // clang-format off
+    ref_lx << GQCP::complex(0, -2.17398650156177e-16), GQCP::complex(0, +6.09869620551612e-18), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, +5.01041914384220e-01), GQCP::complex(0, +1.14560462258781e+00), GQCP::complex(0, +1.48913182613668e-02), GQCP::complex(0, +1.48913182613668e-02),
+              GQCP::complex(0, -5.97213731656600e-18), GQCP::complex(0, +9.60792843172973e-18), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, +3.26192133717779e-01), GQCP::complex(0, +7.45820270741483e-01), GQCP::complex(0, +9.49913169681320e-02), GQCP::complex(0, +9.49913169681320e-02),
+              GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, +7.04174378712795e-18), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, +8.89127568161794e-02), GQCP::complex(0, -8.89127568161794e-02),
+              GQCP::complex(0, -5.01041914384219e-01), GQCP::complex(0, -3.26192133717779e-01), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, +7.04174378712795e-18), GQCP::complex(0, -1.00000000000000e+00), GQCP::complex(0, -1.24723467166937e-02), GQCP::complex(0, -1.24723467166937e-02),
+              GQCP::complex(0, -1.14560462258781e+00), GQCP::complex(0, -7.45820270741483e-01), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, +1.00000000000000e+00), GQCP::complex(0, +7.04174378712795e-18), GQCP::complex(0, +2.23786673574312e-02), GQCP::complex(0, +2.23786673574312e-02),
+              GQCP::complex(0, -1.48913182613667e-02), GQCP::complex(0, -9.49913169681320e-02), GQCP::complex(0, -8.89127568161794e-02), GQCP::complex(0, +1.24723467166938e-02), GQCP::complex(0, -2.23786673574311e-02), GQCP::complex(0, -4.55756357860399e-17), GQCP::complex(0, -1.58014636230444e-19),
+              GQCP::complex(0, -1.48913182613667e-02), GQCP::complex(0, -9.49913169681320e-02), GQCP::complex(0, +8.89127568161794e-02), GQCP::complex(0, +1.24723467166938e-02), GQCP::complex(0, -2.23786673574311e-02), GQCP::complex(0, -1.58014636230444e-19), GQCP::complex(0, -4.55756357860399e-17);
+    // clang-format on
+
+    GQCP::MatrixX<GQCP::complex> ref_ly {7, 7};
+    // clang-format off
+    ref_ly << GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -5.01041914384220e-01), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -1.90599110821070e-02), GQCP::complex(0, +1.90599110821070e-02),
+              GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -3.26192133717779e-01), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -1.21582657976089e-01), GQCP::complex(0, +1.21582657976089e-01),
+              GQCP::complex(0, +5.01041914384219e-01), GQCP::complex(0, +3.26192133717779e-01), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -7.04174378712795e-18), GQCP::complex(0, +1.00000000000000e+00), GQCP::complex(0, -3.18635034606999e-02), GQCP::complex(0, -3.18635034606999e-02),
+              GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, +7.04174378712795e-18), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -8.89127568161794e-02), GQCP::complex(0, +8.89127568161794e-02),
+              GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -1.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -2.68437641268176e-01), GQCP::complex(0, +2.68437641268176e-01),
+              GQCP::complex(0, +1.90599110821070e-02), GQCP::complex(0, +1.21582657976089e-01), GQCP::complex(0, +3.18635034607000e-02), GQCP::complex(0, +8.89127568161794e-02), GQCP::complex(0, +2.68437641268176e-01), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, +7.34284323788936e-02),
+              GQCP::complex(0, -1.90599110821070e-02), GQCP::complex(0, -1.21582657976089e-01), GQCP::complex(0, +3.18635034607000e-02), GQCP::complex(0, -8.89127568161794e-02), GQCP::complex(0, -2.68437641268176e-01), GQCP::complex(0, -7.34284323788936e-02), GQCP::complex(0, -0.00000000000000e+00);
+    // clang-format on
+
+    GQCP::MatrixX<GQCP::complex> ref_lz {7, 7};
+    // clang-format off
+    ref_lz << GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -1.14560462258781e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -4.35794324085837e-02), GQCP::complex(0, +4.35794324085837e-02),
+              GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -7.45820270741483e-01), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -2.77992022234511e-01), GQCP::complex(0, +2.77992022234511e-01),
+              GQCP::complex(0, +1.14560462258781e+00), GQCP::complex(0, +7.45820270741483e-01), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -1.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -2.82581787586485e-01), GQCP::complex(0, -2.82581787586485e-01),
+              GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, +1.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, +6.51435409316292e-02), GQCP::complex(0, -6.51435409316292e-02),
+              GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, -0.00000000000000e+00),
+              GQCP::complex(0, +4.35794324085837e-02), GQCP::complex(0, +2.77992022234511e-01), GQCP::complex(0, +2.82581787586485e-01), GQCP::complex(0, -6.51435409316292e-02), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, +1.49308836588088e-16), GQCP::complex(0, -2.00543153105404e-02),
+              GQCP::complex(0, -4.35794324085837e-02), GQCP::complex(0, -2.77992022234511e-01), GQCP::complex(0, +2.82581787586485e-01), GQCP::complex(0, +6.51435409316292e-02), GQCP::complex(0, -0.00000000000000e+00), GQCP::complex(0, +2.00543153105404e-02), GQCP::complex(0, -1.49308836588088e-16);
+    // clang-format on
+
+    const std::array<GQCP::MatrixX<GQCP::complex>, 3> ref_angular_momentum_integrals {ref_lx, ref_ly, ref_lz};
+
+
+    // Calculate our own angular momentum integrals (with respect to a reference different from the origin) and check if they are correct.
+    const GQCP::Vector<double, 3> origin {0.0, 1.0, -0.5};
+    auto engine = GQCP::IntegralEngine::InHouse(GQCP::Operator::AngularMomentum(origin));
+    const auto angular_momentum_integrals = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet());
+
+
+    for (size_t i = 0; i < 3; i++) {
+        BOOST_CHECK(angular_momentum_integrals[i].isApprox(ref_angular_momentum_integrals[i], 1.0e-07));
     }
 }

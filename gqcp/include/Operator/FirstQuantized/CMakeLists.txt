@@ -1,14 +1,16 @@
 target_sources(gqcp
     PRIVATE
+        AngularMomentumOperator.hpp
         BaseFQOneElectronOperator.hpp
         BaseFQTwoElectronOperator.hpp
-        BaseMultipoleOperator.hpp
         BaseNuclearOperator.hpp
+        BaseReferenceDependentOperator.hpp
         CoulombRepulsionOperator.hpp
         ElectronicDensityOperator.hpp
         ElectronicDipoleOperator.hpp
         ElectronicSpinOperator.hpp
         KineticOperator.hpp
+        LinearMomentumOperator.hpp
         NuclearAttractionOperator.hpp
         NuclearDipoleOperator.hpp
         NuclearRepulsionOperator.hpp

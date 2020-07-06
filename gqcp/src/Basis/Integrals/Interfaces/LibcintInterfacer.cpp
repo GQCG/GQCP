@@ -90,7 +90,7 @@ libcint::RawContainer LibcintInterfacer::convert(const ShellSet<GTOShell>& shell
 
 
         raw_container.libcint_bas[libcint::ptr_coeff + libcint::bas_slots * n] = offset;  // pointer to the contraction coefficients inside the libcint environment
-        // Input NORMALIZED contraction coefficients inside the libcint 'env'
+        // Libcint expects contraction coefficients belonging to unnormalized primitives.
         if (current_shell.areEmbeddedNormalizationFactorsOfPrimitives()) {
             current_shell.unEmbedNormalizationFactorsOfPrimitives();
         }

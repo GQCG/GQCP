@@ -15,39 +15,27 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#pragma once
-
-
-#include "Operator/FirstQuantized/BaseNuclearOperator.hpp"
 #include "Operator/FirstQuantized/BaseReferenceDependentOperator.hpp"
-
-#include <cstddef>
 
 
 namespace GQCP {
 
 
-/**
- *  The nuclear dipole operator.
+/*
+ *  CONSTRUCTORS
  */
-class NuclearDipoleOperator: public BaseNuclearOperator, public BaseReferenceDependentOperator {
-public:
-    // CONSTRUCTORS
 
-    /**
-     *  @param nuclear_framework            the nuclear framework underlying a nuclear operator
-     *  @param o                            the origin of the multipole
-     */
-    NuclearDipoleOperator(const NuclearFramework& nuclear_framework, const Vector<double, 3>& o = Vector<double, 3>::Zero());
+/**
+ *  @param reference            the point that is used as a reference to define the operator
+ */
+BaseReferenceDependentOperator::BaseReferenceDependentOperator(const Vector<double, 3>& reference) :
+    m_reference {reference} {}
 
 
-    // PUBLIC METHODS
+/*
+ *  DESTRUCTOR
+ */
 
-    /**
-     *  @return the value of this nuclear dipole operator
-     */
-    Vector<double, 3> value() const;
-};
-
+BaseReferenceDependentOperator::~BaseReferenceDependentOperator() {};  // pure virtual destructor should have an empty implementation
 
 }  // namespace GQCP

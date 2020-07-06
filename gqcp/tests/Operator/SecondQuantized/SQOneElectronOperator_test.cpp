@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Basis/ScalarBasis/CartesianGTO.hpp"
+#include "Mathematical/Functions/CartesianGTO.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "Utilities/miscellaneous.hpp"
 
@@ -150,38 +150,32 @@ BOOST_AUTO_TEST_CASE(SQOneElectronOperator_negate) {
  */
 BOOST_AUTO_TEST_CASE(SQOneElectronOperator_of_GTOs_transform) {
 
-    // Create a toy operator of linear combinations of GTOs that correspond to a manual calculation
+    // Create a toy operator of linear combinations of GTOs that correspond to a manual calculation.
     GQCP::Vector<double, 3> center = GQCP::Vector<double, 3>::Zero();
 
-    double coeff1 = 1.0;
-    GQCP::CartesianGTO gto1 {1.0, {1, 0, 0}, center};
-    double N1 = gto1.normalizationFactor();
+    const double coeff1 = 1.0;
+    const GQCP::CartesianGTO gto1 {1.0, {1, 0, 0}, center};
 
-    double coeff2 = 2.0;
-    GQCP::CartesianGTO gto2 {2.0, {0, 1, 0}, center};
-    double N2 = gto2.normalizationFactor();
+    const double coeff2 = 2.0;
+    const GQCP::CartesianGTO gto2 {2.0, {0, 1, 0}, center};
 
-    double coeff3 = -1.0;
-    GQCP::CartesianGTO gto3 {1.0, {1, 1, 0}, center};
-    double N3 = gto3.normalizationFactor();
+    const double coeff3 = -1.0;
+    const GQCP::CartesianGTO gto3 {1.0, {1, 1, 0}, center};
 
-    double coeff4 = 1.0;
-    GQCP::CartesianGTO gto4 {3.0, {0, 0, 2}, center};
-    double N4 = gto4.normalizationFactor();
+    const double coeff4 = 1.0;
+    const GQCP::CartesianGTO gto4 {3.0, {0, 0, 2}, center};
 
-    double coeff5 = 2.5;
-    GQCP::CartesianGTO gto5 {0.5, {1, 1, 1}, center};
-    double N5 = gto5.normalizationFactor();
+    const double coeff5 = 2.5;
+    const GQCP::CartesianGTO gto5 {0.5, {1, 1, 1}, center};
 
-    double coeff6 = -1.0;
-    GQCP::CartesianGTO gto6 {2.5, {0, 1, 1}, center};
-    double N6 = gto6.normalizationFactor();
+    const double coeff6 = -1.0;
+    const GQCP::CartesianGTO gto6 {2.5, {0, 1, 1}, center};
 
 
-    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc1 {coeff1, gto1};
-    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc2 {{coeff2, coeff3}, {gto2, gto3}};
-    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc3 {{coeff4, coeff5}, {gto4, gto5}};
-    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc4 {coeff6, gto6};
+    const GQCP::LinearCombination<double, GQCP::CartesianGTO> lc1 {coeff1, gto1};
+    const GQCP::LinearCombination<double, GQCP::CartesianGTO> lc2 {{coeff2, coeff3}, {gto2, gto3}};
+    const GQCP::LinearCombination<double, GQCP::CartesianGTO> lc3 {{coeff4, coeff5}, {gto4, gto5}};
+    const GQCP::LinearCombination<double, GQCP::CartesianGTO> lc4 {coeff6, gto6};
 
 
     GQCP::Matrix<GQCP::LinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_par;
@@ -198,19 +192,19 @@ BOOST_AUTO_TEST_CASE(SQOneElectronOperator_of_GTOs_transform) {
          1.0, 0.0;
     // clang-format on
 
-    Eigen::Matrix<GQCP::LinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_transformed_par = T.adjoint() * rho_par * T;
+    const GQCP::Matrix<GQCP::LinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_transformed_par = T.adjoint() * rho_par * T;
 
 
     // Check the coefficients of the transformed operator with a manual calculation
     const std::vector<double> ref_coeff_result_01 {2.0, 1.0, 2.5};
-    auto coeff_result_01 = rho_transformed_par(0, 1).coefficients();
+    const auto coeff_result_01 = rho_transformed_par(0, 1).coefficients();
     for (size_t i = 0; i < ref_coeff_result_01.size(); i++) {
         BOOST_CHECK(std::abs(ref_coeff_result_01[i] - coeff_result_01[i]) < 1.0e-12);
     }
     BOOST_CHECK(ref_coeff_result_01.size() == coeff_result_01.size());
 
     const std::vector<double> ref_coeff_result_11 {1.0};
-    auto coeff_result_11 = rho_transformed_par(1, 1).coefficients();
+    const auto coeff_result_11 = rho_transformed_par(1, 1).coefficients();
     for (size_t i = 0; i < ref_coeff_result_11.size(); i++) {
         BOOST_CHECK(std::abs(ref_coeff_result_11[i] - coeff_result_11[i]) < 1.0e-12);
     }
@@ -225,38 +219,31 @@ BOOST_AUTO_TEST_CASE(SQOneElectronOperator_of_GTOs_transform) {
 BOOST_AUTO_TEST_CASE(SQOneElectronOperator_of_GTOs_evaluate) {
 
     // Create a toy operator of linear combinations of GTOs that correspond to a manual calculation.
-    // This is a copy-paste of the previous test: I can't make an easy auxiliary function because I also need N1, N2, ...
     GQCP::Vector<double, 3> center = GQCP::Vector<double, 3>::Zero();
 
-    double coeff1 = 1.0;
-    GQCP::CartesianGTO gto1 {1.0, {1, 0, 0}, center};
-    double N1 = gto1.normalizationFactor();
+    const double coeff1 = 1.0;
+    const GQCP::CartesianGTO gto1 {1.0, {1, 0, 0}, center};
 
-    double coeff2 = 2.0;
-    GQCP::CartesianGTO gto2 {2.0, {0, 1, 0}, center};
-    double N2 = gto2.normalizationFactor();
+    const double coeff2 = 2.0;
+    const GQCP::CartesianGTO gto2 {2.0, {0, 1, 0}, center};
 
-    double coeff3 = -1.0;
-    GQCP::CartesianGTO gto3 {1.0, {1, 1, 0}, center};
-    double N3 = gto3.normalizationFactor();
+    const double coeff3 = -1.0;
+    const GQCP::CartesianGTO gto3 {1.0, {1, 1, 0}, center};
 
-    double coeff4 = 1.0;
-    GQCP::CartesianGTO gto4 {3.0, {0, 0, 2}, center};
-    double N4 = gto4.normalizationFactor();
+    const double coeff4 = 1.0;
+    const GQCP::CartesianGTO gto4 {3.0, {0, 0, 2}, center};
 
-    double coeff5 = 2.5;
-    GQCP::CartesianGTO gto5 {0.5, {1, 1, 1}, center};
-    double N5 = gto5.normalizationFactor();
+    const double coeff5 = 2.5;
+    const GQCP::CartesianGTO gto5 {0.5, {1, 1, 1}, center};
 
-    double coeff6 = -1.0;
-    GQCP::CartesianGTO gto6 {2.5, {0, 1, 1}, center};
-    double N6 = gto6.normalizationFactor();
+    const double coeff6 = -1.0;
+    const GQCP::CartesianGTO gto6 {2.5, {0, 1, 1}, center};
 
 
-    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc1 {coeff1, gto1};
-    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc2 {{coeff2, coeff3}, {gto2, gto3}};
-    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc3 {{coeff4, coeff5}, {gto4, gto5}};
-    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc4 {coeff6, gto6};
+    const GQCP::LinearCombination<double, GQCP::CartesianGTO> lc1 {coeff1, gto1};
+    const GQCP::LinearCombination<double, GQCP::CartesianGTO> lc2 {{coeff2, coeff3}, {gto2, gto3}};
+    const GQCP::LinearCombination<double, GQCP::CartesianGTO> lc3 {{coeff4, coeff5}, {gto4, gto5}};
+    const GQCP::LinearCombination<double, GQCP::CartesianGTO> lc4 {coeff6, gto6};
 
 
     GQCP::Matrix<GQCP::LinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_par;
@@ -273,23 +260,21 @@ BOOST_AUTO_TEST_CASE(SQOneElectronOperator_of_GTOs_evaluate) {
          1.0, 0.0;
     // clang-format on
 
-    Eigen::Matrix<GQCP::LinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_transformed_par = T.adjoint() * rho_par * T;
-    GQCP::ScalarSQOneElectronOperator<GQCP::LinearCombination<double, GQCP::CartesianGTO>> rho {rho_transformed_par};
+    const GQCP::Matrix<GQCP::LinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_transformed_par = T.adjoint() * rho_par * T;
+    const GQCP::ScalarSQOneElectronOperator<GQCP::LinearCombination<double, GQCP::CartesianGTO>> rho {rho_transformed_par};
 
 
     // Evaluate the operator of GTOs at the given point r
-    GQCP::Vector<double, 3> r = GQCP::Vector<double, 3>::Zero();
-    r << 1.0, 1.0, 1.0;
-
+    const GQCP::Vector<double, 3> r {1.0, 1.0, 1.0};
     const auto rho_evaluated_par = rho.evaluate(r).parameters();
 
 
-    // Read in the reference solution and check the results
+    // Read in the reference solution and check the results.
     GQCP::QCMatrix<double> ref_rho_evaluated_par = GQCP::QCMatrix<double>::Zero(2, 2);
-    double ref_rho_evaluated_00 = 4 * N1 * std::exp(-3.0) + 4 * N2 * std::exp(-6.0) - 2 * N3 * std::exp(-3.0) + 2 * N4 * std::exp(-9.0) + 5 * N5 * std::exp(-1.5) - 1 * N6 * std::exp(-7.5);
-    double ref_rho_evaluated_01 = 2 * N1 * std::exp(-3.0) + 1 * N4 * std::exp(-9.0) + 2.5 * N5 * std::exp(-1.5);
-    double ref_rho_evaluated_10 = 2 * N1 * std::exp(-3.0) + 2 * N2 * std::exp(-6.0) - 1 * N3 * std::exp(-3.0);
-    double ref_rho_evaluated_11 = 1 * N1 * std::exp(-3.0);
+    double ref_rho_evaluated_00 = 4 * std::exp(-3.0) + 4 * std::exp(-6.0) - 2 * std::exp(-3.0) + 2 * std::exp(-9.0) + 5 * std::exp(-1.5) - 1 * std::exp(-7.5);
+    double ref_rho_evaluated_01 = 2 * std::exp(-3.0) + 1 * std::exp(-9.0) + 2.5 * std::exp(-1.5);
+    double ref_rho_evaluated_10 = 2 * std::exp(-3.0) + 2 * std::exp(-6.0) - 1 * std::exp(-3.0);
+    double ref_rho_evaluated_11 = 1 * std::exp(-3.0);
     // clang-format off
     ref_rho_evaluated_par << ref_rho_evaluated_00, ref_rho_evaluated_01, 
                              ref_rho_evaluated_10, ref_rho_evaluated_11;
@@ -314,7 +299,7 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_throw) {
 
 
 /**
- * Check whether or not calculateExpectationValue shows the correct behaviour
+ *  Check whether or not calculateExpectationValue shows the correct behaviour
  */
 BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
 
@@ -344,7 +329,7 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
 
 
 /**
- * Check whether or not the rotate with transformation matrix method works as expected
+ *  Check whether or not the rotate with transformation matrix method works as expected
  */
 BOOST_AUTO_TEST_CASE(rotate_with_unitary_transformation_matrix) {
 
@@ -371,7 +356,7 @@ BOOST_AUTO_TEST_CASE(rotate_with_unitary_transformation_matrix) {
 
 
 /**
- * Check whether or not the rotate with transformation matrix method works as expected
+ *  Check whether or not the rotate with transformation matrix method works as expected
  */
 BOOST_AUTO_TEST_CASE(transform_with_transformation_matrix) {
 
@@ -405,7 +390,7 @@ BOOST_AUTO_TEST_CASE(transform_with_transformation_matrix) {
 
 
 /**
- * Check whether or not the rotate with transformation matrix method works as expected
+ *  Check whether or not the rotate with transformation matrix method works as expected
  */
 BOOST_AUTO_TEST_CASE(transform_with_jacobi_matrix) {
 

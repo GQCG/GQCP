@@ -31,6 +31,7 @@
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
 #include "Utilities/aliases.hpp"
+#include "Utilities/literals.hpp"
 
 
 namespace GQCP {
@@ -357,9 +358,8 @@ public:
         S_x.block(0, K_alpha, K_alpha, K_beta) = 0.5 * S_ab;
         S_x.block(K_alpha, 0, K_beta, K_alpha) = 0.5 * S_ba;
 
-        const cd ii(0.0, 1.0);  // 'cd' is a typedef for 'std::complex<double>', so 'ii' is the imaginary unit
-        S_y.block(0, K_alpha, K_alpha, K_beta) = -0.5 * ii * S_ab;
-        S_y.block(K_alpha, 0, K_beta, K_alpha) = 0.5 * ii * S_ba;
+        S_y.block(0, K_alpha, K_alpha, K_beta) = -0.5 * 1_ii * S_ab;
+        S_y.block(K_alpha, 0, K_beta, K_alpha) = 0.5 * 1_ii * S_ba;
 
         S_z.topLeftCorner(K_alpha, K_alpha) = 0.5 * S_aa;
         S_z.bottomRightCorner(K_beta, K_beta) = -0.5 * S_bb;

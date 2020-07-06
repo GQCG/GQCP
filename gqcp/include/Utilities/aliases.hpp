@@ -33,7 +33,10 @@
 namespace GQCP {
 
 
-using cd = std::complex<double>;
+/**
+ *  An alias for a complex<double>.
+ */
+using complex = std::complex<double>;
 
 
 /**

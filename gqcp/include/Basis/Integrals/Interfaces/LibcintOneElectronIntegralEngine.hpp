@@ -21,7 +21,9 @@
 #include "Basis/Integrals/BaseOneElectronIntegralEngine.hpp"
 #include "Basis/Integrals/Interfaces/LibcintInterfacer.hpp"
 #include "Basis/Integrals/Interfaces/LibcintOneElectronIntegralBuffer.hpp"
+#include "Utilities/literals.hpp"
 #include "Utilities/miscellaneous.hpp"
+#include "Utilities/type_traits.hpp"
 
 
 namespace GQCP {
@@ -51,12 +53,12 @@ public:
 private:
     Libcint1eFunction libcint_function;  // the libcint one-electron integral function
 
-    // Data that has to be kept as a member (see the class note)
+    // Data that has to be kept as a member (see the class note).
     libcint::RawContainer libcint_raw_container;  // the raw libcint data
     ShellSet<Shell> shell_set;                    // the corresponding shell set
 
-    // Parameters to pass to the buffer
-    double scaling_factor = 1.0;  // a factor that is multiplied to all of the calculated integrals
+    // Parameters to pass to the buffer.
+    IntegralScalar scaling_factor = 1.0;  // a factor that is multiplied to all of the calculated integrals
 
 
 public:
@@ -65,6 +67,8 @@ public:
      */
 
     /**
+     *  Construct an integral engine for the electronic dipole operator using libcint as a backend.
+     * 
      *  @param op               the electronic electric dipole operator
      *  @param shell_set        the ShellSet whose information should be converted to a RawContainer, which will serve as some kind of 'global' data for the libcint engine to use in all its calculate() calls
      */
@@ -74,10 +78,12 @@ public:
         shell_set {shell_set},
         scaling_factor {-1.0} {  // apply the minus sign which comes from the charge of the electrons -e
 
-        LibcintInterfacer().setCommonOrigin(this->libcint_raw_container, op.origin());
+        LibcintInterfacer().setCommonOrigin(this->libcint_raw_container, op.reference());
     }
 
     /**
+     *  Construct an integral engine for the kinetic operator using libcint as a backend.
+     * 
      *  @param op               the kinetic operator
      *  @param shell_set        the ShellSet whose information should be converted to a RawContainer, which will serve as some kind of 'global' data for the libcint engine to use in all its calculate() calls
      */
@@ -87,6 +93,8 @@ public:
         shell_set {shell_set} {}
 
     /**
+     *  Construct an integral engine for the nuclear attraction operator using libcint as a backend.
+     * 
      *  @param op               the nuclear attraction operator
      *  @param shell_set        the ShellSet whose information should be converted to a RawContainer, which will serve as some kind of 'global' data for the libcint engine to use in all its calculate() calls
      */
@@ -96,6 +104,8 @@ public:
         shell_set {shell_set} {}
 
     /**
+     *  Construct an integral engine for the overlap operator using libcint as a backend.
+     * 
      *  @param op               the overlap operator
      *  @param shell_set        the ShellSet whose information should be converted to a RawContainer, which will serve as some kind of 'global' data for the libcint engine to use in all its calculate() calls
      */
@@ -124,12 +134,13 @@ public:
         // Pre-allocate a raw buffer, because libcint functions expect a data pointer
         const size_t nbf1 = shell1.numberOfBasisFunctions();
         const size_t nbf2 = shell2.numberOfBasisFunctions();
-        double libcint_buffer[N * nbf1 * nbf2];
+        double libcint_buffer[2 * N * nbf1 * nbf2];
 
 
         // Let libcint compute the integrals and return the corresponding buffer
         const auto result = this->libcint_function(libcint_buffer, shell_indices, libcint_raw_container.atmData(), libcint_raw_container.numberOfAtoms(), libcint_raw_container.basData(), libcint_raw_container.numberOfBasisFunctions(), libcint_raw_container.envData());
-        std::vector<double> buffer_converted {libcint_buffer, libcint_buffer + N * nbf1 * nbf2};  // std::vector constructor from .begin() and .end()
+
+        const std::vector<double> buffer_converted {libcint_buffer, libcint_buffer + N * nbf1 * nbf2};  // std::vector constructor from .begin() and .end()
 
         return std::make_shared<LibcintOneElectronIntegralBuffer<IntegralScalar, N>>(buffer_converted, nbf1, nbf2, result, this->scaling_factor);
     }

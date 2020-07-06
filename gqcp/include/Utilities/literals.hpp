@@ -18,40 +18,35 @@
 #pragma once
 
 
-#include "Mathematical/Representation/Matrix.hpp"
+#include "Utilities/type_traits.hpp"
 
+#include <complex>
+
+
+/**
+ *  A header that contains special literals inside the GQCP namespace.
+ */
 
 namespace GQCP {
 
 
 /**
- *  A base class used to represent first-quantized multipole operators.
+ *  A literal for the imaginary unit.
+ * 
+ *  @note This feature is only added in C++14, which is why we provide it ourselves.
  */
-class BaseMultipoleOperator {
-protected:
-    Vector<double, 3> o;  // the origin of the multipole
+constexpr std::complex<double> operator"" _ii(unsigned long long d) {
+    return std::complex<double> {0.0, static_cast<double>(d)};
+}
 
-
-public:
-    // CONSTRUCTORS
-
-    /**
-     *  @param o        the origin of the multipole
-     */
-    BaseMultipoleOperator(const Vector<double, 3>& o = Vector<double, 3>::Zero());
-
-
-    // DESTRUCTOR
-    virtual ~BaseMultipoleOperator() = 0;
-
-
-    // PUBLIC METHODS
-
-    /**
-     *  @return the origin of the multipole operator
-     */
-    const Vector<double, 3>& origin() const { return this->o; }
-};
+/**
+ *  A literal for the imaginary unit.
+ * 
+ *  @note This feature is only added in C++14, which is why we provide it ourselves.
+ */
+constexpr std::complex<double> operator"" _ii(long double d) {
+    return std::complex<double> {0.0, static_cast<double>(d)};
+}
 
 
 }  // namespace GQCP

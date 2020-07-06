@@ -28,6 +28,7 @@
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Mathematical/Representation/QCRankFourTensor.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
+#include "Utilities/aliases.hpp"
 
 #include <algorithm>
 #include <array>
@@ -328,9 +329,9 @@ public:
 
 
     /**
-     *  Calculate the integrals over the given (first-quantized) one-electron operator, within a given scalar basis, using libcint.
+     *  Calculate the integrals over the given electronic dipole operator, within a given scalar basis, using libcint.
      *
-     *  @param fq_one_op                            the first-quantized operator
+     *  @param fq_one_op                            the electronic dipole operator
      *  @param scalar_basis                         the scalar basis that contains the shells over which the integrals should be calculated
      *
      *  @note Only use this function for all-Cartesian ShellSets.

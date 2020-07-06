@@ -21,7 +21,7 @@
 #include "Basis/ScalarBasis/GTOBasisSet.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Basis/ScalarBasis/ShellSet.hpp"
-#include "Mathematical/AbstractFunction/LinearCombination.hpp"
+#include "Mathematical/Functions/LinearCombination.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Molecule/NuclearFramework.hpp"
 
@@ -73,7 +73,7 @@ public:
      */
     template <typename Z = GTOShell>
     ScalarBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name,
-                typename std::enable_if<std::is_same<Z, GTOShell>::value>::type* = 0) :
+                typename std::enable_if<std::is_same<Z, Shell>::value>::type* = 0) :
         ScalarBasis(GTOBasisSet(basisset_name).generate(nuclear_framework)) {
 
         this->shell_set.embedNormalizationFactorsOfPrimitives();

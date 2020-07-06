@@ -127,8 +127,8 @@ void bindSQOneElectronOperator(py::module& module, const std::string& suffix) {
 
 void bindSQOneElectronOperators(py::module& module) {
 
-    bindSQOneElectronOperator<double>(module, "d");     // suffix 'd' for the class name
-    bindSQOneElectronOperator<GQCP::cd>(module, "cd");  // suffix 'cd' for the class name: 'complex double'
+    bindSQOneElectronOperator<double>(module, "d");          // suffix 'd' for the class name
+    bindSQOneElectronOperator<GQCP::complex>(module, "cd");  // suffix 'cd' for the class name: 'complex double'
 }
 
 

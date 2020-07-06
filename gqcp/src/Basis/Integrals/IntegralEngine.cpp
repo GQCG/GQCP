@@ -22,6 +22,65 @@ namespace GQCP {
 
 
 /*
+ *  GQCP
+ */
+
+/**
+ *  @param op               the angular momentum operator
+ * 
+ *  @return a one-electron integral engine that can calculate integrals over the angular momentum operator
+ */
+OneElectronIntegralEngine<PrimitiveAngularMomentumIntegralEngine> IntegralEngine::InHouse(const AngularMomentumOperator& op) {
+
+    return OneElectronIntegralEngine<PrimitiveAngularMomentumIntegralEngine>(PrimitiveAngularMomentumIntegralEngine(op));
+}
+
+
+/**
+ *  @param op               the electronic dipole operator
+ * 
+ *  @return a one-electron integral engine that can calculate integrals over the electronic dipole operator
+ */
+OneElectronIntegralEngine<PrimitiveDipoleIntegralEngine> IntegralEngine::InHouse(const ElectronicDipoleOperator& op) {
+
+    return OneElectronIntegralEngine<PrimitiveDipoleIntegralEngine>(PrimitiveDipoleIntegralEngine(op));
+}
+
+
+/**
+ *  @param op               the kinetic energy operator
+ * 
+ *  @return a one-electron integral engine that can calculate integrals over the kinetic energy operator
+ */
+OneElectronIntegralEngine<PrimitiveKineticEnergyIntegralEngine> IntegralEngine::InHouse(const KineticOperator& op) {
+
+    return OneElectronIntegralEngine<PrimitiveKineticEnergyIntegralEngine>(PrimitiveKineticEnergyIntegralEngine());
+}
+
+
+/**
+ *  @param op               the linear momentum operator
+ * 
+ *  @return a one-electron integral engine that can calculate integrals over the linear momentum operator
+ */
+OneElectronIntegralEngine<PrimitiveLinearMomentumIntegralEngine> IntegralEngine::InHouse(const LinearMomentumOperator& op) {
+
+    return OneElectronIntegralEngine<PrimitiveLinearMomentumIntegralEngine>(PrimitiveLinearMomentumIntegralEngine());
+}
+
+
+/**
+ *  @param op               the overlap operator
+ * 
+ *  @return a one-electron integral engine that can calculate integrals over the overlap operator
+ */
+OneElectronIntegralEngine<PrimitiveOverlapIntegralEngine> IntegralEngine::InHouse(const OverlapOperator& op) {
+
+    return OneElectronIntegralEngine<PrimitiveOverlapIntegralEngine>(PrimitiveOverlapIntegralEngine());
+}
+
+
+/*
  *  LIBINT
  */
 

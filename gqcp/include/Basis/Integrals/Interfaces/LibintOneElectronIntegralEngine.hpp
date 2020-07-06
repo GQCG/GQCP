@@ -64,7 +64,7 @@ public:
         component_offset {1},    // emultipole1 has [overlap, x, y, z], we don't need the overlap
         scaling_factor {-1.0} {  // apply the minus sign which comes from the charge of the electrons -e
 
-        std::array<double, 3> libint2_origin_array {op.origin().x(), op.origin().y(), op.origin().z()};
+        std::array<double, 3> libint2_origin_array {op.reference().x(), op.reference().y(), op.reference().z()};
         this->libint2_engine.set_params(libint2_origin_array);
     }
 

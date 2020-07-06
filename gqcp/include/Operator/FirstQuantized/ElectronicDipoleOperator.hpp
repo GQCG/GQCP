@@ -19,7 +19,7 @@
 
 
 #include "Operator/FirstQuantized/BaseFQOneElectronOperator.hpp"
-#include "Operator/FirstQuantized/BaseMultipoleOperator.hpp"
+#include "Operator/FirstQuantized/BaseReferenceDependentOperator.hpp"
 
 
 namespace GQCP {
@@ -28,10 +28,10 @@ namespace GQCP {
 /**
  *  The (one-electron) electronic dipole operator.
  */
-class ElectronicDipoleOperator: public BaseFQOneElectronOperator<double, 3>, public BaseMultipoleOperator {
+class ElectronicDipoleOperator: public BaseFQOneElectronOperator<double, 3>, public BaseReferenceDependentOperator {
 public:
     // CONSTRUCTORS
-    using BaseMultipoleOperator::BaseMultipoleOperator;  // inherit base constructors
+    using BaseReferenceDependentOperator::BaseReferenceDependentOperator;  // inherit base constructors
 };
 
 

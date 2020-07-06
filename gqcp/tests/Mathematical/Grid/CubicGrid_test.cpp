@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Basis/ScalarBasis/CartesianGTO.hpp"
+#include "Mathematical/Functions/CartesianGTO.hpp"
 #include "Mathematical/Grid/CubicGrid.hpp"
 #include "Utilities/units.hpp"
 

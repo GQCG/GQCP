@@ -18,35 +18,41 @@
 #pragma once
 
 
-#include "Operator/FirstQuantized/BaseNuclearOperator.hpp"
-#include "Operator/FirstQuantized/BaseReferenceDependentOperator.hpp"
-
-#include <cstddef>
+#include "Mathematical/Representation/Matrix.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  The nuclear dipole operator.
+ *  A base class used to represent first-quantized operators that are dependent on a point of reference.
+ * 
+ *  @example Some examples of reference-dependent operators are the multipole operators and the angular momentum operator
  */
-class NuclearDipoleOperator: public BaseNuclearOperator, public BaseReferenceDependentOperator {
+class BaseReferenceDependentOperator {
+protected:
+    Vector<double, 3> m_reference;  // the point that is used as a reference to define the operator
+
+
 public:
     // CONSTRUCTORS
 
     /**
-     *  @param nuclear_framework            the nuclear framework underlying a nuclear operator
-     *  @param o                            the origin of the multipole
+     *  @param reference            the point that is used as a reference to define the operator
      */
-    NuclearDipoleOperator(const NuclearFramework& nuclear_framework, const Vector<double, 3>& o = Vector<double, 3>::Zero());
+    BaseReferenceDependentOperator(const Vector<double, 3>& reference = Vector<double, 3>::Zero());
+
+
+    // DESTRUCTOR
+    virtual ~BaseReferenceDependentOperator() = 0;
 
 
     // PUBLIC METHODS
 
     /**
-     *  @return the value of this nuclear dipole operator
+     *  @return the point that is used as a reference to define the operator
      */
-    Vector<double, 3> value() const;
+    const Vector<double, 3>& reference() const { return this->m_reference; }
 };
 
 

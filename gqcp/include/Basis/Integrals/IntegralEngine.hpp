@@ -22,6 +22,12 @@
 #include "Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp"
 #include "Basis/Integrals/Interfaces/LibintOneElectronIntegralEngine.hpp"
 #include "Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp"
+#include "Basis/Integrals/OneElectronIntegralEngine.hpp"
+#include "Basis/Integrals/PrimitiveAngularMomentumIntegralEngine.hpp"
+#include "Basis/Integrals/PrimitiveDipoleIntegralEngine.hpp"
+#include "Basis/Integrals/PrimitiveKineticEnergyIntegralEngine.hpp"
+#include "Basis/Integrals/PrimitiveLinearMomentumIntegralEngine.hpp"
+#include "Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "Utilities/aliases.hpp"
 
@@ -30,10 +36,62 @@ namespace GQCP {
 
 
 /**
- *  A class that creates integral engines, much like a factory class would do
+ *  A class that creates integral engines, like a factory class.
  */
 class IntegralEngine {
 public:
+    /*
+     *  GQCP ("In-house")
+     * 
+     *  These integral engines can only calculate integrals over Cartesian d-shells.
+     */
+
+    /**
+     *  @param op               the angular momentum operator
+     * 
+     *  @return a one-electron integral engine that can calculate integrals over the angular momentum operator
+     * 
+     *  @note This integral engine can only calculate integrals over Cartesian d-shells.
+     */
+    static OneElectronIntegralEngine<PrimitiveAngularMomentumIntegralEngine> InHouse(const AngularMomentumOperator& op);
+
+    /**
+     *  @param op               the electronic dipole operator
+     * 
+     *  @return a one-electron integral engine that can calculate integrals over the electronic dipole operator
+     * 
+     *  @note This integral engine can only calculate integrals over Cartesian d-shells.
+     */
+    static OneElectronIntegralEngine<PrimitiveDipoleIntegralEngine> InHouse(const ElectronicDipoleOperator& op);
+
+    /**
+     *  @param op               the kinetic energy operator
+     * 
+     *  @return a one-electron integral engine that can calculate integrals over the kinetic energy operator
+     * 
+     *  @note This integral engine can only calculate integrals over Cartesian d-shells.
+     */
+    static OneElectronIntegralEngine<PrimitiveKineticEnergyIntegralEngine> InHouse(const KineticOperator& op);
+
+    /**
+     *  @param op               the linear momentum operator
+     * 
+     *  @return a one-electron integral engine that can calculate integrals over the linear momentum operator
+     * 
+     *  @note This integral engine can only calculate integrals over Cartesian d-shells.
+     */
+    static OneElectronIntegralEngine<PrimitiveLinearMomentumIntegralEngine> InHouse(const LinearMomentumOperator& op);
+
+    /**
+     *  @param op               the overlap operator
+     * 
+     *  @return a one-electron integral engine that can calculate integrals over the overlap operator
+     * 
+     *  @note This integral engine can only calculate integrals over Cartesian d-shells.
+     */
+    static OneElectronIntegralEngine<PrimitiveOverlapIntegralEngine> InHouse(const OverlapOperator& op);
+
+
     /*
      *  LIBINT
      */
