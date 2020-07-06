@@ -137,6 +137,7 @@
 #include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicDipoleOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicSpinOperator.hpp"
+#include "Operator/FirstQuantized/FieldFreeCurrentDensityOperator.hpp"
 #include "Operator/FirstQuantized/KineticOperator.hpp"
 #include "Operator/FirstQuantized/LinearMomentumOperator.hpp"
 #include "Operator/FirstQuantized/NuclearAttractionOperator.hpp"
