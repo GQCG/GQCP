@@ -20,6 +20,7 @@
 #include "Basis/Integrals/PrimitiveOverlapIntegralEngine.hpp"
 #include "Utilities/literals.hpp"
 
+
 namespace GQCP {
 
 
@@ -34,6 +35,8 @@ namespace GQCP {
  *  @return the linear momentum integral (of the current component) over the two given primitives
  */
 PrimitiveLinearMomentumIntegralEngine::IntegralScalar PrimitiveLinearMomentumIntegralEngine::calculate(const CartesianGTO& left, const CartesianGTO& right) {
+
+    using namespace GQCP::literals;
 
     // Prepare some variables.
     const auto i = static_cast<int>(left.cartesianExponents().value(CartesianDirection::x));
@@ -89,6 +92,8 @@ PrimitiveLinearMomentumIntegralEngine::IntegralScalar PrimitiveLinearMomentumInt
  *  @return the linear momentum integral over the two given 1-D primitives
  */
 PrimitiveLinearMomentumIntegralEngine::IntegralScalar PrimitiveLinearMomentumIntegralEngine::calculate1D(const double alpha, const double K, const int i, const double beta, const double L, const int j) {
+
+    using namespace GQCP::literals;
 
     PrimitiveOverlapIntegralEngine overlap_engine;
 

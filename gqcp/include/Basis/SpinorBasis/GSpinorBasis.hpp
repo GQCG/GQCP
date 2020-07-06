@@ -330,6 +330,8 @@ public:
      */
     auto quantize(const ElectronicSpinOperator& fq_one_op) const -> SQOneElectronOperator<product_t<ElectronicSpinOperator::Scalar, ExpansionScalar>, ElectronicSpinOperator::Components> {
 
+        using namespace GQCP::literals;
+
         using ResultScalar = product_t<ElectronicSpinOperator::Scalar, ExpansionScalar>;
         using ResultOperator = SQOneElectronOperator<ResultScalar, ElectronicSpinOperator::Components>;
 
