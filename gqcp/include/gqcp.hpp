@@ -106,6 +106,7 @@
 #include "Mathematical/Optimization/OptimizationEnvironment.hpp"
 #include "Mathematical/Representation/ImplicitMatrixSlice.hpp"
 #include "Mathematical/Representation/ImplicitRankFourTensorSlice.hpp"
+#include "Mathematical/Representation/LeviCivitaTensor.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Mathematical/Representation/QCRankFourTensor.hpp"

@@ -196,54 +196,14 @@ BOOST_AUTO_TEST_CASE(dyson_coefficients) {
 #include "Mathematical/Grid/CubicGrid.hpp"
 #include "Mathematical/Optimization/LinearEquation/LinearEquationEnvironment.hpp"
 #include "Mathematical/Optimization/LinearEquation/LinearEquationSolver.hpp"
+#include "Mathematical/Representation/LeviCivitaTensor.hpp"
 #include "Utilities/aliases.hpp"
 #include "Utilities/literals.hpp"
 
+const GQCP::LeviCivitaTensor epsilon {};
+
+
 using namespace GQCP::literals;
-
-
-#include <unsupported/Eigen/CXX11/TensorSymmetry>
-
-
-class LeviCivitaTensor {
-private:
-    GQCP::Tensor<double, 3> epsilon;
-
-
-public:
-    LeviCivitaTensor() {
-        this->epsilon = GQCP::Tensor<double, 3>(3, 3, 3);
-        this->epsilon.setZero();
-
-        Eigen::SGroup<Eigen::AntiSymmetry<0, 1>, Eigen::AntiSymmetry<1, 2>> symmetry;
-        symmetry(this->epsilon, 0, 1, 2) = 1.0;
-    }
-
-
-    double operator()(const size_t i, const size_t j, const size_t k) const {
-        return this->epsilon(i, j, k);
-    }
-
-
-    /**
-     *  Find the index k such that the Levi-Civita tensor epsilon(i,j,k) (or any permutations thereof) does not vanish.
-     * 
-     *  @param i            an index of the Levi-Civita tensor
-     *  @param j            an index of the Levi-Civita tensor
-     * 
-     *  @return the index that doesn't make the Levi-Civita tensor vanish
-     */
-    size_t nonZeroIndex(const size_t i, const size_t j) const {
-
-        if (i == j) {
-            throw std::invalid_argument("LeviCivitaTensor::nonZeroIndex(const size_t, const size_t): The given indices cannot be equal.");
-        }
-
-        return 3 - (i + j);
-    }
-};
-
-const LeviCivitaTensor epsilon;
 
 
 BOOST_AUTO_TEST_CASE(current_sandbox) {
@@ -524,4 +484,5 @@ BOOST_AUTO_TEST_CASE(current_sandbox) {
     const auto NICS_zz = grid.integrate(NICSD_zz);
 
     std::cout << "NICS_zz (at {0.003, 0.003, 0.003}): " << NICS_zz << std::endl;
+    // NICS_zz (at {0.003, 0.003, 0.003}): (-1.26902e-08,9.92093e-26)
 }
