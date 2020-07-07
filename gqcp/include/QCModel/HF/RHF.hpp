@@ -27,6 +27,7 @@
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "Processing/RDM/OneRDM.hpp"
+#include "Utilities/literals.hpp"
 
 
 namespace GQCP {
@@ -188,6 +189,54 @@ public:
         }
 
         return hessian;
+    }
+
+
+    /**
+     *  Calculate the RHF orbital Hessian (H_RI -i H_II), which can be used as a response force constant when solving the CP(R)HF equations for a purely imaginary response.
+     * 
+     *  @param sq_hamiltonian               the Hamiltonian expressed in the canonical RHF orbital basis, resulting from a real optimization
+     *  @param orbital_space                the orbital space that encapsulates the occupied-virtual separation
+     * 
+     *  @return an RHF orbital Hessian
+     */
+    static ImplicitRankFourTensorSlice<complex> calculateOrbitalHessianForImaginaryResponse(const SQHamiltonian<double>& sq_hamiltonian, const OrbitalSpace& orbital_space) {
+
+        using namespace GQCP::literals;
+
+        // Prepare some variables.
+        const auto& g = sq_hamiltonian.twoElectron().parameters();
+        const auto F = sq_hamiltonian.calculateInactiveFockianRestricted(orbital_space).parameters();
+
+
+        // Zero-initialize a virtual-occupied-virtual-occupied object.
+        auto H = orbital_space.initializeRepresentableObjectFor<complex>(OccupationType::k_virtual, OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_occupied);
+
+
+        // Calculate the elements of the specific orbital Hessian (ai,bj)
+        for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
+            for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+
+                for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
+                    for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
+
+                        complex value {};  // the term in parentheses
+
+                        // Add the contribution from the orbital energies, i.e. the diagonal term.
+                        if ((a == b) && (i == j)) {
+                            value += F(a, a) - F(i, i);
+                        }
+
+                        // Add the contributions from the other terms.
+                        value += g(i, b, j, a) - g(i, j, b, a);
+
+                        H(a, i, b, j) = -4_ii * value;
+                    }
+                }
+            }
+        }
+
+        return H;
     }
 
 

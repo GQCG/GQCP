@@ -210,8 +210,11 @@ BOOST_AUTO_TEST_CASE(current_sandbox) {
 
     // Set up the molecular Hamiltonian in the AO spin-orbital basis.
     const auto molecule = GQCP::Molecule::HChain(2, 1.0);
+    const auto N_P = molecule.numberOfElectronPairs();
+
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "6-31G**"};
-    const auto& scalar_basis = spinor_basis.scalarBasis();
+    const auto K = spinor_basis.numberOfSpatialOrbitals();
+
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in the AO basis
 
 
@@ -225,38 +228,17 @@ BOOST_AUTO_TEST_CASE(current_sandbox) {
 
 
     /*
-     *  CALCULATE THE RESPONSES.
+     *  SET UP THE LINEAR RESPONSE EQUATIONS.
      */
+    const auto& scalar_basis = spinor_basis.scalarBasis();
+    const auto orbital_space = rhf_parameters.orbitalSpace();
 
-    const auto N_P = molecule.numberOfElectronPairs();
-    const auto K = spinor_basis.numberOfSpatialOrbitals();
-    const auto orbital_space = GQCP::OrbitalSpace::Implicit({{GQCP::OccupationType::k_occupied, N_P}, {GQCP::OccupationType::k_virtual, K - N_P}});  // N_P occupied (spatial) orbitals, K-N_P virtual (spatial) orbitals
     const auto dim = orbital_space.numberOfExcitations(GQCP::OccupationType::k_occupied, GQCP::OccupationType::k_virtual);
     std::cout << orbital_space.description() << std::endl;
 
 
     // Calculate the response force constant for RHF.
-    const auto& g = sq_hamiltonian.twoElectron().parameters();
-    auto k_kappa = orbital_space.initializeRepresentableObjectFor<GQCP::complex>(GQCP::OccupationType::k_virtual, GQCP::OccupationType::k_occupied, GQCP::OccupationType::k_virtual, GQCP::OccupationType::k_occupied);
-    for (const auto& a : orbital_space.indices(GQCP::OccupationType::k_virtual)) {
-        for (const auto& i : orbital_space.indices(GQCP::OccupationType::k_occupied)) {
-            for (const auto& b : orbital_space.indices(GQCP::OccupationType::k_virtual)) {
-                for (const auto& j : orbital_space.indices(GQCP::OccupationType::k_occupied)) {
-                    GQCP::complex value {};
-
-                    // Add the contribution from the diagonal term.
-                    if ((a == b) && (i == j)) {
-                        value += rhf_parameters.orbitalEnergy(a) - rhf_parameters.orbitalEnergy(i);
-                    }
-
-                    // Add the contributions from the other terms.
-                    value += g(i, b, j, a) - g(i, j, b, a);
-
-                    k_kappa(a, i, b, j) = -(4_ii) * value;
-                }
-            }
-        }
-    }
+    const auto k_kappa = GQCP::QCModel::RHF<double>::calculateOrbitalHessianForImaginaryResponse(sq_hamiltonian, orbital_space);
 
     std::cout << "k_kappa: " << std::endl
               << k_kappa.asMatrix() << std::endl
@@ -320,7 +302,9 @@ BOOST_AUTO_TEST_CASE(current_sandbox) {
               << std::endl;
 
 
-    // Solve the linear response equations.
+    /*
+     *  CALCULATE THE RESPONSES BY SOLVING THE LINEAR RESPONSE EQUATIONS.
+     */
     auto environment_B = GQCP::LinearEquationEnvironment<GQCP::complex>(k_kappa.asMatrix(), -F_kappa_B);
     auto solver_B = GQCP::LinearEquationSolver<GQCP::complex>::HouseholderQR();
     solver_B.perform(environment_B);
