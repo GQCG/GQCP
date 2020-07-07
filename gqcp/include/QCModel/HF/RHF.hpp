@@ -132,7 +132,7 @@ public:
      * 
      *  @return an element of the RHF orbital Hessian
      */
-    static Scalar calculateOrbitalHessianElement(const SQHamiltonian<Scalar>& sq_hamiltonian, const size_t N_P, const size_t a, const size_t i, const size_t b, const size_t j) {
+    static Scalar calculateOrbitalHessianRRElement(const SQHamiltonian<Scalar>& sq_hamiltonian, const size_t N_P, const size_t a, const size_t i, const size_t b, const size_t j) {
 
         // Prepare some variables.
         const auto& g = sq_hamiltonian.twoElectron().parameters();
@@ -165,9 +165,9 @@ public:
      *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
      *  @param N_P                  the number of electron pairs
      * 
-     *  @return the RHF orbital Hessian as a ImplicitRankFourTensorSlice, i.e. an object with a suitable operator() implemented
+     *  @return the real-real RHF orbital Hessian as a ImplicitRankFourTensorSlice, i.e. an object with a suitable operator() implemented
      */
-    static ImplicitRankFourTensorSlice<Scalar> calculateOrbitalHessianTensor(const SQHamiltonian<Scalar>& sq_hamiltonian, const size_t N_P) {
+    static ImplicitRankFourTensorSlice<Scalar> calculateOrbitalHessianRR(const SQHamiltonian<Scalar>& sq_hamiltonian, const size_t N_P) {
 
         // Create an occupied-virtual orbital space.
         const auto K = sq_hamiltonian.dimension();
@@ -181,7 +181,7 @@ public:
 
                 for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
                     for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
-                        hessian(a, i, b, j) = RHF<Scalar>::calculateOrbitalHessianElement(sq_hamiltonian, N_P, a, i, b, j);
+                        hessian(a, i, b, j) = RHF<Scalar>::calculateOrbitalHessianRRElement(sq_hamiltonian, N_P, a, i, b, j);
                     }
                 }
             }
