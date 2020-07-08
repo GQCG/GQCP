@@ -361,6 +361,16 @@ public:
      *  PUBLIC METHODS
      */
 
+
+    /**
+     *  Calculate the RHF orbital Hessian (H_RI -i H_II), which can be used as a response force constant when solving the CP(R)HF equations for a purely imaginary response.
+     * 
+     *  @param sq_hamiltonian               the Hamiltonian expressed in the canonical RHF orbital basis, resulting from a real optimization
+     * 
+     *  @return an RHF orbital Hessian
+     */
+    ImplicitRankFourTensorSlice<complex> calculateOrbitalHessianForImaginaryResponse(const SQHamiltonian<double>& sq_hamiltonian) const { return RHF<Scalar>::calculateOrbitalHessianForImaginaryResponse(sq_hamiltonian, this->orbitalSpace()); }
+
     /**
      *  @return the 1-RDM expressed in an orthonormal spinor basis related to these optimal RHF parameters
      */

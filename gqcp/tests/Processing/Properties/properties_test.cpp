@@ -238,7 +238,7 @@ BOOST_AUTO_TEST_CASE(current_sandbox) {
 
 
     // Calculate the response force constant for RHF.
-    const auto k_kappa = GQCP::QCModel::RHF<double>::calculateOrbitalHessianForImaginaryResponse(sq_hamiltonian, orbital_space);
+    const auto k_kappa = rhf_parameters.calculateOrbitalHessianForImaginaryResponse(sq_hamiltonian);
 
     std::cout << "k_kappa: " << std::endl
               << k_kappa.asMatrix() << std::endl
@@ -248,6 +248,8 @@ BOOST_AUTO_TEST_CASE(current_sandbox) {
     // Calculate the response force for the magnetic field perturbation.
     auto angular_momentum_engine = GQCP::IntegralEngine::InHouse(GQCP::Operator::AngularMomentum());  // gauge origin == zero
     const auto L = GQCP::IntegralCalculator::calculate(angular_momentum_engine, scalar_basis.shellSet(), scalar_basis.shellSet());
+
+    // ! TRANSFORM TO CANONICAL ORBITAL BASIS ! //
 
     GQCP::Matrix<GQCP::complex, GQCP::Dynamic, 3> F_kappa_B = GQCP::Matrix<GQCP::complex, GQCP::Dynamic, 3>::Zero(dim, 3);
 
@@ -271,6 +273,9 @@ BOOST_AUTO_TEST_CASE(current_sandbox) {
     // Calculate the response force for the gauge origin perturbation.
     auto linear_momentum_engine = GQCP::IntegralEngine::InHouse(GQCP::Operator::LinearMomentum());
     const auto p = GQCP::IntegralCalculator::calculate(linear_momentum_engine, scalar_basis.shellSet(), scalar_basis.shellSet());
+
+    // ! TRANSFORM TO CANONICAL ORBITAL BASIS ! //
+
 
     GQCP::Matrix<GQCP::complex, GQCP::Dynamic, 6> F_kappa_G = GQCP::Matrix<GQCP::complex, GQCP::Dynamic, 6>::Zero(dim, 6);  // don't include the diagonal xx, yy, zz
 
@@ -342,6 +347,7 @@ BOOST_AUTO_TEST_CASE(current_sandbox) {
     using SpatialOrbitalDerivative = GQCP::LinearCombination<double, BasisFunctionDerivative>;
 
     // Calculate the gradients of the spatial orbitals.
+    // TODO: fix RSpinorBasis_test duration: check what happened in LinearCombination
     std::vector<GQCP::Vector<SpatialOrbitalDerivative, 3>> spatial_orbital_gradients {K};
     for (size_t m = 0; m < 3; m++) {
         for (size_t p = 0; p < K; p++) {
