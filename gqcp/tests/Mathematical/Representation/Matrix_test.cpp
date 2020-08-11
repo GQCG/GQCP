@@ -93,8 +93,7 @@ BOOST_AUTO_TEST_CASE(Matrix_FromFile) {
 
 BOOST_AUTO_TEST_CASE(operator_call_CartesianDirection) {
 
-    GQCP::Vector<size_t, 3> v = GQCP::Vector<size_t, 3>::Zero(3);
-    v << 1, 2, 8;
+    GQCP::Vector<size_t, 3> v {1, 2, 8};
 
     BOOST_CHECK(v(GQCP::CartesianDirection::x) == 1);
     BOOST_CHECK(v(GQCP::CartesianDirection::y) == 2);
