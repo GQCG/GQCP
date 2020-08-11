@@ -72,7 +72,7 @@ install:
 script:
   - cd ${TRAVIS_BUILD_DIR}
   - mkdir build && cd build
-  - cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=${HOME}/miniconda-DPYTHON_EXECUTABLE=${HOME}/miniconda/bin/python3.7-DPYTHON_LIBRARY=${HOME}/miniconda/lib/libpython3.7m.so -DPYTHON_INCLUDE_DIR=${HOME}/miniconda/include/python3.7m
+  - cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=${HOME}/miniconda -DPYTHON_EXECUTABLE=${HOME}/miniconda/bin/python3.7 -DPYTHON_LIBRARY=${HOME}/miniconda/lib/libpython3.7m.so -DPYTHON_INCLUDE_DIR=${HOME}/miniconda/include/python3.7m
   - make -j3 VERBOSE=1 && env CTEST_OUTPUT_ON_FAILURE=1 make test ARGS=-j3 && sudo make install
 
 # Run the benchmarks
