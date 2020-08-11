@@ -204,7 +204,7 @@ BOOST_AUTO_TEST_CASE(Hubbard_specialized_vs_unspecialized_Davidson_diagonalizati
     // Create one dense solver and two environments.
     auto solver = GQCP::EigenproblemSolver::Davidson();
 
-    const auto initial_guess = onv_basis.randomExpansion();
+    const auto initial_guess = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::Random(onv_basis).coefficients();
     auto specialized_environment = GQCP::CIEnvironment::Iterative(hubbard_hamiltonian, onv_basis, initial_guess);
     auto unspecialized_environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, initial_guess);
 
@@ -238,7 +238,7 @@ BOOST_AUTO_TEST_CASE(Hubbard_specialized_vs_unspecialized_Davidson_diagonalizati
     // Create one dense solver and two environments.
     auto solver = GQCP::EigenproblemSolver::Davidson();
 
-    const auto initial_guess = onv_basis.randomExpansion();
+    const auto initial_guess = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::Random(onv_basis).coefficients();
     auto specialized_environment = GQCP::CIEnvironment::Iterative(hubbard_hamiltonian, onv_basis, initial_guess);
     auto unspecialized_environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, initial_guess);
 

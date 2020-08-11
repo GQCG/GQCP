@@ -186,7 +186,7 @@ BOOST_AUTO_TEST_CASE(FCI_H2_Davidson) {
     const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};  // dimension = 100
 
     // Create a Davidson solver and corresponding environment and put them together in the QCMethod
-    const auto x0 = onv_basis.hartreeFockExpansion();  // initial guess
+    const auto x0 = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::HartreeFock(onv_basis).coefficients();  // initial guess
     auto environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, x0);
     auto solver = GQCP::EigenproblemSolver::Davidson();
     const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
@@ -229,7 +229,7 @@ BOOST_AUTO_TEST_CASE(FCI_H2O_Davidson) {
 
 
     // Create a Davidson solver and corresponding environment and put them together in the QCMethod
-    const auto x0 = onv_basis.hartreeFockExpansion();  // initial guess
+    const auto x0 = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::HartreeFock(onv_basis).coefficients();  // initial guess
     auto environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, x0);
     auto solver = GQCP::EigenproblemSolver::Davidson();
     const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
@@ -277,7 +277,7 @@ BOOST_AUTO_TEST_CASE(FCI_H6_dense_vs_Davidson) {
 
 
     // Create a Davidson solver and corresponding environment and put them together in the QCMethod
-    const auto x0 = onv_basis.hartreeFockExpansion();  // initial guess
+    const auto x0 = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::HartreeFock(onv_basis).coefficients();  // initial guess
     auto davidson_environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, x0);
     auto davidson_solver = GQCP::EigenproblemSolver::Davidson();
     const auto davidson_electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(dense_solver, dense_environment).groundStateEnergy();

@@ -39,17 +39,7 @@ void bindSeniorityZeroONVBasis(py::module& module) {
         // PUBLIC METHODS
 
         .def("dimension",
-             &GQCP::SeniorityZeroONVBasis::dimension)
-
-        .def("hartreeFockExpansion",
-             [](const GQCP::SeniorityZeroONVBasis& onv_basis) {
-                 return onv_basis.hartreeFockExpansion();
-             })
-
-        .def("randomExpansion",
-             [](const GQCP::SeniorityZeroONVBasis& onv_basis) {
-                 return onv_basis.randomExpansion();
-             });
+             &GQCP::SeniorityZeroONVBasis::dimension);
 }
 
 

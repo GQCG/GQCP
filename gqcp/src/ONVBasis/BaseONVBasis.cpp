@@ -85,38 +85,4 @@ std::shared_ptr<BaseONVBasis> BaseONVBasis::CloneToHeap(const BaseONVBasis& fock
 }
 
 
-/*
- *  PUBLIC METHODS
- */
-
-/**
- *  @return a constant normalized coefficients vector (i.e. all the coefficients are equal)
- */
-VectorX<double> BaseONVBasis::constantExpansion() const {
-    VectorX<double> constant = VectorX<double>::Ones(this->dim);
-    constant.normalize();
-    return constant;
-}
-
-
-/**
- *  @return the coefficient vector for the Hartree-Fock wave function (i.e. the 'first' ONV/Slater determinant)
- */
-VectorX<double> BaseONVBasis::hartreeFockExpansion() const {
-    VectorX<double> expansion = VectorX<double>::Zero(this->dim);
-    expansion(0) = 1;  // first configuration is position 0 (conventional ordering of the ONV basis)
-    return expansion;
-}
-
-
-/**
- *  @return a random normalized coefficient vector, with coefficients uniformly distributed in [-1, 1]
- */
-VectorX<double> BaseONVBasis::randomExpansion() const {
-    VectorX<double> random = VectorX<double>::Random(this->dim);
-    random.normalize();
-    return random;
-}
-
-
 }  // namespace GQCP

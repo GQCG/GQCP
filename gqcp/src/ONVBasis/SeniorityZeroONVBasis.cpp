@@ -231,26 +231,4 @@ void SeniorityZeroONVBasis::forEach(const std::function<void(const SpinUnresolve
 }
 
 
-/**
- *  @return a coefficient vector that describes the expansion coefficients of the Hartree-Fock wave function (i.e. the single Slater determinant with the lowest energy)
- */
-VectorX<double> SeniorityZeroONVBasis::hartreeFockExpansion() const {
-
-    VectorX<double> coefficients = VectorX<double>::Zero(this->dim);
-    coefficients(0) = 1;  // the lowest-energy SSD has position 0: this is conventially determined by the ONV basis
-    return coefficients;
-}
-
-
-/**
- *  @return a coefficient vector that describes the expansion coefficients of a random, normalized linear expansion
- */
-VectorX<double> SeniorityZeroONVBasis::randomExpansion() const {
-
-    VectorX<double> coefficients = VectorX<double>::Random(this->dim);
-    coefficients.normalize();
-    return coefficients;
-}
-
-
 }  // namespace GQCP

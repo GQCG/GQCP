@@ -4,6 +4,7 @@
 
 #include "Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/Hubbard.hpp"
+#include "QCModel/CI/LinearExpansion.hpp"
 
 #include <benchmark/benchmark.h>
 
@@ -28,7 +29,7 @@ static void matvec(benchmark::State& state) {
     const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
     const GQCP::Hubbard hubbard_builder {onv_basis};
     const auto diagonal = hubbard_builder.calculateDiagonal(hubbard_hamiltonian);
-    const auto x = onv_basis.randomExpansion();
+    const auto x = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::Random(onv_basis).coefficients();
 
 
     // Code inside this loop is measured repeatedly

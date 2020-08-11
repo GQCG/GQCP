@@ -4,6 +4,7 @@
 
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
+#include "QCModel/CI/LinearExpansion.hpp"
 
 #include <benchmark/benchmark.h>
 
@@ -28,7 +29,7 @@ static void matvec(benchmark::State& state) {
 
     GQCP::FCI fci {onv_basis};
     const auto diagonal = fci.calculateDiagonal(sq_hamiltonian);
-    const auto x = onv_basis.randomExpansion();
+    const auto x = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::Random(onv_basis).coefficients();
 
     // Code inside this loop is measured repeatedly
     for (auto _ : state) {

@@ -5,6 +5,7 @@
 #include "ONVBasis/SeniorityZeroONVBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
+#include "QCModel/CI/LinearExpansion.hpp"
 
 #include <benchmark/benchmark.h>
 
@@ -28,7 +29,7 @@ static void matvec(benchmark::State& state) {
     GQCP::DOCI doci_builder {onv_basis};  // the DOCI HamiltonianBuilder
 
     const auto diagonal = doci_builder.calculateDiagonal(sq_hamiltonian);
-    const auto x = onv_basis.randomExpansion();
+    const auto x = GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>::Random(onv_basis).coefficients();
 
     // Code inside this loop is measured repeatedly.
     for (auto _ : state) {
