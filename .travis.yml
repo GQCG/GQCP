@@ -5,6 +5,8 @@ sudo: true
 # Specify the project language and the compiler to test to
 language: cpp
 compiler: gcc
+python: 
+  - "3.7"
 
 addons:
   apt:
