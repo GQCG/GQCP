@@ -218,6 +218,44 @@ public:
 
 
     /**
+     *  Quantize the angular momentum operator in this basis.
+     * 
+     *  @param fq_one_op                    the angular momentum operator
+     * 
+     *  @return the second-quantized angular momentum operator
+     */
+    SQOneElectronOperator<complex, 3> quantize(const AngularMomentumOperator& fq_one_op) const {
+
+        // The angular momentum integrals are calculated through our in-house integral routines.
+        auto engine = GQCP::IntegralEngine::InHouse(fq_one_op);
+        const auto one_op_par = GQCP::IntegralCalculator::calculate(engine, this->scalarBasis().shellSet(), this->scalarBasis().shellSet());  // in AO/scalar basis
+
+        SQOneElectronOperator<complex, 3> op {one_op_par};  // 'op' for 'operator'
+        op.transform(this->coefficientMatrix());            // now in the spatial/spin-orbital basis
+        return op;
+    }
+
+
+    /**
+     *  Quantize the linear momentum operator in this basis.
+     * 
+     *  @param fq_one_op                    the linear momentum operator
+     * 
+     *  @return the second-quantized linear momentum operator
+     */
+    SQOneElectronOperator<complex, 3> quantize(const LinearMomentumOperator& fq_one_op) const {
+
+        // The linear momentum integrals are calculated through our in-house integral routines.
+        auto engine = GQCP::IntegralEngine::InHouse(fq_one_op);
+        const auto one_op_par = GQCP::IntegralCalculator::calculate(engine, this->scalarBasis().shellSet(), this->scalarBasis().shellSet());  // in AO/scalar basis
+
+        SQOneElectronOperator<complex, 3> op {one_op_par};  // 'op' for 'operator'
+        op.transform(this->coefficientMatrix());            // now in the spatial/spin-orbital basis
+        return op;
+    }
+
+
+    /**
      *  @return the underlying scalar basis, which is equal for the alpha and beta components
      */
     const ScalarBasis<Shell>& scalarBasis() const { return this->scalar_basis; }

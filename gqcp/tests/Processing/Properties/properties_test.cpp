@@ -249,7 +249,7 @@ BOOST_AUTO_TEST_CASE(current_sandbox) {
     auto angular_momentum_engine = GQCP::IntegralEngine::InHouse(GQCP::Operator::AngularMomentum());  // gauge origin == zero
     const auto L = GQCP::IntegralCalculator::calculate(angular_momentum_engine, scalar_basis.shellSet(), scalar_basis.shellSet());
 
-    // ! TRANSFORM TO CANONICAL ORBITAL BASIS ! //
+    // TODO: ! TRANSFORM TO CANONICAL ORBITAL BASIS ! //
 
     GQCP::Matrix<GQCP::complex, GQCP::Dynamic, 3> F_kappa_B = GQCP::Matrix<GQCP::complex, GQCP::Dynamic, 3>::Zero(dim, 3);
 
@@ -271,10 +271,7 @@ BOOST_AUTO_TEST_CASE(current_sandbox) {
 
 
     // Calculate the response force for the gauge origin perturbation.
-    auto linear_momentum_engine = GQCP::IntegralEngine::InHouse(GQCP::Operator::LinearMomentum());
-    const auto p = GQCP::IntegralCalculator::calculate(linear_momentum_engine, scalar_basis.shellSet(), scalar_basis.shellSet());
-
-    // ! TRANSFORM TO CANONICAL ORBITAL BASIS ! //
+    const auto p = spinor_basis.quantize(GQCP::Operator::LinearMomentum()).allParameters();  // the linear momentum integrals in the canonical RHF basis
 
 
     GQCP::Matrix<GQCP::complex, GQCP::Dynamic, 6> F_kappa_G = GQCP::Matrix<GQCP::complex, GQCP::Dynamic, 6>::Zero(dim, 6);  // don't include the diagonal xx, yy, zz

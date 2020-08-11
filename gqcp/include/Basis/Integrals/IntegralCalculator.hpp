@@ -162,6 +162,20 @@ public:
         return components;
     }
 
+    /**
+     *  Calculate all one-electron integrals over the basis functions inside the given shell set.
+     * 
+     *  @param engine                   the engine that can calculate one-electron integrals over shells (not const because we allow for non-const Engine::calculate() calls)
+     *  @param shell_set                the set of shells that implicitly contains the basis functions over which the integrals should be calculated
+     * 
+     *  @tparam Shell                   the type of shell the integral engine is able to handle
+     *  @tparam N                       the number of components the operator has
+     *  @tparam IntegralScalar          the scalar representation of an integral
+     */
+    template <typename Shell, size_t N, typename IntegralScalar>
+    static auto calculate(BaseOneElectronIntegralEngine<Shell, N, IntegralScalar>& engine, const ShellSet<Shell>& left_shell_set, const ShellSet<Shell>& right_shell_set) -> std::array<QCMatrix<IntegralScalar>, N> {
+        }
+
 
     /*
      *  PUBLIC METHODS - LIBINT2 INTEGRALS
