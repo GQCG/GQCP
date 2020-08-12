@@ -51,6 +51,33 @@ void bindLinearExpansion(py::module& module, const std::string& suffix, const st
                                                 ("LinearExpansion_" + suffix).c_str(),
                                                 description.c_str())
 
+        // CONSTRUCTORS
+
+        .def_static(
+            "Constant",
+            [](const ONVBasis& onv_basis) {
+                return GQCP::LinearExpansion<ONVBasis>::Constant(onv_basis);
+            },
+            py::arg("onv_basis"),
+            "Return a linear expansion with a normalized coefficient vector (i.e. all the coefficients are equal).")
+
+        .def_static(
+            "HartreeFock",
+            [](const ONVBasis& onv_basis) {
+                return GQCP::LinearExpansion<ONVBasis>::HartreeFock(onv_basis);
+            },
+            py::arg("onv_basis"),
+            "Return a linear expansion that represents the Hartree-Fock wave function.")
+
+        .def_static(
+            "Random",
+            [](const ONVBasis& onv_basis) {
+                return GQCP::LinearExpansion<ONVBasis>::Random(onv_basis);
+            },
+            py::arg("onv_basis"),
+            "Return a linear expansion with a random, normalized coefficient vector, with coefficients uniformly distributed in [-1, +1] before any normalization.")
+
+
         // PUBLIC METHODS
 
         .def("coefficients",
@@ -72,6 +99,33 @@ void bindLinearExpansion<GQCP::SeniorityZeroONVBasis>(py::module& module, const 
     py::class_<GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>>(module,
                                                                    ("LinearExpansion_" + suffix).c_str(),
                                                                    description.c_str())
+
+        // CONSTRUCTORS
+
+        .def_static(
+            "Constant",
+            [](const GQCP::SeniorityZeroONVBasis& onv_basis) {
+                return GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>::Constant(onv_basis);
+            },
+            py::arg("onv_basis"),
+            "Return a linear expansion with a normalized coefficient vector (i.e. all the coefficients are equal).")
+
+        .def_static(
+            "HartreeFock",
+            [](const GQCP::SeniorityZeroONVBasis& onv_basis) {
+                return GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>::HartreeFock(onv_basis);
+            },
+            py::arg("onv_basis"),
+            "Return a linear expansion that represents the Hartree-Fock wave function.")
+
+        .def_static(
+            "Random",
+            [](const GQCP::SeniorityZeroONVBasis& onv_basis) {
+                return GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>::Random(onv_basis);
+            },
+            py::arg("onv_basis"),
+            "Return a linear expansion with a random, normalized coefficient vector, with coefficients uniformly distributed in [-1, +1] before any normalization.")
+
 
         // PUBLIC METHODS
 
@@ -105,6 +159,14 @@ void bindLinearExpansion<GQCP::SpinResolvedONVBasis>(py::module& module, const s
         // CONSTRUCTORS
 
         .def_static(
+            "Constant",
+            [](const GQCP::SpinResolvedONVBasis& onv_basis) {
+                return GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::Constant(onv_basis);
+            },
+            py::arg("onv_basis"),
+            "Return a linear expansion with a normalized coefficient vector (i.e. all the coefficients are equal).")
+
+        .def_static(
             "FromONVProjection",
             [](const GQCP::SpinResolvedONV& onv, const GQCP::RSpinorBasis<double, GQCP::GTOShell>& r_spinor_basis, const GQCP::USpinorBasis<double, GQCP::GTOShell>& u_spinor_basis) {
                 return GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::FromONVProjection(onv, r_spinor_basis, u_spinor_basis);
@@ -113,6 +175,22 @@ void bindLinearExpansion<GQCP::SpinResolvedONVBasis>(py::module& module, const s
             py::arg("r_spinor_basis"),
             py::arg("u_spinor_basis"),
             "Create the linear expansion of the given spin-resolved ONV that is expressed in the given USpinorBasis, by projection onto the spin-resolved ONVs expressed with respect to the given RSpinorBasis.")
+
+        .def_static(
+            "HartreeFock",
+            [](const GQCP::SpinResolvedONVBasis& onv_basis) {
+                return GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::HartreeFock(onv_basis);
+            },
+            py::arg("onv_basis"),
+            "Return a linear expansion that represents the Hartree-Fock wave function.")
+
+        .def_static(
+            "Random",
+            [](const GQCP::SpinResolvedONVBasis& onv_basis) {
+                return GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::Random(onv_basis);
+            },
+            py::arg("onv_basis"),
+            "Return a linear expansion with a random, normalized coefficient vector, with coefficients uniformly distributed in [-1, +1] before any normalization.")
 
 
         // PUBLIC METHODS
@@ -148,6 +226,14 @@ void bindLinearExpansion<GQCP::SpinUnresolvedONVBasis>(py::module& module, const
         // CONSTRUCTORS
 
         .def_static(
+            "Constant",
+            [](const GQCP::SpinUnresolvedONVBasis& onv_basis) {
+                return GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>::Constant(onv_basis);
+            },
+            py::arg("onv_basis"),
+            "Return a linear expansion with a normalized coefficient vector (i.e. all the coefficients are equal).")
+
+        .def_static(
             "FromONVProjection",
             [](const GQCP::SpinUnresolvedONV& onv_of, const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis_on, const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis_of) {
                 return GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>::FromONVProjection(onv_of, spinor_basis_on, spinor_basis_of);
@@ -156,6 +242,22 @@ void bindLinearExpansion<GQCP::SpinUnresolvedONVBasis>(py::module& module, const
             py::arg("spinor_basis_on"),
             py::arg("spinor_basis_of"),
             "Create the linear expansion of the given spin-unresolved ONV that is expressed in the given GSpinorBasis, by projection onto the spin-resolved ONVs expressed with respect to another given GSpinorBasis.")
+
+        .def_static(
+            "HartreeFock",
+            [](const GQCP::SpinUnresolvedONVBasis& onv_basis) {
+                return GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>::HartreeFock(onv_basis);
+            },
+            py::arg("onv_basis"),
+            "Return a linear expansion that represents the Hartree-Fock wave function.")
+
+        .def_static(
+            "Random",
+            [](const GQCP::SpinUnresolvedONVBasis& onv_basis) {
+                return GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>::Random(onv_basis);
+            },
+            py::arg("onv_basis"),
+            "Return a linear expansion with a random, normalized coefficient vector, with coefficients uniformly distributed in [-1, +1] before any normalization.")
 
 
         // PUBLIC METHODS

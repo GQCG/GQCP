@@ -119,11 +119,6 @@ public:
     void forEach(const std::function<void(const SpinUnresolvedONV&, const size_t)>& callback) const;
 
     /**
-     *  @return a coefficient vector that describes the expansion coefficients of the Hartree-Fock wave function (i.e. the single Slater determinant with the lowest energy)
-     */
-    VectorX<double> hartreeFockExpansion() const;
-
-    /**
      *  @return the number of electron pairs that this ONV basis is related to
      */
     size_t numberOfElectronPairs() const { return this->N_P; }
@@ -137,11 +132,6 @@ public:
      *  @return a spin-unresolved ONV basis that behaves analogously (with respect to a doubly-occupied situation) as this seniority-zero ONV basis
      */
     SpinUnresolvedONVBasis proxy() const { return SpinUnresolvedONVBasis(this->K, this->N_P); }
-
-    /**
-     *  @return a coefficient vector that describes the expansion coefficients of a random, normalized linear expansion
-     */
-    VectorX<double> randomExpansion() const;
 };
 
 

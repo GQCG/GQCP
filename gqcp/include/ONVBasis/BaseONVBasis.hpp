@@ -173,29 +173,14 @@ public:
     // PUBLIC METHODS
 
     /**
-     *  @return a constant normalized coefficients vector (i.e. all the coefficients are equal)
-     */
-    VectorX<double> constantExpansion() const;
-
-    /**
      *  @return the dimension of this spin-unresolved ONV basis
      */
     size_t dimension() const { return this->dim; }
 
     /**
-     *  @return the coefficient vector for the Hartree-Fock wave function (i.e. the 'first' ONV/Slater determinant)
-     */
-    VectorX<double> hartreeFockExpansion() const;
-
-    /**
      *  @return the number of orbitals that this ONV basis describes
      */
-    size_t numberOfOrbitals() const { return M; }
-
-    /**
-     *  @return a random normalized coefficient vector, with coefficients uniformly distributed in [-1, 1]
-     */
-    VectorX<double> randomExpansion() const;
+    size_t numberOfOrbitals() const { return this->M; }
 };
 
 

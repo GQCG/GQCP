@@ -106,7 +106,7 @@ BOOST_AUTO_TEST_CASE(OO_DOCI_h2_6_31gxx_Davidson) {
     // Do the DOCI orbital optimization: construct the orbital optimizer and let it do its work.
     const GQCP::SeniorityZeroONVBasis onv_basis {K, N_P};
 
-    const auto initial_guess = onv_basis.hartreeFockExpansion();
+    const auto initial_guess = GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>::HartreeFock(onv_basis).coefficients();
     auto environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, initial_guess);
     auto solver = GQCP::EigenproblemSolver::Davidson();
     using EigenproblemSolver = decltype(solver);

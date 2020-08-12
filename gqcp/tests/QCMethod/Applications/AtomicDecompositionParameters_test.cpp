@@ -64,7 +64,7 @@ BOOST_AUTO_TEST_CASE(decomposition_BeH_cation_STO_3G_Nuclear) {
     // Create the appropriate ONV basis for FCI, specify dense solver and corresponding environment and put them together in the QCMethod to do a FCI calculation.
     const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
 
-    const auto initial_guess = onv_basis.hartreeFockExpansion();
+    const auto initial_guess = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::HartreeFock(onv_basis).coefficients();
     auto environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, initial_guess);
     auto solver = GQCP::EigenproblemSolver::Davidson();
     const auto qc_structure = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment);

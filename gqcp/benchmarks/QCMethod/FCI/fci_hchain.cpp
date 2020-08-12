@@ -15,6 +15,7 @@
 #include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF/RHF.hpp"
 #include "QCMethod/HF/RHF/RHFSCFSolver.hpp"
+#include "QCModel/CI/LinearExpansion.hpp"
 
 #include <benchmark/benchmark.h>
 
@@ -103,7 +104,7 @@ static void fci_davidson_molecule(benchmark::State& state) {
     // Do the FCI calculation by setting up a full spin-resolved ONV basis, an eigenvalue problem solver and a corresponding environment.
     const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
 
-    const auto initial_guess = onv_basis.hartreeFockExpansion();
+    const auto initial_guess = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::HartreeFock(onv_basis).coefficients();
     auto environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, initial_guess);
     auto solver = GQCP::EigenproblemSolver::Davidson();
 

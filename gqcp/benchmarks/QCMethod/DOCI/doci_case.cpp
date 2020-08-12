@@ -7,6 +7,7 @@
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/CI.hpp"
 #include "QCMethod/CI/CIEnvironment.hpp"
+#include "QCModel/CI/LinearExpansion.hpp"
 
 #include <benchmark/benchmark.h>
 
@@ -24,7 +25,7 @@ static void test_case(benchmark::State& state) {
 
 
     // Specify an initial guess for the Davidson solver.
-    const auto initial_guess = onv_basis.hartreeFockExpansion();
+    const auto initial_guess = GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>::HartreeFock(onv_basis).coefficients();
     auto environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, initial_guess);
     auto solver = GQCP::EigenproblemSolver::Davidson();
 

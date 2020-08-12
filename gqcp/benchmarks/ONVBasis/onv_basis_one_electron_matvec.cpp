@@ -4,6 +4,7 @@
 
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
+#include "QCModel/CI/LinearExpansion.hpp"
 
 #include <benchmark/benchmark.h>
 
@@ -27,7 +28,7 @@ static void matvec(benchmark::State& state) {
     GQCP::ScalarSQOneElectronOperator<double> sq_one_op {one_op_par};
 
     const auto diagonal = onv_basis.evaluateOperatorDiagonal(sq_one_op);
-    const auto x = onv_basis.randomExpansion();
+    const auto x = GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>::Random(onv_basis).coefficients();
 
     // Code inside this loop is measured repeatedly
     for (auto _ : state) {

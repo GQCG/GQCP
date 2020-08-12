@@ -54,8 +54,8 @@ public:
 
 
 private:
-    ONVBasis onv_basis;
-    VectorX<double> coeffs;  // the expansion coefficients
+    ONVBasis onv_basis;              // the ONV basis with respect to which the coefficients are defined
+    VectorX<double> m_coefficients;  // the expansion coefficients
 
 
 public:
@@ -71,15 +71,15 @@ public:
     /**
      *  Construct a normalized wave function from possibly non-normalized coefficients
      *
-     *  @param onv_basis            the ONV basis in which the wave function 'lives'
-     *  @param coeffs               the expansion coefficients
+     *  @param onv_basis            the ONV basis with respect to which the coefficients are defined
+     *  @param coefficients         the expansion coefficients
      */
-    LinearExpansion(const ONVBasis& onv_basis, const VectorX<double>& coeffs) :
+    LinearExpansion(const ONVBasis& onv_basis, const VectorX<double>& coefficients) :
         onv_basis {onv_basis},
-        coeffs {coeffs} {
+        m_coefficients {coefficients} {
 
-        if (std::abs(this->coeffs.norm() - 1.0) > 1.0e-12) {  // normalize the coefficients if they aren't
-            this->coeffs.normalize();
+        if (std::abs(this->m_coefficients.norm() - 1.0) > 1.0e-12) {  // normalize the coefficients if they aren't
+            this->m_coefficients.normalize();
         }
     }
 
@@ -87,6 +87,22 @@ public:
     /*
      *  NAMED CONSTRUCTORS
      */
+
+    /**
+     *  Create a linear expansion with a normalized coefficient vector (i.e. all the coefficients are equal).
+     * 
+     *  @param onv_basis            the ONV basis with respect to which the coefficients are defined
+     * 
+     *  @return a LinearExpansion
+     */
+    static LinearExpansion<ONVBasis> Constant(const ONVBasis& onv_basis) {
+
+        VectorX<double> coefficients = VectorX<double>::Ones(onv_basis.dimension());
+        coefficients.normalize();
+
+        return LinearExpansion<ONVBasis>(onv_basis, coefficients);
+    }
+
 
     /**
      *  @param GAMESSUS_filename      the name of the GAMESS-US file that contains the spin-resolved selected wave function expansion
@@ -131,7 +147,7 @@ public:
             }
         }
 
-        VectorX<double> coeffs = VectorX<double>::Zero(space_size);
+        VectorX<double> coefficients = VectorX<double>::Zero(space_size);
 
 
         std::getline(input_file_stream, line);
@@ -149,7 +165,7 @@ public:
 
 
         size_t index_count = 0;  // counts the number of configurations added
-        coeffs(index_count) = std::stod(splitted_line[2]);
+        coefficients(index_count) = std::stod(splitted_line[2]);
 
 
         // Parse the trimmed ONV strings into boost::dynamic_bitset to use its functionality.
@@ -191,12 +207,12 @@ public:
 
 
             // Create a double for the third field
-            coeffs(index_count) = std::stod(splitted_line[2]);
+            coefficients(index_count) = std::stod(splitted_line[2]);
             onv_basis.addONV(reversed_alpha, reversed_beta);
 
         }  // while getline
 
-        return LinearExpansion<SpinResolvedSelectedONVBasis>(onv_basis, coeffs);
+        return LinearExpansion<SpinResolvedSelectedONVBasis>(onv_basis, coefficients);
     }
 
 
@@ -242,18 +258,18 @@ public:
 
 
         // Determine the coefficients through calculating the overlap between two ONVs.
-        VectorX<double> coeffs = VectorX<double>::Zero(onv_basis.dimension());
+        VectorX<double> coefficients = VectorX<double>::Zero(onv_basis.dimension());
 
-        onv_basis.forEach([&onv, &C_alpha, &C_beta, &C, &S, &coeffs, &onv_basis](const SpinUnresolvedONV& alpha_onv, const size_t I_alpha, const SpinUnresolvedONV& beta_onv, const size_t I_beta) {
+        onv_basis.forEach([&onv, &C_alpha, &C_beta, &C, &S, &coefficients, &onv_basis](const SpinUnresolvedONV& alpha_onv, const size_t I_alpha, const SpinUnresolvedONV& beta_onv, const size_t I_beta) {
             const SpinResolvedONV onv_on {alpha_onv, beta_onv};  // the spin-resolved ONV that should be projected 'on'
 
             const auto coefficient = onv.calculateProjection(onv_on, C_alpha, C_beta, C, S);
             const auto address = onv_basis.compoundAddress(I_alpha, I_beta);
 
-            coeffs(address) = coefficient;
+            coefficients(address) = coefficient;
         });
 
-        return LinearExpansion<Z>(onv_basis, coeffs);
+        return LinearExpansion<Z>(onv_basis, coefficients);
     }
 
 
@@ -294,12 +310,43 @@ public:
 
 
         // Determine the coefficients through calculating the overlap between two ONVs.
-        VectorX<double> coeffs = VectorX<double>::Zero(onv_basis.dimension());
-        onv_basis.forEach([&onv_of, &C_on, &C_of, &S_on, &coeffs](const SpinUnresolvedONV& onv_on, const size_t I) {
-            coeffs(I) = onv_of.calculateProjection(onv_on, C_of, C_on, S_on);
+        VectorX<double> coefficients = VectorX<double>::Zero(onv_basis.dimension());
+        onv_basis.forEach([&onv_of, &C_on, &C_of, &S_on, &coefficients](const SpinUnresolvedONV& onv_on, const size_t I) {
+            coefficients(I) = onv_of.calculateProjection(onv_on, C_of, C_on, S_on);
         });
 
-        return LinearExpansion<Z>(onv_basis, coeffs);
+        return LinearExpansion<Z>(onv_basis, coefficients);
+    }
+
+
+    /**
+     *  Create a linear expansion that represents the Hartree-Fock wave function.
+     * 
+     *  @param onv_basis            the ONV basis with respect to which the coefficients are defined
+     * 
+     *  @return a LinearExpansion
+     */
+    static LinearExpansion<ONVBasis> HartreeFock(const ONVBasis& onv_basis) {
+
+        VectorX<double> coefficients = VectorX<double>::Unit(onv_basis.dimension(), 0);  // the first ONV in the ONV basis is expected to be the HF determinant
+
+        return LinearExpansion<ONVBasis>(onv_basis, coefficients);
+    }
+
+
+    /**
+     *  Create a linear expansion with a random, normalized coefficient vector, with coefficients uniformly distributed in [-1, +1] before any normalization.
+     * 
+     *  @param onv_basis            the ONV basis with respect to which the coefficients are defined
+     * 
+     *  @return a LinearExpansion
+     */
+    static LinearExpansion<ONVBasis> Random(const ONVBasis& onv_basis) {
+
+        VectorX<double> coefficients = VectorX<double>::Random(onv_basis.dimension());
+        coefficients.normalize();
+
+        return LinearExpansion<ONVBasis>(onv_basis, coefficients);
     }
 
 
@@ -353,7 +400,7 @@ public:
          *  For every orbital, a set of correction coefficients will be calculated (Delta C in Helgaker), to update the current coefficients.
          */
 
-        VectorX<double> current_coefficients = this->coeffs;  // coefficients will be updated after each orbital transform (C^(n-1)) in Helgaker
+        VectorX<double> current_coefficients = this->m_coefficients;  // coefficients will be updated after each orbital transform (C^(n-1)) in Helgaker
         VectorX<double> correction_coefficients = VectorX<double>::Zero(onv_basis.dimension());
 
 
@@ -483,7 +530,7 @@ public:
             current_coefficients += correction_coefficients;
             correction_coefficients.setZero();
         }
-        this->coeffs = current_coefficients;
+        this->m_coefficients = current_coefficients;
     }
 
 
@@ -507,7 +554,7 @@ public:
 
         // Sum over the ONV basis dimension, and only include the term if c_k != 0
         // We might as well replace all coeffients that are 0 by 1, since log(1) = 0 so there is no influence on the final entropy value
-        Eigen::ArrayXd coefficients_replaced = this->coeffs.unaryExpr([](double c) { return c < 1.0e-18 ? 1 : c; });  // replace 0 by 1
+        Eigen::ArrayXd coefficients_replaced = this->m_coefficients.unaryExpr([](double c) { return c < 1.0e-18 ? 1 : c; });  // replace 0 by 1
 
         Eigen::ArrayXd coefficients_squared = coefficients_replaced.square();
         Eigen::ArrayXd log_coefficients_squared = coefficients_squared.log();  // natural logarithm (ln)
@@ -519,7 +566,7 @@ public:
     /**
      *  @return the expansion coefficients of this linear expansion wave function model
      */
-    const VectorX<double>& coefficients() const { return this->coeffs; }
+    const VectorX<double>& coefficients() const { return this->m_coefficients; }
 
 
     /**
@@ -533,11 +580,11 @@ public:
 
         // Iterate over all ONVs in this ONV basis, and look up the corresponding coefficient.
         const auto& onv_basis = this->onv_basis;
-        const auto& coeffs = this->coeffs;
-        onv_basis.forEach([&onv_basis, &callback, &coeffs](const SpinUnresolvedONV& onv_alpha, const size_t I_alpha, const SpinUnresolvedONV& onv_beta, const size_t I_beta) {
+        const auto& coefficients = this->m_coefficients;
+        onv_basis.forEach([&onv_basis, &callback, &coefficients](const SpinUnresolvedONV& onv_alpha, const size_t I_alpha, const SpinUnresolvedONV& onv_beta, const size_t I_beta) {
             const SpinResolvedONV onv {onv_alpha, onv_beta};
             const auto address = onv_basis.compoundAddress(I_alpha, I_beta);
-            const auto coefficient = coeffs(address);
+            const auto coefficient = coefficients(address);
 
             callback(coefficient, onv);
         });
