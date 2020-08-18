@@ -2,6 +2,7 @@ name: gqcp_dev
 channels:
   - intel
   - gqcg
+  - anaconda
   - conda-forge
   - defaults
 dependencies:
@@ -18,4 +19,4 @@ dependencies:
   - mkl-include=2019.0 
   - mkl-static=2019.0 
   - intel-openmp=2019.0
-  
+  - nodejs
