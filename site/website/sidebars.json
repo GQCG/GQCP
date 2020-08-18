@@ -4,12 +4,17 @@
             "documentation"
         ],
         "User documentation": [
+            "user_documentation/user_getting_started",
             "user_documentation/user_introduction",
             "user_documentation/user_molecules",
             "user_documentation/user_basis"
         ],
         "Developer documentation": [
+            "developer_documentation/developer_getting_started",
             "developer_documentation/developer_introduction"
+        ],
+        "Troubleshooting": [
+            "troubleshooting/troubleshooting"
         ]
     },
     "docs-other": {
