@@ -30,8 +30,8 @@
     },
     "categories": {
       "Introduction": "Introduction",
-      "C++": "C++",
       "Python": "Python",
+      "C++": "C++",
       "First Category": "First Category"
     }
   },

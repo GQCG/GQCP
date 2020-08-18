@@ -3,11 +3,11 @@
         "Introduction": [
             "documentation"
         ],
-        "C++": [
-            "cpp_documentation"
-        ],
         "Python": [
             "python_documentation"
+        ],
+        "C++": [
+            "cpp_documentation"
         ]
     },
     "docs-other": {
