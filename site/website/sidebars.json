@@ -1,0 +1,21 @@
+{
+    "docs": {
+        "Introduction": [
+            "documentation"
+        ],
+        "User documentation": [
+            "user_documentation/user_introduction",
+            "user_documentation/user_molecules",
+            "user_documentation/user_basis"
+        ],
+        "Developer documentation": [
+            "developer_documentation/developer_introduction"
+        ]
+    },
+    "docs-other": {
+        "First Category": [
+            "doc4",
+            "doc5"
+        ]
+    }
+}
