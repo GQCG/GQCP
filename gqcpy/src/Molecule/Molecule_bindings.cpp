@@ -89,9 +89,9 @@ void bindMolecule(py::module& module) {
         // PUBLIC METHODS
 
         .def("__repr__",
-             [](const GQCP::Molecule& m) {
+             [](const GQCP::Molecule& molecule) {
                  std::ostringstream ss;
-                 ss << m;
+                 ss << molecule;
                  return ss.str();
              })
 
