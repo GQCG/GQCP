@@ -38,6 +38,7 @@ One of the most important ingredients for any quantum chemical method are its on
 
 Below, we can find examples how the overlap, kinetic energy, potential energy and interelectronic repulsion energy operators can be expressed in the recently initialized `spinor_basis`. The process of expressing these first-quantized one- and two-electron integrals in the spinor basis is what we call _quantizing_.
 
+<!--DOCUSAURUS_CODE_TABS-->
 
 <!--Python-->
 ```python
@@ -59,9 +60,9 @@ const auto g = spinor_basis.quantize(GQCP::Operator::Coulomb());
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 
-
-
 The instances `S_op`, `T_op`, `V_op` and `g_op` represent the second-quantized representations of the overlap, kinetic energy, nuclear attraction and interelectronic repulsion operators and they encapsulate the corresponding matrix representations of the integrals. We can access the raw matrix representations using the `.parameters()` method.
+
+<!--DOCUSAURUS_CODE_TABS-->
 
 <!--Python-->
 ```python
