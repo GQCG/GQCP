@@ -20,6 +20,10 @@
       },
       "python_documentation": {
         "title": "Documentation of the Python bindings"
+      },
+      "use_cases": {
+        "title": "Common use cases",
+        "sidebar_label": "Common use cases"
       }
     },
     "links": {
@@ -32,6 +36,7 @@
       "Introduction": "Introduction",
       "Python": "Python",
       "C++": "C++",
+      "Extra": "Extra",
       "First Category": "First Category"
     }
   },
