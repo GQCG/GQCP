@@ -3,35 +3,36 @@
   "localized-strings": {
     "next": "Next",
     "previous": "Previous",
-    "tagline": "A website for testing",
+    "tagline": "The Ghent Quantum Chemistry Package - UNDER CONSTRUCTION",
     "docs": {
-      "doc1": {
-        "title": "Latin-ish",
-        "sidebar_label": "Example Page"
+      "cpp_documentation": {
+        "title": "C++ documentation"
       },
-      "doc2": {
-        "title": "document number 2"
-      },
-      "doc3": {
-        "title": "This is document number 3"
+      "documentation": {
+        "title": "Documentation overview",
+        "sidebar_label": "Overview"
       },
       "doc4": {
         "title": "Other Document"
       },
       "doc5": {
         "title": "Fifth Document"
+      },
+      "python_documentation": {
+        "title": "Documentation of the Python bindings"
       }
     },
     "links": {
-      "Docs": "Docs",
+      "Documentation": "Documentation",
       "API": "API",
       "Help": "Help",
       "Blog": "Blog"
     },
     "categories": {
-      "Docusaurus": "Docusaurus",
-      "First Category": "First Category",
-      "Second Category": "Second Category"
+      "Introduction": "Introduction",
+      "C++": "C++",
+      "Python": "Python",
+      "First Category": "First Category"
     }
   },
   "pages-strings": {
