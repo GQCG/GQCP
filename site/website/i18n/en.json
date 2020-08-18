@@ -5,8 +5,9 @@
     "previous": "Previous",
     "tagline": "The Ghent Quantum Chemistry Package - UNDER CONSTRUCTION",
     "docs": {
-      "cpp_documentation": {
-        "title": "C++ documentation"
+      "developer_documentation/developer_introduction": {
+        "title": "Introduction for developers",
+        "sidebar_label": "Introduction"
       },
       "documentation": {
         "title": "Documentation overview",
@@ -18,12 +19,21 @@
       "doc5": {
         "title": "Fifth Document"
       },
-      "python_documentation": {
-        "title": "Documentation of the Python bindings"
-      },
       "use_cases": {
         "title": "Common use cases",
         "sidebar_label": "Common use cases"
+      },
+      "user_documentation/user_basis": {
+        "title": "Orbital bases",
+        "sidebar_label": "Orbital bases"
+      },
+      "user_documentation/user_introduction": {
+        "title": "Introduction for users",
+        "sidebar_label": "Introduction"
+      },
+      "user_documentation/user_molecules": {
+        "title": "Molecules",
+        "sidebar_label": "Molecules"
       }
     },
     "links": {
@@ -34,9 +44,8 @@
     },
     "categories": {
       "Introduction": "Introduction",
-      "Python": "Python",
-      "C++": "C++",
-      "Extra": "Extra",
+      "User documentation": "User documentation",
+      "Developer documentation": "Developer documentation",
       "First Category": "First Category"
     }
   },

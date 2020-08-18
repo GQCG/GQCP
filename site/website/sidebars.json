@@ -3,14 +3,13 @@
         "Introduction": [
             "documentation"
         ],
-        "Python": [
-            "python_documentation"
+        "User documentation": [
+            "user_documentation/user_introduction",
+            "user_documentation/user_molecules",
+            "user_documentation/user_basis"
         ],
-        "C++": [
-            "cpp_documentation"
-        ],
-        "Extra": [
-            "use_cases"
+        "Developer documentation": [
+            "developer_documentation/developer_introduction"
         ]
     },
     "docs-other": {

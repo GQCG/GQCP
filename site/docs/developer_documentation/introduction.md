@@ -1,13 +1,24 @@
 ---
-id: cpp_documentation
-title: C++ documentation
+id: developer_introduction
+title: Introduction for developers
+sidebar_label: Introduction
 ---
 
+Welcome to the developer documentation! Here, we'll guide you through the design of the C++ library and the Python bindings.
 
-## Introduction
+GQCP has two main components: the C++ library `gqcp` and its associated Python bindings `gqcpy`. This is reflected in the folder structure of the GitHub repository, where we have, among other directories, the `gqcp` and `gqcpy` directories. As is common, the C++ library has `include`, `src` and `tests` folder, while the folder that contains the Python bindings only has a `src` folder and a `tests` folder.
 
-GQCP naturally uses an object-oriented programming style in order to convey quantum chemical concepts into source code.
-Since second quantization is a modern approach for wave function-based quantum chemistry, you will find many of the interfaces intuitive if you are familiar with it.
+Inside each of these folders, we have added the following structure:
+- __Basis__: for everything related to spinors, spinor basis and transformations
+- __Mathematical__: for general mathematical utilities, not directly related to quantum chemistry
+- __Molecule__: for everything related to molecules and nuclei
+- __ONVBasis__: for everything related to ONVs and bases for Fock (sub)spaces
+- __Operator__: for everything related to first- and second-quantized operators
+- __Processing__: for collecting everything that happens _after_ the determination of the optimal values of the electronic structure model's parameters
+- __QCMethod__: for the determination of the optimal parameters of an electronic structure model
+- __Utilities__: for collecting general utilities that do not belong elsewhere
+
+
 
 
 ## General structure of the C++ library
