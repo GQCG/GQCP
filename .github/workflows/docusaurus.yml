@@ -36,6 +36,7 @@ jobs:
       run: |
         cd site/website
         npx docusaurus-init
+        yarn
 
     # Build the site
     - name: Build site using Docusaurus
