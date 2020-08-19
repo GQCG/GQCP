@@ -34,7 +34,9 @@ jobs:
 
     # Run the Docusaurus installation script.
     - name: Docusaurus installation
-      run: npx docusaurus-init
+      run: |
+        npx docusaurus-init
+        yarn
 
     # Build the site
     - name: Build site using Docusaurus
