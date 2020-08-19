@@ -33,13 +33,13 @@ jobs:
 
     # Run the Docusaurus installation script.
     - name: Docusaurus installation
-      run: npx docusaurus-init
+      run: |
+        cd site/website
+        npx docusaurus-init
 
     # Build the site
     - name: Build site using Docusaurus
-      run: |
-        cd site/website
-        yarn run build
+      run: yarn run build
 
     # Deploy the website to GitHub pages.
     - name: Deploy
