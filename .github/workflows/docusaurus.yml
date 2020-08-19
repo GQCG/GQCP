@@ -1,0 +1,14 @@
+name: docusaurus_build
+# This workflow is triggered on a pull request. This is a single event so no brackets are needed.
+on: pull_request
+
+jobs:
+  build:
+    # Configures a build matrix containing multiple operating systems. For each configuration, a copy of the job runs and reports a status.
+    runs-on: ${{ matrix.os }}
+    # To specify the array of operating systems, we must list them under 'strategy'.
+    strategy:
+      matrix:
+        # This job runs on the latest version of Linux.
+        os: [ubuntu-latest]
+    steps:
