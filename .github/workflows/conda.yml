@@ -1,4 +1,4 @@
-name: GQCP_conda
+name: Deploy 'gqcg' conda package
 
 on:
   push:
