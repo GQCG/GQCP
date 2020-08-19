@@ -5,6 +5,10 @@
     "previous": "Previous",
     "tagline": "The Ghent Quantum Chemistry Package - UNDER CONSTRUCTION",
     "docs": {
+      "developer_documentation/developer_getting_started": {
+        "title": "Getting started",
+        "sidebar_label": "Getting started"
+      },
       "developer_documentation/developer_introduction": {
         "title": "Introduction for developers",
         "sidebar_label": "Introduction"
@@ -19,13 +23,13 @@
       "doc5": {
         "title": "Fifth Document"
       },
-      "use_cases": {
-        "title": "Common use cases",
-        "sidebar_label": "Common use cases"
+      "troubleshooting/troubleshooting": {
+        "title": "Troubleshooting guide",
+        "sidebar_label": "Troubleshooting"
       },
-      "user_documentation/user_basis": {
-        "title": "Orbital bases",
-        "sidebar_label": "Orbital bases"
+      "user_documentation/user_getting_started": {
+        "title": "Getting started",
+        "sidebar_label": "Getting started"
       },
       "user_documentation/user_introduction": {
         "title": "Introduction for users",
@@ -34,6 +38,14 @@
       "user_documentation/user_molecules": {
         "title": "Molecules",
         "sidebar_label": "Molecules"
+      },
+      "user_documentation/user_orbital_bases": {
+        "title": "Orbital bases",
+        "sidebar_label": "Orbital bases"
+      },
+      "user_documentation/use_cases": {
+        "title": "Common use cases",
+        "sidebar_label": "Common use cases"
       }
     },
     "links": {
@@ -46,6 +58,7 @@
       "Introduction": "Introduction",
       "User documentation": "User documentation",
       "Developer documentation": "Developer documentation",
+      "Troubleshooting": "Troubleshooting",
       "First Category": "First Category"
     }
   },

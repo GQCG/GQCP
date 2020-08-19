@@ -96,7 +96,7 @@ class Index extends React.Component {
             <div
                 className="productShowcaseSection paddingBottom"
                 style={{ textAlign: 'left' }}>
-                <h2>Sustainable research & reproducible development</h2>
+                <h2>Sustainable development & reproducible research</h2>
                 <MarkdownBlock>
                     At GQCG, our activities are centered around electronic structure for molecules. We're trying to help create a community of quantum chemists that have a common mindset, suitable for (academic) research in the 21st century. We're focused on sustainable and reproducible research, which is why our software developments are all open-source.
 
