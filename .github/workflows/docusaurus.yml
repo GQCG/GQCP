@@ -37,4 +37,6 @@ jobs:
 
     # Deploy the website to GitHub pages.
     - name: Deploy website
-      run: GIT_USER=GQCG CURRENT_BRANCH=feature/build_docusaurus USE_SSH=true yarn run publish-gh-pages
+      run: |
+        cd site/website
+        GIT_USER=GQCG CURRENT_BRANCH=feature/build_docusaurus USE_SSH=true yarn run publish-gh-pages
