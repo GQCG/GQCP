@@ -33,10 +33,18 @@ jobs:
 
     # Run the Docusaurus installation script.
     - name: Docusaurus installation
-      run: npx docusaurus-init
+      run: |
+        yarn global add docusaurus-init
 
-    # Deploy the website to GitHub pages.
-    - name: Deploy website
+    # Build the site
+    - name: Build site using Docusaurus
       run: |
         cd site/website
-        GIT_USER=GQCG CURRENT_BRANCH=feature/build_docusaurus USE_SSH=true yarn run publish-gh-pages
+        yarn run build
+
+    # Deploy the website to GitHub pages.
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./build/GQCP
