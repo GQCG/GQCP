@@ -35,6 +35,7 @@ jobs:
     - name: Docusaurus installation
       run: |
         yarn global add docusaurus-init
+        docusaurus-init
 
     # Build the site
     - name: Build site using Docusaurus
