@@ -40,7 +40,9 @@ jobs:
 
     # Build the site
     - name: Build site using Docusaurus
-      run: yarn run build
+      run: |
+        cd site/website
+        yarn run build
 
     # Deploy the website to GitHub pages.
     - name: Deploy
