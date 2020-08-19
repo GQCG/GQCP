@@ -1,4 +1,5 @@
-name: docusaurus_build
+name: Deploy website
+
 # This workflow is triggered on a pull request. This is a single event so no brackets are needed.
 on: pull_request
 
