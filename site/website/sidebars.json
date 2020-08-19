@@ -12,7 +12,6 @@
         ],
         "Developer documentation": [
             "developer_documentation/developer_getting_started",
-            "developer_documentation/developer_vscode",
             "developer_documentation/developer_introduction"
         ],
         "Troubleshooting": [

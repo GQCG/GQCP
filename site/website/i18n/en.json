@@ -13,10 +13,6 @@
         "title": "Introduction for developers",
         "sidebar_label": "Introduction"
       },
-      "developer_documentation/developer_vscode": {
-        "title": "VScode setup",
-        "sidebar_label": "VScode setup"
-      },
       "documentation": {
         "title": "Documentation overview",
         "sidebar_label": "Overview"
