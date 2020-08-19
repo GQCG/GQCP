@@ -35,12 +35,6 @@ jobs:
     - name: Docusaurus installation
       run: npx docusaurus-init
 
-    # Finally, build the website
-    - name: Build website
-      run: | 
-        cd site/website/
-        yarn start
-
-    # Deploy the website to GitHub pages
+    # Deploy the website to GitHub pages.
     - name: Deploy website
       run: GIT_USER=GQCG CURRENT_BRANCH=feature/build_docusaurus USE_SSH=true yarn run publish-gh-pages
