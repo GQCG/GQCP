@@ -1,4 +1,4 @@
-name: GQCP_build
+name: Run GQCP tests and benchmarks
 
 on: pull_request
 
