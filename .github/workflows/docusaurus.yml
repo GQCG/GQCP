@@ -4,6 +4,7 @@ name: Deploy website
 on: pull_request
   paths: 
   - site/docs/
+  - site/website/
 
 jobs:
   build:
