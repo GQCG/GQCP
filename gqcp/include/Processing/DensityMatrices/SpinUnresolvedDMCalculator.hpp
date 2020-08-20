@@ -20,7 +20,8 @@
 
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 #include "Processing/DensityMatrices/BaseSpinUnresolvedDMCalculator.hpp"
-#include "Processing/DensityMatrices/RDMs.hpp"
+#include "Processing/DensityMatrices/SpinResolvedOneDM.hpp"
+#include "Processing/DensityMatrices/SpinResolvedTwoDM.hpp"
 
 
 namespace GQCP {

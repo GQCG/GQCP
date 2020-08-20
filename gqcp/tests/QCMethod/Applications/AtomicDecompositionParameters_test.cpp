@@ -22,7 +22,7 @@
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
-#include "Processing/RDM/RDMCalculator.hpp"
+#include "Processing/DensityMatrices/GeneralDMCalculator.hpp"
 #include "QCMethod/Applications/AtomicDecompositionParameters.hpp"
 #include "QCMethod/CI/CI.hpp"
 #include "QCMethod/CI/CIEnvironment.hpp"
@@ -74,7 +74,7 @@ BOOST_AUTO_TEST_CASE(decomposition_BeH_cation_STO_3G_Nuclear) {
 
 
     // Calculate the RDMs (in the AO basis in which the molecular decomposition parameters are defined) in order to calculate expectation values.
-    GQCP::RDMCalculator rdm_calculator {onv_basis};
+    GQCP::GeneralDMCalculator rdm_calculator {onv_basis};
     rdm_calculator.setCoefficients(linear_expansion.coefficients());
 
     auto D = rdm_calculator.calculate1RDMs().one_rdm;

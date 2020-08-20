@@ -19,7 +19,6 @@
 
 
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
-#include "Processing/RDM/OneRDM.hpp"
 #include "QCModel/CI/LinearExpansion.hpp"
 
 

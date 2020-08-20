@@ -26,7 +26,7 @@
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
-#include "Processing/RDM/OneRDM.hpp"
+#include "Processing/DensityMatrices/OneDM.hpp"
 
 
 namespace GQCP {
@@ -88,7 +88,7 @@ public:
      *
      *  @return the RHF electronic energy
      */
-    static double calculateElectronicEnergy(const OneRDM<Scalar>& D, const ScalarSQOneElectronOperator<Scalar>& H_core, const ScalarSQOneElectronOperator<Scalar>& F) {
+    static double calculateElectronicEnergy(const OneDM<Scalar>& D, const ScalarSQOneElectronOperator<Scalar>& H_core, const ScalarSQOneElectronOperator<Scalar>& F) {
 
         // First, calculate the sum of H_core and F (this saves a contraction)
         ScalarSQOneElectronOperator<Scalar> Z = H_core + F;
@@ -117,7 +117,7 @@ public:
      * 
      *  @return the RHF error matrix
      */
-    static SquareMatrix<Scalar> calculateError(const QCMatrix<Scalar>& F, const OneRDM<Scalar>& D, const SquareMatrix<Scalar>& S) {
+    static SquareMatrix<Scalar> calculateError(const QCMatrix<Scalar>& F, const OneDM<Scalar>& D, const SquareMatrix<Scalar>& S) {
         return F * D * S - S * D * F;
     }
 
@@ -197,7 +197,7 @@ public:
      *
      *  @return the RHF 1-RDM expressed in an orthonormal spinor basis
      */
-    static OneRDM<Scalar> calculateOrthonormalBasis1RDM(const size_t K, const size_t N) {
+    static OneDM<Scalar> calculateOrthonormalBasis1RDM(const size_t K, const size_t N) {
 
         if (N % 2 != 0) {
             throw std::invalid_argument("QCMethod::RHF::calculateOrthonormalBasis1RDM(const size_t, const size_t): The number of given electrons cannot be odd for RHF.");
@@ -210,7 +210,7 @@ public:
         //    0  0  0  0  0
         //    0  0  0  0  0
 
-        OneRDM<double> D_MO = OneRDM<double>::Zero(K, K);
+        OneDM<double> D_MO = OneDM<double>::Zero(K, K);
         D_MO.topLeftCorner(N / 2, N / 2) = 2 * SquareMatrix<double>::Identity(N / 2, N / 2);
 
         return D_MO;
@@ -223,7 +223,7 @@ public:
      *
      *  @return the RHF 1-RDM expressed in the underlying scalar basis
      */
-    static OneRDM<Scalar> calculateScalarBasis1RDM(const TransformationMatrix<double>& C, const size_t N) {
+    static OneDM<Scalar> calculateScalarBasis1RDM(const TransformationMatrix<double>& C, const size_t N) {
 
         const size_t K = C.dimension();
         const auto D_orthonormal = RHF<Scalar>::calculateOrthonormalBasis1RDM(K, N);
@@ -241,7 +241,7 @@ public:
      *
      *  @return the RHF Fock matrix expressed in the scalar basis
      */
-    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(const OneRDM<Scalar>& D, const SQHamiltonian<Scalar>& sq_hamiltonian) {
+    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(const OneDM<Scalar>& D, const SQHamiltonian<Scalar>& sq_hamiltonian) {
         // To perform the contraction, we will first have to convert the MatrixX<double> D to an Eigen::Tensor<const double, 2> D_tensor, as contractions are only implemented for Tensors
         Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> D_tensor {D.data(), D.rows(), D.cols()};
 
@@ -315,7 +315,7 @@ public:
     /**
      *  @return the 1-RDM expressed in an orthonormal spinor basis related to these optimal RHF parameters
      */
-    OneRDM<Scalar> calculateOrthonormalBasis1RDM() const {
+    OneDM<Scalar> calculateOrthonormalBasis1RDM() const {
 
         const auto K = this->numberOfSpatialOrbitals();
         const auto N = 2 * this->numberOfElectronPairs();
@@ -326,7 +326,7 @@ public:
     /**
      *  @return the RHF 1-RDM in the scalar/AO basis related to these optimal RHF parameters
      */
-    OneRDM<Scalar> calculateScalarBasis1RDM() const {
+    OneDM<Scalar> calculateScalarBasis1RDM() const {
 
         const auto N = 2 * this->numberOfElectronPairs();
         return RHF<Scalar>::calculateScalarBasis1RDM(this->coefficientMatrix(), N);

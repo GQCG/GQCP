@@ -43,7 +43,7 @@ BOOST_AUTO_TEST_CASE(RHF_1RDM_matrix) {
 
     const size_t K = 5;  // the number of spatial orbitals
     const size_t N = 6;  // the number of electrons
-    GQCP::OneRDM<double> D_ref {K};
+    GQCP::OneDM<double> D_ref {K};
     // clang-format off
     D_ref << 2, 0, 0, 0, 0,
              0, 2, 0, 0, 0,

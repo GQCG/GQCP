@@ -19,7 +19,8 @@
 
 
 #include "Processing/DensityMatrices/BaseSpinResolvedDMCalculator.hpp"
-#include "Processing/DensityMatrices/RDMs.hpp"
+#include "Processing/DensityMatrices/SpinResolvedOneDM.hpp"
+#include "Processing/DensityMatrices/SpinResolvedTwoDM.hpp"
 
 
 namespace GQCP {

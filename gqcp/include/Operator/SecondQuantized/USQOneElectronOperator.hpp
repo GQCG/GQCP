@@ -23,8 +23,8 @@
 #include "Basis/TransformationMatrix.hpp"
 #include "Mathematical/Functions/ScalarFunction.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
-#include "Processing/RDM/OneRDM.hpp"
-#include "Processing/RDM/TwoRDM.hpp"
+#include "Processing/DensityMatrices/OneDM.hpp"
+#include "Processing/DensityMatrices/TwoDM.hpp"
 #include "Utilities/type_traits.hpp"
 
 #include <array>
@@ -173,10 +173,10 @@ public:
      *
      *  @return the expectation values of all components of the one-electron operator
      */
-    Vector<Scalar, Components> calculateExpectationValue(const OneRDM<Scalar>& D_a, const OneRDM<Scalar>& D_b) const {
+    Vector<Scalar, Components> calculateExpectationValue(const OneDM<Scalar>& D_a, const OneDM<Scalar>& D_b) const {
 
         if (this->fs_a[0].dimension() != D_a.dimension() || this->fs_b[0].dimension() != D_b.dimension()) {
-            throw std::invalid_argument("USQOneElectronOperator::calculateExpectationValue(const OneRDM<Scalar>, OneRDM<Scalar>): The given 1-RDM is not compatible with the one-electron operator.");
+            throw std::invalid_argument("USQOneElectronOperator::calculateExpectationValue(const OneDM<Scalar>&, const OneDM<Scalar>&): The given 1-RDM is not compatible with the one-electron operator.");
         }
 
         std::array<Scalar, Components> expectation_values {};  // zero initialization

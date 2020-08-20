@@ -29,8 +29,8 @@ namespace GQCP {
  */
 class QCMethodNewtonOrbitalOptimizer: public NewtonOrbitalOptimizer {
 protected:
-    OneRDM<double> D;  // spin-summed 1-RDM
-    TwoRDM<double> d;  // spin-summed 2-RDM
+    OneDM<double> D;  // spin-summed 1-RDM
+    TwoDM<double> d;  // spin-summed 2-RDM
 
 
 public:
@@ -51,12 +51,12 @@ public:
     /**
      *  @return the current 1-DM
      */
-    virtual OneRDM<double> calculate1RDM() const = 0;
+    virtual OneDM<double> calculate1RDM() const = 0;
 
     /**
      *  @return the current 2-DM
      */
-    virtual TwoRDM<double> calculate2RDM() const = 0;
+    virtual TwoDM<double> calculate2RDM() const = 0;
 
     /**
      *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the 1- and 2-DMs
@@ -91,12 +91,12 @@ public:
     /**
      *  @return the 1-RDM calculated by this orbital optimizer
      */
-    const OneRDM<double>& oneRDM() const { return this->D; }
+    const OneDM<double>& oneRDM() const { return this->D; }
 
     /**
      *  @return the 2-RDM calculated by this orbital optimizer
      */
-    const TwoRDM<double>& twoRDM() const { return this->d; }
+    const TwoDM<double>& twoRDM() const { return this->d; }
 };
 
 

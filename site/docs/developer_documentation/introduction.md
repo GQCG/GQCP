@@ -109,7 +109,7 @@ IterativeAlgorithm<Environment> Plain(const double threshold = 1.0e-08, const si
 
     // Create a convergence criterion on the norm of subsequent density matrices
     const auto density_matrix_extractor = [] (const RHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices; };
-    const ConsecutiveIteratesNormConvergence<OneRDM<Scalar>, RHFSCFEnvironment<Scalar>> convergence_criterion (threshold, density_matrix_extractor);
+    const ConsecutiveIteratesNormConvergence<OneDM<Scalar>, RHFSCFEnvironment<Scalar>> convergence_criterion (threshold, density_matrix_extractor);
 
     return IterativeAlgorithm<RHFSCFEnvironment<Scalar>>(plain_rhf_scf_cycle, convergence_criterion, maximum_number_of_iterations);
 }

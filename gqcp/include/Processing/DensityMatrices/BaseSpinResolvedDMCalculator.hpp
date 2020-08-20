@@ -20,7 +20,8 @@
 
 #include "ONVBasis/BaseONVBasis.hpp"
 #include "Processing/DensityMatrices/OneDM.hpp"
-#include "Processing/DensityMatrices/RDMs.hpp"
+#include "Processing/DensityMatrices/SpinResolvedOneDM.hpp"
+#include "Processing/DensityMatrices/SpinResolvedTwoDM.hpp"
 #include "Processing/DensityMatrices/TwoDM.hpp"
 
 

@@ -69,7 +69,7 @@ public:
             .add(UHFElectronicEnergyCalculation<Scalar>());
 
         // Create a compound convergence criterion on the norm of subsequent alpha- and beta-density matrices
-        using SingleConvergenceType = ConsecutiveIteratesNormConvergence<OneRDM<Scalar>, UHFSCFEnvironment<Scalar>>;
+        using SingleConvergenceType = ConsecutiveIteratesNormConvergence<OneDM<Scalar>, UHFSCFEnvironment<Scalar>>;
 
         const auto density_matrix_alpha_extractor = [](const UHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices_alpha; };
         const SingleConvergenceType convergence_criterion_alpha {threshold, density_matrix_alpha_extractor, "the UHF alpha-density matrix in AO basis"};
@@ -102,7 +102,7 @@ public:
             .add(UHFElectronicEnergyCalculation<Scalar>());
 
         // Create a compound convergence criterion on the norm of subsequent alpha- and beta-density matrices
-        using SingleConvergenceType = ConsecutiveIteratesNormConvergence<OneRDM<Scalar>, UHFSCFEnvironment<Scalar>>;
+        using SingleConvergenceType = ConsecutiveIteratesNormConvergence<OneDM<Scalar>, UHFSCFEnvironment<Scalar>>;
 
         const auto density_matrix_alpha_extractor = [](const UHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices_alpha; };
         const SingleConvergenceType convergence_criterion_alpha {threshold, density_matrix_alpha_extractor, "the UHF alpha-density matrix in AO basis"};

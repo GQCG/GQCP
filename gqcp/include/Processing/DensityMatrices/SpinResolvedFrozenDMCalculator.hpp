@@ -20,7 +20,8 @@
 
 #include "ONVBasis/SpinResolvedFrozenONVBasis.hpp"
 #include "Processing/DensityMatrices/BaseSpinResolvedFrozenDMCalculator.hpp"
-#include "Processing/DensityMatrices/RDMs.hpp"
+#include "Processing/DensityMatrices/SpinResolvedOneDM.hpp"
+#include "Processing/DensityMatrices/SpinResolvedTwoDM.hpp"
 
 
 namespace GQCP {

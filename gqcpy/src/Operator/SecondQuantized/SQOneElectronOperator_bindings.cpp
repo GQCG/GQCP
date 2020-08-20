@@ -56,7 +56,7 @@ void bindSQOneElectronOperator(py::module& module, const std::string& suffix) {
         .def(
             "calculateExpectationValue",
             [](const GQCP::SQOneElectronOperator<Scalar, 1>& op, const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>& D) {  // use an itermediary Eigen matrix for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Matrix
-                return op.calculateExpectationValue(GQCP::OneRDM<Scalar> {D});
+                return op.calculateExpectationValue(GQCP::OneDM<Scalar> {D});
             },
             "Return the expectation value of the scalar one-electron operator given a 1-DM.")
 
@@ -103,7 +103,7 @@ void bindSQOneElectronOperator(py::module& module, const std::string& suffix) {
         .def(
             "calculateExpectationValue",
             [](const GQCP::SQOneElectronOperator<Scalar, 3>& op, const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>& D) {  // use an itermediary Eigen matrix for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Matrix
-                return op.calculateExpectationValue(GQCP::OneRDM<Scalar> {D});
+                return op.calculateExpectationValue(GQCP::OneDM<Scalar> {D});
             },
             "Return the expectation value of the vector one-electron operator given a 1-DM.")
 

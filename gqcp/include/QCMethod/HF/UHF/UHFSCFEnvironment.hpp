@@ -21,7 +21,7 @@
 #include "Basis/TransformationMatrix.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "Processing/RDM/OneRDM.hpp"
+#include "Processing/DensityMatrices/OneDM.hpp"
 #include "QCModel/HF/RHF.hpp"
 
 #include <Eigen/Dense>
@@ -59,8 +59,8 @@ public:
     std::deque<TransformationMatrix<Scalar>> coefficient_matrices_alpha;
     std::deque<TransformationMatrix<Scalar>> coefficient_matrices_beta;
 
-    std::deque<OneRDM<Scalar>> density_matrices_alpha;  // expressed in the scalar (AO) basis
-    std::deque<OneRDM<Scalar>> density_matrices_beta;   // expressed in the scalar (AO) basis
+    std::deque<OneDM<Scalar>> density_matrices_alpha;  // expressed in the scalar (AO) basis
+    std::deque<OneDM<Scalar>> density_matrices_beta;   // expressed in the scalar (AO) basis
 
     std::deque<QCMatrix<Scalar>> fock_matrices_alpha;  // expressed in the scalar (AO) basis
     std::deque<QCMatrix<Scalar>> fock_matrices_beta;   // expressed in the scalar (AO) basis

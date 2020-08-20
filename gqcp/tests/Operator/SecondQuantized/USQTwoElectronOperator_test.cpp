@@ -75,8 +75,8 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_throw) {
 
     const GQCP::ScalarUSQTwoElectronOperator<double> g {2};
 
-    const GQCP::TwoRDM<double> D_valid {2};
-    const GQCP::TwoRDM<double> D_invalid {3};
+    const GQCP::TwoDM<double> D_valid {2};
+    const GQCP::TwoDM<double> D_invalid {3};
 
     BOOST_CHECK_THROW(g.calculateExpectationValue(D_invalid, D_invalid, D_invalid, D_invalid), std::invalid_argument);
     BOOST_CHECK_THROW(g.calculateExpectationValue(D_invalid, D_valid, D_invalid, D_invalid), std::invalid_argument);
@@ -121,7 +121,7 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
     const GQCP::ScalarUSQTwoElectronOperator<double> op {T1, T2, T2, T1};
 
     // Initialize density matrices: each one is chosen to have the correct four-index symmetries.
-    GQCP::TwoRDM<double> d1 {dim};
+    GQCP::TwoDM<double> d1 {dim};
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
@@ -133,7 +133,7 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
         }
     }
 
-    GQCP::TwoRDM<double> d2 {dim};
+    GQCP::TwoDM<double> d2 {dim};
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {

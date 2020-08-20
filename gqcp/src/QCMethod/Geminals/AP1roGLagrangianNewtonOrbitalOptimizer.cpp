@@ -88,7 +88,7 @@ void AP1roGLagrangianNewtonOrbitalOptimizer::prepareDMCalculation(const SQHamilt
 /**
  *  @return the current 1-DM
  */
-OneRDM<double> AP1roGLagrangianNewtonOrbitalOptimizer::calculate1RDM() const {
+OneDM<double> AP1roGLagrangianNewtonOrbitalOptimizer::calculate1RDM() const {
     return GQCP::QCModel::vAP1roG::calculate1RDM(this->G, this->m_multipliers);
 }
 
@@ -96,7 +96,7 @@ OneRDM<double> AP1roGLagrangianNewtonOrbitalOptimizer::calculate1RDM() const {
 /**
  *  @return the current 2-DM
  */
-TwoRDM<double> AP1roGLagrangianNewtonOrbitalOptimizer::calculate2RDM() const {
+TwoDM<double> AP1roGLagrangianNewtonOrbitalOptimizer::calculate2RDM() const {
     return GQCP::QCModel::vAP1roG::calculate2RDM(this->G, this->m_multipliers);
 }
 

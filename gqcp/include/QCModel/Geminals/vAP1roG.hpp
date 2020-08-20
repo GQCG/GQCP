@@ -38,7 +38,6 @@ private:
 
 
 public:
-
     // CONSTRUCTORS
 
     /**
@@ -56,7 +55,7 @@ public:
      *
      *  @return the AP1roG response 1-DM
      */
-    static OneRDM<double> calculate1RDM(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<double>& multipliers);
+    static OneDM<double> calculate1RDM(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<double>& multipliers);
 
     /**
      *  @param G                the AP1roG geminal coefficients
@@ -64,7 +63,7 @@ public:
      *
      *  @return the AP1roG response 2-DM
      */
-    static TwoRDM<double> calculate2RDM(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<double>& multipliers);
+    static TwoDM<double> calculate2RDM(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<double>& multipliers);
 
     /**
      *  @param G                    the AP1roG geminal coefficients
@@ -112,12 +111,12 @@ public:
     /**
      *  @return the reponse one-electron density matrix for these vAP1roG parameters
      */
-    OneRDM<double> calculate1RDM() const { return vAP1roG::calculate1RDM(this->G, this->multipliers); };
+    OneDM<double> calculate1RDM() const { return vAP1roG::calculate1RDM(this->G, this->multipliers); };
 
     /**
      *  @return the reponse two-electron density matrix for these vAP1roG parameters
      */
-    TwoRDM<double> calculate2RDM() const { return vAP1roG::calculate2RDM(this->G, this->multipliers); };
+    TwoDM<double> calculate2RDM() const { return vAP1roG::calculate2RDM(this->G, this->multipliers); };
 
     /**
      *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis

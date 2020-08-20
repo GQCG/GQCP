@@ -23,8 +23,8 @@
 #include "Basis/transform.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Operator/SecondQuantized/USQHamiltonian.hpp"
+#include "Processing/DensityMatrices/GeneralDMCalculator.hpp"
 #include "Processing/Properties/expectation_values.hpp"
-#include "Processing/RDM/RDMCalculator.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
 #include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
@@ -133,13 +133,13 @@ BOOST_AUTO_TEST_CASE(mulliken_N2_STO_3G) {
 //     ds_solver.solve();
 
 //     // Calculate the RDMs in order to evaluate expectation values
-//     GQCP::RDMCalculator rdm_calc(onv_basis);
+//     GQCP::GeneralDMCalculator rdm_calc(onv_basis);
 //     rdm_calc.setCoefficients(ds_solver.eigenpair().eigenvector());
 
 //     auto one_rdms = rdm_calc.calculate1RDMs();
 
 //     // Calculate the spin density matrix
-//     GQCP::OneRDM<double> spin_d = one_rdms.spinDensityRDM();
+//     GQCP::OneDM<double> spin_d = one_rdms.spinDensityRDM();
 
 //     // Evaluate S_z for O and N
 //     double N_Sz = sq_N_Sz_alpha.calculateExpectationValue(spin_d)[0];
@@ -184,10 +184,10 @@ BOOST_AUTO_TEST_CASE(mulliken_N2_STO_3G) {
 //     GQCP::DenseSolverOptions solver_options; // Dense is required, Davidson will not converge to the lowest eigenstate
 //     ci_solver.solve(solver_options);
 
-//     GQCP::RDMCalculator rdm_calculator (ci_solver.makeLinearExpansion());
+//     GQCP::GeneralDMCalculator rdm_calculator (ci_solver.makeLinearExpansion());
 
-//     GQCP::OneRDMs<double> one_rdms = rdm_calculator.calculate1RDMs();
-//     GQCP::TwoRDMs<double> two_rdms = rdm_calculator.calculate2RDMs();
+//     GQCP::SpinResolvedOneDM<double> one_rdms = rdm_calculator.calculate1RDMs();
+//     GQCP::SpinResolvedTwoDM<double> two_rdms = rdm_calculator.calculate2RDMs();
 
 //     double s_squared = GQCP::calculateSpinSquared<double>(one_rdms, two_rdms);
 //     double s_z = GQCP::calculateSpinZ<double>(one_rdms);

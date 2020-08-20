@@ -27,7 +27,10 @@
 #include "ONVBasis/SpinResolvedONV.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
-#include "Processing/RDM/DOCIRDMBuilder.hpp"
+#include "Processing/DensityMatrices/SeniorityZeroDMCalculator.hpp"
+#include "Processing/DensityMatrices/SpinResolvedDMCalculator.hpp"
+#include "Processing/DensityMatrices/SpinResolvedFrozenDMCalculator.hpp"
+#include "Processing/DensityMatrices/SpinUnresolvedDMCalculator.hpp"
 #include "Utilities/aliases.hpp"
 #include "Utilities/linalg.hpp"
 
@@ -534,17 +537,61 @@ public:
     }
 
 
+    // #include "Processing/DensityMatrices/SeniorityZeroDMCalculator.hpp"
+    // #include "Processing/DensityMatrices/SpinResolvedDMCalculator.hpp"
+    // #include "Processing/DensityMatrices/SpinResolvedFrozenDMCalculator.hpp"
+    // #include "Processing/DensityMatrices/SpinUnresolvedDMCalculator.hpp"
+
     /**
      *  Calculate the one-electron density matrix for a seniority-zero wave function expansion.
      * 
      *  @return the total (spin-summed) 1-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, OneRDM<double>> calculate1DM() const {
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, OneDM<double>> calculate1DM() const { return this->calculate1DMs().one_rdm; }
 
-        const DOCIRDMBuilder doci_rdm_builder {this->onv_basis};
-        return doci_rdm_builder.calculate1RDMs(this->coefficients()).one_rdm;
+
+    /**
+     *  Calculate the two-electron density matrix for a seniority-zero wave function expansion.
+     * 
+     *  @return the total (spin-summed) 2-DM
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, TwoDM<double>> calculate2DM() const { return this->calculate2DMs().two_rdm; }
+
+
+    /**
+     *  Calculate the spin-resolved one-electron density matrices for a seniority-zero wave function expansion.
+     * 
+     *  @return the spin-resolved 1-DMs
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, OneDM<double>> calculate1DMs() const {
+
+        const SeniorityZeroDMCalculator doci_rdm_builder {this->onvBasis()};
+        return doci_rdm_builder.calculate1RDMs(this->coefficients());
     }
+
+
+    /**
+     *  Calculate the spin-resolved two-electron density matrices for a seniority-zero wave function expansion.
+     * 
+     *  @return the spin-resolved 2-DMs
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, TwoDM<double>> calculate2DMs() const {
+
+        const SeniorityZeroDMCalculator doci_rdm_builder {this->onvBasis()};
+        return doci_rdm_builder.calculate2RDMs(this->coefficients());
+    }
+
+
+    /**
+     *  @param x        the coefficient vector representing the DOCI wave function
+     *
+     *  @return the 1-RDMs given a coefficient vector
+     */
+    SpinResolvedOneDM<double> calculate1RDMs(const VectorX<double>& x) const;
 
 
     /**

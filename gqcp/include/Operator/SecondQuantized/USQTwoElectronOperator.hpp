@@ -22,8 +22,8 @@
 #include "Basis/TransformationMatrix.hpp"
 #include "Mathematical/Representation/QCRankFourTensor.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
-#include "Processing/RDM/OneRDM.hpp"
-#include "Processing/RDM/TwoRDM.hpp"
+#include "Processing/DensityMatrices/OneDM.hpp"
+#include "Processing/DensityMatrices/TwoDM.hpp"
 #include "Utilities/miscellaneous.hpp"
 
 #include <array>
@@ -197,10 +197,10 @@ public:
      *
      *  @return the expectation values of all the components of the two-electron operator, with the given 2-RDMs: this includes the prefactor 1/2
      */
-    Vector<Scalar, Components> calculateExpectationValue(const TwoRDM<Scalar>& d_aa, const TwoRDM<Scalar>& d_ab, const TwoRDM<Scalar>& d_ba, const TwoRDM<Scalar>& d_bb) const {
+    Vector<Scalar, Components> calculateExpectationValue(const TwoDM<Scalar>& d_aa, const TwoDM<Scalar>& d_ab, const TwoDM<Scalar>& d_ba, const TwoDM<Scalar>& d_bb) const {
 
         if ((this->dimension(GQCP::Spin::alpha, GQCP::Spin::alpha) != d_aa.dimension()) || (this->dimension(GQCP::Spin::alpha, GQCP::Spin::alpha) != d_ab.dimension()) || (this->dimension(GQCP::Spin::alpha, GQCP::Spin::alpha) != d_ba.dimension()) || (this->dimension(GQCP::Spin::alpha, GQCP::Spin::alpha) != d_bb.dimension())) {
-            throw std::invalid_argument("USQTwoElectronOperator::calculateExpectationValue(const TwoRDM<double>&): One of the given 2-RDMs is not compatible with the respective component of the two-electron operator.");
+            throw std::invalid_argument("USQTwoElectronOperator::calculateExpectationValue(const TwoDM<double>&, const TwoDM<double>&, const TwoDM<double>&, const TwoDM<double>&): One of the given 2-RDMs is not compatible with the respective component of the two-electron operator.");
         }
 
 
