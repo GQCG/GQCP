@@ -570,8 +570,8 @@ public:
     template <typename Z = ONVBasis>
     enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolvedOneDM<double>> calculate1DMs() const {
 
-        const SeniorityZeroDMCalculator doci_rdm_builder {this->onvBasis()};
-        return doci_rdm_builder.calculate1RDMs(this->coefficients());
+        const SeniorityZeroDMCalculator doci_dm_calculator {this->onvBasis()};
+        return doci_dm_calculator.calculate1DMs(this->coefficients());
     }
 
 
@@ -583,17 +583,17 @@ public:
     template <typename Z = ONVBasis>
     enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolvedTwoDM<double>> calculate2DMs() const {
 
-        const SeniorityZeroDMCalculator doci_rdm_builder {this->onvBasis()};
-        return doci_rdm_builder.calculate2RDMs(this->coefficients());
+        const SeniorityZeroDMCalculator doci_dm_calculator {this->onvBasis()};
+        return doci_dm_calculator.calculate2DMs(this->coefficients());
     }
 
 
     /**
      *  @param x        the coefficient vector representing the DOCI wave function
      *
-     *  @return the 1-RDMs given a coefficient vector
+     *  @return the 1-DMs given a coefficient vector
      */
-    SpinResolvedOneDM<double> calculate1RDMs(const VectorX<double>& x) const;
+    SpinResolvedOneDM<double> calculate1DMs(const VectorX<double>& x) const;
 
 
     /**

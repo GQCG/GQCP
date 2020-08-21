@@ -257,8 +257,8 @@ BOOST_AUTO_TEST_CASE(calculate_generalized_Fock_matrix_and_super_invalid_argumen
 
 BOOST_AUTO_TEST_CASE(calculate_Fockian_and_super) {
 
-    // We test the function by a manual calculation of nonsensical toy 1- and 2-RDMS and one- and two-electron integrals
-    // Set up the toy 1- and 2-RDMs
+    // We test the function by a manual calculation of nonsensical toy 1- and 2-DMs and one- and two-electron integrals
+    // Set up the toy 1- and 2-DMs
     GQCP::OneDM<double> D {2};
     // clang-format off
     D << 0, 1,

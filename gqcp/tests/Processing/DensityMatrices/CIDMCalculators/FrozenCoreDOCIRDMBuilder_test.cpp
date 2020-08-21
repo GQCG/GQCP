@@ -28,7 +28,7 @@
 #include "Utilities/linalg.hpp"
 
 
-BOOST_AUTO_TEST_CASE(FrozenCoreDOCI_one_rdms) {
+BOOST_AUTO_TEST_CASE(FrozenCoreDOCI_one_DMs) {
 
     size_t K = 5;
     GQCP::Molecule H5 = GQCP::Molecule::HChain(K, 1.1);
@@ -47,19 +47,19 @@ BOOST_AUTO_TEST_CASE(FrozenCoreDOCI_one_rdms) {
 
     GQCP::VectorX<double> coef = ci_solver.eigenpair().eigenvector();
 
-    // Get the frozen core DOCI and SelectedCI 1-RDMS
+    // Get the frozen core DOCI and SelectedCI 1-DMs
     GQCP::SpinResolvedSelectedDMCalculator sci_rdm {selected_fock_space};
     GQCP::FrozenCoreDOCIRDMBuilder doci_rdm {fock_space};
-    GQCP::SpinResolvedOneDM<double> one_rdms_s = sci_rdm.calculate1RDMs(coef);
-    GQCP::SpinResolvedOneDM<double> one_rdms = doci_rdm.calculate1RDMs(coef);
+    GQCP::SpinResolvedOneDM<double> one_DMs_s = sci_rdm.calculate1DMs(coef);
+    GQCP::SpinResolvedOneDM<double> one_DMs = doci_rdm.calculate1DMs(coef);
 
-    BOOST_CHECK(one_rdms_s.spinSummed().isApprox(one_rdms.spinSummed()));
-    BOOST_CHECK(one_rdms_s.alpha().isApprox(one_rdms.alpha()));
-    BOOST_CHECK(one_rdms_sbeta().isApprox(one_rdms.beta()));
+    BOOST_CHECK(one_DMs_s.spinSummed().isApprox(one_DMs.spinSummed()));
+    BOOST_CHECK(one_DMs_s.alpha().isApprox(one_DMs.alpha()));
+    BOOST_CHECK(one_DMs_sbeta().isApprox(one_DMs.beta()));
 }
 
 
-BOOST_AUTO_TEST_CASE(FrozenCoreDOCI_two_rdms) {
+BOOST_AUTO_TEST_CASE(FrozenCoreDOCI_two_DMs) {
 
     size_t K = 5;
     GQCP::Molecule H5 = GQCP::Molecule::HChain(K, 1.1);
@@ -78,15 +78,15 @@ BOOST_AUTO_TEST_CASE(FrozenCoreDOCI_two_rdms) {
 
     GQCP::VectorX<double> coef = ci_solver.eigenpair().eigenvector();
 
-    // Get the frozen core DOCI and SelectedCI 2-RDMS
+    // Get the frozen core DOCI and SelectedCI 2-DMs
     GQCP::SpinResolvedSelectedDMCalculator sci_rdm {selected_fock_space};
     GQCP::FrozenCoreDOCIRDMBuilder doci_rdm {fock_space};
-    GQCP::SpinResolvedTwoDM<double> two_rdms_s = sci_rdm.calculate2RDMs(coef);
-    GQCP::SpinResolvedTwoDM<double> two_rdms = doci_rdm.calculate2RDMs(coef);
+    GQCP::SpinResolvedTwoDM<double> two_DMs_s = sci_rdm.calculate2DMs(coef);
+    GQCP::SpinResolvedTwoDM<double> two_DMs = doci_rdm.calculate2DMs(coef);
 
-    BOOST_CHECK(two_rdms_s.two_rdm_aaaa.isApprox(two_rdms.two_rdm_aaaa, 1.0e-06));
-    BOOST_CHECK(two_rdms_s.two_rdm_aabb.isApprox(two_rdms.two_rdm_aabb, 1.0e-06));
-    BOOST_CHECK(two_rdms_s.two_rdm_bbaa.isApprox(two_rdms.two_rdm_bbaa, 1.0e-06));
-    BOOST_CHECK(two_rdms_s.two_rdm_bbbb.isApprox(two_rdms.two_rdm_bbbb, 1.0e-06));
-    BOOST_CHECK(two_rdms_s.two_rdm.isApprox(two_rdms.two_rdm, 1.0e-06));
+    BOOST_CHECK(two_DMs_s.two_rdm_aaaa.isApprox(two_DMs.two_rdm_aaaa, 1.0e-06));
+    BOOST_CHECK(two_DMs_s.two_rdm_aabb.isApprox(two_DMs.two_rdm_aabb, 1.0e-06));
+    BOOST_CHECK(two_DMs_s.two_rdm_bbaa.isApprox(two_DMs.two_rdm_bbaa, 1.0e-06));
+    BOOST_CHECK(two_DMs_s.two_rdm_bbbb.isApprox(two_DMs.two_rdm_bbbb, 1.0e-06));
+    BOOST_CHECK(two_DMs_s.two_rdm.isApprox(two_DMs.two_rdm, 1.0e-06));
 }

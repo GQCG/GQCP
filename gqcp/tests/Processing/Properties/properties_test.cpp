@@ -56,9 +56,9 @@ BOOST_AUTO_TEST_CASE(dipole_CO_STO_3G) {
     BOOST_REQUIRE(std::abs(total_energy - (-111.225)) < 1.0e-02);  // from CCCBDB, require a correct RHF solution to be found
 
 
-    // Calculate the RHF 1-RDM in MO basis
-    auto D = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1RDM(K, N);
-    auto D_AO = GQCP::QCModel::RHF<double>::calculateScalarBasis1RDM(rhf_parameters.coefficientMatrix(), N);
+    // Calculate the RHF 1-DM in MO basis
+    auto D = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1DM(K, N);
+    auto D_AO = GQCP::QCModel::RHF<double>::calculateScalarBasis1DM(rhf_parameters.coefficientMatrix(), N);
 
     // Calculate the dipole integrals, and transform them to the MO basis
     auto dipole_op = spinor_basis.quantize(GQCP::Operator::ElectronicDipole());
@@ -95,9 +95,9 @@ BOOST_AUTO_TEST_CASE(dipole_N2_STO_3G) {
     BOOST_REQUIRE(std::abs(total_energy - (-107.500654)) < 1.0e-05);  // from CCCBDB, require a correct RHF solution to be found
 
 
-    // Calculate the RHF 1-RDM in MO basis
-    auto D = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1RDM(K, N);
-    auto D_AO = GQCP::QCModel::RHF<double>::calculateScalarBasis1RDM(rhf_parameters.coefficientMatrix(), N);
+    // Calculate the RHF 1-DM in MO basis
+    auto D = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1DM(K, N);
+    auto D_AO = GQCP::QCModel::RHF<double>::calculateScalarBasis1DM(rhf_parameters.coefficientMatrix(), N);
 
     // Calculate the dipole integrals, and transform them to the MO basis
     auto dipole_op = spinor_basis.quantize(GQCP::Operator::ElectronicDipole());

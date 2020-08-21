@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#define BOOST_TEST_MODULE "RDMCalculator_test"
+#define BOOST_TEST_MODULE "GeneralDMCalculator_test"
 
 #include <boost/test/unit_test.hpp>
 
@@ -29,14 +29,14 @@
 
 // BOOST_AUTO_TEST_CASE(constructor) {
 
-//     // Test polymorphic entry for RDM (from SeniorityZeroDMCalculator test-case).
+//     // Test polymorphic entry for DM (from SeniorityZeroDMCalculator test-case).
 
-//     // Get the 1-RDM from DOCI
+//     // Get the 1-DM from DOCI
 //     size_t N = 4;  // 4 electrons
 //     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
 //     size_t K = sq_hamiltonian.dimension();  // 16 SO
 
-//     // Abstract pointer to test RDM
+//     // Abstract pointer to test DM
 //     std::shared_ptr<GQCP::BaseONVBasis> fock_space_dy {new GQCP::SpinUnresolvedONVBasis(K, N / 2)};  // dim = 120
 //     GQCP::SpinUnresolvedONVBasis fock_space {K, N / 2};                                              // dim = 120
 
@@ -50,12 +50,12 @@
 
 //     GQCP::VectorX<double> coef = ci_solver.eigenpair().eigenvector();
 
-//     // Check if the DOCI 1-RDM has the proper trace.
+//     // Check if the DOCI 1-DM has the proper trace.
 //     GQCP::GeneralDMCalculator doci_rdm {*fock_space_dy};
 //     doci_rdm.setCoefficients(coef);
-//     GQCP::SpinResolvedOneDM<double> one_rdms = doci_rdm.calculate1RDMs();
+//     GQCP::SpinResolvedOneDM<double> one_DMs = doci_rdm.calculate1DMs();
 
-//     BOOST_CHECK(std::abs(one_rdms.spinSummed().trace() - N) < 1.0e-12);
+//     BOOST_CHECK(std::abs(one_DMs.spinSummed().trace() - N) < 1.0e-12);
 // }
 
 BOOST_AUTO_TEST_CASE(no_vector_throws) {
@@ -68,8 +68,8 @@ BOOST_AUTO_TEST_CASE(no_vector_throws) {
     coeff << 1, 1, -2, 4, -5;
 
     // Test if throws when no vector is set
-    GQCP::GeneralDMCalculator doci_rdm {fock_space};
-    BOOST_CHECK_THROW(doci_rdm.calculate1RDMs(), std::logic_error);
+    GQCP::GeneralDMCalculator doci_dm_calculator {fock_space};
+    BOOST_CHECK_THROW(doci_dm_calculator.calculate1DMs(), std::logic_error);
 }
 
 

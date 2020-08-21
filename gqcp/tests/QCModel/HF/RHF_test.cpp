@@ -23,23 +23,23 @@
 
 
 /**
- *  Check for valid and invalid arguments for GQCP::QCModel::RHF::calculateOrthonormalBasis1RDM()
+ *  Check for valid and invalid arguments for GQCP::QCModel::RHF::calculateOrthonormalBasis1DM()
  */
-BOOST_AUTO_TEST_CASE(RHF_1RDM_invalid_argument) {
+BOOST_AUTO_TEST_CASE(RHF_1DM_invalid_argument) {
 
     const size_t K = 5;          // the number of spatial orbitals
     const size_t N_invalid = 3;  // the number of electrons must be even
     const size_t N_valid = 4;
 
-    BOOST_CHECK_THROW(GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1RDM(K, N_invalid), std::invalid_argument);
-    BOOST_CHECK_NO_THROW(GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1RDM(K, N_valid));
+    BOOST_CHECK_THROW(GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1DM(K, N_invalid), std::invalid_argument);
+    BOOST_CHECK_NO_THROW(GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1DM(K, N_valid));
 }
 
 
 /**
- *  Check if GQCP::QCModel::RHF::calculateOrthonormalBasis1RDM() yields a correct 1-RDM for an example
+ *  Check if GQCP::QCModel::RHF::calculateOrthonormalBasis1DM() yields a correct 1-DM for an example
  */
-BOOST_AUTO_TEST_CASE(RHF_1RDM_matrix) {
+BOOST_AUTO_TEST_CASE(RHF_1DM_matrix) {
 
     const size_t K = 5;  // the number of spatial orbitals
     const size_t N = 6;  // the number of electrons
@@ -52,7 +52,7 @@ BOOST_AUTO_TEST_CASE(RHF_1RDM_matrix) {
              0, 0, 0, 0, 0;
     // clang-format on
 
-    BOOST_CHECK(GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1RDM(K, N).isApprox(D_ref));
+    BOOST_CHECK(GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1DM(K, N).isApprox(D_ref));
 }
 
 

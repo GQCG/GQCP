@@ -63,7 +63,7 @@ BOOST_AUTO_TEST_CASE(mulliken_N2_STO_3G) {
 
 
     // Create the RHF 1-DM for N2 and check the total Mulliken operator.
-    const auto D = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1RDM(K, N);
+    const auto D = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1DM(K, N);
 
     const auto mulliken_population = mulliken_op.calculateExpectationValue(D)(0);
     BOOST_CHECK(std::abs(mulliken_population - N) < 1.0e-12);
@@ -132,14 +132,14 @@ BOOST_AUTO_TEST_CASE(mulliken_N2_STO_3G) {
 
 //     ds_solver.solve();
 
-//     // Calculate the RDMs in order to evaluate expectation values
+//     // Calculate the DMs in order to evaluate expectation values
 //     GQCP::GeneralDMCalculator rdm_calc(onv_basis);
 //     rdm_calc.setCoefficients(ds_solver.eigenpair().eigenvector());
 
-//     auto one_rdms = rdm_calc.calculate1RDMs();
+//     auto one_DMs = rdm_calc.calculate1DMs();
 
 //     // Calculate the spin density matrix
-//     GQCP::OneDM<double> spin_d = one_rdms.spinDensity();
+//     GQCP::OneDM<double> spin_d = one_DMs.spinDensity();
 
 //     // Evaluate S_z for O and N
 //     double N_Sz = sq_N_Sz_alpha.calculateExpectationValue(spin_d)[0];
@@ -184,13 +184,13 @@ BOOST_AUTO_TEST_CASE(mulliken_N2_STO_3G) {
 //     GQCP::DenseSolverOptions solver_options; // Dense is required, Davidson will not converge to the lowest eigenstate
 //     ci_solver.solve(solver_options);
 
-//     GQCP::GeneralDMCalculator rdm_calculator (ci_solver.makeLinearExpansion());
+//     GQCP::GeneralDMCalculator dm_calculator (ci_solver.makeLinearExpansion());
 
-//     GQCP::SpinResolvedOneDM<double> one_rdms = rdm_calculator.calculate1RDMs();
-//     GQCP::SpinResolvedTwoDM<double> two_rdms = rdm_calculator.calculate2RDMs();
+//     GQCP::SpinResolvedOneDM<double> one_DMs = dm_calculator.calculate1DMs();
+//     GQCP::SpinResolvedTwoDM<double> two_DMs = dm_calculator.calculate2DMs();
 
-//     double s_squared = GQCP::calculateSpinSquared<double>(one_rdms, two_rdms);
-//     double s_z = GQCP::calculateSpinZ<double>(one_rdms);
+//     double s_squared = GQCP::calculateSpinSquared<double>(one_DMs, two_DMs);
+//     double s_z = GQCP::calculateSpinZ<double>(one_DMs);
 
 //     // <S^2> should be 2 (S=1) because the ground state for O2 is a biradical triplet.
 //     BOOST_CHECK(std::abs(s_squared - 2) < 1.0e-06);

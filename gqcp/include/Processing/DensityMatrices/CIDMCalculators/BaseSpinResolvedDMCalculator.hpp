@@ -29,7 +29,7 @@ namespace GQCP {
 
 
 /**
- *  BaseSpinResolvedDMCalculator is an abstract base class whose derived classes are capable of calculating 1- and 2-RDMs from wave functions in a spin resolved basis
+ *  BaseSpinResolvedDMCalculator is an abstract base class whose derived classes are capable of calculating 1- and 2-DMs from wave functions in a spin resolved basis
  */
 class BaseSpinResolvedDMCalculator {
 public:
@@ -46,30 +46,30 @@ public:
     /**
      *  @param x        the coefficient vector representing the wave function
      *
-     *  @return all 1-RDMs given a coefficient vector
+     *  @return all 1-DMs given a coefficient vector
      */
-    virtual SpinResolvedOneDM<double> calculate1RDMs(const VectorX<double>& x) const = 0;
+    virtual SpinResolvedOneDM<double> calculate1DMs(const VectorX<double>& x) const = 0;
 
     /**
      *  @param x        the coefficient vector representing the wave function
      *
-     *  @return all 2-RDMs given a coefficient vector
+     *  @return all 2-DMs given a coefficient vector
      */
-    virtual SpinResolvedTwoDM<double> calculate2RDMs(const VectorX<double>& x) const = 0;
+    virtual SpinResolvedTwoDM<double> calculate2DMs(const VectorX<double>& x) const = 0;
 
     /**
      *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)
      *  @param ket_indices      the indices of the orbitals that should be annihilated on the right (on the ket)
      *  @param x                the coefficient vector representing the wave function
      *
-     *  @return an element of the spin-summed (total) N-RDM, as specified by the given bra and ket indices.
+     *  @return an element of the spin-summed (total) N-DM, as specified by the given bra and ket indices.
      *
      *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
      */
     virtual double calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const VectorX<double>& x) const = 0;
 
     /**
-     *  @return the ONV basis associated to this RDMBuilder
+     *  @return the ONV basis associated to this DMCalculator
      */
     virtual const BaseONVBasis* onvBasis() const = 0;
 };

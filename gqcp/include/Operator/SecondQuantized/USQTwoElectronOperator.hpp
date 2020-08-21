@@ -190,24 +190,24 @@ public:
 
 
     /**
-     *  @param d_aa            the alpha-alpha 2-RDM that represents the wave function
-     *  @param d_ab            the alpha-beta 2-RDM that represents the wave function
-     *  @param d_ba            the beta-alpha 2-RDM that represents the wave function
-     *  @param d_bb            the beta-beta 2-RDM that represents the wave function
+     *  @param d_aa            the alpha-alpha 2-DM that represents the wave function
+     *  @param d_ab            the alpha-beta 2-DM that represents the wave function
+     *  @param d_ba            the beta-alpha 2-DM that represents the wave function
+     *  @param d_bb            the beta-beta 2-DM that represents the wave function
      *
-     *  @return the expectation values of all the components of the two-electron operator, with the given 2-RDMs: this includes the prefactor 1/2
+     *  @return the expectation values of all the components of the two-electron operator, with the given 2-DMs: this includes the prefactor 1/2
      */
     Vector<Scalar, Components> calculateExpectationValue(const TwoDM<Scalar>& d_aa, const TwoDM<Scalar>& d_ab, const TwoDM<Scalar>& d_ba, const TwoDM<Scalar>& d_bb) const {
 
         if ((this->dimension(GQCP::Spin::alpha, GQCP::Spin::alpha) != d_aa.dimension()) || (this->dimension(GQCP::Spin::alpha, GQCP::Spin::alpha) != d_ab.dimension()) || (this->dimension(GQCP::Spin::alpha, GQCP::Spin::alpha) != d_ba.dimension()) || (this->dimension(GQCP::Spin::alpha, GQCP::Spin::alpha) != d_bb.dimension())) {
-            throw std::invalid_argument("USQTwoElectronOperator::calculateExpectationValue(const TwoDM<double>&, const TwoDM<double>&, const TwoDM<double>&, const TwoDM<double>&): One of the given 2-RDMs is not compatible with the respective component of the two-electron operator.");
+            throw std::invalid_argument("USQTwoElectronOperator::calculateExpectationValue(const TwoDM<double>&, const TwoDM<double>&, const TwoDM<double>&, const TwoDM<double>&): One of the given 2-DMs is not compatible with the respective component of the two-electron operator.");
         }
 
 
         std::array<Scalar, Components> expectation_values {};
         for (size_t i = 0; i < Components; i++) {
 
-            // Specify the contractions for the relevant contraction of the two-electron integrals and the 2-RDMs
+            // Specify the contractions for the relevant contraction of the two-electron integrals and the 2-DMs
             //      0.5 g(p q r s) d(p q r s)
             Eigen::array<Eigen::IndexPair<int>, 4> contractions {Eigen::IndexPair<int>(0, 0), Eigen::IndexPair<int>(1, 1), Eigen::IndexPair<int>(2, 2), Eigen::IndexPair<int>(3, 3)};
             //      Perform the contraction

@@ -168,15 +168,15 @@ public:
 
 
     /**
-     *  @param D_a                the alpha 1-RDM that represents the wave function
-     *  @param D_b                the beta 1-RDM that represents the wave function
+     *  @param D_a                the alpha 1-DM that represents the wave function
+     *  @param D_b                the beta 1-DM that represents the wave function
      *
      *  @return the expectation values of all components of the one-electron operator
      */
     Vector<Scalar, Components> calculateExpectationValue(const OneDM<Scalar>& D_a, const OneDM<Scalar>& D_b) const {
 
         if (this->fs_a[0].dimension() != D_a.dimension() || this->fs_b[0].dimension() != D_b.dimension()) {
-            throw std::invalid_argument("USQOneElectronOperator::calculateExpectationValue(const OneDM<Scalar>&, const OneDM<Scalar>&): The given 1-RDM is not compatible with the one-electron operator.");
+            throw std::invalid_argument("USQOneElectronOperator::calculateExpectationValue(const OneDM<Scalar>&, const OneDM<Scalar>&): The given 1-DM is not compatible with the one-electron operator.");
         }
 
         std::array<Scalar, Components> expectation_values {};  // zero initialization

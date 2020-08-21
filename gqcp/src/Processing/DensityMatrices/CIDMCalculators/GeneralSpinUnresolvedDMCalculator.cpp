@@ -36,7 +36,7 @@ namespace GQCP {
  *  @param onv_basis       the ONV basis
  */
 GeneralSpinUnresolvedDMCalculator::GeneralSpinUnresolvedDMCalculator(const SpinUnresolvedONVBasis& onv_basis) :
-    rdm_builder {SpinUnresolvedDMCalculator(onv_basis)} {}
+    dm_calculator {SpinUnresolvedDMCalculator(onv_basis)} {}
 
 
 /*
@@ -44,27 +44,27 @@ GeneralSpinUnresolvedDMCalculator::GeneralSpinUnresolvedDMCalculator(const SpinU
  */
 
 /**
- *  @return the 1-RDM if a given coefficient vector is set
+ *  @return the 1-DM if a given coefficient vector is set
  */
-OneDM<double> GeneralSpinUnresolvedDMCalculator::calculate1RDM() const {
+OneDM<double> GeneralSpinUnresolvedDMCalculator::calculate1DM() const {
 
     if (this->coefficients.rows() == 0) {
-        throw std::logic_error("GeneralSpinUnresolvedDMCalculator::calculate1RDM(): No vector has been set.");
+        throw std::logic_error("GeneralSpinUnresolvedDMCalculator::calculate1DM(): No vector has been set.");
     }
 
-    return rdm_builder.calculate1RDM(this->coefficients);
+    return dm_calculator.calculate1DM(this->coefficients);
 }
 
 /**
- *  @return the 2-RDM if a given coefficient vector is set
+ *  @return the 2-DM if a given coefficient vector is set
  */
-TwoDM<double> GeneralSpinUnresolvedDMCalculator::calculate2RDM() const {
+TwoDM<double> GeneralSpinUnresolvedDMCalculator::calculate2DM() const {
 
     if (this->coefficients.rows() == 0) {
-        throw std::logic_error("GeneralSpinUnresolvedDMCalculator::calculate2RDM(): No vector has been set.");
+        throw std::logic_error("GeneralSpinUnresolvedDMCalculator::calculate2DM(): No vector has been set.");
     }
 
-    return rdm_builder.calculate2RDM(this->coefficients);
+    return dm_calculator.calculate2DM(this->coefficients);
 }
 
 
@@ -72,7 +72,7 @@ TwoDM<double> GeneralSpinUnresolvedDMCalculator::calculate2RDM() const {
  *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)
  *  @param ket_indices      the indices of the orbitals that should be annihilated on the right (on the ket)
  *
- *  @return an element of the N-RDM, as specified by the given bra and ket indices
+ *  @return an element of the N-DM, as specified by the given bra and ket indices
  *
  *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
  */
@@ -82,7 +82,7 @@ double GeneralSpinUnresolvedDMCalculator::calculateElement(const std::vector<siz
         throw std::logic_error("GeneralSpinUnresolvedDMCalculator::calculateElement(std::vector<size_t>, std::vector<size_t>): No vector has been set.");
     }
 
-    return this->rdm_builder.calculateElement(bra_indices, ket_indices, this->coefficients);
+    return this->dm_calculator.calculateElement(bra_indices, ket_indices, this->coefficients);
 }
 
 

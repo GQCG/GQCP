@@ -28,12 +28,12 @@ namespace GQCP {
  */
 template <typename Scalar>
 struct SpinResolvedTwoDM {
-    TwoDM<Scalar> two_rdm;  // spin-summed (total) 2-RDM
+    TwoDM<Scalar> two_rdm;  // spin-summed (total) 2-DM
 
-    TwoDM<Scalar> two_rdm_aaaa;  // a-a-a-a 2-RDM
-    TwoDM<Scalar> two_rdm_aabb;  // a-a-b-b 2-RDM
-    TwoDM<Scalar> two_rdm_bbaa;  // b-a-a-b 2-RDM
-    TwoDM<Scalar> two_rdm_bbbb;  // b-b-b-b 2-RDM
+    TwoDM<Scalar> two_rdm_aaaa;  // a-a-a-a 2-DM
+    TwoDM<Scalar> two_rdm_aabb;  // a-a-b-b 2-DM
+    TwoDM<Scalar> two_rdm_bbaa;  // b-a-a-b 2-DM
+    TwoDM<Scalar> two_rdm_bbbb;  // b-b-b-b 2-DM
 
 
     /*
@@ -41,12 +41,12 @@ struct SpinResolvedTwoDM {
      */
 
     /**
-     *  A constructor that creates the total 2-RDM as the sum of the spin-resolved 2-RDMs
+     *  A constructor that creates the total 2-DM as the sum of the spin-resolved 2-DMs
      *
-     *  @param two_rdm_aaaa     the alpha-alpha-alpha-alpha 2-RDM
-     *  @param two_rdm_aabb     the alpha-alpha-beta-beta 2-RDM
-     *  @param two_rdm_bbaa     the beta-beta-alpha-alpha 2-RDM
-     *  @param two_rdm_bbbb     the beta-beta-beta-beta 2-RDM
+     *  @param two_rdm_aaaa     the alpha-alpha-alpha-alpha 2-DM
+     *  @param two_rdm_aabb     the alpha-alpha-beta-beta 2-DM
+     *  @param two_rdm_bbaa     the beta-beta-alpha-alpha 2-DM
+     *  @param two_rdm_bbbb     the beta-beta-beta-beta 2-DM
      */
     SpinResolvedTwoDM(const TwoDM<Scalar>& two_rdm_aaaa, const TwoDM<Scalar>& two_rdm_aabb, const TwoDM<Scalar>& two_rdm_bbaa, const TwoDM<Scalar>& two_rdm_bbbb) :
         two_rdm {two_rdm_aaaa.Eigen() + two_rdm_aabb.Eigen() + two_rdm_bbaa.Eigen() + two_rdm_bbbb.Eigen()},
@@ -57,7 +57,7 @@ struct SpinResolvedTwoDM {
 
 
     /**
-     *  @return the dimension of the matrix representation of the 2-RDMs, i.e. the number of orbitals/sites
+     *  @return the dimension of the matrix representation of the 2-DMs, i.e. the number of orbitals/sites
      */
     size_t dimension() const { return two_rdm.dimension(); }
 };

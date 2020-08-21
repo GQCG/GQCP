@@ -47,16 +47,16 @@ public:
     /**
      *  @param x        the coefficient vector representing the DOCI wave function
      *
-     *  @return the 1-RDMs given a coefficient vector
+     *  @return the 1-DMs given a coefficient vector
      */
-    SpinResolvedOneDM<double> calculate1RDMs(const VectorX<double>& x) const;
+    SpinResolvedOneDM<double> calculate1DMs(const VectorX<double>& x) const;
 
     /**
      *  @param x        the coefficient vector representing the DOCI wave function
      *
-     *  @return the 2-RDMs given a coefficient vector
+     *  @return the 2-DMs given a coefficient vector
      */
-    SpinResolvedTwoDM<double> calculate2RDMs(const VectorX<double>& x) const;
+    SpinResolvedTwoDM<double> calculate2DMs(const VectorX<double>& x) const;
 };
 
 

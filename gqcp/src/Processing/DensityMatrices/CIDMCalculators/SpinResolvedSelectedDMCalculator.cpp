@@ -41,9 +41,9 @@ SpinResolvedSelectedDMCalculator::SpinResolvedSelectedDMCalculator(const SpinRes
 /**
  *  @param x        the coefficient vector representing the 'selected' wave function
  *
- *  @return all 1-RDMs given a coefficient vector
+ *  @return all 1-DMs given a coefficient vector
  */
-SpinResolvedOneDM<double> SpinResolvedSelectedDMCalculator::calculate1RDMs(const VectorX<double>& x) const {
+SpinResolvedOneDM<double> SpinResolvedSelectedDMCalculator::calculate1DMs(const VectorX<double>& x) const {
 
     size_t K = this->onv_basis.numberOfOrbitals();
     size_t dim = onv_basis.dimension();
@@ -60,7 +60,7 @@ SpinResolvedOneDM<double> SpinResolvedSelectedDMCalculator::calculate1RDMs(const
         double c_I = x(I);
 
 
-        // Calculate the diagonal of the 1-RDMs
+        // Calculate the diagonal of the 1-DMs
         for (size_t p = 0; p < K; p++) {
 
             if (alpha_I.isOccupied(p)) {
@@ -90,7 +90,7 @@ SpinResolvedOneDM<double> SpinResolvedSelectedDMCalculator::calculate1RDMs(const
                 size_t p = alpha_I.findDifferentOccupations(alpha_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
                 size_t q = alpha_J.findDifferentOccupations(alpha_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
 
-                // Calculate the total sign, and include it in the RDM contribution
+                // Calculate the total sign, and include it in the DM contribution
                 int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q);
                 D_aa(p, q) += sign * c_I * c_J;
                 D_aa(q, p) += sign * c_I * c_J;
@@ -104,7 +104,7 @@ SpinResolvedOneDM<double> SpinResolvedSelectedDMCalculator::calculate1RDMs(const
                 size_t p = beta_I.findDifferentOccupations(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
                 size_t q = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
 
-                // Calculate the total sign, and include it in the RDM contribution
+                // Calculate the total sign, and include it in the DM contribution
                 int sign = beta_I.operatorPhaseFactor(p) * beta_J.operatorPhaseFactor(q);
                 D_bb(p, q) += sign * c_I * c_J;
                 D_bb(q, p) += sign * c_I * c_J;
@@ -113,16 +113,16 @@ SpinResolvedOneDM<double> SpinResolvedSelectedDMCalculator::calculate1RDMs(const
         }  // loop over addresses J > I
     }      // loop over addresses I
 
-    return SpinResolvedOneDM<double>(D_aa, D_bb);  // the total 1-RDM is the sum of the spin components
+    return SpinResolvedOneDM<double>(D_aa, D_bb);  // the total 1-DM is the sum of the spin components
 }
 
 
 /**
  *  @param x        the coefficient vector representing the 'selected' wave function
  *
- *  @return all 2-RDMs given a coefficient vector
+ *  @return all 2-DMs given a coefficient vector
  */
-SpinResolvedTwoDM<double> SpinResolvedSelectedDMCalculator::calculate2RDMs(const VectorX<double>& x) const {
+SpinResolvedTwoDM<double> SpinResolvedSelectedDMCalculator::calculate2DMs(const VectorX<double>& x) const {
 
     size_t K = this->onv_basis.numberOfOrbitals();
     size_t dim = onv_basis.dimension();
@@ -151,7 +151,7 @@ SpinResolvedTwoDM<double> SpinResolvedSelectedDMCalculator::calculate2RDMs(const
 
         for (size_t p = 0; p < K; p++) {
 
-            // 'Diagonal' elements of the 2-RDM: aaaa and aabb
+            // 'Diagonal' elements of the 2-DM: aaaa and aabb
             if (alpha_I.isOccupied(p)) {
                 for (size_t q = 0; q < K; q++) {
                     if (beta_I.isOccupied(q)) {
@@ -168,7 +168,7 @@ SpinResolvedTwoDM<double> SpinResolvedSelectedDMCalculator::calculate2RDMs(const
                 }  // loop over q
             }
 
-            // 'Diagonal' elements of the 2-RDM: bbbb and bbaa
+            // 'Diagonal' elements of the 2-DM: bbbb and bbaa
             if (beta_I.isOccupied(p)) {
                 for (size_t q = 0; q < K; q++) {
                     if (alpha_I.isOccupied(q)) {
@@ -209,7 +209,7 @@ SpinResolvedTwoDM<double> SpinResolvedSelectedDMCalculator::calculate2RDMs(const
 
                     if (alpha_I.isOccupied(r) && alpha_J.isOccupied(r)) {  // r must be occupied on the left and on the right
                         if ((p != r) && (q != r)) {                        // can't create or annihilate the same orbital
-                            // Fill in the 2-RDM contributions
+                            // Fill in the 2-DM contributions
                             d_aaaa(p, q, r, r) += sign * c_I * c_J;
                             d_aaaa(r, q, p, r) -= sign * c_I * c_J;
                             d_aaaa(p, r, r, q) -= sign * c_I * c_J;
@@ -224,7 +224,7 @@ SpinResolvedTwoDM<double> SpinResolvedSelectedDMCalculator::calculate2RDMs(const
 
                     if (beta_I.isOccupied(r)) {  // beta_I == beta_J from the previous if-branch
 
-                        // Fill in the 2-RDM contributions
+                        // Fill in the 2-DM contributions
                         d_aabb(p, q, r, r) += sign * c_I * c_J;
                         d_aabb(q, p, r, r) += sign * c_I * c_J;
 
@@ -250,7 +250,7 @@ SpinResolvedTwoDM<double> SpinResolvedSelectedDMCalculator::calculate2RDMs(const
 
                     if (beta_I.isOccupied(r) && beta_J.isOccupied(r)) {  // r must be occupied on the left and on the right
                         if ((p != r) && (q != r)) {                      // can't create or annihilate the same orbital
-                            // Fill in the 2-RDM contributions
+                            // Fill in the 2-DM contributions
                             d_bbbb(p, q, r, r) += sign * c_I * c_J;
                             d_bbbb(r, q, p, r) -= sign * c_I * c_J;
                             d_bbbb(p, r, r, q) -= sign * c_I * c_J;
@@ -265,7 +265,7 @@ SpinResolvedTwoDM<double> SpinResolvedSelectedDMCalculator::calculate2RDMs(const
 
                     if (alpha_I.isOccupied(r)) {  // alpha_I == alpha_J from the previous if-branch
 
-                        // Fill in the 2-RDM contributions
+                        // Fill in the 2-DM contributions
                         d_bbaa(p, q, r, r) += sign * c_I * c_J;
                         d_bbaa(q, p, r, r) += sign * c_I * c_J;
 
@@ -286,7 +286,7 @@ SpinResolvedTwoDM<double> SpinResolvedSelectedDMCalculator::calculate2RDMs(const
                 size_t r = beta_I.findDifferentOccupations(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
                 size_t s = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
 
-                // Calculate the total sign, and include it in the 2-RDM contribution
+                // Calculate the total sign, and include it in the 2-DM contribution
                 int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(s);
                 d_aabb(p, q, r, s) += sign * c_I * c_J;
                 d_aabb(q, p, s, r) += sign * c_I * c_J;
@@ -309,7 +309,7 @@ SpinResolvedTwoDM<double> SpinResolvedSelectedDMCalculator::calculate2RDMs(const
                 size_t s = occupied_indices_J[1];
 
 
-                // Calculate the total sign, and include it in the 2-RDM contribution
+                // Calculate the total sign, and include it in the 2-DM contribution
                 int sign = alpha_I.operatorPhaseFactor(p) * alpha_I.operatorPhaseFactor(r) * alpha_J.operatorPhaseFactor(q) * alpha_J.operatorPhaseFactor(s);
                 d_aaaa(p, q, r, s) += sign * c_I * c_J;
                 d_aaaa(p, s, r, q) -= sign * c_I * c_J;
@@ -336,7 +336,7 @@ SpinResolvedTwoDM<double> SpinResolvedSelectedDMCalculator::calculate2RDMs(const
                 size_t s = occupied_indices_J[1];
 
 
-                // Calculate the total sign, and include it in the 2-RDM contribution
+                // Calculate the total sign, and include it in the 2-DM contribution
                 int sign = beta_I.operatorPhaseFactor(p) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(q) * beta_J.operatorPhaseFactor(s);
                 d_bbbb(p, q, r, s) += sign * c_I * c_J;
                 d_bbbb(p, s, r, q) -= sign * c_I * c_J;

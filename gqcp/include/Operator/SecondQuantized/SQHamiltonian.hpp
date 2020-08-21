@@ -357,8 +357,8 @@ public:
 
 
     /**
-     *  @param D            the 1-RDM
-     *  @param d            the 2-RDM
+     *  @param D            the 1-DM
+     *  @param d            the 2-DM
      *
      *  @return the expectation value of this Hamiltonian
      */

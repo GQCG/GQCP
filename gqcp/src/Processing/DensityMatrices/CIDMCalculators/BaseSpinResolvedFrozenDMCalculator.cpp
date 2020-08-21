@@ -27,12 +27,12 @@ namespace GQCP {
  */
 
 /**
- *  @param rdm_builder                  shared pointer to active (non-frozen core) RDM builder
+ *  @param dm_calculator                shared pointer to active (non-frozen core) DM builder
  *  @param X                            the number of frozen orbitals
  */
-BaseSpinResolvedFrozenDMCalculator::BaseSpinResolvedFrozenDMCalculator(const std::shared_ptr<BaseSpinResolvedDMCalculator> rdm_builder, const size_t X) :
+BaseSpinResolvedFrozenDMCalculator::BaseSpinResolvedFrozenDMCalculator(const std::shared_ptr<BaseSpinResolvedDMCalculator> dm_calculator, const size_t X) :
     BaseSpinResolvedDMCalculator(),
-    active_rdm_builder {std::move(rdm_builder)},
+    active_dm_calculator {std::move(dm_calculator)},
     X {X} {}
 
 
@@ -43,9 +43,9 @@ BaseSpinResolvedFrozenDMCalculator::BaseSpinResolvedFrozenDMCalculator(const std
 /**
  *  @param x        the coefficient vector representing the wave function
  *
- *  @return all 1-RDMs given a coefficient vector
+ *  @return all 1-DMs given a coefficient vector
  */
-SpinResolvedOneDM<double> BaseSpinResolvedFrozenDMCalculator::calculate1RDMs(const VectorX<double>& x) const {
+SpinResolvedOneDM<double> BaseSpinResolvedFrozenDMCalculator::calculate1DMs(const VectorX<double>& x) const {
 
     auto K = this->onvBasis()->numberOfOrbitals();
 
@@ -60,11 +60,11 @@ SpinResolvedOneDM<double> BaseSpinResolvedFrozenDMCalculator::calculate1RDMs(con
         D_bb(i, i) = 1;
     }
 
-    SpinResolvedOneDM<double> sub_1rdms = this->active_rdm_builder->calculate1RDMs(x);
+    SpinResolvedOneDM<double> sub_1DMs = this->active_dm_calculator->calculate1DMs(x);
 
     // Incorporate the submatrices from the active space
-    D_aa.block(this->X, this->X, K_active, K_active) += sub_1rdms.alpha();
-    D_bb.block(this->X, this->X, K_active, K_active) += sub_1rdms.beta();
+    D_aa.block(this->X, this->X, K_active, K_active) += sub_1DMs.alpha();
+    D_bb.block(this->X, this->X, K_active, K_active) += sub_1DMs.beta();
 
     return SpinResolvedOneDM<double>(D_aa, D_bb);
 };
@@ -73,9 +73,9 @@ SpinResolvedOneDM<double> BaseSpinResolvedFrozenDMCalculator::calculate1RDMs(con
 /**
  *  @param x        the coefficient vector representing the wave function
  *
- *  @return all 2-RDMs given a coefficient vector
+ *  @return all 2-DMs given a coefficient vector
  */
-SpinResolvedTwoDM<double> BaseSpinResolvedFrozenDMCalculator::calculate2RDMs(const VectorX<double>& x) const {
+SpinResolvedTwoDM<double> BaseSpinResolvedFrozenDMCalculator::calculate2DMs(const VectorX<double>& x) const {
 
     auto K = this->onvBasis()->numberOfOrbitals();
 
@@ -92,17 +92,17 @@ SpinResolvedTwoDM<double> BaseSpinResolvedFrozenDMCalculator::calculate2RDMs(con
     d_bbbb.setZero();
 
 
-    SpinResolvedOneDM<double> one_rdms = this->active_rdm_builder->calculate1RDMs(x);
-    auto D_aa = one_rdms.alpha();
-    auto D_bb = one_rdms.beta();
+    SpinResolvedOneDM<double> one_DMs = this->active_dm_calculator->calculate1DMs(x);
+    auto D_aa = one_DMs.alpha();
+    auto D_bb = one_DMs.beta();
 
-    // Implement frozen RDM formulas
+    // Implement frozen DM formulas
     for (size_t p = 0; p < this->X; p++) {  // iterate over frozen orbitals
 
-        // RDM Overlap between frozen and active space:
+        // DM Overlap between frozen and active space:
         //      frozen orbital indices (p) must always have one annihilation and one creation index (always occupied)
-        //      values are dictated by the 'active' orbital indices and correspond to that of the active 1RDMs
-        //      Hence we start adding the 1RDMs starting from index 'X' the number frozen orbitals
+        //      values are dictated by the 'active' orbital indices and correspond to that of the active 1DMs
+        //      Hence we start adding the 1DMs starting from index 'X' the number frozen orbitals
         d_aaaa.addBlock<0, 1>(D_aa, this->X, this->X, p, p);
         d_aaaa.addBlock<2, 3>(D_aa, p, p, this->X, this->X);
         d_aaaa.addBlock<2, 1>(-D_aa, p, this->X, this->X, p);
@@ -145,13 +145,13 @@ SpinResolvedTwoDM<double> BaseSpinResolvedFrozenDMCalculator::calculate2RDMs(con
     }
 
 
-    // Incorporate the 2-RDM subblocks into the total 2RDMs
-    SpinResolvedTwoDM<double> sub_2rdms = this->active_rdm_builder->calculate2RDMs(x);
+    // Incorporate the 2-DM subblocks into the total 2DMs
+    SpinResolvedTwoDM<double> sub_2DMs = this->active_dm_calculator->calculate2DMs(x);
 
-    d_aaaa.addBlock(sub_2rdms.two_rdm_aaaa, this->X, this->X, this->X, this->X);
-    d_bbbb.addBlock(sub_2rdms.two_rdm_bbbb, this->X, this->X, this->X, this->X);
-    d_aabb.addBlock(sub_2rdms.two_rdm_aabb, this->X, this->X, this->X, this->X);
-    d_bbaa.addBlock(sub_2rdms.two_rdm_bbaa, this->X, this->X, this->X, this->X);
+    d_aaaa.addBlock(sub_2DMs.two_rdm_aaaa, this->X, this->X, this->X, this->X);
+    d_bbbb.addBlock(sub_2DMs.two_rdm_bbbb, this->X, this->X, this->X, this->X);
+    d_aabb.addBlock(sub_2DMs.two_rdm_aabb, this->X, this->X, this->X, this->X);
+    d_bbaa.addBlock(sub_2DMs.two_rdm_bbaa, this->X, this->X, this->X, this->X);
 
     return SpinResolvedTwoDM<double>(d_aaaa, d_aabb, d_bbaa, d_bbbb);
 };

@@ -195,15 +195,15 @@ public:
      *  @param K    the number of spatial orbitals
      *  @param N    the number of electrons
      *
-     *  @return the RHF 1-RDM expressed in an orthonormal spinor basis
+     *  @return the RHF 1-DM expressed in an orthonormal spinor basis
      */
-    static OneDM<Scalar> calculateOrthonormalBasis1RDM(const size_t K, const size_t N) {
+    static OneDM<Scalar> calculateOrthonormalBasis1DM(const size_t K, const size_t N) {
 
         if (N % 2 != 0) {
-            throw std::invalid_argument("QCMethod::RHF::calculateOrthonormalBasis1RDM(const size_t, const size_t): The number of given electrons cannot be odd for RHF.");
+            throw std::invalid_argument("QCMethod::RHF::calculateOrthonormalBasis1DM(const size_t, const size_t): The number of given electrons cannot be odd for RHF.");
         }
 
-        // The 1-RDM for RHF looks like (for K=5, N=6)
+        // The 1-DM for RHF looks like (for K=5, N=6)
         //    2  0  0  0  0
         //    0  2  0  0  0
         //    0  0  2  0  0
@@ -221,14 +221,14 @@ public:
      *  @param C    the coefficient matrix that expresses every spatial orbital (as a column) in its underlying scalar basis
      *  @param N    the number of electrons
      *
-     *  @return the RHF 1-RDM expressed in the underlying scalar basis
+     *  @return the RHF 1-DM expressed in the underlying scalar basis
      */
-    static OneDM<Scalar> calculateScalarBasis1RDM(const TransformationMatrix<double>& C, const size_t N) {
+    static OneDM<Scalar> calculateScalarBasis1DM(const TransformationMatrix<double>& C, const size_t N) {
 
         const size_t K = C.dimension();
-        const auto D_orthonormal = RHF<Scalar>::calculateOrthonormalBasis1RDM(K, N);
+        const auto D_orthonormal = RHF<Scalar>::calculateOrthonormalBasis1DM(K, N);
 
-        // Transform the 1-RDM in an orthonormal basis to the underlying scalar basis
+        // Transform the 1-DM in an orthonormal basis to the underlying scalar basis
         return C.conjugate() * D_orthonormal * C.transpose();
     }
 
@@ -313,23 +313,23 @@ public:
      */
 
     /**
-     *  @return the 1-RDM expressed in an orthonormal spinor basis related to these optimal RHF parameters
+     *  @return the 1-DM expressed in an orthonormal spinor basis related to these optimal RHF parameters
      */
-    OneDM<Scalar> calculateOrthonormalBasis1RDM() const {
+    OneDM<Scalar> calculateOrthonormalBasis1DM() const {
 
         const auto K = this->numberOfSpatialOrbitals();
         const auto N = 2 * this->numberOfElectronPairs();
-        return RHF<Scalar>::calculateOrthonormalBasis1RDM(K, N);
+        return RHF<Scalar>::calculateOrthonormalBasis1DM(K, N);
     }
 
 
     /**
-     *  @return the RHF 1-RDM in the scalar/AO basis related to these optimal RHF parameters
+     *  @return the RHF 1-DM in the scalar/AO basis related to these optimal RHF parameters
      */
-    OneDM<Scalar> calculateScalarBasis1RDM() const {
+    OneDM<Scalar> calculateScalarBasis1DM() const {
 
         const auto N = 2 * this->numberOfElectronPairs();
-        return RHF<Scalar>::calculateScalarBasis1RDM(this->coefficientMatrix(), N);
+        return RHF<Scalar>::calculateScalarBasis1DM(this->coefficientMatrix(), N);
     }
 
 

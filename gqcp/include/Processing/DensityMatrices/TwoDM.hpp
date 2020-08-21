@@ -26,7 +26,7 @@ namespace GQCP {
 
 
 /**
- *  A class that represents a 2-RDM
+ *  A type that represents a two-electron density matrix.
  *
  *  @tparam _Scalar     the scalar type
  */
@@ -51,7 +51,7 @@ public:
      */
 
     /**
-     *  @return a partial contraction of the 2-RDM, where D(p,q) = d(p,q,r,r)
+     *  @return a partial contraction of the 2-DM, where D(p,q) = d(p,q,r,r)
      */
     OneDM<Scalar> reduce() const {
 
@@ -73,7 +73,7 @@ public:
 
 
     /**
-     *  @return the trace of the 2-RDM, i.e. d(p,p,q,q)
+     *  @return the trace of the 2-DM, i.e. d(p,p,q,q)
      */
     Scalar trace() const {
         // TODO: when Eigen3 releases tensor.trace(), use it to implement the reduction

@@ -27,21 +27,21 @@ namespace GQCP {
 
 
 /**
- *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in a frozen spin-resolved ONV basis
+ *  A class capable of calculating 1- and 2-DMs from wave functions expanded in a frozen spin-resolved ONV basis
  */
 class BaseSpinResolvedFrozenDMCalculator: public BaseSpinResolvedDMCalculator {
 private:
-    size_t X;                                                          // number of frozen orbitals/electrons
-    std::shared_ptr<BaseSpinResolvedDMCalculator> active_rdm_builder;  // active (non-frozen core) RDM builder performing the BaseSpinResolvedDMCalculator interface in the active space with the frozen core CI wave function
+    size_t X;                                                            // number of frozen orbitals/electrons
+    std::shared_ptr<BaseSpinResolvedDMCalculator> active_dm_calculator;  // active (non-frozen core) DM builder performing the BaseSpinResolvedDMCalculator interface in the active space with the frozen core CI wave function
 
 public:
     // CONSTRUCTORS
 
     /**
-     *  @param rdm_builder                  shared pointer to active (non-frozen core) RDM builder
+     *  @param dm_calculator                shared pointer to active (non-frozen core) DM builder
      *  @param X                            the number of frozen orbitals
      */
-    BaseSpinResolvedFrozenDMCalculator(const std::shared_ptr<BaseSpinResolvedDMCalculator> rdm_builder, const size_t X);
+    BaseSpinResolvedFrozenDMCalculator(const std::shared_ptr<BaseSpinResolvedDMCalculator> dm_calculator, const size_t X);
 
 
     // PUBLIC OVERRIDDEN METHODS
@@ -49,27 +49,27 @@ public:
     /**
      *  @param x        the coefficient vector representing the wave function
      *
-     *  @return all 1-RDMs given a coefficient vector
+     *  @return all 1-DMs given a coefficient vector
      */
-    SpinResolvedOneDM<double> calculate1RDMs(const VectorX<double>& x) const override;
+    SpinResolvedOneDM<double> calculate1DMs(const VectorX<double>& x) const override;
 
     /**
      *  @param x        the coefficient vector representing the wave function
      *
-     *  @return all 2-RDMs given a coefficient vector
+     *  @return all 2-DMs given a coefficient vector
      */
-    SpinResolvedTwoDM<double> calculate2RDMs(const VectorX<double>& x) const override;
+    SpinResolvedTwoDM<double> calculate2DMs(const VectorX<double>& x) const override;
 
     /**
      *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)
      *  @param ket_indices      the indices of the orbitals that should be annihilated on the right (on the ket)
      *  @param x                the coefficient vector representing the wave function
      *
-     *  @return an element of the spin-summed (total) N-RDM, as specified by the given bra and ket indices
+     *  @return an element of the spin-summed (total) N-DM, as specified by the given bra and ket indices
      *
      *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
      */
-    double calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const VectorX<double>& x) const override { throw std::runtime_error("BaseSpinResolvedFrozenDMCalculator::calculateElement(std::vector<size_t>, std::vector<size_t>, VectorX<double>): calculateElement is not implemented for FrozenCoreCI RDMs"); }
+    double calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const VectorX<double>& x) const override { throw std::runtime_error("BaseSpinResolvedFrozenDMCalculator::calculateElement(std::vector<size_t>, std::vector<size_t>, VectorX<double>): calculateElement is not implemented for FrozenCoreCI DMs"); }
 };
 
 

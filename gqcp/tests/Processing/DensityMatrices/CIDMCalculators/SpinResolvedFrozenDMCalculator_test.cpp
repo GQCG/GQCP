@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#define BOOST_TEST_MODULE "FrozenCoreFCIRDM_test"
+#define BOOST_TEST_MODULE "SpinResolvedFrozenDMCalculator_test"
 
 #include <boost/test/unit_test.hpp>
 
@@ -31,7 +31,7 @@
  *  Check if the 1- and 2-DMs for a frozen core spin-resolved ONV basis are equal to the 'selected' case.
  *  The system of interest is a linear chain of 5 H atoms, 1.1 bohr apart, using an STO-3G basisset.
  */
-BOOST_AUTO_TEST_CASE(FrozenCoreFCI_one_rdms) {
+BOOST_AUTO_TEST_CASE(FrozenCoreFCI_one_DMs) {
 
     // Set up the molecular Hamiltonian for H5//STO-3G in the Löwdin basis.
     const GQCP::Molecule molecule = GQCP::Molecule::HChain(5, 1.1);
@@ -55,25 +55,25 @@ BOOST_AUTO_TEST_CASE(FrozenCoreFCI_one_rdms) {
 
 
     // Calculate the 1-DMs using specialized spin-resolved and 'selected' routines, and check if they are equal.
-    const GQCP::SpinResolvedFrozenDMCalculator spin_resolved_rdm_builder {onv_basis};
-    const auto one_rdms_specialized = spin_resolved_rdm_builder.calculate1RDMs(linear_expansion.coefficients());
+    const GQCP::SpinResolvedFrozenDMCalculator spin_resolved_dm_calculator {onv_basis};
+    const auto one_DMs_specialized = spin_resolved_dm_calculator.calculate1DMs(linear_expansion.coefficients());
 
     const GQCP::SpinResolvedSelectedONVBasis selected_onv_basis {onv_basis};
-    const GQCP::SpinResolvedSelectedDMCalculator selected_rdm_builder {selected_onv_basis};
-    const auto one_rdms_selected = selected_rdm_builder.calculate1RDMs(linear_expansion.coefficients());
+    const GQCP::SpinResolvedSelectedDMCalculator selected_dm_calculator {selected_onv_basis};
+    const auto one_DMs_selected = selected_dm_calculator.calculate1DMs(linear_expansion.coefficients());
 
-    BOOST_CHECK(one_rdms_specialized.spinSummed().isApprox(one_rdms_selected.spinSummed(), 1.0e-12));
-    BOOST_CHECK(one_rdms_specialized.alpha().isApprox(one_rdms_selected.alpha(), 1.0e-12));
-    BOOST_CHECK(one_rdms_specialized.beta().isApprox(one_rdms_selected.beta(), 1.0e-12));
+    BOOST_CHECK(one_DMs_specialized.spinSummed().isApprox(one_DMs_selected.spinSummed(), 1.0e-12));
+    BOOST_CHECK(one_DMs_specialized.alpha().isApprox(one_DMs_selected.alpha(), 1.0e-12));
+    BOOST_CHECK(one_DMs_specialized.beta().isApprox(one_DMs_selected.beta(), 1.0e-12));
 
 
     // Calculate the 2-DMs using specialized spin-resolved and 'selected' routines, and check if they are equal.
-    const auto two_rdms_specialized = spin_resolved_rdm_builder.calculate2RDMs(linear_expansion.coefficients());
-    const auto two_rdms_selected = selected_rdm_builder.calculate2RDMs(linear_expansion.coefficients());
+    const auto two_DMs_specialized = spin_resolved_dm_calculator.calculate2DMs(linear_expansion.coefficients());
+    const auto two_DMs_selected = selected_dm_calculator.calculate2DMs(linear_expansion.coefficients());
 
-    BOOST_CHECK(two_rdms_specialized.two_rdm_aaaa.isApprox(two_rdms_selected.two_rdm_aaaa, 1.0e-12));
-    BOOST_CHECK(two_rdms_specialized.two_rdm_aabb.isApprox(two_rdms_selected.two_rdm_aabb, 1.0e-12));
-    BOOST_CHECK(two_rdms_specialized.two_rdm_bbaa.isApprox(two_rdms_selected.two_rdm_bbaa, 1.0e-12));
-    BOOST_CHECK(two_rdms_specialized.two_rdm_bbbb.isApprox(two_rdms_selected.two_rdm_bbbb, 1.0e-12));
-    BOOST_CHECK(two_rdms_specialized.two_rdm.isApprox(two_rdms_selected.two_rdm, 1.0e-12));
+    BOOST_CHECK(two_DMs_specialized.two_rdm_aaaa.isApprox(two_DMs_selected.two_rdm_aaaa, 1.0e-12));
+    BOOST_CHECK(two_DMs_specialized.two_rdm_aabb.isApprox(two_DMs_selected.two_rdm_aabb, 1.0e-12));
+    BOOST_CHECK(two_DMs_specialized.two_rdm_bbaa.isApprox(two_DMs_selected.two_rdm_bbaa, 1.0e-12));
+    BOOST_CHECK(two_DMs_specialized.two_rdm_bbbb.isApprox(two_DMs_selected.two_rdm_bbbb, 1.0e-12));
+    BOOST_CHECK(two_DMs_specialized.two_rdm.isApprox(two_DMs_selected.two_rdm, 1.0e-12));
 }

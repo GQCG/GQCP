@@ -107,7 +107,7 @@ BOOST_AUTO_TEST_CASE(integrated_density_sto_3g) {
 
     // Calculate the RHF density.
     const auto rho_op = spinor_basis.quantize(GQCP::Operator::ElectronicDensity());
-    const auto D = rhf_parameters.calculateOrthonormalBasis1RDM();  // the (orthonormal) 1-DM for RHF
+    const auto D = rhf_parameters.calculateOrthonormalBasis1DM();  // the (orthonormal) 1-DM for RHF
     const auto density = rho_op.calculateDensity(D);
 
     const auto grid = GQCP::CubicGrid::Centered(GQCP::Vector<double, 3>::Zero(), 50, 0.2);
@@ -141,7 +141,7 @@ BOOST_AUTO_TEST_CASE(integrated_density_cc_pVTZ) {
 
     // Calculate the RHF density.
     const auto rho_op = spinor_basis.quantize(GQCP::Operator::ElectronicDensity());
-    const auto D = rhf_parameters.calculateOrthonormalBasis1RDM();  // the (orthonormal) 1-DM for RHF
+    const auto D = rhf_parameters.calculateOrthonormalBasis1DM();  // the (orthonormal) 1-DM for RHF
     const auto density = rho_op.calculateDensity(D);
 
     const auto grid = GQCP::CubicGrid::Centered(GQCP::Vector<double, 3>::Zero(), 50, 0.2);

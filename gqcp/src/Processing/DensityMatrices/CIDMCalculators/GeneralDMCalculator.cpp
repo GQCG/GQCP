@@ -38,7 +38,7 @@ namespace GQCP {
  *  @param onv_basis       the FCI ONV basis
  */
 GeneralDMCalculator::GeneralDMCalculator(const SpinResolvedONVBasis& onv_basis) :
-    rdm_builder {std::make_shared<SpinResolvedDMCalculator>(onv_basis)} {}
+    dm_calculator {std::make_shared<SpinResolvedDMCalculator>(onv_basis)} {}
 
 
 /**
@@ -47,30 +47,30 @@ GeneralDMCalculator::GeneralDMCalculator(const SpinResolvedONVBasis& onv_basis) 
  *  @param onv_basis       the 'selected' ONV basis
  */
 GeneralDMCalculator::GeneralDMCalculator(const SpinResolvedSelectedONVBasis& onv_basis) :
-    rdm_builder {std::make_shared<SpinResolvedSelectedDMCalculator>(onv_basis)} {}
+    dm_calculator {std::make_shared<SpinResolvedSelectedDMCalculator>(onv_basis)} {}
 
 
 /**
- *  A run-time constructor allocating the appropriate derived RDMBuilder
+ *  A run-time constructor allocating the appropriate derived DMCalculator
  *
- *  @param onv_basis       the ONV basis on which the RDMBuilder should be based
+ *  @param onv_basis       the ONV basis on which the DMCalculator should be based
  */
 GeneralDMCalculator::GeneralDMCalculator(const BaseONVBasis& onv_basis) {
 
     switch (onv_basis.type()) {
 
     case ONVBasisType::SpinResolvedONVBasis: {
-        this->rdm_builder = std::make_shared<SpinResolvedDMCalculator>(dynamic_cast<const SpinResolvedONVBasis&>(onv_basis));
+        this->dm_calculator = std::make_shared<SpinResolvedDMCalculator>(dynamic_cast<const SpinResolvedONVBasis&>(onv_basis));
         break;
     }
 
     case ONVBasisType::SpinResolvedSelectedONVBasis: {
-        this->rdm_builder = std::make_shared<SpinResolvedSelectedDMCalculator>(dynamic_cast<const SpinResolvedSelectedONVBasis&>(onv_basis));
+        this->dm_calculator = std::make_shared<SpinResolvedSelectedDMCalculator>(dynamic_cast<const SpinResolvedSelectedONVBasis&>(onv_basis));
         break;
     }
 
     case ONVBasisType::SpinResolvedFrozenONVBasis: {
-        this->rdm_builder = std::make_shared<SpinResolvedFrozenDMCalculator>(dynamic_cast<const SpinResolvedFrozenONVBasis&>(onv_basis));
+        this->dm_calculator = std::make_shared<SpinResolvedFrozenDMCalculator>(dynamic_cast<const SpinResolvedFrozenONVBasis&>(onv_basis));
         break;
     }
 
@@ -86,28 +86,28 @@ GeneralDMCalculator::GeneralDMCalculator(const BaseONVBasis& onv_basis) {
  */
 
 /**
- *  @return all 1-RDMs if a given coefficient vector is set
+ *  @return all 1-DMs if a given coefficient vector is set
  */
-SpinResolvedOneDM<double> GeneralDMCalculator::calculate1RDMs() const {
+SpinResolvedOneDM<double> GeneralDMCalculator::calculate1DMs() const {
 
     if (this->coefficients.rows() == 0) {
-        throw std::logic_error("GeneralDMCalculator::calculate1RDMs(): No vector has been set.");
+        throw std::logic_error("GeneralDMCalculator::calculate1DMs(): No vector has been set.");
     }
 
-    return rdm_builder->calculate1RDMs(this->coefficients);
+    return dm_calculator->calculate1DMs(this->coefficients);
 }
 
 
 /**
- *  @return all 2-RDMs if a given coefficient vector is set
+ *  @return all 2-DMs if a given coefficient vector is set
  */
-SpinResolvedTwoDM<double> GeneralDMCalculator::calculate2RDMs() const {
+SpinResolvedTwoDM<double> GeneralDMCalculator::calculate2DMs() const {
 
     if (this->coefficients.rows() == 0) {
-        throw std::logic_error("GeneralDMCalculator::calculate2RDMs(): No vector has been set.");
+        throw std::logic_error("GeneralDMCalculator::calculate2DMs(): No vector has been set.");
     }
 
-    return rdm_builder->calculate2RDMs(this->coefficients);
+    return dm_calculator->calculate2DMs(this->coefficients);
 }
 
 
@@ -115,7 +115,7 @@ SpinResolvedTwoDM<double> GeneralDMCalculator::calculate2RDMs() const {
  *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)
  *  @param ket_indices      the indices of the orbitals that should be annihilated on the right (on the ket)
  *
- *  @return an element of the N-RDM, as specified by the given bra and ket indices
+ *  @return an element of the N-DM, as specified by the given bra and ket indices
  *
  *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
  */
@@ -125,7 +125,7 @@ double GeneralDMCalculator::calculateElement(const std::vector<size_t>& bra_indi
         throw std::logic_error("GeneralDMCalculator::calculateElement(std::vector<size_t>, std::vector<size_t>): No vector has been set.");
     }
 
-    return this->rdm_builder->calculateElement(bra_indices, ket_indices, this->coefficients);
+    return this->dm_calculator->calculateElement(bra_indices, ket_indices, this->coefficients);
 }
 
 

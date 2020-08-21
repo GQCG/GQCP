@@ -174,11 +174,11 @@ public:
      *  @param K_sigma          the number of spatial orbitals for one of the spin components
      *  @param N_sigma          the number of sigma electrons, i.e. the number of occupied sigma spin-orbitals
      *
-     *  @return the sigma-spin UHF 1-RDM expressed in an orthonormal sigma spin-orbital basis
+     *  @return the sigma-spin UHF 1-DM expressed in an orthonormal sigma spin-orbital basis
      */
-    static OneDM<Scalar> calculateOrthonormalBasis1RDM(const size_t K_sigma, const size_t N_sigma) {
+    static OneDM<Scalar> calculateOrthonormalBasis1DM(const size_t K_sigma, const size_t N_sigma) {
 
-        // The 1-RDM for UHF looks like (for K=5, N=3)
+        // The 1-DM for UHF looks like (for K=5, N=3)
         //    1  0  0  0  0
         //    0  1  0  0  0
         //    0  0  1  0  0
@@ -196,14 +196,14 @@ public:
      *  @param C_sigma          the coefficient matrix that expresses the sigma spin-orbitals (as a column) in its underlying scalar basis
      *  @param N_sigma          the number of sigma electrons, i.e. the number of occupied sigma spin-orbitals
      *
-     *  @return the sigma-spin UHF 1-RDM expressed in the underlying scalar basis
+     *  @return the sigma-spin UHF 1-DM expressed in the underlying scalar basis
      */
-    static OneDM<Scalar> calculateScalarBasis1RDM(const TransformationMatrix<double>& C_sigma, const size_t N_sigma) {
+    static OneDM<Scalar> calculateScalarBasis1DM(const TransformationMatrix<double>& C_sigma, const size_t N_sigma) {
 
         const auto K_sigma = C_sigma.dimension();
-        const auto D_orthonormal = UHF<Scalar>::calculateOrthonormalBasis1RDM(K_sigma, N_sigma);
+        const auto D_orthonormal = UHF<Scalar>::calculateOrthonormalBasis1DM(K_sigma, N_sigma);
 
-        // Transform the 1-RDM in an orthonormal basis to the underlying scalar basis
+        // Transform the 1-DM in an orthonormal basis to the underlying scalar basis
         return C_sigma.conjugate() * D_orthonormal * C_sigma.transpose();
     }
 
@@ -302,28 +302,28 @@ public:
     /**
      *  @param sigma            alpha or beta
      * 
-     *  @return the sigma-spin UHF 1-RDM expressed in an orthonormal sigma spin-orbital basis for these UHF model parameters
+     *  @return the sigma-spin UHF 1-DM expressed in an orthonormal sigma spin-orbital basis for these UHF model parameters
      */
-    OneDM<Scalar> calculateOrthonormalBasis1RDM(const Spin sigma) const {
+    OneDM<Scalar> calculateOrthonormalBasis1DM(const Spin sigma) const {
 
         const auto K_sigma = this->numberOfSpinOrbitals(sigma);
         const auto N_sigma = this->numberOfElectrons(sigma);
 
-        return UHF<Scalar>::calculateOrthonormalBasis1RDM(K_sigma, N_sigma);
+        return UHF<Scalar>::calculateOrthonormalBasis1DM(K_sigma, N_sigma);
     }
 
 
     /**
      *  @param sigma            alpha or beta
      *
-     *  @return the sigma-spin UHF 1-RDM expressed in the underlying scalar basis for these UHF model parameters
+     *  @return the sigma-spin UHF 1-DM expressed in the underlying scalar basis for these UHF model parameters
      */
-    OneDM<Scalar> calculateScalarBasis1RDM(const Spin sigma) const {
+    OneDM<Scalar> calculateScalarBasis1DM(const Spin sigma) const {
 
         const auto C_sigma = this->coefficientMatrix(sigma);
         const auto N_sigma = this->numberOfElectrons(sigma);
 
-        return UHF<Scalar>::calculateScalarBasis1RDM(C_sigma, N_sigma);
+        return UHF<Scalar>::calculateScalarBasis1DM(C_sigma, N_sigma);
     }
 
 

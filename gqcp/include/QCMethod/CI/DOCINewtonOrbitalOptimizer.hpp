@@ -55,7 +55,7 @@ private:
     EigenproblemEnvironment eigenproblem_environment;
     EigenproblemSolver eigenproblem_solver;
 
-    SeniorityZeroDMCalculator rdm_calculator;
+    SeniorityZeroDMCalculator dm_calculator;
 
     LinearExpansion<SeniorityZeroONVBasis> ground_state_expansion;
 
@@ -80,7 +80,7 @@ public:
         eigenproblem_solver {eigenproblem_solver},
         eigenproblem_environment {eigenproblem_environment},
         number_of_requested_eigenpairs {number_of_requested_eigenpairs},
-        rdm_calculator {SeniorityZeroDMCalculator(onv_basis)},
+        dm_calculator {SeniorityZeroDMCalculator(onv_basis)},
         QCMethodNewtonOrbitalOptimizer(hessian_modifier, convergence_threshold, maximum_number_of_iterations) {}
 
 
@@ -89,16 +89,16 @@ public:
     /**
      *  @return the current 1-DM
      */
-    OneDM<double> calculate1RDM() const override {
-        return this->rdm_calculator.calculate1RDMs(this->ground_state_expansion.coefficients()).spinSummed();
+    OneDM<double> calculate1DM() const override {
+        return this->dm_calculator.calculate1DMs(this->ground_state_expansion.coefficients()).spinSummed();
     }
 
 
     /**
      *  @return the current 2-DM
      */
-    TwoDM<double> calculate2RDM() const override {
-        return this->rdm_calculator.calculate2RDMs(this->ground_state_expansion.coefficients()).two_rdm;
+    TwoDM<double> calculate2DM() const override {
+        return this->dm_calculator.calculate2DMs(this->ground_state_expansion.coefficients()).two_rdm;
     }
 
 

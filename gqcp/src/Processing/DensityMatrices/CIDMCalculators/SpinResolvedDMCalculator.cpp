@@ -26,7 +26,7 @@ namespace GQCP {
  */
 
 /**
- *  @param onv_basis                the ONV basis that is associated to this RDMBuilder
+ *  @param onv_basis                the ONV basis that is associated to this DMCalculator
  */
 SpinResolvedDMCalculator::SpinResolvedDMCalculator(const SpinResolvedONVBasis& onv_basis) :
     onv_basis {onv_basis} {}
@@ -39,9 +39,9 @@ SpinResolvedDMCalculator::SpinResolvedDMCalculator(const SpinResolvedONVBasis& o
 /**
  *  @param x        the coefficient vector representing the FCI wave function
  *
- *  @return all 1-RDMs given a coefficient vector
+ *  @return all 1-DMs given a coefficient vector
  */
-SpinResolvedOneDM<double> SpinResolvedDMCalculator::calculate1RDMs(const VectorX<double>& x) const {
+SpinResolvedOneDM<double> SpinResolvedDMCalculator::calculate1DMs(const VectorX<double>& x) const {
 
     // Initialize as zero matrices
     size_t K = this->onv_basis.numberOfOrbitals();
@@ -157,9 +157,9 @@ SpinResolvedOneDM<double> SpinResolvedDMCalculator::calculate1RDMs(const VectorX
 /**
  *  @param x        the coefficient vector representing the FCI wave function
  *
- *  @return all 2-RDMs given a coefficient vector
+ *  @return all 2-DMs given a coefficient vector
  */
-SpinResolvedTwoDM<double> SpinResolvedDMCalculator::calculate2RDMs(const VectorX<double>& x) const {
+SpinResolvedTwoDM<double> SpinResolvedDMCalculator::calculate2DMs(const VectorX<double>& x) const {
 
 
     // KISS implementation of the 2-DMs (no symmetry relations are used yet)

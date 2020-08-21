@@ -147,14 +147,14 @@ public:
     std::array<QCMatrix<Scalar>, Components>& allParameters() { return this->fs; }
 
     /**
-     *  @param D                the 1-RDM that represents the wave function
+     *  @param D                the 1-DM that represents the wave function
      *
      *  @return the expectation values of all components of the one-electron operator
      */
     Vector<Scalar, Components> calculateExpectationValue(const OneDM<Scalar>& D) const {
 
         if (this->dimension() != D.dimension()) {
-            throw std::invalid_argument("SQOneElectronOperator::calculateExpectationValue(const OneDM<Scalar>&): The given 1-RDM is not compatible with the one-electron operator.");
+            throw std::invalid_argument("SQOneElectronOperator::calculateExpectationValue(const OneDM<Scalar>&): The given 1-DM is not compatible with the one-electron operator.");
         }
 
         std::array<Scalar, Components> expectation_values {};  // zero initialization
@@ -210,11 +210,11 @@ public:
 
         // Check if dimensions are compatible
         if (D.dimension() != this->dimension()) {
-            throw std::invalid_argument("SQOneElectronOperator::calculateFockianMatrix(OneDM<double>, TwoDM<double>): The 1-RDM is not compatible with the one-electron operator.");
+            throw std::invalid_argument("SQOneElectronOperator::calculateFockianMatrix(OneDM<double>, TwoDM<double>): The 1-DM is not compatible with the one-electron operator.");
         }
 
         if (d.dimension() != this->dimension()) {
-            throw std::invalid_argument("SQOneElectronOperator::calculateFockianMatrix(OneDM<double>, TwoDM<double>): The 2-RDM is not compatible with the one-electron operator.");
+            throw std::invalid_argument("SQOneElectronOperator::calculateFockianMatrix(OneDM<double>, TwoDM<double>): The 2-DM is not compatible with the one-electron operator.");
         }
 
 
@@ -251,11 +251,11 @@ public:
 
         // Check if dimensions are compatible
         if (D.dimension() != this->dimension()) {
-            throw std::invalid_argument("SQOneElectronOperator::calculateFockianMatrix(OneDM<double>, TwoDM<double>): The 1-RDM is not compatible with the one-electron operator.");
+            throw std::invalid_argument("SQOneElectronOperator::calculateFockianMatrix(OneDM<double>, TwoDM<double>): The 1-DM is not compatible with the one-electron operator.");
         }
 
         if (d.dimension() != this->dimension()) {
-            throw std::invalid_argument("SQOneElectronOperator::calculateFockianMatrix(OneDM<double>, TwoDM<double>): The 2-RDM is not compatible with the one-electron operator.");
+            throw std::invalid_argument("SQOneElectronOperator::calculateFockianMatrix(OneDM<double>, TwoDM<double>): The 2-DM is not compatible with the one-electron operator.");
         }
 
 

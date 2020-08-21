@@ -32,9 +32,9 @@ void bindQCModelvAP1roG(py::module& module) {
 
         // PUBLIC METHODS
         .def(
-            "calculate1RDM",
+            "calculate1DM",
             [](const GQCP::QCModel::vAP1roG& qc_model) {
-                return qc_model.calculate1RDM();
+                return qc_model.calculate1DM();
             },
             "Return the reponse one-electron density matrix.")
 

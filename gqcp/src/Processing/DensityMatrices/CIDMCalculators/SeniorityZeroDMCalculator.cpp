@@ -39,9 +39,9 @@ SeniorityZeroDMCalculator::SeniorityZeroDMCalculator(const SeniorityZeroONVBasis
 /**
  *  @param x        the coefficient vector representing the DOCI wave function
  *
- *  @return the 1-RDMs given a coefficient vector
+ *  @return the 1-DMs given a coefficient vector
  */
-SpinResolvedOneDM<double> SeniorityZeroDMCalculator::calculate1RDMs(const VectorX<double>& x) const {
+SpinResolvedOneDM<double> SeniorityZeroDMCalculator::calculate1DMs(const VectorX<double>& x) const {
 
     // Prepare some variables.
     const auto K = this->onv_basis.numberOfSpatialOrbitals();
@@ -74,9 +74,9 @@ SpinResolvedOneDM<double> SeniorityZeroDMCalculator::calculate1RDMs(const Vector
 /**
  *  @param x        the coefficient vector representing the DOCI wave function
  *
- *  @return the 2-RDMs given a coefficient vector
+ *  @return the 2-DMs given a coefficient vector
  */
-SpinResolvedTwoDM<double> SeniorityZeroDMCalculator::calculate2RDMs(const VectorX<double>& x) const {
+SpinResolvedTwoDM<double> SeniorityZeroDMCalculator::calculate2DMs(const VectorX<double>& x) const {
 
     // Prepare some variables.
     const auto K = this->onv_basis.numberOfSpatialOrbitals();

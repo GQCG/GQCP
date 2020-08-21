@@ -28,7 +28,7 @@ namespace GQCP {
 
 
 /**
- *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in the frozen DOCI ONV basis
+ *  A class capable of calculating 1- and 2-DMs from wave functions expanded in the frozen DOCI ONV basis
  */
 class FrozenCoreDOCIRDMBuilder: public BaseSpinResolvedFrozenDMCalculator {
 private:

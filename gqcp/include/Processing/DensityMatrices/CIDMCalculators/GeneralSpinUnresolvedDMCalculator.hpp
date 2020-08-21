@@ -37,7 +37,7 @@ namespace GQCP {
  */
 class GeneralSpinUnresolvedDMCalculator {
 private:
-    SpinUnresolvedDMCalculator rdm_builder;
+    SpinUnresolvedDMCalculator dm_calculator;
     VectorX<double> coefficients;
 
 
@@ -60,7 +60,7 @@ public:
     // OPERATORS
 
     /**
-     *  @param indices_pack      the indices that specify the element of the N-RDM that has to be calculated
+     *  @param indices_pack      the indices that specify the element of the N-DM that has to be calculated
      */
     template <typename... size_ts>
     double operator()(size_ts... indices_pack) const {
@@ -95,20 +95,20 @@ public:
     // PUBLIC METHODS
 
     /**
-     *  @return the 1-RDM if a given coefficient vector is set
+     *  @return the 1-DM if a given coefficient vector is set
      */
-    OneDM<double> calculate1RDM() const;
+    OneDM<double> calculate1DM() const;
 
     /**
-     *  @return the 2-RDM if a given coefficient vector is set
+     *  @return the 2-DM if a given coefficient vector is set
      */
-    TwoDM<double> calculate2RDM() const;
+    TwoDM<double> calculate2DM() const;
 
     /**
      *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)
      *  @param ket_indices      the indices of the orbitals that should be annihilated on the right (on the ket)
      *
-     *  @return an element of the N-RDM, as specified by the given bra and ket indices
+     *  @return an element of the N-DM, as specified by the given bra and ket indices
      *
      *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
      */

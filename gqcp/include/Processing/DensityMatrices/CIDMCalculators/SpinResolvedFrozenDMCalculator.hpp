@@ -28,7 +28,7 @@ namespace GQCP {
 
 
 /**
- *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in the full frozen full spin resolved ONV basis
+ *  A class capable of calculating 1- and 2-DMs from wave functions expanded in the full frozen full spin resolved ONV basis
  */
 class SpinResolvedFrozenDMCalculator: public BaseSpinResolvedFrozenDMCalculator {
 private:
@@ -47,7 +47,7 @@ public:
     // PUBLIC OVERRIDDEN METHODS
 
     /**
-     *  @return the ONV basis that is associated to this RDMBuilder
+     *  @return the ONV basis that is associated to this DMCalculator
      */
     const BaseONVBasis* onvBasis() const override { return &onv_basis; }
 };

@@ -76,8 +76,8 @@ void QCMethodNewtonOrbitalOptimizer::prepareOrbitalDerivativesCalculation(const 
 
     this->prepareDMCalculation(sq_hamiltonian);  // this should prepare the calculation of the 1- and 2-DMs
 
-    this->D = this->calculate1RDM();
-    this->d = this->calculate2RDM();
+    this->D = this->calculate1DM();
+    this->d = this->calculate2DM();
 }
 
 

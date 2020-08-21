@@ -817,7 +817,8 @@ INPUT = "@CMAKE_SOURCE_DIR@/gqcp/include" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Operator/SecondQuantized/ModelHamiltonian" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Processing" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Processing/Properties" \
-        "@CMAKE_SOURCE_DIR@/gqcp/include/Processing/RDM" \
+        "@CMAKE_SOURCE_DIR@/gqcp/include/Processing/DensityMatrices" \
+        "@CMAKE_SOURCE_DIR@/gqcp/include/Processing/DensityMatrices/CIDMCalculators" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod/Applications" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod/CC" \
@@ -854,7 +855,8 @@ INPUT = "@CMAKE_SOURCE_DIR@/gqcp/include" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Operator/FirstQuantized" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Processing" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Processing/Properties" \
-        "@CMAKE_SOURCE_DIR@/gqcp/src/Processing/RDM" \
+        "@CMAKE_SOURCE_DIR@/gqcp/src/Processing/DensityMatrices" \
+        "@CMAKE_SOURCE_DIR@/gqcp/src/Processing/DensityMatrices/CIDMCalculators" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/QCMethod" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/QCMethod/Applications" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/QCMethod/CI" \

@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#define BOOST_TEST_MODULE "UnresolvedCIRDMBuilder_test"
+#define BOOST_TEST_MODULE "UnresolvedCIDMCalculator_test"
 
 #include <boost/test/unit_test.hpp>
 
@@ -38,7 +38,7 @@ BOOST_AUTO_TEST_CASE(calculateElement_throws) {
 }
 
 
-BOOST_AUTO_TEST_CASE(calculateElement_1RDM) {
+BOOST_AUTO_TEST_CASE(calculateElement_1DM) {
 
     // Create a test wave function
     size_t M = 3;
@@ -49,7 +49,7 @@ BOOST_AUTO_TEST_CASE(calculateElement_1RDM) {
     coeff << 1, 2, -3;
 
 
-    // Check some 1-RDM values
+    // Check some 1-DM values
     GQCP::SpinUnresolvedDMCalculator d {fock_space};
     BOOST_CHECK(std::abs(d.calculateElement({0}, {0}, coeff) - 1.0) < 1.0e-12);     // d(0,0) : a^\dagger_0 a_0
     BOOST_CHECK(std::abs(d.calculateElement({0}, {1}, coeff) - 2.0) < 1.0e-12);     // d(0,1) : a^\dagger_0 a_1
@@ -57,7 +57,7 @@ BOOST_AUTO_TEST_CASE(calculateElement_1RDM) {
 }
 
 
-BOOST_AUTO_TEST_CASE(calculateElement_2RDM) {
+BOOST_AUTO_TEST_CASE(calculateElement_2DM) {
 
     // Create a test wave function
     size_t M = 3;
@@ -68,7 +68,7 @@ BOOST_AUTO_TEST_CASE(calculateElement_2RDM) {
     coeff << 1, 2, -3;
 
 
-    // Check some 2-RDM values
+    // Check some 2-DM values
     GQCP::SpinUnresolvedDMCalculator d {fock_space};
     BOOST_CHECK(std::abs(d.calculateElement({0, 1}, {2, 1}, coeff) - (-3.0)) < 1.0e-12);  // d(0,1,1,2) : a^\dagger_0 a^\dagger_1 a_2 a_1
     BOOST_CHECK(std::abs(d.calculateElement({2, 0}, {1, 0}, coeff) - (-2.0)) < 1.0e-12);  // d(2,0,0,1) : a^\dagger_2 a^\dagger_0 a^1 a_0
@@ -77,7 +77,7 @@ BOOST_AUTO_TEST_CASE(calculateElement_2RDM) {
 }
 
 
-BOOST_AUTO_TEST_CASE(calculateElement_3RDM) {
+BOOST_AUTO_TEST_CASE(calculateElement_3DM) {
 
     // Create a test wave function
     size_t M = 5;
@@ -88,7 +88,7 @@ BOOST_AUTO_TEST_CASE(calculateElement_3RDM) {
     coeff << 1, 1, -2, 4, -5;
 
 
-    // Check some 3-RDM values
+    // Check some 3-DM values
     GQCP::SpinUnresolvedDMCalculator d(fock_space);
     BOOST_CHECK(std::abs(d.calculateElement({0, 0, 1}, {1, 0, 2}, coeff) - 0.0) < 1.0e-12);  // zero because two times the same index
     BOOST_CHECK(std::abs(d.calculateElement({1, 0, 3}, {4, 1, 2}, coeff) - 0.0) < 1.0e-12);  // zero because no fully annihilated bras and kets match
@@ -97,7 +97,7 @@ BOOST_AUTO_TEST_CASE(calculateElement_3RDM) {
 }
 
 
-BOOST_AUTO_TEST_CASE(throw_1and2_RDMs) {
+BOOST_AUTO_TEST_CASE(throw_1and2_DMs) {
 
     // Create a test wave function
     size_t M = 5;
@@ -110,6 +110,6 @@ BOOST_AUTO_TEST_CASE(throw_1and2_RDMs) {
 
     // not implemented yet and should throw
     GQCP::SpinUnresolvedDMCalculator d(fock_space);
-    BOOST_CHECK_THROW(d.calculate1RDM(coeff), std::runtime_error);
-    BOOST_CHECK_THROW(d.calculate2RDM(coeff), std::runtime_error);
+    BOOST_CHECK_THROW(d.calculate1DM(coeff), std::runtime_error);
+    BOOST_CHECK_THROW(d.calculate2DM(coeff), std::runtime_error);
 }

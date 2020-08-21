@@ -35,11 +35,11 @@ namespace GQCP {
 
 
 /**
- *  A wrapper around the derived RDMBuilders that provides the functionality of the appropriate derived RDMBuilder for a given ONV basis at compile- or runtime.
+ *  A wrapper around the derived DMCalculators that provides the functionality of the appropriate derived DMCalculator for a given ONV basis at compile- or runtime.
  */
 class GeneralDMCalculator {
 private:
-    std::shared_ptr<BaseSpinResolvedDMCalculator> rdm_builder;
+    std::shared_ptr<BaseSpinResolvedDMCalculator> dm_calculator;
     VectorX<double> coefficients;
 
 public:
@@ -65,14 +65,14 @@ public:
     explicit GeneralDMCalculator(const SpinResolvedSelectedONVBasis& onv_basis);
 
     /**
-     *  A run-time constructor allocating the appropriate derived RDMBuilder
+     *  A run-time constructor allocating the appropriate derived DMCalculator
      *
-     *  @param onv_basis       the ONV basis on which the RDMBuilder should be based
+     *  @param onv_basis       the ONV basis on which the DMCalculator should be based
      */
     explicit GeneralDMCalculator(const BaseONVBasis& onv_basis);
 
     /**
-     *  A run-time constructor allocating the appropriate derived RDMBuilder and coefficient vector
+     *  A run-time constructor allocating the appropriate derived DMCalculator and coefficient vector
      *
      *  @param linear_expansion       the linear expansion in a certain ONV basis
      */
@@ -87,7 +87,7 @@ public:
     // OPERATORS
 
     /**
-     *  @param indices_pack      the indices that specify the element of the N-RDM that has to be calculated
+     *  @param indices_pack      the indices that specify the element of the N-DM that has to be calculated
      */
     template <typename... size_ts>
     double operator()(size_ts... indices_pack) const {
@@ -121,20 +121,20 @@ public:
     // PUBLIC METHODS
 
     /**
-     *  @return all 1-RDMs if a given coefficient vector is set
+     *  @return all 1-DMs if a given coefficient vector is set
      */
-    SpinResolvedOneDM<double> calculate1RDMs() const;
+    SpinResolvedOneDM<double> calculate1DMs() const;
 
     /**
-     *  @return all 2-RDMs if a given coefficient vector is set
+     *  @return all 2-DMs if a given coefficient vector is set
      */
-    SpinResolvedTwoDM<double> calculate2RDMs() const;
+    SpinResolvedTwoDM<double> calculate2DMs() const;
 
     /**
      *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)
      *  @param ket_indices      the indices of the orbitals that should be annihilated on the right (on the ket)
      *
-     *  @return an element of the N-RDM, as specified by the given bra and ket indices
+     *  @return an element of the N-DM, as specified by the given bra and ket indices
      *
      *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
      */
