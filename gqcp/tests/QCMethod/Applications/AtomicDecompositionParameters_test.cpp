@@ -80,7 +80,7 @@ BOOST_AUTO_TEST_CASE(decomposition_BeH_cation_STO_3G_Nuclear) {
     auto D = dm_calculator.calculate1DMs().spinSummed();
     D.basisTransform(T.adjoint());  // T.adjoint() to transform BACK to AO basis
 
-    auto d = dm_calculator.calculate2DMs().two_rdm;
+    auto d = dm_calculator.calculate2DMs().spinSummed();
     d.basisTransform(T.adjoint());  // T.adjoint() to transform BACK to AO basis
 
 

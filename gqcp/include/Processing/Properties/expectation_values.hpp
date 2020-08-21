@@ -46,8 +46,8 @@ double calculateSpinSquared(const SpinResolvedOneDM<Scalar>& one_DMs, const Spin
         s_squared += one_DMs.alpha()(p, p);                               // One-electron partition of S+S_
         s_squared += (one_DMs.alpha()(p, p) + one_DMs.beta()(p, p)) / 4;  // One-electron partition of S^2
         for (size_t q = 0; q < K; q++) {
-            s_squared += -two_DMs.two_rdm_aabb(p, q, q, p);                                                                                                                // Two-electron partition  S+S_
-            s_squared += (two_DMs.two_rdm_aaaa(p, p, q, q) + two_DMs.two_rdm_bbbb(p, p, q, q) - two_DMs.two_rdm_aabb(p, p, q, q) - two_DMs.two_rdm_bbaa(p, p, q, q)) / 4;  // Two-electron partition of S^2
+            s_squared += -two_DMs.alphaBeta()(p, q, q, p);                                                                                                             // Two-electron partition  S+S_
+            s_squared += (two_DMs.alphaAlpha()(p, p, q, q) + two_DMs.betaBeta()(p, p, q, q) - two_DMs.alphaBeta()(p, p, q, q) - two_DMs.betaAlpha()(p, p, q, q)) / 4;  // Two-electron partition of S^2
         }
     }
     return s_squared;

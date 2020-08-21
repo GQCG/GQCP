@@ -71,9 +71,9 @@ BOOST_AUTO_TEST_CASE(FrozenCoreFCI_one_DMs) {
     const auto two_DMs_specialized = spin_resolved_dm_calculator.calculate2DMs(linear_expansion.coefficients());
     const auto two_DMs_selected = selected_dm_calculator.calculate2DMs(linear_expansion.coefficients());
 
-    BOOST_CHECK(two_DMs_specialized.two_rdm_aaaa.isApprox(two_DMs_selected.two_rdm_aaaa, 1.0e-12));
-    BOOST_CHECK(two_DMs_specialized.two_rdm_aabb.isApprox(two_DMs_selected.two_rdm_aabb, 1.0e-12));
-    BOOST_CHECK(two_DMs_specialized.two_rdm_bbaa.isApprox(two_DMs_selected.two_rdm_bbaa, 1.0e-12));
-    BOOST_CHECK(two_DMs_specialized.two_rdm_bbbb.isApprox(two_DMs_selected.two_rdm_bbbb, 1.0e-12));
-    BOOST_CHECK(two_DMs_specialized.two_rdm.isApprox(two_DMs_selected.two_rdm, 1.0e-12));
+    BOOST_CHECK(two_DMs_specialized.alphaAlpha().isApprox(two_DMs_selected.alphaAlpha(), 1.0e-12));
+    BOOST_CHECK(two_DMs_specialized.alphaBeta().isApprox(two_DMs_selected.alphaBeta(), 1.0e-12));
+    BOOST_CHECK(two_DMs_specialized.betaAlpha().isApprox(two_DMs_selected.betaAlpha(), 1.0e-12));
+    BOOST_CHECK(two_DMs_specialized.betaBeta().isApprox(two_DMs_selected.betaBeta(), 1.0e-12));
+    BOOST_CHECK(two_DMs_specialized.spinSummed().isApprox(two_DMs_selected.spinSummed(), 1.0e-12));
 }

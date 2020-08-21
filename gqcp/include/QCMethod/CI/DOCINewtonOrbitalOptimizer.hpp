@@ -98,7 +98,7 @@ public:
      *  @return the current 2-DM
      */
     TwoDM<double> calculate2DM() const override {
-        return this->dm_calculator.calculate2DMs(this->ground_state_expansion.coefficients()).two_rdm;
+        return this->dm_calculator.calculate2DMs(this->ground_state_expansion.coefficients()).spinSummed();
     }
 
 

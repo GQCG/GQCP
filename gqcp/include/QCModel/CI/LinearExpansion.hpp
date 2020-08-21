@@ -559,7 +559,7 @@ public:
      *  @return the total (spin-summed) 2-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, TwoDM<double>> calculate2DM() const { return this->calculate2DMs().two_rdm; }
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, TwoDM<double>> calculate2DM() const { return this->calculate2DMs().spinSummed(); }
 
 
     /**

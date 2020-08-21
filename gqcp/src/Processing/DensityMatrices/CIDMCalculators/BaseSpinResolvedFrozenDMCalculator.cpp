@@ -148,10 +148,10 @@ SpinResolvedTwoDM<double> BaseSpinResolvedFrozenDMCalculator::calculate2DMs(cons
     // Incorporate the 2-DM subblocks into the total 2DMs
     SpinResolvedTwoDM<double> sub_2DMs = this->active_dm_calculator->calculate2DMs(x);
 
-    d_aaaa.addBlock(sub_2DMs.two_rdm_aaaa, this->X, this->X, this->X, this->X);
-    d_bbbb.addBlock(sub_2DMs.two_rdm_bbbb, this->X, this->X, this->X, this->X);
-    d_aabb.addBlock(sub_2DMs.two_rdm_aabb, this->X, this->X, this->X, this->X);
-    d_bbaa.addBlock(sub_2DMs.two_rdm_bbaa, this->X, this->X, this->X, this->X);
+    d_aaaa.addBlock(sub_2DMs.alphaAlpha(), this->X, this->X, this->X, this->X);
+    d_bbbb.addBlock(sub_2DMs.betaBeta(), this->X, this->X, this->X, this->X);
+    d_aabb.addBlock(sub_2DMs.alphaBeta(), this->X, this->X, this->X, this->X);
+    d_bbaa.addBlock(sub_2DMs.betaAlpha(), this->X, this->X, this->X, this->X);
 
     return SpinResolvedTwoDM<double>(d_aaaa, d_aabb, d_bbaa, d_bbbb);
 };

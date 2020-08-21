@@ -18,48 +18,101 @@
 #pragma once
 
 
+#include "Basis/SpinorBasis/Spin.hpp"
+#include "Processing/DensityMatrices/TwoDM.hpp"
+
+
 namespace GQCP {
 
 
 /**
- *  The spin-resolved two-electron density matrices.
+ *  A type that encapsulates the parts of the spin-resolved two-electron density matrix.
  *
- *  @tparam Scalar      the scalar type
+ *  @tparam _Scalar         the scalar type of one of the matrix elements
  */
-template <typename Scalar>
+template <typename _Scalar>
 struct SpinResolvedTwoDM {
-    TwoDM<Scalar> two_rdm;  // spin-summed (total) 2-DM
-
-    TwoDM<Scalar> two_rdm_aaaa;  // a-a-a-a 2-DM
-    TwoDM<Scalar> two_rdm_aabb;  // a-a-b-b 2-DM
-    TwoDM<Scalar> two_rdm_bbaa;  // b-a-a-b 2-DM
-    TwoDM<Scalar> two_rdm_bbbb;  // b-b-b-b 2-DM
+public:
+    using Scalar = _Scalar;
 
 
+private:
+    TwoDM<Scalar> d_aaaa;  // the alpha-alpha-alpha-alpha 2-DM
+    TwoDM<Scalar> d_aabb;  // the alpha-alpha-beta-beta 2-DM
+    TwoDM<Scalar> d_bbaa;  // the beta-beta-alpha-alpha 2-DM
+    TwoDM<Scalar> d_bbbb;  // the beta-beta-beta-beta 2-DM
+
+
+public:
     /*
      *  CONSTRUCTORS
      */
 
     /**
-     *  A constructor that creates the total 2-DM as the sum of the spin-resolved 2-DMs
+     *  Construct a spin-resolved 2-DM from its members.
      *
-     *  @param two_rdm_aaaa     the alpha-alpha-alpha-alpha 2-DM
-     *  @param two_rdm_aabb     the alpha-alpha-beta-beta 2-DM
-     *  @param two_rdm_bbaa     the beta-beta-alpha-alpha 2-DM
-     *  @param two_rdm_bbbb     the beta-beta-beta-beta 2-DM
+     *  @param d_aaaa       the alpha-alpha-alpha-alpha 2-DM
+     *  @param d_aabb       the alpha-alpha-beta-beta 2-DM
+     *  @param d_bbaa       the beta-beta-alpha-alpha 2-DM
+     *  @param d_bbbb       the beta-beta-beta-beta 2-DM
      */
-    SpinResolvedTwoDM(const TwoDM<Scalar>& two_rdm_aaaa, const TwoDM<Scalar>& two_rdm_aabb, const TwoDM<Scalar>& two_rdm_bbaa, const TwoDM<Scalar>& two_rdm_bbbb) :
-        two_rdm {two_rdm_aaaa.Eigen() + two_rdm_aabb.Eigen() + two_rdm_bbaa.Eigen() + two_rdm_bbbb.Eigen()},
-        two_rdm_aaaa {two_rdm_aaaa},
-        two_rdm_aabb {two_rdm_aabb},
-        two_rdm_bbaa {two_rdm_bbaa},
-        two_rdm_bbbb {two_rdm_bbbb} {}
+    SpinResolvedTwoDM(const TwoDM<Scalar>& d_aaaa, const TwoDM<Scalar>& d_aabb, const TwoDM<Scalar>& d_bbaa, const TwoDM<Scalar>& d_bbbb) :
+        d_aaaa {d_aaaa},
+        d_aabb {d_aabb},
+        d_bbaa {d_bbaa},
+        d_bbbb {d_bbbb} {}
+
+
+    /*
+     *  PUBLIC METHODS
+     */
+
+    /**
+     *  @return the alpha-alpha-alpha-alpha part of the spin-resolved 2-DM
+     */
+    const TwoDM<Scalar>& alphaAlpha() const { return this->d_aaaa; }
+
+    /**
+     *  @return the alpha-alpha-beta-beta part of the spin-resolved 2-DM
+     */
+    const TwoDM<Scalar>& alphaBeta() const { return this->d_aabb; }
+
+    /**
+     *  @return the beta-beta-alpha-alpha part of the spin-resolved 2-DM
+     */
+    const TwoDM<Scalar>& betaAlpha() const { return this->d_bbaa; }
+
+    /**
+     *  @return the beta-beta-beta-beta part of the spin-resolved 2-DM
+     */
+    const TwoDM<Scalar>& betaBeta() const { return this->d_bbbb; }
+
+    /**
+     *  @param sigma            alpha or beta
+     *  @param tau              alpha or beta
+     * 
+     *  @return the number of orbitals that are related to the sigma-tau part of the spin-resolved 2-DM
+     */
+    size_t dimension(const Spin sigma, const Spin tau) const {
+
+        if (sigma == Spin::alpha && tau == Spin::alpha) {
+            return this->alphaAlpha().dimension();
+        } else if (sigma == Spin::alpha && tau == Spin::beta) {
+            return this->alphaBeta().dimension();
+        } else if (sigma == Spin::beta && tau == Spin::alpha) {
+            return this->betaAlpha().dimension();
+        } else {
+            return this->betaBeta().dimension();
+        }
+    }
 
 
     /**
-     *  @return the dimension of the matrix representation of the 2-DMs, i.e. the number of orbitals/sites
+     *  @return the spin-summed (total) 2-DM, i.e. the sum of four spin parts
      */
-    size_t dimension() const { return two_rdm.dimension(); }
+    TwoDM<Scalar> spinSummed() const {
+        return TwoDM<Scalar>(this->alphaAlpha().Eigen() + this->alphaBeta().Eigen() + this->betaAlpha().Eigen() + this->betaBeta().Eigen());
+    }
 };
 
 
