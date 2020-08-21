@@ -21,7 +21,7 @@
 #include "Mathematical/Optimization/Eigenproblem/Eigenpair.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
 #include "ONVBasis/SeniorityZeroONVBasis.hpp"
-#include "Processing/DensityMatrices/SeniorityZeroDMCalculator.hpp"
+#include "Processing/DensityMatrices/CIDMCalculators/SeniorityZeroDMCalculator.hpp"
 #include "QCMethod/CI/CI.hpp"
 #include "QCMethod/CI/CIEnvironment.hpp"
 #include "QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp"

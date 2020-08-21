@@ -22,7 +22,7 @@
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
-#include "Processing/DensityMatrices/GeneralDMCalculator.hpp"
+#include "Processing/DensityMatrices/CIDMCalculators/GeneralDMCalculator.hpp"
 #include "QCMethod/Applications/AtomicDecompositionParameters.hpp"
 #include "QCMethod/CI/CI.hpp"
 #include "QCMethod/CI/CIEnvironment.hpp"

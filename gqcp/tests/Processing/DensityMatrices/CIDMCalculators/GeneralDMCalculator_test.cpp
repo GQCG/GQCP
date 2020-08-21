@@ -22,8 +22,8 @@
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "Processing/DensityMatrices/GeneralDMCalculator.hpp"
-#include "Processing/DensityMatrices/GeneralSpinUnresolvedDMCalculator.hpp"
+#include "Processing/DensityMatrices/CIDMCalculators/GeneralDMCalculator.hpp"
+#include "Processing/DensityMatrices/CIDMCalculators/GeneralSpinUnresolvedDMCalculator.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
 
 

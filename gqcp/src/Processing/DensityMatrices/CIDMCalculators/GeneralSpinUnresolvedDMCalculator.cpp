@@ -15,11 +15,12 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Processing/DensityMatrices/GeneralSpinUnresolvedDMCalculator.hpp"
-#include "Processing/DensityMatrices/SeniorityZeroDMCalculator.hpp"
-#include "Processing/DensityMatrices/SpinResolvedDMCalculator.hpp"
-#include "Processing/DensityMatrices/SpinResolvedSelectedDMCalculator.hpp"
-#include "Processing/DensityMatrices/SpinUnresolvedDMCalculator.hpp"
+#include "Processing/DensityMatrices/CIDMCalculators/GeneralSpinUnresolvedDMCalculator.hpp"
+
+#include "Processing/DensityMatrices/CIDMCalculators/SeniorityZeroDMCalculator.hpp"
+#include "Processing/DensityMatrices/CIDMCalculators/SpinResolvedDMCalculator.hpp"
+#include "Processing/DensityMatrices/CIDMCalculators/SpinResolvedSelectedDMCalculator.hpp"
+#include "Processing/DensityMatrices/CIDMCalculators/SpinUnresolvedDMCalculator.hpp"
 
 
 namespace GQCP {

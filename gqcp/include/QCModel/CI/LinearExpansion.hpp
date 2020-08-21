@@ -27,12 +27,12 @@
 #include "ONVBasis/SpinResolvedONV.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
-#include "Processing/DensityMatrices/SeniorityZeroDMCalculator.hpp"
-#include "Processing/DensityMatrices/SpinResolvedDMCalculator.hpp"
-#include "Processing/DensityMatrices/SpinResolvedFrozenDMCalculator.hpp"
+#include "Processing/DensityMatrices/CIDMCalculators/SeniorityZeroDMCalculator.hpp"
+#include "Processing/DensityMatrices/CIDMCalculators/SpinResolvedDMCalculator.hpp"
+#include "Processing/DensityMatrices/CIDMCalculators/SpinResolvedFrozenDMCalculator.hpp"
+#include "Processing/DensityMatrices/CIDMCalculators/SpinUnresolvedDMCalculator.hpp"
 #include "Processing/DensityMatrices/SpinResolvedOneDM.hpp"
 #include "Processing/DensityMatrices/SpinResolvedTwoDM.hpp"
-#include "Processing/DensityMatrices/SpinUnresolvedDMCalculator.hpp"
 #include "Utilities/aliases.hpp"
 #include "Utilities/linalg.hpp"
 
@@ -539,10 +539,10 @@ public:
     }
 
 
-    // #include "Processing/DensityMatrices/SeniorityZeroDMCalculator.hpp"
-    // #include "Processing/DensityMatrices/SpinResolvedDMCalculator.hpp"
-    // #include "Processing/DensityMatrices/SpinResolvedFrozenDMCalculator.hpp"
-    // #include "Processing/DensityMatrices/SpinUnresolvedDMCalculator.hpp"
+    // #include "Processing/DensityMatrices/CIDMCalculators/SeniorityZeroDMCalculator.hpp"
+    // #include "Processing/DensityMatrices/CIDMCalculators/SpinResolvedDMCalculator.hpp"
+    // #include "Processing/DensityMatrices/CIDMCalculators/SpinResolvedFrozenDMCalculator.hpp"
+    // #include "Processing/DensityMatrices/CIDMCalculators/SpinUnresolvedDMCalculator.hpp"
 
     /**
      *  Calculate the one-electron density matrix for a seniority-zero wave function expansion.

@@ -21,8 +21,8 @@
 
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "Processing/DensityMatrices/SpinResolvedDMCalculator.hpp"
-#include "Processing/DensityMatrices/SpinResolvedSelectedDMCalculator.hpp"
+#include "Processing/DensityMatrices/CIDMCalculators/SpinResolvedDMCalculator.hpp"
+#include "Processing/DensityMatrices/CIDMCalculators/SpinResolvedSelectedDMCalculator.hpp"
 #include "QCMethod/CI/CI.hpp"
 #include "QCMethod/CI/CIEnvironment.hpp"
 

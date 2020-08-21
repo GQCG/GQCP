@@ -18,8 +18,7 @@
 #pragma once
 
 
-#include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
-#include "Processing/DensityMatrices/BaseSpinResolvedDMCalculator.hpp"
+#include "Processing/DensityMatrices/CIDMCalculators/BaseSpinResolvedDMCalculator.hpp"
 #include "Processing/DensityMatrices/SpinResolvedOneDM.hpp"
 #include "Processing/DensityMatrices/SpinResolvedTwoDM.hpp"
 
@@ -28,41 +27,34 @@ namespace GQCP {
 
 
 /**
- *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in a selected spin-resolved basis
+ *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in a frozen spin-resolved ONV basis
  */
-class SpinResolvedSelectedDMCalculator: public BaseSpinResolvedDMCalculator {
+class BaseSpinResolvedFrozenDMCalculator: public BaseSpinResolvedDMCalculator {
 private:
-    SpinResolvedSelectedONVBasis onv_basis;  // spin-resolved ONV basis containing the selected configurations
-
+    size_t X;                                                          // number of frozen orbitals/electrons
+    std::shared_ptr<BaseSpinResolvedDMCalculator> active_rdm_builder;  // active (non-frozen core) RDM builder performing the BaseSpinResolvedDMCalculator interface in the active space with the frozen core CI wave function
 
 public:
     // CONSTRUCTORS
 
     /**
-     *  @param onv_basis                spin-resolved ONV basis containing the selected configurations
+     *  @param rdm_builder                  shared pointer to active (non-frozen core) RDM builder
+     *  @param X                            the number of frozen orbitals
      */
-    explicit SpinResolvedSelectedDMCalculator(const SpinResolvedSelectedONVBasis& onv_basis);
-
-
-    // DESTRUCTOR
-
-    /**
-     *  The default destructor.
-     */
-    ~SpinResolvedSelectedDMCalculator() = default;
+    BaseSpinResolvedFrozenDMCalculator(const std::shared_ptr<BaseSpinResolvedDMCalculator> rdm_builder, const size_t X);
 
 
     // PUBLIC OVERRIDDEN METHODS
 
     /**
-     *  @param x        the coefficient vector representing the 'selected' wave function
+     *  @param x        the coefficient vector representing the wave function
      *
      *  @return all 1-RDMs given a coefficient vector
      */
     SpinResolvedOneDM<double> calculate1RDMs(const VectorX<double>& x) const override;
 
     /**
-     *  @param x        the coefficient vector representing the 'selected' wave function
+     *  @param x        the coefficient vector representing the wave function
      *
      *  @return all 2-RDMs given a coefficient vector
      */
@@ -71,18 +63,13 @@ public:
     /**
      *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)
      *  @param ket_indices      the indices of the orbitals that should be annihilated on the right (on the ket)
-     *  @param x                the coefficient vector representing the 'selected' wave function
+     *  @param x                the coefficient vector representing the wave function
      *
      *  @return an element of the spin-summed (total) N-RDM, as specified by the given bra and ket indices
      *
      *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
      */
-    double calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const VectorX<double>& x) const override { throw std::runtime_error("SpinResolvedSelectedDMCalculator::calculateElement(std::vector<size_t>, std::vector<size_t>, VectorX<double>): is not implemented for SelectedRDMs"); }
-
-    /**
-     *  @return the ONV basis that is associated to this RDMBuilder
-     */
-    const BaseONVBasis* onvBasis() const override { return &onv_basis; }
+    double calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const VectorX<double>& x) const override { throw std::runtime_error("BaseSpinResolvedFrozenDMCalculator::calculateElement(std::vector<size_t>, std::vector<size_t>, VectorX<double>): calculateElement is not implemented for FrozenCoreCI RDMs"); }
 };
 
 

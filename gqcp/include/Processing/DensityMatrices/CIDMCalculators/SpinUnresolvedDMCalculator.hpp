@@ -19,7 +19,7 @@
 
 
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
-#include "Processing/DensityMatrices/BaseSpinUnresolvedDMCalculator.hpp"
+#include "Processing/DensityMatrices/CIDMCalculators/BaseSpinUnresolvedDMCalculator.hpp"
 #include "Processing/DensityMatrices/SpinResolvedOneDM.hpp"
 #include "Processing/DensityMatrices/SpinResolvedTwoDM.hpp"
 

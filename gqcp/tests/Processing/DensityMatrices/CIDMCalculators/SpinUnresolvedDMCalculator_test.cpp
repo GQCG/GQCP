@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Processing/DensityMatrices/SpinUnresolvedDMCalculator.hpp"
+#include "Processing/DensityMatrices/CIDMCalculators/SpinUnresolvedDMCalculator.hpp"
 
 
 BOOST_AUTO_TEST_CASE(calculateElement_throws) {

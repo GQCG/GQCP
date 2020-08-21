@@ -19,7 +19,7 @@
 
 
 #include "ONVBasis/SpinResolvedFrozenONVBasis.hpp"
-#include "Processing/DensityMatrices/BaseSpinResolvedFrozenDMCalculator.hpp"
+#include "Processing/DensityMatrices/CIDMCalculators/BaseSpinResolvedFrozenDMCalculator.hpp"
 #include "Processing/DensityMatrices/SpinResolvedOneDM.hpp"
 #include "Processing/DensityMatrices/SpinResolvedTwoDM.hpp"
 
@@ -28,23 +28,23 @@ namespace GQCP {
 
 
 /**
- *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in the frozen DOCI ONV basis
+ *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in the full frozen full spin resolved ONV basis
  */
-class FrozenCoreDOCIRDMBuilder: public BaseSpinResolvedFrozenDMCalculator {
+class SpinResolvedFrozenDMCalculator: public BaseSpinResolvedFrozenDMCalculator {
 private:
-    SpinUnresolvedFrozenONVBasis onv_basis;  // both the frozen alpha and beta spin-unresolved ONV basis
+    SpinResolvedFrozenONVBasis onv_basis;
 
 
 public:
     // CONSTRUCTORS
 
     /**
-     *  @param onv_basis        both the frozen alpha and beta spin-unresolved ONV basis
+     *  @param onv_basis       the frozen spin-resolved ONV basis
      */
-    explicit FrozenCoreDOCIRDMBuilder(const SpinUnresolvedFrozenONVBasis& onv_basis);
+    explicit SpinResolvedFrozenDMCalculator(const SpinResolvedFrozenONVBasis& onv_basis);
 
 
-    // OVERRIDDEN PUBLIC METHODS
+    // PUBLIC OVERRIDDEN METHODS
 
     /**
      *  @return the ONV basis that is associated to this RDMBuilder

@@ -18,9 +18,11 @@
 #pragma once
 
 
+#include "ONVBasis/SpinResolvedONVBasis.hpp"
+#include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
-#include "Processing/DensityMatrices/BaseSpinUnresolvedDMCalculator.hpp"
-#include "Processing/DensityMatrices/SpinUnresolvedDMCalculator.hpp"
+#include "Processing/DensityMatrices/CIDMCalculators/BaseSpinResolvedDMCalculator.hpp"
+#include "QCModel/CI/LinearExpansion.hpp"
 
 #include <boost/range/adaptor/sliced.hpp>
 #include <boost/range/adaptor/strided.hpp>
@@ -33,28 +35,53 @@ namespace GQCP {
 
 
 /**
- *  A wrapper around the SpinUnresolvedDMCalculator
+ *  A wrapper around the derived RDMBuilders that provides the functionality of the appropriate derived RDMBuilder for a given ONV basis at compile- or runtime.
  */
-class GeneralSpinUnresolvedDMCalculator {
+class GeneralDMCalculator {
 private:
-    SpinUnresolvedDMCalculator rdm_builder;
+    std::shared_ptr<BaseSpinResolvedDMCalculator> rdm_builder;
     VectorX<double> coefficients;
 
-
 public:
-    // CONSTRUCTORS
+    // CONSTRUCTOR
 
     /**
      *  The default constructor.
      */
-    GeneralSpinUnresolvedDMCalculator() = default;
+    GeneralDMCalculator() = default;
 
     /**
-     *  Allocate a SpinUnresolvedDMCalculator
+     *  Allocate an SpinResolvedDMCalculator
      *
-     *  @param onv_basis       the spin-unresolved ONV basis
+     *  @param onv_basis       the FCI ONV basis
      */
-    explicit GeneralSpinUnresolvedDMCalculator(const SpinUnresolvedONVBasis& onv_basis);
+    explicit GeneralDMCalculator(const SpinResolvedONVBasis& onv_basis);
+
+    /**
+     *  Allocate a SpinResolvedSelectedDMCalculator
+     *
+     *  @param onv_basis       the 'selected' ONV basis
+     */
+    explicit GeneralDMCalculator(const SpinResolvedSelectedONVBasis& onv_basis);
+
+    /**
+     *  A run-time constructor allocating the appropriate derived RDMBuilder
+     *
+     *  @param onv_basis       the ONV basis on which the RDMBuilder should be based
+     */
+    explicit GeneralDMCalculator(const BaseONVBasis& onv_basis);
+
+    /**
+     *  A run-time constructor allocating the appropriate derived RDMBuilder and coefficient vector
+     *
+     *  @param linear_expansion       the linear expansion in a certain ONV basis
+     */
+    template <typename ONVBasis>
+    explicit GeneralDMCalculator(const LinearExpansion<ONVBasis>& linear_expansion) :
+        GeneralDMCalculator(linear_expansion.onvBasis()) {
+
+        this->setCoefficients(linear_expansion.coefficients());
+    }
 
 
     // OPERATORS
@@ -65,12 +92,9 @@ public:
     template <typename... size_ts>
     double operator()(size_ts... indices_pack) const {
 
-        if (this->coefficients.rows() == 0) {
-            throw std::logic_error("No vector has been set.");
-        }
-
         // Assume the user has given size_ts
         std::vector<size_t> indices {static_cast<size_t>(indices_pack)...};  // convert the pack to a vector so we can easily traverse
+
 
         if ((indices.size() == 0)) {
             return 1.0;  // assume the wave function is normalized
@@ -80,6 +104,7 @@ public:
             throw std::invalid_argument("There must be an even number of indices as arguments.");
         }
 
+
         // Split the vector in ket (even) and bra (odd) indices
         std::vector<size_t> bra_indices;  // even
         boost::push_back(bra_indices, indices | boost::adaptors::strided(2));
@@ -88,6 +113,7 @@ public:
         boost::push_back(ket_indices, indices | boost::adaptors::sliced(1, indices.size()) | boost::adaptors::strided(2));
         std::reverse(ket_indices.begin(), ket_indices.end());
 
+
         return this->calculateElement(bra_indices, ket_indices);
     }
 
@@ -95,14 +121,14 @@ public:
     // PUBLIC METHODS
 
     /**
-     *  @return the 1-RDM if a given coefficient vector is set
+     *  @return all 1-RDMs if a given coefficient vector is set
      */
-    OneDM<double> calculate1RDM() const;
+    SpinResolvedOneDM<double> calculate1RDMs() const;
 
     /**
-     *  @return the 2-RDM if a given coefficient vector is set
+     *  @return all 2-RDMs if a given coefficient vector is set
      */
-    TwoDM<double> calculate2RDM() const;
+    SpinResolvedTwoDM<double> calculate2RDMs() const;
 
     /**
      *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)
@@ -115,9 +141,9 @@ public:
     double calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices) const;
 
     /**
-     *  Replace this instance's coefficients with new ones.
+     *  Replace this instance's coefficients with the given coefficients.
      * 
-     *  @param coefficients                 the new coefficients
+     *  @param coefficients                 the new coefficients for this instance
      */
     void setCoefficients(const VectorX<double>& coefficients) { this->coefficients = coefficients; };
 };
