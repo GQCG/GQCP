@@ -66,7 +66,7 @@ public:
         const auto& P_alpha = environment.density_matrices_alpha.back();  // the most recent alpha density matrix
         const auto& P_beta = environment.density_matrices_beta.back();    // the most recent beta density matrix
 
-        const ScalarUSQOneElectronOperator<Scalar> F {environment.fock_matrices_alpha.back(), environment.fock_matrices_beta.back()}; // The most recent alpha and beta Fock matrices
+        const ScalarUSQOneElectronOperator<Scalar> F {environment.fock_matrices_alpha.back(), environment.fock_matrices_beta.back()};  // the most recent alpha and beta Fock matrices
 
 
         const auto E_electronic_alpha = QCModel::UHF<double>::calculateElectronicEnergy(P_alpha, H_core, F.parameters(GQCP::Spin::alpha));
