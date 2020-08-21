@@ -1,0 +1,58 @@
+name: Deploy website
+
+# This workflow is triggered on a pull request. This is a single event so no brackets are needed.
+on: pull_request
+  # This workflow will only start if files in site/docs/ or site/website are changed.
+  paths: 
+  - site/docs/
+  - site/website/
+
+jobs:
+  build:
+    # Configures a build matrix containing multiple operating systems. For each configuration, a copy of the job runs and reports a status.
+    runs-on: ${{ matrix.os }}
+    # To specify the array of operating systems, we must list them under 'strategy'.
+    strategy:
+      matrix:
+        # This job runs on the latest version of Linux.
+        os: [ubuntu-latest]
+    steps:
+    # The checkout action must be included when your workflow requires a copy of your repository's code.
+    - uses: actions/checkout@v2
+
+    # Download and install conda such that we can use it to install the required packages for Docusaurus.
+    - name: Download conda (Linux)
+      if: matrix.os == 'ubuntu-latest'
+      run: wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $HOME/miniconda.sh
+
+    - name: Install conda   
+      run: |  
+        bash $HOME/miniconda.sh -b -u -p $HOME/miniconda
+        echo "::add-path::$HOME/miniconda/bin"
+
+    # Nodejs and Yarn are required packages to run Docusaurus.
+    - name: Install Nodejs and Yarn
+      run: |
+        conda install -c anaconda nodejs
+        conda install -c conda-forge yarn
+
+    # Run the Docusaurus installation script.
+    - name: Docusaurus installation
+      run: |
+        cd site/website
+        npx docusaurus-init
+        yarn
+
+    # Build the site
+    - name: Build site using Docusaurus
+      run: |
+        cd site/website
+        yarn run build
+
+    # Deploy the website to GitHub pages.
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./site/website/build/GQCP
+        publish_branch: gh-pages
