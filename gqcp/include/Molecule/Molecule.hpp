@@ -134,15 +134,15 @@ public:
      */
     int charge() const;
 
-    // /**
-    //  *  @return a textual description of this molecule.
-    //  */
-    // std::string description() const {
+    /**
+     *  @return a textual description of this molecule.
+     */
+    std::string description() const {
 
-    //     std::string molecule_string = (boost::format("Number of electrons: %s \n") % this->numberOfElectrons()).str();
-        
-        
-    // }
+        std::string molecule_string = (boost::format("Number of electrons: %s \n") % this->numberOfElectrons()).str(); // + std::to_string(this->nuclearFramework());
+
+        return molecule_string;
+    }
 
 
     /**
