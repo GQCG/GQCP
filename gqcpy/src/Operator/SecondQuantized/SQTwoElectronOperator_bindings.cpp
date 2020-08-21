@@ -55,7 +55,7 @@ void bindSQTwoElectronOperator(py::module& module) {
         .def(
             "calculateExpectationValue",
             [](const GQCP::SQTwoElectronOperator<double, 1>& op, const Eigen::Tensor<double, 4>& d) {  // use an itermediary Eigen Tensor for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Tensor
-                return op.calculateExpectationValue(GQCP::TwoRDM<double> {d});
+                return op.calculateExpectationValue(GQCP::TwoDM<double> {d});
             },
             "Return the expectation value of the scalar two-electron operator given a 2-DM.")
 

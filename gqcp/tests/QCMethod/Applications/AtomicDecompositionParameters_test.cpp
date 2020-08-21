@@ -22,7 +22,7 @@
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
-#include "Processing/RDM/RDMCalculator.hpp"
+#include "Processing/DensityMatrices/CIDMCalculators/GeneralDMCalculator.hpp"
 #include "QCMethod/Applications/AtomicDecompositionParameters.hpp"
 #include "QCMethod/CI/CI.hpp"
 #include "QCMethod/CI/CIEnvironment.hpp"
@@ -73,14 +73,14 @@ BOOST_AUTO_TEST_CASE(decomposition_BeH_cation_STO_3G_Nuclear) {
     const auto& linear_expansion = qc_structure.groundStateParameters();
 
 
-    // Calculate the RDMs (in the AO basis in which the molecular decomposition parameters are defined) in order to calculate expectation values.
-    GQCP::RDMCalculator rdm_calculator {onv_basis};
-    rdm_calculator.setCoefficients(linear_expansion.coefficients());
+    // Calculate the DMs (in the AO basis in which the molecular decomposition parameters are defined) in order to calculate expectation values.
+    GQCP::GeneralDMCalculator dm_calculator {onv_basis};
+    dm_calculator.setCoefficients(linear_expansion.coefficients());
 
-    auto D = rdm_calculator.calculate1RDMs().one_rdm;
+    auto D = dm_calculator.calculate1DMs().spinSummed();
     D.basisTransform(T.adjoint());  // T.adjoint() to transform BACK to AO basis
 
-    auto d = rdm_calculator.calculate2RDMs().two_rdm;
+    auto d = dm_calculator.calculate2DMs().spinSummed();
     d.basisTransform(T.adjoint());  // T.adjoint() to transform BACK to AO basis
 
 

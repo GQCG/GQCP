@@ -63,8 +63,8 @@ BOOST_AUTO_TEST_CASE(energy_as_contraction) {
 
 
     // Calculate the DMs and check the trace with the one- and two-electron integrals.
-    const auto D = GQCP::QCModel::vAP1roG::calculate1RDM(G, multipliers);
-    const auto d = GQCP::QCModel::vAP1roG::calculate2RDM(G, multipliers);
+    const auto D = GQCP::QCModel::vAP1roG::calculate1DM(G, multipliers);
+    const auto d = GQCP::QCModel::vAP1roG::calculate2DM(G, multipliers);
     const double electronic_energy_by_contraction = sq_hamiltonian.calculateExpectationValue(D, d);
 
     BOOST_CHECK(std::abs(electronic_energy_by_contraction - electronic_energy) < 1.0e-09);

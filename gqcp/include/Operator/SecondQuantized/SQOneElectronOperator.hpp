@@ -24,8 +24,8 @@
 #include "Mathematical/Functions/LinearCombination.hpp"
 #include "Mathematical/Functions/ScalarFunction.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
-#include "Processing/RDM/OneRDM.hpp"
-#include "Processing/RDM/TwoRDM.hpp"
+#include "Processing/DensityMatrices/OneDM.hpp"
+#include "Processing/DensityMatrices/TwoDM.hpp"
 #include "Utilities/type_traits.hpp"
 
 #include <array>
@@ -147,14 +147,14 @@ public:
     std::array<QCMatrix<Scalar>, Components>& allParameters() { return this->fs; }
 
     /**
-     *  @param D                the 1-RDM that represents the wave function
+     *  @param D                the 1-DM that represents the wave function
      *
      *  @return the expectation values of all components of the one-electron operator
      */
-    Vector<Scalar, Components> calculateExpectationValue(const OneRDM<Scalar>& D) const {
+    Vector<Scalar, Components> calculateExpectationValue(const OneDM<Scalar>& D) const {
 
         if (this->dimension() != D.dimension()) {
-            throw std::invalid_argument("SQOneElectronOperator::calculateExpectationValue(const OneRDM<Scalar>&): The given 1-RDM is not compatible with the one-electron operator.");
+            throw std::invalid_argument("SQOneElectronOperator::calculateExpectationValue(const OneDM<Scalar>&): The given 1-DM is not compatible with the one-electron operator.");
         }
 
         std::array<Scalar, Components> expectation_values {};  // zero initialization
@@ -176,7 +176,7 @@ public:
      *  @note This method is only enabled for SQOneElectronOperators that represent second-quantized electron density operators.
      */
     template <typename S = Scalar, typename = enable_if_t<std::is_same<S, ScalarFunctionProduct<LinearCombination<double, LinearCombination<double, CartesianGTO>>>>::value>>
-    LinearCombination<double, ScalarFunctionProduct<LinearCombination<double, LinearCombination<double, CartesianGTO>>>> calculateDensity(const OneRDM<double>& D) const {
+    LinearCombination<double, ScalarFunctionProduct<LinearCombination<double, LinearCombination<double, CartesianGTO>>>> calculateDensity(const OneDM<double>& D) const {
 
         using Primitive = CartesianGTO;
         using BasisFunction = LinearCombination<double, Primitive>;
@@ -206,15 +206,15 @@ public:
      *
      *  @return the (generalized) Fockian matrix for each of the components
      */
-    std::array<SquareMatrix<Scalar>, Components> calculateFockianMatrix(const OneRDM<double>& D, const TwoRDM<double>& d) const {
+    std::array<SquareMatrix<Scalar>, Components> calculateFockianMatrix(const OneDM<double>& D, const TwoDM<double>& d) const {
 
         // Check if dimensions are compatible
         if (D.dimension() != this->dimension()) {
-            throw std::invalid_argument("SQOneElectronOperator::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>): The 1-RDM is not compatible with the one-electron operator.");
+            throw std::invalid_argument("SQOneElectronOperator::calculateFockianMatrix(OneDM<double>, TwoDM<double>): The 1-DM is not compatible with the one-electron operator.");
         }
 
         if (d.dimension() != this->dimension()) {
-            throw std::invalid_argument("SQOneElectronOperator::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>): The 2-RDM is not compatible with the one-electron operator.");
+            throw std::invalid_argument("SQOneElectronOperator::calculateFockianMatrix(OneDM<double>, TwoDM<double>): The 2-DM is not compatible with the one-electron operator.");
         }
 
 
@@ -247,15 +247,15 @@ public:
      *
      *  @return the (generalized) super-Fockian matrix
      */
-    std::array<SquareRankFourTensor<Scalar>, Components> calculateSuperFockianMatrix(const OneRDM<double>& D, const TwoRDM<double>& d) const {
+    std::array<SquareRankFourTensor<Scalar>, Components> calculateSuperFockianMatrix(const OneDM<double>& D, const TwoDM<double>& d) const {
 
         // Check if dimensions are compatible
         if (D.dimension() != this->dimension()) {
-            throw std::invalid_argument("SQOneElectronOperator::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>): The 1-RDM is not compatible with the one-electron operator.");
+            throw std::invalid_argument("SQOneElectronOperator::calculateFockianMatrix(OneDM<double>, TwoDM<double>): The 1-DM is not compatible with the one-electron operator.");
         }
 
         if (d.dimension() != this->dimension()) {
-            throw std::invalid_argument("SQOneElectronOperator::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>): The 2-RDM is not compatible with the one-electron operator.");
+            throw std::invalid_argument("SQOneElectronOperator::calculateFockianMatrix(OneDM<double>, TwoDM<double>): The 2-DM is not compatible with the one-electron operator.");
         }
 
 

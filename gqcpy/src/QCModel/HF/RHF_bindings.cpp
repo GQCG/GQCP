@@ -33,18 +33,18 @@ void bindQCModelRHF(py::module& module) {
         // PUBLIC METHODS
 
         .def(
-            "calculateOrthonormalBasis1RDM",
+            "calculateOrthonormalBasis1DM",
             [](const GQCP::QCModel::RHF<double>& rhf_parameters) {
-                return rhf_parameters.calculateOrthonormalBasis1RDM();
+                return rhf_parameters.calculateOrthonormalBasis1DM();
             },
-            "Return the 1-RDM expressed in an orthonormal spinor basis related to these optimal RHF parameters.")
+            "Return the 1-DM expressed in an orthonormal spinor basis related to these optimal RHF parameters.")
 
         .def(
-            "calculateScalarBasis1RDM",
+            "calculateScalarBasis1DM",
             [](const GQCP::QCModel::RHF<double>& rhf_parameters) {
-                return rhf_parameters.calculateScalarBasis1RDM();
+                return rhf_parameters.calculateScalarBasis1DM();
             },
-            "Return the RHF 1-RDM in the scalar/AO basis related to these optimal RHF parameters")
+            "Return the RHF 1-DM in the scalar/AO basis related to these optimal RHF parameters")
 
         .def("coefficientMatrix",
              &GQCP::QCModel::RHF<double>::coefficientMatrix,

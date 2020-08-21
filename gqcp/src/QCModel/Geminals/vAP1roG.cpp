@@ -47,10 +47,10 @@ vAP1roG::vAP1roG(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<d
  *
  *  @return the AP1roG response 1-DM
  */
-OneRDM<double> vAP1roG::calculate1RDM(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<double>& multipliers) {
+OneDM<double> vAP1roG::calculate1DM(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<double>& multipliers) {
 
     // KISS-implementation of the formulas.
-    OneRDM<double> D = OneRDM<double>::Zero(G.numberOfSpatialOrbitals(), G.numberOfSpatialOrbitals());
+    OneDM<double> D = OneDM<double>::Zero(G.numberOfSpatialOrbitals(), G.numberOfSpatialOrbitals());
 
     const auto orbital_space = G.orbitalSpace();
 
@@ -127,9 +127,9 @@ MatrixX<double> vAP1roG::calculateMultiplierResponseForceConstant(const SQHamilt
  *  @param G                the AP1roG geminal coefficients
  *  @param multipliers      the AP1roG Lagrangian multipliers
  *
- *  @return the AP1roG response number 2-RDM (the Delta-matrix in the notes)
+ *  @return the AP1roG response number 2-DM (the Delta-matrix in the notes)
  */
-SquareMatrix<double> vAP1roG::calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<double>& multipliers) {
+SquareMatrix<double> vAP1roG::calculateNumber2DM(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<double>& multipliers) {
 
     const size_t K = G.numberOfSpatialOrbitals();
     const auto orbital_space = G.orbitalSpace();
@@ -203,9 +203,9 @@ SquareMatrix<double> vAP1roG::calculateNumber2RDM(const AP1roGGeminalCoefficient
  *  @param G                the AP1roG geminal coefficients
  *  @param multipliers      the AP1roG Lagrangian multipliers
  *
- *  @return the vAP1roG response pair 2-RDM (the Pi-matrix in the notes)
+ *  @return the vAP1roG response pair 2-DM (the Pi-matrix in the notes)
  */
-SquareMatrix<double> vAP1roG::calculatePair2RDM(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<double>& multipliers) {
+SquareMatrix<double> vAP1roG::calculatePair2DM(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<double>& multipliers) {
 
     const size_t K = G.numberOfSpatialOrbitals();
     const auto orbital_space = G.orbitalSpace();
@@ -294,17 +294,17 @@ SquareMatrix<double> vAP1roG::calculatePair2RDM(const AP1roGGeminalCoefficients&
  *
  *  @return the AP1roG response 2-DM
  */
-TwoRDM<double> vAP1roG::calculate2RDM(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<double>& multipliers) {
+TwoDM<double> vAP1roG::calculate2DM(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<double>& multipliers) {
 
     const size_t K = G.numberOfSpatialOrbitals();
     const auto orbital_space = G.orbitalSpace();
 
-    TwoRDM<double> d {K};
+    TwoDM<double> d {K};
     d.setZero();
 
 
-    auto Delta = QCModel::vAP1roG::calculateNumber2RDM(G, multipliers);
-    auto Pi = QCModel::vAP1roG::calculatePair2RDM(G, multipliers);
+    auto Delta = QCModel::vAP1roG::calculateNumber2DM(G, multipliers);
+    auto Pi = QCModel::vAP1roG::calculatePair2DM(G, multipliers);
 
     // KISS-implementation
     for (size_t p = 0; p < K; p++) {

@@ -106,8 +106,8 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_throw) {
 
     const GQCP::ScalarSQTwoElectronOperator<double> g {2};
 
-    const GQCP::TwoRDM<double> d_valid {2};
-    const GQCP::TwoRDM<double> d_invalid {3};
+    const GQCP::TwoDM<double> d_valid {2};
+    const GQCP::TwoDM<double> d_invalid {3};
 
     BOOST_CHECK_THROW(g.calculateExpectationValue(d_invalid), std::invalid_argument);
     BOOST_CHECK_NO_THROW(g.calculateExpectationValue(d_valid));
@@ -136,7 +136,7 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
     const GQCP::ScalarSQTwoElectronOperator<double> op(T1);
 
     // Initialize an alpha and beta density matrix, each one is chosen as a Hermitian matrix.
-    GQCP::TwoRDM<double> d {dim};
+    GQCP::TwoDM<double> d {dim};
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {

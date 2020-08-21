@@ -204,8 +204,8 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_throw) {
     // clang-format on
 
     const GQCP::ScalarUSQOneElectronOperator<double> h {M1, M1};
-    const GQCP::OneRDM<double> D_valid = GQCP::OneRDM<double>::Zero(2, 2);
-    const GQCP::OneRDM<double> D_invalid = GQCP::OneRDM<double>::Zero(3, 3);
+    const GQCP::OneDM<double> D_valid = GQCP::OneDM<double>::Zero(2, 2);
+    const GQCP::OneDM<double> D_invalid = GQCP::OneDM<double>::Zero(3, 3);
 
     BOOST_CHECK_THROW(h.calculateExpectationValue(D_invalid, D_invalid), std::invalid_argument);
     BOOST_CHECK_THROW(h.calculateExpectationValue(D_invalid, D_valid), std::invalid_argument);

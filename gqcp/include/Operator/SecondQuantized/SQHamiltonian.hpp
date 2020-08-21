@@ -30,8 +30,8 @@
 #include "Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
-#include "Processing/RDM/OneRDM.hpp"
-#include "Processing/RDM/TwoRDM.hpp"
+#include "Processing/DensityMatrices/OneDM.hpp"
+#include "Processing/DensityMatrices/TwoDM.hpp"
 #include "Utilities/miscellaneous.hpp"
 #include "Utilities/type_traits.hpp"
 
@@ -357,12 +357,12 @@ public:
 
 
     /**
-     *  @param D            the 1-RDM
-     *  @param d            the 2-RDM
+     *  @param D            the 1-DM
+     *  @param d            the 2-DM
      *
      *  @return the expectation value of this Hamiltonian
      */
-    Scalar calculateExpectationValue(const OneRDM<Scalar>& D, const TwoRDM<Scalar>& d) const {
+    Scalar calculateExpectationValue(const OneDM<Scalar>& D, const TwoDM<Scalar>& d) const {
 
         return this->core().calculateExpectationValue(D)[0] + this->twoElectron().calculateExpectationValue(d)[0];  // SQHamiltonian contains ScalarSQOperators, so we access with [0]
     }
@@ -374,7 +374,7 @@ public:
      *
      *  @return the (generalized) Fockian matrix
      */
-    SquareMatrix<Scalar> calculateFockianMatrix(const OneRDM<double>& D, const TwoRDM<double>& d) const {
+    SquareMatrix<Scalar> calculateFockianMatrix(const OneDM<double>& D, const TwoDM<double>& d) const {
 
         return this->core().calculateFockianMatrix(D, d)[0] + this->twoElectron().calculateFockianMatrix(D, d)[0];  // SQHamiltonian has one- and two-electron contributions, so access with [0] accordingly
     }
@@ -446,7 +446,7 @@ public:
      *
      *  @return the (generalized) super-Fockian matrix
      */
-    SquareRankFourTensor<Scalar> calculateSuperFockianMatrix(const OneRDM<double>& D, const TwoRDM<double>& d) const {
+    SquareRankFourTensor<Scalar> calculateSuperFockianMatrix(const OneDM<double>& D, const TwoDM<double>& d) const {
 
         return this->core().calculateSuperFockianMatrix(D, d)[0].Eigen() + this->twoElectron().calculateSuperFockianMatrix(D, d)[0].Eigen();  // SQHamiltonian contains ScalarSQOperators
     }

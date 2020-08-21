@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE(constrained_CO_test) {
     size_t K = sq_hamiltonian.dimension();
     size_t N = CO.numberOfElectrons();
 
-    GQCP::OneRDM<double> one_rdm = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1RDM(K, N);
+    GQCP::OneDM<double> D = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1DM(K, N);
 
     // Initialize the reference data from:
     // "Self-consistent methods constrained to a fixed number of particles in a given fragment and its relation to the electronegativity equalization method"
@@ -98,7 +98,7 @@ BOOST_AUTO_TEST_CASE(constrained_CO_test) {
         double expectation_value = rhf_qc_structure.groundStateEnergy();
 
         // Retrieve the expectation value of the Mulliken operator (aka the population)
-        double mulliken_population = mulliken_operator.calculateExpectationValue(one_rdm)(0);
+        double mulliken_population = mulliken_operator.calculateExpectationValue(D)(0);
 
         // Retrieve the total energy by adding the lambda times the expectation value of the constraining operator
         const double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(CO).value();
@@ -137,7 +137,7 @@ BOOST_AUTO_TEST_CASE(constrained_CO_test_random_transformation) {
 
     basisTransform(spinor_basis, sq_hamiltonian, T);
 
-    GQCP::OneRDM<double> one_rdm = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1RDM(K, N);
+    GQCP::OneDM<double> D = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1DM(K, N);
 
     // Initialize the reference data from:
     // "Self-consistent methods constrained to a fixed number of particles in a given fragment and its relation to the electronegativity equalization method"
@@ -196,7 +196,7 @@ BOOST_AUTO_TEST_CASE(constrained_CO_test_random_transformation) {
         double expectation_value = rhf_qc_structure.groundStateEnergy();
 
         // Retrieve the expectation value of the Mulliken operator (aka the population)
-        double mulliken_population = mulliken_operator.calculateExpectationValue(one_rdm)(0);
+        double mulliken_population = mulliken_operator.calculateExpectationValue(D)(0);
 
         // Retrieve the total energy by adding the lambda times the expectation value of the constraining operator
         double total_energy = expectation_value + lambda * mulliken_population + GQCP::Operator::NuclearRepulsion(CO).value();
