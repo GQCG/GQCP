@@ -67,7 +67,7 @@ SpinResolvedOneDM<double> SeniorityZeroDMCalculator::calculate1RDMs(const Vector
         }
     }
 
-    return SpinResolvedOneDM<double>(D);
+    return SpinResolvedOneDM<double>::FromRestricted(D);
 }
 
 

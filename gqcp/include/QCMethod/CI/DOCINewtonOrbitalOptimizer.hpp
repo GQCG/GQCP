@@ -90,7 +90,7 @@ public:
      *  @return the current 1-DM
      */
     OneDM<double> calculate1RDM() const override {
-        return this->rdm_calculator.calculate1RDMs(this->ground_state_expansion.coefficients()).one_rdm;
+        return this->rdm_calculator.calculate1RDMs(this->ground_state_expansion.coefficients()).spinSummed();
     }
 
 

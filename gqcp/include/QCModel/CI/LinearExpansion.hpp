@@ -30,6 +30,8 @@
 #include "Processing/DensityMatrices/SeniorityZeroDMCalculator.hpp"
 #include "Processing/DensityMatrices/SpinResolvedDMCalculator.hpp"
 #include "Processing/DensityMatrices/SpinResolvedFrozenDMCalculator.hpp"
+#include "Processing/DensityMatrices/SpinResolvedOneDM.hpp"
+#include "Processing/DensityMatrices/SpinResolvedTwoDM.hpp"
 #include "Processing/DensityMatrices/SpinUnresolvedDMCalculator.hpp"
 #include "Utilities/aliases.hpp"
 #include "Utilities/linalg.hpp"
@@ -548,7 +550,7 @@ public:
      *  @return the total (spin-summed) 1-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, OneDM<double>> calculate1DM() const { return this->calculate1DMs().one_rdm; }
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, OneDM<double>> calculate1DM() const { return this->calculate1DMs().spinSummed(); }
 
 
     /**
@@ -566,7 +568,7 @@ public:
      *  @return the spin-resolved 1-DMs
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, OneDM<double>> calculate1DMs() const {
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolvedOneDM<double>> calculate1DMs() const {
 
         const SeniorityZeroDMCalculator doci_rdm_builder {this->onvBasis()};
         return doci_rdm_builder.calculate1RDMs(this->coefficients());
@@ -579,7 +581,7 @@ public:
      *  @return the spin-resolved 2-DMs
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, TwoDM<double>> calculate2DMs() const {
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolvedTwoDM<double>> calculate2DMs() const {
 
         const SeniorityZeroDMCalculator doci_rdm_builder {this->onvBasis()};
         return doci_rdm_builder.calculate2RDMs(this->coefficients());

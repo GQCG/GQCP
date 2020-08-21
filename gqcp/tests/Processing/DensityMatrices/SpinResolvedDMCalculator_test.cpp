@@ -59,9 +59,9 @@ BOOST_AUTO_TEST_CASE(density_matrices_traces) {
     const GQCP::SpinResolvedDMCalculator spin_resolved_rdm_builder {onv_basis};
     const auto one_rdms = spin_resolved_rdm_builder.calculate1RDMs(linear_expansion.coefficients());
 
-    BOOST_CHECK(std::abs(one_rdms.one_rdm_aa.trace() - N_alpha) < 1.0e-12);
-    BOOST_CHECK(std::abs(one_rdms.one_rdm_bb.trace() - N_beta) < 1.0e-12);
-    BOOST_CHECK(std::abs(one_rdms.one_rdm.trace() - (N_alpha + N_beta)) < 1.0e-12);
+    BOOST_CHECK(std::abs(one_rdms.alpha().trace() - N_alpha) < 1.0e-12);
+    BOOST_CHECK(std::abs(one_rdms.beta().trace() - N_beta) < 1.0e-12);
+    BOOST_CHECK(std::abs(one_rdms.spinSummed().trace() - (N_alpha + N_beta)) < 1.0e-12);
 
 
     // Calculate the 2-DMs, calculate the traces and check if they match the expected result.
@@ -74,7 +74,7 @@ BOOST_AUTO_TEST_CASE(density_matrices_traces) {
 
 
     GQCP::OneDM<double> D_from_reduction = (1.0 / (N - 1)) * two_rdms.two_rdm.reduce();
-    BOOST_CHECK(one_rdms.one_rdm.isApprox(D_from_reduction, 1.0e-12));
+    BOOST_CHECK(one_rdms.spinSummed().isApprox(D_from_reduction, 1.0e-12));
 }
 
 
@@ -108,7 +108,7 @@ BOOST_AUTO_TEST_CASE(One_DM_from_2_DM) {
 
     // Calculate the 1 and 2-DMs, calculate the traces and check if they match the expected result.
     const GQCP::SpinResolvedDMCalculator spin_resolved_rdm_builder {onv_basis};
-    const auto D = spin_resolved_rdm_builder.calculate1RDMs(linear_expansion.coefficients()).one_rdm;
+    const auto D = spin_resolved_rdm_builder.calculate1RDMs(linear_expansion.coefficients()).spinSummed();
     const auto d = spin_resolved_rdm_builder.calculate2RDMs(linear_expansion.coefficients()).two_rdm;
 
 
@@ -148,7 +148,7 @@ BOOST_AUTO_TEST_CASE(energy_expectation_value_Hamiltonian) {
 
     // Calculate the 1 and 2-DMs and calculate the expectation value of the Hamiltonian.
     const GQCP::SpinResolvedDMCalculator spin_resolved_rdm_builder {onv_basis};
-    const auto D = spin_resolved_rdm_builder.calculate1RDMs(linear_expansion.coefficients()).one_rdm;
+    const auto D = spin_resolved_rdm_builder.calculate1RDMs(linear_expansion.coefficients()).spinSummed();
     const auto d = spin_resolved_rdm_builder.calculate2RDMs(linear_expansion.coefficients()).two_rdm;
 
     const auto energy_by_contraction = sq_hamiltonian.calculateExpectationValue(D, d);
@@ -191,9 +191,9 @@ BOOST_AUTO_TEST_CASE(specialized_vs_selected_DMs) {
     const GQCP::SpinResolvedSelectedDMCalculator selected_rdm_builder {selected_onv_basis};
     const auto one_rdms_selected = selected_rdm_builder.calculate1RDMs(linear_expansion.coefficients());
 
-    BOOST_CHECK(one_rdms_specialized.one_rdm.isApprox(one_rdms_selected.one_rdm, 1.0e-12));
-    BOOST_CHECK(one_rdms_specialized.one_rdm_aa.isApprox(one_rdms_selected.one_rdm_aa, 1.0e-12));
-    BOOST_CHECK(one_rdms_specialized.one_rdm_bb.isApprox(one_rdms_selected.one_rdm_bb, 1.0e-12));
+    BOOST_CHECK(one_rdms_specialized.spinSummed().isApprox(one_rdms_selected.spinSummed(), 1.0e-12));
+    BOOST_CHECK(one_rdms_specialized.alpha().isApprox(one_rdms_selected.alpha(), 1.0e-12));
+    BOOST_CHECK(one_rdms_specialized.beta().isApprox(one_rdms_selected.beta(), 1.0e-12));
 
 
     // Calculate the 2-DMs using specialized spin-resolved and 'selected' routines, and check if they are equal.

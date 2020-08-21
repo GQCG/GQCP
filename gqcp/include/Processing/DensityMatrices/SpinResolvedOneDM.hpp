@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/SpinorBasis/Spin.hpp"
 #include "Processing/DensityMatrices/OneDM.hpp"
 
 
@@ -25,43 +26,53 @@ namespace GQCP {
 
 
 /**
- *  The spin-resolved one-electron density matrices.
+ *  A type that encapsulates alpha-alpha and beta-beta spin-resolved density matrices.
  *
- *  @tparam Scalar      the scalar type
+ *  @tparam _Scalar             the scalar type of one of the elements
  */
-template <typename Scalar>
+template <typename _Scalar>
 class SpinResolvedOneDM {
-    OneDM<Scalar> one_rdm;  // spin-summed (total) 1-RDM
-
-    OneDM<Scalar> one_rdm_aa;  // alpha-alpha (a-a) 1-RDM
-    OneDM<Scalar> one_rdm_bb;  // beta-beta (b-b) 1-RDM
+public:
+    using Scalar = _Scalar;
 
 
+private:
+    OneDM<Scalar> D_aa;  // the alpha-alpha 1-DM
+    OneDM<Scalar> D_bb;  // the beta-beta 1-DM
+
+
+public:
     /*
      *  CONSTRUCTORS
      */
 
     /**
-     *  A constructor that creates the spin-resolved 1-RDMs as half of the total 1-RDM
+     *  Create a SpinResolvedOneDM from its members.
      *
-     *  @param one_rdm      the spin-summed 1-RDM
+     *  @param D_aa             the alpha-alpha 1-DM
+     *  @param D_bb             the beta-beta 1-DM
      */
-    SpinResolvedOneDM(const OneDM<Scalar>& one_rdm) :
-        one_rdm {one_rdm},
-        one_rdm_aa {one_rdm / 2},
-        one_rdm_bb {one_rdm / 2} {}
+    SpinResolvedOneDM(const OneDM<Scalar>& D_aa, const OneDM<Scalar>& D_bb) :
+        D_aa {D_aa},
+        D_bb {D_bb} {}
 
+
+    /*
+     *  NAMED CONSTRUCTORS
+     */
 
     /**
-     *  A constructor that creates the total 1-RDM as the sum of the spin-resolved 1-RDMs
-     *
-     *  @param one_rdm_aa       the alpha-alpha 1-RDM
-     *  @param one_rdm_bb       the beta-beta 1-RDM
+     *  Create a spin-resolved 1-DM as half of the total 1-DM.
+     * 
+     *  @param D            the spin-summed 1-DM
+     * 
+     *  @return a spin-resolved 1-DM
      */
-    SpinResolvedOneDM(const OneDM<Scalar>& one_rdm_aa, const OneDM<Scalar>& one_rdm_bb) :
-        one_rdm {OneDM<double>(one_rdm_aa + one_rdm_bb)},
-        one_rdm_aa {one_rdm_aa},
-        one_rdm_bb {one_rdm_bb} {}
+    static SpinResolvedOneDM<Scalar> FromRestricted(const OneDM<Scalar>& D) {
+
+        const auto D_half = D / 2;
+        return SpinResolvedOneDM<Scalar>(D_half, D_half);
+    }
 
 
     /*
@@ -69,16 +80,45 @@ class SpinResolvedOneDM {
      */
 
     /**
-     *  @return the dimension of the matrix representation of the 1-RDMs, i.e. the number of orbitals/sites
+     *  @return the alpha-alpha part of the spin-resolved 1-DM
      */
-    size_t dimension() const { return one_rdm.dimension(); }
+    const OneDM<Scalar>& alpha() const { return this->D_aa; }
+
+    /**
+     *  @return the beta-beta part of the spin-resolved 1-DM
+     */
+    const OneDM<Scalar>& beta() const { return this->D_bb; }
+
+    /**
+     *  @param sigma            alpha or beta
+     * 
+     *  @return the number of orbitals that correspond to the given spin
+     */
+    size_t numberOfOrbitals(const Spin sigma) const {
+
+        switch (sigma) {
+        case Spin::alpha: {
+            return this->alpha().dimension();
+        }
+        case Spin::beta: {
+            return this->beta().dimension();
+        }
+        }
+    }
 
 
     /**
-     *  @return the difference between the alpha and beta 1-RDM
+     *  @return the spin-density matrix, i.e. the difference between the alpha and beta 1-DM
      */
-    OneDM<Scalar> spinDensityRDM() const {
-        return one_rdm_aa - one_rdm_bb;
+    OneDM<Scalar> spinDensity() const {
+        return this->alpha() - this->beta();
+    }
+
+    /**
+     *  @return the spin-summed density matrix, i.e. the sum of the alpha and beta 1-DM
+     */
+    OneDM<Scalar> spinSummed() const {
+        return this->alpha() + this->beta();
     }
 };
 

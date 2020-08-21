@@ -16,6 +16,7 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Processing/DensityMatrices/BaseSpinResolvedFrozenDMCalculator.hpp"
+
 #include "Utilities/linalg.hpp"
 
 
@@ -62,8 +63,8 @@ SpinResolvedOneDM<double> BaseSpinResolvedFrozenDMCalculator::calculate1RDMs(con
     SpinResolvedOneDM<double> sub_1rdms = this->active_rdm_builder->calculate1RDMs(x);
 
     // Incorporate the submatrices from the active space
-    D_aa.block(this->X, this->X, K_active, K_active) += sub_1rdms.one_rdm_aa;
-    D_bb.block(this->X, this->X, K_active, K_active) += sub_1rdms.one_rdm_bb;
+    D_aa.block(this->X, this->X, K_active, K_active) += sub_1rdms.alpha();
+    D_bb.block(this->X, this->X, K_active, K_active) += sub_1rdms.beta();
 
     return SpinResolvedOneDM<double>(D_aa, D_bb);
 };
@@ -92,8 +93,8 @@ SpinResolvedTwoDM<double> BaseSpinResolvedFrozenDMCalculator::calculate2RDMs(con
 
 
     SpinResolvedOneDM<double> one_rdms = this->active_rdm_builder->calculate1RDMs(x);
-    auto D_aa = one_rdms.one_rdm_aa;
-    auto D_bb = one_rdms.one_rdm_bb;
+    auto D_aa = one_rdms.alpha();
+    auto D_bb = one_rdms.beta();
 
     // Implement frozen RDM formulas
     for (size_t p = 0; p < this->X; p++) {  // iterate over frozen orbitals

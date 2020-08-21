@@ -139,7 +139,7 @@ BOOST_AUTO_TEST_CASE(mulliken_N2_STO_3G) {
 //     auto one_rdms = rdm_calc.calculate1RDMs();
 
 //     // Calculate the spin density matrix
-//     GQCP::OneDM<double> spin_d = one_rdms.spinDensityRDM();
+//     GQCP::OneDM<double> spin_d = one_rdms.spinDensity();
 
 //     // Evaluate S_z for O and N
 //     double N_Sz = sq_N_Sz_alpha.calculateExpectationValue(spin_d)[0];

@@ -27,36 +27,36 @@
 #include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
 
 
-BOOST_AUTO_TEST_CASE(constructor) {
+// BOOST_AUTO_TEST_CASE(constructor) {
 
-    // Test polymorphic entry for RDM (from SeniorityZeroDMCalculator test-case).
+//     // Test polymorphic entry for RDM (from SeniorityZeroDMCalculator test-case).
 
-    // Get the 1-RDM from DOCI
-    size_t N = 4;  // 4 electrons
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
-    size_t K = sq_hamiltonian.dimension();  // 16 SO
+//     // Get the 1-RDM from DOCI
+//     size_t N = 4;  // 4 electrons
+//     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
+//     size_t K = sq_hamiltonian.dimension();  // 16 SO
 
-    // Abstract pointer to test RDM
-    std::shared_ptr<GQCP::BaseONVBasis> fock_space_dy {new GQCP::SpinUnresolvedONVBasis(K, N / 2)};  // dim = 120
-    GQCP::SpinUnresolvedONVBasis fock_space {K, N / 2};                                              // dim = 120
+//     // Abstract pointer to test RDM
+//     std::shared_ptr<GQCP::BaseONVBasis> fock_space_dy {new GQCP::SpinUnresolvedONVBasis(K, N / 2)};  // dim = 120
+//     GQCP::SpinUnresolvedONVBasis fock_space {K, N / 2};                                              // dim = 120
 
-    GQCP::DOCI doci {fock_space};
+//     GQCP::DOCI doci {fock_space};
 
-    // Specify solver options and solve the eigenvalue problem
-    // Solve the dense DOCI eigenvalue problem
-    GQCP::CISolver ci_solver {doci, sq_hamiltonian};
-    GQCP::DenseSolverOptions solver_options;
-    ci_solver.solve(solver_options);
+//     // Specify solver options and solve the eigenvalue problem
+//     // Solve the dense DOCI eigenvalue problem
+//     GQCP::CISolver ci_solver {doci, sq_hamiltonian};
+//     GQCP::DenseSolverOptions solver_options;
+//     ci_solver.solve(solver_options);
 
-    GQCP::VectorX<double> coef = ci_solver.eigenpair().eigenvector();
+//     GQCP::VectorX<double> coef = ci_solver.eigenpair().eigenvector();
 
-    // Check if the DOCI 1-RDM has the proper trace.
-    GQCP::GeneralDMCalculator doci_rdm {*fock_space_dy};
-    doci_rdm.setCoefficients(coef);
-    GQCP::SpinResolvedOneDM<double> one_rdms = doci_rdm.calculate1RDMs();
+//     // Check if the DOCI 1-RDM has the proper trace.
+//     GQCP::GeneralDMCalculator doci_rdm {*fock_space_dy};
+//     doci_rdm.setCoefficients(coef);
+//     GQCP::SpinResolvedOneDM<double> one_rdms = doci_rdm.calculate1RDMs();
 
-    BOOST_CHECK(std::abs(one_rdms.one_rdm.trace() - N) < 1.0e-12);
-}
+//     BOOST_CHECK(std::abs(one_rdms.spinSummed().trace() - N) < 1.0e-12);
+// }
 
 BOOST_AUTO_TEST_CASE(no_vector_throws) {
 

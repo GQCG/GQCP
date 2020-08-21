@@ -77,7 +77,7 @@ BOOST_AUTO_TEST_CASE(decomposition_BeH_cation_STO_3G_Nuclear) {
     GQCP::GeneralDMCalculator rdm_calculator {onv_basis};
     rdm_calculator.setCoefficients(linear_expansion.coefficients());
 
-    auto D = rdm_calculator.calculate1RDMs().one_rdm;
+    auto D = rdm_calculator.calculate1RDMs().spinSummed();
     D.basisTransform(T.adjoint());  // T.adjoint() to transform BACK to AO basis
 
     auto d = rdm_calculator.calculate2RDMs().two_rdm;

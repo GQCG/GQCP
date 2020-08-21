@@ -62,9 +62,9 @@ BOOST_AUTO_TEST_CASE(FrozenCoreFCI_one_rdms) {
     const GQCP::SpinResolvedSelectedDMCalculator selected_rdm_builder {selected_onv_basis};
     const auto one_rdms_selected = selected_rdm_builder.calculate1RDMs(linear_expansion.coefficients());
 
-    BOOST_CHECK(one_rdms_specialized.one_rdm.isApprox(one_rdms_selected.one_rdm, 1.0e-12));
-    BOOST_CHECK(one_rdms_specialized.one_rdm_aa.isApprox(one_rdms_selected.one_rdm_aa, 1.0e-12));
-    BOOST_CHECK(one_rdms_specialized.one_rdm_bb.isApprox(one_rdms_selected.one_rdm_bb, 1.0e-12));
+    BOOST_CHECK(one_rdms_specialized.spinSummed().isApprox(one_rdms_selected.spinSummed(), 1.0e-12));
+    BOOST_CHECK(one_rdms_specialized.alpha().isApprox(one_rdms_selected.alpha(), 1.0e-12));
+    BOOST_CHECK(one_rdms_specialized.beta().isApprox(one_rdms_selected.beta(), 1.0e-12));
 
 
     // Calculate the 2-DMs using specialized spin-resolved and 'selected' routines, and check if they are equal.

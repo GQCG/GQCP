@@ -53,9 +53,9 @@ BOOST_AUTO_TEST_CASE(FrozenCoreDOCI_one_rdms) {
     GQCP::SpinResolvedOneDM<double> one_rdms_s = sci_rdm.calculate1RDMs(coef);
     GQCP::SpinResolvedOneDM<double> one_rdms = doci_rdm.calculate1RDMs(coef);
 
-    BOOST_CHECK(one_rdms_s.one_rdm.isApprox(one_rdms.one_rdm));
-    BOOST_CHECK(one_rdms_s.one_rdm_aa.isApprox(one_rdms.one_rdm_aa));
-    BOOST_CHECK(one_rdms_s.one_rdm_bb.isApprox(one_rdms.one_rdm_bb));
+    BOOST_CHECK(one_rdms_s.spinSummed().isApprox(one_rdms.spinSummed()));
+    BOOST_CHECK(one_rdms_s.alpha().isApprox(one_rdms.alpha()));
+    BOOST_CHECK(one_rdms_sbeta().isApprox(one_rdms.beta()));
 }
 
 
