@@ -177,7 +177,7 @@ void bindUSpinorBasis(py::module& module) {
         .def(
             "transform",
             [](GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& T_alpha, const Eigen::MatrixXd& T_beta) {
-                spinor_basis.transform(GQCP::TransformationMatrix<double>(T_alpha), GQCP::TransformationMatrix<double>(T_beta));
+                spinor_basis.transform(GQCP::SpinResolvedTransformationMatrix<double>(T_alpha, T_beta));
             },
             py::arg("T_alpha"),
             py::arg("T_beta"),

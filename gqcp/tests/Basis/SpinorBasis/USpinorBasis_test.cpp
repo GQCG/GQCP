@@ -39,19 +39,19 @@ BOOST_AUTO_TEST_CASE(constructor_throws) {
     const auto K_beta = beta_scalar_basis.numberOfBasisFunctions();  // 4
 
 
-    // Initialize four coefficient matrices, two for each component, of which one with compatible and one with incompatible dimensions
-    const GQCP::TransformationMatrix<double> T_compatible_alpha {K_alpha};
-    const GQCP::TransformationMatrix<double> T_compatible_beta {K_beta};
-    const GQCP::TransformationMatrix<double> T_incompatible_alpha {K_alpha - 1};
-    const GQCP::TransformationMatrix<double> T_incompatible_beta {K_beta - 1};
+    // Initialize compatible and incompatible test coefficient matrices.
+    const GQCP::SpinResolvedTransformationMatrix<double> T_compatible {GQCP::TransformationMatrix<double>::Zero(K_alpha, K_alpha), GQCP::TransformationMatrix<double>::Zero(K_beta, K_beta)};
+
+    const GQCP::SpinResolvedTransformationMatrix<double> T_incompatible_alpha {GQCP::TransformationMatrix<double>::Zero(K_alpha + 1, K_alpha + 1), GQCP::TransformationMatrix<double>::Zero(K_beta, K_beta)};
+    const GQCP::SpinResolvedTransformationMatrix<double> T_incompatible_beta {GQCP::TransformationMatrix<double>::Zero(K_alpha, K_alpha), GQCP::TransformationMatrix<double>::Zero(K_beta + 1, K_beta + 1)};
 
 
     // Check if the constructor throws upon receiving incompatible arguments
     using SpinorBasisType = GQCP::USpinorBasis<double, GQCP::GTOShell>;  // needed to resolve compilation errors with boost
-    BOOST_CHECK_THROW(SpinorBasisType spinor_basis(alpha_scalar_basis, beta_scalar_basis, T_compatible_alpha, T_incompatible_beta), std::invalid_argument);
-    BOOST_CHECK_THROW(SpinorBasisType spinor_basis(alpha_scalar_basis, beta_scalar_basis, T_incompatible_alpha, T_compatible_beta), std::invalid_argument);
-    BOOST_CHECK_THROW(SpinorBasisType spinor_basis(alpha_scalar_basis, beta_scalar_basis, T_incompatible_alpha, T_incompatible_beta), std::invalid_argument);
-    BOOST_CHECK_NO_THROW(SpinorBasisType spinor_basis(alpha_scalar_basis, beta_scalar_basis, T_compatible_alpha, T_compatible_beta));
+    BOOST_CHECK_THROW(SpinorBasisType spinor_basis(alpha_scalar_basis, beta_scalar_basis, T_incompatible_alpha), std::invalid_argument);
+    BOOST_CHECK_THROW(SpinorBasisType spinor_basis(alpha_scalar_basis, beta_scalar_basis, T_incompatible_beta), std::invalid_argument);
+
+    BOOST_CHECK_NO_THROW(SpinorBasisType spinor_basis(alpha_scalar_basis, beta_scalar_basis, T_compatible));
 }
 
 

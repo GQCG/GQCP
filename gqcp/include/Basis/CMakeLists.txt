@@ -1,6 +1,7 @@
 target_sources(gqcp
     PRIVATE
         transform.hpp
+        SpinResolvedTransformationMatrix.hpp
         TransformationMatrix.hpp
 )
 

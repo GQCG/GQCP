@@ -250,9 +250,11 @@ public:
 
 
         // Prepare some parameters.
-        const auto& C = r_spinor_basis.coefficientMatrix();
+        const auto& C_restricted = r_spinor_basis.coefficientMatrix();
+
         const auto& C_alpha = u_spinor_basis.coefficientMatrix(Spin::alpha);
         const auto& C_beta = u_spinor_basis.coefficientMatrix(Spin::beta);
+        const SpinResolvedTransformationMatrix<double> C_unrestricted {C_alpha, C_beta};
 
 
         // Set up the required spin-resolved ONV basis.
@@ -265,10 +267,10 @@ public:
         // Determine the coefficients through calculating the overlap between two ONVs.
         VectorX<double> coefficients = VectorX<double>::Zero(onv_basis.dimension());
 
-        onv_basis.forEach([&onv, &C_alpha, &C_beta, &C, &S, &coefficients, &onv_basis](const SpinUnresolvedONV& alpha_onv, const size_t I_alpha, const SpinUnresolvedONV& beta_onv, const size_t I_beta) {
+        onv_basis.forEach([&onv, &C_unrestricted, &C_restricted, &S, &coefficients, &onv_basis](const SpinUnresolvedONV& alpha_onv, const size_t I_alpha, const SpinUnresolvedONV& beta_onv, const size_t I_beta) {
             const SpinResolvedONV onv_on {alpha_onv, beta_onv};  // the spin-resolved ONV that should be projected 'on'
 
-            const auto coefficient = onv.calculateProjection(onv_on, C_alpha, C_beta, C, S);
+            const auto coefficient = onv.calculateProjection(onv_on, C_unrestricted, C_restricted, S);
             const auto address = onv_basis.compoundAddress(I_alpha, I_beta);
 
             coefficients(address) = coefficient;

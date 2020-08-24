@@ -139,7 +139,7 @@ BOOST_AUTO_TEST_CASE(Selected_H2O_Unrestricted) {
     auto usq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(spinor_basis, h2o);  // unrestricted Hamiltonian in the Löwdin basis
 
     // Transform the Hamiltonian to an orthonormal basis
-    GQCP::basisTransform(spinor_basis, usq_hamiltonian, spinor_basis.lowdinOrthonormalizationMatrix(GQCP::Spin::alpha));
+    GQCP::basisTransform(spinor_basis, usq_hamiltonian, spinor_basis.lowdinOrthonormalizationMatrix().alpha());
 
     // Transform the beta component
     // Create stable unitairy matrix
