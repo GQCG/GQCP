@@ -47,7 +47,7 @@ BaseFrozenCoreONVBasis::BaseFrozenCoreONVBasis(const std::shared_ptr<GQCP::BaseO
  */
 ScalarSQOneElectronOperator<double> BaseFrozenCoreONVBasis::freezeOperator(const ScalarSQOneElectronOperator<double>& one_op, const size_t X) {
 
-    size_t K_active = one_op.dimension() - X;
+    size_t K_active = one_op.numberOfOrbitals() - X;
     return ScalarSQOneElectronOperator<double> {one_op.parameters().block(X, X, K_active, K_active)};
 }
 
@@ -60,7 +60,7 @@ ScalarSQOneElectronOperator<double> BaseFrozenCoreONVBasis::freezeOperator(const
  */
 FrozenOperators BaseFrozenCoreONVBasis::freezeOperator(const ScalarSQTwoElectronOperator<double>& two_op, const size_t X) {
 
-    size_t K_active = two_op.dimension() - X;
+    size_t K_active = two_op.numberOfOrbitals() - X;
     QCMatrix<double> frozen_one_op_par = QCMatrix<double>::Zero(K_active, K_active);
     const auto& two_op_par = two_op.parameters();
     const auto frozen_two_op_par = QCRankFourTensor<double>::FromBlock(two_op_par, X, X, X, X);
@@ -97,7 +97,7 @@ FrozenOperators BaseFrozenCoreONVBasis::freezeOperator(const ScalarSQTwoElectron
  */
 SQHamiltonian<double> BaseFrozenCoreONVBasis::freezeOperator(const SQHamiltonian<double>& sq_hamiltonian, const size_t X) {
 
-    size_t K_active = sq_hamiltonian.dimension() - X;  // number of non-frozen orbitals
+    size_t K_active = sq_hamiltonian.numberOfOrbitals() - X;  // number of non-frozen orbitals
 
     const auto frozen_components_g = BaseFrozenCoreONVBasis::freezeOperator(sq_hamiltonian.twoElectron(), X);
 
@@ -117,7 +117,7 @@ SQHamiltonian<double> BaseFrozenCoreONVBasis::freezeOperator(const SQHamiltonian
  */
 USQHamiltonian<double> BaseFrozenCoreONVBasis::freezeOperator(const USQHamiltonian<double>& usq_hamiltonian, size_t X) {
 
-    size_t K_active = usq_hamiltonian.dimension() / 2 - X;  // number of non-frozen orbitals
+    size_t K_active = usq_hamiltonian.numberOfOrbitals() / 2 - X;  // number of non-frozen orbitals
 
     QCMatrix<double> frozen_one_op_par_alpha = usq_hamiltonian.spinHamiltonian(Spin::alpha).core().parameters().block(X, X, K_active, K_active);
     QCMatrix<double> frozen_one_op_par_beta = usq_hamiltonian.spinHamiltonian(Spin::beta).core().parameters().block(X, X, K_active, K_active);

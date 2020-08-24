@@ -52,7 +52,7 @@ public:
      */
     AP1roG(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P) :
         N_P {N_P},
-        K {sq_hamiltonian.dimension()},  // number of spatial orbitals
+        K {sq_hamiltonian.numberOfOrbitals()},  // number of spatial orbitals
         sq_hamiltonian {sq_hamiltonian} {}
 
 

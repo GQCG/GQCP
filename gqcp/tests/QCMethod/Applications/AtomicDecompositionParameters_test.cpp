@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_CASE(decomposition_BeH_cation_STO_3G_Nuclear) {
     const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
 
     auto sq_hamiltonian = adp.molecularHamiltonian();
-    const auto K = sq_hamiltonian.dimension();  // number of
+    const auto K = sq_hamiltonian.numberOfOrbitals();  // number of spatial orbitals
 
 
     // Transform the molecular Hamiltonian to the canonical RHF basis.

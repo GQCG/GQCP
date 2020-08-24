@@ -56,14 +56,14 @@ public:
         two_op_mixed {two_op_mixed} {
 
         // Check if the dimensions are compatible
-        const auto dim = sq_hamiltonians[Spin::alpha].dimension();
+        const auto dim = sq_hamiltonians[Spin::alpha].numberOfOrbitals();
 
-        if (sq_hamiltonians[Spin::beta].dimension() != dim) {
+        if (sq_hamiltonians[Spin::beta].numberOfOrbitals() != dim) {
             throw std::invalid_argument("USQHamiltonian::USQHamiltonian(const SQHamiltonian<Scalar>& sq_hamiltonian_alpha, const SQHamiltonian<Scalar>& sq_hamiltonian_beta, const ScalarSQTwoElectronOperator<Scalar>& two_op_mixed): The dimensions of the alpha and beta Hamiltonian are incompatible");
         }
 
         for (const auto& two_op : this->two_op_mixed) {
-            if (two_op.dimension() != dim) {
+            if (two_op.numberOfOrbitals() != dim) {
                 throw std::invalid_argument("USQHamiltonian::USQHamiltonian(const SQHamiltonian<Scalar>& sq_hamiltonian_alpha, const SQHamiltonian<Scalar>& sq_hamiltonian_beta, const ScalarSQTwoElectronOperator<Scalar>& two_op_mixed): The dimensions of the mixed two electron operator are incompatible with the Hamiltonian");
             }
         }
@@ -122,7 +122,7 @@ public:
     /**
      *  @return if the alpha and beta components of the unrestricted Hamiltonian are of the same dimension
      */
-    bool areSpinHamiltoniansOfSameDimension() const { return this->spinHamiltonian(Spin::alpha).dimension() == this->spinHamiltonian(Spin::beta).dimension(); }
+    bool areSpinHamiltoniansOfSameDimension() const { return this->spinHamiltonian(Spin::alpha).numberOfOrbitals() == this->spinHamiltonian(Spin::beta).numberOfOrbitals(); }
 
     /**
      *  Constrain a spin component of the unrestricted Hamiltonian according to the convention: - lambda * constraint
@@ -151,7 +151,7 @@ public:
     /**
      *  @return the dimension of the Hamiltonian, i.e. the number of spinors in which it is expressed
      */
-    size_t dimension() const { return this->sq_hamiltonians[Spin::alpha].dimension() + this->sq_hamiltonians[Spin::beta].dimension(); }
+    size_t numberOfOrbitals() const { return this->sq_hamiltonians[Spin::alpha].numberOfOrbitals() + this->sq_hamiltonians[Spin::beta].numberOfOrbitals(); }
 
     /**
      *  In-place rotate the matrix representations of the Hamiltonian

@@ -68,7 +68,7 @@ size_t SeniorityZeroONVBasis::calculateDimension(const size_t K, const size_t N_
 VectorX<double> SeniorityZeroONVBasis::evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>& one_op) const {
 
     // Check if the argument is compatible.
-    const auto K = one_op.dimension();  // number of spatial orbitals
+    const auto K = one_op.numberOfOrbitals();  // number of spatial orbitals
 
     if (K != this->numberOfSpatialOrbitals()) {
         throw std::invalid_argument("SeniorityZeroONVBasis::evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>&): The number of spatial orbitals for the ONV basis and one-electron operator are incompatible.");
@@ -107,7 +107,7 @@ VectorX<double> SeniorityZeroONVBasis::evaluateOperatorDiagonal(const ScalarSQOn
 VectorX<double> SeniorityZeroONVBasis::evaluateOperatorDiagonal(const ScalarSQTwoElectronOperator<double>& two_op) const {
 
     // Check if the argument is compatible.
-    const auto K = two_op.dimension();  // number of spatial orbitals
+    const auto K = two_op.numberOfOrbitals();  // number of spatial orbitals
 
     if (K != this->numberOfSpatialOrbitals()) {
         throw std::invalid_argument("SeniorityZeroONVBasis::evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>&): The number of spatial orbitals for the ONV basis and one-electron operator are incompatible.");
@@ -155,7 +155,7 @@ VectorX<double> SeniorityZeroONVBasis::evaluateOperatorDiagonal(const SQHamilton
 
 
     // Check if the argument is compatible.
-    const auto K = sq_hamiltonian.dimension();  // number of spatial orbitals
+    const auto K = sq_hamiltonian.numberOfOrbitals();  // number of spatial orbitals
 
     if (K != this->numberOfSpatialOrbitals()) {
         throw std::invalid_argument("SeniorityZeroONVBasis::evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>&): The number of spatial orbitals for the ONV basis and one-electron operator are incompatible.");

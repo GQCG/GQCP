@@ -86,7 +86,7 @@ ScalarSQOneElectronOperator<double> SpinResolvedONVBasis::calculateOneElectronPa
 
     const auto& two_op_par = two_op.parameters();
 
-    const auto M = two_op.dimension();
+    const auto M = two_op.numberOfOrbitals();
     QCMatrix<double> k_par = QCMatrix<double>::Zero(M, M);
 
     for (size_t i = 0; i < M; i++) {
@@ -300,7 +300,7 @@ SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const SQHamilto
  */
 SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, const bool diagonal_values) const {
 
-    const auto M = usq_hamiltonian.dimension() / 2;
+    const auto M = usq_hamiltonian.numberOfOrbitals() / 2;
 
     if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
         throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorDense(USQHamiltonian<double>, bool): Underlying spin Hamiltonians are not of the same dimension, and this is currently required for this method");
@@ -377,7 +377,7 @@ SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const USQHamilt
  */
 VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>& one_op) const {
 
-    const auto M = one_op.dimension();
+    const auto M = one_op.numberOfOrbitals();
     if (M != this->M) {
         throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorDiagonal(ScalarSQOneElectronOperator<double>): Basis functions of the spin-resolved ONV basis and the operator are incompatible.");
     }
@@ -432,7 +432,7 @@ VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const ScalarSQOne
  */
 VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const ScalarSQTwoElectronOperator<double>& two_op) const {
 
-    const auto M = two_op.dimension();
+    const auto M = two_op.numberOfOrbitals();
     if (M != this->M) {
         throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorDiagonal(ScalarSQTwoElectronOperator<double>): Basis functions of the SpinUnresolvedONV basis and the operator are incompatible.");
     }
@@ -521,7 +521,7 @@ VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const SQHamiltoni
  */
 VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const {
 
-    const auto M = usq_hamiltonian.dimension() / 2;
+    const auto M = usq_hamiltonian.numberOfOrbitals() / 2;
 
     if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
         throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorDiagonal(USQHamiltonian<double>): Underlying spin Hamiltonians are not of the same dimension, and this is currently required for this method");
@@ -617,7 +617,7 @@ VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const USQHamilton
  */
 VectorX<double> SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(const ScalarSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
-    auto M = one_op.dimension();
+    auto M = one_op.numberOfOrbitals();
     if (M != this->M) {
         throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(ScalarSQOneElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of the spin-resolved ONV basis and the operator are incompatible.");
     }
@@ -659,7 +659,7 @@ VectorX<double> SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(const 
  */
 VectorX<double> SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(const ScalarSQTwoElectronOperator<double>& two_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
-    auto M = two_op.dimension();
+    auto M = two_op.numberOfOrbitals();
     if (M != this->M) {
         throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(ScalarSQTwoElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of the spin-resolved ONV basis and the operator are incompatible.");
     }
@@ -717,7 +717,7 @@ VectorX<double> SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(const 
  */
 VectorX<double> SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
-    auto M = sq_hamiltonian.dimension();
+    auto M = sq_hamiltonian.numberOfOrbitals();
     if (M != this->M) {
         throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the spin-resolved ONV basis and the operator are incompatible.");
     }
@@ -775,7 +775,7 @@ VectorX<double> SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(const 
  */
 VectorX<double> SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
-    auto M = usq_hamiltonian.dimension() / 2;
+    auto M = usq_hamiltonian.numberOfOrbitals() / 2;
 
     if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
         throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(USQHamiltonian<double>, VectorX<double> , VectorX<double>): Underlying spin Hamiltonians are not of the same dimension, and this is currently required for this method");

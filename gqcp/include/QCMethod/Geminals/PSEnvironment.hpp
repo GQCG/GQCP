@@ -59,7 +59,7 @@ NonLinearEquationEnvironment<Scalar> AP1roG(const SQHamiltonian<Scalar>& sq_hami
 template <typename Scalar>
 NonLinearEquationEnvironment<Scalar> AP1roG(const SQHamiltonian<Scalar>& sq_hamiltonian, const size_t N_P) {
 
-    const auto K = sq_hamiltonian.dimension();           // number of spatial orbitals
+    const auto K = sq_hamiltonian.numberOfOrbitals();    // number of spatial orbitals
     const AP1roGGeminalCoefficients G_initial {N_P, K};  // geminal coefficients set to zero
 
     return GQCP::PSEnvironment::AP1roG<Scalar>(sq_hamiltonian, G_initial);

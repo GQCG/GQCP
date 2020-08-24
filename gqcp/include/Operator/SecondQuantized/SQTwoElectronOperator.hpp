@@ -60,11 +60,11 @@ public:
         gs {gs} {
 
         // Check if the given matrix representations have the same dimensions
-        const auto dimension_of_first = this->gs[0].dimension();
+        const auto dimension_of_first = this->gs[0].numberOfOrbitals();
 
         for (size_t i = 1; i < Components; i++) {
 
-            const auto dimension_of_ith = this->gs[i].dimension();
+            const auto dimension_of_ith = this->gs[i].numberOfOrbitals();
             if (dimension_of_first != dimension_of_ith) {
                 throw std::invalid_argument("SQTwoElectronOperator(const std::array<QCMatrix<Scalar>, Components>&): The given matrix representations do not have the same dimensions.");
             }
@@ -127,7 +127,7 @@ public:
      */
     Vector<Scalar, Components> calculateExpectationValue(const TwoDM<Scalar>& d) const {
 
-        if (this->dimension() != d.dimension()) {
+        if (this->numberOfOrbitals() != d.numberOfOrbitals()) {
             throw std::invalid_argument("SQTwoElectronOperator::calculateExpectationValue(const TwoDM<double>&): The given 2-DM is not compatible with the two-electron operator.");
         }
 
@@ -158,11 +158,11 @@ public:
     std::array<SquareMatrix<Scalar>, Components> calculateFockianMatrix(const OneDM<double>& D, const TwoDM<double>& d) const {
 
         // Check if dimensions are compatible
-        if (D.dimension() != this->dimension()) {
+        if (D.numberOfOrbitals() != this->numberOfOrbitals()) {
             throw std::invalid_argument("SQTwoElectronOperator::calculateFockianMatrix(OneDM<double>, TwoDM<double>): The 1-DM is not compatible with the two-electron operator.");
         }
 
-        if (d.dimension() != this->dimension()) {
+        if (d.numberOfOrbitals() != this->numberOfOrbitals()) {
             throw std::invalid_argument("SQTwoElectronOperator::calculateFockianMatrix(OneDM<double>, TwoDM<double>): The 2-DM is not compatible with the two-electron operator.");
         }
 
@@ -174,13 +174,13 @@ public:
             const auto& g_i = this->parameters(i);  // the matrix representation of the parameters of the i-th component
 
             // Calculate the Fockian matrix for every component and add it to the array
-            SquareMatrix<Scalar> F_i = SquareMatrix<Scalar>::Zero(this->dimension(), this->dimension());
-            for (size_t p = 0; p < this->dimension(); p++) {
-                for (size_t q = 0; q < this->dimension(); q++) {
+            SquareMatrix<Scalar> F_i = SquareMatrix<Scalar>::Zero(this->numberOfOrbitals(), this->numberOfOrbitals());
+            for (size_t p = 0; p < this->numberOfOrbitals(); p++) {
+                for (size_t q = 0; q < this->numberOfOrbitals(); q++) {
 
-                    for (size_t r = 0; r < this->dimension(); r++) {
-                        for (size_t s = 0; s < this->dimension(); s++) {
-                            for (size_t t = 0; t < this->dimension(); t++) {
+                    for (size_t r = 0; r < this->numberOfOrbitals(); r++) {
+                        for (size_t s = 0; s < this->numberOfOrbitals(); s++) {
+                            for (size_t t = 0; t < this->numberOfOrbitals(); t++) {
                                 F_i(p, q) += g_i(q, r, s, t) * (d(p, r, s, t) + d(r, p, s, t));
                             }
                         }
@@ -203,11 +203,11 @@ public:
     std::array<SquareRankFourTensor<Scalar>, Components> calculateSuperFockianMatrix(const OneDM<double>& D, const TwoDM<double>& d) const {
 
         // Check if dimensions are compatible
-        if (D.dimension() != this->dimension()) {
+        if (D.numberOfOrbitals() != this->numberOfOrbitals()) {
             throw std::invalid_argument("SQOneElectronOperator::calculateFockianMatrix(OneDM<double>, TwoDM<double>): The 1-DM is not compatible with the one-electron operator.");
         }
 
-        if (d.dimension() != this->dimension()) {
+        if (d.numberOfOrbitals() != this->numberOfOrbitals()) {
             throw std::invalid_argument("SQOneElectronOperator::calculateFockianMatrix(OneDM<double>, TwoDM<double>): The 2-DM is not compatible with the one-electron operator.");
         }
 
@@ -221,19 +221,19 @@ public:
             const auto& F_i = Fs[i];                // the Fockian matrix of the i-th component
 
             // Calculate the super-Fockian matrix for every component and add it to the array
-            SquareRankFourTensor<Scalar> G_i(this->dimension());
+            SquareRankFourTensor<Scalar> G_i {this->numberOfOrbitals()};
             G_i.setZero();
-            for (size_t p = 0; p < this->dimension(); p++) {
-                for (size_t q = 0; q < this->dimension(); q++) {
-                    for (size_t r = 0; r < this->dimension(); r++) {
-                        for (size_t s = 0; s < this->dimension(); s++) {
+            for (size_t p = 0; p < this->numberOfOrbitals(); p++) {
+                for (size_t q = 0; q < this->numberOfOrbitals(); q++) {
+                    for (size_t r = 0; r < this->numberOfOrbitals(); r++) {
+                        for (size_t s = 0; s < this->numberOfOrbitals(); s++) {
 
                             if (q == r) {
                                 G_i(p, q, r, s) += 2 * F_i(p, s);
                             }
 
-                            for (size_t t = 0; t < this->dimension(); t++) {
-                                for (size_t u = 0; u < this->dimension(); u++) {
+                            for (size_t t = 0; t < this->numberOfOrbitals(); t++) {
+                                for (size_t u = 0; u < this->numberOfOrbitals(); u++) {
                                     G_i(p, q, r, s) += g_i(s, t, q, u) * (d(r, t, p, u) + d(t, r, u, p)) - g_i(s, t, u, p) * (d(r, t, u, q) + d(t, r, q, u)) - g_i(s, p, t, u) * (d(r, q, t, u) + d(q, r, u, t));
                                 }
                             }
@@ -249,9 +249,9 @@ public:
 
 
     /**
-     *  @return the dimension of the matrix representation of the parameters, i.e. the number of orbitals/sites
+     *  @return the number of orbitals this two-electron operator (spinors or spin-orbitals, depending on the context) is associated to
      */
-    size_t dimension() const { return this->gs[0].dimension(); /* all dimensions are the same, this is checked in the constructors */ }
+    size_t numberOfOrbitals() const { return this->gs[0].numberOfOrbitals(); /* all dimensions are the same, this is checked in the constructors */ }
 
 
     /**
@@ -260,7 +260,7 @@ public:
     SQOneElectronOperator<Scalar, Components> effectiveOneElectronPartition() const {
 
         // Initialize a zero operator
-        const auto K = this->dimension();  // number of orbitals
+        const auto K = this->numberOfOrbitals();  // number of orbitals
         SQOneElectronOperator<Scalar, Components> F {K};
 
 
@@ -280,11 +280,6 @@ public:
         return F;
     }
 
-
-    /**
-     *  @return the number of orbitals that this two-electron operator is quantized in
-     */
-    size_t numberOfOrbitals() const { return this->dimension(); }
 
     /**
      *  @param i            the index of the component

@@ -53,8 +53,8 @@ BOOST_AUTO_TEST_CASE(USQOneElectronOperator_zero_constructor) {
     const size_t dim = 2;
     const GQCP::ScalarUSQOneElectronOperator<double> one_op {2};  // should initialize to zeros
 
-    BOOST_CHECK_EQUAL(one_op.dimension(GQCP::Spin::alpha), dim);
-    BOOST_CHECK_EQUAL(one_op.dimension(GQCP::Spin::beta), dim);
+    BOOST_CHECK_EQUAL(one_op.numberOfOrbitals(GQCP::Spin::alpha), dim);
+    BOOST_CHECK_EQUAL(one_op.numberOfOrbitals(GQCP::Spin::beta), dim);
     BOOST_CHECK(one_op.parameters(GQCP::Spin::alpha).isZero(1.0e-08));
     BOOST_CHECK(one_op.parameters(GQCP::Spin::beta).isZero(1.0e-08));
 }

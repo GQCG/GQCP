@@ -92,7 +92,7 @@ ImplicitMatrixSlice<double> vAP1roG::calculateMultiplierResponseForce(const SQHa
 
     // Prepare some variables.
     const auto& g = sq_hamiltonian.twoElectron().parameters();
-    const auto K = sq_hamiltonian.dimension();  // number of spatial orbitals
+    const auto K = sq_hamiltonian.numberOfOrbitals();  // number of spatial orbitals
 
     // Create an occupied-virtual orbital space.
     const auto orbital_space = OrbitalSpace::Implicit({{OccupationType::k_occupied, N_P}, {OccupationType::k_virtual, K - N_P}});  // N_P occupied (spatial) orbitals, K-N_P virtual (spatial) orbitals

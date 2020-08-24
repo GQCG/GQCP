@@ -62,11 +62,11 @@ public:
         const auto K_alpha = alpha_scalar_basis.numberOfBasisFunctions();
         const auto K_beta = beta_scalar_basis.numberOfBasisFunctions();
 
-        if (C_alpha.dimension() != K_alpha) {
+        if (C_alpha.numberOfOrbitals() != K_alpha) {
             throw std::invalid_argument("USpinorBasis(const ScalarBasis<Shell>&, const ScalarBasis<Shell>&, const TransformationMatrix<ExpansionScalar>&, const TransformationMatrix<ExpansionScalar>): The given dimensions of the scalar basis and coefficient matrix for alpha are incompatible.");
         }
 
-        if (C_beta.dimension() != K_beta) {
+        if (C_beta.numberOfOrbitals() != K_beta) {
             throw std::invalid_argument("USpinorBasis(const ScalarBasis<Shell>&, const ScalarBasis<Shell>&, const TransformationMatrix<ExpansionScalar>&, const TransformationMatrix<ExpansionScalar>): The given dimensions of the scalar basis and coefficient matrix for beta are incompatible.");
         }
     }

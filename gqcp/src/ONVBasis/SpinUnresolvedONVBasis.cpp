@@ -213,7 +213,7 @@ size_t SpinUnresolvedONVBasis::countTwoElectronCouplings(const SpinUnresolvedONV
  */
 SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const ScalarSQOneElectronOperator<double>& one_op, const bool diagonal_values) const {
 
-    auto K = one_op.dimension();
+    auto K = one_op.numberOfOrbitals();
     if (K != this->M) {
         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDense(ScalarSQOneElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
     }
@@ -234,7 +234,7 @@ SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const ScalarS
  */
 SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const ScalarSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const {
 
-    const auto K = two_op.dimension();
+    const auto K = two_op.numberOfOrbitals();
     if (K != this->M) {
         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDense(ScalarSQTwoElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
     }
@@ -255,7 +255,7 @@ SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const ScalarS
  */
 SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const SQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const {
 
-    auto K = sq_hamiltonian.dimension();
+    auto K = sq_hamiltonian.numberOfOrbitals();
     if (K != this->M) {
         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDense(SQHamiltonian<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
     }
@@ -275,7 +275,7 @@ SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const SQHamil
  */
 VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>& one_op) const {
 
-    const auto K = one_op.dimension();
+    const auto K = one_op.numberOfOrbitals();
 
     if (K != this->M) {
         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDiagonal(ScalarSQOneElectronOperator<double>): Basis functions of this ONV basis and the operator are incompatible.");
@@ -314,7 +314,7 @@ VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorDiagonal(const ScalarSQO
  */
 VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorDiagonal(const ScalarSQTwoElectronOperator<double>& two_op) const {
 
-    auto K = two_op.dimension();
+    auto K = two_op.numberOfOrbitals();
     if (K != this->M) {
         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDiagonal(ScalarSQTwoElectronOperator<double>): Basis functions of this ONV basis and the operator are incompatible.");
     }
@@ -361,7 +361,7 @@ VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorDiagonal(const ScalarSQT
  */
 VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
 
-    auto K = sq_hamiltonian.dimension();
+    auto K = sq_hamiltonian.numberOfOrbitals();
     if (K != this->M) {
         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDiagonal(SQHamiltonian<double>): Basis functions of this ONV basis and the operator are incompatible.");
     }
@@ -380,7 +380,7 @@ VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorDiagonal(const SQHamilto
  */
 Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op, const bool diagonal_values) const {
 
-    auto K = one_op.dimension();
+    auto K = one_op.numberOfOrbitals();
     if (K != this->M) {
         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorSparse(ScalarSQOneElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
     }
@@ -409,7 +409,7 @@ Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const
  */
 Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const {
 
-    auto K = two_op.dimension();
+    auto K = two_op.numberOfOrbitals();
     if (K != this->M) {
         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorSparse(ScalarSQTwoElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
     }
@@ -438,7 +438,7 @@ Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const
  */
 Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const SQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const {
 
-    auto K = sq_hamiltonian.dimension();
+    auto K = sq_hamiltonian.numberOfOrbitals();
     if (K != this->M) {
         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorSparse(SQHamiltonian<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
     }
@@ -595,7 +595,7 @@ std::vector<Eigen::SparseMatrix<double>> SpinUnresolvedONVBasis::calculateOneEle
  */
 VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(const ScalarSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
-    auto K = one_op.dimension();
+    auto K = one_op.numberOfOrbitals();
     if (K != this->M) {
         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(ScalarSQOneElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of this ONV basis and the operator are incompatible.");
     }
@@ -617,7 +617,7 @@ VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(cons
  */
 VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(const ScalarSQTwoElectronOperator<double>& two_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
-    auto K = two_op.dimension();
+    auto K = two_op.numberOfOrbitals();
     if (K != this->M) {
         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(ScalarSQTwoElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of this ONV basis and the operator are incompatible.");
     }
@@ -639,7 +639,7 @@ VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(cons
  */
 VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
-    auto K = sq_hamiltonian.dimension();
+    auto K = sq_hamiltonian.numberOfOrbitals();
     if (K != this->M) {
         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of this ONV basis and the operator are incompatible.");
     }

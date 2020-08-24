@@ -136,7 +136,7 @@ public:
 
         // Prepare some variables.
         const auto& g = sq_hamiltonian.twoElectron().parameters();
-        const auto K = g.dimension();  // the number of spatial orbitals
+        const auto K = g.numberOfOrbitals();  // the number of spatial orbitals
 
         const auto orbital_space = RHF<Scalar>::orbitalSpace(K, N_P);
 
@@ -170,7 +170,7 @@ public:
     static ImplicitRankFourTensorSlice<Scalar> calculateOrbitalHessianTensor(const SQHamiltonian<Scalar>& sq_hamiltonian, const size_t N_P) {
 
         // Create an occupied-virtual orbital space.
-        const auto K = sq_hamiltonian.dimension();
+        const auto K = sq_hamiltonian.numberOfOrbitals();
         const auto orbital_space = OrbitalSpace::Implicit({{OccupationType::k_occupied, N_P}, {OccupationType::k_virtual, K - N_P}});  // N_P occupied spatial orbitals, K-N_P virtual spatial orbitals
 
         auto hessian = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_virtual, OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_occupied);  // zero-initialize an object suitable for the representation of a virtual-occupied,virtual-occupied object (ai,bj)
@@ -225,7 +225,7 @@ public:
      */
     static OneDM<Scalar> calculateScalarBasis1DM(const TransformationMatrix<double>& C, const size_t N) {
 
-        const size_t K = C.dimension();
+        const size_t K = C.numberOfOrbitals();
         const auto D_orthonormal = RHF<Scalar>::calculateOrthonormalBasis1DM(K, N);
 
         // Transform the 1-DM in an orthonormal basis to the underlying scalar basis
@@ -373,7 +373,7 @@ public:
     /**
      *  @return the number of spatial orbitals that these RHF model parameters describe
      */
-    size_t numberOfSpatialOrbitals() const { return this->coefficientMatrix().dimension(); }
+    size_t numberOfSpatialOrbitals() const { return this->coefficientMatrix().numberOfOrbitals(); }
 
     /**
      *  @return all the spatial orbital energies

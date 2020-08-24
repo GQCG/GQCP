@@ -75,8 +75,8 @@ public:
         C_beta {C_beta} {
 
         // Check for valid arguments.
-        const auto K_alpha = C_alpha.dimension();  // number of alpha spatial orbitals
-        const auto K_beta = C_beta.dimension();    // number of beta spatial orbitals
+        const auto K_alpha = C_alpha.numberOfOrbitals();  // number of alpha spatial orbitals
+        const auto K_beta = C_beta.numberOfOrbitals();    // number of beta spatial orbitals
 
         if (N_alpha > K_alpha) {
             throw std::invalid_argument("UHF(const size_t, const size_t, const VectorX<double>&, const VectorX<double>&, const TransformationMatrix<Scalar>&, const TransformationMatrix<Scalar>&): The number of given alpha electrons cannot be larger than the number of alpha spatial orbitals.");
@@ -108,8 +108,8 @@ public:
      */
     UHF(const size_t N_alpha, const size_t N_beta, const TransformationMatrix<Scalar>& C_alpha, const TransformationMatrix<Scalar>& C_beta) :
         UHF(N_alpha, N_beta,
-            GQCP::VectorX<double>::Zero(C_alpha.dimension()),
-            GQCP::VectorX<double>::Zero(C_beta.dimension()),
+            GQCP::VectorX<double>::Zero(C_alpha.numberOfOrbitals()),
+            GQCP::VectorX<double>::Zero(C_beta.numberOfOrbitals()),
             C_alpha, C_beta) {
     }
 
@@ -200,7 +200,7 @@ public:
      */
     static OneDM<Scalar> calculateScalarBasis1DM(const TransformationMatrix<double>& C_sigma, const size_t N_sigma) {
 
-        const auto K_sigma = C_sigma.dimension();
+        const auto K_sigma = C_sigma.numberOfOrbitals();
         const auto D_orthonormal = UHF<Scalar>::calculateOrthonormalBasis1DM(K_sigma, N_sigma);
 
         // Transform the 1-DM in an orthonormal basis to the underlying scalar basis
@@ -387,12 +387,12 @@ public:
 
         switch (sigma) {
         case Spin::alpha: {
-            return this->C_alpha.dimension();
+            return this->C_alpha.numberOfOrbitals();
             break;
         }
 
         case Spin::beta: {
-            return this->C_beta.dimension();
+            return this->C_beta.numberOfOrbitals();
             break;
         }
         }

@@ -155,7 +155,7 @@ ImplicitMatrixSlice<double> QCModel::AP1roG::calculatePSECoordinateFunctions(con
 VectorFunction<double> QCModel::AP1roG::callablePSECoordinateFunctions(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P) {
 
     VectorFunction<double> callable = [&sq_hamiltonian, N_P](const VectorX<double>& x) {
-        const auto K = sq_hamiltonian.dimension();  // the number of spatial orbitals
+        const auto K = sq_hamiltonian.numberOfOrbitals();  // the number of spatial orbitals
 
         const auto G = AP1roGGeminalCoefficients::FromColumnMajor(x, N_P, K);
         return QCModel::AP1roG::calculatePSECoordinateFunctions(sq_hamiltonian, G).asVector();
@@ -269,7 +269,7 @@ ImplicitRankFourTensorSlice<double> QCModel::AP1roG::calculatePSEJacobian(const 
 MatrixFunction<double> QCModel::AP1roG::callablePSEJacobian(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P) {
 
     MatrixFunction<double> callable = [&sq_hamiltonian, N_P](const VectorX<double>& x) {
-        const auto K = sq_hamiltonian.dimension();  // the number of spatial orbitals
+        const auto K = sq_hamiltonian.numberOfOrbitals();  // the number of spatial orbitals
 
         const auto G = AP1roGGeminalCoefficients::FromColumnMajor(x, N_P, K);
         return QCModel::AP1roG::calculatePSEJacobian(sq_hamiltonian, G).asMatrix();

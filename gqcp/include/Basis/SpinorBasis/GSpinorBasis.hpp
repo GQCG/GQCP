@@ -75,7 +75,7 @@ public:
         const auto K_alpha = alpha_scalar_basis.numberOfBasisFunctions();
         const auto K_beta = beta_scalar_basis.numberOfBasisFunctions();
 
-        if (C.dimension() != K_alpha + K_beta) {
+        if (C.numberOfOrbitals() != K_alpha + K_beta) {
             throw std::invalid_argument("GSpinorBasis(const ScalarBasis<Shell>&, const ScalarBasis<Shell>&, const TransformationMatrix<ExpansionScalar>&): The given dimensions of the scalar bases and coefficient matrix are incompatible.");
         }
     }

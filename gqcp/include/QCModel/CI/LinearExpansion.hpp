@@ -371,7 +371,7 @@ public:
     enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value> basisTransform(const TransformationMatrix<double>& T) {
 
         const auto K = onv_basis.numberOfOrbitals();  // number of spatial orbitals
-        if (K != T.dimension()) {
+        if (K != T.numberOfOrbitals()) {
             throw std::invalid_argument("LinearExpansion::basisTransform(const TransformationMatrix<double>&): The number of spatial orbitals does not match the dimension of the transformation matrix.");
         }
 

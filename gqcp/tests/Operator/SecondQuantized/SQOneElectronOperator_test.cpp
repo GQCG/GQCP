@@ -50,7 +50,7 @@ BOOST_AUTO_TEST_CASE(SQOneElectronOperator_zero_constructor) {
     const size_t dim = 2;
     const GQCP::ScalarSQOneElectronOperator<double> one_op {2};  // should initialize to zeros
 
-    BOOST_CHECK_EQUAL(one_op.dimension(), dim);
+    BOOST_CHECK_EQUAL(one_op.numberOfOrbitals(), dim);
     BOOST_CHECK(one_op.parameters().isZero(1.0e-08));
 }
 

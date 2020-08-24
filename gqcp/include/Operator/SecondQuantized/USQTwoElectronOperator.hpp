@@ -70,17 +70,17 @@ public:
         gs_bb {gs_bb} {
 
         // Check if the given tensor representations have the same dimensions, for each spin part.
-        const auto dimension_of_first_aa = this->gs_aa[0].dimension();
-        const auto dimension_of_first_ab = this->gs_ab[0].dimension();
-        const auto dimension_of_first_ba = this->gs_ba[0].dimension();
-        const auto dimension_of_first_bb = this->gs_bb[0].dimension();
+        const auto dimension_of_first_aa = this->gs_aa[0].numberOfOrbitals();
+        const auto dimension_of_first_ab = this->gs_ab[0].numberOfOrbitals();
+        const auto dimension_of_first_ba = this->gs_ba[0].numberOfOrbitals();
+        const auto dimension_of_first_bb = this->gs_bb[0].numberOfOrbitals();
 
         for (size_t i = 1; i < Components; i++) {
 
-            const auto dimension_of_ith_aa = this->gs_aa[i].dimension();
-            const auto dimension_of_ith_ab = this->gs_ab[i].dimension();
-            const auto dimension_of_ith_ba = this->gs_ba[i].dimension();
-            const auto dimension_of_ith_bb = this->gs_bb[i].dimension();
+            const auto dimension_of_ith_aa = this->gs_aa[i].numberOfOrbitals();
+            const auto dimension_of_ith_ab = this->gs_ab[i].numberOfOrbitals();
+            const auto dimension_of_ith_ba = this->gs_ba[i].numberOfOrbitals();
+            const auto dimension_of_ith_bb = this->gs_bb[i].numberOfOrbitals();
 
             if ((dimension_of_first_aa != dimension_of_ith_aa) || (dimension_of_first_ab != dimension_of_ith_ab) || (dimension_of_first_ba != dimension_of_ith_ba) || (dimension_of_first_bb != dimension_of_ith_bb)) {
                 throw std::invalid_argument("USQTwoElectronOperator(const std::array<QCMatrix<Scalar>, Components>&): The given tenso representations do not have the same dimensions for either the alpha, beta or one of the mixed components.");
@@ -197,10 +197,10 @@ public:
      */
     Vector<Scalar, Components> calculateExpectationValue(const SpinResolvedTwoDM<Scalar>& d) const {
 
-        if ((this->dimension(Spin::alpha, Spin::alpha) != d.dimension(Spin::alpha, Spin::alpha)) ||
-            (this->dimension(Spin::alpha, Spin::beta) != d.dimension(Spin::alpha, Spin::beta)) ||
-            (this->dimension(Spin::beta, Spin::alpha) != d.dimension(Spin::beta, Spin::alpha)) ||
-            (this->dimension(Spin::beta, Spin::beta) != d.dimension(Spin::beta, Spin::beta))) {
+        if ((this->numberOfOrbitals(Spin::alpha, Spin::alpha) != d.numberOfOrbitals(Spin::alpha, Spin::alpha)) ||
+            (this->numberOfOrbitals(Spin::alpha, Spin::beta) != d.numberOfOrbitals(Spin::alpha, Spin::beta)) ||
+            (this->numberOfOrbitals(Spin::beta, Spin::alpha) != d.numberOfOrbitals(Spin::beta, Spin::alpha)) ||
+            (this->numberOfOrbitals(Spin::beta, Spin::beta) != d.numberOfOrbitals(Spin::beta, Spin::beta))) {
             throw std::invalid_argument("USQTwoElectronOperator::calculateExpectationValue(const TwoDM<double>&, const TwoDM<double>&, const TwoDM<double>&, const TwoDM<double>&): One of the given 2-DMs is not compatible with the respective component of the two-electron operator.");
         }
 
@@ -231,22 +231,22 @@ public:
      * 
      *  @return the dimension of the tensors for the requested spin components.
      */
-    size_t dimension(const Spin left, const Spin right) const {
+    size_t numberOfOrbitals(const Spin left, const Spin right) const {
 
         if (left == Spin::alpha && right == Spin::alpha) {
-            return this->gs_aa[0].dimension();
+            return this->gs_aa[0].numberOfOrbitals();
         }
 
         else if (left == Spin::alpha && right == Spin::beta) {
-            return this->gs_ab[0].dimension();
+            return this->gs_ab[0].numberOfOrbitals();
         }
 
         else if (left == Spin::beta && right == Spin::alpha) {
-            return this->gs_ba[0].dimension();
+            return this->gs_ba[0].numberOfOrbitals();
         }
 
         else {
-            return this->gs_bb[0].dimension();
+            return this->gs_bb[0].numberOfOrbitals();
         };
     }
 

@@ -56,10 +56,10 @@ BOOST_AUTO_TEST_CASE(USQTwoElectronOperator_zero_constructor) {
     // Create a reference zero tensor
     GQCP::QCRankFourTensor<double> ref {K};
 
-    BOOST_CHECK_EQUAL(op.dimension(GQCP::Spin::alpha, GQCP::Spin::alpha), K);
-    BOOST_CHECK_EQUAL(op.dimension(GQCP::Spin::alpha, GQCP::Spin::beta), K);
-    BOOST_CHECK_EQUAL(op.dimension(GQCP::Spin::beta, GQCP::Spin::alpha), K);
-    BOOST_CHECK_EQUAL(op.dimension(GQCP::Spin::beta, GQCP::Spin::beta), K);
+    BOOST_CHECK_EQUAL(op.numberOfOrbitals(GQCP::Spin::alpha, GQCP::Spin::alpha), K);
+    BOOST_CHECK_EQUAL(op.numberOfOrbitals(GQCP::Spin::alpha, GQCP::Spin::beta), K);
+    BOOST_CHECK_EQUAL(op.numberOfOrbitals(GQCP::Spin::beta, GQCP::Spin::alpha), K);
+    BOOST_CHECK_EQUAL(op.numberOfOrbitals(GQCP::Spin::beta, GQCP::Spin::beta), K);
 
     BOOST_CHECK(op.parameters(GQCP::Spin::alpha, GQCP::Spin::alpha).isApprox(ref.setZero(), 1.0e-08));
     BOOST_CHECK(op.parameters(GQCP::Spin::alpha, GQCP::Spin::beta).isApprox(ref.setZero(), 1.0e-08));

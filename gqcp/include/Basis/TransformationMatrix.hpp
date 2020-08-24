@@ -75,7 +75,12 @@ public:
      */
 
     /**
-     *  In-place 'transform' this transformation matrix such that the resulting transformation matrix describes this and the other transformation together
+     *  @return the number of orbitals (spinors or spin-orbitals, depending on the context) this transformation matrix is related to
+     */
+    size_t numberOfOrbitals() const { return this->dimension(); /* the dimension of the square matrix */ }
+
+    /**
+     *  In-place 'transform' this transformation matrix such that the resulting transformation matrix describes this and the other transformation together.
      */
     void transform(const TransformationMatrix<Scalar>& T) {
 

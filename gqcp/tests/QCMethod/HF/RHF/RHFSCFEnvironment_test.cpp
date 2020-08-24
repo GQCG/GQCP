@@ -32,7 +32,7 @@ BOOST_AUTO_TEST_CASE(constructor) {
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {h2, "STO-3G"};
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
-    const auto K = sq_hamiltonian.dimension();                                       // the number of spatial orbitals
+    const auto K = sq_hamiltonian.numberOfOrbitals();                                // the number of spatial orbitals
 
     BOOST_CHECK_NO_THROW(const GQCP::RHFSCFEnvironment<double> rhf_environment(h2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters(),
                                                                                GQCP::TransformationMatrix<double>::Random(K, K)));

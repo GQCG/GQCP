@@ -63,7 +63,7 @@ SquareMatrix<double> RHFElectricalResponseSolver::calculateParameterResponseCons
 Matrix<double, Dynamic, 3> RHFElectricalResponseSolver::calculateParameterResponseForce(const VectorSQOneElectronOperator<double>& dipole_op) const {
 
     // Create an occupied-virtual orbital space.
-    const auto K = dipole_op.dimension();  // number of spatial orbitals
+    const auto K = dipole_op.numberOfOrbitals();  // number of spatial orbitals
 
     const auto orbital_space = OrbitalSpace::Implicit({{OccupationType::k_occupied, N_P}, {OccupationType::k_virtual, K - N_P}});  // N_P occupied (spatial) orbitals, K-N_P virtual (spatial) orbitals
 
