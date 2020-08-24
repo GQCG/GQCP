@@ -24,6 +24,7 @@
 #include "Mathematical/Functions/ScalarFunction.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Processing/DensityMatrices/OneDM.hpp"
+#include "Processing/DensityMatrices/SpinResolvedOneDM.hpp"
 #include "Processing/DensityMatrices/TwoDM.hpp"
 #include "Utilities/type_traits.hpp"
 
@@ -168,21 +169,20 @@ public:
 
 
     /**
-     *  @param D_a                the alpha 1-DM that represents the wave function
-     *  @param D_b                the beta 1-DM that represents the wave function
+     *  @param D                the spin-resolved 1-DM that represents the wave function
      *
      *  @return the expectation values of all components of the one-electron operator
      */
-    Vector<Scalar, Components> calculateExpectationValue(const OneDM<Scalar>& D_a, const OneDM<Scalar>& D_b) const {
+    Vector<Scalar, Components> calculateExpectationValue(const SpinResolvedOneDM<Scalar>& D) const {
 
-        if (this->fs_a[0].dimension() != D_a.dimension() || this->fs_b[0].dimension() != D_b.dimension()) {
+        if (this->fs_a[0].dimension() != D.numberOfOrbitals(Spin::alpha) || this->fs_b[0].dimension() != D.numberOfOrbitals(Spin::beta)) {
             throw std::invalid_argument("USQOneElectronOperator::calculateExpectationValue(const OneDM<Scalar>&, const OneDM<Scalar>&): The given 1-DM is not compatible with the one-electron operator.");
         }
 
         std::array<Scalar, Components> expectation_values {};  // zero initialization
 
         for (size_t i = 0; i < Components; i++) {
-            expectation_values[i] = (this->parameters(GQCP::Spin::alpha, i) * D_a).trace() + (this->parameters(GQCP::Spin::beta, i) * D_b).trace();
+            expectation_values[i] = (this->parameters(GQCP::Spin::alpha, i) * D.alpha()).trace() + (this->parameters(GQCP::Spin::beta, i) * D.beta()).trace();
         }
 
         return Eigen::Map<Eigen::Matrix<Scalar, Components, 1>>(expectation_values.data());  // convert std::array to Vector

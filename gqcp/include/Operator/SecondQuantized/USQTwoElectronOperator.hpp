@@ -23,6 +23,7 @@
 #include "Mathematical/Representation/QCRankFourTensor.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
 #include "Processing/DensityMatrices/OneDM.hpp"
+#include "Processing/DensityMatrices/SpinResolvedTwoDM.hpp"
 #include "Processing/DensityMatrices/TwoDM.hpp"
 #include "Utilities/miscellaneous.hpp"
 
@@ -190,16 +191,16 @@ public:
 
 
     /**
-     *  @param d_aa            the alpha-alpha 2-DM that represents the wave function
-     *  @param d_ab            the alpha-beta 2-DM that represents the wave function
-     *  @param d_ba            the beta-alpha 2-DM that represents the wave function
-     *  @param d_bb            the beta-beta 2-DM that represents the wave function
+     *  @param d                    the spin-resolved 2-DM that represents the wave function
      *
      *  @return the expectation values of all the components of the two-electron operator, with the given 2-DMs: this includes the prefactor 1/2
      */
-    Vector<Scalar, Components> calculateExpectationValue(const TwoDM<Scalar>& d_aa, const TwoDM<Scalar>& d_ab, const TwoDM<Scalar>& d_ba, const TwoDM<Scalar>& d_bb) const {
+    Vector<Scalar, Components> calculateExpectationValue(const SpinResolvedTwoDM<Scalar>& d) const {
 
-        if ((this->dimension(GQCP::Spin::alpha, GQCP::Spin::alpha) != d_aa.dimension()) || (this->dimension(GQCP::Spin::alpha, GQCP::Spin::alpha) != d_ab.dimension()) || (this->dimension(GQCP::Spin::alpha, GQCP::Spin::alpha) != d_ba.dimension()) || (this->dimension(GQCP::Spin::alpha, GQCP::Spin::alpha) != d_bb.dimension())) {
+        if ((this->dimension(Spin::alpha, Spin::alpha) != d.dimension(Spin::alpha, Spin::alpha)) ||
+            (this->dimension(Spin::alpha, Spin::beta) != d.dimension(Spin::alpha, Spin::beta)) ||
+            (this->dimension(Spin::beta, Spin::alpha) != d.dimension(Spin::beta, Spin::alpha)) ||
+            (this->dimension(Spin::beta, Spin::beta) != d.dimension(Spin::beta, Spin::beta))) {
             throw std::invalid_argument("USQTwoElectronOperator::calculateExpectationValue(const TwoDM<double>&, const TwoDM<double>&, const TwoDM<double>&, const TwoDM<double>&): One of the given 2-DMs is not compatible with the respective component of the two-electron operator.");
         }
 
@@ -211,10 +212,10 @@ public:
             //      0.5 g(p q r s) d(p q r s)
             Eigen::array<Eigen::IndexPair<int>, 4> contractions {Eigen::IndexPair<int>(0, 0), Eigen::IndexPair<int>(1, 1), Eigen::IndexPair<int>(2, 2), Eigen::IndexPair<int>(3, 3)};
             //      Perform the contraction
-            Eigen::Tensor<Scalar, 0> contraction_aa = 0.5 * this->parameters(GQCP::Spin::alpha, GQCP::Spin::alpha, i).contract(d_aa.Eigen(), contractions);
-            Eigen::Tensor<Scalar, 0> contraction_ab = 0.5 * this->parameters(GQCP::Spin::alpha, GQCP::Spin::beta, i).contract(d_ab.Eigen(), contractions);
-            Eigen::Tensor<Scalar, 0> contraction_ba = 0.5 * this->parameters(GQCP::Spin::beta, GQCP::Spin::alpha, i).contract(d_ba.Eigen(), contractions);
-            Eigen::Tensor<Scalar, 0> contraction_bb = 0.5 * this->parameters(GQCP::Spin::beta, GQCP::Spin::beta, i).contract(d_bb.Eigen(), contractions);
+            Eigen::Tensor<Scalar, 0> contraction_aa = 0.5 * this->parameters(GQCP::Spin::alpha, GQCP::Spin::alpha, i).contract(d.alphaAlpha().Eigen(), contractions);
+            Eigen::Tensor<Scalar, 0> contraction_ab = 0.5 * this->parameters(GQCP::Spin::alpha, GQCP::Spin::beta, i).contract(d.alphaBeta().Eigen(), contractions);
+            Eigen::Tensor<Scalar, 0> contraction_ba = 0.5 * this->parameters(GQCP::Spin::beta, GQCP::Spin::alpha, i).contract(d.betaAlpha().Eigen(), contractions);
+            Eigen::Tensor<Scalar, 0> contraction_bb = 0.5 * this->parameters(GQCP::Spin::beta, GQCP::Spin::beta, i).contract(d.betaBeta().Eigen(), contractions);
 
             // As the contraction is a scalar (a tensor of rank 0), we should access by (0).
             expectation_values[i] = contraction_aa(0) + contraction_ab(0) + contraction_ba(0) + contraction_bb(0);
