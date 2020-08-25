@@ -121,9 +121,7 @@ public:
         std::string framework_string;
 
         for (const auto& nucleus : this->nucleiAsVector()) {
-            std::ostringstream nucleus_vector;
-            nucleus_vector << nucleus;
-            framework_string += nucleus_vector.str();
+            framework_string += nucleus.description();
         }
 
         return framework_string;
