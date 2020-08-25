@@ -5,3 +5,100 @@ sidebar_label: Common use cases
 ---
 
 In this section, we'll provide a quick reference to some common use cases. Be sure to check out the [gqcpy example notebooks](https://github.com/GQCG/GQCP/tree/develop/gqcpy/examples) as well!
+
+## Hartree-Fock calculations
+
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Python-->
+```python
+molecule = gqcpy.Molecule.ReadXYZ("h2.xyz")
+N = molecule.numberOfElectrons()
+
+spinor_basis = gqcpy.RSpinorBasis(molecule, "STO-3G")
+sq_hamiltonian = gqcpy.SQHamiltonian.Molecular(spinor_basis, molecule)  # 'sq' for 'second-quantized'
+```
+
+<!--C++-->
+```C++
+const auto molecule = GQCP::Molecule::ReadXYZ("data/h2.xyz");
+const auto N = molecule.numberOfElectrons();
+```
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+### RHF
+
+In this use case, we will calculate the restricted HF energy for H2 in an STO-3G basis set. 
+
+#### Molecular setup
+
+The first step consists of generating the [`Molecule`](#molecules.md) object from which we can obtain properties. The simplest way to do so is to provide an `xyz` file. 
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Python-->
+```python
+molecule = gqcpy.Molecule.ReadXYZ("h2.xyz")
+N = molecule.numberOfElectrons()
+```
+
+<!--C++-->
+```C++
+const auto molecule = GQCP::Molecule::ReadXYZ("data/h2.xyz");
+const auto N = molecule.numberOfElectrons();
+```
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+Before we go over to the calculation of integrals, an [orbital basis](#orbital_bases.md) must be constructed. The RHF method uses a restricted spin-orbital basis. We can immediately use this object to find the overlap integrals.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Python-->
+```python
+spinor_basis = gqcpy.RSpinorBasis(molecule, "STO-3G")
+S = spinor_basis.quantizeOverlapOperator().parameters()
+```
+
+<!--C++-->
+```C++
+const auto spinor_basis = GQCP::RSpinorBasis::ReadXYZ(molecule, "STO-3G";
+const auto S = spinor_basis.overlap().parameters();
+```
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+This spinor basis is used to construct a Hamiltonian operator in second quantization (SQ). 
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Python-->
+```python
+sq_hamiltonian = gqcpy.SQHamiltonian.Molecular(spinor_basis, molecule)  # in an AO basis
+```
+
+<!--C++-->
+```C++
+const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
+```
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+To solve the RHF SCF equations, we will need to set up a `Solver` and its associated `Environment`. The environment will provide all necessary intermediates for the solver to use. 
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Python-->
+```python
+environment = gqcpy.RHFSCFEnvironment.WithCoreGuess(N, sq_hamiltonian, S)
+solver = gqcpy.RHFSCFSolver.Plain()
+
+gqcpy.RHF.optimize(solver, environment).groundStateParameters() # nog niet af!!!!
+```
+
+<!--C++-->
+```C++
+auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
+auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
+
+plain_rhf_scf_solver.perform(rhf_environment);
+```
+<!--END_DOCUSAURUS_CODE_TABS-->

@@ -237,3 +237,5 @@ Since we have provided a clang formatting file `./clang-format`, VS Code's C++ e
     "editor.formatOnSave": true
 }
 ```
+
+For more information on our style guide, please read our [GQCP style guide page](style_guide.md).
