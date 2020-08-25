@@ -138,8 +138,7 @@ Molecule Molecule::ReadXYZ(const std::string& xyz_filename, const int charge) {
  */
 std::ostream& operator<<(std::ostream& os, const Molecule& molecule) {
 
-    os << "Number of electrons: " << molecule.numberOfElectrons() << std::endl;
-    os << molecule.nuclearFramework();
+    os << molecule.description();
 
     return os;
 }

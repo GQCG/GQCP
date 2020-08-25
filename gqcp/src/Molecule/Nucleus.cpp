@@ -73,7 +73,9 @@ Nucleus::Nucleus() :
  *  @return the updated output stream
  */
 std::ostream& operator<<(std::ostream& os, const Nucleus& nucleus) {
-    os << std::left << std::setw(3) << elements::atomicNumberToElement(nucleus.charge()) << '(' << nucleus.position().x() << ", " << nucleus.position().y() << ", " << nucleus.position().z() << ")\n";
+
+    os << nucleus.description();
+    
     return os;
 }
 

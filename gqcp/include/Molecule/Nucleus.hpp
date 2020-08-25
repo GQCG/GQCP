@@ -19,6 +19,7 @@
 
 
 #include "Mathematical/Representation/Matrix.hpp"
+#include "Molecule/elements.hpp"
 
 #include <cstdlib>
 #include <functional>
@@ -96,6 +97,17 @@ public:
      *  @return the Euclidian distance between this nucleus and the other
      */
     double calculateDistanceWith(const Nucleus& other) const;
+
+    /**
+     *  @return a textual description of this nucleus.
+     */
+    std::string description() const {
+        
+        std::ostringstream os;
+        os << std::left << std::setw(3) << elements::atomicNumberToElement(this->charge()) << '(' << this->position().x() << ", " << this->position().y() << ", " << this->position().z() << ")\n";
+
+        return os.str();
+    }
 
     /**
      *  @return the charge of this nucleus

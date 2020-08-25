@@ -20,6 +20,8 @@
 
 #include "Molecule/NuclearFramework.hpp"
 
+#include <boost/format.hpp>
+
 #include <cstdlib>
 
 
@@ -131,6 +133,17 @@ public:
      *  @return the charge of this molecule (in a.u.)
      */
     int charge() const;
+
+    /**
+     *  @return a textual description of this molecule.
+     */
+    std::string description() const {
+
+        std::string molecule_string = (boost::format("Number of electrons: %s \n") % this->numberOfElectrons()).str(); 
+        molecule_string += this->nuclearFramework().description();
+
+        return molecule_string;
+    }
 
     /**
      *  @return the underlying nuclear framework
