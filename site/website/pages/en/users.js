@@ -33,7 +33,7 @@ class Users extends React.Component {
                             <p>A summary of the academic publications that used GQCP.</p>
                         </div>
                         <div className="logos">{showcase}</div>
-                        {siteConfig.repoUrl && (
+                        {/* {siteConfig.repoUrl && (
                             <React.Fragment>
                                 <p>Are you using this project?</p>
                                 <a
@@ -42,7 +42,7 @@ class Users extends React.Component {
                                     Add your company
                 </a>
                             </React.Fragment>
-                        )}
+                        )} */}
                     </div>
                 </Container>
             </div>
