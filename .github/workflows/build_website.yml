@@ -5,8 +5,7 @@ on:
   pull_request:
     # This workflow will only start if files in site/docs/ or site/website are changed.
     paths: 
-    - site/docs/
-    - site/website/
+    - 'site/**'
 
 jobs:
   build:
