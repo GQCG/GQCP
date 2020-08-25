@@ -139,11 +139,13 @@ public:
      */
     std::string description() const {
 
-        std::string molecule_string = (boost::format("Number of electrons: %s \n") % this->numberOfElectrons()).str(); // + std::to_string(this->nuclearFramework());
+        std::string molecule_string = (boost::format("Number of electrons: %s \n") % this->numberOfElectrons()).str(); 
+        std::ostringstream framework;
+        framework << this->nuclearFramework();
+        molecule_string += framework.str();
 
         return molecule_string;
     }
-
 
     /**
      *  @return the underlying nuclear framework

@@ -134,20 +134,3 @@ BOOST_AUTO_TEST_CASE(charge) {
     BOOST_CHECK(h_chain_anion.numberOfElectronPairs() == 2);  // should round down
     BOOST_CHECK(h_chain_anion.charge() == -2);
 }
-
-
-/**
- *  Check if the API still supports Molecule<<
- */
-BOOST_AUTO_TEST_CASE(Molecule_description) {
-
-    const std::vector<GQCP::Nucleus> nuclei = {
-        {1, 0, 3, 0},
-        {2, 0, 0, 4},
-        {3, 3, 0, 0},
-        {4, 0, 0, 5}};
-    const GQCP::Molecule molecule {nuclei};
-    const GQCP::NuclearFramework string = molecule.nuclearFramework();
-
-    std::cout << string << std::endl;
-}

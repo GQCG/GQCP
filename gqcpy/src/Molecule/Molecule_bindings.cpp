@@ -90,9 +90,7 @@ void bindMolecule(py::module& module) {
 
         .def("__str__",
              [](const GQCP::Molecule& molecule) {
-                 std::ostringstream ss;
-                 ss << molecule;
-                 return ss.str();
+                 return molecule.description();
              })
 
         .def("numberOfElectrons",
