@@ -226,3 +226,14 @@ In order to use the C++ IntelliSense correctly, you'll also have to set the corr
 By now, you're done configuring VS Code and can start developing! If you'd like to compile the code locally to see if your tests still pass and the project can be compiled, you can use `CMake Tools` extension in your side bar and the clicking on the `...` in the upper right corner. 
 
 In order to let CMake parse your project, use `Clean Reconfigure All Projects`. In the CMake: Project Outline, you can find a list of all targets, which can be built separately. If you would like to (re)build all targets, use `Clean Rebuild All Projects`. 
+
+
+### Setting up auto-formatting for C++ source files
+
+Since we have provided a clang formatting file `./clang-format`, VS Code's C++ extension should be set up to parse your C++ source files and format them accordingly. To enable this, make sure that you provide the following setting (either in your workspace or user settings, which one you prefer), in order to let VS Code auto-format your C++ source files on save.
+
+```json
+{
+    "editor.formatOnSave": true
+}
+```
