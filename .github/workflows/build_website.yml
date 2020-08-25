@@ -2,7 +2,7 @@ name: Deploy website
 
 # This workflow is triggered on a pull-request. This is a single event so no brackets are needed.
 on: 
-  pull-request:
+  pull_request:
     # This workflow will only start if files in site/docs/ or site/website are changed.
     paths: 
     - site/docs/
