@@ -1,6 +1,13 @@
 name: Run GQCP tests and benchmarks
 
-on: pull_request
+on: 
+  pull_request:
+    paths:
+      - '**.hpp'
+      - '**.cpp'
+      - '**.cmake'
+      - '**CMakeLists.txt' 
+      - 'cmake/**'
 
 jobs:
   build:
