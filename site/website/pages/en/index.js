@@ -177,7 +177,7 @@ class Index extends React.Component {
                 .filter((user) => user.pinned)
                 .map((user) => (
                     <a href={user.infoLink} key={user.infoLink}>
-                        <img src={user.image} alt={user.caption} title={user.caption} />
+                        {user.caption}
                     </a>
                 ));
 
@@ -186,12 +186,12 @@ class Index extends React.Component {
 
             return (
                 <div className="productShowcaseSection paddingBottom">
-                    <h2>Who is Using This?</h2>
-                    <p>This project is used by all these people</p>
+                    <h2>Academic references</h2>
+                    <p>This publication, amongst others, used GQCP.</p>
                     <div className="logos">{showcase}</div>
                     <div className="more-users">
                         <a className="button" href={pageUrl('users.html')}>
-                            More {siteConfig.title} Users
+                            All publications that used {siteConfig.title}
             </a>
                     </div>
                 </div>

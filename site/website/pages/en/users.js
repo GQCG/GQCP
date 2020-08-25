@@ -20,7 +20,7 @@ class Users extends React.Component {
 
         const showcase = siteConfig.users.map((user) => (
             <a href={user.infoLink} key={user.infoLink}>
-                <a title={user.caption} />
+                {user.caption}
             </a>
         ));
 
@@ -30,9 +30,9 @@ class Users extends React.Component {
                     <div className="showcaseSection">
                         <div className="prose">
                             <h1>Academic references</h1>
-                            <p>These academic publications have all used GQCP.</p>
+                            <p>A summary of the academic publications that used GQCP.</p>
                         </div>
-                        {/* <div className="logos">{showcase}</div>
+                        <div className="logos">{showcase}</div>
                         {siteConfig.repoUrl && (
                             <React.Fragment>
                                 <p>Are you using this project?</p>
@@ -42,7 +42,7 @@ class Users extends React.Component {
                                     Add your company
                 </a>
                             </React.Fragment>
-                        )} */}
+                        )}
                     </div>
                 </Container>
             </div>
