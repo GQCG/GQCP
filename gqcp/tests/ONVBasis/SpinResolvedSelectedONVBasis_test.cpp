@@ -87,7 +87,7 @@ BOOST_AUTO_TEST_CASE(Selected_Evaluation_H2O) {
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {h2o, "STO-3G"};
     spinor_basis.lowdinOrthonormalize();
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2o);  // in the Löwdin basis
-    auto K = sq_hamiltonian.dimension();
+    auto K = sq_hamiltonian.numberOfOrbitals();
 
     GQCP::SpinResolvedONVBasis fock_space {K, h2o.numberOfElectrons() / 2, h2o.numberOfElectrons() / 2};  // dim = 441
     GQCP::SpinResolvedSelectedONVBasis selected_fock_space {fock_space};
@@ -139,13 +139,13 @@ BOOST_AUTO_TEST_CASE(Selected_H2O_Unrestricted) {
     auto usq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(spinor_basis, h2o);  // unrestricted Hamiltonian in the Löwdin basis
 
     // Transform the Hamiltonian to an orthonormal basis
-    GQCP::basisTransform(spinor_basis, usq_hamiltonian, spinor_basis.lowdinOrthonormalizationMatrix(GQCP::Spin::alpha));
+    GQCP::basisTransform(spinor_basis, usq_hamiltonian, spinor_basis.lowdinOrthonormalizationMatrix().alpha());
 
     // Transform the beta component
     // Create stable unitairy matrix
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes {usq_hamiltonian.spinHamiltonian(GQCP::Spin::alpha).core().parameters()};
     GQCP::basisTransform(spinor_basis, usq_hamiltonian, GQCP::TransformationMatrix<double>(saes.eigenvectors()), GQCP::Spin::beta);
-    auto K = usq_hamiltonian.dimension() / 2;
+    auto K = usq_hamiltonian.numberOfOrbitals() / 2;
 
     GQCP::SpinResolvedONVBasis fock_space {K, h2o.numberOfElectrons() / 2, h2o.numberOfElectrons() / 2};  // dim = 441
     GQCP::SpinResolvedSelectedONVBasis selected_fock_space {fock_space};

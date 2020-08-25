@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_CASE(SQTwoElectronOperator_zero_constructor) {
     // Create a reference zero tensor
     GQCP::QCRankFourTensor<double> ref {dim};
 
-    BOOST_CHECK_EQUAL(op.dimension(), dim);
+    BOOST_CHECK_EQUAL(op.numberOfOrbitals(), dim);
     BOOST_CHECK(op.parameters().isApprox(ref.setZero(), 1.0e-08));
 }
 

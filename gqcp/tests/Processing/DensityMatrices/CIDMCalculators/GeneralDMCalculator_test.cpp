@@ -34,7 +34,7 @@
 //     // Get the 1-DM from DOCI
 //     size_t N = 4;  // 4 electrons
 //     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
-//     size_t K = sq_hamiltonian.dimension();  // 16 SO
+//     size_t K = sq_hamiltonian.numberOfOrbitals();  // 16 SO
 
 //     // Abstract pointer to test DM
 //     std::shared_ptr<GQCP::BaseONVBasis> fock_space_dy {new GQCP::SpinUnresolvedONVBasis(K, N / 2)};  // dim = 120
@@ -80,7 +80,7 @@ BOOST_AUTO_TEST_CASE(operator_call_throw) {
     size_t N = 1;
     GQCP::SpinUnresolvedONVBasis fock_space {M, N};
 
-    GQCP::VectorX<double> coeff(fock_space.dimension());
+    GQCP::VectorX<double> coeff {fock_space.dimension()};
     coeff << 1, 2, -3;
     GQCP::GeneralSpinUnresolvedDMCalculator d {fock_space};
     d.setCoefficients(coeff);
@@ -95,7 +95,7 @@ BOOST_AUTO_TEST_CASE(operator_call) {
     size_t N = 2;
     GQCP::SpinUnresolvedONVBasis fock_space {M, N};
 
-    GQCP::VectorX<double> coeff(fock_space.dimension());
+    GQCP::VectorX<double> coeff {fock_space.dimension()};
     coeff << 1, 2, -3;
     GQCP::GeneralSpinUnresolvedDMCalculator d {fock_space};
     d.setCoefficients(coeff);

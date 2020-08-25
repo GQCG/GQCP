@@ -44,7 +44,7 @@ DOCI::DOCI(const SeniorityZeroONVBasis& onv_basis) :
  */
 VectorX<double> DOCI::calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
 
-    const auto K = sq_hamiltonian.dimension();  // number of spatial orbitals
+    const auto K = sq_hamiltonian.numberOfOrbitals();  // number of spatial orbitals
 
     if (K != this->onv_basis.numberOfSpatialOrbitals()) {
         throw std::invalid_argument("DOCI::calculateDiagonal(const SQHamiltonian<double>&): The number of spatial orbitals for the ONV basis and Hamiltonian are incompatible.");
@@ -98,7 +98,7 @@ VectorX<double> DOCI::calculateDiagonal(const SQHamiltonian<double>& sq_hamilton
  */
 SquareMatrix<double> DOCI::constructHamiltonian(const SQHamiltonian<double>& sq_hamiltonian) const {
 
-    const auto K = sq_hamiltonian.dimension();  // the number of spatial orbitals
+    const auto K = sq_hamiltonian.numberOfOrbitals();  // the number of spatial orbitals
 
     if (K != this->onv_basis.numberOfSpatialOrbitals()) {
         throw std::invalid_argument("DOCI::constructHamiltonian(const SQHamiltonian<double>&): The number of spatial orbitals for the ONV basis and Hamiltonian are incompatible.");
@@ -167,7 +167,7 @@ SquareMatrix<double> DOCI::constructHamiltonian(const SQHamiltonian<double>& sq_
  */
 VectorX<double> DOCI::matrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
-    const auto K = sq_hamiltonian.dimension();
+    const auto K = sq_hamiltonian.numberOfOrbitals();
     if (K != this->onv_basis.numberOfSpatialOrbitals()) {
         throw std::invalid_argument("DOCI::matrixVectorProduct(const SQHamiltonian<double>&, const VectorX<double>&, const VectorX<double>&): The number of spatial orbitals for the ONV basis and Hamiltonian are incompatible.");
     }

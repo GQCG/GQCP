@@ -23,6 +23,7 @@
 #include "Mathematical/Representation/QCRankFourTensor.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
 #include "Processing/DensityMatrices/OneDM.hpp"
+#include "Processing/DensityMatrices/SpinResolvedTwoDM.hpp"
 #include "Processing/DensityMatrices/TwoDM.hpp"
 #include "Utilities/miscellaneous.hpp"
 
@@ -69,17 +70,17 @@ public:
         gs_bb {gs_bb} {
 
         // Check if the given tensor representations have the same dimensions, for each spin part.
-        const auto dimension_of_first_aa = this->gs_aa[0].dimension();
-        const auto dimension_of_first_ab = this->gs_ab[0].dimension();
-        const auto dimension_of_first_ba = this->gs_ba[0].dimension();
-        const auto dimension_of_first_bb = this->gs_bb[0].dimension();
+        const auto dimension_of_first_aa = this->gs_aa[0].numberOfOrbitals();
+        const auto dimension_of_first_ab = this->gs_ab[0].numberOfOrbitals();
+        const auto dimension_of_first_ba = this->gs_ba[0].numberOfOrbitals();
+        const auto dimension_of_first_bb = this->gs_bb[0].numberOfOrbitals();
 
         for (size_t i = 1; i < Components; i++) {
 
-            const auto dimension_of_ith_aa = this->gs_aa[i].dimension();
-            const auto dimension_of_ith_ab = this->gs_ab[i].dimension();
-            const auto dimension_of_ith_ba = this->gs_ba[i].dimension();
-            const auto dimension_of_ith_bb = this->gs_bb[i].dimension();
+            const auto dimension_of_ith_aa = this->gs_aa[i].numberOfOrbitals();
+            const auto dimension_of_ith_ab = this->gs_ab[i].numberOfOrbitals();
+            const auto dimension_of_ith_ba = this->gs_ba[i].numberOfOrbitals();
+            const auto dimension_of_ith_bb = this->gs_bb[i].numberOfOrbitals();
 
             if ((dimension_of_first_aa != dimension_of_ith_aa) || (dimension_of_first_ab != dimension_of_ith_ab) || (dimension_of_first_ba != dimension_of_ith_ba) || (dimension_of_first_bb != dimension_of_ith_bb)) {
                 throw std::invalid_argument("USQTwoElectronOperator(const std::array<QCMatrix<Scalar>, Components>&): The given tenso representations do not have the same dimensions for either the alpha, beta or one of the mixed components.");
@@ -190,16 +191,16 @@ public:
 
 
     /**
-     *  @param d_aa            the alpha-alpha 2-DM that represents the wave function
-     *  @param d_ab            the alpha-beta 2-DM that represents the wave function
-     *  @param d_ba            the beta-alpha 2-DM that represents the wave function
-     *  @param d_bb            the beta-beta 2-DM that represents the wave function
+     *  @param d                    the spin-resolved 2-DM that represents the wave function
      *
      *  @return the expectation values of all the components of the two-electron operator, with the given 2-DMs: this includes the prefactor 1/2
      */
-    Vector<Scalar, Components> calculateExpectationValue(const TwoDM<Scalar>& d_aa, const TwoDM<Scalar>& d_ab, const TwoDM<Scalar>& d_ba, const TwoDM<Scalar>& d_bb) const {
+    Vector<Scalar, Components> calculateExpectationValue(const SpinResolvedTwoDM<Scalar>& d) const {
 
-        if ((this->dimension(GQCP::Spin::alpha, GQCP::Spin::alpha) != d_aa.dimension()) || (this->dimension(GQCP::Spin::alpha, GQCP::Spin::alpha) != d_ab.dimension()) || (this->dimension(GQCP::Spin::alpha, GQCP::Spin::alpha) != d_ba.dimension()) || (this->dimension(GQCP::Spin::alpha, GQCP::Spin::alpha) != d_bb.dimension())) {
+        if ((this->numberOfOrbitals(Spin::alpha, Spin::alpha) != d.numberOfOrbitals(Spin::alpha, Spin::alpha)) ||
+            (this->numberOfOrbitals(Spin::alpha, Spin::beta) != d.numberOfOrbitals(Spin::alpha, Spin::beta)) ||
+            (this->numberOfOrbitals(Spin::beta, Spin::alpha) != d.numberOfOrbitals(Spin::beta, Spin::alpha)) ||
+            (this->numberOfOrbitals(Spin::beta, Spin::beta) != d.numberOfOrbitals(Spin::beta, Spin::beta))) {
             throw std::invalid_argument("USQTwoElectronOperator::calculateExpectationValue(const TwoDM<double>&, const TwoDM<double>&, const TwoDM<double>&, const TwoDM<double>&): One of the given 2-DMs is not compatible with the respective component of the two-electron operator.");
         }
 
@@ -211,10 +212,10 @@ public:
             //      0.5 g(p q r s) d(p q r s)
             Eigen::array<Eigen::IndexPair<int>, 4> contractions {Eigen::IndexPair<int>(0, 0), Eigen::IndexPair<int>(1, 1), Eigen::IndexPair<int>(2, 2), Eigen::IndexPair<int>(3, 3)};
             //      Perform the contraction
-            Eigen::Tensor<Scalar, 0> contraction_aa = 0.5 * this->parameters(GQCP::Spin::alpha, GQCP::Spin::alpha, i).contract(d_aa.Eigen(), contractions);
-            Eigen::Tensor<Scalar, 0> contraction_ab = 0.5 * this->parameters(GQCP::Spin::alpha, GQCP::Spin::beta, i).contract(d_ab.Eigen(), contractions);
-            Eigen::Tensor<Scalar, 0> contraction_ba = 0.5 * this->parameters(GQCP::Spin::beta, GQCP::Spin::alpha, i).contract(d_ba.Eigen(), contractions);
-            Eigen::Tensor<Scalar, 0> contraction_bb = 0.5 * this->parameters(GQCP::Spin::beta, GQCP::Spin::beta, i).contract(d_bb.Eigen(), contractions);
+            Eigen::Tensor<Scalar, 0> contraction_aa = 0.5 * this->parameters(GQCP::Spin::alpha, GQCP::Spin::alpha, i).contract(d.alphaAlpha().Eigen(), contractions);
+            Eigen::Tensor<Scalar, 0> contraction_ab = 0.5 * this->parameters(GQCP::Spin::alpha, GQCP::Spin::beta, i).contract(d.alphaBeta().Eigen(), contractions);
+            Eigen::Tensor<Scalar, 0> contraction_ba = 0.5 * this->parameters(GQCP::Spin::beta, GQCP::Spin::alpha, i).contract(d.betaAlpha().Eigen(), contractions);
+            Eigen::Tensor<Scalar, 0> contraction_bb = 0.5 * this->parameters(GQCP::Spin::beta, GQCP::Spin::beta, i).contract(d.betaBeta().Eigen(), contractions);
 
             // As the contraction is a scalar (a tensor of rank 0), we should access by (0).
             expectation_values[i] = contraction_aa(0) + contraction_ab(0) + contraction_ba(0) + contraction_bb(0);
@@ -230,22 +231,22 @@ public:
      * 
      *  @return the dimension of the tensors for the requested spin components.
      */
-    size_t dimension(const Spin left, const Spin right) const {
+    size_t numberOfOrbitals(const Spin left, const Spin right) const {
 
         if (left == Spin::alpha && right == Spin::alpha) {
-            return this->gs_aa[0].dimension();
+            return this->gs_aa[0].numberOfOrbitals();
         }
 
         else if (left == Spin::alpha && right == Spin::beta) {
-            return this->gs_ab[0].dimension();
+            return this->gs_ab[0].numberOfOrbitals();
         }
 
         else if (left == Spin::beta && right == Spin::alpha) {
-            return this->gs_ba[0].dimension();
+            return this->gs_ba[0].numberOfOrbitals();
         }
 
         else {
-            return this->gs_bb[0].dimension();
+            return this->gs_bb[0].numberOfOrbitals();
         };
     }
 

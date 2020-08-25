@@ -105,9 +105,9 @@ public:
 
 
     /**
-     *  @return the dimension of this matrix representation of the parameters, i.e. the number of orbitals/sites
+     *  @return the number of orbitals (spinors or spin-orbitals, depending on the context) this quantum chemical matrix is related to
      */
-    size_t dimension() const { return this->cols(); }
+    size_t numberOfOrbitals() const { return this->cols(); }
 };
 
 

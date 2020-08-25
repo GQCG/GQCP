@@ -57,7 +57,7 @@ public:
 
         // TODO: when Eigen3 releases tensor.trace(), use it to implement the reduction
 
-        auto K = static_cast<size_t>(this->dimension());
+        auto K = static_cast<size_t>(this->numberOfOrbitals());
 
         OneDM<double> D = OneDM<double>::Zero(K, K);
         for (size_t p = 0; p < K; p++) {
@@ -78,7 +78,7 @@ public:
     Scalar trace() const {
         // TODO: when Eigen3 releases tensor.trace(), use it to implement the reduction
 
-        auto K = static_cast<size_t>(this->dimension());
+        auto K = static_cast<size_t>(this->numberOfOrbitals());
 
         Scalar trace {};
         for (size_t p = 0; p < K; p++) {

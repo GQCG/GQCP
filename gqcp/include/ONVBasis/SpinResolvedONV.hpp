@@ -112,17 +112,16 @@ public:
      *  Calculate the overlap <on|of>: the projection of between this spin-resolved ONV ('of') and another spin-resolved ONV ('on'), expressed in different R/U-spinor bases. The 'on'-ONV is supposed to be expressed in restricted spin-orbitals, and the 'of'-ONV is supposed to be expressed in unrestricted spin-orbitals.
      * 
      *  @param onv_on                       the spin-resolved ONV that should be projected on
-     *  @param C_alpha                      the coefficient matrix that describes the expansion of the alpha-spin-orbitals in terms of the underlying AOs
-     *  @param C_beta                       the coefficient matrix that describes the expansion of the beta-spin-orbitals in terms of the underlying AOs
-     *  @param C                            the coefficient matrix that describes the expansion of the restricted alpha/beta-spin-orbitals in terms of the underlying AOs
+     *  @param C_unrestricted               the coefficient matrix that describes the expansion of the alpha- and beta-spin-orbitals in terms of the underlying AOs
+     *  @param C_restricted                 the coefficient matrix that describes the expansion of the restricted alpha/beta-spin-orbitals in terms of the underlying AOs
      *  @param S                            the overlap matrix of the underlying AOs
      * 
      *  @return the overlap element <on|of>
      * 
      *  @example This method can be used to project UHF-ONVs onto RHF-ONVs, by calling
-     *          uhf_onv.calculateProjection(rhf_onv, C_alpha, C_beta, C, S)
+     *          uhf_onv.calculateProjection(rhf_onv, C_unrestricted, C_restricted, S)
      */
-    double calculateProjection(const SpinResolvedONV& onv_on, const TransformationMatrix<double>& C_alpha, const TransformationMatrix<double>& C_beta, const TransformationMatrix<double>& C, const QCMatrix<double>& S) const;
+    double calculateProjection(const SpinResolvedONV& onv_on, const SpinResolvedTransformationMatrix<double>& C_unrestricted, const TransformationMatrix<double>& C_restricted, const QCMatrix<double>& S) const;
 
     /**
      *  @param sigma                alpha or beta

@@ -53,8 +53,8 @@ BOOST_AUTO_TEST_CASE(USQOneElectronOperator_zero_constructor) {
     const size_t dim = 2;
     const GQCP::ScalarUSQOneElectronOperator<double> one_op {2};  // should initialize to zeros
 
-    BOOST_CHECK_EQUAL(one_op.dimension(GQCP::Spin::alpha), dim);
-    BOOST_CHECK_EQUAL(one_op.dimension(GQCP::Spin::beta), dim);
+    BOOST_CHECK_EQUAL(one_op.numberOfOrbitals(GQCP::Spin::alpha), dim);
+    BOOST_CHECK_EQUAL(one_op.numberOfOrbitals(GQCP::Spin::beta), dim);
     BOOST_CHECK(one_op.parameters(GQCP::Spin::alpha).isZero(1.0e-08));
     BOOST_CHECK(one_op.parameters(GQCP::Spin::beta).isZero(1.0e-08));
 }
@@ -190,39 +190,40 @@ BOOST_AUTO_TEST_CASE(USQOneElectronOperator_negate) {
 
 
 /**
- *  Check if calculateExpectationValue throws when necessary
+ *  Check if calculateExpectationValue throws when necessary.
  */
 BOOST_AUTO_TEST_CASE(calculateExpectationValue_throw) {
 
     const size_t dim = 2;
 
-    // Initialize a test matrix and convert it into an operator
+    // Initialize test operator.
     GQCP::QCMatrix<double> M1 {dim};
     // clang-format off
     M1 << 0.0, 0.0,
           0.0, 0.0;
     // clang-format on
-
     const GQCP::ScalarUSQOneElectronOperator<double> h {M1, M1};
-    const GQCP::OneDM<double> D_valid = GQCP::OneDM<double>::Zero(2, 2);
-    const GQCP::OneDM<double> D_invalid = GQCP::OneDM<double>::Zero(3, 3);
 
-    BOOST_CHECK_THROW(h.calculateExpectationValue(D_invalid, D_invalid), std::invalid_argument);
-    BOOST_CHECK_THROW(h.calculateExpectationValue(D_invalid, D_valid), std::invalid_argument);
-    BOOST_CHECK_THROW(h.calculateExpectationValue(D_valid, D_invalid), std::invalid_argument);
+    // Initialize test DMs and check if calculating expectation values throws when expected.
+    const GQCP::SpinResolvedOneDM<double> D_valid {GQCP::OneDM<double>::Zero(dim, dim), GQCP::OneDM<double>::Zero(dim, dim)};
+    const GQCP::SpinResolvedOneDM<double> D_invalid_alpha {GQCP::OneDM<double>::Zero(dim + 1, dim + 1), GQCP::OneDM<double>::Zero(dim, dim)};
+    const GQCP::SpinResolvedOneDM<double> D_invalid_beta {GQCP::OneDM<double>::Zero(dim, dim), GQCP::OneDM<double>::Zero(dim + 1, dim + 1)};
 
-    BOOST_CHECK_NO_THROW(h.calculateExpectationValue(D_valid, D_valid));
+    BOOST_CHECK_THROW(h.calculateExpectationValue(D_invalid_alpha), std::invalid_argument);
+    BOOST_CHECK_THROW(h.calculateExpectationValue(D_invalid_beta), std::invalid_argument);
+
+    BOOST_CHECK_NO_THROW(h.calculateExpectationValue(D_valid));
 }
 
 
 /**
- * Check whether or not calculateExpectationValue shows the correct behaviour
+ * Check whether or not calculateExpectationValue shows the correct behaviour.
  */
 BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
 
     const size_t dim = 2;
 
-    // Initialize a test matrix and convert it into an operator
+    // Initialize a test operator.
     GQCP::QCMatrix<double> M1 {dim};
     // clang-format off
     M1 << 1.0, 2.0,
@@ -230,7 +231,7 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
     // clang-format on
     const GQCP::ScalarUSQOneElectronOperator<double> op {M1, M1};
 
-    // initialize an alpha and beta density matrix, each one is chosen as a hermitian matrix.
+    // Initialize an alpha and beta density matrix, each one is chosen as a Hermitian matrix.
     GQCP::QCMatrix<double> D_alpha {dim};
     // clang-format off
     D_alpha << 0.0, 1.0,
@@ -242,11 +243,13 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
     D_beta << 1.0,  0.0,
               0.0, -1.0;
     // clang-format on
+    const GQCP::SpinResolvedOneDM<double> D {D_alpha, D_beta};
 
-    // Initialize a reference value
+
+    // Initialize a reference value and check the result of the calculation.
     const double reference_expectation_value = 2.0;
 
-    const auto expectation_value = op.calculateExpectationValue(D_alpha, D_beta)(0);  // extract the scalar out of a one-dimensional vector
+    const auto expectation_value = op.calculateExpectationValue(D)(0);  // extract the scalar out of a one-dimensional vector
     BOOST_CHECK(std::abs(expectation_value - reference_expectation_value) < 1.0e-08);
 }
 

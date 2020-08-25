@@ -52,7 +52,7 @@ BOOST_AUTO_TEST_CASE(analytical_rotation_energy_AP1roG) {
 
     // Loop over all possible Jacobi pairs for a given (random) angle and check if the analytical result matches the numerical result
     const double theta = 56.71;
-    const auto K = sq_hamiltonian.dimension();
+    const auto K = sq_hamiltonian.numberOfOrbitals();
 
     for (size_t q = 0; q < K; q++) {          // p and q loop over spatial orbitals
         for (size_t p = q + 1; p < K; p++) {  // p > q

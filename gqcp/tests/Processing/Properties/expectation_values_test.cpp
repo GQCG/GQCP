@@ -88,7 +88,7 @@ BOOST_AUTO_TEST_CASE(mulliken_N2_STO_3G) {
 
 //     // Create restricted Hamiltonian to perform RHF
 //     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, NOplus);  // in an AO basis
-//     size_t K = sq_hamiltonian.dimension();
+//     size_t K = sq_hamiltonian.numberOfOrbitals();
 
 //     // Basis functions for O
 //     std::vector<size_t> gto_O (K/2);
@@ -165,7 +165,7 @@ BOOST_AUTO_TEST_CASE(mulliken_N2_STO_3G) {
 
 //     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (O2, "STO-3G");
 //     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, O2);  // in an AO basis
-//     size_t K = sq_hamiltonian.dimension();
+//     size_t K = sq_hamiltonian.numberOfOrbitals();
 //     size_t N = O2.numberOfElectrons();
 
 //     // Solve the SCF equations

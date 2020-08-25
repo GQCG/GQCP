@@ -136,7 +136,7 @@ AP1roGGeminalCoefficients AP1roGGeminalCoefficients::WeakInteractionLimit(const 
     const auto& h = sq_hamiltonian.core().parameters();         // core Hamiltonian integrals
     const auto& g = sq_hamiltonian.twoElectron().parameters();  // two-electron integrals
 
-    const auto K = sq_hamiltonian.dimension();
+    const auto K = sq_hamiltonian.numberOfOrbitals();
     const auto orbital_space = OrbitalSpace::Implicit({{OccupationType::k_occupied, N_P}, {OccupationType::k_virtual, K - N_P}});  // N_P occupied (spatial) orbitals, K-N_P virtual (spatial) orbitals
 
     // Provide the weak interaction limit values for the geminal coefficients.

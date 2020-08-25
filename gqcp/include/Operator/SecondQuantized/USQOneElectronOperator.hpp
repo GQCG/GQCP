@@ -24,6 +24,7 @@
 #include "Mathematical/Functions/ScalarFunction.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Processing/DensityMatrices/OneDM.hpp"
+#include "Processing/DensityMatrices/SpinResolvedOneDM.hpp"
 #include "Processing/DensityMatrices/TwoDM.hpp"
 #include "Utilities/type_traits.hpp"
 
@@ -65,13 +66,13 @@ public:
         fs_b {fs_b} {
 
         // Check if the given matrix representations have the same dimensions.
-        const auto dimension_of_first_a = this->fs_a[0].dimension();
-        const auto dimension_of_first_b = this->fs_b[0].dimension();
+        const auto dimension_of_first_a = this->fs_a[0].numberOfOrbitals();
+        const auto dimension_of_first_b = this->fs_b[0].numberOfOrbitals();
 
         for (size_t i = 1; i < Components; i++) {
 
-            const auto dimension_of_ith_a = this->fs_a[i].dimension();
-            const auto dimension_of_ith_b = this->fs_b[i].dimension();
+            const auto dimension_of_ith_a = this->fs_a[i].numberOfOrbitals();
+            const auto dimension_of_ith_b = this->fs_b[i].numberOfOrbitals();
 
             if ((dimension_of_first_a != dimension_of_ith_a) || (dimension_of_first_b != dimension_of_ith_b)) {
                 throw std::invalid_argument("USQOneElectronOperator(const std::array<QCMatrix<Scalar>, Components>&, const std::array<QCMatrix<Scalar>, components>&): The given matrix representations do not have the same dimensions for either the alpha or beta component.");
@@ -168,21 +169,20 @@ public:
 
 
     /**
-     *  @param D_a                the alpha 1-DM that represents the wave function
-     *  @param D_b                the beta 1-DM that represents the wave function
+     *  @param D                the spin-resolved 1-DM that represents the wave function
      *
      *  @return the expectation values of all components of the one-electron operator
      */
-    Vector<Scalar, Components> calculateExpectationValue(const OneDM<Scalar>& D_a, const OneDM<Scalar>& D_b) const {
+    Vector<Scalar, Components> calculateExpectationValue(const SpinResolvedOneDM<Scalar>& D) const {
 
-        if (this->fs_a[0].dimension() != D_a.dimension() || this->fs_b[0].dimension() != D_b.dimension()) {
+        if (this->fs_a[0].numberOfOrbitals() != D.numberOfOrbitals(Spin::alpha) || this->fs_b[0].numberOfOrbitals() != D.numberOfOrbitals(Spin::beta)) {
             throw std::invalid_argument("USQOneElectronOperator::calculateExpectationValue(const OneDM<Scalar>&, const OneDM<Scalar>&): The given 1-DM is not compatible with the one-electron operator.");
         }
 
         std::array<Scalar, Components> expectation_values {};  // zero initialization
 
         for (size_t i = 0; i < Components; i++) {
-            expectation_values[i] = (this->parameters(GQCP::Spin::alpha, i) * D_a).trace() + (this->parameters(GQCP::Spin::beta, i) * D_b).trace();
+            expectation_values[i] = (this->parameters(GQCP::Spin::alpha, i) * D.alpha()).trace() + (this->parameters(GQCP::Spin::beta, i) * D.beta()).trace();
         }
 
         return Eigen::Map<Eigen::Matrix<Scalar, Components, 1>>(expectation_values.data());  // convert std::array to Vector
@@ -192,8 +192,8 @@ public:
     /**
      *  @return the sum of the alpha and beta dimensions
      */
-    size_t dimension() const {
-        return this->dimension(GQCP::Spin::alpha) + this->dimension(GQCP::Spin::beta);
+    size_t numberOfOrbitals() const {
+        return this->numberOfOrbitals(GQCP::Spin::alpha) + this->numberOfOrbitals(GQCP::Spin::beta);
     }
 
 
@@ -202,12 +202,12 @@ public:
      * 
      *  @return the dimension of the matrices for the requested spin component.
      */
-    size_t dimension(const Spin sigma) const {
+    size_t numberOfOrbitals(const Spin sigma) const {
 
         if (sigma == Spin::alpha) {
-            return this->fs_a[0].dimension();
+            return this->fs_a[0].numberOfOrbitals();
         } else {
-            return this->fs_b[0].dimension();
+            return this->fs_b[0].numberOfOrbitals();
         };
     }
 

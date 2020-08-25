@@ -53,7 +53,7 @@ VectorX<double> SelectedCI::calculateDiagonal(const SQHamiltonian<double>& sq_ha
  *  @return the SelectedCI Hamiltonian matrix
  */
 SquareMatrix<double> SelectedCI::constructHamiltonian(const SQHamiltonian<double>& sq_hamiltonian) const {
-    auto K = sq_hamiltonian.core().dimension();
+    auto K = sq_hamiltonian.core().numberOfOrbitals();
     if (K != this->onv_basis.numberOfOrbitals()) {
         throw std::invalid_argument("SelectedCI::constructHamiltonian(SQHamiltonian<double>): Basis functions of the ONV basis and sq_hamiltonian are incompatible.");
     }
@@ -80,7 +80,7 @@ SquareMatrix<double> SelectedCI::constructHamiltonian(const SQHamiltonian<double
  */
 VectorX<double> SelectedCI::matrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
-    auto K = sq_hamiltonian.core().dimension();
+    auto K = sq_hamiltonian.core().numberOfOrbitals();
     if (K != this->onv_basis.numberOfOrbitals()) {
         throw std::invalid_argument("SelectedCI::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the ONV basis and sq_hamiltonian are incompatible.");
     }

@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/SpinResolvedTransformationMatrix.hpp"
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Basis/SpinorBasis/Spin.hpp"
 #include "Utilities/type_traits.hpp"
@@ -51,23 +52,19 @@ public:
     /**
      *  @param alpha_scalar_basis           the scalar basis in which the alpha components are expanded
      *  @param beta_scalar_basis            the scalar basis in which the beta components are expanded
-     *  @param C_alpha                      the alpha coefficient matrix, i.e. the matrix of the expansion coefficients of the alpha spinors in terms of the underlying scalar basis
-     *  @param C_beta                       the beta coefficient matrix, i.e. the matrix of the expansion coefficients of the beta spinors in terms of the underlying scalar basis
+     *  @param C                            the spin-resolved coefficient matrix (the matrices of the expansion coefficients of the beta spin-orbitals in terms of the underlying scalar basis)
      */
-    USpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis, const TransformationMatrix<ExpansionScalar>& C_alpha, const TransformationMatrix<ExpansionScalar>& C_beta) :
-        spinor_bases {RSpinorBasis<ExpansionScalar, Shell>(alpha_scalar_basis, C_alpha),
-                      RSpinorBasis<ExpansionScalar, Shell>(beta_scalar_basis, C_beta)} {
+    USpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis, const SpinResolvedTransformationMatrix<ExpansionScalar>& C) :
+        spinor_bases {RSpinorBasis<ExpansionScalar, Shell>(alpha_scalar_basis, C.alpha()),
+                      RSpinorBasis<ExpansionScalar, Shell>(beta_scalar_basis, C.beta())} {
 
-        // Check if the dimensions of the given objects are compatible
-        const auto K_alpha = alpha_scalar_basis.numberOfBasisFunctions();
-        const auto K_beta = beta_scalar_basis.numberOfBasisFunctions();
-
-        if (C_alpha.dimension() != K_alpha) {
-            throw std::invalid_argument("USpinorBasis(const ScalarBasis<Shell>&, const ScalarBasis<Shell>&, const TransformationMatrix<ExpansionScalar>&, const TransformationMatrix<ExpansionScalar>): The given dimensions of the scalar basis and coefficient matrix for alpha are incompatible.");
+        // Check if the dimensions of the given objects are compatible.
+        if (C.numberOfOrbitals(Spin::alpha) != alpha_scalar_basis.numberOfBasisFunctions()) {
+            throw std::invalid_argument("USpinorBasis(const ScalarBasis<Shell>&, const ScalarBasis<Shell>&, const SpinResolvedTransformationMatrix<ExpansionScalar>&): The given dimensions of the scalar basis and coefficient matrix for the alpha spin-orbitals are incompatible.");
         }
 
-        if (C_beta.dimension() != K_beta) {
-            throw std::invalid_argument("USpinorBasis(const ScalarBasis<Shell>&, const ScalarBasis<Shell>&, const TransformationMatrix<ExpansionScalar>&, const TransformationMatrix<ExpansionScalar>): The given dimensions of the scalar basis and coefficient matrix for beta are incompatible.");
+        if (C.numberOfOrbitals(Spin::beta) != beta_scalar_basis.numberOfBasisFunctions()) {
+            throw std::invalid_argument("USpinorBasis(const ScalarBasis<Shell>&, const ScalarBasis<Shell>&, const SpinResolvedTransformationMatrix<ExpansionScalar>&): The given dimensions of the scalar basis and coefficient matrix for the beta spin-orbitals are incompatible.");
         }
     }
 
@@ -79,7 +76,7 @@ public:
      *  @param C                    the coefficient matrix, i.e. the matrix of the expansion coefficients of the spinors in terms of the underlying scalar bases
      */
     USpinorBasis(const ScalarBasis<Shell>& scalar_basis, const TransformationMatrix<ExpansionScalar>& C) :
-        USpinorBasis(scalar_basis, scalar_basis, C, C) {}
+        USpinorBasis(scalar_basis, scalar_basis, SpinResolvedTransformationMatrix<ExpansionScalar>::FromRestricted(C)) {}
 
 
     /**
@@ -87,8 +84,9 @@ public:
      */
     USpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis) :
         USpinorBasis(alpha_scalar_basis, beta_scalar_basis,
-                     TransformationMatrix<ExpansionScalar>::Identity(alpha_scalar_basis.numberOfBasisFunctions(), alpha_scalar_basis.numberOfBasisFunctions()),
-                     TransformationMatrix<ExpansionScalar>::Identity(beta_scalar_basis.numberOfBasisFunctions(), beta_scalar_basis.numberOfBasisFunctions())) {}
+                     SpinResolvedTransformationMatrix<ExpansionScalar>(
+                         TransformationMatrix<ExpansionScalar>::Identity(alpha_scalar_basis.numberOfBasisFunctions(), alpha_scalar_basis.numberOfBasisFunctions()),
+                         TransformationMatrix<ExpansionScalar>::Identity(beta_scalar_basis.numberOfBasisFunctions(), beta_scalar_basis.numberOfBasisFunctions()))) {}
 
 
     /**
@@ -172,7 +170,7 @@ public:
 
         const auto scalar_basis = r_spinor_basis.scalarBasis();
         const auto C = r_spinor_basis.coefficientMatrix();
-        return USpinorBasis<ExpansionScalar, Shell>(scalar_basis, scalar_basis, C, C);
+        return USpinorBasis<ExpansionScalar, Shell>(scalar_basis, scalar_basis, SpinResolvedTransformationMatrix<ExpansionScalar>::FromRestricted(C));
     }
 
 
@@ -250,13 +248,17 @@ public:
      */
     bool isOrthonormal(const double precision = 1.0e-08) const { return this->isOrthonormal(Spin::alpha, precision) && this->isOrthonormal(Spin::beta, precision); }
 
-
     /**
-     *  @param sigma                alpha or beta
-     * 
-     *  @return the transformation matrix to the Löwdin basis for the requested component: T = S_current^{-1/2}
+     *  @return the (spin-resolved) transformation matrix to the Löwdin basis: T = S_current^{-1/2}
      */
-    TransformationMatrix<double> lowdinOrthonormalizationMatrix(const Spin& sigma) const { return this->spinor_bases[sigma].lowdinOrthonormalizationMatrix(); }
+    SpinResolvedTransformationMatrix<ExpansionScalar> lowdinOrthonormalizationMatrix() const {
+
+        const auto T_a = this->spinor_bases[Spin::alpha].lowdinOrthonormalizationMatrix();
+        const auto T_b = this->spinor_bases[Spin::beta].lowdinOrthonormalizationMatrix();
+
+        return SpinResolvedTransformationMatrix<ExpansionScalar>(T_a, T_b);
+    }
+
 
     /**
      *  @param sigma                alpha or beta
@@ -373,16 +375,15 @@ public:
 
 
     /**
-     *  Transform the spinor basis to another one using the given transformation matrices.
+     *  Transform the spinor basis to another one using the given spin-resolved transformation matrix.
      *
-     *  @param T_alpha              the transformation matrix that transforms the alpha- spin-orbitals
-     *  @param T_beta               the transformation matrix that transforms the beta- spin-orbitals
+     *  @param T                    the spin-resolved transformation matrix that transforms the alpha- and the beta-spin-orbitals
      * 
      *  @note this method is only valid when the beta and alpha component are of the same dimension, and will only accept matrices of the same dimension as the individual component.
      */
-    void transform(const TransformationMatrix<ExpansionScalar>& T_alpha, const TransformationMatrix<ExpansionScalar>& T_beta) {
-        this->transform(T_alpha, Spin::alpha);
-        this->transform(T_beta, Spin::beta);
+    void transform(const SpinResolvedTransformationMatrix<ExpansionScalar>& T) {
+        this->transform(T.alpha(), Spin::alpha);
+        this->transform(T.beta(), Spin::beta);
     }
 
 
@@ -394,7 +395,7 @@ public:
      *  @note this method is only valid when the beta and alpha component are of the same dimension, and will only accept matrices of the same dimension as the individual component.
      */
     void transform(const TransformationMatrix<ExpansionScalar>& T) {
-        this->transform(T, T);
+        this->transform(SpinResolvedTransformationMatrix<ExpansionScalar>::FromRestricted(T));
     }
 };
 

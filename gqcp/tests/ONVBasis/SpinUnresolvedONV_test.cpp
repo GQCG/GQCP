@@ -691,14 +691,15 @@ BOOST_AUTO_TEST_CASE(RHF_UHF_projection) {
               -3.78560533e-01, -1.20281173e+00, -1.21724558e-06,  2.00427438e+00,
               -1.75646828e-01, -1.21724558e-06,  1.20281173e+00, -2.03213486e+00;
     // clang-format on
-    u_spinor_basis.transform(C_alpha, C_beta);
+    GQCP::SpinResolvedTransformationMatrix<double> C_unrestricted {C_alpha, C_beta};
+    u_spinor_basis.transform(C_unrestricted);
 
 
     // Calculate <RHF|UHF> using the specialized formula.
     const auto rhf_determinant = GQCP::SpinResolvedONV::RHF(4, 2);     // 4 spatial orbitals, 2 electron pairs
     const auto uhf_determinant = GQCP::SpinResolvedONV::UHF(4, 2, 2);  // 4 spatial orbitals for each spin component, 2 alpha electrons, 2 beta electrons
 
-    const auto uhf_on_rhf_projection_specialized = uhf_determinant.calculateProjection(rhf_determinant, C_alpha, C_beta, C_restricted, S_restricted);
+    const auto uhf_on_rhf_projection_specialized = uhf_determinant.calculateProjection(rhf_determinant, C_unrestricted, C_restricted, S_restricted);
 
 
     // Calculate <RHF|UHF> using the general formula.

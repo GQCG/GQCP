@@ -91,18 +91,18 @@ public:
      *  @param sigma            alpha or beta
      *  @param tau              alpha or beta
      * 
-     *  @return the number of orbitals that are related to the sigma-tau part of the spin-resolved 2-DM
+     *  @return the number of orbitals (spinors or spin-orbitals, depending on the context) that are related to the sigma-tau part of the spin-resolved 2-DM
      */
-    size_t dimension(const Spin sigma, const Spin tau) const {
+    size_t numberOfOrbitals(const Spin sigma, const Spin tau) const {
 
         if (sigma == Spin::alpha && tau == Spin::alpha) {
-            return this->alphaAlpha().dimension();
+            return this->alphaAlpha().numberOfOrbitals();
         } else if (sigma == Spin::alpha && tau == Spin::beta) {
-            return this->alphaBeta().dimension();
+            return this->alphaBeta().numberOfOrbitals();
         } else if (sigma == Spin::beta && tau == Spin::alpha) {
-            return this->betaAlpha().dimension();
+            return this->betaAlpha().numberOfOrbitals();
         } else {
-            return this->betaBeta().dimension();
+            return this->betaBeta().numberOfOrbitals();
         }
     }
 

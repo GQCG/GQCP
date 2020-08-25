@@ -36,7 +36,7 @@ BOOST_AUTO_TEST_CASE(constrained_CO_test) {
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {CO, "STO-3G"};
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, CO);  // in an AO basis
 
-    size_t K = sq_hamiltonian.dimension();
+    size_t K = sq_hamiltonian.numberOfOrbitals();
     size_t N = CO.numberOfElectrons();
 
     GQCP::OneDM<double> D = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1DM(K, N);
@@ -126,7 +126,7 @@ BOOST_AUTO_TEST_CASE(constrained_CO_test_random_transformation) {
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {CO, "STO-3G"};
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, CO);  // in an AO basis
 
-    size_t K = sq_hamiltonian.dimension();
+    size_t K = sq_hamiltonian.numberOfOrbitals();
     size_t N = CO.numberOfElectrons();
 
     GQCP::TransformationMatrix<double> T = GQCP::TransformationMatrix<double>::Random(K, K);

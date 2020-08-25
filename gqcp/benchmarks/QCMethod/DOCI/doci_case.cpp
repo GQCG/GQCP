@@ -16,7 +16,7 @@ static void test_case(benchmark::State& state) {
 
     // Read in the molecular Hamiltonian.
     const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/co_631g_klaas.FCIDUMP");
-    const auto K = sq_hamiltonian.dimension();
+    const auto K = sq_hamiltonian.numberOfOrbitals();
     const auto N_P = 7;  // number of electron pairs
 
 

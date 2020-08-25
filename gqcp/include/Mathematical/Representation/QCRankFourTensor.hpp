@@ -125,9 +125,7 @@ public:
         /**
          *  While waiting for an analogous Eigen::Tensor Jacobi module, we implement this rotation by constructing a Jacobi rotation matrix and then simply doing a rotation with it
          */
-
-        const auto dim = this->dimension();
-        const auto J = TransformationMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
+        const auto J = TransformationMatrix<double>::FromJacobi(jacobi_rotation_parameters, this->numberOfOrbitals());
         this->basisRotate(J);
     }
 
@@ -241,6 +239,11 @@ public:
      *  @return if these two-electron integrals are expressed using physicist's notation <PQ|RS>
      */
     bool isExpressedUsingPhysicistsNotation() const { return !(this->isExpressedUsingChemistsNotation()); }
+
+    /**
+     *  @return the number of orbitals (spinors or spin-orbitals, depending on the context) this quantum chemical rank-four tensor is associated to
+     */
+    size_t numberOfOrbitals() const { return this->dimension(); /* the dimension of the underlying square rank-four tensor */ }
 };
 
 

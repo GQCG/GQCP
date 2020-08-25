@@ -68,7 +68,7 @@ SquareMatrix<double> FCI::constructHamiltonian(const SQHamiltonian<double>& sq_h
  */
 VectorX<double> FCI::matrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
-    auto K = sq_hamiltonian.core().dimension();
+    auto K = sq_hamiltonian.core().numberOfOrbitals();
     if (K != this->onv_basis.numberOfOrbitals()) {
         throw std::invalid_argument("FCI::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the ONV basis and sq_hamiltonian are incompatible.");
     }

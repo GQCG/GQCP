@@ -56,10 +56,10 @@ BOOST_AUTO_TEST_CASE(USQTwoElectronOperator_zero_constructor) {
     // Create a reference zero tensor
     GQCP::QCRankFourTensor<double> ref {K};
 
-    BOOST_CHECK_EQUAL(op.dimension(GQCP::Spin::alpha, GQCP::Spin::alpha), K);
-    BOOST_CHECK_EQUAL(op.dimension(GQCP::Spin::alpha, GQCP::Spin::beta), K);
-    BOOST_CHECK_EQUAL(op.dimension(GQCP::Spin::beta, GQCP::Spin::alpha), K);
-    BOOST_CHECK_EQUAL(op.dimension(GQCP::Spin::beta, GQCP::Spin::beta), K);
+    BOOST_CHECK_EQUAL(op.numberOfOrbitals(GQCP::Spin::alpha, GQCP::Spin::alpha), K);
+    BOOST_CHECK_EQUAL(op.numberOfOrbitals(GQCP::Spin::alpha, GQCP::Spin::beta), K);
+    BOOST_CHECK_EQUAL(op.numberOfOrbitals(GQCP::Spin::beta, GQCP::Spin::alpha), K);
+    BOOST_CHECK_EQUAL(op.numberOfOrbitals(GQCP::Spin::beta, GQCP::Spin::beta), K);
 
     BOOST_CHECK(op.parameters(GQCP::Spin::alpha, GQCP::Spin::alpha).isApprox(ref.setZero(), 1.0e-08));
     BOOST_CHECK(op.parameters(GQCP::Spin::alpha, GQCP::Spin::beta).isApprox(ref.setZero(), 1.0e-08));
@@ -69,32 +69,44 @@ BOOST_AUTO_TEST_CASE(USQTwoElectronOperator_zero_constructor) {
 
 
 /**
- *  Check if calculateExpectationValue throws when necessary
+ *  Check if calculateExpectationValue throws when necessary.
  */
 BOOST_AUTO_TEST_CASE(calculateExpectationValue_throw) {
 
-    const GQCP::ScalarUSQTwoElectronOperator<double> g {2};
+    const size_t dim = 2;
 
-    const GQCP::TwoDM<double> D_valid {2};
-    const GQCP::TwoDM<double> D_invalid {3};
+    // Initialize a test operator.
+    const GQCP::ScalarUSQTwoElectronOperator<double> g {dim};
 
-    BOOST_CHECK_THROW(g.calculateExpectationValue(D_invalid, D_invalid, D_invalid, D_invalid), std::invalid_argument);
-    BOOST_CHECK_THROW(g.calculateExpectationValue(D_invalid, D_valid, D_invalid, D_invalid), std::invalid_argument);
-    BOOST_CHECK_THROW(g.calculateExpectationValue(D_valid, D_invalid, D_valid, D_invalid), std::invalid_argument);
-    BOOST_CHECK_THROW(g.calculateExpectationValue(D_valid, D_invalid, D_valid, D_valid), std::invalid_argument);
+    // Initialize valid and invalid test 2-DMs.
+    const GQCP::TwoDM<double> d_valid {2};
+    const GQCP::TwoDM<double> d_invalid {3};
 
-    BOOST_CHECK_NO_THROW(g.calculateExpectationValue(D_valid, D_valid, D_valid, D_valid));
+    const GQCP::SpinResolvedTwoDM<double> d_invalid_aa {d_invalid, d_valid, d_valid, d_valid};
+    const GQCP::SpinResolvedTwoDM<double> d_invalid_ab {d_valid, d_invalid, d_valid, d_valid};
+    const GQCP::SpinResolvedTwoDM<double> d_invalid_ba {d_valid, d_valid, d_invalid, d_valid};
+    const GQCP::SpinResolvedTwoDM<double> d_invalid_bb {d_valid, d_valid, d_valid, d_invalid};
+
+    const GQCP::SpinResolvedTwoDM<double> d_valid_spin_resolved {d_valid, d_valid, d_valid, d_valid};
+
+    // Check if the calculateExpectationValue calls throw when expected.
+    BOOST_CHECK_THROW(g.calculateExpectationValue(d_invalid_aa), std::invalid_argument);
+    BOOST_CHECK_THROW(g.calculateExpectationValue(d_invalid_ab), std::invalid_argument);
+    BOOST_CHECK_THROW(g.calculateExpectationValue(d_invalid_ba), std::invalid_argument);
+    BOOST_CHECK_THROW(g.calculateExpectationValue(d_invalid_bb), std::invalid_argument);
+
+    BOOST_CHECK_NO_THROW(g.calculateExpectationValue(d_valid_spin_resolved));
 }
 
 
 /**
- * Check whether or not calculateExpectationValue shows the correct behaviour
+ * Check whether or not calculateExpectationValue shows the correct behaviour.
  */
 BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
 
     const size_t dim = 2;
 
-    // Initialize a test tensor and convert it into an operators
+    // Initialize test two-electron operators.
     GQCP::QCRankFourTensor<double> T1 {dim};
 
     for (size_t i = 0; i < dim; i++) {
@@ -120,7 +132,8 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
     }
     const GQCP::ScalarUSQTwoElectronOperator<double> op {T1, T2, T2, T1};
 
-    // Initialize density matrices: each one is chosen to have the correct four-index symmetries.
+
+    // Initialize test 2-DMs: each one is chosen to have the correct four-index symmetries.
     GQCP::TwoDM<double> d1 {dim};
 
     for (size_t i = 0; i < dim; i++) {
@@ -144,11 +157,13 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
             }
         }
     }
+    const GQCP::SpinResolvedTwoDM<double> d {d1, d1, d2, d2};
+
 
     // Initialize a reference value and check the result.
     const double reference_expectation_value = 684.0;
 
-    const auto expectation_value = op.calculateExpectationValue(d1, d1, d2, d2)(0);
+    const auto expectation_value = op.calculateExpectationValue(d)(0);
     BOOST_CHECK(std::abs(expectation_value - reference_expectation_value) < 1.0e-08);
 }
 

@@ -48,7 +48,7 @@ JacobiOrbitalOptimizer::JacobiOrbitalOptimizer(const size_t dim, const double co
  */
 TransformationMatrix<double> JacobiOrbitalOptimizer::calculateNewRotationMatrix(const SQHamiltonian<double>& sq_hamiltonian) const {
 
-    return TransformationMatrix<double>::FromJacobi(this->optimal_jacobi_with_scalar.first, sq_hamiltonian.dimension());
+    return TransformationMatrix<double>::FromJacobi(this->optimal_jacobi_with_scalar.first, sq_hamiltonian.numberOfOrbitals());
 }
 
 

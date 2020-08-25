@@ -71,15 +71,15 @@ public:
         // Check if the dimensions are compatible
         const std::invalid_argument dimension_error("SQHamiltonian::SQHamiltonian(const std::vector<ScalarSQOneElectronOperator<Scalar>& one_ops, const std::vector<ScalarSQTwoElectronOperator<Scalar>& two_ops: The dimensions of the operators and coefficients matrix are incompatible");
 
-        const auto dim = one_ops[0].dimension();
+        const auto dim = one_ops[0].numberOfOrbitals();
         for (const auto& one_op : this->one_ops) {
-            if (one_op.dimension() != dim) {
+            if (one_op.numberOfOrbitals() != dim) {
                 throw dimension_error;
             }
         }
 
         for (const auto& two_op : this->two_ops) {
-            if (two_op.dimension() != dim) {
+            if (two_op.numberOfOrbitals() != dim) {
                 throw dimension_error;
             }
         }
@@ -463,9 +463,9 @@ public:
     const std::vector<ScalarSQOneElectronOperator<Scalar>>& coreContributions() const { return this->one_ops; }
 
     /**
-     *  @return the dimension of the Hamiltonian, i.e. the number of spinors in which it is expressed
+     *  @return the number of orbitals (spinors or spin-orbitals, depending on the context) this second-quantized Hamiltonian is related to
      */
-    size_t dimension() const { return this->core().dimension(); }
+    size_t numberOfOrbitals() const { return this->core().numberOfOrbitals(); }
 
     /**
      *  Using a random rotation matrix, transform the matrix representations of the Hamiltonian
@@ -473,7 +473,7 @@ public:
      *  Note that this method is only available for real matrix representations
      */
     template <typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value> randomRotate() { this->rotate(TransformationMatrix<double>::RandomUnitary(this->dimension())); }
+    enable_if_t<std::is_same<Z, double>::value> randomRotate() { this->rotate(TransformationMatrix<double>::RandomUnitary(this->numberOfOrbitals())); }
 
     /**
      *  In-place rotate the matrix representations of Hamiltonian

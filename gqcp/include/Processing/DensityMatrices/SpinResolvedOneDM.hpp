@@ -92,16 +92,16 @@ public:
     /**
      *  @param sigma            alpha or beta
      * 
-     *  @return the number of orbitals that correspond to the given spin
+     *  @return the number of orbitals (spinors or spin-orbitals, depending on the context) that correspond to the given spin
      */
     size_t numberOfOrbitals(const Spin sigma) const {
 
         switch (sigma) {
         case Spin::alpha: {
-            return this->alpha().dimension();
+            return this->alpha().numberOfOrbitals();
         }
         case Spin::beta: {
-            return this->beta().dimension();
+            return this->beta().numberOfOrbitals();
         }
         }
     }
