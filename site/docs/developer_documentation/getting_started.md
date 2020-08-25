@@ -42,21 +42,52 @@ You will have to either export this environment variable every time you activate
 
 
 
-## CMake out-of-source build
+## Building and installing with CMake
 
-Right now, you're set up for development! Start a feature branch, edit some source files and create a pull request so we can merge your changes.
+Right now, you're set up for development! Typically, developing a new feature on your machine would go through the following cycle:
 
-We have continuous integration set up, but in order to locally compile the library and run the test cases, we can use CMake to perform an out-of-source build. Out-of-source means that we're creating temporary folder in the root directory of this repository, usually just called `build`. Afterwards, we let CMake do its thing and then we run the test suite and possibly finalize with the installation of GQCP.
+1. You start a [feature branch](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow), and edit some source files;
+1. You locally compile the library and run the unit test cases in order to make sure that you haven't made any errors;
+1. You install the C++ library or its Python bindings and try out your new feature.
+
+[CMake](https://cmake.org) can help us out tremendously in this regard, with its out-of-source builds. Out-of-source means that we're creating a temporary folder in the root directory of this repository, so intermediary Makefiles and compiled files does not pollute our repository. Often, this folder is just called `build`, so go ahead and create an out-of-source build directory now.
+
 ```bash
 mkdir build && cd build
-cmake .. (CMake options)
-make && make test && sudo make install
 ```
 
-Here `(CMAKE options)` still has to filled in by the options that GQCP supports.
+Now, we let CMake do its thing by specifying all the necessary options in `(CMake options)`. (We'll go over which CMake options GQCP supports shortly.)
+
+```bash
+cmake .. (CMake options)
+```
+
+We'll then try to make all targets, i.e. compiling the C++ library, generating the Python bindings and compiling all tests. This is to rule out any errors in your source files, i.e. we check if the code is statically (at compile-time) correct
+
+```bash
+make all
+```
+
+> **Note**: The `all` is default, so it may be omitted.
+
+Once every target has been built, we can check if the code does what is expected, at run-time, by executing all unit tests. This is done by the following command.
+
+```bash
+make test
+```
+
+Finally, we check if the C++ library and its Python bindings can be installed.
+
+```bash
+make install
+```
+
+> **Note**: Depending on which prefix you have specified in the CMake option `-DCMAKE_INSTALL_PREFIX`, you might have to use `sudo` in this installation step.
 
 
 ### CMake options
+As promised, here is an overview of all the CMake options that GQCP supports.
+
 * Specify the C compiler using `-DCMAKE_C_COMPILER=cc`, with `cc` the C-compiler that you would like to use.
 
 * Specify the C++ compiler using `-DCMAKE_CXX_COMPILER=cxx`, with `cxx` the C++-compiler that you would like to use.
@@ -73,7 +104,7 @@ Here `(CMAKE options)` still has to filled in by the options that GQCP supports.
     * drivers (optional) and benchmarks (optional) will be installed in `prefix/bin`
     * CMake target files will be installed in `prefix/cmake`
 
-    We should note that setting `CMAKE_INSTALL_PREFIX=~/.local` is preferred as this is also makes sure that the installed Python modules can be found automatically.
+    We should note that setting `-DCMAKE_INSTALL_PREFIX=~/.local` is preferred as this is also makes sure that the installed Python modules can be found automatically.
 
 * `-DBUILD_TESTS=TRUE` specifies that tests should be built and run.
 
@@ -96,6 +127,7 @@ Here `(CMAKE options)` still has to filled in by the options that GQCP supports.
 As you can see, there are a lot of options that can (and should) be passed to CMake. For quick reference, here's a command that should work most of the time. In your out-of-source build directory, initialize CMake, make all targets, run all tests and install the library:
 
 ```bash
+mkdir build && cd build
 cmake .. -DCMAKE_PREFIX_PATH=${CONDA_PREFIX} \
     -DCMAKE_INSTALL_PREFIX=~/.local \
     -DBUILD_TESTS=TRUE \ 

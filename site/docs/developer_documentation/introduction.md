@@ -6,9 +6,20 @@ sidebar_label: Introduction
 
 Welcome to the developer documentation! Here, we'll guide you through the design of the C++ library and the Python bindings.
 
-GQCP has two main components: the C++ library `gqcp` and its associated Python bindings `gqcpy`. This is reflected in the folder structure of the GitHub repository, where we have, among other directories, the `gqcp` and `gqcpy` directories. As is common, the C++ library has `include`, `src` and `tests` folder, while the folder that contains the Python bindings only has a `src` folder and a `tests` folder.
+GQCP has two main components: the C++ library `gqcp` and its associated Python bindings `gqcpy`, which is reflected in the folder structure of the GitHub: files that belong to `gqcp` can be found in the `./gqcp` folder and files that belong `gqcpy` can be found in the `./gqcpy` folder. Pretty straightforward.
 
-Inside each of these folders, we have added the following structure:
+> **Note**: Here `./` means the root folder of the repository, i.e. the one that is created after cloning this repository.
+
+The `./gqcp`-folder has three main parts:
+- `./gqcp/include`, which collects all C++ header files (`*.hpp`)
+- `./gqcp/src`, which collects all C++ source files (`*.cpp`)
+- `./gqcp/tests`, which collects all our C++ unit tests (`*_test.cpp`)
+
+The Python bindings don't require any headers, so we only have two subfolders of `./gqcpy`:
+- `./gqcpy/src`, which collects all C++ source files that are used to generate the bindings (`*_bindings.cpp`)
+- `./gqcpy/examples`, which collects some illustrative calculations in Jupyter Notebooks.
+
+Inside these folders, we have added the following structure:
 - __Basis__: for everything related to spinors, spinor basis and transformations
 - __Mathematical__: for general mathematical utilities, not directly related to quantum chemistry
 - __Molecule__: for everything related to molecules and nuclei
@@ -17,8 +28,6 @@ Inside each of these folders, we have added the following structure:
 - __Processing__: for collecting everything that happens _after_ the determination of the optimal values of the electronic structure model's parameters
 - __QCMethod__: for the determination of the optimal parameters of an electronic structure model
 - __Utilities__: for collecting general utilities that do not belong elsewhere
-
-
 
 
 ## General structure of the C++ library
