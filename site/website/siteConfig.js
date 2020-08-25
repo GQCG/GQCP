@@ -9,7 +9,7 @@
 // site configuration options.
 
 // List of projects/orgs using your project for the users page.
-const users = [
+const references = [
     {
         caption: 'Hierarchies of quantum chemical descriptors induced by statistical analyses of domain occupation number operators',
         // You will need to prepend the image path with your baseUrl
@@ -45,7 +45,7 @@ const siteConfig = {
     ],
 
     // If you have users set above, you add it here:
-    users,
+    references,
 
     /* path to images for header/footer */
     headerIcon: 'img/favicon.ico',

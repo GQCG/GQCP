@@ -11,16 +11,16 @@ const CompLibrary = require('../../core/CompLibrary.js');
 
 const Container = CompLibrary.Container;
 
-class Users extends React.Component {
+class References extends React.Component {
     render() {
         const { config: siteConfig } = this.props;
-        if ((siteConfig.users || []).length === 0) {
+        if ((siteConfig.references || []).length === 0) {
             return null;
         }
 
-        const showcase = siteConfig.users.map((user) => (
-            <a href={user.infoLink} key={user.infoLink}>
-                {user.caption}
+        const showcase = siteConfig.references.map((reference) => (
+            <a href={reference.infoLink} key={reference.infoLink}>
+                {reference.caption}
             </a>
         ));
 
@@ -50,4 +50,4 @@ class Users extends React.Component {
     }
 }
 
-module.exports = Users;
+module.exports = References;

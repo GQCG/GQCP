@@ -41,7 +41,7 @@ class Footer extends React.Component {
                     </div>
                     <div>
                         <h5>Community</h5>
-                        <a href={`${this.props.config.baseUrl}users`}>Academic references</a>
+                        <a href={`${this.props.config.baseUrl}references`}>Academic references</a>
                         <a
                             href="https://github.com/GQCG/GQCP/graphs/contributors"
                             target="_blank"
