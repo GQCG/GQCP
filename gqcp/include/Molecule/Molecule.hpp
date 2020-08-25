@@ -140,9 +140,7 @@ public:
     std::string description() const {
 
         std::string molecule_string = (boost::format("Number of electrons: %s \n") % this->numberOfElectrons()).str(); 
-        std::ostringstream framework;
-        framework << this->nuclearFramework();
-        molecule_string += framework.str();
+        molecule_string += this->nuclearFramework().description();
 
         return molecule_string;
     }

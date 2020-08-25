@@ -114,6 +114,22 @@ public:
     double calculateInternuclearDistanceBetween(const size_t index1, const size_t index2) const;
 
     /**
+     *  @return a textual description of this framework.
+     */
+    std::string description() const {
+        
+        std::string framework_string;
+
+        for (const auto& nucleus : this->nucleiAsVector()) {
+            std::ostringstream nucleus_vector;
+            nucleus_vector << nucleus;
+            framework_string += nucleus_vector.str();
+        }
+
+        return framework_string;
+    }
+
+    /**
      *  @return the nuclei in this nuclear framework as a std::vector
      */
     const std::vector<Nucleus>& nucleiAsVector() const { return this->nuclei; }

@@ -244,9 +244,7 @@ NuclearFramework NuclearFramework::ReadXYZ(const std::string& xyz_filename) {
  */
 std::ostream& operator<<(std::ostream& os, const NuclearFramework& nuclear_framework) {
 
-    for (const auto& nucleus : nuclear_framework.nucleiAsVector()) {
-        os << nucleus;
-    }
+    os << nuclear_framework.description();
 
     return os;
 }
