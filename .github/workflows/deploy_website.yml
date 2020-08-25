@@ -1,8 +1,10 @@
 name: Deploy website
 
-# This workflow is triggered on a pull request. This is a single event so no brackets are needed.
+# This workflow is triggered on a push to the develop branch. This is a single event so no brackets are needed.
 on: 
-  pull_request:
+  push:
+    branches:
+     - develop
     # This workflow will only start if files in site/docs/ or site/website are changed.
     paths: 
     - site/docs/
