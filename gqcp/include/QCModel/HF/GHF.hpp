@@ -120,14 +120,14 @@ public:
      *  @param C            the coefficient matrix that expresses every spinor orbital (as a column) in the underlying scalar bases
      *  @param N            the number of electrons
      *
-     *  @return the GHF 1-RDM expressed in the underlying scalar basis
+     *  @return the GHF 1-DM expressed in the underlying scalar basis
      */
-    static OneDM<Scalar> calculateScalarBasis1RDM(const TransformationMatrix<double>& C, const size_t N) {
+    static OneDM<Scalar> calculateScalarBasis1DM(const TransformationMatrix<double>& C, const size_t N) {
 
         const size_t M = C.dimension();
-        const auto P_orthonormal = GHF<Scalar>::calculateOrthonormalBasis1RDM(M, N);
+        const auto P_orthonormal = GHF<Scalar>::calculateOrthonormalBasis1DM(M, N);
 
-        // Transform the 1-RDM in an orthonormal basis to the underlying scalar basis
+        // Transform the 1-DM in an orthonormal basis to the underlying scalar basis
         return C.conjugate() * P_orthonormal * C.transpose();
     }
 
@@ -258,11 +258,11 @@ public:
      *  @param M            the number of spinors
      *  @param N            the number of electrons
      *
-     *  @return the GHF 1-RDM expressed in an orthonormal spinor basis
+     *  @return the GHF 1-DM expressed in an orthonormal spinor basis
      */
-    static OneDM<Scalar> calculateOrthonormalBasis1RDM(const size_t M, const size_t N) {
+    static OneDM<Scalar> calculateOrthonormalBasis1DM(const size_t M, const size_t N) {
 
-        // The 1-RDM for GHF looks like (for M=5, N=3)
+        // The 1-DM for GHF looks like (for M=5, N=3)
         //    1  0  0  0  0
         //    0  1  0  0  0
         //    0  0  1  0  0
@@ -337,23 +337,23 @@ public:
 
 
     /**
-     *  @return the 1-RDM expressed in an orthonormal spinor basis related to these optimal GHF parameters
+     *  @return the 1-DM expressed in an orthonormal spinor basis related to these optimal GHF parameters
      */
-    OneDM<Scalar> calculateOrthonormalBasis1RDM() const {
+    OneDM<Scalar> calculateOrthonormalBasis1DM() const {
 
         const auto M = this->numberOfSpinors();
         const auto N = this->numberOfElectrons();
-        return GHF<Scalar>::calculateOrthonormalBasis1RDM(M, N);
+        return GHF<Scalar>::calculateOrthonormalBasis1DM(M, N);
     }
 
 
     /**
-     *  @return the GHF 1-RDM in the scalar/AO basis related to these optimal GHF parameters
+     *  @return the GHF 1-DM in the scalar/AO basis related to these optimal GHF parameters
      */
-    OneDM<Scalar> calculateScalarBasis1RDM() const {
+    OneDM<Scalar> calculateScalarBasis1DM() const {
 
         const auto N = this->numberOfElectrons();
-        return GHF<Scalar>::calculateScalarBasis1RDM(this->coefficientMatrix(), N);
+        return GHF<Scalar>::calculateScalarBasis1DM(this->coefficientMatrix(), N);
     }
 
 
