@@ -26,7 +26,11 @@ Please make sure the following dependencies are available on your system:
 [![libint2 Dependency](https://img.shields.io/badge/libint-2.3.1+-000000.svg)](https://github.com/evaleev/libint)
 [![libcint Dependency](https://img.shields.io/badge/gqcg_libcint-develop-000000.svg)](https://github.com/GQCG/libcint/tree/develop)
 
-You may install these manually, but please note that we offer a conda environment which contains these dependencies from the start. In the root directory of this repository, create the `gqcp_dev` conda environment from the `environment.yml`-file that we provide.
+You may install these manually, but please note that we offer a Conda and a Docker environment which contains these dependencies from the start. 
+
+### Conda installation
+
+In the root directory of this repository, create the `gqcp_dev` conda environment from the `environment.yml`-file that we provide.
 ```bash
 conda env create -f environment.yml
 conda activate gqcp_dev
@@ -40,6 +44,19 @@ export LIBINT_DATA_PATH=${CONDA_PREFIX}/share/libint/2.3.1/basis
 
 You will have to either export this environment variable every time you activate the `gqcp` environment or (better) put this export in your .bashrc or (preferred) [add this environment variable to your virtual environment](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#saving-environment-variables).
 
+### Docker installation
+
+
+First, [install Docker](https://docs.docker.com/get-docker/). VSCode [has excellent support for containers](https://code.visualstudio.com/docs/remote/containers-tutorial). Using the [Visual Studio Code Remote - Containers](https://code.visualstudio.com/docs/remote/containers) you can mount the directory in which you have cloned the GQCP repo in the Docker container. There are two ways to get the Docker container up and running:
+
+1. You can let VSCode [build the image on your local machine](https://code.visualstudio.com/docs/remote/containers#_quick-start-open-an-existing-folder-in-a-container). 
+2. You can use a prebuilt container by pulling the `gqcp-dev` image from our organization 
+
+    ```bash
+    docker pull gqcg/gqcp-dev
+    ```
+
+All these settings are stored in the `.devcontainer` folder. For current testing purposes, the example provided in the GQCP repo has been set up in such a way that you build the image on your local machine. Note that the default Conda prefix in this Docker container is `/root/miniconda3`. As such, the `LIBINT_DATA_PATH`, which has already been exported for your convenience, is `/root/miniconda3/share/libint/2.3.1/basis`.
 
 
 ## Building and installing with CMake
