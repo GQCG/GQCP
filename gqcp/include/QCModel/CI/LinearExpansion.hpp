@@ -552,7 +552,7 @@ public:
      *  @return the total (spin-summed) 1-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, OneDM<double>> calculate1DM() const { return this->calculate1DMs().spinSummed(); }
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, OneDM<double>> calculate1DM() const { return this->calculateSpinResolved1DM().spinSummed(); }
 
 
     /**
@@ -561,7 +561,7 @@ public:
      *  @return the total (spin-summed) 2-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, TwoDM<double>> calculate2DM() const { return this->calculate2DMs().spinSummed(); }
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, TwoDM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().spinSummed(); }
 
 
     /**
@@ -570,10 +570,10 @@ public:
      *  @return the spin-resolved 1-DMs
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolvedOneDM<double>> calculate1DMs() const {
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolvedOneDM<double>> calculateSpinResolved1DM() const {
 
         const SeniorityZeroDMCalculator doci_dm_calculator {this->onvBasis()};
-        return doci_dm_calculator.calculate1DMs(this->coefficients());
+        return doci_dm_calculator.calculateSpinResolved1DM(this->coefficients());
     }
 
 
@@ -583,10 +583,10 @@ public:
      *  @return the spin-resolved 2-DMs
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolvedTwoDM<double>> calculate2DMs() const {
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolvedTwoDM<double>> calculateSpinResolved2DM() const {
 
         const SeniorityZeroDMCalculator doci_dm_calculator {this->onvBasis()};
-        return doci_dm_calculator.calculate2DMs(this->coefficients());
+        return doci_dm_calculator.calculateSpinResolved2DM(this->coefficients());
     }
 
 
@@ -595,7 +595,7 @@ public:
      *
      *  @return the 1-DMs given a coefficient vector
      */
-    SpinResolvedOneDM<double> calculate1DMs(const VectorX<double>& x) const;
+    SpinResolvedOneDM<double> calculateSpinResolved1DM(const VectorX<double>& x) const;
 
 
     /**

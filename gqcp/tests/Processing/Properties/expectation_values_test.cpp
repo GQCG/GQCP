@@ -136,7 +136,7 @@ BOOST_AUTO_TEST_CASE(mulliken_N2_STO_3G) {
 //     GQCP::GeneralDMCalculator rdm_calc(onv_basis);
 //     rdm_calc.setCoefficients(ds_solver.eigenpair().eigenvector());
 
-//     auto one_DMs = rdm_calc.calculate1DMs();
+//     auto one_DMs = rdm_calc.calculateSpinResolved1DM();
 
 //     // Calculate the spin density matrix
 //     GQCP::OneDM<double> spin_d = one_DMs.spinDensity();
@@ -186,8 +186,8 @@ BOOST_AUTO_TEST_CASE(mulliken_N2_STO_3G) {
 
 //     GQCP::GeneralDMCalculator dm_calculator (ci_solver.makeLinearExpansion());
 
-//     GQCP::SpinResolvedOneDM<double> one_DMs = dm_calculator.calculate1DMs();
-//     GQCP::SpinResolvedTwoDM<double> two_DMs = dm_calculator.calculate2DMs();
+//     GQCP::SpinResolvedOneDM<double> one_DMs = dm_calculator.calculateSpinResolved1DM();
+//     GQCP::SpinResolvedTwoDM<double> two_DMs = dm_calculator.calculateSpinResolved2DM();
 
 //     double s_squared = GQCP::calculateSpinSquared<double>(one_DMs, two_DMs);
 //     double s_z = GQCP::calculateSpinZ<double>(one_DMs);

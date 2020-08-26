@@ -41,7 +41,7 @@ SpinResolvedDMCalculator::SpinResolvedDMCalculator(const SpinResolvedONVBasis& o
  *
  *  @return all 1-DMs given a coefficient vector
  */
-SpinResolvedOneDM<double> SpinResolvedDMCalculator::calculate1DMs(const VectorX<double>& x) const {
+SpinResolvedOneDM<double> SpinResolvedDMCalculator::calculateSpinResolved1DM(const VectorX<double>& x) const {
 
     // Initialize as zero matrices
     size_t K = this->onv_basis.numberOfOrbitals();
@@ -159,7 +159,7 @@ SpinResolvedOneDM<double> SpinResolvedDMCalculator::calculate1DMs(const VectorX<
  *
  *  @return all 2-DMs given a coefficient vector
  */
-SpinResolvedTwoDM<double> SpinResolvedDMCalculator::calculate2DMs(const VectorX<double>& x) const {
+SpinResolvedTwoDM<double> SpinResolvedDMCalculator::calculateSpinResolved2DM(const VectorX<double>& x) const {
 
 
     // KISS implementation of the 2-DMs (no symmetry relations are used yet)

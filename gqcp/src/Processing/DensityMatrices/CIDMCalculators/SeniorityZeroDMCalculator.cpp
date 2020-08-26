@@ -41,7 +41,7 @@ SeniorityZeroDMCalculator::SeniorityZeroDMCalculator(const SeniorityZeroONVBasis
  *
  *  @return the 1-DMs given a coefficient vector
  */
-SpinResolvedOneDM<double> SeniorityZeroDMCalculator::calculate1DMs(const VectorX<double>& x) const {
+SpinResolvedOneDM<double> SeniorityZeroDMCalculator::calculateSpinResolved1DM(const VectorX<double>& x) const {
 
     // Prepare some variables.
     const auto K = this->onv_basis.numberOfSpatialOrbitals();
@@ -76,7 +76,7 @@ SpinResolvedOneDM<double> SeniorityZeroDMCalculator::calculate1DMs(const VectorX
  *
  *  @return the 2-DMs given a coefficient vector
  */
-SpinResolvedTwoDM<double> SeniorityZeroDMCalculator::calculate2DMs(const VectorX<double>& x) const {
+SpinResolvedTwoDM<double> SeniorityZeroDMCalculator::calculateSpinResolved2DM(const VectorX<double>& x) const {
 
     // Prepare some variables.
     const auto K = this->onv_basis.numberOfSpatialOrbitals();
