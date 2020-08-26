@@ -59,7 +59,7 @@ All these settings are stored in the `.devcontainer` folder. For current testing
 
 ### Singularity installation
 
-For HPC systems, [singularity](https://sylabs.io/docs/) offers a more secure fork of Docker. Singularity converts Docker images to Singularity images on the fly. For the [UGent HPC](https://www.ugent.be/hpc/en) this translates into first making sure that you are able to download and use Singularity images
+For HPC systems, [singularity](https://sylabs.io/docs/) offers a more secure fork of Docker. Singularity converts Docker images to Singularity images on the fly. For the [UGent HPC](https://www.ugent.be/hpc/en) this translates into first making sure [that you are able to download and use Singularity images](https://vlaams-supercomputing-centrum-vscdocumentation.readthedocs-hosted.com/en/latest/software/singularity.html)
 
 ```bash
 mkdir $VSC_SCRATCH/containers
@@ -76,7 +76,7 @@ SINGULARITY_CACHEDIR=$VSC_SCRATCH/containers/cache SINGULARITY_TMPDIR=$VSC_SCRAT
 and shell into the resulting `*.sif`
 
 ```bash
-singularity shell $VSC_SCRATCH/containers/gqcp-dev.sif
+singularity shell $VSC_SCRATCH/containers/gqcp-dev_latest.sif
 ```
 
 Note that the above `SINGULARITY_*` environment variables can also be set user wide in your `.bashrc`.
