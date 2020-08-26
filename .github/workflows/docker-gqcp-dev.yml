@@ -22,7 +22,7 @@ jobs:
       uses:  docker/build-push-action@v1
       with:
         repository: gqcg/gqcp-dev
-        tag: latest
+        tags: latest
         registry: docker.io
         dockerfile: Dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}
