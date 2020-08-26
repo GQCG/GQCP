@@ -180,7 +180,7 @@ BOOST_AUTO_TEST_CASE(H3_test_DIIS) {
     // clang-format on
     GQCP::GHFSCFEnvironment<double> environment {N, sq_hamiltonian, S, C_initial};
 
-    auto solver = GQCP::GHFSCFSolver<double>::DIIS(1.0e-06, 3000);
+    auto solver = GQCP::GHFSCFSolver<double>::DIIS(6, 6, 1.0e-06, 3000);
     const auto qc_structure = GQCP::QCMethod::GHF<double>().optimize(solver, environment);
     const auto ghf_parameters = qc_structure.groundStateParameters();
 
