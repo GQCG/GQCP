@@ -198,14 +198,14 @@ BOOST_AUTO_TEST_CASE(H3_test_DIIS) {
 
 
     // Check the reference value for S_z based on two different implementations.
-    // const double reference_s_z = 0.4999999999999999;  // an UHF solution
+    const double reference_s_z = 0.4999999999999999;  // an UHF solution
 
-    // const auto P = ghf_parameters.calculateScalarBasis1RDM();                     // AO density matrix
-    // const auto S_op = g_spinor_basis.quantize(GQCP::Operator::ElectronicSpin());  // AO representation of the spin operator
+    const auto P = ghf_parameters.calculateScalarBasis1DM();                      // AO density matrix
+    const auto S_op = g_spinor_basis.quantize(GQCP::Operator::ElectronicSpin());  // AO representation of the spin operator
 
-    // const auto s_z1 = S_op.calculateExpectationValue(P)(GQCP::CartesianDirection::z);
-    // const auto s_z2 = ghf_parameters.calculateExpectationValueOf(GQCP::ElectronicSpinOperator(), S)(GQCP::CartesianDirection::z);
+    const auto s_z1 = S_op.calculateExpectationValue(P)(GQCP::CartesianDirection::z);
+    const auto s_z2 = ghf_parameters.calculateExpectationValueOf(GQCP::ElectronicSpinOperator(), S)(GQCP::CartesianDirection::z);
 
-    // BOOST_CHECK(std::abs(s_z1 - reference_s_z) < 1.0e-08);
-    // BOOST_CHECK(std::abs(s_z2 - reference_s_z) < 1.0e-08);
+    BOOST_CHECK(std::abs(s_z1 - reference_s_z) < 1.0e-08);
+    BOOST_CHECK(std::abs(s_z2 - reference_s_z) < 1.0e-08);
 }
