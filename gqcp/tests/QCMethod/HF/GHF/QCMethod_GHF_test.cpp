@@ -152,7 +152,7 @@ BOOST_AUTO_TEST_CASE(H3_test_2) {
 
 
 /**
- *  Check if the plain GHF SCF solver finds a correct solution.
+ *  Check if the DIIS GHF SCF solver finds a correct solution.
  * 
  *  The system of interest is a H3-triangle, 1 bohr apart and the reference implementation was done by @xdvriend.
  */

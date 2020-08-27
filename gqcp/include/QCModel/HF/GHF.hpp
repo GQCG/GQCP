@@ -31,7 +31,7 @@ namespace QCModel {
 /**
  *  The generalized Hartree-Fock wave function model.
  * 
- *  @tparam _Scalar             the type of scalar that is used for the expansion of the spatial orbitals in their underlying scalar basis
+ *  @tparam _Scalar             the type of scalar that is used for the expansion of the spinors in their underlying scalar basis
  */
 template <typename _Scalar>
 class GHF {
@@ -43,7 +43,7 @@ private:
     size_t N;  // the number of electrons
 
     VectorX<double> orbital_energies;  // sorted in ascending energies
-    TransformationMatrix<Scalar> C;    // the coefficient matrix that expresses every spinor orbital (as a column) in the underlying scalar bases
+    TransformationMatrix<Scalar> C;    // the coefficient matrix that expresses every spinor (as a column) in the underlying scalar bases
 
 
 public:
@@ -55,20 +55,20 @@ public:
      *  The standard member-wise constructor
      * 
      *  @param N                    the number of electrons
-     *  @param C                    the coefficient matrix that expresses every spinor orbital (as a column) in the underlying scalar bases
+     *  @param C                    the coefficient matrix that expresses every spinor (as a column) in the underlying scalar bases
      *  @param orbital_energies     the GHF MO energies
      */
-    GHF(const size_t N, const VectorX<double>& orbital_energies, const TransformationMatrix<double>& C) :
+    GHF(const size_t N, const VectorX<double>& orbital_energies, const TransformationMatrix<Scalar>& C) :
         N {N},
         orbital_energies {orbital_energies},
-        C(C) {}
+        C {C} {}
 
 
     /**
      *  Default constructor setting everything to zero
      */
     GHF() :
-        GHF(0, TransformationMatrix<double>::Zero(0, 0), VectorX<double>::Zero(0)) {}
+        GHF(0, VectorX<double>::Zero(0), TransformationMatrix<Scalar>::Zero(0, 0)) {}
 
 
     /*
@@ -163,13 +163,9 @@ public:
 
         // Do the actual contractions, and convert the given tensor back to a matrix.
         const auto& g = sq_hamiltonian.twoElectron().parameters();
-        Tensor<Scalar, 2> J_tensor = P_aa_tensor.contract(g.Eigen(), direct_contraction_pair) + P_bb_tensor.contract(g.Eigen(), direct_contraction_pair);  // ss: sigma-sigma
+        Tensor<Scalar, 2> J_tensor = P_aa_tensor.contract(g.Eigen(), direct_contraction_pair) + P_bb_tensor.contract(g.Eigen(), direct_contraction_pair);
 
         Eigen::Map<Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>> J {J_tensor.data(), J_tensor.dimension(0), J_tensor.dimension(1)};
-
-        // QCMatrix<Scalar> J = QCMatrix<Scalar>::Zero(M, M);
-        // J.topLeftCorner(M / 2, M / 2) = J_ss;
-        // J.bottomRightCorner(M / 2, M / 2) = J_ss;
 
         return ScalarSQOneElectronOperator<Scalar>(J);
     }
@@ -225,11 +221,6 @@ public:
         Eigen::Map<Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>> K_ba {K_ba_tensor.data(), K_ba_tensor.dimension(0), K_ba_tensor.dimension(1)};
         Eigen::Map<Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>> K_bb {K_bb_tensor.data(), K_bb_tensor.dimension(0), K_bb_tensor.dimension(1)};
 
-        // QCMatrix<Scalar> K = QCMatrix<Scalar>::Zero(M, M);
-        // K.topLeftCorner(M / 2, M / 2) = K_aa;
-        // K.topRightCorner(M / 2, M / 2) = K_ab;
-        // K.bottomLeftCorner(M / 2, M / 2) = K_ba;
-        // K.bottomRightCorner(M / 2, M / 2) = K_bb;
 
         // Each of the spin-blocks are calculated separately (while the other blocks are zero), so the total exchange matrix can be calculated as the sum of each part.
         return ScalarSQOneElectronOperator<Scalar>(K_aa + K_ab + K_ba + K_bb);
