@@ -24,4 +24,6 @@ RUN conda install -c conda-forge openmp=8.0.1 cmake=3.14 boost-cpp=1.69.0 eigen=
 RUN conda install -c gqcg libint=2.3.1 cint=3.0.17
 RUN conda install -c intel mkl-include=2019.0 mkl-static=2019.0 intel-openmp=2019.0
 
+RUN ldconfig
+
 ENTRYPOINT bash
