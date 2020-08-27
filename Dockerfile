@@ -13,7 +13,6 @@ ENV PATH="/usr/local/miniconda3/bin:${PATH}"
 ARG PATH="/usr/local/miniconda3/bin:${PATH}"
 RUN wget \
     https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
-    && mkdir /usr/local/miniconda3 \
     && bash Miniconda3-latest-Linux-x86_64.sh -p /usr/local/miniconda3 -b \
     && rm -f Miniconda3-latest-Linux-x86_64.sh 
 RUN conda --version
