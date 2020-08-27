@@ -55,7 +55,7 @@ First, [install Docker](https://docs.docker.com/get-docker/). VSCode [has excell
     docker pull gqcg/gqcp-dev
     ```
 
-All these settings are stored in the `.devcontainer` folder. For current testing purposes, the example provided in the GQCP repo has been set up in such a way that you build the image on your local machine. Note that the default Conda prefix in this Docker container is `/root/miniconda3`. As such, the `LIBINT_DATA_PATH`, which has already been exported for your convenience, is `/root/miniconda3/share/libint/2.3.1/basis`.
+All these settings are stored in the `.devcontainer` folder. For current testing purposes, the example provided in the GQCP repo has been set up in such a way that you build the image on your local machine. Note that the default Conda prefix in this Docker container is `/usr/local/miniconda3`. As such, the `LIBINT_DATA_PATH`, which has already been exported for your convenience, is `/usr/local/miniconda3/share/libint/2.3.1/basis`.
 
 ### Singularity installation
 
