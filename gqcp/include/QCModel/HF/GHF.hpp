@@ -303,20 +303,22 @@ public:
         const MatrixX<complex> overlap_ba = overlap_ab.adjoint();
         const MatrixX<complex> overlap_bb = C_beta.adjoint() * S_AO * C_beta;
 
+        //Create the orbital space for the GHF wavefunction model
+        const GQCP::OrbitalSpace orbital_space = this->orbitalSpace(this->numberOfSpinors(), this->numberOfElectrons());
 
-        // A KISS implementation of the expectation value of S, from knowdes.
+        // A KISS implementation of the expectation value of S, from knowdes. (https://gqcg-res.github.io/knowdes/spin-expectation-values-for-ghf.html)
         complex s_x {0.0};
-        for (size_t I = 0; I < this->numberOfElectrons(); I++) {  // loop over occupied spinors
+        for (const auto& I : orbital_space.indices(OccupationType::k_occupied)) {  // loop over occupied spinors
             s_x += overlap_ab(I, I).real();
         }
 
         complex s_y {0.0};
-        for (size_t I = 0; I < this->numberOfElectrons(); I++) {  // loop over occupied spinors
+        for (const auto& I : orbital_space.indices(OccupationType::k_occupied)) {  // loop over occupied spinors
             s_y += overlap_ba(I, I).imag();
         }
 
         complex s_z {0.0};
-        for (size_t I = 0; I < this->numberOfElectrons(); I++) {  // loop over occupied spinors
+        for (const auto& I : orbital_space.indices(OccupationType::k_occupied)) {  // loop over occupied spinors
             s_z += 0.5 * (overlap_aa(I, I) - overlap_bb(I, I));
         }
 
