@@ -106,6 +106,7 @@ public:
         // Specify the contraction pair.
         // To calculate the electronic energy, we must perform a double contraction.
         //      0.5 D(mu nu) Z(mu nu)
+        // See knowdes: https://gqcg-res.github.io/knowdes/general-hartree-fock-theory.html
         Eigen::array<Eigen::IndexPair<int>, 2> contraction_pair = {Eigen::IndexPair<int>(0, 0), Eigen::IndexPair<int>(1, 1)};
 
         // Calculate the double contraction (with prefactor 0.5).
@@ -159,6 +160,7 @@ public:
 
         // Specify the contraction pairs for the direct contractions:
         //      P(rho lambda) (mu nu|rho lambda)
+        // See knowdes: https://gqcg-res.github.io/knowdes/derivation-of-the-ghf-scf-equations-through-lagrange-multipliers.html
         Eigen::array<Eigen::IndexPair<int>, 2> direct_contraction_pair = {Eigen::IndexPair<int>(0, 2), Eigen::IndexPair<int>(1, 3)};
 
         // Do the actual contractions, and convert the given tensor back to a matrix.
