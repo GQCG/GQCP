@@ -6,9 +6,6 @@ on:
       - 'Dockerfile'
     branches:
       - develop
-  pull_request:
-    paths:
-      - 'Dockerfile'
 
 jobs:
   build:
