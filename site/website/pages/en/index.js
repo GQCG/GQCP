@@ -60,13 +60,13 @@ class HomeSplash extends React.Component {
 
         return (
             <SplashContainer>
-                <Logo img_src={`${baseUrl}img/undraw_monitor.svg`} />
+                {/* <Logo img_src={`${baseUrl}img/undraw_monitor.svg`} /> */}
                 <div className="inner">
                     <ProjectTitle tagline={siteConfig.tagline} title={siteConfig.title} />
                     <PromoSection>
-                        <Button href="#try">Try It Out</Button>
-                        <Button href={docUrl('doc1.html')}>Example Link</Button>
-                        <Button href={docUrl('doc2.html')}>Example Link 2</Button>
+                        <Button href="#try">Try It Out!</Button>
+                        {/* <Button href={docUrl('doc1.html')}>Example Link</Button>
+                        <Button href={docUrl('doc2.html')}>Example Link 2</Button> */}
                     </PromoSection>
                 </div>
             </SplashContainer>
@@ -85,15 +85,16 @@ class Index extends React.Component {
                 id={props.id}
                 background={props.background}>
                 <GridBlock
-                    align="center"
+                    align={props.align}
                     contents={props.children}
                     layout={props.layout}
                 />
             </Container>
         );
 
-        const SustainableResearch = () => (
+        const SustainableResearchTest = () => (
             <div
+                background="dark"
                 className="productShowcaseSection paddingBottom"
                 style={{ textAlign: 'left' }}>
                 <h2>Sustainable development & reproducible research</h2>
@@ -105,62 +106,65 @@ class Index extends React.Component {
             </div>
         );
 
-        const TryOut = () => (
-            <Block id="try">
-                {[
-                    {
-                        content:
-                            'To make your landing page more attractive, use illustrations! Check out ' +
-                            '[**unDraw**](https://undraw.co/) which provides you with customizable illustrations which are free to use. ' +
-                            'The illustrations you see on this page are from unDraw.',
-                        image: `${baseUrl}img/undraw_code_review.svg`,
-                        imageAlign: 'left',
-                        title: 'Wonderful SVG Illustrations',
-                    },
-                ]}
-            </Block>
-        );
-
-        const Description = () => (
+        const SustainableResearch = () => (
             <Block background="dark">
                 {[
                     {
                         content:
-                            'This is another description of how this project is useful',
-                        image: `${baseUrl}img/undraw_note_list.svg`,
+                            'At the Ghent Quantum Chemistry Group, GQCG for short, our activities are centered around electronic structure for molecules. We are trying to help create a community of quantum chemists that have a common mindset, suitable for (academic) research in the 21st century. We are focused on sustainable and reproducible research, which is why our software developments are all open-source.' +
+                            'In order to support our research and development, GQCP saw its first light in 2017 and has been growing ever since.',
+                        image: `${baseUrl}img/gqcg_logo-01.png`,
                         imageAlign: 'right',
-                        title: 'Description',
+                        title: 'Sustainable development & reproducible research',
                     },
                 ]}
             </Block>
         );
 
-        const LearnHow = () => (
+        // const Description = () => (
+        //     <Block background="light">
+        //         {[
+        //             {
+        //                 content:
+        //                     'Knowdes, a portmanteau of knowledge and nodes, is a collection of interconnected knowledge nodes. It is a web of knowledge that is aimed at supporting the research performed at GQCG.' +
+        //                     'At GQCG, Knowdes is one of our premier sources of information. Everything from research notes to theoretical support and elaborations can be found there.' +
+        //                     'You can find Knowdes [here](https://gqcg-res.github.io/knowdes/index.html).',
+        //                 image: `${baseUrl}img/knowdes.jpg`,
+        //                 imageAlign: 'left|middle',
+        //                 title: 'Knowdes',
+        //             },
+        //         ]}
+        //     </Block>
+        // );
+
+        const Blocks = () => (
             <Block background="light">
                 {[
                     {
                         content:
-                            'Each new Docusaurus project has **randomly-generated** theme colors.',
-                        image: `${baseUrl}img/undraw_youtube_tutorial.svg`,
-                        imageAlign: 'right',
-                        title: 'Randomly Generated Theme Colors',
+                            'Conceptually, GQCP is like Lego. Much like our favorite toys, GQCP provides building blocks to experiment with. In just a handful lines of code, users can perform complex computations and developers can synthesize new and modify existing electronic structure methods. Curious? Try it out!',
+                        image: `${baseUrl}img/blocks.png`,
+                        imageAlign: 'left',
+                        title: 'GQCWhy?',
                     },
                 ]}
             </Block>
         );
 
         const Features = () => (
-            <Block layout="fourColumn">
+            <Block
+                layout="twoColumn"
+                align='center'>
                 {[
                     {
                         title: "Python bindings",
-                        image: `${baseUrl}img/undraw_react.svg`,
+                        image: `${baseUrl}img/bindings.png`,
                         imageAlign: 'top',
                         content: "We use [pybind11](https://github.com/pybind/pybind11) to generate Python bindings for our C++ library. Using `gqcpy` as a Python module, we can embrace Python's present role as a data manipulating language. Gone are the days of providing input files or writing executables, with GQCPY and Jupyter Notebooks you can naturally adapt a work flow that is both playful and systematic at the same time."
                     },
                     {
                         title: 'C++ library',
-                        image: `${baseUrl}img/undraw_operating_system.svg`,
+                        image: `${baseUrl}img/python-and-cpp.png`,
                         imageAlign: 'top',
                         content: "GQCP is modern at its core. It is natively written in C++, so we have access to state-of-the-art software techniques and compilers."
                     },
@@ -192,7 +196,7 @@ class Index extends React.Component {
                     <div className="more-users">
                         <a className="button" href={pageUrl('references.html')}>
                             All publications that used {siteConfig.title}
-            </a>
+                        </a>
                     </div>
                 </div>
             );
@@ -202,11 +206,9 @@ class Index extends React.Component {
             <div>
                 <HomeSplash siteConfig={siteConfig} language={language} />
                 <div className="mainContainer">
-                    <SustainableResearch />
                     <Features />
-                    <LearnHow />
-                    <TryOut />
-                    <Description />
+                    <Blocks />
+                    <SustainableResearch />
                     <Showcase />
                 </div>
             </div>
