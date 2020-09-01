@@ -48,3 +48,10 @@ jobs:
       run: |
         cd site/website
         yarn run build
+    
+    # Upload artifact
+    - name: Archive build
+        uses: actions/upload-artifact@v1
+        with:
+          name: _site
+          path: _site
