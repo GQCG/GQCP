@@ -121,6 +121,12 @@ void bindQCMethodAP1roG(py::module& module);
 void bindQCMethodvAP1roG(py::module& module);
 
 
+// QCMethod - HF - GHF
+void bindQCMethodGHF(py::module& module);
+void bindGHFSCFEnvironment(py::module& module);
+void bindGHFSCFSolver(py::module& module);
+
+
 // QCMethod - HF - RHF
 void bindDiagonalRHFFockMatrixObjective(py::module& module);
 void bindQCMethodRHF(py::module& module);
@@ -156,6 +162,7 @@ void bindQCModelvAP1roG(py::module& module);
 
 
 // QCModel - HF
+void bindQCModelGHF(py::module& module);
 void bindQCModelRHF(py::module& module);
 void bindQCModelUHF(py::module& module);
 
@@ -265,6 +272,12 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindPSEnvironment(module);
     gqcpy::bindQCMethodAP1roG(module);
     gqcpy::bindQCMethodvAP1roG(module);
+
+
+    // QCMethod - HF - GHF
+    gqcpy::bindQCMethodGHF(module);
+    gqcpy::bindGHFSCFEnvironment(module);
+    gqcpy::bindGHFSCFSolver(module);
 
 
     // QCMethod - HF - RHF
