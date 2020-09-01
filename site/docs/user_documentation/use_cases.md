@@ -152,3 +152,5 @@ const auto E = rhf_parameters.orbitalEnergies();
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 ### UHF
+
+We can start off UHF SCF calculation in the same way as we did with RHF SCF calculations.
