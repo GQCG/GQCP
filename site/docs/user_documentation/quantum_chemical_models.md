@@ -22,7 +22,29 @@ In GQCP, a quantum chemical [(wave function) model](https://gqcg-res.github.io/k
 
 ## CI
 
-All of the configuration interaction wave functions are expressed using the wave function model `LinearExpansion`.
+All of the configuration interaction wave functions are expressed using the wave function model `LinearExpansion`. [Once obtained](user_quantum_chemical_methods), you can calculate the associated one- and two-electron density matrices straightforwardly. 
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Python-->
+```python
+D = linear_expansion.calculate1DM()
+d = linear_expansion.calculate2DM()
+```
+
+<!--C++-->
+```C++
+const auto D = linear_expansion.calculate1DM();
+const auto d = linear_expansion.calculate2DM();
+```
+
+If the underlying ONV basis is spin-resolved, the C++ library also offers the alpha and beta components.
+```C++
+const auto D_spin_resolved = linear_expansion.calculateSpinResolved1DM();
+const auto d_spin_resolved = linear_expansion.calculateSpinResolved2DM();
+```
+<!--END_DOCUSAURUS_CODE_TABS-->
+
 
 ## AP1roG
 
