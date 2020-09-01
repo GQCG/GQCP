@@ -9,7 +9,7 @@ on:
   pull_request: # debug purposes
 
 jobs:
-  build:
+  gqcp-docker-deploy:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
