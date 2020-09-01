@@ -169,15 +169,15 @@ class Index extends React.Component {
         );
 
         const Showcase = () => {
-            if ((siteConfig.users || []).length === 0) {
+            if ((siteConfig.references || []).length === 0) {
                 return null;
             }
 
-            const showcase = siteConfig.users
-                .filter((user) => user.pinned)
-                .map((user) => (
-                    <a href={user.infoLink} key={user.infoLink}>
-                        <img src={user.image} alt={user.caption} title={user.caption} />
+            const showcase = siteConfig.references
+                .filter((reference) => reference.pinned)
+                .map((reference) => (
+                    <a href={reference.infoLink} key={reference.infoLink}>
+                        {reference.caption}
                     </a>
                 ));
 
@@ -186,12 +186,12 @@ class Index extends React.Component {
 
             return (
                 <div className="productShowcaseSection paddingBottom">
-                    <h2>Who is Using This?</h2>
-                    <p>This project is used by all these people</p>
+                    <h2>Academic references</h2>
+                    <p>This publication, amongst others, used GQCP.</p>
                     <div className="logos">{showcase}</div>
                     <div className="more-users">
-                        <a className="button" href={pageUrl('users.html')}>
-                            More {siteConfig.title} Users
+                        <a className="button" href={pageUrl('references.html')}>
+                            All publications that used {siteConfig.title}
             </a>
                     </div>
                 </div>
