@@ -150,3 +150,5 @@ const auto E = rhf_parameters.orbitalEnergies();
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
+
+### UHF
