@@ -88,17 +88,65 @@ To solve the RHF SCF equations, we will need to set up a `Solver` and its associ
 
 <!--Python-->
 ```python
-environment = gqcpy.RHFSCFEnvironment.WithCoreGuess(N, sq_hamiltonian, S)
-solver = gqcpy.RHFSCFSolver.Plain()
+rhf_environment = gqcpy.RHFSCFEnvironment.WithCoreGuess(N, sq_hamiltonian, S)
+plain_rhf_scf_solver = gqcpy.RHFSCFSolver.Plain()
 
 gqcpy.RHF.optimize(solver, environment).groundStateParameters() # nog niet af!!!!
 ```
 
 <!--C++-->
 ```C++
-auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
+auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(N, sq_hamiltonian, spinor_basis.overlap().parameters());
 auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-
-plain_rhf_scf_solver.perform(rhf_environment);
 ```
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+In order to really confirm that the electronic structure model's parameter are 'optimal', in our case a diagonal Fock matrix, we must define an objective.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Python-->
+```python
+objective = gqcpy.DiagonalRHFFockMatrixObjective(sq_hamiltonian)  # use the default threshold of 1.0e-08
+```
+
+<!--C++-->
+```C++
+const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+The objective, solver and environment are combined into the _optimize_ method of the RHF QCMethod, which returns a _QCStructure_ containing the optimized RHF parameters that satisfy the objective. 
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Python-->
+```python
+rhf_parameters = gqcpy.RHF.optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters()
+```
+
+<!--C++-->
+```C++
+const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+These optimized RHF parameters can be obtained through the _QCStructure_ object. Examples are the coefficient matrix, with every spatial orbital as a column, and orbital energies.
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Python-->
+```python
+C = rhf_parameters.coefficientMatrix()
+energies = rhf_parameters.orbitalEnergies()
+```
+
+<!--C++-->
+```C++
+const auto C = rhf_parameters.coefficientMatrix();
+const auto E = rhf_parameters.orbitalEnergies();
+```
+
 <!--END_DOCUSAURUS_CODE_TABS-->
