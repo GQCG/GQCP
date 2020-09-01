@@ -20,6 +20,40 @@ const references = [
   },
 ];
 
+const developers = [
+  {
+    caption: '@guacke',
+    // You will need to prepend the image path with your baseUrl
+    // if it is not '/', like: '/test-site/img/image.jpg'.
+    image: '/GQCP/img/guacke.png',
+    infoLink: 'https://github.com/guacke',
+  },
+
+  {
+    caption: '@lelemmen',
+    // You will need to prepend the image path with your baseUrl
+    // if it is not '/', like: '/test-site/img/image.jpg'.
+    image: '/GQCP/img/lelemmen.jpeg',
+    infoLink: 'https://github.com/lelemmen',
+  },
+
+  {
+    caption: '@dariatols',
+    // You will need to prepend the image path with your baseUrl
+    // if it is not '/', like: '/test-site/img/image.jpg'.
+    image: '/GQCP/img/dariatols.png',
+    infoLink: 'https://github.com/dariatols',
+  },
+
+  {
+    caption: '@xdvriend',
+    // You will need to prepend the image path with your baseUrl
+    // if it is not '/', like: '/test-site/img/image.jpg'.
+    image: '/GQCP/img/xdvriend.JPG',
+    infoLink: 'https://github.com/xdvriend',
+  },
+];
+
 const siteConfig = {
   title: 'GQCP', // Title for your website.
   tagline: 'The Ghent Quantum Chemistry Package - UNDER CONSTRUCTION',
@@ -44,8 +78,11 @@ const siteConfig = {
     { blog: true, label: 'Blog' },
   ],
 
-  // If you have users set above, you add it here:
+  // If you have references set above, you add it here:
   references,
+
+  // If you have developers set above, you add it here:
+  developers,
 
   /* path to images for header/footer */
   headerIcon: 'img/favicon.ico',

@@ -202,6 +202,26 @@ class Index extends React.Component {
             );
         };
 
+        const Developers = () => {
+            if ((siteConfig.developers || []).length === 0) {
+                return null;
+            }
+
+            const showcase = siteConfig.developers.map((developer) => (
+                <a href={developer.infoLink} key={developer.infoLink}>
+                    <img src={developer.image} alt={developer.caption} title={developer.caption} />
+                </a>
+            ));
+
+            return (
+                <div className="productShowcaseSection paddingBottom">
+                    <h2>The GQCP development team</h2>
+                    <div className="logos">{showcase}</div>
+                </div>
+            );
+        };
+
+
         return (
             <div>
                 <HomeSplash siteConfig={siteConfig} language={language} />
@@ -210,6 +230,7 @@ class Index extends React.Component {
                     <Blocks />
                     <SustainableResearch />
                     <Showcase />
+                    <Developers />
                 </div>
             </div>
         );
