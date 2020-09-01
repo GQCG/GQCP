@@ -77,10 +77,10 @@ BOOST_AUTO_TEST_CASE(decomposition_BeH_cation_STO_3G_Nuclear) {
     GQCP::GeneralDMCalculator dm_calculator {onv_basis};
     dm_calculator.setCoefficients(linear_expansion.coefficients());
 
-    auto D = dm_calculator.calculate1DMs().spinSummed();
+    auto D = dm_calculator.calculateSpinResolved1DM().spinSummed();
     D.basisTransform(T.adjoint());  // T.adjoint() to transform BACK to AO basis
 
-    auto d = dm_calculator.calculate2DMs().spinSummed();
+    auto d = dm_calculator.calculateSpinResolved2DM().spinSummed();
     d.basisTransform(T.adjoint());  // T.adjoint() to transform BACK to AO basis
 
 

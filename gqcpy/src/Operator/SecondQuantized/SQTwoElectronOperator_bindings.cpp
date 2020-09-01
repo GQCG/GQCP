@@ -16,6 +16,7 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
+#include "gqcpy/include/utilities.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
@@ -25,26 +26,6 @@ namespace py = pybind11;
 
 
 namespace gqcpy {
-
-
-/**
- *  Convert a rank-four Eigen::Tensor as a numpy array
- * 
- *  @param tensor       the tensor that should be converted to the numpy array
- * 
- *  @return the corresponding numpy array
- */
-template <typename T>
-py::array_t<T> asNumpyArray(const Eigen::Tensor<T, 4>& tensor) {
-
-    // Implementation adapted from https://github.com/pybind/pybind11/issues/1377
-    const auto shape = tensor.dimensions();
-
-    return py::array_t<T>(shape,
-                          {shape[0] * shape[1] * shape[2] * sizeof(T), shape[1] * shape[2] * sizeof(T), shape[2] * sizeof(T), sizeof(T)},  // strides
-                          tensor.data()                                                                                                    // data pointer
-    );
-}
 
 
 void bindSQTwoElectronOperator(py::module& module) {

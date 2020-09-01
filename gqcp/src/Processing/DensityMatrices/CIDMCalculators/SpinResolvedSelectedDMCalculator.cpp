@@ -43,7 +43,7 @@ SpinResolvedSelectedDMCalculator::SpinResolvedSelectedDMCalculator(const SpinRes
  *
  *  @return all 1-DMs given a coefficient vector
  */
-SpinResolvedOneDM<double> SpinResolvedSelectedDMCalculator::calculate1DMs(const VectorX<double>& x) const {
+SpinResolvedOneDM<double> SpinResolvedSelectedDMCalculator::calculateSpinResolved1DM(const VectorX<double>& x) const {
 
     size_t K = this->onv_basis.numberOfOrbitals();
     size_t dim = onv_basis.dimension();
@@ -122,7 +122,7 @@ SpinResolvedOneDM<double> SpinResolvedSelectedDMCalculator::calculate1DMs(const 
  *
  *  @return all 2-DMs given a coefficient vector
  */
-SpinResolvedTwoDM<double> SpinResolvedSelectedDMCalculator::calculate2DMs(const VectorX<double>& x) const {
+SpinResolvedTwoDM<double> SpinResolvedSelectedDMCalculator::calculateSpinResolved2DM(const VectorX<double>& x) const {
 
     size_t K = this->onv_basis.numberOfOrbitals();
     size_t dim = onv_basis.dimension();

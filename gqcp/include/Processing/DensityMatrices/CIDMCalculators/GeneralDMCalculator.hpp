@@ -123,12 +123,12 @@ public:
     /**
      *  @return all 1-DMs if a given coefficient vector is set
      */
-    SpinResolvedOneDM<double> calculate1DMs() const;
+    SpinResolvedOneDM<double> calculateSpinResolved1DM() const;
 
     /**
      *  @return all 2-DMs if a given coefficient vector is set
      */
-    SpinResolvedTwoDM<double> calculate2DMs() const;
+    SpinResolvedTwoDM<double> calculateSpinResolved2DM() const;
 
     /**
      *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)

@@ -48,14 +48,14 @@ public:
      *
      *  @return all 1-DMs given a coefficient vector
      */
-    virtual SpinResolvedOneDM<double> calculate1DMs(const VectorX<double>& x) const = 0;
+    virtual SpinResolvedOneDM<double> calculateSpinResolved1DM(const VectorX<double>& x) const = 0;
 
     /**
      *  @param x        the coefficient vector representing the wave function
      *
      *  @return all 2-DMs given a coefficient vector
      */
-    virtual SpinResolvedTwoDM<double> calculate2DMs(const VectorX<double>& x) const = 0;
+    virtual SpinResolvedTwoDM<double> calculateSpinResolved2DM(const VectorX<double>& x) const = 0;
 
     /**
      *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)
