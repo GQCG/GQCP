@@ -88,26 +88,26 @@ GeneralDMCalculator::GeneralDMCalculator(const BaseONVBasis& onv_basis) {
 /**
  *  @return all 1-DMs if a given coefficient vector is set
  */
-SpinResolvedOneDM<double> GeneralDMCalculator::calculate1DMs() const {
+SpinResolvedOneDM<double> GeneralDMCalculator::calculateSpinResolved1DM() const {
 
     if (this->coefficients.rows() == 0) {
-        throw std::logic_error("GeneralDMCalculator::calculate1DMs(): No vector has been set.");
+        throw std::logic_error("GeneralDMCalculator::calculateSpinResolved1DM(): No vector has been set.");
     }
 
-    return dm_calculator->calculate1DMs(this->coefficients);
+    return dm_calculator->calculateSpinResolved1DM(this->coefficients);
 }
 
 
 /**
  *  @return all 2-DMs if a given coefficient vector is set
  */
-SpinResolvedTwoDM<double> GeneralDMCalculator::calculate2DMs() const {
+SpinResolvedTwoDM<double> GeneralDMCalculator::calculateSpinResolved2DM() const {
 
     if (this->coefficients.rows() == 0) {
-        throw std::logic_error("GeneralDMCalculator::calculate2DMs(): No vector has been set.");
+        throw std::logic_error("GeneralDMCalculator::calculateSpinResolved2DM(): No vector has been set.");
     }
 
-    return dm_calculator->calculate2DMs(this->coefficients);
+    return dm_calculator->calculateSpinResolved2DM(this->coefficients);
 }
 
 

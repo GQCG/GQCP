@@ -53,7 +53,7 @@
 //     // Check if the DOCI 1-DM has the proper trace.
 //     GQCP::GeneralDMCalculator doci_rdm {*fock_space_dy};
 //     doci_rdm.setCoefficients(coef);
-//     GQCP::SpinResolvedOneDM<double> one_DMs = doci_rdm.calculate1DMs();
+//     GQCP::SpinResolvedOneDM<double> one_DMs = doci_rdm.calculateSpinResolved1DM();
 
 //     BOOST_CHECK(std::abs(one_DMs.spinSummed().trace() - N) < 1.0e-12);
 // }
@@ -69,7 +69,7 @@ BOOST_AUTO_TEST_CASE(no_vector_throws) {
 
     // Test if throws when no vector is set
     GQCP::GeneralDMCalculator doci_dm_calculator {fock_space};
-    BOOST_CHECK_THROW(doci_dm_calculator.calculate1DMs(), std::logic_error);
+    BOOST_CHECK_THROW(doci_dm_calculator.calculateSpinResolved1DM(), std::logic_error);
 }
 
 

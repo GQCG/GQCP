@@ -56,11 +56,11 @@ BOOST_AUTO_TEST_CASE(FrozenCoreFCI_one_DMs) {
 
     // Calculate the 1-DMs using specialized spin-resolved and 'selected' routines, and check if they are equal.
     const GQCP::SpinResolvedFrozenDMCalculator spin_resolved_dm_calculator {onv_basis};
-    const auto one_DMs_specialized = spin_resolved_dm_calculator.calculate1DMs(linear_expansion.coefficients());
+    const auto one_DMs_specialized = spin_resolved_dm_calculator.calculateSpinResolved1DM(linear_expansion.coefficients());
 
     const GQCP::SpinResolvedSelectedONVBasis selected_onv_basis {onv_basis};
     const GQCP::SpinResolvedSelectedDMCalculator selected_dm_calculator {selected_onv_basis};
-    const auto one_DMs_selected = selected_dm_calculator.calculate1DMs(linear_expansion.coefficients());
+    const auto one_DMs_selected = selected_dm_calculator.calculateSpinResolved1DM(linear_expansion.coefficients());
 
     BOOST_CHECK(one_DMs_specialized.spinSummed().isApprox(one_DMs_selected.spinSummed(), 1.0e-12));
     BOOST_CHECK(one_DMs_specialized.alpha().isApprox(one_DMs_selected.alpha(), 1.0e-12));
@@ -68,8 +68,8 @@ BOOST_AUTO_TEST_CASE(FrozenCoreFCI_one_DMs) {
 
 
     // Calculate the 2-DMs using specialized spin-resolved and 'selected' routines, and check if they are equal.
-    const auto two_DMs_specialized = spin_resolved_dm_calculator.calculate2DMs(linear_expansion.coefficients());
-    const auto two_DMs_selected = selected_dm_calculator.calculate2DMs(linear_expansion.coefficients());
+    const auto two_DMs_specialized = spin_resolved_dm_calculator.calculateSpinResolved2DM(linear_expansion.coefficients());
+    const auto two_DMs_selected = selected_dm_calculator.calculateSpinResolved2DM(linear_expansion.coefficients());
 
     BOOST_CHECK(two_DMs_specialized.alphaAlpha().isApprox(two_DMs_selected.alphaAlpha(), 1.0e-12));
     BOOST_CHECK(two_DMs_specialized.alphaBeta().isApprox(two_DMs_selected.alphaBeta(), 1.0e-12));

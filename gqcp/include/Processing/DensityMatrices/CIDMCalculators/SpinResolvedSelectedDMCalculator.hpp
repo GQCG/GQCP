@@ -59,14 +59,14 @@ public:
      *
      *  @return all 1-DMs given a coefficient vector
      */
-    SpinResolvedOneDM<double> calculate1DMs(const VectorX<double>& x) const override;
+    SpinResolvedOneDM<double> calculateSpinResolved1DM(const VectorX<double>& x) const override;
 
     /**
      *  @param x        the coefficient vector representing the 'selected' wave function
      *
      *  @return all 2-DMs given a coefficient vector
      */
-    SpinResolvedTwoDM<double> calculate2DMs(const VectorX<double>& x) const override;
+    SpinResolvedTwoDM<double> calculateSpinResolved2DM(const VectorX<double>& x) const override;
 
     /**
      *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)

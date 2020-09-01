@@ -90,7 +90,7 @@ public:
      *  @return the current 1-DM
      */
     OneDM<double> calculate1DM() const override {
-        return this->dm_calculator.calculate1DMs(this->ground_state_expansion.coefficients()).spinSummed();
+        return this->dm_calculator.calculateSpinResolved1DM(this->ground_state_expansion.coefficients()).spinSummed();
     }
 
 
@@ -98,7 +98,7 @@ public:
      *  @return the current 2-DM
      */
     TwoDM<double> calculate2DM() const override {
-        return this->dm_calculator.calculate2DMs(this->ground_state_expansion.coefficients()).spinSummed();
+        return this->dm_calculator.calculateSpinResolved2DM(this->ground_state_expansion.coefficients()).spinSummed();
     }
 
 
