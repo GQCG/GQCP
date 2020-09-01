@@ -51,7 +51,7 @@ jobs:
     
     # Upload artifact
     - name: Archive build
-        uses: actions/upload-artifact@v1
-        with:
-          name: _site
-          path: site/website/build/
+      uses: actions/upload-artifact@v1
+      with:
+        name: _site
+        path: site/website/build/
