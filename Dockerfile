@@ -1,7 +1,5 @@
 FROM ubuntu:18.04
 
-WORKDIR /usr/local
-
 RUN apt-get update && apt-get install -y wget \
     build-essential \
     clang \
