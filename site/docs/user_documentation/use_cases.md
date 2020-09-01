@@ -8,25 +8,6 @@ In this section, we'll provide a quick reference to some common use cases. Be su
 
 ## Hartree-Fock calculations
 
-
-<!--DOCUSAURUS_CODE_TABS-->
-
-<!--Python-->
-```python
-molecule = gqcpy.Molecule.ReadXYZ("h2.xyz")
-N = molecule.numberOfElectrons()
-
-spinor_basis = gqcpy.RSpinorBasis(molecule, "STO-3G")
-sq_hamiltonian = gqcpy.SQHamiltonian.Molecular(spinor_basis, molecule)  # 'sq' for 'second-quantized'
-```
-
-<!--C++-->
-```C++
-const auto molecule = GQCP::Molecule::ReadXYZ("data/h2.xyz");
-const auto N = molecule.numberOfElectrons();
-```
-<!--END_DOCUSAURUS_CODE_TABS-->
-
 ### RHF
 
 In this use case, we will calculate the restricted HF energy for H2 in an STO-3G basis set. 
