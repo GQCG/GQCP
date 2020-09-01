@@ -13,6 +13,10 @@
         "title": "Introduction for developers",
         "sidebar_label": "Introduction"
       },
+      "developer_documentation/style_guide": {
+        "title": "GQCP Style Guide",
+        "sidebar_label": "Style guide"
+      },
       "documentation": {
         "title": "Documentation overview",
         "sidebar_label": "Overview"
