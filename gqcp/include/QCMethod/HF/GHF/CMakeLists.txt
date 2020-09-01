@@ -1,0 +1,12 @@
+target_sources(gqcp
+    PRIVATE
+        GHF.hpp
+        GHFDensityMatrixCalculation.hpp
+        GHFElectronicEnergyCalculation.hpp
+        GHFErrorCalculation.hpp
+        GHFFockMatrixCalculation.hpp
+        GHFFockMatrixDiagonalization.hpp
+        GHFFockMatrixDIIS.hpp
+        GHFSCFEnvironment.hpp
+        GHFSCFSolver.hpp
+)
