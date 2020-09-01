@@ -54,4 +54,4 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: _site
-          path: _site
+          path: site/website
