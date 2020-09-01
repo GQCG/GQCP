@@ -20,6 +20,7 @@
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "QCModel/CI/LinearExpansion.hpp"
+#include "gqcpy/include/utilities.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/functional.h>
@@ -136,6 +137,13 @@ void bindLinearExpansion<GQCP::SeniorityZeroONVBasis>(py::module& module, const 
             },
             "Return the one-electron density matrix (1-DM) for a seniority-zero wave function expansion.")
 
+        .def(
+            "calculate2DM",
+            [](const GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>& linear_expansion) {
+                return asNumpyArray(linear_expansion.calculate2DM().Eigen());
+            },
+            "Return the two-electron density matrix (2-DM) for a seniority-zero wave function expansion.")
+
         .def("coefficients",
              &GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>::coefficients,
              "Return the expansion coefficients of this linear expansion wave function model.");
@@ -195,6 +203,20 @@ void bindLinearExpansion<GQCP::SpinResolvedONVBasis>(py::module& module, const s
 
         // PUBLIC METHODS
 
+        .def(
+            "calculate1DM",
+            [](const GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>& linear_expansion) {
+                return linear_expansion.calculate1DM();
+            },
+            "Return the one-electron density matrix (1-DM) for a full spin-resolved wave function expansion.")
+
+        .def(
+            "calculate2DM",
+            [](const GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>& linear_expansion) {
+                return asNumpyArray(linear_expansion.calculate2DM().Eigen());
+            },
+            "Return the two-electron density matrix (2-DM) for a full spin-resolved wave function expansion.")
+
         .def("coefficients",
              &GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::coefficients,
              "Return the expansion coefficients of this linear expansion wave function model.")
@@ -206,6 +228,69 @@ void bindLinearExpansion<GQCP::SpinResolvedONVBasis>(py::module& module, const s
             },
             py::arg("callback"),
             "Iterate over all expansion coefficients and corresponding ONVs, and apply the given callback function.");
+}
+
+
+/**
+ *  A template specialization for the binding of GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>, because it has an additional function to be bound.
+ * 
+ *  @param module               the Pybind11 module
+ *  @param suffix               the suffix for the gqcpy class name, i.e. "LinearExpansion" + suffix
+ *  @param description          the description for the gqcpy class
+ */
+template <>
+void bindLinearExpansion<GQCP::SpinResolvedSelectedONVBasis>(py::module& module, const std::string& suffix, const std::string& description) {
+
+    py::class_<GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>>(module,
+                                                                          ("LinearExpansion_" + suffix).c_str(),
+                                                                          description.c_str())
+
+        // CONSTRUCTORS
+
+        .def_static(
+            "Constant",
+            [](const GQCP::SpinResolvedSelectedONVBasis& onv_basis) {
+                return GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>::Constant(onv_basis);
+            },
+            py::arg("onv_basis"),
+            "Return a linear expansion with a normalized coefficient vector (i.e. all the coefficients are equal).")
+
+        .def_static(
+            "HartreeFock",
+            [](const GQCP::SpinResolvedSelectedONVBasis& onv_basis) {
+                return GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>::HartreeFock(onv_basis);
+            },
+            py::arg("onv_basis"),
+            "Return a linear expansion that represents the Hartree-Fock wave function.")
+
+        .def_static(
+            "Random",
+            [](const GQCP::SpinResolvedSelectedONVBasis& onv_basis) {
+                return GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>::Random(onv_basis);
+            },
+            py::arg("onv_basis"),
+            "Return a linear expansion with a random, normalized coefficient vector, with coefficients uniformly distributed in [-1, +1] before any normalization.")
+
+
+        // PUBLIC METHODS
+
+        .def(
+            "calculate1DM",
+            [](const GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>& linear_expansion) {
+                return linear_expansion.calculate1DM();
+            },
+            "Return the one-electron density matrix (1-DM) for a selected spin-resolved wave function expansion.")
+
+        .def(
+            "calculate2DM",
+            [](const GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>& linear_expansion) {
+                return asNumpyArray(linear_expansion.calculate2DM().Eigen());
+            },
+            "Return the two-electron density matrix (2-DM) for a selected spin-resolved wave function expansion.")
+
+        .def("coefficients",
+             &GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>::coefficients,
+             "Return the expansion coefficients of this linear expansion wave function model.");
 }
 
 

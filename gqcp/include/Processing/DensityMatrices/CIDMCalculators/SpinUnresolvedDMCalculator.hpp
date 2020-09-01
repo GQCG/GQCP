@@ -66,14 +66,14 @@ public:
      *
      *  @return the 1-DM given a coefficient vector
      */
-    OneDM<double> calculate1DM(const VectorX<double>& x) const override { throw std::runtime_error("SpinUnresolvedDMCalculator::calculate1DMs(VectorX<double>): not implemented yet"); }
+    OneDM<double> calculate1DM(const VectorX<double>& x) const override { throw std::runtime_error("SpinUnresolvedDMCalculator::calculateSpinResolved1DM(VectorX<double>): not implemented yet"); }
 
     /**
      *  @param x        the coefficient vector representing the UnresolvedCI wave function
      *
      *  @return the 2-DM given a coefficient vector
      */
-    TwoDM<double> calculate2DM(const VectorX<double>& x) const override { throw std::runtime_error("SpinUnresolvedDMCalculator::calculate2DMs(VectorX<double>): not implemented yet"); }
+    TwoDM<double> calculate2DM(const VectorX<double>& x) const override { throw std::runtime_error("SpinUnresolvedDMCalculator::calculateSpinResolved2DM(VectorX<double>): not implemented yet"); }
 
     /**
      *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)

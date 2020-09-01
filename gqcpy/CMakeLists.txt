@@ -8,11 +8,20 @@ list(APPEND python_bindings_sources
     ${CMAKE_CURRENT_SOURCE_DIR}/version.cpp
 )
 
+add_subdirectory(include)
 add_subdirectory(src)
 
 
 # Configure the Python bindings
 pybind11_add_module(gqcpy MODULE ${python_bindings_sources})
+
+
+target_include_directories(gqcpy
+    PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}>
+        $<BUILD_INTERFACE:${CMAKE_BINARY_DIR}>
+)
+
 
 target_link_libraries(gqcpy PUBLIC gqcp)
 set_target_properties(gqcpy
