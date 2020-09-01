@@ -26,7 +26,7 @@ RUN conda install -c intel mkl-include=2019.0 mkl-static=2019.0 intel-openmp=201
 COPY . .
 RUN mkdir build && cd build && cmake .. \
     -DCMAKE_PREFIX_PATH=/usr/local/miniconda3 \
-    -DCMAKE_INSTALL_PREFIX=/usr/local \
+    -DCMAKE_INSTALL_PREFIX=/usr/local/miniconda3 \
     -DBUILD_TESTS=TRUE \
     -DBUILD_PYTHON_BINDINGS=TRUE 
 RUN cd build && make -j2 && make test && make install
