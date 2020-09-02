@@ -1,4 +1,4 @@
-name: Deploy Docker image for the Ghent Quantum Chemistry Package (GQCP)
+name: Docker for gqcp
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
   pull_request: # debug purposes
 
 jobs:
-  gqcp-docker-deploy:
+  build-and-deploy:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:

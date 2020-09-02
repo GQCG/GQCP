@@ -1,4 +1,4 @@
-name: Run GQCP tests and benchmarks
+name: gqcp build and tests
 
 on: 
   pull_request:
@@ -10,7 +10,7 @@ on:
       - 'cmake/**'
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:

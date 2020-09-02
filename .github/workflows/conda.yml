@@ -1,4 +1,4 @@
-name: Deploy 'gqcg' conda package
+name: Conda gqcp package
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - develop
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:

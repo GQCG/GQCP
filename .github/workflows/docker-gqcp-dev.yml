@@ -1,4 +1,4 @@
-name: Deploy Docker image for GQCP development environment
+name: Docker for gqcp-dev
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
       - develop
 
 jobs:
-  gqcp-dev-docker-deploy:
+  build-and-deploy:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
