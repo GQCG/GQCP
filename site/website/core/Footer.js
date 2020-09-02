@@ -31,30 +31,24 @@ class Footer extends React.Component {
                     </a>
                     <div>
                         <h5>Docs</h5>
-                        <a href={this.docUrl('doc1.html')}>
-                            Getting Started (or other categories)
+                        <a href={this.docUrl('user_documentation/user_getting_started.html')}>
+                            User documentation
             </a>
-                        <a href={this.docUrl('doc2.html')}>Guides (or other categories)</a>
-                        <a href={this.docUrl('doc3.html')}>
-                            API Reference (or other categories)
+                        <a href={this.docUrl('developer_documentation/developer_getting_started.html')}>Developer documentation</a>
+                        <a href={this.docUrl('doc4.html')}>
+                            API Reference
             </a>
                     </div>
                     <div>
                         <h5>Community</h5>
-                        <a href={`${this.props.config.baseUrl}users`}>User Showcase</a>
+                        <a href={`${this.props.config.baseUrl}references`}>Academic references</a>
                         <a
-                            href="https://stackoverflow.com/questions/tagged/"
+                            href="https://github.com/GQCG/GQCP/graphs/contributors"
                             target="_blank"
                             rel="noreferrer noopener">
-                            Stack Overflow
+                            Contributors
             </a>
-                        <a href="https://discordapp.com/">Project Chat</a>
-                        <a
-                            href="https://twitter.com/"
-                            target="_blank"
-                            rel="noreferrer noopener">
-                            Twitter
-            </a>
+
                     </div>
                     <div>
                         <h5>More</h5>
@@ -62,36 +56,15 @@ class Footer extends React.Component {
                         <a href="https://github.com/GQCG/GQCP">GitHub</a>
                         <a
                             className="github-button"
-                            href={this.props.config.repoUrl}
+                            href="https://github.com/GQCG/GQCP"
                             data-icon="octicon-star"
                             data-count-href="/stargazers"
                             data-show-count="true"
                             data-count-aria-label="# stargazers on GitHub"
                             aria-label="Star this project on GitHub">
-                            Star
+                            Star GQCP
             </a>
-                        {this.props.config.twitterUsername && (
-                            <div className="social">
-                                <a
-                                    href={`https://twitter.com/${this.props.config.twitterUsername}`}
-                                    className="twitter-follow-button">
-                                    Follow @{this.props.config.twitterUsername}
-                                </a>
-                            </div>
-                        )}
-                        {this.props.config.facebookAppId && (
-                            <div className="social">
-                                <div
-                                    className="fb-like"
-                                    data-href={this.props.config.url}
-                                    data-colorscheme="dark"
-                                    data-layout="standard"
-                                    data-share="true"
-                                    data-width="225"
-                                    data-show-faces="false"
-                                />
-                            </div>
-                        )}
+
                     </div>
                 </section>
 

@@ -3,4 +3,4 @@ id: doc4
 title: Other Document
 ---
 
-this is another document
+Temporary placeholder document for API.
