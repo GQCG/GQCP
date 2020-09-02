@@ -31,3 +31,6 @@ set_target_properties(gqcpy
 )
 configure_file(__init__.py.in ${CMAKE_BINARY_DIR}/gqcpy/__init__.py)
 configure_file(setup.py.in ${CMAKE_BINARY_DIR}/gqcpy/setup.py)
+
+# Test Python bindings
+add_test(NAME test_bindings COMMAND $(PYTHON_EXECUTABLE) $(CMAKE_CURRENT_SOURCE_DIR)/test_bindings.py WORKING_DIRECTORY ${EXECUTABLE_OUTPUT_PATH} )
