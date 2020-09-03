@@ -34,9 +34,9 @@ namespace GQCP {
  */
 SpinUnresolvedONVBasis::SpinUnresolvedONVBasis(const size_t M, const size_t N) :
     BaseONVBasis(M, SpinUnresolvedONVBasis::calculateDimension(M, N)),
-    ONVManipulator(N) {
+    ONVManipulator(N) { // Make sure that M, N and dim are initialized using parent classes.
 
-    // Create a zero matrix of dimensions (M+1)x(N+1)
+    // Create a zero matrix of dimensions (M+1)x(N+1), 
     this->vertex_weights = std::vector<std::vector<size_t>>(this->M + 1, std::vector<size_t>(this->N + 1, 0));
 
     // M=5   N=2
@@ -48,10 +48,10 @@ SpinUnresolvedONVBasis::SpinUnresolvedONVBasis(const size_t M, const size_t N) :
     // [ 0 0 0 ]
 
 
-    // The largest (reverse lexical) string is the one that includes the first (M-N+1) vertices of the first column
-    //      This is because every vertical move from (p,m) to (p+1,m+1) corresponds to "orbital p+1 is unoccupied".
-    //      Therefore, the largest reverse lexical string is the one where the first (M-N) orbitals are unoccupied.
-    //      This means that there should be (M-N) vertical moves from (0,0).
+    // The largest (reverse lexical) string is the one that includes the first (M-N+1) vertices of the first column.
+    // This is because every vertical move from (p,m) to (p+1,m) corresponds to "orbital p+1 is unoccupied".
+    // Therefore, the largest reverse lexical string is the one where the first (M-N) orbitals are unoccupied.
+    // This means that there should be (M-N) vertical moves from (0,0).
     // Therefore, we may only set the weights of first (M-N+1) vertices of the first column to 1.
     for (size_t p = 0; p < this->M - this->N + 1; p++) {
         this->vertex_weights[p][0] = 1;
@@ -65,13 +65,19 @@ SpinUnresolvedONVBasis::SpinUnresolvedONVBasis(const size_t M, const size_t N) :
     // [ 0 0 0 ]
     // [ 0 0 0 ]
 
-
+    
+    // uitleg klopt niet!!!
     // The recurrence relation for the vertex weights is as follows:
-    //      Every element is the sum of the values of the element vertically above and the element left diagonally above.
-    //      W(p,m) = W(p-1,m) + W(p-1,m-1)
+    // every non-forbidden vertex is the sum of the values of the element vertically above and the element left diagonally above.
+    // W(p,m) = W(p-1,m) + W(p-1,m-1) (eq. 11.18.2 in Helgaker)
 
-    for (size_t m = 1; m < this->N + 1; m++) {
-        for (size_t p = m; p < (this->M - this->N + m) + 1; p++) {
+    for (size_t m = 1; m < this->N + 1; m++) { // m starts at 1 because we start with (1,1) to calculate new vertex weights
+        // We don't want to do calculate redundant zero weights so our p does not have to go -> M+1.
+        // Since (p,m) can only be non-zero if (p-1,m) or (p-1,m-1) are non-zero, the column on position 1 will only receive non-zero values 
+        // until the M-N+1+1-th position. Each additional column will shift downwards with an extra position.
+        // To calculate the remaining vertex weights, we start at position (p,m)=(1,1). p will never be less than m, otherwise we would have a dangling electron without an orbital.
+        // All values of p >= (M - N + m) + 1 will be zero, because these are forbidden occupations.
+        for (size_t p = m; p < (this->M - this->N + m) + 1; p++) { 
             this->vertex_weights[p][m] = this->vertex_weights[p - 1][m] + this->vertex_weights[p - 1][m - 1];
         }
     }
@@ -111,22 +117,26 @@ size_t SpinUnresolvedONVBasis::calculateDimension(const size_t M, const size_t N
  */
 
 /**
- *  @param representation      a representation of an ONV
+ *  @param representation      a bitstring-representation of an ONV
  *
  *  @return the address (i.e. the ordering number) of the given ONV
  */
-size_t SpinUnresolvedONVBasis::addressOf(const size_t representation) const {
+size_t SpinUnresolvedONVBasis::addressOf(size_t representation) const {
 
-    // An implementation of the formula in Helgaker, starting the addressing count from zero
-    size_t copy = representation;
+    // An implementation of formula (11.8.3) in Helgaker, starting the addressing count from zero.
     size_t address = 0;
     size_t electron_count = 0;            // counts the number of electrons in the spin string up to orbital p
-    while (copy != 0) {                   // we will remove the least significant bit each loop, we are finished when no bits are left
-        size_t p = __builtin_ctzl(copy);  // p is the orbital index counter (starting from 1)
+
+    // The address is the sum of the arc weights. Since Y(p+1,m+1)=W(k,m+1), we take p as our orbital index counter and
+    // add all contributions on the right side of p, representing the arc weights of a given diagonal.
+    while (representation != 0) {                   // we will remove the least significant bit each loop, we are finished when no bits are left
+        // This function is used to count the trailing zeros of long integers.
+        size_t p = __builtin_ctzl(representation);  // p is the orbital index counter
         electron_count++;                 // each bit is an electron hence we add it up to the electron count
-        address += this->vertexWeight(p, electron_count);
-        copy ^= copy & -copy;  // flip the least significant bit
-    }
+        address += this->vertexWeight(p, electron_count); 
+        representation ^= representation & -representation;  // flip the least significant 1-bit
+        // representation ^= 1<<p; I would propose this line since it is a bit easier to understand this line of code.
+        }
     return address;
 }
 
