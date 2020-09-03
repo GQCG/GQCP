@@ -6,7 +6,7 @@ on:
       - '**.hpp'
       - '**.cpp'
       - '**.cmake'
-      - '**CMakeLists.txt' 
+      - '**CMakeLists.txt'
       - 'cmake/**'
 
 jobs:

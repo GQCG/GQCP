@@ -4,9 +4,13 @@ on:
   push:
     paths:
       - 'Dockerfile'
+      - '**.hpp'
+      - '**.cpp'
+      - '**.cmake'
+      - '**CMakeLists.txt'
+      - 'cmake/**'
     branches:
       - develop
-  pull_request: # debug purposes
 
 jobs:
   build-and-deploy:

@@ -2,8 +2,16 @@ name: Conda gqcp package
 
 on:
   push:
+    paths:
+      - '**.hpp'
+      - '**.cpp'
+      - '**.cmake'
+      - '**CMakeLists.txt'
+      - 'cmake/**'
+      - 'conda/**'
     branches:
       - develop
+
 
 jobs:
   build-and-deploy:
