@@ -2,12 +2,12 @@
 
 \usepackage{rotating}
 
-\tikzset{every picture/.style={line width=2pt},
-        arcWeight/.style={midway, fill=white, scale=0.75, rotate=-45, text=black}}
+\tikzset{every picture/.style={line width=2.5pt},
+        arcWeight/.style={right=3pt, above=1pt, midway, text=black}}
 
 \begin{document}
 
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=2]
 
 % draw axis and grid
 \draw[->,ultra thick] (0,0)--(3.5,0) node[right]{$n$};
@@ -32,9 +32,9 @@
 
 % draw necessary paths
 \draw (i-0) -- (j-0);
-\draw[blue] (j-0) -- (j-1) node[arcWeight] {\rotatebox{45}{1}};
-\draw (j-1) -- (j-2) node[arcWeight] {\rotatebox{45}{1}};
-\draw (j-2) -- (j-3) node[arcWeight] {\rotatebox{45}{1}};
+\draw[blue] (j-0) -- (j-1) node[arcWeight] {1};
+\draw (j-1) -- (j-2) node[arcWeight] {1};
+\draw (j-2) -- (j-3) node[arcWeight] {1};
 \draw (j-3) -- (k-3);
 
 % draw nodes such that lines don't go over nodes

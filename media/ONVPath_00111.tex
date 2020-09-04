@@ -2,8 +2,8 @@
 
 \usepackage{rotating}
 
-\tikzset{every picture/.style={line width=2pt},
-        arcWeight/.style={midway, fill=white, scale=0.75, rotate=-45, text=black}}
+\tikzset{every picture/.style={line width=2.5pt},
+        arcWeight/.style={right=3pt, above=1pt, midway, text=black}}
 
 \begin{document}
 
@@ -33,9 +33,9 @@
 % draw necessary paths
 \draw (i-0) -- (j-0);
 \draw (j-0) -- (k-0);
-\draw (k-0) -- (k-1) node[arcWeight] {\rotatebox{45}{2}};
-\draw (k-1) -- (k-2) node[arcWeight] {\rotatebox{45}{3}};
-\draw[blue] (k-2) -- (k-3) node[arcWeight] {\rotatebox{45}{4}};
+\draw (k-0) -- (k-1) node[arcWeight] {2};
+\draw (k-1) -- (k-2) node[arcWeight] {3};
+\draw[blue] (k-2) -- (k-3) node[arcWeight] {4};
 
 % draw nodes such that lines don't go over nodes
 \foreach \i in {0,...,3} {
