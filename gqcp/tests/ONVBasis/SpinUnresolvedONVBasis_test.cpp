@@ -48,20 +48,33 @@ BOOST_AUTO_TEST_CASE(ONVBasis_dimension) {
 
 
 /**
- *  Test if the vertex weights of the SpinUnresolvedONV basis addressing scheme are correct
+ *  Test if the vertex weights of the SpinUnresolvedONV basis addressing scheme are correct for the Fock space F(5,3).
  */
-BOOST_AUTO_TEST_CASE(vertex_weights_K5_N3) {
+BOOST_AUTO_TEST_CASE(vertex_weights_M5_N3) {
 
     // Let's test an addressing scheme for K=5 and N=3 (5 MOs and 3 alpha electrons)
-    GQCP::SpinUnresolvedONVBasis fock_space {5, 3};
+    const GQCP::SpinUnresolvedONVBasis onv_basis {5, 3};
 
-    std::vector<std::vector<size_t>> ref_vertex_weights = {{1, 0, 0, 0},
-                                                           {1, 1, 0, 0},
-                                                           {1, 2, 1, 0},
-                                                           {0, 3, 3, 1},
-                                                           {0, 0, 6, 4},
-                                                           {0, 0, 0, 10}};
-    BOOST_CHECK(ref_vertex_weights == fock_space.vertexWeights());
+    const std::vector<std::vector<size_t>> ref_vertex_weights = {{1, 0, 0, 0},
+                                                                 {1, 1, 0, 0},
+                                                                 {1, 2, 1, 0},
+                                                                 {0, 3, 3, 1},
+                                                                 {0, 0, 6, 4},
+                                                                 {0, 0, 0, 10}};
+    BOOST_CHECK(ref_vertex_weights == onv_basis.vertexWeights());
+}
+
+
+/**
+ *  Test if the arc weights of the SpinUnresolvedONV basis addressing scheme are correct for the Fock space F(5,3).
+ */
+BOOST_AUTO_TEST_CASE(arc_weights_M5_N3) {
+
+    const GQCP::SpinUnresolvedONVBasis onv_basis {5, 3};
+
+    BOOST_CHECK(onv_basis.arcWeight(3, 1) == 3);
+    BOOST_CHECK(onv_basis.arcWeight(4, 2) == 4);
+    BOOST_CHECK(onv_basis.arcWeight(2, 2) == 0);
 }
 
 
