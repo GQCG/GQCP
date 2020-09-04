@@ -1,16 +1,35 @@
-\documentclass[tikz]{standalone}
+\documentclass[tikz,border=2mm]{standalone}
 
-\newcommand*{\xMin}{0}%
-\newcommand*{\xMax}{6}%
-\newcommand*{\yMin}{0}%
-\newcommand*{\yMax}{6}%
+\tikzset{every picture/.style={line width=2pt}}
+
 \begin{document}
+
 \begin{tikzpicture}
-    \foreach \i in {\xMin,...,\xMax} {
-        \draw [very thin,gray] (\i,\yMin) -- (\i,\yMax)  node [below] at (\i,\yMin) {$\i$};
-    }
-    \foreach \i in {\yMin,...,\yMax} {
-        \draw [very thin,gray] (\xMin,\i) -- (\xMax,\i) node [left] at (\xMin,\i) {$\i$};
-    }
+
+% draw axis and grid
+
+\draw[->,ultra thick] (0,0)--(3.5,0) node[right]{$n$};
+\draw[->,ultra thick] (0,0)--(0,-5.5) node[below]{$p$};
+
+\foreach \i in {0,...,3} {
+    \node[circle, label=above:\i] at (\i,0) {};
+}
+
+\foreach \i in {0,...,5} {
+    \node[circle, label=left:\i] at (0,-\i) {};
+}
+
+%\draw[help lines, color=gray!30, dashed] (0,0) grid (4,-6); % uncomment this if you want a grid
+
+% draw nodes
+\foreach \i in {0,...,3} {
+    \node[circle, draw=black, fill=black, scale=0.75] (i-\i) at (\i, -\i) {};
+    \node[circle, draw=black, fill=black, scale=0.75] (j-\i) at (\i, -\i-1) {};
+    \node[circle, draw=black, fill=black, scale=0.75] (k-\i) at (\i, -\i-2) {};
+}
+
+% draw necessary paths
+\draw (i-0) -- (i-1) -- (j-1) -- (j-2) -- (j-3) -- (k-3);
+
 \end{tikzpicture}
 \end{document}
