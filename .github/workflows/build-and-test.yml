@@ -33,15 +33,11 @@ jobs:
     - name: Install conda dependencies (Linux)
       if: matrix.os == 'ubuntu-latest'
       run: |
-        conda install -c conda-forge openmp=8.0.1 cmake=3.14 boost-cpp=1.69.0 eigen=3.3.7 blas=2.15 mkl=2019.0 pybind11=2.4.3 benchmark numpy=1.18.1;
-        conda install -c gqcg libint=2.4.2 cint=3.0.17;
-        conda install -c intel mkl-include=2019.0 mkl-static=2019.0 intel-openmp=2019.0;
+        conda install -c conda-forge -c intel -c gqcg openmp=8.0.1 cmake=3.14 boost-cpp=1.69.0 eigen=3.3.7 blas=2.15 pybind11=2.4.3 benchmark numpy=1.18.1 mkl-include=2019.0 mkl-static=2019.0 intel-openmp=2019.0 libint=2.4.2 cint=3.0.17;
     - name: Install conda dependencies (MacOS)
       if: matrix.os == 'macos-latest'
       run: |
-        conda install -c conda-forge cmake=3.14 boost-cpp=1.69.0 eigen=3.3.7 blas=2.15 mkl=2019.0 pybind11=2.4.3 benchmark numpy=1.18.1;
-        conda install -c gqcg libint=2.4.2 cint=3.0.17;
-        conda install -c intel mkl-include=2019.0 mkl-static=2019.0 intel-openmp=2019.0;
+        conda install -c conda-forge -c intel -c gqcg blas=2.15 cmake=3.14 boost-cpp=1.69.0 eigen=3.3.7 pybind11=2.4.3 benchmark numpy=1.18.1,mkl-include=2019.0 mkl-static=2019.0 intel-openmp=2019.0 libint=2.4.2 cint=3.0.17;
     - name: Build, test and install
       run: |
         export LIBINT_DATA_PATH=$HOME/miniconda/share/libint/2.4.2/basis
