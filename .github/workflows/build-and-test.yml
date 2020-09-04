@@ -1,4 +1,4 @@
-name: gqcp build and tests
+name: Build and test
 
 on: 
   pull_request:

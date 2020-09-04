@@ -1,4 +1,4 @@
-name: Conda gqcp package
+name: Conda deployment
 
 on:
   push:
@@ -20,6 +20,7 @@ jobs:
       matrix:
         #os: [ubuntu-latest, macos-latest]
         os: [ubuntu-latest]
+        py: [3.6, 3.7, 3.8]
     steps:
       - uses: actions/setup-python@v2
         with:
@@ -47,5 +48,5 @@ jobs:
           conda create -n packaging -c conda-forge conda-build anaconda-client conda-verify
           source activate packaging
           conda config --set anaconda_upload yes
-          conda-build -c gqcg -c conda-forge -c intel conda --user ${{ secrets.ANACONDA_USER }} --token ${{ secrets.ANACONDA_TOKEN }}
+          conda-build -c gqcg -c conda-forge -c intel conda --user ${{ secrets.ANACONDA_USER }} --token ${{ secrets.ANACONDA_TOKEN }} --variants "{python: [${{ matrix.py }}] }"
           anaconda logout
