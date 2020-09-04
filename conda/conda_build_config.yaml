@@ -40,7 +40,7 @@ eigen:
 boost_cpp:
   - 1.69.0
 libint:
-  - 2.3.1
+  - 2.4.2
 spectra:
   - 0.8.1
 cint:
