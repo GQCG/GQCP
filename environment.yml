@@ -14,7 +14,7 @@ dependencies:
   - pybind11=2.4.3 
   - benchmark 
   - numpy=1.18.1
-  - libint=2.3.1 
+  - libint=2.4.2 
   - cint=3.0.17
   - mkl-include=2019.0 
   - mkl-static=2019.0 

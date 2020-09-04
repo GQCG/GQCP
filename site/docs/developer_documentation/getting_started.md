@@ -23,7 +23,7 @@ Please make sure the following dependencies are available on your system:
 
 - [Boost <= 1.69](http://www.boost.org)
 - [Eigen 3.3.4+](http://eigen.tuxfamily.org/index.php?title=Main_Page)
-- [libint 2.3.1](https://github.com/evaleev/libint)
+- [libint 2.4.2](https://github.com/evaleev/libint)
 - [libcint (gqcg fork)](https://github.com/GQCG/libcint/tree/develop)
 
 You may install these manually, but please note that we offer a Conda and a Docker environment which contains these dependencies from the start. 
@@ -36,10 +36,10 @@ conda env create -f environment.yml
 conda activate gqcp_dev
 ```
 
-Since we (still) depend on Libint's basissets, after installation, you'll have to set the `LIBINT_DATA_PATH` environment variable to the folder that contains the libint bases. In a default installation (of Libint's version v2.3.1), the data path is given by:
+Since we (still) depend on Libint's basissets, after installation, you'll have to set the `LIBINT_DATA_PATH` environment variable to the folder that contains the libint bases. In a default installation (of Libint's version v2.4.2), the data path is given by:
 
 ```bash
-export LIBINT_DATA_PATH=${CONDA_PREFIX}/share/libint/2.3.1/basis
+export LIBINT_DATA_PATH=${CONDA_PREFIX}/share/libint/2.4.2/basis
 ```
 
 You will have to either export this environment variable every time you activate the `gqcp` environment or (better) put this export in your .bashrc or (preferred) [add this environment variable to your virtual environment](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#saving-environment-variables).
@@ -55,7 +55,7 @@ First, [install Docker](https://docs.docker.com/get-docker/). VSCode [has excell
     docker pull gqcg/gqcp-dev
     ```
 
-All these settings are stored in the `.devcontainer` folder. For current testing purposes, the example provided in the GQCP repo has been set up in such a way that you build the image on your local machine. Note that the default Conda prefix in this Docker container is `/usr/local/miniconda3`. As such, the `LIBINT_DATA_PATH`, which has already been exported for your convenience, is `/usr/local/miniconda3/share/libint/2.3.1/basis`.
+All these settings are stored in the `.devcontainer` folder. For current testing purposes, the example provided in the GQCP repo has been set up in such a way that you build the image on your local machine. Note that the default Conda prefix in this Docker container is `/usr/local/miniconda3`. As such, the `LIBINT_DATA_PATH`, which has already been exported for your convenience, is `/usr/local/miniconda3/share/libint/2.4.2/basis`.
 
 ### Singularity installation
 

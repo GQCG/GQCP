@@ -44,7 +44,7 @@ jobs:
         conda install -c intel mkl-include=2019.0 mkl-static=2019.0 intel-openmp=2019.0;
     - name: Build, test and install
       run: |
-        export LIBINT_DATA_PATH=$HOME/miniconda/share/libint/2.3.1/basis
+        export LIBINT_DATA_PATH=$HOME/miniconda/share/libint/2.4.2/basis
         mkdir build && cd build
         cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=$HOME/miniconda -DPYTHON_EXECUTABLE=$HOME/miniconda/bin/python3 -DPYTHON_LIBRARY=$HOME/miniconda/lib/libpython3.8m.a
         make -j2 VERBOSE=1 && env CTEST_OUTPUT_ON_FAILURE=1 make test && sudo make install
