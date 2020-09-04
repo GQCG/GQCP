@@ -3,7 +3,7 @@ name: Docker for gqcp-dev
 on:
   push:
     paths:
-      - 'Dockerfile'
+      - 'Dockerfile-dev'
     branches:
       - develop
 
