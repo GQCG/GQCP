@@ -2,6 +2,7 @@ target_sources(gqcp
     PRIVATE
         BaseFrozenCoreONVBasis.cpp
         BaseONVBasis.cpp
+        ONVPath.cpp
         SeniorityZeroONVBasis.cpp
         SpinResolvedFrozenONVBasis.cpp
         SpinResolvedONV.cpp

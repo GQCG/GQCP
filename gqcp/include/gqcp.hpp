@@ -122,6 +122,7 @@
 #include "ONVBasis/EvaluationIterator.hpp"
 #include "ONVBasis/ONVBasisType.hpp"
 #include "ONVBasis/ONVManipulator.hpp"
+#include "ONVBasis/ONVPath.hpp"
 #include "ONVBasis/SeniorityZeroONVBasis.hpp"
 #include "ONVBasis/SpinResolvedFrozenONVBasis.hpp"
 #include "ONVBasis/SpinResolvedONV.hpp"
