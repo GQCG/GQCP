@@ -1,6 +1,7 @@
 \documentclass[tikz,border=2mm]{standalone}
 
-\tikzset{every picture/.style={line width=2pt}}
+\tikzset{every picture/.style={line width=2pt},
+        arcWeight/.style={midway, circle, fill=white, scale=0.75}}
 
 \begin{document}
 
@@ -29,7 +30,11 @@
 }
 
 % draw necessary paths
-\draw (i-0) -- (i-1) -- (j-1) -- (j-2) -- (j-3) -- (k-3);
+\draw (i-0) -- (i-1) node[arcWeight] {0};
+\draw (i-1) -- (j-1) node[arcWeight] {0};
+\draw (j-1) -- (j-2) node[arcWeight] {1};
+\draw (j-2) -- (j-3) node[arcWeight] {1};
+\draw (j-3) -- (k-3) node[arcWeight] {0};;
 
 \end{tikzpicture}
 \end{document}
