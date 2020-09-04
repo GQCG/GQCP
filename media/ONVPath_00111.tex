@@ -1,6 +1,7 @@
 \documentclass[tikz,border=2mm]{standalone}
 
 \usepackage{rotating}
+
 \tikzset{every picture/.style={line width=2pt},
         arcWeight/.style={midway, fill=white, scale=0.75, rotate=-45, text=black}}
 
@@ -8,7 +9,7 @@
 
 \begin{tikzpicture}
 
-% draw axis and gri
+% draw axis and grid
 \draw[->,ultra thick] (0,0)--(3.5,0) node[right]{$n$};
 \draw[->,ultra thick] (0,0)--(0,-5.5) node[below]{$p$};
 
@@ -30,11 +31,18 @@
 }
 
 % draw necessary paths
-\draw (i-0) -- (i-1) node[arcWeight] {\rotatebox{45}{0}};
-\draw (i-1) -- (j-1);
-\draw (j-1) -- (j-2) node[arcWeight] {\rotatebox{45}{1}};
-\draw (j-2) -- (j-3) node[arcWeight] {\rotatebox{45}{1}};
-\draw (j-3) -- (k-3);
+\draw (i-0) -- (j-0);
+\draw (j-0) -- (k-0);
+\draw (k-0) -- (k-1) node[arcWeight] {\rotatebox{45}{2}};
+\draw (k-1) -- (k-2) node[arcWeight] {\rotatebox{45}{3}};
+\draw[blue] (k-2) -- (k-3) node[arcWeight] {\rotatebox{45}{4}};
+
+% draw nodes such that lines don't go over nodes
+\foreach \i in {0,...,3} {
+    \node[circle, draw=black, fill=black, scale=0.75] (i-\i) at (\i, -\i) {};
+    \node[circle, draw=black, fill=black, scale=0.75] (j-\i) at (\i, -\i-1) {};
+    \node[circle, draw=black, fill=black, scale=0.75] (k-\i) at (\i, -\i-2) {};
+}
 
 \end{tikzpicture}
 \end{document}
