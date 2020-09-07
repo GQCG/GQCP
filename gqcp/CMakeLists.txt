@@ -3,10 +3,13 @@ add_library(gqcp SHARED "")
 
 target_compile_options(gqcp PUBLIC -m64 -pipe)
 target_compile_options(gqcp PUBLIC "$<IF:$<CONFIG:Debug>,-g,-O2>")
-target_compile_options(gqcp PUBLIC "$<IF:$<CXX_COMPILER_ID:Intel>,-xHost,-march=native>")
 target_compile_options(gqcp PUBLIC "$<$<CXX_COMPILER_ID:GNU>:-pthread>")
 target_link_options(gqcp PUBLIC "$<$<CXX_COMPILER_ID:GNU>:-pthread>")
 target_compile_features(gqcp PUBLIC cxx_std_11)
+
+if (OPTIMIZE_FOR_NATIVE)
+    target_compile_options(gqcp PRIVATE "$<IF:$<CXX_COMPILER_ID:Intel>,-xHost,-march=native>")
+endif()
 
 
 # Process the version.hpp-file

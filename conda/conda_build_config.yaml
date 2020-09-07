@@ -19,33 +19,52 @@ blas:
   - 2.15
 blas_impl:
   - mkl
+boost_cpp:
+  - 1.69.0
+cint:
+  - 3.0.17
 cmake:
-  - 3.14.0
+  - 3.18.0
+eigen:
+  - 3.3.7
+intel_openmp:
+  - 2019.0
+libint:
+  - 2.4.2
 mkl:
   - 2019.0
 mkl_include:
   - 2019.0
 mkl_static:
   - 2019.0
+numpy:
+  - 1.18.1
+openmp:
+  - 8.0.1
 pybind11:
   - 2.4.3
 python:
   - 3.6
   - 3.7
   - 3.8
-numpy:
-  - 1.18.1
-eigen:
-  - 3.3.7
-boost_cpp:
-  - 1.69.0
-libint:
-  - 2.3.1
-spectra:
-  - 0.8.1
-cint:
-  - 3.0.17
-openmp:
-  - 8.0.1
-intel_openmp:
-  - 2019.0
+
+pin_run_as_build:
+  blas:
+    max_pin: x.x
+  boost_cpp:
+    max_pin: x.x
+  eigen:
+    max_pin: x.x
+  gmp:
+    max_pin: x.x
+  intel_openmp:
+    max_pin: x
+  mkl_static:
+    max_pin: x
+  mkl_include:
+    max_pin: x
+  numpy:
+    max_pin: x.x
+  openmp:
+    max_pin: x.x 
+

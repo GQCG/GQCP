@@ -1,16 +1,19 @@
-name: Deploy website
+name: Website
 
-# This workflow is triggered on a push to the develop branch. This is a single event so no brackets are needed.
+# This workflow is triggered on a pull-request. This is a single event so no brackets are needed.
 on: 
-  push:
+  push: 
     branches:
-     - develop
+      - develop
+    paths:
+      - 'site/**'
+  pull_request:
     # This workflow will only start if files in site/docs/ or site/website are changed.
     paths: 
     - 'site/**'
 
 jobs:
-  build:
+  build-and-deploy:
     # Configures a build matrix containing multiple operating systems. For each configuration, a copy of the job runs and reports a status.
     runs-on: ${{ matrix.os }}
     # To specify the array of operating systems, we must list them under 'strategy'.
@@ -50,7 +53,15 @@ jobs:
       run: |
         cd site/website
         yarn run build
-
+    
+    # Upload artifact if pull_request
+    - name: Archive build
+      uses: actions/upload-artifact@v1
+      with:
+        name: _site
+        path: site/website/build/
+      if: github.event_name == 'pull_request'
+    
     # Deploy the website to GitHub pages.
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
@@ -58,3 +69,4 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./site/website/build/GQCP
         publish_branch: gh-pages
+      if: github.event_name == 'push'

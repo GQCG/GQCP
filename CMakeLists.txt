@@ -16,6 +16,7 @@ option(BUILD_TESTS "Build the C++ library tests" OFF)
 option(BUILD_BENCHMARKS "Build the executables used for benchmarking the C++ library" OFF)
 option(BUILD_DOCS "Build the documentation of the C++ library using Doxygen" OFF)
 option(BUILD_PYTHON_BINDINGS "Build the Python bindings for the C++ library" OFF)
+option(OPTIMIZE_FOR_NATIVE "Build with -march=native" OFF)
 
 
 # Look for the dependencies
