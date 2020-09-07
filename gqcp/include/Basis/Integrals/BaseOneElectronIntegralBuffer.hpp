@@ -19,7 +19,6 @@
 
 
 #include "Mathematical/Representation/Matrix.hpp"
-
 #include <array>
 
 
