@@ -8,7 +8,11 @@ Bit string manipulations can be very hard to understand. This section should hel
 
 ## The key operators
 
-ONV path manipulations are described using a second quantization approach. GQCP's API sticks as closely to this as possible. To manipulate a path, we use the elementary second quantization operators to annihilate or create arcs that represent occupied orbitals. In an ONV path, a diagonal arc represents an occupied orbital, while a vertical arc represents an unoccupied orbital.  
+OONV path manipulations are described using a second quantization approach. GQCP's API sticks as closely to this as possible. To manipulate a path, we use the elementary second quantization operators to annihilate or create arcs that represent occupied orbitals. In an ONV path, a diagonal arc represents an occupied orbital, while a vertical arc represents an unoccupied orbital.  We will use the path of ONV `10110` as an example.
+
+![init_path](/GQCP/img/ONVPath_10110.png)
+
+The function `annihilate()` removes a diagonal arc, starting at the given coordinate in the ONV path.
 
 ```C++
 /**
@@ -25,7 +29,15 @@ void ONVPath::annihilate(const size_t q, const size_t n) {
     // Update the next possible creation index. Since we're always constructing paths from the top-left to the bottom-right, we're only considering creation indices p > q.
     this->p = q + 1;
 }
+```
 
+There are three diagonal arcs (starting at [0, 0], [2, 1] and [3, 2]). These are the coordinates where `annihilate()` can remove an electron. Let's say we `annihilate(0, 0)`. The diagonal arc starting at [0, 0] will then become a vertical arc, resulting in a new path:
+
+![firs_annihilate](/GQCP/img/ONVPath_00110_1.png)
+
+The ONV path is now 'open'. To 'close' it, the `create()` function can be used.
+
+```C++
 /**
 *  Create the diagonal arc that starts at the coordinate (p, n).
 * 
@@ -39,19 +51,11 @@ void ONVPath::create(const size_t p, const size_t n) {
 }
 ```
 
-The function `annihilate()` removes a diagonal arc, starting at the given coordinate in the ONV path. The function `create()` does the opposite. To understand this, let's look at an example. 
-
-![init_path](/GQCP/img/ONVPath_10110.png)
-
-This path is the visual representation of ONV `10110`. There are three diagonal arcs (starting at [0, 0], [2, 1] and [3, 2]). These are the coordinates where `annihilate()` can remove an electron. Let's say you `annihilate(0, 0)`. The diagonal arc starting at [0, 0] will become a vertical arc, resulting in a new path:
-
-![firs_annihilate](/GQCP/img/ONVPath_00110_1.png)
-
-The ONV path is now 'open'. To 'close' it, the `create()` function can be used. In this particular case, the path can be closed by creating at coordinate [1, 1], resulting in a new ONV: `01110`.
+ In this particular case, the path can be closed by creating at coordinate [1, 1], resulting in a new ONV: `01110`.
 
 ![firs_create](/GQCP/img/ONVPath_01110.png)
 
-We will come back to this later, when looking at a complete example, side-by-side with the source code. 
+We will come back to this later, when looking at a complete example, side-by-side with the source code.  
 
 This is not the only way to close the path. A more involved way consists of shifting the following diagonals (occupied orbitals) to the left until a vertical arc is encountered to close the gap. This is the use of `leftTranslate()`.
 

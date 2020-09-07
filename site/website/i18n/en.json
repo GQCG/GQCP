@@ -5,6 +5,10 @@
     "previous": "Previous",
     "tagline": "The Ghent Quantum Chemistry Package - UNDER CONSTRUCTION",
     "docs": {
+      "developer_documentation/devops": {
+        "title": "GQCP Devops",
+        "sidebar_label": "DevOps"
+      },
       "developer_documentation/developer_getting_started": {
         "title": "Getting started",
         "sidebar_label": "Getting started"
