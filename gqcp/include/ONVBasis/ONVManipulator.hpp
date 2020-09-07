@@ -34,7 +34,7 @@ template <typename _DerivedManipulator>
 class ONVManipulator:
     public CRTP<_DerivedManipulator> {
 
-protected:
+public:
     size_t N;  // number of electrons
 
 public:
