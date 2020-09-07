@@ -39,7 +39,7 @@ void ONVPath::create(const size_t p, const size_t n) {
 }
 ```
 
-The function `annihilate()` removes a diagonal arc, starting at the given coordinate in the ONV path. The function `create()` does the opposite. To understand this, lat's look at an example. 
+The function `annihilate()` removes a diagonal arc, starting at the given coordinate in the ONV path. The function `create()` does the opposite. To understand this, let's look at an example. 
 
 ![init_path](/GQCP/img/ONVPath_10110.png)
 
@@ -53,7 +53,7 @@ The ONV path is now 'open'. To 'close' it, the `create()` function can be used. 
 
 We will come back to this later, when looking at a complete example, side-by-side with the source code. 
 
-Another important function is `leftTranslate()`.
+This is not the only way to close the path. A more involved way consists of shifting the following diagonals (occupied orbitals) to the left until a vertical arc is encountered to close the gap. This is the use of `leftTranslate()`.
 
 ```C++
 /**
