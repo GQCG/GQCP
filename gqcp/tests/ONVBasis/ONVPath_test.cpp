@@ -106,3 +106,47 @@ BOOST_AUTO_TEST_CASE(sandbox) {
     // The total sign factor of this path is 1, since we've encountered 2 electrons in total.
     BOOST_REQUIRE(onv_path.sign() == 1);
 }
+
+/**
+ *  Test if the shift in address, orbital indices and sign change correspond to the correct solutions
+ *  
+ *  This method does not alter the ONVs in any way.
+ */
+BOOST_AUTO_TEST_CASE(iterateToNextUnoccupiedOrbital_signed) {
+
+    // Set up a F(5,3) Fock space.
+    const size_t M = 5;
+    const size_t N = 3;
+
+    const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
+
+
+    // Set up the reference values from an example. [LINK TO WEBSITE]
+    const auto I = GQCP::SpinUnresolvedONV::FromOccupiedIndices({0, 2, 3}, 5);  // |10110>
+    GQCP::ONVPath onv_path {onv_basis, I};
+    BOOST_REQUIRE(onv_path.address() == 2);
+
+    // We start our example by annihilating the first electron on orbital index 0. This creates an open path.
+    onv_path.annihilate(0, 0);
+
+    // Starting from the index of the removed electron, we shift the "next possible creation operator" until we find an unoccupied orbital. In our case, this should be at p=1.
+    onv_path.shiftUntilNextUnoccupiedOrbital(0);
+    const auto nextUnoccupiedIndex = onv_path.nextCreationIndex();
+    BOOST_REQUIRE(nextUnoccupiedIndex == 1);
+
+    // We create the first electron up to this orbital.
+    onv_path.create(nextUnoccupiedIndex, 0);
+
+    // Subsequently, the second electron at orbital index 3 is annihilated.
+    onv_path.annihilate(3, 1);
+
+    // Starting from the removed electron, next unocupied orbital should be located at p=4.
+    onv_path.shiftUntilNextUnoccupiedOrbital(1);
+    BOOST_REQUIRE(onv_path.nextCreationIndex() == 4);
+
+
+
+
+
+    //onv_path.shiftUntilNextUnoccupiedOrbital(2);
+}

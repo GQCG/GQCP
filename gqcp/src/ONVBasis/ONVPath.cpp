@@ -99,5 +99,24 @@ void ONVPath::leftTranslate(const size_t p, const size_t n) {
     this->m_sign *= -1;
 }
 
+/**
+ * Close the open path by shifting diagonal arcs to the left. Stop when an unoccupied orbital (vertical arc) is found.
+ * 
+ * @param p         index of the orbital from where we start closing the path
+ * @param n         the number of electrons in the ONV/path up to the orbital index p
+ */
+void ONVPath::shiftUntilNextUnoccupiedOrbital(size_t n) {
+    
+    // If the orbital index is not the same as the occupation index of the next electron, we have encountered an unoccupied orbital/vertical arc.
+    while (n < this->onv_basis.N && this->p == this->onv.occupationIndexOf(n+1)) {
+
+        // Translate the diagonal arc starting at (p,n+1) one position to the left. This function keeps tabs on the creation index p and sign.
+        this->leftTranslate(this->p, n+1);
+        
+        // Shift to next electron to be checked in the loop.
+        n++;
+    }
+}
+
 
 }  // namespace GQCP

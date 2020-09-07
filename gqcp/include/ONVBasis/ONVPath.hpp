@@ -106,6 +106,14 @@ public:
     size_t nextCreationIndex() const { return this->p; }
 
     /**
+     * Close the open path by shifting diagonal arcs to the left. Stop when an unoccupied orbital (vertical arc) is found.
+     * 
+     * @param p         index of the orbital from where we start closing the path
+     * @param n         the number of electrons in the ONV/path up to the orbital index p
+     */
+    void shiftUntilNextUnoccupiedOrbital(size_t n);
+
+    /**
      *  @return the total phase factor/sign associated to the original path's modification
      */
     int sign() const { return this->m_sign; }
