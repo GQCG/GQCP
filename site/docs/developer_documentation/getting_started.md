@@ -162,6 +162,7 @@ As promised, here is an overview of all the CMake options that GQCP supports.
 
 * `-DPYTHON_LIBRARY=python_library` with `python_library` the path to the libraries that support your preferred Python executable.
 
+* `-DOPTIMIZE_FOR_NATIVE=TRUE` optimizes builds for the machine on which the software is built. This should not be enable for Docker builds as not all optimizations are available on all run infrastructures.
 
 ### CMake options - quick reference
 As you can see, there are a lot of options that can (and should) be passed to CMake. For quick reference, here's a command that should work most of the time. In your out-of-source build directory, initialize CMake, make all targets, run all tests and install the library:
