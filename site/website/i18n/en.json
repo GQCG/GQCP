@@ -13,6 +13,10 @@
         "title": "Introduction for developers",
         "sidebar_label": "Introduction"
       },
+      "developer_documentation/developer_ONV_path": {
+        "title": "ONV path manipulation",
+        "sidebar_label": "ONV path manipulation"
+      },
       "developer_documentation/style_guide": {
         "title": "GQCP Style Guide",
         "sidebar_label": "Style guide"
