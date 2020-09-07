@@ -652,11 +652,11 @@ public:
 
     /**
      *  @param p            the orbital index
-     *  @param m            the electron index
+     *  @param n            the electron index
      * 
      *  @return the vertex weight for the given indices
      */
-    size_t vertexWeight(const size_t p, const size_t m) const { return this->vertex_weights[p][m]; }
+    size_t vertexWeight(const size_t p, const size_t n) const { return this->vertex_weights[p][n]; }
 
     /**
      *  @return all the vertex weights for this ONV basis

@@ -71,10 +71,12 @@ void bindNucleus(py::module& module);
 
 
 // ONVBasis
+void bindONVPath(py::module& module);
 void bindSeniorityZeroONVBasis(py::module& module);
 void bindSpinResolvedONV(py::module& module);
 void bindSpinResolvedONVBasis(py::module& module);
 void bindSpinUnresolvedONV(py::module& module);
+void bindSpinUnresolvedONVBasis(py::module& module);
 
 
 // Operator - FirstQuantized
@@ -224,10 +226,12 @@ PYBIND11_MODULE(gqcpy, module) {
 
 
     // ONVBasis
+    gqcpy::bindONVPath(module);
     gqcpy::bindSeniorityZeroONVBasis(module);
     gqcpy::bindSpinResolvedONV(module);
     gqcpy::bindSpinResolvedONVBasis(module);
     gqcpy::bindSpinUnresolvedONV(module);
+    gqcpy::bindSpinUnresolvedONVBasis(module);
 
 
     // Operator - FirstQuantized
