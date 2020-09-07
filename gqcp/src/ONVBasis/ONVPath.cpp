@@ -108,7 +108,7 @@ void ONVPath::leftTranslate(const size_t p, const size_t n) {
 void ONVPath::shiftUntilNextUnoccupiedOrbital(size_t n) {
     
     // If the orbital index is not the same as the occupation index of the next electron, we have encountered an unoccupied orbital/vertical arc.
-    while (n < this->onv_basis.N && this->p == this->onv.occupationIndexOf(n+1)) {
+    while (n < this->onv_basis.numberOfElectrons() && this->p == this->onv.occupationIndexOf(n+1)) {
 
         // Translate the diagonal arc starting at (p,n+1) one position to the left. This function keeps tabs on the creation index p and sign.
         this->leftTranslate(this->p, n+1);
