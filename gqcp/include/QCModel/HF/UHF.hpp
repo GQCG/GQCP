@@ -300,6 +300,8 @@ public:
         const auto& H_core = sq_hamiltonian.core();
         const auto J = UHF<Scalar>::calculateScalarBasisDirectMatrix(P, sq_hamiltonian);
         const auto K_sigma_par = UHF<Scalar>::calculateScalarBasisExchangeMatrix(P, sq_hamiltonian).parameters(sigma);
+
+        // Return the exchange matrix as an SQOneElectronOperator to allow summation with H_core and J
         const auto K_sigma = GQCP::SQOneElectronOperator<Scalar, 1> {K_sigma_par};
 
         return H_core + J - K_sigma;
