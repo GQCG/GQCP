@@ -39,6 +39,13 @@ void bindONVPath(py::module& module) {
                 return path.address();
             },
             "Return the address of the current path")
+        
+        .def(
+            "annihilate",
+            [](GQCP::ONVPath& path) {
+                path.annihilate();
+            },
+            "Annihilate the diagonal arc that starts at the current state of the path.")
 
         .def(
             "annihilate",
@@ -75,11 +82,10 @@ void bindONVPath(py::module& module) {
             "Return The orbital index p that should be checked next for a possible creation. Since we're always constructing paths from the top-left to the bottom-right, this index will always be larger than the index q on which we previously annihilated. After creation, the path then corresponds to E_{pq} |onv>, with |onv> the initial ONV.")
 
         .def(
-            "shiftUntilNextUnoccupiedOrbital",
-            [](GQCP::ONVPath& path, size_t n) {
-                path.shiftUntilNextUnoccupiedOrbital(n);
+            "leftTranslateUntilVertical",
+            [](GQCP::ONVPath& path) {
+                path.leftTranslateUntilVertical();
             },
-            py::arg("n"),
             "Close the open path by shifting diagonal arcs to the left. Stop when an unoccupied orbital (vertical arc) is found.")
 
         .def(

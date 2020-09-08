@@ -36,7 +36,8 @@ ONVPath::ONVPath(const SpinUnresolvedONVBasis& onv_basis, const SpinUnresolvedON
     onv_basis {onv_basis},
     onv {onv},
     m_address {address},
-    p {0},
+    orbital_index {0},
+    electron_index {0},
     m_sign {+1} {}
 
 
@@ -57,6 +58,19 @@ ONVPath::ONVPath(const SpinUnresolvedONVBasis& onv_basis, const SpinUnresolvedON
 /**
  *  Annihilate the diagonal arc that starts at the coordinate (q,n).
  * 
+ */
+void ONVPath::annihilate() {
+
+    // During annihilation, we're removing an arc, so we'll have to update the current address by removing the corresponding arc weight.
+    this->m_address -= this->onv_basis.arcWeight(this->electron_index, this->electron_index);
+
+    // Update the next possible creation index. Since we're always constructing paths from the top-left to the bottom-right, we're only considering creation indices p > q.
+    this->orbital_index++;
+}
+
+/**
+ *  Annihilate the diagonal arc that starts at the coordinate (q,n).
+ * 
  *  @param q        the index of the orbital that should be annihilated
  *  @param n        the number of electrons in the ONV/path up to the orbital index q
  */
@@ -66,7 +80,8 @@ void ONVPath::annihilate(const size_t q, const size_t n) {
     this->m_address -= this->onv_basis.arcWeight(q, n);
 
     // Update the next possible creation index. Since we're always constructing paths from the top-left to the bottom-right, we're only considering creation indices p > q.
-    this->p = q + 1;
+    this->orbital_index = q + 1;
+    this->electron_index = n;
 }
 
 
@@ -82,6 +97,14 @@ void ONVPath::create(const size_t p, const size_t n) {
     this->m_address += this->onv_basis.arcWeight(p, n);
 }
 
+/**
+ * Return if the path has been finished, i.e. if it the electron index has exceeded the total number of electrons, keeping in mind that we start at index 0.
+ * 
+ * @return if the path has been finished
+ */
+ bool ONVPath::isFinished() {
+    return this->electron_index < this->onv_basis.numberOfElectrons();
+ }
 
 /**
  *  Translate the diagonal arc that starts at the coordinate (p, n) to the left.
@@ -91,12 +114,15 @@ void ONVPath::create(const size_t p, const size_t n) {
  */
 void ONVPath::leftTranslate(const size_t p, const size_t n) {
 
-    // Translating a diagonal arc can be rewritten as an annihilation, followed by a creation.
-    this->annihilate(p, n);
-    this->create(p, n - 1);
+    // Translating a diagonal arc can be rewritten as an removal of the current arcweight, followed by an addition of the arcweight on the left.
+    this->m_address += this->onv_basis.arcWeight(p, n-1) - this->onv_basis.arcWeight(p, n);
 
     // Since a left-translation describes the process of 'encountering an electron/occupied orbital', the sign factor should be updated according to the fermionic anticommutation rules.
     this->m_sign *= -1;
+
+    // Update the internal orbital and electron indices to move to the next orbital.
+    this->orbital_index++;
+    this->electron_index++;
 }
 
 /**
@@ -105,16 +131,13 @@ void ONVPath::leftTranslate(const size_t p, const size_t n) {
  * @param p         index of the orbital from where we start closing the path
  * @param n         the number of electrons in the ONV/path up to the orbital index p
  */
-void ONVPath::shiftUntilNextUnoccupiedOrbital(size_t n) {
+void ONVPath::leftTranslateUntilVertical() {
     
     // If the orbital index is not the same as the occupation index of the next electron, we have encountered an unoccupied orbital/vertical arc.
-    while (n < this->onv_basis.numberOfElectrons() && this->p == this->onv.occupationIndexOf(n+1)) {
+    while (!this->isFinished() && this->onv.isOccupied(this->orbital_index)) {
 
-        // Translate the diagonal arc starting at (p,n+1) one position to the left. This function keeps tabs on the creation index p and sign.
-        this->leftTranslate(this->p, n+1);
-        
-        // Shift to next electron to be checked in the loop.
-        n++;
+        // Translate the diagonal arc starting at (p,n+1) one position to the left. This function keeps tabs on the creation index p, electron index n and sign.
+        this->leftTranslate(this->orbital_index, this->electron_index + 1);
     }
 }
 

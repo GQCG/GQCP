@@ -112,7 +112,7 @@ BOOST_AUTO_TEST_CASE(sandbox) {
  *  
  *  This method does not alter the ONVs in any way.
  */
-BOOST_AUTO_TEST_CASE(iterateToNextUnoccupiedOrbital_signed) {
+BOOST_AUTO_TEST_CASE(iterateToNextUnoccupiedOrbital) {
 
     // Set up a F(5,3) Fock space.
     const size_t M = 5;
@@ -130,7 +130,7 @@ BOOST_AUTO_TEST_CASE(iterateToNextUnoccupiedOrbital_signed) {
     onv_path.annihilate(0, 0);
 
     // Starting from the index of the removed electron, we shift the "next possible creation operator" until we find an unoccupied orbital. In our case, this should be at p=1.
-    onv_path.shiftUntilNextUnoccupiedOrbital(0);
+    onv_path.leftTranslateUntilVertical();
     const auto nextUnoccupiedIndex = onv_path.nextCreationIndex();
     BOOST_REQUIRE(nextUnoccupiedIndex == 1);
 
@@ -141,7 +141,7 @@ BOOST_AUTO_TEST_CASE(iterateToNextUnoccupiedOrbital_signed) {
     onv_path.annihilate(3, 1);
 
     // Starting from the removed electron, next unocupied orbital should be located at p=4.
-    onv_path.shiftUntilNextUnoccupiedOrbital(1);
+    onv_path.leftTranslateUntilVertical();
     BOOST_REQUIRE(onv_path.nextCreationIndex() == 4);
 
 

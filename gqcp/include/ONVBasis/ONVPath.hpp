@@ -42,7 +42,10 @@ private:
     size_t m_address;
 
     // The orbital index that should be checked next for a possible creation. Since we're always constructing paths from the top-left to the bottom-right, this index will always be larger than the index q on which we previously annihilated. After creation, the path then corresponds to E_{pq} |onv>, with |onv> the initial ONV.
-    size_t p;
+    size_t orbital_index;
+
+    // The electron index that should be checked next for a possible creation. Since we're always constructing paths from the top-left to the bottom-right, this index will always be the same as the index "n" of the annihilated electron. After creation, the path then corresponds to E_{pq} |onv>, with |onv> the initial ONV.
+    size_t electron_index;
 
     // The total phase factor/sign associated to the original path's modification.
     int m_sign;
@@ -77,6 +80,14 @@ public:
     size_t address() const { return this->m_address; }
 
     /**
+     *  Annihilate the diagonal arc that starts at the internal coordinate (orbital_index, electron_index).
+     * 
+     *  @param q        the index of the orbital that should be annihilated
+     *  @param n        the number of electrons in the ONV/path up to the orbital index q
+     */
+    void annihilate();
+
+    /**
      *  Annihilate the diagonal arc that starts at the coordinate (q,n).
      * 
      *  @param q        the index of the orbital that should be annihilated
@@ -101,9 +112,21 @@ public:
     void leftTranslate(const size_t p, const size_t n);
 
     /**
+    * Return if the path has been finished, i.e. if it the electron index has exceeded the total number of electrons, keeping in mind that we start at index 0.
+    * 
+    * @return if the path has been finished
+    */
+    bool isFinished();
+
+    /**
      *  @return The orbital index "p" that should be checked next for a possible creation. Since we're always constructing paths from the top-left to the bottom-right, this index will always be larger than the index "q" on which we previously annihilated. After creation, the path then corresponds to E_{pq} |onv>, with |onv> the initial ONV.
      */
-    size_t nextCreationIndex() const { return this->p; }
+    size_t nextCreationOrbitalIndex() const { return this->orbital_index; }
+
+    /**
+     *  @return The electron index "n" that should be checked next for a possible creation. Since we're always constructing paths from the top-left to the bottom-right, this index will always be the same as the index "n" on which we previously annihilated. After creation, the path then corresponds to E_{pq} |onv>, with |onv> the initial ONV.
+     */
+    size_t nextCreationElectronIndex() const { return this->electron_index; }
 
     /**
      * Close the open path by shifting diagonal arcs to the left. Stop when an unoccupied orbital (vertical arc) is found.
@@ -111,7 +134,7 @@ public:
      * @param p         index of the orbital from where we start closing the path
      * @param n         the number of electrons in the ONV/path up to the orbital index p
      */
-    void shiftUntilNextUnoccupiedOrbital(size_t n);
+    void leftTranslateUntilVertical();
 
     /**
      *  @return the total phase factor/sign associated to the original path's modification
