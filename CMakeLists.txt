@@ -7,7 +7,7 @@
 #   - the gqcpy Python bindings to the C++ library (optional)
 
 cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
-project(GQCP VERSION 0.2.0 LANGUAGES CXX)
+project(GQCP VERSION 0.0.1 LANGUAGES CXX)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)  # make CMake look into the ./cmake/ folder for configuration files
 
 
