@@ -49,7 +49,7 @@ BOOST_AUTO_TEST_CASE(sandbox) {
 
     // By manual inspection, we find that we may create a diagonal vertex on the current path, thereby closing it and forming a valid ONV.
     // After an annihilation, ONVPath sets its internal index that could be checked for a creation operator to (the previous annihilation index) + 1, which -in this case- is automatically correct.
-    BOOST_REQUIRE(onv_path.nextCreationIndex() == 1);
+    BOOST_REQUIRE(onv_path.nextCreationOrbitalIndex() == 1);
 
 
     // In order to close the current path, we should create a diagonal arc starting from the vertex (1,0).
@@ -66,7 +66,7 @@ BOOST_AUTO_TEST_CASE(sandbox) {
     BOOST_REQUIRE(onv_path.address() == 2);
 
     // The next orbital that should be checked for creation should now have index 2, since we previously annihilated on index 1).
-    BOOST_REQUIRE(onv_path.nextCreationIndex() == 2);
+    BOOST_REQUIRE(onv_path.nextCreationOrbitalIndex() == 2);
 
 
     // We're now in the situation that the next creation index corresponds to an occupied orbital. Since we can't create on these indices, we must translate the diagonal arc that starts at (2, 1) to (2, 0).
@@ -80,7 +80,7 @@ BOOST_AUTO_TEST_CASE(sandbox) {
 
 
     // The next orbital that should be checked for creation should now have index 3, since we have moved up one orbital index.
-    BOOST_REQUIRE(onv_path.nextCreationIndex() == 3);
+    BOOST_REQUIRE(onv_path.nextCreationOrbitalIndex() == 3);
 
 
     // Since we're still in the situation that the next creation index corresponds to an occupied orbital, we repeat the previous procedure of left-translation.
@@ -94,7 +94,7 @@ BOOST_AUTO_TEST_CASE(sandbox) {
 
 
     // The next orbital that should be checked for creation should now have index 3, since we have moved up one orbital index.
-    BOOST_REQUIRE(onv_path.nextCreationIndex() == 4);
+    BOOST_REQUIRE(onv_path.nextCreationOrbitalIndex() == 4);
 
 
     // We can now close up the path by creating an electron in the orbital with index 4 (the current creation index).
@@ -131,7 +131,7 @@ BOOST_AUTO_TEST_CASE(iterateToNextUnoccupiedOrbital) {
 
     // Starting from the index of the removed electron, we shift the "next possible creation operator" until we find an unoccupied orbital. In our case, this should be at p=1.
     onv_path.leftTranslateUntilVertical();
-    const auto nextUnoccupiedIndex = onv_path.nextCreationIndex();
+    const auto nextUnoccupiedIndex = onv_path.nextCreationOrbitalIndex();
     BOOST_REQUIRE(nextUnoccupiedIndex == 1);
 
     // We create the first electron up to this orbital.
@@ -142,7 +142,7 @@ BOOST_AUTO_TEST_CASE(iterateToNextUnoccupiedOrbital) {
 
     // Starting from the removed electron, next unocupied orbital should be located at p=4.
     onv_path.leftTranslateUntilVertical();
-    BOOST_REQUIRE(onv_path.nextCreationIndex() == 4);
+    BOOST_REQUIRE(onv_path.nextCreationOrbitalIndex() == 4);
 
 
 
