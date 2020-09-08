@@ -299,7 +299,8 @@ public:
         // F_sigma = H_core + (J_alpha + J_beta) - K_sigma
         const auto& H_core = sq_hamiltonian.core();
         const auto J = UHF<Scalar>::calculateScalarBasisDirectMatrix(P, sq_hamiltonian);
-        const auto K_sigma = UHF<Scalar>::calculateScalarBasisExchangeMatrix(P, sq_hamiltonian).parametersAsOperator(sigma);
+        const auto K_sigma_par = UHF<Scalar>::calculateScalarBasisExchangeMatrix(P, sq_hamiltonian).parameters(sigma);
+        const auto K_sigma = GQCP::SQOneElectronOperator<Scalar, 1> {K_sigma_par};
 
         return H_core + J - K_sigma;
     }

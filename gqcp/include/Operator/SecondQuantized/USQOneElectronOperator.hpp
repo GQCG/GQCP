@@ -245,24 +245,6 @@ public:
 
 
     /**
-     *  @param sigma                    The requested spin component. This can be either alpha or beta.
-     *  @param i                        The index of the component.
-     * 
-     *  @return the writable matrix representation of the parameters (integrals) of one of the components of this second-quantized operator, for the requested spin component.
-     */
-    ScalarSQOneElectronOperator<Scalar> parametersAsOperator(const Spin sigma, const size_t i = 0) {
-
-        if (sigma == Spin::alpha) {
-            ScalarSQOneElectronOperator<Scalar> SQ_alpha {this->fs_a[i]};
-            return SQ_alpha;
-        } else {
-            ScalarSQOneElectronOperator<Scalar> SQ_beta {this->fs_b[i]};
-            return SQ_beta;
-        };
-    }
-
-
-    /**
      *  In-place rotate the operator to another basis. The same matrix is used for the alpha and beta components.   
      * 
      *  @param U                            the (unitary) rotation matrix
