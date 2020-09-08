@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# Do not use C++17 standard
+# https://github.com/conda/conda-build/issues/3097
+if [[ ${target_platform} =~ .*linux.* ]]; then
+    CXXFLAGS="${CXXFLAGS//-std=c++17/}"
+fi
+
 mkdir build && cd build
 if [ `uname` == Darwin ]; then
     ${BUILD_PREFIX}/bin/cmake \
