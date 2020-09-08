@@ -39,7 +39,7 @@ void bindONVPath(py::module& module) {
                 return path.address();
             },
             "Return the address of the current path")
-        
+
         .def(
             "annihilate",
             [](GQCP::ONVPath& path) {
@@ -75,9 +75,16 @@ void bindONVPath(py::module& module) {
             "Translate the diagonal arc that starts at the coordinate (p, n) to the left.")
 
         .def(
-            "nextCreationIndex",
+            "nextCreationOrbitalIndex",
             [](GQCP::ONVPath& path) {
-                return path.nextCreationIndex();
+                return path.nextCreationOrbitalIndex();
+            },
+            "Return the electron index n that should be checked next for a possible creation. Since we're always constructing paths from the top-left to the bottom-right, this index will always be larger than the index q on which we previously annihilated. After creation, the path then corresponds to E_{pq} |onv>, with |onv> the initial ONV.")
+
+        .def(
+            "nextCreationElectronIndex",
+            [](GQCP::ONVPath& path) {
+                return path.nextCreationOrbitalIndex();
             },
             "Return The orbital index p that should be checked next for a possible creation. Since we're always constructing paths from the top-left to the bottom-right, this index will always be larger than the index q on which we previously annihilated. After creation, the path then corresponds to E_{pq} |onv>, with |onv> the initial ONV.")
 
