@@ -6,6 +6,8 @@ c_compiler:
 cxx_compiler:
   - clangxx                       # [osx]
   - gxx                           # [linux]
+cxx_compiler_version:
+  - 7.5.0                         # [linux] 
 fortran_compiler:
   - gfortran
 target_platform:
