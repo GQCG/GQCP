@@ -17,7 +17,7 @@
         "title": "Introduction for developers",
         "sidebar_label": "Introduction"
       },
-      "developer_documentation/developer_ONV_path": {
+      "developer_documentation/ONV_path_manipulation": {
         "title": "Manipulating ONVs and their addresses",
         "sidebar_label": "Manipulating ONVs"
       },

@@ -13,6 +13,18 @@ Understanding the inner workings of a low-level CI code can be daunting, mainly 
 
 ONV path manipulations are intuitively described using a second quantization approach, which GQCP's API sticks to as closely as possible by providing a class `ONVPath`. To manipulate an ONV path, we use the elementary second quantization operators to annihilate or create arcs that represent occupied orbitals. In an ONV path, a diagonal arc represents an occupied orbital, while a vertical arc represents an unoccupied orbital. As an example, we will use the path of the ONV `|10110>`.
 
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Python-->
+```Python
+# Set up a F(5,3) Fock space.
+onv_basis = gqcpy.SpinUnresolvedONVBasis(5, 3)
+
+onv = gqcpy.SpinUnresolvedONV([0, 2, 3], 5)
+onv_path = gqcpy.ONVPath(onv_basis, onv)
+```
+
+<!--C++-->
 ```C++
 // Set up a F(5,3) Fock space.
 const size_t M = 5;
@@ -23,6 +35,8 @@ const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
 const auto I = GQCP::SpinUnresolvedONV::FromOccupiedIndices({0, 2, 3}, 5);  // |10110>
 GQCP::ONVPath onv_path {onv_basis, I};
 ```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
 
 Graphically, the state of the corresponding `ONVPath` may be pictorially represented as:
 
@@ -55,10 +69,21 @@ There are three diagonal arcs (starting at [0, 0], [2, 1] and [3, 2]), which are
 
 > Note: An _open_ path represents the situation where the associated ONV belongs to a Fock space with less electrons.
 
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Python-->
+```Python
+# Annihilate the electron in the orbital with index 0
+onv_path.annihilate(0, 0)
+```
+
+<!--C++-->
 ```C++
-// Annihilate electron in the orbital with index 0.
+// Annihilate the electron in the orbital with index 0.
 onv_path.annihilate(0, 0);
 ```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
 
 ![first_annihilate](/GQCP/img/ONVPath_00110_1.png)
 
@@ -81,11 +106,21 @@ void ONVPath::create(const size_t p, const size_t n) {
 
 In this particular case, the path can be closed by creating at coordinate [1, 0], resulting in a new ONV: `|01110>`.
 
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Python-->
+```Python
+# Create an electron in the orbital with index 1
+onv_path.create(1, 0)
+```
+
+<!--C++-->
 ```C++
 // Create an electron in the orbital with index 1.
 onv_path.create(1, 0);
 ```
 
+<!--END_DOCUSAURUS_CODE_TABS-->
 
 ![first_create](/GQCP/img/ONVPath_01110.png)
 
@@ -120,26 +155,58 @@ The initial situation may be described in the following figure, on the left.
 
 We'll get started by moving the diagonal arc that starts at [2, 1], yielding the situation on the right.
 
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Python-->
+```Python
+# Translate the diagonal arc that starts at (2, 1) to (2, 0).
+onv_path.leftTranslate(2, 1)
+```
+
+<!--C++-->
 ```C++
 // Translate the diagonal arc that starts at (2, 1) to (2, 0).
 onv_path.leftTranslate(2, 1);
 ```
 
+<!--END_DOCUSAURUS_CODE_TABS-->
+
 Since we have removed an arc with weight `1`, and created one with weight `2`, the current address of this open path is `3`. After this translation, the situation is still very similar. The next possible creation index is still an occupied index, so we'll need to perform another translation.
 
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Python-->
+```Python
+# Translate the diagonal arc that starts at (3, 2) to (3, 1).
+onv_path.leftTranslate(3, 2)
+```
+
+<!--C++-->
 ```C++
 // Translate the diagonal arc that starts at (3, 2) to (3, 1).
 onv_path.leftTranslate(3, 2);
 ```
 
+<!--END_DOCUSAURUS_CODE_TABS-->
+
 ![second_shift](/GQCP/img/ONVPath_00110_4.png)
 
 Since we've removed an arc with weight `1` and created one with weight `3`, the address of the resulting open path is `5`. Finally, we may close the path by creating an electron, since the next index now refers to an unoccupied orbital. The weight of the related diagonal arc is `4`, so finally the address of the resulting ONV is `9`.
 
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Python-->
+```Python
+# Create an electron in the orbital with index 4.
+onv_path.create(4, 2)
+```
+
+<!--C++-->
 ```C++
-// Translate the diagonal arc that starts at (2, 1) to (2, 0).
+// Create an electron in the orbital with index 4.
 onv_path.create(4, 2);
 ```
 
+<!--END_DOCUSAURUS_CODE_TABS-->
 
 ![final_creation](/GQCP/img/ONVPath_00111.png)
