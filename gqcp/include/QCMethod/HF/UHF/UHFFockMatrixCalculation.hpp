@@ -62,9 +62,10 @@ public:
 
         const auto& P_alpha = environment.density_matrices_alpha.back();  // the most recent alpha density matrix
         const auto& P_beta = environment.density_matrices_beta.back();    // the most recent beta density matrices
+        SpinResolvedOneDM<Scalar> P {P_alpha, P_beta};
 
-        const auto F_alpha = QCModel::UHF<double>::calculateScalarBasisFockMatrix(Spin::alpha, P_alpha, P_beta, environment.sq_hamiltonian);
-        const auto F_beta = QCModel::UHF<double>::calculateScalarBasisFockMatrix(Spin::beta, P_alpha, P_beta, environment.sq_hamiltonian);
+        const auto F_alpha = QCModel::UHF<double>::calculateScalarBasisFockMatrix(Spin::alpha, P, environment.sq_hamiltonian);
+        const auto F_beta = QCModel::UHF<double>::calculateScalarBasisFockMatrix(Spin::beta, P, environment.sq_hamiltonian);
 
         environment.fock_matrices_alpha.push_back(F_alpha.parameters());
         environment.fock_matrices_beta.push_back(F_beta.parameters());

@@ -21,7 +21,9 @@
 #include "Basis/SpinorBasis/Spin.hpp"
 #include "Basis/TransformationMatrix.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
+#include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
 #include "Processing/DensityMatrices/OneDM.hpp"
+#include "Processing/DensityMatrices/SpinResolvedOneDM.hpp"
 #include "QCModel/HF/RHF.hpp"
 
 
@@ -171,12 +173,14 @@ public:
 
 
     /**
-     *  @param K_sigma          the number of spatial orbitals for one of the spin components
-     *  @param N_sigma          the number of sigma electrons, i.e. the number of occupied sigma spin-orbitals
+     *  @param K_a          the number of spatial orbitals for the alpha spin component
+     *  @param K_b          the number of spatial orbitals for the beta spin component
+     *  @param N_a          the number of alpha electrons, i.e. the number of occupied alpha spin-orbitals
+     *  @param N_b          the number of beta electrons, i.e. the number of occupied beta spin-orbitals
      *
      *  @return the sigma-spin UHF 1-DM expressed in an orthonormal sigma spin-orbital basis
      */
-    static OneDM<Scalar> calculateOrthonormalBasis1DM(const size_t K_sigma, const size_t N_sigma) {
+    static SpinResolvedOneDM<Scalar> calculateOrthonormalBasis1DM(const size_t K_a, const size_t K_b, const size_t N_a, const size_t N_b) {
 
         // The 1-DM for UHF looks like (for K=5, N=3)
         //    1  0  0  0  0
@@ -185,8 +189,13 @@ public:
         //    0  0  0  0  0
         //    0  0  0  0  0
 
-        OneDM<Scalar> D_MO = OneDM<Scalar>::Zero(K_sigma, K_sigma);
-        D_MO.topLeftCorner(N_sigma, N_sigma) = SquareMatrix<Scalar>::Identity(N_sigma, N_sigma);
+        OneDM<Scalar> D_MO_a = OneDM<Scalar>::Zero(K_a, K_a);
+        D_MO_a.topLeftCorner(N_a, N_a) = SquareMatrix<Scalar>::Identity(N_a, N_a);
+
+        OneDM<Scalar> D_MO_b = OneDM<Scalar>::Zero(K_b, K_b);
+        D_MO_b.topLeftCorner(N_b, N_b) = SquareMatrix<Scalar>::Identity(N_b, N_b);
+
+        SpinResolvedOneDM<Scalar> D_MO {D_MO_a, D_MO_b};
 
         return D_MO;
     }
@@ -198,13 +207,19 @@ public:
      *
      *  @return the sigma-spin UHF 1-DM expressed in the underlying scalar basis
      */
-    static OneDM<Scalar> calculateScalarBasis1DM(const TransformationMatrix<double>& C_sigma, const size_t N_sigma) {
+    static SpinResolvedOneDM<Scalar> calculateScalarBasis1DM(const TransformationMatrix<double>& C_a, const TransformationMatrix<double>& C_b, const size_t N_a, const size_t N_b) {
 
-        const auto K_sigma = C_sigma.numberOfOrbitals();
-        const auto D_orthonormal = UHF<Scalar>::calculateOrthonormalBasis1DM(K_sigma, N_sigma);
+        const auto K_a = C_a.numberOfOrbitals();
+        const auto K_b = C_b.numberOfOrbitals();
+        const auto D_orthonormal = UHF<Scalar>::calculateOrthonormalBasis1DM(K_a, K_b, N_a, N_b);
+
+        // Calculate the alpha and beta scalar basis 1 DM
+        OneDM<Scalar> D_AO_a = C_a.conjugate() * D_orthonormal.alpha() * C_a.transpose();
+        OneDM<Scalar> D_AO_b = C_b.conjugate() * D_orthonormal.beta() * C_b.transpose();
+        SpinResolvedOneDM<Scalar> D_AO {D_AO_a, D_AO_b};
 
         // Transform the 1-DM in an orthonormal basis to the underlying scalar basis
-        return C_sigma.conjugate() * D_orthonormal * C_sigma.transpose();
+        return D_AO;
     }
 
 
@@ -217,11 +232,11 @@ public:
      * 
      *  @return the UHF direct (Coulomb) matrix for spin sigma
      */
-    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisDirectMatrix(const OneDM<Scalar>& P_alpha, const OneDM<Scalar>& P_beta, const SQHamiltonian<Scalar>& sq_hamiltonian) {
+    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisDirectMatrix(const SpinResolvedOneDM<Scalar>& P, const SQHamiltonian<Scalar>& sq_hamiltonian) {
 
         // To perform the contraction, we will first have to convert the density matrices into tensors (since contractions are only implemented for tensors).
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_alpha_tensor {P_alpha.data(), P_alpha.rows(), P_alpha.cols()};
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_beta_tensor {P_beta.data(), P_beta.rows(), P_beta.cols()};
+        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_alpha_tensor {P.alpha().data(), P.alpha().rows(), P.alpha().cols()};
+        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_beta_tensor {P.beta().data(), P.beta().rows(), P.beta().cols()};
 
         // Specify the contraction pairs for the direct contractions:
         //      (mu nu|rho lambda) P(rho lambda)
@@ -247,10 +262,11 @@ public:
      * 
      *  @return the UHF direct (Coulomb) matrix for spin sigma
      */
-    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisExchangeMatrix(const OneDM<Scalar>& P_sigma, const SQHamiltonian<Scalar>& sq_hamiltonian) {
+    static ScalarUSQOneElectronOperator<Scalar> calculateScalarBasisExchangeMatrix(const SpinResolvedOneDM<Scalar>& P, const SQHamiltonian<Scalar>& sq_hamiltonian) {
 
         // To perform the contraction, we will first have to convert the density matrix into a tensor (since contractions are only implemented for tensors).
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_sigma_tensor {P_sigma.data(), P_sigma.rows(), P_sigma.cols()};
+        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_alpha_tensor {P.alpha().data(), P.alpha().rows(), P.alpha().cols()};
+        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_beta_tensor {P.beta().data(), P.beta().rows(), P.beta().cols()};
 
         // Specify the contraction pairs for the exchange contraction:
         //      (mu rho|lambda nu) P(lambda rho)
@@ -258,10 +274,15 @@ public:
 
         // Do the actual contraction, and convert the given tensor back to a matrix.
         const auto& g = sq_hamiltonian.twoElectron().parameters();
-        Tensor<Scalar, 2> K_sigma_tensor = g.contract(P_sigma_tensor, exchange_contraction_pair);
+        Tensor<Scalar, 2> K_alpha_tensor = g.contract(P_alpha_tensor, exchange_contraction_pair);
+        Tensor<Scalar, 2> K_beta_tensor = g.contract(P_beta_tensor, exchange_contraction_pair);
 
-        Eigen::Map<Eigen::MatrixXd> K_sigma {K_sigma_tensor.data(), K_sigma_tensor.dimension(0), K_sigma_tensor.dimension(1)};
-        return ScalarSQOneElectronOperator<Scalar>(K_sigma);
+
+        Eigen::Map<Eigen::MatrixXd> K_alpha {K_alpha_tensor.data(), K_alpha_tensor.dimension(0), K_alpha_tensor.dimension(1)};
+        Eigen::Map<Eigen::MatrixXd> K_beta {K_beta_tensor.data(), K_beta_tensor.dimension(0), K_beta_tensor.dimension(1)};
+        ScalarUSQOneElectronOperator<Scalar> K {K_alpha, K_beta};
+
+        return K;
     }
 
 
@@ -273,25 +294,14 @@ public:
      *
      *  @return the RHF Fock matrix expressed in the scalar basis
      */
-    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(const Spin sigma, const OneDM<Scalar>& P_alpha, const OneDM<Scalar>& P_beta, const SQHamiltonian<Scalar>& sq_hamiltonian) {
+    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(const Spin sigma, const SpinResolvedOneDM<Scalar>& P, const SQHamiltonian<Scalar>& sq_hamiltonian) {
 
         // F_sigma = H_core + (J_alpha + J_beta) - K_sigma
         const auto& H_core = sq_hamiltonian.core();
-        const auto J = UHF<Scalar>::calculateScalarBasisDirectMatrix(P_alpha, P_beta, sq_hamiltonian);
+        const auto J = UHF<Scalar>::calculateScalarBasisDirectMatrix(P, sq_hamiltonian);
+        const auto K_sigma = UHF<Scalar>::calculateScalarBasisExchangeMatrix(P, sq_hamiltonian).parametersAsOperator(sigma);
 
-        switch (sigma) {
-        case Spin::alpha: {
-            const auto K_alpha = UHF<Scalar>::calculateScalarBasisExchangeMatrix(P_alpha, sq_hamiltonian);
-            return H_core + J - K_alpha;
-            break;
-        }
-
-        case Spin::beta: {
-            const auto K_beta = UHF<Scalar>::calculateScalarBasisExchangeMatrix(P_beta, sq_hamiltonian);
-            return H_core + J - K_beta;
-            break;
-        }
-        }
+        return H_core + J - K_sigma;
     }
 
 

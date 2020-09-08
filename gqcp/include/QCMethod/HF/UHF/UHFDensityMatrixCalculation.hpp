@@ -63,11 +63,10 @@ public:
         const auto& C_alpha = environment.coefficient_matrices_alpha.back();  // the most recent alpha coefficient matrix
         const auto& C_beta = environment.coefficient_matrices_beta.back();    // the most recent beta coefficient matrix
 
-        const auto D_alpha = QCModel::UHF<double>::calculateScalarBasis1DM(C_alpha, environment.N_alpha);
-        const auto D_beta = QCModel::UHF<double>::calculateScalarBasis1DM(C_beta, environment.N_beta);
+        const auto D = QCModel::UHF<double>::calculateScalarBasis1DM(C_alpha, C_beta, environment.N_alpha, environment.N_beta);
 
-        environment.density_matrices_alpha.push_back(D_alpha);
-        environment.density_matrices_beta.push_back(D_beta);
+        environment.density_matrices_alpha.push_back(D.alpha());
+        environment.density_matrices_beta.push_back(D.beta());
     }
 };
 
