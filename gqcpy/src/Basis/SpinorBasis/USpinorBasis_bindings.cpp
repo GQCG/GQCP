@@ -51,6 +51,15 @@ void bindUSpinorBasis(py::module& module) {
         // PUBLIC METHODS
 
         .def(
+            "calculateAtomicSpinZ",
+            [](const GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, const std::vector<size_t>& ao_list, const GQCP::Spin& sigma) {
+                return spinor_basis.calculateAtomicSpinZ(ao_list, sigma);
+            },
+            py::arg("ao_list"),
+            py::arg("sigma"),
+            "Return the atomic spin-z operator for a given set of AO indices.")
+
+        .def(
             "calculateMullikenOperator",
             [](GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, const std::vector<size_t>& ao_list, const GQCP::Spin sigma) {
                 return spinor_basis.calculateMullikenOperator(ao_list, sigma);
