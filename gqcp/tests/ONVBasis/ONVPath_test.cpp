@@ -134,6 +134,8 @@ BOOST_AUTO_TEST_CASE(leftTranslateUntilVertical) {
     auto nextUnoccupiedOrbitalIndex = onv_path.nextCreationOrbitalIndex();
     auto nextUnoccupiedElectronIndex = onv_path.nextCreationElectronIndex();
     BOOST_REQUIRE(nextUnoccupiedOrbitalIndex == 1 && nextUnoccupiedElectronIndex == 0);
+    // Since there were no left translations in this example, the address stays the same.
+    BOOST_REQUIRE(onv_path.address() == 2);
 
     // We create the first electron up to this orbital.
     onv_path.create(nextUnoccupiedOrbitalIndex, nextUnoccupiedElectronIndex);
@@ -146,10 +148,6 @@ BOOST_AUTO_TEST_CASE(leftTranslateUntilVertical) {
     nextUnoccupiedOrbitalIndex = onv_path.nextCreationOrbitalIndex();
     nextUnoccupiedElectronIndex = onv_path.nextCreationElectronIndex();
     BOOST_REQUIRE(nextUnoccupiedOrbitalIndex == 4 && nextUnoccupiedElectronIndex == 2);
+    BOOST_REQUIRE(onv_path.address() == 4);
 
-
-
-
-
-    //onv_path.shiftUntilNextUnoccupiedOrbital(2);
 }
