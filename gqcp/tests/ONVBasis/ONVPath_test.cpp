@@ -131,22 +131,23 @@ BOOST_AUTO_TEST_CASE(leftTranslateUntilVertical) {
 
     // Starting from the index of the removed electron, we shift the "next possible creation operator" until we find an unoccupied orbital. In our case, this should be at p=1.
     onv_path.leftTranslateUntilVertical();
-    const auto nextUnoccupiedIndex = onv_path.nextCreationOrbitalIndex();
-    BOOST_REQUIRE(nextUnoccupiedIndex == 1);
+    auto nextUnoccupiedOrbitalIndex = onv_path.nextCreationOrbitalIndex();
+    auto nextUnoccupiedElectronIndex = onv_path.nextCreationElectronIndex();
+    BOOST_REQUIRE(nextUnoccupiedOrbitalIndex == 1 && nextUnoccupiedElectronIndex == 0);
+    // Since there were no left translations in this example, the address stays the same.
+    BOOST_REQUIRE(onv_path.address() == 2);
 
     // We create the first electron up to this orbital.
-    onv_path.create(nextUnoccupiedIndex, 0);
+    onv_path.create(nextUnoccupiedOrbitalIndex, nextUnoccupiedElectronIndex);
 
     // Subsequently, the second electron at orbital index 3 is annihilated.
-    onv_path.annihilate(3, 1);
+    onv_path.annihilate(2, 1);
 
     // Starting from the removed electron, next unocupied orbital should be located at p=4.
     onv_path.leftTranslateUntilVertical();
-    BOOST_REQUIRE(onv_path.nextCreationOrbitalIndex() == 4);
+    nextUnoccupiedOrbitalIndex = onv_path.nextCreationOrbitalIndex();
+    nextUnoccupiedElectronIndex = onv_path.nextCreationElectronIndex();
+    BOOST_REQUIRE(nextUnoccupiedOrbitalIndex == 4 && nextUnoccupiedElectronIndex == 2);
+    BOOST_REQUIRE(onv_path.address() == 4);
 
-
-
-
-
-    //onv_path.shiftUntilNextUnoccupiedOrbital(2);
 }
