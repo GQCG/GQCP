@@ -112,7 +112,7 @@ BOOST_AUTO_TEST_CASE(sandbox) {
  *  
  *  This method does not alter the ONVs in any way.
  */
-BOOST_AUTO_TEST_CASE(iterateToNextUnoccupiedOrbital) {
+BOOST_AUTO_TEST_CASE(leftTranslateUntilVertical) {
 
     // Set up a F(5,3) Fock space.
     const size_t M = 5;
