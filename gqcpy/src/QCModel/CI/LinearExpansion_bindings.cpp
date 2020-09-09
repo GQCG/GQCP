@@ -146,7 +146,15 @@ void bindLinearExpansion<GQCP::SeniorityZeroONVBasis>(py::module& module, const 
 
         .def("coefficients",
              &GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>::coefficients,
-             "Return the expansion coefficients of this linear expansion wave function model.");
+             "Return the expansion coefficients of this linear expansion wave function model.")
+
+        .def(
+            "calculateSpinDensity",
+            [](const GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>& linear_expansion) {
+                return linear_expansion.calculateSpinDensity();
+            },
+            "Return the spin density matrix for a seniority-zero wave function expansion.");
+    ;
 }
 
 
@@ -227,7 +235,14 @@ void bindLinearExpansion<GQCP::SpinResolvedONVBasis>(py::module& module, const s
                 return linear_expansion.forEach(callback);
             },
             py::arg("callback"),
-            "Iterate over all expansion coefficients and corresponding ONVs, and apply the given callback function.");
+            "Iterate over all expansion coefficients and corresponding ONVs, and apply the given callback function.")
+
+        .def(
+            "calculateSpinDensity",
+            [](const GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>& linear_expansion) {
+                return linear_expansion.calculateSpinDensity();
+            },
+            "Return the spin density matrix for a full spin-resolved wave function expansion.");
 }
 
 
@@ -290,7 +305,14 @@ void bindLinearExpansion<GQCP::SpinResolvedSelectedONVBasis>(py::module& module,
 
         .def("coefficients",
              &GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>::coefficients,
-             "Return the expansion coefficients of this linear expansion wave function model.");
+             "Return the expansion coefficients of this linear expansion wave function model.")
+
+        .def(
+            "calculateSpinDensity",
+            [](const GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>& linear_expansion) {
+                return linear_expansion.calculateSpinDensity();
+            },
+            "Return the spin density matrix for a full spin-resolved wave function expansion.");
 }
 
 
