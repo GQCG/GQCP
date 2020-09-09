@@ -41,10 +41,10 @@ private:
     // The address of the current path.
     size_t m_address;
 
-    // The orbital index that should be checked next for a possible creation. Since we're always constructing paths from the top-left to the bottom-right, this index will always be larger than the index q on which we previously annihilated. After creation, the path then corresponds to E_{pq} |onv>, with |onv> the initial ONV.
+    // The creation index p that should be checked next for a possible creation. Since we're always constructing paths from the top-left to the bottom-right, this index will always be larger than the index q on which we previously annihilated. After creation, the path then corresponds to E_{pq} |onv>, with |onv> the initial ONV.
     size_t orbital_index;
 
-    // The electron index that should be checked next for a possible creation. Since we're always constructing paths from the top-left to the bottom-right, this index will always be the same as the index "n" of the annihilated electron. After creation, the path then corresponds to E_{pq} |onv>, with |onv> the initial ONV.
+    // The electron index n that should be checked next for a possible creation. Since we're always constructing paths from the top-left to the bottom-right, this index will always be the same as the index "n" of the annihilated electron. After creation, the path then corresponds to E_{pq} |onv>, with |onv> the initial ONV.
     size_t electron_index;
 
     // The total phase factor/sign associated to the original path's modification.
@@ -81,9 +81,6 @@ public:
 
     /**
      *  Annihilate the diagonal arc that starts at the internal coordinate (orbital_index, electron_index).
-     * 
-     *  @param q        the index of the orbital that should be annihilated
-     *  @param n        the number of electrons in the ONV/path up to the orbital index q
      */
     void annihilate();
 
@@ -94,6 +91,11 @@ public:
      *  @param n        the number of electrons in the ONV/path up to the orbital index q
      */
     void annihilate(const size_t q, const size_t n);
+
+    /**
+     *  Create the diagonal arc that starts at the internal coordinate (orbital_index, electron_index).
+     */
+    void create();
 
     /**
      *  Create the diagonal arc that starts at the coordinate (p, n).

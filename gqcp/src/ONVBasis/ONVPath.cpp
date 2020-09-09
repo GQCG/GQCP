@@ -84,6 +84,21 @@ void ONVPath::annihilate(const size_t q, const size_t n) {
     this->electron_index = n;
 }
 
+/**
+ *  Create the diagonal arc that starts at the coordinate (p, n).
+ * 
+ *  @param p        the index of the orbital that should be created
+ *  @param n        the number of electrons in the ONV/path up to the orbital index q, prior to the creation
+ */
+void ONVPath::create() {
+
+    // During creation, we're adding an arc, so we'll have to update the current address by adding the corresponding arc weight.
+    this->m_address += this->onv_basis.arcWeight(this->orbital_index, this->electron_index);
+
+    // Update the next possible creation index. Since creation means adding a diagonal, we must update both orbital_index and electron_index.
+    this->orbital_index++;
+    this->electron_index++;
+}
 
 /**
  *  Create the diagonal arc that starts at the coordinate (p, n).
@@ -95,6 +110,10 @@ void ONVPath::create(const size_t p, const size_t n) {
 
     // During creation, we're adding an arc, so we'll have to update the current address by adding the corresponding arc weight.
     this->m_address += this->onv_basis.arcWeight(p, n);
+
+    // Update the next possible creation index. Since creation means adding a diagonal, orbital_index > p and electron_index > n.
+    this->orbital_index = p + 1;
+    this->electron_index = n + 1;
 }
 
 /**
@@ -103,7 +122,7 @@ void ONVPath::create(const size_t p, const size_t n) {
  * @return if the path has been finished
  */
  bool ONVPath::isFinished() {
-    return this->electron_index < this->onv_basis.numberOfElectrons();
+    return this->electron_index >= this->onv_basis.numberOfElectrons();
  }
 
 /**
@@ -132,11 +151,11 @@ void ONVPath::leftTranslate(const size_t p, const size_t n) {
  * @param n         the number of electrons in the ONV/path up to the orbital index p
  */
 void ONVPath::leftTranslateUntilVertical() {
-    
+
     // If the orbital index is not the same as the occupation index of the next electron, we have encountered an unoccupied orbital/vertical arc.
     while (!this->isFinished() && this->onv.isOccupied(this->orbital_index)) {
 
-        // Translate the diagonal arc starting at (p,n+1) one position to the left. This function keeps tabs on the creation index p, electron index n and sign.
+        // Translate the diagonal arc starting at (p,n+1) one position to the left. This function keeps tabs on the creation index, electron index and sign.
         this->leftTranslate(this->orbital_index, this->electron_index + 1);
     }
 }
