@@ -55,7 +55,7 @@ void bindUSQHamiltonian(py::module& module) {
 
         .def(
             "constrain",
-            [](GQCP::USQHamiltonian<double>& usq_hamiltonian, const GQCP::ScalarSQOneElectronOperator<double>& one_electron_op, const double lambda, const GQCP::Spin& sigma) {
+            [](GQCP::USQHamiltonian<double>& usq_hamiltonian, const GQCP::ScalarSQOneElectronOperator<double>& one_electron_op, const double lambda, const GQCP::Spin sigma) {
                 return usq_hamiltonian.constrain(one_electron_op, lambda, sigma);
             },
             py::arg("one_electron_op"),
@@ -80,7 +80,7 @@ void bindUSQHamiltonian(py::module& module) {
 
         .def(
             "rotate",
-            [](GQCP::USQHamiltonian<double>& usq_hamiltonian, const Eigen::MatrixXd& U, const GQCP::Spin& sigma) {
+            [](GQCP::USQHamiltonian<double>& usq_hamiltonian, const Eigen::MatrixXd& U, const GQCP::Spin sigma) {
                 usq_hamiltonian.rotate(GQCP::TransformationMatrix<double> {U}, sigma);
             },
             py::arg("U"),
@@ -97,7 +97,7 @@ void bindUSQHamiltonian(py::module& module) {
 
         .def(
             "rotate",
-            [](GQCP::USQHamiltonian<double>& usq_hamiltonian, const GQCP::JacobiRotationParameters& jacobi_rotation_parameters, const GQCP::Spin& sigma) {
+            [](GQCP::USQHamiltonian<double>& usq_hamiltonian, const GQCP::JacobiRotationParameters& jacobi_rotation_parameters, const GQCP::Spin sigma) {
                 usq_hamiltonian.rotate(jacobi_rotation_parameters);
             },
             py::arg("jacobi_rotation_parameters"),
@@ -106,7 +106,7 @@ void bindUSQHamiltonian(py::module& module) {
 
         .def(
             "spinHamiltonian",
-            [](const GQCP::USQHamiltonian<double>& usq_hamiltonian, const GQCP::Spin& sigma) {
+            [](const GQCP::USQHamiltonian<double>& usq_hamiltonian, const GQCP::Spin sigma) {
                 return usq_hamiltonian.spinHamiltonian(sigma);
             },
             py::arg("sigma"),
@@ -122,7 +122,7 @@ void bindUSQHamiltonian(py::module& module) {
 
         .def(
             "transform",
-            [](GQCP::USQHamiltonian<double>& usq_hamiltonian, const Eigen::MatrixXd& T, const GQCP::Spin& sigma) {
+            [](GQCP::USQHamiltonian<double>& usq_hamiltonian, const Eigen::MatrixXd& T, const GQCP::Spin sigma) {
                 usq_hamiltonian.transform(GQCP::TransformationMatrix<double> {T}, sigma);
             },
             py::arg("U"),

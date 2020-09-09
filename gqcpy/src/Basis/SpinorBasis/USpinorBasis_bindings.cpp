@@ -52,7 +52,7 @@ void bindUSpinorBasis(py::module& module) {
 
         .def(
             "calculateAtomicSpinZ",
-            [](const GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, const std::vector<size_t>& ao_list, const GQCP::Spin& sigma) {
+            [](const GQCP::USpinorBasis<double, GQCP::GTOShell>& spinor_basis, const std::vector<size_t>& ao_list, const GQCP::Spin sigma) {
                 return spinor_basis.calculateAtomicSpinZ(ao_list, sigma);
             },
             py::arg("ao_list"),
