@@ -182,7 +182,7 @@ public:
      */
     static SpinResolvedOneDM<Scalar> calculateOrthonormalBasis1DM(const size_t K_a, const size_t K_b, const size_t N_a, const size_t N_b) {
 
-        // The 1-DM for UHF looks like (for K=5, N=3)
+        // The (alpha) 1-DM for UHF looks like (for K_alpha=5, N_alpha=3)
         //    1  0  0  0  0
         //    0  1  0  0  0
         //    0  0  1  0  0
