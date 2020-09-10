@@ -140,7 +140,7 @@ This was not the only way to close the path related to the ONV `|00110>`. Clearl
      this->annihilate(p, n);
      this->create(p, n - 1);
 
-     // Since a left-translation describes the process of 'encountering an electron/occupied orbital', the sign factor should be updated according to the fermionic anticommutation rules.
+     // Since a left-translation describes the process of 'encountering an electron/occupied orbital', the sign factor should be updated according to the fermionic anti-commutation rules.
      this->m_sign *= -1;
 }
 ```
@@ -188,6 +188,26 @@ onv_path.leftTranslate(3, 2);
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
+
+Instead of translating the occupied arcs to the left manually, there is also the possibility to keep translating occupied arcs until an unoccupied, vertical ar is found. This is done with `leftTranslateUntilVertical()`. This function translates diagonal arcs using the `leftTranslate()` function, until an unoccupied creation index is found. 
+
+<!--DOCUSAURUS_CODE_TABS-->
+
+<!--Python-->
+```Python
+# Keep translating diagonal arcs to the left, until an unoccupied index is found.
+onv_path.leftTranslateUntilVertical()
+```
+
+<!--C++-->
+```C++
+// Keep translating diagonal arcs to the left, until an unoccupied index is found.
+onv_path.leftTranslateUntilVertical();
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+This will lead to the exact same ONV as performing the two `leftTranslate()` functions separately. 
 
 ![second_shift](/GQCP/img/ONVPath_00110_4.png)
 
