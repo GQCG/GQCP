@@ -41,10 +41,10 @@ private:
     // The address of the current path.
     size_t m_address;
 
-    // The creation index p that should be checked next for a possible creation. Since we're always constructing paths from the top-left to the bottom-right, this index will always be larger than the index q on which we previously annihilated. After creation, the path then corresponds to E_{pq} |onv>, with |onv> the initial ONV.
+    // The orbital index 'p' that, together with the electron index 'n' signifies the vertex (p,n) up until which the ONV path construction is finished.
     size_t orbital_index;
 
-    // The electron index n that should be checked next for a possible creation. Since we're always constructing paths from the top-left to the bottom-right, this index will always be the same as the index "n" of the annihilated electron. After creation, the path then corresponds to E_{pq} |onv>, with |onv> the initial ONV.
+    // The electron index 'n' that, together with the orbital index 'p' signifies the vertex (p,n) up until which the ONV path construction is finished.
     size_t electron_index;
 
     // The total phase factor/sign associated to the original path's modification.
@@ -80,7 +80,9 @@ public:
     size_t address() const { return this->m_address; }
 
     /**
-     *  Annihilate the diagonal arc that starts at the internal coordinate (orbital_index, electron_index).
+     *  According to this path's current state, annihilate the next diagonal arc.
+     *
+     *  @note The current state of this path can be retrieved by inspecting the point (p,n), where `p = this->orbitalIndex()` and `n = this->electronIndex()`, which signifies the vertex up until which the path construction is complete.
      */
     void annihilate();
 
@@ -89,11 +91,15 @@ public:
      * 
      *  @param q        the index of the orbital that should be annihilated
      *  @param n        the number of electrons in the ONV/path up to the orbital index q
+     * 
+     *  @note Call this method only when the given orbital index 'q' is occupied! This method does not perform any validation checks.
      */
     void annihilate(const size_t q, const size_t n);
 
     /**
-     *  Create the diagonal arc that starts at the internal coordinate (orbital_index, electron_index).
+     *  According to this path's current state, create the next diagonal arc.
+     * 
+     *  @note The current state of this path can be retrieved by inspecting the point (p,n), where `p = this->orbitalIndex()` and `n = this->electronIndex()`, which signifies the vertex up until which the path construction is complete.
      */
     void create();
 
@@ -106,37 +112,40 @@ public:
     void create(const size_t p, const size_t n);
 
     /**
-     *  Translate the diagonal arc that starts at the coordinate (p, n) to the left.
+     *  @return The electron index 'n' that, together with the orbital index 'p' signifies the vertex (p,n) up until which the ONV path construction is finished.
+     *
+     *  @note The current state of this path can be retrieved by inspecting the point (p,n), where `p = this->orbitalIndex()` and `n = this->electronIndex()`, which signifies the vertex up until which the path construction is complete.
+     */
+    size_t electronIndex() const { return this->electron_index; }
+
+    /**
+     *  @return If the path's construction is considered finished.
+     */
+    bool isFinished() const;
+
+    /**
+     *  Translate the diagonal arc that starts at the coordinate (p,n) to the left, indicating that the current path is 'open' at the vertex (p,n-1) and that the orbital 'p' should be occupied in subsequent path manipulations.
      * 
      *  @param p        the index of the orbital that should be annihilated
      *  @param n        the number of electrons in the ONV/path up to the orbital index p
+     * 
+     *  @note Call this method only if you're sure that the path is 'open' at the vertex (p, n-1)! This method does not perform any validation checks.
      */
     void leftTranslate(const size_t p, const size_t n);
 
     /**
-    * Return if the path has been finished, i.e. if it the electron index has exceeded the total number of electrons, keeping in mind that we start at index 0.
-    * 
-    * @return if the path has been finished
-    */
-    bool isFinished();
-
-    /**
-     *  @return The orbital index "p" that should be checked next for a possible creation. Since we're always constructing paths from the top-left to the bottom-right, this index will always be larger than the index "q" on which we previously annihilated. After creation, the path then corresponds to E_{pq} |onv>, with |onv> the initial ONV.
-     */
-    size_t nextCreationOrbitalIndex() const { return this->orbital_index; }
-
-    /**
-     *  @return The electron index "n" that should be checked next for a possible creation. Since we're always constructing paths from the top-left to the bottom-right, this index will always be the same as the index "n" on which we previously annihilated. After creation, the path then corresponds to E_{pq} |onv>, with |onv> the initial ONV.
-     */
-    size_t nextCreationElectronIndex() const { return this->electron_index; }
-
-    /**
-     * Close the open path by shifting diagonal arcs to the left. Stop when an unoccupied orbital (vertical arc) is found.
+     *  According to this path's current state, translate diagonal arcs to the left until an unoccupied orbital (vertical arc) is found.
      * 
-     * @param p         index of the orbital from where we start closing the path
-     * @param n         the number of electrons in the ONV/path up to the orbital index p
+     *  @note The current state of this path can be retrieved by inspecting the point (p,n), where `p = this->orbitalIndex()` and `n = this->electronIndex()`, which signifies the vertex up until which the path construction is complete.
      */
     void leftTranslateUntilVertical();
+
+    /**
+     *  @return The orbital index 'p' that, together with the electron index 'n' signifies the vertex (p,n) up until which the ONV path construction is finished.
+     *
+     *  @note The current state of this path can be retrieved by inspecting the point (p,n), where `p = this->orbitalIndex()` and `n = this->electronIndex()`, which signifies the vertex up until which the path construction is complete.
+     */
+    size_t orbitalIndex() const { return this->orbital_index; }
 
     /**
      *  @return the total phase factor/sign associated to the original path's modification

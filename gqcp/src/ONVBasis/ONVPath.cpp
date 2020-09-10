@@ -56,49 +56,53 @@ ONVPath::ONVPath(const SpinUnresolvedONVBasis& onv_basis, const SpinUnresolvedON
  */
 
 /**
- *  Annihilate the diagonal arc that starts at the coordinate (q,n).
- * 
+ *  According to this path's current state, annihilate the next diagonal arc.
+ *
+ *  @note The current state of this path can be retrieved by inspecting the point (p,n), where `p = this->orbitalIndex()` and `n = this->electronIndex()`, which signifies the vertex up until which the path creation is complete.
  */
 void ONVPath::annihilate() {
 
     // During annihilation, we're removing an arc, so we'll have to update the current address by removing the corresponding arc weight.
-    this->m_address -= this->onv_basis.arcWeight(this->electron_index, this->electron_index);
+    this->m_address -= this->onv_basis.arcWeight(this->orbital_index, this->electron_index);
 
-    // Update the next possible creation index. Since we're always constructing paths from the top-left to the bottom-right, we're only considering creation indices p > q.
+    // Annihilating the diagonal arc at the current vertex (p,n) means that we will only consider paths where orbital p is unoccupied. Therefore, the sub-path up until vertex (p+1,n) is considered finished.
     this->orbital_index++;
+
+    // Note that we're not calling `this->annihilate(p,n)` in order to avoid a null-operation `this->electron_index = this->electron_index`.
 }
+
 
 /**
  *  Annihilate the diagonal arc that starts at the coordinate (q,n).
  * 
  *  @param q        the index of the orbital that should be annihilated
  *  @param n        the number of electrons in the ONV/path up to the orbital index q
+ * 
+ *  @note Call this method only when the given orbital index 'q' is occupied! This method does not perform any validation checks.
  */
 void ONVPath::annihilate(const size_t q, const size_t n) {
 
     // During annihilation, we're removing an arc, so we'll have to update the current address by removing the corresponding arc weight.
     this->m_address -= this->onv_basis.arcWeight(q, n);
 
-    // Update the next possible creation index. Since we're always constructing paths from the top-left to the bottom-right, we're only considering creation indices p > q.
+    // Annihilating the diagonal arc at (q,n) means that we will only consider paths where orbital q is unoccupied. Therefore, the sub-path up until vertex (q+1,n) is considered finished.
     this->orbital_index = q + 1;
     this->electron_index = n;
 }
 
+
 /**
- *  Create the diagonal arc that starts at the coordinate (p, n).
+ *  According to this path's current state, create the next diagonal arc.
  * 
- *  @param p        the index of the orbital that should be created
- *  @param n        the number of electrons in the ONV/path up to the orbital index q, prior to the creation
+ * @note The current state of this path can be retrieved by inspecting the point (p,n), where `p = this->orbitalIndex()` and `n = this->electronIndex()`, which signifies the vertex up until which the path construction is complete.
  */
 void ONVPath::create() {
 
-    // During creation, we're adding an arc, so we'll have to update the current address by adding the corresponding arc weight.
-    this->m_address += this->onv_basis.arcWeight(this->orbital_index, this->electron_index);
+    this->create(this->orbitalIndex(), this->electronIndex());
 
-    // Update the next possible creation index. Since creation means adding a diagonal, we must update both orbital_index and electron_index.
-    this->orbital_index++;
-    this->electron_index++;
+    // Note that, contrary to `this->annihilate()`, we may call `this->create(p,n)` because the number of operations to be done is the same.
 }
+
 
 /**
  *  Create the diagonal arc that starts at the coordinate (p, n).
@@ -111,48 +115,49 @@ void ONVPath::create(const size_t p, const size_t n) {
     // During creation, we're adding an arc, so we'll have to update the current address by adding the corresponding arc weight.
     this->m_address += this->onv_basis.arcWeight(p, n);
 
-    // Update the next possible creation index. Since creation means adding a diagonal, orbital_index > p and electron_index > n.
+    // Creating the diagonal arc at (p,n) means that we will only consider paths where orbital p is occupied. Therefore, the sub-path up until vertex (p+1,n+1) is considered finished.
     this->orbital_index = p + 1;
     this->electron_index = n + 1;
 }
 
-/**
- * Return if the path has been finished, i.e. if it the electron index has exceeded the total number of electrons, keeping in mind that we start at index 0.
- * 
- * @return if the path has been finished
- */
- bool ONVPath::isFinished() {
-    return this->electron_index >= this->onv_basis.numberOfElectrons();
- }
 
 /**
- *  Translate the diagonal arc that starts at the coordinate (p, n) to the left.
+ *  @return If the path's construction is considered finished.
+ */
+bool ONVPath::isFinished() const {
+    return this->electron_index >= this->onv_basis.numberOfElectrons();
+}
+
+
+/**
+ *  Translate the diagonal arc that starts at the coordinate (p,n) to the left, indicating that the current path is 'open' at the vertex (p,n-1) and that the orbital 'p' should be occupied in subsequent path manipulations.
  * 
  *  @param p        the index of the orbital that should be annihilated
  *  @param n        the number of electrons in the ONV/path up to the orbital index p
+ * 
+ *  @note Call this method only if you're sure that the path is 'open' at the vertex (p, n-1)! This method does not perform any validation checks.
  */
 void ONVPath::leftTranslate(const size_t p, const size_t n) {
 
-    // Translating a diagonal arc can be rewritten as an removal of the current arcweight, followed by an addition of the arcweight on the left.
-    this->m_address += this->onv_basis.arcWeight(p, n-1) - this->onv_basis.arcWeight(p, n);
+    // In order to keep the operation count as small as possible, we're not using `this->create()` or `this->annihilate()`.
+
+    // Translating a diagonal arc can be rewritten as a removal of the arc weight (p,n), followed by the addition of the arc weight (p,n-1).
+    this->m_address += this->onv_basis.arcWeight(p, n - 1) - this->onv_basis.arcWeight(p, n);
 
     // Since a left-translation describes the process of 'encountering an electron/occupied orbital', the sign factor should be updated according to the fermionic anticommutation rules.
     this->m_sign *= -1;
 
-    // Update the internal orbital and electron indices to move to the next orbital.
-    this->orbital_index++;
-    this->electron_index++;
+    // In subsequent path manipulations, the orbital `p` should be occupied (while no 'net creation' has occurred), so the sub path's construction is considered fixed up until the indices (p+1,n).
+    this->orbital_index = p + 1;
+    this->electron_index = n;
 }
 
+
 /**
- * Close the open path by shifting diagonal arcs to the left. Stop when an unoccupied orbital (vertical arc) is found.
- * 
- * @param p         index of the orbital from where we start closing the path
- * @param n         the number of electrons in the ONV/path up to the orbital index p
+ *  According to this path's current state, translate diagonal arcs to the left until an unoccupied orbital (vertical arc) is found.
  */
 void ONVPath::leftTranslateUntilVertical() {
 
-    // If the orbital index is not the same as the occupation index of the next electron, we have encountered an unoccupied orbital/vertical arc.
     while (!this->isFinished() && this->onv.isOccupied(this->orbital_index)) {
 
         // Translate the diagonal arc starting at (p,n+1) one position to the left. This function keeps tabs on the creation index, electron index and sign.

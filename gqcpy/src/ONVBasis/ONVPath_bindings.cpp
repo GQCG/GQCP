@@ -75,16 +75,16 @@ void bindONVPath(py::module& module) {
             "Translate the diagonal arc that starts at the coordinate (p, n) to the left.")
 
         .def(
-            "nextCreationOrbitalIndex",
-            [](GQCP::ONVPath& path) {
-                return path.nextCreationOrbitalIndex();
+            "orbitalIndex",
+            [](const GQCP::ONVPath& path) {
+                return path.orbitalIndex();
             },
             "Return the electron index n that should be checked next for a possible creation. Since we're always constructing paths from the top-left to the bottom-right, this index will always be larger than the index q on which we previously annihilated. After creation, the path then corresponds to E_{pq} |onv>, with |onv> the initial ONV.")
 
         .def(
-            "nextCreationElectronIndex",
-            [](GQCP::ONVPath& path) {
-                return path.nextCreationOrbitalIndex();
+            "electronIndex",
+            [](const GQCP::ONVPath& path) {
+                return path.orbitalIndex();
             },
             "Return The orbital index p that should be checked next for a possible creation. Since we're always constructing paths from the top-left to the bottom-right, this index will always be larger than the index q on which we previously annihilated. After creation, the path then corresponds to E_{pq} |onv>, with |onv> the initial ONV.")
 
@@ -97,7 +97,7 @@ void bindONVPath(py::module& module) {
 
         .def(
             "sign",
-            [](GQCP::ONVPath& path) {
+            [](const GQCP::ONVPath& path) {
                 return path.sign();
             },
             "return the total phase factor/sign associated to the original path's modification");
