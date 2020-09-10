@@ -65,8 +65,7 @@ public:
 
         const auto D = QCModel::UHF<double>::calculateScalarBasis1DM(C_alpha, C_beta, environment.N_alpha, environment.N_beta);
 
-        environment.density_matrices_alpha.push_back(D.alpha());
-        environment.density_matrices_beta.push_back(D.beta());
+        environment.density_matrices.push_back(D);
     }
 };
 

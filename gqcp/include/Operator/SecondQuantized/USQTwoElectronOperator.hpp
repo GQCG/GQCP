@@ -83,7 +83,7 @@ public:
             const auto dimension_of_ith_bb = this->gs_bb[i].numberOfOrbitals();
 
             if ((dimension_of_first_aa != dimension_of_ith_aa) || (dimension_of_first_ab != dimension_of_ith_ab) || (dimension_of_first_ba != dimension_of_ith_ba) || (dimension_of_first_bb != dimension_of_ith_bb)) {
-                throw std::invalid_argument("USQTwoElectronOperator(const std::array<QCMatrix<Scalar>, Components>&): The given tenso representations do not have the same dimensions for either the alpha, beta or one of the mixed components.");
+                throw std::invalid_argument("USQTwoElectronOperator(const std::array<QCMatrix<Scalar>, Components>&): The given tensor representations do not have the same dimensions for either the alpha, beta or one of the mixed components.");
             }
         }
     }

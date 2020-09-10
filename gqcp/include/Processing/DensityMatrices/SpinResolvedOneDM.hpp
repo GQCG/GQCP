@@ -90,6 +90,13 @@ public:
     const OneDM<Scalar>& beta() const { return this->D_bb; }
 
     /**
+     *  @return the sum of the norms of the alpha and beta components of the spin resolved one DM
+     */
+    size_t norm() const {
+        return this->alpha().norm() + this->beta().norm();
+    }
+
+    /**
      *  @param sigma            alpha or beta
      * 
      *  @return the number of orbitals (spinors or spin-orbitals, depending on the context) that correspond to the given spin
@@ -106,7 +113,6 @@ public:
         }
     }
 
-
     /**
      *  @return the spin-density matrix, i.e. the difference between the alpha and beta 1-DM
      */
@@ -121,6 +127,86 @@ public:
         return this->alpha() + this->beta();
     }
 };
+
+/*
+*  OPERATORS
+*/
+
+/**
+*  Add two spin resolved density matrices by adding their parameters. The two alphas are added together and the two betas are added together. 
+* 
+*  @tparam LHSScalar           the scalar type of the left-hand side
+*  @tparam RHSScalar           the scalar type of the right-hand side
+* 
+*  @param lhs                  the left-hand side
+*  @param rhs                  the right-hand side
+*/
+template <typename LHSScalar, typename RHSScalar>
+auto operator+(const SpinResolvedOneDM<LHSScalar>& lhs, const SpinResolvedOneDM<RHSScalar>& rhs) -> SpinResolvedOneDM<sum_t<LHSScalar, RHSScalar>> {
+
+    using ResultScalar = sum_t<LHSScalar, RHSScalar>;
+
+    auto D_sum_a = lhs.alpha();
+    auto D_sum_b = lhs.beta();
+
+    D_sum_a += rhs.alpha();
+    D_sum_b += rhs.beta();
+
+    return SpinResolvedOneDM<ResultScalar>(D_sum_a, D_sum_b);
+}
+
+/**
+ *  Multiply a one-electron operator with a scalar. The alpha and beta components are multiplied with the same scalar.
+ * 
+ *  @tparam Scalar                            the scalar type of the scalar
+ *  @tparam DMScalar                          the scalar type of the spin resolved one DM
+ * 
+ *  @tparam scalar                            the scalar of the scalar multiplication
+ *  @tparam spin_resolved_DM                  the spin resolved one DM
+ */
+template <typename Scalar, typename DMScalar>
+auto operator*(const Scalar& scalar, const SpinResolvedOneDM<DMScalar>& spin_resolved_DM) -> SpinResolvedOneDM<product_t<Scalar, DMScalar>> {
+
+    using ResultScalar = product_t<Scalar, DMScalar>;
+
+    auto D_a = spin_resolved_DM.alpha();
+    auto D_b = spin_resolved_DM.beta();
+
+    D_a *= scalar;
+    D_b *= scalar;
+
+    return SpinResolvedOneDM<ResultScalar>(D_a, D_b);
+}
+
+
+/**
+ *  Negate a one-electron operator
+ * 
+ *  @tparam Scalar              the scalar type of the spin resolved one DM
+ * 
+ *  @param spin_resolved_DM                   the spin resolved density matrix
+ */
+template <typename Scalar>
+SpinResolvedOneDM<Scalar> operator-(const SpinResolvedOneDM<Scalar>& spin_resolved_DM) {
+
+    return (-1.0) * spin_resolved_DM;  // negation is scalar multiplication with (-1.0)
+}
+
+
+/**
+    *  Subtract two spin resolved density matricessubtracting their parameters
+    * 
+    *  @tparam LHSScalar           the scalar type of the left-hand side
+    *  @tparam RHSScalar           the scalar type of the right-hand side
+    * 
+    *  @param lhs                  the left-hand side
+    *  @param rhs                  the right-hand side
+*/
+template <typename LHSScalar, typename RHSScalar>
+auto operator-(const SpinResolvedOneDM<LHSScalar>& lhs, const SpinResolvedOneDM<RHSScalar>& rhs) -> SpinResolvedOneDM<sum_t<LHSScalar, RHSScalar>> {
+
+    return lhs + (-rhs);
+}
 
 
 }  // namespace GQCP

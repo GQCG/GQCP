@@ -61,12 +61,11 @@ public:
      */
     void execute(Environment& environment) override {
 
-        const auto& F_alpha = environment.fock_matrices_alpha.back();  // the most recent scalar/AO basis alpha Fock matrix
-        const auto& F_beta = environment.fock_matrices_beta.back();    // the most recent scalar/AO basis beta Fock matrices
+        const auto& F = environment.fock_matrices.back();  // the most recent scalar/AO basis alpha & beta Fock matrix
 
         using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
 
-        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver_alpha {F_alpha, environment.S};
+        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver_alpha {F.parameters(Spin::alpha), environment.S};
         const TransformationMatrix<Scalar>& C_alpha = generalized_eigensolver_alpha.eigenvectors();
         environment.coefficient_matrices_alpha.push_back(C_alpha);
 
@@ -74,7 +73,7 @@ public:
         environment.orbital_energies_alpha.push_back(orbital_energies_alpha);
 
 
-        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver_beta {F_beta, environment.S};
+        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver_beta {F.parameters(Spin::beta), environment.S};
         const TransformationMatrix<Scalar>& C_beta = generalized_eigensolver_beta.eigenvectors();
         environment.coefficient_matrices_beta.push_back(C_beta);
 
