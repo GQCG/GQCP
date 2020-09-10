@@ -42,7 +42,7 @@ requirements:
       - libint {{ libint }}
       - llvm-openmp               # [osx]
       - numpy
-      - intel_openmp              # [linux]
+      - intel-openmp              # [linux]
       - python
 test:
   commands:
