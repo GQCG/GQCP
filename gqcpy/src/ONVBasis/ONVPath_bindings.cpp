@@ -1,3 +1,8 @@
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
@@ -38,14 +43,14 @@ void bindONVPath(py::module& module) {
             [](const GQCP::ONVPath& path) {
                 return path.address();
             },
-            "Return the address of the current path")
+            "Return the address of the current path.")
 
         .def(
             "annihilate",
             [](GQCP::ONVPath& path) {
                 path.annihilate();
             },
-            "Annihilate the diagonal arc that starts at the current state of the path.")
+            "According to this path's current state, annihilate the next diagonal arc.")
 
         .def(
             "annihilate",
@@ -58,6 +63,13 @@ void bindONVPath(py::module& module) {
 
         .def(
             "create",
+            [](GQCP::ONVPath& path) {
+                path.create();
+            },
+            "According to this path's current state, create the next diagonal arc.")
+
+        .def(
+            "create",
             [](GQCP::ONVPath& path, const size_t p, const size_t n) {
                 path.create(p, n);
             },
@@ -66,41 +78,42 @@ void bindONVPath(py::module& module) {
             "Create the diagonal arc that starts at coordinate (p, n). ")
 
         .def(
+            "electronIndex",
+            [](const GQCP::ONVPath& path) {
+                return path.orbitalIndex();
+            },
+            "Return the electron index 'n' that, together with the orbital index 'p' signifies the vertex (p,n) up until which the ONV path construction is finished.")
+
+
+        .def(
             "leftTranslate",
             [](GQCP::ONVPath& path, const size_t p, const size_t n) {
                 path.leftTranslate(p, n);
             },
             py::arg("p"),
             py::arg("q"),
-            "Translate the diagonal arc that starts at the coordinate (p, n) to the left.")
-
-        .def(
-            "orbitalIndex",
-            [](const GQCP::ONVPath& path) {
-                return path.orbitalIndex();
-            },
-            "Return the electron index n that should be checked next for a possible creation. Since we're always constructing paths from the top-left to the bottom-right, this index will always be larger than the index q on which we previously annihilated. After creation, the path then corresponds to E_{pq} |onv>, with |onv> the initial ONV.")
-
-        .def(
-            "electronIndex",
-            [](const GQCP::ONVPath& path) {
-                return path.orbitalIndex();
-            },
-            "Return The orbital index p that should be checked next for a possible creation. Since we're always constructing paths from the top-left to the bottom-right, this index will always be larger than the index q on which we previously annihilated. After creation, the path then corresponds to E_{pq} |onv>, with |onv> the initial ONV.")
+            "Translate the diagonal arc that starts at the coordinate (p,n) to the left, indicating that the current path is 'open' at the vertex (p,n-1) and that the orbital 'p' should be occupied in subsequent path manipulations.")
 
         .def(
             "leftTranslateUntilVertical",
             [](GQCP::ONVPath& path) {
                 path.leftTranslateUntilVertical();
             },
-            "Close the open path by shifting diagonal arcs to the left. Stop when an unoccupied orbital (vertical arc) is found.")
+            "According to this path's current state, translate diagonal arcs to the left until an unoccupied orbital (vertical arc) is found.")
+
+        .def(
+            "orbitalIndex",
+            [](const GQCP::ONVPath& path) {
+                return path.orbitalIndex();
+            },
+            "Return the orbital index 'p' that, together with the electron index 'n' signifies the vertex (p,n) up until which the ONV path construction is finished.")
 
         .def(
             "sign",
             [](const GQCP::ONVPath& path) {
                 return path.sign();
             },
-            "return the total phase factor/sign associated to the original path's modification");
+            "Return the total phase factor/sign associated to the original path's modification");
 }
 
 }  // namespace gqcpy

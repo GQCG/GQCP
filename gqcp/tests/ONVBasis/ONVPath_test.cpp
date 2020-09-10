@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_CASE(example) {
     const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
 
 
-    // Set up the reference values from an example. [LINK TO WEBSITE]
+    // Set up the reference values from an example. [https://gqcg.github.io/GQCP/docs/developer_documentation/ONV_path_manipulation]
     const auto I = GQCP::SpinUnresolvedONV::FromOccupiedIndices({0, 2, 3}, 5);  // |10110>
     GQCP::ONVPath onv_path {onv_basis, I};
     BOOST_REQUIRE(onv_path.address() == 2);
@@ -109,9 +109,63 @@ BOOST_AUTO_TEST_CASE(example) {
 
 
 /**
+ *  Check if the annihilate function of the ONV path works as expected.
+ */
+BOOST_AUTO_TEST_CASE(annihilate) {
+
+    // Set up a F(5,3) Fock space.
+    const size_t M = 5;
+    const size_t N = 3;
+
+    const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
+
+
+    // Set up the reference values from an example. [https://gqcg.github.io/GQCP/docs/developer_documentation/ONV_path_manipulation]
+    const auto I = GQCP::SpinUnresolvedONV::FromOccupiedIndices({0, 2, 3}, 5);  // |10110>
+    GQCP::ONVPath onv_path {onv_basis, I};
+    GQCP::ONVPath onv_path_2 {onv_basis, I};
+    BOOST_REQUIRE(onv_path.address() == onv_path_2.address() && onv_path.address() == 2);
+
+    // Current path state should at this point be the same as (0, 0)
+    onv_path.annihilate();
+    onv_path_2.annihilate(0, 0);
+
+    BOOST_REQUIRE(onv_path.address() == onv_path_2.address() && onv_path.address() == 2);
+}
+
+
+/**
+ *  Check if the create function of the ONV path works as expected.
+ */
+BOOST_AUTO_TEST_CASE(create) {
+
+    // Set up a F(5,3) Fock space.
+    const size_t M = 5;
+    const size_t N = 3;
+
+    const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
+
+
+    // Set up the reference values from an example. [https://gqcg.github.io/GQCP/docs/developer_documentation/ONV_path_manipulation]
+    const auto I = GQCP::SpinUnresolvedONV::FromOccupiedIndices({0, 2, 3}, 5);  // |10110>
+    GQCP::ONVPath onv_path {onv_basis, I};
+    GQCP::ONVPath onv_path_2 {onv_basis, I};
+    BOOST_REQUIRE(onv_path.address() == onv_path_2.address() && onv_path.address() == 2);
+
+    onv_path.annihilate();
+    onv_path_2.annihilate();
+
+    // Current path state should at this point be the same as (1, 0)
+    onv_path.create();
+    onv_path_2.create(1, 0);
+
+    BOOST_REQUIRE(onv_path.address() == onv_path_2.address() && onv_path.address() == 3);
+}
+
+
+/**
  *  Test if the shift in address, orbital indices and sign change correspond to the correct solutions
  *  
- *  This method does not alter the ONVs in any way.
  */
 BOOST_AUTO_TEST_CASE(leftTranslateUntilVertical) {
 
@@ -122,13 +176,13 @@ BOOST_AUTO_TEST_CASE(leftTranslateUntilVertical) {
     const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
 
 
-    // Set up the reference values from an example. [LINK TO WEBSITE]
+    // Set up the reference values from an example. [https://gqcg.github.io/GQCP/docs/developer_documentation/ONV_path_manipulation]
     const auto I = GQCP::SpinUnresolvedONV::FromOccupiedIndices({0, 2, 3}, 5);  // |10110>
     GQCP::ONVPath onv_path {onv_basis, I};
     BOOST_REQUIRE(onv_path.address() == 2);
 
     // We start our example by annihilating the first electron on orbital index 0. This creates an open path.
-    onv_path.annihilate(0, 0);
+    onv_path.annihilate();
 
     // Starting from the index of the removed electron, we shift the "next possible creation operator" until we find an unoccupied orbital. In our case, this should be at p=1.
     onv_path.leftTranslateUntilVertical();
@@ -139,12 +193,12 @@ BOOST_AUTO_TEST_CASE(leftTranslateUntilVertical) {
     BOOST_REQUIRE(onv_path.address() == 2);
 
     // We create the first electron up to this orbital.
-    onv_path.create(nextUnoccupiedOrbitalIndex, nextUnoccupiedElectronIndex);
+    onv_path.create();
 
     // Subsequently, the second electron at orbital index 3 is annihilated.
-    onv_path.annihilate(2, 1);
+    onv_path.annihilate();
 
-    // Starting from the removed electron, next unocupied orbital should be located at p=4.
+    // Starting from the removed electron, next unoccupied orbital should be located at p=4.
     onv_path.leftTranslateUntilVertical();
     nextUnoccupiedOrbitalIndex = onv_path.orbitalIndex();
     nextUnoccupiedElectronIndex = onv_path.electronIndex();
