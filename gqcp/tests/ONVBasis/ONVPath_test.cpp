@@ -131,6 +131,14 @@ BOOST_AUTO_TEST_CASE(annihilate) {
     onv_path_2.annihilate(0, 0);
 
     BOOST_REQUIRE(onv_path.address() == onv_path_2.address() && onv_path.address() == 2);
+
+    onv_path.create();
+    onv_path_2.create();
+
+    onv_path.annihilate();
+    onv_path_2.annihilate(1, 0);
+
+    BOOST_REQUIRE(onv_path.address() == onv_path_2.address() && onv_path.address() == 2);
 }
 
 
