@@ -185,31 +185,32 @@ BOOST_AUTO_TEST_CASE(leftTranslateUntilVertical) {
 
 
     // Set up the reference values from an example. [https://gqcg.github.io/GQCP/docs/developer_documentation/ONV_path_manipulation]
-    const auto I = GQCP::SpinUnresolvedONV::FromOccupiedIndices({0, 2, 3}, 5);  // |10110>
+    const auto I = GQCP::SpinUnresolvedONV::FromOccupiedIndices({1, 2, 3}, 5);  // |01110>
     GQCP::ONVPath onv_path {onv_basis, I};
-    BOOST_REQUIRE(onv_path.address() == 2);
+    GQCP::ONVPath onv_path_ref {onv_basis, I};
+    BOOST_REQUIRE(onv_path.address() == onv_path_ref.address() && onv_path.address() == 3);
 
-    // We start our example by annihilating the first electron on orbital index 0. This creates an open path.
-    onv_path.annihilate();
+    // Since we have removed a diagonal at position (1, 0) with arc weight 1, the address will change.
+    onv_path.annihilate(1, 0);
+    onv_path_ref.annihilate(1, 0);
+    BOOST_REQUIRE(onv_path.address() == onv_path_ref.address() && onv_path.address() == 2);
 
-    // Starting from the index of the removed electron, we shift the "next possible creation operator" until we find an unoccupied orbital. In our case, this should be at p=1.
+    // To find the next creation index, i.e. a vertical arc sign signifying an unoccupied orbital, we must translate the diagonal arcs one to the left until we find a vertical arc.
+    onv_path_ref.leftTranslate(2, 1);
+
+    // The diagonal arc at (2, 1) with arc weight = 1 is moved to (2,0) with arc weight = 2 so the address will change.
+    BOOST_REQUIRE(onv_path_ref.address() == 3);
+
+    // The next orbital index at (3, 2) is occupied, so we must translate it likewise.
+    onv_path_ref.leftTranslate(3, 2);
+
+    // The arc weight at (3, 2) is 1 while the arc weight at the new occupation index (3, 1) is 3, meaning the address will change.
+    BOOST_REQUIRE(onv_path_ref.address() == 5);
+
+    // We have now found our next creation index, located at (4,2).
+    BOOST_REQUIRE(onv_path_ref.orbitalIndex() == 4 && onv_path_ref.electronIndex() == 2);
+
+    // This manual result must be the same as the result obtained by leftTranslateUntilVertical().
     onv_path.leftTranslateUntilVertical();
-    auto nextUnoccupiedOrbitalIndex = onv_path.orbitalIndex();
-    auto nextUnoccupiedElectronIndex = onv_path.electronIndex();
-    BOOST_REQUIRE(nextUnoccupiedOrbitalIndex == 1 && nextUnoccupiedElectronIndex == 0);
-    // Since there were no left translations in this example, the address stays the same.
-    BOOST_REQUIRE(onv_path.address() == 2);
-
-    // We create the first electron up to this orbital.
-    onv_path.create();
-
-    // Subsequently, the second electron at orbital index 3 is annihilated.
-    onv_path.annihilate();
-
-    // Starting from the removed electron, next unoccupied orbital should be located at p=4.
-    onv_path.leftTranslateUntilVertical();
-    nextUnoccupiedOrbitalIndex = onv_path.orbitalIndex();
-    nextUnoccupiedElectronIndex = onv_path.electronIndex();
-    BOOST_REQUIRE(nextUnoccupiedOrbitalIndex == 4 && nextUnoccupiedElectronIndex == 2);
-    BOOST_REQUIRE(onv_path.address() == 4);
+    BOOST_REQUIRE(onv_path.orbitalIndex() == onv_path_ref.orbitalIndex() && onv_path.electronIndex() == onv_path_ref.electronIndex());
 }
