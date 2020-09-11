@@ -72,13 +72,7 @@ public:
         using SingleConvergenceType = ConsecutiveIteratesNormConvergence<SpinResolvedOneDM<Scalar>, UHFSCFEnvironment<Scalar>>;
 
         const auto density_matrix_extractor = [](const UHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices; };
-        const SingleConvergenceType convergence_criterion {threshold, density_matrix_extractor, "the UHF alpha-density matrix in AO basis"};
-
-        // const auto density_matrix_beta_extractor = [](const UHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices; };
-        // const SingleConvergenceType convergence_criterion_beta {threshold, density_matrix_beta_extractor, "the UHF beta-density matrix in AO basis"};
-
-        // const CompoundConvergenceCriterion<UHFSCFEnvironment<Scalar>> convergence_criterion {convergence_criterion_alpha, convergence_criterion_beta};
-
+        const SingleConvergenceType convergence_criterion {threshold, density_matrix_extractor, "the UHF density matrices in AO basis"};
 
         // Put together the pieces of the algorithm.
         return IterativeAlgorithm<UHFSCFEnvironment<Scalar>>(diis_uhf_scf_cycle, convergence_criterion, maximum_number_of_iterations);
@@ -105,13 +99,7 @@ public:
         using SingleConvergenceType = ConsecutiveIteratesNormConvergence<SpinResolvedOneDM<Scalar>, UHFSCFEnvironment<Scalar>>;
 
         const auto density_matrix_extractor = [](const UHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices; };
-        const SingleConvergenceType convergence_criterion {threshold, density_matrix_extractor, "the UHF alpha-density matrix in AO basis"};
-
-        // const auto density_matrix_beta_extractor = [](const UHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices; };
-        // const SingleConvergenceType convergence_criterion_beta {threshold, density_matrix_beta_extractor, "the UHF beta-density matrix in AO basis"};
-
-        // const CompoundConvergenceCriterion<UHFSCFEnvironment<Scalar>> convergence_criterion {convergence_criterion_alpha, convergence_criterion_beta};
-
+        const SingleConvergenceType convergence_criterion {threshold, density_matrix_extractor, "the UHF density matrices in AO basis"};
 
         // Put together the pieces of the algorithm.
         return IterativeAlgorithm<UHFSCFEnvironment<Scalar>>(plain_uhf_scf_cycle, convergence_criterion, maximum_number_of_iterations);

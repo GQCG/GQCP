@@ -88,21 +88,49 @@ void bindUHFSCFEnvironment(py::module& module) {
             "coefficient_matrices_beta",
             &GQCP::UHFSCFEnvironment<double>::coefficient_matrices_beta)
 
-        .def_readonly(
+        .def(
             "density_matrices_alpha",
-            &GQCP::UHFSCFEnvironment<double>::density_matrices.alpha())
+            [](GQCP::UHFSCFEnvironment<double>& environment) {
+                std::vector<GQCP::MatrixX<double>> alpha_density_matrices;
 
-        .def_readonly(
+                for (int i = 0; i < environment.density_matrices.size(); i++) {
+                    alpha_density_matrices.push_back(environment.density_matrices[i].alpha());
+                }
+                return alpha_density_matrices;
+            })
+
+        .def(
             "density_matrices_beta",
-            &GQCP::UHFSCFEnvironment<double>::density_matrices.beta())
+            [](GQCP::UHFSCFEnvironment<double>& environment) {
+                std::vector<GQCP::MatrixX<double>> beta_density_matrices;
 
-        .def_readonly(
+                for (int i = 0; i < environment.density_matrices.size(); i++) {
+                    beta_density_matrices.push_back(environment.density_matrices[i].beta());
+                }
+                return beta_density_matrices;
+            })
+
+        .def(
             "fock_matrices_alpha",
-            &GQCP::UHFSCFEnvironment<double>::fock_matrices.parameters(GQCP::Spin::alpha))
+            [](GQCP::UHFSCFEnvironment<double>& environment) {
+                std::vector<GQCP::MatrixX<double>> alpha_fock_matrices;
 
-        .def_readonly(
+                for (int i = 0; i < environment.fock_matrices.size(); i++) {
+                    alpha_fock_matrices.push_back(environment.fock_matrices[i].parameters(GQCP::Spin::alpha));
+                }
+                return alpha_fock_matrices;
+            })
+
+        .def(
             "fock_matrices_beta",
-            &GQCP::UHFSCFEnvironment<double>::fock_matrices.parameters(GQCP::Spin::beta))
+            [](GQCP::UHFSCFEnvironment<double>& environment) {
+                std::vector<GQCP::MatrixX<double>> beta_fock_matrices;
+
+                for (int i = 0; i < environment.fock_matrices.size(); i++) {
+                    beta_fock_matrices.push_back(environment.fock_matrices[i].parameters(GQCP::Spin::beta));
+                }
+                return beta_fock_matrices;
+            })
 
         .def_readonly(
             "error_vectors_alpha",
