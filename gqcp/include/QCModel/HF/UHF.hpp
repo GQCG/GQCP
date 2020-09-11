@@ -215,13 +215,7 @@ public:
         const auto K_b = C_b.numberOfOrbitals();
         const auto D_orthonormal = UHF<Scalar>::calculateOrthonormalBasis1DM(K_a, K_b, N_a, N_b);
 
-        // Calculate the alpha and beta scalar basis 1 DM
-        OneDM<Scalar> D_AO_a = C_a.conjugate() * D_orthonormal.alpha() * C_a.transpose();
-        OneDM<Scalar> D_AO_b = C_b.conjugate() * D_orthonormal.beta() * C_b.transpose();
-        SpinResolvedOneDM<Scalar> D_AO {D_AO_a, D_AO_b};
-
-        // Transform the 1-DM in an orthonormal basis to the underlying scalar basis
-        return D_AO;
+        return D_orthonormal.transformToScalarBasis(C_a, C_b);
     }
 
 

@@ -126,6 +126,17 @@ public:
     OneDM<Scalar> spinSummed() const {
         return this->alpha() + this->beta();
     }
+
+    /**
+     *  @return the spin resolved density matrix in the underrlying scalar basis.
+     */
+    SpinResolvedOneDM<Scalar> transformToScalarBasis(const TransformationMatrix<double>& C_a, const TransformationMatrix<double>& C_b) const {
+        OneDM<Scalar> D_AO_a = C_a.conjugate() * this->alpha() * C_a.transpose();
+        OneDM<Scalar> D_AO_b = C_b.conjugate() * this->beta() * C_b.transpose();
+        SpinResolvedOneDM<Scalar> D_AO {D_AO_a, D_AO_b};
+
+        return D_AO;
+    }
 };
 
 /*
