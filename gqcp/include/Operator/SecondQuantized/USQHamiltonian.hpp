@@ -104,10 +104,10 @@ public:
      *  Note that this named constructor is only available for real matrix representations
      */
     template <typename Z = Scalar>
-    static enable_if_t<std::is_same<Z, double>::value, USQHamiltonian<double>> Molecular(const USpinorBasis<Z, GTOShell>& spinor_basis, const Molecule& molecule) {
+    static enable_if_t<std::is_same<Z, double>::value, USQHamiltonian<double>> Molecular(const USpinorBasis<Z, GTOShell>& u_spinor_basis, const Molecule& molecule) {
 
-        const SQHamiltonian<Scalar> sq_hamiltonian_alpha = SQHamiltonian<double>::Molecular(spinor_basis.spinorBasis(Spin::alpha), molecule);
-        const SQHamiltonian<Scalar> sq_hamiltonian_beta = SQHamiltonian<double>::Molecular(spinor_basis.spinorBasis(Spin::beta), molecule);
+        const SQHamiltonian<Scalar> sq_hamiltonian_alpha = SQHamiltonian<double>::Molecular(u_spinor_basis.spinorBasis(Spin::alpha), molecule);
+        const SQHamiltonian<Scalar> sq_hamiltonian_beta = SQHamiltonian<double>::Molecular(u_spinor_basis.spinorBasis(Spin::beta), molecule);
 
         // Initial basis for alpha and beta are identical so the mixed integrals are identical to spin specific components
         const ScalarSQTwoElectronOperator<double> two_op_mixed = sq_hamiltonian_alpha.twoElectron();
@@ -127,20 +127,20 @@ public:
     /**
      *  Constrain a spin component of the unrestricted Hamiltonian according to the convention: - lambda * constraint
      *
-     *  @param one_op           the one-electron operator used as a constraint
-     *  @param lambda           the Lagrangian multiplier for the constraint
-     *  @param component        the spin component
+     *  @param one_electron_op           the one-electron operator used as a constraint
+     *  @param lambda                    the Lagrangian multiplier for the constraint
+     *  @param sigma                     the spin sigma component
      *
      *  @return a copy of the constrained Hamiltonian
      *
      *  Note that this method is only available for real matrix representations
      */
     template <typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value, USQHamiltonian<double>> constrain(const ScalarSQOneElectronOperator<double>& one_op, const double lambda, const Spin& component) const {
+    enable_if_t<std::is_same<Z, double>::value, USQHamiltonian<double>> constrain(const ScalarSQOneElectronOperator<double>& one_electron_op, const double lambda, const Spin& sigma) const {
 
-        auto const constrained_component = this->sq_hamiltonians[component] - lambda * one_op;
+        auto const constrained_component = this->sq_hamiltonians[sigma] - lambda * one_electron_op;
 
-        if (component == Spin::beta) {
+        if (sigma == Spin::beta) {
             return USQHamiltonian(this->sq_hamiltonians[Spin::alpha], constrained_component, this->two_op_mixed);
         } else {
             return USQHamiltonian(constrained_component, this->sq_hamiltonians[Spin::beta], this->two_op_mixed);
@@ -169,9 +169,9 @@ public:
      *  In-place rotate the matrix representation of one of the spin components of the Hamiltonian
      *
      *  @param U                    the unitary rotation matrix between the old and the new orbital basis
-     *  @param component            the spin component
+     *  @param sigma                the spin sigma component
      */
-    void rotate(const TransformationMatrix<Scalar>& U, const Spin& component) { this->transform(U, component); }
+    void rotate(const TransformationMatrix<Scalar>& U, const Spin& sigma) { this->transform(U, sigma); }
 
 
     /**
@@ -188,11 +188,23 @@ public:
 
 
     /**
-     *  @param component                    the spin component
+     *  In-place rotate the matrix representation of one of the spin components of the Hamiltonian using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters. Note that this function is only available for real (double) matrix representations
+     *
+     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
+     *  @param sigma                            the spin sigma component
+     */
+    template <typename Z = Scalar>
+    enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters, const Spin& sigma) {
+        this->transform(jacobi_rotation_parameters, sigma);
+    }
+
+
+    /**
+     *  @param sigma                    the spin sigma component
      * 
      *  @return the pure contributions of the requested component of the unrestricted Hamiltonian 
      */
-    const SQHamiltonian<Scalar>& spinHamiltonian(const Spin& component) const { return this->sq_hamiltonians[component]; }
+    const SQHamiltonian<Scalar>& spinHamiltonian(const Spin& sigma) const { return this->sq_hamiltonians[sigma]; }
 
     /**
      *  In-place transform the matrix representations of the unrestricted Hamiltonian
@@ -252,18 +264,6 @@ public:
      *  @return the total contributions to the mixed alpha & beta two-electron part of the unrestricted Hamiltonian
      */
     const ScalarSQTwoElectronOperator<Scalar>& twoElectronMixed() const { return this->total_two_op_mixed; }
-
-
-    /**
-     *  In-place rotate the matrix representation of one of the spin components of the Hamiltonian using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters. Note that this function is only available for real (double) matrix representations
-     *
-     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
-     *  @param component                        the spin component
-     */
-    template <typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters, const Spin& component) {
-        this->transform(jacobi_rotation_parameters, component);
-    }
 };
 
 
