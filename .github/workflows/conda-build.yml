@@ -1,7 +1,7 @@
-name: Conda deployment
+name: Conda build
 
 on:
-  push:
+  pull_request:
     paths:
       - '**.hpp'
       - '**.cpp'
@@ -10,11 +10,12 @@ on:
       - 'cmake/**'
       - 'conda/**'
     branches:
-      - develop
+      - 'release/**'
+      - 'master'
 
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -47,6 +48,5 @@ jobs:
         run: |
           conda create -n packaging -c conda-forge conda-build anaconda-client conda-verify
           source activate packaging
-          conda config --set anaconda_upload yes
-          conda-build -c gqcg -c conda-forge -c intel conda --user ${{ secrets.ANACONDA_USER }} --token ${{ secrets.ANACONDA_TOKEN }} --variants "{python: [${{ matrix.py }}] }"
+          conda-build -c gqcg -c conda-forge -c intel conda --variants "{python: [${{ matrix.py }}] }"
           anaconda logout

@@ -1,5 +1,4 @@
-name: Docker for gqcp
-
+name: Docker deploy
 on:
   push:
     paths:
@@ -10,7 +9,8 @@ on:
       - '**CMakeLists.txt'
       - 'cmake/**'
     branches:
-      - develop
+      - 'release/**'
+      - 'master'
 
 jobs:
   build-and-deploy:
