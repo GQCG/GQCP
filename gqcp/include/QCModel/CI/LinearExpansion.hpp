@@ -560,6 +560,15 @@ public:
 
 
     /**
+     *  Calculate the one-electron density matrix for a full spin-resolved wave function expansion.
+     * 
+     *  @return the total (spin-summed) 1-DM
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, OneDM<double>> calculateSpinDensity() const { return this->calculateSpinResolved1DM().spinDensity(); }
+
+
+    /**
      *  Calculate the spin-resolved one-electron density matrix for a seniority-zero wave function expansion.
      * 
      *  @return the spin-resolved 1-DM
@@ -604,6 +613,15 @@ public:
 
 
     /**
+     *  Calculate the one-electron density matrix for a full spin-resolved wave function expansion.
+     * 
+     *  @return the total (spin-summed) 1-DM
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, OneDM<double>> calculateSpinDensity() const { return this->calculateSpinResolved1DM().spinDensity(); }
+
+
+    /**
      *  Calculate the spin-resolved one-electron density matrix for a full spin-resolved wave function expansion.
      * 
      *  @return the spin-resolved 1-DM
@@ -645,6 +663,15 @@ public:
      */
     template <typename Z = ONVBasis>
     enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, TwoDM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().spinSummed(); }
+
+
+    /**
+     *  Calculate the one-electron density matrix for a full spin-resolved wave function expansion.
+     * 
+     *  @return the total (spin-summed) 1-DM
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, OneDM<double>> calculateSpinDensity() const { return this->calculateSpinResolved1DM().spinDensity(); }
 
 
     /**
@@ -705,7 +732,7 @@ public:
     double calculateShannonEntropy() const {
 
         // Sum over the ONV basis dimension, and only include the term if c_k != 0
-        // We might as well replace all coeffients that are 0 by 1, since log(1) = 0 so there is no influence on the final entropy value
+        // We might as well replace all coefficients that are 0 by 1, since log(1) = 0 so there is no influence on the final entropy value
         Eigen::ArrayXd coefficients_replaced = this->m_coefficients.unaryExpr([](double c) { return c < 1.0e-18 ? 1 : c; });  // replace 0 by 1
 
         Eigen::ArrayXd coefficients_squared = coefficients_replaced.square();

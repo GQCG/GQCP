@@ -19,7 +19,7 @@ RUN conda --version
 
 ENV LIBINT_DATA_PATH=/usr/local/miniconda3/share/libint/2.4.2/basis
 ARG LIBINT_DATA_PATH=/usr/local/miniconda3/share/libint/2.4.2/basis
-RUN conda install -c conda-forge -c intel -c gqcg openmp=8.0.1 cmake=3.14 boost-cpp=1.69.0 eigen=3.3.7 blas=2.15 mkl=2019.0 pybind11=2.4.3 benchmark numpy=1.18.1 jupyter libint=2.4.2 cint=3.0.17 mkl-include=2019.0 mkl-static=2019.0 intel-openmp=2019.0
+RUN conda install -c conda-forge -c intel -c gqcg openmp=8.0.1 cmake=3.14 boost-cpp=1.69.0 eigen=3.3.7 blas=2.15 mkl=2019.0 pybind11=2.4.3 benchmark numpy=1.18.1 jupyter matplotlib pandas h5py libint=2.4.2 cint=3.0.17 mkl-include=2019.0 mkl-static=2019.0 intel-openmp=2019.0 
 
 COPY . .
 RUN mkdir build && cd build && cmake .. \
