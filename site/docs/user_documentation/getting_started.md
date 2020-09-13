@@ -99,7 +99,7 @@ http://node2473.golett.os:8888/?token=a3bf3b8bbb14618586ff6716bfa8f51886ff14d0f5
 and set up an SSH tunnel in a separate terminal, such that you can access that notebook from your local browser
 
 ```bash
-ssh -J vsc{xxxxx} -L 8888:localhost:8888 vsc{xxxxx}@node{nnnn}.{cluster}.os
+ssh -J vsc{xxxxx}@login.hpc.ugent.be -L 8888:localhost:8888 vsc{xxxxx}@node{nnnn}.{cluster}.os
 ```
 
 where `{xxxxx}` is your vsc number, `{nnnn}` is the node number mentioned above and `{cluster}` is the cluster on which your Jupyter notebook is running. After this tunnel has been set up, you can access your notebook through your local browser by using the `127.0.0.1:8888` link mentioned above:
