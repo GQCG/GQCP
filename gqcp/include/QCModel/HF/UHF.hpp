@@ -320,52 +320,32 @@ public:
     /**
      *  @param sigma            alpha or beta
      * 
-     *  @return the sigma-spin UHF 1-DM expressed in an orthonormal sigma spin-orbital basis for these UHF model parameters
+     *  @return the spin resolved UHF 1-DM expressed in an orthonormal spin-orbital basis for these UHF model parameters
      */
-    OneDM<Scalar> calculateOrthonormalBasis1DM(const Spin sigma) const {
+    SpinResolvedOneDM<Scalar> calculateOrthonormalBasis1DM(const Spin sigma) const {
 
         const auto K_a = this->numberOfSpinOrbitals(Spin::alpha);
         const auto K_b = this->numberOfSpinOrbitals(Spin::beta);
         const auto N_a = this->numberOfElectrons(Spin::alpha);
         const auto N_b = this->numberOfElectrons(Spin::beta);
 
-        switch (sigma) {
-        case Spin::alpha: {
-            return UHF<Scalar>::calculateOrthonormalBasis1DM(K_a, K_b, N_a, N_b).alpha();
-            break;
-        }
-
-        case Spin::beta: {
-            return UHF<Scalar>::calculateOrthonormalBasis1DM(K_a, K_b, N_a, N_b).beta();
-            break;
-        }
-        }
+        return UHF<Scalar>::calculateOrthonormalBasis1DM(K_a, K_b, N_a, N_b);
     }
 
 
     /**
      *  @param sigma            alpha or beta
      *
-     *  @return the sigma-spin UHF 1-DM expressed in the underlying scalar basis for these UHF model parameters
+     *  @return the spin resolved UHF 1-DM expressed in the underlying scalar basis for these UHF model parameters
      */
-    OneDM<Scalar> calculateScalarBasis1DM(const Spin sigma) const {
+    SpinResolvedOneDM<Scalar> calculateScalarBasis1DM(const Spin sigma) const {
 
         const auto C_a = this->coefficientMatrix(Spin::alpha);
         const auto C_b = this->coefficientMatrix(Spin::beta);
         const auto N_a = this->numberOfElectrons(Spin::alpha);
         const auto N_b = this->numberOfElectrons(Spin::beta);
 
-        switch (sigma) {
-        case Spin::alpha: {
-            return UHF<Scalar>::calculateScalarBasis1DM(C_a, C_b, N_a, N_b).alpha();
-            break;
-        }
-
-        case Spin::beta: {
-            return UHF<Scalar>::calculateScalarBasis1DM(C_a, C_b, N_a, N_b).beta();
-            break;
-        }
-        }
+        return UHF<Scalar>::calculateScalarBasis1DM(C_a, C_b, N_a, N_b); 
     }
 
 
