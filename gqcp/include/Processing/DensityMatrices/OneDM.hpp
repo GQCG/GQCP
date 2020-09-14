@@ -44,6 +44,17 @@ public:
      */
 
     using QCMatrix<Scalar>::QCMatrix;  // inherit base constructors
+
+    /*
+     * PUBLIC METHODS
+     */
+    
+    /**
+     *  @param T          transformation matrix for the spin unresolved 1-DM
+     * 
+     *  @return the transformed density matrix.
+     */
+    OneDM<Scalar> transform(const TransformationMatrix<double>& T) const { return this->basisTransform(); }
 };
 
 

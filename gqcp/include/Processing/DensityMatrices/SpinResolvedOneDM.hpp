@@ -128,14 +128,28 @@ public:
     }
 
     /**
-     *  @return the spin resolved density matrix in the underrlying scalar basis.
+     *  @param T          transformation matrix for the alpha and beta component of the spin resolved 1-DM
+     * 
+     *  @return the transformed spin resolved density matrix, with each component transformed to the same basis.
      */
-    SpinResolvedOneDM<Scalar> transformToScalarBasis(const TransformationMatrix<double>& C_a, const TransformationMatrix<double>& C_b) const {
-        OneDM<Scalar> D_AO_a = C_a.conjugate() * this->alpha() * C_a.transpose();
-        OneDM<Scalar> D_AO_b = C_b.conjugate() * this->beta() * C_b.transpose();
-        SpinResolvedOneDM<Scalar> D_AO {D_AO_a, D_AO_b};
+    SpinResolvedOneDM<Scalar> transform(const TransformationMatrix<double>& T) const {
+        OneDM<Scalar> D_a_transformed = T.conjugate() * this->alpha() * T.transpose();
+        OneDM<Scalar> D_b_transformed = T.conjugate() * this->beta() * T.transpose();
+        
+        return SpinResolvedOneDM<Scalar> {D_a_transformed, D_b_transformed};
+    }
 
-        return D_AO;
+    /**
+     *  @param T_a          transformation matrix for the alpha component of the spin resolved 1-DM
+     *  @param T_b          transformation matrix for the beta component of the spin resolved 1-DM
+     * 
+     *  @return the transformed spin resolved density matrix, with each component transformed seperately.
+     */
+    SpinResolvedOneDM<Scalar> transform(const TransformationMatrix<double>& T_a, const TransformationMatrix<double>& T_b) const {
+        OneDM<Scalar> D_a_transformed = T_a.conjugate() * this->alpha() * T_a.transpose();
+        OneDM<Scalar> D_b_transformed = T_b.conjugate() * this->beta() * T_b.transpose();
+        
+        return SpinResolvedOneDM<Scalar> {D_a_transformed, D_b_transformed};
     }
 };
 
