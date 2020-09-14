@@ -195,9 +195,7 @@ public:
         OneDM<Scalar> D_MO_b = OneDM<Scalar>::Zero(K_b, K_b);
         D_MO_b.topLeftCorner(N_b, N_b) = SquareMatrix<Scalar>::Identity(N_b, N_b);
 
-        SpinResolvedOneDM<Scalar> D_MO {D_MO_a, D_MO_b};
-
-        return D_MO;
+        return SpinResolvedOneDM<Scalar> {D_MO_a, D_MO_b};
     }
 
 
@@ -276,9 +274,8 @@ public:
 
         Eigen::Map<Eigen::MatrixXd> K_alpha {K_alpha_tensor.data(), K_alpha_tensor.dimension(0), K_alpha_tensor.dimension(1)};
         Eigen::Map<Eigen::MatrixXd> K_beta {K_beta_tensor.data(), K_beta_tensor.dimension(0), K_beta_tensor.dimension(1)};
-        ScalarUSQOneElectronOperator<Scalar> K {K_alpha, K_beta};
 
-        return K;
+        return ScalarUSQOneElectronOperator<Scalar> {K_alpha, K_beta};
     }
 
 
@@ -307,9 +304,8 @@ public:
         // Generate the alpha and beta Fock matrix and put the in a USQOneElectronOperator
         const auto F_a = H_core + J_a - K_a;
         const auto F_b = H_core + J_b - K_b;
-        ScalarUSQOneElectronOperator<Scalar> SpinResolvedFock {F_a, F_b};
 
-        return SpinResolvedFock;
+        return ScalarUSQOneElectronOperator<Scalar> {F_a, F_b};
     }
 
 
@@ -318,11 +314,10 @@ public:
      */
 
     /**
-     *  @param sigma            alpha or beta
      * 
      *  @return the spin resolved UHF 1-DM expressed in an orthonormal spin-orbital basis for these UHF model parameters
      */
-    SpinResolvedOneDM<Scalar> calculateOrthonormalBasis1DM(const Spin sigma) const {
+    SpinResolvedOneDM<Scalar> calculateOrthonormalBasis1DM() const {
 
         const auto K_a = this->numberOfSpinOrbitals(Spin::alpha);
         const auto K_b = this->numberOfSpinOrbitals(Spin::beta);
@@ -334,18 +329,17 @@ public:
 
 
     /**
-     *  @param sigma            alpha or beta
      *
      *  @return the spin resolved UHF 1-DM expressed in the underlying scalar basis for these UHF model parameters
      */
-    SpinResolvedOneDM<Scalar> calculateScalarBasis1DM(const Spin sigma) const {
+    SpinResolvedOneDM<Scalar> calculateScalarBasis1DM() const {
 
         const auto C_a = this->coefficientMatrix(Spin::alpha);
         const auto C_b = this->coefficientMatrix(Spin::beta);
         const auto N_a = this->numberOfElectrons(Spin::alpha);
         const auto N_b = this->numberOfElectrons(Spin::beta);
 
-        return UHF<Scalar>::calculateScalarBasis1DM(C_a, C_b, N_a, N_b); 
+        return UHF<Scalar>::calculateScalarBasis1DM(C_a, C_b, N_a, N_b);
     }
 
 
