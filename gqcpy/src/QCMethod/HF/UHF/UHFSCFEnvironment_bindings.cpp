@@ -93,7 +93,7 @@ void bindUHFSCFEnvironment(py::module& module) {
             [](GQCP::UHFSCFEnvironment<double>& environment) {
                 std::vector<GQCP::MatrixX<double>> alpha_density_matrices;
 
-                for (int i = 0; i < environment.density_matrices.size(); i++) {
+                for (size_t i = 0; i < environment.density_matrices.size(); i++) {
                     alpha_density_matrices.push_back(environment.density_matrices[i].alpha());
                 }
                 return alpha_density_matrices;
@@ -104,7 +104,7 @@ void bindUHFSCFEnvironment(py::module& module) {
             [](GQCP::UHFSCFEnvironment<double>& environment) {
                 std::vector<GQCP::MatrixX<double>> beta_density_matrices;
 
-                for (int i = 0; i < environment.density_matrices.size(); i++) {
+                for (size_t i = 0; i < environment.density_matrices.size(); i++) {
                     beta_density_matrices.push_back(environment.density_matrices[i].beta());
                 }
                 return beta_density_matrices;
@@ -115,7 +115,7 @@ void bindUHFSCFEnvironment(py::module& module) {
             [](GQCP::UHFSCFEnvironment<double>& environment) {
                 std::vector<GQCP::MatrixX<double>> alpha_fock_matrices;
 
-                for (int i = 0; i < environment.fock_matrices.size(); i++) {
+                for (size_t i = 0; i < environment.fock_matrices.size(); i++) {
                     alpha_fock_matrices.push_back(environment.fock_matrices[i].parameters(GQCP::Spin::alpha));
                 }
                 return alpha_fock_matrices;
@@ -126,7 +126,7 @@ void bindUHFSCFEnvironment(py::module& module) {
             [](GQCP::UHFSCFEnvironment<double>& environment) {
                 std::vector<GQCP::MatrixX<double>> beta_fock_matrices;
 
-                for (int i = 0; i < environment.fock_matrices.size(); i++) {
+                for (size_t i = 0; i < environment.fock_matrices.size(); i++) {
                     beta_fock_matrices.push_back(environment.fock_matrices[i].parameters(GQCP::Spin::beta));
                 }
                 return beta_fock_matrices;
