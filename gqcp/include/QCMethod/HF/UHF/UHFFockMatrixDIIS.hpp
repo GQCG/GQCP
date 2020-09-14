@@ -111,7 +111,7 @@ public:
         const auto F_alpha_accelerated = this->diis.accelerate(alpha_fock_matrices, error_vectors_alpha);
         const auto F_beta_accelerated = this->diis.accelerate(beta_fock_matrices, error_vectors_alpha);
 
-        const ScalarUSQOneElectronOperator<Scalar> Fock_accelerated {F_alpha_accelerated, F_beta_accelerated};
+        const ScalarUSQOneElectronOperator<Scalar> F_accelerated {F_alpha_accelerated, F_beta_accelerated};
 
         environment.fock_matrices.push_back(Fock_accelerated);  // the diagonalization step can only read from the environment //FIXME
 
