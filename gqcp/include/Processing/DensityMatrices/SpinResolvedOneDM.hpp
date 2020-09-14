@@ -90,13 +90,6 @@ public:
     const OneDM<Scalar>& beta() const { return this->D_bb; }
 
     /**
-     *  @return the sum of the norms of the alpha and beta components of the spin resolved one DM
-     */
-    size_t norm() const {
-        return this->alpha().norm() + this->beta().norm();
-    }
-
-    /**
      *  @param sigma            alpha or beta
      * 
      *  @return the number of orbitals (spinors or spin-orbitals, depending on the context) that correspond to the given spin
@@ -135,7 +128,7 @@ public:
     SpinResolvedOneDM<Scalar> transform(const TransformationMatrix<double>& T) const {
         OneDM<Scalar> D_a_transformed = T.conjugate() * this->alpha() * T.transpose();
         OneDM<Scalar> D_b_transformed = T.conjugate() * this->beta() * T.transpose();
-        
+
         return SpinResolvedOneDM<Scalar> {D_a_transformed, D_b_transformed};
     }
 
@@ -148,7 +141,7 @@ public:
     SpinResolvedOneDM<Scalar> transform(const TransformationMatrix<double>& T_a, const TransformationMatrix<double>& T_b) const {
         OneDM<Scalar> D_a_transformed = T_a.conjugate() * this->alpha() * T_a.transpose();
         OneDM<Scalar> D_b_transformed = T_b.conjugate() * this->beta() * T_b.transpose();
-        
+
         return SpinResolvedOneDM<Scalar> {D_a_transformed, D_b_transformed};
     }
 };
