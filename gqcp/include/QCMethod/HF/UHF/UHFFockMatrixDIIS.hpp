@@ -89,7 +89,6 @@ public:
             // No acceleration is possible, so calculate the regular Fock matrices and diagonalize them.
             UHFFockMatrixCalculation<Scalar>().execute(environment);
             UHFFockMatrixDiagonalization<Scalar>().execute(environment);
-            std::cout << "no accel" << std::endl;
             return;
         }
 
@@ -103,19 +102,15 @@ public:
         std::vector<QCMatrix<Scalar>> alpha_fock_matrices;
         std::vector<QCMatrix<Scalar>> beta_fock_matrices;
 
-        for (size_t i = 1; i < fock_matrices.size(); i++) {
+        for (size_t i = 0; i < fock_matrices.size(); i++) {
             alpha_fock_matrices.push_back(fock_matrices[i].parameters(Spin::alpha));
             beta_fock_matrices.push_back(fock_matrices[i].parameters(Spin::beta));
         }
-        std::cout << alpha_fock_matrices.size() << std::endl;
-        std::cout << beta_fock_matrices.size() << std::endl;
-        std::cout << error_vectors_alpha.size() << std::endl;
-        std::cout << error_vectors_beta.size() << std::endl;
 
         // Calculate the accelerated Fock matrices and do a diagonalization step on them.
         const auto F_alpha_accelerated = this->diis.accelerate(alpha_fock_matrices, error_vectors_alpha);
         const auto F_beta_accelerated = this->diis.accelerate(beta_fock_matrices, error_vectors_alpha);
-        std::cout << "break point 3" << std::endl;
+
         const ScalarUSQOneElectronOperator<Scalar> F_accelerated {F_alpha_accelerated, F_beta_accelerated};
 
         environment.fock_matrices.push_back(F_accelerated);  // the diagonalization step can only read from the environment //FIXME
@@ -124,7 +119,6 @@ public:
 
         // The accelerated/extrapolated Fock matrices should not be used in further extrapolation steps, as they are not created from a density matrix.
         environment.fock_matrices.pop_back();
-        std::cout << "accel!" << std::endl;
     }
 };
 
