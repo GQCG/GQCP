@@ -54,7 +54,7 @@ public:
      * 
      *  @return the transformed density matrix.
      */
-    OneDM<Scalar> transform(const TransformationMatrix<double>& T) const { return this->basisTransform(); }
+    OneDM<Scalar> transformed(const TransformationMatrix<double>& T) const { return this->basisTransform(T); }
 };
 
 

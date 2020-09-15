@@ -126,7 +126,7 @@ public:
      * 
      *  @return the transformed spin resolved density matrix, with each component transformed seperately t a different basis.
      */
-    SpinResolvedOneDM<Scalar> transform(const TransformationMatrix<double>& T_a, const TransformationMatrix<double>& T_b) const {
+    SpinResolvedOneDM<Scalar> transformed(const TransformationMatrix<double>& T_a, const TransformationMatrix<double>& T_b) const {
         OneDM<Scalar> D_a_transformed = T_a.conjugate() * this->alpha() * T_a.transpose();
         OneDM<Scalar> D_b_transformed = T_b.conjugate() * this->beta() * T_b.transpose();
 
