@@ -53,7 +53,7 @@ public:
      *  @param M            the number of spinors
      *  @param N            the number of electrons
      */
-    SpinUnresolvedONVBasis(const size_t K, const size_t M);
+    SpinUnresolvedONVBasis(const size_t M, const size_t N);
 
 
     // DESTRUCTOR
@@ -83,6 +83,14 @@ public:
      *  @return the address (i.e. the ordering number) of the given spin-unresolved ONV
      */
     size_t addressOf(const size_t representation) const override;
+
+    /**
+     *  @param p       The orbital index p
+     *  @param n       The electron index n
+     *
+     *  @return the arc weight of the arc starting in the given vertex (p, n) (reference: Helgaker 11.8.6)
+     */
+    size_t arcWeight(const size_t p, const size_t n) const { return this->vertexWeight(p, n + 1); }
 
     /**
      *  @param onv       the spin-unresolved ONV
@@ -644,11 +652,11 @@ public:
 
     /**
      *  @param p            the orbital index
-     *  @param m            the electron index
+     *  @param n            the electron index
      * 
      *  @return the vertex weight for the given indices
      */
-    size_t vertexWeight(const size_t p, const size_t m) const { return this->vertex_weights[p][m]; }
+    size_t vertexWeight(const size_t p, const size_t n) const { return this->vertex_weights[p][n]; }
 
     /**
      *  @return all the vertex weights for this ONV basis

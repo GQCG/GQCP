@@ -19,6 +19,7 @@
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
 
 
 namespace py = pybind11;
@@ -31,6 +32,24 @@ void bindSpinUnresolvedONV(py::module& module) {
     py::class_<GQCP::SpinUnresolvedONV>(module, "SpinUnresolvedONV", "A spin-unresolved occupation number vector.")
 
         // CONSTRUCTORS
+
+        .def_static(
+            "FromString",
+            [](const std::string& string_representation) {
+                return GQCP::SpinUnresolvedONV::FromString(string_representation);
+            },
+            py::arg("string_representation"),
+            "Create a spin-unresolved ONV from a string representation.")
+
+        .def_static(
+            "FromOccupiedIndices",
+            [](const std::vector<size_t>& occupied_indices, const size_t M) {
+                return GQCP::SpinUnresolvedONV::FromOccupiedIndices(occupied_indices, M);
+            },
+            py::arg("occupied_indices"),
+            py::arg("M"),
+            "Create a spin-unresolved ONV from an array of occupied indices and a total number of spinors.")
+
         .def_static(
             "GHF",
             [](const size_t M, const size_t N, const Eigen::MatrixXd& orbital_energies) {
@@ -43,6 +62,7 @@ void bindSpinUnresolvedONV(py::module& module) {
 
 
         // PUBLIC METHODS
+
         .def(
             "__repr__",
             &GQCP::SpinUnresolvedONV::asString)
