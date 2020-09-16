@@ -53,15 +53,15 @@ void bindUSQHamiltonian(py::module& module) {
             },
             "Return whether the spin components of the unrestricted Hamiltonian have the same dimension.")
 
-        .def(
-            "constrain",
-            [](GQCP::USQHamiltonian<double>& usq_hamiltonian, const GQCP::ScalarSQOneElectronOperator<double>& one_electron_op, const double lambda, const GQCP::Spin sigma) {
-                return usq_hamiltonian.constrain(one_electron_op, lambda, sigma);
-            },
-            py::arg("one_electron_op"),
-            py::arg("lambda"),
-            py::arg("sigma"),
-            "Constrain spin component sigma of the unrestricted Hamiltonian with a certain one electron operator and Lagrangian lambda.")
+        // .def(
+        //     "constrain",
+        //     [](GQCP::USQHamiltonian<double>& usq_hamiltonian, const GQCP::ScalarSQOneElectronOperator<double>& one_electron_op, const double lambda, const GQCP::Spin sigma) {
+        //         return usq_hamiltonian.constrain(one_electron_op, lambda, sigma);
+        //     },
+        //     py::arg("one_electron_op"),
+        //     py::arg("lambda"),
+        //     py::arg("sigma"),
+        //     "Constrain spin component sigma of the unrestricted Hamiltonian with a certain one electron operator and Lagrangian lambda.")
 
         .def(
             "numberOfOrbitals",

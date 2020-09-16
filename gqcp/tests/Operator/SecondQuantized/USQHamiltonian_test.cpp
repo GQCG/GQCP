@@ -35,27 +35,28 @@ BOOST_AUTO_TEST_CASE(USQHamiltonian_constructor) {
     const auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
     const GQCP::USpinorBasis<double, GQCP::GTOShell> spinor_basis {water, "STO-3G"};
 
-    // Create One- and SQTwoElectronOperators (and a transformation matrix) with compatible dimensions
+    // Create One- and two electron operators (and a transformation matrix) with compatible dimensions
     const size_t K = spinor_basis.numberOfSpinors(GQCP::Spin::alpha);
     const GQCP::QCMatrix<double> H_core = GQCP::QCMatrix<double>::Random(K, K);
     GQCP::QCRankFourTensor<double> g {K};
     g.setRandom();
+
+    GQCP::ScalarUSQOneElectronOperator<double> H_op {H_core, H_core};
+    GQCP::ScalarUSQTwoElectronOperator<double> g_op {g, g, g, g};
 
     // Create SQ operators with greater dimensions
     const GQCP::QCMatrix<double> H_core_faulty = GQCP::QCMatrix<double>::Random(K + 1, K + 1);
     GQCP::QCRankFourTensor<double> g_faulty {K + 1};
     g_faulty.setRandom();
 
-    // Create SQHamilonians with different dimensions
-    const GQCP::SQHamiltonian<double> sq_hamiltonian_a {GQCP::ScalarSQOneElectronOperator<double>(H_core), GQCP::ScalarSQTwoElectronOperator<double>(g)};
-    const GQCP::SQHamiltonian<double> sq_hamiltonian_b {GQCP::ScalarSQOneElectronOperator<double>(H_core), GQCP::ScalarSQTwoElectronOperator<double>(g)};
-    const GQCP::SQHamiltonian<double> sq_hamiltonian_b_faulty {GQCP::ScalarSQOneElectronOperator<double>(H_core_faulty), GQCP::ScalarSQTwoElectronOperator<double>(g_faulty)};
+    GQCP::ScalarUSQOneElectronOperator<double> H_op_faulty {H_core_faulty, H_core_faulty};
+    GQCP::ScalarUSQTwoElectronOperator<double> g_op_faulty {g_faulty, g_faulty, g_faulty, g_faulty};
 
     // Check if a correct constructor works with compatible elements
-    BOOST_CHECK_NO_THROW(GQCP::USQHamiltonian<double> usq_hamiltonian(sq_hamiltonian_a, sq_hamiltonian_b, GQCP::ScalarSQTwoElectronOperator<double>(g)));
+    BOOST_CHECK_NO_THROW(GQCP::USQHamiltonian<double> usq_hamiltonian(H_op, g_op));
     // Check if a constructor throws an error with incompatible elements
-    BOOST_CHECK_THROW(GQCP::USQHamiltonian<double> usq_hamiltonian(sq_hamiltonian_a, sq_hamiltonian_b_faulty, GQCP::ScalarSQTwoElectronOperator<double>(g)), std::invalid_argument);
-    BOOST_CHECK_THROW(GQCP::USQHamiltonian<double> usq_hamiltonian(sq_hamiltonian_a, sq_hamiltonian_b, GQCP::ScalarSQTwoElectronOperator<double>(g_faulty)), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::USQHamiltonian<double> usq_hamiltonian(H_op_faulty, g_op), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::USQHamiltonian<double> usq_hamiltonian(H_op, g_op_faulty), std::invalid_argument);
 }
 
 /**
@@ -79,7 +80,7 @@ BOOST_AUTO_TEST_CASE(USQHamiltonian_transform) {
     usq_hamiltonian2.transform(U, GQCP::Spin::alpha);
     usq_hamiltonian2.transform(U, GQCP::Spin::beta);
 
-    // Test if the transformation results in identical Hamtilonians
+    // Test if the transformation results in identical Hamiltonians
     BOOST_CHECK(usq_hamiltonian1.twoElectronMixed().parameters().isApprox(usq_hamiltonian2.twoElectronMixed().parameters()));
     BOOST_CHECK(usq_hamiltonian1.spinHamiltonian(GQCP::Spin::alpha).core().parameters().isApprox(usq_hamiltonian2.spinHamiltonian(GQCP::Spin::alpha).core().parameters()));
     BOOST_CHECK(usq_hamiltonian1.spinHamiltonian(GQCP::Spin::beta).core().parameters().isApprox(usq_hamiltonian2.spinHamiltonian(GQCP::Spin::beta).core().parameters()));

@@ -78,7 +78,7 @@ public:
         const auto dim_bb = two_ops[0].parameters(Spin::beta, Spin::beta).numberOfOrbitals();
 
         for (const auto& two_op : this->two_ops) {
-            if ((two_op.parameters.parameters(Spin::alpha, Spin::alpha).numberOfOrbitals() != dim_aa) || (two_op.parameters.parameters(Spin::alpha, Spin::beta).numberOfOrbitals() != dim_ab) || (two_op.parameters.parameters(Spin::beta, Spin::alpha).numberOfOrbitals() != dim_ba) || (two_op.parameters.parameters(Spin::beta, Spin::beta).numberOfOrbitals() != dim_bb)) {
+            if ((two_op.parameters(Spin::alpha, Spin::alpha).numberOfOrbitals() != dim_aa) || (two_op.parameters(Spin::alpha, Spin::beta).numberOfOrbitals() != dim_ab) || (two_op.parameters(Spin::beta, Spin::alpha).numberOfOrbitals() != dim_ba) || (two_op.parameters(Spin::beta, Spin::beta).numberOfOrbitals() != dim_bb)) {
                 throw dimension_error;
             }
         }
@@ -315,6 +315,7 @@ public:
         }
     }
 
+
     /**
      *  In-place transform the matrix representations of the unrestricted Hamiltonian
      *
@@ -377,8 +378,12 @@ public:
             // Transform the pure alpha and alpha-beta components of the two-electron operators when alpha is chosen
             // transform the two electron parameters "g_aabb" to "g_a'a'bb" when alpha is chosen
             for (auto& two_op : this->two_ops) {
-                two_op.parameters(Spin::alpha, Spin::alpha).bassisTransform(T);
-                two_op.parameters(Spin::alpha, Spin::beta).basisTransform(T);
+                two_op.parameters(Spin::alpha, Spin::alpha).basisTransform(T);
+                two_op.parameters(Spin::alpha, Spin::beta).template contractWithMatrix<Scalar>(T, 0);
+                two_op.parameters(Spin::alpha, Spin::beta).template contractWithMatrix<Scalar>(T, 1);
+                two_op.parameters(Spin::beta, Spin::alpha).template contractWithMatrix<Scalar>(T, 2);
+                two_op.parameters(Spin::beta, Spin::alpha).template contractWithMatrix<Scalar>(T, 3);
+
                 total_two_op_par_aa += two_op.parameters(Spin::alpha, Spin::alpha).Eigen();
                 total_two_op_par_ab += two_op.parameters(Spin::alpha, Spin::beta).Eigen();
                 total_two_op_par_ba += two_op.parameters(Spin::beta, Spin::alpha).Eigen();
@@ -401,8 +406,12 @@ public:
             // Transform the pure beta and beta-alpha components of the two-electron operators when beta is chosen
             // transform the two electron parameters "g_aab'b'" for beta.
             for (auto& two_op : this->two_ops) {
-                two_op.parameters(Spin::beta, Spin::beta).bassisTransform(T);
-                two_op.parameters(Spin::beta, Spin::alpha).basisTransform(T);
+                two_op.parameters(Spin::beta, Spin::beta).basisTransform(T);
+                two_op.parameters(Spin::alpha, Spin::beta).template contractWithMatrix<Scalar>(T, 2);
+                two_op.parameters(Spin::alpha, Spin::beta).template contractWithMatrix<Scalar>(T, 3);
+                two_op.parameters(Spin::beta, Spin::alpha).template contractWithMatrix<Scalar>(T, 0);
+                two_op.parameters(Spin::beta, Spin::alpha).template contractWithMatrix<Scalar>(T, 1);
+
                 total_two_op_par_aa += two_op.parameters(Spin::alpha, Spin::alpha).Eigen();
                 total_two_op_par_ab += two_op.parameters(Spin::alpha, Spin::beta).Eigen();
                 total_two_op_par_ba += two_op.parameters(Spin::beta, Spin::alpha).Eigen();
@@ -418,12 +427,35 @@ public:
     /**
      *  @return the total contributions to the mixed alpha & beta two-electron part of the unrestricted Hamiltonian
      */
-    const std::vector<ScalarSQTwoElectronOperator<Scalar>>& twoElectronContributionsMixed() const { return this->two_ops.allParameters(Spin::alpha, Spin::beta) + this->two_ops.allParameters(Spin::beta, Spin::alpha); }
+    const std::vector<ScalarSQTwoElectronOperator<Scalar>> twoElectronContributionsMixed() const {
+
+        std::vector<ScalarSQTwoElectronOperator<Scalar>> two_ops_mixed;
+
+        for (auto& two_op : this->two_ops) {
+            QCRankFourTensor<Scalar> two_op_mix(two_ops[0].parameters(Spin::alpha, Spin::alpha).numberOfOrbitals());
+            two_op_mix.setZero();
+            two_op_mix += two_op.parameters(Spin::alpha, Spin::beta);
+            two_op_mix += two_op.parameters(Spin::beta, Spin::alpha);
+
+            two_ops_mixed.push_back(ScalarSQTwoElectronOperator<Scalar>(two_op_mix));
+        }
+
+        return two_ops_mixed;
+    }
+
 
     /**
      *  @return the total contributions to the mixed alpha & beta two-electron part of the unrestricted Hamiltonian
      */
-    const ScalarSQTwoElectronOperator<Scalar>& twoElectronMixed() const { return this->total_two_op.parameters(Spin::alpha, Spin::beta) + this->total_two_op.parameters(Spin::beta, Spin::alpha); }
+    const ScalarSQTwoElectronOperator<Scalar> twoElectronMixed() const {
+
+        QCRankFourTensor<Scalar> total_two_op_mixed(two_ops[0].parameters(Spin::alpha, Spin::alpha).numberOfOrbitals());
+        total_two_op_mixed.setZero();
+        total_two_op_mixed += this->total_two_op.parameters(Spin::alpha, Spin::beta);
+        total_two_op_mixed += this->total_two_op.parameters(Spin::beta, Spin::alpha);
+
+        return ScalarSQTwoElectronOperator<Scalar>(total_two_op_mixed);
+    }
 };  // namespace GQCP
 
 
