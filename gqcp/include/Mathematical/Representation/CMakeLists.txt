@@ -4,6 +4,7 @@ target_sources(gqcp
         ImplicitMatrixSlice.hpp
         ImplicitRankFourTensorSlice.hpp
         Matrix.hpp
+        MatrixRepresentationEvaluationContainer.hpp
         QCMatrix.hpp
         QCRankFourTensor.hpp
         SquareMatrix.hpp

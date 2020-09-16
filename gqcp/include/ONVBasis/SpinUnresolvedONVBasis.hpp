@@ -18,8 +18,8 @@
 #pragma once
 
 
+#include "Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp"
 #include "ONVBasis/BaseONVBasis.hpp"
-#include "ONVBasis/EvaluationIterator.hpp"
 #include "ONVBasis/ONVManipulator.hpp"
 
 #include <functional>
@@ -30,11 +30,10 @@ namespace GQCP {
 
 /**
  *  The full spin-unresolved ONV basis for a number of spinors and number of electrons.
- *
- *  The ONVs and addresses are linked with a hashing function calculated with an addressing scheme. The implementation of the addressing scheme is from Molecular Electronic-Structure Theory (August 2000) by Trygve Helgaker, Poul Jorgensen, and Jeppe Olsen.
- *
  */
-class SpinUnresolvedONVBasis: public BaseONVBasis, public ONVManipulator<SpinUnresolvedONVBasis> {
+class SpinUnresolvedONVBasis:
+    public BaseONVBasis,
+    public ONVManipulator<SpinUnresolvedONVBasis> {
 private:
     std::vector<std::vector<size_t>> vertex_weights;  // vertex_weights of the addressing scheme
 
@@ -83,14 +82,6 @@ public:
      *  @return the address (i.e. the ordering number) of the given spin-unresolved ONV
      */
     size_t addressOf(const size_t representation) const override;
-
-    /**
-     *  @param p       The orbital index p
-     *  @param n       The electron index n
-     *
-     *  @return the arc weight of the arc starting in the given vertex (p, n) (reference: Helgaker 11.8.6)
-     */
-    size_t arcWeight(const size_t p, const size_t n) const { return this->vertexWeight(p, n + 1); }
 
     /**
      *  @param onv       the spin-unresolved ONV
@@ -234,6 +225,14 @@ public:
     using ONVManipulator<SpinUnresolvedONVBasis>::addressOf;
 
     /**
+     *  @param p       The orbital index p
+     *  @param n       The electron index n
+     *
+     *  @return the arc weight of the arc starting in the given vertex (p, n) (reference: Helgaker 11.8.6)
+     */
+    size_t arcWeight(const size_t p, const size_t n) const { return this->vertexWeight(p, n + 1); }
+
+    /**
      *  Calculates sigma(pq) + sigma(qp)'s: all one-electron couplings for each annihilation-creation pair in the (spin) spin-unresolved ONV basis
      *  and stores them in sparse matrices for each pair combination
      *
@@ -252,7 +251,7 @@ public:
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template <typename _Matrix>
-    void evaluateOperator(const ScalarSQOneElectronOperator<double>& one_op, EvaluationIterator<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    void evaluateOperator(const ScalarSQOneElectronOperator<double>& one_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
 
         const auto& one_op_par = one_op.parameters();
 
@@ -313,7 +312,7 @@ public:
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template <typename _Matrix>
-    void evaluateOperator(const ScalarSQTwoElectronOperator<double>& two_op, EvaluationIterator<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    void evaluateOperator(const ScalarSQTwoElectronOperator<double>& two_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
 
         // Calling this combined method for both the one- and two-electron operator does not affect the performance, hence we avoid writing more code by plugging a zero operator in the combined method
         evaluateOperator(ScalarSQOneElectronOperator<double> {this->M}, two_op, evaluation_iterator, diagonal_values);
@@ -331,7 +330,7 @@ public:
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template <typename _Matrix>
-    void evaluateOperator(const ScalarSQOneElectronOperator<double>& one_op, const ScalarSQTwoElectronOperator<double>& two_op, EvaluationIterator<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    void evaluateOperator(const ScalarSQOneElectronOperator<double>& one_op, const ScalarSQTwoElectronOperator<double>& two_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
 
         const auto& two_op_par = two_op.parameters();
 

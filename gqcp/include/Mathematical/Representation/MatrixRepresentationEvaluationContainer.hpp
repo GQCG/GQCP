@@ -27,30 +27,35 @@ namespace GQCP {
 
 
 /**
- *  A templated private class for ONV bases: its constructors are private, but ONV bases are its friends.
- *  It supports dense, sparse and matrix vector product storage for elements evaluated in the ONV basis.
- *
- *  @tparam _Matrix              the type of matrix in which the evaluations of the ONV basis will be stored
+ *  A class that can efficiently construct the (square) matrix representation of an operator (in the mathematical sense).
+ * 
+ *  @tparam _Matrix              the type that is used as a matrix representation, i.e. a container that stores the matrix representation
  */
 template <typename _Matrix>
-class EvaluationIterator {
+class MatrixRepresentationEvaluationContainer {
 public:
     using Matrix = _Matrix;
 
 private:
-    size_t index = 0;  // current position of the iterator in the dimension of the ONV basis
-    size_t end;        // the dimension of the ONV basis
+    // The current position of the iterator.
+    size_t index = 0;
 
-    Matrix matrix;  // matrix containing the evaluations
+    // The last position of the iterator.
+    size_t end;
 
+    // The type that contains the matrix representation.
+    Matrix matrix;
+
+
+public:
     /*
      *  CONSTRUCTORS
      */
 
     /**
-     * @param dimension         the dimension of the ONV basis
+     *  @param dimension         the dimension of the matrix representation (the number of elements in one row/column)
      */
-    EvaluationIterator(const size_t dimension) :
+    MatrixRepresentationEvaluationContainer(const size_t dimension) :
         matrix {Matrix::Zero(dimension, dimension)},
         end {dimension} {}
 
@@ -112,7 +117,7 @@ private:
  *  Elements should only be added to the matrix once all of them are evaluated in a vector of triplets
  */
 template <>
-class EvaluationIterator<Eigen::SparseMatrix<double>> {
+class MatrixRepresentationEvaluationContainer<Eigen::SparseMatrix<double>> {
     size_t index = 0;  // current position of the iterator in the dimension of the ONV basis
     size_t end;        // total dimension
 
@@ -126,7 +131,7 @@ class EvaluationIterator<Eigen::SparseMatrix<double>> {
     /**
      * @param dimension         the dimensions of the matrix (equal to that of the fock space)
      */
-    EvaluationIterator(const size_t dimension) :
+    MatrixRepresentationEvaluationContainer(const size_t dimension) :
         matrix {Eigen::SparseMatrix<double>(dimension, dimension)},
         end(dimension) {}
 
@@ -219,7 +224,7 @@ class EvaluationIterator<Eigen::SparseMatrix<double>> {
  *  Vector template specialization is required because of matvec evaluations are stored in a vector additions
  */
 template <>
-class EvaluationIterator<VectorX<double>> {
+class MatrixRepresentationEvaluationContainer<VectorX<double>> {
     size_t index = 0;  // current position of the iterator in the dimension of the ONV basis
     size_t end;        // total dimension
 
@@ -236,12 +241,12 @@ class EvaluationIterator<VectorX<double>> {
     /**
      * @param dimension         the dimensions of the matrix (equal to that of the fock space)
      */
-    EvaluationIterator(const VectorX<double>& coefficient_vector, const VectorX<double>& diagonal) :
+    MatrixRepresentationEvaluationContainer(const VectorX<double>& coefficient_vector, const VectorX<double>& diagonal) :
         end {static_cast<size_t>(coefficient_vector.rows())},
         coefficient_vector {coefficient_vector},
         matvec {diagonal.cwiseProduct(coefficient_vector)} {}
 
-    EvaluationIterator(const VectorX<double>& coefficient_vector) :
+    MatrixRepresentationEvaluationContainer(const VectorX<double>& coefficient_vector) :
         coefficient_vector {coefficient_vector},
         matvec {VectorX<double>::Zero(coefficient_vector.rows())} {}
 

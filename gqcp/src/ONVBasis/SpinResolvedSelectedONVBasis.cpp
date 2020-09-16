@@ -198,7 +198,7 @@ SquareMatrix<double> SpinResolvedSelectedONVBasis::evaluateOperatorDense(const S
         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperatorDense(ScalarSQOneElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
-    EvaluationIterator<SquareMatrix<double>> evaluation_iterator {this->dim};
+    MatrixRepresentationEvaluationContainer<SquareMatrix<double>> evaluation_iterator {this->dim};
     this->evaluateOperator<SquareMatrix<double>>(one_op, evaluation_iterator, diagonal_values);
     return evaluation_iterator.evaluation();
 }
@@ -219,7 +219,7 @@ SquareMatrix<double> SpinResolvedSelectedONVBasis::evaluateOperatorDense(const S
         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperatorDense(ScalarSQTwoElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
-    EvaluationIterator<SquareMatrix<double>> evaluation_iterator {this->dim};
+    MatrixRepresentationEvaluationContainer<SquareMatrix<double>> evaluation_iterator {this->dim};
     this->evaluateOperator<SquareMatrix<double>>(two_op, evaluation_iterator, diagonal_values);
     return evaluation_iterator.evaluation();
 }
@@ -240,7 +240,7 @@ SquareMatrix<double> SpinResolvedSelectedONVBasis::evaluateOperatorDense(const S
         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperatorDense(SQHamiltonian<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
-    EvaluationIterator<SquareMatrix<double>> evaluation_iterator {this->dim};
+    MatrixRepresentationEvaluationContainer<SquareMatrix<double>> evaluation_iterator {this->dim};
     this->evaluateOperator<SquareMatrix<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), evaluation_iterator, diagonal_values);
     return evaluation_iterator.evaluation();
 }
@@ -266,7 +266,7 @@ SquareMatrix<double> SpinResolvedSelectedONVBasis::evaluateOperatorDense(const U
         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperatorDense(USQHamiltonian<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
-    EvaluationIterator<SquareMatrix<double>> evaluation_iterator {this->dim};
+    MatrixRepresentationEvaluationContainer<SquareMatrix<double>> evaluation_iterator {this->dim};
     this->evaluateOperator<SquareMatrix<double>>(usq_hamiltonian, evaluation_iterator, diagonal_values);
     return evaluation_iterator.evaluation();
 }
@@ -483,7 +483,7 @@ VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduc
         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduct(ScalarSQOneElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
-    EvaluationIterator<VectorX<double>> evaluation_iterator {x, diagonal};
+    MatrixRepresentationEvaluationContainer<VectorX<double>> evaluation_iterator {x, diagonal};
     this->evaluateOperator<VectorX<double>>(one_op, evaluation_iterator, false);
     return evaluation_iterator.evaluation();
 }
@@ -504,7 +504,7 @@ VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduc
         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduct(ScalarSQTwoElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
-    EvaluationIterator<VectorX<double>> evaluation_iterator {x, diagonal};
+    MatrixRepresentationEvaluationContainer<VectorX<double>> evaluation_iterator {x, diagonal};
     this->evaluateOperator<VectorX<double>>(two_op, evaluation_iterator, false);
     return evaluation_iterator.evaluation();
 }
@@ -525,7 +525,7 @@ VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduc
         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
-    EvaluationIterator<VectorX<double>> evaluation_iterator {x, diagonal};
+    MatrixRepresentationEvaluationContainer<VectorX<double>> evaluation_iterator {x, diagonal};
     this->evaluateOperator<VectorX<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), evaluation_iterator, false);
     return evaluation_iterator.evaluation();
 }
@@ -552,7 +552,7 @@ VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduc
         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduct(USQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
-    EvaluationIterator<VectorX<double>> evaluation_iterator {x, diagonal};
+    MatrixRepresentationEvaluationContainer<VectorX<double>> evaluation_iterator {x, diagonal};
     this->evaluateOperator<VectorX<double>>(usq_hamiltonian, evaluation_iterator, false);
     return evaluation_iterator.evaluation();
 }
@@ -573,7 +573,7 @@ Eigen::SparseMatrix<double> SpinResolvedSelectedONVBasis::evaluateOperatorSparse
         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperatorSparse(ScalarSQOneElectronOperator<double>, bool): Basis functions of the ONV basis and the operator are incompatible.");
     }
 
-    EvaluationIterator<Eigen::SparseMatrix<double>> evaluation_iterator {this->dim};
+    MatrixRepresentationEvaluationContainer<Eigen::SparseMatrix<double>> evaluation_iterator {this->dim};
 
     // Estimate the memory that is needed for the evaluation
     size_t memory = dim * this->M * (this->N_alpha + this->N_beta);
@@ -603,7 +603,7 @@ Eigen::SparseMatrix<double> SpinResolvedSelectedONVBasis::evaluateOperatorSparse
         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperatorSparse(ScalarSQTwoElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
-    EvaluationIterator<Eigen::SparseMatrix<double>> evaluation_iterator {this->dim};
+    MatrixRepresentationEvaluationContainer<Eigen::SparseMatrix<double>> evaluation_iterator {this->dim};
 
     // Estimate the memory that is needed for the evaluation
     size_t memory = dim * this->M * this->M * (this->N_alpha + this->N_beta) * (this->N_alpha + this->N_beta);
@@ -633,7 +633,7 @@ Eigen::SparseMatrix<double> SpinResolvedSelectedONVBasis::evaluateOperatorSparse
         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperatorSparse(SQHamiltonian<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
-    EvaluationIterator<Eigen::SparseMatrix<double>> evaluation_iterator {this->dim};
+    MatrixRepresentationEvaluationContainer<Eigen::SparseMatrix<double>> evaluation_iterator {this->dim};
 
     // Estimate the memory that is needed for the evaluation
     size_t memory = dim * this->M * this->M * (this->N_alpha + this->N_beta) * (this->N_alpha + this->N_beta) / 4;
@@ -667,7 +667,7 @@ Eigen::SparseMatrix<double> SpinResolvedSelectedONVBasis::evaluateOperatorSparse
         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperatorSparse(USQHamiltonian<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
-    EvaluationIterator<Eigen::SparseMatrix<double>> evaluation_iterator {this->dim};
+    MatrixRepresentationEvaluationContainer<Eigen::SparseMatrix<double>> evaluation_iterator {this->dim};
 
     // Estimate the memory that is needed for the evaluation
     size_t memory = dim * this->M * this->M * (this->N_alpha + this->N_beta) * (this->N_alpha + this->N_beta);

@@ -2,7 +2,6 @@ target_sources(gqcp
     PRIVATE
         BaseFrozenCoreONVBasis.hpp
         BaseONVBasis.hpp
-        EvaluationIterator.hpp
         ONVBasisType.hpp
         ONVManipulator.hpp
         ONVPath.hpp
