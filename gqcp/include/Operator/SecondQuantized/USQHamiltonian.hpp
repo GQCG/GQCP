@@ -198,6 +198,39 @@ public:
     //     }
     // }
 
+    /**
+     *  @return the contributions to the 'core' Hamiltonian
+     */
+    const std::vector<ScalarUSQOneElectronOperator<Scalar>>& coreContributions() const { return this->one_ops; }
+
+    /**
+     *  @param sigma            The spin sigma component
+     * 
+     *  @return the contributions to the spin sigma 'core' Hamiltonian
+     */
+    const std::vector<ScalarSQOneElectronOperator<Scalar>> coreContributions(const Spin& sigma) const {
+
+        std::vector<ScalarSQOneElectronOperator<Scalar>> one_ops_sigma;
+
+        switch (sigma) {
+        case Spin::alpha: {
+            for (auto& one_op : this->one_ops) {
+                one_ops_sigma.push_back(ScalarSQOneElectronOperator<Scalar>(one_op.parameters(Spin::alpha)));
+            }
+
+            return one_ops_sigma;
+            break;
+        }
+
+        case Spin::beta: {
+            for (auto& one_op : this->one_ops) {
+                one_ops_sigma.push_back(ScalarSQOneElectronOperator<Scalar>(one_op.parameters(Spin::beta)));
+            }
+            return one_ops_sigma;
+            break;
+        }
+        }
+    }
 
     /**
      *  @return the dimension of the Hamiltonian, i.e. the number of spinors in which it is expressed
@@ -279,14 +312,11 @@ public:
      */
     const SQHamiltonian<Scalar> spinHamiltonian(const Spin& sigma) const {
 
-        std::vector<ScalarSQOneElectronOperator<Scalar>> one_ops_sigma;
         std::vector<ScalarSQTwoElectronOperator<Scalar>> two_ops_sigma;
 
         switch (sigma) {
         case Spin::alpha: {
-            for (auto& one_op : this->one_ops) {
-                one_ops_sigma.push_back(ScalarSQOneElectronOperator<Scalar>(one_op.parameters(Spin::alpha)));
-            }
+            const auto one_ops_sigma = this->coreContributions(Spin::alpha);
             for (auto& two_op : this->two_ops) {
                 two_ops_sigma.push_back(ScalarSQTwoElectronOperator<Scalar>(two_op.parameters(Spin::alpha, Spin::alpha)));
             }
@@ -296,9 +326,7 @@ public:
         }
 
         case Spin::beta: {
-            for (auto& one_op : this->one_ops) {
-                one_ops_sigma.push_back(ScalarSQOneElectronOperator<Scalar>(one_op.parameters(Spin::beta)));
-            }
+            const auto one_ops_sigma = this->coreContributions(Spin::beta);
             for (auto& two_op : this->two_ops) {
                 two_ops_sigma.push_back(ScalarSQTwoElectronOperator<Scalar>(two_op.parameters(Spin::beta, Spin::beta)));
             }
@@ -417,6 +445,10 @@ public:
         }
     }
 
+    /**
+     *  @return the contributions to the two-electron part of the Hamiltonian
+     */
+    const std::vector<ScalarSQTwoElectronOperator<Scalar>>& twoElectronContributions() const { return this->two_ops; }
 
     /**
      *  @return the total contributions to the mixed alpha & beta two-electron part of the unrestricted Hamiltonian
@@ -437,7 +469,6 @@ public:
         return two_ops_mixed;
     }
 
-
     /**
      *  @return the total contributions to the mixed alpha & beta two-electron part of the unrestricted Hamiltonian
      */
@@ -451,6 +482,90 @@ public:
         return ScalarSQTwoElectronOperator<Scalar>(total_two_op_mixed);
     }
 };  // namespace GQCP
+
+
+/*
+ *  OPERATORS
+ */
+
+/**
+ *  Add the second-quantized forms of a (scalar) one-electron operator to that of a Hamiltonian.
+ * 
+ *  @tparam Scalar              the type that is used to represent elements of the (scalar) one-electron operator and the Hamiltonian
+ * 
+ *  @param usq_hamiltonian       the second-quantized Hamiltonian
+ *  @param usq_one_op            the (scalar) second-quantized one-electron operator
+ * 
+ *  @return a new second-quantized Hamiltonian
+ */
+template <typename Scalar>
+USQHamiltonian<Scalar> operator+(const USQHamiltonian<Scalar>& usq_hamiltonian, const ScalarUSQOneElectronOperator<Scalar>& usq_one_op) {
+
+    // Make a copy of the one-electron part in order to create a new Hamiltonian
+    auto usq_one_ops = usq_hamiltonian.coreContributions();
+
+    // 'Add' the one-electron operator
+    usq_one_ops.push_back(usq_one_op);
+
+    return USQHamiltonian<Scalar>(usq_one_ops, usq_hamiltonian.twoElectronContributions());
+}
+
+
+/**
+ *  Subtract a (scalar) second-quantized one-electron operator from a second-quantized Hamiltonian.
+ * 
+ *  @tparam Scalar              the type that is used to represent elements of the (scalar) one-electron operator and the Hamiltonian
+ * 
+ *  @param usq_hamiltonian       the second-quantized Hamiltonian
+ *  @param usq_one_op            the (scalar) second-quantized one-electron operator
+ * 
+ *  @return a new second-quantized Hamiltonian
+ */
+template <typename Scalar>
+USQHamiltonian<Scalar> operator-(const USQHamiltonian<Scalar>& usq_hamiltonian, const ScalarUSQOneElectronOperator<Scalar>& usq_one_op) {
+
+    return usq_hamiltonian + (-usq_one_op);
+}
+
+
+/**
+ *  Add the second-quantized forms of a (scalar) two-electron operator to that of a Hamiltonian.
+ * 
+ *  @tparam Scalar              the type that is used to represent elements of the (scalar) two-electron operator and the Hamiltonian
+ * 
+ *  @param usq_hamiltonian       the second-quantized Hamiltonian
+ *  @param usq_two_op            the (scalar) second-quantized two-electron operator
+ * 
+ *  @return a new second-quantized Hamiltonian
+ */
+template <typename Scalar>
+USQHamiltonian<Scalar> operator+(const USQHamiltonian<Scalar>& usq_hamiltonian, const ScalarUSQTwoElectronOperator<Scalar>& usq_two_op) {
+
+    // Make a copy of the two-electron part in order to create a new Hamiltonian
+    auto usq_two_ops = usq_hamiltonian.twoElectronContributions();
+
+    // 'Add' the two-electron operator
+    usq_two_ops.push_back(usq_two_ops);
+
+    return USQHamiltonian<Scalar>(usq_hamiltonian.coreContributions(), usq_two_ops);
+}
+
+
+/**
+ *  Subtract a (scalar) second-quantized two-electron operator from a second-quantized Hamiltonian.
+ * 
+ *  @tparam Scalar              the type that is used to represent elements of the (scalar) two-electron operator and the Hamiltonian
+ * 
+ *  @param usq_hamiltonian       the second-quantized Hamiltonian
+ *  @param usq_two_op            the (scalar) second-quantized two-electron operator
+ * 
+ *  @return a new second-quantized Hamiltonian
+ */
+template <typename Scalar>
+USQHamiltonian<Scalar> operator-(const USQHamiltonian<Scalar>& usq_hamiltonian, const ScalarUSQTwoElectronOperator<Scalar>& usq_two_op) {
+
+    return usq_hamiltonian + (-usq_two_op);
+}
 
 
 }  // namespace GQCP
