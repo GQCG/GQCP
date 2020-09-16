@@ -545,7 +545,7 @@ USQHamiltonian<Scalar> operator+(const USQHamiltonian<Scalar>& usq_hamiltonian, 
     auto usq_two_ops = usq_hamiltonian.twoElectronContributions();
 
     // 'Add' the two-electron operator
-    usq_two_ops.push_back(usq_two_ops);
+    usq_two_ops.push_back(usq_two_op);
 
     return USQHamiltonian<Scalar>(usq_hamiltonian.coreContributions(), usq_two_ops);
 }
