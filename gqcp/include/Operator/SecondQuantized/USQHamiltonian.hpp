@@ -448,7 +448,7 @@ public:
     /**
      *  @return the contributions to the two-electron part of the Hamiltonian
      */
-    const std::vector<ScalarSQTwoElectronOperator<Scalar>>& twoElectronContributions() const { return this->two_ops; }
+    const std::vector<ScalarUSQTwoElectronOperator<Scalar>>& twoElectronContributions() const { return this->two_ops; }
 
     /**
      *  @return the total contributions to the mixed alpha & beta two-electron part of the unrestricted Hamiltonian
