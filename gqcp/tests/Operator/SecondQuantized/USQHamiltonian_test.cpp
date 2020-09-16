@@ -85,3 +85,59 @@ BOOST_AUTO_TEST_CASE(USQHamiltonian_transform) {
     BOOST_CHECK(usq_hamiltonian1.spinHamiltonian(GQCP::Spin::alpha).core().parameters().isApprox(usq_hamiltonian2.spinHamiltonian(GQCP::Spin::alpha).core().parameters()));
     BOOST_CHECK(usq_hamiltonian1.spinHamiltonian(GQCP::Spin::beta).core().parameters().isApprox(usq_hamiltonian2.spinHamiltonian(GQCP::Spin::beta).core().parameters()));
 }
+
+/**
+ *  Check if a total transformation or two individual transformations for the individual components of the USQHamiltonian amount to the same result
+ */
+BOOST_AUTO_TEST_CASE(USQHamiltonian_rotate) {
+    // Create single-particle basis for alpha and beta
+    const auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    const GQCP::USpinorBasis<double, GQCP::GTOShell> spinor_basis {water, "STO-3G"};
+
+    const size_t K = spinor_basis.numberOfSpinors(GQCP::Spin::alpha);
+
+    // Create two identical usq Hamiltonians
+    auto usq_hamiltonian1 = GQCP::USQHamiltonian<double>::Molecular(spinor_basis, water);
+    auto usq_hamiltonian2 = GQCP::USQHamiltonian<double>::Molecular(spinor_basis, water);
+
+    // Initialize a transformation matrix
+    const GQCP::SquareMatrix<double> U = GQCP::SquareMatrix<double>::RandomUnitary(K);
+
+    // Perform a total transform and individual component transfromations
+    usq_hamiltonian1.rotate(U);
+    usq_hamiltonian2.rotate(U, GQCP::Spin::alpha);
+    usq_hamiltonian2.rotate(U, GQCP::Spin::beta);
+
+    // Test if the transformation results in identical Hamiltonians
+    BOOST_CHECK(usq_hamiltonian1.twoElectronMixed().parameters().isApprox(usq_hamiltonian2.twoElectronMixed().parameters()));
+    BOOST_CHECK(usq_hamiltonian1.spinHamiltonian(GQCP::Spin::alpha).core().parameters().isApprox(usq_hamiltonian2.spinHamiltonian(GQCP::Spin::alpha).core().parameters()));
+    BOOST_CHECK(usq_hamiltonian1.spinHamiltonian(GQCP::Spin::beta).core().parameters().isApprox(usq_hamiltonian2.spinHamiltonian(GQCP::Spin::beta).core().parameters()));
+}
+
+// /**
+//  *  Check if a total transformation or two individual transformations for the individual components of the USQHamiltonian amount to the same result
+//  */
+// BOOST_AUTO_TEST_CASE(USQHamiltonian_rotate_with_jacobi) {
+//     // Create single-particle basis for alpha and beta
+//     const auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+//     const GQCP::USpinorBasis<double, GQCP::GTOShell> spinor_basis {water, "STO-3G"};
+
+//     const size_t K = spinor_basis.numberOfSpinors(GQCP::Spin::alpha);
+
+//     // Create two identical usq Hamiltonians
+//     auto usq_hamiltonian1 = GQCP::USQHamiltonian<double>::Molecular(spinor_basis, water);
+//     auto usq_hamiltonian2 = GQCP::USQHamiltonian<double>::Molecular(spinor_basis, water);
+
+//     // Initialize a transformation matrix
+//     GQCP::JacobiRotationParameters J {1, 0, (boost::math::constants::pi<double>() / 2)};
+
+//     // Perform a total transform and individual component transfromations
+//     usq_hamiltonian1.rotate(J);
+//     usq_hamiltonian2.rotate(J, GQCP::Spin::alpha);
+//     usq_hamiltonian2.rotate(J, GQCP::Spin::beta);
+
+//     // Test if the transformation results in identical Hamiltonians
+//     BOOST_CHECK(usq_hamiltonian1.twoElectronMixed().parameters().isApprox(usq_hamiltonian2.twoElectronMixed().parameters()));
+//     BOOST_CHECK(usq_hamiltonian1.spinHamiltonian(GQCP::Spin::alpha).core().parameters().isApprox(usq_hamiltonian2.spinHamiltonian(GQCP::Spin::alpha).core().parameters()));
+//     BOOST_CHECK(usq_hamiltonian1.spinHamiltonian(GQCP::Spin::beta).core().parameters().isApprox(usq_hamiltonian2.spinHamiltonian(GQCP::Spin::beta).core().parameters()));
+// }

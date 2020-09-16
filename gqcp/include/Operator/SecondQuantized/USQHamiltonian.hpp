@@ -71,14 +71,8 @@ public:
             }
         }
 
-        // Do the same for all four two electron components
-        const auto dim_aa = two_ops[0].parameters(Spin::alpha, Spin::alpha).numberOfOrbitals();
-        const auto dim_ab = two_ops[0].parameters(Spin::alpha, Spin::beta).numberOfOrbitals();
-        const auto dim_ba = two_ops[0].parameters(Spin::beta, Spin::alpha).numberOfOrbitals();
-        const auto dim_bb = two_ops[0].parameters(Spin::beta, Spin::beta).numberOfOrbitals();
-
         for (const auto& two_op : this->two_ops) {
-            if ((two_op.parameters(Spin::alpha, Spin::alpha).numberOfOrbitals() != dim_aa) || (two_op.parameters(Spin::alpha, Spin::beta).numberOfOrbitals() != dim_ab) || (two_op.parameters(Spin::beta, Spin::alpha).numberOfOrbitals() != dim_ba) || (two_op.parameters(Spin::beta, Spin::beta).numberOfOrbitals() != dim_bb)) {
+            if ((two_op.parameters(Spin::alpha, Spin::alpha).numberOfOrbitals() != dim_a) || (two_op.parameters(Spin::alpha, Spin::beta).numberOfOrbitals() != dim_a) || (two_op.parameters(Spin::beta, Spin::alpha).numberOfOrbitals() != dim_b) || (two_op.parameters(Spin::beta, Spin::beta).numberOfOrbitals() != dim_b)) {
                 throw dimension_error;
             }
         }
@@ -98,10 +92,10 @@ public:
         this->total_one_op = ScalarUSQOneElectronOperator<Scalar>(total_one_op_par_a, total_one_op_par_b);
 
         // Calculate the total two-electron operator
-        QCRankFourTensor<Scalar> total_two_op_par_aa(dim_aa);
-        QCRankFourTensor<Scalar> total_two_op_par_ab(dim_ab);
-        QCRankFourTensor<Scalar> total_two_op_par_ba(dim_ba);
-        QCRankFourTensor<Scalar> total_two_op_par_bb(dim_bb);
+        QCRankFourTensor<Scalar> total_two_op_par_aa(dim_a);
+        QCRankFourTensor<Scalar> total_two_op_par_ab(dim_a);
+        QCRankFourTensor<Scalar> total_two_op_par_ba(dim_b);
+        QCRankFourTensor<Scalar> total_two_op_par_bb(dim_b);
 
         total_two_op_par_aa.setZero();
         total_two_op_par_ab.setZero();

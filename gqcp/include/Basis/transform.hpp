@@ -187,10 +187,10 @@ void basisRotate(USpinorBasis<TransformationScalar, Shell>& spinor_basis, USQHam
  *  @param component                        the spin component
  */
 template <typename Shell>
-void basisRotate(USpinorBasis<double, Shell>& spinor_basis, USQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rotation_parameters, const Spin& component) {
+void basisRotate(USpinorBasis<double, Shell>& spinor_basis, USQHamiltonian<double>& usq_hamiltonian, const JacobiRotationParameters& jacobi_rotation_parameters, const Spin& component) {
 
     spinor_basis.rotate(jacobi_rotation_parameters, component);
-    sq_hamiltonian.rotate(jacobi_rotation_parameters, component);
+    usq_hamiltonian.rotate(jacobi_rotation_parameters, component);
 }
 
 
@@ -204,10 +204,10 @@ void basisRotate(USpinorBasis<double, Shell>& spinor_basis, USQHamiltonian<doubl
  *  @param jacobi_rotation_parameters       the Jacobi-rotation parameters
  */
 template <typename Shell>
-void basisRotate(USpinorBasis<double, Shell>& spinor_basis, USQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rotation_parameters) {
+void basisRotate(USpinorBasis<double, Shell>& spinor_basis, USQHamiltonian<double>& usq_hamiltonian, const JacobiRotationParameters& jacobi_rotation_parameters) {
 
     spinor_basis.rotate(jacobi_rotation_parameters);
-    sq_hamiltonian.rotate(jacobi_rotation_parameters);
+    usq_hamiltonian.rotate(jacobi_rotation_parameters);
 }
 
 
