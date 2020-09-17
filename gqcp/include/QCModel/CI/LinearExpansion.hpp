@@ -74,19 +74,14 @@ public:
     LinearExpansion() = default;
 
     /**
-     *  Construct a normalized wave function from possibly non-normalized coefficients
+     *  Construct a linear expansion inside the given ONV basis, with corresponding expansion coefficients.
      *
      *  @param onv_basis            the ONV basis with respect to which the coefficients are defined
      *  @param coefficients         the expansion coefficients
      */
     LinearExpansion(const ONVBasis& onv_basis, const VectorX<double>& coefficients) :
         onv_basis {onv_basis},
-        m_coefficients {coefficients} {
-
-        if (std::abs(this->m_coefficients.norm() - 1.0) > 1.0e-12) {  // normalize the coefficients if they aren't
-            this->m_coefficients.normalize();
-        }
-    }
+        m_coefficients {coefficients} {}
 
 
     /*
@@ -342,6 +337,21 @@ public:
 
 
     /**
+     *  Create a normalized linear expansion inside a given ONV basis with possibly non-normalized coefficients.
+     * 
+     *  @param onv_basis            the ONV basis with respect to which the coefficients are defined
+     *  @param coefficients         the expansion coefficients
+     * 
+     *  @return a LinearExpansion
+     */
+    static LinearExpansion<ONVBasis> Normalized(const ONVBasis& onv_basis, const VectorX<double>& coefficients) {
+
+        // Normalize the coefficients if they aren't.
+        return LinearExpansion<ONVBasis>(onv_basis,
+                                         std::abs(coefficients.norm() - 1.0) > 1.0e-12 ? coefficients.normalized() : coefficients);
+    }
+
+    /**
      *  Create a linear expansion with a random, normalized coefficient vector, with coefficients uniformly distributed in [-1, +1] before any normalization.
      * 
      *  @param onv_basis            the ONV basis with respect to which the coefficients are defined
@@ -560,6 +570,94 @@ public:
 
 
     /**
+     *  Calculate an element of the N-electron density matrix.
+     * 
+     *  @param bra_indices      The indices of the orbitals that should be annihilated on the left (on the bra).
+     *  @param ket_indices      The indices of the orbitals that should be annihilated on the right (on the ket).
+     *
+     *  @return An element of the N-DM, as specified by the given bra and ket indices. `calculateNDMElement({0, 1}, {2, 1})` would calculate an element of the 2-NDM d^{(2)} (0, 1, 1, 2) corresponding the operator string: `a^\dagger_0 a^\dagger_1 a_2 a_1`.
+     * 
+     *  @note This method is only enabled for linear expansions related to spin-unresolved ONV bases.
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value, double> calculateNDMElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices) const {
+
+        // The ket indices should be reversed because the annihilators on the ket should be applied from right to left
+        std::vector<size_t> ket_indices_reversed = ket_indices;
+        std::reverse(ket_indices_reversed.begin(), ket_indices_reversed.end());
+
+
+        double value = 0.0;
+        int sign = 1;
+        const size_t dim = this->onv_basis.dimension();
+
+
+        SpinUnresolvedONV bra = this->onv_basis.constructONVFromAddress(0);
+        size_t I = 0;
+        while (I < dim) {  // loop over all bra addresses
+
+            // Annihilate the bra on the bra indices
+            if (!bra.annihilateAll(bra_indices, sign)) {  // if we can't annihilate, the bra doesn't change
+
+                // Go to the beginning of the outer while loop with the next bra
+                if (I < dim - 1) {  // prevent the last permutation from occurring
+                    this->onv_basis.transformONVToNextPermutation(bra);
+                    I++;
+                    sign = 1;
+                    continue;
+                } else {
+                    break;  // we have to jump out if we have looped over the whole bra dimension
+                }
+            }
+
+
+            SpinUnresolvedONV ket = this->onv_basis.constructONVFromAddress(0);
+            size_t J = 0;
+            while (J < dim) {  // loop over all ket indices
+
+                // Annihilate the ket on the ket indices
+                if (!ket.annihilateAll(ket_indices_reversed, sign)) {  // if we can't annihilate, the ket doesn't change
+
+                    // Go to the beginning of this (the inner) while loop with the next bra
+                    if (J < dim - 1) {  // prevent the last permutation from occurring
+                        this->onv_basis.transformONVToNextPermutation(ket);
+                        J++;
+                        sign = 1;
+                        continue;
+                    } else {
+                        break;  // we have to jump out if we have looped over the whole ket dimension
+                    }
+                }
+
+                if (bra == ket) {
+                    value += sign * this->coefficient(I) * this->coefficient(J);
+                }
+
+                // Reset the previous ket annihilations and move to the next ket
+                if (J == dim - 1) {  // prevent the last permutation from occurring
+                    break;           // out of the J-loop
+                }
+                ket.createAll(ket_indices_reversed);
+                this->onv_basis.transformONVToNextPermutation(ket);
+                sign = 1;
+                J++;
+            }  // while J loop
+
+            // Reset the previous bra annihilations and move to the next bra
+            if (I == dim - 1) {  // prevent the last permutation from occurring
+                break;           // out of the I-loop
+            }
+            bra.createAll(bra_indices);
+            this->onv_basis.transformONVToNextPermutation(bra);
+            sign = 1;
+            I++;
+        }  // while I loop
+
+        return value;
+    }
+
+
+    /**
      *  Calculate the one-electron density matrix for a full spin-resolved wave function expansion.
      * 
      *  @return the total (spin-summed) 1-DM
@@ -741,6 +839,12 @@ public:
         return -1 / std::log(2) * (coefficients_squared * log_coefficients_squared).sum();
     }
 
+    /**
+     *  @param i    The index (address) of the coefficient that should be obtained.
+     * 
+     *  @return The i-th expansion coefficient.
+     */
+    double coefficient(const size_t i) const { return this->m_coefficients(i); }
 
     /**
      *  @return the expansion coefficients of this linear expansion wave function model

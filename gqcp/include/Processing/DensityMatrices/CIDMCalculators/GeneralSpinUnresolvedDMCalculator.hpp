@@ -57,41 +57,6 @@ public:
     explicit GeneralSpinUnresolvedDMCalculator(const SpinUnresolvedONVBasis& onv_basis);
 
 
-    // OPERATORS
-
-    /**
-     *  @param indices_pack      the indices that specify the element of the N-DM that has to be calculated
-     */
-    template <typename... size_ts>
-    double operator()(size_ts... indices_pack) const {
-
-        if (this->coefficients.rows() == 0) {
-            throw std::logic_error("No vector has been set.");
-        }
-
-        // Assume the user has given size_ts
-        std::vector<size_t> indices {static_cast<size_t>(indices_pack)...};  // convert the pack to a vector so we can easily traverse
-
-        if ((indices.size() == 0)) {
-            return 1.0;  // assume the wave function is normalized
-        }
-
-        if ((indices.size() % 2) != 0) {
-            throw std::invalid_argument("There must be an even number of indices as arguments.");
-        }
-
-        // Split the vector in ket (even) and bra (odd) indices
-        std::vector<size_t> bra_indices;  // even
-        boost::push_back(bra_indices, indices | boost::adaptors::strided(2));
-
-        std::vector<size_t> ket_indices;  // odd
-        boost::push_back(ket_indices, indices | boost::adaptors::sliced(1, indices.size()) | boost::adaptors::strided(2));
-        std::reverse(ket_indices.begin(), ket_indices.end());
-
-        return this->calculateElement(bra_indices, ket_indices);
-    }
-
-
     // PUBLIC METHODS
 
     /**
@@ -103,16 +68,6 @@ public:
      *  @return the 2-DM if a given coefficient vector is set
      */
     TwoDM<double> calculate2DM() const;
-
-    /**
-     *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)
-     *  @param ket_indices      the indices of the orbitals that should be annihilated on the right (on the ket)
-     *
-     *  @return an element of the N-DM, as specified by the given bra and ket indices
-     *
-     *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
-     */
-    double calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices) const;
 
     /**
      *  Replace this instance's coefficients with new ones.

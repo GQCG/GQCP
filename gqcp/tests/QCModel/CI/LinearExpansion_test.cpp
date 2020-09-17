@@ -239,6 +239,99 @@ BOOST_AUTO_TEST_CASE(expansions) {
 }
 
 
+Move /**
+ *  Check if calculateNDMElement throws as expected.
+ */
+BOOST_AUTO_TEST_CASE(calculateNDMElement_throws) {
+
+    // Set up an example linear expansion.
+    const size_t M = 3;
+    const size_t N = 1;
+    const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
+
+    GQCP::VectorX<double> coefficients {onv_basis.dimension()};
+    coefficients << 1, 2, -3;
+
+    const GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis> linear_expansion {onv_basis, coefficients};
+
+
+    // Check if calculateNDMElement throws as expected.
+    BOOST_CHECK_THROW(linear_expansion.calculateNDMElement({3}, {0}), std::invalid_argument);  // bra-index is out of bounds
+    BOOST_CHECK_THROW(linear_expansion.calculateNDMElement({0}, {3}), std::invalid_argument);  // ket-index is out of bounds
+}
+
+
+/**
+ *  Check some 1-DM values calculated through the general function calculateNDMElement.
+ */
+BOOST_AUTO_TEST_CASE(calculateNDMElement_1DM) {
+
+    // Set up an example linear expansion.
+    const size_t M = 3;
+    const size_t N = 1;
+    const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
+
+    GQCP::VectorX<double> coefficients {onv_basis.dimension()};
+    coefficients << 1, 2, -3;
+
+    const GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis> linear_expansion {onv_basis, coefficients};
+
+
+    // Check some 1-DM values.
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({0}, {0}) - 1.0) < 1.0e-12);     // d(0,0) : a^\dagger_0 a_0
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({0}, {1}) - 2.0) < 1.0e-12);     // d(0,1) : a^\dagger_0 a_1
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({2}, {1}) - (-6.0)) < 1.0e-12);  // d(2,1) : a^\dagger_2 a_1
+}
+
+
+/**
+ *  Check some 2-DM values calculated through the general function calculateNDMElement.
+ */
+BOOST_AUTO_TEST_CASE(calculateNDMElement_2DM) {
+
+    // Set up an example linear expansion.
+    const size_t M = 3;
+    const size_t N = 2;
+    const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
+
+    GQCP::VectorX<double> coefficients {onv_basis.dimension()};
+    coefficients << 1, 2, -3;
+
+    const GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis> linear_expansion {onv_basis, coefficients};
+
+
+    // Check some 2-DM values.
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({0, 1}, {2, 1}) - (-3.0)) < 1.0e-12);  // d(0,1,1,2) : a^\dagger_0 a^\dagger_1 a_2 a_1
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({2, 0}, {1, 0}) - (-2.0)) < 1.0e-12);  // d(2,0,0,1) : a^\dagger_2 a^\dagger_0 a^1 a_0
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({0, 2}, {0, 2}) - (-4.0)) < 1.0e-12);  // d(0,2,2,0) : a^\dagger_0 a^dagger_2 a_0 a_2
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({0, 0}, {0, 2}) - 0.0) < 1.0e-12);     // d(0,2,0,0) : a^\dagger_0 a^dagger_0 a_0 a_2, double annihilation gives 0.0
+}
+
+
+/**
+ *  Check some 3-DM values calculated through the general function calculateNDMElement.
+ */
+BOOST_AUTO_TEST_CASE(calculateNDMElement_3DM) {
+
+    // Set up an example linear expansion.
+    const size_t M = 5;
+    const size_t N = 4;
+    const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
+
+    GQCP::VectorX<double> coefficients {onv_basis.dimension()};
+    coefficients << 1, 1, -2, 4, -5;
+
+    const GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis> linear_expansion {onv_basis, coefficients};
+
+
+    // Check some 3-DM values.
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({0, 0, 1}, {1, 0, 2}) - 0.0) < 1.0e-12);  // zero because two times the same index
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({1, 0, 3}, {4, 1, 2}) - 0.0) < 1.0e-12);  // zero because no fully annihilated bras and kets match
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({0, 1, 2}, {2, 1, 0}) - 2.0) < 1.0e-12);
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({0, 1, 2}, {0, 1, 3}) - 2.0) < 1.0e-12);
+}
+
+
 // /**
 //  *  Check if the projection of |UHF> and |GHF> (the equivalent ONV in a generalized spinor basis) onto |RHF> is the same.
 //  */
