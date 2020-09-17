@@ -212,6 +212,7 @@ public:
         }
     }
 
+
     /**
      *  @return the dimension of the Hamiltonian, i.e. the number of spinors in which it is expressed
      */
@@ -236,6 +237,7 @@ public:
         }
         }
     }
+
 
     /**
      *  In-place rotate the matrix representations of the Hamiltonian
@@ -267,7 +269,6 @@ public:
      *  @param sigma                the spin sigma component
      */
     void rotate(const TransformationMatrix<Scalar>& U, const Spin& sigma) { this->transform(U, sigma); }
-
 
     /**
      *  In-place rotate the matrix representations of the Hamiltonian using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters. Note that this function is only available for real (double) matrix representations
@@ -326,14 +327,10 @@ public:
      */
     const SQHamiltonian<Scalar> spinHamiltonian(const Spin& sigma) const {
 
-        std::vector<ScalarSQTwoElectronOperator<Scalar>> two_ops_sigma;
-
         switch (sigma) {
         case Spin::alpha: {
             const auto one_ops_sigma = this->coreContributions(Spin::alpha);
-            for (auto& two_op : this->two_ops) {
-                two_ops_sigma.push_back(ScalarSQTwoElectronOperator<Scalar>(two_op.parameters(Spin::alpha, Spin::alpha)));
-            }
+            const auto two_ops_sigma = this->twoElectronContributionsPure(Spin::alpha);
 
             return SQHamiltonian<Scalar> {one_ops_sigma, two_ops_sigma};
             break;
@@ -341,9 +338,7 @@ public:
 
         case Spin::beta: {
             const auto one_ops_sigma = this->coreContributions(Spin::beta);
-            for (auto& two_op : this->two_ops) {
-                two_ops_sigma.push_back(ScalarSQTwoElectronOperator<Scalar>(two_op.parameters(Spin::beta, Spin::beta)));
-            }
+            const auto two_ops_sigma = this->twoElectronContributionsPure(Spin::beta);
 
             return SQHamiltonian<Scalar> {one_ops_sigma, two_ops_sigma};
             break;
@@ -459,12 +454,15 @@ public:
         }
     }
 
+
     /**
      *  @return the contributions to the two-electron part of the Hamiltonian
      */
     const std::vector<ScalarUSQTwoElectronOperator<Scalar>>& twoElectronContributions() const { return this->two_ops; }
 
     /**
+     *  @param sigma            The spin sigma component
+     * 
      *  @return the total contributions to the mixed alpha & beta two-electron part of the unrestricted Hamiltonian
      */
     const std::vector<ScalarSQTwoElectronOperator<Scalar>> twoElectronContributionsMixed() const {
@@ -483,6 +481,34 @@ public:
         return two_ops_mixed;
     }
 
+
+    /**
+     *  @return the contributions to the purely spin sigma two-electron part of the Hamiltonian
+     */
+    const std::vector<ScalarSQTwoElectronOperator<Scalar>> twoElectronContributionsPure(const Spin& sigma) const {
+        std::vector<ScalarSQTwoElectronOperator<Scalar>> two_ops_sigma;
+
+        switch (sigma) {
+        case Spin::alpha: {
+            for (auto& two_op : this->two_ops) {
+                two_ops_sigma.push_back(ScalarSQTwoElectronOperator<Scalar>(two_op.parameters(Spin::alpha, Spin::alpha)));
+            }
+
+            return two_ops_sigma;
+            break;
+        }
+
+        case Spin::beta: {
+            for (auto& two_op : this->two_ops) {
+                two_ops_sigma.push_back(ScalarSQTwoElectronOperator<Scalar>(two_op.parameters(Spin::beta, Spin::beta)));
+            }
+            return two_ops_sigma;
+            break;
+        }
+        }
+    }
+
+
     /**
      *  @return the total contributions to the mixed alpha & beta two-electron part of the unrestricted Hamiltonian
      */
@@ -495,7 +521,7 @@ public:
 
         return ScalarSQTwoElectronOperator<Scalar>(total_two_op_mixed);
     }
-};  // namespace GQCP
+};
 
 
 /*
