@@ -27,7 +27,6 @@
 #include "ONVBasis/SpinResolvedONV.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
-#include "Processing/DensityMatrices/CIDMCalculators/SeniorityZeroDMCalculator.hpp"
 #include "Processing/DensityMatrices/CIDMCalculators/SpinResolvedSelectedDMCalculator.hpp"
 #include "Processing/DensityMatrices/SpinResolvedOneDM.hpp"
 #include "Processing/DensityMatrices/SpinResolvedTwoDM.hpp"
@@ -672,8 +671,31 @@ public:
     template <typename Z = ONVBasis>
     enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolvedOneDM<double>> calculateSpinResolved1DM() const {
 
-        const SeniorityZeroDMCalculator dm_calculator {this->onvBasis()};
-        return dm_calculator.calculateSpinResolved1DM(this->coefficients());
+        // Prepare some variables.
+        const auto K = this->onv_basis.numberOfSpatialOrbitals();
+        const auto dimension = this->onv_basis.dimension();
+
+        // For seniority-zero linear expansions, one DM covers both alpha and beta spins.
+        OneDM<double> D = OneDM<double>::Zero(K, K);
+
+        // Create the first ONV (with address 0). In DOCI, the ONV basis for alpha and beta is equal, so we can use the proxy ONV basis.
+        const auto onv_basis_proxy = this->onv_basis.proxy();
+        SpinUnresolvedONV onv = onv_basis_proxy.constructONVFromAddress(0);
+        for (size_t I = 0; I < dimension; I++) {  // I loops over all the addresses of the doubly-occupied ONVs
+
+            for (size_t e1 = 0; e1 < onv_basis_proxy.numberOfElectrons(); e1++) {  // e1 (electron 1) loops over the number of electrons
+                const size_t p = onv.occupationIndexOf(e1);                        // retrieve the index of the orbital the electron occupies
+                const double c_I = this->coefficient(I);                           // coefficient of the I-th basis vector
+
+                D(p, p) += 2 * std::pow(c_I, 2);
+            }
+
+            if (I < dimension - 1) {  // prevent the last permutation from occurring
+                onv_basis_proxy.transformONVToNextPermutation(onv);
+            }
+        }
+
+        return SpinResolvedOneDM<double>::FromRestricted(D);
     }
 
 
@@ -685,8 +707,64 @@ public:
     template <typename Z = ONVBasis>
     enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolvedTwoDM<double>> calculateSpinResolved2DM() const {
 
-        const SeniorityZeroDMCalculator dm_calculator {this->onvBasis()};
-        return dm_calculator.calculateSpinResolved2DM(this->coefficients());
+        // Prepare some variables.
+        const auto K = this->onv_basis.numberOfSpatialOrbitals();
+        const auto dimension = this->onv_basis.dimension();
+
+
+        // For seniority-zero linear expansions, we only have to calculate d_aaaa and d_aabb.
+        TwoDM<double> d_aaaa(K);
+        d_aaaa.setZero();
+
+        TwoDM<double> d_aabb(K);
+        d_aabb.setZero();
+
+
+        // Create the first ONV (with address 0). In DOCI, the ONV basis for alpha and beta is equal, so we can use the proxy ONV basis.
+        const auto onv_basis_proxy = this->onv_basis.proxy();
+        SpinUnresolvedONV onv = onv_basis_proxy.constructONVFromAddress(0);
+        for (size_t I = 0; I < dimension; I++) {  // I loops over all the addresses of the spin strings
+            for (size_t p = 0; p < K; p++) {      // p loops over SOs
+                if (onv.annihilate(p)) {          // if p is occupied in I
+
+                    const double c_I = this->coefficient(I);  // coefficient of the I-th basis vector
+                    const double c_I_2 = std::pow(c_I, 2);    // square of c_I
+
+                    d_aabb(p, p, p, p) += c_I_2;
+
+                    for (size_t q = 0; q < p; q++) {                          // q loops over SOs with an index smaller than p
+                        if (onv.create(q)) {                                  // if q is not occupied in I
+                            const size_t J = onv_basis_proxy.addressOf(onv);  // the address of the coupling string
+                            const double c_J = this->coefficient(J);          // coefficient of the J-th basis vector
+
+                            d_aabb(p, q, p, q) += c_I * c_J;
+                            d_aabb(q, p, q, p) += c_I * c_J;  // since we're looping for q < p
+
+                            onv.annihilate(q);  // reset the spin string after previous creation on q
+                        }
+
+                        else {  // if q is occupied in I
+                            d_aaaa(p, p, q, q) += c_I_2;
+                            d_aaaa(q, q, p, p) += c_I_2;  // since we're looping for q < p
+
+                            d_aaaa(p, q, q, p) -= c_I_2;
+                            d_aaaa(q, p, p, q) -= c_I_2;  // since we're looping for q < p
+
+                            d_aabb(p, p, q, q) += c_I_2;
+                            d_aabb(q, q, p, p) += c_I_2;  // since we're looping for q < p
+                        }
+                    }
+                    onv.create(p);  // reset the spin string after previous annihilation on p
+                }
+            }
+
+            if (I < dimension - 1) {  // prevent the last permutation from occurring
+                onv_basis_proxy.transformONVToNextPermutation(onv);
+            }
+        }
+
+        // For seniority-zero linear expansions, we have additional symmetries (two_rdm_aaaa = two_rdm_bbbb, two_rdm_aabb = two_rdm_bbaa)
+        return SpinResolvedTwoDM<double>(d_aaaa, d_aabb, d_aabb, d_aaaa);
     }
 
 

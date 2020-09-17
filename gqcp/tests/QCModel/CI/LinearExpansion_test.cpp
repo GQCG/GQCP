@@ -431,3 +431,56 @@ BOOST_AUTO_TEST_CASE(spin_resolved_vs_spin_resolved_selected_DMs) {
     BOOST_CHECK(d_specialized.betaBeta().isApprox(d_selected.betaBeta(), 1.0e-12));
     BOOST_CHECK(d_specialized.spinSummed().isApprox(d_selected.spinSummed(), 1.0e-12));
 }
+
+
+/**
+ *  Check if the 1- and 2-DMs for a seniority-zero ONV basis are equal to the 'selected' case.
+ * 
+ *  The system of interested is H2O//STO-3G, with 7 spatial orbitals and a Fock space dimension of 21.
+ */
+BOOST_AUTO_TEST_CASE(seniority_zero_vs_spin_resolved_selected_DMs) {
+
+    // Set up the molecular Hamiltonian in a Löwdin-orthonormalized spinor basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
+    const auto N_P = molecule.numberOfElectronPairs();
+
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+    const auto K = spinor_basis.numberOfSpatialOrbitals();
+    spinor_basis.lowdinOrthonormalize();
+
+    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);
+
+
+    // Do a dense DOCI calculation.
+    const GQCP::SeniorityZeroONVBasis onv_basis {K, N_P};
+
+    auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
+    auto solver = GQCP::EigenproblemSolver::Dense();
+
+    const auto linear_expansion_specialized = GQCP::QCMethod::CI<GQCP::SeniorityZeroONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
+
+
+    // Convert the 'specialized' linear expansion into a 'selected' linear expansion.
+    const GQCP::SpinResolvedSelectedONVBasis onv_basis_selected {onv_basis};
+    const auto linear_expansion_selected = GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>(onv_basis_selected, linear_expansion_specialized.coefficients());
+
+
+    // Calculate the 1-DMs using specialized spin-resolved and 'selected' routines, and check if they are equal.
+    const auto D_specialized = linear_expansion_specialized.calculateSpinResolved1DM();
+    const auto D_selected = linear_expansion_selected.calculateSpinResolved1DM();
+
+    BOOST_CHECK(D_specialized.spinSummed().isApprox(D_selected.spinSummed(), 1.0e-12));
+    BOOST_CHECK(D_specialized.alpha().isApprox(D_selected.alpha(), 1.0e-12));
+    BOOST_CHECK(D_specialized.beta().isApprox(D_selected.beta(), 1.0e-12));
+
+
+    // Calculate the 2-DMs using specialized spin-resolved and 'selected' routines, and check if they are equal.
+    const auto d_specialized = linear_expansion_specialized.calculateSpinResolved2DM();
+    const auto d_selected = linear_expansion_selected.calculateSpinResolved2DM();
+
+    BOOST_CHECK(d_specialized.alphaAlpha().isApprox(d_selected.alphaAlpha(), 1.0e-12));
+    BOOST_CHECK(d_specialized.alphaBeta().isApprox(d_selected.alphaBeta(), 1.0e-12));
+    BOOST_CHECK(d_specialized.betaAlpha().isApprox(d_selected.betaAlpha(), 1.0e-12));
+    BOOST_CHECK(d_specialized.betaBeta().isApprox(d_selected.betaBeta(), 1.0e-12));
+    BOOST_CHECK(d_specialized.spinSummed().isApprox(d_selected.spinSummed(), 1.0e-12));
+}

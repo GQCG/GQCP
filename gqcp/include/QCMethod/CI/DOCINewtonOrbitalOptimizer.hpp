@@ -21,7 +21,6 @@
 #include "Mathematical/Optimization/Eigenproblem/Eigenpair.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
 #include "ONVBasis/SeniorityZeroONVBasis.hpp"
-#include "Processing/DensityMatrices/CIDMCalculators/SeniorityZeroDMCalculator.hpp"
 #include "QCMethod/CI/CI.hpp"
 #include "QCMethod/CI/CIEnvironment.hpp"
 #include "QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp"
@@ -55,8 +54,6 @@ private:
     EigenproblemEnvironment eigenproblem_environment;
     EigenproblemSolver eigenproblem_solver;
 
-    SeniorityZeroDMCalculator dm_calculator;
-
     LinearExpansion<SeniorityZeroONVBasis> ground_state_expansion;
 
     size_t number_of_requested_eigenpairs;
@@ -80,7 +77,6 @@ public:
         eigenproblem_solver {eigenproblem_solver},
         eigenproblem_environment {eigenproblem_environment},
         number_of_requested_eigenpairs {number_of_requested_eigenpairs},
-        dm_calculator {SeniorityZeroDMCalculator(onv_basis)},
         QCMethodNewtonOrbitalOptimizer(hessian_modifier, convergence_threshold, maximum_number_of_iterations) {}
 
 
@@ -90,7 +86,7 @@ public:
      *  @return the current 1-DM
      */
     OneDM<double> calculate1DM() const override {
-        return this->dm_calculator.calculateSpinResolved1DM(this->ground_state_expansion.coefficients()).spinSummed();
+        return this->ground_state_expansion.calculate1DM();
     }
 
 
@@ -98,7 +94,7 @@ public:
      *  @return the current 2-DM
      */
     TwoDM<double> calculate2DM() const override {
-        return this->dm_calculator.calculateSpinResolved2DM(this->ground_state_expansion.coefficients()).spinSummed();
+        return this->ground_state_expansion.calculate2DM();
     }
 
 
