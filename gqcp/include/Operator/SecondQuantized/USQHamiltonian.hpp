@@ -156,12 +156,15 @@ public:
         const auto g_aa = u_spinor_basis.quantize(Operator::Coulomb(), Spin::alpha);
         const auto g_bb = u_spinor_basis.quantize(Operator::Coulomb(), Spin::beta);
 
-        // Initial basis for alpha and beta are identical so the mixed integrals are identical to spin specific components
-        // It would be better to allow the USpinorBasis to quantize these mixed components, as I'm not sure this method is correct.
+        // Initial basis for alpha and beta are identical so the mixed integrals are identical to spin specific component. The other mixed component is initially set to zero.
+        // It would be better to allow the USpinorBasis to quantize these mixed components
         const auto g_ab = g_aa;
-        const auto g_ba = g_bb;
 
-        const ScalarUSQTwoElectronOperator<double> g {g_aa.parameters(), g_ab.parameters(), g_ba.parameters(), g_bb.parameters()};
+        const auto dim = g_aa.numberOfOrbitals();
+        QCRankFourTensor<Scalar> g_ba(dim);
+        g_ba.setZero();
+
+        const ScalarUSQTwoElectronOperator<double> g {g_aa.parameters(), g_ab.parameters(), g_ba, g_bb.parameters()};
 
         return USQHamiltonian(H, g);
     }
@@ -174,29 +177,6 @@ public:
      *  @return if the alpha and beta components of the unrestricted Hamiltonian are of the same dimension
      */
     bool areSpinHamiltoniansOfSameDimension() const { return this->spinHamiltonian(Spin::alpha).numberOfOrbitals() == this->spinHamiltonian(Spin::beta).numberOfOrbitals(); }
-
-    // /**
-    //  *  Constrain a spin component of the unrestricted Hamiltonian according to the convention: - lambda * constraint
-    //  *
-    //  *  @param one_electron_op           the one-electron operator used as a constraint
-    //  *  @param lambda                    the Lagrangian multiplier for the constraint
-    //  *  @param sigma                     the spin sigma component
-    //  *
-    //  *  @return a copy of the constrained Hamiltonian
-    //  *
-    //  *  Note that this method is only available for real matrix representations
-    //  */
-    // template <typename Z = Scalar>
-    // enable_if_t<std::is_same<Z, double>::value, USQHamiltonian<double>> constrain(const ScalarSQOneElectronOperator<double>& one_electron_op, const double lambda, const Spin& sigma) const {
-
-    //     auto const constrained_component = this->sq_hamiltonians[sigma] - lambda * one_electron_op;
-
-    //     if (sigma == Spin::beta) {
-    //         return USQHamiltonian(this->sq_hamiltonians[Spin::alpha], constrained_component, this->two_op_mixed);
-    //     } else {
-    //         return USQHamiltonian(constrained_component, this->sq_hamiltonians[Spin::beta], this->two_op_mixed);
-    //     }
-    // }
 
     /**
      *  @return the contributions to the 'core' Hamiltonian

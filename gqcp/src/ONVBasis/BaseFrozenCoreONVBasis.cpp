@@ -130,6 +130,10 @@ USQHamiltonian<double> BaseFrozenCoreONVBasis::freezeOperator(const USQHamiltoni
     const auto frozen_two_op_par_beta = QCRankFourTensor<double>::FromBlock(usq_hamiltonian.spinHamiltonian(Spin::beta).twoElectron().parameters(), X, X, X, X);
     const auto frozen_two_op_par_mixed = QCRankFourTensor<double>::FromBlock(usq_hamiltonian.twoElectronMixed().parameters(), X, X, X, X);
 
+    const auto dim = frozen_two_op_par_mixed.dimension(0);
+    QCRankFourTensor<double> frozen_two_op_par_mixed_2(dim);
+    frozen_two_op_par_mixed_2.setZero();
+
     // Frozen two-electron integrals can be rewritten partially as one electron integrals
     for (size_t i = 0; i < K_active; i++) {  // iterate over the active orbitals
         size_t q = i + X;                    // map active orbitals indexes to total orbital indexes (those including the frozen orbitals)
@@ -153,7 +157,7 @@ USQHamiltonian<double> BaseFrozenCoreONVBasis::freezeOperator(const USQHamiltoni
         }
     }
 
-    return USQHamiltonian<double>(ScalarUSQOneElectronOperator<double> {frozen_one_op_par_alpha, frozen_one_op_par_beta}, ScalarUSQTwoElectronOperator<double> {frozen_two_op_par_alpha, frozen_two_op_par_mixed, frozen_two_op_par_mixed, frozen_two_op_par_beta});
+    return USQHamiltonian<double>(ScalarUSQOneElectronOperator<double> {frozen_one_op_par_alpha, frozen_one_op_par_beta}, ScalarUSQTwoElectronOperator<double> {frozen_two_op_par_alpha, frozen_two_op_par_mixed, frozen_two_op_par_mixed_2, frozen_two_op_par_beta});
 }
 
 
