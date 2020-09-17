@@ -18,7 +18,6 @@
 #pragma once
 
 
-#include "Processing/DensityMatrices/CIDMCalculators/BaseSpinResolvedDMCalculator.hpp"
 #include "Processing/DensityMatrices/SpinResolvedOneDM.hpp"
 #include "Processing/DensityMatrices/SpinResolvedTwoDM.hpp"
 
@@ -59,17 +58,6 @@ public:
      *  @return all 2-DMs given a coefficient vector
      */
     SpinResolvedTwoDM<double> calculateSpinResolved2DM(const VectorX<double>& x) const override;
-
-    /**
-     *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)
-     *  @param ket_indices      the indices of the orbitals that should be annihilated on the right (on the ket)
-     *  @param x                the coefficient vector representing the wave function
-     *
-     *  @return an element of the spin-summed (total) N-DM, as specified by the given bra and ket indices
-     *
-     *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
-     */
-    double calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const VectorX<double>& x) const override { throw std::runtime_error("BaseSpinResolvedFrozenDMCalculator::calculateElement(std::vector<size_t>, std::vector<size_t>, VectorX<double>): calculateElement is not implemented for FrozenCoreCI DMs"); }
 };
 
 

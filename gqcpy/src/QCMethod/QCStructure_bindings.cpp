@@ -16,7 +16,6 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "ONVBasis/SeniorityZeroONVBasis.hpp"
-#include "ONVBasis/SpinResolvedFrozenONVBasis.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "QCMethod/QCStructure.hpp"
@@ -95,7 +94,7 @@ void bindQCStructure(py::module& module, const std::string& suffix, const std::s
 void bindQCStructures(py::module& module) {
 
     bindQCStructure<GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>>(module, "LinearExpansionSeniorityZero", "A quantum chemical structure for linear expansions in a seniority-zero ONV basis.");
-    bindQCStructure<GQCP::LinearExpansion<GQCP::SpinResolvedFrozenONVBasis>>(module, "LinearExpansionSpinResolvedFrozen", "A quantum chemical structure for linear expansions in a frozen core spin-resolved ONV basis.");
+    // bindQCStructure<GQCP::LinearExpansion<GQCP::SpinResolvedFrozenONVBasis>>(module, "LinearExpansionSpinResolvedFrozen", "A quantum chemical structure for linear expansions in a frozen core spin-resolved ONV basis.");
     bindQCStructure<GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>>(module, "LinearExpansionSpinResolved", "A quantum chemical structure for linear expansions in a spin-resolved ONV basis.");
     bindQCStructure<GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>>(module, "LinearExpansionSpinResolvedSelected", "A quantum chemical structure for linear expansions in a spin-resolved selected ONV basis.");
 

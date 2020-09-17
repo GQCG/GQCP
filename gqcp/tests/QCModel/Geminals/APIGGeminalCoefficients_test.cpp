@@ -86,7 +86,6 @@ BOOST_AUTO_TEST_CASE(toLinearExpansion_example1) {
     // Set up the normalized reference coefficients
     GQCP::VectorX<double> ref_coefficients {3};
     ref_coefficients << 1, 2, 3;
-    ref_coefficients.normalize();
 
 
     // Construct the toy geminal coefficients
@@ -112,7 +111,6 @@ BOOST_AUTO_TEST_CASE(toLinearExpansion_example2) {
     // Set up the normalized reference coefficients
     GQCP::VectorX<double> ref_coefficients {3};
     ref_coefficients << 13, 18, 27;
-    ref_coefficients.normalize();
 
 
     // Construct the toy geminal coefficients
@@ -138,7 +136,6 @@ BOOST_AUTO_TEST_CASE(toLinearExpansion_example3) {
     // Set up the normalized reference coefficients
     GQCP::VectorX<double> ref_coefficients {10};
     ref_coefficients << 19, 26, 37, 33, 46, 59, 40, 55, 70, 85;
-    ref_coefficients.normalize();
 
 
     // Construct the toy geminal coefficients.

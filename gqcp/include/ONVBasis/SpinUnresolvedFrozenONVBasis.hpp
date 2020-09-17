@@ -113,11 +113,6 @@ public:
       */
     size_t representationOf(const size_t address) const override;
 
-    /**
-     *  @return the type of this ONV basis
-     */
-    ONVBasisType type() const override { return ONVBasisType::SpinUnresolvedFrozenONVBasis; }
-
 
     // PUBLIC METHODS
 

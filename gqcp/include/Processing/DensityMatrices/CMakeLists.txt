@@ -5,5 +5,3 @@ target_sources(gqcp
         SpinResolvedTwoDM.hpp
         TwoDM.hpp
 )
-
-add_subdirectory(CIDMCalculators)
