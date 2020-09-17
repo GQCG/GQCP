@@ -218,6 +218,26 @@ public:
     size_t numberOfOrbitals() const { return this->spinHamiltonian(Spin::alpha).numberOfOrbitals() + this->spinHamiltonian(Spin::beta).numberOfOrbitals(); }
 
     /**
+     *  @param sigma         return the number of orbitals from the spin sigma component
+     * 
+     *  @return the dimension of the Hamiltonian, i.e. the number of spinors in which it is expressed
+     */
+    size_t numberOfOrbitals(const Spin& sigma) const {
+
+        switch (sigma) {
+        case Spin::alpha: {
+            return this->spinHamiltonian(Spin::alpha).numberOfOrbitals();
+            break;
+        }
+
+        case Spin::beta: {
+            return this->spinHamiltonian(Spin::beta).numberOfOrbitals();
+            break;
+        }
+        }
+    }
+
+    /**
      *  In-place rotate the matrix representations of the Hamiltonian
      *      
      *  @param U    the unitary rotation matrix between the old and the new orbital basis
