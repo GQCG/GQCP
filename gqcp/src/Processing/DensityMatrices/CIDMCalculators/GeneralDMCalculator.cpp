@@ -48,32 +48,6 @@ GeneralDMCalculator::GeneralDMCalculator(const SpinResolvedSelectedONVBasis& onv
     dm_calculator {std::make_shared<SpinResolvedSelectedDMCalculator>(onv_basis)} {}
 
 
-/**
- *  A run-time constructor allocating the appropriate derived DMCalculator
- *
- *  @param onv_basis       the ONV basis on which the DMCalculator should be based
- */
-GeneralDMCalculator::GeneralDMCalculator(const BaseONVBasis& onv_basis) {
-
-    switch (onv_basis.type()) {
-
-    case ONVBasisType::SpinResolvedONVBasis: {
-        this->dm_calculator = std::make_shared<SpinResolvedDMCalculator>(dynamic_cast<const SpinResolvedONVBasis&>(onv_basis));
-        break;
-    }
-
-    case ONVBasisType::SpinResolvedSelectedONVBasis: {
-        this->dm_calculator = std::make_shared<SpinResolvedSelectedDMCalculator>(dynamic_cast<const SpinResolvedSelectedONVBasis&>(onv_basis));
-        break;
-    }
-
-    default: {
-        break;
-    }
-    }
-}
-
-
 /*
  *  PUBLIC METHODS
  */

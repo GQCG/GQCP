@@ -119,7 +119,6 @@
 #include "Molecule/Nucleus.hpp"
 #include "Molecule/elements.hpp"
 #include "ONVBasis/BaseONVBasis.hpp"
-#include "ONVBasis/ONVBasisType.hpp"
 #include "ONVBasis/ONVManipulator.hpp"
 #include "ONVBasis/ONVPath.hpp"
 #include "ONVBasis/SeniorityZeroONVBasis.hpp"

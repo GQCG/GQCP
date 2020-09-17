@@ -1,7 +1,6 @@
 target_sources(gqcp
     PRIVATE
         BaseONVBasis.hpp
-        ONVBasisType.hpp
         ONVManipulator.hpp
         ONVPath.hpp
         SeniorityZeroONVBasis.hpp

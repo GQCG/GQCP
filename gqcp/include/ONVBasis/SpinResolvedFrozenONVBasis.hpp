@@ -59,14 +59,6 @@ public:
     SpinResolvedFrozenONVBasis(const SpinResolvedONVBasis& onv_basis, const size_t X);
 
 
-    // PUBLIC OVERRIDDEN METHODS
-
-    /**
-     *  @return the type of this ONV basis
-     */
-    ONVBasisType type() const override { return ONVBasisType::SpinResolvedFrozenONVBasis; }
-
-
     // PUBLIC METHODS
 
     /**

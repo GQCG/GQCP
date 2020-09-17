@@ -19,7 +19,6 @@
 
 
 #include "Mathematical/Representation/SquareMatrix.hpp"
-#include "ONVBasis/ONVBasisType.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 #include <Eigen/Sparse>
@@ -64,11 +63,6 @@ public:
 
 
     // PUBLIC PURE VIRTUAL METHODS
-
-    /**
-     *  @return the type of this ONV basis
-     */
-    virtual ONVBasisType type() const = 0;
 
     /**
      *  Evaluate the diagonal of the operator
