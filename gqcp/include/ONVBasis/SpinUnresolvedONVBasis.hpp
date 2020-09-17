@@ -251,7 +251,7 @@ public:
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template <typename _Matrix>
-    void evaluateOperator(const ScalarSQOneElectronOperator<double>& one_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    void evaluate(const ScalarSQOneElectronOperator<double>& one_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
 
         const auto& one_op_par = one_op.parameters();
 
@@ -301,6 +301,71 @@ public:
         }
     }
 
+    /**
+     *  Evaluate a one-electron operator in this spin-unresolved ONV basis.
+     * 
+     *  @tparam Representation              The matrix representation that is used for storing the result. Essentially, any type that can be used in MatrixRepresentationEvaluationContainer<Representation>.
+     * 
+     *  @param one_op                       A one-electron operator in an orthonormal orbital basis.
+     *  @param should_calculate_diagonal    If diagonal values should be calculated.
+     * 
+     *  @return The matrix representation of the given one-electron operator.
+     */
+    template <typename Representation>
+    Representation evaluate(const ScalarSQOneElectronOperator<double>& one_op, const bool diagonal_values) const {
+
+        const auto& one_op_par = one_op.parameters();
+
+        MatrixRepresentationEvaluationContainer<Representation> evaluation_iterator {this->dimension()};
+
+        const size_t K = this->numberOfOrbitals();
+        const size_t N = this->numberOfElectrons();
+        const size_t dim = this->dimension();
+
+        SpinUnresolvedONV onv = this->constructONVFromAddress(0);  // onv with address 0
+
+        for (; !evaluation_iterator.isFinished(); evaluation_iterator.increment()) {  // I loops over all the addresses of the onv
+            for (size_t e1 = 0; e1 < N; e1++) {                                       // e1 (electron 1) loops over the (number of) electrons
+
+                size_t p = onv.occupationIndexOf(e1);  // retrieve the index of a given electron
+                // remove the weight from the initial address I, because we annihilate
+                size_t address = evaluation_iterator.index - this->vertexWeight(p, e1 + 1);
+
+                if (diagonal_values) {
+                    evaluation_iterator.addRowwise(evaluation_iterator.index, one_op_par(p, p));
+                }
+
+                // The e2 iteration counts the number of encountered electrons for the creation operator
+                // We only consider greater addresses than the initial one (because of symmetry)
+                // Hence we only count electron after the annihilated electron (e1)
+                size_t e2 = e1 + 1;
+                size_t q = p + 1;
+
+                int sign_e2 = 1;
+                // perform a shift
+                this->shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
+
+                while (q < K) {
+                    size_t J = address + this->vertexWeight(q, e2);
+                    double value = sign_e2 * one_op_par(p, q);
+                    evaluation_iterator.addColumnwise(J, value);
+                    evaluation_iterator.addRowwise(J, value);
+
+                    q++;  // go to the next orbital
+
+                    // perform a shift
+                    this->shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
+                }  //  (creation)
+            }      // e1 loop (annihilation)
+            // Prevent last permutation
+            if (evaluation_iterator.index < dim - 1) {
+                this->transformONVToNextPermutation(onv);
+            }
+        }
+
+        return evaluation_iterator.evaluation();
+    }
+
 
     /**
      *  Evaluate the operator in a given evaluation iterator in the spin-unresolved ONV basis
@@ -312,10 +377,10 @@ public:
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template <typename _Matrix>
-    void evaluateOperator(const ScalarSQTwoElectronOperator<double>& two_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    void evaluate(const ScalarSQTwoElectronOperator<double>& two_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
 
         // Calling this combined method for both the one- and two-electron operator does not affect the performance, hence we avoid writing more code by plugging a zero operator in the combined method
-        evaluateOperator(ScalarSQOneElectronOperator<double> {this->M}, two_op, evaluation_iterator, diagonal_values);
+        evaluate(ScalarSQOneElectronOperator<double> {this->M}, two_op, evaluation_iterator, diagonal_values);
     }
 
 
@@ -330,7 +395,7 @@ public:
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template <typename _Matrix>
-    void evaluateOperator(const ScalarSQOneElectronOperator<double>& one_op, const ScalarSQTwoElectronOperator<double>& two_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    void evaluate(const ScalarSQOneElectronOperator<double>& one_op, const ScalarSQTwoElectronOperator<double>& two_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
 
         const auto& two_op_par = two_op.parameters();
 

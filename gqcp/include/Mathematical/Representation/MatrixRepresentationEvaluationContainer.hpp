@@ -27,7 +27,7 @@ namespace GQCP {
 
 
 /**
- *  A class that can efficiently construct the (square) matrix representation of an operator (in the mathematical sense).
+ *  A class that can efficiently construct the (square) matrix representation of a mathematical operator.
  * 
  *  @tparam _Matrix              the type that is used as a matrix representation, i.e. a container that stores the matrix representation
  */
@@ -35,8 +35,10 @@ template <typename _Matrix>
 class MatrixRepresentationEvaluationContainer {
 public:
     using Matrix = _Matrix;
+    using Scalar = typename Matrix::Scalar;
 
-private:
+
+public:
     // The current position of the iterator.
     size_t index = 0;
 
@@ -70,7 +72,10 @@ public:
      *  @param column    column index of the matrix
      *  @param value     the value which is added to a given position in the matrix
      */
-    void addColumnwise(const size_t column, const double value) { this->matrix(this->index, column) += value; }
+    void addColumnwise(const size_t column, const Scalar value) {
+        this->matrix(this->index, column) += value;
+    }
+    // TODO: emplace?
 
     /**
      *  Add a value to the matrix evaluation in which the current iterator index corresponds to the column and the given index corresponds to the row
@@ -103,12 +108,6 @@ public:
             return false;
         }
     }
-
-
-    // Friend classes
-    friend class SpinUnresolvedONVBasis;
-    friend class SpinResolvedSelectedONVBasis;
-    friend class SpinResolvedONVBasis;
 };
 
 
@@ -118,12 +117,15 @@ public:
  */
 template <>
 class MatrixRepresentationEvaluationContainer<Eigen::SparseMatrix<double>> {
+public:
     size_t index = 0;  // current position of the iterator in the dimension of the ONV basis
     size_t end;        // total dimension
 
     Eigen::SparseMatrix<double> matrix;                  // matrix containing the evaluations
     std::vector<Eigen::Triplet<double>> triplet_vector;  // vector which temporarily contains the added values
 
+
+public:
     /*
      *  CONSTRUCTORS
      */
@@ -211,12 +213,6 @@ class MatrixRepresentationEvaluationContainer<Eigen::SparseMatrix<double>> {
      *  @return the triplet vector
      */
     const std::vector<Eigen::Triplet<double>>& triplets() const { return triplet_vector; }
-
-
-    // Friend classes
-    friend class SpinUnresolvedONVBasis;
-    friend class SpinResolvedSelectedONVBasis;
-    friend class SpinResolvedONVBasis;
 };
 
 
@@ -225,6 +221,7 @@ class MatrixRepresentationEvaluationContainer<Eigen::SparseMatrix<double>> {
  */
 template <>
 class MatrixRepresentationEvaluationContainer<VectorX<double>> {
+public:
     size_t index = 0;  // current position of the iterator in the dimension of the ONV basis
     size_t end;        // total dimension
 
@@ -234,6 +231,7 @@ class MatrixRepresentationEvaluationContainer<VectorX<double>> {
     double nonsequential_double = 0;            // double gathered from the coefficient for non-sequential matvec additions, this corresponds to the value of the coefficient vector of the current index, it allows for a single read operation each iteration
 
 
+public:
     /*
      *  CONSTRUCTORS
      */
@@ -300,12 +298,6 @@ class MatrixRepresentationEvaluationContainer<VectorX<double>> {
             return false;
         }
     }
-
-
-    // Friend classes
-    friend class SpinUnresolvedONVBasis;
-    friend class SpinResolvedSelectedONVBasis;
-    friend class SpinResolvedONVBasis;
 };
 
 }  // namespace GQCP

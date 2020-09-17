@@ -199,7 +199,7 @@ SquareMatrix<double> SpinResolvedSelectedONVBasis::evaluateOperatorDense(const S
     }
 
     MatrixRepresentationEvaluationContainer<SquareMatrix<double>> evaluation_iterator {this->dim};
-    this->evaluateOperator<SquareMatrix<double>>(one_op, evaluation_iterator, diagonal_values);
+    this->evaluate<SquareMatrix<double>>(one_op, evaluation_iterator, diagonal_values);
     return evaluation_iterator.evaluation();
 }
 
@@ -220,7 +220,7 @@ SquareMatrix<double> SpinResolvedSelectedONVBasis::evaluateOperatorDense(const S
     }
 
     MatrixRepresentationEvaluationContainer<SquareMatrix<double>> evaluation_iterator {this->dim};
-    this->evaluateOperator<SquareMatrix<double>>(two_op, evaluation_iterator, diagonal_values);
+    this->evaluate<SquareMatrix<double>>(two_op, evaluation_iterator, diagonal_values);
     return evaluation_iterator.evaluation();
 }
 
@@ -241,7 +241,7 @@ SquareMatrix<double> SpinResolvedSelectedONVBasis::evaluateOperatorDense(const S
     }
 
     MatrixRepresentationEvaluationContainer<SquareMatrix<double>> evaluation_iterator {this->dim};
-    this->evaluateOperator<SquareMatrix<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), evaluation_iterator, diagonal_values);
+    this->evaluate<SquareMatrix<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), evaluation_iterator, diagonal_values);
     return evaluation_iterator.evaluation();
 }
 
@@ -267,7 +267,7 @@ SquareMatrix<double> SpinResolvedSelectedONVBasis::evaluateOperatorDense(const U
     }
 
     MatrixRepresentationEvaluationContainer<SquareMatrix<double>> evaluation_iterator {this->dim};
-    this->evaluateOperator<SquareMatrix<double>>(usq_hamiltonian, evaluation_iterator, diagonal_values);
+    this->evaluate<SquareMatrix<double>>(usq_hamiltonian, evaluation_iterator, diagonal_values);
     return evaluation_iterator.evaluation();
 }
 
@@ -484,7 +484,7 @@ VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduc
     }
 
     MatrixRepresentationEvaluationContainer<VectorX<double>> evaluation_iterator {x, diagonal};
-    this->evaluateOperator<VectorX<double>>(one_op, evaluation_iterator, false);
+    this->evaluate<VectorX<double>>(one_op, evaluation_iterator, false);
     return evaluation_iterator.evaluation();
 }
 
@@ -505,7 +505,7 @@ VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduc
     }
 
     MatrixRepresentationEvaluationContainer<VectorX<double>> evaluation_iterator {x, diagonal};
-    this->evaluateOperator<VectorX<double>>(two_op, evaluation_iterator, false);
+    this->evaluate<VectorX<double>>(two_op, evaluation_iterator, false);
     return evaluation_iterator.evaluation();
 }
 
@@ -526,7 +526,7 @@ VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduc
     }
 
     MatrixRepresentationEvaluationContainer<VectorX<double>> evaluation_iterator {x, diagonal};
-    this->evaluateOperator<VectorX<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), evaluation_iterator, false);
+    this->evaluate<VectorX<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), evaluation_iterator, false);
     return evaluation_iterator.evaluation();
 }
 
@@ -553,7 +553,7 @@ VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduc
     }
 
     MatrixRepresentationEvaluationContainer<VectorX<double>> evaluation_iterator {x, diagonal};
-    this->evaluateOperator<VectorX<double>>(usq_hamiltonian, evaluation_iterator, false);
+    this->evaluate<VectorX<double>>(usq_hamiltonian, evaluation_iterator, false);
     return evaluation_iterator.evaluation();
 }
 
@@ -582,7 +582,7 @@ Eigen::SparseMatrix<double> SpinResolvedSelectedONVBasis::evaluateOperatorSparse
     }
 
     evaluation_iterator.reserve(memory);
-    this->evaluateOperator<Eigen::SparseMatrix<double>>(one_op, evaluation_iterator, diagonal_values);
+    this->evaluate<Eigen::SparseMatrix<double>>(one_op, evaluation_iterator, diagonal_values);
     evaluation_iterator.addToMatrix();
     return evaluation_iterator.evaluation();
 }
@@ -612,7 +612,7 @@ Eigen::SparseMatrix<double> SpinResolvedSelectedONVBasis::evaluateOperatorSparse
     }
 
     evaluation_iterator.reserve(memory);
-    this->evaluateOperator<Eigen::SparseMatrix<double>>(two_op, evaluation_iterator, diagonal_values);
+    this->evaluate<Eigen::SparseMatrix<double>>(two_op, evaluation_iterator, diagonal_values);
     evaluation_iterator.addToMatrix();
     return evaluation_iterator.evaluation();
 }
@@ -642,7 +642,7 @@ Eigen::SparseMatrix<double> SpinResolvedSelectedONVBasis::evaluateOperatorSparse
     }
 
     evaluation_iterator.reserve(memory);
-    this->evaluateOperator<Eigen::SparseMatrix<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), evaluation_iterator, diagonal_values);
+    this->evaluate<Eigen::SparseMatrix<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), evaluation_iterator, diagonal_values);
     evaluation_iterator.addToMatrix();
     return evaluation_iterator.evaluation();
 }
@@ -676,7 +676,7 @@ Eigen::SparseMatrix<double> SpinResolvedSelectedONVBasis::evaluateOperatorSparse
     }
 
     evaluation_iterator.reserve(memory);
-    this->evaluateOperator<Eigen::SparseMatrix<double>>(usq_hamiltonian, evaluation_iterator, diagonal_values);
+    this->evaluate<Eigen::SparseMatrix<double>>(usq_hamiltonian, evaluation_iterator, diagonal_values);
     evaluation_iterator.addToMatrix();
     return evaluation_iterator.evaluation();
 }
