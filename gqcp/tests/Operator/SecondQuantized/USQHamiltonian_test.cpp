@@ -141,3 +141,24 @@ BOOST_AUTO_TEST_CASE(USQHamiltonian_rotate) {
 //     BOOST_CHECK(usq_hamiltonian1.spinHamiltonian(GQCP::Spin::alpha).core().parameters().isApprox(usq_hamiltonian2.spinHamiltonian(GQCP::Spin::alpha).core().parameters()));
 //     BOOST_CHECK(usq_hamiltonian1.spinHamiltonian(GQCP::Spin::beta).core().parameters().isApprox(usq_hamiltonian2.spinHamiltonian(GQCP::Spin::beta).core().parameters()));
 // }
+
+/**
+ *  Check whether spinHamiltonian function returns the correct hamiltonians
+ */
+BOOST_AUTO_TEST_CASE(USQHamiltonian_spin_components) {
+    // Create single-particle basis for alpha and beta
+    const auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    const GQCP::USpinorBasis<double, GQCP::GTOShell> u_spinor_basis {water, "STO-3G"};
+    const GQCP::RSpinorBasis<double, GQCP::GTOShell> r_spinor_basis {water, "STO-3G"};
+
+    // Create two hamiltonians, one restricted, one unrestricted
+    auto usq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(u_spinor_basis, water);
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(r_spinor_basis, water);
+
+    // For H2O the alpha and beta components are identical
+    // Test if the transformation results in identical Hamiltonians
+    BOOST_CHECK(usq_hamiltonian.spinHamiltonian(GQCP::Spin::alpha).core().parameters().isApprox(sq_hamiltonian.core().parameters()));
+    BOOST_CHECK(usq_hamiltonian.spinHamiltonian(GQCP::Spin::beta).core().parameters().isApprox(sq_hamiltonian.core().parameters()));
+    BOOST_CHECK(usq_hamiltonian.spinHamiltonian(GQCP::Spin::alpha).twoElectron().parameters().isApprox(sq_hamiltonian.twoElectron().parameters()));
+    BOOST_CHECK(usq_hamiltonian.spinHamiltonian(GQCP::Spin::beta).twoElectron().parameters().isApprox(sq_hamiltonian.twoElectron().parameters()));
+}
