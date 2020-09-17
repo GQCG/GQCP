@@ -23,7 +23,6 @@
 #include "Basis/transform.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Operator/SecondQuantized/USQHamiltonian.hpp"
-#include "Processing/DensityMatrices/CIDMCalculators/GeneralDMCalculator.hpp"
 #include "Processing/Properties/expectation_values.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"

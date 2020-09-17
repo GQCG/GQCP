@@ -22,7 +22,6 @@
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
-#include "Processing/DensityMatrices/CIDMCalculators/GeneralDMCalculator.hpp"
 #include "QCMethod/Applications/AtomicDecompositionParameters.hpp"
 #include "QCMethod/CI/CI.hpp"
 #include "QCMethod/CI/CIEnvironment.hpp"
@@ -74,13 +73,10 @@ BOOST_AUTO_TEST_CASE(decomposition_BeH_cation_STO_3G_Nuclear) {
 
 
     // Calculate the DMs (in the AO basis in which the molecular decomposition parameters are defined) in order to calculate expectation values.
-    GQCP::GeneralDMCalculator dm_calculator {onv_basis};
-    dm_calculator.setCoefficients(linear_expansion.coefficients());
-
-    auto D = dm_calculator.calculateSpinResolved1DM().spinSummed();
+    auto D = linear_expansion.calculate1DM();
     D.basisTransform(T.adjoint());  // T.adjoint() to transform BACK to AO basis
 
-    auto d = dm_calculator.calculateSpinResolved2DM().spinSummed();
+    auto d = linear_expansion.calculate2DM();
     d.basisTransform(T.adjoint());  // T.adjoint() to transform BACK to AO basis
 
 

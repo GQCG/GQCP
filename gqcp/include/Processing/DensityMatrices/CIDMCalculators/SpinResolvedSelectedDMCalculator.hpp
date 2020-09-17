@@ -19,7 +19,6 @@
 
 
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
-#include "Processing/DensityMatrices/CIDMCalculators/BaseSpinResolvedDMCalculator.hpp"
 #include "Processing/DensityMatrices/SpinResolvedOneDM.hpp"
 #include "Processing/DensityMatrices/SpinResolvedTwoDM.hpp"
 
@@ -30,7 +29,7 @@ namespace GQCP {
 /**
  *  A class capable of calculating 1- and 2-DMs from wave functions expanded in a selected spin-resolved basis
  */
-class SpinResolvedSelectedDMCalculator: public BaseSpinResolvedDMCalculator {
+class SpinResolvedSelectedDMCalculator {
 private:
     SpinResolvedSelectedONVBasis onv_basis;  // spin-resolved ONV basis containing the selected configurations
 
@@ -59,19 +58,14 @@ public:
      *
      *  @return all 1-DMs given a coefficient vector
      */
-    SpinResolvedOneDM<double> calculateSpinResolved1DM(const VectorX<double>& x) const override;
+    SpinResolvedOneDM<double> calculateSpinResolved1DM(const VectorX<double>& x) const;
 
     /**
      *  @param x        the coefficient vector representing the 'selected' wave function
      *
      *  @return all 2-DMs given a coefficient vector
      */
-    SpinResolvedTwoDM<double> calculateSpinResolved2DM(const VectorX<double>& x) const override;
-
-    /**
-     *  @return the ONV basis that is associated to this DMCalculator
-     */
-    const BaseONVBasis* onvBasis() const override { return &onv_basis; }
+    SpinResolvedTwoDM<double> calculateSpinResolved2DM(const VectorX<double>& x) const;
 };
 
 

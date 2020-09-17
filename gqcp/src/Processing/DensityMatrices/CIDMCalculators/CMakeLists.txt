@@ -1,9 +1,5 @@
 target_sources(gqcp
     PRIVATE
-        GeneralDMCalculator.cpp
-        GeneralSpinUnresolvedDMCalculator.cpp
         SeniorityZeroDMCalculator.cpp
-        SpinResolvedDMCalculator.cpp
         SpinResolvedSelectedDMCalculator.cpp
-        SpinUnresolvedDMCalculator.cpp
 )

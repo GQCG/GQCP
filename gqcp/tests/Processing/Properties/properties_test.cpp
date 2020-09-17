@@ -22,7 +22,6 @@
 #include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
 #include "Basis/transform.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
-#include "Processing/DensityMatrices/CIDMCalculators/GeneralDMCalculator.hpp"
 #include "Processing/Properties/RHFElectricalResponseSolver.hpp"
 #include "Processing/Properties/properties.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"

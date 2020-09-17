@@ -1,11 +1,5 @@
 target_sources(gqcp
     PRIVATE
-        BaseSpinResolvedDMCalculator.hpp
-        BaseSpinUnresolvedDMCalculator.hpp
-        GeneralDMCalculator.hpp
-        GeneralSpinUnresolvedDMCalculator.hpp
         SeniorityZeroDMCalculator.hpp
-        SpinResolvedDMCalculator.hpp
         SpinResolvedSelectedDMCalculator.hpp
-        SpinUnresolvedDMCalculator.hpp
 )
