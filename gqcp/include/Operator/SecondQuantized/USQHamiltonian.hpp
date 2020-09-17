@@ -281,14 +281,18 @@ public:
      */
     template <typename Z = Scalar>
     enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters, const Spin& sigma) {
-        this->transform(jacobi_rotation_parameters, sigma);
+
+        // In order to use the transform function of a single spin component we need a transformation matrix, which we can construct from the given jacobi parameters
+        const TransformationMatrix<Scalar> T = TransformationMatrix<Scalar>::FromJacobi(jacobi_rotation_parameters, this->total_one_op.numberOfOrbitals());
+
+        this->rotate(T, sigma);
     }
 
 
     /**
      *  @param sigma                    the spin sigma component
      * 
-     *  @return the pure contributions of the requested component of the unrestricted Hamiltonian *NOT YET CORRECT, DOESN'T CONTAIN VECTORS OF CONTRIBUTIONS*
+     *  @return the pure contributions of the requested component of the unrestricted Hamiltonian
      */
     const SQHamiltonian<Scalar> spinHamiltonian(const Spin& sigma) const {
 

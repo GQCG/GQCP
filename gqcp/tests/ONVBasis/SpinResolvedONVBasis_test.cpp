@@ -253,8 +253,8 @@ BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_diagonal_unrestricted_vs_selected
     GQCP::SpinResolvedONVBasis product_fock_space {6, 4, 4};
     GQCP::SpinResolvedSelectedONVBasis selected_fock_space {product_fock_space};
 
-    auto hamiltonian_diagonal_evaluation1 = product_fock_space.evaluateOperatorDiagonal(usq_hamiltonian);
-    auto hamiltonian_diagonal_evaluation2 = selected_fock_space.evaluateOperatorDiagonal(usq_hamiltonian);
+    auto hamiltonian_diagonal_evaluation1 = product_fock_space.evaluateOperatorDiagonal(usq_hamiltonian);   // CORRECT!
+    auto hamiltonian_diagonal_evaluation2 = selected_fock_space.evaluateOperatorDiagonal(usq_hamiltonian);  // WRONG!!
 
     auto hamiltonian_evaluation1 = product_fock_space.evaluateOperatorDense(usq_hamiltonian, true);
     auto hamiltonian_evaluation2 = selected_fock_space.evaluateOperatorDense(usq_hamiltonian, true);
