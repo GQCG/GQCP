@@ -16,7 +16,6 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "ONVBasis/SeniorityZeroONVBasis.hpp"
-#include "ONVBasis/SpinResolvedFrozenONVBasis.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "QCModel/CI/LinearExpansion.hpp"
@@ -378,7 +377,7 @@ void bindLinearExpansion<GQCP::SpinUnresolvedONVBasis>(py::module& module, const
 void bindLinearExpansions(py::module& module) {
 
     bindLinearExpansion<GQCP::SeniorityZeroONVBasis>(module, "SeniorityZero", "The linear expansion (configuration interaction) wave function model in a seniority-zero ONV basis.");
-    bindLinearExpansion<GQCP::SpinResolvedFrozenONVBasis>(module, "SpinResolvedFrozen", "The linear expansion (configuration interaction) wave function model in a frozen core spin-resolved ONV basis.");
+    // bindLinearExpansion<GQCP::SpinResolvedFrozenONVBasis>(module, "SpinResolvedFrozen", "The linear expansion (configuration interaction) wave function model in a frozen core spin-resolved ONV basis.");
     bindLinearExpansion<GQCP::SpinResolvedONVBasis>(module, "SpinResolved", "The linear expansion (configuration interaction) wave function model in a spin-resolved ONV basis.");
     bindLinearExpansion<GQCP::SpinResolvedSelectedONVBasis>(module, "SpinResolvedSelected", "The linear expansion (configuration interaction) wave function model in a spin-resolved selected ONV basis.");
     bindLinearExpansion<GQCP::SpinUnresolvedONVBasis>(module, "SpinUnresolved", "The linear expansion (configuration interaction) wave function model in a spin-unresolved ONV basis.");

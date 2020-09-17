@@ -17,10 +17,8 @@
 
 #include "Processing/DensityMatrices/CIDMCalculators/GeneralDMCalculator.hpp"
 
-#include "Processing/DensityMatrices/CIDMCalculators/FrozenCoreDOCIRDMBuilder.hpp"
 #include "Processing/DensityMatrices/CIDMCalculators/SeniorityZeroDMCalculator.hpp"
 #include "Processing/DensityMatrices/CIDMCalculators/SpinResolvedDMCalculator.hpp"
-#include "Processing/DensityMatrices/CIDMCalculators/SpinResolvedFrozenDMCalculator.hpp"
 #include "Processing/DensityMatrices/CIDMCalculators/SpinResolvedSelectedDMCalculator.hpp"
 
 
@@ -66,11 +64,6 @@ GeneralDMCalculator::GeneralDMCalculator(const BaseONVBasis& onv_basis) {
 
     case ONVBasisType::SpinResolvedSelectedONVBasis: {
         this->dm_calculator = std::make_shared<SpinResolvedSelectedDMCalculator>(dynamic_cast<const SpinResolvedSelectedONVBasis&>(onv_basis));
-        break;
-    }
-
-    case ONVBasisType::SpinResolvedFrozenONVBasis: {
-        this->dm_calculator = std::make_shared<SpinResolvedFrozenDMCalculator>(dynamic_cast<const SpinResolvedFrozenONVBasis&>(onv_basis));
         break;
     }
 

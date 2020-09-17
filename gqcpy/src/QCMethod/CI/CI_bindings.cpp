@@ -18,7 +18,6 @@
 #include "Mathematical/Algorithm/Algorithm.hpp"
 #include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
 #include "ONVBasis/SeniorityZeroONVBasis.hpp"
-#include "ONVBasis/SpinResolvedFrozenONVBasis.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "QCMethod/CI/CI.hpp"
@@ -80,7 +79,7 @@ void bindQCMethodCI(py::module& module, const std::string& suffix, const std::st
 void bindQCMethodCIs(py::module& module) {
 
     bindQCMethodCI<GQCP::SeniorityZeroONVBasis>(module, "SeniorityZero", "Configuration interaction in a seniority-zero ONV basis.");
-    bindQCMethodCI<GQCP::SpinResolvedFrozenONVBasis>(module, "SpinResolvedFrozen", "Configuration interaction in a frozen core spin-resolved ONV basis.");
+    // bindQCMethodCI<GQCP::SpinResolvedFrozenONVBasis>(module, "SpinResolvedFrozen", "Configuration interaction in a frozen core spin-resolved ONV basis.");
     bindQCMethodCI<GQCP::SpinResolvedONVBasis>(module, "SpinResolved", "Configuration interaction in a spin-resolved ONV basis.");
     bindQCMethodCI<GQCP::SpinResolvedSelectedONVBasis>(module, "SpinResolvedSelected", "Configuration interaction in a spin-resolved selected ONV basis.");
 }

@@ -21,7 +21,6 @@
 #include "Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp"
 #include "ONVBasis/BaseONVBasis.hpp"
 #include "ONVBasis/SeniorityZeroONVBasis.hpp"
-#include "ONVBasis/SpinResolvedFrozenONVBasis.hpp"
 #include "ONVBasis/SpinResolvedONV.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "Operator/SecondQuantized/USQHamiltonian.hpp"
@@ -70,7 +69,7 @@ public:
      *
      *  @param onv_basis        the frozen product ONV basis from which the onvs should be generated
      */
-    SpinResolvedSelectedONVBasis(const SpinResolvedFrozenONVBasis& onv_basis);
+    // SpinResolvedSelectedONVBasis(const SpinResolvedFrozenONVBasis& onv_basis);
 
     /**
      *  A constructor that generates the onvs based on the given SpinResolvedONVBasis.

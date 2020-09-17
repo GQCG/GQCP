@@ -63,18 +63,6 @@ public:
     virtual ~BaseONVBasis() = default;
 
 
-    // NAMED CONSTRUCTORS
-
-    /**
-     *  Clones a derived BaseONVBasis instance to the heap memory
-     *
-     *  @param fock_space     reference to a derived BaseONVBasis instance to be cloned.
-     *
-     *  @return a shared pointer owning the heap-cloned ONV basis
-     */
-    static std::shared_ptr<BaseONVBasis> CloneToHeap(const BaseONVBasis& fock_space);
-
-
     // PUBLIC PURE VIRTUAL METHODS
 
     /**

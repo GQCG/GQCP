@@ -76,36 +76,36 @@ SpinResolvedSelectedONVBasis::SpinResolvedSelectedONVBasis(const SeniorityZeroON
  *
  *  @param onv_basis       the SpinUnresolvedONVBasis from which the onvs should be generated
  */
-SpinResolvedSelectedONVBasis::SpinResolvedSelectedONVBasis(const SpinResolvedFrozenONVBasis& onv_basis) :
-    SpinResolvedSelectedONVBasis(onv_basis.numberOfOrbitals(), onv_basis.numberOfAlphaElectrons(), onv_basis.numberOfBetaElectrons()) {
+// SpinResolvedSelectedONVBasis::SpinResolvedSelectedONVBasis(const SpinResolvedFrozenONVBasis& onv_basis) :
+//     SpinResolvedSelectedONVBasis(onv_basis.numberOfOrbitals(), onv_basis.numberOfAlphaElectrons(), onv_basis.numberOfBetaElectrons()) {
 
-    std::vector<SpinResolvedONV> onvs;
+//     std::vector<SpinResolvedONV> onvs;
 
-    const SpinUnresolvedFrozenONVBasis& frozen_fock_space_alpha = onv_basis.frozenONVBasisAlpha();
-    const SpinUnresolvedFrozenONVBasis& frozen_fock_space_beta = onv_basis.frozenONVBasisBeta();
+//     const SpinUnresolvedFrozenONVBasis& frozen_fock_space_alpha = onv_basis.frozenONVBasisAlpha();
+//     const SpinUnresolvedFrozenONVBasis& frozen_fock_space_beta = onv_basis.frozenONVBasisBeta();
 
-    auto dim_alpha = frozen_fock_space_alpha.dimension();
-    auto dim_beta = frozen_fock_space_beta.dimension();
+//     auto dim_alpha = frozen_fock_space_alpha.dimension();
+//     auto dim_beta = frozen_fock_space_beta.dimension();
 
-    SpinUnresolvedONV alpha = frozen_fock_space_alpha.constructONVFromAddress(0);
-    for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
+//     SpinUnresolvedONV alpha = frozen_fock_space_alpha.constructONVFromAddress(0);
+//     for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
 
-        SpinUnresolvedONV beta = frozen_fock_space_beta.constructONVFromAddress(0);
-        for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
+//         SpinUnresolvedONV beta = frozen_fock_space_beta.constructONVFromAddress(0);
+//         for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
 
-            onvs.push_back(SpinResolvedONV {alpha, beta});
+//             onvs.push_back(SpinResolvedONV {alpha, beta});
 
-            if (I_beta < dim_beta - 1) {  // prevent the last permutation from occurring
-                frozen_fock_space_beta.transformONVToNextPermutation(beta);
-            }
-        }
-        if (I_alpha < dim_alpha - 1) {  // prevent the last permutation from occurring
-            frozen_fock_space_alpha.transformONVToNextPermutation(alpha);
-        }
-    }
-    this->dim = onv_basis.dimension();
-    this->onvs = onvs;
-}
+//             if (I_beta < dim_beta - 1) {  // prevent the last permutation from occurring
+//                 frozen_fock_space_beta.transformONVToNextPermutation(beta);
+//             }
+//         }
+//         if (I_alpha < dim_alpha - 1) {  // prevent the last permutation from occurring
+//             frozen_fock_space_alpha.transformONVToNextPermutation(alpha);
+//         }
+//     }
+//     this->dim = onv_basis.dimension();
+//     this->onvs = onvs;
+// }
 
 
 /**
