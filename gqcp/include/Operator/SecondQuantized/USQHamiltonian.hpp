@@ -283,9 +283,19 @@ public:
     enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters, const Spin& sigma) {
 
         // In order to use the transform function of a single spin component we need a transformation matrix, which we can construct from the given jacobi parameters
-        const TransformationMatrix<Scalar> T = TransformationMatrix<Scalar>::FromJacobi(jacobi_rotation_parameters, this->total_one_op.numberOfOrbitals());
+        switch (sigma) {
+        case Spin::alpha: {
+            const TransformationMatrix<Scalar> T = TransformationMatrix<Scalar>::FromJacobi(jacobi_rotation_parameters, this->total_one_op.numberOfOrbitals(Spin::alpha));
+            this->rotate(T, sigma);
+            break;
+        }
 
-        this->rotate(T, sigma);
+        case Spin::beta: {
+            const TransformationMatrix<Scalar> T = TransformationMatrix<Scalar>::FromJacobi(jacobi_rotation_parameters, this->total_one_op.numberOfOrbitals(Spin::beta));
+            this->rotate(T, sigma);
+            break;
+        }
+        }
     }
 
 
