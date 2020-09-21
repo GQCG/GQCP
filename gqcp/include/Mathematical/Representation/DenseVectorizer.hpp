@@ -108,7 +108,7 @@ public:
 
 
     /**
-     *  MARK: Vectorization
+     *  MARK: Element access
      */
 
     /**

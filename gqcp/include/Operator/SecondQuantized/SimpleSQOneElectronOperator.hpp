@@ -20,7 +20,9 @@
 
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Mathematical/Representation/StorageArray.hpp"
+#include "Processing/DensityMatrices/OneDM.hpp"
 #include "Utilities/type_traits.hpp"
+
 
 namespace GQCP {
 
@@ -53,16 +55,78 @@ public:
      */
 
 
-    SimpleSQOneElectronOperator(const StorageArray<QCMatrix<_Scalar>, _Vectorizer>& array) :
+    /**
+     *  Construct a one-electron operator from a(n) (storage) array.
+     * 
+     *  @param array                A storage array that contains the matrix representations of all the components of this operator.
+     */
+    SimpleSQOneElectronOperator(const StorageArray<QCMatrix<Scalar>, Vectorizer>& array) :
         array {array} {
 
-        // Check if the array's matrices have equal dimension.
+        const auto first_dimension = array.elements()[0].dimension();
+
+        for (const auto& parameters : array.elements()) {
+            if (parameters.dimension() != first_dimension) {
+                throw std::invalid_argument("SimpleSQOneElectronOperator(const StorageArray<QCMatrix<Scalar>, Vectorizer>& array): The dimensions of the matrix representations must be equal.");
+            }
+        }
     }
 
 
+    /**
+     *  Construct a one-electron operator from one matrix representation.
+     * 
+     *  @param parameters           The matrix representation of the one-electron integrals/parameters.
+     */
     template <typename Z = Vectorizer>
     SimpleSQOneElectronOperator(const QCMatrix<Scalar>& parameters, typename std::enable_if<std::is_same<Z, ScalarVectorizer>::value>::type* = 0) :
         SimpleSQOneElectronOperator(StorageArray<QCMatrix<Scalar>, ScalarVectorizer>({parameters}, ScalarVectorizer())) {}
+
+
+    /**
+     *  Construct a one-electron operator from a set of three matrix representations, for each of the operator's components.
+     * 
+     *  @param parameters           A set of three matrix representations of the one-electron integrals/parameters, one for each of the operator's components.
+     */
+    template <typename Z = Vectorizer>
+    SimpleSQOneElectronOperator(const std::vector<QCMatrix<Scalar>>& parameters, typename std::enable_if<std::is_same<Z, VectorVectorizer>::value>::type* = 0) :
+        SimpleSQOneElectronOperator(StorageArray<QCMatrix<Scalar>, VectorVectorizer>(parameters, VectorVectorizer({3}))) {}
+
+
+    /**
+     *  Construct a one-electron operator with parameters that are zero.
+     * 
+     *  @param dim          The dimension of the matrix representation of the parameters, i.e. the number of orbitals/sites.
+     */
+    SimpleSQOneElectronOperator(const size_t dim, const Vectorizer& vectorizer) :
+        SimpleSQOneElectronOperator(StorageArray<QCMatrix<Scalar>, Vectorizer> {QCMatrix<Scalar>::Zero(dim, dim), vectorizer}) {}
+
+
+    /**
+     *  Construct a one-electron operator with parameters that are zero.
+     * 
+     *  @param dim          The dimension of the matrix representation of the parameters, i.e. the number of orbitals/sites.
+     */
+    template <typename Z = Vectorizer>
+    SimpleSQOneElectronOperator(const size_t dim, typename std::enable_if<std::is_same<Z, ScalarVectorizer>::value>::type* = 0) :
+        SimpleSQOneElectronOperator(dim, ScalarVectorizer()) {}
+
+
+    /**
+     *  Construct a one-electron operator with parameters that are zero.
+     * 
+     *  @param dim          The dimension of the matrix representation of the parameters, i.e. the number of orbitals/sites.
+     */
+    template <typename Z = Vectorizer>
+    SimpleSQOneElectronOperator(const size_t dim, typename std::enable_if<std::is_same<Z, VectorVectorizer>::value>::type* = 0) :
+        SimpleSQOneElectronOperator(dim, VectorVectorizer({3})) {}
+
+
+    /**
+     *  The default constructor.
+     */
+    SimpleSQOneElectronOperator() :
+        SimpleSQOneElectronOperator(0, Vectorizer()) {}
 
 
     /*
@@ -108,6 +172,49 @@ public:
 
     //     // Access the underlying array's storage, and wrap the result in a scalar second-quantized operator.
     // }
+
+
+    /*
+     *  MARK: General info
+     */
+
+    /**
+     *  @return The number of components of this one-electron operator. For scalar operators (such as the kinetic energy), this is 1, for vector operators (like the dipole operator), this is 3, etc.
+     */
+    size_t numberOfComponents() const { return this->array.vectorizer().numberOfElements(); }
+
+
+    /**
+     *  @return The number of orbitals this one-electron operator is quantized in. For 'restricted' operators, this is the number of spatial orbitals, for 'general' operators, this is the number of spinors.
+     */
+    size_t numberOfOrbitals() const { return this->array.elements()[0].numberOfOrbitals(); /* all the dimensions are the same, this is checked in the constructor */ }
+
+
+    /*
+     *  MARK: Calculations
+     */
+
+    /**
+     *  @param D                The total 1-DM that represents the wave function
+     *
+     *  @return The expectation value of this one-electron operator, i.e. the expectation value of all components of the one-electron operator.
+     */
+    StorageArray<Scalar, Vectorizer> calculateExpectationValue(const OneDM<Scalar>& D) const {
+
+        if (this->numberOfOrbitals() != D.numberOfOrbitals()) {
+            throw std::invalid_argument("SimpleSQOneElectronOperator::calculateExpectationValue(const OneDM<Scalar>&): The given 1-DM is not compatible with the one-electron operator.");
+        }
+
+
+        // Calculate the expectation value for every component of the operator.
+        const auto& parameters = this->allParameters();
+        std::vector<Scalar> expectation_values(this->numberOfComponents());  // zero-initialize the vector with a number of elements
+        for (size_t i = 0; i < this->numberOfComponents(); i++) {
+            expectation_values[i] = (parameters[i] * D).trace();
+        }
+
+        return StorageArray<Scalar, Vectorizer> {expectation_values, this->array.vectorizer()};
+    }
 };
 
 

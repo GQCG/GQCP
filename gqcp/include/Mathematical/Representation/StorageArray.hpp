@@ -47,7 +47,7 @@ private:
     std::vector<Element> m_elements;
 
     // The vectorizer that relates multiple tuple coordinates to a one-dimensional index.
-    Vectorizer vectorizer;
+    Vectorizer m_vectorizer;
 
 
 public:
@@ -63,10 +63,17 @@ public:
      */
     StorageArray(const std::vector<Element>& elements, const Vectorizer& vectorizer) :
         m_elements {elements},
-        vectorizer {vectorizer} {
+        m_vectorizer {vectorizer} {}
 
-        std::cout << "Created a vector of " << this->m_elements.size() << " elements whose data is at address " << this->m_elements.data() << std::endl;
-    }
+
+    /**
+     *  Create an array with equal elements.
+     * 
+     *  @param elements         The one-dimensional representation of the elements of the array.
+     *  @param vectorizer       The vectorizer that relates multiple tuple coordinates to a one-dimensional index.
+     */
+    StorageArray(const Element& element, const Vectorizer& vectorizer) :
+        StorageArray(std::vector<Element>(vectorizer.numberOfElements(), element), vectorizer) {}
 
 
     /**
@@ -88,7 +95,7 @@ public:
      *  @return The element that is stored at the given coordinate indices.
      */
     template <typename... Indices>
-    Element operator()(const Indices&... indices) const {
+    const Element& operator()(const Indices&... indices) const {
 
         static_assert(sizeof...(indices) == Vectorizer::NumberOfAxes, "The number of indices must match the number of axes.");
 
@@ -98,8 +105,8 @@ public:
         std::copy(indices_vector.begin(), indices_vector.end(), indices_array.begin());
 
         // Use the underlying vectorizer to produce the 1D offset, and access the 1D storage array accordingly.
-        const auto vector_index = vectorizer.offset(indices_array);
-        return this->m_elements[vector_index];
+        const auto vector_index = this->vectorizer().offset(indices_array);
+        return this->elements()[vector_index];
     }
 
 
@@ -119,8 +126,8 @@ public:
         std::copy(indices_vector.begin(), indices_vector.end(), indices_array.begin());
 
         // Use the underlying vectorizer to produce the 1D offset, and access the 1D storage array accordingly.
-        const auto vector_index = vectorizer.offset(indices_array);
-        return this->m_elements[vector_index];
+        const auto vector_index = this->vectorizer().offset(indices_array);
+        return this->elements()[vector_index];
     }
 
 
@@ -135,6 +142,15 @@ public:
      */
     std::vector<Element>& elements() { return this->m_elements; }
 
+
+    /*
+     *  MARK: General information
+     */
+
+    /**
+     *  @return The vectorizer that relates multiple tuple coordinates to a one-dimensional index.
+     */
+    const Vectorizer& vectorizer() const { return this->m_vectorizer; }
 
     // StorageArray<T, Vectorizer>& operator+=(const StorageArray<T, Vectorizer>& rhs) override {
 

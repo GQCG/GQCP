@@ -1,0 +1,120 @@
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
+#define BOOST_TEST_MODULE "RSQOneElectronOperator"
+
+#include <boost/test/unit_test.hpp>
+
+#include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
+
+
+/**
+ *  Check the construction of one-electron operators from matrices.
+ * 
+ *  Since RSQOneElectronOperator derives from SimpleSQOneElectronOperator, we test the base functionality using a derived class.
+ */
+BOOST_AUTO_TEST_CASE(SimpleSQOneElectronOperator_constructor) {
+
+    // Set up some test matrices to be used as one-electron operator integrals.
+    const auto matrix34 = GQCP::MatrixX<double>::Zero(3, 4);
+
+    const auto square_matrix33 = GQCP::SquareMatrix<double>::Zero(3, 3);
+    const auto square_matrix44 = GQCP::SquareMatrix<double>::Zero(4, 4);
+
+
+    // Check a correct constructor: a square matrix may represent the integrals of a one-electron operator.
+    BOOST_CHECK_NO_THROW(GQCP::ScalarRSQOneElectronOperator<double> operator_square {square_matrix33});
+
+    // Check a throwing constructor: rectangular matrices cannot represent the integrals of a one-electron operator.
+    BOOST_CHECK_THROW(GQCP::ScalarRSQOneElectronOperator<double> operator_rectangular {matrix34}, std::invalid_argument);
+
+    // Check a throwing constructor: the dimensions of the square matrices must be equal.
+    BOOST_CHECK_THROW(GQCP::VectorRSQOneElectronOperator<double> operator_rectangular({square_matrix33, square_matrix33, square_matrix44}), std::invalid_argument);
+}
+
+
+/**
+ *  Check if the zero constructor actually sets its parameters to zeros.
+ * 
+ *  Since RSQOneElectronOperator derives from SimpleSQOneElectronOperator, we test the base functionality using a derived class.
+ */
+BOOST_AUTO_TEST_CASE(SimpleSQOneElectronOperator_zero_constructor) {
+
+    const size_t dim = 2;
+
+    // Check a zero constructor for scalar operators.
+    const GQCP::ScalarRSQOneElectronOperator<double> zero_scalar_operator {2};
+
+    BOOST_CHECK_EQUAL(zero_scalar_operator.numberOfOrbitals(), dim);
+    BOOST_CHECK(zero_scalar_operator.parameters().isZero(1.0e-08));
+
+
+    // Check a zero constructor for vector operators.
+    const GQCP::VectorRSQOneElectronOperator<double> zero_vector_operator {2};
+
+    BOOST_CHECK_EQUAL(zero_vector_operator.numberOfOrbitals(), dim);
+    for (size_t i = 0; i < 3; i++) {
+        BOOST_CHECK(zero_vector_operator.parameters(i).isZero(1.0e-08));
+    }
+}
+
+
+/**
+ *  Check if calculateExpectationValue throws when necessary.
+ */
+BOOST_AUTO_TEST_CASE(calculateExpectationValue_throw) {
+
+    // Initialize a test operator and density matrices.
+    const GQCP::ScalarRSQOneElectronOperator<double> f_operator {2};
+    const GQCP::OneDM<double> D_valid = GQCP::OneDM<double>::Zero(2, 2);
+    const GQCP::OneDM<double> D_invalid = GQCP::OneDM<double>::Zero(3, 3);
+
+    BOOST_CHECK_NO_THROW(f_operator.calculateExpectationValue(D_valid));
+    BOOST_CHECK_THROW(f_operator.calculateExpectationValue(D_invalid), std::invalid_argument);
+}
+
+
+/**
+ *  Check if calculateExpectationValue shows the correct behaviour.
+ * 
+ *  We're testing this behavior for 'restricted' operators, but since the function is a method on its base class `SimpleSQOneElectronOperator`, this test also checks the validity on 'general' operators.
+ */
+BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
+
+    const size_t dim = 2;
+
+    // Initialize a test matrix and convert it into an operator.
+    GQCP::QCMatrix<double> M1 {dim};
+    // clang-format off
+    M1 << 1.0, 2.0,
+          3.0, 4.0;
+    // clang-format on
+    const GQCP::ScalarRSQOneElectronOperator<double> op {M1};
+
+    // Initialize a test density matrix.
+    GQCP::QCMatrix<double> D {dim};
+    // clang-format off
+    D << 0.0, 1.0,
+         1.0, 0.0;
+    // clang-format on
+
+    // Initialize a reference value and check the result.
+    const double reference_expectation_value = 5.0;
+
+    const auto expectation_value = op.calculateExpectationValue(D)();  // extract the 'scalar' from a one-dimensional array
+    BOOST_CHECK(std::abs(expectation_value - reference_expectation_value) < 1.0e-08);
+}

@@ -27,35 +27,6 @@
 
 
 /**
- *  Check the construction of one-electron operators from matrices
- */
-BOOST_AUTO_TEST_CASE(SQOneElectronOperator_constructor) {
-
-    // Check a correct constructor
-    const auto square_matrix = GQCP::SquareMatrix<double>::Zero(4, 4);
-    GQCP::ScalarSQOneElectronOperator<double> O {square_matrix};
-
-
-    // Check a faulty constructor
-    GQCP::MatrixX<double> matrix = GQCP::MatrixX<double>::Zero(3, 4);
-    BOOST_CHECK_THROW(GQCP::ScalarSQOneElectronOperator<double> O2 {matrix}, std::invalid_argument);
-}
-
-
-/**
- *  Check if the zero constructor actually sets its parameters to zeros
- */
-BOOST_AUTO_TEST_CASE(SQOneElectronOperator_zero_constructor) {
-
-    const size_t dim = 2;
-    const GQCP::ScalarSQOneElectronOperator<double> one_op {2};  // should initialize to zeros
-
-    BOOST_CHECK_EQUAL(one_op.numberOfOrbitals(), dim);
-    BOOST_CHECK(one_op.parameters().isZero(1.0e-08));
-}
-
-
-/**
  *  Check if addition of operators works as expected
  */
 BOOST_AUTO_TEST_CASE(SQOneElectronOperator_addition) {
@@ -281,50 +252,6 @@ BOOST_AUTO_TEST_CASE(SQOneElectronOperator_of_GTOs_evaluate) {
     // clang-format on
 
     BOOST_CHECK(ref_rho_evaluated_par.isApprox(rho_evaluated_par, 1.0e-12));
-}
-
-
-/**
- *  Check if calculateExpectationValue throws when necessary
- */
-BOOST_AUTO_TEST_CASE(calculateExpectationValue_throw) {
-
-    const GQCP::ScalarSQOneElectronOperator<double> h {GQCP::QCMatrix<double>::Zero(2, 2)};
-    const GQCP::OneDM<double> D_valid = GQCP::OneDM<double>::Zero(2, 2);
-    const GQCP::OneDM<double> D_invalid = GQCP::OneDM<double>::Zero(3, 3);
-
-    BOOST_CHECK_THROW(h.calculateExpectationValue(D_invalid), std::invalid_argument);
-    BOOST_CHECK_NO_THROW(h.calculateExpectationValue(D_valid));
-}
-
-
-/**
- *  Check whether or not calculateExpectationValue shows the correct behaviour
- */
-BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
-
-    const size_t dim = 2;
-
-    // Initialize a test matrix and convert it into an operator
-    GQCP::QCMatrix<double> M1 {dim};
-    // clang-format off
-    M1 << 1.0, 2.0,
-          3.0, 4.0;
-    // clang-format on
-    const GQCP::ScalarSQOneElectronOperator<double> op {M1};
-
-    // Initialize an alpha and beta density matrix, each one is chosen as a Hermitian matrix.
-    GQCP::QCMatrix<double> D {dim};
-    // clang-format off
-    D << 0.0, 1.0,
-         1.0, 0.0;
-    // clang-format on
-
-    // Initialize a reference value and check the result.
-    const double reference_expectation_value = 5.0;
-
-    const auto expectation_value = op.calculateExpectationValue(D)(0);  // extract the 'scalar' from a one-dimensional vector
-    BOOST_CHECK(std::abs(expectation_value - reference_expectation_value) < 1.0e-08);
 }
 
 
