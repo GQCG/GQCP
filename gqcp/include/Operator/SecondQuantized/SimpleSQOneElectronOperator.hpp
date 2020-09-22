@@ -18,10 +18,13 @@
 #pragma once
 
 
+#include "Mathematical/Functions/VectorSpaceArithmetic.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Mathematical/Representation/StorageArray.hpp"
 #include "Processing/DensityMatrices/OneDM.hpp"
 #include "Utilities/type_traits.hpp"
+
+#include <algorithm>
 
 
 namespace GQCP {
@@ -36,7 +39,8 @@ namespace GQCP {
  *  @tparam _Vectorizer     The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
  */
 template <typename _Scalar, typename _Vectorizer>
-class SimpleSQOneElectronOperator {
+class SimpleSQOneElectronOperator:
+    public VectorSpaceArithmetic<SimpleSQOneElectronOperator<_Scalar, _Vectorizer>, _Scalar> {
 public:
     // The scalar type used for a single parameter: real or complex.
     using Scalar = _Scalar;
@@ -44,9 +48,16 @@ public:
     // The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
     using Vectorizer = _Vectorizer;
 
+    // The matrix representation of the parameters of (one of the components of) the one-electron operator.
+    using MatrixRepresentation = QCMatrix<Scalar>;
+
+    // The type of 'this'.
+    using Self = SimpleSQOneElectronOperator<Scalar, Vectorizer>;
+
+
 private:
     // The array that takes care of the storage of the operator's matrix elements.
-    StorageArray<QCMatrix<_Scalar>, _Vectorizer> array;
+    StorageArray<MatrixRepresentation, _Vectorizer> array;
 
 
 public:
@@ -60,14 +71,14 @@ public:
      * 
      *  @param array                A storage array that contains the matrix representations of all the components of this operator.
      */
-    SimpleSQOneElectronOperator(const StorageArray<QCMatrix<Scalar>, Vectorizer>& array) :
+    SimpleSQOneElectronOperator(const StorageArray<MatrixRepresentation, Vectorizer>& array) :
         array {array} {
 
         const auto first_dimension = array.elements()[0].dimension();
 
         for (const auto& parameters : array.elements()) {
             if (parameters.dimension() != first_dimension) {
-                throw std::invalid_argument("SimpleSQOneElectronOperator(const StorageArray<QCMatrix<Scalar>, Vectorizer>& array): The dimensions of the matrix representations must be equal.");
+                throw std::invalid_argument("SimpleSQOneElectronOperator(const StorageArray<MatrixRepresentation, Vectorizer>& array): The dimensions of the matrix representations must be equal.");
             }
         }
     }
@@ -79,8 +90,8 @@ public:
      *  @param parameters           The matrix representation of the one-electron integrals/parameters.
      */
     template <typename Z = Vectorizer>
-    SimpleSQOneElectronOperator(const QCMatrix<Scalar>& parameters, typename std::enable_if<std::is_same<Z, ScalarVectorizer>::value>::type* = 0) :
-        SimpleSQOneElectronOperator(StorageArray<QCMatrix<Scalar>, ScalarVectorizer>({parameters}, ScalarVectorizer())) {}
+    SimpleSQOneElectronOperator(const MatrixRepresentation& parameters, typename std::enable_if<std::is_same<Z, ScalarVectorizer>::value>::type* = 0) :
+        SimpleSQOneElectronOperator(StorageArray<MatrixRepresentation, ScalarVectorizer>({parameters}, ScalarVectorizer())) {}
 
 
     /**
@@ -89,8 +100,8 @@ public:
      *  @param parameters           A set of three matrix representations of the one-electron integrals/parameters, one for each of the operator's components.
      */
     template <typename Z = Vectorizer>
-    SimpleSQOneElectronOperator(const std::vector<QCMatrix<Scalar>>& parameters, typename std::enable_if<std::is_same<Z, VectorVectorizer>::value>::type* = 0) :
-        SimpleSQOneElectronOperator(StorageArray<QCMatrix<Scalar>, VectorVectorizer>(parameters, VectorVectorizer({3}))) {}
+    SimpleSQOneElectronOperator(const std::vector<MatrixRepresentation>& parameters, typename std::enable_if<std::is_same<Z, VectorVectorizer>::value>::type* = 0) :
+        SimpleSQOneElectronOperator(StorageArray<MatrixRepresentation, VectorVectorizer>(parameters, VectorVectorizer({3}))) {}
 
 
     /**
@@ -99,7 +110,7 @@ public:
      *  @param dim          The dimension of the matrix representation of the parameters, i.e. the number of orbitals/sites.
      */
     SimpleSQOneElectronOperator(const size_t dim, const Vectorizer& vectorizer) :
-        SimpleSQOneElectronOperator(StorageArray<QCMatrix<Scalar>, Vectorizer> {QCMatrix<Scalar>::Zero(dim, dim), vectorizer}) {}
+        SimpleSQOneElectronOperator(StorageArray<MatrixRepresentation, Vectorizer> {MatrixRepresentation::Zero(dim, dim), vectorizer}) {}
 
 
     /**
@@ -136,12 +147,12 @@ public:
     /**
      *  @return A vector of read-only matrix representions of the parameters/integrals of this operator.
      */
-    const std::vector<QCMatrix<Scalar>>& allParameters() const { return this->array.elements(); }
+    const std::vector<MatrixRepresentation>& allParameters() const { return this->array.elements(); }
 
     /**
      *  @return A vector of writable matrix representions of the parameters/integrals of this operator.
      */
-    std::vector<QCMatrix<Scalar>>& allParameters() { return this->array.elements(); }
+    std::vector<MatrixRepresentation>& allParameters() { return this->array.elements(); }
 
     /**
      *  @param indices      A set of coordinates that accesses this one-electron operator.
@@ -149,7 +160,7 @@ public:
      *  @return A read-only matrix representation of the parameters/integrals of one of the tensor components of this operator.
      */
     template <typename... Indices>
-    const QCMatrix<Scalar>& parameters(const Indices&... indices) const { return this->array(indices...); }
+    const MatrixRepresentation& parameters(const Indices&... indices) const { return this->array(indices...); }
 
 
     /**
@@ -158,7 +169,7 @@ public:
      *  @return A writable matrix representation of the parameters/integrals of one of the tensor components of this operator.
      */
     template <typename... Indices>
-    QCMatrix<Scalar>& parameters(const Indices&... indices) { return this->array(indices...); }
+    MatrixRepresentation& parameters(const Indices&... indices) { return this->array(indices...); }
 
 
     // TODO: move to derived class?
@@ -214,6 +225,42 @@ public:
         }
 
         return StorageArray<Scalar, Vectorizer> {expectation_values, this->array.vectorizer()};
+    }
+
+
+    /*
+     *  MARK: Vector space arithmetic
+     */
+
+    /**
+     *  Addition-assignment.
+     */
+    Self& operator+=(const Self& rhs) override {
+
+        auto& result_parameters = this->allParameters();  // initialize the sum with this' parameters
+        const auto& rhs_parameters = rhs.allParameters();
+
+        // Implement addition of two operators as the element-wise addition of their components' matrix representations.
+        for (size_t i = 0; i < this->numberOfComponents(); i++) {
+            result_parameters[i] += rhs_parameters[i];
+        }
+
+        return *this;
+    };
+
+    /**
+     *  Scalar multiplication-assignment
+     */
+    Self& operator*=(const Scalar& a) override {
+
+        auto& result_parameters = this->allParameters();  // initialize the sum with this' parameters
+
+        // Implement scalar multiplication of an operator with a scalar as multiplication of its parameters.
+        for (size_t i = 0; i < this->numberOfComponents(); i++) {
+            result_parameters[i] *= a;
+        }
+
+        return *this;
     }
 };
 

@@ -118,3 +118,96 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
     const auto expectation_value = op.calculateExpectationValue(D)();  // extract the 'scalar' from a one-dimensional array
     BOOST_CHECK(std::abs(expectation_value - reference_expectation_value) < 1.0e-08);
 }
+
+
+/**
+ *  Check if the addition of operators works as expected.
+ */
+BOOST_AUTO_TEST_CASE(SimpleSQOneElectronOperator_addition) {
+
+    const size_t dim = 2;
+
+    // Initialize two test matrices and convert them into operators.
+    GQCP::QCMatrix<double> M1 {dim};
+    // clang-format off
+    M1 << 1.0, 2.0,
+          3.0, 4.0;
+    const GQCP::ScalarRSQOneElectronOperator<double> op1 {M1};
+    // clang-format on
+
+    GQCP::QCMatrix<double> M2 {dim};
+    // clang-format off
+    M2 << 5.0, 6.0,
+          7.0, 8.0;
+    // clang-format on
+    const GQCP::ScalarRSQOneElectronOperator<double> op2 {M2};
+
+
+    // Initialize the reference and check the result of the operator addition.
+    GQCP::QCMatrix<double> M_sum_ref {dim};
+    // clang-format off
+    M_sum_ref <<  6.0,  8.0,
+                 10.0, 12.0;
+    // clang-format on
+
+    const auto op_sum = op1 + op2;
+    BOOST_CHECK(op_sum.parameters().isApprox(M_sum_ref, 1.0e-08));
+}
+
+
+/**
+ *  Check if scalar multiplication of a one-electron operator works as expected.
+ */
+BOOST_AUTO_TEST_CASE(SimpleSQOneElectronOperator_scalar_product) {
+
+    const size_t dim = 2;
+    const double scalar = 2.0;
+
+    // Initialize a test matrix and convert it into an operator.
+    GQCP::QCMatrix<double> M1 {dim};
+    // clang-format off
+    M1 << 1.0, 2.0,
+          3.0, 4.0;
+    // clang-format on
+    const GQCP::ScalarRSQOneElectronOperator<double> op1 {M1};
+
+    // Initialize the reference and check the result of the scalar multiplication.
+    GQCP::QCMatrix<double> M_ref {dim};
+    // clang-format off
+    M_ref <<  2.0,  4.0,
+              6.0,  8.0;
+    // clang-format on
+
+    const auto op_result1 = scalar * op1;
+    BOOST_CHECK(op_result1.parameters().isApprox(M_ref, 1.0e-08));
+
+    const auto op_result2 = op1 * scalar;
+    BOOST_CHECK(op_result2.parameters().isApprox(M_ref, 1.0e-08));
+}
+
+
+/**
+ *  Check if the negation of a one-electron operator works as expected.
+ */
+BOOST_AUTO_TEST_CASE(SQOneElectronOperator_negate) {
+
+    const size_t dim = 2;
+
+    // Initialize a test matrix and convert it into an operator.
+    GQCP::QCMatrix<double> M1 {dim};
+    // clang-format off
+    M1 << 1.0, 2.0,
+          3.0, 4.0;
+    // clang-format on
+    const GQCP::ScalarRSQOneElectronOperator<double> op1 {M1};
+
+    // Initialize the reference and check the result of the negation.
+    GQCP::QCMatrix<double> M_ref {dim};
+    // clang-format off
+    M_ref <<  -1.0,  -2.0,
+              -3.0,  -4.0;
+    // clang-format on
+
+    const auto op_result = -op1;
+    BOOST_CHECK(op_result.parameters().isApprox(M_ref, 1.0e-08));
+}
