@@ -22,6 +22,7 @@
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Mathematical/Representation/StorageArray.hpp"
 #include "Processing/DensityMatrices/OneDM.hpp"
+#include "Utilities/CRTP.hpp"
 #include "Utilities/type_traits.hpp"
 
 #include <algorithm>
@@ -30,17 +31,30 @@
 namespace GQCP {
 
 
-/**
- *  @brief A second-quantized one-electron operator whose parameters are described by a single matrix.
- * 
- *  This class is used as a base class for `RSQOneElectronOperator` and `GSQOneElectronOperator`, since they both admit parameter representations using a single matrix, as opposed to `USQOneElectronOperator`, which uses separate alpha- and beta- matrices.
- * 
- *  @tparam _Scalar         The scalar type used for a single parameter: real or complex.
- *  @tparam _Vectorizer     The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
+/*
+ *  MARK: Operator traits
  */
-template <typename _Scalar, typename _Vectorizer>
+
+/**
+ *  A type that provides compile-time information on operators that is otherwise not accessible through a public class alias.
+ */
+template <typename Operator>
+class OperatorTraits {};
+
+
+/**
+ *  A second-quantized one-electron operator whose parameters are described by a single matrix.
+ * 
+ *  This class is used as a base class for `RSQOneElectronOperator` and `GSQOneElectronOperator`, since they both admit parameter representations using a single matrix, as opposed to `USQOneElectronOperator`, which uses separate alpha- and beta- matrices. The word 'simple' is used here as an antonym for 'compound'.
+ * 
+ *  @tparam _Scalar                 The scalar type used for a single parameter: real or complex.
+ *  @tparam _Vectorizer             The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
+ *  @tparam _DerivedOperator        The type of the operator that derives from this class, enabling CRTP and compile-time polymorphism.
+ */
+template <typename _Scalar, typename _Vectorizer, typename _DerivedOperator>
 class SimpleSQOneElectronOperator:
-    public VectorSpaceArithmetic<SimpleSQOneElectronOperator<_Scalar, _Vectorizer>, _Scalar> {
+    public VectorSpaceArithmetic<SimpleSQOneElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>, _Scalar>,
+    public CRTP<_DerivedOperator> {
 public:
     // The scalar type used for a single parameter: real or complex.
     using Scalar = _Scalar;
@@ -48,11 +62,17 @@ public:
     // The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
     using Vectorizer = _Vectorizer;
 
+    // The type of the operator that derives from this class, enabling CRTP and compile-time polymorphism.
+    using DerivedOperator = _DerivedOperator;
+
     // The matrix representation of the parameters of (one of the components of) the one-electron operator.
     using MatrixRepresentation = QCMatrix<Scalar>;
 
     // The type of 'this'.
-    using Self = SimpleSQOneElectronOperator<Scalar, Vectorizer>;
+    using Self = SimpleSQOneElectronOperator<Scalar, Vectorizer, DerivedOperator>;
+
+    // The type that corresponds to the scalar version of the derived one-electron operator type.
+    using ScalarDerivedOperator = typename OperatorTraits<DerivedOperator>::ScalarOperator;
 
 
 private:
@@ -172,17 +192,17 @@ public:
     MatrixRepresentation& parameters(const Indices&... indices) { return this->array(indices...); }
 
 
-    // TODO: move to derived class?
     /**
      *  @param indices      A set of coordinates that accesses this one-electron operator.
      * 
-     *  @return The component of this one-electron operator that is stored at the given coordinate indices.
+     *  @return The component of this one-electron operator that corresponds to the given coordinate indices.
      */
-    // template <typename... Indices>
-    // Element operator()(const Indices&... indices) const {
+    template <typename... Indices>
+    ScalarDerivedOperator operator()(const Indices&... indices) const {
 
-    //     // Access the underlying array's storage, and wrap the result in a scalar second-quantized operator.
-    // }
+        // Access the underlying array's storage, and wrap the result in a scalar form of the derived second-quantized operator. The correct scalar derived operator can be instantiated since the scalar derived operator type has a special constructor that expects just one matrix.
+        return ScalarDerivedOperator {this->array(indices...)};
+    }
 
 
     /*

@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#define BOOST_TEST_MODULE "RSQOneElectronOperator"
+#define BOOST_TEST_MODULE "SimpleSQOneElectronOperator"
 
 #include <boost/test/unit_test.hpp>
 
@@ -70,6 +70,27 @@ BOOST_AUTO_TEST_CASE(SimpleSQOneElectronOperator_zero_constructor) {
     for (size_t i = 0; i < 3; i++) {
         BOOST_CHECK(zero_vector_operator.parameters(i).isZero(1.0e-08));
     }
+}
+
+
+/**
+ *  Check if we can access a single component of a SimpleSQOneElectronOperator easily using the operator().
+ */
+BOOST_AUTO_TEST_CASE(operator_call) {
+
+    const size_t dim = 4;
+
+    // Set up three (random) matrix representations and construct the corresponding vector operator.
+    const GQCP::QCMatrix<double> M1 = GQCP::QCMatrix<double>::Random(dim, dim);
+    const GQCP::QCMatrix<double> M2 = GQCP::QCMatrix<double>::Random(dim, dim);
+    const GQCP::QCMatrix<double> M3 = GQCP::QCMatrix<double>::Random(dim, dim);
+
+    const GQCP::VectorRSQOneElectronOperator<double> vector_operator {{M1, M2, M3}};
+
+    // Check if we can access a single component of this operator.
+    BOOST_CHECK(vector_operator(0).parameters().isApprox(M1, 1.0e-12));
+    BOOST_CHECK(vector_operator(1).parameters().isApprox(M2, 1.0e-12));
+    BOOST_CHECK(vector_operator(2).parameters().isApprox(M3, 1.0e-12));
 }
 
 
@@ -189,7 +210,7 @@ BOOST_AUTO_TEST_CASE(SimpleSQOneElectronOperator_scalar_product) {
 /**
  *  Check if the negation of a one-electron operator works as expected.
  */
-BOOST_AUTO_TEST_CASE(SQOneElectronOperator_negate) {
+BOOST_AUTO_TEST_CASE(SimpleSQOneElectronOperator_negation) {
 
     const size_t dim = 2;
 

@@ -33,7 +33,7 @@ namespace GQCP {
  */
 template <typename _Scalar, typename _Vectorizer>
 class RSQOneElectronOperator:
-    public SimpleSQOneElectronOperator<_Scalar, _Vectorizer> {
+    public SimpleSQOneElectronOperator<_Scalar, _Vectorizer, RSQOneElectronOperator<_Scalar, _Vectorizer>> {
 public:
     // The scalar type used for a single parameter: real or complex.
     using Scalar = _Scalar;
@@ -47,7 +47,7 @@ public:
      *  CONSTRUCTORS
      */
     // Inherit base constructors.
-    using SimpleSQOneElectronOperator<Scalar, Vectorizer>::SimpleSQOneElectronOperator;
+    using SimpleSQOneElectronOperator<_Scalar, _Vectorizer, RSQOneElectronOperator<_Scalar, _Vectorizer>>::SimpleSQOneElectronOperator;
 };
 
 
@@ -70,6 +70,33 @@ using MatrixRSQOneElectronOperator = RSQOneElectronOperator<Scalar, MatrixVector
 // A tensor-like RSQOneElectronOperator, i.e. with tensor-like access.
 template <typename Scalar, size_t N>
 using TensorRSQOneElectronOperator = RSQOneElectronOperator<Scalar, TensorVectorizer<N>>;
+
+
+/*
+ *  MARK: Operator traits
+ */
+
+/**
+ *  A type that provides compile-time information (traits) on `RSQOneElectronOperator` that is otherwise not accessible through a public class alias.
+ * 
+ *  @tparam _Scalar         The scalar type used for a single parameter: real or complex.
+ *  @tparam _Vectorizer     The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
+ */
+template <typename _Scalar, typename _Vectorizer>
+class OperatorTraits<RSQOneElectronOperator<_Scalar, _Vectorizer>> {
+public:
+    // The scalar type used for a single parameter: real or complex.
+    using Scalar = _Scalar;
+
+    // The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
+    using Vectorizer = _Vectorizer;
+
+    // The operator whose traits are provided.
+    using Operator = RSQOneElectronOperator<Scalar, Vectorizer>;
+
+    // A type that corresponds to the scalar version of the associated restricted one-electron operator type.
+    using ScalarOperator = ScalarRSQOneElectronOperator<Scalar>;
+};
 
 
 }  // namespace GQCP
