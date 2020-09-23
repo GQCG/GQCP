@@ -18,14 +18,21 @@
 #pragma once
 
 
+#include "Utilities/CRTP.hpp"
+
+
 namespace GQCP {
 
 
 /**
- *  An (abstract) interface for types that support vector space arithmetic.
+ *  An (abstract) interface for types that support vector space arithmetic, i.e. linear combinations.
+ * 
+ *  @param T            The type for which vector space arithmetic should be implemented. It is given as a template argument, enabling CRTP.
+ *  @param Scalar       The scalar type (real or complex) of the scalar multiplication.
  */
 template <typename T, typename Scalar>
-class VectorSpaceArithmetic {
+class VectorSpaceArithmetic:
+    public CRTP<T> {
 public:
     /*
      *  MARK: Pure virtual functions
@@ -60,7 +67,7 @@ public:
      */
     T& operator-=(const T& rhs) {
         *this += (-rhs);
-        return static_cast<T&>(*this);
+        return this->derived();
     }
 
 
@@ -80,6 +87,7 @@ public:
         return rhs *= a;
     }
 
+
     /**
      *  The commutative version of the previous scalar multiplication.
      */
@@ -92,7 +100,7 @@ public:
      *  Negation, canonically implemented as scalar multiplication by (-1.0).
      */
     T operator-() const {
-        return Scalar {-1.0} * static_cast<const T&>(*this);
+        return Scalar {-1.0} * this->derived();
     };
 };
 
