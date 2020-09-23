@@ -257,28 +257,23 @@ public:
      */
     Self& operator+=(const Self& rhs) override {
 
-        auto& result_parameters = this->allParameters();  // initialize the sum with this' parameters
-        const auto& rhs_parameters = rhs.allParameters();
-
-        // Implement addition of two operators as the element-wise addition of their components' matrix representations.
-        for (size_t i = 0; i < this->numberOfComponents(); i++) {
-            result_parameters[i] += rhs_parameters[i];
-        }
+        // Use the STL to implement element-wise addition.
+        std::transform(this->array.elements().begin(), this->array.elements().end(),
+                       rhs.array.elements().begin(), this->array.elements().begin(),
+                       std::plus<MatrixRepresentation>());
 
         return *this;
     };
 
+
     /**
-     *  Scalar multiplication-assignment
+     *  Scalar multiplication-assignment.
      */
     Self& operator*=(const Scalar& a) override {
 
-        auto& result_parameters = this->allParameters();  // initialize the sum with this' parameters
-
-        // Implement scalar multiplication of an operator with a scalar as multiplication of its parameters.
-        for (size_t i = 0; i < this->numberOfComponents(); i++) {
-            result_parameters[i] *= a;
-        }
+        // Use the STL to implement element-wise scalar multiplication.
+        std::transform(this->array.elements().begin(), this->array.elements().end(),
+                       this->array.elements().begin(), [a](const MatrixRepresentation& M) { return M * a; });
 
         return *this;
     }

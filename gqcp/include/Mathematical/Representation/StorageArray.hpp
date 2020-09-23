@@ -18,6 +18,9 @@
 #pragma once
 
 
+#include "Mathematical/Functions/VectorSpaceArithmetic.hpp"
+#include "Utilities/type_traits.hpp"
+
 #include <vector>
 
 
@@ -31,8 +34,6 @@ namespace GQCP {
  *  @tparam _Vectorizer     The type of the vectorizer that relates multiple tuple coordinates to a one-dimensional index.
  */
 template <typename _Element, typename _Vectorizer>
-// class StorageArray:
-//     public VectorSpaceArithmetic<StorageArray<T, Vectorizer>> {
 class StorageArray {
 public:
     // The type of element that this array stores.
@@ -151,38 +152,6 @@ public:
      *  @return The vectorizer that relates multiple tuple coordinates to a one-dimensional index.
      */
     const Vectorizer& vectorizer() const { return this->m_vectorizer; }
-
-    // StorageArray<T, Vectorizer>& operator+=(const StorageArray<T, Vectorizer>& rhs) override {
-
-    //     // TODO: Check if the vectorizers are actually equal.
-
-    //     std::transform(this->elements.begin(), this->elements.end(),
-    //                    rhs.elements.begin(), this->elements.begin(),
-    //                    std::plus<T>());
-    //     return (*this);
-    // };
-
-
-    // StorageArray<T, Vectorizer> operator-() const override {
-
-    //     std::vector<T> result_elements;
-    //     result_elements.reserve(this->elements.size());
-
-    //     std::transform(this->elements.begin(), this->elements.end(),
-    //                    std::back_inserter(result_elements), std::negate<T>());
-
-    //     return StorageArray<T, Vectorizer> {result_elements, this->vectorizer};
-    // }
-
-
-    // Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> asEigenMatrix() const {
-    //     using MatrixType = Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic>;
-
-    //     const auto rows = vectorizer.dimension(0);
-    //     const auto cols = vectorizer.dimension(1);
-
-    //     return Eigen::Map<const MatrixType>(this->elements.data(), rows, cols);
-    // }
 };
 
 

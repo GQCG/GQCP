@@ -19,6 +19,7 @@
 
 
 #include "Utilities/CRTP.hpp"
+#include "Utilities/aliases.hpp"  // so that upon including "VectorSpaceArithmetic.hpp", the 'complex' type is available
 
 
 namespace GQCP {
@@ -104,5 +105,10 @@ public:
     };
 };
 
+
+/**
+ *  An empty class that specifies no vector space arithmetic. It is intended to be used in conditional inheritance.
+ */
+class NoVectorSpaceArithmetic {};
 
 }  // namespace GQCP
