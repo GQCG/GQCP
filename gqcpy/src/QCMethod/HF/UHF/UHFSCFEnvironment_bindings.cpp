@@ -90,45 +90,37 @@ void bindUHFSCFEnvironment(py::module& module) {
 
         .def(
             "density_matrices_alpha",
-            [](GQCP::UHFSCFEnvironment<double>& environment) {
+            [](const GQCP::UHFSCFEnvironment<double>& environment) {
                 std::vector<GQCP::MatrixX<double>> alpha_density_matrices;
+                std::transform(environment.density_matrices.begin(), environment.density_matrices.end(), std::back_inserter(alpha_density_matrices), [](const GQCP::SpinResolvedOneDM<double>& D) { return D.alpha(); });
 
-                for (size_t i = 0; i < environment.density_matrices.size(); i++) {
-                    alpha_density_matrices.push_back(environment.density_matrices[i].alpha());
-                }
                 return alpha_density_matrices;
             })
 
         .def(
             "density_matrices_beta",
-            [](GQCP::UHFSCFEnvironment<double>& environment) {
+            [](const GQCP::UHFSCFEnvironment<double>& environment) {
                 std::vector<GQCP::MatrixX<double>> beta_density_matrices;
+                std::transform(environment.density_matrices.begin(), environment.density_matrices.end(), std::back_inserter(beta_density_matrices), [](const GQCP::SpinResolvedOneDM<double>& D) { return D.beta(); });
 
-                for (size_t i = 0; i < environment.density_matrices.size(); i++) {
-                    beta_density_matrices.push_back(environment.density_matrices[i].beta());
-                }
                 return beta_density_matrices;
             })
 
         .def(
             "fock_matrices_alpha",
-            [](GQCP::UHFSCFEnvironment<double>& environment) {
+            [](const GQCP::UHFSCFEnvironment<double>& environment) {
                 std::vector<GQCP::MatrixX<double>> alpha_fock_matrices;
+                std::transform(environment.fock_matrices.begin(), environment.fock_matrices.end(), std::back_inserter(alpha_fock_matrices), [](const GQCP::ScalarUSQOneElectronOperator<double>& F) { return F.parameters(GQCP::Spin::alpha); });
 
-                for (size_t i = 0; i < environment.fock_matrices.size(); i++) {
-                    alpha_fock_matrices.push_back(environment.fock_matrices[i].parameters(GQCP::Spin::alpha));
-                }
                 return alpha_fock_matrices;
             })
 
         .def(
             "fock_matrices_beta",
-            [](GQCP::UHFSCFEnvironment<double>& environment) {
+            [](const GQCP::UHFSCFEnvironment<double>& environment) {
                 std::vector<GQCP::MatrixX<double>> beta_fock_matrices;
+                std::transform(environment.fock_matrices.begin(), environment.fock_matrices.end(), std::back_inserter(beta_fock_matrices), [](const GQCP::ScalarUSQOneElectronOperator<double>& F) { return F.parameters(GQCP::Spin::beta); });
 
-                for (size_t i = 0; i < environment.fock_matrices.size(); i++) {
-                    beta_fock_matrices.push_back(environment.fock_matrices[i].parameters(GQCP::Spin::beta));
-                }
                 return beta_fock_matrices;
             })
 
