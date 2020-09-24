@@ -90,6 +90,21 @@ public:
     const OneDM<Scalar>& beta() const { return this->D_bb; }
 
     /**
+     * @return the norm of the generalized (spin-blocked) representation of the spin resolved one-DM
+     */
+
+    double norm() const {
+
+        const auto dim = this->alpha().numberOfOrbitals();
+        OneDM<double> generalized_density = OneDM<double>::Zero(dim * 2, dim * 2);
+
+        generalized_density.topLeftCorner(dim, dim) = this->alpha();
+        generalized_density.bottomRightCorner(dim, dim) = this->beta();
+
+        return generalized_density.norm();
+    }
+
+    /**
      *  @param sigma            alpha or beta
      * 
      *  @return the number of orbitals (spinors or spin-orbitals, depending on the context) that correspond to the given spin
