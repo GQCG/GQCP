@@ -97,22 +97,28 @@ public:
         const std::vector<VectorX<Scalar>> error_vectors_alpha {environment.error_vectors_alpha.end() - n, environment.error_vectors_alpha.end()};  // the n-th last alpha error vectors
         const std::vector<VectorX<Scalar>> error_vectors_beta {environment.error_vectors_beta.end() - n, environment.error_vectors_beta.end()};     // the n-th last beta error vectors
 
-        const std::vector<QCMatrix<Scalar>> fock_matrices_alpha {environment.fock_matrices_alpha.end() - n, environment.fock_matrices_alpha.end()};  // the n-th last alpha Fock matrices
-        const std::vector<QCMatrix<Scalar>> fock_matrices_beta {environment.fock_matrices_beta.end() - n, environment.fock_matrices_beta.end()};     // the n-th last beta Fock matrices
+        const std::vector<ScalarUSQOneElectronOperator<Scalar>> fock_matrices {environment.fock_matrices.end() - n, environment.fock_matrices.end()};  // the n-th last Fock matrices
 
+        std::vector<QCMatrix<Scalar>> alpha_fock_matrices;
+        std::vector<QCMatrix<Scalar>> beta_fock_matrices;
+
+        for (size_t i = 0; i < fock_matrices.size(); i++) {
+            alpha_fock_matrices.push_back(fock_matrices[i].parameters(Spin::alpha));
+            beta_fock_matrices.push_back(fock_matrices[i].parameters(Spin::beta));
+        }
 
         // Calculate the accelerated Fock matrices and do a diagonalization step on them.
-        const auto F_alpha_accelerated = this->diis.accelerate(fock_matrices_alpha, error_vectors_alpha);
-        const auto F_beta_accelerated = this->diis.accelerate(fock_matrices_beta, error_vectors_beta);
+        const auto F_alpha_accelerated = this->diis.accelerate(alpha_fock_matrices, error_vectors_alpha);
+        const auto F_beta_accelerated = this->diis.accelerate(beta_fock_matrices, error_vectors_alpha);
 
-        environment.fock_matrices_alpha.push_back(F_alpha_accelerated);  // the diagonalization step can only read from the environment //FIXME
-        environment.fock_matrices_beta.push_back(F_beta_accelerated);    // the diagonalization step can only read from the environment
+        const ScalarUSQOneElectronOperator<Scalar> F_accelerated {F_alpha_accelerated, F_beta_accelerated};
+
+        environment.fock_matrices.push_back(F_accelerated);  // the diagonalization step can only read from the environment //FIXME
 
         UHFFockMatrixDiagonalization<Scalar>().execute(environment);
 
         // The accelerated/extrapolated Fock matrices should not be used in further extrapolation steps, as they are not created from a density matrix.
-        environment.fock_matrices_alpha.pop_back();
-        environment.fock_matrices_beta.pop_back();
+        environment.fock_matrices.pop_back();
     }
 };
 
