@@ -6,6 +6,7 @@ list(APPEND test_target_sources
     ${CMAKE_CURRENT_SOURCE_DIR}/QCRankFourTensor_test.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/SquareMatrix_test.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/SquareRankFourTensor_test.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/StorageArray_test.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Tensor_test.cpp
 )
 

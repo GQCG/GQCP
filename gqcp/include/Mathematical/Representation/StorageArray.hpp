@@ -19,6 +19,7 @@
 
 
 #include "Mathematical/Functions/VectorSpaceArithmetic.hpp"
+#include "Mathematical/Representation/DenseVectorizer.hpp"
 #include "Utilities/type_traits.hpp"
 
 #include <vector>
@@ -93,6 +94,21 @@ public:
 
 
     /*
+     *  MARK: Conversions
+     */
+
+    /**
+     *  A conversion operator between a scalar array and the underlying scalar.
+     * 
+     *  For the enable_if-part, check https://stackoverflow.com/a/18101382.
+     */
+    template <typename Z = Vectorizer, typename = typename std::enable_if<std::is_same<Z, ScalarVectorizer>::value>::type>
+    operator Element() const {
+        return (*this)();  // the call operator with no indices
+    }
+
+
+    /*
      *  MARK: Element access
      */
 
@@ -123,19 +139,7 @@ public:
      *  @return The element that is stored at the given coordinate indices.
      */
     template <typename... Indices>
-    Element& operator()(const Indices&... indices) {
-
-        static_assert(sizeof...(indices) == Vectorizer::NumberOfAxes, "The number of indices must match the number of axes.");
-
-        // Convert the indices pack to a vector so we can easily traverse.
-        std::vector<size_t> indices_vector {static_cast<size_t>(indices)...};
-        std::array<size_t, Vectorizer::NumberOfAxes> indices_array {};
-        std::copy(indices_vector.begin(), indices_vector.end(), indices_array.begin());
-
-        // Use the underlying vectorizer to produce the 1D offset, and access the 1D storage array accordingly.
-        const auto vector_index = this->vectorizer().offset(indices_array);
-        return this->elements()[vector_index];
-    }
+    Element& operator()(const Indices&... indices) { return const_cast<Element&>(const_cast<const Self*>(this)->operator()(indices...)); }
 
 
     /**
