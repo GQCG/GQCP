@@ -148,12 +148,18 @@ void bindLinearExpansion<GQCP::SeniorityZeroONVBasis>(py::module& module, const 
              "Return the expansion coefficients of this linear expansion wave function model.")
 
         .def(
-            "calculateSpinDensity",
+            "calculateSpinResolved1DM",
             [](const GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>& linear_expansion) {
-                return linear_expansion.calculateSpinDensity();
+                return linear_expansion.calculateSpinResolved1DM();
             },
-            "Return the spin density matrix for a seniority-zero wave function expansion.");
-    ;
+            "Return the spin-resolved 1-DM.")
+
+        .def(
+            "calculateSpinResolved2DM",
+            [](const GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>& linear_expansion) {
+                return linear_expansion.calculateSpinResolved2DM();
+            },
+            "Return the spin resolved 2-DM.");
 }
 
 
@@ -237,11 +243,18 @@ void bindLinearExpansion<GQCP::SpinResolvedONVBasis>(py::module& module, const s
             "Iterate over all expansion coefficients and corresponding ONVs, and apply the given callback function.")
 
         .def(
-            "calculateSpinDensity",
+            "calculateSpinResolved1DM",
             [](const GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>& linear_expansion) {
-                return linear_expansion.calculateSpinDensity();
+                return linear_expansion.calculateSpinResolved1DM();
             },
-            "Return the spin density matrix for a full spin-resolved wave function expansion.");
+            "Return the spin-resolved 1-DM.")
+
+        .def(
+            "calculateSpinResolved2DM",
+            [](const GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>& linear_expansion) {
+                return linear_expansion.calculateSpinResolved2DM();
+            },
+            "Return the spin resolved 2-DM.");
 }
 
 
@@ -307,11 +320,18 @@ void bindLinearExpansion<GQCP::SpinResolvedSelectedONVBasis>(py::module& module,
              "Return the expansion coefficients of this linear expansion wave function model.")
 
         .def(
-            "calculateSpinDensity",
+            "calculateSpinResolved1DM",
             [](const GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>& linear_expansion) {
-                return linear_expansion.calculateSpinDensity();
+                return linear_expansion.calculateSpinResolved1DM();
             },
-            "Return the spin density matrix for a full spin-resolved wave function expansion.");
+            "Return the spin-resolved 1-DM.")
+
+        .def(
+            "calculateSpinResolved2DM",
+            [](const GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>& linear_expansion) {
+                return linear_expansion.calculateSpinResolved2DM();
+            },
+            "Return the spin resolved 2-DM.");
 }
 
 
