@@ -109,42 +109,8 @@ public:
 
 
     /*
-     *  GETTERS
+     *  MARK: Calculations
      */
-
-
-    /*
-     *  OPERATORS
-     */
-
-    /**
-     *  @param i            the index
-     * 
-     *  @return the i-th component of this operator
-     */
-    SQOneElectronOperator<Scalar, 1> operator[](const size_t i) const {
-
-        if (i >= Components) {
-            throw std::invalid_argument("SQOneElectronOperator::operator[](const size_t): The given index is out of bounds.");
-        }
-
-        return SQOneElectronOperator<Scalar, 1> {this->fs[i]};
-    }
-
-
-    /*
-     *  PUBLIC METHODS
-     */
-
-    /**
-     *  @return read-only matrix representations of all the parameters (integrals) of the different components of this second-quantized operator
-     */
-    const std::array<QCMatrix<Scalar>, Components>& allParameters() const { return this->fs; }
-
-    /**
-     *  @return writable matrix representations of all the parameters (integrals) of the different components of this second-quantized operator
-     */
-    std::array<QCMatrix<Scalar>, Components>& allParameters() { return this->fs; }
 
     /**
      *  @param D                the 1-DM that represents the wave function
@@ -290,32 +256,6 @@ public:
         return Gs;
     }
 
-
-    /**
-     *  @return the number of orbitals (spinors or spin-orbitals, depending on the context) this one-electron operator is associated to
-     */
-    size_t numberOfOrbitals() const { return this->fs[0].numberOfOrbitals(); /* all the dimensions are the same, this is checked in the constructor */ }
-
-    /**
-     *  @param a        the vector
-     * 
-     *  @return the dot product of this second-quantized one-electron operator with the given vector
-     */
-    SQOneElectronOperator<Scalar, 1> dot(const Vector<Scalar, Components>& a) const {
-
-        const auto dim = this->numberOfOrbitals();
-        QCMatrix<Scalar> result_par {dim};
-        result_par.setZero();
-
-        // Calculate the inner product
-        for (size_t i = 0; i < Components; i++) {
-            result_par += a(i) * this->parameters(i);
-        }
-
-        return SQOneElectronOperator<Scalar, 1>(result_par);
-    }
-
-
     /**
      *  @param x        the vector/point at which the scalar functions should be evaluated
      *
@@ -347,7 +287,33 @@ public:
     }
 
 
-    
+    /*
+     *  MARK: General information
+     */
+
+    /**
+     *  @return the number of orbitals (spinors or spin-orbitals, depending on the context) this one-electron operator is associated to
+     */
+    size_t numberOfOrbitals() const { return this->fs[0].numberOfOrbitals(); /* all the dimensions are the same, this is checked in the constructor */ }
+
+
+    /*
+     *  MARK: Parameter access
+     */
+
+    /**
+     *  @param i            the index
+     * 
+     *  @return the i-th component of this operator
+     */
+    SQOneElectronOperator<Scalar, 1> operator[](const size_t i) const {
+
+        if (i >= Components) {
+            throw std::invalid_argument("SQOneElectronOperator::operator[](const size_t): The given index is out of bounds.");
+        }
+
+        return SQOneElectronOperator<Scalar, 1> {this->fs[i]};
+    }
 
     /**
      *  @param i            the index of the component
@@ -356,7 +322,6 @@ public:
      */
     const QCMatrix<Scalar>& parameters(const size_t i = 0) const { return this->fs[i]; }
 
-
     /**
      *  @param i            the index of the component
      * 
@@ -364,6 +329,20 @@ public:
      */
     QCMatrix<Scalar>& parameters(const size_t i = 0) { return this->fs[i]; }
 
+    /**
+     *  @return read-only matrix representations of all the parameters (integrals) of the different components of this second-quantized operator
+     */
+    const std::array<QCMatrix<Scalar>, Components>& allParameters() const { return this->fs; }
+
+    /**
+     *  @return writable matrix representations of all the parameters (integrals) of the different components of this second-quantized operator
+     */
+    std::array<QCMatrix<Scalar>, Components>& allParameters() { return this->fs; }
+
+
+    /*
+     *  MARK: Basis transformations
+     */
 
     /**
      *  In-place rotate the operator to another basis
@@ -405,11 +384,35 @@ public:
             f.basisTransform(T);
         }
     }
+
+
+    /*
+     *  MARK: Vector space arithmetic
+     */
+
+    /**
+     *  @param a        the vector
+     * 
+     *  @return the dot product of this second-quantized one-electron operator with the given vector
+     */
+    SQOneElectronOperator<Scalar, 1> dot(const Vector<Scalar, Components>& a) const {
+
+        const auto dim = this->numberOfOrbitals();
+        QCMatrix<Scalar> result_par {dim};
+        result_par.setZero();
+
+        // Calculate the inner product
+        for (size_t i = 0; i < Components; i++) {
+            result_par += a(i) * this->parameters(i);
+        }
+
+        return SQOneElectronOperator<Scalar, 1>(result_par);
+    }
 };
 
 
 /*
- *  CONVENIENCE ALIASES
+ *  MARK: Convenience aliases
  */
 template <typename Scalar>
 using ScalarSQOneElectronOperator = SQOneElectronOperator<Scalar, 1>;
@@ -419,7 +422,7 @@ using VectorSQOneElectronOperator = SQOneElectronOperator<Scalar, 3>;
 
 
 /*
- *  OPERATORS
+ *  MARK: Vector space arithmetic
  */
 
 /**
