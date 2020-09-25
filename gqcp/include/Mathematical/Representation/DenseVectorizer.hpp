@@ -46,13 +46,13 @@ template <size_t A>
 class DenseVectorizer {
 private:
     // The ordering of the axes.
-    Ordering ordering;
+    Ordering m_ordering;
 
     // The dimensions of each axis.
-    std::array<size_t, A> dimensions;
+    std::array<size_t, A> m_dimensions;
 
     // The strides associated to each axis.
-    std::array<size_t, A> strides;
+    std::array<size_t, A> m_strides;
 
 
 public:
@@ -67,20 +67,20 @@ public:
      *  @param ordering         The ordering of the axes.
      */
     DenseVectorizer(const std::array<size_t, A>& dimensions, const Ordering ordering = Ordering::ColumnMajor) :
-        ordering {ordering},
-        dimensions {dimensions} {
+        m_ordering {ordering},
+        m_dimensions {dimensions} {
 
         // Initialize the strides for every dimension.
-        switch (this->ordering) {
+        switch (this->m_ordering) {
         case Ordering::ColumnMajor: {  // the first axis is contiguous
             for (size_t k = 0; k < A; k++) {
 
                 size_t stride {1};
                 for (size_t l = 0; l < k; l++) {
-                    stride *= this->dimensions[l];
+                    stride *= this->m_dimensions[l];
                 }
 
-                this->strides[k] = stride;
+                this->m_strides[k] = stride;
             }
             break;
         }
@@ -90,10 +90,10 @@ public:
 
                 size_t stride {1};
                 for (size_t l = k + 1; l < A; l++) {
-                    stride *= this->dimensions[l];
+                    stride *= this->m_dimensions[l];
                 }
 
-                this->strides[k] = stride;
+                this->m_strides[k] = stride;
             }
             break;
         }
@@ -123,7 +123,7 @@ public:
         size_t value {0};
         for (size_t k = 0; k < A; k++) {
             if (indices[k] > this->dimension(k)) {
-                std::cerr << "The index is not supported with the memory layout." << std::endl;
+                throw std::invalid_argument("DenseVectorizer::offset(const std::array<size_t, A>&): The index is not supported with the memory layout.");
             }
 
             value += this->stride(k) * indices[k];
@@ -144,12 +144,16 @@ public:
      */
     size_t dimension(const size_t axis) const {
         if (axis >= A) {
-            std::cerr << "The given axis does not exist." << std::endl;
+            throw std::invalid_argument("DenseVectorizer::offset(const std::array<size_t, A>&): The given axis does not exist.");
         }
 
-        return this->dimensions[axis];
+        return this->dimensions()[axis];
     }
 
+    /**
+     *  @return The dimensions of each axis.
+     */
+    const std::array<size_t, A>& dimensions() const { return this->m_dimensions; }
 
     // The number of axes for this vectorizer.
     static constexpr auto NumberOfAxes = A;
@@ -163,8 +167,9 @@ public:
      *  @return The number of elements that can be described by this vectorizer.
      */
     size_t numberOfElements() const {
-        return std::accumulate(this->dimensions.begin(), this->dimensions.end(), 1, std::multiplies<size_t>());
+        return std::accumulate(this->dimensions().begin(), this->dimensions().end(), 1, std::multiplies<size_t>());
     }
+
 
     /**
      *  @param axis     An axis number.
@@ -176,14 +181,21 @@ public:
             std::cerr << "The given axis does not exist." << std::endl;
         }
 
-        return this->strides[axis];
+        return this->strides()[axis];
     }
+
+
+    /**
+     *  @return The strides associated to each axis.
+     */
+    const std::array<size_t, A>& strides() const { return this->m_strides; }
 };
 
 
 /*
  *  MARK: Convenience aliases
  */
+
 // A trivial vectorizer that offers tuple-based indexing for 0 arguments.
 using ScalarVectorizer = DenseVectorizer<0>;
 

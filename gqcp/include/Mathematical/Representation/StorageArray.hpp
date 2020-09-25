@@ -42,6 +42,12 @@ public:
     // The type of the vectorizer that relates multiple tuple coordinates to a one-dimensional index.
     using Vectorizer = _Vectorizer;
 
+    // The type of this;
+    using Self = StorageArray<Element, Vectorizer>;
+
+    // The number of axes for the underlying vectorizer.
+    static constexpr auto NumberOfAxes = Vectorizer::NumberOfAxes;
+
 
 private:
     // The one-dimensional representation of the elements of the array.
@@ -53,7 +59,7 @@ private:
 
 public:
     /*
-     *  CONSTRUCTORS
+     *  MARK: Constructors
      */
 
     /**
@@ -98,11 +104,11 @@ public:
     template <typename... Indices>
     const Element& operator()(const Indices&... indices) const {
 
-        static_assert(sizeof...(indices) == Vectorizer::NumberOfAxes, "The number of indices must match the number of axes.");
+        static_assert(sizeof...(indices) == NumberOfAxes, "The number of indices must match the number of axes.");
 
         // Convert the indices pack to a vector so we can easily traverse.
         std::vector<size_t> indices_vector {static_cast<size_t>(indices)...};
-        std::array<size_t, Vectorizer::NumberOfAxes> indices_array {};
+        std::array<size_t, NumberOfAxes> indices_array {};
         std::copy(indices_vector.begin(), indices_vector.end(), indices_array.begin());
 
         // Use the underlying vectorizer to produce the 1D offset, and access the 1D storage array accordingly.

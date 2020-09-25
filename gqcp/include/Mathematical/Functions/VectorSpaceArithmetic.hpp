@@ -102,13 +102,7 @@ public:
      */
     T operator-() const {
         return Scalar {-1.0} * this->derived();
-    };
+    }
 };
-
-
-/**
- *  An empty class that specifies no vector space arithmetic. It is intended to be used in conditional inheritance.
- */
-class NoVectorSpaceArithmetic {};
 
 }  // namespace GQCP
