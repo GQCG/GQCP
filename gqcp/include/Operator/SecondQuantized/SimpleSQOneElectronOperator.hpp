@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/Transformations/BasisTransformable.hpp"
 #include "Mathematical/Functions/VectorSpaceArithmetic.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Mathematical/Representation/StorageArray.hpp"
@@ -54,7 +55,7 @@ class OperatorTraits {};
 template <typename _Scalar, typename _Vectorizer, typename _DerivedOperator>
 class SimpleSQOneElectronOperator:
     public VectorSpaceArithmetic<SimpleSQOneElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>, _Scalar>,
-    public CRTP<_DerivedOperator> {
+    public BasisTransformable<SimpleSQOneElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>, typename OperatorTraits<_DerivedOperator>::TM> {
 public:
     // The scalar type used for a single parameter: real or complex.
     using Scalar = _Scalar;
@@ -74,10 +75,13 @@ public:
     // The type that corresponds to the scalar version of the derived one-electron operator type.
     using ScalarDerivedOperator = typename OperatorTraits<DerivedOperator>::ScalarOperator;
 
+    // The type of transformation matrix that is naturally associated to the derived one-electron operator.
+    using TM = typename OperatorTraits<DerivedOperator>::TM;
+
 
 private:
     // The array that takes care of the storage of the operator's matrix elements.
-    StorageArray<MatrixRepresentation, _Vectorizer> array;
+    StorageArray<MatrixRepresentation, Vectorizer> array;
 
 
 public:
@@ -236,7 +240,6 @@ public:
             throw std::invalid_argument("SimpleSQOneElectronOperator::calculateExpectationValue(const OneDM<Scalar>&): The given 1-DM is not compatible with the one-electron operator.");
         }
 
-
         // Calculate the expectation value for every component of the operator.
         const auto& parameters = this->allParameters();
         std::vector<Scalar> expectation_values(this->numberOfComponents());  // zero-initialize the vector with a number of elements
@@ -306,6 +309,31 @@ public:
         }
 
         return result;
+    }
+
+
+    /*
+     *  MARK: Basis transformations
+     */
+
+    /**
+     *  Apply the basis transformation and return the resulting one-electron integrals.
+     * 
+     *  @param transformation_matrix        The type that encapsulates the basis transformation coefficients.
+     * 
+     *  @return The basis-transformed one-electron integrals.
+     */
+    Self transformed(const TM& transformation_matrix) const override {
+
+        // Calculate the basis transformation for every component of the operator.
+        const auto& parameters = this->allParameters();
+        auto result = this->allParameters();
+
+        for (size_t i = 0; i < this->numberOfComponents(); i++) {
+            result[i] = transformation_matrix.adjoint() * (parameters[i]) * transformation_matrix;
+        }
+
+        return Self(StorageArray<MatrixRepresentation, Vectorizer>(result, this->array.vectorizer()));
     }
 };
 
