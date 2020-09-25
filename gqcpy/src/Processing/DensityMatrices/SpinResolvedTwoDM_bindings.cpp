@@ -28,43 +28,43 @@ namespace gqcpy {
 
 
 void bindSpinResolvedTwoDM(py::module& module) {
-    py::class_<GQCP::SpinResolvedTwoDM<Scalar>>(module, "SpinResolvedTwoDM", "A class that represents a spin resolved two DM.")
+    py::class_<GQCP::SpinResolvedTwoDM<double>>(module, "SpinResolvedTwoDM", "A class that represents a spin resolved two DM.")
 
         // PUBLIC METHODS
 
         .def(
             "alphaAlpha",
-            &GQCP::SpinResolvedTwoDM<Scalar>::alphaAlpha,
+            &GQCP::SpinResolvedTwoDM<double>::alphaAlpha,
             "Return the pure alpha component of the spin resolved two DM")
 
         .def(
             "alphaBeta",
-            &GQCP::SpinResolvedTwoDM<Scalar>::alphaBeta,
+            &GQCP::SpinResolvedTwoDM<double>::alphaBeta,
             "Return the mixed alpha-beta component of the spin resolved two DM")
 
         .def(
             "betaAlpha",
-            &GQCP::SpinResolvedTwoDM<Scalar>::betaAlpha,
+            &GQCP::SpinResolvedTwoDM<double>::betaAlpha,
             "Return the mixed beta-alpha component of the spin resolved two DM")
 
         .def(
             "betaBeta",
-            &GQCP::SpinResolvedTwoDM<Scalar>::betaBeta,
+            &GQCP::SpinResolvedTwoDM<double>::betaBeta,
             "Return the pure beta component of the spin resolved two DM")
 
         .def(
             "numberOfOrbitals",
-            [](const SpinResolvedTwoDM<Scalar>& d, const GQCP::Spin sigma, const GQCP::Spin tau) {
+            [](const GQCP::SpinResolvedTwoDM<double>& d, const GQCP::Spin sigma, const GQCP::Spin tau) {
                 return d.numberOfOrbitals(sigma, tau);
             },
             "Return the number of orbitals (spinors or spin-orbitals, depending on the context) that are related to the sigma-tau part of the spin-resolved 2-DM.")
 
         .def(
             "spinSummed",
-            [](const SpinResolvedTwoDM<Scalar>& d) {
+            [](const GQCP::SpinResolvedTwoDM<double>& d) {
                 return d.spinSummed();
             },
-            "Return the spin-summed (total) 2-DM, i.e. the sum of four spin parts.")
-
-    // PUBLIC METHODS
+            "Return the spin-summed (total) 2-DM, i.e. the sum of four spin parts.");
 }
+
+}  // namespace gqcpy

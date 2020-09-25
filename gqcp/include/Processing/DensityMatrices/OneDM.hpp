@@ -48,13 +48,15 @@ public:
     /*
      * PUBLIC METHODS
      */
-    
+
     /**
      *  @param T          transformation matrix for the spin unresolved 1-DM
      * 
      *  @return the transformed density matrix.
      */
-    OneDM<Scalar> transformed(const TransformationMatrix<double>& T) const { return this->basisTransform(T); }
+    OneDM<Scalar> transformed(const TransformationMatrix<double>& T) const {
+        return Self(T.adjoint() * (*this) * T);
+    }
 };
 
 

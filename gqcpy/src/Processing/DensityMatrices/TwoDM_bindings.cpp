@@ -27,25 +27,25 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
-void bindOneDM(py::module& module) {
+void bindTwoDM(py::module& module) {
 
-    py::class_<GQCP::TwoDM<Scalar>>(module, "TwoDM", "A two-particle density matrix");
+    py::class_<GQCP::TwoDM<double>>(module, "TwoDM", "A two-particle density matrix")
 
-    // PUBLIC METHODS
+        // PUBLIC METHODS
 
-    .def(
-        "reduce",
-        [](const TwoDM<Scalar>& d) {
-            return d.reduce();
-        },
-        "Return a partial contraction of the 2-DM, where D(p,q) = d(p,q,r,r).")
+        .def(
+            "reduce",
+            [](const GQCP::TwoDM<double>& d) {
+                return d.reduce();
+            },
+            "Return a partial contraction of the 2-DM, where D(p,q) = d(p,q,r,r).")
 
         .def(
             "trace",
-            [](const TwoDM<Scalar>& d) {
+            [](const GQCP::TwoDM<double>& d) {
                 return d.trace();
             },
-            "Return the trace of the 2-DM, i.e. d(p,p,q,q).")
+            "Return the trace of the 2-DM, i.e. d(p,p,q,q).");
 }
 
 

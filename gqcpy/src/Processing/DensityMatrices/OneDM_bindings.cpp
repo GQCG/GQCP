@@ -28,14 +28,17 @@ namespace gqcpy {
 
 
 void bindOneDM(py::module& module) {
-    py::class_<GQCP::OneDM<Scalar>>(module, "OneDM", "A single particle density matrix");
+    py::class_<GQCP::OneDM<double>>(module, "OneDM", "A single particle density matrix")
 
-    // PUBLIC METHODS
+        // PUBLIC METHODS
 
-    .def(
-        "transformed",
-        &GQCP::OneDM<Scalar>::transformed,
-        "Return the transformed density matrix.")
+        .def(
+            "transformed",
+            [](const Eigen::MatrixXd& D, const Eigen::MatrixXd& T) {
+                return GQCP::OneDM<double> {D}.transformed(GQCP::TransformationMatrix<double> {T});
+            },
+            py::arg("T"),
+            "Return the transformed density matrix.");
 }
 
 
