@@ -178,7 +178,7 @@ public:
      */
     size_t stride(const size_t axis) const {
         if (axis >= A) {
-            std::cerr << "The given axis does not exist." << std::endl;
+            throw std::invalid_argument("DenseVectorizer::offset(const std::array<size_t, A>&): The given axis does not exist.");
         }
 
         return this->strides()[axis];
