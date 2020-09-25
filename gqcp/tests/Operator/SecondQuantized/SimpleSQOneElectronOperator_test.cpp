@@ -232,3 +232,44 @@ BOOST_AUTO_TEST_CASE(SimpleSQOneElectronOperator_negation) {
     const auto op_result = -op1;
     BOOST_CHECK(op_result.parameters().isApprox(M_ref, 1.0e-08));
 }
+
+
+/**
+ *  Check if dot product multiplication of a SimpleSQOneElectronOperator with a Vector with the same components is correctly implemented.
+ */
+BOOST_AUTO_TEST_CASE(dot) {
+
+    // Set up a toy RSQOneElectronOperator with three components.
+    GQCP::QCMatrix<double> h_x {2};
+    // clang-format off
+    h_x << 1.0, 2.0,
+           3.0, 4.0;
+    // clang-format on
+
+    GQCP::QCMatrix<double> h_y {2};
+    // clang-format off
+    h_y << -1.0,  2.0,
+            3.0, -4.0;
+    // clang-format on
+
+    GQCP::QCMatrix<double> h_z {2};
+    // clang-format off
+    h_z <<  0.0,  3.0,
+            3.0,  0.0;
+    // clang-format on
+
+    GQCP::VectorRSQOneElectronOperator<double> h_op {{h_x, h_y, h_z}};
+
+
+    // Define a vector to do the dot product with, and check the result.
+    GQCP::VectorX<double> a {3};
+    a << 1.0, 2.0, 3.0;
+
+    GQCP::QCMatrix<double> dot_ref {2};
+    // clang-format off
+    dot_ref <<  -1.0,  15.0,
+                18.0,  -4.0;
+    // clang-format on
+
+    BOOST_CHECK(h_op.dot(a).parameters().isApprox(dot_ref, 1.0e-12));
+}

@@ -277,6 +277,36 @@ public:
 
         return *this;
     }
+
+
+    /*
+     *  MARK: Other arithmetic
+     */
+
+    /**
+     *  Calculate the scalar one-electron operator that is the result of the vector dot product between this operator and the given vector. Note that this method is only available for vector-like one-electron operators.
+     * 
+     *  @param v        The vector with which this operator should be dot-multiplied.
+     * 
+     *  @return The vector dot product between this operator and the given vector.
+     */
+    template <typename Z = Vectorizer>
+    ScalarDerivedOperator dot(const VectorX<Scalar>& v) const {
+
+        if (this->array.vectorizer().numberOfElements() != v.size()) {
+            throw std::invalid_argument("SimpleSQOneElectronOperator(const StorageArray<Scalar, Vectorizer>&): The dimension of the given vector is incompatible with this vector operator.)");
+        }
+
+        const auto dimension = this->numberOfOrbitals();
+        ScalarDerivedOperator result {dimension};  // initializes a scalar one-electron operator with parameters that are zero
+
+        // Calculate the dot/inner product of two vectors.
+        for (size_t i = 0; i < this->numberOfComponents(); i++) {
+            result += v(i) * (*this)(i);
+        }
+
+        return result;
+    }
 };
 
 
