@@ -34,19 +34,17 @@ void bindQCModelUHF(py::module& module) {
 
         .def(
             "calculateOrthonormalBasis1DM",
-            [](const GQCP::QCModel::UHF<double>& uhf_parameters, const GQCP::Spin sigma) {
-                return uhf_parameters.calculateOrthonormalBasis1DM(sigma);
+            [](const GQCP::QCModel::UHF<double>& uhf_parameters) {
+                return uhf_parameters.calculateOrthonormalBasis1DM();
             },
-            py::arg("sigma"),
-            "Return the sigma-spin UHF 1-DM expressed in an orthonormal sigma spin-orbital basis for these UHF model parameters.")
+            "Return the spin resolved UHF 1-DM expressed in an orthonormal sigma spin-orbital basis for these UHF model parameters.")
 
         .def(
             "calculateScalarBasis1DM",
-            [](const GQCP::QCModel::UHF<double>& uhf_parameters, const GQCP::Spin sigma) {
-                return uhf_parameters.calculateScalarBasis1DM(sigma);
+            [](const GQCP::QCModel::UHF<double>& uhf_parameters) {
+                return uhf_parameters.calculateScalarBasis1DM();
             },
-            py::arg("sigma"),
-            "Return the sigma-spin UHF 1-DM expressed in the underlying scalar basis for these UHF model parameters.")
+            "Return the spin resolved UHF 1-DM expressed in the underlying scalar basis for these UHF model parameters.")
 
         .def(
             "coefficientMatrix",

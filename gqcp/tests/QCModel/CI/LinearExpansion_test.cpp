@@ -239,6 +239,99 @@ BOOST_AUTO_TEST_CASE(expansions) {
 }
 
 
+/**
+ *  Check if calculateNDMElement throws as expected.
+ */
+BOOST_AUTO_TEST_CASE(calculateNDMElement_throws) {
+
+    // Set up an example linear expansion.
+    const size_t M = 3;
+    const size_t N = 1;
+    const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
+
+    GQCP::VectorX<double> coefficients {onv_basis.dimension()};
+    coefficients << 1, 2, -3;
+
+    const GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis> linear_expansion {onv_basis, coefficients};
+
+
+    // Check if calculateNDMElement throws as expected.
+    BOOST_CHECK_THROW(linear_expansion.calculateNDMElement({3}, {0}), std::invalid_argument);  // bra-index is out of bounds
+    BOOST_CHECK_THROW(linear_expansion.calculateNDMElement({0}, {3}), std::invalid_argument);  // ket-index is out of bounds
+}
+
+
+/**
+ *  Check some 1-DM values calculated through the general function calculateNDMElement.
+ */
+BOOST_AUTO_TEST_CASE(calculateNDMElement_1DM) {
+
+    // Set up an example linear expansion.
+    const size_t M = 3;
+    const size_t N = 1;
+    const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
+
+    GQCP::VectorX<double> coefficients {onv_basis.dimension()};
+    coefficients << 1, 2, -3;
+
+    const GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis> linear_expansion {onv_basis, coefficients};
+
+
+    // Check some 1-DM values.
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({0}, {0}) - 1.0) < 1.0e-12);     // d(0,0) : a^\dagger_0 a_0
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({0}, {1}) - 2.0) < 1.0e-12);     // d(0,1) : a^\dagger_0 a_1
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({2}, {1}) - (-6.0)) < 1.0e-12);  // d(2,1) : a^\dagger_2 a_1
+}
+
+
+/**
+ *  Check some 2-DM values calculated through the general function calculateNDMElement.
+ */
+BOOST_AUTO_TEST_CASE(calculateNDMElement_2DM) {
+
+    // Set up an example linear expansion.
+    const size_t M = 3;
+    const size_t N = 2;
+    const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
+
+    GQCP::VectorX<double> coefficients {onv_basis.dimension()};
+    coefficients << 1, 2, -3;
+
+    const GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis> linear_expansion {onv_basis, coefficients};
+
+
+    // Check some 2-DM values.
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({0, 1}, {2, 1}) - (-3.0)) < 1.0e-12);  // d(0,1,1,2) : a^\dagger_0 a^\dagger_1 a_2 a_1
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({2, 0}, {1, 0}) - (-2.0)) < 1.0e-12);  // d(2,0,0,1) : a^\dagger_2 a^\dagger_0 a^1 a_0
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({0, 2}, {0, 2}) - (-4.0)) < 1.0e-12);  // d(0,2,2,0) : a^\dagger_0 a^dagger_2 a_0 a_2
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({0, 0}, {0, 2}) - 0.0) < 1.0e-12);     // d(0,2,0,0) : a^\dagger_0 a^dagger_0 a_0 a_2, double annihilation gives 0.0
+}
+
+
+/**
+ *  Check some 3-DM values calculated through the general function calculateNDMElement.
+ */
+BOOST_AUTO_TEST_CASE(calculateNDMElement_3DM) {
+
+    // Set up an example linear expansion.
+    const size_t M = 5;
+    const size_t N = 4;
+    const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
+
+    GQCP::VectorX<double> coefficients {onv_basis.dimension()};
+    coefficients << 1, 1, -2, 4, -5;
+
+    const GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis> linear_expansion {onv_basis, coefficients};
+
+
+    // Check some 3-DM values.
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({0, 0, 1}, {1, 0, 2}) - 0.0) < 1.0e-12);  // zero because two times the same index
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({1, 0, 3}, {4, 1, 2}) - 0.0) < 1.0e-12);  // zero because no fully annihilated bras and kets match
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({0, 1, 2}, {2, 1, 0}) - 2.0) < 1.0e-12);
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({0, 1, 2}, {0, 1, 3}) - 2.0) < 1.0e-12);
+}
+
+
 // /**
 //  *  Check if the projection of |UHF> and |GHF> (the equivalent ONV in a generalized spinor basis) onto |RHF> is the same.
 //  */
@@ -284,3 +377,110 @@ BOOST_AUTO_TEST_CASE(expansions) {
 
 //     std::cout << linear_expansion.coefficients() << std::endl;
 // }
+
+
+/**
+ *  Check if the 1- and 2-DMs for a full spin-resolved ONV basis are equal to the 'selected' case.
+ * 
+ *  The system of interested is H2O//STO-3G, with 7 spatial orbitals and a Fock space dimension of 441. However, we're choosing a different number of alpha and beta electrons. (N_alpha = 4, N_beta = 6)
+ */
+BOOST_AUTO_TEST_CASE(spin_resolved_vs_spin_resolved_selected_DMs) {
+
+    // Set up the molecular Hamiltonian in a Löwdin-orthonormalized spinor basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
+    const size_t N_alpha = 4;
+    const size_t N_beta = 6;
+
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+    const auto K = spinor_basis.numberOfSpatialOrbitals();
+    spinor_basis.lowdinOrthonormalize();
+
+    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);
+
+
+    // Do a dense FCI calculation.
+    const GQCP::SpinResolvedONVBasis onv_basis {K, N_alpha, N_beta};
+
+    auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
+    auto solver = GQCP::EigenproblemSolver::Dense();
+
+    const auto linear_expansion_specialized = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
+
+
+    // Convert the 'specialized' linear expansion into a 'selected' linear expansion.
+    const GQCP::SpinResolvedSelectedONVBasis onv_basis_selected {onv_basis};
+    const auto linear_expansion_selected = GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>(onv_basis_selected, linear_expansion_specialized.coefficients());
+
+
+    // Calculate the 1-DMs using specialized spin-resolved and 'selected' routines, and check if they are equal.
+    const auto D_specialized = linear_expansion_specialized.calculateSpinResolved1DM();
+    const auto D_selected = linear_expansion_selected.calculateSpinResolved1DM();
+
+    BOOST_CHECK(D_specialized.spinSummed().isApprox(D_selected.spinSummed(), 1.0e-12));
+    BOOST_CHECK(D_specialized.alpha().isApprox(D_selected.alpha(), 1.0e-12));
+    BOOST_CHECK(D_specialized.beta().isApprox(D_selected.beta(), 1.0e-12));
+
+
+    // Calculate the 2-DMs using specialized spin-resolved and 'selected' routines, and check if they are equal.
+    const auto d_specialized = linear_expansion_specialized.calculateSpinResolved2DM();
+    const auto d_selected = linear_expansion_selected.calculateSpinResolved2DM();
+
+    BOOST_CHECK(d_specialized.alphaAlpha().isApprox(d_selected.alphaAlpha(), 1.0e-12));
+    BOOST_CHECK(d_specialized.alphaBeta().isApprox(d_selected.alphaBeta(), 1.0e-12));
+    BOOST_CHECK(d_specialized.betaAlpha().isApprox(d_selected.betaAlpha(), 1.0e-12));
+    BOOST_CHECK(d_specialized.betaBeta().isApprox(d_selected.betaBeta(), 1.0e-12));
+    BOOST_CHECK(d_specialized.spinSummed().isApprox(d_selected.spinSummed(), 1.0e-12));
+}
+
+
+/**
+ *  Check if the 1- and 2-DMs for a seniority-zero ONV basis are equal to the 'selected' case.
+ * 
+ *  The system of interested is H2O//STO-3G, with 7 spatial orbitals and a Fock space dimension of 21.
+ */
+BOOST_AUTO_TEST_CASE(seniority_zero_vs_spin_resolved_selected_DMs) {
+
+    // Set up the molecular Hamiltonian in a Löwdin-orthonormalized spinor basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
+    const auto N_P = molecule.numberOfElectronPairs();
+
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+    const auto K = spinor_basis.numberOfSpatialOrbitals();
+    spinor_basis.lowdinOrthonormalize();
+
+    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);
+
+
+    // Do a dense DOCI calculation.
+    const GQCP::SeniorityZeroONVBasis onv_basis {K, N_P};
+
+    auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
+    auto solver = GQCP::EigenproblemSolver::Dense();
+
+    const auto linear_expansion_specialized = GQCP::QCMethod::CI<GQCP::SeniorityZeroONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
+
+
+    // Convert the 'specialized' linear expansion into a 'selected' linear expansion.
+    const GQCP::SpinResolvedSelectedONVBasis onv_basis_selected {onv_basis};
+    const auto linear_expansion_selected = GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>(onv_basis_selected, linear_expansion_specialized.coefficients());
+
+
+    // Calculate the 1-DMs using specialized spin-resolved and 'selected' routines, and check if they are equal.
+    const auto D_specialized = linear_expansion_specialized.calculateSpinResolved1DM();
+    const auto D_selected = linear_expansion_selected.calculateSpinResolved1DM();
+
+    BOOST_CHECK(D_specialized.spinSummed().isApprox(D_selected.spinSummed(), 1.0e-12));
+    BOOST_CHECK(D_specialized.alpha().isApprox(D_selected.alpha(), 1.0e-12));
+    BOOST_CHECK(D_specialized.beta().isApprox(D_selected.beta(), 1.0e-12));
+
+
+    // Calculate the 2-DMs using specialized spin-resolved and 'selected' routines, and check if they are equal.
+    const auto d_specialized = linear_expansion_specialized.calculateSpinResolved2DM();
+    const auto d_selected = linear_expansion_selected.calculateSpinResolved2DM();
+
+    BOOST_CHECK(d_specialized.alphaAlpha().isApprox(d_selected.alphaAlpha(), 1.0e-12));
+    BOOST_CHECK(d_specialized.alphaBeta().isApprox(d_selected.alphaBeta(), 1.0e-12));
+    BOOST_CHECK(d_specialized.betaAlpha().isApprox(d_selected.betaAlpha(), 1.0e-12));
+    BOOST_CHECK(d_specialized.betaBeta().isApprox(d_selected.betaBeta(), 1.0e-12));
+    BOOST_CHECK(d_specialized.spinSummed().isApprox(d_selected.spinSummed(), 1.0e-12));
+}

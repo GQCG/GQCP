@@ -27,10 +27,6 @@
 #include "ONVBasis/SpinResolvedONV.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
-#include "Processing/DensityMatrices/CIDMCalculators/SeniorityZeroDMCalculator.hpp"
-#include "Processing/DensityMatrices/CIDMCalculators/SpinResolvedDMCalculator.hpp"
-#include "Processing/DensityMatrices/CIDMCalculators/SpinResolvedSelectedDMCalculator.hpp"
-#include "Processing/DensityMatrices/CIDMCalculators/SpinUnresolvedDMCalculator.hpp"
 #include "Processing/DensityMatrices/SpinResolvedOneDM.hpp"
 #include "Processing/DensityMatrices/SpinResolvedTwoDM.hpp"
 #include "Utilities/aliases.hpp"
@@ -74,19 +70,14 @@ public:
     LinearExpansion() = default;
 
     /**
-     *  Construct a normalized wave function from possibly non-normalized coefficients
+     *  Construct a linear expansion inside the given ONV basis, with corresponding expansion coefficients.
      *
      *  @param onv_basis            the ONV basis with respect to which the coefficients are defined
      *  @param coefficients         the expansion coefficients
      */
     LinearExpansion(const ONVBasis& onv_basis, const VectorX<double>& coefficients) :
         onv_basis {onv_basis},
-        m_coefficients {coefficients} {
-
-        if (std::abs(this->m_coefficients.norm() - 1.0) > 1.0e-12) {  // normalize the coefficients if they aren't
-            this->m_coefficients.normalize();
-        }
-    }
+        m_coefficients {coefficients} {}
 
 
     /*
@@ -342,6 +333,21 @@ public:
 
 
     /**
+     *  Create a normalized linear expansion inside a given ONV basis with possibly non-normalized coefficients.
+     * 
+     *  @param onv_basis            the ONV basis with respect to which the coefficients are defined
+     *  @param coefficients         the expansion coefficients
+     * 
+     *  @return a LinearExpansion
+     */
+    static LinearExpansion<ONVBasis> Normalized(const ONVBasis& onv_basis, const VectorX<double>& coefficients) {
+
+        // Normalize the coefficients if they aren't.
+        return LinearExpansion<ONVBasis>(onv_basis,
+                                         std::abs(coefficients.norm() - 1.0) > 1.0e-12 ? coefficients.normalized() : coefficients);
+    }
+
+    /**
      *  Create a linear expansion with a random, normalized coefficient vector, with coefficients uniformly distributed in [-1, +1] before any normalization.
      * 
      *  @param onv_basis            the ONV basis with respect to which the coefficients are defined
@@ -560,6 +566,94 @@ public:
 
 
     /**
+     *  Calculate an element of the N-electron density matrix.
+     * 
+     *  @param bra_indices      The indices of the orbitals that should be annihilated on the left (on the bra).
+     *  @param ket_indices      The indices of the orbitals that should be annihilated on the right (on the ket).
+     *
+     *  @return An element of the N-DM, as specified by the given bra and ket indices. `calculateNDMElement({0, 1}, {2, 1})` would calculate an element of the 2-NDM d^{(2)} (0, 1, 1, 2) corresponding the operator string: `a^\dagger_0 a^\dagger_1 a_2 a_1`.
+     * 
+     *  @note This method is only enabled for linear expansions related to spin-unresolved ONV bases.
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value, double> calculateNDMElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices) const {
+
+        // The ket indices should be reversed because the annihilators on the ket should be applied from right to left
+        std::vector<size_t> ket_indices_reversed = ket_indices;
+        std::reverse(ket_indices_reversed.begin(), ket_indices_reversed.end());
+
+
+        double value = 0.0;
+        int sign = 1;
+        const size_t dim = this->onv_basis.dimension();
+
+
+        SpinUnresolvedONV bra = this->onv_basis.constructONVFromAddress(0);
+        size_t I = 0;
+        while (I < dim) {  // loop over all bra addresses
+
+            // Annihilate the bra on the bra indices
+            if (!bra.annihilateAll(bra_indices, sign)) {  // if we can't annihilate, the bra doesn't change
+
+                // Go to the beginning of the outer while loop with the next bra
+                if (I < dim - 1) {  // prevent the last permutation from occurring
+                    this->onv_basis.transformONVToNextPermutation(bra);
+                    I++;
+                    sign = 1;
+                    continue;
+                } else {
+                    break;  // we have to jump out if we have looped over the whole bra dimension
+                }
+            }
+
+
+            SpinUnresolvedONV ket = this->onv_basis.constructONVFromAddress(0);
+            size_t J = 0;
+            while (J < dim) {  // loop over all ket indices
+
+                // Annihilate the ket on the ket indices
+                if (!ket.annihilateAll(ket_indices_reversed, sign)) {  // if we can't annihilate, the ket doesn't change
+
+                    // Go to the beginning of this (the inner) while loop with the next bra
+                    if (J < dim - 1) {  // prevent the last permutation from occurring
+                        this->onv_basis.transformONVToNextPermutation(ket);
+                        J++;
+                        sign = 1;
+                        continue;
+                    } else {
+                        break;  // we have to jump out if we have looped over the whole ket dimension
+                    }
+                }
+
+                if (bra == ket) {
+                    value += sign * this->coefficient(I) * this->coefficient(J);
+                }
+
+                // Reset the previous ket annihilations and move to the next ket
+                if (J == dim - 1) {  // prevent the last permutation from occurring
+                    break;           // out of the J-loop
+                }
+                ket.createAll(ket_indices_reversed);
+                this->onv_basis.transformONVToNextPermutation(ket);
+                sign = 1;
+                J++;
+            }  // while J loop
+
+            // Reset the previous bra annihilations and move to the next bra
+            if (I == dim - 1) {  // prevent the last permutation from occurring
+                break;           // out of the I-loop
+            }
+            bra.createAll(bra_indices);
+            this->onv_basis.transformONVToNextPermutation(bra);
+            sign = 1;
+            I++;
+        }  // while I loop
+
+        return value;
+    }
+
+
+    /**
      *  Calculate the one-electron density matrix for a full spin-resolved wave function expansion.
      * 
      *  @return the total (spin-summed) 1-DM
@@ -576,8 +670,31 @@ public:
     template <typename Z = ONVBasis>
     enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolvedOneDM<double>> calculateSpinResolved1DM() const {
 
-        const SeniorityZeroDMCalculator dm_calculator {this->onvBasis()};
-        return dm_calculator.calculateSpinResolved1DM(this->coefficients());
+        // Prepare some variables.
+        const auto K = this->onv_basis.numberOfSpatialOrbitals();
+        const auto dimension = this->onv_basis.dimension();
+
+        // For seniority-zero linear expansions, one DM covers both alpha and beta spins.
+        OneDM<double> D = OneDM<double>::Zero(K, K);
+
+        // Create the first ONV (with address 0). In DOCI, the ONV basis for alpha and beta is equal, so we can use the proxy ONV basis.
+        const auto onv_basis_proxy = this->onv_basis.proxy();
+        SpinUnresolvedONV onv = onv_basis_proxy.constructONVFromAddress(0);
+        for (size_t I = 0; I < dimension; I++) {  // I loops over all the addresses of the doubly-occupied ONVs
+
+            for (size_t e1 = 0; e1 < onv_basis_proxy.numberOfElectrons(); e1++) {  // e1 (electron 1) loops over the number of electrons
+                const size_t p = onv.occupationIndexOf(e1);                        // retrieve the index of the orbital the electron occupies
+                const double c_I = this->coefficient(I);                           // coefficient of the I-th basis vector
+
+                D(p, p) += 2 * std::pow(c_I, 2);
+            }
+
+            if (I < dimension - 1) {  // prevent the last permutation from occurring
+                onv_basis_proxy.transformONVToNextPermutation(onv);
+            }
+        }
+
+        return SpinResolvedOneDM<double>::FromRestricted(D);
     }
 
 
@@ -589,8 +706,64 @@ public:
     template <typename Z = ONVBasis>
     enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolvedTwoDM<double>> calculateSpinResolved2DM() const {
 
-        const SeniorityZeroDMCalculator dm_calculator {this->onvBasis()};
-        return dm_calculator.calculateSpinResolved2DM(this->coefficients());
+        // Prepare some variables.
+        const auto K = this->onv_basis.numberOfSpatialOrbitals();
+        const auto dimension = this->onv_basis.dimension();
+
+
+        // For seniority-zero linear expansions, we only have to calculate d_aaaa and d_aabb.
+        TwoDM<double> d_aaaa(K);
+        d_aaaa.setZero();
+
+        TwoDM<double> d_aabb(K);
+        d_aabb.setZero();
+
+
+        // Create the first ONV (with address 0). In DOCI, the ONV basis for alpha and beta is equal, so we can use the proxy ONV basis.
+        const auto onv_basis_proxy = this->onv_basis.proxy();
+        SpinUnresolvedONV onv = onv_basis_proxy.constructONVFromAddress(0);
+        for (size_t I = 0; I < dimension; I++) {  // I loops over all the addresses of the spin strings
+            for (size_t p = 0; p < K; p++) {      // p loops over SOs
+                if (onv.annihilate(p)) {          // if p is occupied in I
+
+                    const double c_I = this->coefficient(I);  // coefficient of the I-th basis vector
+                    const double c_I_2 = std::pow(c_I, 2);    // square of c_I
+
+                    d_aabb(p, p, p, p) += c_I_2;
+
+                    for (size_t q = 0; q < p; q++) {                          // q loops over SOs with an index smaller than p
+                        if (onv.create(q)) {                                  // if q is not occupied in I
+                            const size_t J = onv_basis_proxy.addressOf(onv);  // the address of the coupling string
+                            const double c_J = this->coefficient(J);          // coefficient of the J-th basis vector
+
+                            d_aabb(p, q, p, q) += c_I * c_J;
+                            d_aabb(q, p, q, p) += c_I * c_J;  // since we're looping for q < p
+
+                            onv.annihilate(q);  // reset the spin string after previous creation on q
+                        }
+
+                        else {  // if q is occupied in I
+                            d_aaaa(p, p, q, q) += c_I_2;
+                            d_aaaa(q, q, p, p) += c_I_2;  // since we're looping for q < p
+
+                            d_aaaa(p, q, q, p) -= c_I_2;
+                            d_aaaa(q, p, p, q) -= c_I_2;  // since we're looping for q < p
+
+                            d_aabb(p, p, q, q) += c_I_2;
+                            d_aabb(q, q, p, p) += c_I_2;  // since we're looping for q < p
+                        }
+                    }
+                    onv.create(p);  // reset the spin string after previous annihilation on p
+                }
+            }
+
+            if (I < dimension - 1) {  // prevent the last permutation from occurring
+                onv_basis_proxy.transformONVToNextPermutation(onv);
+            }
+        }
+
+        // For seniority-zero linear expansions, we have additional symmetries (two_rdm_aaaa = two_rdm_bbbb, two_rdm_aabb = two_rdm_bbaa)
+        return SpinResolvedTwoDM<double>(d_aaaa, d_aabb, d_aabb, d_aaaa);
     }
 
 
@@ -629,8 +802,114 @@ public:
     template <typename Z = ONVBasis>
     enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, SpinResolvedOneDM<double>> calculateSpinResolved1DM() const {
 
-        const SpinResolvedDMCalculator dm_calculator {this->onvBasis()};
-        return dm_calculator.calculateSpinResolved1DM(this->coefficients());
+        // Initialize as zero matrices
+        size_t K = this->onv_basis.numberOfOrbitals();
+
+        OneDM<double> D_aa = OneDM<double>::Zero(K, K);
+        OneDM<double> D_bb = OneDM<double>::Zero(K, K);
+
+        SpinUnresolvedONVBasis onv_basis_alpha = onv_basis.onvBasisAlpha();
+        SpinUnresolvedONVBasis onv_basis_beta = onv_basis.onvBasisBeta();
+
+        auto dim_alpha = onv_basis_alpha.dimension();
+        auto dim_beta = onv_basis_beta.dimension();
+
+        // ALPHA
+        SpinUnresolvedONV spin_string_alpha = onv_basis_alpha.constructONVFromAddress(0);  // alpha spin string with address 0
+        for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {                         // I_alpha loops over all the addresses of the alpha spin strings
+            for (size_t p = 0; p < K; p++) {                                               // p loops over SOs
+                int sign_p = 1;
+                if (spin_string_alpha.annihilate(p, sign_p)) {  // if p is in I_alpha
+                    double diagonal_contribution = 0;
+
+                    // Diagonal contributions for the 1-DM, i.e. D_pp
+                    // We are storing the alpha addresses as 'major', i.e. the total address I_alpha I_beta = I_alpha * dim_beta + I_beta
+                    for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
+                        double c_I_alpha_I_beta = this->coefficient(I_alpha * dim_beta + I_beta);
+                        diagonal_contribution += std::pow(c_I_alpha_I_beta, 2);
+                    }
+                    D_aa(p, p) += diagonal_contribution;
+
+                    // Off-diagonal contributions for the 1-DM, i.e. D_pq (p!=q)
+                    for (size_t q = 0; q < p; q++) {  // q < p loops over SOs
+                        int sign_pq = sign_p;
+                        if (spin_string_alpha.create(q, sign_pq)) {                         // if q is not occupied in I_alpha
+                            size_t J_alpha = onv_basis_alpha.addressOf(spin_string_alpha);  // find all strings J_alpha that couple to I_alpha
+
+                            double off_diagonal_contribution = 0;
+                            for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
+                                double c_I_alpha_I_beta = this->coefficient(I_alpha * dim_beta + I_beta);  // alpha addresses are 'major'
+                                double c_J_alpha_I_beta = this->coefficient(J_alpha * dim_beta + I_beta);
+                                off_diagonal_contribution += c_I_alpha_I_beta * c_J_alpha_I_beta;
+                            }
+                            D_aa(p, q) += sign_pq * off_diagonal_contribution;
+                            D_aa(q, p) += sign_pq * off_diagonal_contribution;  // add the symmetric contribution because we are looping over q < p
+
+                            spin_string_alpha.annihilate(q);  // undo the previous creation
+
+                        }  // create on q
+                    }      // q loop
+
+                    spin_string_alpha.create(p);  // undo the previous annihilation
+
+                }  // annihilate on p
+            }      // p loop
+
+            if (I_alpha < dim_alpha - 1) {  // prevent the last permutation from occurring
+                onv_basis_alpha.transformONVToNextPermutation(spin_string_alpha);
+            }
+
+        }  // I_alpha loop
+
+
+        // BETA
+        SpinUnresolvedONV spin_string_beta = onv_basis_beta.constructONVFromAddress(0);  // spin string with address 0
+        for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {                           // I_beta loops over all the addresses of the spin strings
+            for (size_t p = 0; p < K; p++) {                                             // p loops over SOs
+                int sign_p = 1;
+                if (spin_string_beta.annihilate(p, sign_p)) {  // if p is in I_beta
+                    double diagonal_contribution = 0;
+
+                    // Diagonal contributions for the 1-DM, i.e. D_pp
+                    // We are storing the alpha addresses as 'major', i.e. the total address I_alpha I_beta = I_alpha * dim_beta + I_beta
+                    for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
+                        double c_I_alpha_I_beta = this->coefficient(I_alpha * dim_beta + I_beta);
+                        diagonal_contribution += std::pow(c_I_alpha_I_beta, 2);
+                    }
+
+                    D_bb(p, p) += diagonal_contribution;
+
+                    // Off-diagonal contributions for the 1-DM
+                    for (size_t q = 0; q < p; q++) {  // q < p loops over SOs
+                        int sign_pq = sign_p;
+                        if (spin_string_beta.create(q, sign_pq)) {                       // if q is not in I_beta
+                            size_t J_beta = onv_basis_beta.addressOf(spin_string_beta);  // find all strings J_beta that couple to I_beta
+
+                            double off_diagonal_contribution = 0;
+                            for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
+                                double c_I_alpha_I_beta = this->coefficient(I_alpha * dim_beta + I_beta);  // alpha addresses are 'major'
+                                double c_I_alpha_J_beta = this->coefficient(I_alpha * dim_beta + J_beta);
+                                off_diagonal_contribution += c_I_alpha_I_beta * c_I_alpha_J_beta;
+                            }
+                            D_bb(p, q) += sign_pq * off_diagonal_contribution;
+                            D_bb(q, p) += sign_pq * off_diagonal_contribution;  // add the symmetric contribution because we are looping over q < p
+
+                            spin_string_beta.annihilate(q);  // undo the previous creation
+
+                        }  // create on q
+                    }      // loop over q
+
+                    spin_string_beta.create(p);  // undo the previous annihilation
+
+                }  // annihilate on p
+            }      // loop over p
+
+            if (I_beta < dim_beta - 1) {  // prevent the last permutation from occurring
+                onv_basis_beta.transformONVToNextPermutation(spin_string_beta);
+            }
+
+        }  // I_beta loop
+        return SpinResolvedOneDM<double>(D_aa, D_bb);
     }
 
 
@@ -642,8 +921,214 @@ public:
     template <typename Z = ONVBasis>
     enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, SpinResolvedTwoDM<double>> calculateSpinResolved2DM() const {
 
-        const SpinResolvedDMCalculator dm_calculator {this->onvBasis()};
-        return dm_calculator.calculateSpinResolved2DM(this->coefficients());
+        // KISS implementation of the 2-DMs (no symmetry relations are used yet)
+
+        SpinUnresolvedONVBasis onv_basis_alpha = onv_basis.onvBasisAlpha();
+        SpinUnresolvedONVBasis onv_basis_beta = onv_basis.onvBasisBeta();
+
+        auto dim_alpha = onv_basis_alpha.dimension();
+        auto dim_beta = onv_basis_beta.dimension();
+
+        // Initialize as zero matrices
+        size_t K = this->onv_basis.numberOfOrbitals();
+
+        TwoDM<double> d_aaaa {K};
+        d_aaaa.setZero();
+
+        TwoDM<double> d_aabb {K};
+        d_aabb.setZero();
+
+        TwoDM<double> d_bbbb {K};
+        d_bbbb.setZero();
+
+
+        // ALPHA-ALPHA-ALPHA-ALPHA
+        SpinUnresolvedONV spin_string_alpha_aaaa = onv_basis_alpha.constructONVFromAddress(0);  // spin string with address 0
+        for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {                              // I_alpha loops over all the addresses of the alpha spin strings
+
+            for (size_t p = 0; p < K; p++) {  // p loops over SOs
+                int sign_p = 1;               // sign of the operator a_p
+
+                if (spin_string_alpha_aaaa.annihilate(p, sign_p)) {  // if p is not in I_alpha
+
+                    for (size_t r = 0; r < K; r++) {  // r loops over SOs
+                        int sign_pr = sign_p;         // sign of the operator a_r a_p
+
+                        if (spin_string_alpha_aaaa.annihilate(r, sign_pr)) {  // if r is not in I_alpha
+
+                            for (size_t s = 0; s < K; s++) {  // s loops over SOs
+                                int sign_prs = sign_pr;       // sign of the operator a^dagger_s a_r a_p
+
+                                if (spin_string_alpha_aaaa.create(s, sign_prs)) {  // if s is in I_alpha
+
+                                    for (size_t q = 0; q < K; q++) {  // q loops over SOs
+                                        int sign_prsq = sign_prs;     // sign of the operator a^dagger_q a^dagger_s a_r a_p
+
+                                        if (spin_string_alpha_aaaa.create(q, sign_prsq)) {                       // if q is not in I_alpha
+                                            size_t J_alpha = onv_basis_alpha.addressOf(spin_string_alpha_aaaa);  // address of the coupling string
+
+                                            double contribution = 0.0;
+                                            for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
+                                                double c_I_alpha_I_beta = this->coefficient(I_alpha * dim_beta + I_beta);  // alpha addresses are 'major'
+                                                double c_J_alpha_I_beta = this->coefficient(J_alpha * dim_beta + I_beta);
+                                                contribution += c_I_alpha_I_beta * c_J_alpha_I_beta;
+                                            }
+
+
+                                            d_aaaa(p, q, r, s) += sign_prsq * contribution;
+
+                                            spin_string_alpha_aaaa.annihilate(q);  // undo the previous creation
+                                        }
+                                    }  // loop over q
+
+                                    spin_string_alpha_aaaa.annihilate(s);  // undo the previous creation
+                                }
+                            }  // loop over s
+
+                            spin_string_alpha_aaaa.create(r);  // undo the previous annihilation
+                        }
+                    }  // loop over r
+
+                    spin_string_alpha_aaaa.create(p);  // undo the previous annihilation
+                }
+            }  // loop over p
+
+            if (I_alpha < dim_alpha - 1) {  // prevent the last permutation from occurring
+                onv_basis_alpha.transformONVToNextPermutation(spin_string_alpha_aaaa);
+            }
+
+        }  // loop over I_alpha
+
+
+        // ALPHA-ALPHA-BETA-BETA
+        SpinUnresolvedONV spin_string_alpha_aabb = onv_basis_alpha.constructONVFromAddress(0);  // spin string with address 0
+        for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {                              // I_alpha loops over all the addresses of the alpha spin strings
+
+            for (size_t p = 0; p < K; p++) {  // p loops over SOs
+                int sign_p = 1;               // sign of the operator a_p_alpha
+
+                if (spin_string_alpha_aabb.annihilate(p, sign_p)) {  // if p is in I_alpha
+
+                    for (size_t q = 0; q < K; q++) {  // q loops over SOs
+                        int sign_pq = sign_p;         // sign of the operator a^dagger_p_alpha a_p_alpha
+
+                        if (spin_string_alpha_aabb.create(q, sign_pq)) {                         // if q is not in I_alpha
+                            size_t J_alpha = onv_basis_alpha.addressOf(spin_string_alpha_aabb);  // the string that couples to I_alpha
+
+
+                            SpinUnresolvedONV spin_string_beta_aabb = onv_basis_beta.constructONVFromAddress(0);  // spin string with address 0
+                            for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {                                // I_beta loops over all addresses of beta spin strings
+
+                                for (size_t r = 0; r < K; r++) {  // r loops over all SOs
+                                    int sign_r = 1;               // sign of the operator a_r_beta
+
+                                    if (spin_string_beta_aabb.annihilate(r, sign_r)) {
+
+                                        for (size_t s = 0; s < K; s++) {  // s loops over all SOs
+                                            int sign_rs = sign_r;         // sign of the operator a^dagger_s_beta a_r_beta
+
+                                            if (spin_string_beta_aabb.create(s, sign_rs)) {
+                                                size_t J_beta = onv_basis_beta.addressOf(spin_string_beta_aabb);  // the string that couples to I_beta
+
+                                                double c_I_alpha_I_beta = this->coefficient(I_alpha * dim_beta + I_beta);  // alpha addresses are 'major'
+                                                double c_J_alpha_J_beta = this->coefficient(J_alpha * dim_beta + J_beta);
+                                                d_aabb(p, q, r, s) += sign_pq * sign_rs * c_I_alpha_I_beta * c_J_alpha_J_beta;
+
+                                                spin_string_beta_aabb.annihilate(s);  // undo the previous creation
+                                            }
+                                        }  // loop over s
+
+
+                                        spin_string_beta_aabb.create(r);  // undo the previous annihilation
+                                    }
+
+                                }  // loop over r
+
+                                if (I_beta < dim_beta - 1) {  // prevent the last permutation from occurring
+                                    onv_basis_beta.transformONVToNextPermutation(spin_string_beta_aabb);
+                                }
+
+                            }  // loop over beta addresses
+
+                            spin_string_alpha_aabb.annihilate(q);  // undo the previous creation
+                        }
+                    }  // loop over q
+
+                    spin_string_alpha_aabb.create(p);  // undo the previous annihilation
+                }
+            }  // loop over p
+
+            if (I_alpha < dim_alpha - 1) {  // prevent the last permutation from occurring
+                onv_basis_alpha.transformONVToNextPermutation(spin_string_alpha_aabb);
+            }
+
+        }  // loop over alpha addresses
+
+
+        // BETA-BETA-ALPHA-ALPHA
+        // We know that d^aabb_pqrs = d^bbaa_rspq
+        Eigen::array<int, 4> shuffle {2, 3, 0, 1};  // array specifying the axes that should be swapped
+        TwoDM<double> d_bbaa(d_aabb.Eigen().shuffle(shuffle));
+
+
+        // BETA-BETA-BETA-BETA
+        SpinUnresolvedONV spin_string_beta_bbbb = onv_basis_beta.constructONVFromAddress(0);  // spin string with address 0
+        for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {                                // I_beta loops over all the addresses of the beta spin strings
+
+            for (size_t p = 0; p < K; p++) {  // p loops over SOs
+                int sign_p = 1;               // sign of the operator a_p
+
+                if (spin_string_beta_bbbb.annihilate(p, sign_p)) {  // if p is not in I_beta
+
+                    for (size_t r = 0; r < K; r++) {  // r loops over SOs
+                        int sign_pr = sign_p;         // sign of the operator a_r a_p
+
+                        if (spin_string_beta_bbbb.annihilate(r, sign_pr)) {  // if r is not in I_beta
+
+                            for (size_t s = 0; s < K; s++) {  // s loops over SOs
+                                int sign_prs = sign_pr;       // sign of the operator a^dagger_s a_r a_p
+
+                                if (spin_string_beta_bbbb.create(s, sign_prs)) {  // if s is in I_beta
+
+                                    for (size_t q = 0; q < K; q++) {  // q loops over SOs
+                                        int sign_prsq = sign_prs;     // sign of the operator a^dagger_q a^dagger_s a_r a_p
+
+                                        if (spin_string_beta_bbbb.create(q, sign_prsq)) {                     // if q is not in I_beta
+                                            size_t J_beta = onv_basis_beta.addressOf(spin_string_beta_bbbb);  // address of the coupling string
+
+                                            double contribution = 0.0;
+                                            for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
+                                                double c_I_alpha_I_beta = this->coefficient(I_alpha * dim_beta + I_beta);  // alpha addresses are 'major'
+                                                double c_I_alpha_J_beta = this->coefficient(I_alpha * dim_beta + J_beta);
+                                                contribution += c_I_alpha_I_beta * c_I_alpha_J_beta;
+                                            }
+
+
+                                            d_bbbb(p, q, r, s) += sign_prsq * contribution;
+
+                                            spin_string_beta_bbbb.annihilate(q);  // undo the previous creation
+                                        }
+                                    }  // loop over q
+
+                                    spin_string_beta_bbbb.annihilate(s);  // undo the previous creation
+                                }
+                            }  // loop over s
+
+                            spin_string_beta_bbbb.create(r);  // undo the previous annihilation
+                        }
+                    }  // loop over r
+
+                    spin_string_beta_bbbb.create(p);  // undo the previous annihilation
+                }
+            }  // loop over p
+
+            if (I_beta < dim_beta - 1) {  // prevent the last permutation from occurring
+                onv_basis_beta.transformONVToNextPermutation(spin_string_beta_bbbb);
+            }
+
+        }  // loop over I_beta
+
+        return SpinResolvedTwoDM<double>(d_aaaa, d_aabb, d_bbaa, d_bbbb);
     }
 
 
@@ -682,8 +1167,75 @@ public:
     template <typename Z = ONVBasis>
     enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, SpinResolvedOneDM<double>> calculateSpinResolved1DM() const {
 
-        const SpinResolvedSelectedDMCalculator dm_calculator {this->onvBasis()};
-        return dm_calculator.calculateSpinResolved1DM(this->coefficients());
+        size_t K = this->onv_basis.numberOfOrbitals();
+        size_t dim = onv_basis.dimension();
+
+        OneDM<double> D_aa = OneDM<double>::Zero(K, K);
+        OneDM<double> D_bb = OneDM<double>::Zero(K, K);
+
+
+        for (size_t I = 0; I < dim; I++) {  // loop over all addresses (1)
+            SpinResolvedONV configuration_I = this->onv_basis.onvWithIndex(I);
+            SpinUnresolvedONV alpha_I = configuration_I.onv(Spin::alpha);
+            SpinUnresolvedONV beta_I = configuration_I.onv(Spin::beta);
+
+            double c_I = this->coefficient(I);
+
+
+            // Calculate the diagonal of the 1-DMs
+            for (size_t p = 0; p < K; p++) {
+
+                if (alpha_I.isOccupied(p)) {
+                    D_aa(p, p) += std::pow(c_I, 2);
+                }
+
+                if (beta_I.isOccupied(p)) {
+                    D_bb(p, p) += std::pow(c_I, 2);
+                }
+            }
+
+
+            // Calculate the off-diagonal elements, by going over all other ONVs
+            for (size_t J = I + 1; J < dim; J++) {
+
+                SpinResolvedONV configuration_J = this->onv_basis.onvWithIndex(J);
+                SpinUnresolvedONV alpha_J = configuration_J.onv(Spin::alpha);
+                SpinUnresolvedONV beta_J = configuration_J.onv(Spin::beta);
+
+                double c_J = this->coefficient(J);
+
+
+                // 1 electron excitation in alpha (i.e. 2 differences), 0 in beta
+                if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
+
+                    // Find the orbitals that are occupied in one string, and aren't in the other
+                    size_t p = alpha_I.findDifferentOccupations(alpha_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+                    size_t q = alpha_J.findDifferentOccupations(alpha_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+
+                    // Calculate the total sign, and include it in the DM contribution
+                    int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q);
+                    D_aa(p, q) += sign * c_I * c_J;
+                    D_aa(q, p) += sign * c_I * c_J;
+                }
+
+
+                // 1 electron excitation in beta, 0 in alpha
+                if ((alpha_I.countNumberOfDifferences(alpha_J) == 0) && (beta_I.countNumberOfDifferences(beta_J) == 2)) {
+
+                    // Find the orbitals that are occupied in one string, and aren't in the other
+                    size_t p = beta_I.findDifferentOccupations(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+                    size_t q = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+
+                    // Calculate the total sign, and include it in the DM contribution
+                    int sign = beta_I.operatorPhaseFactor(p) * beta_J.operatorPhaseFactor(q);
+                    D_bb(p, q) += sign * c_I * c_J;
+                    D_bb(q, p) += sign * c_I * c_J;
+                }
+
+            }  // loop over addresses J > I
+        }      // loop over addresses I
+
+        return SpinResolvedOneDM<double>(D_aa, D_bb);  // the total 1-DM is the sum of the spin components
     }
 
 
@@ -695,34 +1247,236 @@ public:
     template <typename Z = ONVBasis>
     enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, SpinResolvedTwoDM<double>> calculateSpinResolved2DM() const {
 
-        const SpinResolvedSelectedDMCalculator dm_calculator {this->onvBasis()};
-        return dm_calculator.calculateSpinResolved2DM(this->coefficients());
-    }
+        size_t K = this->onv_basis.numberOfOrbitals();
+        size_t dim = onv_basis.dimension();
 
 
-    /**
-     *  Calculate the one-electron density matrix for a full spin-unresolved wave function expansion.
-     * 
-     *  @return the total (spin-summed) 1-DM
-     */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value, OneDM<double>> calculate1DM() const {
+        TwoDM<double> d_aaaa {K};
+        d_aaaa.setZero();
 
-        const SpinUnresolvedDMCalculator dm_calculator {this->onvBasis()};
-        return dm_calculator.calculate1DM(this->coefficients());
-    }
+        TwoDM<double> d_aabb {K};
+        d_aabb.setZero();
+
+        TwoDM<double> d_bbaa {K};
+        d_bbaa.setZero();
+
+        TwoDM<double> d_bbbb {K};
+        d_bbbb.setZero();
 
 
-    /**
-     *  Calculate the two-electron density matrix for a full spin-unresolved wave function expansion.
-     * 
-     *  @return the total (spin-summed) 2-DM
-     */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value, TwoDM<double>> calculate2DM() const {
+        for (size_t I = 0; I < dim; I++) {  // loop over all addresses I
 
-        const SpinUnresolvedDMCalculator dm_calculator {this->onvBasis()};
-        return dm_calculator.calculate2DM(this->coefficients());
+            SpinResolvedONV configuration_I = this->onv_basis.onvWithIndex(I);
+            SpinUnresolvedONV alpha_I = configuration_I.onv(Spin::alpha);
+            SpinUnresolvedONV beta_I = configuration_I.onv(Spin::beta);
+
+            double c_I = this->coefficient(I);
+
+            for (size_t p = 0; p < K; p++) {
+
+                // 'Diagonal' elements of the 2-DM: aaaa and aabb
+                if (alpha_I.isOccupied(p)) {
+                    for (size_t q = 0; q < K; q++) {
+                        if (beta_I.isOccupied(q)) {
+                            d_aabb(p, p, q, q) += std::pow(c_I, 2);
+                        }
+
+                        if (p != q) {  // can't create/annihilate the same orbital twice
+                            if (alpha_I.isOccupied(q)) {
+                                d_aaaa(p, p, q, q) += std::pow(c_I, 2);
+                                d_aaaa(p, q, q, p) -= std::pow(c_I, 2);
+                            }
+                        }
+
+                    }  // loop over q
+                }
+
+                // 'Diagonal' elements of the 2-DM: bbbb and bbaa
+                if (beta_I.isOccupied(p)) {
+                    for (size_t q = 0; q < K; q++) {
+                        if (alpha_I.isOccupied(q)) {
+                            d_bbaa(p, p, q, q) += std::pow(c_I, 2);
+                        }
+
+                        if (p != q) {  // can't create/annihilate the same orbital twice
+                            if (beta_I.isOccupied(q)) {
+                                d_bbbb(p, p, q, q) += std::pow(c_I, 2);
+                                d_bbbb(p, q, q, p) -= std::pow(c_I, 2);
+                            }
+                        }
+                    }  // loop over q
+                }
+            }  // loop over q
+
+
+            for (size_t J = I + 1; J < dim; J++) {
+
+                SpinResolvedONV configuration_J = this->onv_basis.onvWithIndex(J);
+                SpinUnresolvedONV alpha_J = configuration_J.onv(Spin::alpha);
+                SpinUnresolvedONV beta_J = configuration_J.onv(Spin::beta);
+
+                double c_J = this->coefficient(J);
+
+                // 1 electron excitation in alpha, 0 in beta
+                if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
+
+                    // Find the orbitals that are occupied in one string, and aren't in the other
+                    size_t p = alpha_I.findDifferentOccupations(alpha_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+                    size_t q = alpha_J.findDifferentOccupations(alpha_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+
+                    // Calculate the total sign
+                    int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q);
+
+
+                    for (size_t r = 0; r < K; r++) {  // r loops over spatial orbitals
+
+                        if (alpha_I.isOccupied(r) && alpha_J.isOccupied(r)) {  // r must be occupied on the left and on the right
+                            if ((p != r) && (q != r)) {                        // can't create or annihilate the same orbital
+                                // Fill in the 2-DM contributions
+                                d_aaaa(p, q, r, r) += sign * c_I * c_J;
+                                d_aaaa(r, q, p, r) -= sign * c_I * c_J;
+                                d_aaaa(p, r, r, q) -= sign * c_I * c_J;
+                                d_aaaa(r, r, p, q) += sign * c_I * c_J;
+
+                                d_aaaa(q, p, r, r) += sign * c_I * c_J;
+                                d_aaaa(q, r, r, p) -= sign * c_I * c_J;
+                                d_aaaa(r, p, q, r) -= sign * c_I * c_J;
+                                d_aaaa(r, r, q, p) += sign * c_I * c_J;
+                            }
+                        }
+
+                        if (beta_I.isOccupied(r)) {  // beta_I == beta_J from the previous if-branch
+
+                            // Fill in the 2-DM contributions
+                            d_aabb(p, q, r, r) += sign * c_I * c_J;
+                            d_aabb(q, p, r, r) += sign * c_I * c_J;
+
+                            d_bbaa(r, r, p, q) += sign * c_I * c_J;
+                            d_bbaa(r, r, q, p) += sign * c_I * c_J;
+                        }
+                    }
+                }
+
+
+                // 0 electron excitations in alpha, 1 in beta
+                if ((alpha_I.countNumberOfDifferences(alpha_J) == 0) && (beta_I.countNumberOfDifferences(beta_J) == 2)) {
+
+                    // Find the orbitals that are occupied in one string, and aren't in the other
+                    size_t p = beta_I.findDifferentOccupations(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+                    size_t q = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+
+                    // Calculate the total sign
+                    int sign = beta_I.operatorPhaseFactor(p) * beta_J.operatorPhaseFactor(q);
+
+
+                    for (size_t r = 0; r < K; r++) {  // r loops over spatial orbitals
+
+                        if (beta_I.isOccupied(r) && beta_J.isOccupied(r)) {  // r must be occupied on the left and on the right
+                            if ((p != r) && (q != r)) {                      // can't create or annihilate the same orbital
+                                // Fill in the 2-DM contributions
+                                d_bbbb(p, q, r, r) += sign * c_I * c_J;
+                                d_bbbb(r, q, p, r) -= sign * c_I * c_J;
+                                d_bbbb(p, r, r, q) -= sign * c_I * c_J;
+                                d_bbbb(r, r, p, q) += sign * c_I * c_J;
+
+                                d_bbbb(q, p, r, r) += sign * c_I * c_J;
+                                d_bbbb(q, r, r, p) -= sign * c_I * c_J;
+                                d_bbbb(r, p, q, r) -= sign * c_I * c_J;
+                                d_bbbb(r, r, q, p) += sign * c_I * c_J;
+                            }
+                        }
+
+                        if (alpha_I.isOccupied(r)) {  // alpha_I == alpha_J from the previous if-branch
+
+                            // Fill in the 2-DM contributions
+                            d_bbaa(p, q, r, r) += sign * c_I * c_J;
+                            d_bbaa(q, p, r, r) += sign * c_I * c_J;
+
+                            d_aabb(r, r, p, q) += sign * c_I * c_J;
+                            d_aabb(r, r, q, p) += sign * c_I * c_J;
+                        }
+                    }
+                }
+
+
+                // 1 electron excitation in alpha, 1 in beta
+                if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 2)) {
+
+                    // Find the orbitals that are occupied in one string, and aren't in the other
+                    size_t p = alpha_I.findDifferentOccupations(alpha_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+                    size_t q = alpha_J.findDifferentOccupations(alpha_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+
+                    size_t r = beta_I.findDifferentOccupations(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+                    size_t s = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+
+                    // Calculate the total sign, and include it in the 2-DM contribution
+                    int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(s);
+                    d_aabb(p, q, r, s) += sign * c_I * c_J;
+                    d_aabb(q, p, s, r) += sign * c_I * c_J;
+
+                    d_bbaa(r, s, p, q) += sign * c_I * c_J;
+                    d_bbaa(s, r, q, p) += sign * c_I * c_J;
+                }
+
+
+                // 2 electron excitations in alpha, 0 in beta
+                if ((alpha_I.countNumberOfDifferences(alpha_J) == 4) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
+
+                    // Find the orbitals that are occupied in one string, and aren't in the other
+                    std::vector<size_t> occupied_indices_I = alpha_I.findDifferentOccupations(alpha_J);  // we're sure this has two elements
+                    size_t p = occupied_indices_I[0];
+                    size_t r = occupied_indices_I[1];
+
+                    std::vector<size_t> occupied_indices_J = alpha_J.findDifferentOccupations(alpha_I);  // we're sure this has two elements
+                    size_t q = occupied_indices_J[0];
+                    size_t s = occupied_indices_J[1];
+
+
+                    // Calculate the total sign, and include it in the 2-DM contribution
+                    int sign = alpha_I.operatorPhaseFactor(p) * alpha_I.operatorPhaseFactor(r) * alpha_J.operatorPhaseFactor(q) * alpha_J.operatorPhaseFactor(s);
+                    d_aaaa(p, q, r, s) += sign * c_I * c_J;
+                    d_aaaa(p, s, r, q) -= sign * c_I * c_J;
+                    d_aaaa(r, q, p, s) -= sign * c_I * c_J;
+                    d_aaaa(r, s, p, q) += sign * c_I * c_J;
+
+                    d_aaaa(q, p, s, r) += sign * c_I * c_J;
+                    d_aaaa(s, p, q, r) -= sign * c_I * c_J;
+                    d_aaaa(q, r, s, p) -= sign * c_I * c_J;
+                    d_aaaa(s, r, q, p) += sign * c_I * c_J;
+                }
+
+
+                // 0 electron excitations in alpha, 2 in beta
+                if ((alpha_I.countNumberOfDifferences(alpha_J) == 0) && (beta_I.countNumberOfDifferences(beta_J) == 4)) {
+
+                    // Find the orbitals that are occupied in one string, and aren't in the other
+                    std::vector<size_t> occupied_indices_I = beta_I.findDifferentOccupations(beta_J);  // we're sure this has two elements
+                    size_t p = occupied_indices_I[0];
+                    size_t r = occupied_indices_I[1];
+
+                    std::vector<size_t> occupied_indices_J = beta_J.findDifferentOccupations(beta_I);  // we're sure this has two elements
+                    size_t q = occupied_indices_J[0];
+                    size_t s = occupied_indices_J[1];
+
+
+                    // Calculate the total sign, and include it in the 2-DM contribution
+                    int sign = beta_I.operatorPhaseFactor(p) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(q) * beta_J.operatorPhaseFactor(s);
+                    d_bbbb(p, q, r, s) += sign * c_I * c_J;
+                    d_bbbb(p, s, r, q) -= sign * c_I * c_J;
+                    d_bbbb(r, q, p, s) -= sign * c_I * c_J;
+                    d_bbbb(r, s, p, q) += sign * c_I * c_J;
+
+                    d_bbbb(q, p, s, r) += sign * c_I * c_J;
+                    d_bbbb(s, p, q, r) -= sign * c_I * c_J;
+                    d_bbbb(q, r, s, p) -= sign * c_I * c_J;
+                    d_bbbb(s, r, q, p) += sign * c_I * c_J;
+                }
+
+            }  // loop over all addresses J > I
+
+        }  // loop over all addresses I
+
+        return SpinResolvedTwoDM<double>(d_aaaa, d_aabb, d_bbaa, d_bbbb);
     }
 
 
@@ -741,6 +1495,12 @@ public:
         return -1 / std::log(2) * (coefficients_squared * log_coefficients_squared).sum();
     }
 
+    /**
+     *  @param i    The index (address) of the coefficient that should be obtained.
+     * 
+     *  @return The i-th expansion coefficient.
+     */
+    double coefficient(const size_t i) const { return this->m_coefficients(i); }
 
     /**
      *  @return the expansion coefficients of this linear expansion wave function model

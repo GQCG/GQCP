@@ -21,7 +21,8 @@
 #include "Basis/TransformationMatrix.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "Processing/DensityMatrices/OneDM.hpp"
+#include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
+#include "Processing/DensityMatrices/SpinResolvedOneDM.hpp"
 #include "QCModel/HF/RHF.hpp"
 
 #include <Eigen/Dense>
@@ -59,11 +60,9 @@ public:
     std::deque<TransformationMatrix<Scalar>> coefficient_matrices_alpha;
     std::deque<TransformationMatrix<Scalar>> coefficient_matrices_beta;
 
-    std::deque<OneDM<Scalar>> density_matrices_alpha;  // expressed in the scalar (AO) basis
-    std::deque<OneDM<Scalar>> density_matrices_beta;   // expressed in the scalar (AO) basis
+    std::deque<SpinResolvedOneDM<double>> density_matrices;  // expressed in the scalar (AO) basis
 
-    std::deque<QCMatrix<Scalar>> fock_matrices_alpha;  // expressed in the scalar (AO) basis
-    std::deque<QCMatrix<Scalar>> fock_matrices_beta;   // expressed in the scalar (AO) basis
+    std::deque<USQOneElectronOperator<Scalar, 1>> fock_matrices;  // expressed in the scalar (AO) basis
 
     std::deque<VectorX<Scalar>> error_vectors_alpha;  // expressed in the scalar (AO) basis, used when doing DIIS calculations: the real error matrices should be converted to column-major error vectors for the DIIS algorithm to be used correctly
     std::deque<VectorX<Scalar>> error_vectors_beta;   // expressed in the scalar (AO) basis, used when doing DIIS calculations: the real error matrices should be converted to column-major error vectors for the DIIS algorithm to be used correctly

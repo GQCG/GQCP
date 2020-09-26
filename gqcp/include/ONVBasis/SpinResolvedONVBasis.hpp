@@ -58,7 +58,6 @@ public:
     ~SpinResolvedONVBasis() override = default;
 
 
-
     // STATIC PUBLIC METHODS
 
     /**
@@ -69,14 +68,6 @@ public:
      *  @return the dimension of this ONV basis
      */
     static size_t calculateDimension(const size_t K, const size_t N_alpha, const size_t N_beta);
-
-
-    // PUBLIC OVERRIDDEN METHODS
-
-    /**
-     *  @return the type of this ONV basis
-     */
-    ONVBasisType type() const override { return ONVBasisType::SpinResolvedONVBasis; }
 
 
     // PUBLIC METHODS

@@ -18,10 +18,9 @@
 #pragma once
 
 
+#include "Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp"
 #include "ONVBasis/BaseONVBasis.hpp"
-#include "ONVBasis/EvaluationIterator.hpp"
 #include "ONVBasis/SeniorityZeroONVBasis.hpp"
-#include "ONVBasis/SpinResolvedFrozenONVBasis.hpp"
 #include "ONVBasis/SpinResolvedONV.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "Operator/SecondQuantized/USQHamiltonian.hpp"
@@ -70,7 +69,7 @@ public:
      *
      *  @param onv_basis        the frozen product ONV basis from which the onvs should be generated
      */
-    SpinResolvedSelectedONVBasis(const SpinResolvedFrozenONVBasis& onv_basis);
+    // SpinResolvedSelectedONVBasis(const SpinResolvedFrozenONVBasis& onv_basis);
 
     /**
      *  A constructor that generates the onvs based on the given SpinResolvedONVBasis.
@@ -78,14 +77,6 @@ public:
      *  @param onv_basis        the product ONV basis from which the onvs should be generated
      */
     SpinResolvedSelectedONVBasis(const SpinResolvedONVBasis& onv_basis);
-
-
-    // PUBLIC OVERRIDDEN METHODS
-
-    /**
-     *  @return the type of this ONV basis
-     */
-    ONVBasisType type() const override { return ONVBasisType::SpinResolvedSelectedONVBasis; }
 
 
     // PUBLIC METHODS
@@ -121,10 +112,10 @@ public:
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template <typename _Matrix>
-    void evaluateOperator(const ScalarSQOneElectronOperator<double>& one_op, EvaluationIterator<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    void evaluate(const ScalarSQOneElectronOperator<double>& one_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
 
         // Calling the unrestricted universal method, with identical alpha and beta components does not affect the performance, hence we avoid duplicated code for the restricted part.
-        this->evaluateOperator(one_op, one_op, evaluation_iterator, diagonal_values);
+        this->evaluate(one_op, one_op, evaluation_iterator, diagonal_values);
     }
 
     /**
@@ -138,7 +129,7 @@ public:
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template <typename _Matrix>
-    void evaluateOperator(const ScalarSQOneElectronOperator<double>& one_op_alpha, const ScalarSQOneElectronOperator<double>& one_op_beta, EvaluationIterator<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    void evaluate(const ScalarSQOneElectronOperator<double>& one_op_alpha, const ScalarSQOneElectronOperator<double>& one_op_beta, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
 
         const size_t dim = this->dimension();
         const auto& h_a = one_op_alpha.parameters();
@@ -214,10 +205,10 @@ public:
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template <typename _Matrix>
-    void evaluateOperator(const ScalarSQTwoElectronOperator<double>& two_op, EvaluationIterator<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    void evaluate(const ScalarSQTwoElectronOperator<double>& two_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
 
         // Calling this combined method for both the one- and two-electron operator does not affect the performance, hence we avoid writting more code by plugging a zero one-electron operator in the combined method.
-        this->evaluateOperator(ScalarSQOneElectronOperator<double> {this->M}, ScalarSQOneElectronOperator<double> {this->M}, two_op, two_op, two_op, evaluation_iterator, diagonal_values);
+        this->evaluate(ScalarSQOneElectronOperator<double> {this->M}, ScalarSQOneElectronOperator<double> {this->M}, two_op, two_op, two_op, evaluation_iterator, diagonal_values);
     }
 
 
@@ -232,10 +223,10 @@ public:
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template <typename _Matrix>
-    void evaluateOperator(const ScalarSQOneElectronOperator<double>& one_op, const ScalarSQTwoElectronOperator<double>& two_op, EvaluationIterator<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    void evaluate(const ScalarSQOneElectronOperator<double>& one_op, const ScalarSQTwoElectronOperator<double>& two_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
 
         // Calling the unrestricted universal method, with identical alpha, beta and mixed components does not affect the performance, hence we avoid duplicated code for the restricted part
-        this->evaluateOperator(one_op, one_op, two_op, two_op, two_op, evaluation_iterator, diagonal_values);
+        this->evaluate(one_op, one_op, two_op, two_op, two_op, evaluation_iterator, diagonal_values);
     }
 
 
@@ -253,7 +244,7 @@ public:
      *  @param diagonal_values                  bool to indicate if diagonal values will be calculated
      */
     template <typename _Matrix>
-    void evaluateOperator(const ScalarSQOneElectronOperator<double>& one_op_alpha, const ScalarSQOneElectronOperator<double>& one_op_beta, const ScalarSQTwoElectronOperator<double>& two_op_alpha, const ScalarSQTwoElectronOperator<double>& two_op_beta, const ScalarSQTwoElectronOperator<double>& two_op_mixed, EvaluationIterator<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    void evaluate(const ScalarSQOneElectronOperator<double>& one_op_alpha, const ScalarSQOneElectronOperator<double>& one_op_beta, const ScalarSQTwoElectronOperator<double>& two_op_alpha, const ScalarSQTwoElectronOperator<double>& two_op_beta, const ScalarSQTwoElectronOperator<double>& two_op_mixed, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
 
         const size_t dim = this->dimension();
         const size_t K = this->numberOfOrbitals();
@@ -460,13 +451,13 @@ public:
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template <typename _Matrix>
-    void evaluateOperator(const USQHamiltonian<double>& usq_hamiltonian, EvaluationIterator<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    void evaluate(const USQHamiltonian<double>& usq_hamiltonian, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
 
         if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
-            throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperator(USQHamiltonian<double>, EvaluationIterator&, bool): Different spinor dimensions of spin components are currently not supported.");
+            throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluate(USQHamiltonian<double>, MatrixRepresentationEvaluationContainer&, bool): Different spinor dimensions of spin components are currently not supported.");
         }
 
-        this->evaluateOperator(usq_hamiltonian.spinHamiltonian(Spin::alpha).core(), usq_hamiltonian.spinHamiltonian(Spin::beta).core(), usq_hamiltonian.spinHamiltonian(Spin::alpha).twoElectron(), usq_hamiltonian.spinHamiltonian(Spin::beta).twoElectron(), usq_hamiltonian.twoElectronMixed(), evaluation_iterator, diagonal_values);
+        this->evaluate(usq_hamiltonian.spinHamiltonian(Spin::alpha).core(), usq_hamiltonian.spinHamiltonian(Spin::beta).core(), usq_hamiltonian.spinHamiltonian(Spin::alpha).twoElectron(), usq_hamiltonian.spinHamiltonian(Spin::beta).twoElectron(), usq_hamiltonian.twoElectronMixed(), evaluation_iterator, diagonal_values);
     }
 
 

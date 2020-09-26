@@ -19,9 +19,9 @@
 
 
 #include "Mathematical/Algorithm/Step.hpp"
+#include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
 #include "QCMethod/HF/UHF/UHFSCFEnvironment.hpp"
 #include "QCModel/HF/UHF.hpp"
-#include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
 
 
 namespace GQCP {
@@ -63,14 +63,13 @@ public:
 
         const auto& H_core = environment.sq_hamiltonian.core();  // the core Hamiltonian matrix: in zero-field calculations, alpha and beta are equal
 
-        const auto& P_alpha = environment.density_matrices_alpha.back();  // the most recent alpha density matrix
-        const auto& P_beta = environment.density_matrices_beta.back();    // the most recent beta density matrix
+        const auto& P = environment.density_matrices.back();  // the most recent alpha & beta density matrix
 
-        const ScalarUSQOneElectronOperator<Scalar> F {environment.fock_matrices_alpha.back(), environment.fock_matrices_beta.back()};  // the most recent alpha and beta Fock matrices
+        const auto& F = environment.fock_matrices.back();  // the most recent alpha and beta Fock matrices
 
 
-        const auto E_electronic_alpha = QCModel::UHF<double>::calculateElectronicEnergy(P_alpha, H_core, F.parameters(GQCP::Spin::alpha));
-        const auto E_electronic_beta = QCModel::UHF<double>::calculateElectronicEnergy(P_beta, H_core, F.parameters(GQCP::Spin::beta));
+        const auto E_electronic_alpha = QCModel::UHF<double>::calculateElectronicEnergy(P.alpha(), H_core, F.parameters(GQCP::Spin::alpha));
+        const auto E_electronic_beta = QCModel::UHF<double>::calculateElectronicEnergy(P.beta(), H_core, F.parameters(GQCP::Spin::beta));
 
         const auto E_electronic = E_electronic_alpha + E_electronic_beta;
         environment.electronic_energies.push_back(E_electronic);

@@ -116,26 +116,7 @@ public:
 
 
     /*
-     *  OPERATORS
-     */
-
-    /**
-     *  @param i            the index
-     * 
-     *  @return the i-th component (i.e. the i-th alpha and i-th beta component) of this operator
-     */
-    USQOneElectronOperator<Scalar, 1> operator[](const size_t i) const {
-
-        if (i >= Components) {
-            throw std::invalid_argument("USQOneElectronOperator::operator[](const size_t): The given index is out of bounds.");
-        }
-
-        return USQOneElectronOperator<Scalar, 1> {this->fs_a[i], this->fs_b[i]};
-    }
-
-
-    /*
-     *  PUBLIC METHODS
+     *  MARK: Accessing parameters
      */
 
     /**
@@ -169,46 +150,17 @@ public:
 
 
     /**
-     *  @param D                the spin-resolved 1-DM that represents the wave function
-     *
-     *  @return the expectation values of all components of the one-electron operator
-     */
-    Vector<Scalar, Components> calculateExpectationValue(const SpinResolvedOneDM<Scalar>& D) const {
-
-        if (this->fs_a[0].numberOfOrbitals() != D.numberOfOrbitals(Spin::alpha) || this->fs_b[0].numberOfOrbitals() != D.numberOfOrbitals(Spin::beta)) {
-            throw std::invalid_argument("USQOneElectronOperator::calculateExpectationValue(const OneDM<Scalar>&, const OneDM<Scalar>&): The given 1-DM is not compatible with the one-electron operator.");
-        }
-
-        std::array<Scalar, Components> expectation_values {};  // zero initialization
-
-        for (size_t i = 0; i < Components; i++) {
-            expectation_values[i] = (this->parameters(GQCP::Spin::alpha, i) * D.alpha()).trace() + (this->parameters(GQCP::Spin::beta, i) * D.beta()).trace();
-        }
-
-        return Eigen::Map<Eigen::Matrix<Scalar, Components, 1>>(expectation_values.data());  // convert std::array to Vector
-    }
-
-
-    /**
-     *  @return the sum of the alpha and beta dimensions
-     */
-    size_t numberOfOrbitals() const {
-        return this->numberOfOrbitals(GQCP::Spin::alpha) + this->numberOfOrbitals(GQCP::Spin::beta);
-    }
-
-
-    /**
-     *  @param sigma                The requested spin component. This can be either alpha or beta.
+     *  @param i            the index
      * 
-     *  @return the dimension of the matrices for the requested spin component.
+     *  @return the i-th component (i.e. the i-th alpha and i-th beta component) of this operator
      */
-    size_t numberOfOrbitals(const Spin sigma) const {
+    USQOneElectronOperator<Scalar, 1> operator[](const size_t i) const {
 
-        if (sigma == Spin::alpha) {
-            return this->fs_a[0].numberOfOrbitals();
-        } else {
-            return this->fs_b[0].numberOfOrbitals();
-        };
+        if (i >= Components) {
+            throw std::invalid_argument("USQOneElectronOperator::operator[](const size_t): The given index is out of bounds.");
+        }
+
+        return USQOneElectronOperator<Scalar, 1> {this->fs_a[i], this->fs_b[i]};
     }
 
 
@@ -243,6 +195,62 @@ public:
         };
     }
 
+
+    /*
+     *  MARK: Calculations
+     */
+
+    /**
+     *  @param D                the spin-resolved 1-DM that represents the wave function
+     *
+     *  @return the expectation values of all components of the one-electron operator
+     */
+    Vector<Scalar, Components> calculateExpectationValue(const SpinResolvedOneDM<Scalar>& D) const {
+
+        if (this->fs_a[0].numberOfOrbitals() != D.numberOfOrbitals(Spin::alpha) || this->fs_b[0].numberOfOrbitals() != D.numberOfOrbitals(Spin::beta)) {
+            throw std::invalid_argument("USQOneElectronOperator::calculateExpectationValue(const OneDM<Scalar>&, const OneDM<Scalar>&): The given 1-DM is not compatible with the one-electron operator.");
+        }
+
+        std::array<Scalar, Components> expectation_values {};  // zero initialization
+
+        for (size_t i = 0; i < Components; i++) {
+            expectation_values[i] = (this->parameters(GQCP::Spin::alpha, i) * D.alpha()).trace() + (this->parameters(GQCP::Spin::beta, i) * D.beta()).trace();
+        }
+
+        return Eigen::Map<Eigen::Matrix<Scalar, Components, 1>>(expectation_values.data());  // convert std::array to Vector
+    }
+
+
+    /*
+     *  MARK: General information
+     */
+
+    /**
+     *  @return the sum of the alpha and beta dimensions
+     */
+    size_t numberOfOrbitals() const {
+        return this->numberOfOrbitals(GQCP::Spin::alpha) + this->numberOfOrbitals(GQCP::Spin::beta);
+    }
+
+
+    /**
+     *  @param sigma                The requested spin component. This can be either alpha or beta.
+     * 
+     *  @return the dimension of the matrices for the requested spin component.
+     */
+    size_t numberOfOrbitals(const Spin sigma) const {
+
+        if (sigma == Spin::alpha) {
+            return this->fs_a[0].numberOfOrbitals();
+        } else {
+            return this->fs_b[0].numberOfOrbitals();
+        };
+    }
+
+
+    /*
+     *  MARK: Basis transformations
+     */
 
     /**
      *  In-place rotate the operator to another basis. The same matrix is used for the alpha and beta components.   
@@ -297,7 +305,7 @@ public:
 
 
 /*
- *  CONVENIENCE ALIASES
+ *  MARK: Aliases
  */
 template <typename Scalar>
 using ScalarUSQOneElectronOperator = USQOneElectronOperator<Scalar, 1>;
@@ -307,7 +315,7 @@ using VectorUSQOneElectronOperator = USQOneElectronOperator<Scalar, 3>;
 
 
 /*
- *  OPERATORS
+ *  MARK: Vector-like arithmetic
  */
 
 /**

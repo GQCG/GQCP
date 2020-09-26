@@ -88,21 +88,41 @@ void bindUHFSCFEnvironment(py::module& module) {
             "coefficient_matrices_beta",
             &GQCP::UHFSCFEnvironment<double>::coefficient_matrices_beta)
 
-        .def_readonly(
+        .def(
             "density_matrices_alpha",
-            &GQCP::UHFSCFEnvironment<double>::density_matrices_alpha)
+            [](const GQCP::UHFSCFEnvironment<double>& environment) {
+                std::vector<GQCP::MatrixX<double>> alpha_density_matrices;
+                std::transform(environment.density_matrices.begin(), environment.density_matrices.end(), std::back_inserter(alpha_density_matrices), [](const GQCP::SpinResolvedOneDM<double>& D) { return D.alpha(); });
 
-        .def_readonly(
+                return alpha_density_matrices;
+            })
+
+        .def(
             "density_matrices_beta",
-            &GQCP::UHFSCFEnvironment<double>::density_matrices_beta)
+            [](const GQCP::UHFSCFEnvironment<double>& environment) {
+                std::vector<GQCP::MatrixX<double>> beta_density_matrices;
+                std::transform(environment.density_matrices.begin(), environment.density_matrices.end(), std::back_inserter(beta_density_matrices), [](const GQCP::SpinResolvedOneDM<double>& D) { return D.beta(); });
 
-        .def_readonly(
+                return beta_density_matrices;
+            })
+
+        .def(
             "fock_matrices_alpha",
-            &GQCP::UHFSCFEnvironment<double>::fock_matrices_alpha)
+            [](const GQCP::UHFSCFEnvironment<double>& environment) {
+                std::vector<GQCP::MatrixX<double>> alpha_fock_matrices;
+                std::transform(environment.fock_matrices.begin(), environment.fock_matrices.end(), std::back_inserter(alpha_fock_matrices), [](const GQCP::ScalarUSQOneElectronOperator<double>& F) { return F.parameters(GQCP::Spin::alpha); });
 
-        .def_readonly(
+                return alpha_fock_matrices;
+            })
+
+        .def(
             "fock_matrices_beta",
-            &GQCP::UHFSCFEnvironment<double>::fock_matrices_beta)
+            [](const GQCP::UHFSCFEnvironment<double>& environment) {
+                std::vector<GQCP::MatrixX<double>> beta_fock_matrices;
+                std::transform(environment.fock_matrices.begin(), environment.fock_matrices.end(), std::back_inserter(beta_fock_matrices), [](const GQCP::ScalarUSQOneElectronOperator<double>& F) { return F.parameters(GQCP::Spin::beta); });
+
+                return beta_fock_matrices;
+            })
 
         .def_readonly(
             "error_vectors_alpha",
@@ -128,38 +148,50 @@ void bindUHFSCFEnvironment(py::module& module) {
 
         .def("replace_current_density_matrix_alpha",
              [](GQCP::UHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& new_density_matrix_alpha) {
-                 environment.density_matrices_alpha.pop_back();
-                 environment.density_matrices_alpha.push_back(GQCP::QCMatrix<double>(new_density_matrix_alpha));
+                 const auto last_spin_resolved_density = environment.density_matrices.back();
+                 const auto last_density_matrix_beta = last_spin_resolved_density.beta();
+                 environment.density_matrices.pop_back();
+                 environment.density_matrices.push_back(GQCP::SpinResolvedOneDM<double>(new_density_matrix_alpha, last_density_matrix_beta));
              })
 
         .def("replace_current_density_matrix_beta",
              [](GQCP::UHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& new_density_matrix_beta) {
-                 environment.density_matrices_beta.pop_back();
-                 environment.density_matrices_beta.push_back(GQCP::QCMatrix<double>(new_density_matrix_beta));
+                 const auto last_spin_resolved_density = environment.density_matrices.back();
+                 const auto last_density_matrix_alpha = last_spin_resolved_density.beta();
+                 environment.density_matrices.pop_back();
+                 environment.density_matrices.push_back(GQCP::SpinResolvedOneDM<double>(last_density_matrix_alpha, new_density_matrix_beta));
              })
 
         .def("replace_current_fock_matrix_alpha",
              [](GQCP::UHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& new_fock_matrix_alpha) {
-                 environment.fock_matrices_alpha.pop_back();
-                 environment.fock_matrices_alpha.push_back(GQCP::QCMatrix<double>(new_fock_matrix_alpha));
+                 const auto last_USQ_Fock = environment.fock_matrices.back();
+                 const auto last_fock_matrix_beta = last_USQ_Fock.parameters(GQCP::Spin::beta);
+                 GQCP::ScalarUSQOneElectronOperator<double> new_fock {new_fock_matrix_alpha, last_fock_matrix_beta};
+
+                 environment.fock_matrices.pop_back();
+                 environment.fock_matrices.push_back(new_fock);
              })
 
         .def("replace_current_fock_matrix_beta",
              [](GQCP::UHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& new_fock_matrix_beta) {
-                 environment.fock_matrices_beta.pop_back();
-                 environment.fock_matrices_beta.push_back(GQCP::QCMatrix<double>(new_fock_matrix_beta));
+                 const auto last_USQ_Fock = environment.fock_matrices.back();
+                 const auto last_fock_matrix_alpha = last_USQ_Fock.parameters(GQCP::Spin::alpha);
+                 GQCP::ScalarUSQOneElectronOperator<double> new_fock {last_fock_matrix_alpha, new_fock_matrix_beta};
+
+                 environment.fock_matrices.pop_back();
+                 environment.fock_matrices.push_back(new_fock);
              })
 
         .def("replace_current_error_vectors_alpha",
              [](GQCP::UHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& new_error_vectors_alpha) {
-                 environment.fock_matrices_alpha.pop_back();
-                 environment.fock_matrices_alpha.push_back(GQCP::QCMatrix<double>(new_error_vectors_alpha));
+                 environment.error_vectors_alpha.pop_back();
+                 environment.error_vectors_alpha.push_back(GQCP::QCMatrix<double>(new_error_vectors_alpha));
              })
 
         .def("replace_current_error_vectors_beta",
              [](GQCP::UHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& new_error_vectors_beta) {
-                 environment.fock_matrices_beta.pop_back();
-                 environment.fock_matrices_beta.push_back(GQCP::QCMatrix<double>(new_error_vectors_beta));
+                 environment.error_vectors_beta.pop_back();
+                 environment.error_vectors_beta.push_back(GQCP::QCMatrix<double>(new_error_vectors_beta));
              });
 }
 

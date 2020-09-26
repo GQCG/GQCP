@@ -26,16 +26,7 @@
 
 
 /**
- *  Test the SpinUnresolvedONVBasis constructor
- */
-BOOST_AUTO_TEST_CASE(ONVBasis_constructor) {
-
-    BOOST_CHECK_NO_THROW(GQCP::SpinUnresolvedONVBasis(10, 5));
-}
-
-
-/**
- *  Check if the static SpinUnresolvedONV basis dimension calculation is correct and if it can throw errors
+ *  Check if the calculation of the dimension of a SpinUnresolvedONVBasis is correct and if it can throw errors.
  */
 BOOST_AUTO_TEST_CASE(ONVBasis_dimension) {
 
@@ -48,20 +39,48 @@ BOOST_AUTO_TEST_CASE(ONVBasis_dimension) {
 
 
 /**
- *  Test if the vertex weights of the SpinUnresolvedONV basis addressing scheme are correct
+ *  Test if the vertex weights of the SpinUnresolvedONV basis addressing scheme are correct for the Fock space F(5,3).
+ * 
+ *  For this (full) Fock space, the vertex weights are as follows:
+ * 
+ *      1   0   0   0
+ *      1   1   0   0
+ *      1   2   1   0
+ *      0   3   3   1
+ *      0   0   6   4
+ *      0   0   0   10
  */
-BOOST_AUTO_TEST_CASE(vertex_weights_K5_N3) {
+BOOST_AUTO_TEST_CASE(vertex_weights_M5_N3) {
 
-    // Let's test an addressing scheme for K=5 and N=3 (5 MOs and 3 alpha electrons)
-    GQCP::SpinUnresolvedONVBasis fock_space {5, 3};
+    const GQCP::SpinUnresolvedONVBasis onv_basis {5, 3};
 
-    std::vector<std::vector<size_t>> ref_vertex_weights = {{1, 0, 0, 0},
-                                                           {1, 1, 0, 0},
-                                                           {1, 2, 1, 0},
-                                                           {0, 3, 3, 1},
-                                                           {0, 0, 6, 4},
-                                                           {0, 0, 0, 10}};
-    BOOST_CHECK(ref_vertex_weights == fock_space.vertexWeights());
+    BOOST_CHECK(onv_basis.vertexWeight(0, 0) == 1);
+    BOOST_CHECK(onv_basis.vertexWeight(1, 2) == 0);
+    BOOST_CHECK(onv_basis.vertexWeight(3, 2) == 3);
+    BOOST_CHECK(onv_basis.vertexWeight(4, 2) == 6);
+    BOOST_CHECK(onv_basis.vertexWeight(5, 3) == 10);
+}
+
+
+/**
+ *  Test if the arc weights of the SpinUnresolvedONV basis addressing scheme are correct for the Fock space F(5,3).
+ * 
+ *  For this (full) Fock space, the vertex weights are as follows:
+ * 
+ *      1   0   0   0
+ *      1   1   0   0
+ *      1   2   1   0
+ *      0   3   3   1
+ *      0   0   6   4
+ *      0   0   0   10
+ */
+BOOST_AUTO_TEST_CASE(arc_weights_M5_N3) {
+
+    const GQCP::SpinUnresolvedONVBasis onv_basis {5, 3};
+
+    BOOST_CHECK(onv_basis.arcWeight(3, 1) == 3);
+    BOOST_CHECK(onv_basis.arcWeight(4, 2) == 4);
+    BOOST_CHECK(onv_basis.arcWeight(2, 2) == 0);
 }
 
 
@@ -314,6 +333,44 @@ BOOST_AUTO_TEST_CASE(ONVBasis_setNext) {
     BOOST_CHECK_EQUAL(onv.unsignedRepresentation(), 14);
     std::vector<size_t> ref_indices3 {1, 2, 3};
     BOOST_CHECK(ref_indices3 == onv.occupiedIndices());
+}
+
+
+/**
+ *  Check if the evaluation of a one-electron operator in a spin-unresolved ONV basis matches the evaluation in a spin-resolved selected ONV basis with only alpha electrons.
+ * 
+ *  The test system is a H6(2+)-chain with internuclear separation of 0.742 (a.u.) in an STO-3G basis.
+ */
+BOOST_AUTO_TEST_CASE(evaluate_one_electron_operator) {
+
+    // Set up an example molecular Hamiltonian.
+    const auto molecule = GQCP::Molecule::HChain(6, 0.742, +2);
+    const auto N = molecule.numberOfElectrons();
+
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+    const auto M = spinor_basis.numberOfSpatialOrbitals();
+    spinor_basis.lowdinOrthonormalize();
+    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in the orthonormal Löwdin basis
+
+    // Set up the two equivalent ONV bases.
+    const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
+    const GQCP::SpinResolvedSelectedONVBasis selected_onv_basis {GQCP::SpinResolvedONVBasis(M, N, 0)};  // no beta electrons
+
+
+    // Check the evaluation of the core Hamiltonian.
+    const auto& h_op = sq_hamiltonian.core();
+
+    // Check the dense evaluation.
+    const auto h_dense = onv_basis.evaluate<GQCP::SquareMatrix<double>>(h_op, true);     // true: calculate diagonal values
+    const auto h_dense_selected = selected_onv_basis.evaluateOperatorDense(h_op, true);  // true: calculate diagonal values
+
+    BOOST_CHECK(h_dense.isApprox(h_dense_selected));
+
+
+    // Check the sparse evaluation.
+
+
+    //
 }
 
 

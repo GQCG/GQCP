@@ -63,11 +63,11 @@ public:
         // Read F, D and S from the environment.
         const auto& S = environment.S;
 
-        const auto& F_alpha = environment.fock_matrices_alpha.back();
-        const auto& F_beta = environment.fock_matrices_beta.back();
+        const auto& F_alpha = environment.fock_matrices.back().parameters(Spin::alpha);
+        const auto& F_beta = environment.fock_matrices.back().parameters(Spin::beta);
 
-        const auto& D_alpha = environment.density_matrices_alpha.back();
-        const auto& D_beta = environment.density_matrices_beta.back();
+        const auto& D_alpha = environment.density_matrices.back().alpha();
+        const auto& D_beta = environment.density_matrices.back().beta();
 
 
         // Calculate the errors and write them to the environment (as a vector).

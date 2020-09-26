@@ -20,13 +20,11 @@
 
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
 #include "ONVBasis/SeniorityZeroONVBasis.hpp"
-#include "ONVBasis/SpinResolvedFrozenONVBasis.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/FrozenCoreFCI.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/Hubbard.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/SelectedCI.hpp"
 
@@ -71,13 +69,13 @@ EigenproblemEnvironment Dense(const SQHamiltonian<Scalar>& sq_hamiltonian, const
  * 
  *  @return an environment suitable for solving frozen core FCI eigenvalue problems
  */
-template <typename Scalar>
-EigenproblemEnvironment Dense(const SQHamiltonian<Scalar>& sq_hamiltonian, const SpinResolvedFrozenONVBasis& onv_basis) {
+// template <typename Scalar>
+// EigenproblemEnvironment Dense(const SQHamiltonian<Scalar>& sq_hamiltonian, const SpinResolvedFrozenONVBasis& onv_basis) {
 
-    const FrozenCoreFCI frozen_core_fci_builder {onv_basis};  // the 'HamiltonianBuilder'
-    const auto H = frozen_core_fci_builder.constructHamiltonian(sq_hamiltonian);
-    return EigenproblemEnvironment::Dense(H);
-}
+//     const FrozenCoreFCI frozen_core_fci_builder {onv_basis};  // the 'HamiltonianBuilder'
+//     const auto H = frozen_core_fci_builder.constructHamiltonian(sq_hamiltonian);
+//     return EigenproblemEnvironment::Dense(H);
+// }
 
 
 /**
@@ -155,16 +153,16 @@ EigenproblemEnvironment Iterative(const SQHamiltonian<Scalar>& sq_hamiltonian, c
  * 
  *  @return an environment suitable for solving frozen core FCI eigenvalue problems
  */
-template <typename Scalar>
-EigenproblemEnvironment Iterative(const SQHamiltonian<Scalar>& sq_hamiltonian, const SpinResolvedFrozenONVBasis& onv_basis, const MatrixX<double>& V) {
+// template <typename Scalar>
+// EigenproblemEnvironment Iterative(const SQHamiltonian<Scalar>& sq_hamiltonian, const SpinResolvedFrozenONVBasis& onv_basis, const MatrixX<double>& V) {
 
-    const FrozenCoreFCI frozen_core_fci_builder {onv_basis};  // the 'HamiltonianBuilder'
+//     const FrozenCoreFCI frozen_core_fci_builder {onv_basis};  // the 'HamiltonianBuilder'
 
-    const auto diagonal = frozen_core_fci_builder.calculateDiagonal(sq_hamiltonian);
-    const auto matvec_function = [diagonal, frozen_core_fci_builder, sq_hamiltonian](const VectorX<double>& x) { return frozen_core_fci_builder.matrixVectorProduct(sq_hamiltonian, x, diagonal); };
+//     const auto diagonal = frozen_core_fci_builder.calculateDiagonal(sq_hamiltonian);
+//     const auto matvec_function = [diagonal, frozen_core_fci_builder, sq_hamiltonian](const VectorX<double>& x) { return frozen_core_fci_builder.matrixVectorProduct(sq_hamiltonian, x, diagonal); };
 
-    return EigenproblemEnvironment::Iterative(matvec_function, diagonal, V);
-}
+//     return EigenproblemEnvironment::Iterative(matvec_function, diagonal, V);
+// }
 
 
 /**

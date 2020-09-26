@@ -75,7 +75,7 @@ SINGULARITY_CACHEDIR=$VSC_SCRATCH/containers/cache SINGULARITY_TMPDIR=$VSC_SCRAT
 ```
 
 
-Note that the above `SINGULARITY_*` environment variables can also be set user wide in your `.bashrc`. 
+> **Note**: The `SINGULARITY_*` variables used above can also be set user wide in your `.bashrc`. 
 
 After converting the Docker image to a Singularity file you can shell into the resulting `*.sif`
 

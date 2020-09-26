@@ -44,3 +44,10 @@ __pycache__
 # Node.js and yarn
 node_modules
 website/yarn.lock
+
+# LaTeX
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz

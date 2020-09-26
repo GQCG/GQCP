@@ -16,7 +16,6 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "ONVBasis/SeniorityZeroONVBasis.hpp"
-#include "ONVBasis/SpinResolvedFrozenONVBasis.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "QCMethod/CI/CI.hpp"
@@ -62,7 +61,7 @@ void bindCIFactoryMethod(py::module& module) {
 void bindCIFactory(py::module& module) {
 
     bindCIFactoryMethod<GQCP::SeniorityZeroONVBasis>(module);
-    bindCIFactoryMethod<GQCP::SpinResolvedFrozenONVBasis>(module);
+    // bindCIFactoryMethod<GQCP::SpinResolvedFrozenONVBasis>(module);
     bindCIFactoryMethod<GQCP::SpinResolvedONVBasis>(module);
     bindCIFactoryMethod<GQCP::SpinResolvedSelectedONVBasis>(module);
 }

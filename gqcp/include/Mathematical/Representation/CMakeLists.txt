@@ -1,12 +1,15 @@
 target_sources(gqcp
     PRIVATE
         Array.hpp
+        DenseVectorizer.hpp
         ImplicitMatrixSlice.hpp
         ImplicitRankFourTensorSlice.hpp
         Matrix.hpp
+        MatrixRepresentationEvaluationContainer.hpp
         QCMatrix.hpp
         QCRankFourTensor.hpp
         SquareMatrix.hpp
         SquareRankFourTensor.hpp
+        StorageArray.hpp
         Tensor.hpp
 )
