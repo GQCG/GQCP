@@ -19,6 +19,7 @@
 
 
 #include "Basis/SpinorBasis/Spin.hpp"
+#include "Mathematical/Functions/VectorSpaceArithmetic.hpp"
 #include "Processing/DensityMatrices/OneDM.hpp"
 
 
@@ -31,9 +32,11 @@ namespace GQCP {
  *  @tparam _Scalar             the scalar type of one of the elements
  */
 template <typename _Scalar>
-class SpinResolvedOneDM {
+class SpinResolvedOneDM:
+    public VectorSpaceArithmetic<SpinResolvedOneDM<_Scalar>, _Scalar> {
 public:
     using Scalar = _Scalar;
+    using Self = SpinResolvedOneDM<Scalar>;
 
 
 private:
@@ -156,87 +159,45 @@ public:
     SpinResolvedOneDM<Scalar> transform(const TransformationMatrix<double>& T) const {
         return this->transform(T, T);
     }
+
+    /*
+     *  MARK: Vector space arithmetic
+     */
+
+    /**
+     *  Addition-assignment.
+     */
+    Self& operator+=(const Self& rhs) override {
+
+        auto D_sum_a = this->alpha();
+        auto D_sum_b = this->beta();
+
+        D_sum_a += rhs.alpha();
+        D_sum_b += rhs.beta();
+
+        this->D_aa = D_sum_a;
+        this->D_bb = D_sum_b;
+
+        return *this;
+    };
+
+
+    /**
+     *  Scalar multiplication-assignment.
+     */
+    Self& operator*=(const Scalar& a) override {
+
+        auto D_a = this->alpha();
+        auto D_b = this->beta();
+
+        D_a *= a;
+        D_b *= a;
+
+        this->D_aa = D_a;
+        this->D_bb = D_b;
+
+        return *this;
+    }
 };
-
-/*
-*  OPERATORS
-*/
-
-/**
-*  Add two spin resolved density matrices by adding their parameters. The two alphas are added together and the two betas are added together. 
-* 
-*  @tparam LHSScalar           the scalar type of the left-hand side
-*  @tparam RHSScalar           the scalar type of the right-hand side
-* 
-*  @param lhs                  the left-hand side
-*  @param rhs                  the right-hand side
-*/
-template <typename LHSScalar, typename RHSScalar>
-auto operator+(const SpinResolvedOneDM<LHSScalar>& lhs, const SpinResolvedOneDM<RHSScalar>& rhs) -> SpinResolvedOneDM<sum_t<LHSScalar, RHSScalar>> {
-
-    using ResultScalar = sum_t<LHSScalar, RHSScalar>;
-
-    auto D_sum_a = lhs.alpha();
-    auto D_sum_b = lhs.beta();
-
-    D_sum_a += rhs.alpha();
-    D_sum_b += rhs.beta();
-
-    return SpinResolvedOneDM<ResultScalar>(D_sum_a, D_sum_b);
-}
-
-/**
- *  Multiply a one-electron operator with a scalar. The alpha and beta components are multiplied with the same scalar.
- * 
- *  @tparam Scalar                            the scalar type of the scalar
- *  @tparam DMScalar                          the scalar type of the spin resolved one DM
- * 
- *  @tparam scalar                            the scalar of the scalar multiplication
- *  @tparam spin_resolved_DM                  the spin resolved one DM
- */
-template <typename Scalar, typename DMScalar>
-auto operator*(const Scalar& scalar, const SpinResolvedOneDM<DMScalar>& spin_resolved_DM) -> SpinResolvedOneDM<product_t<Scalar, DMScalar>> {
-
-    using ResultScalar = product_t<Scalar, DMScalar>;
-
-    auto D_a = spin_resolved_DM.alpha();
-    auto D_b = spin_resolved_DM.beta();
-
-    D_a *= scalar;
-    D_b *= scalar;
-
-    return SpinResolvedOneDM<ResultScalar>(D_a, D_b);
-}
-
-
-/**
- *  Negate a one-electron operator
- * 
- *  @tparam Scalar              the scalar type of the spin resolved one DM
- * 
- *  @param spin_resolved_DM                   the spin resolved density matrix
- */
-template <typename Scalar>
-SpinResolvedOneDM<Scalar> operator-(const SpinResolvedOneDM<Scalar>& spin_resolved_DM) {
-
-    return (-1.0) * spin_resolved_DM;  // negation is scalar multiplication with (-1.0)
-}
-
-
-/**
-    *  Subtract two spin resolved density matricessubtracting their parameters
-    * 
-    *  @tparam LHSScalar           the scalar type of the left-hand side
-    *  @tparam RHSScalar           the scalar type of the right-hand side
-    * 
-    *  @param lhs                  the left-hand side
-    *  @param rhs                  the right-hand side
-*/
-template <typename LHSScalar, typename RHSScalar>
-auto operator-(const SpinResolvedOneDM<LHSScalar>& lhs, const SpinResolvedOneDM<RHSScalar>& rhs) -> SpinResolvedOneDM<sum_t<LHSScalar, RHSScalar>> {
-
-    return lhs + (-rhs);
-}
-
 
 }  // namespace GQCP

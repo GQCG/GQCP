@@ -139,15 +139,7 @@ public:
      * 
      *  @return writable matrix representations of all the parameters (integrals) of the different components of this second-quantized operator, for the requested spin component.
      */
-    std::array<QCMatrix<Scalar>, Components>& allParameters(const Spin sigma) {
-
-        if (sigma == Spin::alpha) {
-            return this->fs_a;
-        } else {
-            return this->fs_b;
-        };
-    }
-
+    std::array<QCMatrix<Scalar>, Components>& allParameters(const Spin sigma) { return const_cast<std::array<QCMatrix<Scalar>, Components>&>(const_cast<const USQOneElectronOperator*>(this)->allParameters(sigma)); }
 
     /**
      *  @param i            the index
@@ -186,15 +178,7 @@ public:
      * 
      *  @return the writable matrix representation of the parameters (integrals) of one of the components of this second-quantized operator, for the requested spin component.
      */
-    QCMatrix<Scalar>& parameters(const Spin sigma, const size_t i = 0) {
-
-        if (sigma == Spin::alpha) {
-            return this->fs_a[i];
-        } else {
-            return this->fs_b[i];
-        };
-    }
-
+    QCMatrix<Scalar>& parameters(const Spin sigma, const size_t i = 0) { return const_cast<QCMatrix<Scalar>&>(const_cast<const USQOneElectronOperator*>(this)->parameters(sigma, i)); }
 
     /*
      *  MARK: Calculations
