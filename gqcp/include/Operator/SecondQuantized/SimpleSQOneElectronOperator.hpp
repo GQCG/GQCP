@@ -263,7 +263,7 @@ public:
                        std::plus<MatrixRepresentation>());
 
         return *this;
-    };
+    }
 
 
     /**

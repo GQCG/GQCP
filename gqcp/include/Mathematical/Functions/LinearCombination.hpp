@@ -19,6 +19,8 @@
 
 
 #include "Mathematical/Functions/ScalarFunction.hpp"
+#include "Mathematical/Functions/VectorSpaceArithmetic.hpp"
+#include "Utilities/CRTP.hpp"
 
 #include <boost/format.hpp>
 #include <boost/lexical_cast.hpp>
@@ -37,11 +39,14 @@ namespace GQCP {
  */
 template <typename _CoefficientScalar, typename _Function>
 class LinearCombination:
-    public ScalarFunction<typename _Function::Valued, typename _Function::Scalar, _Function::Cols> {
+    public ScalarFunction<typename _Function::Valued, typename _Function::Scalar, _Function::Cols>,
+    public VectorSpaceArithmetic<LinearCombination<_CoefficientScalar, _Function>, _CoefficientScalar>,
+    public CRTP<_Function> {
 
 public:
     using CoefficientScalar = _CoefficientScalar;
     using Function = _Function;
+    using Self = LinearCombination<CoefficientScalar, Function>;
 
     static_assert(std::is_base_of<ScalarFunction<typename Function::Valued, typename Function::Scalar, Function::Cols>, Function>::value, "LinearCombination: Function must derive from ScalarFunction");
 
@@ -109,85 +114,32 @@ public:
 
 
     /*
-     *  GETTERS
-     */
-
-
-    /*
-     *  OPERATORS implementing the abstract notion of linear combinations
+     *  MARK: VECTOR SPACE ARITHMETIC
      */
 
     /**
-     *  @param rhs      the right-hand side of the addition
-     *
-     *  @return the sum of this and the right-hand side
+     *  Addition-assignment.
      */
-    LinearCombination<CoefficientScalar, Function> operator+(const LinearCombination<CoefficientScalar, Function>& rhs) const {
-        LinearCombination result = *this;
-        result.append(rhs.m_coefficients, rhs.m_functions);
-        return result;
-    }
-
-    /**
-     *  @param rhs      the right-hand side of the addition
-     *
-     *  @return the sum of this and the right-hand side
-     */
-    LinearCombination<CoefficientScalar, Function>& operator+=(const LinearCombination<CoefficientScalar, Function>& rhs) {
+    Self& operator+=(const Self& rhs) override {
         this->append(rhs.m_coefficients, rhs.m_functions);
         return *this;
     }
 
-    /**
-     *  @param scalar       the scalar to be used in the multiplication
-     *
-     *  @return the product of this with a scalar
-     */
-    LinearCombination<CoefficientScalar, Function> operator*(const CoefficientScalar& scalar) const {
-
-        if (std::abs(scalar) < 1.0e-16) {  // multiplication by zero returns a 'zero vector'
-            return LinearCombination();
-        }
-
-        auto coefficients = this->m_coefficients;
-
-        for (auto& coeff : coefficients) {
-            coeff *= scalar;
-        }
-
-        return LinearCombination(coefficients, this->m_functions);
-    }
 
     /**
-     *  @param scalar       the scalar to be used in the multiplication
-     *  @param rhs          the right-hand side of the multiplication
-     *
-     *  @return the product of a LinearCombination with a scalar
+     *  Scalar multiplication-assignment.
      */
-    friend LinearCombination<CoefficientScalar, Function> operator*(CoefficientScalar scalar, const LinearCombination<CoefficientScalar, Function>& rhs) {
-        return rhs.operator*(scalar);
-    }
+    Self& operator*=(const CoefficientScalar& a) override {
 
+        std::transform(this->m_coefficients.begin(), this->m_coefficients.end(),
+                       this->m_coefficients.begin(), [a](const CoefficientScalar& C) { return C * a; });
 
-    /**
-     *  @return the negative of the linear combination
-     */
-    LinearCombination<CoefficientScalar, Function> operator-() const {
-        return this->operator*(-1.0);
-    }
-
-    /**
-     *  @param rhs          the right-hand side of the subtraction
-     *
-     *  @return the difference of this and a right-hand side
-     */
-    LinearCombination<CoefficientScalar, Function> operator-(const LinearCombination<CoefficientScalar, Function>& rhs) const {
-        return this->operator+(-rhs);
+        return *this;
     }
 
 
     /*
-     *  OTHER OPERATORS
+     *  MARK: OPERATORS
      */
 
     /**
