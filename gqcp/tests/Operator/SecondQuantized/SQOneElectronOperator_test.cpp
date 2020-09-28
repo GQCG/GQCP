@@ -84,8 +84,6 @@ BOOST_AUTO_TEST_CASE(SQOneElectronOperator_of_GTOs_transform) {
     }
 
     BOOST_CHECK(ref_coeff_result_01.size() == coeff_result_01.size());
-    std::cout << ref_coeff_result_01.size() << std::endl;
-    std::cout << coeff_result_01.size() << std::endl;
 
     const std::vector<double> ref_coeff_result_11 {1.0};
     const auto coeff_result_11 = rho_transformed_par(1, 1).coefficients();
@@ -93,8 +91,6 @@ BOOST_AUTO_TEST_CASE(SQOneElectronOperator_of_GTOs_transform) {
         BOOST_CHECK(std::abs(ref_coeff_result_11[i] - coeff_result_11[i]) < 1.0e-12);
     }
     BOOST_CHECK(ref_coeff_result_11.size() == coeff_result_11.size());
-    std::cout << ref_coeff_result_11.size() << std::endl;
-    std::cout << coeff_result_11.size() << std::endl;
 }
 
 

@@ -129,6 +129,12 @@ public:
      */
     Self& operator*=(const CoefficientScalar& a) override {
 
+        if (std::abs(a) < 1.0e-16) {  // multiplication by zero returns a 'zero vector'
+            this->m_coefficients = std::vector<CoefficientScalar> {};
+            this->m_functions = std::vector<Function> {};
+            return *this;
+        }
+
         std::transform(this->m_coefficients.begin(), this->m_coefficients.end(),
                        this->m_coefficients.begin(), [a](const CoefficientScalar& C) { return C * a; });
 
