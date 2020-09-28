@@ -89,7 +89,7 @@ void bindUHFSCFEnvironment(py::module& module) {
             &GQCP::UHFSCFEnvironment<double>::coefficient_matrices_beta)
 
         .def_readonly(
-            "spin_resolved_density_matrices",
+            "density_matrices",
             &GQCP::UHFSCFEnvironment<double>::density_matrices)
 
         .def_readonly(
