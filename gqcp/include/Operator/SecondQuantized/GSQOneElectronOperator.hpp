@@ -27,14 +27,14 @@ namespace GQCP {
 
 
 /**
- *  A restricted one-electron operator, which is suited for expressing non-relativistic (spin-free) one-electron operators.
+ *  A general(ized) one-electron operator, which is suited for expressing spin-dependent one-electron operators.
  * 
  *  @tparam _Scalar         The scalar type used for a single parameter: real or complex.
  *  @tparam _Vectorizer     The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
  */
 template <typename _Scalar, typename _Vectorizer>
-class RSQOneElectronOperator:
-    public SimpleSQOneElectronOperator<_Scalar, _Vectorizer, RSQOneElectronOperator<_Scalar, _Vectorizer>> {
+class GSQOneElectronOperator:
+    public SimpleSQOneElectronOperator<_Scalar, _Vectorizer, GSQOneElectronOperator<_Scalar, _Vectorizer>> {
 public:
     // The scalar type used for a single parameter: real or complex.
     using Scalar = _Scalar;
@@ -48,7 +48,7 @@ public:
      *  CONSTRUCTORS
      */
     // Inherit base constructors.
-    using SimpleSQOneElectronOperator<_Scalar, _Vectorizer, RSQOneElectronOperator<_Scalar, _Vectorizer>>::SimpleSQOneElectronOperator;
+    using SimpleSQOneElectronOperator<_Scalar, _Vectorizer, GSQOneElectronOperator<_Scalar, _Vectorizer>>::SimpleSQOneElectronOperator;
 };
 
 
@@ -56,21 +56,21 @@ public:
  *  MARK: Convenience aliases
  */
 
-// A scalar-like RSQOneElectronOperator, i.e. with scalar-like access.
+// A scalar-like GSQOneElectronOperator, i.e. with scalar-like access.
 template <typename Scalar>
-using ScalarRSQOneElectronOperator = RSQOneElectronOperator<Scalar, ScalarVectorizer>;
+using ScalarGSQOneElectronOperator = GSQOneElectronOperator<Scalar, ScalarVectorizer>;
 
-// A vector-like RSQOneElectronOperator, i.e. with vector-like access.
+// A vector-like GSQOneElectronOperator, i.e. with vector-like access.
 template <typename Scalar>
-using VectorRSQOneElectronOperator = RSQOneElectronOperator<Scalar, VectorVectorizer>;
+using VectorGSQOneElectronOperator = GSQOneElectronOperator<Scalar, VectorVectorizer>;
 
-// A matrix-like RSQOneElectronOperator, i.e. with matrix-like access.
+// A matrix-like GSQOneElectronOperator, i.e. with matrix-like access.
 template <typename Scalar>
-using MatrixRSQOneElectronOperator = RSQOneElectronOperator<Scalar, MatrixVectorizer>;
+using MatrixGSQOneElectronOperator = GSQOneElectronOperator<Scalar, MatrixVectorizer>;
 
-// A tensor-like RSQOneElectronOperator, i.e. with tensor-like access.
+// A tensor-like GSQOneElectronOperator, i.e. with tensor-like access.
 template <typename Scalar, size_t N>
-using TensorRSQOneElectronOperator = RSQOneElectronOperator<Scalar, TensorVectorizer<N>>;
+using TensorGSQOneElectronOperator = GSQOneElectronOperator<Scalar, TensorVectorizer<N>>;
 
 
 /*
@@ -78,13 +78,13 @@ using TensorRSQOneElectronOperator = RSQOneElectronOperator<Scalar, TensorVector
  */
 
 /**
- *  A type that provides compile-time information (traits) on `RSQOneElectronOperator` that is otherwise not accessible through a public class alias.
+ *  A type that provides compile-time information (traits) on `GSQOneElectronOperator` that is otherwise not accessible through a public class alias.
  * 
  *  @tparam _Scalar         The scalar type used for a single parameter: real or complex.
  *  @tparam _Vectorizer     The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
  */
 template <typename _Scalar, typename _Vectorizer>
-class OperatorTraits<RSQOneElectronOperator<_Scalar, _Vectorizer>> {
+class OperatorTraits<GSQOneElectronOperator<_Scalar, _Vectorizer>> {
 public:
     // The scalar type used for a single parameter: real or complex.
     using Scalar = _Scalar;
@@ -93,10 +93,10 @@ public:
     using Vectorizer = _Vectorizer;
 
     // The operator whose traits are provided.
-    using Operator = RSQOneElectronOperator<Scalar, Vectorizer>;
+    using Operator = GSQOneElectronOperator<Scalar, Vectorizer>;
 
     // A type that corresponds to the scalar version of the associated restricted one-electron operator type.
-    using ScalarOperator = ScalarRSQOneElectronOperator<Scalar>;
+    using ScalarOperator = ScalarGSQOneElectronOperator<Scalar>;
 
     // The type of transformation matrix that is naturally associated to a restricted one-electron operator.
     using TM = TransformationMatrix<Scalar>;

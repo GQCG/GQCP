@@ -18,8 +18,8 @@
 #pragma once
 
 
-#include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
-#include "Basis/TransformationMatrix.hpp"
+#include "Basis/Transformations/JacobiRotationParameters.hpp"
+#include "Basis/Transformations/TransformationMatrix.hpp"
 #include "Mathematical/Representation/QCRankFourTensor.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
 #include "Processing/DensityMatrices/OneDM.hpp"

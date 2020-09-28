@@ -18,8 +18,8 @@
 #pragma once
 
 
-#include "Basis/SpinorBasis/OrbitalRotationGenerators.hpp"
-#include "Basis/TransformationMatrix.hpp"
+#include "Basis/Transformations/OrbitalRotationGenerators.hpp"
+#include "Basis/Transformations/TransformationMatrix.hpp"
 #include "Mathematical/Optimization/Minimization/BaseHessianModifier.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Mathematical/Representation/SquareRankFourTensor.hpp"

@@ -24,19 +24,20 @@ namespace GQCP {
 /**
  *  A helper class that helps to implement the CRTP (curiously recurring template pattern) that achieves compile-time polymorphism
  * 
- *  @tparam _Derived            the type of the derived class
+ *  @tparam _Derived            The type of the derived class.
  * 
  *  Implementation adapted from (https://www.fluentcpp.com/2017/05/19/crtp-helper/)
  */
 template <typename _Derived>
 class CRTP {
 public:
+    // The type of the derived class.
     using Derived = _Derived;
 
 
 public:
     /*
-     *  PUBLIC METHODS
+     *  MARK: Derived-casts
      */
 
     /**

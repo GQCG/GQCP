@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
+#include "Basis/Transformations/JacobiRotationParameters.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 
 

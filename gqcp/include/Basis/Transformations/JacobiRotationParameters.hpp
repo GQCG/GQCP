@@ -18,6 +18,8 @@
 #pragma once
 
 
+#include "Utilities/Eigen.hpp"
+
 #include <cstdlib>
 #include <ostream>
 
@@ -35,7 +37,9 @@ private:
     double m_angle;  // expressed in radians
 
 public:
-    // CONSTRUCTORS
+    /*
+     *  MARK: CONSTRUCTORS
+     */
 
     /**
      *  @param p        the index of the first rotated orbital
@@ -77,6 +81,11 @@ public:
      *  @return the index of the second rotated orbital
      */
     size_t q() const { return this->m_q; }
+
+    /**
+     *  @return This as an Eigen::JacobiRotation.
+     */
+    Eigen::JacobiRotation<double> Eigen() const { return Eigen::JacobiRotation<double> {std::cos(this->angle()), std::sin(this->angle())}; }
 };
 
 

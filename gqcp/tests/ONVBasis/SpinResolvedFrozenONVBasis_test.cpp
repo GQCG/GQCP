@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Basis/transform.hpp"
+#include "Basis/Transformations/transform.hpp"
 #include "ONVBasis/SpinResolvedFrozenONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 

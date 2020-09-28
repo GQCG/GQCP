@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/TransformationMatrix.hpp"
+#include "Basis/Transformations/TransformationMatrix.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Utilities/aliases.hpp"
 
@@ -77,19 +77,13 @@ public:
      */
     void basisRotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
 
+        // Use Eigen's Jacobi module to apply the Jacobi rotations directly (cfr. T.adjoint() * M * T)
         const auto p = jacobi_rotation_parameters.p();
         const auto q = jacobi_rotation_parameters.q();
-        const auto angle = jacobi_rotation_parameters.angle();
+        const auto jacobi_rotation = jacobi_rotation_parameters.Eigen();
 
-        const double c = std::cos(angle);
-        const double s = std::sin(angle);
-
-
-        // Use Eigen's Jacobi module to apply the Jacobi rotations directly (cfr. T.adjoint() * M * T)
-        Eigen::JacobiRotation<double> jacobi {c, s};
-
-        this->applyOnTheLeft(p, q, jacobi.adjoint());
-        this->applyOnTheRight(p, q, jacobi);
+        this->applyOnTheLeft(p, q, jacobi_rotation.adjoint());
+        this->applyOnTheRight(p, q, jacobi_rotation);
     }
 
 

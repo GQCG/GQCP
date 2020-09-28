@@ -18,9 +18,9 @@
 #pragma once
 
 
-#include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
 #include "Basis/SpinorBasis/Spin.hpp"
-#include "Basis/TransformationMatrix.hpp"
+#include "Basis/Transformations/JacobiRotationParameters.hpp"
+#include "Basis/Transformations/TransformationMatrix.hpp"
 #include "Mathematical/Functions/ScalarFunction.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Processing/DensityMatrices/OneDM.hpp"

@@ -21,6 +21,8 @@
 
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 
+#include <boost/math/constants/constants.hpp>
+
 
 /**
  *  Check the construction of one-electron operators from matrices.
@@ -272,4 +274,120 @@ BOOST_AUTO_TEST_CASE(dot) {
     // clang-format on
 
     BOOST_CHECK(h_op.dot(a).parameters().isApprox(dot_ref, 1.0e-12));
+}
+
+
+/**
+ *  Check if the basis transformation method works as expected.
+ */
+BOOST_AUTO_TEST_CASE(transform) {
+
+    const size_t dim = 2;
+
+    // Initialize a test matrix and convert it into an operator.
+    GQCP::QCMatrix<double> M1 {dim};
+    // clang-format off
+    M1 << 1.0, 2.0,
+          3.0, 4.0;
+    // clang-format on
+    GQCP::ScalarRSQOneElectronOperator<double> op {M1};
+
+    // Initialize a corresponding transformation matrix.
+    GQCP::TransformationMatrix<double> T {dim};
+    // clang-format off
+    T << 2.0, 3.0,
+         4.0, 5.0;
+    // clang-format on
+
+    // Initialize the reference matrix, corresponding to the result of the basis transformation.
+    GQCP::QCMatrix<double> ref {dim};
+    // clang-format off
+    ref << 108.0, 142.0,
+           140.0, 184.0;
+    // clang-format on
+
+    // Check the in-place and 'returning' methods.
+    const auto op_transformed = op.transformed(T);
+    BOOST_CHECK(op_transformed.parameters().isApprox(ref, 1.0e-08));
+
+    op.transform(T);
+    BOOST_CHECK(op.parameters().isApprox(ref, 1.0e-08));
+}
+
+
+/**
+ *  Check if the basis rotation method works as expected.
+ */
+BOOST_AUTO_TEST_CASE(rotate) {
+
+    const size_t dim = 2;
+
+    // Initialize a test matrix and convert it into an operator.
+    GQCP::QCMatrix<double> M1 {dim};
+    // clang-format off
+    M1 << 1.0, 2.0,
+          3.0, 4.0;
+    // clang-format on
+    GQCP::ScalarRSQOneElectronOperator<double> op {M1};
+
+    // Initialize a unitary transformation matrix.
+    GQCP::TransformationMatrix<double> U {dim};
+    // clang-format off
+    U << 1.0,  0.0,
+         0.0, -1.0;
+    // clang-format on
+
+
+    // Initialize the reference matrix, corresponding to the result of the basis transformation.
+    GQCP::QCMatrix<double> ref {dim};
+    // clang-format off
+    ref <<  1.0, -2.0,
+           -3.0,  4.0;
+    // clang-format on
+
+
+    // Check the in-place and 'returning' methods.
+    const auto op_rotated = op.rotated(U);
+    BOOST_CHECK(op_rotated.parameters().isApprox(ref, 1.0e-08));
+
+    op.rotate(U);
+    BOOST_CHECK(op.parameters().isApprox(ref, 1.0e-08));
+}
+
+
+/**
+ *  Check if the Jacobi rotations are correctly applied.
+ */
+BOOST_AUTO_TEST_CASE(jacobi_rotation) {
+
+    const size_t dim = 4;
+
+    // Initialize a test matrix and convert it into an operator.
+    GQCP::QCMatrix<double> M1 {dim};
+    // clang-format off
+     M1 << 1.0,  2.0,  3.0,  4.0,
+           5.0,  6.0,  7.0,  8.0,
+           9.0, 10.0, 11.0, 12.0,
+          13.0, 14.0, 15.0, 16.0;
+    // clang-format on
+    GQCP::ScalarRSQOneElectronOperator<double> op {M1};
+
+    // Initialize the Jacobi rotation.
+    GQCP::JacobiRotationParameters J {2, 1, (boost::math::constants::pi<double>() / 2)};
+
+    // Initialize the reference result.
+    GQCP::QCMatrix<double> ref {dim};
+    // clang-format off
+    ref <<   1.0,  3.0,  -2.0,  4.0,
+             9.0, 11.0, -10.0, 12.0,
+            -5.0, -7.0,   6.0, -8.0,
+            13.0, 15.0, -14.0, 16.0;
+    // clang-format on
+
+    // Check the in-place and 'returning' methods.
+    const auto op_rotated = op.rotated(J);
+    BOOST_CHECK(op_rotated.parameters().isApprox(ref, 1.0e-08));
+
+    op.rotate(J);
+    BOOST_CHECK(op.parameters().isApprox(ref, 1.0e-08));
 }

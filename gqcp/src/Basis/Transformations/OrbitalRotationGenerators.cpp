@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Basis/SpinorBasis/OrbitalRotationGenerators.hpp"
+#include "Basis/Transformations/OrbitalRotationGenerators.hpp"
 
 #include <unsupported/Eigen/MatrixFunctions>
 

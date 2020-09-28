@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
+#include "Basis/Transformations/JacobiRotationParameters.hpp"
 
 #include <iostream>
 

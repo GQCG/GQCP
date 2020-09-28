@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Basis/SpinorBasis/OrbitalRotationGenerators.hpp"
+#include "Basis/Transformations/OrbitalRotationGenerators.hpp"
 
 
 BOOST_AUTO_TEST_CASE(constructor) {
