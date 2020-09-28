@@ -19,6 +19,7 @@
 
 
 #include "Basis/Transformations/BasisTransformable.hpp"
+#include "Basis/Transformations/JacobiRotatable.hpp"
 #include "Mathematical/Functions/VectorSpaceArithmetic.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Mathematical/Representation/StorageArray.hpp"
@@ -55,7 +56,8 @@ class OperatorTraits {};
 template <typename _Scalar, typename _Vectorizer, typename _DerivedOperator>
 class SimpleSQOneElectronOperator:
     public VectorSpaceArithmetic<SimpleSQOneElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>, _Scalar>,
-    public BasisTransformable<SimpleSQOneElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>, typename OperatorTraits<_DerivedOperator>::TM> {
+    public BasisTransformable<SimpleSQOneElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>, typename OperatorTraits<_DerivedOperator>::TM>,
+    public JacobiRotatable<SimpleSQOneElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>> {
 public:
     // The scalar type used for a single parameter: real or complex.
     using Scalar = _Scalar;
@@ -88,7 +90,6 @@ public:
     /*
      *  MARK: Constructors
      */
-
 
     /**
      *  Construct a one-electron operator from a(n) (storage) array.
@@ -335,6 +336,44 @@ public:
 
         return Self(StorageArray<MatrixRepresentation, Vectorizer>(result, this->array.vectorizer()));
     }
+
+    // Allow the `rotate` method from `BasisTransformable`, since there's also a `rotate` from `JacobiRotatable`.
+    using BasisTransformable<Self, TM>::rotate;
+
+    // Allow the `rotated` method from `BasisTransformable`, since there's also a `rotated` from `JacobiRotatable`.
+    using BasisTransformable<Self, TM>::rotated;
+
+
+    /*
+     *  MARK: Jacobi rotations
+     */
+
+    /**
+     *  Apply the Jacobi rotation and return the result.
+     * 
+     *  @param jacobi_parameters        The Jacobi rotation parameters.
+     * 
+     *  @return The jacobi-transformed object.
+     */
+    Self rotated(const JacobiRotationParameters& jacobi_parameters) const override {
+
+        // Use Eigen's Jacobi module to apply the Jacobi rotations directly (cfr. T.adjoint() * M * T).
+        const auto p = jacobi_parameters.p();
+        const auto q = jacobi_parameters.q();
+        const auto jacobi_rotation = jacobi_parameters.Eigen();
+
+        // Calculate the basis transformation for every component of the operator.
+        auto result = this->allParameters();
+        for (size_t i = 0; i < this->numberOfComponents(); i++) {
+            result[i].applyOnTheLeft(p, q, jacobi_rotation.adjoint());
+            result[i].applyOnTheRight(p, q, jacobi_rotation);
+        }
+
+        return Self(StorageArray<MatrixRepresentation, Vectorizer>(result, this->array.vectorizer()));
+    }
+
+    // Allow the `rotate` method from `JacobiRotatable`, since there's also a `rotate` from `BasisTransformable`.
+    using JacobiRotatable<Self>::rotate;
 };
 
 

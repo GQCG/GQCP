@@ -43,7 +43,6 @@ public:
      * 
      *  @return The basis-transformed object.
      */
-    // T transformed(const TM& transformation_matrix) const;
     virtual T transformed(const TM& transformation_matrix) const = 0;
 
 

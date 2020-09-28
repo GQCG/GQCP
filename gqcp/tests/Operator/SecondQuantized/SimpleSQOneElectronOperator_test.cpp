@@ -21,6 +21,8 @@
 
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 
+#include <boost/math/constants/constants.hpp>
+
 
 /**
  *  Check the construction of one-electron operators from matrices.
@@ -349,5 +351,43 @@ BOOST_AUTO_TEST_CASE(rotate) {
     BOOST_CHECK(op_rotated.parameters().isApprox(ref, 1.0e-08));
 
     op.rotate(U);
+    BOOST_CHECK(op.parameters().isApprox(ref, 1.0e-08));
+}
+
+
+/**
+ *  Check if the Jacobi rotations are correctly applied.
+ */
+BOOST_AUTO_TEST_CASE(jacobi_rotation) {
+
+    const size_t dim = 4;
+
+    // Initialize a test matrix and convert it into an operator.
+    GQCP::QCMatrix<double> M1 {dim};
+    // clang-format off
+     M1 << 1.0,  2.0,  3.0,  4.0,
+           5.0,  6.0,  7.0,  8.0,
+           9.0, 10.0, 11.0, 12.0,
+          13.0, 14.0, 15.0, 16.0;
+    // clang-format on
+    GQCP::ScalarRSQOneElectronOperator<double> op {M1};
+
+    // Initialize the Jacobi rotation.
+    GQCP::JacobiRotationParameters J {2, 1, (boost::math::constants::pi<double>() / 2)};
+
+    // Initialize the reference result.
+    GQCP::QCMatrix<double> ref {dim};
+    // clang-format off
+    ref <<   1.0,  3.0,  -2.0,  4.0,
+             9.0, 11.0, -10.0, 12.0,
+            -5.0, -7.0,   6.0, -8.0,
+            13.0, 15.0, -14.0, 16.0;
+    // clang-format on
+
+    // Check the in-place and 'returning' methods.
+    const auto op_rotated = op.rotated(J);
+    BOOST_CHECK(op_rotated.parameters().isApprox(ref, 1.0e-08));
+
+    op.rotate(J);
     BOOST_CHECK(op.parameters().isApprox(ref, 1.0e-08));
 }
