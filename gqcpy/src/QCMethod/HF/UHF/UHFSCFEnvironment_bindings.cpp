@@ -79,7 +79,7 @@ void bindUHFSCFEnvironment(py::module& module) {
             })
 
 
-        // Define read-only 'getters'.
+        // Define read-only 'getters'
         .def_readonly(
             "coefficient_matrices_alpha",
             &GQCP::UHFSCFEnvironment<double>::coefficient_matrices_alpha)
@@ -88,6 +88,19 @@ void bindUHFSCFEnvironment(py::module& module) {
             "coefficient_matrices_beta",
             &GQCP::UHFSCFEnvironment<double>::coefficient_matrices_beta)
 
+        .def_readonly(
+            "density_matrices",
+            &GQCP::UHFSCFEnvironment<double>::density_matrices)
+
+        .def_readonly(
+            "error_vectors_alpha",
+            &GQCP::UHFSCFEnvironment<double>::error_vectors_alpha)
+
+        .def_readonly(
+            "error_vectors_beta",
+            &GQCP::UHFSCFEnvironment<double>::error_vectors_beta)
+
+        // Define getters for non-native components
         .def(
             "density_matrices_alpha",
             [](const GQCP::UHFSCFEnvironment<double>& environment) {
@@ -123,15 +136,6 @@ void bindUHFSCFEnvironment(py::module& module) {
 
                 return beta_fock_matrices;
             })
-
-        .def_readonly(
-            "error_vectors_alpha",
-            &GQCP::UHFSCFEnvironment<double>::error_vectors_alpha)
-
-        .def_readonly(
-            "error_vectors_beta",
-            &GQCP::UHFSCFEnvironment<double>::error_vectors_beta)
-
 
         // Bind methods for the replacement of the most current iterates.
         .def("replace_current_coefficient_matrix_alpha",

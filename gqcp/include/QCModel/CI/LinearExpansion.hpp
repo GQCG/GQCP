@@ -654,15 +654,6 @@ public:
 
 
     /**
-     *  Calculate the one-electron density matrix for a full spin-resolved wave function expansion.
-     * 
-     *  @return the total (spin-summed) 1-DM
-     */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, OneDM<double>> calculateSpinDensity() const { return this->calculateSpinResolved1DM().spinDensity(); }
-
-
-    /**
      *  Calculate the spin-resolved one-electron density matrix for a seniority-zero wave function expansion.
      * 
      *  @return the spin-resolved 1-DM
@@ -783,15 +774,6 @@ public:
      */
     template <typename Z = ONVBasis>
     enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, TwoDM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().spinSummed(); }
-
-
-    /**
-     *  Calculate the one-electron density matrix for a full spin-resolved wave function expansion.
-     * 
-     *  @return the total (spin-summed) 1-DM
-     */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, OneDM<double>> calculateSpinDensity() const { return this->calculateSpinResolved1DM().spinDensity(); }
 
 
     /**
@@ -1148,15 +1130,6 @@ public:
      */
     template <typename Z = ONVBasis>
     enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, TwoDM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().spinSummed(); }
-
-
-    /**
-     *  Calculate the one-electron density matrix for a full spin-resolved wave function expansion.
-     * 
-     *  @return the total (spin-summed) 1-DM
-     */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, OneDM<double>> calculateSpinDensity() const { return this->calculateSpinResolved1DM().spinDensity(); }
 
 
     /**

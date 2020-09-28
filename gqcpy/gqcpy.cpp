@@ -95,6 +95,13 @@ void bindSQTwoElectronOperator(py::module& module);
 void bindUSQHamiltonian(py::module& module);
 
 
+// Processing - DensityMatrices
+void bindOneDM(py::module& module);
+void bindSpinResolvedOneDM(py::module& module);
+void bindSpinResolvedTwoDM(py::module& module);
+void bindTwoDM(py::module& module);
+
+
 // Processing - Properties
 void bindDOCIElectricalResponseSolver(py::module& module);
 void bindRHFElectricalResponseSolver(py::module& module);
@@ -249,6 +256,13 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindSQOneElectronOperators(module);
     gqcpy::bindSQTwoElectronOperator(module);
     gqcpy::bindUSQHamiltonian(module);
+
+
+    // Processing - DensityMatrices
+    gqcpy::bindOneDM(module);
+    gqcpy::bindSpinResolvedOneDM(module);
+    gqcpy::bindSpinResolvedTwoDM(module);
+    gqcpy::bindTwoDM(module);
 
 
     // Processing - Properties
