@@ -114,7 +114,7 @@ public:
      *  Negation, canonically implemented as scalar multiplication by (-1.0).
      */
     T operator-() const {
-        return Scalar {-1.0} * this->derived();
+        return Scalar {-1} * this->derived();
     }
 };
 
