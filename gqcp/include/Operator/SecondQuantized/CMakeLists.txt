@@ -1,5 +1,6 @@
 target_sources(gqcp
     PRIVATE
+        GSQOneElectronOperator.hpp
         RSQOneElectronOperator.hpp
         SimpleSQOneElectronOperator.hpp
         SQHamiltonian.hpp
