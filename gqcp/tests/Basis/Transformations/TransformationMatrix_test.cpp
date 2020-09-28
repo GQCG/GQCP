@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Basis/TransformationMatrix.hpp"
+#include "Basis/Transformations/TransformationMatrix.hpp"
 
 #include <boost/math/constants/constants.hpp>
 

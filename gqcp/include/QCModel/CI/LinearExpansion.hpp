@@ -22,7 +22,7 @@
 #include "Basis/SpinorBasis/GSpinorBasis.hpp"
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Basis/SpinorBasis/USpinorBasis.hpp"
-#include "Basis/TransformationMatrix.hpp"
+#include "Basis/Transformations/TransformationMatrix.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 #include "ONVBasis/SpinResolvedONV.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"

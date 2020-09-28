@@ -20,11 +20,11 @@
 
 #include "Basis/Integrals/IntegralCalculator.hpp"
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
-#include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
 #include "Basis/SpinorBasis/Spin.hpp"
 #include "Basis/SpinorBasis/USpinorBasis.hpp"
+#include "Basis/Transformations/JacobiRotationParameters.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Molecule/NuclearFramework.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"

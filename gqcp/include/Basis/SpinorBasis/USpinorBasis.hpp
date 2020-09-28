@@ -18,9 +18,9 @@
 #pragma once
 
 
-#include "Basis/SpinResolvedTransformationMatrix.hpp"
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Basis/SpinorBasis/Spin.hpp"
+#include "Basis/Transformations/SpinResolvedTransformationMatrix.hpp"
 #include "Utilities/type_traits.hpp"
 
 

@@ -4,7 +4,7 @@
  *  The system of interest is a linear H-chain composed of 4 to 10 hydrogen atoms.
  */
 
-#include "Basis/transform.hpp"
+#include "Basis/Transformations/transform.hpp"
 #include "Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
 #include "Molecule/Molecule.hpp"

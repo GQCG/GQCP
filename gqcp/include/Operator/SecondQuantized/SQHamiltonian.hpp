@@ -20,10 +20,10 @@
 
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
 #include "Basis/SpinorBasis/GSpinorBasis.hpp"
-#include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
 #include "Basis/SpinorBasis/OrbitalSpace.hpp"
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
-#include "Basis/TransformationMatrix.hpp"
+#include "Basis/Transformations/JacobiRotationParameters.hpp"
+#include "Basis/Transformations/TransformationMatrix.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 #include "Operator/FirstQuantized/OverlapOperator.hpp"

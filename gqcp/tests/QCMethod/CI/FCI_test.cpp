@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Basis/transform.hpp"
+#include "Basis/Transformations/transform.hpp"
 #include "Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
