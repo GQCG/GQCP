@@ -20,7 +20,6 @@
 
 #include "Mathematical/Functions/ScalarFunction.hpp"
 #include "Mathematical/Functions/VectorSpaceArithmetic.hpp"
-#include "Utilities/CRTP.hpp"
 
 #include <boost/format.hpp>
 #include <boost/lexical_cast.hpp>
@@ -40,8 +39,7 @@ namespace GQCP {
 template <typename _CoefficientScalar, typename _Function>
 class LinearCombination:
     public ScalarFunction<typename _Function::Valued, typename _Function::Scalar, _Function::Cols>,
-    public VectorSpaceArithmetic<LinearCombination<_CoefficientScalar, _Function>, _CoefficientScalar>,
-    public CRTP<_Function> {
+    public VectorSpaceArithmetic<LinearCombination<_CoefficientScalar, _Function>, _CoefficientScalar> {
 
 public:
     using CoefficientScalar = _CoefficientScalar;
@@ -114,7 +112,7 @@ public:
 
 
     /*
-     *  MARK: VECTOR SPACE ARITHMETIC
+     *  MARK: Vector space arithmetic
      */
 
     /**
@@ -139,7 +137,7 @@ public:
 
 
     /*
-     *  MARK: OPERATORS
+     *  MARK: operators
      */
 
     /**
