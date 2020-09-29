@@ -15,9 +15,9 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Processing/DensityMatrices/CIDMCalculators/SpinResolvedFrozenDMCalculator.hpp"
+#include "DensityMatrix//CIDMCalculators/FrozenCoreDOCIRDMBuilder.hpp"
 
-#include "Processing/DensityMatrices/CIDMCalculators/SpinResolvedDMCalculator.hpp"
+#include "DensityMatrix//CIDMCalculators/SeniorityZeroDMCalculator.hpp"
 
 
 namespace GQCP {
@@ -28,10 +28,10 @@ namespace GQCP {
  */
 
 /**
- *  @param onv_basis       the frozen spin-resolved ONV basis
+ *  @param onv_basis        both the frozen alpha and beta spin-unresolved ONV basis
  */
-SpinResolvedFrozenDMCalculator::SpinResolvedFrozenDMCalculator(const SpinResolvedFrozenONVBasis& onv_basis) :
-    BaseSpinResolvedFrozenDMCalculator(std::make_shared<SpinResolvedDMCalculator>(onv_basis.activeONVBasis()), onv_basis.numberOfFrozenOrbitals()),
+FrozenCoreDOCIRDMBuilder::FrozenCoreDOCIRDMBuilder(const SpinUnresolvedFrozenONVBasis& onv_basis) :
+    BaseSpinResolvedFrozenDMCalculator(std::make_shared<SeniorityZeroDMCalculator>(onv_basis.activeONVBasis()), onv_basis.numberOfFrozenOrbitals()),
     onv_basis {onv_basis} {}
 
 

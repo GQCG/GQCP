@@ -4,6 +4,7 @@ target_sources(gqcp
 )
 
 add_subdirectory(Basis)
+add_subdirectory(DensityMatrix)
 add_subdirectory(Mathematical)
 add_subdirectory(Molecule)
 add_subdirectory(ONVBasis)

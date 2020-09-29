@@ -15,38 +15,24 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Processing/DensityMatrices/TwoDM.hpp"
+#include "DensityMatrix//CIDMCalculators/SpinResolvedFrozenDMCalculator.hpp"
 
-#include <pybind11/eigen.h>
-#include <pybind11/pybind11.h>
-
-
-namespace py = pybind11;
+#include "DensityMatrix//CIDMCalculators/SpinResolvedDMCalculator.hpp"
 
 
-namespace gqcpy {
+namespace GQCP {
 
 
-void bindTwoDM(py::module& module) {
+/*
+ *  CONSTRUCTORS
+ */
 
-    py::class_<GQCP::TwoDM<double>>(module, "TwoDM", "A two-particle density matrix")
-
-        // PUBLIC METHODS
-
-        .def(
-            "reduce",
-            [](const GQCP::TwoDM<double>& d) {
-                return d.reduce();
-            },
-            "Return a partial contraction of the 2-DM, where D(p,q) = d(p,q,r,r).")
-
-        .def(
-            "trace",
-            [](const GQCP::TwoDM<double>& d) {
-                return d.trace();
-            },
-            "Return the trace of the 2-DM, i.e. d(p,p,q,q).");
-}
+/**
+ *  @param onv_basis       the frozen spin-resolved ONV basis
+ */
+SpinResolvedFrozenDMCalculator::SpinResolvedFrozenDMCalculator(const SpinResolvedFrozenONVBasis& onv_basis) :
+    BaseSpinResolvedFrozenDMCalculator(std::make_shared<SpinResolvedDMCalculator>(onv_basis.activeONVBasis()), onv_basis.numberOfFrozenOrbitals()),
+    onv_basis {onv_basis} {}
 
 
-}  // namespace gqcpy
+}  // namespace GQCP

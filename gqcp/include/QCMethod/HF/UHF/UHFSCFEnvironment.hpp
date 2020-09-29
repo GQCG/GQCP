@@ -19,10 +19,10 @@
 
 
 #include "Basis/Transformations/TransformationMatrix.hpp"
+#include "DensityMatrix//SpinResolvedOneDM.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
-#include "Processing/DensityMatrices/SpinResolvedOneDM.hpp"
 #include "QCModel/HF/RHF.hpp"
 
 #include <Eigen/Dense>

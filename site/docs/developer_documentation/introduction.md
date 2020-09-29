@@ -21,11 +21,12 @@ The Python bindings don't require any headers, so we only have two subfolders of
 
 Inside these folders, we have added the following structure:
 - __Basis__: for everything related to spinors, spinor basis and transformations
+- __DensityMatrix__: for everything related to density matrices
 - __Mathematical__: for general mathematical utilities, not directly related to quantum chemistry
 - __Molecule__: for everything related to molecules and nuclei
 - __ONVBasis__: for everything related to ONVs and bases for Fock (sub)spaces
 - __Operator__: for everything related to first- and second-quantized operators
-- __Processing__: for collecting everything that happens _after_ the determination of the optimal values of the electronic structure model's parameters
+- __Processing__: for collecting everything that happens _after_ the determination of the optimal values of the electronic structure model's parameters, like response calculations
 - __QCMethod__: for the determination of the optimal parameters of an electronic structure model
 - __Utilities__: for collecting general utilities that do not belong elsewhere
 

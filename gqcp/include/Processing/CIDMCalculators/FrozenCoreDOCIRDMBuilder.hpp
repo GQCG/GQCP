@@ -18,36 +18,36 @@
 #pragma once
 
 
+#include "DensityMatrix//CIDMCalculators/BaseSpinResolvedFrozenDMCalculator.hpp"
+#include "DensityMatrix//SpinResolvedOneDM.hpp"
+#include "DensityMatrix//SpinResolvedTwoDM.hpp"
 #include "ONVBasis/SpinResolvedFrozenONVBasis.hpp"
-#include "Processing/DensityMatrices/CIDMCalculators/BaseSpinResolvedFrozenDMCalculator.hpp"
-#include "Processing/DensityMatrices/SpinResolvedOneDM.hpp"
-#include "Processing/DensityMatrices/SpinResolvedTwoDM.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  A class capable of calculating 1- and 2-DMs from wave functions expanded in the full frozen full spin resolved ONV basis
+ *  A class capable of calculating 1- and 2-DMs from wave functions expanded in the frozen DOCI ONV basis
  */
-class SpinResolvedFrozenDMCalculator: public BaseSpinResolvedFrozenDMCalculator {
+class FrozenCoreDOCIRDMBuilder: public BaseSpinResolvedFrozenDMCalculator {
 private:
-    SpinResolvedFrozenONVBasis onv_basis;
+    SpinUnresolvedFrozenONVBasis onv_basis;  // both the frozen alpha and beta spin-unresolved ONV basis
 
 
 public:
     // CONSTRUCTORS
 
     /**
-     *  @param onv_basis       the frozen spin-resolved ONV basis
+     *  @param onv_basis        both the frozen alpha and beta spin-unresolved ONV basis
      */
-    explicit SpinResolvedFrozenDMCalculator(const SpinResolvedFrozenONVBasis& onv_basis);
+    explicit FrozenCoreDOCIRDMBuilder(const SpinUnresolvedFrozenONVBasis& onv_basis);
 
 
-    // PUBLIC OVERRIDDEN METHODS
+    // OVERRIDDEN PUBLIC METHODS
 
     /**
-     *  @return the ONV basis that is associated to this DMCalculator
+     *  @return the ONV basis that is associated to this RDMBuilder
      */
     const BaseONVBasis* onvBasis() const override { return &onv_basis; }
 };

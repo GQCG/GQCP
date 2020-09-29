@@ -18,8 +18,8 @@
 #pragma once
 
 
+#include "DensityMatrix//OneDM.hpp"
 #include "Mathematical/Representation/QCRankFourTensor.hpp"
-#include "Processing/DensityMatrices/OneDM.hpp"
 
 
 namespace GQCP {

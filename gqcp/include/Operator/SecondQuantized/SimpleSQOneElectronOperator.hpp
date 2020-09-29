@@ -20,10 +20,10 @@
 
 #include "Basis/Transformations/BasisTransformable.hpp"
 #include "Basis/Transformations/JacobiRotatable.hpp"
+#include "DensityMatrix//OneDM.hpp"
 #include "Mathematical/Functions/VectorSpaceArithmetic.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Mathematical/Representation/StorageArray.hpp"
-#include "Processing/DensityMatrices/OneDM.hpp"
 #include "Utilities/CRTP.hpp"
 #include "Utilities/type_traits.hpp"
 

@@ -15,24 +15,38 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Processing/DensityMatrices/CIDMCalculators/FrozenCoreDOCIRDMBuilder.hpp"
+#include "DensityMatrix//TwoDM.hpp"
 
-#include "Processing/DensityMatrices/CIDMCalculators/SeniorityZeroDMCalculator.hpp"
-
-
-namespace GQCP {
+#include <pybind11/eigen.h>
+#include <pybind11/pybind11.h>
 
 
-/*
- *  CONSTRUCTORS
- */
-
-/**
- *  @param onv_basis        both the frozen alpha and beta spin-unresolved ONV basis
- */
-FrozenCoreDOCIRDMBuilder::FrozenCoreDOCIRDMBuilder(const SpinUnresolvedFrozenONVBasis& onv_basis) :
-    BaseSpinResolvedFrozenDMCalculator(std::make_shared<SeniorityZeroDMCalculator>(onv_basis.activeONVBasis()), onv_basis.numberOfFrozenOrbitals()),
-    onv_basis {onv_basis} {}
+namespace py = pybind11;
 
 
-}  // namespace GQCP
+namespace gqcpy {
+
+
+void bindTwoDM(py::module& module) {
+
+    py::class_<GQCP::TwoDM<double>>(module, "TwoDM", "A two-particle density matrix")
+
+        // PUBLIC METHODS
+
+        .def(
+            "reduce",
+            [](const GQCP::TwoDM<double>& d) {
+                return d.reduce();
+            },
+            "Return a partial contraction of the 2-DM, where D(p,q) = d(p,q,r,r).")
+
+        .def(
+            "trace",
+            [](const GQCP::TwoDM<double>& d) {
+                return d.trace();
+            },
+            "Return the trace of the 2-DM, i.e. d(p,p,q,q).");
+}
+
+
+}  // namespace gqcpy

@@ -19,10 +19,10 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "DensityMatrix//SpinResolvedTwoDM.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "Processing/DensityMatrices/SpinResolvedTwoDM.hpp"
 #include "QCMethod/CI/CI.hpp"
 #include "QCMethod/CI/CIEnvironment.hpp"
 

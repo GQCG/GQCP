@@ -19,7 +19,7 @@
 
 
 #include "Basis/SpinorBasis/Spin.hpp"
-#include "Processing/DensityMatrices/TwoDM.hpp"
+#include "DensityMatrix//TwoDM.hpp"
 
 
 namespace GQCP {

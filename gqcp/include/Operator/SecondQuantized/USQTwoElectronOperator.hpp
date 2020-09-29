@@ -20,11 +20,11 @@
 
 #include "Basis/Transformations/JacobiRotationParameters.hpp"
 #include "Basis/Transformations/TransformationMatrix.hpp"
+#include "DensityMatrix//OneDM.hpp"
+#include "DensityMatrix//SpinResolvedTwoDM.hpp"
+#include "DensityMatrix//TwoDM.hpp"
 #include "Mathematical/Representation/QCRankFourTensor.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
-#include "Processing/DensityMatrices/OneDM.hpp"
-#include "Processing/DensityMatrices/SpinResolvedTwoDM.hpp"
-#include "Processing/DensityMatrices/TwoDM.hpp"
 #include "Utilities/miscellaneous.hpp"
 
 #include <array>
