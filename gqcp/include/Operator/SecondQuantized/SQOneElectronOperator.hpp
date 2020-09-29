@@ -86,7 +86,9 @@ public:
     template <size_t Z = Components>
     SQOneElectronOperator(const QCMatrix<Scalar>& f, typename std::enable_if<Z == 1>::type* = 0) :
         SQOneElectronOperator(std::array<QCMatrix<Scalar>, 1> {f}) {}
-
+    template <size_t Z = Components>
+    SQOneElectronOperator(const SquareMatrix<Scalar>& f, typename std::enable_if<Z == 1>::type* = 0) :
+        SQOneElectronOperator(std::array<QCMatrix<Scalar>, 1> {f}) {}
 
     /**
      *  Construct a one-electron operator with parameters that are zero
