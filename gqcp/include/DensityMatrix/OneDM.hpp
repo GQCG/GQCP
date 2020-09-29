@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/Transformations/TransformationMatrix.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 
 

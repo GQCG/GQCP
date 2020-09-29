@@ -25,7 +25,7 @@
 #include "DensityMatrix//SpinResolvedOneDM.hpp"
 #include "DensityMatrix//TwoDM.hpp"
 #include "Mathematical/Functions/ScalarFunction.hpp"
-#include "Mathematical/Representation/SquareMatrix.hpp"
+#include "Mathematical/Representation/QCMatrix.hpp"
 #include "Utilities/type_traits.hpp"
 
 #include <array>
@@ -48,8 +48,8 @@ public:
 
 
 private:
-    std::array<SquareMatrix<Scalar>, Components> fs_a;  // all the matrix representations of the alpha spin component (hence the s) of the parameters (integrals) of the different components of this second-quantized operator
-    std::array<SquareMatrix<Scalar>, Components> fs_b;  // all the matrix representations of the beta spin component (hence the s) of the parameters (integrals) of the different components of this second-quantized operator
+    std::array<QCMatrix<Scalar>, Components> fs_a;  // all the matrix representations of the alpha spin component (hence the s) of the parameters (integrals) of the different components of this second-quantized operator
+    std::array<QCMatrix<Scalar>, Components> fs_b;  // all the matrix representations of the beta spin component (hence the s) of the parameters (integrals) of the different components of this second-quantized operator
 
 
 public:
@@ -61,7 +61,7 @@ public:
      *  @param fs_a    all the matrix representations of the alpha spin component (hence the s) of the parameters (integrals) of the different components of this second-quantized operator
      *  @param fs_b    all the matrix representations of the beta spin component (hence the s) of the parameters (integrals) of the different components of this second-quantized operator
      */
-    USQOneElectronOperator(const std::array<SquareMatrix<Scalar>, Components>& fs_a, const std::array<SquareMatrix<Scalar>, Components>& fs_b) :
+    USQOneElectronOperator(const std::array<QCMatrix<Scalar>, Components>& fs_a, const std::array<QCMatrix<Scalar>, Components>& fs_b) :
         fs_a {fs_a},
         fs_b {fs_b} {
 
@@ -75,7 +75,7 @@ public:
             const auto dimension_of_ith_b = this->fs_b[i].numberOfOrbitals();
 
             if ((dimension_of_first_a != dimension_of_ith_a) || (dimension_of_first_b != dimension_of_ith_b)) {
-                throw std::invalid_argument("USQOneElectronOperator(const std::array<SquareMatrix<Scalar>, Components>&, const std::array<SquareMatrix<Scalar>, components>&): The given matrix representations do not have the same dimensions for either the alpha or beta component.");
+                throw std::invalid_argument("USQOneElectronOperator(const std::array<QCMatrix<Scalar>, Components>&, const std::array<QCMatrix<Scalar>, components>&): The given matrix representations do not have the same dimensions for either the alpha or beta component.");
             }
         }
     }
@@ -90,8 +90,8 @@ public:
      *  @note This constructor is only available for ScalarUSQOneElectronOperators (for the std::enable_if, see https://stackoverflow.com/a/17842695/7930415)
      */
     template <size_t Z = Components>
-    USQOneElectronOperator(const SquareMatrix<Scalar>& f_a, const SquareMatrix<Scalar>& f_b, typename std::enable_if<Z == 1>::type* = 0) :
-        USQOneElectronOperator(std::array<SquareMatrix<Scalar>, 1> {f_a}, std::array<SquareMatrix<Scalar>, 1> {f_b}) {}
+    USQOneElectronOperator(const QCMatrix<Scalar>& f_a, const QCMatrix<Scalar>& f_b, typename std::enable_if<Z == 1>::type* = 0) :
+        USQOneElectronOperator(std::array<QCMatrix<Scalar>, 1> {f_a}, std::array<QCMatrix<Scalar>, 1> {f_b}) {}
 
 
     /**
@@ -101,8 +101,8 @@ public:
      */
     USQOneElectronOperator(const size_t dim) {
         for (size_t i = 0; i < Components; i++) {
-            this->fs_a[i] = SquareMatrix<Scalar>::Zero(dim, dim);
-            this->fs_b[i] = SquareMatrix<Scalar>::Zero(dim, dim);
+            this->fs_a[i] = QCMatrix<Scalar>::Zero(dim, dim);
+            this->fs_b[i] = QCMatrix<Scalar>::Zero(dim, dim);
         }
     }
 
@@ -124,7 +124,7 @@ public:
      * 
      *  @return read-only matrix representations of all the parameters (integrals) of the different components of this second-quantized operator, for the requested spin component.
      */
-    const std::array<SquareMatrix<Scalar>, Components>& allParameters(const Spin sigma) const {
+    const std::array<QCMatrix<Scalar>, Components>& allParameters(const Spin sigma) const {
 
         if (sigma == Spin::alpha) {
             return this->fs_a;
@@ -139,7 +139,7 @@ public:
      * 
      *  @return writable matrix representations of all the parameters (integrals) of the different components of this second-quantized operator, for the requested spin component.
      */
-    std::array<SquareMatrix<Scalar>, Components>& allParameters(const Spin sigma) {
+    std::array<QCMatrix<Scalar>, Components>& allParameters(const Spin sigma) {
 
         if (sigma == Spin::alpha) {
             return this->fs_a;
@@ -170,7 +170,7 @@ public:
      * 
      *  @return a read-only the matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator, for the requested spin component.
      */
-    const SquareMatrix<Scalar>& parameters(const Spin sigma, const size_t i = 0) const {
+    const QCMatrix<Scalar>& parameters(const Spin sigma, const size_t i = 0) const {
 
         if (sigma == Spin::alpha) {
             return this->fs_a[i];
@@ -186,7 +186,7 @@ public:
      * 
      *  @return the writable matrix representation of the parameters (integrals) of one of the components of this second-quantized operator, for the requested spin component.
      */
-    SquareMatrix<Scalar>& parameters(const Spin sigma, const size_t i = 0) {
+    QCMatrix<Scalar>& parameters(const Spin sigma, const size_t i = 0) {
 
         if (sigma == Spin::alpha) {
             return this->fs_a[i];

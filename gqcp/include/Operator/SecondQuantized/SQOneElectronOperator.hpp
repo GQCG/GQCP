@@ -74,6 +74,14 @@ public:
             }
         }
     }
+    SQOneElectronOperator(const std::array<SquareMatrix<Scalar>, Components>& fs) {
+
+        this->fs = std::array<QCMatrix<Scalar>, Components> {};  // default initializer
+
+        for (size_t i = 0; i < Components; i++) {
+            this->fs[i] = QCMatrix<Scalar>(fs[i]);
+        }
+    }
 
 
     /**
@@ -83,10 +91,12 @@ public:
      * 
      *  @note This constructor is only available for ScalarSQOneElectronOperators (for the std::enable_if, see https://stackoverflow.com/a/17842695/7930415)
      */
+    // template <size_t Z = Components>
+    // SQOneElectronOperator(const QCMatrix<Scalar>& f, typename std::enable_if<Z == 1>::type* = 0) :
+    //     SQOneElectronOperator(std::array<QCMatrix<Scalar>, 1> {f}) {}
     template <size_t Z = Components>
-    SQOneElectronOperator(const QCMatrix<Scalar>& f, typename std::enable_if<Z == 1>::type* = 0) :
-        SQOneElectronOperator(std::array<QCMatrix<Scalar>, 1> {f}) {}
-
+    SQOneElectronOperator(const SquareMatrix<Scalar>& f, typename std::enable_if<Z == 1>::type* = 0) :
+        SQOneElectronOperator(std::array<QCMatrix<Scalar>, 1> {QCMatrix<Scalar>(f)}) {}
 
     /**
      *  Construct a one-electron operator with parameters that are zero
