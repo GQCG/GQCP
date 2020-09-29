@@ -18,8 +18,8 @@
 #pragma once
 
 
-#include "DensityMatrix//SpinResolvedOneDM.hpp"
-#include "DensityMatrix//SpinResolvedTwoDM.hpp"
+#include "DensityMatrix/SpinResolvedOneDM.hpp"
+#include "DensityMatrix/SpinResolvedTwoDM.hpp"
 
 
 namespace GQCP {

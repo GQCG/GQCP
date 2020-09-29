@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "DensityMatrix//TwoDM.hpp"
+#include "DensityMatrix/TwoDM.hpp"
 
 
 /*

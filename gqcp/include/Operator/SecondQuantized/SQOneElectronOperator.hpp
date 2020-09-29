@@ -20,8 +20,8 @@
 
 #include "Basis/Transformations/JacobiRotationParameters.hpp"
 #include "Basis/Transformations/TransformationMatrix.hpp"
-#include "DensityMatrix//OneDM.hpp"
-#include "DensityMatrix//TwoDM.hpp"
+#include "DensityMatrix/OneDM.hpp"
+#include "DensityMatrix/TwoDM.hpp"
 #include "Mathematical/Functions/CartesianGTO.hpp"
 #include "Mathematical/Functions/LinearCombination.hpp"
 #include "Mathematical/Functions/ScalarFunction.hpp"

@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "DensityMatrix//OneDM.hpp"
+#include "DensityMatrix/OneDM.hpp"
 #include "Mathematical/Representation/QCRankFourTensor.hpp"
 
 

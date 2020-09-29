@@ -19,7 +19,7 @@
 
 
 #include "Basis/Transformations/TransformationMatrix.hpp"
-#include "DensityMatrix//SpinResolvedOneDM.hpp"
+#include "DensityMatrix/SpinResolvedOneDM.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperator.hpp"

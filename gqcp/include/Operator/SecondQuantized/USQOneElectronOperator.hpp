@@ -20,9 +20,9 @@
 
 #include "Basis/Transformations/JacobiRotationParameters.hpp"
 #include "Basis/Transformations/TransformationMatrix.hpp"
-#include "DensityMatrix//OneDM.hpp"
-#include "DensityMatrix//SpinResolvedOneDM.hpp"
-#include "DensityMatrix//TwoDM.hpp"
+#include "DensityMatrix/OneDM.hpp"
+#include "DensityMatrix/SpinResolvedOneDM.hpp"
+#include "DensityMatrix/TwoDM.hpp"
 #include "Mathematical/Functions/ScalarFunction.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "QuantumChemical/Spin.hpp"

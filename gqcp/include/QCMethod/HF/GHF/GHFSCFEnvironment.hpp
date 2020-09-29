@@ -19,7 +19,7 @@
 
 
 #include "Basis/Transformations/TransformationMatrix.hpp"
-#include "DensityMatrix//OneDM.hpp"
+#include "DensityMatrix/OneDM.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 

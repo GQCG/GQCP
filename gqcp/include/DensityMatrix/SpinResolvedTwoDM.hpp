@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "DensityMatrix//TwoDM.hpp"
+#include "DensityMatrix/TwoDM.hpp"
 #include "QuantumChemical/Spin.hpp"
 
 

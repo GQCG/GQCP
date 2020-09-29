@@ -19,8 +19,8 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "DensityMatrix//CIDMCalculators/SpinResolvedFrozenDMCalculator.hpp"
-#include "DensityMatrix//CIDMCalculators/SpinResolvedSelectedDMCalculator.hpp"
+#include "DensityMatrix/CIDMCalculators/SpinResolvedFrozenDMCalculator.hpp"
+#include "DensityMatrix/CIDMCalculators/SpinResolvedSelectedDMCalculator.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/CI.hpp"

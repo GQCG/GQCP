@@ -18,9 +18,9 @@
 #pragma once
 
 
-#include "DensityMatrix//CIDMCalculators/BaseSpinResolvedFrozenDMCalculator.hpp"
-#include "DensityMatrix//SpinResolvedOneDM.hpp"
-#include "DensityMatrix//SpinResolvedTwoDM.hpp"
+#include "DensityMatrix/CIDMCalculators/BaseSpinResolvedFrozenDMCalculator.hpp"
+#include "DensityMatrix/SpinResolvedOneDM.hpp"
+#include "DensityMatrix/SpinResolvedTwoDM.hpp"
 #include "ONVBasis/SpinResolvedFrozenONVBasis.hpp"
 
 

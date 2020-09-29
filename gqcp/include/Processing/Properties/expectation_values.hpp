@@ -18,8 +18,8 @@
 #pragma once
 
 
-#include "DensityMatrix//SpinResolvedOneDM.hpp"
-#include "DensityMatrix//SpinResolvedTwoDM.hpp"
+#include "DensityMatrix/SpinResolvedOneDM.hpp"
+#include "DensityMatrix/SpinResolvedTwoDM.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 

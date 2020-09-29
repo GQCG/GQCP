@@ -19,9 +19,9 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "DensityMatrix//CIDMCalculators/FrozenCoreDOCIRDMBuilder.hpp"
-#include "DensityMatrix//CIDMCalculators/SeniorityZeroDMCalculator.hpp"
-#include "DensityMatrix//CIDMCalculators/SpinResolvedSelectedDMCalculator.hpp"
+#include "DensityMatrix/CIDMCalculators/FrozenCoreDOCIRDMBuilder.hpp"
+#include "DensityMatrix/CIDMCalculators/SeniorityZeroDMCalculator.hpp"
+#include "DensityMatrix/CIDMCalculators/SpinResolvedSelectedDMCalculator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FrozenCoreDOCI.hpp"
 #include "Utilities/linalg.hpp"

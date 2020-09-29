@@ -20,7 +20,7 @@
 
 #include "Basis/Transformations/BasisTransformable.hpp"
 #include "Basis/Transformations/JacobiRotatable.hpp"
-#include "DensityMatrix//OneDM.hpp"
+#include "DensityMatrix/OneDM.hpp"
 #include "Mathematical/Functions/VectorSpaceArithmetic.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Mathematical/Representation/StorageArray.hpp"

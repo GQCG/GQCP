@@ -19,8 +19,8 @@
 
 
 #include "Basis/Transformations/TransformationMatrix.hpp"
-#include "DensityMatrix//OneDM.hpp"
-#include "DensityMatrix//SpinResolvedOneDM.hpp"
+#include "DensityMatrix/OneDM.hpp"
+#include "DensityMatrix/SpinResolvedOneDM.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
 #include "QCModel/HF/RHF.hpp"
