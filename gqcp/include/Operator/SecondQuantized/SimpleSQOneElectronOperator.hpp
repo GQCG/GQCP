@@ -22,7 +22,7 @@
 #include "Basis/Transformations/JacobiRotatable.hpp"
 #include "DensityMatrix//OneDM.hpp"
 #include "Mathematical/Functions/VectorSpaceArithmetic.hpp"
-#include "Mathematical/Representation/QCMatrix.hpp"
+#include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Mathematical/Representation/StorageArray.hpp"
 #include "Utilities/CRTP.hpp"
 #include "Utilities/type_traits.hpp"
@@ -69,7 +69,7 @@ public:
     using DerivedOperator = _DerivedOperator;
 
     // The matrix representation of the parameters of (one of the components of) the one-electron operator.
-    using MatrixRepresentation = QCMatrix<Scalar>;
+    using MatrixRepresentation = SquareMatrix<Scalar>;
 
     // The type of 'this'.
     using Self = SimpleSQOneElectronOperator<Scalar, Vectorizer, DerivedOperator>;

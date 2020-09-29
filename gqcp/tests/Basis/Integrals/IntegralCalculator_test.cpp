@@ -40,25 +40,25 @@ BOOST_AUTO_TEST_CASE(Szabo_integrals_h2_sto3g) {
     const auto S = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::Overlap(), scalar_basis);
     const auto T = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::Kinetic(), scalar_basis);
     const auto V = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::NuclearAttraction(molecule), scalar_basis);
-    const GQCP::QCMatrix<double> H_core = T + V;
+    const GQCP::SquareMatrix<double> H_core = T + V;
 
     const auto g = GQCP::IntegralCalculator::calculateLibintIntegrals(GQCP::Operator::Coulomb(), scalar_basis);
 
 
     // Check the one-electron integrals with the reference
-    GQCP::QCMatrix<double> ref_S {2};
+    GQCP::SquareMatrix<double> ref_S {2};
     // clang-format off
     ref_S << 1.0,    0.6593,
              0.6593, 1.0;
     // clang-format on
 
-    GQCP::QCMatrix<double> ref_T {2};
+    GQCP::SquareMatrix<double> ref_T {2};
     // clang-format off
     ref_T << 0.7600, 0.2365,
              0.2365, 0.7600;
     // clang-format on
 
-    GQCP::QCMatrix<double> ref_H_core {2};
+    GQCP::SquareMatrix<double> ref_H_core {2};
     // clang-format off
     ref_H_core << -1.1204, -0.9584,
                   -0.9584, -1.1204;
@@ -102,9 +102,9 @@ BOOST_AUTO_TEST_CASE(HORTON_integrals_h2o_sto3g) {
 
 
     // Read in reference data from HORTON
-    const auto ref_S = GQCP::QCMatrix<double>::FromFile("data/h2o_sto-3g_overlap_horton.data", nbf, nbf);
-    const auto ref_T = GQCP::QCMatrix<double>::FromFile("data/h2o_sto-3g_kinetic_horton.data", nbf, nbf);
-    const auto ref_V = GQCP::QCMatrix<double>::FromFile("data/h2o_sto-3g_nuclear_horton.data", nbf, nbf);
+    const auto ref_S = GQCP::SquareMatrix<double>::FromFile("data/h2o_sto-3g_overlap_horton.data", nbf, nbf);
+    const auto ref_T = GQCP::SquareMatrix<double>::FromFile("data/h2o_sto-3g_kinetic_horton.data", nbf, nbf);
+    const auto ref_V = GQCP::SquareMatrix<double>::FromFile("data/h2o_sto-3g_nuclear_horton.data", nbf, nbf);
     const auto ref_g = GQCP::QCRankFourTensor<double>::FromFile("data/h2o_sto-3g_coulomb_horton.data", nbf);
 
 

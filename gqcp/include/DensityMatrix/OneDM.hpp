@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Mathematical/Representation/QCMatrix.hpp"
+#include "Mathematical/Representation/SquareMatrix.hpp"
 
 
 namespace GQCP {
@@ -30,23 +30,29 @@ namespace GQCP {
  *  @tparam _Scalar     the scalar type
  */
 template <typename _Scalar>
-class OneDM: public QCMatrix<_Scalar> {
+class OneDM: public SquareMatrix<_Scalar> {
 public:
     using Scalar = _Scalar;
-
-    using BaseRepresentation = QCMatrix<Scalar>;
     using Self = OneDM<Scalar>;
 
 
 public:
     /*
-     *  CONSTRUCTORS
+     *  MARK: Constructors
      */
 
-    using QCMatrix<Scalar>::QCMatrix;  // inherit base constructors
+    // Inherit base constructors.
+    using SquareMatrix<Scalar>::SquareMatrix;
+
 
     /*
-     * PUBLIC METHODS
+     *  MARK: General information
+     */
+    size_t numberOfOrbitals() const { return this->dimension(); }
+
+
+    /*
+     *  MARK: Transformations
      */
 
     /**

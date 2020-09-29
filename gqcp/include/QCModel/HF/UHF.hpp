@@ -167,7 +167,7 @@ public:
      * 
      *  @return the sigma-spin error matrix
      */
-    static SquareMatrix<Scalar> calculateError(const QCMatrix<Scalar>& F_sigma, const OneDM<Scalar>& D_sigma, const SquareMatrix<Scalar>& S) {
+    static SquareMatrix<Scalar> calculateError(const SquareMatrix<Scalar>& F_sigma, const OneDM<Scalar>& D_sigma, const SquareMatrix<Scalar>& S) {
         return QCModel::RHF<Scalar>::calculateError(F_sigma, D_sigma, S);
     }
 

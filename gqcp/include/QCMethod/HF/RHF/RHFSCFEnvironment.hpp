@@ -20,7 +20,7 @@
 
 #include "Basis/Transformations/TransformationMatrix.hpp"
 #include "DensityMatrix//OneDM.hpp"
-#include "Mathematical/Representation/QCMatrix.hpp"
+#include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 #include <Eigen/Dense>
@@ -51,12 +51,12 @@ public:
 
     std::deque<VectorX<double>> orbital_energies;
 
-    QCMatrix<Scalar> S;  // the overlap matrix (of the scalar (AO) basis)
+    SquareMatrix<Scalar> S;  // the overlap matrix (of the scalar (AO) basis)
 
     std::deque<TransformationMatrix<Scalar>> coefficient_matrices;
-    std::deque<OneDM<Scalar>> density_matrices;  // expressed in the scalar (AO) basis
-    std::deque<QCMatrix<Scalar>> fock_matrices;  // expressed in the scalar (AO) basis
-    std::deque<VectorX<Scalar>> error_vectors;   // expressed in the scalar (AO) basis, used when doing DIIS calculations: the real error matrices should be converted to column-major error vectors for the DIIS algorithm to be used correctly
+    std::deque<OneDM<Scalar>> density_matrices;      // expressed in the scalar (AO) basis
+    std::deque<SquareMatrix<Scalar>> fock_matrices;  // expressed in the scalar (AO) basis
+    std::deque<VectorX<Scalar>> error_vectors;       // expressed in the scalar (AO) basis, used when doing DIIS calculations: the real error matrices should be converted to column-major error vectors for the DIIS algorithm to be used correctly
 
     SQHamiltonian<Scalar> sq_hamiltonian;  // the Hamiltonian expressed in the scalar (AO) basis
 
@@ -74,14 +74,14 @@ public:
      *  @param S                    the overlap matrix (of the scalar (AO) basis)
      *  @param C_initial            the initial coefficient matrix
      */
-    RHFSCFEnvironment(const size_t N, const SQHamiltonian<Scalar>& sq_hamiltonian, const QCMatrix<Scalar>& S, const TransformationMatrix<Scalar>& C_initial) :
+    RHFSCFEnvironment(const size_t N, const SQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S, const TransformationMatrix<Scalar>& C_initial) :
         N {N},
         S {S},
         sq_hamiltonian {sq_hamiltonian},
         coefficient_matrices {C_initial} {
 
         if (this->N % 2 != 0) {  // if the total number of electrons is odd
-            throw std::invalid_argument("RHFSCFEnvironment::RHFSCFEnvironment(const size_t, const SQHamiltonian<Scalar>&, const QCMatrix<Scalar>&, const TransformationMatrix<Scalar>&): You have given an odd number of electrons.");
+            throw std::invalid_argument("RHFSCFEnvironment::RHFSCFEnvironment(const size_t, const SQHamiltonian<Scalar>&, const SquareMatrix<Scalar>&, const TransformationMatrix<Scalar>&): You have given an odd number of electrons.");
         }
     }
 
@@ -97,7 +97,7 @@ public:
      *  @param sq_hamiltonian       the Hamiltonian expressed in the scalar (AO) basis
      *  @param S                    the overlap matrix (of the scalar (AO) basis)
      */
-    static RHFSCFEnvironment<Scalar> WithCoreGuess(const size_t N, const SQHamiltonian<Scalar>& sq_hamiltonian, const QCMatrix<Scalar>& S) {
+    static RHFSCFEnvironment<Scalar> WithCoreGuess(const size_t N, const SQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S) {
 
         const auto& H_core = sq_hamiltonian.core().parameters();  // in AO basis
 

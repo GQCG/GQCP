@@ -20,7 +20,7 @@
 
 #include "Basis/Transformations/TransformationMatrix.hpp"
 #include "DensityMatrix//SpinResolvedOneDM.hpp"
-#include "Mathematical/Representation/QCMatrix.hpp"
+#include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
 #include "QCModel/HF/RHF.hpp"
@@ -55,7 +55,7 @@ public:
     std::deque<VectorX<double>> orbital_energies_alpha;
     std::deque<VectorX<double>> orbital_energies_beta;
 
-    QCMatrix<Scalar> S;  // the overlap matrix (of the scalar (AO) basis)
+    SquareMatrix<Scalar> S;  // the overlap matrix (of the scalar (AO) basis)
 
     std::deque<TransformationMatrix<Scalar>> coefficient_matrices_alpha;
     std::deque<TransformationMatrix<Scalar>> coefficient_matrices_beta;
@@ -85,7 +85,7 @@ public:
      *  @param C_alpha_initial          the initial coefficient matrix for the alpha spinors
      *  @param C_beta_initial           the initial coefficient matrix for the beta spinors
      */
-    UHFSCFEnvironment(const size_t N_alpha, const size_t N_beta, const SQHamiltonian<Scalar>& sq_hamiltonian, const QCMatrix<Scalar>& S, const TransformationMatrix<Scalar>& C_alpha_initial, const TransformationMatrix<Scalar>& C_beta_initial) :
+    UHFSCFEnvironment(const size_t N_alpha, const size_t N_beta, const SQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S, const TransformationMatrix<Scalar>& C_alpha_initial, const TransformationMatrix<Scalar>& C_beta_initial) :
         N_alpha {N_alpha},
         N_beta {N_beta},
         S {S},
@@ -101,7 +101,7 @@ public:
      *  @param sq_hamiltonian           the Hamiltonian expressed in the scalar (AO) basis
      *  @param S                        the overlap matrix (of the scalar (AO) basis)
      */
-    UHFSCFEnvironment(const QCModel::RHF<Scalar>& rhf_parameters, const SQHamiltonian<Scalar>& sq_hamiltonian, const QCMatrix<Scalar>& S) :
+    UHFSCFEnvironment(const QCModel::RHF<Scalar>& rhf_parameters, const SQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S) :
         UHFSCFEnvironment(rhf_parameters.numberOfElectrons(Spin::alpha), rhf_parameters.numberOfElectrons(Spin::beta),
                           sq_hamiltonian, S,
                           rhf_parameters.coefficientMatrix(), rhf_parameters.coefficientMatrix()) {}
@@ -119,7 +119,7 @@ public:
      *  @param sq_hamiltonian           the Hamiltonian expressed in the scalar (AO) basis
      *  @param S                        the overlap matrix (of the scalar (AO) basis)
      */
-    static UHFSCFEnvironment<Scalar> WithCoreGuess(const size_t N_alpha, const size_t N_beta, const SQHamiltonian<Scalar>& sq_hamiltonian, const QCMatrix<Scalar>& S) {
+    static UHFSCFEnvironment<Scalar> WithCoreGuess(const size_t N_alpha, const size_t N_beta, const SQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S) {
 
         const auto& H_core = sq_hamiltonian.core().parameters();  // in AO basis
 

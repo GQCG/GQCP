@@ -66,7 +66,7 @@ public:
 
             const auto dimension_of_ith = this->gs[i].numberOfOrbitals();
             if (dimension_of_first != dimension_of_ith) {
-                throw std::invalid_argument("SQTwoElectronOperator(const std::array<QCMatrix<Scalar>, Components>&): The given matrix representations do not have the same dimensions.");
+                throw std::invalid_argument("SQTwoElectronOperator(const std::array<SquareMatrix<Scalar>, Components>&): The given matrix representations do not have the same dimensions.");
             }
         }
     }

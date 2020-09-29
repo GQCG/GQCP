@@ -23,7 +23,7 @@
 #include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
 #include "Basis/SpinorBasis/Spinor.hpp"
 #include "Basis/Transformations/JacobiRotationParameters.hpp"
-#include "Mathematical/Representation/QCMatrix.hpp"
+#include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Molecule/NuclearFramework.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
@@ -185,7 +185,7 @@ public:
         const auto phi = this->spatialOrbitals();
         const auto K = this->numberOfSpatialOrbitals();
 
-        QCMatrix<ResultScalar> rho_par {K};  // the matrix representation ('par' for 'parameters') of the second-quantized (one-electron) density operator
+        SquareMatrix<ResultScalar> rho_par {K};  // the matrix representation ('par' for 'parameters') of the second-quantized (one-electron) density operator
         for (size_t p = 0; p < K; p++) {
             for (size_t q = 0; q < K; q++) {
                 rho_par(p, q) = phi[p] * phi[q];

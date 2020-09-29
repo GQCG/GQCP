@@ -83,12 +83,12 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
     const auto K_a = spinor_basis_a.numberOfSpatialOrbitals();
     const auto K_b = spinor_basis_b.numberOfSpatialOrbitals();
 
-    QCMatrix<double> V_a = spinor_basis_a.quantize(Operator::NuclearAttraction(nuclear_framework_a)).parameters();
-    QCMatrix<double> V_b = spinor_basis_b.quantize(Operator::NuclearAttraction(nuclear_framework_b)).parameters();
+    SquareMatrix<double> V_a = spinor_basis_a.quantize(Operator::NuclearAttraction(nuclear_framework_a)).parameters();
+    SquareMatrix<double> V_b = spinor_basis_b.quantize(Operator::NuclearAttraction(nuclear_framework_b)).parameters();
 
     // T_a and T_b are equal to the corresponding block from the molecular kinetic integrals (T_a = T.block(0,0, K_a, K_a))
-    QCMatrix<double> T_a = spinor_basis_a.quantize(Operator::Kinetic()).parameters();
-    QCMatrix<double> T_b = spinor_basis_b.quantize(Operator::Kinetic()).parameters();
+    SquareMatrix<double> T_a = spinor_basis_a.quantize(Operator::Kinetic()).parameters();
+    SquareMatrix<double> T_b = spinor_basis_b.quantize(Operator::Kinetic()).parameters();
 
     // Create partition matrices for both atoms
     const auto p_a = SquareMatrix<double>::PartitionMatrix(0, K_a, K);
@@ -100,16 +100,16 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
     const auto V = spinor_basis.quantize(Operator::NuclearAttraction(molecule)).parameters();
     const auto g = spinor_basis.quantize(Operator::Coulomb()).parameters();
 
-    QCMatrix<double> H = T + V;
+    SquareMatrix<double> H = T + V;
 
     // Decompose the integrals corresponding to the formula's in Mario's thesis
-    QCMatrix<double> h_a = QCMatrix<double>::Zero(K, K);
-    QCMatrix<double> h_b = QCMatrix<double>::Zero(K, K);
+    SquareMatrix<double> h_a = SquareMatrix<double>::Zero(K, K);
+    SquareMatrix<double> h_b = SquareMatrix<double>::Zero(K, K);
 
     h_a.block(0, 0, K_a, K_a) = T_a + V_a;
     h_b.block(K_a, K_a, K_b, K_b) = T_b + V_b;
 
-    QCMatrix<double> h_ab = H - h_a - h_b;
+    SquareMatrix<double> h_ab = H - h_a - h_b;
 
     auto g_a = g;
     auto g_b = g;

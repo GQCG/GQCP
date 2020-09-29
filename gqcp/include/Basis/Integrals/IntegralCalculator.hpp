@@ -25,8 +25,8 @@
 #include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
 #include "Basis/ScalarBasis/ShellSet.hpp"
-#include "Mathematical/Representation/QCMatrix.hpp"
 #include "Mathematical/Representation/QCRankFourTensor.hpp"
+#include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "Utilities/aliases.hpp"
 
@@ -207,9 +207,9 @@ public:
      *  @return the matrix representation (integrals) of the given first-quantized operator in this scalar basis
      */
     template <typename FQOneElectronOperator>
-    static QCMatrix<double> calculateLibintIntegrals(const FQOneElectronOperator& fq_one_op, const ScalarBasis<GTOShell>& scalar_basis) {
+    static SquareMatrix<double> calculateLibintIntegrals(const FQOneElectronOperator& fq_one_op, const ScalarBasis<GTOShell>& scalar_basis) {
 
-        return QCMatrix<double>(IntegralCalculator::calculateLibintIntegrals(fq_one_op, scalar_basis, scalar_basis));  // the same scalar basis appear on the left and right of the operator
+        return SquareMatrix<double>(IntegralCalculator::calculateLibintIntegrals(fq_one_op, scalar_basis, scalar_basis));  // the same scalar basis appear on the left and right of the operator
     }
 
 
@@ -247,14 +247,14 @@ public:
      * 
      *  @return the matrix representation (integrals) of the given first-quantized operator in this scalar basis
      */
-    static std::array<QCMatrix<double>, 3> calculateLibintIntegrals(const ElectronicDipoleOperator& fq_one_op, const ScalarBasis<GTOShell>& scalar_basis) {
+    static std::array<SquareMatrix<double>, 3> calculateLibintIntegrals(const ElectronicDipoleOperator& fq_one_op, const ScalarBasis<GTOShell>& scalar_basis) {
 
-        // Convert the array of Matrix to an array of QCMatrix
+        // Convert the array of Matrix to an array of SquareMatrix
         const auto calculated_components = IntegralCalculator::calculateLibintIntegrals(fq_one_op, scalar_basis, scalar_basis);  // the same scalar basis appear on the left and right of the operator
 
-        std::array<QCMatrix<double>, 3> converted_components {};
+        std::array<SquareMatrix<double>, 3> converted_components {};
         for (size_t i = 0; i < 3; i++) {
-            converted_components[i] = QCMatrix<double>(calculated_components[i]);
+            converted_components[i] = SquareMatrix<double>(calculated_components[i]);
         }
         return converted_components;
     }
@@ -318,7 +318,7 @@ public:
      *  @return the matrix representation of the overlap operator in this AO basis, using the libcint integral engine
      */
     template <typename FQOneElectronOperator>
-    static QCMatrix<double> calculateLibcintIntegrals(const FQOneElectronOperator& fq_one_op, const ScalarBasis<GTOShell>& scalar_basis) {
+    static SquareMatrix<double> calculateLibcintIntegrals(const FQOneElectronOperator& fq_one_op, const ScalarBasis<GTOShell>& scalar_basis) {
 
         const auto shell_set = scalar_basis.shellSet();
 
@@ -338,7 +338,7 @@ public:
      * 
      *  @return the matrix representation of the Cartesian components of the electrical dipole operator in this AO basis, using the libcint integral engine
      */
-    static std::array<QCMatrix<double>, 3> calculateLibcintIntegrals(const ElectronicDipoleOperator& fq_one_op, const ScalarBasis<GTOShell>& scalar_basis) {
+    static std::array<SquareMatrix<double>, 3> calculateLibcintIntegrals(const ElectronicDipoleOperator& fq_one_op, const ScalarBasis<GTOShell>& scalar_basis) {
 
         const auto shell_set = scalar_basis.shellSet();
 

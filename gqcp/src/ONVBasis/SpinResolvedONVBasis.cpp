@@ -87,7 +87,7 @@ ScalarSQOneElectronOperator<double> SpinResolvedONVBasis::calculateOneElectronPa
     const auto& two_op_par = two_op.parameters();
 
     const auto M = two_op.numberOfOrbitals();
-    QCMatrix<double> k_par = QCMatrix<double>::Zero(M, M);
+    SquareMatrix<double> k_par = SquareMatrix<double>::Zero(M, M);
 
     for (size_t i = 0; i < M; i++) {
         for (size_t j = 0; j < M; j++) {

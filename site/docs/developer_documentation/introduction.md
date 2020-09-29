@@ -49,7 +49,7 @@ Let us go through a small snippet to create an `SQOneElectronOperator`.
 
 
 // Initialize a matrix and convert it into an operator
-GQCP::QCMatrix<double> M (2);  // the matrix representation
+GQCP::SquareMatrix<double> M (2);  // the matrix representation
 M << 1.0, 2.0,
      3.0, 4.0;
 
@@ -79,15 +79,15 @@ In order to access the underlying integrals/parameters/matrix elements, we use t
 
 
 // Initialize two matrices and convert them into the two components of an operator
-GQCP::QCMatrix<double> M1 (2);  // the first matrix representation
+GQCP::SquareMatrix<double> M1 (2);  // the first matrix representation
 M1 << 1.0, 2.0,
       3.0, 4.0;
 
-GQCP::QCMatrix<double> M2 = GQCP::QCMatrix<double>::Identity(2);  // the second first matrix representation
+GQCP::SquareMatrix<double> M2 = GQCP::SquareMatrix<double>::Identity(2);  // the second first matrix representation
 
 
 // Construct an operator with two components
-const GQCP::SQOneElectronOperator<double, 2> op ({M1, 2*M1*M2});  // note that we can naturally work with multiplications of matrices thanks to QCMatrix inheriting from Eigen
+const GQCP::SQOneElectronOperator<double, 2> op ({M1, 2*M1*M2});  // note that we can naturally work with multiplications of matrices thanks to SquareMatrix inheriting from Eigen
 
 
 const auto all_components = op.allParameters();  // return all the components

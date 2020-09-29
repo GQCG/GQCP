@@ -81,7 +81,7 @@ public:
      * 
      *  @return T1-amplitudes calculated from an initial perturbative result
      */
-    static T1Amplitudes<Scalar> Perturbative(const QCMatrix<Scalar>& f, const OrbitalSpace& orbital_space) {
+    static T1Amplitudes<Scalar> Perturbative(const SquareMatrix<Scalar>& f, const OrbitalSpace& orbital_space) {
 
         // Zero-initialize a matrix representation for the (occupied-virtual) T1-amplitudes t_i^a.
         auto t1 = orbital_space.initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_virtual);
