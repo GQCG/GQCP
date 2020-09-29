@@ -253,7 +253,7 @@ public:
 
 
     /*
-     *  MARK: Vector space arithmetic
+     *  MARK: Conforming to VectorSpaceArithmetic
      */
 
     /**
@@ -314,7 +314,7 @@ public:
 
 
     /*
-     *  MARK: Basis transformations
+     *  MARK: Conforming to BasisTransformable
      */
 
     /**
@@ -337,6 +337,7 @@ public:
         return Self(StorageArray<MatrixRepresentation, Vectorizer>(result, this->array.vectorizer()));
     }
 
+
     // Allow the `rotate` method from `BasisTransformable`, since there's also a `rotate` from `JacobiRotatable`.
     using BasisTransformable<Self, TM>::rotate;
 
@@ -345,7 +346,7 @@ public:
 
 
     /*
-     *  MARK: Jacobi rotations
+     *  MARK: Conforming to JacobiRotatable
      */
 
     /**

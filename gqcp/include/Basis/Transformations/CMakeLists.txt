@@ -1,9 +1,12 @@
 target_sources(gqcp
     PRIVATE
         BasisTransformable.hpp
+        GTransformationMatrix.hpp
         JacobiRotationParameters.hpp
         JacobiRotatable.hpp
         OrbitalRotationGenerators.hpp
+        RTransformationMatrix.hpp
+        SimpleTransformationMatrix.hpp
         SpinResolvedTransformationMatrix.hpp
         transform.hpp
         TransformationMatrix.hpp
