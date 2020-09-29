@@ -18,6 +18,9 @@
 #pragma once
 
 
+#include "QuantumChemical/Spin.hpp"
+
+
 namespace GQCP {
 
 
@@ -35,6 +38,9 @@ public:
 
     // The type that derives from this type, given as a template argument, enabling CRTP and compile-time polymorphism.
     using Derived = _Derived;
+
+    // The type of 'this'.
+    using Self = SpinResolved<Of, Derived>;
 
 
 private:
@@ -72,7 +78,7 @@ public:
      * 
      *  @return The dervived (spin-resolved) type.
      */
-    Derived FromEqual(const Of& equal) {
+    static Derived FromEqual(const Of& equal) {
         return Derived {equal, equal};
     }
 
@@ -100,6 +106,37 @@ public:
      *  @return A writable reference to the beta object.
      */
     Of& beta() { return this->m_beta; }
+
+    /**
+     *  Access the alpha or beta component of this spin-resolved type.
+     * 
+     *  @param sigma            Alpha or beta.
+     * 
+     *  @return A read-only reference to the alpha or beta object.
+     */
+    const Of& component(const Spin sigma) const {
+
+        switch (sigma) {
+        case Spin::alpha: {
+            return this->alpha().numberOfOrbitals();
+            break;
+        }
+
+        case Spin::beta: {
+            return this->beta().numberOfOrbitals();
+            break;
+        }
+        }
+    }
+
+    /**
+     *  Access the alpha or beta component of this spin-resolved type.
+     * 
+     *  @param sigma            Alpha or beta.
+     * 
+     *  @return A writable reference to the alpha or beta object.
+     */
+    Of& component(const Spin sigma) { return const_cast<Of&>(const_cast<const Self*>(this)->component(sigma)); }
 };
 
 

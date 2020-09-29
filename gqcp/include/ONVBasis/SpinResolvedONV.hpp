@@ -121,7 +121,7 @@ public:
      *  @example This method can be used to project UHF-ONVs onto RHF-ONVs, by calling
      *          uhf_onv.calculateProjection(rhf_onv, C_unrestricted, C_restricted, S)
      */
-    double calculateProjection(const SpinResolvedONV& onv_on, const SpinResolvedTransformationMatrix<double>& C_unrestricted, const TransformationMatrix<double>& C_restricted, const SquareMatrix<double>& S) const;
+    double calculateProjection(const SpinResolvedONV& onv_on, const UTransformationMatrix<double>& C_unrestricted, const TransformationMatrix<double>& C_restricted, const SquareMatrix<double>& S) const;
 
     /**
      *  @param sigma                alpha or beta

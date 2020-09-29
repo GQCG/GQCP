@@ -244,7 +244,7 @@ public:
 
         const auto& C_alpha = u_spinor_basis.coefficientMatrix(Spin::alpha);
         const auto& C_beta = u_spinor_basis.coefficientMatrix(Spin::beta);
-        const SpinResolvedTransformationMatrix<double> C_unrestricted {C_alpha, C_beta};
+        const UTransformationMatrix<double> C_unrestricted {C_alpha, C_beta};
 
 
         // Set up the required spin-resolved ONV basis.

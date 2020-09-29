@@ -18,8 +18,8 @@
 #pragma once
 
 
-#include "Basis/Transformations/TransformationMatrix.hpp"
-#include "QuantumChemical/Spin.hpp"
+#include "Basis/Transformations/SimpleTransformationMatrix.hpp"
+#include "QuantumChemical/SpinResolved.hpp"
 
 
 namespace GQCP {
@@ -27,35 +27,27 @@ namespace GQCP {
 
 /**
  *  A type that encapsulates transformation matrices for the alpha- and beta-parts of spin-orbital bases.
+ * 
+ *  @tparam _Scalar         The scalar type used for a transformation coefficient: real or complex.
  */
 template <typename _Scalar>
-class SpinResolvedTransformationMatrix {
+class UTransformationMatrix:
+    public SpinResolved<TransformationMatrix<_Scalar>, UTransformationMatrix<_Scalar>> {
 public:
+    // The scalar type used for a transformation coefficient: real or complex.
     using Scalar = _Scalar;
 
-
-private:
-    TransformationMatrix<Scalar> T_a;  // the transformation matrix for the alpha spin-orbitals
-    TransformationMatrix<Scalar> T_b;  // the transformation matrix for the beta spin-orbitals
-
 public:
     /*
-     *  CONSTRUCTORS
+     *  MARK: Constructors
      */
 
-    /**
-     *  Create a spin-resolved transformation matrix from its members.
-     * 
-     *  @param T_a          the transformation matrix for the alpha spin-orbitals
-     *  @param T_b          the transformation matrix for the beta spin-orbitals
-     */
-    SpinResolvedTransformationMatrix(const TransformationMatrix<Scalar>& T_a, const TransformationMatrix<Scalar>& T_b) :
-        T_a {T_a},
-        T_b {T_b} {}
+    // Inherit SpinResolved's constructors.
+    using SpinResolved<TransformationMatrix<Scalar>, UTransformationMatrix<Scalar>>::SpinResolved;
 
 
     /*
-     *  NAMED CONSTRUCTORS
+     *  MARK: Named constructors
      */
 
     /**
@@ -63,31 +55,17 @@ public:
      * 
      *  @return a spin-resolved transformation matrix where the transformation matrices for the alpha and beta spin-orbitals are equal
      */
-    static SpinResolvedTransformationMatrix<Scalar> FromRestricted(const TransformationMatrix<Scalar>& T) {
-
-        return SpinResolvedTransformationMatrix<Scalar>(T, T);
-    }
+    static UTransformationMatrix<Scalar> FromRestricted(const TransformationMatrix<Scalar>& T) { return UTransformationMatrix<Scalar>::FromEqual(T); }
 
 
     /*
-     *  PUBLIC METHODS
+     *  MARK: General information
      */
 
     /**
-     *  @return the transformation matrix for the alpha spin-orbitals
-     */
-    const TransformationMatrix<Scalar> alpha() const { return this->T_a; }
-
-    /**
-     *  @return the transformation matrix for the beta spin-orbitals
-     */
-    const TransformationMatrix<Scalar> beta() const { return this->T_b; }
-
-
-    /**
-     *  @param sigma            alpha or beta
+     *  @param sigma            Alpha or beta.
      * 
-     *  @return the number of orbitals (spin-orbitals) that the transformation matrix for the sigma spin-orbitals is related to
+     *  @return The number of orbitals (spin-orbitals) that the transformation matrix for the sigma spin-orbitals is related to
      */
     size_t numberOfOrbitals(const Spin sigma) const {
 
