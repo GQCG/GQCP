@@ -19,6 +19,7 @@
 
 
 #include "Basis/SpinorBasis/OrbitalSpace.hpp"
+#include "Mathematical/Functions/VectorSpaceArithmetic.hpp"
 #include "Mathematical/Representation/ImplicitMatrixSlice.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Utilities/type_traits.hpp"
@@ -31,9 +32,12 @@ namespace GQCP {
  *  The coupled-cluster T1 amplitudes t_i^a. According to context, this class may either represent restricted (i.e. spatial-orbital) amplitudes, or generalized (spinor) amplitudes.
  */
 template <typename _Scalar>
-class T1Amplitudes {
+class T1Amplitudes:
+    public VectorSpaceArithmetic<T1Amplitudes<_Scalar>, _Scalar> {
+
 public:
     using Scalar = _Scalar;
+    using Self = T1Amplitudes<Scalar>;
 
 
 private:
@@ -160,93 +164,45 @@ public:
      *  @return the orbital space for these T1-amplitudes, which covers the occupied-virtual separation
      */
     const OrbitalSpace& orbitalSpace() const { return this->orbital_space; }
+
+    /*
+     *  MARK: Vector space arithmetic
+     */
+
+    /**
+     *  Addition-assignment.
+     */
+    Self& operator+=(const Self& rhs) override {
+
+        // Prepare some variables.
+        const auto& row_map = this->asImplicitMatrixSlice().rowIndexMap();
+        const auto& col_map = this->asImplicitMatrixSlice().columnIndexMap();
+
+        const MatrixX<Scalar> t_sum_dense = this->asImplicitMatrixSlice().asMatrix() + rhs.asImplicitMatrixSlice().asMatrix();
+        const ImplicitMatrixSlice<Scalar> t_sum_slice {row_map, col_map, t_sum_dense};
+
+        this->t = t_sum_slice;
+
+        return *this;
+    }
+
+
+    /**
+     *  Scalar multiplication-assignment.
+     */
+    Self& operator*=(const Scalar& a) override {
+
+        // Prepare some variables.
+        const auto& row_map = this->asImplicitMatrixSlice().rowIndexMap();
+        const auto& col_map = this->asImplicitMatrixSlice().columnIndexMap();
+
+        const MatrixX<Scalar> t_multiplied_dense = a * this->asImplicitMatrixSlice().asMatrix();
+        const ImplicitMatrixSlice<Scalar> t_multiplied_slice {row_map, col_map, t_multiplied_dense};
+
+        this->t = t_multiplied_slice;
+
+        return *this;
+    }
 };
-
-
-/*
- *  OPERATORS
- */
-
-/**
- *  Add two sets of T1-amplitudes.
- * 
- *  @tparam LHSScalar           the scalar type of the left-hand side
- *  @tparam RHSScalar           the scalar type of the right-hand side
- * 
- *  @param lhs                  the left-hand side
- *  @param rhs                  the right-hand side
- */
-template <typename LHSScalar, typename RHSScalar>
-auto operator+(const T1Amplitudes<LHSScalar>& lhs, const T1Amplitudes<RHSScalar>& rhs) -> T1Amplitudes<sum_t<LHSScalar, RHSScalar>> {
-
-    using ResultScalar = sum_t<LHSScalar, RHSScalar>;
-
-    // Prepare some variables.
-    const auto& orbital_space = lhs.orbitalSpace();  // assume the orbital spaces are equal for the LHS and RHS
-    const auto& row_map = lhs.asImplicitMatrixSlice().rowIndexMap();
-    const auto& col_map = lhs.asImplicitMatrixSlice().columnIndexMap();
-
-    const MatrixX<ResultScalar> t_sum_dense = lhs.asImplicitMatrixSlice().asMatrix() + rhs.asImplicitMatrixSlice().asMatrix();
-    const ImplicitMatrixSlice<ResultScalar> t_sum_slice {row_map, col_map, t_sum_dense};
-
-    return T1Amplitudes<ResultScalar>(t_sum_slice, orbital_space);
-}
-
-
-/**
- *  Multiply a set of T1-amplitudes with a scalar.
- * 
- *  @tparam Scalar              the scalar type of the scalar
- *  @tparam AmplitudeScalar     the scalar type of the T1-amplitudes
- * 
- *  @param scalar               the scalar
- *  @param t1                   the the T1-amplitudes
- */
-template <typename Scalar, typename AmplitudeScalar>
-auto operator*(const Scalar& scalar, const T1Amplitudes<AmplitudeScalar>& t1) -> T1Amplitudes<product_t<Scalar, AmplitudeScalar>> {
-
-    using ResultScalar = product_t<Scalar, AmplitudeScalar>;
-
-    // Prepare some variables.
-    const auto& orbital_space = t1.orbitalSpace();  // assume the orbital spaces are equal for the LHS and RHS
-    const auto& row_map = t1.asImplicitMatrixSlice().rowIndexMap();
-    const auto& col_map = t1.asImplicitMatrixSlice().columnIndexMap();
-
-    const MatrixX<ResultScalar> t_multiplied_dense = scalar * t1.asImplicitMatrixSlice().asMatrix();
-    const ImplicitMatrixSlice<ResultScalar> t_multiplied_slice {row_map, col_map, t_multiplied_dense};
-
-    return T1Amplitudes<ResultScalar>(t_multiplied_slice, orbital_space);
-}
-
-
-/**
- *  Negate a set of T1-amplitudes.
- * 
- *  @tparam Scalar              the scalar type of the T1-amplitudes
- * 
- *  @param t1                   the T1-amplitudes
- */
-template <typename Scalar>
-T1Amplitudes<Scalar> operator-(const T1Amplitudes<Scalar>& t1) {
-
-    return (-1.0) * t1;  // negation is scalar multiplication with (-1.0)
-}
-
-
-/**
- *  Subtract one set of T1-amplitudes from another.
- * 
- *  @tparam LHSScalar           the scalar type of the left-hand side
- *  @tparam RHSScalar           the scalar type of the right-hand side
- * 
- *  @param lhs                  the left-hand side
- *  @param rhs                  the right-hand side
- */
-template <typename LHSScalar, typename RHSScalar>
-auto operator-(const T1Amplitudes<LHSScalar>& lhs, const T1Amplitudes<RHSScalar>& rhs) -> T1Amplitudes<sum_t<LHSScalar, RHSScalar>> {
-
-    return lhs + (-rhs);
-}
-
 
 }  // namespace GQCP

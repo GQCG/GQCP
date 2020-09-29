@@ -96,12 +96,25 @@ public:
         return lhs *= a;
     }
 
+    /**
+     *  Scalar division, canonically implemented using scalar multiplication-assignment.
+     */
+    friend T operator/(const Scalar& a, T rhs) {
+        return rhs *= 1 / a;
+    }
+
+    /**
+     *  The commutative version of the previous scalar division.
+     */
+    friend T operator/(T lhs, const Scalar& a) {
+        return lhs *= 1 / a;
+    }
 
     /**
      *  Negation, canonically implemented as scalar multiplication by (-1.0).
      */
     T operator-() const {
-        return Scalar {-1.0} * this->derived();
+        return Scalar {-1} * this->derived();
     }
 };
 
