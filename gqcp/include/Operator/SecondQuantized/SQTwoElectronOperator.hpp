@@ -20,10 +20,10 @@
 
 #include "Basis/Transformations/JacobiRotationParameters.hpp"
 #include "Basis/Transformations/TransformationMatrix.hpp"
+#include "DensityMatrix/OneDM.hpp"
+#include "DensityMatrix/TwoDM.hpp"
 #include "Mathematical/Representation/QCRankFourTensor.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
-#include "Processing/DensityMatrices/OneDM.hpp"
-#include "Processing/DensityMatrices/TwoDM.hpp"
 #include "Utilities/miscellaneous.hpp"
 
 #include <array>
@@ -66,7 +66,7 @@ public:
 
             const auto dimension_of_ith = this->gs[i].numberOfOrbitals();
             if (dimension_of_first != dimension_of_ith) {
-                throw std::invalid_argument("SQTwoElectronOperator(const std::array<QCMatrix<Scalar>, Components>&): The given matrix representations do not have the same dimensions.");
+                throw std::invalid_argument("SQTwoElectronOperator(const std::array<SquareMatrix<Scalar>, Components>&): The given matrix representations do not have the same dimensions.");
             }
         }
     }

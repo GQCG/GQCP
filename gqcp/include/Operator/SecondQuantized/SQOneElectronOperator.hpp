@@ -20,12 +20,12 @@
 
 #include "Basis/Transformations/JacobiRotationParameters.hpp"
 #include "Basis/Transformations/TransformationMatrix.hpp"
+#include "DensityMatrix/OneDM.hpp"
+#include "DensityMatrix/TwoDM.hpp"
 #include "Mathematical/Functions/CartesianGTO.hpp"
 #include "Mathematical/Functions/LinearCombination.hpp"
 #include "Mathematical/Functions/ScalarFunction.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
-#include "Processing/DensityMatrices/OneDM.hpp"
-#include "Processing/DensityMatrices/TwoDM.hpp"
 #include "Utilities/type_traits.hpp"
 
 #include <array>
@@ -74,6 +74,14 @@ public:
             }
         }
     }
+    SQOneElectronOperator(const std::array<SquareMatrix<Scalar>, Components>& fs) {
+
+        this->fs = std::array<QCMatrix<Scalar>, Components> {};  // default initializer
+
+        for (size_t i = 0; i < Components; i++) {
+            this->fs[i] = QCMatrix<Scalar>(fs[i]);
+        }
+    }
 
 
     /**
@@ -84,9 +92,8 @@ public:
      *  @note This constructor is only available for ScalarSQOneElectronOperators (for the std::enable_if, see https://stackoverflow.com/a/17842695/7930415)
      */
     template <size_t Z = Components>
-    SQOneElectronOperator(const QCMatrix<Scalar>& f, typename std::enable_if<Z == 1>::type* = 0) :
-        SQOneElectronOperator(std::array<QCMatrix<Scalar>, 1> {f}) {}
-
+    SQOneElectronOperator(const SquareMatrix<Scalar>& f, typename std::enable_if<Z == 1>::type* = 0) :
+        SQOneElectronOperator(std::array<QCMatrix<Scalar>, 1> {QCMatrix<Scalar>(f)}) {}
 
     /**
      *  Construct a one-electron operator with parameters that are zero

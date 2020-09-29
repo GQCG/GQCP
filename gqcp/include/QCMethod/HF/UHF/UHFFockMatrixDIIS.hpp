@@ -99,8 +99,8 @@ public:
 
         const std::vector<ScalarUSQOneElectronOperator<Scalar>> fock_matrices {environment.fock_matrices.end() - n, environment.fock_matrices.end()};  // the n-th last Fock matrices
 
-        std::vector<QCMatrix<Scalar>> alpha_fock_matrices;
-        std::vector<QCMatrix<Scalar>> beta_fock_matrices;
+        std::vector<SquareMatrix<Scalar>> alpha_fock_matrices;
+        std::vector<SquareMatrix<Scalar>> beta_fock_matrices;
 
         for (size_t i = 0; i < fock_matrices.size(); i++) {
             alpha_fock_matrices.push_back(fock_matrices[i].parameters(Spin::alpha));

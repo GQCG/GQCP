@@ -212,7 +212,7 @@ public:
     /**
      *  @return the dimension of this square matrix, i.e. the number of rows or columns
      */
-    size_t dimension() const { return this->cols(); }  // equals this->rows()
+    size_t dimension() const { return static_cast<size_t>(this->cols()); }  // equals this->rows()
 
     /**
      *  @return a non-pivoted LU decomposition in an array, with L at position 0 and U on position 1 of the array.

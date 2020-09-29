@@ -28,7 +28,7 @@ namespace GQCP {
 
 
 /**
- *  A class that holds the parameters that define a Jacobi rotation
+ *  A type that encapsulates the parameters that define a real Jacobi rotation.
  */
 class JacobiRotationParameters {
 private:
@@ -38,7 +38,7 @@ private:
 
 public:
     /*
-     *  MARK: CONSTRUCTORS
+     *  MARK: Constructors
      */
 
     /**
@@ -54,7 +54,9 @@ public:
     JacobiRotationParameters();
 
 
-    // OPERATORS
+    /*
+     *  MARK: Operators
+     */
 
     /**
      *  @param os                               the output stream which the parameters should be concatenated to
@@ -65,7 +67,9 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const JacobiRotationParameters& jacobi_rotation_parameters);
 
 
-    // PUBLIC METHODS
+    /*
+     *  MARK: General information
+     */
 
     /**
      *  @return the angle of rotation, in radians
@@ -81,6 +85,11 @@ public:
      *  @return the index of the second rotated orbital
      */
     size_t q() const { return this->m_q; }
+
+
+    /*
+     *  MARK: Conversions
+     */
 
     /**
      *  @return This as an Eigen::JacobiRotation.

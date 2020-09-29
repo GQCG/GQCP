@@ -18,8 +18,8 @@
 #pragma once
 
 
-#include "Basis/SpinorBasis/Spin.hpp"
 #include "Mathematical/Functions/LinearCombination.hpp"
+#include "QuantumChemical/Spin.hpp"
 
 
 namespace GQCP {

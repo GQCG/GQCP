@@ -5,6 +5,5 @@ target_sources(gqcp
         OrbitalSpace.hpp
         RSpinorBasis.hpp
         SimpleSpinorBasis.hpp
-        Spin.hpp
         USpinorBasis.hpp
 )

@@ -34,7 +34,7 @@ void bindUHFSCFEnvironment(py::module& module) {
         // CONSTRUCTORS
 
         .def(py::init([](const size_t N_alpha, const size_t N_beta, const GQCP::SQHamiltonian<double>& sq_hamiltonian, const Eigen::MatrixXd& S, const Eigen::MatrixXd& C_alpha_initial, const Eigen::MatrixXd& C_beta_initial) {
-                 return GQCP::UHFSCFEnvironment<double>(N_alpha, N_beta, sq_hamiltonian, GQCP::QCMatrix<double>(S), GQCP::TransformationMatrix<double>(C_alpha_initial), GQCP::TransformationMatrix<double>(C_beta_initial));
+                 return GQCP::UHFSCFEnvironment<double>(N_alpha, N_beta, sq_hamiltonian, GQCP::SquareMatrix<double>(S), GQCP::TransformationMatrix<double>(C_alpha_initial), GQCP::TransformationMatrix<double>(C_beta_initial));
              }),
              py::arg("N_alpha"),
              py::arg("N_beta"),
@@ -45,7 +45,7 @@ void bindUHFSCFEnvironment(py::module& module) {
              "A constructor that initializes the environment with initial guesses for the alpha and beta coefficient matrices.")
 
         .def(py::init([](const GQCP::QCModel::RHF<double>& rhf_parameters, const GQCP::SQHamiltonian<double>& sq_hamiltonian, const Eigen::MatrixXd& S) {  // use an itermediary Eigen matrix for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Matrix
-                 return GQCP::UHFSCFEnvironment<double>(rhf_parameters, sq_hamiltonian, GQCP::QCMatrix<double>(S));
+                 return GQCP::UHFSCFEnvironment<double>(rhf_parameters, sq_hamiltonian, GQCP::SquareMatrix<double>(S));
              }),
              py::arg("rhf_parameters"),
              py::arg("sq_hamiltonian"),
@@ -55,7 +55,7 @@ void bindUHFSCFEnvironment(py::module& module) {
         .def_static(
             "WithCoreGuess",
             [](const size_t N_alpha, const size_t N_beta, const GQCP::SQHamiltonian<double>& sq_hamiltonian, const Eigen::MatrixXd& S) {  // use an itermediary Eigen matrix for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Matrix
-                return GQCP::UHFSCFEnvironment<double>::WithCoreGuess(N_alpha, N_beta, sq_hamiltonian, GQCP::QCMatrix<double>(S));
+                return GQCP::UHFSCFEnvironment<double>::WithCoreGuess(N_alpha, N_beta, sq_hamiltonian, GQCP::SquareMatrix<double>(S));
             },
             "Initialize an UHF SCF environment with initial coefficient matrices (equal for alpha and beta) that is obtained by diagonalizing the core Hamiltonian matrix.")
 
@@ -75,7 +75,7 @@ void bindUHFSCFEnvironment(py::module& module) {
                 return environment.S;
             },
             [](GQCP::UHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& S) {
-                environment.S = GQCP::QCMatrix<double>(S);
+                environment.S = GQCP::SquareMatrix<double>(S);
             })
 
 
@@ -141,13 +141,13 @@ void bindUHFSCFEnvironment(py::module& module) {
         .def("replace_current_coefficient_matrix_alpha",
              [](GQCP::UHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& new_coefficient_matrix_alpha) {
                  environment.coefficient_matrices_alpha.pop_back();
-                 environment.coefficient_matrices_alpha.push_back(GQCP::QCMatrix<double>(new_coefficient_matrix_alpha));
+                 environment.coefficient_matrices_alpha.push_back(GQCP::SquareMatrix<double>(new_coefficient_matrix_alpha));
              })
 
         .def("replace_current_coefficient_matrix_beta",
              [](GQCP::UHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& new_coefficient_matrix_beta) {
                  environment.coefficient_matrices_beta.pop_back();
-                 environment.coefficient_matrices_beta.push_back(GQCP::QCMatrix<double>(new_coefficient_matrix_beta));
+                 environment.coefficient_matrices_beta.push_back(GQCP::SquareMatrix<double>(new_coefficient_matrix_beta));
              })
 
         .def("replace_current_density_matrix_alpha",
@@ -189,13 +189,13 @@ void bindUHFSCFEnvironment(py::module& module) {
         .def("replace_current_error_vectors_alpha",
              [](GQCP::UHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& new_error_vectors_alpha) {
                  environment.error_vectors_alpha.pop_back();
-                 environment.error_vectors_alpha.push_back(GQCP::QCMatrix<double>(new_error_vectors_alpha));
+                 environment.error_vectors_alpha.push_back(GQCP::SquareMatrix<double>(new_error_vectors_alpha));
              })
 
         .def("replace_current_error_vectors_beta",
              [](GQCP::UHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& new_error_vectors_beta) {
                  environment.error_vectors_beta.pop_back();
-                 environment.error_vectors_beta.push_back(GQCP::QCMatrix<double>(new_error_vectors_beta));
+                 environment.error_vectors_beta.push_back(GQCP::SquareMatrix<double>(new_error_vectors_beta));
              });
 }
 

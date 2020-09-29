@@ -68,14 +68,14 @@ BOOST_AUTO_TEST_CASE(USQOneElectronOperator_addition) {
     const size_t dim = 2;
 
     // Initialize two test matrices and convert them into operators
-    GQCP::QCMatrix<double> M1 {dim};
+    GQCP::SquareMatrix<double> M1 {dim};
     // clang-format off
     M1 << 1.0, 2.0,
           3.0, 4.0;
     // clang-format on
     const GQCP::ScalarUSQOneElectronOperator<double> op1 {M1, M1};
 
-    GQCP::QCMatrix<double> M2 {dim};
+    GQCP::SquareMatrix<double> M2 {dim};
     // clang-format off
     M2 << 5.0, 6.0,
           7.0, 8.0;
@@ -84,7 +84,7 @@ BOOST_AUTO_TEST_CASE(USQOneElectronOperator_addition) {
 
 
     // Initialize the reference and check the result
-    GQCP::QCMatrix<double> M_sum_ref {dim};
+    GQCP::SquareMatrix<double> M_sum_ref {dim};
     // clang-format off
     M_sum_ref <<  6.0,  8.0,
                  10.0, 12.0;
@@ -104,14 +104,14 @@ BOOST_AUTO_TEST_CASE(USQOneElectronOperator_difference) {
     const size_t dim = 2;
 
     // Initialize two test matrices and convert them into operators
-    GQCP::QCMatrix<double> M1 {dim};
+    GQCP::SquareMatrix<double> M1 {dim};
     // clang-format off
     M1 << 1.0, 2.0,
           3.0, 4.0;
     // clang-format on
     const GQCP::ScalarUSQOneElectronOperator<double> op1 {M1, M1};
 
-    GQCP::QCMatrix<double> M2 {dim};
+    GQCP::SquareMatrix<double> M2 {dim};
     // clang-format off
     M2 << 5.0, 6.0,
           7.0, 8.0;
@@ -120,7 +120,7 @@ BOOST_AUTO_TEST_CASE(USQOneElectronOperator_difference) {
 
 
     // Initialize the reference and check the result
-    GQCP::QCMatrix<double> M_diff_ref {dim};
+    GQCP::SquareMatrix<double> M_diff_ref {dim};
     // clang-format off
     M_diff_ref << 4.0, 4.0,
                   4.0, 4.0;
@@ -141,7 +141,7 @@ BOOST_AUTO_TEST_CASE(USQOneElectronOperator_scalar_product) {
     const double scalar = 2.0;
 
     // Initialize a test matrix and convert it into an operator
-    GQCP::QCMatrix<double> M1 {dim};
+    GQCP::SquareMatrix<double> M1 {dim};
     // clang-format off
     M1 << 1.0, 2.0,
           3.0, 4.0;
@@ -149,7 +149,7 @@ BOOST_AUTO_TEST_CASE(USQOneElectronOperator_scalar_product) {
     const GQCP::ScalarUSQOneElectronOperator<double> op1 {M1, M1};
 
     // Initialize the reference and check the result
-    GQCP::QCMatrix<double> M_ref {dim};
+    GQCP::SquareMatrix<double> M_ref {dim};
     // clang-format off
     M_ref << 2.0, 4.0,
              6.0, 8.0;
@@ -169,7 +169,7 @@ BOOST_AUTO_TEST_CASE(USQOneElectronOperator_negate) {
     const size_t dim = 2;
 
     // Initialize a test matrix and convert it into an operator
-    GQCP::QCMatrix<double> M1 {dim};
+    GQCP::SquareMatrix<double> M1 {dim};
     // clang-format off
     M1 << 1.0, 2.0,
           3.0, 4.0;
@@ -177,7 +177,7 @@ BOOST_AUTO_TEST_CASE(USQOneElectronOperator_negate) {
     const GQCP::ScalarUSQOneElectronOperator<double> op1 {M1, M1};
 
     // Initialize the reference and check the result
-    GQCP::QCMatrix<double> M_ref {dim};
+    GQCP::SquareMatrix<double> M_ref {dim};
     // clang-format off
     M_ref << -1.0, -2.0,
              -3.0, -4.0;
@@ -197,7 +197,7 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_throw) {
     const size_t dim = 2;
 
     // Initialize test operator.
-    GQCP::QCMatrix<double> M1 {dim};
+    GQCP::SquareMatrix<double> M1 {dim};
     // clang-format off
     M1 << 0.0, 0.0,
           0.0, 0.0;
@@ -224,7 +224,7 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
     const size_t dim = 2;
 
     // Initialize a test operator.
-    GQCP::QCMatrix<double> M1 {dim};
+    GQCP::SquareMatrix<double> M1 {dim};
     // clang-format off
     M1 << 1.0, 2.0,
           3.0, 4.0;
@@ -232,13 +232,13 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
     const GQCP::ScalarUSQOneElectronOperator<double> op {M1, M1};
 
     // Initialize an alpha and beta density matrix, each one is chosen as a Hermitian matrix.
-    GQCP::QCMatrix<double> D_alpha {dim};
+    GQCP::SquareMatrix<double> D_alpha {dim};
     // clang-format off
     D_alpha << 0.0, 1.0,
                1.0, 0.0;
     // clang-format on
 
-    GQCP::QCMatrix<double> D_beta {dim};
+    GQCP::SquareMatrix<double> D_beta {dim};
     // clang-format off
     D_beta << 1.0,  0.0,
               0.0, -1.0;
@@ -262,7 +262,7 @@ BOOST_AUTO_TEST_CASE(rotate_with_unitary_transformation_matrix) {
     const size_t dim = 2;
 
     // Initialize a test matrix and convert it into an operator
-    GQCP::QCMatrix<double> M1 {dim};
+    GQCP::SquareMatrix<double> M1 {dim};
     // clang-format off
     M1 << 1.0, 2.0,
           3.0, 4.0;
@@ -290,7 +290,7 @@ BOOST_AUTO_TEST_CASE(transform_with_transformation_matrix) {
     const size_t dim = 2;
 
     // Initialize a test matrix and convert it into an operator
-    GQCP::QCMatrix<double> M1 {dim};
+    GQCP::SquareMatrix<double> M1 {dim};
     // clang-format off
     M1 << 1.0, 2.0,
           3.0, 4.0;
@@ -305,7 +305,7 @@ BOOST_AUTO_TEST_CASE(transform_with_transformation_matrix) {
     // clang-format on
 
     // Initialize a reference matrix
-    GQCP::QCMatrix<double> ref {dim};
+    GQCP::SquareMatrix<double> ref {dim};
     // clang-format off
     ref << 108.0, 142.0,
            140.0, 184.0;
@@ -324,7 +324,7 @@ BOOST_AUTO_TEST_CASE(transform_with_jacobi_matrix) {
     const size_t dim = 4;
 
     // Initialize a test matrix and convert it into an operator
-    GQCP::QCMatrix<double> M1 {dim};
+    GQCP::SquareMatrix<double> M1 {dim};
     // clang-format off
     M1 <<  1.0,  2.0,  3.0,  4.0,
            5.0,  6.0,  7.0,  8.0,
@@ -337,7 +337,7 @@ BOOST_AUTO_TEST_CASE(transform_with_jacobi_matrix) {
     GQCP::JacobiRotationParameters J {2, 1, (boost::math::constants::pi<double>() / 2)};
 
     // Initialize a reference matrix
-    GQCP::QCMatrix<double> ref {dim};
+    GQCP::SquareMatrix<double> ref {dim};
     // clang-format off
     ref <<  1.0,  3.0,  -2.0,  4.0,
             9.0, 11.0, -10.0, 12.0,

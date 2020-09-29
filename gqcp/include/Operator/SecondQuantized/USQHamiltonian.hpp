@@ -18,9 +18,9 @@
 #pragma once
 
 
-#include "Basis/SpinorBasis/Spin.hpp"
 #include "Basis/SpinorBasis/USpinorBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "QuantumChemical/Spin.hpp"
 #include "Utilities/type_traits.hpp"
 
 

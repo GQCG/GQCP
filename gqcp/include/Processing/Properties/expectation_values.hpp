@@ -18,9 +18,9 @@
 #pragma once
 
 
+#include "DensityMatrix/SpinResolvedOneDM.hpp"
+#include "DensityMatrix/SpinResolvedTwoDM.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "Processing/DensityMatrices/SpinResolvedOneDM.hpp"
-#include "Processing/DensityMatrices/SpinResolvedTwoDM.hpp"
 
 
 namespace GQCP {

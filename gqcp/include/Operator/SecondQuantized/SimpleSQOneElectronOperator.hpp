@@ -20,10 +20,10 @@
 
 #include "Basis/Transformations/BasisTransformable.hpp"
 #include "Basis/Transformations/JacobiRotatable.hpp"
+#include "DensityMatrix/OneDM.hpp"
 #include "Mathematical/Functions/VectorSpaceArithmetic.hpp"
-#include "Mathematical/Representation/QCMatrix.hpp"
+#include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Mathematical/Representation/StorageArray.hpp"
-#include "Processing/DensityMatrices/OneDM.hpp"
 #include "Utilities/CRTP.hpp"
 #include "Utilities/type_traits.hpp"
 
@@ -69,7 +69,7 @@ public:
     using DerivedOperator = _DerivedOperator;
 
     // The matrix representation of the parameters of (one of the components of) the one-electron operator.
-    using MatrixRepresentation = QCMatrix<Scalar>;
+    using MatrixRepresentation = SquareMatrix<Scalar>;
 
     // The type of 'this'.
     using Self = SimpleSQOneElectronOperator<Scalar, Vectorizer, DerivedOperator>;
@@ -223,7 +223,7 @@ public:
     /**
      *  @return The number of orbitals this one-electron operator is quantized in. For 'restricted' operators, this is the number of spatial orbitals, for 'general' operators, this is the number of spinors.
      */
-    size_t numberOfOrbitals() const { return this->array.elements()[0].numberOfOrbitals(); /* all the dimensions are the same, this is checked in the constructor */ }
+    size_t numberOfOrbitals() const { return this->array.elements()[0].dimension(); /* all the dimensions are the same, this is checked in the constructor */ }
 
 
     /*
@@ -253,7 +253,7 @@ public:
 
 
     /*
-     *  MARK: Vector space arithmetic
+     *  MARK: Conforming to VectorSpaceArithmetic
      */
 
     /**
@@ -314,7 +314,7 @@ public:
 
 
     /*
-     *  MARK: Basis transformations
+     *  MARK: Conforming to BasisTransformable
      */
 
     /**
@@ -337,6 +337,7 @@ public:
         return Self(StorageArray<MatrixRepresentation, Vectorizer>(result, this->array.vectorizer()));
     }
 
+
     // Allow the `rotate` method from `BasisTransformable`, since there's also a `rotate` from `JacobiRotatable`.
     using BasisTransformable<Self, TM>::rotate;
 
@@ -345,7 +346,7 @@ public:
 
 
     /*
-     *  MARK: Jacobi rotations
+     *  MARK: Conforming to JacobiRotatable
      */
 
     /**

@@ -18,14 +18,14 @@
 #pragma once
 
 
-#include "Basis/SpinorBasis/Spin.hpp"
 #include "Basis/Transformations/JacobiRotationParameters.hpp"
 #include "Basis/Transformations/TransformationMatrix.hpp"
+#include "DensityMatrix/OneDM.hpp"
+#include "DensityMatrix/SpinResolvedOneDM.hpp"
+#include "DensityMatrix/TwoDM.hpp"
 #include "Mathematical/Functions/ScalarFunction.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
-#include "Processing/DensityMatrices/OneDM.hpp"
-#include "Processing/DensityMatrices/SpinResolvedOneDM.hpp"
-#include "Processing/DensityMatrices/TwoDM.hpp"
+#include "QuantumChemical/Spin.hpp"
 #include "Utilities/type_traits.hpp"
 
 #include <array>

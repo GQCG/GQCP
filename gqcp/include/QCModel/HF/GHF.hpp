@@ -82,7 +82,7 @@ public:
      * 
      *  @return the GHF error matrix
      */
-    static SquareMatrix<Scalar> calculateError(const QCMatrix<Scalar>& F, const OneDM<Scalar>& P, const SquareMatrix<Scalar>& S) {
+    static SquareMatrix<Scalar> calculateError(const SquareMatrix<Scalar>& F, const OneDM<Scalar>& P, const SquareMatrix<Scalar>& S) {
         return F * P * S - S * P * F;
     }
 
@@ -291,13 +291,13 @@ public:
      * 
      *  @return the expectation value of the electronic spin operator
      */
-    Vector<complex, 3> calculateExpectationValueOf(const ElectronicSpinOperator& spin_op, const QCMatrix<Scalar>& S) const {
+    Vector<complex, 3> calculateExpectationValueOf(const ElectronicSpinOperator& spin_op, const SquareMatrix<Scalar>& S) const {
 
         // Prepare some variables.
         const auto M = this->numberOfSpinors();
         const MatrixX<complex> C_alpha = this->coefficientMatrix().topRows(M / 2);
         const MatrixX<complex> C_beta = this->coefficientMatrix().bottomRows(M / 2);
-        const QCMatrix<complex> S_AO = S.topLeftCorner(M / 2, M / 2);  // assume equal for alpha and beta
+        const SquareMatrix<complex> S_AO = S.topLeftCorner(M / 2, M / 2);  // assume equal for alpha and beta
 
         // Calculate overlaps between the alpha- and beta-spinors.
         const MatrixX<complex> overlap_aa = C_alpha.adjoint() * S_AO * C_alpha;

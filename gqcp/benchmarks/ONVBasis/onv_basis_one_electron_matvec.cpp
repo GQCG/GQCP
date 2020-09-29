@@ -24,7 +24,7 @@ static void matvec(benchmark::State& state) {
     GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
 
     // Create a random one-electron operator
-    const auto one_op_par = GQCP::QCMatrix<double>::Random(M, M);
+    const auto one_op_par = GQCP::SquareMatrix<double>::Random(M, M);
     GQCP::ScalarSQOneElectronOperator<double> sq_one_op {one_op_par};
 
     const auto diagonal = onv_basis.evaluateOperatorDiagonal(sq_one_op);

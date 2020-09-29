@@ -19,14 +19,13 @@
 
 
 #include "Basis/SpinorBasis/OrbitalSpace.hpp"
-#include "Basis/SpinorBasis/Spin.hpp"
 #include "Basis/Transformations/TransformationMatrix.hpp"
+#include "DensityMatrix/OneDM.hpp"
 #include "Mathematical/Representation/ImplicitRankFourTensorSlice.hpp"
-#include "Mathematical/Representation/QCMatrix.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
-#include "Processing/DensityMatrices/OneDM.hpp"
+#include "QuantumChemical/Spin.hpp"
 
 
 namespace GQCP {
@@ -117,7 +116,7 @@ public:
      * 
      *  @return the RHF error matrix
      */
-    static SquareMatrix<Scalar> calculateError(const QCMatrix<Scalar>& F, const OneDM<Scalar>& D, const SquareMatrix<Scalar>& S) {
+    static SquareMatrix<Scalar> calculateError(const SquareMatrix<Scalar>& F, const OneDM<Scalar>& D, const SquareMatrix<Scalar>& S) {
         return F * D * S - S * D * F;
     }
 

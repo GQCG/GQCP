@@ -1,2 +1,1 @@
-add_subdirectory(DensityMatrices)
 add_subdirectory(Properties)
