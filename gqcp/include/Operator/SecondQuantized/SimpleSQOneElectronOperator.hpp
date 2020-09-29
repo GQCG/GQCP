@@ -223,7 +223,7 @@ public:
     /**
      *  @return The number of orbitals this one-electron operator is quantized in. For 'restricted' operators, this is the number of spatial orbitals, for 'general' operators, this is the number of spinors.
      */
-    size_t numberOfOrbitals() const { return this->array.elements()[0].numberOfOrbitals(); /* all the dimensions are the same, this is checked in the constructor */ }
+    size_t numberOfOrbitals() const { return this->array.elements()[0].dimension(); /* all the dimensions are the same, this is checked in the constructor */ }
 
 
     /*
