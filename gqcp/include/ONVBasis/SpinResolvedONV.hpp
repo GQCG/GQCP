@@ -20,9 +20,9 @@
 
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
-#include "Basis/SpinorBasis/Spin.hpp"
 #include "Basis/SpinorBasis/USpinorBasis.hpp"
 #include "ONVBasis/SpinUnresolvedONV.hpp"
+#include "QuantumChemical/Spin.hpp"
 
 
 namespace GQCP {

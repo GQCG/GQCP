@@ -18,8 +18,8 @@
 #pragma once
 
 
-#include "Basis/SpinorBasis/Spin.hpp"
 #include "DensityMatrix//OneDM.hpp"
+#include "QuantumChemical/Spin.hpp"
 
 
 namespace GQCP {

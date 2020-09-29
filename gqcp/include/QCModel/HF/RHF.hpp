@@ -19,13 +19,13 @@
 
 
 #include "Basis/SpinorBasis/OrbitalSpace.hpp"
-#include "Basis/SpinorBasis/Spin.hpp"
 #include "Basis/Transformations/TransformationMatrix.hpp"
 #include "DensityMatrix//OneDM.hpp"
 #include "Mathematical/Representation/ImplicitRankFourTensorSlice.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
+#include "QuantumChemical/Spin.hpp"
 
 
 namespace GQCP {

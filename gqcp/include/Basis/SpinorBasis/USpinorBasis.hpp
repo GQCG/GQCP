@@ -19,8 +19,8 @@
 
 
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
-#include "Basis/SpinorBasis/Spin.hpp"
 #include "Basis/Transformations/SpinResolvedTransformationMatrix.hpp"
+#include "QuantumChemical/Spin.hpp"
 #include "Utilities/type_traits.hpp"
 
 

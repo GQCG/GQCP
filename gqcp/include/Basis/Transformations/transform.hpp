@@ -19,11 +19,11 @@
 
 
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
-#include "Basis/SpinorBasis/Spin.hpp"
 #include "Basis/SpinorBasis/USpinorBasis.hpp"
 #include "Basis/Transformations/TransformationMatrix.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Operator/SecondQuantized/USQHamiltonian.hpp"
+#include "QuantumChemical/Spin.hpp"
 
 
 namespace GQCP {
