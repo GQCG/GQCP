@@ -37,7 +37,7 @@ BOOST_AUTO_TEST_CASE(example) {
 
     // Set up the reference values from an example. [https://gqcg.github.io/GQCP/docs/developer_documentation/ONV_path_manipulation]
     const auto I = GQCP::SpinUnresolvedONV::FromOccupiedIndices({0, 2, 3}, 5);  // |10110>
-    GQCP::ONVPath onv_path {onv_basis, I};
+    GQCP::ONVPath<GQCP::SpinUnresolvedONVBasis> onv_path {onv_basis, I};
     BOOST_REQUIRE(onv_path.address() == 2);
 
     // In the example, we're annihilating the first electron on the orbital with index 0. This means that we're annihilating the diagonal vertex that starts at (0,0).
@@ -122,8 +122,8 @@ BOOST_AUTO_TEST_CASE(annihilate) {
 
     // Set up the reference values from an example. [https://gqcg.github.io/GQCP/docs/developer_documentation/ONV_path_manipulation]
     const auto I = GQCP::SpinUnresolvedONV::FromOccupiedIndices({0, 2, 3}, 5);  // |10110>
-    GQCP::ONVPath onv_path {onv_basis, I};
-    GQCP::ONVPath onv_path_2 {onv_basis, I};
+    GQCP::ONVPath<GQCP::SpinUnresolvedONVBasis> onv_path {onv_basis, I};
+    GQCP::ONVPath<GQCP::SpinUnresolvedONVBasis> onv_path_2 {onv_basis, I};
     BOOST_REQUIRE(onv_path.address() == onv_path_2.address() && onv_path.address() == 2);
 
     // Current path state should at this point be the same as (0, 0)
@@ -156,8 +156,8 @@ BOOST_AUTO_TEST_CASE(create) {
 
     // Set up the reference values from an example. [https://gqcg.github.io/GQCP/docs/developer_documentation/ONV_path_manipulation]
     const auto I = GQCP::SpinUnresolvedONV::FromOccupiedIndices({0, 2, 3}, 5);  // |10110>
-    GQCP::ONVPath onv_path {onv_basis, I};
-    GQCP::ONVPath onv_path_2 {onv_basis, I};
+    GQCP::ONVPath<GQCP::SpinUnresolvedONVBasis> onv_path {onv_basis, I};
+    GQCP::ONVPath<GQCP::SpinUnresolvedONVBasis> onv_path_2 {onv_basis, I};
     BOOST_REQUIRE(onv_path.address() == onv_path_2.address() && onv_path.address() == 2);
 
     onv_path.annihilate();
@@ -186,8 +186,8 @@ BOOST_AUTO_TEST_CASE(leftTranslateUntilVertical) {
 
     // Set up the reference values from an example. [https://gqcg.github.io/GQCP/docs/developer_documentation/ONV_path_manipulation]
     const auto I = GQCP::SpinUnresolvedONV::FromOccupiedIndices({1, 2, 3}, 5);  // |01110>
-    GQCP::ONVPath onv_path {onv_basis, I};
-    GQCP::ONVPath onv_path_ref {onv_basis, I};
+    GQCP::ONVPath<GQCP::SpinUnresolvedONVBasis> onv_path {onv_basis, I};
+    GQCP::ONVPath<GQCP::SpinUnresolvedONVBasis> onv_path_ref {onv_basis, I};
     BOOST_REQUIRE(onv_path.address() == onv_path_ref.address() && onv_path.address() == 3);
 
     // Since we have removed a diagonal at position (1, 0) with arc weight 1, the address will change.

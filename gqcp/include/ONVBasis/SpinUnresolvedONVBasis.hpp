@@ -21,6 +21,7 @@
 #include "Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp"
 #include "ONVBasis/BaseONVBasis.hpp"
 #include "ONVBasis/ONVManipulator.hpp"
+#include "ONVBasis/ONVPath.hpp"
 
 #include <functional>
 
@@ -36,6 +37,9 @@ class SpinUnresolvedONVBasis:
     public ONVManipulator<SpinUnresolvedONVBasis> {
 private:
     std::vector<std::vector<size_t>> vertex_weights;  // vertex_weights of the addressing scheme
+
+public:
+    using ONV = SpinUnresolvedONV;
 
 
 public:
@@ -296,6 +300,47 @@ public:
         }
     }
 
+    template <typename Representation>
+    Representation evaluate_new(const ScalarSQOneElectronOperator<double>& one_op) const {
+
+        const auto& one_op_par = one_op.parameters();
+        const size_t dim = this->dimension();
+
+        MatrixRepresentationEvaluationContainer<Representation> ONV_iterator {dim};
+        SpinUnresolvedONV onv = this->constructONVFromAddress(0);  // onv with address 0
+
+        ONVPath<SpinUnresolvedONVBasis> onv_path {*this, onv};
+
+        for (; !ONV_iterator.isFinished(); ONV_iterator.increment()) {  // loops over all possible ONVs
+            for (size_t e1 = 0; e1 < N; e1++) {                         // loop over electrons that can be annihilated
+
+                size_t q = onv.occupationIndexOf(e1);  // retrieve orbital index of the electron
+                onv_path.annihilate(q, e1);
+
+                while (!onv_path.isFinished()) {
+
+                    onv_path.leftTranslateUntilVertical();
+                    onv_path.create();
+
+                    const auto address = onv_path.address();
+                    const auto h_pq = onv_path.sign() * one_op_par(onv_path.orbitalIndex() - 1, q);
+
+                    ONV_iterator.addColumnwise(address, h_pq);
+                    ONV_iterator.addRowwise(address, h_pq);
+
+                    onv_path.annihilate(onv_path.orbitalIndex() - 1, onv_path.electronIndex() - 1);
+                }
+            }
+            // Prevent last ONV since there is no possibility for an electron to be annihilated anymore.
+            if (ONV_iterator.index < dim - 1) {
+                this->transformONVToNextPermutation(onv);
+            }
+        }
+
+        return ONV_iterator.evaluation();
+    }
+
+
     /**
      *  Evaluate a one-electron operator in this spin-unresolved ONV basis.
      * 
@@ -357,7 +402,6 @@ public:
                 this->transformONVToNextPermutation(onv);
             }
         }
-
         return evaluation_iterator.evaluation();
     }
 
