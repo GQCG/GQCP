@@ -54,7 +54,7 @@ void bindGHFSCFSolver(py::module& module, const std::string& suffix) {
 }
 
 
-void bindGHFSCFSolverss(py::module& module) {
+void bindGHFSCFSolvers(py::module& module) {
 
     bindGHFSCFSolver<double>(module, "d");          // suffix 'd' for the class name
     bindGHFSCFSolver<GQCP::complex>(module, "cd");  // suffix 'cd' for the class name: 'complex double'

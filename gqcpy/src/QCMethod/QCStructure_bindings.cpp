@@ -44,9 +44,9 @@ namespace gqcpy {
 
 /**
  *  Bind a quantum chemical model to the given module.
- * 
+ *
  *  @tparam QCModel             the type of the quantum chemical model
- * 
+ *
  *  @param module               the Pybind11 module
  *  @param suffix               the suffix that the Python class should receive, i.e. "QCStructure" + suffix
  *  @param description          the Python class description
