@@ -7,5 +7,6 @@ add_subdirectory(Operator)
 add_subdirectory(Processing)
 add_subdirectory(QCMethod)
 add_subdirectory(QCModel)
+add_subdirectory(QuantumChemical)
 
 set(python_bindings_sources ${python_bindings_sources} PARENT_SCOPE)
