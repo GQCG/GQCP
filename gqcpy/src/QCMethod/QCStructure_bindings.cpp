@@ -91,23 +91,23 @@ void bindQCStructure(py::module& module, const std::string& suffix, const std::s
             "Return the parameters corresponding to the i-th excited state.");
 }
 
-template <typename Scalar>
 void bindQCStructures(py::module& module) {
 
-    bindQCStructure<GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>, Scalar>(module, "LinearExpansionSeniorityZero", "A quantum chemical structure for linear expansions in a seniority-zero ONV basis.");
+    bindQCStructure<GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>, double>(module, "LinearExpansionSeniorityZero", "A quantum chemical structure for linear expansions in a seniority-zero ONV basis.");
     // bindQCStructure<GQCP::LinearExpansion<GQCP::SpinResolvedFrozenONVBasis>>(module, "LinearExpansionSpinResolvedFrozen", "A quantum chemical structure for linear expansions in a frozen core spin-resolved ONV basis.");
-    bindQCStructure<GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>, Scalar>(module, "LinearExpansionSpinResolved", "A quantum chemical structure for linear expansions in a spin-resolved ONV basis.");
-    bindQCStructure<GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>, Scalar>(module, "LinearExpansionSpinResolvedSelected", "A quantum chemical structure for linear expansions in a spin-resolved selected ONV basis.");
+    bindQCStructure<GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>, double>(module, "LinearExpansionSpinResolved", "A quantum chemical structure for linear expansions in a spin-resolved ONV basis.");
+    bindQCStructure<GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>, double>(module, "LinearExpansionSpinResolvedSelected", "A quantum chemical structure for linear expansions in a spin-resolved selected ONV basis.");
 
-    bindQCStructure<GQCP::QCModel::AP1roG, Scalar>(module, "AP1roG", "A quantum chemical structure for AP1roG parameters.");
-    bindQCStructure<GQCP::QCModel::vAP1roG, Scalar>(module, "vAP1roG", "A quantum chemical structure for vAP1roG parameters.");
+    bindQCStructure<GQCP::QCModel::AP1roG, double>(module, "AP1roG", "A quantum chemical structure for AP1roG parameters.");
+    bindQCStructure<GQCP::QCModel::vAP1roG, double>(module, "vAP1roG", "A quantum chemical structure for vAP1roG parameters.");
 
-    bindQCStructure<GQCP::QCModel::GHF<Scalar>, Scalar>(module, "GHF", "A quantum chemical structure for GHF parameters.");
-    bindQCStructure<GQCP::QCModel::RHF<double>, Scalar>(module, "RHF", "A quantum chemical structure for RHF parameters.");
-    bindQCStructure<GQCP::QCModel::UHF<double>, Scalar>(module, "UHF", "A quantum chemical structure for UHF parameters.");
+    bindQCStructure<GQCP::QCModel::GHF<double>, double>(module, "GHF", "A quantum chemical structure for GHF parameters.");
+    bindQCStructure<GQCP::QCModel::GHF<GQCP::complex>, GQCP::complex>(module, "cGHF", "A quantum chemical structure for complex GHF parameters.");
+    bindQCStructure<GQCP::QCModel::RHF<double>, double>(module, "RHF", "A quantum chemical structure for RHF parameters.");
+    bindQCStructure<GQCP::QCModel::UHF<double>, double>(module, "UHF", "A quantum chemical structure for UHF parameters.");
 
-    bindQCStructure<GQCP::QCModel::CCSD<double>, Scalar>(module, "CCSD", "A quantum chemical structure for CCSD parameters.");
-    bindQCStructure<GQCP::QCModel::CCD<double>, Scalar>(module, "CCD", "A quantum chemical structure for CCD parameters.");
+    bindQCStructure<GQCP::QCModel::CCSD<double>, double>(module, "CCSD", "A quantum chemical structure for CCSD parameters.");
+    bindQCStructure<GQCP::QCModel::CCD<double>, double>(module, "CCD", "A quantum chemical structure for CCD parameters.");
 }
 
 
