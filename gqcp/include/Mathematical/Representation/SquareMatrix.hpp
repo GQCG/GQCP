@@ -205,6 +205,16 @@ public:
     }
 
 
+    /**
+     *  Create an identity square matrix.
+     * 
+     *  @param dim          The dimension of the square matrix.
+     * 
+     *  @return An identity square matrix
+     */
+    static Self Identity(const size_t dim) { return Self::Identity(dim, dim); }
+
+
     /*
      *  PUBLIC METHODS
      */

@@ -106,6 +106,22 @@ public:
 
 
     /*
+     *  MARK: Named constructors
+     */
+
+    /**
+     *  Create a derived (spin-resolved) type, from equal alpha and beta representations.
+     * 
+     *  @param equal        The equal representation for both the alpha and beta objects.
+     * 
+     *  @return The dervived (spin-resolved) type.
+     */
+    static Derived FromEqual(const Of& equal) {
+        return Derived {equal, equal};
+    }
+
+
+    /*
      *  MARK: Accessing spin components
      */
 

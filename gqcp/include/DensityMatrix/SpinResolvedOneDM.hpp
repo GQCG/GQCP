@@ -28,11 +28,12 @@ namespace GQCP {
 /**
  *  A type that encapsulates alpha-alpha and beta-beta spin-resolved density matrices.
  *
- *  @tparam _Scalar             the scalar type of one of the elements
+ *  @tparam _Scalar             The scalar type of one of the elements.
  */
 template <typename _Scalar>
 class SpinResolvedOneDM {
 public:
+    // The scalar type of one of the elements.
     using Scalar = _Scalar;
 
 
