@@ -19,6 +19,7 @@
 
 
 #include "Basis/Transformations/GTransformationMatrix.hpp"
+#include "DensityMatrix/G1DM.hpp"
 #include "Mathematical/Representation/DenseVectorizer.hpp"
 #include "Operator/SecondQuantized/SimpleSQOneElectronOperator.hpp"
 
@@ -42,12 +43,12 @@ public:
     // The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
     using Vectorizer = _Vectorizer;
 
-private:
 public:
     /*
-     *  CONSTRUCTORS
+     *  MARK: Constructors
      */
-    // Inherit base constructors.
+
+    // Inherit `SimpleSQOneElectronOperator`'s constructors.
     using SimpleSQOneElectronOperator<_Scalar, _Vectorizer, GSQOneElectronOperator<_Scalar, _Vectorizer>>::SimpleSQOneElectronOperator;
 };
 
@@ -95,11 +96,14 @@ public:
     // The operator whose traits are provided.
     using Operator = GSQOneElectronOperator<Scalar, Vectorizer>;
 
-    // A type that corresponds to the scalar version of the associated restricted one-electron operator type.
+    // A type that corresponds to the scalar version of the associated general(ized) one-electron operator type.
     using ScalarOperator = ScalarGSQOneElectronOperator<Scalar>;
 
-    // The type of transformation matrix that is naturally associated to a restricted one-electron operator.
+    // The type of transformation matrix that is naturally associated to a general(ized) one-electron operator.
     using TM = GTransformationMatrix<Scalar>;
+
+    // The type of density matrix that is naturally associated to a general(ized) one-electron operator.
+    using OneDM = G1DM<Scalar>;
 };
 
 

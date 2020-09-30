@@ -55,9 +55,9 @@ class OperatorTraits {};
  */
 template <typename _Scalar, typename _Vectorizer, typename _DerivedOperator>
 class SimpleSQOneElectronOperator:
-    public VectorSpaceArithmetic<SimpleSQOneElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>, _Scalar>,
-    public BasisTransformable<SimpleSQOneElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>, typename OperatorTraits<_DerivedOperator>::TM>,
-    public JacobiRotatable<SimpleSQOneElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>> {
+    public VectorSpaceArithmetic<_DerivedOperator, _Scalar>,
+    public BasisTransformable<_DerivedOperator, typename OperatorTraits<_DerivedOperator>::TM>,
+    public JacobiRotatable<_DerivedOperator> {
 public:
     // The scalar type used for a single parameter: real or complex.
     using Scalar = _Scalar;
@@ -79,6 +79,9 @@ public:
 
     // The type of transformation matrix that is naturally associated to the derived one-electron operator.
     using TM = typename OperatorTraits<DerivedOperator>::TM;
+
+    // The type of density matrix that is naturally associated to the derived one-electron operator.
+    using Derived1DM = typename OperatorTraits<DerivedOperator>::OneDM;
 
 
 private:
@@ -231,11 +234,13 @@ public:
      */
 
     /**
-     *  @param D                The total 1-DM that represents the wave function
+     *  Calculate the expectation value of this one-electron operator.
+     * 
+     *  @param D                The 1-DM that represents the wave function.
      *
-     *  @return The expectation value of this one-electron operator, i.e. the expectation value of all components of the one-electron operator.
+     *  @return The expectation value of all components of the one-electron operator.
      */
-    StorageArray<Scalar, Vectorizer> calculateExpectationValue(const OneDM<Scalar>& D) const {
+    StorageArray<Scalar, Vectorizer> calculateExpectationValue(const Derived1DM& D) const {
 
         if (this->numberOfOrbitals() != D.numberOfOrbitals()) {
             throw std::invalid_argument("SimpleSQOneElectronOperator::calculateExpectationValue(const OneDM<Scalar>&): The given 1-DM is not compatible with the one-electron operator.");
@@ -259,27 +264,27 @@ public:
     /**
      *  Addition-assignment.
      */
-    Self& operator+=(const Self& rhs) override {
+    DerivedOperator& operator+=(const DerivedOperator& rhs) override {
 
         // Use the STL to implement element-wise addition.
         std::transform(this->array.elements().begin(), this->array.elements().end(),
                        rhs.array.elements().begin(), this->array.elements().begin(),
                        std::plus<MatrixRepresentation>());
 
-        return *this;
+        return static_cast<DerivedOperator&>(*this);
     }
 
 
     /**
      *  Scalar multiplication-assignment.
      */
-    Self& operator*=(const Scalar& a) override {
+    DerivedOperator& operator*=(const Scalar& a) override {
 
         // Use the STL to implement element-wise scalar multiplication.
         std::transform(this->array.elements().begin(), this->array.elements().end(),
                        this->array.elements().begin(), [a](const MatrixRepresentation& M) { return M * a; });
 
-        return *this;
+        return static_cast<DerivedOperator&>(*this);
     }
 
 
@@ -324,7 +329,7 @@ public:
      * 
      *  @return The basis-transformed one-electron integrals.
      */
-    Self transformed(const TM& transformation_matrix) const override {
+    DerivedOperator transformed(const TM& transformation_matrix) const override {
 
         // Calculate the basis transformation for every component of the operator.
         const auto& parameters = this->allParameters();
@@ -334,15 +339,15 @@ public:
             result[i] = transformation_matrix.adjoint() * (parameters[i]) * transformation_matrix;
         }
 
-        return Self(StorageArray<MatrixRepresentation, Vectorizer>(result, this->array.vectorizer()));
+        return DerivedOperator {StorageArray<MatrixRepresentation, Vectorizer>(result, this->array.vectorizer())};
     }
 
 
     // Allow the `rotate` method from `BasisTransformable`, since there's also a `rotate` from `JacobiRotatable`.
-    using BasisTransformable<Self, TM>::rotate;
+    using BasisTransformable<DerivedOperator, TM>::rotate;
 
     // Allow the `rotated` method from `BasisTransformable`, since there's also a `rotated` from `JacobiRotatable`.
-    using BasisTransformable<Self, TM>::rotated;
+    using BasisTransformable<DerivedOperator, TM>::rotated;
 
 
     /*
@@ -356,7 +361,7 @@ public:
      * 
      *  @return The jacobi-transformed object.
      */
-    Self rotated(const JacobiRotationParameters& jacobi_parameters) const override {
+    DerivedOperator rotated(const JacobiRotationParameters& jacobi_parameters) const override {
 
         // Use Eigen's Jacobi module to apply the Jacobi rotations directly (cfr. T.adjoint() * M * T).
         const auto p = jacobi_parameters.p();
@@ -370,11 +375,11 @@ public:
             result[i].applyOnTheRight(p, q, jacobi_rotation);
         }
 
-        return Self(StorageArray<MatrixRepresentation, Vectorizer>(result, this->array.vectorizer()));
+        return DerivedOperator {StorageArray<MatrixRepresentation, Vectorizer>(result, this->array.vectorizer())};
     }
 
     // Allow the `rotate` method from `JacobiRotatable`, since there's also a `rotate` from `BasisTransformable`.
-    using JacobiRotatable<Self>::rotate;
+    using JacobiRotatable<DerivedOperator>::rotate;
 };
 
 

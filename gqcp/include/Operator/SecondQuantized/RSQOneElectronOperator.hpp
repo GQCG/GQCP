@@ -19,6 +19,7 @@
 
 
 #include "Basis/Transformations/RTransformationMatrix.hpp"
+#include "DensityMatrix/Orbital1DM.hpp"
 #include "Mathematical/Representation/DenseVectorizer.hpp"
 #include "Operator/SecondQuantized/SimpleSQOneElectronOperator.hpp"
 
@@ -42,12 +43,12 @@ public:
     // The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
     using Vectorizer = _Vectorizer;
 
-private:
 public:
     /*
-     *  CONSTRUCTORS
+     *  MARK: Constructors
      */
-    // Inherit base constructors.
+
+    // Inherit `SimpleSQOneElectronOperator`'s constructors.
     using SimpleSQOneElectronOperator<_Scalar, _Vectorizer, RSQOneElectronOperator<_Scalar, _Vectorizer>>::SimpleSQOneElectronOperator;
 };
 
@@ -100,6 +101,9 @@ public:
 
     // The type of transformation matrix that is naturally associated to a restricted one-electron operator.
     using TM = RTransformationMatrix<Scalar>;
+
+    // The type of density matrix that is naturally associated to a restricted one-electron operator.
+    using OneDM = Orbital1DM<Scalar>;
 };
 
 
