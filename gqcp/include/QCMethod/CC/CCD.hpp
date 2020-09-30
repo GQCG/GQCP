@@ -51,7 +51,7 @@ public:
      *  @param environment          the environment, which acts as a sort of calculation space for the solver
      */
     template <typename Solver>
-    QCStructure<GQCP::QCModel::CCD<Scalar>> optimize(Solver& solver, CCSDEnvironment<Scalar>& environment) const {
+    QCStructure<GQCP::QCModel::CCD<Scalar>, Scalar> optimize(Solver& solver, CCSDEnvironment<Scalar>& environment) const {
 
         // The CCD method's responsibility is to try to optimize the parameters of its method, given a solver and associated environment.
         solver.perform(environment);
@@ -63,7 +63,7 @@ public:
         const auto E_electronic_correlation = environment.electronic_energies.back();
         const QCModel::CCD<Scalar> ccd_parameters {T2};
 
-        return QCStructure<GQCP::QCModel::CCD<Scalar>>({E_electronic_correlation}, {ccd_parameters});
+        return QCStructure<GQCP::QCModel::CCD<Scalar>, Scalar>({E_electronic_correlation}, {ccd_parameters});
     }
 };
 

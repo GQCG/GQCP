@@ -70,7 +70,7 @@ public:
      *  @param linear_solver                the solver that will try to find the associated Lagrange multipliers
      */
     template <typename NonLinearSolver, typename LinearSolver>
-    QCStructure<GQCP::QCModel::vAP1roG> optimize(NonLinearSolver& non_linear_solver, NonLinearEquationEnvironment<double>& non_linear_environment, LinearSolver& linear_solver) const {
+    QCStructure<GQCP::QCModel::vAP1roG, double> optimize(NonLinearSolver& non_linear_solver, NonLinearEquationEnvironment<double>& non_linear_environment, LinearSolver& linear_solver) const {
 
         // The vAP1roG method's responsibility is to try to:
         //      1) optimize the geminal coefficients
@@ -102,7 +102,7 @@ public:
         const GQCP::QCModel::vAP1roG vap1rog_parameters {G_optimal, lambda_optimal};
         const auto E_electronic = vap1rog_parameters.calculateEnergy(sq_hamiltonian);
 
-        return QCStructure<GQCP::QCModel::vAP1roG>({E_electronic}, {vap1rog_parameters});
+        return QCStructure<GQCP::QCModel::vAP1roG, double>({E_electronic}, {vap1rog_parameters});
     }
 };
 

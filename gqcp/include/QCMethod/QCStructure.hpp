@@ -29,14 +29,15 @@ namespace GQCP {
 /**
  *  A quantum chemical structure. It consists of the ground state (and possibly excited states) energy and the associated optimal quantum chemical parameters associated to a model.
  */
-template <typename _QCModel>
+template <typename _QCModel, typename _Scalar>
 class QCStructure {
 public:
     using QCModel = _QCModel;
+    using Scalar = _Scalar;
 
 
 private:
-    std::vector<double> energies;           // the ground (and possibly excited) state electronic energies
+    std::vector<Scalar> energies;           // the ground (and possibly excited) state electronic energies
     std::vector<QCModel> model_parameters;  // the ground (and possibly excited) state model parameters
 
 
@@ -49,7 +50,7 @@ public:
      *  @param energies                 the ground (and possibly excited) state electronic energies
      *  @param model_parameters         the ground (and possibly excited) state model parameters
      */
-    QCStructure(const std::vector<double>& energies, const std::vector<QCModel>& model_parameters) :
+    QCStructure(const std::vector<Scalar>& energies, const std::vector<QCModel>& model_parameters) :
         energies {energies},
         model_parameters {model_parameters} {
         const auto n = energies.size();
@@ -73,12 +74,12 @@ public:
      * 
      *  @return the electronic energy corresponding to the i-th excited state
      */
-    double energy(const size_t i = 0) const { return this->energies[i]; }
+    Scalar energy(const size_t i = 0) const { return this->energies[i]; }
 
     /**
      *  @return the ground state electronic energy for this quantum chemical structure
      */
-    double groundStateEnergy() const { return this->energy(); }
+    Scalar groundStateEnergy() const { return this->energy(); }
 
     /**
      *  @return the ground state model parameters for this quantum chemical structure

@@ -132,9 +132,9 @@ void bindQCMethodvAP1roG(py::module& module);
 
 
 // QCMethod - HF - GHF
-void bindQCMethodGHF(py::module& module);
-void bindGHFSCFEnvironment(py::module& module);
-void bindGHFSCFSolver(py::module& module);
+void bindQCMethodsGHF(py::module& module);
+void bindGHFSCFEnvironments(py::module& module);
+void bindGHFSCFSolvers(py::module& module);
 
 
 // QCMethod - HF - RHF
@@ -295,9 +295,9 @@ PYBIND11_MODULE(gqcpy, module) {
 
 
     // QCMethod - HF - GHF
-    gqcpy::bindQCMethodGHF(module);
-    gqcpy::bindGHFSCFEnvironment(module);
-    gqcpy::bindGHFSCFSolver(module);
+    gqcpy::bindQCMethodsGHF(module);
+    gqcpy::bindGHFSCFEnvironments(module);
+    gqcpy::bindGHFSCFSolvers(module);
 
 
     // QCMethod - HF - RHF

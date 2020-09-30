@@ -42,7 +42,7 @@ public:
 private:
     size_t N;  // the number of electrons
 
-    VectorX<double> orbital_energies;  // sorted in ascending energies
+    VectorX<Scalar> orbital_energies;  // sorted in ascending energies
     TransformationMatrix<Scalar> C;    // the coefficient matrix that expresses every spinor (as a column) in the underlying scalar bases
 
 
@@ -58,7 +58,7 @@ public:
      *  @param C                    the coefficient matrix that expresses every spinor (as a column) in the underlying scalar bases
      *  @param orbital_energies     the GHF MO energies
      */
-    GHF(const size_t N, const VectorX<double>& orbital_energies, const TransformationMatrix<Scalar>& C) :
+    GHF(const size_t N, const VectorX<Scalar>& orbital_energies, const TransformationMatrix<Scalar>& C) :
         N {N},
         orbital_energies {orbital_energies},
         C {C} {}
@@ -68,7 +68,7 @@ public:
      *  Default constructor setting everything to zero
      */
     GHF() :
-        GHF(0, VectorX<double>::Zero(0), TransformationMatrix<Scalar>::Zero(0, 0)) {}
+        GHF(0, VectorX<Scalar>::Zero(0), TransformationMatrix<Scalar>::Zero(0, 0)) {}
 
 
     /*
@@ -94,14 +94,14 @@ public:
      *
      *  @return the GHF electronic energy
      */
-    static double calculateElectronicEnergy(const OneDM<Scalar>& P, const ScalarSQOneElectronOperator<Scalar>& H_core, const ScalarSQOneElectronOperator<Scalar>& F) {
+    static Scalar calculateElectronicEnergy(const OneDM<Scalar>& P, const ScalarSQOneElectronOperator<Scalar>& H_core, const ScalarSQOneElectronOperator<Scalar>& F) {
 
         // First, calculate the sum of H_core and F (this saves a contraction)
         ScalarSQOneElectronOperator<Scalar> Z = H_core + F;
 
         // Convert the matrices Z and D to an Eigen::Tensor<double, 2> D_tensor, as contractions are only implemented for Tensors
         Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_tensor {P.data(), P.rows(), P.cols()};
-        Eigen::TensorMap<Eigen::Tensor<double, 2>> Z_tensor {Z.parameters().data(), P.rows(), P.cols()};
+        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> Z_tensor {Z.parameters().data(), P.rows(), P.cols()};
 
         // Specify the contraction pair.
         // To calculate the electronic energy, we must perform a double contraction.
@@ -123,7 +123,7 @@ public:
      *
      *  @return the GHF 1-DM expressed in the underlying scalar basis
      */
-    static OneDM<Scalar> calculateScalarBasis1DM(const TransformationMatrix<double>& C, const size_t N) {
+    static OneDM<Scalar> calculateScalarBasis1DM(const TransformationMatrix<Scalar>& C, const size_t N) {
 
         const size_t M = C.dimension();
         const auto P_orthonormal = GHF<Scalar>::calculateOrthonormalBasis1DM(M, N);

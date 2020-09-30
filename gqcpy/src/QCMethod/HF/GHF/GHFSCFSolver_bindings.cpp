@@ -26,13 +26,16 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
-void bindGHFSCFSolver(py::module& module) {
-    py::class_<GQCP::GHFSCFSolver<double>>(module, "GHFSCFSolver", "A generalized Hartree-Fock self-consistent field solver factory.")
+template <typename Scalar>
+void bindGHFSCFSolver(py::module& module, const std::string& suffix) {
+    py::class_<GQCP::GHFSCFSolver<Scalar>>(module,
+                                           ("GHFSCFSolver_" + suffix).c_str(),
+                                           "A generalized Hartree-Fock self-consistent field solver factory.")
 
         .def_static(
             "DIIS",
             [](const size_t minimum_subspace_dimension, const size_t maximum_subspace_dimension, const double threshold, const size_t maximum_number_of_iterations) {
-                return GQCP::GHFSCFSolver<double>::DIIS(minimum_subspace_dimension, maximum_subspace_dimension, threshold, maximum_number_of_iterations);
+                return GQCP::GHFSCFSolver<Scalar>::DIIS(minimum_subspace_dimension, maximum_subspace_dimension, threshold, maximum_number_of_iterations);
             },
             py::arg("minimum_subspace_dimension") = 6,
             py::arg("maximum_subspace_dimension") = 6,
@@ -43,11 +46,18 @@ void bindGHFSCFSolver(py::module& module) {
         .def_static(
             "Plain",
             [](const double threshold, const size_t maximum_number_of_iterations) {
-                return GQCP::GHFSCFSolver<double>::Plain(threshold, maximum_number_of_iterations);
+                return GQCP::GHFSCFSolver<Scalar>::Plain(threshold, maximum_number_of_iterations);
             },
             py::arg("threshold") = 1.0e-08,
             py::arg("maximum_number_of_iterations") = 128,
             "Return a plain GHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion.");
+}
+
+
+void bindGHFSCFSolverss(py::module& module) {
+
+    bindGHFSCFSolver<double>(module, "d");          // suffix 'd' for the class name
+    bindGHFSCFSolver<GQCP::complex>(module, "cd");  // suffix 'cd' for the class name: 'complex double'
 }
 
 

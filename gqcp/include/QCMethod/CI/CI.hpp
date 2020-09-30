@@ -75,7 +75,7 @@ public:
      *  @param solver               the solver that will try to optimize the parameters
      */
     template <typename Solver>
-    QCStructure<LinearExpansion<ONVBasis>> optimize(Solver& solver, EigenproblemEnvironment& environment) const {
+    QCStructure<LinearExpansion<ONVBasis>, double> optimize(Solver& solver, EigenproblemEnvironment& environment) const {
 
         // The CI method's responsibility is to try to optimize the parameters of its method, given a solver and associated environment.
         solver.perform(environment);
@@ -101,7 +101,7 @@ public:
 
         // Wrap all the requested number of states into a QCStructure.
         // Since we have already created a list of LinearExpansions, we only have to create a list of the corresponding energies.
-        return QCStructure<LinearExpansion<ONVBasis>>(energies, linear_expansions);
+        return QCStructure<LinearExpansion<ONVBasis>, double>(energies, linear_expansions);
     }
 };
 

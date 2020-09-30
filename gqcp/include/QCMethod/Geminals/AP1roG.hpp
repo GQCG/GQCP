@@ -69,7 +69,7 @@ public:
      *  @param environment          the environment, which acts as a sort of calculation space for the solver
      */
     template <typename Solver>
-    QCStructure<GQCP::QCModel::AP1roG> optimize(Solver& solver, NonLinearEquationEnvironment<double>& environment) const {
+    QCStructure<GQCP::QCModel::AP1roG, double> optimize(Solver& solver, NonLinearEquationEnvironment<double>& environment) const {
 
         // The AP1roG method's responsibility is to try to optimize the parameters of its method, given a solver and associated environment.
         solver.perform(environment);
@@ -81,7 +81,7 @@ public:
 
         const auto E_electronic = ap1rog_parameters.calculateEnergy(sq_hamiltonian);
 
-        return QCStructure<GQCP::QCModel::AP1roG>({E_electronic}, {ap1rog_parameters});
+        return QCStructure<GQCP::QCModel::AP1roG, double>({E_electronic}, {ap1rog_parameters});
     }
 };
 

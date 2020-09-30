@@ -64,7 +64,7 @@ public:
         const ScalarSQOneElectronOperator<Scalar> F {environment.fock_matrices.back()};  // the most recent Fock matrix
         const auto& H_core = environment.sq_hamiltonian.core();                          // the core Hamiltonian matrix
 
-        const auto E_electronic = QCModel::GHF<double>::calculateElectronicEnergy(P, H_core, F);
+        const auto E_electronic = QCModel::GHF<Scalar>::calculateElectronicEnergy(P, H_core, F);
         environment.electronic_energies.push_back(E_electronic);
     }
 };

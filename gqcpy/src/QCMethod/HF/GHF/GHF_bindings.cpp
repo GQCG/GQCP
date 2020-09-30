@@ -28,19 +28,29 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
-void bindQCMethodGHF(py::module& module) {
-    py::class_<GQCP::QCMethod::GHF<double>>(module, "GHF", "The generalized Hartree-Fock quantum chemical method.")
+template <typename Scalar>
+void bindQCMethodGHF(py::module& module, const std::string& suffix) {
+    py::class_<GQCP::QCMethod::GHF<Scalar>>(module,
+                                            ("GHF_" + suffix).c_str(),
+                                            "The generalized Hartree-Fock quantum chemical method.")
 
         // PUBLIC METHODS
 
         .def_static(
             "optimize",
-            [](GQCP::IterativeAlgorithm<GQCP::GHFSCFEnvironment<double>>& solver, GQCP::GHFSCFEnvironment<double>& environment) {
-                return GQCP::QCMethod::GHF<double>().optimize(solver, environment);
+            [](GQCP::IterativeAlgorithm<GQCP::GHFSCFEnvironment<Scalar>>& solver, GQCP::GHFSCFEnvironment<Scalar>& environment) {
+                return GQCP::QCMethod::GHF<Scalar>().optimize(solver, environment);
             },
             py::arg("solver"),
             py::arg("environment"),
             "Optimize the GHF wave function model.");
+}
+
+
+void bindQCMethodsGHF(py::module& module) {
+
+    bindQCMethodGHF<double>(module, "d");          // suffix 'd' for the class name
+    bindQCMethodGHF<GQCP::complex>(module, "cd");  // suffix 'cd' for the class name: 'complex double'
 }
 
 
