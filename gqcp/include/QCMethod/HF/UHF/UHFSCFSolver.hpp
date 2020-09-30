@@ -69,9 +69,9 @@ public:
             .add(UHFElectronicEnergyCalculation<Scalar>());
 
         // Create a convergence criterion on the norm of subsequent density matrices
-        const std::function<std::deque<SpinResolvedOneDM<Scalar>>(const UHFSCFEnvironment<Scalar>&)> density_matrix_extractor = [](const UHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices; };
+        const std::function<std::deque<SpinResolved1DM<Scalar>>(const UHFSCFEnvironment<Scalar>&)> density_matrix_extractor = [](const UHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices; };
 
-        using ConvergenceType = ConsecutiveIteratesNormConvergence<SpinResolvedOneDM<Scalar>, UHFSCFEnvironment<Scalar>>;
+        using ConvergenceType = ConsecutiveIteratesNormConvergence<SpinResolved1DM<Scalar>, UHFSCFEnvironment<Scalar>>;
         const ConvergenceType convergence_criterion {threshold, density_matrix_extractor, "the UHF spin resolved density matrix in AO basis"};
 
         return IterativeAlgorithm<UHFSCFEnvironment<Scalar>>(diis_uhf_scf_cycle, convergence_criterion, maximum_number_of_iterations);
@@ -95,9 +95,9 @@ public:
             .add(UHFElectronicEnergyCalculation<Scalar>());
 
         // Create a convergence criterion on the norm of subsequent density matrices
-        const std::function<std::deque<SpinResolvedOneDM<Scalar>>(const UHFSCFEnvironment<Scalar>&)> density_matrix_extractor = [](const UHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices; };
+        const std::function<std::deque<SpinResolved1DM<Scalar>>(const UHFSCFEnvironment<Scalar>&)> density_matrix_extractor = [](const UHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices; };
 
-        using ConvergenceType = ConsecutiveIteratesNormConvergence<SpinResolvedOneDM<Scalar>, UHFSCFEnvironment<Scalar>>;
+        using ConvergenceType = ConsecutiveIteratesNormConvergence<SpinResolved1DM<Scalar>, UHFSCFEnvironment<Scalar>>;
         const ConvergenceType convergence_criterion {threshold, density_matrix_extractor, "the UHF spin resolved density matrix in AO basis"};
 
         return IterativeAlgorithm<UHFSCFEnvironment<Scalar>>(plain_uhf_scf_cycle, convergence_criterion, maximum_number_of_iterations);

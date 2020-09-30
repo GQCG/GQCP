@@ -45,7 +45,7 @@ BaseSpinResolvedFrozenDMCalculator::BaseSpinResolvedFrozenDMCalculator(const std
  *
  *  @return all 1-DMs given a coefficient vector
  */
-SpinResolvedOneDM<double> BaseSpinResolvedFrozenDMCalculator::calculateSpinResolved1DM(const VectorX<double>& x) const {
+SpinResolved1DM<double> BaseSpinResolvedFrozenDMCalculator::calculateSpinResolved1DM(const VectorX<double>& x) const {
 
     auto K = this->onvBasis()->numberOfOrbitals();
 
@@ -60,13 +60,13 @@ SpinResolvedOneDM<double> BaseSpinResolvedFrozenDMCalculator::calculateSpinResol
         D_bb(i, i) = 1;
     }
 
-    SpinResolvedOneDM<double> sub_1DMs = this->active_dm_calculator->calculateSpinResolved1DM(x);
+    SpinResolved1DM<double> sub_1DMs = this->active_dm_calculator->calculateSpinResolved1DM(x);
 
     // Incorporate the submatrices from the active space
     D_aa.block(this->X, this->X, K_active, K_active) += sub_1DMs.alpha();
     D_bb.block(this->X, this->X, K_active, K_active) += sub_1DMs.beta();
 
-    return SpinResolvedOneDM<double>(D_aa, D_bb);
+    return SpinResolved1DM<double>(D_aa, D_bb);
 };
 
 
@@ -92,7 +92,7 @@ SpinResolvedTwoDM<double> BaseSpinResolvedFrozenDMCalculator::calculateSpinResol
     d_bbbb.setZero();
 
 
-    SpinResolvedOneDM<double> one_DMs = this->active_dm_calculator->calculateSpinResolved1DM(x);
+    SpinResolved1DM<double> one_DMs = this->active_dm_calculator->calculateSpinResolved1DM(x);
     auto D_aa = one_DMs.alpha();
     auto D_bb = one_DMs.beta();
 

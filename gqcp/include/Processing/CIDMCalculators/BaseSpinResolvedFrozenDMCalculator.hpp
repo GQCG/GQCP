@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "DensityMatrix/SpinResolvedOneDM.hpp"
+#include "DensityMatrix/SpinResolved1DM.hpp"
 #include "DensityMatrix/SpinResolvedTwoDM.hpp"
 
 
@@ -50,7 +50,7 @@ public:
      *
      *  @return all 1-DMs given a coefficient vector
      */
-    SpinResolvedOneDM<double> calculateSpinResolved1DM(const VectorX<double>& x) const override;
+    SpinResolved1DM<double> calculateSpinResolved1DM(const VectorX<double>& x) const override;
 
     /**
      *  @param x        the coefficient vector representing the wave function

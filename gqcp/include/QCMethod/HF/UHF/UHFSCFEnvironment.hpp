@@ -19,7 +19,7 @@
 
 
 #include "Basis/Transformations/TransformationMatrix.hpp"
-#include "DensityMatrix/SpinResolvedOneDM.hpp"
+#include "DensityMatrix/SpinResolved1DM.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
@@ -60,7 +60,7 @@ public:
     std::deque<TransformationMatrix<Scalar>> coefficient_matrices_alpha;
     std::deque<TransformationMatrix<Scalar>> coefficient_matrices_beta;
 
-    std::deque<SpinResolvedOneDM<double>> density_matrices;  // expressed in the scalar (AO) basis
+    std::deque<SpinResolved1DM<double>> density_matrices;  // expressed in the scalar (AO) basis
 
     std::deque<USQOneElectronOperator<Scalar, 1>> fock_matrices;  // expressed in the scalar (AO) basis
 

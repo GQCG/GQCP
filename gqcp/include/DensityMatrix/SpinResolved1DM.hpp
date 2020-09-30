@@ -19,6 +19,7 @@
 
 
 #include "DensityMatrix/OneDM.hpp"
+#include "DensityMatrix/Orbital1DM.hpp"
 #include "QuantumChemical/Spin.hpp"
 
 
@@ -31,7 +32,7 @@ namespace GQCP {
  *  @tparam _Scalar             The scalar type of one of the elements.
  */
 template <typename _Scalar>
-class SpinResolvedOneDM {
+class SpinResolved1DM {
 public:
     // The scalar type of one of the elements.
     using Scalar = _Scalar;
@@ -48,12 +49,12 @@ public:
      */
 
     /**
-     *  Create a SpinResolvedOneDM from its members.
+     *  Create a SpinResolved1DM from its members.
      *
      *  @param D_aa             the alpha-alpha 1-DM
      *  @param D_bb             the beta-beta 1-DM
      */
-    SpinResolvedOneDM(const OneDM<Scalar>& D_aa, const OneDM<Scalar>& D_bb) :
+    SpinResolved1DM(const OneDM<Scalar>& D_aa, const OneDM<Scalar>& D_bb) :
         D_aa {D_aa},
         D_bb {D_bb} {}
 
@@ -69,10 +70,10 @@ public:
      * 
      *  @return a spin-resolved 1-DM
      */
-    static SpinResolvedOneDM<Scalar> FromRestricted(const OneDM<Scalar>& D) {
+    static SpinResolved1DM<Scalar> FromRestricted(const OneDM<Scalar>& D) {
 
         const auto D_half = D / 2;
-        return SpinResolvedOneDM<Scalar>(D_half, D_half);
+        return SpinResolved1DM<Scalar>(D_half, D_half);
     }
 
 
@@ -132,7 +133,7 @@ public:
     /**
      *  @return the spin-summed density matrix, i.e. the sum of the alpha and beta 1-DM
      */
-    OneDM<Scalar> spinSummed() const {
+    Orbital1DM<Scalar> spinSummed() const {
         return this->alpha() + this->beta();
     }
 
@@ -142,11 +143,11 @@ public:
      * 
      *  @return the transformed spin resolved density matrix, with each component transformed seperately t a different basis.
      */
-    SpinResolvedOneDM<Scalar> transformed(const TransformationMatrix<double>& T_a, const TransformationMatrix<double>& T_b) const {
+    SpinResolved1DM<Scalar> transformed(const TransformationMatrix<double>& T_a, const TransformationMatrix<double>& T_b) const {
         OneDM<Scalar> D_a_transformed = T_a.conjugate() * this->alpha() * T_a.transpose();
         OneDM<Scalar> D_b_transformed = T_b.conjugate() * this->beta() * T_b.transpose();
 
-        return SpinResolvedOneDM<Scalar> {D_a_transformed, D_b_transformed};
+        return SpinResolved1DM<Scalar> {D_a_transformed, D_b_transformed};
     }
 
     /**
@@ -154,7 +155,7 @@ public:
      * 
      *  @return the transformed spin resolved density matrix, with each component transformed to the same basis.
      */
-    SpinResolvedOneDM<Scalar> transform(const TransformationMatrix<double>& T) const {
+    SpinResolved1DM<Scalar> transform(const TransformationMatrix<double>& T) const {
         return this->transform(T, T);
     }
 };
@@ -173,7 +174,7 @@ public:
 *  @param rhs                  the right-hand side
 */
 template <typename LHSScalar, typename RHSScalar>
-auto operator+(const SpinResolvedOneDM<LHSScalar>& lhs, const SpinResolvedOneDM<RHSScalar>& rhs) -> SpinResolvedOneDM<sum_t<LHSScalar, RHSScalar>> {
+auto operator+(const SpinResolved1DM<LHSScalar>& lhs, const SpinResolved1DM<RHSScalar>& rhs) -> SpinResolved1DM<sum_t<LHSScalar, RHSScalar>> {
 
     using ResultScalar = sum_t<LHSScalar, RHSScalar>;
 
@@ -183,7 +184,7 @@ auto operator+(const SpinResolvedOneDM<LHSScalar>& lhs, const SpinResolvedOneDM<
     D_sum_a += rhs.alpha();
     D_sum_b += rhs.beta();
 
-    return SpinResolvedOneDM<ResultScalar>(D_sum_a, D_sum_b);
+    return SpinResolved1DM<ResultScalar>(D_sum_a, D_sum_b);
 }
 
 /**
@@ -196,7 +197,7 @@ auto operator+(const SpinResolvedOneDM<LHSScalar>& lhs, const SpinResolvedOneDM<
  *  @tparam spin_resolved_DM                  the spin resolved one DM
  */
 template <typename Scalar, typename DMScalar>
-auto operator*(const Scalar& scalar, const SpinResolvedOneDM<DMScalar>& spin_resolved_DM) -> SpinResolvedOneDM<product_t<Scalar, DMScalar>> {
+auto operator*(const Scalar& scalar, const SpinResolved1DM<DMScalar>& spin_resolved_DM) -> SpinResolved1DM<product_t<Scalar, DMScalar>> {
 
     using ResultScalar = product_t<Scalar, DMScalar>;
 
@@ -206,7 +207,7 @@ auto operator*(const Scalar& scalar, const SpinResolvedOneDM<DMScalar>& spin_res
     D_a *= scalar;
     D_b *= scalar;
 
-    return SpinResolvedOneDM<ResultScalar>(D_a, D_b);
+    return SpinResolved1DM<ResultScalar>(D_a, D_b);
 }
 
 
@@ -218,7 +219,7 @@ auto operator*(const Scalar& scalar, const SpinResolvedOneDM<DMScalar>& spin_res
  *  @param spin_resolved_DM                   the spin resolved density matrix
  */
 template <typename Scalar>
-SpinResolvedOneDM<Scalar> operator-(const SpinResolvedOneDM<Scalar>& spin_resolved_DM) {
+SpinResolved1DM<Scalar> operator-(const SpinResolved1DM<Scalar>& spin_resolved_DM) {
 
     return (-1.0) * spin_resolved_DM;  // negation is scalar multiplication with (-1.0)
 }
@@ -234,7 +235,7 @@ SpinResolvedOneDM<Scalar> operator-(const SpinResolvedOneDM<Scalar>& spin_resolv
     *  @param rhs                  the right-hand side
 */
 template <typename LHSScalar, typename RHSScalar>
-auto operator-(const SpinResolvedOneDM<LHSScalar>& lhs, const SpinResolvedOneDM<RHSScalar>& rhs) -> SpinResolvedOneDM<sum_t<LHSScalar, RHSScalar>> {
+auto operator-(const SpinResolved1DM<LHSScalar>& lhs, const SpinResolved1DM<RHSScalar>& rhs) -> SpinResolved1DM<sum_t<LHSScalar, RHSScalar>> {
 
     return lhs + (-rhs);
 }

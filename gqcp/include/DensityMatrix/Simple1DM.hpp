@@ -25,6 +25,21 @@
 namespace GQCP {
 
 
+/*
+ *  MARK: DensityMatrixTraits
+ */
+
+/**
+ *  A type that provides compile-time information on density matrices that is otherwise not accessible through a public class alias.
+ */
+template <typename DensityMatrix>
+class DensityMatrixTraits {};
+
+
+/*
+ *  MARK: Simple1DM implementation
+ */
+
 /**
  *  A one-electron density matrix that is described by a single matrix.
  * 
@@ -36,7 +51,7 @@ namespace GQCP {
 template <typename _Scalar, typename _DerivedDM>
 class Simple1DM:
     public SquareMatrix<_Scalar>,
-    public BasisTransformable<Simple1DM<_Scalar, _DerivedDM>> {
+    public BasisTransformable<Simple1DM<_Scalar, _DerivedDM>, typename DensityMatrixTraits<_DerivedDM>::TM> {
 public:
     // The scalar type used for a density matrix element: real or complex.
     using Scalar = _Scalar;
@@ -46,6 +61,9 @@ public:
 
     // The type of 'this'.
     using Self = Simple1DM<Scalar, DerivedDM>;
+
+    // The type of transformation matrix that is naturally related to the DerivedDM.
+    using TM = typename DensityMatrixTraits<DerivedDM>::TM;
 
 
 public:
@@ -76,7 +94,7 @@ public:
      */
     Self transformed(const TM& transformation_matrix) const override {
 
-        return Self(transformation_matrix.conjugate() * (*this) * transformation_matrix.transpose());  // Note that this basis transformation formula is different from the one-electron operator one. See SimpleSQOneElectronOperator.
+        return Self(transformation_matrix.inverse().conjugate() * (*this) * transformation_matrix.inverse().transpose());  // Note that this basis transformation formula is different from the one-electron operator one. See SimpleSQOneElectronOperator.
     }
 };
 

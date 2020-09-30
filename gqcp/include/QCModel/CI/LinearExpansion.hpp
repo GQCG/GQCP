@@ -23,7 +23,8 @@
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Basis/SpinorBasis/USpinorBasis.hpp"
 #include "Basis/Transformations/RTransformationMatrix.hpp"
-#include "DensityMatrix/SpinResolvedOneDM.hpp"
+#include "DensityMatrix/Orbital1DM.hpp"
+#include "DensityMatrix/SpinResolved1DM.hpp"
 #include "DensityMatrix/SpinResolvedTwoDM.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 #include "ONVBasis/SpinResolvedONV.hpp"
@@ -658,7 +659,7 @@ public:
      *  @return the spin-resolved 1-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolvedOneDM<double>> calculateSpinResolved1DM() const {
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const {
 
         // Prepare some variables.
         const auto K = this->onv_basis.numberOfSpatialOrbitals();
@@ -684,7 +685,7 @@ public:
             }
         }
 
-        return SpinResolvedOneDM<double>::FromRestricted(D);
+        return SpinResolved1DM<double>::FromRestricted(D);
     }
 
 
@@ -760,10 +761,10 @@ public:
     /**
      *  Calculate the one-electron density matrix for a full spin-resolved wave function expansion.
      * 
-     *  @return the total (spin-summed) 1-DM
+     *  @return The total, spin-summed, orbital 1-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, OneDM<double>> calculate1DM() const { return this->calculateSpinResolved1DM().spinSummed(); }
+    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, Orbital1DM<double>> calculate1DM() const { return this->calculateSpinResolved1DM().spinSummed(); }
 
 
     /**
@@ -781,7 +782,7 @@ public:
      *  @return the spin-resolved 1-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, SpinResolvedOneDM<double>> calculateSpinResolved1DM() const {
+    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const {
 
         // Initialize as zero matrices
         size_t K = this->onv_basis.numberOfOrbitals();
@@ -890,7 +891,7 @@ public:
             }
 
         }  // I_beta loop
-        return SpinResolvedOneDM<double>(D_aa, D_bb);
+        return SpinResolved1DM<double>(D_aa, D_bb);
     }
 
 
@@ -1137,7 +1138,7 @@ public:
      *  @return the spin-resolved 1-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, SpinResolvedOneDM<double>> calculateSpinResolved1DM() const {
+    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const {
 
         size_t K = this->onv_basis.numberOfOrbitals();
         size_t dim = onv_basis.dimension();
@@ -1207,7 +1208,7 @@ public:
             }  // loop over addresses J > I
         }      // loop over addresses I
 
-        return SpinResolvedOneDM<double>(D_aa, D_bb);  // the total 1-DM is the sum of the spin components
+        return SpinResolved1DM<double>(D_aa, D_bb);  // the total 1-DM is the sum of the spin components
     }
 
 

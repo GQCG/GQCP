@@ -105,7 +105,7 @@ void bindUHFSCFEnvironment(py::module& module) {
             "density_matrices_alpha",
             [](const GQCP::UHFSCFEnvironment<double>& environment) {
                 std::vector<GQCP::MatrixX<double>> alpha_density_matrices;
-                std::transform(environment.density_matrices.begin(), environment.density_matrices.end(), std::back_inserter(alpha_density_matrices), [](const GQCP::SpinResolvedOneDM<double>& D) { return D.alpha(); });
+                std::transform(environment.density_matrices.begin(), environment.density_matrices.end(), std::back_inserter(alpha_density_matrices), [](const GQCP::SpinResolved1DM<double>& D) { return D.alpha(); });
 
                 return alpha_density_matrices;
             })
@@ -114,7 +114,7 @@ void bindUHFSCFEnvironment(py::module& module) {
             "density_matrices_beta",
             [](const GQCP::UHFSCFEnvironment<double>& environment) {
                 std::vector<GQCP::MatrixX<double>> beta_density_matrices;
-                std::transform(environment.density_matrices.begin(), environment.density_matrices.end(), std::back_inserter(beta_density_matrices), [](const GQCP::SpinResolvedOneDM<double>& D) { return D.beta(); });
+                std::transform(environment.density_matrices.begin(), environment.density_matrices.end(), std::back_inserter(beta_density_matrices), [](const GQCP::SpinResolved1DM<double>& D) { return D.beta(); });
 
                 return beta_density_matrices;
             })
@@ -155,7 +155,7 @@ void bindUHFSCFEnvironment(py::module& module) {
                  const auto last_spin_resolved_density = environment.density_matrices.back();
                  const auto last_density_matrix_beta = last_spin_resolved_density.beta();
                  environment.density_matrices.pop_back();
-                 environment.density_matrices.push_back(GQCP::SpinResolvedOneDM<double>(new_density_matrix_alpha, last_density_matrix_beta));
+                 environment.density_matrices.push_back(GQCP::SpinResolved1DM<double>(new_density_matrix_alpha, last_density_matrix_beta));
              })
 
         .def("replace_current_density_matrix_beta",
@@ -163,7 +163,7 @@ void bindUHFSCFEnvironment(py::module& module) {
                  const auto last_spin_resolved_density = environment.density_matrices.back();
                  const auto last_density_matrix_alpha = last_spin_resolved_density.beta();
                  environment.density_matrices.pop_back();
-                 environment.density_matrices.push_back(GQCP::SpinResolvedOneDM<double>(last_density_matrix_alpha, new_density_matrix_beta));
+                 environment.density_matrices.push_back(GQCP::SpinResolved1DM<double>(last_density_matrix_alpha, new_density_matrix_beta));
              })
 
         .def("replace_current_fock_matrix_alpha",

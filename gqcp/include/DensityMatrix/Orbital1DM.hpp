@@ -18,11 +18,16 @@
 #pragma once
 
 
+#include "Basis/Transformations/RTransformationMatrix.hpp"
 #include "DensityMatrix/Simple1DM.hpp"
 
 
 namespace GQCP {
 
+
+/*
+ *  MARK: Orbital1DM implementation
+ */
 
 /**
  *  A type used to represent a one-electron orbital density matrix, i.e. the summed alpha and beta density matrix.
@@ -35,6 +40,29 @@ class Orbital1DM:
 public:
     // The scalar type used for a density matrix element: real or complex.
     using Scalar = _Scalar;
+
+public:
+    /*
+     *  MARK: Constructors
+     */
+    
+    // Inherit `Simple1DM`'s constructors.
+    using Simple1DM<Scalar, Orbital1DM<Scalar>>::Simple1DM;
+};
+
+
+/*
+ *  MARK: DensityMatrixTraits
+ */
+
+/**
+ *  A type that provides compile-time information on `Orbital1DM` that is otherwise not accessible through a public class alias.
+ */
+template <typename Scalar>
+class DensityMatrixTraits<Orbital1DM<Scalar>> {
+public:
+    // The type of transformation matrix that is naturally related to an Orbital1DM. The only transformations that should be naturally possible for an orbital 1-DM are restricted transformations, thereby assuming that the density matrices for alpha and beta are equal and thus transform similarly.
+    using TM = RTransformationMatrix<Scalar>;
 };
 
 

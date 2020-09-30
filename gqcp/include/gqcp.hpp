@@ -66,7 +66,7 @@
 #include "DensityMatrix/OneDM.hpp"
 #include "DensityMatrix/Orbital1DM.hpp"
 #include "DensityMatrix/Simple1DM.hpp"
-#include "DensityMatrix/SpinResolvedOneDM.hpp"
+#include "DensityMatrix/SpinResolved1DM.hpp"
 #include "DensityMatrix/SpinResolvedTwoDM.hpp"
 #include "DensityMatrix/TwoDM.hpp"
 #include "DensityMatrix/U1DM.hpp"
