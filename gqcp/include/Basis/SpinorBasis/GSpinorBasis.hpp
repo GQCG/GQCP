@@ -106,8 +106,7 @@ public:
      */
     GSpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis) :
         GSpinorBasis(alpha_scalar_basis, beta_scalar_basis,
-                     TM::Identity(alpha_scalar_basis.numberOfBasisFunctions() + beta_scalar_basis.numberOfBasisFunctions(),
-                                  alpha_scalar_basis.numberOfBasisFunctions() + beta_scalar_basis.numberOfBasisFunctions())) {}
+                     TM::Identity(alpha_scalar_basis.numberOfBasisFunctions() + beta_scalar_basis.numberOfBasisFunctions())) {}
 
 
     /**
@@ -210,7 +209,7 @@ public:
         const auto& C_alpha = u_spinor_basis.coefficientMatrix(Spin::alpha);
         const auto& C_beta = u_spinor_basis.coefficientMatrix(Spin::beta);
 
-        TM C_general = TM::Zero(M, M);
+        TM C_general = TM::Zero(M);
 
         //      alpha |  0
         //        0   | beta
@@ -362,9 +361,9 @@ public:
         //  2. Then, construct the scalar basis representations of the components of the spin operator by placing the overlaps into the correct blocks.
         //  3. Transform the components (in scalar basis) with the current coefficient matrix to yield the components in spinor basis.
 
-        QCMatrix<ResultScalar> S_x = QCMatrix<ResultScalar>::Zero(M, M);
-        QCMatrix<ResultScalar> S_y = QCMatrix<ResultScalar>::Zero(M, M);
-        QCMatrix<ResultScalar> S_z = QCMatrix<ResultScalar>::Zero(M, M);
+        QCMatrix<ResultScalar> S_x = QCMatrix<ResultScalar>::Zero(M);
+        QCMatrix<ResultScalar> S_y = QCMatrix<ResultScalar>::Zero(M);
+        QCMatrix<ResultScalar> S_z = QCMatrix<ResultScalar>::Zero(M);
 
 
         // 1. Calculate the necessary overlap integrals over the scalar bases.
@@ -410,7 +409,7 @@ public:
         const auto K_alpha = this->numberOfCoefficients(Spin::alpha);
         const auto K_beta = this->numberOfCoefficients(Spin::beta);
         const auto M = this->numberOfSpinors();
-        QCMatrix<ResultScalar> f = QCMatrix<ResultScalar>::Zero(M, M);  // the total result
+        QCMatrix<ResultScalar> f = QCMatrix<ResultScalar>::Zero(M);  // the total result
 
         // 1. Express the operator in the underlying scalar bases: spin-independent operators only have alpha-alpha and beta-beta blocks.
         const auto F_alpha = IntegralCalculator::calculateLibintIntegrals(fq_one_op, this->scalarBasis(Spin::alpha));

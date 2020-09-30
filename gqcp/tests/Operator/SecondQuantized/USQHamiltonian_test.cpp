@@ -37,12 +37,12 @@ BOOST_AUTO_TEST_CASE(USQHamiltonian_constructor) {
 
     // Create One- and SQTwoElectronOperators (and a transformation matrix) with compatible dimensions
     const size_t K = spinor_basis.numberOfSpinors(GQCP::Spin::alpha);
-    const GQCP::SquareMatrix<double> H_core = GQCP::SquareMatrix<double>::Random(K, K);
+    const GQCP::SquareMatrix<double> H_core = GQCP::SquareMatrix<double>::Random(K);
     GQCP::QCRankFourTensor<double> g {K};
     g.setRandom();
 
     // Create SQ operators with greater dimensions
-    const GQCP::SquareMatrix<double> H_core_faulty = GQCP::SquareMatrix<double>::Random(K + 1, K + 1);
+    const GQCP::SquareMatrix<double> H_core_faulty = GQCP::SquareMatrix<double>::Random(K + 1);
     GQCP::QCRankFourTensor<double> g_faulty {K + 1};
     g_faulty.setRandom();
 

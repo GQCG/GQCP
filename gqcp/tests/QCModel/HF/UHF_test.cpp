@@ -46,10 +46,10 @@ BOOST_AUTO_TEST_CASE(basic_constructor) {
     const GQCP::VectorX<double> orbital_energies_beta2 = GQCP::VectorX<double>::Zero(K_beta2);
 
     // Transformation matrices.
-    const GQCP::TransformationMatrix<double> C_alpha1 = GQCP::TransformationMatrix<double>::Identity(K_alpha1, K_alpha1);
-    const GQCP::TransformationMatrix<double> C_beta1 = GQCP::TransformationMatrix<double>::Identity(K_beta1, K_beta1);
-    const GQCP::TransformationMatrix<double> C_alpha2 = GQCP::TransformationMatrix<double>::Identity(K_alpha2, K_alpha2);
-    const GQCP::TransformationMatrix<double> C_beta2 = GQCP::TransformationMatrix<double>::Identity(K_beta2, K_beta2);
+    const GQCP::TransformationMatrix<double> C_alpha1 = GQCP::TransformationMatrix<double>::Identity(K_alpha1);
+    const GQCP::TransformationMatrix<double> C_beta1 = GQCP::TransformationMatrix<double>::Identity(K_beta1);
+    const GQCP::TransformationMatrix<double> C_alpha2 = GQCP::TransformationMatrix<double>::Identity(K_alpha2);
+    const GQCP::TransformationMatrix<double> C_beta2 = GQCP::TransformationMatrix<double>::Identity(K_beta2);
 
 
     // Check if an expected correct constructor doesn't throw.
@@ -76,7 +76,7 @@ BOOST_AUTO_TEST_CASE(spinorbitalEnergies) {
 
     // Set up toy UHF model parameters.
     const size_t K = 2;
-    const GQCP::TransformationMatrix<double> C = GQCP::TransformationMatrix<double>::Identity(K, K);
+    const GQCP::TransformationMatrix<double> C = GQCP::TransformationMatrix<double>::Identity(K);
     GQCP::VectorX<double> orbital_energies {K};
     orbital_energies << -0.5, 0.5;
 

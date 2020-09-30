@@ -386,7 +386,7 @@ public:
         // LU-decompose the transformation matrix LU decomposition for T
         const auto& lu_decomposition = T.noPivotLUDecompose();
 
-        SquareMatrix<double> L = SquareMatrix<double>::Identity(K, K);
+        SquareMatrix<double> L = SquareMatrix<double>::Identity(K);
         L.triangularView<Eigen::StrictlyLower>() = lu_decomposition[0];
 
         SquareMatrix<double> U = SquareMatrix<double>(lu_decomposition[1].triangularView<Eigen::Upper>());
@@ -394,7 +394,7 @@ public:
 
 
         // Calculate t (the operator which allows per-orbital transformation of the wave function)
-        SquareMatrix<double> t = SquareMatrix<double>::Identity(K, K) - L + U_inv;
+        SquareMatrix<double> t = SquareMatrix<double>::Identity(K) - L + U_inv;
 
 
         // Set up spin-unresolved ONV basis variables for the loops over the ONVs
@@ -665,7 +665,7 @@ public:
         const auto dimension = this->onv_basis.dimension();
 
         // For seniority-zero linear expansions, one DM covers both alpha and beta spins.
-        OneDM<double> D = OneDM<double>::Zero(K, K);
+        OneDM<double> D = OneDM<double>::Zero(K);
 
         // Create the first ONV (with address 0). In DOCI, the ONV basis for alpha and beta is equal, so we can use the proxy ONV basis.
         const auto onv_basis_proxy = this->onv_basis.proxy();
@@ -786,8 +786,8 @@ public:
         // Initialize as zero matrices
         size_t K = this->onv_basis.numberOfOrbitals();
 
-        OneDM<double> D_aa = OneDM<double>::Zero(K, K);
-        OneDM<double> D_bb = OneDM<double>::Zero(K, K);
+        OneDM<double> D_aa = OneDM<double>::Zero(K);
+        OneDM<double> D_bb = OneDM<double>::Zero(K);
 
         SpinUnresolvedONVBasis onv_basis_alpha = onv_basis.onvBasisAlpha();
         SpinUnresolvedONVBasis onv_basis_beta = onv_basis.onvBasisBeta();
@@ -1142,8 +1142,8 @@ public:
         size_t K = this->onv_basis.numberOfOrbitals();
         size_t dim = onv_basis.dimension();
 
-        OneDM<double> D_aa = OneDM<double>::Zero(K, K);
-        OneDM<double> D_bb = OneDM<double>::Zero(K, K);
+        OneDM<double> D_aa = OneDM<double>::Zero(K);
+        OneDM<double> D_bb = OneDM<double>::Zero(K);
 
 
         for (size_t I = 0; I < dim; I++) {  // loop over all addresses (1)

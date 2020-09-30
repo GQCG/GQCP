@@ -93,8 +93,7 @@ public:
      *  @note the resulting restricted spinor basis is (most likely) non-orthogonal
      */
     RSpinorBasis(const ScalarBasis<Shell>& scalar_basis) :
-        RSpinorBasis(scalar_basis, TM::Identity(scalar_basis.numberOfBasisFunctions(),
-                                                scalar_basis.numberOfBasisFunctions())) {}
+        RSpinorBasis(scalar_basis, TM::Identity(scalar_basis.numberOfBasisFunctions())) {}
 
 
     /**

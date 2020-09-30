@@ -152,7 +152,7 @@ BOOST_AUTO_TEST_CASE(SQOneElectronOperator_of_GTOs_evaluate) {
 
 
     // Read in the reference solution and check the results.
-    GQCP::SquareMatrix<double> ref_rho_evaluated_par = GQCP::SquareMatrix<double>::Zero(2, 2);
+    GQCP::SquareMatrix<double> ref_rho_evaluated_par = GQCP::SquareMatrix<double>::Zero(2);
     double ref_rho_evaluated_00 = 4 * std::exp(-3.0) + 4 * std::exp(-6.0) - 2 * std::exp(-3.0) + 2 * std::exp(-9.0) + 5 * std::exp(-1.5) - 1 * std::exp(-7.5);
     double ref_rho_evaluated_01 = 2 * std::exp(-3.0) + 1 * std::exp(-9.0) + 2.5 * std::exp(-1.5);
     double ref_rho_evaluated_10 = 2 * std::exp(-3.0) + 2 * std::exp(-6.0) - 1 * std::exp(-3.0);

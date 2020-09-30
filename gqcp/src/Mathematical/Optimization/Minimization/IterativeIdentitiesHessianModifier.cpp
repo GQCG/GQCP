@@ -64,7 +64,7 @@ SquareMatrix<double> IterativeIdentitiesHessianModifier::operator()(const Square
     while ((llt_factorizer.compute(modified_hessian), llt_factorizer.info() != Eigen::Success)) {  // comma operator gets value of last expression
 
         // Modify the Hessian with a multiple of the identity matrix
-        modified_hessian += this->tau * SquareMatrix<double>::Identity(dim, dim);
+        modified_hessian += this->tau * SquareMatrix<double>::Identity(dim);
 
         // Update the scaler
         this->tau = std::max(this->alpha * this->tau, this->beta);

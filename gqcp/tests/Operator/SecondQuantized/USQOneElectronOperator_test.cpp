@@ -32,7 +32,7 @@
 BOOST_AUTO_TEST_CASE(USQOneElectronOperator_constructor) {
 
     // Check a correct constructor.
-    const auto square_matrix = GQCP::SquareMatrix<double>::Zero(4, 4);
+    const auto square_matrix = GQCP::SquareMatrix<double>::Zero(4);
     const GQCP::ScalarUSQOneElectronOperator<double> O {square_matrix, square_matrix};
 
 
@@ -205,9 +205,9 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_throw) {
     const GQCP::ScalarUSQOneElectronOperator<double> h {M1, M1};
 
     // Initialize test DMs and check if calculating expectation values throws when expected.
-    const GQCP::SpinResolvedOneDM<double> D_valid {GQCP::OneDM<double>::Zero(dim, dim), GQCP::OneDM<double>::Zero(dim, dim)};
-    const GQCP::SpinResolvedOneDM<double> D_invalid_alpha {GQCP::OneDM<double>::Zero(dim + 1, dim + 1), GQCP::OneDM<double>::Zero(dim, dim)};
-    const GQCP::SpinResolvedOneDM<double> D_invalid_beta {GQCP::OneDM<double>::Zero(dim, dim), GQCP::OneDM<double>::Zero(dim + 1, dim + 1)};
+    const GQCP::SpinResolvedOneDM<double> D_valid {GQCP::OneDM<double>::Zero(dim), GQCP::OneDM<double>::Zero(dim)};
+    const GQCP::SpinResolvedOneDM<double> D_invalid_alpha {GQCP::OneDM<double>::Zero(dim + 1), GQCP::OneDM<double>::Zero(dim)};
+    const GQCP::SpinResolvedOneDM<double> D_invalid_beta {GQCP::OneDM<double>::Zero(dim), GQCP::OneDM<double>::Zero(dim + 1)};
 
     BOOST_CHECK_THROW(h.calculateExpectationValue(D_invalid_alpha), std::invalid_argument);
     BOOST_CHECK_THROW(h.calculateExpectationValue(D_invalid_beta), std::invalid_argument);

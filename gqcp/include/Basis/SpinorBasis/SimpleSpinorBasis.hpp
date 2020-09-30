@@ -88,7 +88,7 @@ public:
         const auto S = this->overlap().parameters();
 
         const auto dim = this->simpleDimension();
-        return S.isApprox(SquareMatrix<ExpansionScalar>::Identity(dim, dim), precision);
+        return S.isApprox(SquareMatrix<ExpansionScalar>::Identity(dim), precision);
     }
 
 

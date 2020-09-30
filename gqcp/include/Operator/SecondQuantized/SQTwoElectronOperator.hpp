@@ -174,7 +174,7 @@ public:
             const auto& g_i = this->parameters(i);  // the matrix representation of the parameters of the i-th component
 
             // Calculate the Fockian matrix for every component and add it to the array
-            SquareMatrix<Scalar> F_i = SquareMatrix<Scalar>::Zero(this->numberOfOrbitals(), this->numberOfOrbitals());
+            SquareMatrix<Scalar> F_i = SquareMatrix<Scalar>::Zero(this->numberOfOrbitals());
             for (size_t p = 0; p < this->numberOfOrbitals(); p++) {
                 for (size_t q = 0; q < this->numberOfOrbitals(); q++) {
 

@@ -135,7 +135,7 @@ public:
      *  @param dim          The dimension of the matrix representation of the parameters, i.e. the number of orbitals/sites.
      */
     SimpleSQOneElectronOperator(const size_t dim, const Vectorizer& vectorizer) :
-        SimpleSQOneElectronOperator(StorageArray<MatrixRepresentation, Vectorizer> {MatrixRepresentation::Zero(dim, dim), vectorizer}) {}
+        SimpleSQOneElectronOperator(StorageArray<MatrixRepresentation, Vectorizer> {MatrixRepresentation::Zero(dim), vectorizer}) {}
 
 
     /**

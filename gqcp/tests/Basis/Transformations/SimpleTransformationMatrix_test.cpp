@@ -32,7 +32,7 @@ BOOST_AUTO_TEST_CASE(jacobi_rotation) {
     const size_t dim = 3;
 
     // Set up an identity transformation matrix.
-    GQCP::RTransformationMatrix<double> T = GQCP::SquareMatrix<double>::Identity(dim, dim);
+    GQCP::RTransformationMatrix<double> T = GQCP::SquareMatrix<double>::Identity(dim);
     const GQCP::JacobiRotationParameters jacobi {1, 0, boost::math::constants::half_pi<double>()};
 
 

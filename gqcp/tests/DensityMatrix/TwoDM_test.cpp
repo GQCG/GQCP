@@ -82,7 +82,7 @@ BOOST_AUTO_TEST_CASE(reduce) {
 
     auto d = calculateToy2DMTensor();
 
-    GQCP::OneDM<double> D_ref = GQCP::OneDM<double>::Zero(2, 2);
+    GQCP::OneDM<double> D_ref = GQCP::OneDM<double>::Zero(2);
 
     // clang-format off
     D_ref <<  3, 11,

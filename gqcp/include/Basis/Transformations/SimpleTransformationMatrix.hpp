@@ -76,7 +76,7 @@ public:
     static DerivedTransformationMatrix FromJacobi(const JacobiRotationParameters& jacobi_rotation_parameters, const size_t dim) {
 
         // Create an identity transformation matrix and apply a Jacobi rotation.
-        DerivedTransformationMatrix J = SquareMatrix<Scalar>::Identity(dim, dim);
+        DerivedTransformationMatrix J = SquareMatrix<Scalar>::Identity(dim);
 
         return J.rotated(jacobi_rotation_parameters);
     }

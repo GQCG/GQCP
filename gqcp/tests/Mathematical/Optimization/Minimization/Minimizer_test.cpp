@@ -47,7 +47,7 @@ GQCP::VectorX<double> grad(const GQCP::VectorX<double>& x) {
  *  Implement the Hessian of the scalar function
  */
 GQCP::SquareMatrix<double> H(const GQCP::VectorX<double>& x) {
-    return 2 * GQCP::SquareMatrix<double>::Identity(x.size(), x.size());
+    return 2 * GQCP::SquareMatrix<double>::Identity(x.size());
 }
 
 

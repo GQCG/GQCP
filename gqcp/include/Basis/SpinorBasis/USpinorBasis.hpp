@@ -59,11 +59,11 @@ public:
                       RSpinorBasis<ExpansionScalar, Shell>(beta_scalar_basis, C.beta())} {
 
         // Check if the dimensions of the given objects are compatible.
-        if (C.numberOfOrbitals(Spin::alpha) != alpha_scalar_basis.numberOfBasisFunctions()) {
+        if (C.alpha().numberOfOrbitals() != alpha_scalar_basis.numberOfBasisFunctions()) {
             throw std::invalid_argument("USpinorBasis(const ScalarBasis<Shell>&, const ScalarBasis<Shell>&, const UTransformationMatrix<ExpansionScalar>&): The given dimensions of the scalar basis and coefficient matrix for the alpha spin-orbitals are incompatible.");
         }
 
-        if (C.numberOfOrbitals(Spin::beta) != beta_scalar_basis.numberOfBasisFunctions()) {
+        if (C.beta().numberOfOrbitals() != beta_scalar_basis.numberOfBasisFunctions()) {
             throw std::invalid_argument("USpinorBasis(const ScalarBasis<Shell>&, const ScalarBasis<Shell>&, const UTransformationMatrix<ExpansionScalar>&): The given dimensions of the scalar basis and coefficient matrix for the beta spin-orbitals are incompatible.");
         }
     }
@@ -85,8 +85,8 @@ public:
     USpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis) :
         USpinorBasis(alpha_scalar_basis, beta_scalar_basis,
                      UTransformationMatrix<ExpansionScalar>(
-                         TransformationMatrix<ExpansionScalar>::Identity(alpha_scalar_basis.numberOfBasisFunctions(), alpha_scalar_basis.numberOfBasisFunctions()),
-                         TransformationMatrix<ExpansionScalar>::Identity(beta_scalar_basis.numberOfBasisFunctions(), beta_scalar_basis.numberOfBasisFunctions()))) {}
+                         TransformationMatrix<ExpansionScalar>::Identity(alpha_scalar_basis.numberOfBasisFunctions()),
+                         TransformationMatrix<ExpansionScalar>::Identity(beta_scalar_basis.numberOfBasisFunctions()))) {}
 
 
     /**

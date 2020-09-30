@@ -189,11 +189,11 @@ public:
         //    0  0  0  0  0
         //    0  0  0  0  0
 
-        OneDM<Scalar> D_MO_a = OneDM<Scalar>::Zero(K_a, K_a);
-        D_MO_a.topLeftCorner(N_a, N_a) = SquareMatrix<Scalar>::Identity(N_a, N_a);
+        OneDM<Scalar> D_MO_a = OneDM<Scalar>::Zero(K_a);
+        D_MO_a.topLeftCorner(N_a, N_a) = SquareMatrix<Scalar>::Identity(N_a);
 
-        OneDM<Scalar> D_MO_b = OneDM<Scalar>::Zero(K_b, K_b);
-        D_MO_b.topLeftCorner(N_b, N_b) = SquareMatrix<Scalar>::Identity(N_b, N_b);
+        OneDM<Scalar> D_MO_b = OneDM<Scalar>::Zero(K_b);
+        D_MO_b.topLeftCorner(N_b, N_b) = SquareMatrix<Scalar>::Identity(N_b);
 
         return SpinResolvedOneDM<Scalar> {D_MO_a, D_MO_b};
     }

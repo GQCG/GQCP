@@ -201,7 +201,7 @@ public:
     template <typename Z = Scalar>
     static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> Random(const size_t K) {
 
-        ScalarSQOneElectronOperator<double> H {SquareMatrix<double>::Random(K, K)};  // uniformly distributed between [-1,1]
+        ScalarSQOneElectronOperator<double> H {SquareMatrix<double>::Random(K)};  // uniformly distributed between [-1,1]
 
 
         // Unfortunately, the Tensor module provides uniform random distributions between [0, 1]
@@ -258,7 +258,7 @@ public:
         }
 
 
-        SquareMatrix<double> h_core = SquareMatrix<double>::Zero(K, K);
+        SquareMatrix<double> h_core = SquareMatrix<double>::Zero(K);
         QCRankFourTensor<double> g {K};
         g.setZero();
 

@@ -148,10 +148,10 @@ public:
         // To perform the contraction, we will first have to convert the density matrix into a Eigen::Tensor (since contractions are only implemented for tensors).
         // Since the two-electron integrals are spin-blocked (due to the nature of quantizing in a GSpinorBasis), the contractions must happen with a density matrix of the same dimension (M: the number of spinors). Therefore, we will construct a zero density matrix in which we only fill in one of the spin-blocks.
         const auto M = P.dimension();  // the total number of basis functions
-        OneDM<Scalar> P_aa = OneDM<Scalar>::Zero(M, M);
+        OneDM<Scalar> P_aa = OneDM<Scalar>::Zero(M);
         P_aa.topLeftCorner(M / 2, M / 2) = P.topLeftCorner(M / 2, M / 2);
 
-        OneDM<Scalar> P_bb = OneDM<Scalar>::Zero(M, M);
+        OneDM<Scalar> P_bb = OneDM<Scalar>::Zero(M);
         P_bb.bottomRightCorner(M / 2, M / 2) = P.bottomRightCorner(M / 2, M / 2);
 
         Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_aa_tensor {P_aa.data(), P_aa.rows(), P_aa.cols()};
@@ -187,16 +187,16 @@ public:
         // Since the two-electron integrals are spin-blocked (due to the nature of quantizing in a GSpinorBasis), the contractions must happen with a density matrix of the same dimension (M: the number of spinors). Therefore, we will construct a zero density matrix in which we only fill in one of the spin-blocks.
         const auto M = P.dimension();  // the total number of basis functions
 
-        OneDM<Scalar> P_aa = OneDM<Scalar>::Zero(M, M);
+        OneDM<Scalar> P_aa = OneDM<Scalar>::Zero(M);
         P_aa.topLeftCorner(M / 2, M / 2) = P.topLeftCorner(M / 2, M / 2);
 
-        OneDM<Scalar> P_ab = OneDM<Scalar>::Zero(M, M);
+        OneDM<Scalar> P_ab = OneDM<Scalar>::Zero(M);
         P_ab.topRightCorner(M / 2, M / 2) = P.topRightCorner(M / 2, M / 2);
 
-        OneDM<Scalar> P_ba = OneDM<Scalar>::Zero(M, M);
+        OneDM<Scalar> P_ba = OneDM<Scalar>::Zero(M);
         P_ba.bottomLeftCorner(M / 2, M / 2) = P.bottomLeftCorner(M / 2, M / 2);
 
-        OneDM<Scalar> P_bb = OneDM<Scalar>::Zero(M, M);
+        OneDM<Scalar> P_bb = OneDM<Scalar>::Zero(M);
         P_bb.bottomRightCorner(M / 2, M / 2) = P.bottomRightCorner(M / 2, M / 2);
 
 
@@ -262,8 +262,8 @@ public:
         //    0  0  0  0  0
         //    0  0  0  0  0
 
-        OneDM<double> D_MO = OneDM<double>::Zero(M, M);
-        D_MO.topLeftCorner(N, N) = SquareMatrix<double>::Identity(N, N);
+        OneDM<Scalar> D_MO = OneDM<Scalar>::Zero(M);
+        D_MO.topLeftCorner(N, N) = SquareMatrix<Scalar>::Identity(N);
 
         return D_MO;
     }

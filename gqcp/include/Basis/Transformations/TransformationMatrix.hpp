@@ -62,7 +62,7 @@ public:
         double s = std::sin(jacobi_rotation_parameters.angle());
 
         // We'll start the construction with an identity matrix
-        TransformationMatrix<Scalar> J = TransformationMatrix<Scalar>::Identity(M, M);
+        TransformationMatrix<Scalar> J = TransformationMatrix<Scalar>::Identity(M);
 
         // And apply the Jacobi rotation as J = I * jacobi_rotation (cfr. B' = B T)
         J.applyOnTheRight(jacobi_rotation_parameters.p(), jacobi_rotation_parameters.q(), Eigen::JacobiRotation<double>(c, s));

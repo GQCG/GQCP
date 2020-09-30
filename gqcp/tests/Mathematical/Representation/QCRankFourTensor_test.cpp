@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE(constructor) {
  */
 BOOST_AUTO_TEST_CASE(QCRankFourTensor_basisTransformInPlace_trivial) {
 
-    const GQCP::TransformationMatrix<double> T = GQCP::TransformationMatrix<double>::Identity(3, 3);
+    const GQCP::TransformationMatrix<double> T = GQCP::TransformationMatrix<double>::Identity(3);
 
     GQCP::QCRankFourTensor<double> G {3};
     const auto G_copy = G;  // the reference
@@ -102,12 +102,12 @@ BOOST_AUTO_TEST_CASE(QCRankFourTensor_rotate_throws) {
 
 
     // Check if a non-unitary matrix as transformation matrix causes a throw
-    const GQCP::TransformationMatrix<double> T = GQCP::TransformationMatrix<double>::Random(dim, dim);  // chances are practically zero that a random matrix is unitary
+    const GQCP::TransformationMatrix<double> T = GQCP::TransformationMatrix<double>::Random(dim);  // chances are practically zero that a random matrix is unitary
     BOOST_CHECK_THROW(g.basisRotate(GQCP::TransformationMatrix<double>(T)), std::invalid_argument);
 
 
     // Check if a unitary matrix as transformation matrix is accepted
-    GQCP::TransformationMatrix<double> U = GQCP::TransformationMatrix<double>::Identity(dim, dim);
+    GQCP::TransformationMatrix<double> U = GQCP::TransformationMatrix<double>::Identity(dim);
     g.basisRotate(U);
 }
 

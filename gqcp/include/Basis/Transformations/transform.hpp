@@ -150,7 +150,11 @@ void basisTransform(USpinorBasis<TransformationScalar, ShellType>& spinor_basis,
     spinor_basis.transform(T);
     usq_hamiltonian.transform(T);
 }
-
+template <typename TransformationScalar, typename ShellType>
+void basisTransform(USpinorBasis<TransformationScalar, ShellType>& spinor_basis, USQHamiltonian<TransformationScalar>& usq_hamiltonian, const UTransformationMatrixComponent<TransformationScalar>& T) {
+    spinor_basis.transform(T);
+    usq_hamiltonian.transform(T);
+}
 
 /**
  *  Rotate a single component (alpha or beta) of both the spinor basis and the Hamiltonian to another basis using the given unitary transformation matrix

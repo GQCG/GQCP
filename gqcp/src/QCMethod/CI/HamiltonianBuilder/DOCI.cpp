@@ -109,7 +109,7 @@ SquareMatrix<double> DOCI::constructHamiltonian(const SQHamiltonian<double>& sq_
     const size_t N_P = this->onv_basis.numberOfElectronPairs();
     const size_t dim = this->onv_basis.dimension();
 
-    SquareMatrix<double> result_matrix = SquareMatrix<double>::Zero(dim, dim);
+    SquareMatrix<double> result_matrix = SquareMatrix<double>::Zero(dim);
     const auto diagonal = this->calculateDiagonal(sq_hamiltonian);
     const auto& g = sq_hamiltonian.twoElectron().parameters();
 

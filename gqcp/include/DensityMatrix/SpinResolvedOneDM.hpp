@@ -97,7 +97,7 @@ public:
     double norm() const {
 
         const auto dim = this->alpha().numberOfOrbitals();
-        OneDM<double> generalized_density = OneDM<double>::Zero(dim * 2, dim * 2);
+        OneDM<double> generalized_density = OneDM<double>::Zero(dim * 2);
 
         generalized_density.topLeftCorner(dim, dim) = this->alpha();
         generalized_density.bottomRightCorner(dim, dim) = this->beta();

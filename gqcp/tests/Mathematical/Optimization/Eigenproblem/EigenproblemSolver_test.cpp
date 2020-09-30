@@ -38,7 +38,7 @@ BOOST_AUTO_TEST_CASE(dense) {
 
     // Construct a random symmetric matrix
     const size_t dim = 10;
-    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Random(dim, dim);
+    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Random(dim);
     GQCP::SquareMatrix<double> AT = A.transpose();
     GQCP::SquareMatrix<double> B = A + AT;
 

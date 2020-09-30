@@ -72,7 +72,7 @@ public:
      *  Default constructor setting everything to zero
      */
     RHF() :
-        RHF(0.0, RTransformationMatrix<double>::Zero(0, 0), VectorX<double>::Zero(0)) {}
+        RHF(0.0, RTransformationMatrix<double>::Zero(0), VectorX<double>::Zero(0)) {}
 
 
     /*
@@ -209,8 +209,8 @@ public:
         //    0  0  0  0  0
         //    0  0  0  0  0
 
-        OneDM<double> D_MO = OneDM<double>::Zero(K, K);
-        D_MO.topLeftCorner(N / 2, N / 2) = 2 * SquareMatrix<double>::Identity(N / 2, N / 2);
+        OneDM<double> D_MO = OneDM<double>::Zero(K);
+        D_MO.topLeftCorner(N / 2, N / 2) = 2 * SquareMatrix<double>::Identity(N / 2);
 
         return D_MO;
     }

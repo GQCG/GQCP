@@ -101,8 +101,8 @@ public:
      */
     USQOneElectronOperator(const size_t dim) {
         for (size_t i = 0; i < Components; i++) {
-            this->fs_a[i] = QCMatrix<Scalar>::Zero(dim, dim);
-            this->fs_b[i] = QCMatrix<Scalar>::Zero(dim, dim);
+            this->fs_a[i] = QCMatrix<Scalar>::Zero(dim);
+            this->fs_b[i] = QCMatrix<Scalar>::Zero(dim);
         }
     }
 
