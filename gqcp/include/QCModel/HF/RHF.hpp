@@ -19,7 +19,7 @@
 
 
 #include "Basis/SpinorBasis/OrbitalSpace.hpp"
-#include "Basis/Transformations/TransformationMatrix.hpp"
+#include "Basis/Transformations/RTransformationMatrix.hpp"
 #include "DensityMatrix/OneDM.hpp"
 #include "Mathematical/Representation/ImplicitRankFourTensorSlice.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
@@ -47,7 +47,7 @@ private:
     size_t N_P;  // the number of electron pairs
 
     VectorX<double> orbital_energies;  // sorted in ascending energies
-    TransformationMatrix<Scalar> C;    // the coefficient matrix that expresses every spatial orbital (as a column) in its underlying scalar basis
+    RTransformationMatrix<Scalar> C;   // the coefficient matrix that expresses every spatial orbital (as a column) in its underlying scalar basis
 
 
 public:
@@ -62,7 +62,7 @@ public:
      *  @param C                    the coefficient matrix that expresses every spatial orbital (as a column) in its underlying scalar basis
      *  @param orbital_energies     the RHF MO energies
      */
-    RHF(const size_t N_P, const VectorX<double>& orbital_energies, const TransformationMatrix<double>& C) :
+    RHF(const size_t N_P, const VectorX<double>& orbital_energies, const RTransformationMatrix<double>& C) :
         N_P {N_P},
         orbital_energies {orbital_energies},
         C(C) {}
@@ -72,7 +72,7 @@ public:
      *  Default constructor setting everything to zero
      */
     RHF() :
-        RHF(0.0, TransformationMatrix<double>::Zero(0, 0), VectorX<double>::Zero(0)) {}
+        RHF(0.0, RTransformationMatrix<double>::Zero(0, 0), VectorX<double>::Zero(0)) {}
 
 
     /*
@@ -222,7 +222,7 @@ public:
      *
      *  @return the RHF 1-DM expressed in the underlying scalar basis
      */
-    static OneDM<Scalar> calculateScalarBasis1DM(const TransformationMatrix<double>& C, const size_t N) {
+    static OneDM<Scalar> calculateScalarBasis1DM(const RTransformationMatrix<double>& C, const size_t N) {
 
         const size_t K = C.numberOfOrbitals();
         const auto D_orthonormal = RHF<Scalar>::calculateOrthonormalBasis1DM(K, N);
@@ -335,7 +335,7 @@ public:
     /**
      *  @return the coefficient matrix that expresses every spatial orbital (as a column) in its underlying scalar basis
      */
-    const TransformationMatrix<Scalar>& coefficientMatrix() const { return this->C; }
+    const RTransformationMatrix<Scalar>& coefficientMatrix() const { return this->C; }
 
     /**
      *  @param N            the number of electrons

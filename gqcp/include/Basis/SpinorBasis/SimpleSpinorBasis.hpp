@@ -18,7 +18,6 @@
 #pragma once
 
 
-#include "Basis/Transformations/TransformationMatrix.hpp"
 #include "Utilities/CRTP.hpp"
 #include "Utilities/type_traits.hpp"
 
@@ -27,22 +26,35 @@ namespace GQCP {
 
 
 /**
+ *  A type that provides compile-time information on spinor bases that is otherwise not accessible through a public class alias.
+ */
+template <typename SpinorBasis>
+class SpinorBasisTraits {};
+
+
+/**
  *  A class that represents a spinor basis that has no internal structure (hence 'simple'). It is used as a CRTP base class for restricted and generalized spinor bases because they admit common functionality.
  * 
- * 
- *  @tparam _ExpansionScalar            the scalar type of the expansion coefficients
- *  @tparam _DerivedSpinorBasis         the CRTP template argument of the derived spinor basis
+ *  @tparam _ExpansionScalar            The scalar type used to represent an expansion coefficient of the spinors in the underlying scalar orbitals: real or complex.
+ *  @tparam _DerivedSpinorBasis         The spinor basis that derives from this class, enabling CRTP and compile-time polymorphism.
  */
 template <typename _ExpansionScalar, typename _DerivedSpinorBasis>
 class SimpleSpinorBasis:
     public CRTP<_DerivedSpinorBasis> {
 
 public:
+    // The scalar type used to represent an expansion coefficient of the spinors in the underlying scalar orbitals: real or complex.
     using ExpansionScalar = _ExpansionScalar;
+
+    // The spinor basis that derives from this class, enabling CRTP and compile-time polymorphism.
+    using DerivedSpinorBasis = _DerivedSpinorBasis;
+
+    // The type of transformation matrix that is naturally related to the DerivedSpinorBasis.
+    using TM = typename SpinorBasisTraits<DerivedSpinorBasis>::TM;  // TODO: Rename to TransformationMatrix once the class is gone
 
 
 protected:
-    TransformationMatrix<ExpansionScalar> C;  // the matrix that holds the the expansion coefficients, i.e. that expresses the spinors in terms of the underlying scalar basis/bases
+    TM C;  // the matrix that holds the the expansion coefficients, i.e. that expresses the spinors in terms of the underlying scalar basis/bases
 
 
 public:
@@ -53,7 +65,7 @@ public:
     /**
      *  @param C                    the matrix that holds the the expansion coefficients, i.e. that expresses the spinors in terms of the underlying scalar basis
      */
-    SimpleSpinorBasis(const TransformationMatrix<ExpansionScalar>& C) :
+    SimpleSpinorBasis(const TM& C) :
         C {C} {}
 
 
@@ -64,7 +76,7 @@ public:
     /**
      *  @return the transformation matrix between the scalar basis and the current orbitals
      */
-    const TransformationMatrix<ExpansionScalar>& coefficientMatrix() const { return this->C; }
+    const TM& coefficientMatrix() const { return this->C; }
 
     /**
      *  @param precision                the precision used to test orthonormality
@@ -83,12 +95,12 @@ public:
     /**
      *  @return the transformation matrix to the Löwdin basis: T = S_current^{-1/2}
      */
-    TransformationMatrix<double> lowdinOrthonormalizationMatrix() const {
+    TM lowdinOrthonormalizationMatrix() const {
 
         // Calculate S^{-1/2}, where S is epxressed in the current spinor basis
         const auto S = this->overlap().parameters();
         Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes {S};
-        return TransformationMatrix<double>(saes.operatorInverseSqrt());
+        return TM {saes.operatorInverseSqrt()};
     }
 
 
@@ -107,11 +119,11 @@ public:
      * 
      *  @param U            the unitary transformation matrix that transforms both the alpha- and beta components
      */
-    void rotate(const TransformationMatrix<ExpansionScalar>& U) {
+    void rotate(const TM& U) {
 
         // Check if the given matrix is actually unitary
         if (!U.isUnitary(1.0e-12)) {
-            throw std::invalid_argument("SimpleSpinorBasis::rotate(const TransformationMatrix<ExpansionScalar>&): The given transformation matrix is not unitary.");
+            throw std::invalid_argument("SimpleSpinorBasis::rotate(const TM&): The given transformation matrix is not unitary.");
         }
 
         this->transform(U);
@@ -129,7 +141,7 @@ public:
     void rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
 
         const auto dim = this->simpleDimension();
-        const auto J = TransformationMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
+        const auto J = TM::FromJacobi(jacobi_rotation_parameters, dim);
         this->rotate(J);
     }
 
@@ -144,7 +156,7 @@ public:
      * 
      *  @param T            the transformation matrix that transforms both the alpha- and beta components
      */
-    void transform(const TransformationMatrix<ExpansionScalar>& T) {
+    void transform(const TM& T) {
 
         this->C.transform(T);
     }

@@ -40,8 +40,8 @@ BOOST_AUTO_TEST_CASE(constructor_throws) {
 
 
     // Initialize two coefficient matrices, one with compatible and one with incompatible dimensions.
-    const GQCP::TransformationMatrix<double> T_compatible {K_alpha + K_beta};
-    const GQCP::TransformationMatrix<double> T_incompatible {K_alpha + K_beta - 1};
+    const GQCP::GTransformationMatrix<double> T_compatible {K_alpha + K_beta};
+    const GQCP::GTransformationMatrix<double> T_incompatible {K_alpha + K_beta - 1};
 
 
     // Check if the constructor throws upon receiving incompatible arguments.

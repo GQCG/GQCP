@@ -289,7 +289,7 @@ BOOST_AUTO_TEST_CASE(transform_trivial) {
     GQCP::ScalarRSQOneElectronOperator<double> op {f};
 
     // Initialize a trivial transformation matrix, i.e. the identity matrix.
-    const GQCP::TransformationMatrix<double> T = GQCP::TransformationMatrix<double>::Identity(dim, dim);
+    const GQCP::RTransformationMatrix<double> T = GQCP::RTransformationMatrix<double>::Identity(dim, dim);
 
     // Check the in-place and the returning methods.
     const auto op_transformed = op.transformed(T);
@@ -316,7 +316,7 @@ BOOST_AUTO_TEST_CASE(transform) {
     GQCP::ScalarRSQOneElectronOperator<double> op {M1};
 
     // Initialize a corresponding transformation matrix.
-    GQCP::TransformationMatrix<double> T {dim};
+    GQCP::RTransformationMatrix<double> T {dim};
     // clang-format off
     T << 2.0, 3.0,
          4.0, 5.0;
@@ -346,13 +346,13 @@ BOOST_AUTO_TEST_CASE(transform_and_inverse) {
     const size_t dim = 3;
 
     // Initialize a a transformation matrix and its inverse.
-    GQCP::TransformationMatrix<double> T {dim};
+    GQCP::RTransformationMatrix<double> T {dim};
     // clang-format off
     T << 1,  0,  0,
          0, -2,  0,
          0,  0,  3;
     // clang-format on
-    const GQCP::TransformationMatrix<double> T_inverse = T.inverse();
+    const GQCP::RTransformationMatrix<double> T_inverse = T.inverse();
 
     // Initialize a random one-electron operator.
     const GQCP::SquareMatrix<double> f = GQCP::SquareMatrix<double>::Random(dim, dim);
@@ -380,7 +380,7 @@ BOOST_AUTO_TEST_CASE(rotate) {
     GQCP::ScalarRSQOneElectronOperator<double> op {M1};
 
     // Initialize a unitary transformation matrix.
-    GQCP::TransformationMatrix<double> U {dim};
+    GQCP::RTransformationMatrix<double> U {dim};
     // clang-format off
     U << 1.0,  0.0,
          0.0, -1.0;
@@ -423,7 +423,7 @@ BOOST_AUTO_TEST_CASE(rotate_test_case) {
 
 
     // Initialize a test unitary transformation.
-    GQCP::TransformationMatrix<double> U {dim};
+    GQCP::RTransformationMatrix<double> U {dim};
     // clang-format off
     U << 1.0,  0.0,  0.0,
          0.0,  0.0, -1.0,
@@ -455,12 +455,12 @@ BOOST_AUTO_TEST_CASE(rotate_throws) {
 
 
     // Check if rotating with a non-unitary matrix as transformation matrix causes a throw.
-    const GQCP::TransformationMatrix<double> T = GQCP::TransformationMatrix<double>::Random(dim, dim);  // The probability of a random matrix being unitary approaches zero.
+    const GQCP::RTransformationMatrix<double> T = GQCP::RTransformationMatrix<double>::Random(dim, dim);  // The probability of a random matrix being unitary approaches zero.
     BOOST_CHECK_THROW(op.rotate(T), std::invalid_argument);
 
 
     // Check if rotating with a unitary matrix as transformation matrix is accepted.
-    const GQCP::TransformationMatrix<double> U = GQCP::TransformationMatrix<double>::RandomUnitary(dim);
+    const GQCP::RTransformationMatrix<double> U = GQCP::RTransformationMatrix<double>::RandomUnitary(dim);
     BOOST_CHECK_NO_THROW(op.rotate(U));
 }
 
@@ -477,7 +477,7 @@ BOOST_AUTO_TEST_CASE(rotate_jacobi_vs_matrix) {
 
     // Create Jacobi rotation parameters and the corresponding Jacobi rotation matrix.
     GQCP::JacobiRotationParameters jacobi_rotation_parameters {4, 2, 56.81};
-    const auto J = GQCP::TransformationMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
+    const auto J = GQCP::RTransformationMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
 
 
     // Rotate using both representations and check the result.

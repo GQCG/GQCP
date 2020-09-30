@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/Transformations/TransformationMatrix.hpp"
+#include "Basis/Transformations/RTransformationMatrix.hpp"
 #include "Mathematical/Representation/DenseVectorizer.hpp"
 #include "Operator/SecondQuantized/SimpleSQOneElectronOperator.hpp"
 
@@ -99,7 +99,7 @@ public:
     using ScalarOperator = ScalarRSQOneElectronOperator<Scalar>;
 
     // The type of transformation matrix that is naturally associated to a restricted one-electron operator.
-    using TM = TransformationMatrix<Scalar>;
+    using TM = RTransformationMatrix<Scalar>;
 };
 
 
