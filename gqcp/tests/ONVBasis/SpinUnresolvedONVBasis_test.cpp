@@ -600,3 +600,33 @@ BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_MatrixVectorProduct) {
     BOOST_CHECK(two_electron_evaluation1.isApprox(two_electron_evaluation2));
     BOOST_CHECK(hamiltonian_evaluation1.isApprox(hamiltonian_evaluation2));
 }
+
+/**
+ * Compare the "old" evaluate method with the "new" one that uses the ONVPath API.
+ */
+
+BOOST_AUTO_TEST_CASE(ONVBasis_evaluate) {
+
+    // Set up an example molecular Hamiltonian.
+    const auto molecule = GQCP::Molecule::HChain(6, 0.742, +2);
+    const auto N = molecule.numberOfElectrons();
+
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+    const auto M = spinor_basis.numberOfSpatialOrbitals();
+    spinor_basis.lowdinOrthonormalize();
+    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in the orthonormal Löwdin basis
+
+    // Set up the two equivalent ONV bases.
+    const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
+    //const GQCP::SpinResolvedSelectedONVBasis selected_onv_basis {GQCP::SpinResolvedONVBasis(M, N, 0)};  // no beta electrons
+
+
+    // Check the evaluation of the core Hamiltonian.
+    const auto& h_op = sq_hamiltonian.core();
+
+    // Check the dense evaluation.
+    const auto h_dense = onv_basis.evaluate<GQCP::SquareMatrix<double>>(h_op, true);  // true: calculate diagonal values
+    const auto h_new = onv_basis.evaluate_new<GQCP::SquareMatrix<double>>(sq_hamiltonian.core());
+
+    //BOOST_CHECK(h_dense.isApprox(h_new));
+}

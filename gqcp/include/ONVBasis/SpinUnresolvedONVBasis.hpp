@@ -309,10 +309,11 @@ public:
         MatrixRepresentationEvaluationContainer<Representation> ONV_iterator {dim};
         SpinUnresolvedONV onv = this->constructONVFromAddress(0);  // onv with address 0
 
-        ONVPath<SpinUnresolvedONVBasis> onv_path {*this, onv};
-
         for (; !ONV_iterator.isFinished(); ONV_iterator.increment()) {  // loops over all possible ONVs
-            for (size_t e1 = 0; e1 < N; e1++) {                         // loop over electrons that can be annihilated
+
+            ONVPath<SpinUnresolvedONVBasis> onv_path {*this, onv};
+
+            for (size_t e1 = 0; e1 < N; e1++) {  // loop over electrons that can be annihilated
 
                 size_t q = onv.occupationIndexOf(e1);  // retrieve orbital index of the electron
                 onv_path.annihilate(q, e1);
