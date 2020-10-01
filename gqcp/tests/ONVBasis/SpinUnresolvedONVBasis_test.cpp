@@ -608,7 +608,7 @@ BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_MatrixVectorProduct) {
 BOOST_AUTO_TEST_CASE(ONVBasis_evaluate) {
 
     // Set up an example molecular Hamiltonian.
-    const auto molecule = GQCP::Molecule::HChain(6, 0.742, +2);
+    const auto molecule = GQCP::Molecule::HChain(5, 0.742, +2);
     const auto N = molecule.numberOfElectrons();
 
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};

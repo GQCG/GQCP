@@ -43,7 +43,7 @@ __pycache__
 
 # Node.js and yarn
 node_modules
-website/yarn.lock
+site/website/yarn.lock
 
 # LaTeX
 *.aux

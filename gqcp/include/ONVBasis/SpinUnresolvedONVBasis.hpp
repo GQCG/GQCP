@@ -312,24 +312,33 @@ public:
         for (; !ONV_iterator.isFinished(); ONV_iterator.increment()) {  // loops over all possible ONVs
 
             ONVPath<SpinUnresolvedONVBasis> onv_path {*this, onv};
+            std::cout << "\n"
+                      << onv_path.address() << "    " << onv_path.orbitalIndex() << "    " << onv_path.electronIndex() << std::endl;
 
             for (size_t e1 = 0; e1 < N; e1++) {  // loop over electrons that can be annihilated
 
                 size_t q = onv.occupationIndexOf(e1);  // retrieve orbital index of the electron
                 onv_path.annihilate(q, e1);
+                std::cout << "a: " << onv_path.address() << "    " << onv_path.orbitalIndex() << "    " << onv_path.electronIndex() << std::endl;
 
                 while (!onv_path.isFinished()) {
 
                     onv_path.leftTranslateUntilVertical();
+                    std::cout << "LTUV: " << onv_path.address() << "    " << onv_path.orbitalIndex() << "    " << onv_path.electronIndex() << std::endl;
                     onv_path.create();
+                    std::cout << "C: " << onv_path.address() << "    " << onv_path.orbitalIndex() << "    " << onv_path.electronIndex() << std::endl;
 
                     const auto address = onv_path.address();
+
                     const auto h_pq = onv_path.sign() * one_op_par(onv_path.orbitalIndex() - 1, q);
 
                     ONV_iterator.addColumnwise(address, h_pq);
                     ONV_iterator.addRowwise(address, h_pq);
 
-                    onv_path.annihilate(onv_path.orbitalIndex() - 1, onv_path.electronIndex() - 1);
+                    if (!onv_path.isFinished()) {
+                        onv_path.annihilate(onv_path.orbitalIndex() - 1, onv_path.electronIndex() - 1);
+                        std::cout << "A: " << onv_path.address() << "    " << onv_path.orbitalIndex() << "    " << onv_path.electronIndex() << std::endl;
+                    }
                 }
             }
             // Prevent last ONV since there is no possibility for an electron to be annihilated anymore.
