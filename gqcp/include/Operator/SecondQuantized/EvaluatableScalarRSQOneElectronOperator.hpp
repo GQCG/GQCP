@@ -18,9 +18,12 @@
 #pragma once
 
 
+#include "Basis/Transformations/RTransformationMatrix.hpp"
+#include "DensityMatrix/Orbital1DM.hpp"
 #include "Mathematical/Functions/ScalarFunction.hpp"
 #include "Mathematical/Representation/DenseVectorizer.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
+#include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQOperatorStorageBase.hpp"
 #include "Utilities/type_traits.hpp"
 
@@ -45,30 +48,17 @@ public:
     // Allow only `Evaluatable` types that derive from `ScalarFunction`.
     static_assert(std::is_base_of<ScalarFunction<typename Evaluatable::Valued, typename Evaluatable::Scalar, Evaluatable::Cols>, Evaluatable>::value, "EvaluatableScalarRSQOneElectronOperator: Evaluatable must inherit from ScalarFunction.");
 
+    // The type of the scalars of the input vector.
+    using Scalar = typename Evaluatable::Scalar;
 
-    // // The scalar type used for a single parameter: real or complex.
-    // using Scalar = _Scalar;
+    // The return type of the scalar function.
+    using Valued = typename Evaluatable::Valued;
 
-    // // The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
-    // using Vectorizer = _Vectorizer;
+    // The dimension of the input vector: an integer, or Dynamic representing an unknown number of columns at compile time.
+    static constexpr auto Cols = Evaluatable::Cols;
 
-    // // The type of the operator that derives from this class, enabling CRTP and compile-time polymorphism.
-    // using DerivedOperator = _DerivedOperator;
-
-    // // The matrix representation of the parameters of (one of the components of) the one-electron operator.
-    // using MatrixRepresentation = SquareMatrix<Scalar>;
-
-    // // The type of 'this'.
-    // using Self = SimpleSQOneElectronOperator<Scalar, Vectorizer, DerivedOperator>;
-
-    // // The type that corresponds to the scalar version of the derived one-electron operator type.
-    // using ScalarDerivedOperator = typename OperatorTraits<DerivedOperator>::ScalarOperator;
-
-    // // The type of transformation matrix that is naturally associated to the derived one-electron operator.
-    // using TM = typename OperatorTraits<DerivedOperator>::TM;
-
-    // // The type of density matrix that is naturally associated to the derived one-electron operator.
-    // using Derived1DM = typename OperatorTraits<DerivedOperator>::OneDM;
+    // The type of 'this'.
+    using Self = EvaluatableScalarRSQOneElectronOperator<Evaluatable>;
 
 
 public:
@@ -81,63 +71,67 @@ public:
 
 
     /*
+     *  MARK: Evaluations
+     */
+
+    /**
+     *  Evaluate this one-electron operator at the given point.
+     * 
+     *  @param x        The vector/point at which the underlying scalar functions should be evaluated.
+     *
+     *  @return A one-electron operator corresponding to the evaluated scalar functions.
+     */
+    ScalarRSQOneElectronOperator<Valued> evaluate(const Vector<Scalar, Cols>& x) const {
+
+        // Initialize the results.
+        SquareMatrix<Valued> F_evaluated = SquareMatrix<Valued>::Zero(this->numberOfOrbitals());
+
+        // Evaluate the underlying scalar functions at the given point.
+        for (size_t m = 0; m < this->numberOfOrbitals(); m++) {
+            for (size_t n = 0; n < this->numberOfOrbitals(); n++) {
+                F_evaluated(m, n) = this->parameters()(m, n).operator()(x);  // Evaluate the ScalarFunction of the (m,n)-th element.
+            }
+        }
+
+        return ScalarRSQOneElectronOperator<Valued> {F_evaluated};
+    }
+
+    /*
      *  MARK: Calculations
      */
 
     /**
-     *  Calculate the expectation value of this one-electron operator.
+     *  Evaluate the expectation value of this second-quantized (one-electron) density operator.
      * 
-     *  @param D                The 1-DM that represents the wave function.
-     *
-     *  @return The expectation value of all components of the one-electron operator.
-     */
-    // StorageArray<Scalar, Vectorizer> calculateExpectationValue(const Derived1DM& D) const {
-
-    //     if (this->numberOfOrbitals() != D.numberOfOrbitals()) {
-    //         throw std::invalid_argument("SimpleSQOneElectronOperator::calculateExpectationValue(const OneDM<Scalar>&): The given 1-DM is not compatible with the one-electron operator.");
-    //     }
-
-    //     // Calculate the expectation value for every component of the operator.
-    //     const auto& parameters = this->allParameters();
-    //     std::vector<Scalar> expectation_values(this->numberOfComponents());  // zero-initialize the vector with a number of elements
-    //     for (size_t i = 0; i < this->numberOfComponents(); i++) {
-    //         expectation_values[i] = (parameters[i] * D).trace();
-    //     }
-
-    //     return StorageArray<Scalar, Vectorizer> {expectation_values, this->array.vectorizer()};
-    // }
-
-
-    /*
-     *  MARK: Conforming to BasisTransformable
-     */
-
-    /**
-     *  Apply the basis transformation and return the resulting one-electron integrals.
+     *  @param D                the 1-DM
      * 
-     *  @param transformation_matrix        The type that encapsulates the basis transformation coefficients.
+     *  @return the expectation value of this second-quantized (one-electron) density operator, i.e. the electron density
      * 
-     *  @return The basis-transformed one-electron integrals.
+     *  @note This method is only enabled for EvaluatableScalarRSQOneElectronOperator that represent second-quantized electron density operators.
      */
-    // DerivedOperator transformed(const TM& transformation_matrix) const override {
+    template <typename S = Evaluatable, typename = enable_if_t<std::is_same<S, ScalarFunctionProduct<LinearCombination<double, LinearCombination<double, CartesianGTO>>>>::value>>
+    LinearCombination<double, ScalarFunctionProduct<LinearCombination<double, LinearCombination<double, CartesianGTO>>>> calculateDensity(const Orbital1DM<double>& D) const {
 
-    //     // Calculate the basis transformation for every component of the operator.
-    //     const auto& parameters = this->allParameters();
-    //     auto result = this->allParameters();
-
-    //     for (size_t i = 0; i < this->numberOfComponents(); i++) {
-    //         result[i] = transformation_matrix.adjoint() * (parameters[i]) * transformation_matrix;
-    //     }
-
-    //     return DerivedOperator {StorageArray<MatrixRepresentation, Vectorizer>(result, this->array.vectorizer())};
-    // }
+        using Primitive = CartesianGTO;
+        using BasisFunction = LinearCombination<double, Primitive>;
+        using SpatialOrbital = LinearCombination<double, BasisFunction>;
+        using SchrodingerDistribution = ScalarFunctionProduct<SpatialOrbital>;
+        using DensityType = LinearCombination<double, SchrodingerDistribution>;
 
 
-    // // Allow the `rotate` method from `BasisTransformable`, since there's also a `rotate` from `JacobiRotatable`.
-    // using BasisTransformable<DerivedOperator, TM>::rotate;
+        // Create the density as a linear combination of 'density matrix elements'.
+        const auto dimension = D.numberOfOrbitals();
+        DensityType density;
+        for (size_t p = 0; p < dimension; p++) {
+            for (size_t q = 0; q < dimension; q++) {
+                const auto coefficient = D(p, q);
+                const auto function = this->parameters()(p, q);
+                density.append(coefficient, function);
+            }
+        }
 
-    // // Allow the `rotated` method from `BasisTransformable`, since there's also a `rotated` from `JacobiRotatable`.
-    // using BasisTransformable<DerivedOperator, TM>::rotated;
+        return density;
+    }
 };
 
 

@@ -64,6 +64,14 @@ public:
 
 public:
     /*
+     *  MARK: Constructors
+     */
+
+    // Inherit `SQOperatorStorageBase`'s constructors.
+    using SQOperatorStorageBase<MatrixRepresentation, Vectorizer, DerivedOperator>::SQOperatorStorageBase;
+
+
+    /*
      *  MARK: Conforming to VectorSpaceArithmetic
      */
 
