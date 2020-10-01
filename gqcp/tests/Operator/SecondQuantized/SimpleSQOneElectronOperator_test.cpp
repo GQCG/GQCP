@@ -98,8 +98,8 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_throw) {
 
     // Initialize a test operator and density matrices.
     const GQCP::ScalarRSQOneElectronOperator<double> f_operator {2};
-    const GQCP::OneDM<double> D_valid = GQCP::OneDM<double>::Zero(2);
-    const GQCP::OneDM<double> D_invalid = GQCP::OneDM<double>::Zero(3);
+    const GQCP::Orbital1DM<double> D_valid = GQCP::Orbital1DM<double>::Zero(2);
+    const GQCP::Orbital1DM<double> D_invalid = GQCP::Orbital1DM<double>::Zero(3);
 
     BOOST_CHECK_NO_THROW(f_operator.calculateExpectationValue(D_valid));
     BOOST_CHECK_THROW(f_operator.calculateExpectationValue(D_invalid), std::invalid_argument);
@@ -124,7 +124,7 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
     const GQCP::ScalarRSQOneElectronOperator<double> op {M1};
 
     // Initialize a test density matrix.
-    GQCP::SquareMatrix<double> D {dim};
+    GQCP::Orbital1DM<double> D {dim};
     // clang-format off
     D << 0.0, 1.0,
          1.0, 0.0;
