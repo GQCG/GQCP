@@ -28,6 +28,7 @@
 #include "Molecule/Molecule.hpp"
 #include "Molecule/NuclearFramework.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
+#include "Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
 #include "Utilities/aliases.hpp"
@@ -184,16 +185,16 @@ public:
      * 
      *  @return the second-quantized density operator
      */
-    SQOneElectronOperator<ScalarFunctionProduct<LinearCombination<double, BasisFunction>>, ElectronicDensityOperator::Components> quantize(const ElectronicDensityOperator& fq_density_op) const {
+    EvaluatableScalarRSQOneElectronOperator<ScalarFunctionProduct<LinearCombination<double, BasisFunction>>> quantize(const ElectronicDensityOperator& fq_density_op) const {
 
-        using ResultScalar = ScalarFunctionProduct<LinearCombination<double, BasisFunction>>;  // the 'scalar' for the density operator is again a linear combination
-        using ResultOperator = SQOneElectronOperator<ScalarFunctionProduct<LinearCombination<double, BasisFunction>>, ElectronicDensityOperator::Components>;
+        using Evaluatable = ScalarFunctionProduct<LinearCombination<double, BasisFunction>>;  // the evaluatable type for the density operator
+        using ResultOperator = EvaluatableScalarRSQOneElectronOperator<Evaluatable>;
 
         // There aren't any 'integrals' to be calculated for the density operator: we can just multiply every pair of spatial orbitals.
         const auto phi = this->spatialOrbitals();
         const auto K = this->numberOfSpatialOrbitals();
 
-        SquareMatrix<ResultScalar> rho_par {K};  // the matrix representation ('par' for 'parameters') of the second-quantized (one-electron) density operator
+        SquareMatrix<Evaluatable> rho_par {K};  // the matrix representation ('par' for 'parameters') of the second-quantized (one-electron) density operator
         for (size_t p = 0; p < K; p++) {
             for (size_t q = 0; q < K; q++) {
                 rho_par(p, q) = phi[p] * phi[q];

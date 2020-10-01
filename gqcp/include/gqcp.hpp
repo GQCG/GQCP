@@ -154,6 +154,7 @@
 #include "Operator/FirstQuantized/NuclearDipoleOperator.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "Operator/FirstQuantized/OverlapOperator.hpp"
+#include "Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp"
 #include "Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp"
