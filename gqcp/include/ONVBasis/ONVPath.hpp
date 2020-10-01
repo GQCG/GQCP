@@ -91,6 +91,18 @@ public:
     size_t address() const { return this->m_address; }
 
     /**
+     *  @param p        the index of the orbital that should be created
+     *  @param n        the number of electrons in the ONV/path up to the orbital index q, prior to the creation
+     * 
+     *  @return the address of the current path after creation on (p, n).
+     */
+    size_t addressAfterCreation(const size_t p, const size_t n) {
+
+        this->orbital_index++;
+        return this->m_address + this->onv_basis.arcWeight(p, n);
+    }
+
+    /**
      *  According to this path's current state, annihilate the next diagonal arc.
      *
      *  @note The current state of this path can be retrieved by inspecting the point (p,n), where `p = this->orbitalIndex()` and `n = this->electronIndex()`, which signifies the vertex up until which the path construction is complete.
@@ -164,7 +176,7 @@ public:
      *  @return If the path's construction is considered finished.
      */
     bool isFinished() const {
-        return this->electron_index >= this->onv_basis.numberOfElectrons() && this->orbital_index >= this->onv_basis.numberOfOrbitals();
+        return this->electron_index >= this->onv_basis.numberOfElectrons();
     }
 
     /**
@@ -215,12 +227,6 @@ public:
      *  @return the total phase factor/sign associated to the original path's modification
      */
     int sign() const { return this->m_sign; }
-
-    bool verticals(size_t p, size_t n) {
-
-        for ()
-    
-    }
 };
 
 
