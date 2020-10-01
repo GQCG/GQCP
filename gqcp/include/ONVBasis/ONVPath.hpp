@@ -164,7 +164,7 @@ public:
      *  @return If the path's construction is considered finished.
      */
     bool isFinished() const {
-        return this->electron_index >= this->onv_basis.numberOfElectrons();
+        return this->electron_index >= this->onv_basis.numberOfElectrons() && this->orbital_index >= this->onv_basis.numberOfOrbitals();
     }
 
     /**
@@ -215,6 +215,12 @@ public:
      *  @return the total phase factor/sign associated to the original path's modification
      */
     int sign() const { return this->m_sign; }
+
+    bool verticals(size_t p, size_t n) {
+
+        for ()
+    
+    }
 };
 
 

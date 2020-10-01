@@ -311,15 +311,18 @@ public:
 
         for (; !ONV_iterator.isFinished(); ONV_iterator.increment()) {  // loops over all possible ONVs
 
-            ONVPath<SpinUnresolvedONVBasis> onv_path {*this, onv};
-            std::cout << "\n"
-                      << onv_path.address() << "    " << onv_path.orbitalIndex() << "    " << onv_path.electronIndex() << std::endl;
-
             for (size_t e1 = 0; e1 < N; e1++) {  // loop over electrons that can be annihilated
 
+                ONVPath<SpinUnresolvedONVBasis> onv_path {*this, onv};
+
+                std::cout << "\n\n"
+                          << onv_path.address() << "    " << onv_path.orbitalIndex() << "    " << onv_path.electronIndex() << std::endl;
+
                 size_t q = onv.occupationIndexOf(e1);  // retrieve orbital index of the electron
+
                 onv_path.annihilate(q, e1);
-                std::cout << "a: " << onv_path.address() << "    " << onv_path.orbitalIndex() << "    " << onv_path.electronIndex() << std::endl;
+                std::cout << "\n"
+                          << "a: " << onv_path.address() << "    " << onv_path.orbitalIndex() << "    " << onv_path.electronIndex() << std::endl;
 
                 while (!onv_path.isFinished()) {
 
@@ -335,7 +338,7 @@ public:
                     ONV_iterator.addColumnwise(address, h_pq);
                     ONV_iterator.addRowwise(address, h_pq);
 
-                    if (!onv_path.isFinished()) {
+                    if () {
                         onv_path.annihilate(onv_path.orbitalIndex() - 1, onv_path.electronIndex() - 1);
                         std::cout << "A: " << onv_path.address() << "    " << onv_path.orbitalIndex() << "    " << onv_path.electronIndex() << std::endl;
                     }
