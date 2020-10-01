@@ -17,6 +17,53 @@
 
 #pragma once
 
+
+#include "Basis/Transformations/GTransformationMatrix.hpp"
+#include "DensityMatrix/Simple1DM.hpp"
+
+
 namespace GQCP {
+
+
+/*
+ *  MARK: G1DM implementation
+ */
+
+/**
+ *  A type used to represent a one-electron general(ized) density matrix, i.e. the full spinor two-component one-electron density matrix.
+ * 
+ *  @tparam _Scalar                 The scalar type used for a density matrix element: real or complex.
+ */
+template <typename _Scalar>
+class G1DM:
+    public Simple1DM<_Scalar, G1DM<_Scalar>> {
+public:
+    // The scalar type used for a density matrix element: real or complex.
+    using Scalar = _Scalar;
+
+public:
+    /*
+     *  MARK: Constructors
+     */
+
+    // Inherit `Simple1DM`'s constructors.
+    using Simple1DM<Scalar, G1DM<Scalar>>::Simple1DM;
+};
+
+
+/*
+ *  MARK: DensityMatrixTraits
+ */
+
+/**
+ *  A type that provides compile-time information on `G1DM` that is otherwise not accessible through a public class alias.
+ */
+template <typename Scalar>
+class DensityMatrixTraits<G1DM<Scalar>> {
+public:
+    // The type of transformation matrix that is naturally related to a `G1DM`.
+    using TM = GTransformationMatrix<Scalar>;
+};
+
 
 }  // namespace GQCP
