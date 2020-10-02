@@ -589,6 +589,12 @@ public:
     // The type of 'this'
     using Self = SQHamiltonian_Placeholder<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>;
 
+    // The 1-DM that is naturally associated with the one-electron operator underlying this Hamiltonian.
+    using OneDM_Placeholder = typename OperatorTraits<ScalarSQOneElectronOperator_Placeholder>::OneDM_Placeholder;
+
+    // The 2-DM that is naturally associated with the two-electron operator underlying this Hamiltonian.
+    using TwoDM_Placeholder = typename OperatorTraits<ScalarSQTwoElectronOperator_Placeholder>::TwoDM_Placeholder;
+
 
 private:
     // The total one-electron interaction operator, i.e. the core Hamiltonian.
@@ -825,6 +831,41 @@ public:
 
 
     /*
+     *  MARK: Parameter access
+     */
+
+    /**
+     *  @return The total one-electron interaction operator, i.e. the core Hamiltonian.
+     */
+    const ScalarSQOneElectronOperator_Placeholder& core() const { return this->h; }
+
+    /**
+     *  @return The contributions to the total one-electron interaction operator.
+     */
+    const std::vector<ScalarSQOneElectronOperator_Placeholder>& coreContributions() const { return this->h_contributions; }
+
+    /**
+     *  @return The total two-electron interaction operator.
+     */
+    const ScalarSQTwoElectronOperator<Scalar>& twoElectron() const { return this->g; }
+
+    /**
+     *  @return The contributions to the total two-electron interaction operator.
+     */
+    const std::vector<ScalarSQTwoElectronOperator<Scalar>>& twoElectronContributions() const { return this->g_contributions; }
+
+
+    /*
+     *  MARK: General information
+     */
+
+    /**
+     *  @return The number of orbitals (spinors or spin-orbitals, depending on the context) this second-quantized Hamiltonian is related to
+     */
+    size_t numberOfOrbitals() const { return this->core().numberOfOrbitals(); }
+
+
+    /*
      *  MARK: Calculations
      */
 
@@ -859,6 +900,51 @@ public:
     ScalarSQOneElectronOperator_Placeholder calculateEffectiveOneElectronIntegrals() const {
 
         return this->core() + this->twoElectron().effectiveOneElectronPartition();
+    }
+
+
+    /**
+     *  Calculate the electronic energy, i.e. the expectation value of this Hamiltonian.
+     * 
+     *  @param D            The 1-DM.
+     *  @param d            The 2-DM.
+     *
+     *  @return The expectation value of this Hamiltonian.
+     */
+    Scalar calculateExpectationValue(const OneDM_Placeholder& D, const TwoDM_Placeholder& d) const {
+
+        // An SQHamiltonian contains ScalarSQOperators, so we access their expectation values with ().
+        return this->core().calculateExpectationValue(D)() + this->twoElectron().calculateExpectationValue(d)();
+    }
+
+
+    /**
+     *  Calculate the Fockian matrix of this Hamiltonian.
+     * 
+     *  @param D      The 1-DM (or the response 1-DM for made-variational wave function models).
+     *  @param d      The 2-DM (or the response 2-DM for made-variational wave function models).
+     *
+     *  @return The Fockian matrix.
+     */
+    SquareMatrix<Scalar> calculateFockianMatrix(const OneDM_Placeholder& D, const TwoDM_Placeholder& d) const {
+
+        // An SQHamiltonian contains ScalarSQOperators, so we access their Fockian matrices with (0).
+        return this->core().calculateFockianMatrix(D, d)() + this->twoElectron().calculateFockianMatrix(D, d)();
+    }
+
+
+    /**
+     *  Calculate the super-Fockian matrix of this Hamiltonian.
+     * 
+     *  @param D      The 1-DM (or the response 1-DM for made-variational wave function models).
+     *  @param d      The 2-DM (or the response 2-DM for made-variational wave function models).
+     *
+     *  @return The super-Fockian matrix.
+     */
+    SquareRankFourTensor<Scalar> calculateSuperFockianMatrix(const OneDM_Placeholder& D, const TwoDM_Placeholder& d) const {
+
+        // An SQHamiltonian contains ScalarSQOperators, so we access their Fockian matrices with (0).
+        return this->core().calculateSuperFockianMatrix(D, d)().Eigen() + this->twoElectron().calculateSuperFockianMatrix(D, d)().Eigen();  // We have to call .Eigen() because operator+ isn't enabled on SquareRankFourTensor.
     }
 };
 
