@@ -22,17 +22,17 @@ namespace GQCP {
 
 
 /*
- *  PUBLIC METHODS
+ *  MARK: Operator value
  */
 
 /**
- *  @return the scalar value of this nuclear repulsion operator
+ *  @return The scalar value of this nuclear repulsion operator.
  */
 double NuclearRepulsionOperator::value() const {
 
     const auto& nuclei = this->nuclear_framework.nucleiAsVector();
 
-    // Sum over every unique nucleus pair
+    // Sum over every unique nucleus pair.
     double value {0.0};
     const auto n_nuclei = this->nuclearFramework().numberOfNuclei();
     for (size_t i = 0; i < n_nuclei; i++) {
@@ -40,7 +40,7 @@ double NuclearRepulsionOperator::value() const {
             const auto nucleus1 = nuclei[i];
             const auto nucleus2 = nuclei[j];
 
-            // The internuclear repulsion energy (Coulomb) for every nucleus pair is Z1 * Z2 / |R1 - R2|
+            // The internuclear repulsion energy (Coulomb) for every nucleus pair is Z1 * Z2 / |R1 - R2|.
             value += nucleus1.charge() * nucleus2.charge() / nucleus1.calculateDistanceWith(nucleus2);
         }
     }

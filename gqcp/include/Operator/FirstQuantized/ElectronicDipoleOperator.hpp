@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Operator/FirstQuantized/BaseFQOneElectronOperator.hpp"
+#include "Operator/FirstQuantized/BaseFQOperator.hpp"
 #include "Operator/FirstQuantized/BaseReferenceDependentOperator.hpp"
 
 
@@ -28,10 +28,24 @@ namespace GQCP {
 /**
  *  The (one-electron) electronic dipole operator.
  */
-class ElectronicDipoleOperator: public BaseFQOneElectronOperator<double, 3>, public BaseReferenceDependentOperator {
+class ElectronicDipoleOperator:
+    public BaseVectorFQOneElectronOperator<double3>,
+    public BaseReferenceDependentOperator {
 public:
-    // CONSTRUCTORS
-    using BaseReferenceDependentOperator::BaseReferenceDependentOperator;  // inherit base constructors
+    /*
+     *  MARK: Constructors
+     */
+
+    // Inherit `BaseReferenceDependentOperator`'s constructors.
+    using BaseReferenceDependentOperator::BaseReferenceDependentOperator;
+
+
+    /*
+     *  MARK: Vectorizer
+     */
+
+    // The 3D vector-vectorizer related to this operator.
+    static VectorVectorizer vectorVectorizer {{3}};
 };
 
 

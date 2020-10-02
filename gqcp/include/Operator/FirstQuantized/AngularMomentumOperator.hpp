@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Operator/FirstQuantized/BaseFQOneElectronOperator.hpp"
+#include "Operator/FirstQuantized/BaseFQOperator.hpp"
 #include "Operator/FirstQuantized/BaseReferenceDependentOperator.hpp"
 #include "Utilities/aliases.hpp"
 
@@ -29,10 +29,24 @@ namespace GQCP {
 /**
  *  The (one-electron) orbital angular momentum operator.
  */
-class AngularMomentumOperator: public BaseFQOneElectronOperator<complex, 3>, public BaseReferenceDependentOperator {
+class AngularMomentumOperator:
+    public BaseVectorFQOneElectronOperator<complex, 3>,
+    public BaseReferenceDependentOperator {
 public:
-    // CONSTRUCTORS
-    using BaseReferenceDependentOperator::BaseReferenceDependentOperator;  // inherit base constructors
+    /*
+     *  MARK: Constructors
+     */
+
+    // Inherit `BaseReferenceDependentOperator`'s constructors.
+    using BaseReferenceDependentOperator::BaseReferenceDependentOperator;
+
+
+    /*
+     *  MARK: Vectorizer
+     */
+
+    // The 3D vector-vectorizer related to this operator.
+    static VectorVectorizer vectorVectorizer {{3}};
 };
 
 

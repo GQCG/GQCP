@@ -27,16 +27,23 @@ namespace GQCP {
 /**
  *  The nuclear repulsion operator.
  */
-class NuclearRepulsionOperator: public BaseNuclearOperator {
+class NuclearRepulsionOperator:
+    public BaseNuclearOperator {
 public:
-    // CONSTRUCTORS
-    using BaseNuclearOperator::BaseNuclearOperator;  // inherit base constructors
+    /*
+     *  MARK: Constructors
+     */
+
+    // Inherit `BaseNuclearOperator`'s constructors.
+    using BaseNuclearOperator::BaseNuclearOperator;
 
 
-    // PUBLIC METHODS
+    /*
+     *  MARK: Operator value
+     */
 
     /**
-     *  @return the scalar value of this nuclear repulsion operator
+     *  @return The scalar value of this nuclear repulsion operator.
      */
     double value() const;
 };

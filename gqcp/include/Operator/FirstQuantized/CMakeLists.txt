@@ -1,8 +1,7 @@
 target_sources(gqcp
     PRIVATE
         AngularMomentumOperator.hpp
-        BaseFQOneElectronOperator.hpp
-        BaseFQTwoElectronOperator.hpp
+        BaseFQOperator.hpp
         BaseNuclearOperator.hpp
         BaseReferenceDependentOperator.hpp
         CoulombRepulsionOperator.hpp

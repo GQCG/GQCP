@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Operator/FirstQuantized/BaseFQOneElectronOperator.hpp"
+#include "Operator/FirstQuantized/BaseFQOperator.hpp"
 #include "Operator/FirstQuantized/BaseNuclearOperator.hpp"
 
 
@@ -28,10 +28,16 @@ namespace GQCP {
 /**
  *  The (one-electron) nuclear attraction energy operator.
  */
-class NuclearAttractionOperator: public BaseNuclearOperator, public BaseFQOneElectronOperator<double, 1> {
+class NuclearAttractionOperator:
+    public BaseNuclearOperator,
+    public BaseScalarFQOneElectronOperator<double> {
 public:
-    // CONSTRUCTORS
-    using BaseNuclearOperator::BaseNuclearOperator;  // inherit base constructors
+    /*
+     *  MARK: Constructors
+     */
+
+    // Inherit `BaseNuclearOperator`'s constructors.
+    using BaseNuclearOperator::BaseNuclearOperator;
 };
 
 

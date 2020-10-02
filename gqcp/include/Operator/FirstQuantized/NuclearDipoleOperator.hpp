@@ -30,21 +30,29 @@ namespace GQCP {
 /**
  *  The nuclear dipole operator.
  */
-class NuclearDipoleOperator: public BaseNuclearOperator, public BaseReferenceDependentOperator {
+class NuclearDipoleOperator:
+    public BaseNuclearOperator,
+    public BaseReferenceDependentOperator {
 public:
-    // CONSTRUCTORS
+    /*
+     *  MARK: Constructors
+     */
 
     /**
-     *  @param nuclear_framework            the nuclear framework underlying a nuclear operator
-     *  @param o                            the origin of the multipole
+     *  Create a `NuclearDipoleOperator` from a nuclear framework and dipole origin.
+     * 
+     *  @param nuclear_framework            The nuclear framework underlying the nuclear operator.
+     *  @param o                            The origin of the dipole.
      */
     NuclearDipoleOperator(const NuclearFramework& nuclear_framework, const Vector<double, 3>& o = Vector<double, 3>::Zero());
 
 
-    // PUBLIC METHODS
+    /*
+     *  MARK: Operator value
+     */
 
     /**
-     *  @return the value of this nuclear dipole operator
+     *  @return The value of this nuclear dipole operator.
      */
     Vector<double, 3> value() const;
 };

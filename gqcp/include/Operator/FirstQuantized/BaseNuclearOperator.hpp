@@ -25,35 +25,47 @@ namespace GQCP {
 
 
 /**
- *  A base class used to represent nuclear first-quantized operators.
+ *  A base class/interface used to represent nuclear first-quantized operators.
  */
 class BaseNuclearOperator {
-protected:
-    NuclearFramework nuclear_framework;  // the nuclear framework underlying a nuclear operator
-
+private:
+    // The nuclear framework underlying a nuclear operator.
+    NuclearFramework nuclear_framework;
 
 public:
-    // CONSTRUCTORS
+    /*
+     *  MARK: Constructors
+     */
 
     /**
-     *  @param nuclear_framework            the nuclear framework underlying a nuclear operator
+     *  Construct a `BaseNuclearOperator` from a nuclear framework.
+     * 
+     *  @param nuclear_framework            The nuclear framework underlying a nuclear operator.
      */
     BaseNuclearOperator(const NuclearFramework& nuclear_framework);
 
     /**
-     *  @param nuclei                       the nuclei that are considered to represent the nuclear framework underlying a nuclear operator
+     *  Construct a `BaseNuclearOperator` from a vector of nuclei.
+     * 
+     *  @param nuclei                       The nuclei that are considered to represent the nuclear framework underlying a nuclear operator.
      */
     BaseNuclearOperator(const std::vector<Nucleus>& nuclei);
 
 
-    // DESTRUCTOR
-    virtual ~BaseNuclearOperator() = 0;  // provide a pure virtual destructor to make the class abstract
+    /*
+     *  MARK: Destructor
+     */
+
+    // Make the destructor pure virtual in order to make this class abstract.
+    virtual ~BaseNuclearOperator() = 0;
 
 
-    // PUBLIC METHODS
+    /*
+     *  MARK: Nuclear framework
+     */
 
     /**
-     *  @return the nuclear framework upon which this operator is built
+     *  @return The nuclear framework underlying a nuclear operator.
      */
     const NuclearFramework& nuclearFramework() const { return this->nuclear_framework; }
 };
