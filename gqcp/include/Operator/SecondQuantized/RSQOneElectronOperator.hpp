@@ -102,7 +102,7 @@ public:
     // The type of transformation matrix that is naturally associated to a restricted one-electron operator.
     using TM = RTransformationMatrix<Scalar>;
 
-    // The type of density matrix that is naturally associated to a restricted one-electron operator.
+    // The type of the one-particle density matrix that is naturally associated to the derived one-electron operator.
     using OneDM = Orbital1DM<Scalar>;
 };
 

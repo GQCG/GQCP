@@ -20,6 +20,7 @@
 
 #include "Basis/Transformations/BasisTransformable.hpp"
 #include "Basis/Transformations/JacobiRotatable.hpp"
+#include "DensityMatrix/TwoDM.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/SecondQuantized/SQOperatorStorage.hpp"
 
@@ -63,7 +64,7 @@ public:
     // The type of transformation matrix that is naturally associated to the derived one-electron operator.
     using TM = typename OperatorTraits<DerivedOperator>::TM;
 
-    // The type of density matrix that is naturally associated to the derived one-electron operator.
+    // The type of the one-particle density matrix that is naturally associated to the derived one-electron operator.
     using Derived1DM = typename OperatorTraits<DerivedOperator>::OneDM;
 
 
@@ -101,6 +102,108 @@ public:
         }
 
         return StorageArray<Scalar, Vectorizer> {expectation_values, this->array.vectorizer()};
+    }
+
+
+    /**
+     *  Calculate the Fockian matrix for (each of the components of) this one-electron operator.
+     * 
+     *  @param D      The 1-DM (or the response 1-DM for made-variational wave function models).
+     *  @param d      The 2-DM (or the response 2-DM for made-variational wave function models).
+     *
+     *  @return The Fockian matrix.
+     * 
+     *  @note This method is only enabled in the real case.
+     */
+    template <typename Z = Scalar>
+    enable_if_t<std::is_same<Z, double>::value, StorageArray<SquareMatrix<double>, Vectorizer>> calculateFockianMatrix(const Derived1DM& D, const TwoDM<double>& d) const {
+
+        if (D.numberOfOrbitals() != this->numberOfOrbitals()) {
+            throw std::invalid_argument("SimpleSQOneElectronOperator::calculateFockianMatrix(const Derived1DM&, const TwoDM<double>&): The 1-DM's dimensions are not compatible with this one-electron operator.");
+        }
+
+        if (d.numberOfOrbitals() != this->numberOfOrbitals()) {
+            throw std::invalid_argument("SimpleSQOneElectronOperator::calculateFockianMatrix(const Derived1DM&, const TwoDM<double>&): The 2-DM's dimensions are not compatible with this one-electron operator.");
+        }
+
+
+        const auto& parameters = this->parameters();                              // The parameters of the one-electron operator, as a vector.
+        std::vector<SquareMatrix<double>> F_vector {this->numberOfComponents()};  // The resulting vector of Fockian matrices.
+
+        // A KISS implementation of the calculation of the Fockian matrix.
+        for (size_t i = 0; i < this->numberOfComponents(); i++) {
+            const auto& f_i = parameters[i];  // The matrix representation of the parameters of the i-th component.
+
+            // Calculate the Fockian matrix for every component and add it to the array.
+            SquareMatrix<double> F_i = SquareMatrix<double>::Zero(this->numberOfOrbitals());  // The Fockian matrix of the i-th component.
+            for (size_t p = 0; p < this->numberOfOrbitals(); p++) {
+                for (size_t q = 0; q < this->numberOfOrbitals(); q++) {
+
+                    for (size_t r = 0; r < this->numberOfOrbitals(); r++) {
+                        F_i(p, q) += f_i(q, r) * 0.5 * (D(p, r) + D(r, p));  // Include a factor 1/2 to accommodate for response density matrices.
+                    }
+                }
+            }  // F_i elements loop
+            F_vector[i] = F_i;
+        }
+
+        return StorageArray<SquareMatrix<double>, Vectorizer> {F_vector, this->array().vectorizer()};
+    }
+
+
+    /**
+     *  Calculate the super-Fockian matrix for (each of the components of) this one-electron operator.
+     * 
+     *  @param D      The 1-DM (or the response 1-DM for made-variational wave function models).
+     *  @param d      The 2-DM (or the response 2-DM for made-variational wave function models).
+     *
+     *  @return The super-Fockian matrix.
+     * 
+     *  @note This method is only enabled in the real case.
+     */
+    template <typename Z = Scalar>
+    enable_if_t<std::is_same<Z, double>::value, StorageArray<SquareRankFourTensor<double>, Vectorizer>> calculateSuperFockianMatrix(const Derived1DM& D, const TwoDM<double>& d) const {
+
+        if (D.numberOfOrbitals() != this->numberOfOrbitals()) {
+            throw std::invalid_argument("SimpleSQOneElectronOperator::calculateFockianMatrix(const Derived1DM&, const TwoDM<double>&): The given 1-DM's dimensions are not compatible with this one-electron operator.");
+        }
+
+        if (d.numberOfOrbitals() != this->numberOfOrbitals()) {
+            throw std::invalid_argument("SimpleSQOneElectronOperator::calculateFockianMatrix(const Derived1DM&, const TwoDM<double>&): The given 2-DM's dimensions are not compatible with this one-electron operator.");
+        }
+
+
+        const auto& parameters = this->parameters();                                      // The parameters of the one-electron operator, as a vector.
+        std::vector<SquareRankFourTensor<double>> G_vector {this->numberOfComponents()};  // The resulting vector of super-Fockian matrices.
+        const auto F_vector = this->calculateFockianMatrix(D, d).array();                 // The Fockian matrices are necessary in the calculation of the super-Fockian matrices.
+
+        // A KISS implementation of the calculation of the super-Fockian matrix.
+        for (size_t i = 0; i < this->numberOfComponents(); i++) {
+
+            const auto& f_i = this->parameters(i);  // The matrix representation of the parameters of the i-th component.
+            const auto& F_i = F_vector[i];          // The Fockian matrix of the i-th component.
+
+            // Calculate the super-Fockian matrix for every component and add it to the array. Add factors 1/2 to accommodate for response density matrices.
+            SquareRankFourTensor<double> G_i {this->numberOfOrbitals()};
+            G_i.setZero();
+            for (size_t p = 0; p < this->numberOfOrbitals(); p++) {
+                for (size_t q = 0; q < this->numberOfOrbitals(); q++) {
+                    for (size_t r = 0; r < this->numberOfOrbitals(); r++) {
+                        for (size_t s = 0; s < this->numberOfOrbitals(); s++) {
+
+                            if (q == r) {
+                                G_i(p, q, r, s) += F_i(p, s);
+                            }
+
+                            G_i(p, q, r, s) -= f_i(s, p) * 0.5 * (D(r, q) + D(q, r));
+                        }
+                    }
+                }
+            }  // G_i elements loop
+            G_vector[i] = G_i;
+        }
+
+        return StorageArray<SquareRankFourTensor<double>, Vectorizer> {G_vector, this->array().vectorizer()};
     }
 
 
@@ -188,5 +291,6 @@ public:
     // The type of the operator that derives from `SimpleSQOneElectronOperator`, enabling CRTP and compile-time polymorphism.
     using DerivedOperator = _DerivedOperator;
 };
+
 
 }  // namespace GQCP
