@@ -31,7 +31,7 @@ namespace GQCP {
 class PrimitiveLinearMomentumIntegralEngine:
     public PrimitiveCartesianOperatorIntegralEngine {
 public:
-    static constexpr auto Components = LinearMomentumOperator::Components;
+    static constexpr auto Components = LinearMomentumOperator::NumberOfComponents;
     using IntegralScalar = LinearMomentumOperator::Scalar;
 
 

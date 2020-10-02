@@ -58,12 +58,42 @@ public:
 
 
 /*
+ *  MARK: BaseScalarFQOperator
+ */
+
+/**
+ *  A base class for scalar operators. Since the underlying `Vectorizer` is `ScalarVectorizer`, we're sure -at compile time- that the number of components is 1.
+ * 
+ *  @tparam _N                  The number of electrons related to this operator: usually 1 or 2.
+ *  @tparam _Scalar             The scalar representation of the operator: real or complex.
+ */
+template <size_t N, typename _Scalar>
+class BaseScalarFQOperator:
+    public BaseFQOperator<N, _Scalar, ScalarVectorizer> {
+public:
+    /*
+     *  MARK: Vectorizer
+     */
+
+    // The number of components of the operator.
+    static constexpr size_t NumberOfComponents = 1;
+
+    // The vectorizer related to this operator.
+    static const ScalarVectorizer vectorizer;
+};
+
+// Instantiate the static const vectorizer.
+template <size_t N, typename _Scalar>
+const ScalarVectorizer BaseScalarFQOperator<N, _Scalar>::vectorizer {};
+
+
+/*
  *  MARK: Convenience aliases for one-electron operators
  */
 
 // A scalar-like one-electron operator.
 template <typename Scalar>
-using BaseScalarFQOneElectronOperator = BaseFQOperator<1, Scalar, ScalarVectorizer>;
+using BaseScalarFQOneElectronOperator = BaseScalarFQOperator<1, Scalar>;
 
 // A vector-like one-electron operator.
 template <typename Scalar>
@@ -84,7 +114,7 @@ using BaseTensorFQOneElectronOperator = BaseFQOperator<1, Scalar, TensorVectoriz
 
 // A scalar-like two-electron operator.
 template <typename Scalar>
-using BaseScalarFQTwoElectronOperator = BaseFQOperator<2, Scalar, ScalarVectorizer>;
+using BaseScalarFQTwoElectronOperator = BaseScalarFQOperator<2, Scalar>;
 
 // A vector-like two-electron operator.
 template <typename Scalar>

@@ -31,7 +31,7 @@ namespace GQCP {
 class PrimitiveDipoleIntegralEngine:
     public PrimitiveCartesianOperatorIntegralEngine {
 public:
-    static constexpr auto Components = ElectronicDipoleOperator::Components;
+    static constexpr auto Components = ElectronicDipoleOperator::NumberOfComponents;
     using IntegralScalar = ElectronicDipoleOperator::Scalar;
 
 

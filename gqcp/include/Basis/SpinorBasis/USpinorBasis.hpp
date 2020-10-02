@@ -291,7 +291,7 @@ public:
      * 
      *  @note This method is not (yet) capable of calculating 'mixed' integrals such as g_aabb.
      */
-    auto quantize(const CoulombRepulsionOperator& fq_op, const Spin& sigma) const -> SQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>, CoulombRepulsionOperator::Components> { return this->spinor_bases[sigma].quantize(fq_op); }
+    auto quantize(const CoulombRepulsionOperator& fq_op, const Spin& sigma) const -> SQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>, CoulombRepulsionOperator::NumberOfComponents> { return this->spinor_bases[sigma].quantize(fq_op); }
 
     /**
      *  @param fq_op                the first-quantized one-electron operator
@@ -300,7 +300,7 @@ public:
      *  @return the second-quantized operator corresponding to the given first-quantized operator in the spinor basis of the requested component
      */
     template <typename FQOneElectronOperator>
-    auto quantize(const FQOneElectronOperator& fq_op, const Spin& sigma) const -> SQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, FQOneElectronOperator::Components> { return this->spinor_bases[sigma].quantize(fq_op); }
+    auto quantize(const FQOneElectronOperator& fq_op, const Spin& sigma) const -> SQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, FQOneElectronOperator::NumberOfComponents> { return this->spinor_bases[sigma].quantize(fq_op); }
 
     /**
      *  Rotate the spinor basis of the requested component to another one using the given unitary transformation matrix

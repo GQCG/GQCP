@@ -282,10 +282,10 @@ public:
      * 
      *  @return the second-quantized operator corresponding to the Coulomb operator
      */
-    auto quantize(const CoulombRepulsionOperator& fq_two_op) const -> SQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>, CoulombRepulsionOperator::Components> {
+    auto quantize(const CoulombRepulsionOperator& fq_two_op) const -> SQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>, CoulombRepulsionOperator::NumberOfComponents> {
 
         using ResultScalar = product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>;
-        using ResultOperator = SQTwoElectronOperator<ResultScalar, CoulombRepulsionOperator::Components>;
+        using ResultOperator = SQTwoElectronOperator<ResultScalar, CoulombRepulsionOperator::NumberOfComponents>;
 
         // The strategy for calculating the matrix representation of the two-electron operator in this spinor basis is to:
         //  1. Calculate the Coulomb integrals in the underlying scalar bases;
@@ -347,10 +347,10 @@ public:
      * 
      *  @return the electronic spin operator expressed in this spinor basis
      */
-    auto quantize(const ElectronicSpinOperator& fq_one_op) const -> SQOneElectronOperator<product_t<ElectronicSpinOperator::Scalar, ExpansionScalar>, ElectronicSpinOperator::Components> {
+    auto quantize(const ElectronicSpinOperator& fq_one_op) const -> SQOneElectronOperator<product_t<ElectronicSpinOperator::Scalar, ExpansionScalar>, ElectronicSpinOperator::NumberOfComponents> {
 
         using ResultScalar = product_t<ElectronicSpinOperator::Scalar, ExpansionScalar>;
-        using ResultOperator = SQOneElectronOperator<ResultScalar, ElectronicSpinOperator::Components>;
+        using ResultOperator = SQOneElectronOperator<ResultScalar, ElectronicSpinOperator::NumberOfComponents>;
 
         const auto K_alpha = this->numberOfCoefficients(Spin::alpha);
         const auto K_beta = this->numberOfCoefficients(Spin::beta);
@@ -397,10 +397,10 @@ public:
      *  @return the second-quantized operator corresponding to the given spin-independent first-quantized operator
      */
     template <typename FQOneElectronOperator>
-    auto quantize(const FQOneElectronOperator& fq_one_op) const -> SQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, FQOneElectronOperator::Components> {
+    auto quantize(const FQOneElectronOperator& fq_one_op) const -> SQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, FQOneElectronOperator::NumberOfComponents> {
 
         using ResultScalar = product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>;
-        using ResultOperator = SQOneElectronOperator<ResultScalar, FQOneElectronOperator::Components>;
+        using ResultOperator = SQOneElectronOperator<ResultScalar, FQOneElectronOperator::NumberOfComponents>;
 
 
         // The strategy for calculating the matrix representation of the one-electron operator in this spinor basis is to:

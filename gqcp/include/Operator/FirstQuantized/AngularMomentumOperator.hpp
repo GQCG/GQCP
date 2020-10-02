@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Mathematical/Representation/DenseVectorizer.hpp"
 #include "Operator/FirstQuantized/BaseFQOperator.hpp"
 #include "Operator/FirstQuantized/BaseReferenceDependentOperator.hpp"
 #include "Utilities/aliases.hpp"
@@ -30,7 +31,7 @@ namespace GQCP {
  *  The (one-electron) orbital angular momentum operator.
  */
 class AngularMomentumOperator:
-    public BaseVectorFQOneElectronOperator<complex, 3>,
+    public BaseVectorFQOneElectronOperator<complex>,
     public BaseReferenceDependentOperator {
 public:
     /*
@@ -45,9 +46,16 @@ public:
      *  MARK: Vectorizer
      */
 
+    // The number of components of the operator.
+    static constexpr size_t NumberOfComponents = 3;
+
     // The 3D vector-vectorizer related to this operator.
-    static VectorVectorizer vectorVectorizer {{3}};
+    static const VectorVectorizer vectorizer;
 };
+
+
+// Instantiate the static const vectorizer.
+const VectorVectorizer AngularMomentumOperator::vectorizer {{AngularMomentumOperator::NumberOfComponents}};
 
 
 }  // namespace GQCP

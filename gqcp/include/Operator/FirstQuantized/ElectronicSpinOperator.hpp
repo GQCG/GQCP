@@ -35,9 +35,16 @@ public:
      *  MARK: Vectorizer
      */
 
+    // The number of components of the operator.
+    static constexpr size_t NumberOfComponents = 3;
+
     // The 3D vector-vectorizer related to this operator.
-    static VectorVectorizer vectorVectorizer {{3}};
+    static const VectorVectorizer vectorizer;
 };
+
+
+// Instantiate the static const vectorizer.
+const VectorVectorizer ElectronicSpinOperator::vectorizer {{ElectronicSpinOperator::NumberOfComponents}};
 
 
 }  // namespace GQCP

@@ -29,7 +29,7 @@ namespace GQCP {
  */
 class PrimitiveOverlapIntegralEngine {
 public:
-    static constexpr auto Components = OverlapOperator::Components;
+    static constexpr auto Components = OverlapOperator::NumberOfComponents;
     using IntegralScalar = OverlapOperator::Scalar;
 
 
