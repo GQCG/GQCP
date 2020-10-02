@@ -255,6 +255,7 @@
 #include "Utilities/linalg.hpp"
 #include "Utilities/memory.hpp"
 #include "Utilities/miscellaneous.hpp"
+#include "Utilities/spinor_tags.hpp"
 #include "Utilities/type_traits.hpp"
 #include "Utilities/units.hpp"
 #include "version.hpp"

@@ -137,6 +137,47 @@ public:
     }
 
 
+    /**
+     *  Create a zero-initialized `SquareRankFourTensor`.
+     * 
+     *  @param dim          The dimension of each of the tensor's axes.
+     * 
+     *  @return A zero `SquareRankFourTensor`.
+     */
+    static Self Zero(const size_t dim) {
+
+        SquareRankFourTensor<Scalar> T {dim};
+        T.setZero();
+        return T;
+    }
+
+
+    /**
+     *  Create a random-initialized `SquareRankFourTensor`, with values uniformly distributed between [-1,1].
+     * 
+     *  @param dim          The dimension of each of the tensor's axes.
+     * 
+     *  @return A random `SquareRankFourTensor`.
+     */
+    static Self Random(const size_t dim) {
+
+        SquareRankFourTensor<Scalar> T {dim};
+        T.setRandom();  // Uniformly distributed between [0, 1].
+
+        // Move the distribution from [0, 1] -> [-1, 1].
+        for (size_t i = 0; i < dim; i++) {
+            for (size_t j = 0; j < dim; j++) {
+                for (size_t k = 0; k < dim; k++) {
+                    for (size_t l = 0; l < dim; l++) {
+                        g(i, j, k, l) = 2 * g(i, j, k, l) - 1;  // Scale from [0, 1] -> [0, 2] -> [-1, 1].
+                    }
+                }
+            }
+        }
+        return T;
+    }
+
+
     /*
      *  OPERATORS
      */

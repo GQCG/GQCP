@@ -224,16 +224,16 @@ public:
 
 
     /**
-     *  @param fcidump_file     the name of the FCIDUMP file
+     *  @param fcidump_filename     the name of the FCIDUMP file
      *
      *  @return the Hamiltonian corresponding to the contents of an FCIDUMP file
      *
      *  Note that this named constructor is only available for real matrix representations
      */
     template <typename Z = Scalar>
-    static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> ReadFCIDUMP(const std::string& fcidump_file) {
+    static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> ReadFCIDUMP(const std::string& fcidump_filename) {
 
-        std::ifstream input_file_stream = validateAndOpen(fcidump_file, "FCIDUMP");
+        std::ifstream input_file_stream = validateAndOpen(fcidump_filename, "FCIDUMP");
 
 
         // Do the actual parsing
@@ -555,6 +555,329 @@ public:
      */
     const std::vector<ScalarSQTwoElectronOperator<Scalar>>& twoElectronContributions() const { return this->two_ops; }
 };
+
+
+#include <numeric>
+#include <vector>
+
+
+/*
+ *  MARK: SQHamiltonian
+ */
+
+/**
+ *  A second-quantized electronic Hamiltonian. It consists of one-electron (core) and two-electron contributions.
+ * 
+ *  @tparam _ScalarSQOneElectronOperator        The type of second-quantized one-electron operator underlying this Hamiltonian.
+ *  @tparam _ScalarSQTwoElectronOperator        The type of second-quantized two-electron operator underlying this Hamiltonian.
+ */
+template <typename _ScalarSQOneElectronOperator, typename _ScalarSQTwoElectronOperator>
+class SQHamiltonian_Placeholder {
+public:
+    // The type of second-quantized one-electron operator underlying this Hamiltonian.
+    using ScalarSQOneElectronOperator_Placeholder = _ScalarSQOneElectronOperator;  // TODO: remove 'placeholder'
+
+    // The type of second-quantized two-electron operator underlying this Hamiltonian.
+    using ScalarSQTwoElectronOperator_Placeholder = _ScalarSQTwoElectronOperator;  // TODO: remove 'placeholder'
+
+    // Check if the spinor tags of the one- and two-electron operators match.
+    assert(std::is_same<typename ScalarSQOneElectronOperator_Placeholder::SpinorTag, typename ScalarSQTwoElectronOperator_Placeholder::SpinorTag>::value, "The spinor tags of the one- and two-electron operators do not match.");
+
+    // The spinor tag associated to this Hamiltonian.
+    using SpinorTag = ScalarSQOneElectronOperator_Placeholder::SpinorTag;
+
+    // The type of 'this'
+    using Self = SQHamiltonian_Placeholder<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>;
+
+
+private:
+    // The total one-electron interaction operator, i.e. the core Hamiltonian.
+    ScalarSQOneElectronOperator_Placeholder h;
+
+    // The total two-electron interaction operator.
+    ScalarSQTwoElectronOperator_Placeholder g;
+
+    // The contributions to the total one-electron interaction operator.
+    std::vector<ScalarSQOneElectronOperator_Placeholder> h_contributions;
+
+    // The contributions to the total two-electron interaction operator.
+    std::vector<ScalarSQTwoElectronOperator_Placeholder> g_contributions;
+
+
+public:
+    /*
+     *  MARK: Constructors
+     */
+
+    /**
+     *  Initialize a `SQHamiltonian` for one- and two-electron contributions.
+     * 
+     *  @param h_contributions      The contributions to the total one-electron interaction operator.
+     *  @param g_contributions      The contributions to the total two-electron interaction operator.
+     */
+    SQHamiltonian_Placeholder(const std::vector<ScalarSQOneElectronOperator_Placeholder>& h_contributions, const std::vector<ScalarSQTwoElectronOperator_Placeholder>& g_contributions) :
+        h_contributions {h_contributions},
+        g_contributions {g_contributions} {
+
+        // Check if the dimensions of the one- and two-electron operators are compatible.
+        const std::invalid_argument dimension_error {"SQHamiltonian::SQHamiltonian(const std::vector<ScalarSQOneElectronOperator<Scalar>& h_contributions, const std::vector<ScalarSQTwoElectronOperator<Scalar>& g_contributions: The dimensions of the contributing operators are incompatible"};
+
+        const auto dim = h_contributions[0].numberOfOrbitals();
+        for (const auto& h : this->h_contributions) {
+            if (h.numberOfOrbitals() != dim) {
+                throw dimension_error;
+            }
+        }
+
+        for (const auto& g : this->g_contributions) {
+            if (g.numberOfOrbitals() != dim) {
+                throw dimension_error;
+            }
+        }
+
+
+        // Calculate the total one- and two-electron operators.
+        this->h = std::accumulate(h_contributions.begin(), h_contributions.end(), ScalarSQOneElectronOperator_Placeholder::Zero(dim));
+        this->g = std::accumulate(g_contributions.begin(), g_contributions.end(), ScalarSQTwoElectronOperator_Placeholder::Zero(dim));
+    }
+
+
+    /**
+     *  Create an `SQHamiltonian` from total one- and two-electron contributions.
+     * 
+     *  @param h            The total one-electron interaction operator, i.e. the core Hamiltonian.
+     *  @param g            The total two-electron interaction operator.
+     */
+    SQHamiltonian_Placeholder(const ScalarSQOneElectronOperator_Placeholder& h, const ScalarSQTwoElectronOperator_Placeholder& g) :
+        SQHamiltonian_Placeholder(std::vector<ScalarSQOneElectronOperator_Placeholder> {h},
+                                  std::vector<ScalarSQTwoElectronOperator_Placeholder> {g}) {}
+
+
+    /**
+     *  MARK: Named constructors
+     */
+
+    /**
+     *  Create an `SQHamiltonian` from a `HubbardHamiltonian`.
+     * 
+     *  @param hubbard_hamiltonian              The Hubbard model Hamiltonian.
+     *
+     *  @return An SQHamiltonian generated from the given Hubbard model Hamiltonian.
+     *
+     *  @note This named constructor is only available for real matrix representations.
+     */
+    template <typename Z1 = Scalar, typename Z2 = SpinorTag>
+    static enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, RestrictedSpinorTag>, SQHamiltonian_Placeholder<double>> FromHubbard(const GQCP::HubbardHamiltonian<double>& hubbard_hamiltonian) {
+
+        const auto h = hubbard_hamiltonian.core();
+        const auto g = hubbard_hamiltonian.twoElectron();
+
+        return Self {h, g};
+    }
+
+
+    /**
+     *  Construct the electronic molecular Hamiltonian in a spinor basis basis. The molecular Hamiltonian encompasses the following interactions:
+     *      - one-electron contributions:
+     *          - kinetic
+     *          - nuclear attraction
+     *      - two-electron contributions:
+     *          - Coulomb repulsion
+     * 
+     *  @param spinor           The spinor basis in which the Hamiltonian should be expressed.
+     *  @param molecule         The molecule that contains the nuclear framework upon which the nuclear attraction operator is based
+     *
+     *  @return An  second-quantized molecular Hamiltonian. 
+
+     *
+     *  @note This named constructor is only available for real matrix representations.
+     */
+    template <typename Scalar, typename SpinorBasis>
+    static SQHamiltonian<typename SpinorBasis::ScalarSQOneElectronOperator_Placeholder, typename SpinorBasis::ScalarSQTwoElectronOperator_Placeholder> Molecular(const RSpinorBasis<Scalar, GTOShell>& spinor_basis, const Molecule& molecule) {
+
+        // Calculate the integrals for the molecular Hamiltonian
+        const auto T = spinor_basis.quantize(Operator::Kinetic());
+        const auto V = spinor_basis.quantize(Operator::NuclearAttraction(molecule));
+        const auto H = T + V;
+
+        const auto g = spinor_basis.quantize(Operator::Coulomb());
+
+        using ReturnType = SQHamiltonian<typename SpinorBasis::ScalarSQOneElectronOperator_Placeholder, typename SpinorBasis::ScalarSQTwoElectronOperator_Placeholder>;
+        return ReturnType {H, g};
+    }
+
+
+    /**
+     *  Create a random `SQHamiltonian` with values uniformly distributed between [-1,1].
+     * 
+     *  @param dim      The dimension of the matrix representations of the one- and two-electron integrals, i.e. the number of orbitals.
+     *
+     *  @return A random `SQHamiltonian`.
+     *
+     *  @note This named constructor is only available in the real case.
+     */
+    static enable_if_t<std::is_same<Z, double>::value, Self> Random(const size_t dim) {
+
+        const auto h = ScalarSQOneElectronOperator_Placeholder::Random(dim);
+        const auto g = ScalarSQTwoElectronOperator_Placeholder::Random(dim);
+
+        return Self {h, g};
+    }
+
+
+    /**
+     *  Parse an FCIDUMP file and read in its Hamiltonian.
+     * 
+     *  @param fcidump_filename         The name of the FCIDUMP file.
+     *
+     *  @return The Hamiltonian corresponding to the contents of an FCIDUMP file.
+     *
+     *  @note This named constructor is only available in the real case.
+     */
+    template <typename Z1 = Scalar, typename Z2 = SpinorTag>
+    static enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, RestrictedSpinOrbitalTag>::value, RSQHamiltonian<double>> FromFCIDUMP(const std::string& fcidump_filename) {
+
+        std::ifstream input_file_stream = validateAndOpen(fcidump_filename, "FCIDUMP");
+
+
+        // Do the actual parsing
+
+        //  Get the number of orbitals to check if it's a valid FCIDUMP file
+        std::string start_line;  // first line contains orbitals and electron count
+        std::getline(input_file_stream, start_line);
+        std::stringstream linestream {start_line};
+
+        size_t K = 0;
+        char iter;
+
+        while (linestream >> iter) {
+            if (iter == '=') {
+                linestream >> K;  // right here we have the number of orbitals
+                break;            // we can finish reading the linestream after we found K
+            }
+        }
+
+        if (K == 0) {
+            throw std::invalid_argument("SQHamiltonian::ReadFCIDUMP(std::string): The .FCIDUMP-file is invalid: could not read a number of orbitals.");
+        }
+
+
+        SquareMatrix<double> h_core = SquareMatrix<double>::Zero(K);
+        QCRankFourTensor<double> g {K};
+        g.setZero();
+
+        //  Skip 3 lines
+        for (size_t counter = 0; counter < 3; counter++) {
+            std::getline(input_file_stream, start_line);
+        }
+
+
+        //  Start reading in the one- and two-electron integrals
+        double x;
+        size_t i, j, a, b;
+
+        std::string line;
+        while (std::getline(input_file_stream, line)) {
+            std::istringstream iss {line};
+
+            // Based on what the values of the indices are, we can read one-electron integrals, two-electron integrals and the internuclear repulsion energy
+            //  See also (http://hande.readthedocs.io/en/latest/manual/integrals.html)
+            //  I think the documentation is a bit unclear for the two-electron integrals, but we can rest assured that FCIDUMP files give the two-electron integrals in CHEMIST's notation.
+            iss >> x >> i >> a >> j >> b;
+
+            //  Single-particle eigenvalues (skipped)
+            if ((a == 0) && (j == 0) && (b == 0)) {
+            }
+
+            //  One-electron integrals (h_core)
+            else if ((j == 0) && (b == 0)) {
+                size_t p = i - 1;
+                size_t q = a - 1;
+                h_core(p, q) = x;
+
+                // Apply the permutational symmetry for real orbitals
+                h_core(q, p) = x;
+            }
+
+            //  Two-electron integrals are given in CHEMIST'S NOTATION, so just copy them over
+            else if ((i > 0) && (a > 0) && (j > 0) && (b > 0)) {
+                size_t p = i - 1;
+                size_t q = a - 1;
+                size_t r = j - 1;
+                size_t s = b - 1;
+                g(p, q, r, s) = x;
+
+                // Apply the permutational symmetries for real orbitals
+                g(p, q, s, r) = x;
+                g(q, p, r, s) = x;
+                g(q, p, s, r) = x;
+
+                g(r, s, p, q) = x;
+                g(s, r, p, q) = x;
+                g(r, s, q, p) = x;
+                g(s, r, q, p) = x;
+            }
+        }  // while loop
+
+
+        return SQHamiltonian(ScalarSQOneElectronOperator<Scalar>(h_core), ScalarSQTwoElectronOperator<Scalar>(g));
+    }
+
+
+    /*
+     *  MARK: Calculations
+     */
+
+    /**
+     *  Calculate the Edmiston-Ruedenberg localization index, which is the trace of the two-electron integrals over only the occupied orbitals.
+     * 
+     *  @param orbital_space                An orbital space which denotes the occupied-active-virtual separation.
+     *
+     *  @return The Edmiston-Ruedenberg localization index.
+     *
+     *  @note This method is only available for real matrix representations.
+     */
+    double calculateEdmistonRuedenbergLocalizationIndex(const OrbitalSpace orbital_space) const {
+
+        const auto& g = this->g_total.parameters();
+
+        // TODO: When Eigen releases TensorTrace, use it here.
+        double localization_index = 0.0;
+        for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+            localization_index += g(i, i, i, i);
+        }
+
+        return localization_index;
+    }
+
+
+    /**
+     *  Calculate the effective one-electron integrals. These are the core integrals, with the contributions form a Kronecker delta-term in the two-electron integrals.
+     * 
+     *  @return The effective one-electron integrals.
+     */
+    ScalarSQOneElectronOperator_Placeholder calculateEffectiveOneElectronIntegrals() const {
+
+        return this->core() + this->twoElectron().effectiveOneElectronPartition();
+    }
+};
+
+
+/*
+ *  MARK: Convenience aliases
+ */
+
+// An `SQHamiltonian` related to restricted spin-orbitals. See `RestrictedSpinOrbitalTag`.
+template <typename Scalar>
+using RSQHamiltonian = SQHamiltonian_Placeholder<ScalarRSQOneElectronOperator<Scalar>, ScalarSQTwoElectronOperator<Scalar>>;
+
+// An `SQHamiltonian` related to unrestricted spin-orbitals. See `UnrestrictedSpinOrbitalTag`.
+// template <typename Scalar>
+// using USQHamiltonian = SQHamiltonian_Placeholder<ScalarUSQOneElectronOperator<Scalar>, ScalarUSQTwoElectronOperator<Scalar>>;
+
+// An `SQHamiltonian` related to general spinors. See `GeneralSpinorTag`.
+template <typename Scalar>
+using GSQHamiltonian = GQHamiltonian_Placeholder<ScalarGSQOneElectronOperator<Scalar>, ScalarSQTwoElectronOperator<Scalar>>;
 
 
 /*

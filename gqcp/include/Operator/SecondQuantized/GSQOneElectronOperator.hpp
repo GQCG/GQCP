@@ -22,6 +22,7 @@
 #include "DensityMatrix/G1DM.hpp"
 #include "Mathematical/Representation/DenseVectorizer.hpp"
 #include "Operator/SecondQuantized/SimpleSQOneElectronOperator.hpp"
+#include "QuantumChemical/spinor_tags.hpp"
 
 
 namespace GQCP {
@@ -42,6 +43,9 @@ public:
 
     // The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
     using Vectorizer = _Vectorizer;
+
+    // The spinor tag corresponding to an `RSQOneElectronOperator`.
+    using SpinorTag = GeneralSpinorTag;
 
 public:
     /*

@@ -68,6 +68,13 @@ public:
     using SpatialOrbital = LinearCombination<product_t<ExpansionScalar, typename BasisFunction::CoefficientScalar>, BasisFunction>;
 
 
+    // The type of one-electron operators that are naturally associated with scalar operators expressed in this restricted spin-orbital bases.
+    using ScalarSQOneElectronOperator_Placeholder = ScalarRSQOneElectronOperator<Scalar>;
+
+    // The type of one-electron operators that are naturally associated with scalar operators expressed in this restricted spin-orbital bases.
+    using ScalarSQTwoElectronOperator_Placeholder = ScalarRSQTwoElectronOperator<Scalar>;
+
+
 private:
     ScalarBasis<Shell> scalar_basis;  // the underlying scalar basis that is equal for both the alpha- and beta components
 
