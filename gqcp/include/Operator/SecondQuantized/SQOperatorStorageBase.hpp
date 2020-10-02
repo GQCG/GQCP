@@ -63,6 +63,9 @@ public:
     // The type of the vectorizer that relates a one-dimensional storage of matrix representations to the tensor structure of the second-quantized operators. This allows for a distinction between scalar operators (such as the kinetic energy or Coulomb operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
     using Vectorizer = _Vectorizer;
 
+    // The type of 'this'
+    using Self = SQOperatorStorageBase<MatrixRepresentation, Vectorizer, DerivedOperator>;
+
     // The type of the final derived operator, enabling CRTP and compile-time polymorphism. VectorSpaceArithmetic (and other functionality) should be implemented on the **final** deriving class, not on intermediate classes. In the current design of the SQOperator classes, there is just one intermediate class, so finding out the final derived class is easy.
     using FinalOperator = typename OperatorTraits<DerivedOperator>::DerivedOperator;
 
@@ -119,39 +122,90 @@ public:
 
 
     /**
+     *  The default constructor.
+     */
+    SQOperatorStorageBase() :
+        SQOperatorStorageBase(0, Vectorizer()) {}
+
+
+    /**
+     *  MARK: Named constructors
+     */
+
+    /**
      *  Construct a second-quantized operator storage with parameters/matrix elements/integrals that are zero.
      * 
      *  @param dim          The dimension of the matrix representation of the parameters/matrix elements/integrals, i.e. the number of orbitals/sites.
+     * 
+     *  @return A zero second-quantized operator.
      */
-    SQOperatorStorageBase(const size_t dim, const Vectorizer& vectorizer) :
-        SQOperatorStorageBase(StorageArray<MatrixRepresentation, Vectorizer> {MatrixRepresentation::Zero(dim), vectorizer}) {}
+    static FinalOperator Zero(const size_t dim, const Vectorizer& vectorizer) {
+        return FinalOperator {StorageArray<MatrixRepresentation, Vectorizer> {MatrixRepresentation::Zero(dim), vectorizer}};
+    }
 
 
     /**
      *  Construct a scalar second-quantized operator storage with parameters/matrix elements/integrals that are zero.
      * 
      *  @param dim          The dimension of the matrix representation of the parameters/matrix elements/integrals, i.e. the number of orbitals/sites.
+     * 
+     *  @return A zero scalar second-quantized operator.
      */
     template <typename Z = Vectorizer>
-    SQOperatorStorageBase(const size_t dim, typename std::enable_if<std::is_same<Z, ScalarVectorizer>::value>::type* = 0) :
-        SQOperatorStorageBase(dim, ScalarVectorizer()) {}
+    static enable_if_t<std::is_same<Z, ScalarVectorizer>::value, FinalOperator> Zero(const size_t dim) {
+        return Self::Zero(dim, ScalarVectorizer {});
+    }
 
 
     /**
      *  Construct a vector second-quantized operator storage with parameters/matrix elements/integrals that are zero.
      * 
      *  @param dim          The dimension of the matrix representation of the parameters/matrix elements/integrals, i.e. the number of orbitals/sites.
+     * 
+     *  @return A zero vector second-quantized operator.
      */
     template <typename Z = Vectorizer>
-    SQOperatorStorageBase(const size_t dim, typename std::enable_if<std::is_same<Z, VectorVectorizer>::value>::type* = 0) :
-        SQOperatorStorageBase(dim, VectorVectorizer({3})) {}
+    static enable_if_t<std::is_same<Z, VectorVectorizer>::value, FinalOperator> Zero(const size_t dim) {
+        return Self::Zero(dim, VectorVectorizer {{3}});
+    }
 
 
     /**
-     *  The default constructor.
+     *  Construct a second-quantized operator storage with parameters/matrix elements/integrals that are randomly distributed between [-1, +1].
+     * 
+     *  @param dim          The dimension of the matrix representation of the parameters/matrix elements/integrals, i.e. the number of orbitals/sites.
+     * 
+     *  @return A random second-quantized operator.
      */
-    SQOperatorStorageBase() :
-        SQOperatorStorageBase(0, Vectorizer()) {}
+    static FinalOperator Zero(const size_t dim, const Vectorizer& vectorizer) {
+        return FinalOperator {StorageArray<MatrixRepresentation, Vectorizer> {MatrixRepresentation::Random(dim), vectorizer}};
+    }
+
+
+    /**
+     *  Construct a scalar second-quantized operator storage with parameters/matrix elements/integrals that are randomly distributed between [-1, +1].
+     * 
+     *  @param dim          The dimension of the matrix representation of the parameters/matrix elements/integrals, i.e. the number of orbitals/sites.
+     * 
+     *  @return A random scalar second-quantized operator.
+     */
+    template <typename Z = Vectorizer>
+    static enable_if_t<std::is_same<Z, ScalarVectorizer>::value, FinalOperator> Zero(const size_t dim) {
+        return Self::Random(dim, ScalarVectorizer {});
+    }
+
+
+    /**
+     *  Construct a vector second-quantized operator storage with parameters/matrix elements/integrals that are randomly distributed between [-1, +1].
+     * 
+     *  @param dim          The dimension of the matrix representation of the parameters/matrix elements/integrals, i.e. the number of orbitals/sites.
+     * 
+     *  @return A random vector second-quantized operator.
+     */
+    template <typename Z = Vectorizer>
+    static enable_if_t<std::is_same<Z, VectorVectorizer>::value, FinalOperator> Zero(const size_t dim) {
+        return Self::Random(dim, VectorVectorizer {{3}});
+    }
 
 
     /*
