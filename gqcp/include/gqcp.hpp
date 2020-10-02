@@ -161,6 +161,8 @@
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
+#include "Operator/SecondQuantized/SQOperatorStorage.hpp"
+#include "Operator/SecondQuantized/SQOperatorStorageBase.hpp"
 #include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
 #include "Operator/SecondQuantized/SimpleSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/USQHamiltonian.hpp"
