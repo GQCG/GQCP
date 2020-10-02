@@ -102,7 +102,7 @@ public:
      */
     SQOneElectronOperator(const size_t dim) {
         for (size_t i = 0; i < Components; i++) {
-            this->fs[i] = QCMatrix<Scalar>::Zero(dim, dim);
+            this->fs[i] = QCMatrix<Scalar>::Zero(dim);
         }
     }
 
@@ -198,7 +198,7 @@ public:
             const auto& f_i = this->parameters(i);  // the matrix representation of the parameters of the i-th component
 
             // Calculate the Fockian matrix for every component and add it to the array
-            SquareMatrix<Scalar> F_i = SquareMatrix<Scalar>::Zero(this->numberOfOrbitals(), this->numberOfOrbitals());  // the Fockian matrix of the i-th component
+            SquareMatrix<Scalar> F_i = SquareMatrix<Scalar>::Zero(this->numberOfOrbitals());  // the Fockian matrix of the i-th component
             for (size_t p = 0; p < this->numberOfOrbitals(); p++) {
                 for (size_t q = 0; q < this->numberOfOrbitals(); q++) {
 
@@ -280,7 +280,7 @@ public:
 
         // Evaluate all components at the given x
         for (size_t i = 0; i < Components; i++) {
-            F_evaluated[i] = QCMatrix<typename Z::Valued>::Zero(this->numberOfOrbitals(), this->numberOfOrbitals());  // initialize to zero
+            F_evaluated[i] = QCMatrix<typename Z::Valued>::Zero(this->numberOfOrbitals());  // initialize to zero
 
             for (size_t m = 0; m < this->numberOfOrbitals(); m++) {
                 for (size_t n = 0; n < this->numberOfOrbitals(); n++) {

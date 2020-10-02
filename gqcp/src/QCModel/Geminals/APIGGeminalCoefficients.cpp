@@ -137,7 +137,7 @@ double APIGGeminalCoefficients::overlap(const SpinUnresolvedONV& onv) const {
 
     // Construct the matrix G(m) which only has the occupied columns of G in the given doubly-occupied (spin-resolved) ONV 'm'
     MatrixX<double> G = this->asMatrix();  // geminal coefficients as a matrix
-    SquareMatrix<double> Gm = SquareMatrix<double>::Zero(this->N_P, this->N_P);
+    SquareMatrix<double> Gm = SquareMatrix<double>::Zero(this->N_P);
 
     // TODO: wait until the syntax G(Eigen::placeholders::all, occupied_indices) is released in a stable Eigen release
     for (size_t e = 0; e < this->N_P; e++) {  // loop over all electrons

@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "DensityMatrix/SpinResolvedOneDM.hpp"
+#include "DensityMatrix/SpinResolved1DM.hpp"
 #include "DensityMatrix/SpinResolvedTwoDM.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
@@ -37,7 +37,7 @@ namespace GQCP {
  *  @return the expectation value of the square of the spin angular momentum operator
  */
 template <typename Scalar>
-double calculateSpinSquared(const SpinResolvedOneDM<Scalar>& one_DMs, const SpinResolvedTwoDM<Scalar>& two_DMs) {
+double calculateSpinSquared(const SpinResolved1DM<Scalar>& one_DMs, const SpinResolvedTwoDM<Scalar>& two_DMs) {
 
     double sz = calculateSpinZ(one_DMs);
     double s_squared = -sz;
@@ -64,7 +64,7 @@ double calculateSpinSquared(const SpinResolvedOneDM<Scalar>& one_DMs, const Spin
  *  @return expectation value of spin in the z direction
  */
 template <typename Scalar>
-double calculateSpinZ(const SpinResolvedOneDM<Scalar>& one_DMs) {
+double calculateSpinZ(const SpinResolved1DM<Scalar>& one_DMs) {
     return one_DMs.spinDensity().trace() / 2;
 }
 

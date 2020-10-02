@@ -59,7 +59,7 @@ public:
 
         auto K = static_cast<size_t>(this->numberOfOrbitals());
 
-        OneDM<double> D = OneDM<double>::Zero(K, K);
+        OneDM<double> D = OneDM<double>::Zero(K);
         for (size_t p = 0; p < K; p++) {
             for (size_t q = 0; q < K; q++) {
                 for (size_t r = 0; r < K; r++) {

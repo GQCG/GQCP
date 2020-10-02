@@ -61,7 +61,7 @@ ScalarSQOneElectronOperator<double> BaseFrozenCoreONVBasis::freezeOperator(const
 FrozenOperators BaseFrozenCoreONVBasis::freezeOperator(const ScalarSQTwoElectronOperator<double>& two_op, const size_t X) {
 
     size_t K_active = two_op.numberOfOrbitals() - X;
-    SquareMatrix<double> frozen_one_op_par = SquareMatrix<double>::Zero(K_active, K_active);
+    SquareMatrix<double> frozen_one_op_par = SquareMatrix<double>::Zero(K_active);
     const auto& two_op_par = two_op.parameters();
     const auto frozen_two_op_par = QCRankFourTensor<double>::FromBlock(two_op_par, X, X, X, X);
 

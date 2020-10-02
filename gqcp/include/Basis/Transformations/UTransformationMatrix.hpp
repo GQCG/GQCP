@@ -18,8 +18,9 @@
 #pragma once
 
 
-#include "Basis/Transformations/SimpleTransformationMatrix.hpp"
-#include "QuantumChemical/SpinResolved.hpp"
+#include "Basis/Transformations/RTransformationMatrix.hpp"
+#include "Basis/Transformations/UTransformationMatrixComponent.hpp"
+#include "QuantumChemical/SpinResolvedBase.hpp"
 
 
 namespace GQCP {
@@ -32,7 +33,7 @@ namespace GQCP {
  */
 template <typename _Scalar>
 class UTransformationMatrix:
-    public SpinResolved<TransformationMatrix<_Scalar>, UTransformationMatrix<_Scalar>> {
+    public SpinResolvedBase<UTransformationMatrixComponent<_Scalar>, UTransformationMatrix<_Scalar>> {
 public:
     // The scalar type used for a transformation coefficient: real or complex.
     using Scalar = _Scalar;
@@ -42,8 +43,8 @@ public:
      *  MARK: Constructors
      */
 
-    // Inherit SpinResolved's constructors.
-    using SpinResolved<TransformationMatrix<Scalar>, UTransformationMatrix<Scalar>>::SpinResolved;
+    // Inherit `SpinResolvedBase`'s constructors.
+    using SpinResolvedBase<UTransformationMatrixComponent<Scalar>, UTransformationMatrix<Scalar>>::SpinResolvedBase;
 
 
     /*
@@ -51,36 +52,40 @@ public:
      */
 
     /**
-     *  @param T                the equal transformation matrix for both the alpha and the beta spin-orbitals
+     *  Create an UTransformationMatrix from an RTransformationMatrix, leading to transformation matrices for both spin components that are equal.
      * 
-     *  @return a spin-resolved transformation matrix where the transformation matrices for the alpha and beta spin-orbitals are equal
+     *  @param T                The equal transformation matrix for both the alpha and the beta spin-orbitals.
+     * 
+     *  @return An UTransformationMatrix.
      */
-    static UTransformationMatrix<Scalar> FromRestricted(const TransformationMatrix<Scalar>& T) { return UTransformationMatrix<Scalar>::FromEqual(T); }
+    static UTransformationMatrix<Scalar> FromRestricted(const RTransformationMatrix<Scalar>& T) { return UTransformationMatrix<Scalar>::FromEqual(T); }
 
-
-    /*
-     *  MARK: General information
-     */
 
     /**
-     *  @param sigma            Alpha or beta.
+     *  Create an identity UTransformationMatrix.
      * 
-     *  @return The number of orbitals (spin-orbitals) that the transformation matrix for the sigma spin-orbitals is related to
+     *  @param dim_alpha            The number of alpha spin-orbitals.
+     *  @param dim_beta             The number of beta spin-orbitals.
+     * 
+     *  @return An identity UTransformationMatrix.
      */
-    size_t numberOfOrbitals(const Spin sigma) const {
+    static UTransformationMatrix<Scalar> Identity(const size_t dim_alpha, const size_t dim_beta) {
 
-        switch (sigma) {
-        case Spin::alpha: {
-            return this->alpha().numberOfOrbitals();
-            break;
-        }
+        const UTransformationMatrixComponent<Scalar> T_alpha = UTransformationMatrixComponent<Scalar>::Identity(dim_alpha);
+        const UTransformationMatrixComponent<Scalar> T_beta = UTransformationMatrixComponent<Scalar>::Identity(dim_beta);
 
-        case Spin::beta: {
-            return this->beta().numberOfOrbitals();
-            break;
-        }
-        }
+        return UTransformationMatrix<Scalar> {T_alpha, T_beta};
     }
+
+
+    /**
+     *  Create an identity UTransformationMatrix.
+     * 
+     *  @param dim              The dimension of the alpha and beta spin-orbitals.
+     * 
+     *  @return An identity UTransformationMatrix.
+     */
+    static UTransformationMatrix<Scalar> Identity(const size_t dim) { return UTransformationMatrix<Scalar>::Identity(dim, dim); }
 };
 
 

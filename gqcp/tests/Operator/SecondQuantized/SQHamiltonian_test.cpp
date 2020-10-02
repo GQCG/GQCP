@@ -93,7 +93,7 @@ BOOST_AUTO_TEST_CASE(HamiltonianParameters_constructor) {
 
     // Create one- and two-electron operators and a transformation matrix with compatible dimensions
     size_t K = spinor_basis.numberOfSpatialOrbitals();
-    GQCP::SquareMatrix<double> H_core = GQCP::SquareMatrix<double>::Random(K, K);
+    GQCP::SquareMatrix<double> H_core = GQCP::SquareMatrix<double>::Random(K);
 
     GQCP::QCRankFourTensor<double> g {K};
     g.setRandom();
@@ -104,7 +104,7 @@ BOOST_AUTO_TEST_CASE(HamiltonianParameters_constructor) {
 
 
     // Check if wrong arguments result in a throw
-    GQCP::SquareMatrix<double> H_core_faulty = GQCP::SquareMatrix<double>::Random(K + 1, K + 1);
+    GQCP::SquareMatrix<double> H_core_faulty = GQCP::SquareMatrix<double>::Random(K + 1);
     GQCP::QCRankFourTensor<double> g_faulty {K + 1};
 
 
@@ -117,7 +117,7 @@ BOOST_AUTO_TEST_CASE(rotate_argument) {
 
     // Create a well-behaved Hamiltonian
     size_t K = 3;
-    GQCP::SquareMatrix<double> H_op = GQCP::SquareMatrix<double>::Random(K, K);
+    GQCP::SquareMatrix<double> H_op = GQCP::SquareMatrix<double>::Random(K);
     GQCP::QCRankFourTensor<double> g_op {K};
     g_op.setRandom();
 
@@ -228,14 +228,14 @@ BOOST_AUTO_TEST_CASE(FCIDUMP_reader_HORTON) {
 BOOST_AUTO_TEST_CASE(calculate_generalized_Fock_matrix_and_super_invalid_arguments) {
 
     // Initialize toy HamiltonianParameters
-    GQCP::SquareMatrix<double> h = GQCP::SquareMatrix<double>::Zero(2, 2);
+    GQCP::SquareMatrix<double> h = GQCP::SquareMatrix<double>::Zero(2);
     GQCP::QCRankFourTensor<double> g {2};
     GQCP::SQHamiltonian<double> sq_hamiltonian {GQCP::ScalarSQOneElectronOperator<double>(h), GQCP::ScalarSQTwoElectronOperator<double>(g)};
 
 
     // Create valid and invalid density matrices (with respect to the dimensions of the SOBasis)
-    GQCP::OneDM<double> D_valid = GQCP::OneDM<double>::Zero(2, 2);
-    GQCP::OneDM<double> D_invalid = GQCP::OneDM<double>::Zero(3, 3);
+    GQCP::OneDM<double> D_valid = GQCP::OneDM<double>::Zero(2);
+    GQCP::OneDM<double> D_invalid = GQCP::OneDM<double>::Zero(3);
 
     GQCP::TwoDM<double> d_valid {2};
     GQCP::TwoDM<double> d_invalid {3};
@@ -268,7 +268,7 @@ BOOST_AUTO_TEST_CASE(calculate_Fockian_and_super) {
     auto d = calculateToy2DM();
 
     // Set up the toy Hamiltonian
-    GQCP::SquareMatrix<double> h = GQCP::SquareMatrix<double>::Zero(2, 2);
+    GQCP::SquareMatrix<double> h = GQCP::SquareMatrix<double>::Zero(2);
     // clang-format off
     h << 1, 0,
          0, 1;
@@ -323,7 +323,7 @@ BOOST_AUTO_TEST_CASE(calculateEdmistonRuedenbergLocalizationIndex) {
 
     // Create a toy Hamiltonian: only the two-electron integrals are important
     const size_t K = 5;
-    const GQCP::SquareMatrix<double> H_op = GQCP::SquareMatrix<double>::Random(K, K);
+    const GQCP::SquareMatrix<double> H_op = GQCP::SquareMatrix<double>::Random(K);
 
     GQCP::QCRankFourTensor<double> g_op {K};
     g_op.setZero();

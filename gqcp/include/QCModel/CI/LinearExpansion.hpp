@@ -22,8 +22,9 @@
 #include "Basis/SpinorBasis/GSpinorBasis.hpp"
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Basis/SpinorBasis/USpinorBasis.hpp"
-#include "Basis/Transformations/TransformationMatrix.hpp"
-#include "DensityMatrix/SpinResolvedOneDM.hpp"
+#include "Basis/Transformations/RTransformationMatrix.hpp"
+#include "DensityMatrix/Orbital1DM.hpp"
+#include "DensityMatrix/SpinResolved1DM.hpp"
 #include "DensityMatrix/SpinResolvedTwoDM.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 #include "ONVBasis/SpinResolvedONV.hpp"
@@ -375,18 +376,18 @@ public:
      *  @note This algorithm was implemented from a description in Helgaker2000.
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value> basisTransform(const TransformationMatrix<double>& T) {
+    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value> basisTransform(const RTransformationMatrix<double>& T) {
 
         const auto K = onv_basis.numberOfOrbitals();  // number of spatial orbitals
         if (K != T.numberOfOrbitals()) {
-            throw std::invalid_argument("LinearExpansion::basisTransform(const TransformationMatrix<double>&): The number of spatial orbitals does not match the dimension of the transformation matrix.");
+            throw std::invalid_argument("LinearExpansion::basisTransform(const RTransformationMatrix<double>&): The number of spatial orbitals does not match the dimension of the transformation matrix.");
         }
 
 
         // LU-decompose the transformation matrix LU decomposition for T
         const auto& lu_decomposition = T.noPivotLUDecompose();
 
-        SquareMatrix<double> L = SquareMatrix<double>::Identity(K, K);
+        SquareMatrix<double> L = SquareMatrix<double>::Identity(K);
         L.triangularView<Eigen::StrictlyLower>() = lu_decomposition[0];
 
         SquareMatrix<double> U = SquareMatrix<double>(lu_decomposition[1].triangularView<Eigen::Upper>());
@@ -394,7 +395,7 @@ public:
 
 
         // Calculate t (the operator which allows per-orbital transformation of the wave function)
-        SquareMatrix<double> t = SquareMatrix<double>::Identity(K, K) - L + U_inv;
+        SquareMatrix<double> t = SquareMatrix<double>::Identity(K) - L + U_inv;
 
 
         // Set up spin-unresolved ONV basis variables for the loops over the ONVs
@@ -658,14 +659,14 @@ public:
      *  @return the spin-resolved 1-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolvedOneDM<double>> calculateSpinResolved1DM() const {
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const {
 
         // Prepare some variables.
         const auto K = this->onv_basis.numberOfSpatialOrbitals();
         const auto dimension = this->onv_basis.dimension();
 
         // For seniority-zero linear expansions, one DM covers both alpha and beta spins.
-        OneDM<double> D = OneDM<double>::Zero(K, K);
+        OneDM<double> D = OneDM<double>::Zero(K);
 
         // Create the first ONV (with address 0). In DOCI, the ONV basis for alpha and beta is equal, so we can use the proxy ONV basis.
         const auto onv_basis_proxy = this->onv_basis.proxy();
@@ -684,7 +685,7 @@ public:
             }
         }
 
-        return SpinResolvedOneDM<double>::FromRestricted(D);
+        return SpinResolved1DM<double>::FromRestricted(D);
     }
 
 
@@ -760,10 +761,10 @@ public:
     /**
      *  Calculate the one-electron density matrix for a full spin-resolved wave function expansion.
      * 
-     *  @return the total (spin-summed) 1-DM
+     *  @return The total, spin-summed, orbital 1-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, OneDM<double>> calculate1DM() const { return this->calculateSpinResolved1DM().spinSummed(); }
+    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, Orbital1DM<double>> calculate1DM() const { return this->calculateSpinResolved1DM().spinSummed(); }
 
 
     /**
@@ -781,13 +782,13 @@ public:
      *  @return the spin-resolved 1-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, SpinResolvedOneDM<double>> calculateSpinResolved1DM() const {
+    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const {
 
         // Initialize as zero matrices
         size_t K = this->onv_basis.numberOfOrbitals();
 
-        OneDM<double> D_aa = OneDM<double>::Zero(K, K);
-        OneDM<double> D_bb = OneDM<double>::Zero(K, K);
+        OneDM<double> D_aa = OneDM<double>::Zero(K);
+        OneDM<double> D_bb = OneDM<double>::Zero(K);
 
         SpinUnresolvedONVBasis onv_basis_alpha = onv_basis.onvBasisAlpha();
         SpinUnresolvedONVBasis onv_basis_beta = onv_basis.onvBasisBeta();
@@ -890,7 +891,7 @@ public:
             }
 
         }  // I_beta loop
-        return SpinResolvedOneDM<double>(D_aa, D_bb);
+        return SpinResolved1DM<double>(D_aa, D_bb);
     }
 
 
@@ -1137,13 +1138,13 @@ public:
      *  @return the spin-resolved 1-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, SpinResolvedOneDM<double>> calculateSpinResolved1DM() const {
+    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const {
 
         size_t K = this->onv_basis.numberOfOrbitals();
         size_t dim = onv_basis.dimension();
 
-        OneDM<double> D_aa = OneDM<double>::Zero(K, K);
-        OneDM<double> D_bb = OneDM<double>::Zero(K, K);
+        OneDM<double> D_aa = OneDM<double>::Zero(K);
+        OneDM<double> D_bb = OneDM<double>::Zero(K);
 
 
         for (size_t I = 0; I < dim; I++) {  // loop over all addresses (1)
@@ -1207,7 +1208,7 @@ public:
             }  // loop over addresses J > I
         }      // loop over addresses I
 
-        return SpinResolvedOneDM<double>(D_aa, D_bb);  // the total 1-DM is the sum of the spin components
+        return SpinResolved1DM<double>(D_aa, D_bb);  // the total 1-DM is the sum of the spin components
     }
 
 

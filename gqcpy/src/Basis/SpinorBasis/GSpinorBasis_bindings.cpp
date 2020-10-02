@@ -15,9 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Basis/SpinorBasis/GSpinorBasis.hpp"
-
 #include "Basis/ScalarBasis/GTOShell.hpp"
+#include "Basis/SpinorBasis/GSpinorBasis.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 
@@ -93,14 +92,14 @@ void bindGSpinorBasis(py::module& module) {
         .def(
             "rotate",
             [](GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& U) {
-                spinor_basis.rotate(GQCP::TransformationMatrix<double>(U));
+                spinor_basis.rotate(GQCP::GTransformationMatrix<double>(U));
             },
             py::arg("U"),
             "Rotate the spinor basis to another one using the given unitary transformation matrix.")
 
         .def(
             "transform", [](GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& T) {
-                spinor_basis.transform(GQCP::TransformationMatrix<double>(T));
+                spinor_basis.transform(GQCP::GTransformationMatrix<double>(T));
             },
             py::arg("T"), "Transform the current spinor basis using a given transformation matrix")
 
@@ -157,7 +156,7 @@ void bindGSpinorBasis(py::module& module) {
 
         .def(
             "transform", [](GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& T_matrix) {
-                const GQCP::TransformationMatrix<double> T(T_matrix);
+                const GQCP::GTransformationMatrix<double> T(T_matrix);
                 spinor_basis.transform(T);
             },
             "Transform the current spinor basis using a given transformation matrix.");

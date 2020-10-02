@@ -46,6 +46,12 @@ void basisTransform(RSpinorBasis<TransformationScalar, Shell>& spinor_basis, SQH
     sq_hamiltonian.transform(T);
 }
 
+template <typename TransformationScalar, typename Shell>
+void basisTransform(RSpinorBasis<TransformationScalar, Shell>& spinor_basis, SQHamiltonian<TransformationScalar>& sq_hamiltonian, const RTransformationMatrix<TransformationScalar>& T) {
+
+    spinor_basis.transform(T);
+    sq_hamiltonian.transform(T);
+}
 
 /**
  *  Transform both the spinor basis and the one-electron operator to another basis using the given transformation matrix
@@ -77,6 +83,13 @@ void basisTransform(RSpinorBasis<TransformationScalar, Shell>& spinor_basis, SQO
  */
 template <typename TransformationScalar, typename Shell>
 void basisRotate(RSpinorBasis<TransformationScalar, Shell>& spinor_basis, SQHamiltonian<TransformationScalar>& sq_hamiltonian, const TransformationMatrix<TransformationScalar>& U) {
+
+    spinor_basis.rotate(U);
+    sq_hamiltonian.rotate(U);
+}
+
+template <typename TransformationScalar, typename Shell>
+void basisRotate(RSpinorBasis<TransformationScalar, Shell>& spinor_basis, SQHamiltonian<TransformationScalar>& sq_hamiltonian, const RTransformationMatrix<TransformationScalar>& U) {
 
     spinor_basis.rotate(U);
     sq_hamiltonian.rotate(U);
@@ -137,7 +150,11 @@ void basisTransform(USpinorBasis<TransformationScalar, ShellType>& spinor_basis,
     spinor_basis.transform(T);
     usq_hamiltonian.transform(T);
 }
-
+template <typename TransformationScalar, typename ShellType>
+void basisTransform(USpinorBasis<TransformationScalar, ShellType>& spinor_basis, USQHamiltonian<TransformationScalar>& usq_hamiltonian, const UTransformationMatrixComponent<TransformationScalar>& T) {
+    spinor_basis.transform(T);
+    usq_hamiltonian.transform(T);
+}
 
 /**
  *  Rotate a single component (alpha or beta) of both the spinor basis and the Hamiltonian to another basis using the given unitary transformation matrix

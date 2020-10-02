@@ -53,7 +53,7 @@ NewtonOrbitalOptimizer::NewtonOrbitalOptimizer(std::shared_ptr<BaseHessianModifi
  * 
  *  @return a unitary matrix that will be used to rotate the current Hamiltonian into the next iteration
  */
-TransformationMatrix<double> NewtonOrbitalOptimizer::calculateNewRotationMatrix(const SQHamiltonian<double>& sq_hamiltonian) const {
+RTransformationMatrix<double> NewtonOrbitalOptimizer::calculateNewRotationMatrix(const SQHamiltonian<double>& sq_hamiltonian) const {
 
     // The general goal of this function is to:
     //      1) determine the free orbital rotation generators, using gradient and Hessian information

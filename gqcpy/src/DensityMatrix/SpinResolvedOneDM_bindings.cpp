@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "DensityMatrix/SpinResolvedOneDM.hpp"
+#include "DensityMatrix/SpinResolved1DM.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
@@ -28,14 +28,14 @@ namespace gqcpy {
 
 
 void bindSpinResolvedOneDM(py::module& module) {
-    py::class_<GQCP::SpinResolvedOneDM<double>>(module, "SpinResolvedOneDM", "A class that represents a spin resolved one DM.")
+    py::class_<GQCP::SpinResolved1DM<double>>(module, "SpinResolved1DM", "A class that represents a spin resolved one DM.")
 
         // CONSTRUCTORS
 
         .def_static(
             "fromRestricted",
             [](const Eigen::MatrixXd& D) {
-                return GQCP::SpinResolvedOneDM<double>::FromRestricted(GQCP::OneDM<double> {D});
+                return GQCP::SpinResolved1DM<double>::FromRestricted(GQCP::OneDM<double> {D});
             },
             "Return a spin resolved One DM created from a restricted basis.")
 
@@ -43,17 +43,17 @@ void bindSpinResolvedOneDM(py::module& module) {
 
         .def(
             "alpha",
-            &GQCP::SpinResolvedOneDM<double>::alpha,
+            &GQCP::SpinResolved1DM<double>::alpha,
             "Return the alpha part of the spin resolved One DM.")
 
         .def(
             "beta",
-            &GQCP::SpinResolvedOneDM<double>::beta,
+            &GQCP::SpinResolved1DM<double>::beta,
             "Return the beta part of the spin resolved one DM.")
 
         .def(
             "numberOfOrbitals",
-            [](const GQCP::SpinResolvedOneDM<double>& D, const GQCP::Spin sigma) {
+            [](const GQCP::SpinResolved1DM<double>& D, const GQCP::Spin sigma) {
                 return D.numberOfOrbitals(sigma);
             },
             py::arg("sigma"),
@@ -61,12 +61,12 @@ void bindSpinResolvedOneDM(py::module& module) {
 
         .def(
             "spinDensity",
-            &GQCP::SpinResolvedOneDM<double>::spinDensity,
+            &GQCP::SpinResolved1DM<double>::spinDensity,
             "Return the spin-density matrix, i.e. the difference between the alpha and beta 1-DM.")
 
         .def(
             "spinSummed",
-            &GQCP::SpinResolvedOneDM<double>::spinSummed,
+            &GQCP::SpinResolved1DM<double>::spinSummed,
             "Return the spin-summed density matrix, i.e. the sum of the alpha and beta 1-DM.");
 }
 

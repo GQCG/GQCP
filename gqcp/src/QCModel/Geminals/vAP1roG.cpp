@@ -50,7 +50,7 @@ vAP1roG::vAP1roG(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<d
 OneDM<double> vAP1roG::calculate1DM(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<double>& multipliers) {
 
     // KISS-implementation of the formulas.
-    OneDM<double> D = OneDM<double>::Zero(G.numberOfSpatialOrbitals(), G.numberOfSpatialOrbitals());
+    OneDM<double> D = OneDM<double>::Zero(G.numberOfSpatialOrbitals());
 
     const auto orbital_space = G.orbitalSpace();
 
@@ -134,7 +134,7 @@ SquareMatrix<double> vAP1roG::calculateNumber2DM(const AP1roGGeminalCoefficients
     const size_t K = G.numberOfSpatialOrbitals();
     const auto orbital_space = G.orbitalSpace();
 
-    SquareMatrix<double> Delta = SquareMatrix<double>::Zero(K, K);
+    SquareMatrix<double> Delta = SquareMatrix<double>::Zero(K);
 
 
     // KISS-implementation
@@ -211,7 +211,7 @@ SquareMatrix<double> vAP1roG::calculatePair2DM(const AP1roGGeminalCoefficients& 
     const auto orbital_space = G.orbitalSpace();
 
 
-    SquareMatrix<double> Pi = SquareMatrix<double>::Zero(K, K);
+    SquareMatrix<double> Pi = SquareMatrix<double>::Zero(K);
 
 
     // KISS-implementation

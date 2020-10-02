@@ -20,7 +20,7 @@
 
 #include "Basis/Transformations/TransformationMatrix.hpp"
 #include "DensityMatrix/OneDM.hpp"
-#include "DensityMatrix/SpinResolvedOneDM.hpp"
+#include "DensityMatrix/SpinResolved1DM.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
 #include "QCModel/HF/RHF.hpp"
@@ -180,7 +180,7 @@ public:
      *
      *  @return the spin resolved UHF 1-DM expressed in an orthonormal sigma spin-orbital basis
      */
-    static SpinResolvedOneDM<Scalar> calculateOrthonormalBasis1DM(const size_t K_a, const size_t K_b, const size_t N_a, const size_t N_b) {
+    static SpinResolved1DM<Scalar> calculateOrthonormalBasis1DM(const size_t K_a, const size_t K_b, const size_t N_a, const size_t N_b) {
 
         // The (alpha) 1-DM for UHF looks like (for K_alpha=5, N_alpha=3)
         //    1  0  0  0  0
@@ -189,13 +189,13 @@ public:
         //    0  0  0  0  0
         //    0  0  0  0  0
 
-        OneDM<Scalar> D_MO_a = OneDM<Scalar>::Zero(K_a, K_a);
-        D_MO_a.topLeftCorner(N_a, N_a) = SquareMatrix<Scalar>::Identity(N_a, N_a);
+        OneDM<Scalar> D_MO_a = OneDM<Scalar>::Zero(K_a);
+        D_MO_a.topLeftCorner(N_a, N_a) = SquareMatrix<Scalar>::Identity(N_a);
 
-        OneDM<Scalar> D_MO_b = OneDM<Scalar>::Zero(K_b, K_b);
-        D_MO_b.topLeftCorner(N_b, N_b) = SquareMatrix<Scalar>::Identity(N_b, N_b);
+        OneDM<Scalar> D_MO_b = OneDM<Scalar>::Zero(K_b);
+        D_MO_b.topLeftCorner(N_b, N_b) = SquareMatrix<Scalar>::Identity(N_b);
 
-        return SpinResolvedOneDM<Scalar> {D_MO_a, D_MO_b};
+        return SpinResolved1DM<Scalar> {D_MO_a, D_MO_b};
     }
 
 
@@ -207,7 +207,7 @@ public:
      *
      *  @return the spin resolved UHF 1-DM expressed in the underlying scalar basis
      */
-    static SpinResolvedOneDM<Scalar> calculateScalarBasis1DM(const TransformationMatrix<double>& C_a, const TransformationMatrix<double>& C_b, const size_t N_a, const size_t N_b) {
+    static SpinResolved1DM<Scalar> calculateScalarBasis1DM(const TransformationMatrix<double>& C_a, const TransformationMatrix<double>& C_b, const size_t N_a, const size_t N_b) {
 
         const auto K_a = C_a.numberOfOrbitals();
         const auto K_b = C_b.numberOfOrbitals();
@@ -226,7 +226,7 @@ public:
      * 
      *  @return the UHF direct (Coulomb) matrix for spin sigma
      */
-    static ScalarUSQOneElectronOperator<Scalar> calculateScalarBasisDirectMatrix(const SpinResolvedOneDM<Scalar>& P, const SQHamiltonian<Scalar>& sq_hamiltonian) {
+    static ScalarUSQOneElectronOperator<Scalar> calculateScalarBasisDirectMatrix(const SpinResolved1DM<Scalar>& P, const SQHamiltonian<Scalar>& sq_hamiltonian) {
 
         // To perform the contraction, we will first have to convert the density matrices into tensors (since contractions are only implemented for tensors).
         Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_alpha_tensor {P.alpha().data(), P.alpha().rows(), P.alpha().cols()};
@@ -256,7 +256,7 @@ public:
      * 
      *  @return the UHF direct (Coulomb) matrix for spin sigma
      */
-    static ScalarUSQOneElectronOperator<Scalar> calculateScalarBasisExchangeMatrix(const SpinResolvedOneDM<Scalar>& P, const SQHamiltonian<Scalar>& sq_hamiltonian) {
+    static ScalarUSQOneElectronOperator<Scalar> calculateScalarBasisExchangeMatrix(const SpinResolved1DM<Scalar>& P, const SQHamiltonian<Scalar>& sq_hamiltonian) {
 
         // To perform the contraction, we will first have to convert the density matrix into a tensor (since contractions are only implemented for tensors).
         Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_alpha_tensor {P.alpha().data(), P.alpha().rows(), P.alpha().cols()};
@@ -287,7 +287,7 @@ public:
      *
      *  @return the RHF Fock matrix expressed in the scalar basis
      */
-    static ScalarUSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(const SpinResolvedOneDM<Scalar>& P, const SQHamiltonian<Scalar>& sq_hamiltonian) {
+    static ScalarUSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(const SpinResolved1DM<Scalar>& P, const SQHamiltonian<Scalar>& sq_hamiltonian) {
 
         // F_sigma = H_core + (J_alpha + J_beta) - K_sigma
         // H_core is always the same
@@ -317,7 +317,7 @@ public:
      * 
      *  @return the spin resolved UHF 1-DM expressed in an orthonormal spin-orbital basis for these UHF model parameters
      */
-    SpinResolvedOneDM<Scalar> calculateOrthonormalBasis1DM() const {
+    SpinResolved1DM<Scalar> calculateOrthonormalBasis1DM() const {
 
         const auto K_a = this->numberOfSpinOrbitals(Spin::alpha);
         const auto K_b = this->numberOfSpinOrbitals(Spin::beta);
@@ -332,7 +332,7 @@ public:
      *
      *  @return the spin resolved UHF 1-DM expressed in the underlying scalar basis for these UHF model parameters
      */
-    SpinResolvedOneDM<Scalar> calculateScalarBasis1DM() const {
+    SpinResolved1DM<Scalar> calculateScalarBasis1DM() const {
 
         const auto C_a = this->coefficientMatrix(Spin::alpha);
         const auto C_b = this->coefficientMatrix(Spin::beta);

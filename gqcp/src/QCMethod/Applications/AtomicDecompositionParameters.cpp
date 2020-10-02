@@ -103,8 +103,8 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
     SquareMatrix<double> H = T + V;
 
     // Decompose the integrals corresponding to the formula's in Mario's thesis
-    SquareMatrix<double> h_a = SquareMatrix<double>::Zero(K, K);
-    SquareMatrix<double> h_b = SquareMatrix<double>::Zero(K, K);
+    SquareMatrix<double> h_a = SquareMatrix<double>::Zero(K);
+    SquareMatrix<double> h_b = SquareMatrix<double>::Zero(K);
 
     h_a.block(0, 0, K_a, K_a) = T_a + V_a;
     h_b.block(K_a, K_a, K_b, K_b) = T_b + V_b;

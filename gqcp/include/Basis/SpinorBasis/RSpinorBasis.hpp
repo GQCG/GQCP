@@ -23,10 +23,12 @@
 #include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
 #include "Basis/SpinorBasis/Spinor.hpp"
 #include "Basis/Transformations/JacobiRotationParameters.hpp"
+#include "Basis/Transformations/RTransformationMatrix.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Molecule/NuclearFramework.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
+#include "Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
 #include "Utilities/aliases.hpp"
@@ -49,9 +51,17 @@ class RSpinorBasis:
     public SimpleSpinorBasis<_ExpansionScalar, RSpinorBasis<_ExpansionScalar, _Shell>> {
 
 public:
-    using Shell = _Shell;
+    // The scalar type used to represent an expansion coefficient of the spinors in the underlying scalar orbitals: real or complex.
     using ExpansionScalar = _ExpansionScalar;
+
+    // The type of shell the underlying scalar bases contain.
+    using Shell = _Shell;
+
+    // The type of the base spinor basis.
     using Base = SimpleSpinorBasis<_ExpansionScalar, RSpinorBasis<_ExpansionScalar, _Shell>>;
+
+    // The type of transformation matrix that is naturally related to a GSpinorBasis.
+    using TM = RTransformationMatrix<ExpansionScalar>;  // TODO: Rename to TransformationMatrix once the class is gone
 
     using Primitive = typename Shell::Primitive;
     using BasisFunction = typename Shell::BasisFunction;
@@ -71,7 +81,7 @@ public:
      *  @param scalar_basis         the underlying scalar basis that is equal for both the alpha- and beta components
      *  @param C                    the matrix that holds the the expansion coefficients, i.e. that expresses the restricted spinors in terms of the underlying scalar basis
      */
-    RSpinorBasis(const ScalarBasis<Shell>& scalar_basis, const TransformationMatrix<ExpansionScalar>& C) :
+    RSpinorBasis(const ScalarBasis<Shell>& scalar_basis, const TM& C) :
         Base(C),
         scalar_basis {scalar_basis} {}
 
@@ -84,8 +94,7 @@ public:
      *  @note the resulting restricted spinor basis is (most likely) non-orthogonal
      */
     RSpinorBasis(const ScalarBasis<Shell>& scalar_basis) :
-        RSpinorBasis(scalar_basis, TransformationMatrix<double>::Identity(scalar_basis.numberOfBasisFunctions(),
-                                                                          scalar_basis.numberOfBasisFunctions())) {}
+        RSpinorBasis(scalar_basis, TM::Identity(scalar_basis.numberOfBasisFunctions())) {}
 
 
     /**
@@ -176,16 +185,16 @@ public:
      * 
      *  @return the second-quantized density operator
      */
-    SQOneElectronOperator<ScalarFunctionProduct<LinearCombination<double, BasisFunction>>, ElectronicDensityOperator::Components> quantize(const ElectronicDensityOperator& fq_density_op) const {
+    EvaluatableScalarRSQOneElectronOperator<ScalarFunctionProduct<LinearCombination<double, BasisFunction>>> quantize(const ElectronicDensityOperator& fq_density_op) const {
 
-        using ResultScalar = ScalarFunctionProduct<LinearCombination<double, BasisFunction>>;  // the 'scalar' for the density operator is again a linear combination
-        using ResultOperator = SQOneElectronOperator<ScalarFunctionProduct<LinearCombination<double, BasisFunction>>, ElectronicDensityOperator::Components>;
+        using Evaluatable = ScalarFunctionProduct<LinearCombination<double, BasisFunction>>;  // the evaluatable type for the density operator
+        using ResultOperator = EvaluatableScalarRSQOneElectronOperator<Evaluatable>;
 
         // There aren't any 'integrals' to be calculated for the density operator: we can just multiply every pair of spatial orbitals.
         const auto phi = this->spatialOrbitals();
         const auto K = this->numberOfSpatialOrbitals();
 
-        SquareMatrix<ResultScalar> rho_par {K};  // the matrix representation ('par' for 'parameters') of the second-quantized (one-electron) density operator
+        SquareMatrix<Evaluatable> rho_par {K};  // the matrix representation ('par' for 'parameters') of the second-quantized (one-electron) density operator
         for (size_t p = 0; p < K; p++) {
             for (size_t q = 0; q < K; q++) {
                 rho_par(p, q) = phi[p] * phi[q];
@@ -274,6 +283,24 @@ public:
 
         return spin_orbitals;
     }
+};
+
+
+/*
+ *  MARK: SpinorBasisTraits
+ */
+
+/**
+ *  A type that provides compile-time information on spinor bases that is otherwise not accessible through a public class alias.
+ */
+template <typename _ExpansionScalar, typename _Shell>
+class SpinorBasisTraits<RSpinorBasis<_ExpansionScalar, _Shell>> {
+public:
+    // The scalar type used to represent an expansion coefficient of the spinors in the underlying scalar orbitals: real or complex.
+    using ExpansionScalar = _ExpansionScalar;
+
+    // The type of transformation matrix that is naturally related to a GSpinorBasis.
+    using TM = RTransformationMatrix<ExpansionScalar>;  // TODO: Rename to TransformationMatrix once the class is gone
 };
 
 

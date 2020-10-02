@@ -8,6 +8,7 @@ target_sources(gqcp
         RTransformationMatrix.hpp
         SimpleTransformationMatrix.hpp
         UTransformationMatrix.hpp
+        UTransformationMatrixComponent.hpp
         transform.hpp
         TransformationMatrix.hpp
 )

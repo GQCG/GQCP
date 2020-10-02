@@ -20,28 +20,12 @@
 
 #include "Basis/Transformations/BasisTransformable.hpp"
 #include "Basis/Transformations/JacobiRotatable.hpp"
-#include "DensityMatrix/OneDM.hpp"
-#include "Mathematical/Functions/VectorSpaceArithmetic.hpp"
+#include "DensityMatrix/TwoDM.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
-#include "Mathematical/Representation/StorageArray.hpp"
-#include "Utilities/CRTP.hpp"
-#include "Utilities/type_traits.hpp"
-
-#include <algorithm>
+#include "Operator/SecondQuantized/SQOperatorStorage.hpp"
 
 
 namespace GQCP {
-
-
-/*
- *  MARK: Operator traits
- */
-
-/**
- *  A type that provides compile-time information on operators that is otherwise not accessible through a public class alias.
- */
-template <typename Operator>
-class OperatorTraits {};
 
 
 /**
@@ -49,15 +33,15 @@ class OperatorTraits {};
  * 
  *  This class is used as a base class for `RSQOneElectronOperator` and `GSQOneElectronOperator`, since they both admit parameter representations using a single matrix, as opposed to `USQOneElectronOperator`, which uses separate alpha- and beta- matrices. The word 'simple' is used here as an antonym for 'compound'.
  * 
- *  @tparam _Scalar                 The scalar type used for a single parameter: real or complex.
+ *  @tparam _Scalar                 The scalar type used for a single parameter/matrix element: real or complex.
  *  @tparam _Vectorizer             The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
  *  @tparam _DerivedOperator        The type of the operator that derives from this class, enabling CRTP and compile-time polymorphism.
  */
 template <typename _Scalar, typename _Vectorizer, typename _DerivedOperator>
 class SimpleSQOneElectronOperator:
-    public VectorSpaceArithmetic<SimpleSQOneElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>, _Scalar>,
-    public BasisTransformable<SimpleSQOneElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>, typename OperatorTraits<_DerivedOperator>::TM>,
-    public JacobiRotatable<SimpleSQOneElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>> {
+    public SQOperatorStorage<SquareMatrix<_Scalar>, _Vectorizer, SimpleSQOneElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>>,
+    public BasisTransformable<_DerivedOperator, typename OperatorTraits<_DerivedOperator>::TM>,
+    public JacobiRotatable<_DerivedOperator> {
 public:
     // The scalar type used for a single parameter: real or complex.
     using Scalar = _Scalar;
@@ -80,10 +64,8 @@ public:
     // The type of transformation matrix that is naturally associated to the derived one-electron operator.
     using TM = typename OperatorTraits<DerivedOperator>::TM;
 
-
-private:
-    // The array that takes care of the storage of the operator's matrix elements.
-    StorageArray<MatrixRepresentation, Vectorizer> array;
+    // The type of the one-particle density matrix that is naturally associated to the derived one-electron operator.
+    using Derived1DM = typename OperatorTraits<DerivedOperator>::OneDM;
 
 
 public:
@@ -91,139 +73,8 @@ public:
      *  MARK: Constructors
      */
 
-    /**
-     *  Construct a one-electron operator from a(n) (storage) array.
-     * 
-     *  @param array                A storage array that contains the matrix representations of all the components of this operator.
-     */
-    SimpleSQOneElectronOperator(const StorageArray<MatrixRepresentation, Vectorizer>& array) :
-        array {array} {
-
-        const auto first_dimension = array.elements()[0].dimension();
-
-        for (const auto& parameters : array.elements()) {
-            if (parameters.dimension() != first_dimension) {
-                throw std::invalid_argument("SimpleSQOneElectronOperator(const StorageArray<MatrixRepresentation, Vectorizer>& array): The dimensions of the matrix representations must be equal.");
-            }
-        }
-    }
-
-
-    /**
-     *  Construct a one-electron operator from one matrix representation.
-     * 
-     *  @param parameters           The matrix representation of the one-electron integrals/parameters.
-     */
-    template <typename Z = Vectorizer>
-    SimpleSQOneElectronOperator(const MatrixRepresentation& parameters, typename std::enable_if<std::is_same<Z, ScalarVectorizer>::value>::type* = 0) :
-        SimpleSQOneElectronOperator(StorageArray<MatrixRepresentation, ScalarVectorizer>({parameters}, ScalarVectorizer())) {}
-
-
-    /**
-     *  Construct a one-electron operator from a set of three matrix representations, for each of the operator's components.
-     * 
-     *  @param parameters           A set of three matrix representations of the one-electron integrals/parameters, one for each of the operator's components.
-     */
-    template <typename Z = Vectorizer>
-    SimpleSQOneElectronOperator(const std::vector<MatrixRepresentation>& parameters, typename std::enable_if<std::is_same<Z, VectorVectorizer>::value>::type* = 0) :
-        SimpleSQOneElectronOperator(StorageArray<MatrixRepresentation, VectorVectorizer>(parameters, VectorVectorizer({3}))) {}
-
-
-    /**
-     *  Construct a one-electron operator with parameters that are zero.
-     * 
-     *  @param dim          The dimension of the matrix representation of the parameters, i.e. the number of orbitals/sites.
-     */
-    SimpleSQOneElectronOperator(const size_t dim, const Vectorizer& vectorizer) :
-        SimpleSQOneElectronOperator(StorageArray<MatrixRepresentation, Vectorizer> {MatrixRepresentation::Zero(dim, dim), vectorizer}) {}
-
-
-    /**
-     *  Construct a one-electron operator with parameters that are zero.
-     * 
-     *  @param dim          The dimension of the matrix representation of the parameters, i.e. the number of orbitals/sites.
-     */
-    template <typename Z = Vectorizer>
-    SimpleSQOneElectronOperator(const size_t dim, typename std::enable_if<std::is_same<Z, ScalarVectorizer>::value>::type* = 0) :
-        SimpleSQOneElectronOperator(dim, ScalarVectorizer()) {}
-
-
-    /**
-     *  Construct a one-electron operator with parameters that are zero.
-     * 
-     *  @param dim          The dimension of the matrix representation of the parameters, i.e. the number of orbitals/sites.
-     */
-    template <typename Z = Vectorizer>
-    SimpleSQOneElectronOperator(const size_t dim, typename std::enable_if<std::is_same<Z, VectorVectorizer>::value>::type* = 0) :
-        SimpleSQOneElectronOperator(dim, VectorVectorizer({3})) {}
-
-
-    /**
-     *  The default constructor.
-     */
-    SimpleSQOneElectronOperator() :
-        SimpleSQOneElectronOperator(0, Vectorizer()) {}
-
-
-    /*
-     *  MARK: Parameter access
-     */
-
-    /**
-     *  @return A vector of read-only matrix representions of the parameters/integrals of this operator.
-     */
-    const std::vector<MatrixRepresentation>& allParameters() const { return this->array.elements(); }
-
-    /**
-     *  @return A vector of writable matrix representions of the parameters/integrals of this operator.
-     */
-    std::vector<MatrixRepresentation>& allParameters() { return this->array.elements(); }
-
-    /**
-     *  @param indices      A set of coordinates that accesses this one-electron operator.
-     * 
-     *  @return A read-only matrix representation of the parameters/integrals of one of the tensor components of this operator.
-     */
-    template <typename... Indices>
-    const MatrixRepresentation& parameters(const Indices&... indices) const { return this->array(indices...); }
-
-
-    /**
-     *  @param indices      A set of coordinates that accesses this one-electron operator.
-     * 
-     *  @return A writable matrix representation of the parameters/integrals of one of the tensor components of this operator.
-     */
-    template <typename... Indices>
-    MatrixRepresentation& parameters(const Indices&... indices) { return this->array(indices...); }
-
-
-    /**
-     *  @param indices      A set of coordinates that accesses this one-electron operator.
-     * 
-     *  @return The component of this one-electron operator that corresponds to the given coordinate indices.
-     */
-    template <typename... Indices>
-    ScalarDerivedOperator operator()(const Indices&... indices) const {
-
-        // Access the underlying array's storage, and wrap the result in a scalar form of the derived second-quantized operator. The correct scalar derived operator can be instantiated since the scalar derived operator type has a special constructor that expects just one matrix.
-        return ScalarDerivedOperator {this->array(indices...)};
-    }
-
-
-    /*
-     *  MARK: General info
-     */
-
-    /**
-     *  @return The number of components of this one-electron operator. For scalar operators (such as the kinetic energy), this is 1, for vector operators (like the dipole operator), this is 3, etc.
-     */
-    size_t numberOfComponents() const { return this->array.vectorizer().numberOfElements(); }
-
-
-    /**
-     *  @return The number of orbitals this one-electron operator is quantized in. For 'restricted' operators, this is the number of spatial orbitals, for 'general' operators, this is the number of spinors.
-     */
-    size_t numberOfOrbitals() const { return this->array.elements()[0].dimension(); /* all the dimensions are the same, this is checked in the constructor */ }
+    // Inherit `SQOperatorStorage`'s constructors.
+    using SQOperatorStorage<SquareMatrix<_Scalar>, _Vectorizer, SimpleSQOneElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>>::SQOperatorStorage;
 
 
     /*
@@ -231,11 +82,13 @@ public:
      */
 
     /**
-     *  @param D                The total 1-DM that represents the wave function
+     *  Calculate the expectation value of this one-electron operator.
+     * 
+     *  @param D                The 1-DM that represents the wave function.
      *
-     *  @return The expectation value of this one-electron operator, i.e. the expectation value of all components of the one-electron operator.
+     *  @return The expectation value of all components of the one-electron operator.
      */
-    StorageArray<Scalar, Vectorizer> calculateExpectationValue(const OneDM<Scalar>& D) const {
+    StorageArray<Scalar, Vectorizer> calculateExpectationValue(const Derived1DM& D) const {
 
         if (this->numberOfOrbitals() != D.numberOfOrbitals()) {
             throw std::invalid_argument("SimpleSQOneElectronOperator::calculateExpectationValue(const OneDM<Scalar>&): The given 1-DM is not compatible with the one-electron operator.");
@@ -252,64 +105,105 @@ public:
     }
 
 
-    /*
-     *  MARK: Conforming to VectorSpaceArithmetic
-     */
-
     /**
-     *  Addition-assignment.
-     */
-    Self& operator+=(const Self& rhs) override {
-
-        // Use the STL to implement element-wise addition.
-        std::transform(this->array.elements().begin(), this->array.elements().end(),
-                       rhs.array.elements().begin(), this->array.elements().begin(),
-                       std::plus<MatrixRepresentation>());
-
-        return *this;
-    }
-
-
-    /**
-     *  Scalar multiplication-assignment.
-     */
-    Self& operator*=(const Scalar& a) override {
-
-        // Use the STL to implement element-wise scalar multiplication.
-        std::transform(this->array.elements().begin(), this->array.elements().end(),
-                       this->array.elements().begin(), [a](const MatrixRepresentation& M) { return M * a; });
-
-        return *this;
-    }
-
-
-    /*
-     *  MARK: Other arithmetic
-     */
-
-    /**
-     *  Calculate the scalar one-electron operator that is the result of the vector dot product between this operator and the given vector. Note that this method is only available for vector-like one-electron operators.
+     *  Calculate the Fockian matrix for (each of the components of) this one-electron operator.
      * 
-     *  @param v        The vector with which this operator should be dot-multiplied.
+     *  @param D      The 1-DM (or the response 1-DM for made-variational wave function models).
+     *  @param d      The 2-DM (or the response 2-DM for made-variational wave function models).
+     *
+     *  @return The Fockian matrix.
      * 
-     *  @return The vector dot product between this operator and the given vector.
+     *  @note This method is only enabled in the real case.
      */
-    template <typename Z = Vectorizer>
-    ScalarDerivedOperator dot(const VectorX<Scalar>& v) const {
+    template <typename Z = Scalar>
+    enable_if_t<std::is_same<Z, double>::value, StorageArray<SquareMatrix<double>, Vectorizer>> calculateFockianMatrix(const Derived1DM& D, const TwoDM<double>& d) const {
 
-        if (this->array.vectorizer().numberOfElements() != v.size()) {
-            throw std::invalid_argument("SimpleSQOneElectronOperator(const StorageArray<Scalar, Vectorizer>&): The dimension of the given vector is incompatible with this vector operator.)");
+        if (D.numberOfOrbitals() != this->numberOfOrbitals()) {
+            throw std::invalid_argument("SimpleSQOneElectronOperator::calculateFockianMatrix(const Derived1DM&, const TwoDM<double>&): The 1-DM's dimensions are not compatible with this one-electron operator.");
         }
 
-        const auto dimension = this->numberOfOrbitals();
-        ScalarDerivedOperator result {dimension};  // initializes a scalar one-electron operator with parameters that are zero
+        if (d.numberOfOrbitals() != this->numberOfOrbitals()) {
+            throw std::invalid_argument("SimpleSQOneElectronOperator::calculateFockianMatrix(const Derived1DM&, const TwoDM<double>&): The 2-DM's dimensions are not compatible with this one-electron operator.");
+        }
 
-        // Calculate the dot/inner product of two vectors.
+
+        const auto& parameters = this->parameters();                              // The parameters of the one-electron operator, as a vector.
+        std::vector<SquareMatrix<double>> F_vector {this->numberOfComponents()};  // The resulting vector of Fockian matrices.
+
+        // A KISS implementation of the calculation of the Fockian matrix.
         for (size_t i = 0; i < this->numberOfComponents(); i++) {
-            result += v(i) * (*this)(i);
+            const auto& f_i = parameters[i];  // The matrix representation of the parameters of the i-th component.
+
+            // Calculate the Fockian matrix for every component and add it to the array.
+            SquareMatrix<double> F_i = SquareMatrix<double>::Zero(this->numberOfOrbitals());  // The Fockian matrix of the i-th component.
+            for (size_t p = 0; p < this->numberOfOrbitals(); p++) {
+                for (size_t q = 0; q < this->numberOfOrbitals(); q++) {
+
+                    for (size_t r = 0; r < this->numberOfOrbitals(); r++) {
+                        F_i(p, q) += f_i(q, r) * 0.5 * (D(p, r) + D(r, p));  // Include a factor 1/2 to accommodate for response density matrices.
+                    }
+                }
+            }  // F_i elements loop
+            F_vector[i] = F_i;
         }
 
-        return result;
+        return StorageArray<SquareMatrix<double>, Vectorizer> {F_vector, this->array().vectorizer()};
+    }
+
+
+    /**
+     *  Calculate the super-Fockian matrix for (each of the components of) this one-electron operator.
+     * 
+     *  @param D      The 1-DM (or the response 1-DM for made-variational wave function models).
+     *  @param d      The 2-DM (or the response 2-DM for made-variational wave function models).
+     *
+     *  @return The super-Fockian matrix.
+     * 
+     *  @note This method is only enabled in the real case.
+     */
+    template <typename Z = Scalar>
+    enable_if_t<std::is_same<Z, double>::value, StorageArray<SquareRankFourTensor<double>, Vectorizer>> calculateSuperFockianMatrix(const Derived1DM& D, const TwoDM<double>& d) const {
+
+        if (D.numberOfOrbitals() != this->numberOfOrbitals()) {
+            throw std::invalid_argument("SimpleSQOneElectronOperator::calculateFockianMatrix(const Derived1DM&, const TwoDM<double>&): The given 1-DM's dimensions are not compatible with this one-electron operator.");
+        }
+
+        if (d.numberOfOrbitals() != this->numberOfOrbitals()) {
+            throw std::invalid_argument("SimpleSQOneElectronOperator::calculateFockianMatrix(const Derived1DM&, const TwoDM<double>&): The given 2-DM's dimensions are not compatible with this one-electron operator.");
+        }
+
+
+        const auto& parameters = this->parameters();                                      // The parameters of the one-electron operator, as a vector.
+        std::vector<SquareRankFourTensor<double>> G_vector {this->numberOfComponents()};  // The resulting vector of super-Fockian matrices.
+        const auto F_vector = this->calculateFockianMatrix(D, d).array();                 // The Fockian matrices are necessary in the calculation of the super-Fockian matrices.
+
+        // A KISS implementation of the calculation of the super-Fockian matrix.
+        for (size_t i = 0; i < this->numberOfComponents(); i++) {
+
+            const auto& f_i = this->parameters(i);  // The matrix representation of the parameters of the i-th component.
+            const auto& F_i = F_vector[i];          // The Fockian matrix of the i-th component.
+
+            // Calculate the super-Fockian matrix for every component and add it to the array. Add factors 1/2 to accommodate for response density matrices.
+            SquareRankFourTensor<double> G_i {this->numberOfOrbitals()};
+            G_i.setZero();
+            for (size_t p = 0; p < this->numberOfOrbitals(); p++) {
+                for (size_t q = 0; q < this->numberOfOrbitals(); q++) {
+                    for (size_t r = 0; r < this->numberOfOrbitals(); r++) {
+                        for (size_t s = 0; s < this->numberOfOrbitals(); s++) {
+
+                            if (q == r) {
+                                G_i(p, q, r, s) += F_i(p, s);
+                            }
+
+                            G_i(p, q, r, s) -= f_i(s, p) * 0.5 * (D(r, q) + D(q, r));
+                        }
+                    }
+                }
+            }  // G_i elements loop
+            G_vector[i] = G_i;
+        }
+
+        return StorageArray<SquareRankFourTensor<double>, Vectorizer> {G_vector, this->array().vectorizer()};
     }
 
 
@@ -324,7 +218,7 @@ public:
      * 
      *  @return The basis-transformed one-electron integrals.
      */
-    Self transformed(const TM& transformation_matrix) const override {
+    DerivedOperator transformed(const TM& transformation_matrix) const override {
 
         // Calculate the basis transformation for every component of the operator.
         const auto& parameters = this->allParameters();
@@ -334,15 +228,15 @@ public:
             result[i] = transformation_matrix.adjoint() * (parameters[i]) * transformation_matrix;
         }
 
-        return Self(StorageArray<MatrixRepresentation, Vectorizer>(result, this->array.vectorizer()));
+        return DerivedOperator {StorageArray<MatrixRepresentation, Vectorizer>(result, this->array.vectorizer())};
     }
 
 
     // Allow the `rotate` method from `BasisTransformable`, since there's also a `rotate` from `JacobiRotatable`.
-    using BasisTransformable<Self, TM>::rotate;
+    using BasisTransformable<DerivedOperator, TM>::rotate;
 
     // Allow the `rotated` method from `BasisTransformable`, since there's also a `rotated` from `JacobiRotatable`.
-    using BasisTransformable<Self, TM>::rotated;
+    using BasisTransformable<DerivedOperator, TM>::rotated;
 
 
     /*
@@ -356,7 +250,7 @@ public:
      * 
      *  @return The jacobi-transformed object.
      */
-    Self rotated(const JacobiRotationParameters& jacobi_parameters) const override {
+    DerivedOperator rotated(const JacobiRotationParameters& jacobi_parameters) const override {
 
         // Use Eigen's Jacobi module to apply the Jacobi rotations directly (cfr. T.adjoint() * M * T).
         const auto p = jacobi_parameters.p();
@@ -370,11 +264,32 @@ public:
             result[i].applyOnTheRight(p, q, jacobi_rotation);
         }
 
-        return Self(StorageArray<MatrixRepresentation, Vectorizer>(result, this->array.vectorizer()));
+        return DerivedOperator {StorageArray<MatrixRepresentation, Vectorizer>(result, this->array.vectorizer())};
     }
 
     // Allow the `rotate` method from `JacobiRotatable`, since there's also a `rotate` from `BasisTransformable`.
-    using JacobiRotatable<Self>::rotate;
+    using JacobiRotatable<DerivedOperator>::rotate;
+};
+
+
+/*
+ *  MARK: Operator traits
+ */
+
+/**
+ *  A type that provides compile-time information on operators that is otherwise not accessible through a public class alias.
+ */
+template <typename _Scalar, typename _Vectorizer, typename _DerivedOperator>
+class OperatorTraits<SimpleSQOneElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>> {
+public:
+    // The scalar type used for a single parameter/matrix element/integral: real or complex.
+    using Scalar = _Scalar;
+
+    // The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
+    using Vectorizer = _Vectorizer;
+
+    // The type of the operator that derives from `SimpleSQOneElectronOperator`, enabling CRTP and compile-time polymorphism.
+    using DerivedOperator = _DerivedOperator;
 };
 
 

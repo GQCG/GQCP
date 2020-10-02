@@ -82,14 +82,14 @@ void bindRSpinorBasis(py::module& module) {
         .def(
             "rotate",
             [](GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& U) {
-                spinor_basis.rotate(GQCP::TransformationMatrix<double>(U));
+                spinor_basis.rotate(GQCP::RTransformationMatrix<double>(U));
             },
             py::arg("U"),
             "Rotate the spinor basis to another one using the given unitary transformation matrix.")
 
         .def(
             "transform", [](GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& T) {
-                spinor_basis.transform(GQCP::TransformationMatrix<double>(T));
+                spinor_basis.transform(GQCP::RTransformationMatrix<double>(T));
             },
             py::arg("T"), "Transform the current spinor basis using a given transformation matrix")
 

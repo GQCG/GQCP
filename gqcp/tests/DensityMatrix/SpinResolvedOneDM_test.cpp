@@ -15,11 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#define BOOST_TEST_MODULE "SpinResolvedOneDM"
+#define BOOST_TEST_MODULE "SpinResolved1DM"
 
 #include <boost/test/unit_test.hpp>
 
-#include "DensityMatrix/SpinResolvedOneDM.hpp"
+#include "DensityMatrix/SpinResolved1DM.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"

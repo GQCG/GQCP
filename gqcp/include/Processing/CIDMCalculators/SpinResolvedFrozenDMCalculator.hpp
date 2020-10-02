@@ -19,7 +19,7 @@
 
 
 #include "DensityMatrix/CIDMCalculators/BaseSpinResolvedFrozenDMCalculator.hpp"
-#include "DensityMatrix/SpinResolvedOneDM.hpp"
+#include "DensityMatrix/SpinResolved1DM.hpp"
 #include "DensityMatrix/SpinResolvedTwoDM.hpp"
 #include "ONVBasis/SpinResolvedFrozenONVBasis.hpp"
 

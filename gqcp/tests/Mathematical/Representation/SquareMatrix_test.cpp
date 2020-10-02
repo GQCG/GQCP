@@ -22,13 +22,14 @@
 #include "Mathematical/Representation/SquareMatrix.hpp"
 
 
+/**
+ *  Check if SquareMatrix' constructors throw when necessary.
+ */
 BOOST_AUTO_TEST_CASE(constructor) {
 
-    auto M1 = GQCP::SquareMatrix<double>::Zero(2, 2);
-    BOOST_CHECK_NO_THROW(GQCP::SquareMatrix<double> square_M1 {M1});
+    BOOST_CHECK_NO_THROW(GQCP::SquareMatrix<double> square_M1 {GQCP::MatrixX<double>::Zero(2, 2)});
 
-    auto M2 = GQCP::SquareMatrix<double>::Zero(2, 1);
-    BOOST_CHECK_THROW(GQCP::SquareMatrix<double> square_M2 {M2}, std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::SquareMatrix<double> square_M2 {GQCP::MatrixX<double>::Zero(2, 1)}, std::invalid_argument);  // The given matrix is not square.
 }
 
 
@@ -36,8 +37,8 @@ BOOST_AUTO_TEST_CASE(constructor_assignment) {
 
     // A small check to see if the interface of the constructor and assignment operator works as expected
 
-    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Random(3, 3);
-    GQCP::SquareMatrix<double> B = GQCP::SquareMatrix<double>::Random(3, 3);
+    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Random(3);
+    GQCP::SquareMatrix<double> B = GQCP::SquareMatrix<double>::Random(3);
 
     GQCP::SquareMatrix<double> M1 {A * B};
     GQCP::SquareMatrix<double> M2 = A + B;
@@ -171,7 +172,7 @@ BOOST_AUTO_TEST_CASE(calculatePermanentRyser) {
     BOOST_CHECK(std::abs(B.calculatePermanentRyser() - 264.0) < 1.0e-12);
 
 
-    GQCP::SquareMatrix<double> C = GQCP::SquareMatrix<double>::Random(5, 5);
+    GQCP::SquareMatrix<double> C = GQCP::SquareMatrix<double>::Random(5);
     BOOST_CHECK(std::abs(C.calculatePermanentCombinatorial() - C.calculatePermanentRyser()) < 1.0e-12);
 }
 

@@ -80,7 +80,7 @@ public:
     template <typename Z = Scalar>
     HoppingMatrix(const SquareMatrix<double>& A, const double t, const double U,
                   typename std::enable_if<std::is_same<Z, double>::value>::type* = 0) :
-        HoppingMatrix(U * SquareMatrix<double>::Identity(A.dimension(), A.dimension()) - t * A) {}
+        HoppingMatrix(U * SquareMatrix<double>::Identity(A.dimension()) - t * A) {}
 
 
     /*

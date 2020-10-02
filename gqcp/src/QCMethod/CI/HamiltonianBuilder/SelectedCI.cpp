@@ -60,7 +60,7 @@ SquareMatrix<double> SelectedCI::constructHamiltonian(const SQHamiltonian<double
 
     auto dim = onv_basis.dimension();
 
-    SquareMatrix<double> result_matrix = SquareMatrix<double>::Zero(dim, dim);
+    SquareMatrix<double> result_matrix = SquareMatrix<double>::Zero(dim);
     result_matrix += this->calculateDiagonal(sq_hamiltonian).asDiagonal();
 
     // We should put the calculated elements inside the result matrix
