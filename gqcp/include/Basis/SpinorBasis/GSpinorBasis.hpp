@@ -28,7 +28,7 @@
 #include "Molecule/Molecule.hpp"
 #include "Molecule/NuclearFramework.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
-#include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
+#include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
 #include "QuantumChemical/Spin.hpp"
 #include "Utilities/aliases.hpp"
@@ -453,6 +453,9 @@ public:
 
     // The type of transformation matrix that is naturally related to a GSpinorBasis.
     using TM = GTransformationMatrix<ExpansionScalar>;  // TODO: Rename to TransformationMatrix once the class is gone
+
+    // The second-quantized representation of the overlap operator related to the derived spinor basis.
+    using SQOverlapOperator = ScalarGSQOneElectronOperator<ExpansionScalar>;
 };
 
 

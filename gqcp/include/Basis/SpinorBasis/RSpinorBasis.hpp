@@ -135,7 +135,7 @@ public:
      *  @note this method is only available for real matrix representations
      */
     template <typename S = ExpansionScalar, typename = IsReal<S>>
-    ScalarSQOneElectronOperator<double> calculateMullikenOperator(const std::vector<size_t>& ao_list) const {
+    ScalarRSQOneElectronOperator<double> calculateMullikenOperator(const std::vector<size_t>& ao_list) const {
 
         const auto K = this->numberOfSpatialOrbitals();
         if (ao_list.size() > K) {
@@ -145,7 +145,7 @@ public:
         const SquareMatrix<double> p_a = SquareMatrix<double>::PartitionMatrix(ao_list, K);                       // the partitioning matrix
         const auto S_AO = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalar_basis);  // the overlap matrix expressed in the AO basis
 
-        ScalarSQOneElectronOperator<double> mulliken_op {0.5 * (this->C.adjoint() * p_a * S_AO * this->C + this->C.adjoint() * S_AO * p_a * this->C)};
+        ScalarRSQOneElectronOperator<double> mulliken_op {0.5 * (this->C.adjoint() * p_a * S_AO * this->C + this->C.adjoint() * S_AO * p_a * this->C)};
         return mulliken_op;
     }
 
@@ -213,10 +213,10 @@ public:
      *  @return the second-quantized operator corresponding to the given first-quantized operator
      */
     template <typename FQOneElectronOperator>
-    auto quantize(const FQOneElectronOperator& fq_one_op) const -> SQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, FQOneElectronOperator::NumberOfComponents> {
+    auto quantize(const FQOneElectronOperator& fq_one_op) const -> RSQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, typename FQOneElectronOperator::Vectorizer> {
 
         using ResultScalar = product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>;
-        using ResultOperator = SQOneElectronOperator<ResultScalar, FQOneElectronOperator::NumberOfComponents>;
+        using ResultOperator = RSQOneElectronOperator<ResultScalar, typename FQOneElectronOperator::Vectorizer>;
 
         const auto one_op_par = IntegralCalculator::calculateLibintIntegrals(fq_one_op, this->scalarBasis());  // in AO/scalar basis
 
@@ -299,8 +299,11 @@ public:
     // The scalar type used to represent an expansion coefficient of the spinors in the underlying scalar orbitals: real or complex.
     using ExpansionScalar = _ExpansionScalar;
 
-    // The type of transformation matrix that is naturally related to a GSpinorBasis.
+    // The type of transformation matrix that is naturally related to an RSpinorBasis.
     using TM = RTransformationMatrix<ExpansionScalar>;  // TODO: Rename to TransformationMatrix once the class is gone
+
+    // The second-quantized representation of the overlap operator related to an RSpinorBasis.
+    using SQOverlapOperator = ScalarRSQOneElectronOperator<ExpansionScalar>;
 };
 
 

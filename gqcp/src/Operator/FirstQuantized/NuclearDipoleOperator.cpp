@@ -47,7 +47,7 @@ Vector<double, 3> NuclearDipoleOperator::value() const {
 
     Vector<double, 3> mu = Vector<double, 3>::Zero();
 
-    const auto& nuclei = this->nuclear_framework.nucleiAsVector();
+    const auto& nuclei = this->nuclearFramework().nucleiAsVector();
     for (const auto& nucleus : nuclei) {
         mu += nucleus.charge() * nucleus.position();
     }

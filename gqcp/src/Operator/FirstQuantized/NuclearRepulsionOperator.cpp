@@ -30,7 +30,7 @@ namespace GQCP {
  */
 double NuclearRepulsionOperator::value() const {
 
-    const auto& nuclei = this->nuclear_framework.nucleiAsVector();
+    const auto& nuclei = this->nuclearFramework().nucleiAsVector();
 
     // Sum over every unique nucleus pair.
     double value {0.0};

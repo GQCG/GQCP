@@ -177,7 +177,7 @@ public:
      * 
      *  @return A random second-quantized operator.
      */
-    static FinalOperator Zero(const size_t dim, const Vectorizer& vectorizer) {
+    static FinalOperator Random(const size_t dim, const Vectorizer& vectorizer) {
         return FinalOperator {StorageArray<MatrixRepresentation, Vectorizer> {MatrixRepresentation::Random(dim), vectorizer}};
     }
 
@@ -190,7 +190,7 @@ public:
      *  @return A random scalar second-quantized operator.
      */
     template <typename Z = Vectorizer>
-    static enable_if_t<std::is_same<Z, ScalarVectorizer>::value, FinalOperator> Zero(const size_t dim) {
+    static enable_if_t<std::is_same<Z, ScalarVectorizer>::value, FinalOperator> Random(const size_t dim) {
         return Self::Random(dim, ScalarVectorizer {});
     }
 
@@ -203,7 +203,7 @@ public:
      *  @return A random vector second-quantized operator.
      */
     template <typename Z = Vectorizer>
-    static enable_if_t<std::is_same<Z, VectorVectorizer>::value, FinalOperator> Zero(const size_t dim) {
+    static enable_if_t<std::is_same<Z, VectorVectorizer>::value, FinalOperator> Random(const size_t dim) {
         return Self::Random(dim, VectorVectorizer {{3}});
     }
 

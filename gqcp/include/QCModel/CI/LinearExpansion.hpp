@@ -283,15 +283,14 @@ public:
     template <typename Z = ONVBasis>
     static enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value, LinearExpansion<Z>> FromONVProjection(const SpinUnresolvedONV& onv_of, const GSpinorBasis<double, GTOShell>& spinor_basis_on, const GSpinorBasis<double, GTOShell>& spinor_basis_of) {
 
-
         // Determine the overlap matrices of the underlying scalar orbital bases, which is needed later on.
-        auto S_on = spinor_basis_on.overlap().parameters();
-        S_on.basisTransform(spinor_basis_on.coefficientMatrix().inverse());  // now in AO basis
+        auto S_on = spinor_basis_on.overlap();
+        S_on.transform(spinor_basis_on.coefficientMatrix().inverse());  // now in AO basis
 
-        auto S_of = spinor_basis_of.overlap().parameters();
-        S_of.basisTransform(spinor_basis_of.coefficientMatrix().inverse());  // now in AO basis
+        auto S_of = spinor_basis_of.overlap();
+        S_of.transform(spinor_basis_of.coefficientMatrix().inverse());  // now in AO basis
 
-        if (!(S_on.isApprox(S_of, 1.0e-08))) {
+        if (!(S_on.parameters().isApprox(S_of.parameters(), 1.0e-08))) {
             throw std::invalid_argument("LinearExpansion::FromONVProjection(const SpinUnresolvedONV&, const RSpinorBasis<double, GTOShell>&, const GSpinorBasis<double, GTOShell>&): The given spinor bases are not expressed using the same scalar orbital basis.");
         }
 
@@ -310,7 +309,7 @@ public:
         // Determine the coefficients through calculating the overlap between two ONVs.
         VectorX<double> coefficients = VectorX<double>::Zero(onv_basis.dimension());
         onv_basis.forEach([&onv_of, &C_on, &C_of, &S_on, &coefficients](const SpinUnresolvedONV& onv_on, const size_t I) {
-            coefficients(I) = onv_of.calculateProjection(onv_on, C_of, C_on, S_on);
+            coefficients(I) = onv_of.calculateProjection(onv_on, C_of, C_on, S_on.parameters());
         });
 
         return LinearExpansion<Z>(onv_basis, coefficients);

@@ -49,8 +49,11 @@ public:
     // The spinor basis that derives from this class, enabling CRTP and compile-time polymorphism.
     using DerivedSpinorBasis = _DerivedSpinorBasis;
 
-    // The type of transformation matrix that is naturally related to the DerivedSpinorBasis.
+    // The type of transformation matrix that is naturally related to the derived spinor basis.
     using TM = typename SpinorBasisTraits<DerivedSpinorBasis>::TM;  // TODO: Rename to TransformationMatrix once the class is gone
+
+    // The second-quantized representation of the overlap operator related to the derived spinor basis.
+    using SQOverlapOperator = typename SpinorBasisTraits<DerivedSpinorBasis>::SQOverlapOperator;
 
 
 protected:
@@ -112,7 +115,7 @@ public:
     /**
      *  @return the overlap (one-electron) operator of this restricted spinor basis
      */
-    ScalarSQOneElectronOperator<ExpansionScalar> overlap() const { return this->derived().quantize(Operator::Overlap()); }
+    SQOverlapOperator overlap() const { return this->derived().quantize(Operator::Overlap()); }
 
     /**
      *  Rotate the spinor basis to another one using the given unitary transformation matrix
