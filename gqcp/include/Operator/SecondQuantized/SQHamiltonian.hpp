@@ -573,8 +573,8 @@ namespace GQCP {
  */
 template <typename _ScalarSQOneElectronOperator, typename _ScalarSQTwoElectronOperator>
 class SQHamiltonian:
-    public BasisTransformable<RSQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>, typename OperatorTraits<RSQHamiltonian<_ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator>>::TM>,
-    public JacobiRotatable<RSQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>> {
+    public BasisTransformable<SQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>, typename OperatorTraits<SQHamiltonian<_ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator>>::TM>,
+    public JacobiRotatable<SQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>> {
 public:
     // The type of second-quantized one-electron operator underlying this Hamiltonian.
     using ScalarSQOneElectronOperator_Placeholder = _ScalarSQOneElectronOperator;  // TODO: remove 'placeholder'
@@ -589,7 +589,7 @@ public:
     using SpinorTag = ScalarSQOneElectronOperator_Placeholder::SpinorTag;
 
     // The type of 'this'
-    using Self = RSQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>;
+    using Self = SQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>;
 
     // The 1-DM that is naturally associated with the one-electron operator underlying this Hamiltonian.
     using OneDM_Placeholder = typename OperatorTraits<Self>::OneDM_Placeholder;
@@ -675,7 +675,7 @@ public:
      *  @note This named constructor is only available for real matrix representations.
      */
     template <typename Z1 = Scalar, typename Z2 = SpinorTag>
-    static enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, RestrictedSpinorTag>, RSQHamiltonian<double>> FromHubbard(const GQCP::HubbardHamiltonian<double>& hubbard_hamiltonian) {
+    static enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, RestrictedSpinorTag>, SQHamiltonian<double>> FromHubbard(const GQCP::HubbardHamiltonian<double>& hubbard_hamiltonian) {
 
         const auto h = hubbard_hamiltonian.core();
         const auto g = hubbard_hamiltonian.twoElectron();
@@ -701,7 +701,7 @@ public:
      *  @note This named constructor is only available for real matrix representations.
      */
     template <typename Scalar, typename SpinorBasis>
-    static RSQHamiltonian<typename SpinorBasis::ScalarSQOneElectronOperator_Placeholder, typename SpinorBasis::ScalarSQTwoElectronOperator_Placeholder> Molecular(const RSpinorBasis<Scalar, GTOShell>& spinor_basis, const Molecule& molecule) {
+    static SQHamiltonian<typename SpinorBasis::ScalarSQOneElectronOperator_Placeholder, typename SpinorBasis::ScalarSQTwoElectronOperator_Placeholder> Molecular(const RSpinorBasis<Scalar, GTOShell>& spinor_basis, const Molecule& molecule) {
 
         // Calculate the integrals for the molecular Hamiltonian
         const auto T = spinor_basis.quantize(Operator::Kinetic());
@@ -710,7 +710,7 @@ public:
 
         const auto g = spinor_basis.quantize(Operator::Coulomb());
 
-        using ReturnType = RSQHamiltonian<typename SpinorBasis::ScalarSQOneElectronOperator_Placeholder, typename SpinorBasis::ScalarSQTwoElectronOperator_Placeholder>;
+        using ReturnType = SQHamiltonian<typename SpinorBasis::ScalarSQOneElectronOperator_Placeholder, typename SpinorBasis::ScalarSQTwoElectronOperator_Placeholder>;
         return ReturnType {H, g};
     }
 
@@ -743,7 +743,7 @@ public:
      *  @note This named constructor is only available in the real case.
      */
     template <typename Z1 = Scalar, typename Z2 = SpinorTag>
-    static enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, RestrictedSpinOrbitalTag>::value, RSQHamiltonian<double>> FromFCIDUMP(const std::string& fcidump_filename) {
+    static enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, RestrictedSpinOrbitalTag>::value, SQHamiltonian<double>> FromFCIDUMP(const std::string& fcidump_filename) {
 
         std::ifstream input_file_stream = validateAndOpen(fcidump_filename, "FCIDUMP");
 
@@ -1111,11 +1111,11 @@ public:
 
 // An `SQHamiltonian` related to restricted spin-orbitals. See `RestrictedSpinOrbitalTag`.
 template <typename Scalar>
-using RSQHamiltonian = RSQHamiltonian<ScalarRSQOneElectronOperator<Scalar>, ScalarSQTwoElectronOperator<Scalar>>;
+using SQHamiltonian = SQHamiltonian<ScalarRSQOneElectronOperator<Scalar>, ScalarSQTwoElectronOperator<Scalar>>;
 
 // An `SQHamiltonian` related to unrestricted spin-orbitals. See `UnrestrictedSpinOrbitalTag`.
 // template <typename Scalar>
-// using USQHamiltonian = RSQHamiltonian<ScalarUSQOneElectronOperator<Scalar>, ScalarUSQTwoElectronOperator<Scalar>>;
+// using USQHamiltonian = SQHamiltonian<ScalarUSQOneElectronOperator<Scalar>, ScalarUSQTwoElectronOperator<Scalar>>;
 
 // An `SQHamiltonian` related to general spinors. See `GeneralSpinorTag`.
 template <typename Scalar>
@@ -1130,7 +1130,7 @@ using GSQHamiltonian = GQHamiltonian_Placeholder<ScalarGSQOneElectronOperator<Sc
  *  A type that provides compile-time information on operators that is otherwise not accessible through a public class alias.
  */
 template <typename ScalarSQOneElectronOperator_Placeholder, typename ScalarSQTwoElectronOperator_Placeholder>
-class OperatorTraits<RSQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>> {
+class OperatorTraits<SQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>> {
 public:
     // The type of transformation matrix that is naturally associated to the Hamiltonian.
     using TM = typename OperatorTraits<ScalarSQOneElectronOperator_Placeholder>::TM;
@@ -1155,7 +1155,7 @@ public:
  *  @return a new second-quantized Hamiltonian
  */
 template <typename Scalar>
-RSQHamiltonian<Scalar> operator+(const RSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarSQOneElectronOperator<Scalar>& sq_one_op) {
+RSQHamiltonian<Scalar> operator+(const RSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarRSQOneElectronOperator<Scalar>& sq_one_op) {
 
     // Make a copy of the one-electron part in order to create a new Hamiltonian
     auto sq_one_ops = sq_hamiltonian.coreContributions();
