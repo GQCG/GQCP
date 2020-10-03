@@ -19,6 +19,7 @@
 
 
 #include "Basis/Transformations/RTransformationMatrix.hpp"
+#include "DensityMatrix/DensityMatrixTraits.hpp"
 #include "DensityMatrix/Simple1DM.hpp"
 
 
@@ -45,7 +46,7 @@ public:
     /*
      *  MARK: Constructors
      */
-    
+
     // Inherit `Simple1DM`'s constructors.
     using Simple1DM<Scalar, Orbital1DM<Scalar>>::Simple1DM;
 };

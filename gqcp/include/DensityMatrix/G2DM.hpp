@@ -20,24 +20,24 @@
 
 #include "Basis/Transformations/GTransformationMatrix.hpp"
 #include "DensityMatrix/DensityMatrixTraits.hpp"
-#include "DensityMatrix/Simple1DM.hpp"
+#include "DensityMatrix/Simple2DM.hpp"
 
 
 namespace GQCP {
 
 
 /*
- *  MARK: G1DM implementation
+ *  MARK: G2DM implementation
  */
 
 /**
- *  A type used to represent a one-electron general(ized) density matrix, i.e. the full spinor two-component one-electron density matrix.
+ *  A type used to represent a two-electron general(ized) density matrix, i.e. the full spinor two-component two-electron density matrix.
  * 
  *  @tparam _Scalar                 The scalar type used for a density matrix element: real or complex.
  */
 template <typename _Scalar>
-class G1DM:
-    public Simple1DM<_Scalar, G1DM<_Scalar>> {
+class G2DM:
+    public Simple2DM<_Scalar, G2DM<_Scalar>> {
 public:
     // The scalar type used for a density matrix element: real or complex.
     using Scalar = _Scalar;
@@ -47,8 +47,8 @@ public:
      *  MARK: Constructors
      */
 
-    // Inherit `Simple1DM`'s constructors.
-    using Simple1DM<Scalar, G1DM<Scalar>>::Simple1DM;
+    // Inherit `Simple2DM`'s constructors.
+    using Simple2DM<Scalar, G2DM<Scalar>>::Simple2DM;
 };
 
 
@@ -57,12 +57,12 @@ public:
  */
 
 /**
- *  A type that provides compile-time information on `G1DM` that is otherwise not accessible through a public class alias.
+ *  A type that provides compile-time information on `G2DM` that is otherwise not accessible through a public class alias.
  */
 template <typename Scalar>
-class DensityMatrixTraits<G1DM<Scalar>> {
+class DensityMatrixTraits<G2DM<Scalar>> {
 public:
-    // The type of transformation matrix that is naturally related to a `G1DM`.
+    // The type of transformation matrix that is naturally related to a `G2DM`.
     using TM = GTransformationMatrix<Scalar>;
 };
 

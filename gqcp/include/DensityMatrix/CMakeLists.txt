@@ -1,5 +1,6 @@
 target_sources(gqcp
     PRIVATE
+        DensityMatrixTraits.hpp
         G1DM.hpp
         OneDM.hpp
         Orbital1DM.hpp

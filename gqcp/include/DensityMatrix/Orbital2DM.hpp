@@ -18,26 +18,26 @@
 #pragma once
 
 
-#include "Basis/Transformations/GTransformationMatrix.hpp"
+#include "Basis/Transformations/RTransformationMatrix.hpp"
 #include "DensityMatrix/DensityMatrixTraits.hpp"
-#include "DensityMatrix/Simple1DM.hpp"
+#include "DensityMatrix/Simple2DM.hpp"
 
 
 namespace GQCP {
 
 
 /*
- *  MARK: G1DM implementation
+ *  MARK: Orbital2DM implementation
  */
 
 /**
- *  A type used to represent a one-electron general(ized) density matrix, i.e. the full spinor two-component one-electron density matrix.
+ *  A type used to represent a two-electron orbital density matrix, i.e. the summed alpha-alpha, alpha-beta, beta-alpha and beta-beta density matrices.
  * 
  *  @tparam _Scalar                 The scalar type used for a density matrix element: real or complex.
  */
 template <typename _Scalar>
-class G1DM:
-    public Simple1DM<_Scalar, G1DM<_Scalar>> {
+class Orbital2DM:
+    public Simple2DM<_Scalar, Orbital2DM<_Scalar>> {
 public:
     // The scalar type used for a density matrix element: real or complex.
     using Scalar = _Scalar;
@@ -47,8 +47,8 @@ public:
      *  MARK: Constructors
      */
 
-    // Inherit `Simple1DM`'s constructors.
-    using Simple1DM<Scalar, G1DM<Scalar>>::Simple1DM;
+    // Inherit `Simple2DM`'s constructors.
+    using Simple2DM<Scalar, Orbital2DM<Scalar>>::Simple2DM;
 };
 
 
@@ -57,13 +57,13 @@ public:
  */
 
 /**
- *  A type that provides compile-time information on `G1DM` that is otherwise not accessible through a public class alias.
+ *  A type that provides compile-time information on `Orbital2DM` that is otherwise not accessible through a public class alias.
  */
 template <typename Scalar>
-class DensityMatrixTraits<G1DM<Scalar>> {
+class DensityMatrixTraits<Orbital2DM<Scalar>> {
 public:
-    // The type of transformation matrix that is naturally related to a `G1DM`.
-    using TM = GTransformationMatrix<Scalar>;
+    // The type of transformation matrix that is naturally related to an Orbital2DM. The only transformations that should be naturally possible for an orbital 2-DM are restricted transformations, thereby assuming that the density matrices for alpha-alpha, alpha-beta, beta-alpha and beta-beta are equal and thus transform similarly.
+    using TM = RTransformationMatrix<Scalar>;
 };
 
 

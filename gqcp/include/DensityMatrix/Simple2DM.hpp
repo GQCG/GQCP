@@ -18,25 +18,27 @@
 #pragma once
 
 
-#include "Basis/Transformations/BasisTransformable.hpp"
-#include "Mathematical/Representation/SquareMatrix.hpp"
+#include "Mathematical/Representation/SquareRankFourTensor.hpp"
 
 
 namespace GQCP {
 
 
+/*
+ *  MARK: Simple2DM implementation
+ */
+
 /**
- *  A one-electron density matrix that is described by a single matrix.
+ *  A two-electron density matrix that is described by a single tensor.
  * 
- *  This class is used as a base class for `Orbital1DM` and `G1DM`, since they are both expressed using a single matrix, as opposed to `SpinResolved1DM`, which uses separate alpha- and beta- matrices. The word 'simple' is used here as an antonym for 'compound'.
+ *  This class is used as a base class for `Orbital2DM` and `G2DM`, since they are both expressed using a single tensor, as opposed to `SpinResolved2DM`, which uses separate alpha- and beta- tensor. The word 'simple' is used here as an antonym for 'compound'.
  * 
  *  @tparam _Scalar                 The scalar type used for a density matrix element: real or complex.
  *  @tparam _DerivedDM              The type of the density matrix that derives from this class, enabling CRTP and compile-time polymorphism.
  */
 template <typename _Scalar, typename _DerivedDM>
-class Simple1DM:
-    public SquareMatrix<_Scalar>,
-    public BasisTransformable<Simple1DM<_Scalar, _DerivedDM>, typename DensityMatrixTraits<_DerivedDM>::TM> {
+class Simple2DM:
+    public SquareRankFourTensor<_Scalar> {
 public:
     // The scalar type used for a density matrix element: real or complex.
     using Scalar = _Scalar;
@@ -45,10 +47,7 @@ public:
     using DerivedDM = _DerivedDM;
 
     // The type of 'this'.
-    using Self = Simple1DM<Scalar, DerivedDM>;
-
-    // The type of transformation matrix that is naturally related to the DerivedDM.
-    using TM = typename DensityMatrixTraits<DerivedDM>::TM;
+    using Self = Simple2DM<Scalar, DerivedDM>;
 
 
 public:
@@ -57,30 +56,13 @@ public:
      */
 
     // Inherit base constructors.
-    using SquareMatrix<Scalar>::SquareMatrix;
+    using SquareRankFourTensor<Scalar>::SquareRankFourTensor;
 
 
     /*
      *  MARK: General information
      */
     size_t numberOfOrbitals() const { return this->dimension(); }
-
-
-    /*
-     *  MARK: Transformations
-     */
-
-    /**
-     *  Apply the basis transformation and return the resulting 1-DM.
-     * 
-     *  @param transformation_matrix        The type that encapsulates the basis transformation coefficients.
-     * 
-     *  @return The basis-transformed 1-DM.
-     */
-    Self transformed(const TM& transformation_matrix) const override {
-
-        return Self(transformation_matrix.inverse().conjugate() * (*this) * transformation_matrix.inverse().transpose());  // Note that this basis transformation formula is different from the one-electron operator one. See SimpleSQOneElectronOperator.
-    }
 };
 
 

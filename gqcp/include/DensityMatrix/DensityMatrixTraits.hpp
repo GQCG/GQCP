@@ -17,6 +17,15 @@
 
 #pragma once
 
+
 namespace GQCP {
+
+
+/**
+ *  A type that provides compile-time information on density matrices that is otherwise not accessible through a public class alias.
+ */
+template <typename DensityMatrix>
+class DensityMatrixTraits {};
+
 
 }  // namespace GQCP
