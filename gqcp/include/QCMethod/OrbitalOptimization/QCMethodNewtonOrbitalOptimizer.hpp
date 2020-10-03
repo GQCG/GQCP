@@ -61,7 +61,7 @@ public:
     /**
      *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the 1- and 2-DMs
      */
-    virtual void prepareDMCalculation(const SQHamiltonian<double>& sq_hamiltonian) = 0;
+    virtual void prepareDMCalculation(const RSQHamiltonian<double>& sq_hamiltonian) = 0;
 
 
     // PUBLIC OVERRIDDEN METHODS
@@ -71,19 +71,19 @@ public:
      * 
      *  @return the current orbital gradient as a matrix
      */
-    SquareMatrix<double> calculateGradientMatrix(const SQHamiltonian<double>& sq_hamiltonian) const override;
+    SquareMatrix<double> calculateGradientMatrix(const RSQHamiltonian<double>& sq_hamiltonian) const override;
 
     /**
      *  @param sq_hamiltonian      the current Hamiltonian
      * 
      *  @return the current orbital Hessian as a tensor
      */
-    SquareRankFourTensor<double> calculateHessianTensor(const SQHamiltonian<double>& sq_hamiltonian) const override;
+    SquareRankFourTensor<double> calculateHessianTensor(const RSQHamiltonian<double>& sq_hamiltonian) const override;
 
     /**
      *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence in this Newton-based orbital optimizer for quantum chemical methods.
      */
-    void prepareOrbitalDerivativesCalculation(const SQHamiltonian<double>& sq_hamiltonian) override;
+    void prepareOrbitalDerivativesCalculation(const RSQHamiltonian<double>& sq_hamiltonian) override;
 
 
     // PUBLIC METHODS

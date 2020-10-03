@@ -112,7 +112,7 @@ public:
      * 
      *  @return T1-amplitudes calculated from an initial perturbative result
      */
-    static T1Amplitudes<Scalar> Perturbative(const SQHamiltonian<Scalar>& sq_hamiltonian, const size_t N, const size_t M) {
+    static T1Amplitudes<Scalar> Perturbative(const RSQHamiltonian<Scalar>& sq_hamiltonian, const size_t N, const size_t M) {
 
         // Create the implicit orbital space for N occupied orbitals and M total orbitals.
         const auto orbital_space = OrbitalSpace::Implicit({{OccupationType::k_occupied, N}, {OccupationType::k_virtual, M - N}});

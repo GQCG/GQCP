@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE(dipole_CO_STO_3G) {
     GQCP::Molecule CO {{C, O}};
 
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {CO, "STO-3G"};
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, CO);  // in an AO basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, CO);  // in an AO basis
 
     size_t K = spinor_basis.numberOfSpatialOrbitals();
     size_t N = CO.numberOfElectrons();
@@ -78,7 +78,7 @@ BOOST_AUTO_TEST_CASE(dipole_N2_STO_3G) {
     GQCP::Molecule N2 {{N_1, N_2}};
 
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {N2, "STO-3G"};
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, N2);  // in an AO basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, N2);  // in an AO basis
 
     size_t K = spinor_basis.numberOfSpatialOrbitals();
     size_t N = N2.numberOfElectrons();
@@ -124,7 +124,7 @@ BOOST_AUTO_TEST_CASE(h2_polarizability_RHF) {
     GQCP::Molecule h2 {{H1, H2}, 0};
 
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis(h2, "STO-3G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in the AO basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, h2);  // in the AO basis
 
 
     // Do the RHF calculation to get the canonical RHF orbitals

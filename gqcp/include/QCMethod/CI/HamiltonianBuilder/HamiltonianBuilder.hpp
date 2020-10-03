@@ -50,14 +50,14 @@ public:
      *
      *  @return the diagonal of the matrix representation of the Hamiltonian
      */
-    virtual VectorX<double> calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const = 0;
+    virtual VectorX<double> calculateDiagonal(const RSQHamiltonian<double>& sq_hamiltonian) const = 0;
 
     /**
      *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
      *
      *  @return the Hamiltonian matrix
      */
-    virtual SquareMatrix<double> constructHamiltonian(const SQHamiltonian<double>& sq_hamiltonian) const = 0;
+    virtual SquareMatrix<double> constructHamiltonian(const RSQHamiltonian<double>& sq_hamiltonian) const = 0;
 
     /**
      *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
@@ -66,7 +66,7 @@ public:
      *
      *  @return the action of the Hamiltonian on the coefficient vector
      */
-    virtual VectorX<double> matrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const = 0;
+    virtual VectorX<double> matrixVectorProduct(const RSQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const = 0;
 
     /**
      *  @return the ONV basis that is associated with this HamiltonianBuilder

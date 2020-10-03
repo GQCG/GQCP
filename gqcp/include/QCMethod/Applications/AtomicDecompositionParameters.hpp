@@ -30,11 +30,11 @@ namespace GQCP {
  */
 class AtomicDecompositionParameters {
 private:
-    SQHamiltonian<double> molecular_hamiltonian;  // the Hamiltonian of the complete molecule
+    RSQHamiltonian<double> molecular_hamiltonian;  // the Hamiltonian of the complete molecule
 
-    std::vector<SQHamiltonian<double>> net_atomic_parameters;   // the collection of net atomic Hamiltonians
-    std::vector<SQHamiltonian<double>> interaction_parameters;  // the collection of atomic interaction Hamiltonians
-    std::vector<SQHamiltonian<double>> atomic_parameters;       // the collection of atomic Hamiltonians
+    std::vector<RSQHamiltonian<double>> net_atomic_parameters;   // the collection of net atomic Hamiltonians
+    std::vector<RSQHamiltonian<double>> interaction_parameters;  // the collection of atomic interaction Hamiltonians
+    std::vector<RSQHamiltonian<double>> atomic_parameters;       // the collection of atomic Hamiltonians
 
 
 public:
@@ -48,7 +48,7 @@ public:
      *  @param interaction_parameters               the collection of atomic interaction Hamiltonians
      *  @param atomic_parameters                    the collection of atomic Hamiltonians
      */
-    AtomicDecompositionParameters(const SQHamiltonian<double>& molecular_hamiltonian, const std::vector<SQHamiltonian<double>>& net_atomic_parameters, const std::vector<SQHamiltonian<double>>& interaction_parameters, const std::vector<SQHamiltonian<double>>& atomic_parameters);
+    AtomicDecompositionParameters(const RSQHamiltonian<double>& molecular_hamiltonian, const std::vector<RSQHamiltonian<double>>& net_atomic_parameters, const std::vector<RSQHamiltonian<double>>& interaction_parameters, const std::vector<RSQHamiltonian<double>>& atomic_parameters);
 
     /**
      *  The default constructor.
@@ -95,22 +95,22 @@ public:
     /**
      *  @return the collection of atomic Hamiltonians
      */
-    const std::vector<SQHamiltonian<double>>& atomic() const { return this->atomic_parameters; }
+    const std::vector<RSQHamiltonian<double>>& atomic() const { return this->atomic_parameters; }
 
     /**
      *  @return the collection of atomic interaction Hamiltonians
      */
-    const std::vector<SQHamiltonian<double>>& interaction() const { return this->interaction_parameters; }
+    const std::vector<RSQHamiltonian<double>>& interaction() const { return this->interaction_parameters; }
 
     /**
      *  @return the collection of net atomic Hamiltonians
      */
-    const std::vector<SQHamiltonian<double>>& netAtomic() const { return this->net_atomic_parameters; }
+    const std::vector<RSQHamiltonian<double>>& netAtomic() const { return this->net_atomic_parameters; }
 
     /**
      *  @return the Hamiltonian of the complete molecule
      */
-    const SQHamiltonian<double>& molecularHamiltonian() const { return this->molecular_hamiltonian; }
+    const RSQHamiltonian<double>& molecularHamiltonian() const { return this->molecular_hamiltonian; }
 };
 
 

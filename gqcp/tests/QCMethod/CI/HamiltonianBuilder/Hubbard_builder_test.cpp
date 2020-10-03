@@ -82,7 +82,7 @@ BOOST_AUTO_TEST_CASE(Hubbard_matrix_specialized_vs_unspecialized) {
 
 
     // Create an identical, but 'unspecialized' second-quantized Hamiltonian.
-    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::FromHubbard(hubbard_hamiltonian);
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::FromHubbard(hubbard_hamiltonian);
 
 
     // Check if the matrix construction produces identical results.
@@ -112,7 +112,7 @@ BOOST_AUTO_TEST_CASE(Hubbard_matrix_specialized_vs_unspecialized_large) {
 
 
     // Create an identical, but 'unspecialized' second-quantized Hamiltonian.
-    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::FromHubbard(hubbard_hamiltonian);
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::FromHubbard(hubbard_hamiltonian);
 
 
     // Check if the matrix construction produces identical results.
@@ -143,7 +143,7 @@ BOOST_AUTO_TEST_CASE(Hubbard_matvec_specialized_vs_unspecialized) {
     const GQCP::VectorX<double> x = GQCP::VectorX<double>::Random(dim);
 
     // Create an identical, but 'unspecialized' second-quantized Hamiltonian.
-    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::FromHubbard(hubbard_hamiltonian);
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::FromHubbard(hubbard_hamiltonian);
 
 
     // Check if the matrix-vector product produces identical results.
@@ -177,7 +177,7 @@ BOOST_AUTO_TEST_CASE(Hubbard_matvec_specialized_vs_unspecialized_large) {
     const GQCP::VectorX<double> x = GQCP::VectorX<double>::Random(dim);
 
     // Create an identical, but 'unspecialized' second-quantized Hamiltonian.
-    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::FromHubbard(hubbard_hamiltonian);
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::FromHubbard(hubbard_hamiltonian);
 
 
     // Check if the matrix-vector product produces identical results.

@@ -234,7 +234,7 @@ SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const ScalarSQT
  *
  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the spin-resolved ONV basis
  */
-SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const SQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const {
+SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const RSQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const {
 
     SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->dimension());
 
@@ -507,7 +507,7 @@ VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const ScalarSQTwo
  *
  *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the spin-resolved ONV basis
  */
-VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
+VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const RSQHamiltonian<double>& sq_hamiltonian) const {
     return this->evaluateOperatorDiagonal(sq_hamiltonian.core()) + this->evaluateOperatorDiagonal(sq_hamiltonian.twoElectron());
 }
 
@@ -715,11 +715,11 @@ VectorX<double> SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(const 
  *
  *  @return the Hamiltonian's matrix vector product in a vector with the dimensions of the spin-resolved ONV basis
  */
-VectorX<double> SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+VectorX<double> SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(const RSQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
     auto M = sq_hamiltonian.numberOfOrbitals();
     if (M != this->M) {
-        throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the spin-resolved ONV basis and the operator are incompatible.");
+        throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(RSQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the spin-resolved ONV basis and the operator are incompatible.");
     }
 
     // Environment for evaluations

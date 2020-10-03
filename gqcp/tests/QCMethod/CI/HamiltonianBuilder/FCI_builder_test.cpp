@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_CASE(FCI_public_methods) {
 
     // Create random HamiltonianParameters to check compatibility
     size_t K = 5;
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Random(K);
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Random(K);
 
 
     // Create a compatible ONV basis

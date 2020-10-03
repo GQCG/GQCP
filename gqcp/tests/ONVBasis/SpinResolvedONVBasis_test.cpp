@@ -59,7 +59,7 @@ BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_Dense_diagonal_true) {
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
     spinor_basis.lowdinOrthonormalize();
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
     GQCP::SpinResolvedONVBasis product_fock_space {6, 4, 4};
     GQCP::SpinResolvedSelectedONVBasis selected_fock_space {product_fock_space};
@@ -92,7 +92,7 @@ BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_Dense_diagonal_false) {
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
     spinor_basis.lowdinOrthonormalize();
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
     GQCP::SpinResolvedONVBasis product_fock_space {6, 4, 4};
     GQCP::SpinResolvedSelectedONVBasis selected_fock_space {product_fock_space};
@@ -125,7 +125,7 @@ BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_diagonal) {
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
     spinor_basis.lowdinOrthonormalize();
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
     GQCP::SpinResolvedONVBasis product_fock_space {6, 4, 4};
     GQCP::SpinResolvedSelectedONVBasis selected_fock_space {product_fock_space};
@@ -157,7 +157,7 @@ BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_diagonal_vs_no_diagonal) {
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
     spinor_basis.lowdinOrthonormalize();
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
     GQCP::SpinResolvedONVBasis product_fock_space {6, 4, 4};
 
@@ -179,7 +179,7 @@ BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_MatrixVectorProduct) {
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis(hchain, "STO-3G");
     spinor_basis.lowdinOrthonormalize();
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
     GQCP::SpinResolvedONVBasis fock_space {6, 4, 4};
 
@@ -220,7 +220,7 @@ BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_diagonal_unrestricted) {
     rspinor_basis.lowdinOrthonormalize();
 
     auto usq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(uspinor_basis, hchain);  // unrestricted Hamiltonian in the Löwdin basis
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(rspinor_basis, hchain);    // restricted Hamiltonian in the Löwdin basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(rspinor_basis, hchain);   // restricted Hamiltonian in the Löwdin basis
 
     GQCP::SpinResolvedONVBasis product_fock_space {6, 4, 4};
 

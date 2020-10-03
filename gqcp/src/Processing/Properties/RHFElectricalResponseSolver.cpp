@@ -46,7 +46,7 @@ RHFElectricalResponseSolver::RHFElectricalResponseSolver(const size_t N_P) :
  * 
  *  @return the parameter response constant (k_p), i.e. the second-order parameter partial derivative of the RHF energy function
  */
-SquareMatrix<double> RHFElectricalResponseSolver::calculateParameterResponseConstant(const SQHamiltonian<double>& sq_hamiltonian) const {
+SquareMatrix<double> RHFElectricalResponseSolver::calculateParameterResponseConstant(const RSQHamiltonian<double>& sq_hamiltonian) const {
 
     // k_p for RHF is the RHF orbital Hessian
     const auto RHF_orbital_hessian_tensor = QCModel::RHF<double>::calculateOrbitalHessianTensor(sq_hamiltonian, this->N_P);

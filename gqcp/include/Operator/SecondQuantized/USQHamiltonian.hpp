@@ -35,7 +35,7 @@ namespace GQCP {
 template <typename Scalar>
 class USQHamiltonian {
 private:
-    std::array<SQHamiltonian<Scalar>, 2> sq_hamiltonians;  // array that holds the individual SQHamiltonian for the pure alpha and beta components (in that order)
+    std::array<RSQHamiltonian<Scalar>, 2> sq_hamiltonians;  // array that holds the individual SQHamiltonian for the pure alpha and beta components (in that order)
 
     std::vector<ScalarSQTwoElectronOperator<Scalar>> two_op_mixed;  // the alpha & beta mixed two-electron operators (whose integrals are represented as g_aabb)
     ScalarSQTwoElectronOperator<Scalar> total_two_op_mixed;         // the total alpha & beta mixed two-electron operator (whose integrals are represented as g_aabb)
@@ -51,7 +51,7 @@ public:
      *  @param sq_hamiltonian_beta       the beta Hamiltonian
      *  @param two_op_mixed              the alpha & beta mixed two-electron operators (whose integrals are represented as g_aabb)
      */
-    USQHamiltonian(const SQHamiltonian<Scalar>& sq_hamiltonian_alpha, const SQHamiltonian<Scalar>& sq_hamiltonian_beta, const std::vector<ScalarSQTwoElectronOperator<Scalar>>& two_op_mixed) :
+    USQHamiltonian(const RSQHamiltonian<Scalar>& sq_hamiltonian_alpha, const RSQHamiltonian<Scalar>& sq_hamiltonian_beta, const std::vector<ScalarSQTwoElectronOperator<Scalar>>& two_op_mixed) :
         sq_hamiltonians {sq_hamiltonian_alpha, sq_hamiltonian_beta},
         two_op_mixed {two_op_mixed} {
 
@@ -59,12 +59,12 @@ public:
         const auto dim = sq_hamiltonians[Spin::alpha].numberOfOrbitals();
 
         if (sq_hamiltonians[Spin::beta].numberOfOrbitals() != dim) {
-            throw std::invalid_argument("USQHamiltonian::USQHamiltonian(const SQHamiltonian<Scalar>& sq_hamiltonian_alpha, const SQHamiltonian<Scalar>& sq_hamiltonian_beta, const ScalarSQTwoElectronOperator<Scalar>& two_op_mixed): The dimensions of the alpha and beta Hamiltonian are incompatible");
+            throw std::invalid_argument("USQHamiltonian::USQHamiltonian(const RSQHamiltonian<Scalar>& sq_hamiltonian_alpha, const RSQHamiltonian<Scalar>& sq_hamiltonian_beta, const ScalarSQTwoElectronOperator<Scalar>& two_op_mixed): The dimensions of the alpha and beta Hamiltonian are incompatible");
         }
 
         for (const auto& two_op : this->two_op_mixed) {
             if (two_op.numberOfOrbitals() != dim) {
-                throw std::invalid_argument("USQHamiltonian::USQHamiltonian(const SQHamiltonian<Scalar>& sq_hamiltonian_alpha, const SQHamiltonian<Scalar>& sq_hamiltonian_beta, const ScalarSQTwoElectronOperator<Scalar>& two_op_mixed): The dimensions of the mixed two electron operator are incompatible with the Hamiltonian");
+                throw std::invalid_argument("USQHamiltonian::USQHamiltonian(const RSQHamiltonian<Scalar>& sq_hamiltonian_alpha, const RSQHamiltonian<Scalar>& sq_hamiltonian_beta, const ScalarSQTwoElectronOperator<Scalar>& two_op_mixed): The dimensions of the mixed two electron operator are incompatible with the Hamiltonian");
             }
         }
 
@@ -82,7 +82,7 @@ public:
      *  @param sq_hamiltonian_beta       the beta Hamiltonian
      *  @param two_op_mixed              the alpha & beta mixed two-electron operators (whose integrals are represented as g_aabb)
      */
-    USQHamiltonian(const SQHamiltonian<Scalar>& sq_hamiltonian_alpha, const SQHamiltonian<Scalar>& sq_hamiltonian_beta, const ScalarSQTwoElectronOperator<Scalar>& two_op_mixed) :
+    USQHamiltonian(const RSQHamiltonian<Scalar>& sq_hamiltonian_alpha, const RSQHamiltonian<Scalar>& sq_hamiltonian_beta, const ScalarSQTwoElectronOperator<Scalar>& two_op_mixed) :
         USQHamiltonian(sq_hamiltonian_alpha, sq_hamiltonian_beta,
                        std::vector<ScalarSQTwoElectronOperator<Scalar>> {two_op_mixed}) {}
 
@@ -106,8 +106,8 @@ public:
     template <typename Z = Scalar>
     static enable_if_t<std::is_same<Z, double>::value, USQHamiltonian<double>> Molecular(const USpinorBasis<Z, GTOShell>& u_spinor_basis, const Molecule& molecule) {
 
-        const SQHamiltonian<Scalar> sq_hamiltonian_alpha = SQHamiltonian<double>::Molecular(u_spinor_basis.spinorBasis(Spin::alpha), molecule);
-        const SQHamiltonian<Scalar> sq_hamiltonian_beta = SQHamiltonian<double>::Molecular(u_spinor_basis.spinorBasis(Spin::beta), molecule);
+        const RSQHamiltonian<Scalar> sq_hamiltonian_alpha = RSQHamiltonian<double>::Molecular(u_spinor_basis.spinorBasis(Spin::alpha), molecule);
+        const RSQHamiltonian<Scalar> sq_hamiltonian_beta = RSQHamiltonian<double>::Molecular(u_spinor_basis.spinorBasis(Spin::beta), molecule);
 
         // Initial basis for alpha and beta are identical so the mixed integrals are identical to spin specific components
         const ScalarSQTwoElectronOperator<double> two_op_mixed = sq_hamiltonian_alpha.twoElectron();
@@ -204,7 +204,7 @@ public:
      * 
      *  @return the pure contributions of the requested component of the unrestricted Hamiltonian 
      */
-    const SQHamiltonian<Scalar>& spinHamiltonian(const Spin& sigma) const { return this->sq_hamiltonians[sigma]; }
+    const RSQHamiltonian<Scalar>& spinHamiltonian(const Spin& sigma) const { return this->sq_hamiltonians[sigma]; }
 
     /**
      *  In-place transform the matrix representations of the unrestricted Hamiltonian

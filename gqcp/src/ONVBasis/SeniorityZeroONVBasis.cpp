@@ -149,7 +149,7 @@ VectorX<double> SeniorityZeroONVBasis::evaluateOperatorDiagonal(const ScalarSQTw
  *
  *  @return the diagonal of the matrix representation of the Hamiltonian in this seniority-zero ONV basis
  */
-VectorX<double> SeniorityZeroONVBasis::evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
+VectorX<double> SeniorityZeroONVBasis::evaluateOperatorDiagonal(const RSQHamiltonian<double>& sq_hamiltonian) const {
 
     // We don't just use the sum of the one- and two-electron operator's diagonal representation because that would mean 2 iterations over the dimension of the ONV basis.
 

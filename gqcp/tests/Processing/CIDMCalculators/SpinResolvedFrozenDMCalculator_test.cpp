@@ -42,7 +42,7 @@ BOOST_AUTO_TEST_CASE(FrozenCoreFCI_one_DMs) {
     const auto K = spinor_basis.numberOfSpatialOrbitals();
     spinor_basis.lowdinOrthonormalize();
 
-    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);
 
 
     // Do a dense frozen core CI calculation for 2 frozen orbitals.

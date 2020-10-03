@@ -55,7 +55,7 @@ EigenproblemEnvironment Dense(const HubbardHamiltonian<Scalar>& hubbard_hamilton
  *  @return an environment suitable for solving DOCI eigenvalue problems
  */
 template <typename Scalar>
-EigenproblemEnvironment Dense(const SQHamiltonian<Scalar>& sq_hamiltonian, const SeniorityZeroONVBasis& onv_basis) {
+EigenproblemEnvironment Dense(const RSQHamiltonian<Scalar>& sq_hamiltonian, const SeniorityZeroONVBasis& onv_basis) {
 
     const DOCI doci_builder {onv_basis};  // the 'HamiltonianBuilder'
     const auto H = doci_builder.constructHamiltonian(sq_hamiltonian);
@@ -70,7 +70,7 @@ EigenproblemEnvironment Dense(const SQHamiltonian<Scalar>& sq_hamiltonian, const
  *  @return an environment suitable for solving frozen core FCI eigenvalue problems
  */
 // template <typename Scalar>
-// EigenproblemEnvironment Dense(const SQHamiltonian<Scalar>& sq_hamiltonian, const SpinResolvedFrozenONVBasis& onv_basis) {
+// EigenproblemEnvironment Dense(const RSQHamiltonian<Scalar>& sq_hamiltonian, const SpinResolvedFrozenONVBasis& onv_basis) {
 
 //     const FrozenCoreFCI frozen_core_fci_builder {onv_basis};  // the 'HamiltonianBuilder'
 //     const auto H = frozen_core_fci_builder.constructHamiltonian(sq_hamiltonian);
@@ -85,7 +85,7 @@ EigenproblemEnvironment Dense(const SQHamiltonian<Scalar>& sq_hamiltonian, const
  *  @return an environment suitable for solving spin-resolved selected CI eigenvalue problems
  */
 template <typename Scalar>
-EigenproblemEnvironment Dense(const SQHamiltonian<Scalar>& sq_hamiltonian, const SpinResolvedSelectedONVBasis& onv_basis) {
+EigenproblemEnvironment Dense(const RSQHamiltonian<Scalar>& sq_hamiltonian, const SpinResolvedSelectedONVBasis& onv_basis) {
 
     const SelectedCI selected_ci_builder {onv_basis};  // the 'HamiltonianBuilder'
     const auto H = selected_ci_builder.constructHamiltonian(sq_hamiltonian);
@@ -100,7 +100,7 @@ EigenproblemEnvironment Dense(const SQHamiltonian<Scalar>& sq_hamiltonian, const
  *  @return an environment suitable for solving spin-resolved FCI eigenvalue problems
  */
 template <typename Scalar>
-EigenproblemEnvironment Dense(const SQHamiltonian<Scalar>& sq_hamiltonian, const SpinResolvedONVBasis& onv_basis) {
+EigenproblemEnvironment Dense(const RSQHamiltonian<Scalar>& sq_hamiltonian, const SpinResolvedONVBasis& onv_basis) {
 
     const FCI fci_builder {onv_basis};  // the 'HamiltonianBuilder'
     const auto H = fci_builder.constructHamiltonian(sq_hamiltonian);
@@ -135,7 +135,7 @@ EigenproblemEnvironment Iterative(const HubbardHamiltonian<Scalar>& hubbard_hami
  *  @return an environment suitable for solving DOCI eigenvalue problems
  */
 template <typename Scalar>
-EigenproblemEnvironment Iterative(const SQHamiltonian<Scalar>& sq_hamiltonian, const SeniorityZeroONVBasis& onv_basis, const MatrixX<double>& V) {
+EigenproblemEnvironment Iterative(const RSQHamiltonian<Scalar>& sq_hamiltonian, const SeniorityZeroONVBasis& onv_basis, const MatrixX<double>& V) {
 
     const DOCI doci_builder {onv_basis};  // the 'HamiltonianBuilder'
 
@@ -154,7 +154,7 @@ EigenproblemEnvironment Iterative(const SQHamiltonian<Scalar>& sq_hamiltonian, c
  *  @return an environment suitable for solving frozen core FCI eigenvalue problems
  */
 // template <typename Scalar>
-// EigenproblemEnvironment Iterative(const SQHamiltonian<Scalar>& sq_hamiltonian, const SpinResolvedFrozenONVBasis& onv_basis, const MatrixX<double>& V) {
+// EigenproblemEnvironment Iterative(const RSQHamiltonian<Scalar>& sq_hamiltonian, const SpinResolvedFrozenONVBasis& onv_basis, const MatrixX<double>& V) {
 
 //     const FrozenCoreFCI frozen_core_fci_builder {onv_basis};  // the 'HamiltonianBuilder'
 
@@ -173,7 +173,7 @@ EigenproblemEnvironment Iterative(const SQHamiltonian<Scalar>& sq_hamiltonian, c
  *  @return an environment suitable for solving spin-resolved selected CI eigenvalue problems
  */
 template <typename Scalar>
-EigenproblemEnvironment Iterative(const SQHamiltonian<Scalar>& sq_hamiltonian, const SpinResolvedSelectedONVBasis& onv_basis, const MatrixX<double>& V) {
+EigenproblemEnvironment Iterative(const RSQHamiltonian<Scalar>& sq_hamiltonian, const SpinResolvedSelectedONVBasis& onv_basis, const MatrixX<double>& V) {
 
     const SelectedCI selected_ci_builder {onv_basis};  // the 'HamiltonianBuilder'
 
@@ -192,7 +192,7 @@ EigenproblemEnvironment Iterative(const SQHamiltonian<Scalar>& sq_hamiltonian, c
  *  @return an environment suitable for solving spin-resolved FCI eigenvalue problems
  */
 template <typename Scalar>
-EigenproblemEnvironment Iterative(const SQHamiltonian<Scalar>& sq_hamiltonian, const SpinResolvedONVBasis& onv_basis, const MatrixX<double>& V) {
+EigenproblemEnvironment Iterative(const RSQHamiltonian<Scalar>& sq_hamiltonian, const SpinResolvedONVBasis& onv_basis, const MatrixX<double>& V) {
 
     const FCI fci_builder {onv_basis};  // the 'HamiltonianBuilder'
 

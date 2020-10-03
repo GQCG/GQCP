@@ -135,7 +135,7 @@ public:
      *
      *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the spin-unresolved ONV basis
      */
-    SquareMatrix<double> evaluateOperatorDense(const SQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const override;
+    SquareMatrix<double> evaluateOperatorDense(const RSQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const override;
 
     /**
      *  Evaluate the diagonal of the operator
@@ -162,7 +162,7 @@ public:
      *
      *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the spin-unresolved ONV basis
      */
-    VectorX<double> evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const override;
+    VectorX<double> evaluateOperatorDiagonal(const RSQHamiltonian<double>& sq_hamiltonian) const override;
 
     /**
      *  Evaluate the operator in a sparse matrix
@@ -192,7 +192,7 @@ public:
      *
      *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the spin-unresolved ONV basis
      */
-    Eigen::SparseMatrix<double> evaluateOperatorSparse(const SQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const override;
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const RSQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const override;
 
     /**
      *  @param representation       a representation of an spin-unresolved ONV
@@ -605,7 +605,7 @@ public:
      *
      *  @return a vector that is equal to the matrix-vector product of the Hamiltonian's matrix representation and the given vector
      */
-    VectorX<double> evaluateOperatorMatrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const RSQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
 
     /**
      *  Iterate over all ONVs in this ONV basis and apply the given callback function.

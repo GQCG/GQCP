@@ -92,7 +92,7 @@ public:
      *  @note This method is only available for real scalars.
      */
     template <typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value, ScalarRSQTwoElectronOperator<double>> twoElectron() const {
+    enable_if_t<std::is_same<Z, double>::value, ScalarSQTwoElectronOperator<double>> twoElectron() const {
 
         const auto K = this->numberOfLatticeSites();
         auto g = ScalarRSQTwoElectronOperator<double>::Zero(K);

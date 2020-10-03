@@ -40,7 +40,7 @@ BOOST_AUTO_TEST_CASE(SelectedCI_public_methods) {
 
     // Create random HamiltonianParameters to check compatibility of the arguments
     size_t K = 5;
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Random(K);
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Random(K);
 
     // Create a compatible ONV basis
     GQCP::SpinResolvedONVBasis product_fock_space {K, 3, 3};
@@ -65,7 +65,7 @@ BOOST_AUTO_TEST_CASE(SelectedCI_vs_FCI) {
     size_t K = 4;
     GQCP::Molecule molecule = GQCP::Molecule::HChain(K, 1.1);
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
 
     // Create compatible ONV bases
     GQCP::SpinResolvedONVBasis product_fock_space {K, 2, 2};
@@ -101,7 +101,7 @@ BOOST_AUTO_TEST_CASE(DOCI_vs_selected_CI) {
     const auto K = spinor_basis.numberOfSpatialOrbitals();
     spinor_basis.lowdinOrthonormalize();
 
-    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);
 
 
     // Create 'equivalent' ONV bases and 'builders' that 'know' how to generate matrix representations.

@@ -72,7 +72,7 @@ public:
      * 
      *  In the case of this uncoupled AP1roG Lagrangian orbital optimizer, the PSEs are re-solved in every iteration using the current orbitals
      */
-    void prepareDMCalculation(const SQHamiltonian<double>& sq_hamiltonian) override;
+    void prepareDMCalculation(const RSQHamiltonian<double>& sq_hamiltonian) override;
 
     /**
      *  @return the current 1-DM
@@ -91,7 +91,7 @@ public:
      * 
      *  @return the new full set orbital generators, including the redundant parameters
      */
-    OrbitalRotationGenerators calculateNewFullOrbitalGenerators(const SQHamiltonian<double>& sq_hamiltonian) const override;
+    OrbitalRotationGenerators calculateNewFullOrbitalGenerators(const RSQHamiltonian<double>& sq_hamiltonian) const override;
 
 
     // PUBLIC METHODS

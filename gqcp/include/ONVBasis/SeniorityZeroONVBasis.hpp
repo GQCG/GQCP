@@ -98,7 +98,7 @@ public:
      *
      *  @return the diagonal of the matrix representation of the Hamiltonian in this seniority-zero ONV basis
      */
-    VectorX<double> evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const;
+    VectorX<double> evaluateOperatorDiagonal(const RSQHamiltonian<double>& sq_hamiltonian) const;
 
     /**
      *  Evaluate a one electron operator in a matrix vector product

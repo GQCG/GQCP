@@ -86,7 +86,7 @@ BOOST_AUTO_TEST_CASE(Selected_Evaluation_H2O) {
     auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {h2o, "STO-3G"};
     spinor_basis.lowdinOrthonormalize();
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2o);  // in the Löwdin basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, h2o);  // in the Löwdin basis
     auto K = sq_hamiltonian.numberOfOrbitals();
 
     GQCP::SpinResolvedONVBasis fock_space {K, h2o.numberOfElectrons() / 2, h2o.numberOfElectrons() / 2};  // dim = 441

@@ -51,14 +51,14 @@ public:
      *
      *  @return the diagonal of the matrix representation of the frozen core Hamiltonian
      */
-    VectorX<double> calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const override;
+    VectorX<double> calculateDiagonal(const RSQHamiltonian<double>& sq_hamiltonian) const override;
 
     /**
      *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
      *
      *  @return the frozen core Hamiltonian matrix
      */
-    SquareMatrix<double> constructHamiltonian(const SQHamiltonian<double>& sq_hamiltonian) const override;
+    SquareMatrix<double> constructHamiltonian(const RSQHamiltonian<double>& sq_hamiltonian) const override;
 
     /**
      *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
@@ -67,7 +67,7 @@ public:
      *
      *  @return the action of the frozen core Hamiltonian on the coefficient vector
      */
-    VectorX<double> matrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const override;
+    VectorX<double> matrixVectorProduct(const RSQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const override;
 };
 
 

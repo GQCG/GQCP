@@ -31,14 +31,14 @@ namespace gqcpy {
 
 
 void bindSQHamiltonian(py::module& module) {
-    py::class_<GQCP::SQHamiltonian<double>>(module, "SQHamiltonian", "A class that represents a real, second-quantized Hamiltonian.")
+    py::class_<GQCP::RSQHamiltonian<double>>(module, "SQHamiltonian", "A class that represents a real, second-quantized Hamiltonian.")
 
         // CONSTRUCTORS
 
         .def_static(
             "Molecular",
             [](const GQCP::RSpinorBasis<double, GQCP::GTOShell>& r_spinor_basis, const GQCP::Molecule& molecule) {
-                return GQCP::SQHamiltonian<double>::Molecular(r_spinor_basis, molecule);
+                return GQCP::RSQHamiltonian<double>::Molecular(r_spinor_basis, molecule);
             },
             py::arg("r_spinor_basis"),
             py::arg("molecule"),
@@ -47,7 +47,7 @@ void bindSQHamiltonian(py::module& module) {
         .def_static(
             "Molecular",
             [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& g_spinor_basis, const GQCP::Molecule& molecule) {
-                return GQCP::SQHamiltonian<double>::Molecular(g_spinor_basis, molecule);
+                return GQCP::RSQHamiltonian<double>::Molecular(g_spinor_basis, molecule);
             },
             py::arg("g_spinor_basis"),
             py::arg("molecule"),
@@ -58,24 +58,24 @@ void bindSQHamiltonian(py::module& module) {
 
         .def(
             "__add__",
-            [](const GQCP::SQHamiltonian<double>& sq_hamiltonian, const GQCP::SQOneElectronOperator<double, 1>& sq_op) {
+            [](const GQCP::RSQHamiltonian<double>& sq_hamiltonian, const GQCP::SQOneElectronOperator<double, 1>& sq_op) {
                 return sq_hamiltonian + sq_op;
             })
 
         .def(
             "__sub__",
-            [](const GQCP::SQHamiltonian<double>& sq_hamiltonian, const GQCP::SQOneElectronOperator<double, 1>& sq_op) {
+            [](const GQCP::RSQHamiltonian<double>& sq_hamiltonian, const GQCP::SQOneElectronOperator<double, 1>& sq_op) {
                 return sq_hamiltonian - sq_op;
             })
 
         .def(
             "core",
-            &GQCP::SQHamiltonian<double>::core,
+            &GQCP::RSQHamiltonian<double>::core,
             "Return the 'core' Hamiltonian, i.e. the total of the one-electron contributions to the Hamiltonian.")
 
         .def(
             "rotate",
-            [](GQCP::SQHamiltonian<double>& sq_hamiltonian, const Eigen::MatrixXd& U) {
+            [](GQCP::RSQHamiltonian<double>& sq_hamiltonian, const Eigen::MatrixXd& U) {
                 sq_hamiltonian.rotate(GQCP::TransformationMatrix<double> {U});
             },
             "In-place transform the matrix representations of Hamiltonian.",
@@ -83,14 +83,14 @@ void bindSQHamiltonian(py::module& module) {
 
         .def(
             "transform",
-            [](GQCP::SQHamiltonian<double>& sq_hamiltonian, const Eigen::MatrixXd& T) {
+            [](GQCP::RSQHamiltonian<double>& sq_hamiltonian, const Eigen::MatrixXd& T) {
                 sq_hamiltonian.transform(GQCP::TransformationMatrix<double> {T});
             },
             "In-place transform the matrix representations of Hamiltonian.",
             py::arg("T"))
 
         .def("twoElectron",
-             &GQCP::SQHamiltonian<double>::twoElectron,
+             &GQCP::RSQHamiltonian<double>::twoElectron,
              "Return the total of the two-electron contributions to the Hamiltonian.");
 }
 

@@ -48,7 +48,7 @@ public:
      * 
      *  @return the parameter response constant (k_p), i.e. the first-order parameter partial derivative of the PSEs, which is the Jacobian of the PSEs
      */
-    SquareMatrix<double> calculateParameterResponseConstant(const SQHamiltonian<double>& sq_hamiltonian) const override;
+    SquareMatrix<double> calculateParameterResponseConstant(const RSQHamiltonian<double>& sq_hamiltonian) const override;
 
     /**
      *  @param dipole_op                the dipole integrals expressed in an orthonormal orbital basis
@@ -65,7 +65,7 @@ public:
      * 
      *  @return the Lagrangian multiplier response constant (k_lambda), which is the transpose of the parameter multiplier response constant
      */
-    SquareMatrix<double> calculateMultiplierResponseConstant(const SQHamiltonian<double>& sq_hamiltonian) const;
+    SquareMatrix<double> calculateMultiplierResponseConstant(const RSQHamiltonian<double>& sq_hamiltonian) const;
 
     /**
      *  @param dipole_op                        the dipole integrals expressed in an orthonormal orbital basis
@@ -79,7 +79,7 @@ public:
      *
      *  @return the multiplier force constant of the implicit part (i.e. the second part of the) Lagrangian multiplier response, B_lambda
      */
-    ImplicitRankFourTensorSlice<double> calculateImplicitMultiplierResponseForceConstant(const SQHamiltonian<double>& sq_hamiltonian) const;
+    ImplicitRankFourTensorSlice<double> calculateImplicitMultiplierResponseForceConstant(const RSQHamiltonian<double>& sq_hamiltonian) const;
 
     /**
      *  @param sq_hamiltonian                   the Hamiltonian expressed in an orthonormal orbital basis
@@ -88,7 +88,7 @@ public:
      * 
      *  @return the Lagrangian multiplier response force (F_lambda)
      */
-    Matrix<double, Dynamic, 3> calculateMultiplierResponseForce(const SQHamiltonian<double>& sq_hamiltonian, const VectorSQOneElectronOperator<double> dipole_op, const Matrix<double, Dynamic, 3>& x) const;
+    Matrix<double, Dynamic, 3> calculateMultiplierResponseForce(const RSQHamiltonian<double>& sq_hamiltonian, const VectorSQOneElectronOperator<double> dipole_op, const Matrix<double, Dynamic, 3>& x) const;
 
     /**
      *  Solve the linear response equations for the Lagrangian multiplier response
@@ -99,7 +99,7 @@ public:
      * 
      *  @return the Lagrangian multiplier reponse y
      */
-    Matrix<double, Dynamic, 3> calculateMultiplierResponse(const SQHamiltonian<double>& sq_hamiltonian, const VectorSQOneElectronOperator<double> dipole_op, const Matrix<double, Dynamic, 3>& x) const;
+    Matrix<double, Dynamic, 3> calculateMultiplierResponse(const RSQHamiltonian<double>& sq_hamiltonian, const VectorSQOneElectronOperator<double> dipole_op, const Matrix<double, Dynamic, 3>& x) const;
 };
 
 

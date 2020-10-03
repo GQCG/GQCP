@@ -100,7 +100,7 @@ BOOST_AUTO_TEST_CASE(HamiltonianParameters_constructor) {
 
 
     // Check if a correct constructor works
-    GQCP::SQHamiltonian<double> sq_hamiltonian {GQCP::ScalarSQOneElectronOperator<double>(H_core), GQCP::ScalarSQTwoElectronOperator<double>(g)};
+    GQCP::RSQHamiltonian<double> sq_hamiltonian {GQCP::ScalarSQOneElectronOperator<double>(H_core), GQCP::ScalarSQTwoElectronOperator<double>(g)};
 
 
     // Check if wrong arguments result in a throw
@@ -108,8 +108,8 @@ BOOST_AUTO_TEST_CASE(HamiltonianParameters_constructor) {
     GQCP::QCRankFourTensor<double> g_faulty {K + 1};
 
 
-    BOOST_CHECK_THROW(GQCP::SQHamiltonian<double> sq_hamiltonian({GQCP::ScalarSQOneElectronOperator<double>(H_core_faulty), GQCP::ScalarSQTwoElectronOperator<double>(g)}), std::invalid_argument);
-    BOOST_CHECK_THROW(GQCP::SQHamiltonian<double> sq_hamiltonian({GQCP::ScalarSQOneElectronOperator<double>(H_core), GQCP::ScalarSQTwoElectronOperator<double>(g_faulty)}), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::RSQHamiltonian<double> sq_hamiltonian({GQCP::ScalarSQOneElectronOperator<double>(H_core_faulty), GQCP::ScalarSQTwoElectronOperator<double>(g)}), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::RSQHamiltonian<double> sq_hamiltonian({GQCP::ScalarSQOneElectronOperator<double>(H_core), GQCP::ScalarSQTwoElectronOperator<double>(g_faulty)}), std::invalid_argument);
 }
 
 
@@ -121,7 +121,7 @@ BOOST_AUTO_TEST_CASE(rotate_argument) {
     GQCP::QCRankFourTensor<double> g_op {K};
     g_op.setRandom();
 
-    GQCP::SQHamiltonian<double> sq_hamiltonian {GQCP::ScalarSQOneElectronOperator<double>(H_op), GQCP::ScalarSQTwoElectronOperator<double>(g_op)};
+    GQCP::RSQHamiltonian<double> sq_hamiltonian {GQCP::ScalarSQOneElectronOperator<double>(H_op), GQCP::ScalarSQTwoElectronOperator<double>(g_op)};
 
 
     // Check if we can't rotate with a non-unitary matrix
@@ -147,7 +147,7 @@ BOOST_AUTO_TEST_CASE(constructMolecularHamiltonianParameters) {
 
     // Check if we can construct the molecular Hamiltonian
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {h2, "STO-3G"};
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
     auto g = sq_hamiltonian.twoElectron().parameters();
 
 
@@ -178,7 +178,7 @@ BOOST_AUTO_TEST_CASE(constructMolecularHamiltonianParameters) {
 
 BOOST_AUTO_TEST_CASE(FCIDUMP_reader) {
 
-    auto fcidump_ham_par = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/beh_cation_631g_caitlin.FCIDUMP");
+    auto fcidump_ham_par = GQCP::RSQHamiltonian<double>::ReadFCIDUMP("data/beh_cation_631g_caitlin.FCIDUMP");
 
     // Check if the one-electron integrals are read in correctly from a previous implementation
     GQCP::SquareMatrix<double> h_SO = fcidump_ham_par.core().parameters();
@@ -214,7 +214,7 @@ BOOST_AUTO_TEST_CASE(FCIDUMP_reader) {
 BOOST_AUTO_TEST_CASE(FCIDUMP_reader_HORTON) {
 
     // Check the same reference value that HORTON does
-    auto fcidump_ham_par = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/h2_psi4_horton.FCIDUMP");
+    auto fcidump_ham_par = GQCP::RSQHamiltonian<double>::ReadFCIDUMP("data/h2_psi4_horton.FCIDUMP");
 
     GQCP::QCRankFourTensor<double> g_SO = fcidump_ham_par.twoElectron().parameters();
     BOOST_CHECK(std::abs(g_SO(6, 5, 1, 0) - 0.0533584656) < 1.0e-7);
@@ -230,7 +230,7 @@ BOOST_AUTO_TEST_CASE(calculate_generalized_Fock_matrix_and_super_invalid_argumen
     // Initialize toy HamiltonianParameters
     GQCP::SquareMatrix<double> h = GQCP::SquareMatrix<double>::Zero(2);
     GQCP::QCRankFourTensor<double> g {2};
-    GQCP::SQHamiltonian<double> sq_hamiltonian {GQCP::ScalarSQOneElectronOperator<double>(h), GQCP::ScalarSQTwoElectronOperator<double>(g)};
+    GQCP::RSQHamiltonian<double> sq_hamiltonian {GQCP::ScalarSQOneElectronOperator<double>(h), GQCP::ScalarSQTwoElectronOperator<double>(g)};
 
 
     // Create valid and invalid density matrices (with respect to the dimensions of the SOBasis)
@@ -275,7 +275,7 @@ BOOST_AUTO_TEST_CASE(calculate_Fockian_and_super) {
     // clang-format on
 
     auto g = calculateToyTwoElectronIntegrals();
-    GQCP::SQHamiltonian<double> sq_hamiltonian {GQCP::ScalarSQOneElectronOperator<double>(h), g};
+    GQCP::RSQHamiltonian<double> sq_hamiltonian {GQCP::ScalarSQOneElectronOperator<double>(h), g};
 
 
     // Construct the reference Fockian matrix
@@ -331,7 +331,7 @@ BOOST_AUTO_TEST_CASE(calculateEdmistonRuedenbergLocalizationIndex) {
         g_op(p, p, p, p) = 2 * static_cast<float>(p);
     }
 
-    GQCP::SQHamiltonian<double> sq_hamiltonian {GQCP::ScalarSQOneElectronOperator<double>(H_op), GQCP::ScalarSQTwoElectronOperator<double>(g_op)};
+    GQCP::RSQHamiltonian<double> sq_hamiltonian {GQCP::ScalarSQOneElectronOperator<double>(H_op), GQCP::ScalarSQTwoElectronOperator<double>(g_op)};
 
 
     // Check the values for the Edmiston-Ruedenberg localization index.
@@ -352,5 +352,5 @@ BOOST_AUTO_TEST_CASE(dissociatedMoleculeParameters) {
     GQCP::Molecule NO {nuclei, +1};
 
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {NO, "STO-3G"};
-    BOOST_CHECK_NO_THROW(GQCP::SQHamiltonian<double>::Molecular(spinor_basis, NO));
+    BOOST_CHECK_NO_THROW(GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, NO));
 }

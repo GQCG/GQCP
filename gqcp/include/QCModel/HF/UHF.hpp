@@ -226,7 +226,7 @@ public:
      * 
      *  @return the UHF direct (Coulomb) matrix for spin sigma
      */
-    static ScalarUSQOneElectronOperator<Scalar> calculateScalarBasisDirectMatrix(const SpinResolved1DM<Scalar>& P, const SQHamiltonian<Scalar>& sq_hamiltonian) {
+    static ScalarUSQOneElectronOperator<Scalar> calculateScalarBasisDirectMatrix(const SpinResolved1DM<Scalar>& P, const RSQHamiltonian<Scalar>& sq_hamiltonian) {
 
         // To perform the contraction, we will first have to convert the density matrices into tensors (since contractions are only implemented for tensors).
         Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_alpha_tensor {P.alpha().data(), P.alpha().rows(), P.alpha().cols()};
@@ -256,7 +256,7 @@ public:
      * 
      *  @return the UHF direct (Coulomb) matrix for spin sigma
      */
-    static ScalarUSQOneElectronOperator<Scalar> calculateScalarBasisExchangeMatrix(const SpinResolved1DM<Scalar>& P, const SQHamiltonian<Scalar>& sq_hamiltonian) {
+    static ScalarUSQOneElectronOperator<Scalar> calculateScalarBasisExchangeMatrix(const SpinResolved1DM<Scalar>& P, const RSQHamiltonian<Scalar>& sq_hamiltonian) {
 
         // To perform the contraction, we will first have to convert the density matrix into a tensor (since contractions are only implemented for tensors).
         Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_alpha_tensor {P.alpha().data(), P.alpha().rows(), P.alpha().cols()};
@@ -287,7 +287,7 @@ public:
      *
      *  @return the RHF Fock matrix expressed in the scalar basis
      */
-    static ScalarUSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(const SpinResolved1DM<Scalar>& P, const SQHamiltonian<Scalar>& sq_hamiltonian) {
+    static ScalarUSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(const SpinResolved1DM<Scalar>& P, const RSQHamiltonian<Scalar>& sq_hamiltonian) {
 
         // F_sigma = H_core + (J_alpha + J_beta) - K_sigma
         // H_core is always the same

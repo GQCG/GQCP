@@ -43,7 +43,7 @@ BOOST_AUTO_TEST_CASE(H3_test_1) {
     const GQCP::GSpinorBasis<double, GQCP::GTOShell> g_spinor_basis {molecule, "STO-3G"};
     const auto S = g_spinor_basis.overlap().parameters();
 
-    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(g_spinor_basis, molecule);
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(g_spinor_basis, molecule);
 
 
     // Create a solver and associated environment and let the QCMethod do its job.
@@ -109,7 +109,7 @@ BOOST_AUTO_TEST_CASE(H3_test_2) {
     const GQCP::GSpinorBasis<double, GQCP::GTOShell> g_spinor_basis {molecule, "STO-3G"};
     const auto S = g_spinor_basis.overlap().parameters();
 
-    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(g_spinor_basis, molecule);
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(g_spinor_basis, molecule);
 
 
     // Create a solver and associated environment and let the QCMethod do its job.
@@ -177,7 +177,7 @@ BOOST_AUTO_TEST_CASE(H3_test_DIIS) {
     const GQCP::GSpinorBasis<double, GQCP::GTOShell> g_spinor_basis {molecule, "STO-3G"};
     const auto S = g_spinor_basis.overlap().parameters();
 
-    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(g_spinor_basis, molecule);
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(g_spinor_basis, molecule);
 
 
     // Create a solver and associated environment and let the QCMethod do its job.

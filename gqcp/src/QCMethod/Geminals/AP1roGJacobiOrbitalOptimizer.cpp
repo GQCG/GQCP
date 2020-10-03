@@ -71,7 +71,7 @@ AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const AP1roGGeminalCo
  *  @param p            the index of spatial orbital 1
  *  @param q            the index of spatial orbital 2
  */
-void AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(const SQHamiltonian<double>& sq_hamiltonian, const size_t p, const size_t q) {
+void AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(const RSQHamiltonian<double>& sq_hamiltonian, const size_t p, const size_t q) {
 
     // Prepare some variables.
     const auto& h = sq_hamiltonian.core().parameters();
@@ -148,7 +148,7 @@ void AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(const SQHamiltoni
     }
 
     else {  // this means that p <= q
-        throw std::invalid_argument("AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(const SQHamiltonian<double>&, const size_t, const size_t): The given p and q are invalid: p must be larger than q.");
+        throw std::invalid_argument("AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(const RSQHamiltonian<double>&, const size_t, const size_t): The given p and q are invalid: p must be larger than q.");
     }
 }
 
@@ -160,7 +160,7 @@ void AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(const SQHamiltoni
  *
  *  @return the angle for which the derivative of the scalar function after the Jacobi rotation is zero (and the second derivative is positive), using the current trigoniometric polynomial coefficients
  */
-double AP1roGJacobiOrbitalOptimizer::calculateOptimalRotationAngle(const SQHamiltonian<double>& sq_hamiltonian, const size_t p, const size_t q) const {
+double AP1roGJacobiOrbitalOptimizer::calculateOptimalRotationAngle(const RSQHamiltonian<double>& sq_hamiltonian, const size_t p, const size_t q) const {
 
     // Implementation of the optimal Jacobi rotation angle with disjoint cases for p and q
 
@@ -239,7 +239,7 @@ double AP1roGJacobiOrbitalOptimizer::calculateOptimalRotationAngle(const SQHamil
 
 
     else {  // this means that p <= q
-        throw std::invalid_argument("AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(const SQHamiltonian<double>&, const size_t, const size_t): The given p and q are invalid: p must be larger than q.");
+        throw std::invalid_argument("AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(const RSQHamiltonian<double>&, const size_t, const size_t): The given p and q are invalid: p must be larger than q.");
     }
 }
 
@@ -250,7 +250,7 @@ double AP1roGJacobiOrbitalOptimizer::calculateOptimalRotationAngle(const SQHamil
  * 
  *  @return the value of the scalar function (i.e. the AP1roG energy) if the given Jacobi rotation parameters would be used to rotate the given Hamiltonian
  */
-double AP1roGJacobiOrbitalOptimizer::calculateScalarFunctionChange(const SQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rot_par) const {
+double AP1roGJacobiOrbitalOptimizer::calculateScalarFunctionChange(const RSQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rot_par) const {
 
     const size_t p = jacobi_rot_par.p();
     const size_t q = jacobi_rot_par.q();
@@ -284,7 +284,7 @@ double AP1roGJacobiOrbitalOptimizer::calculateScalarFunctionChange(const SQHamil
     }
 
     else {  // this means that p <= q
-        throw std::invalid_argument("AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(const SQHamiltonian<double>&, const size_t, const size_t): The given p and q are invalid: p must be larger than q.");
+        throw std::invalid_argument("AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(const RSQHamiltonian<double>&, const size_t, const size_t): The given p and q are invalid: p must be larger than q.");
     }
 }
 
@@ -294,7 +294,7 @@ double AP1roGJacobiOrbitalOptimizer::calculateScalarFunctionChange(const SQHamil
  * 
  *  In the case of this uncoupled AP1roG Jacobi orbital optimizer, we should solve the AP1roG PSEs at the start at every iteration, using the current orbitals
  */
-void AP1roGJacobiOrbitalOptimizer::prepareJacobiSpecificConvergenceChecking(const SQHamiltonian<double>& sq_hamiltonian) {
+void AP1roGJacobiOrbitalOptimizer::prepareJacobiSpecificConvergenceChecking(const RSQHamiltonian<double>& sq_hamiltonian) {
 
     // Optimize the AP1roG wave function model in this basis and update the results.
     auto solver = GQCP::NonLinearEquationSolver<double>::Newton();

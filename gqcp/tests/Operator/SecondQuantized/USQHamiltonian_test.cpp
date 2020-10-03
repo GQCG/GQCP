@@ -47,9 +47,9 @@ BOOST_AUTO_TEST_CASE(USQHamiltonian_constructor) {
     g_faulty.setRandom();
 
     // Create SQHamilonians with different dimensions
-    const GQCP::SQHamiltonian<double> sq_hamiltonian_a {GQCP::ScalarSQOneElectronOperator<double>(H_core), GQCP::ScalarSQTwoElectronOperator<double>(g)};
-    const GQCP::SQHamiltonian<double> sq_hamiltonian_b {GQCP::ScalarSQOneElectronOperator<double>(H_core), GQCP::ScalarSQTwoElectronOperator<double>(g)};
-    const GQCP::SQHamiltonian<double> sq_hamiltonian_b_faulty {GQCP::ScalarSQOneElectronOperator<double>(H_core_faulty), GQCP::ScalarSQTwoElectronOperator<double>(g_faulty)};
+    const GQCP::RSQHamiltonian<double> sq_hamiltonian_a {GQCP::ScalarSQOneElectronOperator<double>(H_core), GQCP::ScalarSQTwoElectronOperator<double>(g)};
+    const GQCP::RSQHamiltonian<double> sq_hamiltonian_b {GQCP::ScalarSQOneElectronOperator<double>(H_core), GQCP::ScalarSQTwoElectronOperator<double>(g)};
+    const GQCP::RSQHamiltonian<double> sq_hamiltonian_b_faulty {GQCP::ScalarSQOneElectronOperator<double>(H_core_faulty), GQCP::ScalarSQTwoElectronOperator<double>(g_faulty)};
 
     // Check if a correct constructor works with compatible elements
     BOOST_CHECK_NO_THROW(GQCP::USQHamiltonian<double> usq_hamiltonian(sq_hamiltonian_a, sq_hamiltonian_b, GQCP::ScalarSQTwoElectronOperator<double>(g)));

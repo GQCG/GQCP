@@ -40,7 +40,7 @@ BOOST_AUTO_TEST_CASE(analytical_rotation_energy_AP1roG) {
     const auto lih = GQCP::Molecule::ReadXYZ("data/lih_olsens.xyz");
     const auto N_P = lih.numberOfElectrons() / 2;
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {lih, "6-31G"};
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, lih);  // in an AO basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, lih);  // in an AO basis
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(lih.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
@@ -96,7 +96,7 @@ BOOST_AUTO_TEST_CASE(orbital_optimize) {
     const auto lih = GQCP::Molecule::ReadXYZ("data/lih_olsens.xyz");
     const auto N_P = lih.numberOfElectrons() / 2;
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {lih, "6-31G"};
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, lih);  // in an AO basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, lih);  // in an AO basis
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(lih.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();

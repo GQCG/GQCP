@@ -48,10 +48,10 @@ BaseOrbitalOptimizer::BaseOrbitalOptimizer(const double convergence_threshold, c
  *  @param spinor_basis         the initial spinor basis that contains the spinors to be optimized
  *  @param sq_hamiltonian       the initial (guess for the) Hamiltonian
  */
-void BaseOrbitalOptimizer::optimize(RSpinorBasis<double, GTOShell>& spinor_basis, SQHamiltonian<double>& sq_hamiltonian) {
+void BaseOrbitalOptimizer::optimize(RSpinorBasis<double, GTOShell>& spinor_basis, RSQHamiltonian<double>& sq_hamiltonian) {
 
     if (!spinor_basis.isOrthonormal()) {
-        throw std::invalid_argument("BaseOrbitalOptimizer::optimize(SQHamiltonian<double>&): The given spinor basis is not orthonormal.");
+        throw std::invalid_argument("BaseOrbitalOptimizer::optimize(RSQHamiltonian<double>&): The given spinor basis is not orthonormal.");
     }
 
     while (this->prepareConvergenceChecking(sq_hamiltonian), !this->checkForConvergence(sq_hamiltonian)) {  // result of the comma operator is the second operand, so this expression effectively means "if not converged"
@@ -60,7 +60,7 @@ void BaseOrbitalOptimizer::optimize(RSpinorBasis<double, GTOShell>& spinor_basis
 
         this->number_of_iterations++;
         if (this->number_of_iterations > this->maximum_number_of_iterations) {
-            throw std::runtime_error("BaseOrbitalOptimizer::optimize(SQHamiltonian<double>&): The orbital optimization procedure did not converge in the given number of iterations.");
+            throw std::runtime_error("BaseOrbitalOptimizer::optimize(RSQHamiltonian<double>&): The orbital optimization procedure did not converge in the given number of iterations.");
         }
     }
 

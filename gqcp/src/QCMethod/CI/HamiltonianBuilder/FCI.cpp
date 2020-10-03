@@ -42,7 +42,7 @@ FCI::FCI(const SpinResolvedONVBasis& onv_basis) :
  *
  *  @return the diagonal of the matrix representation of the Hamiltonian
  */
-VectorX<double> FCI::calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
+VectorX<double> FCI::calculateDiagonal(const RSQHamiltonian<double>& sq_hamiltonian) const {
 
     return this->onv_basis.evaluateOperatorDiagonal(sq_hamiltonian);
 }
@@ -53,7 +53,7 @@ VectorX<double> FCI::calculateDiagonal(const SQHamiltonian<double>& sq_hamiltoni
  *
  *  @return the FCI Hamiltonian matrix
  */
-SquareMatrix<double> FCI::constructHamiltonian(const SQHamiltonian<double>& sq_hamiltonian) const {
+SquareMatrix<double> FCI::constructHamiltonian(const RSQHamiltonian<double>& sq_hamiltonian) const {
 
     return this->onv_basis.evaluateOperatorDense(sq_hamiltonian, true);
 }
@@ -66,11 +66,11 @@ SquareMatrix<double> FCI::constructHamiltonian(const SQHamiltonian<double>& sq_h
  *
  *  @return the action of the FCI Hamiltonian on the coefficient vector
  */
-VectorX<double> FCI::matrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+VectorX<double> FCI::matrixVectorProduct(const RSQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
     auto K = sq_hamiltonian.core().numberOfOrbitals();
     if (K != this->onv_basis.numberOfOrbitals()) {
-        throw std::invalid_argument("FCI::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the ONV basis and sq_hamiltonian are incompatible.");
+        throw std::invalid_argument("FCI::matrixVectorProduct(RSQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the ONV basis and sq_hamiltonian are incompatible.");
     }
 
     SpinUnresolvedONVBasis fock_space_alpha = onv_basis.onvBasisAlpha();

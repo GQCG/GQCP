@@ -58,7 +58,7 @@ public:
      *
      *  @return the AP1roG electronic energy
      */
-    static double calculateEnergy(const AP1roGGeminalCoefficients& G, const SQHamiltonian<double>& sq_hamiltonian);
+    static double calculateEnergy(const AP1roGGeminalCoefficients& G, const RSQHamiltonian<double>& sq_hamiltonian);
 
     /**
      *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
@@ -68,7 +68,7 @@ public:
      *
      *  @return the PSE coordinate function with given indices (i,a) at the given geminal coefficients
      */
-    static double calculatePSECoordinateFunction(const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G, const size_t i, const size_t a);
+    static double calculatePSECoordinateFunction(const RSQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G, const size_t i, const size_t a);
 
     /**
      *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
@@ -76,7 +76,7 @@ public:
      *
      *  @return the PSEs, evaluated at the given geminal coefficients
      */
-    static ImplicitMatrixSlice<double> calculatePSECoordinateFunctions(const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G);
+    static ImplicitMatrixSlice<double> calculatePSECoordinateFunctions(const RSQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G);
 
     /**
      *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
@@ -84,7 +84,7 @@ public:
      *
      *  @return the Jacobian J_{ia,jb} of the PSEs, i.e. df_i^a/dG_j^b, evaluated at the given geminal coefficients
      */
-    static ImplicitRankFourTensorSlice<double> calculatePSEJacobian(const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G);
+    static ImplicitRankFourTensorSlice<double> calculatePSEJacobian(const RSQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G);
 
     /**
      *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
@@ -92,7 +92,7 @@ public:
      * 
      *  @return a callable (i.e. with operator()) expression for the Jacobian: the accepted VectorX<double> argument should contain the geminal coefficients in a column-major representation
      */
-    static MatrixFunction<double> callablePSEJacobian(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P);
+    static MatrixFunction<double> callablePSEJacobian(const RSQHamiltonian<double>& sq_hamiltonian, const size_t N_P);
 
     /**
      *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
@@ -100,7 +100,7 @@ public:
      * 
      *  @return a callable (i.e. with operator()) expression for the coordinate functions: the accepted VectorX<double> argument should contain the geminal coefficients in a column-major representation
      */
-    static VectorFunction<double> callablePSECoordinateFunctions(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P);
+    static VectorFunction<double> callablePSECoordinateFunctions(const RSQHamiltonian<double>& sq_hamiltonian, const size_t N_P);
 
     /**
      *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
@@ -112,7 +112,7 @@ public:
      *
      *  @return the Jacobian element with compound indices (i,a) and (j,b) at the given geminal coefficients
      */
-    static double calculatePSEJacobianElement(const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G, const size_t i, const size_t a, const size_t j, const size_t b);
+    static double calculatePSEJacobianElement(const RSQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G, const size_t i, const size_t a, const size_t j, const size_t b);
 
 
     /*
@@ -124,14 +124,14 @@ public:
      * 
      *  @return the electronic energy for these AP1roG model parameters
      */
-    double calculateEnergy(const SQHamiltonian<double>& sq_hamiltonian) const { return AP1roG::calculateEnergy(this->G, sq_hamiltonian); }
+    double calculateEnergy(const RSQHamiltonian<double>& sq_hamiltonian) const { return AP1roG::calculateEnergy(this->G, sq_hamiltonian); }
 
     /**
      *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
      *
      *  @return the Jacobian J_{ia,jb} of the PSEs, i.e. df_i^a/dG_j^b, evaluated at these AP1roG model parameters
      */
-    ImplicitRankFourTensorSlice<double> calculatePSEJacobian(const SQHamiltonian<double>& sq_hamiltonian) const { return AP1roG::calculatePSEJacobian(sq_hamiltonian, this->G); }
+    ImplicitRankFourTensorSlice<double> calculatePSEJacobian(const RSQHamiltonian<double>& sq_hamiltonian) const { return AP1roG::calculatePSEJacobian(sq_hamiltonian, this->G); }
 
     /**
      *  @return the corresponding geminal coefficients of these AP1roG model parameters

@@ -48,9 +48,9 @@ FrozenCoreCI::FrozenCoreCI(const std::shared_ptr<GQCP::HamiltonianBuilder> hamil
  *
  *  @return the diagonal of the matrix representation of the frozen core Hamiltonian
  */
-VectorX<double> FrozenCoreCI::calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
+VectorX<double> FrozenCoreCI::calculateDiagonal(const RSQHamiltonian<double>& sq_hamiltonian) const {
 
-    SQHamiltonian<double> frozen_ham_par = BaseFrozenCoreONVBasis::freezeOperator(sq_hamiltonian, this->X);
+    RSQHamiltonian<double> frozen_ham_par = BaseFrozenCoreONVBasis::freezeOperator(sq_hamiltonian, this->X);
 
     // Calculate the diagonal in the active space with the "frozen" Hamiltonian
     VectorX<double> diagonal = this->active_hamiltonian_builder->calculateDiagonal(frozen_ham_par);
@@ -67,10 +67,10 @@ VectorX<double> FrozenCoreCI::calculateDiagonal(const SQHamiltonian<double>& sq_
  *
  *  @return the frozen core Hamiltonian matrix
  */
-SquareMatrix<double> FrozenCoreCI::constructHamiltonian(const SQHamiltonian<double>& sq_hamiltonian) const {
+SquareMatrix<double> FrozenCoreCI::constructHamiltonian(const RSQHamiltonian<double>& sq_hamiltonian) const {
 
     // Freeze the Hamiltonian
-    SQHamiltonian<double> frozen_ham_par = BaseFrozenCoreONVBasis::freezeOperator(sq_hamiltonian, X);
+    RSQHamiltonian<double> frozen_ham_par = BaseFrozenCoreONVBasis::freezeOperator(sq_hamiltonian, X);
 
     // calculate Hamiltonian matrix through conventional CI
     SquareMatrix<double> total_hamiltonian = this->active_hamiltonian_builder->constructHamiltonian(frozen_ham_par);
@@ -91,9 +91,9 @@ SquareMatrix<double> FrozenCoreCI::constructHamiltonian(const SQHamiltonian<doub
  *
  *  @return the action of the frozen core Hamiltonian on the coefficient vector
  */
-VectorX<double> FrozenCoreCI::matrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+VectorX<double> FrozenCoreCI::matrixVectorProduct(const RSQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
-    SQHamiltonian<double> frozen_ham_par = BaseFrozenCoreONVBasis::freezeOperator(sq_hamiltonian, X);
+    RSQHamiltonian<double> frozen_ham_par = BaseFrozenCoreONVBasis::freezeOperator(sq_hamiltonian, X);
 
     // Perform the matvec in the active space with the "frozen"
     return this->active_hamiltonian_builder->matrixVectorProduct(frozen_ham_par, x, diagonal);

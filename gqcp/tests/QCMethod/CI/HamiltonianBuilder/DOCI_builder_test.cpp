@@ -43,7 +43,7 @@ BOOST_AUTO_TEST_CASE(DOCI_public_methods) {
 
     // Create random HamiltonianParameters to check compatibility.
     const size_t K = 5;  // the number of spatial orbitals
-    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Random(K);
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Random(K);
 
     // Create a compatible seniority-zero ONV basis.
     const GQCP::SeniorityZeroONVBasis onv_basis {K, 3};

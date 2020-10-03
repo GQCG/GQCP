@@ -58,19 +58,19 @@ public:
      * 
      *  @return a unitary matrix that will be used to rotate the current Hamiltonian into the next iteration
      */
-    virtual RTransformationMatrix<double> calculateNewRotationMatrix(const SQHamiltonian<double>& sq_hamiltonian) const = 0;
+    virtual RTransformationMatrix<double> calculateNewRotationMatrix(const RSQHamiltonian<double>& sq_hamiltonian) const = 0;
 
     /**
      *  @param sq_hamiltonian      the current Hamiltonian
      * 
      *  @return if the algorithm is considered to be converged
      */
-    virtual bool checkForConvergence(const SQHamiltonian<double>& sq_hamiltonian) const = 0;
+    virtual bool checkForConvergence(const RSQHamiltonian<double>& sq_hamiltonian) const = 0;
 
     /**
      *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
      */
-    virtual void prepareConvergenceChecking(const SQHamiltonian<double>& sq_hamiltonian) = 0;
+    virtual void prepareConvergenceChecking(const RSQHamiltonian<double>& sq_hamiltonian) = 0;
 
 
     // PUBLIC METHODS
@@ -88,7 +88,7 @@ public:
      *  @param spinor_basis         the initial spinor basis that contains the spinors to be optimized
      *  @param sq_hamiltonian       the initial (guess for the) Hamiltonian
      */
-    void optimize(RSpinorBasis<double, GTOShell>& spinor_basis, SQHamiltonian<double>& sq_hamiltonian);
+    void optimize(RSpinorBasis<double, GTOShell>& spinor_basis, RSQHamiltonian<double>& sq_hamiltonian);
 };
 
 

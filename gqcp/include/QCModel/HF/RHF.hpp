@@ -131,7 +131,7 @@ public:
      * 
      *  @return an element of the RHF orbital Hessian
      */
-    static Scalar calculateOrbitalHessianElement(const SQHamiltonian<Scalar>& sq_hamiltonian, const size_t N_P, const size_t a, const size_t i, const size_t b, const size_t j) {
+    static Scalar calculateOrbitalHessianElement(const RSQHamiltonian<Scalar>& sq_hamiltonian, const size_t N_P, const size_t a, const size_t i, const size_t b, const size_t j) {
 
         // Prepare some variables.
         const auto& g = sq_hamiltonian.twoElectron().parameters();
@@ -166,7 +166,7 @@ public:
      * 
      *  @return the RHF orbital Hessian as a ImplicitRankFourTensorSlice, i.e. an object with a suitable operator() implemented
      */
-    static ImplicitRankFourTensorSlice<Scalar> calculateOrbitalHessianTensor(const SQHamiltonian<Scalar>& sq_hamiltonian, const size_t N_P) {
+    static ImplicitRankFourTensorSlice<Scalar> calculateOrbitalHessianTensor(const RSQHamiltonian<Scalar>& sq_hamiltonian, const size_t N_P) {
 
         // Create an occupied-virtual orbital space.
         const auto K = sq_hamiltonian.numberOfOrbitals();
@@ -240,7 +240,7 @@ public:
      *
      *  @return the RHF Fock matrix expressed in the scalar basis
      */
-    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(const OneDM<Scalar>& D, const SQHamiltonian<Scalar>& sq_hamiltonian) {
+    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(const OneDM<Scalar>& D, const RSQHamiltonian<Scalar>& sq_hamiltonian) {
         // To perform the contraction, we will first have to convert the MatrixX<double> D to an Eigen::Tensor<const double, 2> D_tensor, as contractions are only implemented for Tensors
         Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> D_tensor {D.data(), D.rows(), D.cols()};
 

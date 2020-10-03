@@ -45,7 +45,7 @@ vAP1roGElectricalResponseSolver::vAP1roGElectricalResponseSolver(const QCModel::
  * 
  *  @return the parameter response constant (k_p), i.e. the first-order parameter partial derivative of the PSEs, which is the Jacobian of the PSEs
  */
-SquareMatrix<double> vAP1roGElectricalResponseSolver::calculateParameterResponseConstant(const SQHamiltonian<double>& sq_hamiltonian) const {
+SquareMatrix<double> vAP1roGElectricalResponseSolver::calculateParameterResponseConstant(const RSQHamiltonian<double>& sq_hamiltonian) const {
 
     return QCModel::AP1roG(this->vap1rog.geminalCoefficients()).calculatePSEJacobian(sq_hamiltonian).asMatrix();
 }
@@ -101,7 +101,7 @@ Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateParameterRe
  * 
  *  @return the Lagrangian multiplier response constant (k_lambda), which is the transpose of the parameter multiplier response constant
  */
-SquareMatrix<double> vAP1roGElectricalResponseSolver::calculateMultiplierResponseConstant(const SQHamiltonian<double>& sq_hamiltonian) const {
+SquareMatrix<double> vAP1roGElectricalResponseSolver::calculateMultiplierResponseConstant(const RSQHamiltonian<double>& sq_hamiltonian) const {
 
     return this->calculateParameterResponseConstant(sq_hamiltonian).transpose();
 }
@@ -153,7 +153,7 @@ Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateExplicitMul
  *
  *  @return the multiplier force constant of the implicit part (i.e. the second part of the) Lagrangian multiplier response, B_lambda
  */
-ImplicitRankFourTensorSlice<double> vAP1roGElectricalResponseSolver::calculateImplicitMultiplierResponseForceConstant(const SQHamiltonian<double>& sq_hamiltonian) const {
+ImplicitRankFourTensorSlice<double> vAP1roGElectricalResponseSolver::calculateImplicitMultiplierResponseForceConstant(const RSQHamiltonian<double>& sq_hamiltonian) const {
 
     // Prepare some variables.
     const auto& G = this->vap1rog.geminalCoefficients();
@@ -207,7 +207,7 @@ ImplicitRankFourTensorSlice<double> vAP1roGElectricalResponseSolver::calculateIm
  * 
  *  @return the Lagrangian multiplier response force (F_lambda)
  */
-Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateMultiplierResponseForce(const SQHamiltonian<double>& sq_hamiltonian, const VectorSQOneElectronOperator<double> dipole_op, const Matrix<double, Dynamic, 3>& x) const {
+Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateMultiplierResponseForce(const RSQHamiltonian<double>& sq_hamiltonian, const VectorSQOneElectronOperator<double> dipole_op, const Matrix<double, Dynamic, 3>& x) const {
 
     const auto A_lambda = this->calculateExplicitMultiplierResponseForce(dipole_op);
     const auto B_lambda = this->calculateImplicitMultiplierResponseForceConstant(sq_hamiltonian);
@@ -226,7 +226,7 @@ Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateMultiplierR
  * 
  *  @return the Lagrangian multiplier reponse y
  */
-Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateMultiplierResponse(const SQHamiltonian<double>& sq_hamiltonian, const VectorSQOneElectronOperator<double> dipole_op, const Matrix<double, Dynamic, 3>& x) const {
+Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateMultiplierResponse(const RSQHamiltonian<double>& sq_hamiltonian, const VectorSQOneElectronOperator<double> dipole_op, const Matrix<double, Dynamic, 3>& x) const {
 
     const auto k_lambda = this->calculateMultiplierResponseConstant(sq_hamiltonian);
     const auto F_lambda = this->calculateMultiplierResponseForce(sq_hamiltonian, dipole_op, x);

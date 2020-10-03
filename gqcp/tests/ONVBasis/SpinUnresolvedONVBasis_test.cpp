@@ -350,7 +350,7 @@ BOOST_AUTO_TEST_CASE(evaluate_one_electron_operator) {
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
     const auto M = spinor_basis.numberOfSpatialOrbitals();
     spinor_basis.lowdinOrthonormalize();
-    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in the orthonormal Löwdin basis
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in the orthonormal Löwdin basis
 
     // Set up the two equivalent ONV bases.
     const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
@@ -383,7 +383,7 @@ BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_Dense_diagonal_true) {
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
     spinor_basis.lowdinOrthonormalize();
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
     GQCP::SpinUnresolvedONVBasis fock_space {6, 4};
     GQCP::SpinResolvedONVBasis product_fock_space {6, 4, 0};  // 4 alpha 0 beta product SpinUnresolvedONV basis as selected SpinUnresolvedONV basis constructor argument will mimic a spin orbital SpinUnresolvedONV basis
@@ -417,7 +417,7 @@ BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_Dense_diagonal_false) {
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
     spinor_basis.lowdinOrthonormalize();
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
     GQCP::SpinUnresolvedONVBasis fock_space {6, 4};
     GQCP::SpinResolvedONVBasis product_fock_space {6, 4, 0};  // 4 alpha 0 beta product SpinUnresolvedONV basis as selected SpinUnresolvedONV basis constructor argument will mimic a spin orbital SpinUnresolvedONV basis
@@ -451,7 +451,7 @@ BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_Sparse_diagonal_true) {
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
     spinor_basis.lowdinOrthonormalize();
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
     GQCP::SpinUnresolvedONVBasis fock_space {6, 4};
     GQCP::SpinResolvedONVBasis product_fock_space {6, 4, 0};  // 4 alpha 0 beta product SpinUnresolvedONV basis as selected SpinUnresolvedONV basis constructor argument will mimic a spin orbital SpinUnresolvedONV basis
@@ -485,7 +485,7 @@ BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_Sparse_diagonal_false) {
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
     spinor_basis.lowdinOrthonormalize();
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
     GQCP::SpinUnresolvedONVBasis fock_space {6, 4};
     GQCP::SpinResolvedONVBasis product_fock_space {6, 4, 0};  // 4 alpha 0 beta product SpinUnresolvedONV basis as selected SpinUnresolvedONV basis constructor argument will mimic a spin orbital SpinUnresolvedONV basis
@@ -519,7 +519,7 @@ BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_diagonal) {
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
     spinor_basis.lowdinOrthonormalize();
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
     GQCP::SpinUnresolvedONVBasis fock_space {6, 4};
     GQCP::SpinResolvedONVBasis product_fock_space {6, 4, 0};  // 4 alpha 0 beta product SpinUnresolvedONV basis as selected SpinUnresolvedONV basis constructor argument will mimic a spin orbital SpinUnresolvedONV basis
@@ -552,7 +552,7 @@ BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_diagonal_vs_no_diagonal) {
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
     spinor_basis.lowdinOrthonormalize();
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
     GQCP::SpinUnresolvedONVBasis fock_space {6, 4};
 
@@ -574,7 +574,7 @@ BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_MatrixVectorProduct) {
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
     spinor_basis.lowdinOrthonormalize();
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
     GQCP::SpinUnresolvedONVBasis fock_space {6, 4};
 

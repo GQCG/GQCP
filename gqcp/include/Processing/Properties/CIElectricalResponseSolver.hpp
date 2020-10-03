@@ -54,7 +54,7 @@ public:
      * 
      *  @return the parameter response constant (k_p), i.e. the second-order parameter partial derivative of the CI energy function
      */
-    SquareMatrix<double> calculateParameterResponseConstant(const SQHamiltonian<double>& sq_hamiltonian) const override {
+    SquareMatrix<double> calculateParameterResponseConstant(const RSQHamiltonian<double>& sq_hamiltonian) const override {
 
         // k_p for CI models is just the electronic Hamiltonian evaluated in the ONV basis
         return 2 * this->linear_expansion.onvBasis().evaluateOperatorDense(sq_hamiltonian, true);  // true: need to calculate diagonal values as well

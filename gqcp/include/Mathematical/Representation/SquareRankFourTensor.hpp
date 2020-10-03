@@ -169,7 +169,7 @@ public:
             for (size_t j = 0; j < dim; j++) {
                 for (size_t k = 0; k < dim; k++) {
                     for (size_t l = 0; l < dim; l++) {
-                        g(i, j, k, l) = 2 * g(i, j, k, l) - 1;  // Scale from [0, 1] -> [0, 2] -> [-1, 1].
+                        T(i, j, k, l) = 2 * T(i, j, k, l) - 1;  // Scale from [0, 1] -> [0, 2] -> [-1, 1].
                     }
                 }
             }

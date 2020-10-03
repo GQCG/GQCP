@@ -32,7 +32,7 @@ void bindQCMethodAP1roG(py::module& module) {
 
         // CONSTRUCTORS
 
-        .def(py::init<GQCP::SQHamiltonian<double>, size_t>(),
+        .def(py::init<GQCP::RSQHamiltonian<double>, size_t>(),
              py::arg("sq_hamiltonian"),
              py::arg("N_P"))
 

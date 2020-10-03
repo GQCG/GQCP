@@ -68,14 +68,14 @@ public:
      * 
      *  @return the current orbital gradient as a matrix
      */
-    virtual SquareMatrix<double> calculateGradientMatrix(const SQHamiltonian<double>& sq_hamiltonian) const = 0;
+    virtual SquareMatrix<double> calculateGradientMatrix(const RSQHamiltonian<double>& sq_hamiltonian) const = 0;
 
     /**
      *  @param sq_hamiltonian       the current Hamiltonian
      * 
      *  @return the current orbital Hessian as a tensor
      */
-    virtual SquareRankFourTensor<double> calculateHessianTensor(const SQHamiltonian<double>& sq_hamiltonian) const = 0;
+    virtual SquareRankFourTensor<double> calculateHessianTensor(const RSQHamiltonian<double>& sq_hamiltonian) const = 0;
 
     /**
      *  Use gradient and Hessian information to determine a new direction for the 'full' orbital rotation generators kappa. Note that a distinction is made between 'free' generators, i.e. those that are calculated from the gradient and Hessian information and the 'full' generators, which also include the redundant parameters (that can be set to zero). The 'full' generators are used to calculate the total rotation matrix using the matrix exponential
@@ -84,12 +84,12 @@ public:
      * 
      *  @return the new full set orbital generators, including the redundant parameters
      */
-    virtual OrbitalRotationGenerators calculateNewFullOrbitalGenerators(const SQHamiltonian<double>& sq_hamiltonian) const = 0;
+    virtual OrbitalRotationGenerators calculateNewFullOrbitalGenerators(const RSQHamiltonian<double>& sq_hamiltonian) const = 0;
 
     /**
      *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the first and second orbital derivatives, i.e. the orbital gradient and Hessian
      */
-    virtual void prepareOrbitalDerivativesCalculation(const SQHamiltonian<double>& sq_hamiltonian) = 0;
+    virtual void prepareOrbitalDerivativesCalculation(const RSQHamiltonian<double>& sq_hamiltonian) = 0;
 
 
     // PUBLIC OVERRIDDEN METHODS
@@ -103,7 +103,7 @@ public:
      * 
      *  @return a unitary matrix that will be used to rotate the current Hamiltonian into the next iteration
      */
-    RTransformationMatrix<double> calculateNewRotationMatrix(const SQHamiltonian<double>& sq_hamiltonian) const override;
+    RTransformationMatrix<double> calculateNewRotationMatrix(const RSQHamiltonian<double>& sq_hamiltonian) const override;
 
     /**
      *  Determine if the algorithm has converged or not
@@ -115,12 +115,12 @@ public:
      * 
      *  @return if the algorithm is considered to be converged
      */
-    bool checkForConvergence(const SQHamiltonian<double>& sq_hamiltonian) const override;
+    bool checkForConvergence(const RSQHamiltonian<double>& sq_hamiltonian) const override;
 
     /**
      *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
      */
-    virtual void prepareConvergenceChecking(const SQHamiltonian<double>& sq_hamiltonian) override;
+    virtual void prepareConvergenceChecking(const RSQHamiltonian<double>& sq_hamiltonian) override;
 
 
     // PUBLIC METHODS
@@ -130,14 +130,14 @@ public:
      * 
      *  @return the current orbital gradient as a vector. Matrix indices are converted to vector indices in the convention that p>q
      */
-    VectorX<double> calculateGradientVector(const SQHamiltonian<double>& sq_hamiltonian) const;
+    VectorX<double> calculateGradientVector(const RSQHamiltonian<double>& sq_hamiltonian) const;
 
     /**
      *  @param sq_hamiltonian       the current Hamiltonian
      * 
      *  @return the current orbital Hessian as a matrix
      */
-    SquareMatrix<double> calculateHessianMatrix(const SQHamiltonian<double>& sq_hamiltonian) const;
+    SquareMatrix<double> calculateHessianMatrix(const RSQHamiltonian<double>& sq_hamiltonian) const;
 
     /**
      *  Use gradient and Hessian information to determine a new direction for the 'free' orbital rotation generators kappa. Note that a distinction is made between 'free' generators, i.e. those that are calculated from the gradient and Hessian information and the 'full' generators, which also include the redundant parameters (that can be set to zero). The 'full' generators are used to calculate the total rotation matrix using the matrix exponential
@@ -146,7 +146,7 @@ public:
      * 
      *  @return the new free orbital generators
      */
-    OrbitalRotationGenerators calculateNewFreeOrbitalGenerators(const SQHamiltonian<double>& sq_hamiltonian) const;
+    OrbitalRotationGenerators calculateNewFreeOrbitalGenerators(const RSQHamiltonian<double>& sq_hamiltonian) const;
 
     /**
      *  If the Newton step is ill-defined, examine the Hessian and produce a new direction from it: the eigenvector that corresponds to the smallest (negative) eigenvalue of the Hessian

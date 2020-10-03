@@ -57,7 +57,7 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_plain) {
     const auto N_beta = water.numberOfElectronPairs();
 
     const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {water, "STO-3G"};
-    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, water);  // in an AO basis
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, water);  // in an AO basis
 
     auto uhf_environment = GQCP::UHFSCFEnvironment<double>::WithCoreGuess(N_alpha, N_beta, sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_uhf_scf_solver = GQCP::UHFSCFSolver<double>::Plain();
@@ -104,7 +104,7 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_diis) {
     const auto N_beta = water.numberOfElectronPairs();
 
     const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {water, "STO-3G"};
-    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, water);  // in an AO basis
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, water);  // in an AO basis
 
     auto uhf_environment = GQCP::UHFSCFEnvironment<double>::WithCoreGuess(N_alpha, N_beta, sq_hamiltonian, spinor_basis.overlap().parameters());
     auto diis_uhf_scf_solver = GQCP::UHFSCFSolver<double>::DIIS();

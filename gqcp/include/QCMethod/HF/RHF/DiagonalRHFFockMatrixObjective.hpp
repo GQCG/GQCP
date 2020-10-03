@@ -37,8 +37,8 @@ public:
 
 
 private:
-    double precision;                      // the precision with which the diagonality of the Fock matrix should be checked
-    SQHamiltonian<Scalar> sq_hamiltonian;  // the Hamiltonian expressed in a scalar basis
+    double precision;                       // the precision with which the diagonality of the Fock matrix should be checked
+    RSQHamiltonian<Scalar> sq_hamiltonian;  // the Hamiltonian expressed in a scalar basis
 
 
 public:
@@ -49,7 +49,7 @@ public:
     /**
      *  @param sq_hamiltonian       the Hamiltonian expressed in a scalar basis
      */
-    DiagonalRHFFockMatrixObjective(const SQHamiltonian<Scalar>& sq_hamiltonian, const double precision = 1.0e-08) :
+    DiagonalRHFFockMatrixObjective(const RSQHamiltonian<Scalar>& sq_hamiltonian, const double precision = 1.0e-08) :
         precision {precision},
         sq_hamiltonian {sq_hamiltonian} {}
 

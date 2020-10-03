@@ -45,7 +45,7 @@ BOOST_AUTO_TEST_CASE(Hubbard_specialized_vs_unspecialized_dense_diagonalization)
 
 
     // Create an identical, but 'unspecialized' second-quantized Hamiltonian.
-    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::FromHubbard(hubbard_hamiltonian);
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::FromHubbard(hubbard_hamiltonian);
 
 
     // Create one dense solver and two environments.
@@ -78,7 +78,7 @@ BOOST_AUTO_TEST_CASE(Hubbard_specialized_vs_unspecialized_dense_diagonalization_
 
 
     // Create an identical, but 'unspecialized' second-quantized Hamiltonian.
-    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::FromHubbard(hubbard_hamiltonian);
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::FromHubbard(hubbard_hamiltonian);
 
 
     // Create one dense solver and two environments.
@@ -198,7 +198,7 @@ BOOST_AUTO_TEST_CASE(Hubbard_specialized_vs_unspecialized_Davidson_diagonalizati
 
 
     // Create an identical, but 'unspecialized' second-quantized Hamiltonian.
-    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::FromHubbard(hubbard_hamiltonian);
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::FromHubbard(hubbard_hamiltonian);
 
 
     // Create one dense solver and two environments.
@@ -232,7 +232,7 @@ BOOST_AUTO_TEST_CASE(Hubbard_specialized_vs_unspecialized_Davidson_diagonalizati
 
 
     // Create an identical, but 'unspecialized' second-quantized Hamiltonian.
-    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::FromHubbard(hubbard_hamiltonian);
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::FromHubbard(hubbard_hamiltonian);
 
 
     // Create one dense solver and two environments.

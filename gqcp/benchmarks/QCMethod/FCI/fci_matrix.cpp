@@ -22,7 +22,7 @@ static void constructHamiltonian(benchmark::State& state) {
 
 
     // Prepare the second-quantized Hamiltonian and set up a full spin-resolved ONV basis
-    const GQCP::SQHamiltonian<double> sq_hamiltonian = GQCP::SQHamiltonian<double>::Random(K);
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Random(K);
     const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
     const GQCP::FCI fci {onv_basis};
 

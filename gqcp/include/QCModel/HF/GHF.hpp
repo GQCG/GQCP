@@ -143,7 +143,7 @@ public:
      * 
      *  @note The scalar bases for the alpha- and beta-components must be the same.
      */
-    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisDirectMatrix(const OneDM<Scalar>& P, const SQHamiltonian<Scalar>& sq_hamiltonian) {
+    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisDirectMatrix(const OneDM<Scalar>& P, const RSQHamiltonian<Scalar>& sq_hamiltonian) {
 
         // To perform the contraction, we will first have to convert the density matrix into a Eigen::Tensor (since contractions are only implemented for tensors).
         // Since the two-electron integrals are spin-blocked (due to the nature of quantizing in a GSpinorBasis), the contractions must happen with a density matrix of the same dimension (M: the number of spinors). Therefore, we will construct a zero density matrix in which we only fill in one of the spin-blocks.
@@ -181,7 +181,7 @@ public:
      * 
      *  @return the UHF direct (Coulomb) matrix for spin sigma
      */
-    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisExchangeMatrix(const OneDM<Scalar>& P, const SQHamiltonian<Scalar>& sq_hamiltonian) {
+    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisExchangeMatrix(const OneDM<Scalar>& P, const RSQHamiltonian<Scalar>& sq_hamiltonian) {
 
         // To perform the contraction, we will first have to convert the density matrix into a Eigen::Tensor (since contractions are only implemented for tensors).
         // Since the two-electron integrals are spin-blocked (due to the nature of quantizing in a GSpinorBasis), the contractions must happen with a density matrix of the same dimension (M: the number of spinors). Therefore, we will construct a zero density matrix in which we only fill in one of the spin-blocks.
@@ -237,7 +237,7 @@ public:
      *
      *  @return the GHF Fock matrix expressed in the scalar basis
      */
-    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(const OneDM<Scalar>& P, const SQHamiltonian<Scalar>& sq_hamiltonian) {
+    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(const OneDM<Scalar>& P, const RSQHamiltonian<Scalar>& sq_hamiltonian) {
 
         const auto& H_core = sq_hamiltonian.core();
         const auto J = QCModel::GHF<Scalar>::calculateScalarBasisDirectMatrix(P, sq_hamiltonian);

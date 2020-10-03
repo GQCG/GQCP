@@ -64,9 +64,9 @@ void bindCIEnvironments(py::module& module) {
 
     auto submodule = module.def_submodule("CIEnvironment");
 
-    bindCIEnvironment<GQCP::SQHamiltonian<double>, GQCP::SeniorityZeroONVBasis>(submodule, "Return an environment suitable for solving DOCI eigenvalue problems.");
+    bindCIEnvironment<GQCP::RSQHamiltonian<double>, GQCP::SeniorityZeroONVBasis>(submodule, "Return an environment suitable for solving DOCI eigenvalue problems.");
     bindCIEnvironment<GQCP::HubbardHamiltonian<double>, GQCP::SpinResolvedONVBasis>(submodule, "Return an environment suitable for solving Hubbard-related eigenvalue problems.");
-    bindCIEnvironment<GQCP::SQHamiltonian<double>, GQCP::SpinResolvedONVBasis>(submodule, "Return an environment suitable for solving spin-resolved FCI eigenvalue problems.");
+    bindCIEnvironment<GQCP::RSQHamiltonian<double>, GQCP::SpinResolvedONVBasis>(submodule, "Return an environment suitable for solving spin-resolved FCI eigenvalue problems.");
 }
 
 

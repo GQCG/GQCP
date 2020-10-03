@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE(mulliken_N2_STO_3G) {
     spinor_basis.lowdinOrthonormalize();
     const auto K = spinor_basis.numberOfSpatialOrbitals();
 
-    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);
 
 
     // Calculate the Mulliken population operator in this spinor basis.

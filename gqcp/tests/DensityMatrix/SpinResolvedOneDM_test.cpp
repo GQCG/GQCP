@@ -44,7 +44,7 @@ BOOST_AUTO_TEST_CASE(trace) {
     const auto K = spinor_basis.numberOfSpatialOrbitals();
     spinor_basis.lowdinOrthonormalize();
 
-    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);
 
 
     // Do a dense FCI calculation.

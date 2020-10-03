@@ -41,7 +41,7 @@ void bindRHFElectricalResponseSolver(py::module& module) {
 
         .def(
             "calculateWaveFunctionResponse",
-            [](const GQCP::RHFElectricalResponseSolver& cphf_solver, const GQCP::SQHamiltonian<double>& sq_hamiltonian, const GQCP::VectorSQOneElectronOperator<double>& dipole_op) {
+            [](const GQCP::RHFElectricalResponseSolver& cphf_solver, const GQCP::RSQHamiltonian<double>& sq_hamiltonian, const GQCP::VectorSQOneElectronOperator<double>& dipole_op) {
                 return cphf_solver.calculateWaveFunctionResponse(sq_hamiltonian, dipole_op);
             },
             "Solve the linear response equations and return the wave function response.",

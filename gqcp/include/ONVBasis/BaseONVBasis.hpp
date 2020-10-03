@@ -89,7 +89,7 @@ public:
      *
      *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the ONV basis
      */
-    virtual VectorX<double> evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const = 0;
+    virtual VectorX<double> evaluateOperatorDiagonal(const RSQHamiltonian<double>& sq_hamiltonian) const = 0;
 
     /**
      *  Evaluate the operator in a dense matrix
@@ -119,7 +119,7 @@ public:
      *
      *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the ONV basis
      */
-    virtual SquareMatrix<double> evaluateOperatorDense(const SQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const = 0;
+    virtual SquareMatrix<double> evaluateOperatorDense(const RSQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const = 0;
 
     /**
      *  Evaluate the operator in a sparse matrix
@@ -149,7 +149,7 @@ public:
      *
      *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the ONV basis
      */
-    virtual Eigen::SparseMatrix<double> evaluateOperatorSparse(const SQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const = 0;
+    virtual Eigen::SparseMatrix<double> evaluateOperatorSparse(const RSQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const = 0;
 
 
     // PUBLIC METHODS

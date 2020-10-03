@@ -100,7 +100,7 @@ BOOST_AUTO_TEST_CASE(transform_wave_function_h3) {
     const auto K = spinor_basis.numberOfSpatialOrbitals();
 
     spinor_basis.lowdinOrthonormalize();
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);
 
 
     // Do a dense FCI calculation.
@@ -142,7 +142,7 @@ BOOST_AUTO_TEST_CASE(transform_wave_function_h4) {
     const auto K = spinor_basis.numberOfSpatialOrbitals();
 
     spinor_basis.lowdinOrthonormalize();
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);
 
 
     // Do a dense FCI calculation.
@@ -185,7 +185,7 @@ BOOST_AUTO_TEST_CASE(transform_wave_function_h5) {
     const auto K = spinor_basis.numberOfSpatialOrbitals();
 
     spinor_basis.lowdinOrthonormalize();
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);
 
 
     // Do a dense FCI calculation.
@@ -395,7 +395,7 @@ BOOST_AUTO_TEST_CASE(spin_resolved_vs_spin_resolved_selected_DMs) {
     const auto K = spinor_basis.numberOfSpatialOrbitals();
     spinor_basis.lowdinOrthonormalize();
 
-    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);
 
 
     // Do a dense FCI calculation.
@@ -448,7 +448,7 @@ BOOST_AUTO_TEST_CASE(seniority_zero_vs_spin_resolved_selected_DMs) {
     const auto K = spinor_basis.numberOfSpatialOrbitals();
     spinor_basis.lowdinOrthonormalize();
 
-    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);
 
 
     // Do a dense DOCI calculation.

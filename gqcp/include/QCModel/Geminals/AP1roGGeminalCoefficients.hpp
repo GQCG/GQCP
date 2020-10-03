@@ -103,7 +103,7 @@ public:
      *
      *  @return the AP1roG geminal coefficients in the weak interaction limit
      */
-    static AP1roGGeminalCoefficients WeakInteractionLimit(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P);
+    static AP1roGGeminalCoefficients WeakInteractionLimit(const RSQHamiltonian<double>& sq_hamiltonian, const size_t N_P);
 
 
     // STATIC PUBLIC METHODS

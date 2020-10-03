@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE(FCI_H2_dense) {
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "6-31G**"};
     const auto K = spinor_basis.numberOfSpatialOrbitals();
 
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
 
 
     // Solve the RHF SCF equations to find an initial orthonormal basis.
@@ -87,7 +87,7 @@ BOOST_AUTO_TEST_CASE(FCI_rotated_diagonal_sum) {
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
     auto K = spinor_basis.numberOfSpatialOrbitals();
 
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
 
 
     // Solve the RHF SCF equations to find an initial orthonormal basis.
@@ -128,7 +128,7 @@ BOOST_AUTO_TEST_CASE(FCI_H2O_dense) {
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
     const auto K = spinor_basis.numberOfSpatialOrbitals();
 
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
 
 
     // Solve the RHF SCF equations to find an initial orthonormal basis.
@@ -170,7 +170,7 @@ BOOST_AUTO_TEST_CASE(FCI_H2_Davidson) {
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "6-31G**"};
     const auto K = spinor_basis.numberOfSpatialOrbitals();
 
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
 
 
     // Solve the RHF SCF equations to find an initial orthonormal basis.
@@ -212,7 +212,7 @@ BOOST_AUTO_TEST_CASE(FCI_H2O_Davidson) {
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
     const auto K = spinor_basis.numberOfSpatialOrbitals();
 
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
 
 
     // Solve the RHF SCF equations to find an initial orthonormal basis.
@@ -254,7 +254,7 @@ BOOST_AUTO_TEST_CASE(FCI_H6_dense_vs_Davidson) {
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
     const auto K = spinor_basis.numberOfSpatialOrbitals();
 
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
 
 
     // Solve the RHF SCF equations to find an initial orthonormal basis.

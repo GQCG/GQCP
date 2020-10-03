@@ -37,7 +37,7 @@ BOOST_AUTO_TEST_CASE(FrozenCoreFCI_public_methods) {
 
     // Create random HamiltonianParameters to check compatibility
     size_t K = 5;
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Random(K);
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Random(K);
 
 
     // Create a compatible ONV basis
@@ -62,7 +62,7 @@ BOOST_AUTO_TEST_CASE(SelectedCI_vs_FrozenCoreFCI) {
     size_t K = 5;
     const auto H5 = GQCP::Molecule::HChain(K, 1.1);
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {H5, "STO-3G"};
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, H5);  // in an AO basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, H5);  // in an AO basis
 
     // Create compatible ONV bases
     GQCP::SpinResolvedFrozenONVBasis product_fock_space {K, 3, 3, 1};

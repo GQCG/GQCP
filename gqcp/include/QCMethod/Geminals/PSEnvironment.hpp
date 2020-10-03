@@ -36,7 +36,7 @@ namespace PSEnvironment {
  *  @return an environment suitable for AP1roG calculations
  */
 template <typename Scalar>
-NonLinearEquationEnvironment<Scalar> AP1roG(const SQHamiltonian<Scalar>& sq_hamiltonian, const AP1roGGeminalCoefficients& G_initial) {
+NonLinearEquationEnvironment<Scalar> AP1roG(const RSQHamiltonian<Scalar>& sq_hamiltonian, const AP1roGGeminalCoefficients& G_initial) {
 
     const auto N_P = G_initial.numberOfElectronPairs();
 
@@ -57,7 +57,7 @@ NonLinearEquationEnvironment<Scalar> AP1roG(const SQHamiltonian<Scalar>& sq_hami
  *  @return an environment suitable for AP1roG calculations
  */
 template <typename Scalar>
-NonLinearEquationEnvironment<Scalar> AP1roG(const SQHamiltonian<Scalar>& sq_hamiltonian, const size_t N_P) {
+NonLinearEquationEnvironment<Scalar> AP1roG(const RSQHamiltonian<Scalar>& sq_hamiltonian, const size_t N_P) {
 
     const auto K = sq_hamiltonian.numberOfOrbitals();    // number of spatial orbitals
     const AP1roGGeminalCoefficients G_initial {N_P, K};  // geminal coefficients set to zero
