@@ -40,10 +40,10 @@ BOOST_AUTO_TEST_CASE(constructor_throws) {
 
 
     // Initialize compatible and incompatible test coefficient matrices.
-    const GQCP::SpinResolvedTransformationMatrix<double> T_compatible {GQCP::TransformationMatrix<double>::Zero(K_alpha, K_alpha), GQCP::TransformationMatrix<double>::Zero(K_beta, K_beta)};
+    const GQCP::UTransformationMatrix<double> T_compatible {GQCP::TransformationMatrix<double>::Zero(K_alpha), GQCP::TransformationMatrix<double>::Zero(K_beta)};
 
-    const GQCP::SpinResolvedTransformationMatrix<double> T_incompatible_alpha {GQCP::TransformationMatrix<double>::Zero(K_alpha + 1, K_alpha + 1), GQCP::TransformationMatrix<double>::Zero(K_beta, K_beta)};
-    const GQCP::SpinResolvedTransformationMatrix<double> T_incompatible_beta {GQCP::TransformationMatrix<double>::Zero(K_alpha, K_alpha), GQCP::TransformationMatrix<double>::Zero(K_beta + 1, K_beta + 1)};
+    const GQCP::UTransformationMatrix<double> T_incompatible_alpha {GQCP::TransformationMatrix<double>::Zero(K_alpha + 1), GQCP::TransformationMatrix<double>::Zero(K_beta)};
+    const GQCP::UTransformationMatrix<double> T_incompatible_beta {GQCP::TransformationMatrix<double>::Zero(K_alpha), GQCP::TransformationMatrix<double>::Zero(K_beta + 1)};
 
 
     // Check if the constructor throws upon receiving incompatible arguments

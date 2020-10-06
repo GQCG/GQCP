@@ -94,7 +94,7 @@ void bindSQOneElectronOperator(py::module& module, const std::string& suffix) {
         .def(
             "allParameters",
             [](const GQCP::SQOneElectronOperator<Scalar, 3>& op) {
-                const auto all_parameters = op.allParameters();  // returns a std::array<QCMatrix<Scalar>>
+                const auto all_parameters = op.allParameters();  // returns a std::array<SquareMatrix<Scalar>>
 
                 return all_parameters;
             },

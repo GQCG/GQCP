@@ -20,12 +20,12 @@
 
 #include "Basis/Transformations/JacobiRotationParameters.hpp"
 #include "Basis/Transformations/TransformationMatrix.hpp"
+#include "DensityMatrix/OneDM.hpp"
+#include "DensityMatrix/TwoDM.hpp"
 #include "Mathematical/Functions/CartesianGTO.hpp"
 #include "Mathematical/Functions/LinearCombination.hpp"
 #include "Mathematical/Functions/ScalarFunction.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
-#include "Processing/DensityMatrices/OneDM.hpp"
-#include "Processing/DensityMatrices/TwoDM.hpp"
 #include "Utilities/type_traits.hpp"
 
 #include <array>
@@ -74,6 +74,14 @@ public:
             }
         }
     }
+    SQOneElectronOperator(const std::array<SquareMatrix<Scalar>, Components>& fs) {
+
+        this->fs = std::array<QCMatrix<Scalar>, Components> {};  // default initializer
+
+        for (size_t i = 0; i < Components; i++) {
+            this->fs[i] = QCMatrix<Scalar>(fs[i]);
+        }
+    }
 
 
     /**
@@ -84,9 +92,8 @@ public:
      *  @note This constructor is only available for ScalarSQOneElectronOperators (for the std::enable_if, see https://stackoverflow.com/a/17842695/7930415)
      */
     template <size_t Z = Components>
-    SQOneElectronOperator(const QCMatrix<Scalar>& f, typename std::enable_if<Z == 1>::type* = 0) :
-        SQOneElectronOperator(std::array<QCMatrix<Scalar>, 1> {f}) {}
-
+    SQOneElectronOperator(const SquareMatrix<Scalar>& f, typename std::enable_if<Z == 1>::type* = 0) :
+        SQOneElectronOperator(std::array<QCMatrix<Scalar>, 1> {QCMatrix<Scalar>(f)}) {}
 
     /**
      *  Construct a one-electron operator with parameters that are zero
@@ -95,7 +102,7 @@ public:
      */
     SQOneElectronOperator(const size_t dim) {
         for (size_t i = 0; i < Components; i++) {
-            this->fs[i] = QCMatrix<Scalar>::Zero(dim, dim);
+            this->fs[i] = QCMatrix<Scalar>::Zero(dim);
         }
     }
 
@@ -191,7 +198,7 @@ public:
             const auto& f_i = this->parameters(i);  // the matrix representation of the parameters of the i-th component
 
             // Calculate the Fockian matrix for every component and add it to the array
-            SquareMatrix<Scalar> F_i = SquareMatrix<Scalar>::Zero(this->numberOfOrbitals(), this->numberOfOrbitals());  // the Fockian matrix of the i-th component
+            SquareMatrix<Scalar> F_i = SquareMatrix<Scalar>::Zero(this->numberOfOrbitals());  // the Fockian matrix of the i-th component
             for (size_t p = 0; p < this->numberOfOrbitals(); p++) {
                 for (size_t q = 0; q < this->numberOfOrbitals(); q++) {
 
@@ -273,7 +280,7 @@ public:
 
         // Evaluate all components at the given x
         for (size_t i = 0; i < Components; i++) {
-            F_evaluated[i] = QCMatrix<typename Z::Valued>::Zero(this->numberOfOrbitals(), this->numberOfOrbitals());  // initialize to zero
+            F_evaluated[i] = QCMatrix<typename Z::Valued>::Zero(this->numberOfOrbitals());  // initialize to zero
 
             for (size_t m = 0; m < this->numberOfOrbitals(); m++) {
                 for (size_t n = 0; n < this->numberOfOrbitals(); n++) {

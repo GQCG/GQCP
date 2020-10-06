@@ -40,8 +40,8 @@ BOOST_AUTO_TEST_CASE(constructor_throws) {
 
 
     // Initialize two coefficient matrices, one with compatible and one with incompatible dimensions.
-    const GQCP::TransformationMatrix<double> T_compatible {K_alpha + K_beta};
-    const GQCP::TransformationMatrix<double> T_incompatible {K_alpha + K_beta - 1};
+    const GQCP::GTransformationMatrix<double> T_compatible {K_alpha + K_beta};
+    const GQCP::GTransformationMatrix<double> T_incompatible {K_alpha + K_beta - 1};
 
 
     // Check if the constructor throws upon receiving incompatible arguments.
@@ -88,7 +88,7 @@ BOOST_AUTO_TEST_CASE(alpha_beta_coefficient_matrix) {
     GQCP::MatrixX<double> C_beta_ref = GQCP::MatrixX<double>::Zero(K_beta, M);
     C_beta_ref.bottomRightCorner(K_beta, K_beta) = GQCP::MatrixX<double>::Identity(K_beta, K_beta);
 
-    GQCP::SquareMatrix<double> C_ref = GQCP::SquareMatrix<double>::Identity(M, M);
+    GQCP::SquareMatrix<double> C_ref = GQCP::SquareMatrix<double>::Identity(M);
 
     BOOST_CHECK(spinor_basis.coefficientMatrix(GQCP::Spin::alpha).isApprox(C_alpha_ref, 1.0e-08));
     BOOST_CHECK(spinor_basis.coefficientMatrix(GQCP::Spin::beta).isApprox(C_beta_ref, 1.0e-08));

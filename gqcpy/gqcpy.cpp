@@ -32,7 +32,6 @@ void bindOccupationType(py::module& module);
 void bindOrbitalSpace(py::module& module);
 void bindRSpinorBasis(py::module& module);
 void bindUSpinorBasis(py::module& module);
-void bindSpin(py::module& module);
 
 
 // Basis
@@ -177,6 +176,10 @@ void bindQCModelRHF(py::module& module);
 void bindQCModelUHF(py::module& module);
 
 
+// QuantumChemical
+void bindSpin(py::module& module);
+
+
 // Single includes
 void bindVersion(py::module& module);
 
@@ -195,7 +198,6 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindOrbitalSpace(module);
     gqcpy::bindRSpinorBasis(module);
     gqcpy::bindUSpinorBasis(module);
-    gqcpy::bindSpin(module);
 
 
     // Basis
@@ -337,6 +339,10 @@ PYBIND11_MODULE(gqcpy, module) {
     // QCModel - HF
     gqcpy::bindQCModelRHF(module);
     gqcpy::bindQCModelUHF(module);
+
+
+    // QuantumChemical
+    gqcpy::bindSpin(module);
 
 
     // Single includes

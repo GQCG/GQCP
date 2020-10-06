@@ -18,14 +18,14 @@
 #pragma once
 
 
-#include "Basis/SpinorBasis/Spin.hpp"
 #include "Basis/Transformations/JacobiRotationParameters.hpp"
 #include "Basis/Transformations/TransformationMatrix.hpp"
+#include "DensityMatrix/OneDM.hpp"
+#include "DensityMatrix/SpinResolved1DM.hpp"
+#include "DensityMatrix/TwoDM.hpp"
 #include "Mathematical/Functions/ScalarFunction.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
-#include "Processing/DensityMatrices/OneDM.hpp"
-#include "Processing/DensityMatrices/SpinResolvedOneDM.hpp"
-#include "Processing/DensityMatrices/TwoDM.hpp"
+#include "QuantumChemical/Spin.hpp"
 #include "Utilities/type_traits.hpp"
 
 #include <array>
@@ -101,8 +101,8 @@ public:
      */
     USQOneElectronOperator(const size_t dim) {
         for (size_t i = 0; i < Components; i++) {
-            this->fs_a[i] = QCMatrix<Scalar>::Zero(dim, dim);
-            this->fs_b[i] = QCMatrix<Scalar>::Zero(dim, dim);
+            this->fs_a[i] = QCMatrix<Scalar>::Zero(dim);
+            this->fs_b[i] = QCMatrix<Scalar>::Zero(dim);
         }
     }
 
@@ -189,7 +189,7 @@ public:
      *
      *  @return the expectation values of all components of the one-electron operator
      */
-    Vector<Scalar, Components> calculateExpectationValue(const SpinResolvedOneDM<Scalar>& D) const {
+    Vector<Scalar, Components> calculateExpectationValue(const SpinResolved1DM<Scalar>& D) const {
 
         if (this->fs_a[0].numberOfOrbitals() != D.numberOfOrbitals(Spin::alpha) || this->fs_b[0].numberOfOrbitals() != D.numberOfOrbitals(Spin::beta)) {
             throw std::invalid_argument("USQOneElectronOperator::calculateExpectationValue(const OneDM<Scalar>&, const OneDM<Scalar>&): The given 1-DM is not compatible with the one-electron operator.");

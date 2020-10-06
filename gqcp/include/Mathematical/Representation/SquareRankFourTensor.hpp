@@ -178,7 +178,7 @@ public:
 
         // Initialize the resulting matrix
         const auto K = this->dimension();
-        SquareMatrix<double> M = SquareMatrix<double>::Zero(K * (K - 1) / 2, K * (K - 1) / 2);
+        SquareMatrix<double> M = SquareMatrix<double>::Zero(K * (K - 1) / 2);
 
         // Calculate the compound indices and bring the elements from the tensor over into the matrix
         size_t row_index = 0;

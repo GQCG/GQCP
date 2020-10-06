@@ -35,7 +35,7 @@ void bindRHFSCFEnvironment(py::module& module) {
         .def_static(
             "WithCoreGuess",
             [](const size_t N, const GQCP::SQHamiltonian<double>& sq_hamiltonian, const Eigen::MatrixXd& S) {  // use an itermediary Eigen matrix for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Matrix
-                return GQCP::RHFSCFEnvironment<double>::WithCoreGuess(N, sq_hamiltonian, GQCP::QCMatrix<double> {S});
+                return GQCP::RHFSCFEnvironment<double>::WithCoreGuess(N, sq_hamiltonian, GQCP::SquareMatrix<double> {S});
             },
             "Initialize an RHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix.")
 
@@ -53,7 +53,7 @@ void bindRHFSCFEnvironment(py::module& module) {
                 return environment.S;
             },
             [](GQCP::RHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& S) {
-                environment.S = GQCP::QCMatrix<double>(S);
+                environment.S = GQCP::SquareMatrix<double>(S);
             })
 
 
@@ -79,25 +79,25 @@ void bindRHFSCFEnvironment(py::module& module) {
         .def("replace_current_coefficient_matrix",
              [](GQCP::RHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& new_coefficient_matrix) {
                  environment.coefficient_matrices.pop_back();
-                 environment.coefficient_matrices.push_back(GQCP::QCMatrix<double>(new_coefficient_matrix));
+                 environment.coefficient_matrices.push_back(GQCP::SquareMatrix<double>(new_coefficient_matrix));
              })
 
         .def("replace_current_density_matrix",
              [](GQCP::RHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& new_density_matrix) {
                  environment.density_matrices.pop_back();
-                 environment.density_matrices.push_back(GQCP::QCMatrix<double>(new_density_matrix));
+                 environment.density_matrices.push_back(GQCP::SquareMatrix<double>(new_density_matrix));
              })
 
         .def("replace_current_fock_matrix",
              [](GQCP::RHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& new_fock_matrix) {
                  environment.fock_matrices.pop_back();
-                 environment.fock_matrices.push_back(GQCP::QCMatrix<double>(new_fock_matrix));
+                 environment.fock_matrices.push_back(GQCP::SquareMatrix<double>(new_fock_matrix));
              })
 
         .def("replace_current_error_vectors",
              [](GQCP::RHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& new_error_vectors) {
                  environment.fock_matrices.pop_back();
-                 environment.fock_matrices.push_back(GQCP::QCMatrix<double>(new_error_vectors));
+                 environment.fock_matrices.push_back(GQCP::SquareMatrix<double>(new_error_vectors));
              });
 }
 

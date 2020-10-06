@@ -22,13 +22,14 @@
 #include "Basis/SpinorBasis/GSpinorBasis.hpp"
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Basis/SpinorBasis/USpinorBasis.hpp"
-#include "Basis/Transformations/TransformationMatrix.hpp"
+#include "Basis/Transformations/RTransformationMatrix.hpp"
+#include "DensityMatrix/Orbital1DM.hpp"
+#include "DensityMatrix/SpinResolved1DM.hpp"
+#include "DensityMatrix/SpinResolvedTwoDM.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 #include "ONVBasis/SpinResolvedONV.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
-#include "Processing/DensityMatrices/SpinResolvedOneDM.hpp"
-#include "Processing/DensityMatrices/SpinResolvedTwoDM.hpp"
 #include "Utilities/aliases.hpp"
 #include "Utilities/linalg.hpp"
 
@@ -224,18 +225,17 @@ public:
     template <typename Z = ONVBasis>
     static enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, LinearExpansion<Z>> FromONVProjection(const SpinResolvedONV& onv, const RSpinorBasis<double, GTOShell>& r_spinor_basis, const USpinorBasis<double, GTOShell>& u_spinor_basis) {
 
-
         // Determine the overlap matrices of the underlying scalar orbital bases, which is needed later on.
-        auto S = r_spinor_basis.overlap().parameters();                  // the overlap matrix of the restricted MOs/spin-orbitals
-        S.basisTransform(r_spinor_basis.coefficientMatrix().inverse());  // now in AO basis
+        auto S = r_spinor_basis.overlap();                          // the overlap matrix of the restricted MOs/spin-orbitals
+        S.transform(r_spinor_basis.coefficientMatrix().inverse());  // now in AO basis
 
-        auto S_alpha = u_spinor_basis.overlap(Spin::alpha).parameters();                  // the overlap matrix of the alpha spin-orbitals
-        S_alpha.basisTransform(u_spinor_basis.coefficientMatrix(Spin::alpha).inverse());  // now in AO basis
+        auto S_alpha = u_spinor_basis.overlap(Spin::alpha);                          // the overlap matrix of the alpha spin-orbitals
+        S_alpha.transform(u_spinor_basis.coefficientMatrix(Spin::alpha).inverse());  // now in AO basis
 
-        auto S_beta = u_spinor_basis.overlap(Spin::beta).parameters();                  // the overlap matrix of the beta spin-orbitals
-        S_beta.basisTransform(u_spinor_basis.coefficientMatrix(Spin::beta).inverse());  // now in AO basis
+        auto S_beta = u_spinor_basis.overlap(Spin::beta);                          // the overlap matrix of the beta spin-orbitals
+        S_beta.transform(u_spinor_basis.coefficientMatrix(Spin::beta).inverse());  // now in AO basis
 
-        if (!(S.isApprox(S_alpha, 1.0e-08)) || !(S.isApprox(S_beta, 1.0e-08))) {
+        if (!(S.parameters().isApprox(S_alpha.parameters(), 1.0e-08)) || !(S.parameters().isApprox(S_beta.parameters(), 1.0e-08))) {
             throw std::invalid_argument("LinearExpansion::FromONVProjection(const SpinResolvedONV&, const RSpinorBasis<double, GTOShell>&, const USpinorBasis<double, GTOShell>&): The given spinor bases are not expressed using the same scalar orbital basis.");
         }
 
@@ -245,7 +245,7 @@ public:
 
         const auto& C_alpha = u_spinor_basis.coefficientMatrix(Spin::alpha);
         const auto& C_beta = u_spinor_basis.coefficientMatrix(Spin::beta);
-        const SpinResolvedTransformationMatrix<double> C_unrestricted {C_alpha, C_beta};
+        const UTransformationMatrix<double> C_unrestricted {C_alpha, C_beta};
 
 
         // Set up the required spin-resolved ONV basis.
@@ -261,7 +261,7 @@ public:
         onv_basis.forEach([&onv, &C_unrestricted, &C_restricted, &S, &coefficients, &onv_basis](const SpinUnresolvedONV& alpha_onv, const size_t I_alpha, const SpinUnresolvedONV& beta_onv, const size_t I_beta) {
             const SpinResolvedONV onv_on {alpha_onv, beta_onv};  // the spin-resolved ONV that should be projected 'on'
 
-            const auto coefficient = onv.calculateProjection(onv_on, C_unrestricted, C_restricted, S);
+            const auto coefficient = onv.calculateProjection(onv_on, C_unrestricted, C_restricted, S.parameters());
             const auto address = onv_basis.compoundAddress(I_alpha, I_beta);
 
             coefficients(address) = coefficient;
@@ -376,18 +376,18 @@ public:
      *  @note This algorithm was implemented from a description in Helgaker2000.
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value> basisTransform(const TransformationMatrix<double>& T) {
+    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value> basisTransform(const RTransformationMatrix<double>& T) {
 
         const auto K = onv_basis.numberOfOrbitals();  // number of spatial orbitals
         if (K != T.numberOfOrbitals()) {
-            throw std::invalid_argument("LinearExpansion::basisTransform(const TransformationMatrix<double>&): The number of spatial orbitals does not match the dimension of the transformation matrix.");
+            throw std::invalid_argument("LinearExpansion::basisTransform(const RTransformationMatrix<double>&): The number of spatial orbitals does not match the dimension of the transformation matrix.");
         }
 
 
         // LU-decompose the transformation matrix LU decomposition for T
         const auto& lu_decomposition = T.noPivotLUDecompose();
 
-        SquareMatrix<double> L = SquareMatrix<double>::Identity(K, K);
+        SquareMatrix<double> L = SquareMatrix<double>::Identity(K);
         L.triangularView<Eigen::StrictlyLower>() = lu_decomposition[0];
 
         SquareMatrix<double> U = SquareMatrix<double>(lu_decomposition[1].triangularView<Eigen::Upper>());
@@ -395,7 +395,7 @@ public:
 
 
         // Calculate t (the operator which allows per-orbital transformation of the wave function)
-        SquareMatrix<double> t = SquareMatrix<double>::Identity(K, K) - L + U_inv;
+        SquareMatrix<double> t = SquareMatrix<double>::Identity(K) - L + U_inv;
 
 
         // Set up spin-unresolved ONV basis variables for the loops over the ONVs
@@ -659,14 +659,14 @@ public:
      *  @return the spin-resolved 1-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolvedOneDM<double>> calculateSpinResolved1DM() const {
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const {
 
         // Prepare some variables.
         const auto K = this->onv_basis.numberOfSpatialOrbitals();
         const auto dimension = this->onv_basis.dimension();
 
         // For seniority-zero linear expansions, one DM covers both alpha and beta spins.
-        OneDM<double> D = OneDM<double>::Zero(K, K);
+        OneDM<double> D = OneDM<double>::Zero(K);
 
         // Create the first ONV (with address 0). In DOCI, the ONV basis for alpha and beta is equal, so we can use the proxy ONV basis.
         const auto onv_basis_proxy = this->onv_basis.proxy();
@@ -685,7 +685,7 @@ public:
             }
         }
 
-        return SpinResolvedOneDM<double>::FromRestricted(D);
+        return SpinResolved1DM<double>::FromRestricted(D);
     }
 
 
@@ -761,10 +761,10 @@ public:
     /**
      *  Calculate the one-electron density matrix for a full spin-resolved wave function expansion.
      * 
-     *  @return the total (spin-summed) 1-DM
+     *  @return The total, spin-summed, orbital 1-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, OneDM<double>> calculate1DM() const { return this->calculateSpinResolved1DM().spinSummed(); }
+    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, Orbital1DM<double>> calculate1DM() const { return this->calculateSpinResolved1DM().spinSummed(); }
 
 
     /**
@@ -782,13 +782,13 @@ public:
      *  @return the spin-resolved 1-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, SpinResolvedOneDM<double>> calculateSpinResolved1DM() const {
+    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const {
 
         // Initialize as zero matrices
         size_t K = this->onv_basis.numberOfOrbitals();
 
-        OneDM<double> D_aa = OneDM<double>::Zero(K, K);
-        OneDM<double> D_bb = OneDM<double>::Zero(K, K);
+        OneDM<double> D_aa = OneDM<double>::Zero(K);
+        OneDM<double> D_bb = OneDM<double>::Zero(K);
 
         SpinUnresolvedONVBasis onv_basis_alpha = onv_basis.onvBasisAlpha();
         SpinUnresolvedONVBasis onv_basis_beta = onv_basis.onvBasisBeta();
@@ -891,7 +891,7 @@ public:
             }
 
         }  // I_beta loop
-        return SpinResolvedOneDM<double>(D_aa, D_bb);
+        return SpinResolved1DM<double>(D_aa, D_bb);
     }
 
 
@@ -1138,13 +1138,13 @@ public:
      *  @return the spin-resolved 1-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, SpinResolvedOneDM<double>> calculateSpinResolved1DM() const {
+    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const {
 
         size_t K = this->onv_basis.numberOfOrbitals();
         size_t dim = onv_basis.dimension();
 
-        OneDM<double> D_aa = OneDM<double>::Zero(K, K);
-        OneDM<double> D_bb = OneDM<double>::Zero(K, K);
+        OneDM<double> D_aa = OneDM<double>::Zero(K);
+        OneDM<double> D_bb = OneDM<double>::Zero(K);
 
 
         for (size_t I = 0; I < dim; I++) {  // loop over all addresses (1)
@@ -1208,7 +1208,7 @@ public:
             }  // loop over addresses J > I
         }      // loop over addresses I
 
-        return SpinResolvedOneDM<double>(D_aa, D_bb);  // the total 1-DM is the sum of the spin components
+        return SpinResolved1DM<double>(D_aa, D_bb);  // the total 1-DM is the sum of the spin components
     }
 
 

@@ -103,7 +103,7 @@ BOOST_AUTO_TEST_CASE(four_site_chain) {
     // Create the adjacency matrix for a four-site chain.
     const auto K = 4;    // number of sites
     const auto N_P = 2;  // = N_alpha = N_beta: half-filling
-    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Zero(K, K);
+    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Zero(K);
     // clang-format off
     A << 0, 1, 0, 0,
          1, 0, 1, 0,
@@ -145,7 +145,7 @@ BOOST_AUTO_TEST_CASE(six_site_ring) {
     // Create the adjacency matrix for a four-site chain
     const auto K = 6;    // number of sites
     const auto N_P = 3;  // = N_alpha = N_beta: half-filling
-    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Zero(K, K);
+    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Zero(K);
     // clang-format off
     A << 0, 1, 0, 0, 0, 1,
          1, 0, 1, 0, 0, 0,

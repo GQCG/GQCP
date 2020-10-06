@@ -43,7 +43,7 @@ BOOST_AUTO_TEST_CASE(constructor_throws) {
  */
 BOOST_AUTO_TEST_CASE(triangle_adjacency_matrix) {
 
-    GQCP::SquareMatrix<double> H_ref = GQCP::SquareMatrix<double>::Zero(3, 3);
+    GQCP::SquareMatrix<double> H_ref = GQCP::SquareMatrix<double>::Zero(3);
     // clang-format off
     H_ref << U, -t, -t,
             -t,  U, -t,
@@ -52,7 +52,7 @@ BOOST_AUTO_TEST_CASE(triangle_adjacency_matrix) {
 
 
     // Construct an adjacency matrix and convert it to a hopping matrix
-    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Zero(3, 3);
+    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Zero(3);
     // clang-format off
     A << 0, 1, 1,
          1, 0, 1,
@@ -71,7 +71,7 @@ BOOST_AUTO_TEST_CASE(triangle_adjacency_matrix) {
  */
 BOOST_AUTO_TEST_CASE(FromCSLine) {
 
-    GQCP::SquareMatrix<double> H_ref = GQCP::SquareMatrix<double>::Zero(3, 3);
+    GQCP::SquareMatrix<double> H_ref = GQCP::SquareMatrix<double>::Zero(3);
     // clang-format off
     H_ref << 1, 2, 4,
              2, 3, 5,

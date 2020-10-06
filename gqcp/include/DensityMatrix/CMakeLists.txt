@@ -1,0 +1,10 @@
+target_sources(gqcp
+    PRIVATE
+        G1DM.hpp
+        OneDM.hpp
+        Orbital1DM.hpp
+        SpinResolved1DM.hpp
+        Simple1DM.hpp
+        SpinResolvedTwoDM.hpp
+        TwoDM.hpp
+)

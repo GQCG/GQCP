@@ -49,7 +49,7 @@ SquareMatrix<double> ERNewtonLocalizer::calculateGradientMatrix(const SQHamilton
 
     const auto N_P = this->orbital_space.numberOfOrbitals(OccupationType::k_occupied);
 
-    SquareMatrix<double> G = SquareMatrix<double>::Zero(N_P, N_P);
+    SquareMatrix<double> G = SquareMatrix<double>::Zero(N_P);
 
     for (const auto& i : this->orbital_space.indices(OccupationType::k_occupied)) {
         for (const auto& j : this->orbital_space.indices(OccupationType::k_occupied)) {

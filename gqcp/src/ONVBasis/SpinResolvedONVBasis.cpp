@@ -87,7 +87,7 @@ ScalarSQOneElectronOperator<double> SpinResolvedONVBasis::calculateOneElectronPa
     const auto& two_op_par = two_op.parameters();
 
     const auto M = two_op.numberOfOrbitals();
-    QCMatrix<double> k_par = QCMatrix<double>::Zero(M, M);
+    SquareMatrix<double> k_par = SquareMatrix<double>::Zero(M);
 
     for (size_t i = 0; i < M; i++) {
         for (size_t j = 0; j < M; j++) {
@@ -137,7 +137,7 @@ size_t SpinResolvedONVBasis::dimension() const {
  */
 SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const ScalarSQOneElectronOperator<double>& one_op, const bool diagonal_values) const {
 
-    SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->dimension(), this->dimension());
+    SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->dimension());
 
     auto dim_alpha = onv_basis_alpha.dimension();
     auto dim_beta = onv_basis_beta.dimension();
@@ -151,7 +151,7 @@ SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const ScalarSQO
     }
 
     // ALPHA separated evaluations
-    const SquareMatrix<double> ones = SquareMatrix<double>::Identity(dim_beta, dim_beta);
+    const SquareMatrix<double> ones = SquareMatrix<double>::Identity(dim_beta);
     for (size_t i = 0; i < alpha_evaluation.cols(); i++) {
         for (size_t j = 0; j < alpha_evaluation.cols(); j++) {
             total_evaluation.block(i * dim_beta, j * dim_beta, dim_beta, dim_beta) += alpha_evaluation(i, j) * ones;
@@ -172,7 +172,7 @@ SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const ScalarSQO
  */
 SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const ScalarSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const {
 
-    SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->dimension(), this->dimension());
+    SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->dimension());
 
     auto dim_alpha = onv_basis_alpha.dimension();
     auto dim_beta = onv_basis_beta.dimension();
@@ -186,7 +186,7 @@ SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const ScalarSQT
     }
 
     // ALPHA separated evaluations
-    const SquareMatrix<double> ones = SquareMatrix<double>::Identity(dim_beta, dim_beta);
+    const SquareMatrix<double> ones = SquareMatrix<double>::Identity(dim_beta);
     for (int i = 0; i < alpha_evaluation.cols(); i++) {
         for (int j = 0; j < alpha_evaluation.cols(); j++) {
             total_evaluation.block(i * dim_beta, j * dim_beta, dim_beta, dim_beta) += alpha_evaluation(i, j) * ones;
@@ -236,7 +236,7 @@ SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const ScalarSQT
  */
 SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const SQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const {
 
-    SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->dimension(), this->dimension());
+    SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->dimension());
 
     auto dim_alpha = onv_basis_alpha.dimension();
     auto dim_beta = onv_basis_beta.dimension();
@@ -250,7 +250,7 @@ SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const SQHamilto
     }
 
     // ALPHA separated evaluations
-    const SquareMatrix<double> ones = SquareMatrix<double>::Identity(dim_beta, dim_beta);
+    const SquareMatrix<double> ones = SquareMatrix<double>::Identity(dim_beta);
     for (int i = 0; i < alpha_evaluation.cols(); i++) {
         for (int j = 0; j < alpha_evaluation.cols(); j++) {
             total_evaluation.block(i * dim_beta, j * dim_beta, dim_beta, dim_beta) += alpha_evaluation(i, j) * ones;
@@ -310,7 +310,7 @@ SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const USQHamilt
         throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorDense(USQHamiltonian<double>, bool): Basis functions of the spin-resolved ONV basis and the operator are incompatible.");
     }
 
-    SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->dimension(), this->dimension());
+    SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->dimension());
 
     auto const& sq_hamiltonian_alpha = usq_hamiltonian.spinHamiltonian(Spin::alpha);
     auto const& sq_hamiltonian_beta = usq_hamiltonian.spinHamiltonian(Spin::beta);
@@ -328,7 +328,7 @@ SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const USQHamilt
     }
 
     // ALPHA separated evaluations
-    const SquareMatrix<double> ones = SquareMatrix<double>::Identity(dim_beta, dim_beta);
+    const SquareMatrix<double> ones = SquareMatrix<double>::Identity(dim_beta);
     for (int i = 0; i < alpha_evaluation.cols(); i++) {
         for (int j = 0; j < alpha_evaluation.cols(); j++) {
             total_evaluation.block(i * dim_beta, j * dim_beta, dim_beta, dim_beta) += alpha_evaluation(i, j) * ones;

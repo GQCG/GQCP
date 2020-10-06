@@ -24,14 +24,14 @@
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Basis/Transformations/JacobiRotationParameters.hpp"
 #include "Basis/Transformations/TransformationMatrix.hpp"
+#include "DensityMatrix/OneDM.hpp"
+#include "DensityMatrix/TwoDM.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 #include "Operator/FirstQuantized/OverlapOperator.hpp"
 #include "Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
-#include "Processing/DensityMatrices/OneDM.hpp"
-#include "Processing/DensityMatrices/TwoDM.hpp"
 #include "Utilities/miscellaneous.hpp"
 #include "Utilities/type_traits.hpp"
 
@@ -86,7 +86,7 @@ public:
 
 
         // Calculate the total one-electron operator
-        QCMatrix<Scalar> total_one_op_par {dim};
+        SquareMatrix<Scalar> total_one_op_par {dim};
         total_one_op_par.setZero();
         for (const auto& one_op : this->one_ops) {
             total_one_op_par += one_op.parameters();
@@ -201,7 +201,7 @@ public:
     template <typename Z = Scalar>
     static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> Random(const size_t K) {
 
-        ScalarSQOneElectronOperator<double> H {QCMatrix<double>::Random(K, K)};  // uniformly distributed between [-1,1]
+        ScalarSQOneElectronOperator<double> H {SquareMatrix<double>::Random(K)};  // uniformly distributed between [-1,1]
 
 
         // Unfortunately, the Tensor module provides uniform random distributions between [0, 1]
@@ -258,7 +258,7 @@ public:
         }
 
 
-        QCMatrix<double> h_core = QCMatrix<double>::Zero(K, K);
+        SquareMatrix<double> h_core = SquareMatrix<double>::Zero(K);
         QCRankFourTensor<double> g {K};
         g.setZero();
 

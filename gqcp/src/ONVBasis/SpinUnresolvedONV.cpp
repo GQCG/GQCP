@@ -309,14 +309,14 @@ std::string SpinUnresolvedONV::asString() const {
  * 
  *  @return the overlap element <on|of>
  */
-double SpinUnresolvedONV::calculateProjection(const SpinUnresolvedONV& onv_on, const TransformationMatrix<double>& C_of, const TransformationMatrix<double>& C_on, const QCMatrix<double>& S) const {
+double SpinUnresolvedONV::calculateProjection(const SpinUnresolvedONV& onv_on, const GTransformationMatrix<double>& C_of, const GTransformationMatrix<double>& C_on, const SquareMatrix<double>& S) const {
 
     // Make a reference copy in order to improve readibility of the following code.
     const auto& onv_of = *this;
 
 
     // Calculate the transformation matrix between the spinors.
-    TransformationMatrix<double> U = C_on.adjoint() * S * C_of;
+    GTransformationMatrix<double> U = C_on.adjoint() * S * C_of;
 
 
     // U's columns should be the ones occupied in the 'of'-ONV.

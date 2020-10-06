@@ -84,7 +84,7 @@ BOOST_AUTO_TEST_CASE(SQTwoElectronOperator_effectiveOneElectronPartition) {
 
 
     // Set up the reference effective one-electron integrals by manual calculation
-    GQCP::QCMatrix<double> k_par_ref = GQCP::QCMatrix<double>::Zero(K, K);  // reference parameters
+    GQCP::SquareMatrix<double> k_par_ref = GQCP::SquareMatrix<double>::Zero(K);  // reference parameters
     for (size_t p = 0; p < K; p++) {
         for (size_t q = 0; q < K; q++) {
             auto p_ = static_cast<double>(p) + 1;

@@ -61,7 +61,7 @@ ScalarSQOneElectronOperator<double> BaseFrozenCoreONVBasis::freezeOperator(const
 FrozenOperators BaseFrozenCoreONVBasis::freezeOperator(const ScalarSQTwoElectronOperator<double>& two_op, const size_t X) {
 
     size_t K_active = two_op.numberOfOrbitals() - X;
-    QCMatrix<double> frozen_one_op_par = QCMatrix<double>::Zero(K_active, K_active);
+    SquareMatrix<double> frozen_one_op_par = SquareMatrix<double>::Zero(K_active);
     const auto& two_op_par = two_op.parameters();
     const auto frozen_two_op_par = QCRankFourTensor<double>::FromBlock(two_op_par, X, X, X, X);
 
@@ -119,8 +119,8 @@ USQHamiltonian<double> BaseFrozenCoreONVBasis::freezeOperator(const USQHamiltoni
 
     size_t K_active = usq_hamiltonian.numberOfOrbitals() / 2 - X;  // number of non-frozen orbitals
 
-    QCMatrix<double> frozen_one_op_par_alpha = usq_hamiltonian.spinHamiltonian(Spin::alpha).core().parameters().block(X, X, K_active, K_active);
-    QCMatrix<double> frozen_one_op_par_beta = usq_hamiltonian.spinHamiltonian(Spin::beta).core().parameters().block(X, X, K_active, K_active);
+    SquareMatrix<double> frozen_one_op_par_alpha = usq_hamiltonian.spinHamiltonian(Spin::alpha).core().parameters().block(X, X, K_active, K_active);
+    SquareMatrix<double> frozen_one_op_par_beta = usq_hamiltonian.spinHamiltonian(Spin::beta).core().parameters().block(X, X, K_active, K_active);
 
     const auto& two_op_par_alpha = usq_hamiltonian.spinHamiltonian(Spin::alpha).twoElectron().parameters();
     const auto& two_op_par_beta = usq_hamiltonian.spinHamiltonian(Spin::beta).twoElectron().parameters();
@@ -224,8 +224,8 @@ VectorX<double> BaseFrozenCoreONVBasis::frozenCoreDiagonal(const SQHamiltonian<d
  */
 VectorX<double> BaseFrozenCoreONVBasis::frozenCoreDiagonal(const USQHamiltonian<double>& usq_hamiltonian, const size_t X, const size_t dimension) {
 
-    QCMatrix<double> one_op_par_alpha = usq_hamiltonian.spinHamiltonian(Spin::alpha).core().parameters();
-    QCMatrix<double> one_op_par_beta = usq_hamiltonian.spinHamiltonian(Spin::beta).core().parameters();
+    SquareMatrix<double> one_op_par_alpha = usq_hamiltonian.spinHamiltonian(Spin::alpha).core().parameters();
+    SquareMatrix<double> one_op_par_beta = usq_hamiltonian.spinHamiltonian(Spin::beta).core().parameters();
 
     const auto& two_op_par_mixed = usq_hamiltonian.twoElectronMixed().parameters();
     const auto& two_op_par_a = usq_hamiltonian.spinHamiltonian(Spin::alpha).twoElectron().parameters();

@@ -64,7 +64,7 @@ public:
     enable_if_t<std::is_same<Z, double>::value, ScalarSQOneElectronOperator<Scalar>> core() const {
 
         const auto K = this->numberOfLatticeSites();
-        QCMatrix<double> h_par = QCMatrix<double>::Zero(K, K);  // 'par' for 'parameters'
+        SquareMatrix<double> h_par = SquareMatrix<double>::Zero(K);  // 'par' for 'parameters'
 
         // The one-electron hopping terms can be found on the off-diagonal elements of the hopping matrix.
         for (size_t p = 0; p < K; p++) {

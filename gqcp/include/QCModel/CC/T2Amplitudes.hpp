@@ -19,6 +19,7 @@
 
 
 #include "Basis/SpinorBasis/OrbitalSpace.hpp"
+#include "Mathematical/Functions/VectorSpaceArithmetic.hpp"
 #include "Mathematical/Representation/ImplicitRankFourTensorSlice.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
@@ -30,9 +31,12 @@ namespace GQCP {
  *  The coupled-cluster T2-amplitudes t_{ij}^{ab}. According to context, this class may either represent restricted (i.e. spatial-orbital) amplitudes, or generalized (spinor) amplitudes.
  */
 template <typename _Scalar>
-class T2Amplitudes {
+class T2Amplitudes:
+    public VectorSpaceArithmetic<T2Amplitudes<_Scalar>, _Scalar> {
+
 public:
     using Scalar = _Scalar;
+    using Self = T2Amplitudes<Scalar>;
 
 private:
     OrbitalSpace orbital_space;  // the orbital space which covers the occupied-virtual separation
@@ -80,7 +84,7 @@ public:
      * 
      *  @return T2-amplitudes calculated from an initial perturbative result
      */
-    static T2Amplitudes<Scalar> Perturbative(const QCMatrix<Scalar>& f, const QCRankFourTensor<Scalar>& V_A, const OrbitalSpace& orbital_space) {
+    static T2Amplitudes<Scalar> Perturbative(const SquareMatrix<Scalar>& f, const QCRankFourTensor<Scalar>& V_A, const OrbitalSpace& orbital_space) {
 
         // Zero-initialize a tensor representation for the (occupied-occupied-virtual-virtual) T2-amplitudes t_{ij}^{ab}.
         auto t2 = orbital_space.initializeRepresentableObjectFor<double>(OccupationType::k_occupied, OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_virtual);
@@ -167,91 +171,44 @@ public:
      *  @return the orbital space for these T2-amplitudes, which covers the occupied-virtual separation
      */
     const OrbitalSpace& orbitalSpace() const { return this->orbital_space; }
+
+
+    /*
+     *  MARK: Vector space arithmetic
+     */
+
+    /**
+     *  Addition-assignment.
+     */
+    Self& operator+=(const Self& rhs) override {
+
+        // Prepare some variables.
+        const auto& index_maps = this->asImplicitRankFourTensorSlice().indexMaps();
+
+        const Tensor<Scalar, 4> t_sum_dense = this->asImplicitRankFourTensorSlice().asTensor().Eigen() + rhs.asImplicitRankFourTensorSlice().asTensor().Eigen();
+        const ImplicitRankFourTensorSlice<Scalar> t_sum_slice {index_maps, t_sum_dense};
+
+        this->t = t_sum_slice;
+
+        return *this;
+    }
+
+
+    /**
+     *  Scalar multiplication-assignment.
+     */
+    Self& operator*=(const Scalar& a) override {
+
+        // Prepare some variables.
+        const auto& index_maps = this->asImplicitRankFourTensorSlice().indexMaps();
+
+        const Tensor<Scalar, 4> t_multiplied_dense = a * this->asImplicitRankFourTensorSlice().asTensor().Eigen();
+        const ImplicitRankFourTensorSlice<Scalar> t_multiplied_slice {index_maps, t_multiplied_dense};
+
+        this->t = t_multiplied_slice;
+
+        return *this;
+    }
 };
-
-
-/*
- *  OPERATORS
- */
-
-/**
- *  Add two sets of T2-amplitudes.
- * 
- *  @tparam LHSScalar           the scalar type of the left-hand side
- *  @tparam RHSScalar           the scalar type of the right-hand side
- * 
- *  @param lhs                  the left-hand side
- *  @param rhs                  the right-hand side
- */
-template <typename LHSScalar, typename RHSScalar>
-auto operator+(const T2Amplitudes<LHSScalar>& lhs, const T2Amplitudes<RHSScalar>& rhs) -> T2Amplitudes<sum_t<LHSScalar, RHSScalar>> {
-
-    using ResultScalar = sum_t<LHSScalar, RHSScalar>;
-
-    // Prepare some variables.
-    const auto& orbital_space = lhs.orbitalSpace();  // assume the orbital spaces are equal for the LHS and RHS
-    const auto& index_maps = lhs.asImplicitRankFourTensorSlice().indexMaps();
-
-    const Tensor<ResultScalar, 4> t_sum_dense = lhs.asImplicitRankFourTensorSlice().asTensor().Eigen() + rhs.asImplicitRankFourTensorSlice().asTensor().Eigen();
-    const ImplicitRankFourTensorSlice<ResultScalar> t_sum_slice {index_maps, t_sum_dense};
-
-    return T2Amplitudes<ResultScalar>(t_sum_slice, orbital_space);
-}
-
-
-/**
- *  Multiply a set of T2-amplitudes with a scalar.
- * 
- *  @tparam Scalar              the scalar type of the scalar
- *  @tparam AmplitudeScalar     the scalar type of the T2-amplitudes
- * 
- *  @param scalar               the scalar
- *  @param t2                   the the T2-amplitudes
- */
-template <typename Scalar, typename AmplitudeScalar>
-auto operator*(const Scalar& scalar, const T2Amplitudes<AmplitudeScalar>& t2) -> T2Amplitudes<product_t<Scalar, AmplitudeScalar>> {
-
-    using ResultScalar = product_t<Scalar, AmplitudeScalar>;
-
-    // Prepare some variables.
-    const auto& orbital_space = t2.orbitalSpace();  // assume the orbital spaces are equal for the LHS and RHS
-    const auto& index_maps = t2.asImplicitRankFourTensorSlice().indexMaps();
-
-    const Tensor<ResultScalar, 4> t_multiplied_dense = scalar * t2.asImplicitRankFourTensorSlice().asTensor().Eigen();
-    const ImplicitRankFourTensorSlice<ResultScalar> t_multiplied_slice {index_maps, t_multiplied_dense};
-
-    return T2Amplitudes<ResultScalar>(t_multiplied_slice, orbital_space);
-}
-
-
-/**
- *  Negate a set of T2-amplitudes.
- * 
- *  @tparam Scalar              the scalar type of the T2-amplitudes
- * 
- *  @param t2                   the T2-amplitudes
- */
-template <typename Scalar>
-T2Amplitudes<Scalar> operator-(const T2Amplitudes<Scalar>& t2) {
-
-    return (-1.0) * t2;  // negation is scalar multiplication with (-1.0)
-}
-
-
-/**
- *  Subtract one set of T2-amplitudes from another.
- * 
- *  @tparam LHSScalar           the scalar type of the left-hand side
- *  @tparam RHSScalar           the scalar type of the right-hand side
- * 
- *  @param lhs                  the left-hand side
- *  @param rhs                  the right-hand side
- */
-template <typename LHSScalar, typename RHSScalar>
-auto operator-(const T2Amplitudes<LHSScalar>& lhs, const T2Amplitudes<RHSScalar>& rhs) -> T2Amplitudes<sum_t<LHSScalar, RHSScalar>> {
-
-    return lhs + (-rhs);
-}
-
 
 }  // namespace GQCP

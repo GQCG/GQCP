@@ -18,8 +18,10 @@
 #pragma once
 
 
-#include "Basis/Transformations/TransformationMatrix.hpp"
+#include "Basis/Transformations/RTransformationMatrix.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
+
+#include <unsupported/Eigen/MatrixFunctions>
 
 
 namespace GQCP {
@@ -76,7 +78,7 @@ public:
     /**
      *  @return the unitary matrix that corresponds to these orbital rotation generators, i.e. exp(-kappa)
      */
-    TransformationMatrix<double> calculateRotationMatrix() const;
+    RTransformationMatrix<double> calculateRotationMatrix() const { return RTransformationMatrix<double> {(-this->asMatrix()).exp()}; }
 
     /*
      *  @return the number of spatial orbitals that can be rotated using these orbital rotation generators

@@ -58,7 +58,7 @@ public:
      *  @param dimension         the dimension of the matrix representation (the number of elements in one row/column)
      */
     MatrixRepresentationEvaluationContainer(const size_t dimension) :
-        matrix {Matrix::Zero(dimension, dimension)},
+        matrix {Matrix::Zero(dimension)},
         end {dimension} {}
 
 

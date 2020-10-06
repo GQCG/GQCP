@@ -32,20 +32,15 @@
 BOOST_AUTO_TEST_CASE(SimpleSQOneElectronOperator_constructor) {
 
     // Set up some test matrices to be used as one-electron operator integrals.
-    const auto matrix34 = GQCP::MatrixX<double>::Zero(3, 4);
-
-    const auto square_matrix33 = GQCP::SquareMatrix<double>::Zero(3, 3);
-    const auto square_matrix44 = GQCP::SquareMatrix<double>::Zero(4, 4);
+    const auto square_matrix3 = GQCP::SquareMatrix<double>::Zero(3);
+    const auto square_matrix4 = GQCP::SquareMatrix<double>::Zero(4);
 
 
     // Check a correct constructor: a square matrix may represent the integrals of a one-electron operator.
-    BOOST_CHECK_NO_THROW(GQCP::ScalarRSQOneElectronOperator<double> operator_square {square_matrix33});
-
-    // Check a throwing constructor: rectangular matrices cannot represent the integrals of a one-electron operator.
-    BOOST_CHECK_THROW(GQCP::ScalarRSQOneElectronOperator<double> operator_rectangular {matrix34}, std::invalid_argument);
+    BOOST_CHECK_NO_THROW(GQCP::ScalarRSQOneElectronOperator<double> operator_square {square_matrix3});
 
     // Check a throwing constructor: the dimensions of the square matrices must be equal.
-    BOOST_CHECK_THROW(GQCP::VectorRSQOneElectronOperator<double> operator_rectangular({square_matrix33, square_matrix33, square_matrix44}), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::VectorRSQOneElectronOperator<double> operator_rectangular({square_matrix3, square_matrix3, square_matrix4}), std::invalid_argument);
 }
 
 
@@ -83,9 +78,9 @@ BOOST_AUTO_TEST_CASE(operator_call) {
     const size_t dim = 4;
 
     // Set up three (random) matrix representations and construct the corresponding vector operator.
-    const GQCP::QCMatrix<double> M1 = GQCP::QCMatrix<double>::Random(dim, dim);
-    const GQCP::QCMatrix<double> M2 = GQCP::QCMatrix<double>::Random(dim, dim);
-    const GQCP::QCMatrix<double> M3 = GQCP::QCMatrix<double>::Random(dim, dim);
+    const GQCP::SquareMatrix<double> M1 = GQCP::SquareMatrix<double>::Random(dim);
+    const GQCP::SquareMatrix<double> M2 = GQCP::SquareMatrix<double>::Random(dim);
+    const GQCP::SquareMatrix<double> M3 = GQCP::SquareMatrix<double>::Random(dim);
 
     const GQCP::VectorRSQOneElectronOperator<double> vector_operator {{M1, M2, M3}};
 
@@ -103,8 +98,8 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_throw) {
 
     // Initialize a test operator and density matrices.
     const GQCP::ScalarRSQOneElectronOperator<double> f_operator {2};
-    const GQCP::OneDM<double> D_valid = GQCP::OneDM<double>::Zero(2, 2);
-    const GQCP::OneDM<double> D_invalid = GQCP::OneDM<double>::Zero(3, 3);
+    const GQCP::Orbital1DM<double> D_valid = GQCP::Orbital1DM<double>::Zero(2);
+    const GQCP::Orbital1DM<double> D_invalid = GQCP::Orbital1DM<double>::Zero(3);
 
     BOOST_CHECK_NO_THROW(f_operator.calculateExpectationValue(D_valid));
     BOOST_CHECK_THROW(f_operator.calculateExpectationValue(D_invalid), std::invalid_argument);
@@ -121,7 +116,7 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
     const size_t dim = 2;
 
     // Initialize a test matrix and convert it into an operator.
-    GQCP::QCMatrix<double> M1 {dim};
+    GQCP::SquareMatrix<double> M1 {dim};
     // clang-format off
     M1 << 1.0, 2.0,
           3.0, 4.0;
@@ -129,7 +124,7 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
     const GQCP::ScalarRSQOneElectronOperator<double> op {M1};
 
     // Initialize a test density matrix.
-    GQCP::QCMatrix<double> D {dim};
+    GQCP::Orbital1DM<double> D {dim};
     // clang-format off
     D << 0.0, 1.0,
          1.0, 0.0;
@@ -151,14 +146,14 @@ BOOST_AUTO_TEST_CASE(SimpleSQOneElectronOperator_addition) {
     const size_t dim = 2;
 
     // Initialize two test matrices and convert them into operators.
-    GQCP::QCMatrix<double> M1 {dim};
+    GQCP::SquareMatrix<double> M1 {dim};
     // clang-format off
     M1 << 1.0, 2.0,
           3.0, 4.0;
     const GQCP::ScalarRSQOneElectronOperator<double> op1 {M1};
     // clang-format on
 
-    GQCP::QCMatrix<double> M2 {dim};
+    GQCP::SquareMatrix<double> M2 {dim};
     // clang-format off
     M2 << 5.0, 6.0,
           7.0, 8.0;
@@ -167,7 +162,7 @@ BOOST_AUTO_TEST_CASE(SimpleSQOneElectronOperator_addition) {
 
 
     // Initialize the reference and check the result of the operator addition.
-    GQCP::QCMatrix<double> M_sum_ref {dim};
+    GQCP::SquareMatrix<double> M_sum_ref {dim};
     // clang-format off
     M_sum_ref <<  6.0,  8.0,
                  10.0, 12.0;
@@ -187,7 +182,7 @@ BOOST_AUTO_TEST_CASE(SimpleSQOneElectronOperator_scalar_product) {
     const double scalar = 2.0;
 
     // Initialize a test matrix and convert it into an operator.
-    GQCP::QCMatrix<double> M1 {dim};
+    GQCP::SquareMatrix<double> M1 {dim};
     // clang-format off
     M1 << 1.0, 2.0,
           3.0, 4.0;
@@ -195,7 +190,7 @@ BOOST_AUTO_TEST_CASE(SimpleSQOneElectronOperator_scalar_product) {
     const GQCP::ScalarRSQOneElectronOperator<double> op1 {M1};
 
     // Initialize the reference and check the result of the scalar multiplication.
-    GQCP::QCMatrix<double> M_ref {dim};
+    GQCP::SquareMatrix<double> M_ref {dim};
     // clang-format off
     M_ref <<  2.0,  4.0,
               6.0,  8.0;
@@ -217,7 +212,7 @@ BOOST_AUTO_TEST_CASE(SimpleSQOneElectronOperator_negation) {
     const size_t dim = 2;
 
     // Initialize a test matrix and convert it into an operator.
-    GQCP::QCMatrix<double> M1 {dim};
+    GQCP::SquareMatrix<double> M1 {dim};
     // clang-format off
     M1 << 1.0, 2.0,
           3.0, 4.0;
@@ -225,7 +220,7 @@ BOOST_AUTO_TEST_CASE(SimpleSQOneElectronOperator_negation) {
     const GQCP::ScalarRSQOneElectronOperator<double> op1 {M1};
 
     // Initialize the reference and check the result of the negation.
-    GQCP::QCMatrix<double> M_ref {dim};
+    GQCP::SquareMatrix<double> M_ref {dim};
     // clang-format off
     M_ref <<  -1.0,  -2.0,
               -3.0,  -4.0;
@@ -242,19 +237,19 @@ BOOST_AUTO_TEST_CASE(SimpleSQOneElectronOperator_negation) {
 BOOST_AUTO_TEST_CASE(dot) {
 
     // Set up a toy RSQOneElectronOperator with three components.
-    GQCP::QCMatrix<double> h_x {2};
+    GQCP::SquareMatrix<double> h_x {2};
     // clang-format off
     h_x << 1.0, 2.0,
            3.0, 4.0;
     // clang-format on
 
-    GQCP::QCMatrix<double> h_y {2};
+    GQCP::SquareMatrix<double> h_y {2};
     // clang-format off
     h_y << -1.0,  2.0,
             3.0, -4.0;
     // clang-format on
 
-    GQCP::QCMatrix<double> h_z {2};
+    GQCP::SquareMatrix<double> h_z {2};
     // clang-format off
     h_z <<  0.0,  3.0,
             3.0,  0.0;
@@ -267,7 +262,7 @@ BOOST_AUTO_TEST_CASE(dot) {
     GQCP::VectorX<double> a {3};
     a << 1.0, 2.0, 3.0;
 
-    GQCP::QCMatrix<double> dot_ref {2};
+    GQCP::SquareMatrix<double> dot_ref {2};
     // clang-format off
     dot_ref <<  -1.0,  15.0,
                 18.0,  -4.0;
@@ -278,14 +273,37 @@ BOOST_AUTO_TEST_CASE(dot) {
 
 
 /**
- *  Check if the basis transformation method works as expected.
+ *  Check if the basis transformation works for a trivial case.
+ */
+BOOST_AUTO_TEST_CASE(transform_trivial) {
+
+    const size_t dim = 3;
+
+    // Initialize a test matrix and convert it into an operator.
+    const GQCP::SquareMatrix<double> f = GQCP::SquareMatrix<double>::Random(dim);
+    GQCP::ScalarRSQOneElectronOperator<double> op {f};
+
+    // Initialize a trivial transformation matrix, i.e. the identity matrix.
+    const GQCP::RTransformationMatrix<double> T = GQCP::RTransformationMatrix<double>::Identity(dim);
+
+    // Check the in-place and the returning methods.
+    const auto op_transformed = op.transformed(T);
+    BOOST_CHECK(op_transformed.parameters().isApprox(f, 1.0e-12));
+
+    op.transform(T);
+    BOOST_CHECK(op.parameters().isApprox(f, 1.0e-12));
+}
+
+
+/**
+ *  Check if the basis transformation method works as expected, for a non-trivial case
  */
 BOOST_AUTO_TEST_CASE(transform) {
 
     const size_t dim = 2;
 
     // Initialize a test matrix and convert it into an operator.
-    GQCP::QCMatrix<double> M1 {dim};
+    GQCP::SquareMatrix<double> M1 {dim};
     // clang-format off
     M1 << 1.0, 2.0,
           3.0, 4.0;
@@ -293,14 +311,14 @@ BOOST_AUTO_TEST_CASE(transform) {
     GQCP::ScalarRSQOneElectronOperator<double> op {M1};
 
     // Initialize a corresponding transformation matrix.
-    GQCP::TransformationMatrix<double> T {dim};
+    GQCP::RTransformationMatrix<double> T {dim};
     // clang-format off
     T << 2.0, 3.0,
          4.0, 5.0;
     // clang-format on
 
     // Initialize the reference matrix, corresponding to the result of the basis transformation.
-    GQCP::QCMatrix<double> ref {dim};
+    GQCP::SquareMatrix<double> ref {dim};
     // clang-format off
     ref << 108.0, 142.0,
            140.0, 184.0;
@@ -316,6 +334,32 @@ BOOST_AUTO_TEST_CASE(transform) {
 
 
 /**
+ *  Check if, if we transform with a transformation matrix and its inverse, we get a zero operation.
+ */
+BOOST_AUTO_TEST_CASE(transform_and_inverse) {
+
+    const size_t dim = 3;
+
+    // Initialize a a transformation matrix and its inverse.
+    GQCP::RTransformationMatrix<double> T {dim};
+    // clang-format off
+    T << 1,  0,  0,
+         0, -2,  0,
+         0,  0,  3;
+    // clang-format on
+    const GQCP::RTransformationMatrix<double> T_inverse = T.inverse();
+
+    // Initialize a random one-electron operator.
+    const GQCP::SquareMatrix<double> f = GQCP::SquareMatrix<double>::Random(dim);
+    GQCP::ScalarRSQOneElectronOperator<double> op {f};
+
+    // Transform the one-electron operator with T and its inverse, and check if it is a zero operation.
+    op.transformed(T).transformed(T_inverse);
+    BOOST_CHECK(op.parameters().isApprox(f, 1.0e-12));
+}
+
+
+/**
  *  Check if the basis rotation method works as expected.
  */
 BOOST_AUTO_TEST_CASE(rotate) {
@@ -323,7 +367,7 @@ BOOST_AUTO_TEST_CASE(rotate) {
     const size_t dim = 2;
 
     // Initialize a test matrix and convert it into an operator.
-    GQCP::QCMatrix<double> M1 {dim};
+    GQCP::SquareMatrix<double> M1 {dim};
     // clang-format off
     M1 << 1.0, 2.0,
           3.0, 4.0;
@@ -331,7 +375,7 @@ BOOST_AUTO_TEST_CASE(rotate) {
     GQCP::ScalarRSQOneElectronOperator<double> op {M1};
 
     // Initialize a unitary transformation matrix.
-    GQCP::TransformationMatrix<double> U {dim};
+    GQCP::RTransformationMatrix<double> U {dim};
     // clang-format off
     U << 1.0,  0.0,
          0.0, -1.0;
@@ -339,7 +383,7 @@ BOOST_AUTO_TEST_CASE(rotate) {
 
 
     // Initialize the reference matrix, corresponding to the result of the basis transformation.
-    GQCP::QCMatrix<double> ref {dim};
+    GQCP::SquareMatrix<double> ref {dim};
     // clang-format off
     ref <<  1.0, -2.0,
            -3.0,  4.0;
@@ -356,27 +400,147 @@ BOOST_AUTO_TEST_CASE(rotate) {
 
 
 /**
- *  Check if the Jacobi rotations are correctly applied.
+ *  Check a rotation test case.
  */
-BOOST_AUTO_TEST_CASE(jacobi_rotation) {
+BOOST_AUTO_TEST_CASE(rotate_test_case) {
+
+    const size_t dim = 3;
+
+
+    // Initialize a test case one-electron operator.
+    GQCP::SquareMatrix<double> f1 {dim};
+    // clang-format off
+    f1 << 1.0, 0.5, 0.0,
+          0.5, 2.0, 0.0,
+          0.0, 0.0, 1.0;
+    // clang-format on
+    const GQCP::ScalarRSQOneElectronOperator<double> op {f1};
+
+
+    // Initialize a test unitary transformation.
+    GQCP::RTransformationMatrix<double> U {dim};
+    // clang-format off
+    U << 1.0,  0.0,  0.0,
+         0.0,  0.0, -1.0,
+         0.0, -1.0,  0.0;
+    // clang-format on
+
+
+    // Initialize the reference, and check the result.
+    GQCP::SquareMatrix<double> f_ref {dim};
+    // clang-format off
+    f_ref <<  1.0, 0.0, -0.5,
+              0.0, 1.0,  0.0,
+             -0.5, 0.0,  2.0;
+    // clang-format on
+
+    BOOST_CHECK(op.rotated(U).parameters().isApprox(f_ref, 1.0e-08));
+}
+
+
+/**
+ *  Check that we can't use the `rotate` function with a non-unitary matrix.
+ */
+BOOST_AUTO_TEST_CASE(rotate_throws) {
+
+    // Create a random one-electron operator.
+    const size_t dim = 3;
+    const GQCP::SquareMatrix<double> f = GQCP::SquareMatrix<double>::Random(dim);
+    GQCP::ScalarRSQOneElectronOperator<double> op {f};
+
+
+    // Check if rotating with a non-unitary matrix as transformation matrix causes a throw.
+    const GQCP::RTransformationMatrix<double> T = GQCP::RTransformationMatrix<double>::Random(dim);  // The probability of a random matrix being unitary approaches zero.
+    BOOST_CHECK_THROW(op.rotate(T), std::invalid_argument);
+
+
+    // Check if rotating with a unitary matrix as transformation matrix is accepted.
+    const GQCP::RTransformationMatrix<double> U = GQCP::RTransformationMatrix<double>::RandomUnitary(dim);
+    BOOST_CHECK_NO_THROW(op.rotate(U));
+}
+
+
+/**
+ *  Check if rotating with JacobiRotationParameters is the same as with the corresponding Jacobi rotation matrix.
+ */
+BOOST_AUTO_TEST_CASE(rotate_jacobi_vs_matrix) {
+
+    // Create a random one-electron operator.
+    const size_t dim = 5;
+    const GQCP::SquareMatrix<double> f = GQCP::SquareMatrix<double>::Random(dim);
+    GQCP::ScalarRSQOneElectronOperator<double> op {f};
+
+    // Create Jacobi rotation parameters and the corresponding Jacobi rotation matrix.
+    GQCP::JacobiRotationParameters jacobi_rotation_parameters {4, 2, 56.81};
+    const auto J = GQCP::RTransformationMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
+
+
+    // Rotate using both representations and check the result.
+    BOOST_CHECK(op.rotated(jacobi_rotation_parameters).parameters().isApprox(op.rotated(J).parameters(), 1.0e-12));
+}
+
+
+/**
+ *  Check if the Jacobi rotations are correctly applied, for a 3-dimensional case.
+ */
+BOOST_AUTO_TEST_CASE(jacobi_rotation_3) {
+
+    const size_t dim = 3;
+
+    // Initialize a test matrix and convert it into an operator.
+    GQCP::SquareMatrix<double> f {dim};
+    // clang-format off
+    f << 1.0, 0.5, 0.0,
+         0.5, 2.0, 0.0,
+         0.0, 0.0, 1.0;
+    // clang-format on
+    GQCP::ScalarRSQOneElectronOperator<double> op {f};
+
+
+    // Initialize the Jacobi rotation.
+    const GQCP::JacobiRotationParameters J {1, 0, boost::math::constants::half_pi<double>()};  // interchanges two orbitals and applies a sign change
+
+
+    // Initialize the reference result.
+    GQCP::SquareMatrix<double> ref {dim};
+    // clang-format off
+    ref <<  2.0, -0.5, 0.0,
+           -0.5,  1.0, 0.0,
+            0.0,  0.0, 1.0;
+    // clang-format on
+
+
+    // Check the in-place and 'returning' methods.
+    const auto op_rotated = op.rotated(J);
+    BOOST_CHECK(op_rotated.parameters().isApprox(ref, 1.0e-08));
+
+    op.rotate(J);
+    BOOST_CHECK(op.parameters().isApprox(ref, 1.0e-08));
+}
+
+
+/**
+ *  Check if the Jacobi rotations are correctly applied, for a 4-dimensional case.
+ */
+BOOST_AUTO_TEST_CASE(jacobi_rotation_4) {
 
     const size_t dim = 4;
 
     // Initialize a test matrix and convert it into an operator.
-    GQCP::QCMatrix<double> M1 {dim};
+    GQCP::SquareMatrix<double> f {dim};
     // clang-format off
-     M1 << 1.0,  2.0,  3.0,  4.0,
-           5.0,  6.0,  7.0,  8.0,
-           9.0, 10.0, 11.0, 12.0,
-          13.0, 14.0, 15.0, 16.0;
+    f <<  1.0,  2.0,  3.0,  4.0,
+          5.0,  6.0,  7.0,  8.0,
+          9.0, 10.0, 11.0, 12.0,
+         13.0, 14.0, 15.0, 16.0;
     // clang-format on
-    GQCP::ScalarRSQOneElectronOperator<double> op {M1};
+    GQCP::ScalarRSQOneElectronOperator<double> op {f};
 
     // Initialize the Jacobi rotation.
-    GQCP::JacobiRotationParameters J {2, 1, (boost::math::constants::pi<double>() / 2)};
+    const GQCP::JacobiRotationParameters J {2, 1, boost::math::constants::half_pi<double>()};  // interchanges two orbitals and applies a sign change
 
     // Initialize the reference result.
-    GQCP::QCMatrix<double> ref {dim};
+    GQCP::SquareMatrix<double> ref {dim};
     // clang-format off
     ref <<   1.0,  3.0,  -2.0,  4.0,
              9.0, 11.0, -10.0, 12.0,

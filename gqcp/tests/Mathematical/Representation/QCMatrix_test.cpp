@@ -86,12 +86,12 @@ BOOST_AUTO_TEST_CASE(QCMatrix_rotate_throws) {
 
 
     // Check if a non-unitary matrix as transformation matrix causes a throw
-    const GQCP::TransformationMatrix<double> T = GQCP::TransformationMatrix<double>::Random(dim, dim);
+    const GQCP::TransformationMatrix<double> T = GQCP::TransformationMatrix<double>::Random(dim);
     BOOST_CHECK_THROW(M.basisRotate(T), std::invalid_argument);
 
 
     // Check if a unitary matrix as transformation matrix is accepted
-    const GQCP::TransformationMatrix<double> U = GQCP::TransformationMatrix<double>::Identity(dim, dim);
+    const GQCP::TransformationMatrix<double> U = GQCP::TransformationMatrix<double>::Identity(dim);
     M.basisRotate(U);
 }
 

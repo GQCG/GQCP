@@ -74,7 +74,7 @@ BOOST_AUTO_TEST_CASE(decomposition_BeH_cation_STO_3G_Nuclear) {
 
     // Calculate the DMs (in the AO basis in which the molecular decomposition parameters are defined) in order to calculate expectation values.
     auto D = linear_expansion.calculate1DM();
-    D.basisTransform(T.adjoint());  // T.adjoint() to transform BACK to AO basis
+    D.transform(T.inverse());  // Transform from MO basis back to AO basis using T.inverse().
 
     auto d = linear_expansion.calculate2DM();
     d.basisTransform(T.adjoint());  // T.adjoint() to transform BACK to AO basis
