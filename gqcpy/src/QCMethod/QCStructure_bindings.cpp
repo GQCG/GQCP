@@ -27,6 +27,7 @@
 #include "QCModel/HF/GHF.hpp"
 #include "QCModel/HF/RHF.hpp"
 #include "QCModel/HF/UHF.hpp"
+#include "Utilities/aliases.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>

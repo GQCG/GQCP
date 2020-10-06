@@ -16,6 +16,7 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "QCMethod/HF/GHF/GHFSCFSolver.hpp"
+#include "Utilities/aliases.hpp"
 
 #include <pybind11/pybind11.h>
 

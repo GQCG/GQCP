@@ -16,6 +16,7 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "QCMethod/HF/GHF/GHFSCFEnvironment.hpp"
+#include "Utilities/aliases.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
@@ -34,6 +35,18 @@ void bindGHFSCFEnvironment(py::module& module, const std::string& suffix) {
                                                 "An algorithm environment that can be used with standard GHF SCF solvers.")
 
         // CONSTRUCTORS
+
+        .def(py::init<const size_t, const GQCP::SQHamiltonian<Scalar>&, const Eigen::MatrixXd&, const Eigen::MatrixXd&>(),
+             py::arg("N"),
+             py::arg("sq_hamiltonian"),
+             py::arg("S"),
+             py::arg("C_init"))
+
+        .def(py::init<const size_t, const GQCP::SQHamiltonian<Scalar>&, const Eigen::MatrixXd&, const Eigen::MatrixXcf&>(),
+             py::arg("N"),
+             py::arg("sq_hamiltonian"),
+             py::arg("S"),
+             py::arg("C_init"))
 
         .def_static(
             "WithCoreGuess",

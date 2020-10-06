@@ -20,6 +20,7 @@
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
 #include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp"
 #include "QCMethod/CC/CCSDEnvironment.hpp"
+#include "QCMethod/HF/GHF/GHFSCFEnvironment.hpp"
 #include "QCMethod/HF/RHF/RHFSCFEnvironment.hpp"
 #include "QCMethod/HF/UHF/UHFSCFEnvironment.hpp"
 
@@ -110,6 +111,8 @@ void bindIterativeAlgorithms(py::module& module) {
     bindIterativeAlgorithm<GQCP::EigenproblemEnvironment>(module, "EigenproblemEnvironment", "An algorithm that performs iterations using an EigenproblemEnvironment.");
     bindIterativeAlgorithm<GQCP::NonLinearEquationEnvironment<double>>(module, "NonLinearEquationEnvironment", "An algorithm that performs iterations using a NonLinearEquationEnvironment.");
 
+    bindIterativeAlgorithm<GQCP::GHFSCFEnvironment<double>>(module, "GHFSCFEnvironment", "An algorithm that performs iterations using a GHFSCFEnvironment.");
+    bindIterativeAlgorithm<GQCP::GHFSCFEnvironment<GQCP::complex>>(module, "cGHFSCFEnvironment", "An algorithm that performs iterations using a complex GHFSCFEnvironment.");
     bindIterativeAlgorithm<GQCP::RHFSCFEnvironment<double>>(module, "RHFSCFEnvironment", "An algorithm that performs iterations using an RHFSCFEnvironment.");
     bindIterativeAlgorithm<GQCP::UHFSCFEnvironment<double>>(module, "UHFSCFEnvironment", "An algorithm that performs iterations using an UHFSCFEnvironment.");
 
