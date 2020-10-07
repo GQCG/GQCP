@@ -42,7 +42,7 @@ void bindGHFSCFEnvironment(py::module& module, const std::string& suffix) {
              py::arg("S"),
              py::arg("C_init"))
 
-        .def(py::init<const size_t, const GQCP::SQHamiltonian<Scalar>&, const Eigen::MatrixXd&, const Eigen::MatrixXcf&>(),
+        .def(py::init<const size_t, const GQCP::SQHamiltonian<Scalar>&, const Eigen::MatrixXd&, const Eigen::MatrixXcd&>(),
              py::arg("N"),
              py::arg("sq_hamiltonian"),
              py::arg("S"),
