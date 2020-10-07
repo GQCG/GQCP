@@ -606,7 +606,7 @@ BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_MatrixVectorProduct) {
  */
 
 BOOST_AUTO_TEST_CASE(ONVBasis_evaluate) {
-    std::cout << "... evaluate test case ..." << std::endl;
+
     // Set up an example molecular Hamiltonian.
     const auto molecule = GQCP::Molecule::HChain(5, 0.742, +2);
     const auto N = molecule.numberOfElectrons();
@@ -618,15 +618,13 @@ BOOST_AUTO_TEST_CASE(ONVBasis_evaluate) {
 
     // Set up the two equivalent ONV bases.
     const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
-    //const GQCP::SpinResolvedSelectedONVBasis selected_onv_basis {GQCP::SpinResolvedONVBasis(M, N, 0)};  // no beta electrons
-
 
     // Check the evaluation of the core Hamiltonian.
     const auto& h_op = sq_hamiltonian.core();
 
     // Check the dense evaluation.
-    const auto h_dense = onv_basis.evaluate<GQCP::SquareMatrix<double>>(h_op, false);  // true: calculate diagonal values
-    const auto h_new = onv_basis.evaluate_new<GQCP::SquareMatrix<double>>(h_op);
+    const auto h_dense = onv_basis.evaluate<GQCP::SquareMatrix<double>>(h_op, true);  // true: calculate diagonal values
+    const auto h_new = onv_basis.evaluate_new<GQCP::SquareMatrix<double>>(h_op, true);
 
     BOOST_CHECK(h_dense.isApprox(h_new));
 }

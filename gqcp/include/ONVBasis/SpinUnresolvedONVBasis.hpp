@@ -301,7 +301,7 @@ public:
     }
 
     template <typename Representation>
-    Representation evaluate_new(const ScalarSQOneElectronOperator<double>& one_op) const {
+    Representation evaluate_new(const ScalarSQOneElectronOperator<double>& one_op, const bool diagonal_values) const {
 
         const auto& one_op_par = one_op.parameters();
 
@@ -311,30 +311,39 @@ public:
 
         MatrixRepresentationEvaluationContainer<Representation> ONV_iterator {dim};
 
-        SpinUnresolvedONV onv = this->constructONVFromAddress(0);  // onv with address 0
+        SpinUnresolvedONV onv = this->constructONVFromAddress(0);  // start with ONV with address 0
 
         for (; !ONV_iterator.isFinished(); ONV_iterator.increment()) {  // loops over all possible ONVs
+            for (size_t e1 = 0; e1 < N; e1++) {                         // loop over electrons that can be annihilated
 
-            for (size_t e1 = 0; e1 < N; e1++) {  // loop over electrons that can be annihilated
-
+                // Create an ONVPath for each new ONV.
                 ONVPath<SpinUnresolvedONVBasis> onv_path {*this, onv};
 
-                size_t q = onv.occupationIndexOf(e1);  // retrieve orbital index of the electron
+                size_t q = onv.occupationIndexOf(e1);  // retrieve orbital index of the electron that will be annihilated
+
+                // The diagonal values are a result of annihilation-creation on the same orbital index and are thus the same as the initial ONV.
+                if (diagonal_values)
+                    ONV_iterator.addRowwise(ONV_iterator.index, one_op_par(q, q));
+
+                // For the non-diagonal values, we will create all possible matrix elements of the Hamiltonian in the routine below.
                 onv_path.annihilate(q, e1);
 
-                while (!onv_path.isFinished() && onv_path.orbitalIndex() <= (K - N + onv_path.electronIndex())) {
+                while (!onv_path.isFinished() && onv_path.isOrbitalIndexValid()) {
 
+                    // Find next unoccupied orbital (vertical arc).
                     onv_path.leftTranslateUntilVertical();
 
+                    // Address after the path has been closed.
                     size_t address = onv_path.addressAfterCreation(onv_path.orbitalIndex(), onv_path.electronIndex());
 
                     double h_pq = onv_path.sign() * one_op_par(onv_path.orbitalIndex(), q);
 
+                    // Add the one-electron integral as matrix elements of a Hermitian matrix.
                     ONV_iterator.addColumnwise(address, h_pq);
                     ONV_iterator.addRowwise(address, h_pq);
 
-                    // hier ga ik nog iets ONVPath-like voor verzinnen, stay tuned
-                    (onv_path.orbital_index)++;
+                    // Move orbital index such that other unoccupied orbitals can be found within the loop.
+                    onv_path.addVertical();
                 }
             }
             // Prevent last ONV since there is no possibility for an electron to be annihilated anymore.
@@ -396,8 +405,6 @@ public:
                     double value = sign_e2 * one_op_par(p, q);
                     evaluation_iterator.addColumnwise(J, value);
                     evaluation_iterator.addRowwise(J, value);
-
-                    std::cout << "old: " << J << std::endl;
 
                     q++;  // go to the next orbital
 

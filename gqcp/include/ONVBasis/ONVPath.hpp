@@ -101,6 +101,13 @@ public:
     }
 
     /**
+     * Create a vertical arc on the path's current state. 
+     * 
+     * @note The current state of this path can be retrieved by inspecting the point (p,n), where `p = this->orbitalIndex()` and `n = this->electronIndex()`, which signifies the vertex up until which the path construction is complete.
+     */
+    void addVertical() { this->orbital_index++; }
+
+    /**
      *  According to this path's current state, annihilate the next diagonal arc.
      *
      *  @note The current state of this path can be retrieved by inspecting the point (p,n), where `p = this->orbitalIndex()` and `n = this->electronIndex()`, which signifies the vertex up until which the path construction is complete.
@@ -175,6 +182,13 @@ public:
      */
     bool isFinished() const {
         return this->electron_index >= this->onv_basis.numberOfElectrons() || this->orbital_index >= this->onv_basis.numberOfOrbitals();
+    }
+
+    /**
+     *  @return If the orbital index 'p' is allowed. If p exceeds a certain value, there are not enough electrons for the given set of orbitals.
+     */
+    bool isOrbitalIndexValid() const {
+        return this->orbitalIndex() <= (this->onv_basis.numberOfOrbitals() - this->onv_basis.numberOfElectrons() + this->electronIndex());
     }
 
     /**
