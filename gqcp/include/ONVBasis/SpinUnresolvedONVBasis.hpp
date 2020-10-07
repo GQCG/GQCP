@@ -300,15 +300,22 @@ public:
         }
     }
 
+    /**
+     *  Evaluate a one-electron operator in this spin-unresolved ONV basis.
+     * 
+     *  @tparam Representation              The matrix representation that is used for storing the result. Essentially, any type that can be used in MatrixRepresentationEvaluationContainer<Representation>.
+     * 
+     *  @param one_op                       A one-electron operator in an orthonormal orbital basis.
+     *  @param should_calculate_diagonal    If diagonal values should be calculated.
+     * 
+     *  @return The matrix representation of the given one-electron operator.
+     */
     template <typename Representation>
-    Representation evaluate_new(const ScalarSQOneElectronOperator<double>& one_op, const bool diagonal_values) const {
+    Representation evaluate(const ScalarSQOneElectronOperator<double>& one_op, const bool diagonal_values) const {
 
         const auto& one_op_par = one_op.parameters();
 
-        const size_t K = this->numberOfOrbitals();
-        const size_t N = this->numberOfElectrons();
         const auto dim = this->dimension();
-
         MatrixRepresentationEvaluationContainer<Representation> ONV_iterator {dim};
 
         SpinUnresolvedONV onv = this->constructONVFromAddress(0);  // start with ONV with address 0
@@ -367,7 +374,7 @@ public:
      *  @return The matrix representation of the given one-electron operator.
      */
     template <typename Representation>
-    Representation evaluate(const ScalarSQOneElectronOperator<double>& one_op, const bool diagonal_values) const {
+    Representation evaluate_old(const ScalarSQOneElectronOperator<double>& one_op, const bool diagonal_values) const {
 
         const auto& one_op_par = one_op.parameters();
 

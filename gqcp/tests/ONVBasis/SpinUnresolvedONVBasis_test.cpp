@@ -623,8 +623,8 @@ BOOST_AUTO_TEST_CASE(ONVBasis_evaluate) {
     const auto& h_op = sq_hamiltonian.core();
 
     // Check the dense evaluation.
-    const auto h_dense = onv_basis.evaluate<GQCP::SquareMatrix<double>>(h_op, true);  // true: calculate diagonal values
-    const auto h_new = onv_basis.evaluate_new<GQCP::SquareMatrix<double>>(h_op, true);
+    const auto h_dense = onv_basis.evaluate_old<GQCP::SquareMatrix<double>>(h_op, true);  // true: calculate diagonal values
+    const auto h_new = onv_basis.evaluate<GQCP::SquareMatrix<double>>(h_op, true);
 
     BOOST_CHECK(h_dense.isApprox(h_new));
 }
