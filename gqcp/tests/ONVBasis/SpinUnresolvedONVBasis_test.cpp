@@ -606,7 +606,7 @@ BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_MatrixVectorProduct) {
  */
 
 BOOST_AUTO_TEST_CASE(ONVBasis_evaluate) {
-
+    std::cout << "... evaluate test case ..." << std::endl;
     // Set up an example molecular Hamiltonian.
     const auto molecule = GQCP::Molecule::HChain(5, 0.742, +2);
     const auto N = molecule.numberOfElectrons();

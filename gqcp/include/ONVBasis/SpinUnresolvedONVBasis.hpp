@@ -287,8 +287,6 @@ public:
                     evaluation_iterator.addColumnwise(J, value);
                     evaluation_iterator.addRowwise(J, value);
 
-                    std::cout << "old: " << J << std::endl;
-
                     q++;  // go to the next orbital
 
                     // perform a shift
@@ -306,9 +304,13 @@ public:
     Representation evaluate_new(const ScalarSQOneElectronOperator<double>& one_op) const {
 
         const auto& one_op_par = one_op.parameters();
-        const size_t dim = this->dimension();
+
+        const size_t K = this->numberOfOrbitals();
+        const size_t N = this->numberOfElectrons();
+        const auto dim = this->dimension();
 
         MatrixRepresentationEvaluationContainer<Representation> ONV_iterator {dim};
+
         SpinUnresolvedONV onv = this->constructONVFromAddress(0);  // onv with address 0
 
         for (; !ONV_iterator.isFinished(); ONV_iterator.increment()) {  // loops over all possible ONVs
@@ -320,24 +322,19 @@ public:
                 size_t q = onv.occupationIndexOf(e1);  // retrieve orbital index of the electron
                 onv_path.annihilate(q, e1);
 
-                while (!onv_path.isFinished() && onv_path.orbitalIndex() - onv_path.electronIndex() < this->numberOfOrbitals() - this->numberOfElectrons()) {
+                while (!onv_path.isFinished() && onv_path.orbitalIndex() <= (K - N + onv_path.electronIndex())) {
 
                     onv_path.leftTranslateUntilVertical();
-                    //std::cout << "LTUV: " << onv_path.address() << "    " << onv_path.orbitalIndex() << "    " << onv_path.electronIndex() << std::endl;
-                    //onv_path.create();
-                    //std::cout << "C: " << onv_path.address() << "    " << onv_path.orbitalIndex() << "    " << onv_path.electronIndex() << std::endl;
 
-                    const auto address = onv_path.addressAfterCreation(onv_path.orbitalIndex(), onv_path.electronIndex());
+                    size_t address = onv_path.addressAfterCreation(onv_path.orbitalIndex(), onv_path.electronIndex());
 
-                    const auto h_pq = onv_path.sign() * one_op_par(onv_path.orbitalIndex(), q);
-
-                    std::cout << "new: " << address << std::endl;
+                    double h_pq = onv_path.sign() * one_op_par(onv_path.orbitalIndex(), q);
 
                     ONV_iterator.addColumnwise(address, h_pq);
                     ONV_iterator.addRowwise(address, h_pq);
 
-                    //onv_path.annihilate(onv_path.orbitalIndex() - 1, onv_path.electronIndex() - 1);
-                    //std::cout << "A: " << onv_path.address() << "    " << onv_path.orbitalIndex() << "    " << onv_path.electronIndex() << std::endl;
+                    // hier ga ik nog iets ONVPath-like voor verzinnen, stay tuned
+                    (onv_path.orbital_index)++;
                 }
             }
             // Prevent last ONV since there is no possibility for an electron to be annihilated anymore.
@@ -399,6 +396,8 @@ public:
                     double value = sign_e2 * one_op_par(p, q);
                     evaluation_iterator.addColumnwise(J, value);
                     evaluation_iterator.addRowwise(J, value);
+
+                    std::cout << "old: " << J << std::endl;
 
                     q++;  // go to the next orbital
 
