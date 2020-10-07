@@ -34,8 +34,6 @@ template <typename ONVBasis>
 class ONVPath {
 public:
     using ONV = typename ONVBasis::ONV;
-    // The orbital index 'p' that, together with the electron index 'n' signifies the vertex (p,n) up until which the ONV path construction is finished.
-    size_t orbital_index;
 
 private:
     // The ONV basis in which the ONV (path) lives. A (const) reference in order to avoid unnecessary copying.
@@ -47,6 +45,8 @@ private:
     // The address of the current path.
     size_t m_address;
 
+    // The orbital index 'p' that, together with the electron index 'n' signifies the vertex (p,n) up until which the ONV path construction is finished.
+    size_t orbital_index;
 
     // The electron index 'n' that, together with the orbital index 'p' signifies the vertex (p,n) up until which the ONV path construction is finished.
     size_t electron_index;
