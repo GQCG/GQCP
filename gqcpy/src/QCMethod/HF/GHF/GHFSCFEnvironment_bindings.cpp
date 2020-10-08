@@ -18,8 +18,10 @@
 #include "QCMethod/HF/GHF/GHFSCFEnvironment.hpp"
 #include "Utilities/aliases.hpp"
 
+#include <pybind11/complex.h>
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
 
 
 namespace py = pybind11;
@@ -36,13 +38,7 @@ void bindGHFSCFEnvironment(py::module& module, const std::string& suffix) {
 
         // CONSTRUCTORS
 
-        .def(py::init<const size_t, const GQCP::SQHamiltonian<Scalar>&, const Eigen::MatrixXd&, const Eigen::MatrixXd&>(),
-             py::arg("N"),
-             py::arg("sq_hamiltonian"),
-             py::arg("S"),
-             py::arg("C_init"))
-
-        .def(py::init<const size_t, const GQCP::SQHamiltonian<Scalar>&, const Eigen::MatrixXd&, const Eigen::MatrixXcd&>(),
+        .def(py::init<const size_t, const GQCP::SQHamiltonian<Scalar>&, const Eigen::MatrixXd&, const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>&>(),
              py::arg("N"),
              py::arg("sq_hamiltonian"),
              py::arg("S"),
@@ -93,25 +89,25 @@ void bindGHFSCFEnvironment(py::module& module, const std::string& suffix) {
 
         // Bind methods for the replacement of the most current iterates.
         .def("replace_current_coefficient_matrix",
-             [](GQCP::GHFSCFEnvironment<Scalar>& environment, const Eigen::MatrixXd& new_coefficient_matrix) {
+             [](GQCP::GHFSCFEnvironment<Scalar>& environment, const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>& new_coefficient_matrix) {
                  environment.coefficient_matrices.pop_back();
                  environment.coefficient_matrices.push_back(GQCP::QCMatrix<Scalar>(new_coefficient_matrix));
              })
 
         .def("replace_current_density_matrix",
-             [](GQCP::GHFSCFEnvironment<Scalar>& environment, const Eigen::MatrixXd& new_density_matrix) {
+             [](GQCP::GHFSCFEnvironment<Scalar>& environment, const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>& new_density_matrix) {
                  environment.density_matrices.pop_back();
                  environment.density_matrices.push_back(GQCP::QCMatrix<Scalar>(new_density_matrix));
              })
 
         .def("replace_current_fock_matrix",
-             [](GQCP::GHFSCFEnvironment<Scalar>& environment, const Eigen::MatrixXd& new_fock_matrix) {
+             [](GQCP::GHFSCFEnvironment<Scalar>& environment, const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>& new_fock_matrix) {
                  environment.fock_matrices.pop_back();
                  environment.fock_matrices.push_back(GQCP::QCMatrix<Scalar>(new_fock_matrix));
              })
 
         .def("replace_current_error_vectors",
-             [](GQCP::GHFSCFEnvironment<Scalar>& environment, const Eigen::MatrixXd& new_error_vectors) {
+             [](GQCP::GHFSCFEnvironment<Scalar>& environment, const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>& new_error_vectors) {
                  environment.fock_matrices.pop_back();
                  environment.fock_matrices.push_back(GQCP::QCMatrix<Scalar>(new_error_vectors));
              });
