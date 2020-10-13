@@ -76,11 +76,11 @@ BOOST_AUTO_TEST_CASE(offset_column) {
     //  [4, 5, 6],
     //  [7, 8, 9]]
     //
-    // Using row-major order, this 2D array can be seen as:
+    // Using column-major order, this 2D array can be seen as:
     // [1, 4, 7, 2, 5, 8, 3, 6, 9]
     //
     // The strides for this matrix are [1, 3]
-    // To move to the next row you skip 1 position, to move to the next column you skip three positions
+    // To move to the next row you skip one position, to move to the next column you skip three positions
 
     // Create an array containing the dimension of each axis
     // Create a vectorizer with axis dimensions 2, thus representing a 2D array and give it the dimension of each axis with the previously created array
