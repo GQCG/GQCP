@@ -37,7 +37,7 @@ BOOST_AUTO_TEST_CASE(offset_row) {
     // [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
     // The strides for this matrix are [3, 1]
-    // To move to the next row you skip three positions, to move to the next column you skip one position
+    // To move to the next row you move three positions in the 1D array, to move to the next column you move one position
 
     // Create an array containing the dimension of each axis
     // Create a vectorizer with axis dimensions 2, thus representing a 2D array and define its axis dimensions with the previously created array
@@ -80,7 +80,7 @@ BOOST_AUTO_TEST_CASE(offset_column) {
     // [1, 4, 7, 2, 5, 8, 3, 6, 9]
 
     // The strides for this matrix are [1, 3]
-    // To move to the next row you skip one position, to move to the next column you skip three positions
+    // To move to the next row you move one position in the 1D array, to move to the next column you move three positions
 
     // Create an array containing the dimension of each axis
     // Create a vectorizer with axis dimensions 2, thus representing a 2D array and define its axis dimensions with the previously created array
@@ -116,7 +116,7 @@ BOOST_AUTO_TEST_CASE(offset_multi_dimensional) {
     // [0, 4, 8, 1, 5, 9, 2, 6, 10, 3, 7, 11, 12, 16, 20, 13, 17, 21, 14, 18, 22, 15, 19, 23]
 
     // The strides for this matrix are [12, 1, 4]
-    // To move to the next row you skip one position, to move to the next column you skip three positions and to move to the next inner array you move twelve positions
+    // To move to the next row you move one position in the 1D-array, to move to the next column you move three positions and to move to the next inner array you move twelve positions
 
     // Create an array containing the dimension of each axis
     // Create a vectorizer with axis dimensions 3, thus representing a 3D array and define its axis dimensions with the previously created array
