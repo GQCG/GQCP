@@ -1,4 +1,5 @@
 list(APPEND test_target_sources
+    ${CMAKE_CURRENT_SOURCE_DIR}/DenseVectorizer_test.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/ImplicitMatrixSlice_test.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/ImplicitRankFourTensorSlice_test.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Matrix_test.cpp
