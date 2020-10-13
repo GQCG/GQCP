@@ -116,7 +116,7 @@ BOOST_AUTO_TEST_CASE(offset_multi_dimensional) {
     // [0, 4, 8, 1, 5, 9, 2, 6, 10, 3, 7, 11, 12, 16, 20, 13, 17, 21, 14, 18, 22, 15, 19, 23]
 
     // The strides for this matrix are [12, 1, 4]
-    // To move to the next row you skip one position, to move to the next column you skip four positions and to move to the next inner array you move twelve positions
+    // To move to the next row you skip one position, to move to the next column you skip three positions and to move to the next inner array you move twelve positions
 
     // Create an array containing the dimension of each axis
     // Create a vectorizer with axis dimensions 3, thus representing a 3D array and define its axis dimensions with the previously created array
