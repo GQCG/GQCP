@@ -17,9 +17,7 @@
 
 #pragma once
 
-
-//#include "ONVBasis/SpinUnresolvedONV.hpp"
-//#include "ONVBasis/SpinUnresolvedONVBasis.hpp"
+#include <stddef.h>
 
 
 namespace GQCP {
@@ -99,13 +97,6 @@ public:
     size_t addressAfterCreation(const size_t p, const size_t n) {
         return this->m_address + this->onv_basis.arcWeight(p, n);
     }
-
-    /**
-     * Create a vertical arc on the path's current state. 
-     * 
-     * @note The current state of this path can be retrieved by inspecting the point (p,n), where `p = this->orbitalIndex()` and `n = this->electronIndex()`, which signifies the vertex up until which the path construction is complete.
-     */
-    void addVertical() { this->orbital_index++; }
 
     /**
      *  According to this path's current state, annihilate the next diagonal arc.
@@ -199,7 +190,7 @@ public:
      * 
      *  @note Call this method only if you're sure that the path is 'open' at the vertex (p, n-1)! This method does not perform any validation checks.
      */
-    void leftTranslate(const size_t p, const size_t n) {
+    void leftTranslateDiagonalArc(const size_t p, const size_t n) {
 
         // In order to keep the operation count as small as possible, we're not using `this->create()` or `this->annihilate()`.
 
@@ -215,16 +206,23 @@ public:
     }
 
     /**
+     * Create a vertical arc on the path's current state. 
+     * 
+     * @note The current state of this path can be retrieved by inspecting the point (p,n), where `p = this->orbitalIndex()` and `n = this->electronIndex()`, which signifies the vertex up until which the path construction is complete.
+     */
+    void leftTranslateVerticalArc() { this->orbital_index++; }
+
+    /**
      *  According to this path's current state, translate diagonal arcs to the left until an unoccupied orbital (vertical arc) is found.
      * 
      *  @note The current state of this path can be retrieved by inspecting the point (p,n), where `p = this->orbitalIndex()` and `n = this->electronIndex()`, which signifies the vertex up until which the path construction is complete.
      */
-    void leftTranslateUntilVertical() {
+    void leftTranslateDiagonalArcUntilVerticalArc() {
 
         while (!this->isFinished() && this->onv.isOccupied(this->orbital_index)) {
 
             // Translate the diagonal arc starting at (p,n+1) one position to the left. This function keeps tabs on the creation index, electron index and sign.
-            this->leftTranslate(this->orbital_index, this->electron_index + 1);
+            this->leftTranslateDiagonalArc(this->orbital_index, this->electron_index + 1);
         }
     }
 

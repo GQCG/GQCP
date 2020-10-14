@@ -335,10 +335,11 @@ public:
                 // For the non-diagonal values, we will create all possible matrix elements of the Hamiltonian in the routine below.
                 onv_path.annihilate(q, e1);
 
+                // Stop the loop if 1) the path is finished, meaning that (p, n) is at (M, N) and 2) if the orbital index is out of bounds after left translation of a vertical arc.
                 while (!onv_path.isFinished() && onv_path.isOrbitalIndexValid()) {
 
                     // Find next unoccupied orbital (vertical arc).
-                    onv_path.leftTranslateUntilVertical();
+                    onv_path.leftTranslateDiagonalArcUntilVerticalArc();
 
                     // Address after the path has been closed.
                     size_t address = onv_path.addressAfterCreation(onv_path.orbitalIndex(), onv_path.electronIndex());
@@ -350,7 +351,7 @@ public:
                     ONV_iterator.addRowwise(address, h_pq);
 
                     // Move orbital index such that other unoccupied orbitals can be found within the loop.
-                    onv_path.addVertical();
+                    onv_path.leftTranslateVerticalArc();
                 }
             }
             // Prevent last ONV since there is no possibility for an electron to be annihilated anymore.
