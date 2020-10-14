@@ -338,17 +338,17 @@ public:
                 // Stop the loop if 1) the path is finished, meaning that (p, n) is at (M, N) and 2) if the orbital index is out of bounds after left translation of a vertical arc.
                 while (!onv_path.isFinished() && onv_path.isOrbitalIndexValid()) {
 
-                    // Find next unoccupied orbital (vertical arc).
+                    // Find the next unoccupied orbital, i.e. the next vertical arc in the path.
                     onv_path.leftTranslateDiagonalArcUntilVerticalArc();
 
-                    // Address after the path has been closed.
+                    // Calculate the address of the path if we would close it right now.
                     size_t address = onv_path.addressAfterCreation(onv_path.orbitalIndex(), onv_path.electronIndex());
 
-                    double h_pq = onv_path.sign() * one_op_par(onv_path.orbitalIndex(), q);
+                    const double value = onv_path.sign() * one_op_par(onv_path.orbitalIndex(), q);
 
                     // Add the one-electron integral as matrix elements of a Hermitian matrix.
-                    ONV_iterator.addColumnwise(address, h_pq);
-                    ONV_iterator.addRowwise(address, h_pq);
+                    ONV_iterator.addColumnwise(address, value);
+                    ONV_iterator.addRowwise(address, value);
 
                     // Move orbital index such that other unoccupied orbitals can be found within the loop.
                     onv_path.leftTranslateVerticalArc();
