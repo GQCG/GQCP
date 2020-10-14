@@ -329,8 +329,9 @@ public:
                 size_t q = onv.occupationIndexOf(e1);  // retrieve orbital index of the electron that will be annihilated
 
                 // The diagonal values are a result of annihilation-creation on the same orbital index and are thus the same as the initial ONV.
-                if (diagonal_values)
+                if (diagonal_values) {
                     ONV_iterator.addRowwise(ONV_iterator.index, one_op_par(q, q));
+                }
 
                 // For the non-diagonal values, we will create all possible matrix elements of the Hamiltonian in the routine below.
                 onv_path.annihilate(q, e1);
