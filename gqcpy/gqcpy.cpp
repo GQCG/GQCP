@@ -71,7 +71,7 @@ void bindNucleus(py::module& module);
 
 
 // ONVBasis
-void bindONVPath(py::module& module);
+void bindONVPaths(py::module& module);
 void bindSeniorityZeroONVBasis(py::module& module);
 void bindSpinResolvedONV(py::module& module);
 void bindSpinResolvedONVBasis(py::module& module);
@@ -227,7 +227,7 @@ PYBIND11_MODULE(gqcpy, module) {
 
 
     // ONVBasis
-    gqcpy::bindONVPath(module);
+    gqcpy::bindONVPaths(module);
     gqcpy::bindSeniorityZeroONVBasis(module);
     gqcpy::bindSpinResolvedONV(module);
     gqcpy::bindSpinResolvedONVBasis(module);
