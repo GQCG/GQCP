@@ -88,6 +88,13 @@ public:
     size_t address() const { return this->m_address; }
 
     /**
+     *  @return the address of the current path after creation on the current path indices.
+     */
+    size_t addressAfterCreation() {
+        return this->addressAfterCreation(this->orbital_index, this->electron_index);
+    }
+
+    /**
      *  @param p        the index of the orbital that should be created
      *  @param n        the number of electrons in the ONV/path up to the orbital index q, prior to the creation
      * 
