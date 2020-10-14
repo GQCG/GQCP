@@ -104,18 +104,18 @@ void bindONVPath(py::module& module, const std::string& suffix, const std::strin
             "Return If the orbital index 'p' is allowed. If p exceeds a certain value, there are not enough electrons for the given set of orbitals.")
 
         .def(
-            "leftTranslate",
+            "leftTranslateDiagonalArc",
             [](GQCP::ONVPath<ONVBasis>& path, const size_t p, const size_t n) {
-                path.leftTranslate(p, n);
+                path.leftTranslateDiagonalArc(p, n);
             },
             py::arg("p"),
             py::arg("q"),
             "Translate the diagonal arc that starts at the coordinate (p,n) to the left, indicating that the current path is 'open' at the vertex (p,n-1) and that the orbital 'p' should be occupied in subsequent path manipulations.")
 
         .def(
-            "leftTranslateUntilVertical",
+            "leftTranslateDiagonalArcUntilVerticalArc",
             [](GQCP::ONVPath<ONVBasis>& path) {
-                path.leftTranslateUntilVertical();
+                path.leftTranslateDiagonalArcUntilVerticalArc();
             },
             "According to this path's current state, translate diagonal arcs to the left until an unoccupied orbital (vertical arc) is found.")
 
