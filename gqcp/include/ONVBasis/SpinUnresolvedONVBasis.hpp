@@ -342,7 +342,7 @@ public:
                     onv_path.leftTranslateDiagonalArcUntilVerticalArc();
 
                     // Calculate the address of the path if we would close it right now.
-                    size_t address = onv_path.addressAfterCreation(onv_path.orbitalIndex(), onv_path.electronIndex());
+                    const size_t address = onv_path.addressAfterCreation();
 
                     const double value = onv_path.sign() * one_op_par(onv_path.orbitalIndex(), q);
 
