@@ -336,7 +336,7 @@ public:
                 // For the non-diagonal values, we will create all possible matrix elements of the Hamiltonian in the routine below.
                 onv_path.annihilate(q, e1);
 
-                // Stop the loop if 1) the path is finished, meaning that (p, n) is at (M, N) and 2) if the orbital index is out of bounds after left translation of a vertical arc.
+                // Stop the loop if 1) the path is finished, meaning that orbital index p is at M (the total number of orbitals) and 2) if the orbital index is out of bounds after left translation of a vertical arc.
                 while (!onv_path.isFinished() && onv_path.isOrbitalIndexValid()) {
 
                     // Find the next unoccupied orbital, i.e. the next vertical arc in the path.
