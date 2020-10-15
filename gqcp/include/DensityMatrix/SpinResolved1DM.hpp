@@ -18,61 +18,50 @@
 #pragma once
 
 
-#include "DensityMatrix/OneDM.hpp"
 #include "DensityMatrix/Orbital1DM.hpp"
-#include "QuantumChemical/Spin.hpp"
+#include "DensityMatrix/SpinResolved1DMComponent.hpp"
+#include "QuantumChemical/SpinResolved.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  A type that encapsulates alpha-alpha and beta-beta spin-resolved density matrices.
+ *  A type that encapsulates alpha-alpha and beta-beta (spin-resolved) density matrices.
  *
- *  @tparam _Scalar             The scalar type of one of the elements.
+ *  @tparam _Scalar             The scalar type of one of the density matrix elements: real or complex.
  */
 template <typename _Scalar>
-class SpinResolved1DM {
+class SpinResolved1DM:
+    public SpinResolvedBase<SpinResolved1DMComponent<_Scalar>, SpinResolved1DM<_Scalar>> {
 public:
-    // The scalar type of one of the elements.
+    // The scalar type of one of the density matrix elements: real or complex.
     using Scalar = _Scalar;
 
 
-private:
-    OneDM<Scalar> D_aa;  // the alpha-alpha 1-DM
-    OneDM<Scalar> D_bb;  // the beta-beta 1-DM
-
-
 public:
     /*
-     *  CONSTRUCTORS
+     *  MARK: Constructors
      */
 
-    /**
-     *  Create a SpinResolved1DM from its members.
-     *
-     *  @param D_aa             the alpha-alpha 1-DM
-     *  @param D_bb             the beta-beta 1-DM
-     */
-    SpinResolved1DM(const OneDM<Scalar>& D_aa, const OneDM<Scalar>& D_bb) :
-        D_aa {D_aa},
-        D_bb {D_bb} {}
+    // Inherit `SpinResolvedBase`'s constructors.
+    using SpinResolvedBase<SpinResolved1DMComponent<_Scalar>, SpinResolved1DM<_Scalar>>::SpinResolvedBase;
 
 
     /*
-     *  NAMED CONSTRUCTORS
+     *  MARK: Constructors
      */
 
     /**
-     *  Create a spin-resolved 1-DM as half of the total 1-DM.
+     *  Create a spin-resolved 1-DM from an `Orbital1DM`, attributing half of the orbital 1-DM to each of the spin components.
      * 
-     *  @param D            the spin-summed 1-DM
+     *  @param D            The orbital 1-DM.
      * 
-     *  @return a spin-resolved 1-DM
+     *  @return A spin-resolved 1-DM.
      */
-    static SpinResolved1DM<Scalar> FromRestricted(const OneDM<Scalar>& D) {
+    static SpinResolved1DM<Scalar> FromOrbital1DM(const Orbital1DM<Scalar>& D) {
 
-        const auto D_half = D / 2;
+        const SpinResolved1DMComponent<Scalar> D_half = D / 2;
         return SpinResolved1DM<Scalar>(D_half, D_half);
     }
 
@@ -82,19 +71,8 @@ public:
      */
 
     /**
-     *  @return the alpha-alpha part of the spin-resolved 1-DM
-     */
-    const OneDM<Scalar>& alpha() const { return this->D_aa; }
-
-    /**
-     *  @return the beta-beta part of the spin-resolved 1-DM
-     */
-    const OneDM<Scalar>& beta() const { return this->D_bb; }
-
-    /**
      * @return the norm of the generalized (spin-blocked) representation of the spin resolved one-DM
      */
-
     double norm() const {
 
         const auto dim = this->alpha().numberOfOrbitals();
@@ -159,6 +137,7 @@ public:
         return this->transform(T, T);
     }
 };
+
 
 /*
 *  OPERATORS

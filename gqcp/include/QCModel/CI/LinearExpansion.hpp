@@ -665,8 +665,8 @@ public:
         const auto K = this->onv_basis.numberOfSpatialOrbitals();
         const auto dimension = this->onv_basis.dimension();
 
-        // For seniority-zero linear expansions, one DM covers both alpha and beta spins.
-        OneDM<double> D = OneDM<double>::Zero(K);
+        // For seniority-zero linear expansions, the alpha- and beta- component of the spin-resolved 1-DM is equal.
+        SpinResolved1DMComponent<double> D = SpinResolved1DMComponent<double>::Zero(K);
 
         // Create the first ONV (with address 0). In DOCI, the ONV basis for alpha and beta is equal, so we can use the proxy ONV basis.
         const auto onv_basis_proxy = this->onv_basis.proxy();
@@ -685,7 +685,7 @@ public:
             }
         }
 
-        return SpinResolved1DM<double>::FromRestricted(D);
+        return SpinResolved1DM<double>::FromEqual(D);
     }
 
 
