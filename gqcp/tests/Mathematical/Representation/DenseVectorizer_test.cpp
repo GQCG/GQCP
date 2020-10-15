@@ -45,7 +45,7 @@ BOOST_AUTO_TEST_CASE(offset_row) {
     const auto test_vectorizer = GQCP::DenseVectorizer<2>(dimensions, GQCP::Ordering::RowMajor);
 
     // The offset method only works for indices smaller than the axis dimension, since you can't move to an index greater than the axis dimensions
-    // Check whther an x-index being too large causes a throw
+    // Check whether an x-index being too large causes a throw
     const std::array<size_t, 2> indices_wrong_1 = {4, 2};
     BOOST_CHECK_THROW(test_vectorizer.offset(indices_wrong_1), std::invalid_argument);
 
