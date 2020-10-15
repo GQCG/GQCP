@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "DensityMatrix/DensityMatrixTraits.hpp"
 #include "Mathematical/Representation/SquareRankFourTensor.hpp"
 
 
@@ -49,6 +50,9 @@ public:
     // The type of 'this'.
     using Self = Simple2DM<Scalar, DerivedDM>;
 
+    // The type of the one-electron density matrix that is naturally related to the derived 2-DM.
+    using OneDM_Placeholder = typename DensityMatrixTraits<DerivedDM>::OneDM_Placeholder;
+
 
 public:
     /*
@@ -63,6 +67,33 @@ public:
      *  MARK: General information
      */
     size_t numberOfOrbitals() const { return this->dimension(); }
+
+
+    /*
+     *  MARK: Contractions
+     */
+
+    /**
+     *  @return a partial contraction of the 2-DM, where D(p,q) = d(p,q,r,r)
+     */
+    OneDM_Placeholder reduce() const {
+
+        // TODO: when Eigen3 releases tensor.trace(), use it to implement the reduction
+
+        const auto K = this->numberOfOrbitals();
+
+        OneDM_Placeholder D = OneDM_Placeholder::Zero(K);
+        for (size_t p = 0; p < K; p++) {
+            for (size_t q = 0; q < K; q++) {
+
+                for (size_t r = 0; r < K; r++) {
+                    D(p, q) += this->operator()(p, q, r, r);
+                }
+            }
+        }
+
+        return D;
+    }
 };
 
 

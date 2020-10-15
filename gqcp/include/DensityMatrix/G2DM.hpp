@@ -20,6 +20,7 @@
 
 #include "Basis/Transformations/GTransformationMatrix.hpp"
 #include "DensityMatrix/DensityMatrixTraits.hpp"
+#include "DensityMatrix/G1DM.hpp"
 #include "DensityMatrix/Simple2DM.hpp"
 
 
@@ -64,6 +65,9 @@ class DensityMatrixTraits<G2DM<Scalar>> {
 public:
     // The type of transformation matrix that is naturally related to a `G2DM`.
     using TM = GTransformationMatrix<Scalar>;
+
+    // The type of the one-electron density matrix that is naturally related to a `G2DM`.
+    using OneDM_Placeholder = G1DM<Scalar>;
 };
 
 
