@@ -16,6 +16,8 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "ONVBasis/ONVPath.hpp"
+#include "ONVBasis/SpinResolvedONVBasis.hpp"
+#include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
@@ -26,12 +28,15 @@ namespace py = pybind11;
 
 namespace gqcpy {
 
-void bindONVPath(py::module& module) {
-    py::class_<GQCP::ONVPath>(module, "ONVPath", "A path-like representation of an ONV.")
+template <typename ONVBasis>
+void bindONVPath(py::module& module, const std::string& suffix, const std::string& description) {
+    py::class_<GQCP::ONVPath<ONVBasis>>(module,
+                                        ("ONVPath_" + suffix).c_str(),
+                                        description.c_str())
 
         // CONSTRUCTOR
 
-        .def(py::init<const GQCP::SpinUnresolvedONVBasis&, const GQCP::SpinUnresolvedONV&>(),
+        .def(py::init<const ONVBasis&, const typename ONVBasis::ONV&>(),
              py::arg("onv_basis"),
              py::arg("onv"))
 
@@ -40,21 +45,21 @@ void bindONVPath(py::module& module) {
 
         .def(
             "address",
-            [](const GQCP::ONVPath& path) {
+            [](const GQCP::ONVPath<ONVBasis>& path) {
                 return path.address();
             },
             "Return the address of the current path.")
 
         .def(
             "annihilate",
-            [](GQCP::ONVPath& path) {
+            [](GQCP::ONVPath<ONVBasis>& path) {
                 path.annihilate();
             },
             "According to this path's current state, annihilate the next diagonal arc.")
 
         .def(
             "annihilate",
-            [](GQCP::ONVPath& path, const size_t q, const size_t n) {
+            [](GQCP::ONVPath<ONVBasis>& path, const size_t q, const size_t n) {
                 path.annihilate(q, n);
             },
             py::arg("q"),
@@ -63,14 +68,14 @@ void bindONVPath(py::module& module) {
 
         .def(
             "create",
-            [](GQCP::ONVPath& path) {
+            [](GQCP::ONVPath<ONVBasis>& path) {
                 path.create();
             },
             "According to this path's current state, create the next diagonal arc.")
 
         .def(
             "create",
-            [](GQCP::ONVPath& path, const size_t p, const size_t n) {
+            [](GQCP::ONVPath<ONVBasis>& path, const size_t p, const size_t n) {
                 path.create(p, n);
             },
             py::arg("p"),
@@ -79,41 +84,61 @@ void bindONVPath(py::module& module) {
 
         .def(
             "electronIndex",
-            [](const GQCP::ONVPath& path) {
+            [](const GQCP::ONVPath<ONVBasis>& path) {
                 return path.orbitalIndex();
             },
             "Return the electron index 'n' that, together with the orbital index 'p' signifies the vertex (p,n) up until which the ONV path construction is finished.")
 
+        .def(
+            "isFinished",
+            [](const GQCP::ONVPath<ONVBasis>& path) {
+                return path.isFinished();
+            },
+            "Return If the path's construction is considered finished.")
 
         .def(
-            "leftTranslate",
-            [](GQCP::ONVPath& path, const size_t p, const size_t n) {
-                path.leftTranslate(p, n);
+            "isOrbitalIndexValid",
+            [](const GQCP::ONVPath<ONVBasis>& path) {
+                return path.isOrbitalIndexValid();
+            },
+            "Return If the orbital index 'p' is allowed. If p exceeds a certain value, there are not enough electrons for the given set of orbitals.")
+
+        .def(
+            "leftTranslateDiagonalArc",
+            [](GQCP::ONVPath<ONVBasis>& path, const size_t p, const size_t n) {
+                path.leftTranslateDiagonalArc(p, n);
             },
             py::arg("p"),
             py::arg("q"),
             "Translate the diagonal arc that starts at the coordinate (p,n) to the left, indicating that the current path is 'open' at the vertex (p,n-1) and that the orbital 'p' should be occupied in subsequent path manipulations.")
 
         .def(
-            "leftTranslateUntilVertical",
-            [](GQCP::ONVPath& path) {
-                path.leftTranslateUntilVertical();
+            "leftTranslateDiagonalArcUntilVerticalArc",
+            [](GQCP::ONVPath<ONVBasis>& path) {
+                path.leftTranslateDiagonalArcUntilVerticalArc();
             },
             "According to this path's current state, translate diagonal arcs to the left until an unoccupied orbital (vertical arc) is found.")
 
         .def(
             "orbitalIndex",
-            [](const GQCP::ONVPath& path) {
+            [](const GQCP::ONVPath<ONVBasis>& path) {
                 return path.orbitalIndex();
             },
             "Return the orbital index 'p' that, together with the electron index 'n' signifies the vertex (p,n) up until which the ONV path construction is finished.")
 
         .def(
             "sign",
-            [](const GQCP::ONVPath& path) {
+            [](const GQCP::ONVPath<ONVBasis>& path) {
                 return path.sign();
             },
             "Return the total phase factor/sign associated to the original path's modification");
+}
+
+
+void bindONVPaths(py::module& module) {
+
+    // bindONVPath<GQCP::SpinResolvedONVBasis>(module, "SpinResolved", "A path like representation of a spin resolved ONV.");
+    bindONVPath<GQCP::SpinUnresolvedONVBasis>(module, "SpinUnresolved", "A path like representation of a spin unresolved ONV.");
 }
 
 }  // namespace gqcpy
