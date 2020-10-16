@@ -74,10 +74,9 @@ public:
      */
 
     /**
-     *  @return a partial contraction of the 2-DM, where D(p,q) = d(p,q,r,r)
+     *  @return A partial contraction D(p,q) of the 2-DM, where D(p,q) = d(p,q,r,r).
      */
     OneDM_Placeholder reduce() const {
-
         // TODO: when Eigen3 releases tensor.trace(), use it to implement the reduction
 
         const auto K = this->numberOfOrbitals();
@@ -93,6 +92,25 @@ public:
         }
 
         return D;
+    }
+
+
+    /**
+     *  @return The trace of the 2-DM, i.e. d(p,p,q,q).
+     */
+    Scalar trace() const {
+        // TODO: when Eigen3 releases tensor.trace(), use it to implement the trace
+
+        const auto K = this->numberOfOrbitals();
+
+        Scalar trace {};
+        for (size_t p = 0; p < K; p++) {
+            for (size_t q = 0; q < K; q++) {
+                trace += this->operator()(p, p, q, q);
+            }
+        }
+
+        return trace;
     }
 };
 
