@@ -18,7 +18,9 @@
 #pragma once
 
 
+#include "DensityMatrix/G1DM.hpp"
 #include "DensityMatrix/Orbital1DM.hpp"
+#include "DensityMatrix/SpinDensity1DM.hpp"
 #include "DensityMatrix/SpinResolved1DMComponent.hpp"
 #include "QuantumChemical/SpinResolved.hpp"
 
@@ -67,27 +69,43 @@ public:
 
 
     /*
-     *  PUBLIC METHODS
+     *  MARK: Conversions
      */
 
     /**
-     * @return the norm of the generalized (spin-blocked) representation of the spin resolved one-DM
+     *  @return This spin-resolved 1-DM as a generalized 1-DM (`G1DM`).
+     * 
+     *  @note We cannot implement this as a named constructor on `G1DM` because we require `norm` to be implemented on `SpinResolved1DM` and that internally uses a `G1DM`, hence we have to avoid the circular dependency.
      */
-    double norm() const {
+    G1DM<Scalar> generalized() const {
 
-        const auto dim = this->alpha().numberOfOrbitals();
-        OneDM<double> generalized_density = OneDM<double>::Zero(dim * 2);
+        // Determine the dimensions of the generalized, spin-blocked 1-DM.
+        const auto K_alpha = this->alpha().numberOfOrbitals();
+        const auto K_beta = this->beta().numberOfOrbitals();
+        const auto M = K_alpha + K_beta;
 
-        generalized_density.topLeftCorner(dim, dim) = this->alpha();
-        generalized_density.bottomRightCorner(dim, dim) = this->beta();
+        // The generalized 1-DM contains the alpha part in the top-left corner, and the beta part in the bottom right corner.
+        G1DM<Scalar> D_generalized = G1DM<Scalar>::Zero(M);
+        D_generalized.topLeftCorner(K_alpha, K_alpha) = this->alpha();
+        D_generalized.bottomRightCorner(K_beta, K_beta) = this->beta();
 
-        return generalized_density.norm();
+        return D_generalized;
     }
 
+
+    /*
+     *  MARK: General information
+     */
+
     /**
-     *  @param sigma            alpha or beta
+     * @return The Frobenius norm of this spin-resolved 1-DM.
+     */
+    double norm() const { return this->generalized().norm(); }
+
+    /**
+     *  @param sigma            Alpha or beta.
      * 
-     *  @return the number of orbitals (spinors or spin-orbitals, depending on the context) that correspond to the given spin
+     *  @return The number of orbitals (spinors or spin-orbitals, depending on the context) that correspond to the given spin.
      */
     size_t numberOfOrbitals(const Spin sigma) const {
 
@@ -101,19 +119,29 @@ public:
         }
     }
 
-    /**
-     *  @return the spin-density matrix, i.e. the difference between the alpha and beta 1-DM
+
+    /*
+     *  MARK: Spin-related operations
      */
-    OneDM<Scalar> spinDensity() const {
+
+    /**
+     *  @return The spin-density matrix, i.e. the difference between the alpha and beta 1-DM.
+     */
+    SpinDensity1DM<Scalar> spinDensity() const {
         return this->alpha() - this->beta();
     }
 
     /**
-     *  @return the spin-summed density matrix, i.e. the sum of the alpha and beta 1-DM
+     *  @return The orbital density matrix, i.e. the sum of the alpha and beta 1-DM.
      */
     Orbital1DM<Scalar> spinSummed() const {
         return this->alpha() + this->beta();
     }
+
+
+    /*
+     *  MARK: Conforming to `BasisTransformable`
+     */
 
     /**
      *  @param T_a          transformation matrix for the alpha component of the spin resolved 1-DM
