@@ -233,10 +233,10 @@ public:
 
 
     // Allow the `rotate` method from `BasisTransformable`, since there's also a `rotate` from `JacobiRotatable`.
-    using BasisTransformable<DerivedOperator, TM>::rotate;
+    using BasisTransformable<DerivedOperator>::rotate;
 
     // Allow the `rotated` method from `BasisTransformable`, since there's also a `rotated` from `JacobiRotatable`.
-    using BasisTransformable<DerivedOperator, TM>::rotated;
+    using BasisTransformable<DerivedOperator>::rotated;
 
 
     /*
@@ -304,7 +304,7 @@ template <typename _Scalar, typename _Vectorizer, typename _DerivedOperator>
 struct BasisTransformableTraits<SimpleSQOneElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>> {
 
     // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix"
-    using TM = typename OperatorTraits<_DerivedOperator>::TM > ;
+    using TM = typename OperatorTraits<_DerivedOperator>::TM;
 };
 
 

@@ -40,7 +40,7 @@ namespace GQCP {
 template <typename _Scalar, typename _DerivedDM>
 class Simple1DM:
     public SquareMatrix<_Scalar>,
-    public BasisTransformable<Simple1DM<_Scalar, _DerivedDM>, typename DensityMatrixTraits<_DerivedDM>::TM> {
+    public BasisTransformable<Simple1DM<_Scalar, _DerivedDM>> {
 public:
     // The scalar type used for a density matrix element: real or complex.
     using Scalar = _Scalar;
@@ -99,7 +99,7 @@ template <typename Scalar, typename DerivedDM>
 struct BasisTransformableTraits<Simple1DM<Scalar, DerivedDM>> {
 
     // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix"
-    using TM = typename DensityMatrixTraits<_DerivedDM>::TM;
+    using TM = typename DensityMatrixTraits<DerivedDM>::TM;
 };
 
 

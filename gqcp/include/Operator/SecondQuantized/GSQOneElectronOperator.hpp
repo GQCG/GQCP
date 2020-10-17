@@ -81,20 +81,11 @@ using TensorGSQOneElectronOperator = GSQOneElectronOperator<Scalar, TensorVector
 /**
  *  A type that provides compile-time information (traits) on `GSQOneElectronOperator` that is otherwise not accessible through a public class alias.
  * 
- *  @tparam _Scalar         The scalar type used for a single parameter: real or complex.
- *  @tparam _Vectorizer     The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
+ *  @tparam Scalar          The scalar type used for a single parameter: real or complex.
+ *  @tparam Vectorizer      The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
  */
-template <typename _Scalar, typename _Vectorizer>
-class OperatorTraits<GSQOneElectronOperator<_Scalar, _Vectorizer>> {
-public:
-    // The scalar type used for a single parameter: real or complex.
-    using Scalar = _Scalar;
-
-    // The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
-    using Vectorizer = _Vectorizer;
-
-    // The operator whose traits are provided.
-    using Operator = GSQOneElectronOperator<Scalar, Vectorizer>;
+template <typename Scalar, typename Vectorizer>
+struct OperatorTraits<GSQOneElectronOperator<Scalar, Vectorizer>> {
 
     // A type that corresponds to the scalar version of the associated general(ized) one-electron operator type.
     using ScalarOperator = ScalarGSQOneElectronOperator<Scalar>;
@@ -104,6 +95,24 @@ public:
 
     // The type of density matrix that is naturally associated to a general(ized) one-electron operator.
     using OneDM = G1DM<Scalar>;
+};
+
+
+/*
+ *  MARK: BasisTransformableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
+ * 
+ *  @tparam Scalar          The scalar type used for a single parameter: real or complex.
+ *  @tparam Vectorizer      The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
+ */
+template <typename Scalar, typename Vectorizer>
+struct BasisTransformableTraits<GSQOneElectronOperator<Scalar, Vectorizer>> {
+
+    // The type of transformation matrix that is naturally associated to a general(ized) one-electron operator.
+    using TM = GTransformationMatrix<Scalar>;
 };
 
 

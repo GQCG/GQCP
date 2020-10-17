@@ -62,8 +62,9 @@ public:
 
         const auto& C_alpha = environment.coefficient_matrices_alpha.back();  // the most recent alpha coefficient matrix
         const auto& C_beta = environment.coefficient_matrices_beta.back();    // the most recent beta coefficient matrix
+        const UTransformationMatrix<Scalar> C {C_alpha, C_beta};
 
-        const auto D = QCModel::UHF<double>::calculateScalarBasis1DM(C_alpha, C_beta, environment.N_alpha, environment.N_beta);
+        const auto D = QCModel::UHF<double>::calculateScalarBasis1DM(C, environment.N_alpha, environment.N_beta);
 
         environment.density_matrices.push_back(D);
     }

@@ -43,7 +43,7 @@ namespace GQCP {
 template <typename _Scalar, typename _DerivedTransformationMatrix>
 class SimpleTransformationMatrix:
     public SquareMatrix<_Scalar>,
-    public BasisTransformable<_DerivedTransformationMatrix, _DerivedTransformationMatrix>,
+    public BasisTransformable<_DerivedTransformationMatrix>,
     public JacobiRotatable<_DerivedTransformationMatrix> {
 
 public:
@@ -115,10 +115,10 @@ public:
 
 
     // Allow the `rotate` method from `BasisTransformable`, since there's also a `rotate` from `JacobiRotatable`.
-    using BasisTransformable<DerivedTransformationMatrix, DerivedTransformationMatrix>::rotate;
+    using BasisTransformable<DerivedTransformationMatrix>::rotate;
 
     // Allow the `rotated` method from `BasisTransformable`, since there's also a `rotated` from `JacobiRotatable`.
-    using BasisTransformable<DerivedTransformationMatrix, DerivedTransformationMatrix>::rotated;
+    using BasisTransformable<DerivedTransformationMatrix>::rotated;
 
 
     /*

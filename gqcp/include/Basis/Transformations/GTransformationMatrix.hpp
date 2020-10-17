@@ -23,6 +23,10 @@
 namespace GQCP {
 
 
+/*
+ *  MARK: GTransformationMatrix implementation
+ */
+
 /**
  *  A 'general' basis transformation, i.e. a general, full-spinor basis transformation where the transformation mixes the alpha- and beta components of the two-component spinors.
  * 
@@ -44,6 +48,21 @@ public:
 
     // Inherit SimpleTransformationMatrix' constructors.
     using SimpleTransformationMatrix<Scalar, GTransformationMatrix<Scalar>>::SimpleTransformationMatrix;
+};
+
+
+/*
+ *  MARK: BasisTransformableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
+ */
+template <typename Scalar>
+struct BasisTransformableTraits<GTransformationMatrix<Scalar>> {
+
+    // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix". A transformation matrix should naturally be transformable with itself.
+    using TM = GTransformationMatrix<Scalar>;
 };
 
 

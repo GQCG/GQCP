@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/Transformations/UTransformationMatrix.hpp"
 #include "DensityMatrix/G1DM.hpp"
 #include "DensityMatrix/Orbital1DM.hpp"
 #include "DensityMatrix/SpinDensity1DM.hpp"
@@ -35,10 +36,14 @@ namespace GQCP {
  */
 template <typename _Scalar>
 class SpinResolved1DM:
-    public SpinResolvedBase<SpinResolved1DMComponent<_Scalar>, SpinResolved1DM<_Scalar>> {
+    public SpinResolvedBase<SpinResolved1DMComponent<_Scalar>, SpinResolved1DM<_Scalar>>,
+    public BasisTransformable<SpinResolved1DM<_Scalar>> {
 public:
     // The scalar type of one of the density matrix elements: real or complex.
     using Scalar = _Scalar;
+
+    // The type of the transformation matrix that is naturally related to SpinResolved1DM.
+    using TM = UTransformationMatrix<Scalar>;
 
 
 public:
@@ -150,29 +155,30 @@ public:
      * 
      *  @return The basis-transformed object.
      */
-    virtual T transformed(const TM& T) const = 0;
+    SpinResolved1DM<Scalar> transformed(const UTransformationMatrix<Scalar>& transformation_matrix) const override {
 
-    /**
-     *  @param T_a          transformation matrix for the alpha component of the spin resolved 1-DM
-     *  @param T_b          transformation matrix for the beta component of the spin resolved 1-DM
-     * 
-     *  @return the transformed spin resolved density matrix, with each component transformed seperately t a different basis.
-     */
-    SpinResolved1DM<Scalar> transformed(const TransformationMatrix<double>& T_a, const TransformationMatrix<double>& T_b) const {
-        OneDM<Scalar> D_a_transformed = T_a.conjugate() * this->alpha() * T_a.transpose();
-        OneDM<Scalar> D_b_transformed = T_b.conjugate() * this->beta() * T_b.transpose();
+        // Transform the components with the components of the transformation matrix.
+        auto result = *this;
+        result.alpha().transform(transformation_matrix.alpha());
+        result.beta().transform(transformation_matrix.beta());
 
-        return SpinResolved1DM<Scalar> {D_a_transformed, D_b_transformed};
+        return result;
     }
+};
 
-    /**
-     *  @param T          transformation matrix for the alpha and beta component of the spin resolved 1-DM
-     * 
-     *  @return the transformed spin resolved density matrix, with each component transformed to the same basis.
-     */
-    SpinResolved1DM<Scalar> transform(const TransformationMatrix<double>& T) const {
-        return this->transform(T, T);
-    }
+
+/*
+ *  MARK: BasisTransformableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
+ */
+template <typename Scalar>
+struct BasisTransformableTraits<SpinResolved1DM<Scalar>> {
+
+    // The type of the transformation matrix that is naturally related to SpinResolved1DM.
+    using TM = UTransformationMatrix<Scalar>;
 };
 
 

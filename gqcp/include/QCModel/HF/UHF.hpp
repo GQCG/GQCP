@@ -200,20 +200,22 @@ public:
 
 
     /**
-     *  @param C_a          the coefficient matrix that expresses the alpha spin-orbitals (as a column) in its underlying scalar basis
-     *  @param C_b          the coefficient matrix that expresses the beta spin-orbitals (as a column) in its underlying scalar basis
-     *  @param N_a          the number of alpha electrons, i.e. the number of occupied alpha spin-orbitals
-     *  @param N_b          the number of beta electrons, i.e. the number of occupied beta spin-orbitals
+     *  Calculate the UHF 1-DM expressed in the underlying scalar basis.
+     * 
+     *  @param C            The coefficient matrix that encapsulates the basis transformations to make the alpha- and beta-spin-orbitals in terms of the underlying scalar basis.
+     *  @param N_a          The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals.
+     *  @param N_b          The number of beta electrons, i.e. the number of occupied beta spin-orbitals.
      *
-     *  @return the spin resolved UHF 1-DM expressed in the underlying scalar basis
+     *  @return The UHF 1-DM expressed in the underlying scalar basis.
      */
-    static SpinResolved1DM<Scalar> calculateScalarBasis1DM(const TransformationMatrix<double>& C_a, const TransformationMatrix<double>& C_b, const size_t N_a, const size_t N_b) {
+    static SpinResolved1DM<Scalar> calculateScalarBasis1DM(const UTransformationMatrix<Scalar>& C, const size_t N_a, const size_t N_b) {
 
-        const auto K_a = C_a.numberOfOrbitals();
-        const auto K_b = C_b.numberOfOrbitals();
+        // Calculate the 1-DM in the spin-orbital basis, and transform to the underlying scalar basis.
+        const auto K_a = C.alpha().numberOfOrbitals();
+        const auto K_b = C.beta().numberOfOrbitals();
         const auto D_orthonormal = UHF<Scalar>::calculateOrthonormalBasis1DM(K_a, K_b, N_a, N_b);
 
-        return D_orthonormal.transformed(C_a, C_b);
+        return D_orthonormal.transformed(C);
     }
 
 
@@ -336,10 +338,12 @@ public:
 
         const auto C_a = this->coefficientMatrix(Spin::alpha);
         const auto C_b = this->coefficientMatrix(Spin::beta);
+        const UTransformationMatrix<Scalar> C {C_a, C_b};
+
         const auto N_a = this->numberOfElectrons(Spin::alpha);
         const auto N_b = this->numberOfElectrons(Spin::beta);
 
-        return UHF<Scalar>::calculateScalarBasis1DM(C_a, C_b, N_a, N_b);
+        return UHF<Scalar>::calculateScalarBasis1DM(C, N_a, N_b);
     }
 
 

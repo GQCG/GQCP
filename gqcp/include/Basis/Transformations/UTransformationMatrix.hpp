@@ -26,6 +26,10 @@
 namespace GQCP {
 
 
+/*
+ *  MARK: UTransformationMatrix implementation
+ */
+
 /**
  *  A type that encapsulates transformation matrices for the alpha- and beta-parts of spin-orbital bases.
  * 
@@ -33,10 +37,15 @@ namespace GQCP {
  */
 template <typename _Scalar>
 class UTransformationMatrix:
-    public SpinResolvedBase<UTransformationMatrixComponent<_Scalar>, UTransformationMatrix<_Scalar>> {
+    public SpinResolvedBase<UTransformationMatrixComponent<_Scalar>, UTransformationMatrix<_Scalar>>,
+    public BasisTransformable<UTransformationMatrix<_Scalar>> {
 public:
     // The scalar type used for a transformation coefficient: real or complex.
     using Scalar = _Scalar;
+
+    // The type of the transformation matrix for which the basis transformation should be defined. A transformation matrix should naturally be transformable with itself.
+    using TM = UTransformationMatrix<Scalar>;
+
 
 public:
     /*
@@ -86,6 +95,55 @@ public:
      *  @return An identity UTransformationMatrix.
      */
     static UTransformationMatrix<Scalar> Identity(const size_t dim) { return UTransformationMatrix<Scalar>::Identity(dim, dim); }
+
+
+    /*
+     *  MARK: Conforming to `BasisTransformable`
+     */
+
+    /**
+     *  Apply the basis transformation and return the resulting one-electron integrals.
+     * 
+     *  @param transformation_matrix        The type that encapsulates the basis transformation coefficients.
+     * 
+     *  @return The basis-transformed one-electron integrals.
+     */
+    UTransformationMatrix<Scalar> transformed(const TM& transformation_matrix) const override {
+
+        // Transform the components of 'this' with the components of the transformation matrix.
+        auto result = *this;
+        result.alpha().transform(transformation_matrix.alpha());
+        result.beta().transform(transformation_matrix.beta());
+
+        return result;
+    }
+
+
+    /*
+     *  MARK: General information
+     */
+
+    /**
+     *  @param threshold        The threshold used for checking unitarity.
+     * 
+     *  @return If this transformation matrix is considered to be unitary, within the given treshold.
+     */
+    bool isUnitary(const double threshold) const { return this->alpha().isUnitary(threshold) && this->beta().isUnitary(threshold); }
+};
+
+
+/*
+ *  MARK: BasisTransformableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
+ */
+template <typename Scalar>
+struct BasisTransformableTraits<UTransformationMatrix<Scalar>> {
+
+    // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix". A transformation matrix should naturally be transformable with itself.
+    using TM = UTransformationMatrix<Scalar>;
 };
 
 
