@@ -144,6 +144,15 @@ public:
      */
 
     /**
+     *  Apply the basis transformation and return the result.
+     * 
+     *  @param transformation_matrix        The type that encapsulates the basis transformation coefficients.
+     * 
+     *  @return The basis-transformed object.
+     */
+    virtual T transformed(const TM& T) const = 0;
+
+    /**
      *  @param T_a          transformation matrix for the alpha component of the spin resolved 1-DM
      *  @param T_b          transformation matrix for the beta component of the spin resolved 1-DM
      * 

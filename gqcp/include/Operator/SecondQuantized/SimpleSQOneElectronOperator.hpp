@@ -40,7 +40,7 @@ namespace GQCP {
 template <typename _Scalar, typename _Vectorizer, typename _DerivedOperator>
 class SimpleSQOneElectronOperator:
     public SQOperatorStorage<SquareMatrix<_Scalar>, _Vectorizer, SimpleSQOneElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>>,
-    public BasisTransformable<_DerivedOperator, typename OperatorTraits<_DerivedOperator>::TM>,
+    public BasisTransformable<_DerivedOperator>,
     public JacobiRotatable<_DerivedOperator> {
 public:
     // The scalar type used for a single parameter: real or complex.
@@ -290,6 +290,21 @@ public:
 
     // The type of the operator that derives from `SimpleSQOneElectronOperator`, enabling CRTP and compile-time polymorphism.
     using DerivedOperator = _DerivedOperator;
+};
+
+
+/*
+ *  MARK: BasisTransformableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
+ */
+template <typename _Scalar, typename _Vectorizer, typename _DerivedOperator>
+struct BasisTransformableTraits<SimpleSQOneElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>> {
+
+    // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix"
+    using TM = typename OperatorTraits<_DerivedOperator>::TM > ;
 };
 
 

@@ -25,6 +25,10 @@
 namespace GQCP {
 
 
+/*
+ *  MARK: Simple1DM implementation
+ */
+
 /**
  *  A one-electron density matrix that is described by a single matrix.
  * 
@@ -81,6 +85,21 @@ public:
 
         return Self(transformation_matrix.inverse().conjugate() * (*this) * transformation_matrix.inverse().transpose());  // Note that this basis transformation formula is different from the one-electron operator one. See SimpleSQOneElectronOperator.
     }
+};
+
+
+/*
+ *  MARK: BasisTransformableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
+ */
+template <typename Scalar, typename DerivedDM>
+struct BasisTransformableTraits<Simple1DM<Scalar, DerivedDM>> {
+
+    // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix"
+    using TM = typename DensityMatrixTraits<_DerivedDM>::TM;
 };
 
 
