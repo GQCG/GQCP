@@ -67,7 +67,7 @@ public:
         // Create a convergence criterion on the norm of subsequent density matrices
         const auto density_matrix_extractor = [](const GHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices; };
 
-        using ConvergenceType = ConsecutiveIteratesNormConvergence<OneDM<Scalar>, GHFSCFEnvironment<Scalar>>;
+        using ConvergenceType = ConsecutiveIteratesNormConvergence<G1DM<Scalar>, GHFSCFEnvironment<Scalar>>;
         const ConvergenceType convergence_criterion {threshold, density_matrix_extractor, "the GHF density matrix in AO basis"};
 
         return IterativeAlgorithm<GHFSCFEnvironment<Scalar>>(plain_ghf_scf_cycle, convergence_criterion, maximum_number_of_iterations);
@@ -94,9 +94,9 @@ public:
             .add(GHFElectronicEnergyCalculation<Scalar>());
 
         // Create a convergence criterion on the norm of subsequent density matrices
-        const std::function<std::deque<OneDM<Scalar>>(const GHFSCFEnvironment<Scalar>&)> density_matrix_extractor = [](const GHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices; };
+        const std::function<std::deque<G1DM<Scalar>>(const GHFSCFEnvironment<Scalar>&)> density_matrix_extractor = [](const GHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices; };
 
-        using ConvergenceType = ConsecutiveIteratesNormConvergence<OneDM<Scalar>, GHFSCFEnvironment<Scalar>>;
+        using ConvergenceType = ConsecutiveIteratesNormConvergence<G1DM<Scalar>, GHFSCFEnvironment<Scalar>>;
         const ConvergenceType convergence_criterion {threshold, density_matrix_extractor, "the GHF density matrix in AO basis"};
 
         return IterativeAlgorithm<GHFSCFEnvironment<Scalar>>(diis_ghf_scf_cycle, convergence_criterion, maximum_number_of_iterations);

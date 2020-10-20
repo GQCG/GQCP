@@ -85,7 +85,7 @@ public:
     /**
      *  @return the current 1-DM
      */
-    OneDM<double> calculate1DM() const override {
+    Orbital1DM<double> calculate1DM() const override {
         return this->ground_state_expansion.calculate1DM();
     }
 
@@ -93,7 +93,7 @@ public:
     /**
      *  @return the current 2-DM
      */
-    TwoDM<double> calculate2DM() const override {
+    Orbital2DM<double> calculate2DM() const override {
         return this->ground_state_expansion.calculate2DM();
     }
 

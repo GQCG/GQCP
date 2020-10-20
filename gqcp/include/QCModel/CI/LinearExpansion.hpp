@@ -553,7 +553,7 @@ public:
      *  @return The orbital (total, spin-summed) 1-DM.
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, OneDM<double>> calculate1DM() const {
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, Orbital1DM<double>> calculate1DM() const {
 
         // Prepare some variables.
         const auto K = this->onv_basis.numberOfSpatialOrbitals();
@@ -785,8 +785,8 @@ public:
         // Initialize as zero matrices
         size_t K = this->onv_basis.numberOfOrbitals();
 
-        OneDM<double> D_aa = OneDM<double>::Zero(K);
-        OneDM<double> D_bb = OneDM<double>::Zero(K);
+        SpinResolved1DMComponent<double> D_aa = SpinResolved1DMComponent<double>::Zero(K);
+        SpinResolved1DMComponent<double> D_bb = SpinResolved1DMComponent<double>::Zero(K);
 
         SpinUnresolvedONVBasis onv_basis_alpha = onv_basis.onvBasisAlpha();
         SpinUnresolvedONVBasis onv_basis_beta = onv_basis.onvBasisBeta();
@@ -1118,7 +1118,7 @@ public:
      *  @return the total (spin-summed) 1-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, OneDM<double>> calculate1DM() const { return this->calculateSpinResolved1DM().orbitalDensity(); }
+    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, Orbital1DM<double>> calculate1DM() const { return this->calculateSpinResolved1DM().orbitalDensity(); }
 
 
     /**
@@ -1141,8 +1141,8 @@ public:
         size_t K = this->onv_basis.numberOfOrbitals();
         size_t dim = onv_basis.dimension();
 
-        OneDM<double> D_aa = OneDM<double>::Zero(K);
-        OneDM<double> D_bb = OneDM<double>::Zero(K);
+        SpinResolved1DMComponent<double> D_aa = SpinResolved1DMComponent<double>::Zero(K);
+        SpinResolved1DMComponent<double> D_bb = SpinResolved1DMComponent<double>::Zero(K);
 
 
         for (size_t I = 0; I < dim; I++) {  // loop over all addresses (1)

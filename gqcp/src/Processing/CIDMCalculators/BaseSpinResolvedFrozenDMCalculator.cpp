@@ -49,8 +49,8 @@ SpinResolved1DM<double> BaseSpinResolvedFrozenDMCalculator::calculateSpinResolve
 
     auto K = this->onvBasis()->numberOfOrbitals();
 
-    OneDM<double> D_aa = OneDM<double>::Zero(K);
-    OneDM<double> D_bb = OneDM<double>::Zero(K);
+    SpinResolved1DMComponent<double> D_aa = SpinResolved1DMComponent<double>::Zero(K);
+    SpinResolved1DMComponent<double> D_bb = SpinResolved1DMComponent<double>::Zero(K);
 
     auto K_active = K - this->X;
 

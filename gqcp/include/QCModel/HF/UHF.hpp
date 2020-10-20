@@ -19,7 +19,6 @@
 
 
 #include "Basis/Transformations/TransformationMatrix.hpp"
-#include "DensityMatrix/OneDM.hpp"
 #include "DensityMatrix/SpinResolved1DM.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
@@ -138,7 +137,7 @@ public:
      *
      *  @return the UHF electronic energy for the sigma electrons
      */
-    static double calculateElectronicEnergy(const OneDM<Scalar>& P_sigma, const ScalarSQOneElectronOperator<Scalar>& H_core_sigma, const ScalarSQOneElectronOperator<Scalar>& F_sigma) {
+    static double calculateElectronicEnergy(const SpinResolved1DMComponent<Scalar>& P_sigma, const ScalarSQOneElectronOperator<Scalar>& H_core_sigma, const ScalarSQOneElectronOperator<Scalar>& F_sigma) {
 
         // First, calculate the sum of H_core and F (this saves a contraction).
         const ScalarSQOneElectronOperator<Scalar> Z_sigma = H_core_sigma + F_sigma;
@@ -167,7 +166,7 @@ public:
      * 
      *  @return the sigma-spin error matrix
      */
-    static SquareMatrix<Scalar> calculateError(const SquareMatrix<Scalar>& F_sigma, const OneDM<Scalar>& D_sigma, const SquareMatrix<Scalar>& S) {
+    static SquareMatrix<Scalar> calculateError(const SquareMatrix<Scalar>& F_sigma, const SpinResolved1DMComponent<Scalar>& D_sigma, const SquareMatrix<Scalar>& S) {
         return QCModel::RHF<Scalar>::calculateError(F_sigma, D_sigma, S);
     }
 
@@ -189,10 +188,10 @@ public:
         //    0  0  0  0  0
         //    0  0  0  0  0
 
-        OneDM<Scalar> D_MO_a = OneDM<Scalar>::Zero(K_a);
+        SpinResolved1DMComponent<Scalar> D_MO_a = SpinResolved1DMComponent<Scalar>::Zero(K_a);
         D_MO_a.topLeftCorner(N_a, N_a) = SquareMatrix<Scalar>::Identity(N_a);
 
-        OneDM<Scalar> D_MO_b = OneDM<Scalar>::Zero(K_b);
+        SpinResolved1DMComponent<Scalar> D_MO_b = SpinResolved1DMComponent<Scalar>::Zero(K_b);
         D_MO_b.topLeftCorner(N_b, N_b) = SquareMatrix<Scalar>::Identity(N_b);
 
         return SpinResolved1DM<Scalar> {D_MO_a, D_MO_b};

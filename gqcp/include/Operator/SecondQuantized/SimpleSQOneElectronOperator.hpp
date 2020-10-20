@@ -91,7 +91,7 @@ public:
     StorageArray<Scalar, Vectorizer> calculateExpectationValue(const Derived1DM& D) const {
 
         if (this->numberOfOrbitals() != D.numberOfOrbitals()) {
-            throw std::invalid_argument("SimpleSQOneElectronOperator::calculateExpectationValue(const OneDM<Scalar>&): The given 1-DM is not compatible with the one-electron operator.");
+            throw std::invalid_argument("SimpleSQOneElectronOperator::calculateExpectationValue(const Derived1DM<Scalar>&): The given 1-DM is not compatible with the one-electron operator.");
         }
 
         // Calculate the expectation value for every component of the operator.
