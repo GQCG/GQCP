@@ -43,7 +43,6 @@ class SpinResolved1DM:
 public:
     // The scalar type of one of the density matrix elements: real or complex.
     using Scalar = _Scalar;
-    using Self = SpinResolved1DM<Scalar>;
 
     // The type of the transformation matrix that is naturally related to SpinResolved1DM.
     using TM = UTransformationMatrix<Scalar>;
