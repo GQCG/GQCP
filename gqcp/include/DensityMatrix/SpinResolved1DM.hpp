@@ -144,7 +144,7 @@ public:
     /**
      *  @return The orbital density matrix, i.e. the sum of the alpha and beta 1-DM.
      */
-    Orbital1DM<Scalar> spinSummed() const {
+    Orbital1DM<Scalar> orbitalDensity() const {
         return this->alpha() + this->beta();
     }
 

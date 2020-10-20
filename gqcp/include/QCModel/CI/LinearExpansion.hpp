@@ -587,7 +587,7 @@ public:
      *  @return the total (spin-summed) 2-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, TwoDM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().spinSummed(); }
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, TwoDM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().orbitalDensity(); }
 
 
     /**
@@ -762,7 +762,7 @@ public:
      *  @return The total, spin-summed, orbital 1-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, Orbital1DM<double>> calculate1DM() const { return this->calculateSpinResolved1DM().spinSummed(); }
+    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, Orbital1DM<double>> calculate1DM() const { return this->calculateSpinResolved1DM().orbitalDensity(); }
 
 
     /**
@@ -771,7 +771,7 @@ public:
      *  @return the total (spin-summed) 2-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, TwoDM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().spinSummed(); }
+    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, TwoDM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().orbitalDensity(); }
 
 
     /**
@@ -1118,7 +1118,7 @@ public:
      *  @return the total (spin-summed) 1-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, OneDM<double>> calculate1DM() const { return this->calculateSpinResolved1DM().spinSummed(); }
+    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, OneDM<double>> calculate1DM() const { return this->calculateSpinResolved1DM().orbitalDensity(); }
 
 
     /**
@@ -1127,7 +1127,7 @@ public:
      *  @return the total (spin-summed) 2-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, TwoDM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().spinSummed(); }
+    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, TwoDM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().orbitalDensity(); }
 
 
     /**

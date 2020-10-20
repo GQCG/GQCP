@@ -69,9 +69,9 @@ void bindSpinResolvedOneDM(py::module& module) {
             "Return the spin-density matrix, i.e. the difference between the alpha and beta 1-DM.")
 
         .def(
-            "spinSummed",
-            &GQCP::SpinResolved1DM<double>::spinSummed,
-            "Return the spin-summed density matrix, i.e. the sum of the alpha and beta 1-DM.");
+            "orbitalDensity",
+            &GQCP::SpinResolved1DM<double>::orbitalDensity,
+            "Return the orbital density matrix, i.e. the sum of the alpha and beta 1-DM.");
 }
 
 }  // namespace gqcpy

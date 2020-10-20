@@ -27,7 +27,7 @@ namespace GQCP {
 
 
 /*
- *  MARK: Orbital1DM implementation
+ *  MARK: SpinDensity1DM implementation
  */
 
 /**
@@ -59,7 +59,7 @@ public:
  */
 
 /**
- *  A type that provides compile-time information on `Orbital1DM` that is otherwise not accessible through a public class alias.
+ *  A type that provides compile-time information on `SpinDensity1DM` that is otherwise not accessible through a public class alias.
  */
 template <typename Scalar>
 class DensityMatrixTraits<SpinDensity1DM<Scalar>> {

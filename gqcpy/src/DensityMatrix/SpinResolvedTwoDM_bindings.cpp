@@ -60,9 +60,9 @@ void bindSpinResolvedTwoDM(py::module& module) {
             "Return the number of orbitals (spinors or spin-orbitals, depending on the context) that are related to the sigma-tau part of the spin-resolved 2-DM.")
 
         .def(
-            "spinSummed",
+            "orbitalDensity",
             [](const GQCP::SpinResolvedTwoDM<double>& d) {
-                return d.spinSummed();
+                return d.orbitalDensity();
             },
             "Return the spin-summed (total) 2-DM, i.e. the sum of four spin parts.");
 }

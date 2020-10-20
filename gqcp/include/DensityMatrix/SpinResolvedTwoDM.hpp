@@ -108,9 +108,9 @@ public:
 
 
     /**
-     *  @return the spin-summed (total) 2-DM, i.e. the sum of four spin parts
+     *  @return The orbital (total, spin-summed) two-electron density matrix.
      */
-    TwoDM<Scalar> spinSummed() const {
+    TwoDM<Scalar> orbitalDensity() const {
         return TwoDM<Scalar>(this->alphaAlpha().Eigen() + this->alphaBeta().Eigen() + this->betaAlpha().Eigen() + this->betaBeta().Eigen());
     }
 };
