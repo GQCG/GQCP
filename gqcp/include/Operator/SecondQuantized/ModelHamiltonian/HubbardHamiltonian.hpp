@@ -95,14 +95,14 @@ public:
     enable_if_t<std::is_same<Z, double>::value, ScalarSQTwoElectronOperator<double>> twoElectron() const {
 
         const auto K = this->numberOfLatticeSites();
-        auto g = ScalarRSQTwoElectronOperator<double>::Zero(K);
+        SquareRankFourTensor<double> g_par = SquareRankFourTensor<double>::Zero(K);
 
         // The two-electron on-site repulsion is found on the diagonal of the hopping matrix.
         for (size_t p = 0; p < K; p++) {
-            g.parameters()(p, p, p, p) = this->hoppingMatrix()(p, p);
+            g_par(p, p, p, p) = this->hoppingMatrix()(p, p);
         }
 
-        return g;
+        return ScalarSQTwoElectronOperator<double> {g_par};
     }
 
 

@@ -571,22 +571,28 @@ namespace GQCP {
  *  @tparam _ScalarSQOneElectronOperator        The type of second-quantized one-electron operator underlying this Hamiltonian.
  *  @tparam _ScalarSQTwoElectronOperator        The type of second-quantized two-electron operator underlying this Hamiltonian.
  */
-template <typename _ScalarSQOneElectronOperator, typename _ScalarSQTwoElectronOperator>
+template <typename ScalarSQOneElectronOperator_Placeholder, typename ScalarSQTwoElectronOperator_Placeholder>
 class SQHamiltonian:
-    public BasisTransformable<SQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>, typename OperatorTraits<SQHamiltonian<_ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator>>::TM>,
+    public BasisTransformable<SQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>>,
     public JacobiRotatable<SQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>> {
 public:
-    // The type of second-quantized one-electron operator underlying this Hamiltonian.
-    using ScalarSQOneElectronOperator_Placeholder = _ScalarSQOneElectronOperator;  // TODO: remove 'placeholder'
+    // // The type of second-quantized one-electron operator underlying this Hamiltonian.
+    // using ScalarSQOneElectronOperator_Placeholder = ScalarSQOneElectronOperator_Placeholder;  // TODO: remove 'placeholder'
 
-    // The type of second-quantized two-electron operator underlying this Hamiltonian.
-    using ScalarSQTwoElectronOperator_Placeholder = _ScalarSQTwoElectronOperator;  // TODO: remove 'placeholder'
+    // // The type of second-quantized two-electron operator underlying this Hamiltonian.
+    // using ScalarSQTwoElectronOperator_Placeholder = ScalarSQTwoElectronOperator_Placeholder;  // TODO: remove 'placeholder'
 
     // Check if the spinor tags of the one- and two-electron operators match.
     static_assert(std::is_same<typename ScalarSQOneElectronOperator_Placeholder::SpinorTag, typename ScalarSQTwoElectronOperator_Placeholder::SpinorTag>::value, "The spinor tags of the one- and two-electron operators do not match.");
 
     // The spinor tag associated to this Hamiltonian.
-    using SpinorTag = ScalarSQOneElectronOperator_Placeholder::SpinorTag;
+    using SpinorTag = typename ScalarSQOneElectronOperator_Placeholder::SpinorTag;
+
+    // Check if the scalar type of the parameters/matrix elements of the one-electron and two-electron operators are equal.
+    static_assert(std::is_same<typename ScalarSQOneElectronOperator_Placeholder::Scalar, typename ScalarSQTwoElectronOperator_Placeholder::Scalar>::value, "The scalar type of the one- and two-electron parameters/matrix elements do not match.");
+
+    // The scalar type used for a single parameter/matrix element: real or complex.
+    using Scalar = typename ScalarSQOneElectronOperator_Placeholder::Scalar;
 
     // The type of 'this'
     using Self = SQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>;
@@ -1137,6 +1143,21 @@ public:
 
     // The type of the one-particle density matrix that is naturally associated to the Hamiltonian.
     using OneDM = typename OperatorTraits<ScalarSQOneElectronOperator_Placeholder>::OneDM_Placeholder;
+};
+
+
+/*
+ *  MARK: BasisTransformableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
+ */
+template <typename ScalarSQOneElectronOperator_Placeholder, typename ScalarSQTwoElectronOperator_Placeholder>
+struct BasisTransformableTraits<SQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>> {
+
+    // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix"
+    using TM = typename OperatorTraits<SQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>>::TM;
 };
 
 
