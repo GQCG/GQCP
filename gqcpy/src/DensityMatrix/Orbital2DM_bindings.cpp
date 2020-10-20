@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "DensityMatrix/TwoDM.hpp"
+#include "DensityMatrix/Orbital2DM.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
@@ -27,22 +27,22 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
-void bindTwoDM(py::module& module) {
+void bindOrbital2DM(py::module& module) {
 
-    py::class_<GQCP::TwoDM<double>>(module, "TwoDM", "A two-particle density matrix")
+    py::class_<GQCP::Orbital2DM<double>>(module, "Orbital2DM", "The orbital two-electron density matrix.")
 
         // PUBLIC METHODS
 
         .def(
             "reduce",
-            [](const GQCP::TwoDM<double>& d) {
+            [](const GQCP::Orbital2DM<double>& d) {
                 return d.reduce();
             },
             "Return a partial contraction of the 2-DM, where D(p,q) = d(p,q,r,r).")
 
         .def(
             "trace",
-            [](const GQCP::TwoDM<double>& d) {
+            [](const GQCP::Orbital2DM<double>& d) {
                 return d.trace();
             },
             "Return the trace of the 2-DM, i.e. d(p,p,q,q).");

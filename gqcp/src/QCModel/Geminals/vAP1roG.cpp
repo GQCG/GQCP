@@ -299,9 +299,7 @@ Orbital2DM<double> vAP1roG::calculate2DM(const AP1roGGeminalCoefficients& G, con
     const size_t K = G.numberOfSpatialOrbitals();
     const auto orbital_space = G.orbitalSpace();
 
-    TwoDM<double> d {K};
-    d.setZero();
-
+    Orbital2DM<double> d = Orbital2DM<double>::Zero(K);
 
     auto Delta = QCModel::vAP1roG::calculateNumber2DM(G, multipliers);
     auto Pi = QCModel::vAP1roG::calculatePair2DM(G, multipliers);

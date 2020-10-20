@@ -79,17 +79,10 @@ SpinResolved2DM<double> BaseSpinResolvedFrozenDMCalculator::calculateSpinResolve
 
     auto K = this->onvBasis()->numberOfOrbitals();
 
-    TwoDM<double> d_aaaa {K};
-    d_aaaa.setZero();
-
-    TwoDM<double> d_aabb {K};
-    d_aabb.setZero();
-
-    TwoDM<double> d_bbaa {K};
-    d_bbaa.setZero();
-
-    TwoDM<double> d_bbbb {K};
-    d_bbbb.setZero();
+    SpinResolved2DMComponent<double> d_aaaa = SpinResolved2DMComponent<double>::Zero(K);
+    SpinResolved2DMComponent<double> d_aabb = SpinResolved2DMComponent<double>::Zero(K);
+    SpinResolved2DMComponent<double> d_bbaa = SpinResolved2DMComponent<double>::Zero(K);
+    SpinResolved2DMComponent<double> d_bbbb = SpinResolved2DMComponent<double>::Zero(K);
 
 
     SpinResolved1DM<double> one_DMs = this->active_dm_calculator->calculateSpinResolved1DM(x);
