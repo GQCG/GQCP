@@ -18,6 +18,8 @@
 #pragma once
 
 
+#include "DensityMatrix/Orbital1DM.hpp"
+#include "DensityMatrix/Orbital2DM.hpp"
 #include "QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp"
 
 
@@ -27,10 +29,11 @@ namespace GQCP {
 /**
  *  An intermediary base class for orbital optimization of quantum chemical methods: they use the 1- and 2-DM to calculate the gradient and Hessian
  */
-class QCMethodNewtonOrbitalOptimizer: public NewtonOrbitalOptimizer {
+class QCMethodNewtonOrbitalOptimizer:
+    public NewtonOrbitalOptimizer {
 protected:
-    OneDM<double> D;  // spin-summed 1-DM
-    TwoDM<double> d;  // spin-summed 2-DM
+    Orbital1DM<double> D;  // spin-summed 1-DM
+    Orbital2DM<double> d;  // spin-summed 2-DM
 
 
 public:
@@ -51,12 +54,12 @@ public:
     /**
      *  @return the current 1-DM
      */
-    virtual OneDM<double> calculate1DM() const = 0;
+    virtual Orbital1DM<double> calculate1DM() const = 0;
 
     /**
      *  @return the current 2-DM
      */
-    virtual TwoDM<double> calculate2DM() const = 0;
+    virtual Orbital2DM<double> calculate2DM() const = 0;
 
     /**
      *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the 1- and 2-DMs
@@ -91,12 +94,12 @@ public:
     /**
      *  @return the 1-DM calculated by this orbital optimizer
      */
-    const OneDM<double>& oneDM() const { return this->D; }
+    const Orbital1DM<double>& oneDM() const { return this->D; }
 
     /**
      *  @return the 2-DM calculated by this orbital optimizer
      */
-    const TwoDM<double>& twoDM() const { return this->d; }
+    const Orbital2DM<double>& twoDM() const { return this->d; }
 };
 
 

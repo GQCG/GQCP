@@ -82,12 +82,12 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_throw) {
     const GQCP::TwoDM<double> d_valid {2};
     const GQCP::TwoDM<double> d_invalid {3};
 
-    const GQCP::SpinResolvedTwoDM<double> d_invalid_aa {d_invalid, d_valid, d_valid, d_valid};
-    const GQCP::SpinResolvedTwoDM<double> d_invalid_ab {d_valid, d_invalid, d_valid, d_valid};
-    const GQCP::SpinResolvedTwoDM<double> d_invalid_ba {d_valid, d_valid, d_invalid, d_valid};
-    const GQCP::SpinResolvedTwoDM<double> d_invalid_bb {d_valid, d_valid, d_valid, d_invalid};
+    const GQCP::SpinResolved2DM<double> d_invalid_aa {d_invalid, d_valid, d_valid, d_valid};
+    const GQCP::SpinResolved2DM<double> d_invalid_ab {d_valid, d_invalid, d_valid, d_valid};
+    const GQCP::SpinResolved2DM<double> d_invalid_ba {d_valid, d_valid, d_invalid, d_valid};
+    const GQCP::SpinResolved2DM<double> d_invalid_bb {d_valid, d_valid, d_valid, d_invalid};
 
-    const GQCP::SpinResolvedTwoDM<double> d_valid_spin_resolved {d_valid, d_valid, d_valid, d_valid};
+    const GQCP::SpinResolved2DM<double> d_valid_spin_resolved {d_valid, d_valid, d_valid, d_valid};
 
     // Check if the calculateExpectationValue calls throw when expected.
     BOOST_CHECK_THROW(g.calculateExpectationValue(d_invalid_aa), std::invalid_argument);
@@ -157,7 +157,7 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
             }
         }
     }
-    const GQCP::SpinResolvedTwoDM<double> d {d1, d1, d2, d2};
+    const GQCP::SpinResolved2DM<double> d {d1, d1, d2, d2};
 
 
     // Initialize a reference value and check the result.

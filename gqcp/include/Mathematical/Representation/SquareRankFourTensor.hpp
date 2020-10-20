@@ -146,7 +146,7 @@ public:
      */
     static Self Zero(const size_t dim) {
 
-        SquareRankFourTensor<Scalar> T {dim};
+        SquareRankFourTensor<Scalar> T {dim};  // 'Random' initialization happens here.
         T.setZero();
         return T;
     }

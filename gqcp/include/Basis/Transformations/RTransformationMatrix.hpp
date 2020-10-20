@@ -23,6 +23,10 @@
 namespace GQCP {
 
 
+/*
+ *  MARK: RTransformationMatrix implementation
+ */
+
 /**
  *  A 'restricted' basis transformation, i.e. a spin-orbital basis transformation where the transformation is applied equally to the alpha- and beta-spin-orbitals.
  * 
@@ -44,6 +48,21 @@ public:
 
     // Inherit SimpleTransformationMatrix' constructors.
     using SimpleTransformationMatrix<Scalar, RTransformationMatrix<Scalar>>::SimpleTransformationMatrix;
+};
+
+
+/*
+ *  MARK: BasisTransformableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
+ */
+template <typename Scalar>
+struct BasisTransformableTraits<RTransformationMatrix<Scalar>> {
+
+    // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix". A transformation matrix should naturally be transformable with itself.
+    using TM = RTransformationMatrix<Scalar>;
 };
 
 

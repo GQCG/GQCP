@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE(constrained_CO_test) {
     size_t K = sq_hamiltonian.numberOfOrbitals();
     size_t N = CO.numberOfElectrons();
 
-    GQCP::OneDM<double> D = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1DM(K, N);
+    GQCP::Orbital1DM<double> D = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1DM(K, N);
 
     // Initialize the reference data from:
     // "Self-consistent methods constrained to a fixed number of particles in a given fragment and its relation to the electronegativity equalization method"
@@ -137,7 +137,7 @@ BOOST_AUTO_TEST_CASE(constrained_CO_test_random_transformation) {
 
     basisTransform(spinor_basis, sq_hamiltonian, T);
 
-    GQCP::OneDM<double> D = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1DM(K, N);
+    GQCP::Orbital1DM<double> D = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1DM(K, N);
 
     // Initialize the reference data from:
     // "Self-consistent methods constrained to a fixed number of particles in a given fragment and its relation to the electronegativity equalization method"

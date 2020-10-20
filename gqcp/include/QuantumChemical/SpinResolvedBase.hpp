@@ -23,6 +23,7 @@
 #include <array>
 #include <vector>
 
+
 namespace GQCP {
 
 
@@ -59,7 +60,7 @@ public:
      */
 
     /**
-     *  Construct a spin-resolved type from its alpha and beta objects.
+     *  Construct a spin-resolved instance from its alpha and beta objects.
      * 
      *  @param alpha        The alpha-object.
      *  @param beta         The beta-object.
@@ -70,13 +71,12 @@ public:
 
 
     /**
-     *  Construct a spin-resolved type from a vector containing its alpha and beta objects.
+     *  Construct a spin-resolved instance from a vector containing its alpha and beta objects.
      * 
      *  @param both         A vector containing both alpha and beta objects (in that order).
      */
     SpinResolvedBase(const std::vector<Of>& both) :
-        m_alpha {both[0]},
-        m_beta {both[1]} {
+        SpinResolvedBase(both[0], both[1]) {
 
         if (both.size() != 2) {
             throw std::invalid_argument("SpinResolvedBase(const std::vector<Of>&): The given vector does not have exactly two elements.");
@@ -85,21 +85,18 @@ public:
 
 
     /**
-     *  Construct a spin-resolved type from an array containing its alpha and beta objects.
+     *  Construct a spin-resolved instance from an array containing its alpha and beta objects.
      * 
      *  @param both         An array containing both alpha and beta objects (in that order).
      */
     SpinResolvedBase(const std::array<Of, 2>& both) :
-        m_alpha {both[0]},
-        m_beta {both[1]} {}
+        SpinResolvedBase(both[0], both[1]) {}
 
 
     /**
-     *  Construct a spin-resolved type from an initializer list containing its alpha and beta objects.
+     *  Construct a spin-resolved instance from an initializer list containing its alpha and beta objects.
      * 
-     *  @param both         A vector containing both alpha and beta objects (in that order).
-     * 
-     *  @note 
+     *  @param both         An initializer list containin both alpha and beta objects (in that order).
      */
     SpinResolvedBase(const std::initializer_list<Of>& both) :
         SpinResolvedBase(std::vector<Of>(both)) {}
@@ -110,11 +107,11 @@ public:
      */
 
     /**
-     *  Create a derived (spin-resolved) type, from equal alpha and beta representations.
+     *  Create a derived (spin-resolved) instance, from equal alpha and beta representations.
      * 
      *  @param equal        The equal representation for both the alpha and beta objects.
      * 
-     *  @return The dervived (spin-resolved) type.
+     *  @return The derived (spin-resolved) type.
      */
     static Derived FromEqual(const Of& equal) {
         return Derived {equal, equal};
@@ -146,7 +143,7 @@ public:
     Of& beta() { return this->m_beta; }
 
     /**
-     *  Access the alpha or beta component of this spin-resolved type.
+     *  Access the alpha or beta component of this spin-resolved instance.
      * 
      *  @param sigma            Alpha or beta.
      * 
@@ -156,12 +153,12 @@ public:
 
         switch (sigma) {
         case Spin::alpha: {
-            return this->alpha().numberOfOrbitals();
+            return this->alpha();
             break;
         }
 
         case Spin::beta: {
-            return this->beta().numberOfOrbitals();
+            return this->beta();
             break;
         }
         }

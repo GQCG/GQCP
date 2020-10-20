@@ -27,19 +27,19 @@ namespace GQCP {
 
 
 /*
- *  MARK: Orbital1DM implementation
+ *  MARK: SpinDensity1DM implementation
  */
 
 /**
- *  A type used to represent a one-electron orbital density matrix, i.e. the summed alpha and beta density matrix.
+ *  A type used to represent a one-electron spin-density density matrix, i.e. the alpha density matrix minus the beta density matrix.
  * 
  *  @tparam _Scalar                 The scalar type used for a density matrix element: real or complex.
  * 
- *  @note This type represents the (1/sqrt(2)-scaled) singlet (0,0) 1-DM.
+ *  @note This type represents the (sqrt(2)-scaled) triplet (1,0) 1-DM.
  */
 template <typename _Scalar>
-class Orbital1DM:
-    public Simple1DM<_Scalar, Orbital1DM<_Scalar>> {
+class SpinDensity1DM:
+    public Simple1DM<_Scalar, SpinDensity1DM<_Scalar>> {
 public:
     // The scalar type used for a density matrix element: real or complex.
     using Scalar = _Scalar;
@@ -50,7 +50,7 @@ public:
      */
 
     // Inherit `Simple1DM`'s constructors.
-    using Simple1DM<Scalar, Orbital1DM<Scalar>>::Simple1DM;
+    using Simple1DM<Scalar, SpinDensity1DM<Scalar>>::Simple1DM;
 };
 
 
@@ -59,12 +59,12 @@ public:
  */
 
 /**
- *  A type that provides compile-time information on `Orbital1DM` that is otherwise not accessible through a public class alias.
+ *  A type that provides compile-time information on `SpinDensity1DM` that is otherwise not accessible through a public class alias.
  */
 template <typename Scalar>
-class DensityMatrixTraits<Orbital1DM<Scalar>> {
+class DensityMatrixTraits<SpinDensity1DM<Scalar>> {
 public:
-    // The type of transformation matrix that is naturally related to an Orbital1DM. The only transformations that should be naturally possible for an orbital 1-DM are restricted transformations, thereby assuming that the density matrices for alpha and beta are equal and thus transform similarly.
+    // The type of transformation matrix that is naturally related to a `SpinDensity1DM`. The only transformations that should be naturally possible for a a spin-density 1-DM are restricted transformations, that transform the alpha- and beta-spin-orbitals equally.
     using TM = RTransformationMatrix<Scalar>;
 };
 

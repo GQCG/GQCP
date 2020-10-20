@@ -165,6 +165,7 @@ public:
      */
     const OrbitalSpace& orbitalSpace() const { return this->orbital_space; }
 
+
     /*
      *  MARK: Vector space arithmetic
      */

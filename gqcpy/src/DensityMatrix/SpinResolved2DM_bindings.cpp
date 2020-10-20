@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "DensityMatrix/SpinResolvedTwoDM.hpp"
+#include "DensityMatrix/SpinResolved2DM.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
@@ -27,42 +27,50 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
-void bindSpinResolvedTwoDM(py::module& module) {
-    py::class_<GQCP::SpinResolvedTwoDM<double>>(module, "SpinResolvedTwoDM", "A class that represents a spin resolved two DM.")
+void bindSpinResolved2DM(py::module& module) {
+    py::class_<GQCP::SpinResolved2DM<double>>(module, "SpinResolved2DM", "A class that represents a spin resolved two DM.")
 
         // PUBLIC METHODS
 
         .def(
             "alphaAlpha",
-            &GQCP::SpinResolvedTwoDM<double>::alphaAlpha,
+            [](const GQCP::SpinResolved2DM<double>& d) {
+                return d.alphaAlpha();
+            },
             "Return the pure alpha component of the spin resolved two DM")
 
         .def(
             "alphaBeta",
-            &GQCP::SpinResolvedTwoDM<double>::alphaBeta,
+            [](const GQCP::SpinResolved2DM<double>& d) {
+                return d.alphaBeta();
+            },
             "Return the mixed alpha-beta component of the spin resolved two DM")
 
         .def(
             "betaAlpha",
-            &GQCP::SpinResolvedTwoDM<double>::betaAlpha,
+            [](const GQCP::SpinResolved2DM<double>& d) {
+                return d.betaAlpha();
+            },
             "Return the mixed beta-alpha component of the spin resolved two DM")
 
         .def(
             "betaBeta",
-            &GQCP::SpinResolvedTwoDM<double>::betaBeta,
+            [](const GQCP::SpinResolved2DM<double>& d) {
+                return d.betaBeta();
+            },
             "Return the pure beta component of the spin resolved two DM")
 
         .def(
             "numberOfOrbitals",
-            [](const GQCP::SpinResolvedTwoDM<double>& d, const GQCP::Spin sigma, const GQCP::Spin tau) {
+            [](const GQCP::SpinResolved2DM<double>& d, const GQCP::Spin sigma, const GQCP::Spin tau) {
                 return d.numberOfOrbitals(sigma, tau);
             },
             "Return the number of orbitals (spinors or spin-orbitals, depending on the context) that are related to the sigma-tau part of the spin-resolved 2-DM.")
 
         .def(
-            "spinSummed",
-            [](const GQCP::SpinResolvedTwoDM<double>& d) {
-                return d.spinSummed();
+            "orbitalDensity",
+            [](const GQCP::SpinResolved2DM<double>& d) {
+                return d.orbitalDensity();
             },
             "Return the spin-summed (total) 2-DM, i.e. the sum of four spin parts.");
 }

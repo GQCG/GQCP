@@ -18,28 +18,27 @@
 #pragma once
 
 
-#include "Basis/Transformations/RTransformationMatrix.hpp"
+#include "Basis/Transformations/GTransformationMatrix.hpp"
 #include "DensityMatrix/DensityMatrixTraits.hpp"
-#include "DensityMatrix/Simple1DM.hpp"
+#include "DensityMatrix/G1DM.hpp"
+#include "DensityMatrix/Simple2DM.hpp"
 
 
 namespace GQCP {
 
 
 /*
- *  MARK: Orbital1DM implementation
+ *  MARK: G2DM implementation
  */
 
 /**
- *  A type used to represent a one-electron orbital density matrix, i.e. the summed alpha and beta density matrix.
+ *  A type used to represent a two-electron general(ized) density matrix, i.e. the full spinor two-component two-electron density matrix.
  * 
  *  @tparam _Scalar                 The scalar type used for a density matrix element: real or complex.
- * 
- *  @note This type represents the (1/sqrt(2)-scaled) singlet (0,0) 1-DM.
  */
 template <typename _Scalar>
-class Orbital1DM:
-    public Simple1DM<_Scalar, Orbital1DM<_Scalar>> {
+class G2DM:
+    public Simple2DM<_Scalar, G2DM<_Scalar>> {
 public:
     // The scalar type used for a density matrix element: real or complex.
     using Scalar = _Scalar;
@@ -49,8 +48,8 @@ public:
      *  MARK: Constructors
      */
 
-    // Inherit `Simple1DM`'s constructors.
-    using Simple1DM<Scalar, Orbital1DM<Scalar>>::Simple1DM;
+    // Inherit `Simple2DM`'s constructors.
+    using Simple2DM<Scalar, G2DM<Scalar>>::Simple2DM;
 };
 
 
@@ -59,13 +58,16 @@ public:
  */
 
 /**
- *  A type that provides compile-time information on `Orbital1DM` that is otherwise not accessible through a public class alias.
+ *  A type that provides compile-time information on `G2DM` that is otherwise not accessible through a public class alias.
  */
 template <typename Scalar>
-class DensityMatrixTraits<Orbital1DM<Scalar>> {
+class DensityMatrixTraits<G2DM<Scalar>> {
 public:
-    // The type of transformation matrix that is naturally related to an Orbital1DM. The only transformations that should be naturally possible for an orbital 1-DM are restricted transformations, thereby assuming that the density matrices for alpha and beta are equal and thus transform similarly.
-    using TM = RTransformationMatrix<Scalar>;
+    // The type of transformation matrix that is naturally related to a `G2DM`.
+    using TM = GTransformationMatrix<Scalar>;
+
+    // The type of the one-electron density matrix that is naturally related to a `G2DM`.
+    using OneDM_Placeholder = G1DM<Scalar>;
 };
 
 

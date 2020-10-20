@@ -21,7 +21,7 @@
 #include "Basis/Transformations/JacobiRotationParameters.hpp"
 #include "Basis/Transformations/TransformationMatrix.hpp"
 #include "DensityMatrix/OneDM.hpp"
-#include "DensityMatrix/SpinResolvedTwoDM.hpp"
+#include "DensityMatrix/SpinResolved2DM.hpp"
 #include "DensityMatrix/TwoDM.hpp"
 #include "Mathematical/Representation/QCRankFourTensor.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
@@ -139,22 +139,22 @@ public:
      */
 
     /**
-     *  @param left            the requested spin for the left part of the integrals (left left|right right)
-     *  @param right           the requested spin for the right part of the integrals (left left|right right)
+     *  @param sigma            the requested spin for the left part of the integrals (sigma sigma|tau tau)
+     *  @param tau              the requested spin for the tau part of the integrals (sigma sigma|tau tau)
      * 
      *  @return read-only tensor representations of all the parameters (integrals) of the different components of this second-quantized operator, for the requested spin components.
      */
-    const std::array<QCRankFourTensor<Scalar>, Components>& allParameters(const Spin left, const Spin right) const {
+    const std::array<QCRankFourTensor<Scalar>, Components>& allParameters(const Spin sigma, const Spin tau) const {
 
-        if (left == Spin::alpha && right == Spin::alpha) {
+        if (sigma == Spin::alpha && tau == Spin::alpha) {
             return this->gs_aa;
         }
 
-        else if (left == Spin::alpha && right == Spin::beta) {
+        else if (sigma == Spin::alpha && tau == Spin::beta) {
             return this->gs_ab;
         }
 
-        else if (left == Spin::beta && right == Spin::alpha) {
+        else if (sigma == Spin::beta && tau == Spin::alpha) {
             return this->gs_ba;
         }
 
@@ -165,37 +165,19 @@ public:
 
 
     /**
-     *  @param left            the requested spin for the left part of the integrals (left left|right right)
-     *  @param right           the requested spin for the right part of the integrals (left left|right right)
+     *  @param sigma            the requested spin for the sigma part of the integrals (sigma sigma|tau tau)
+     *  @param tau              the requested spin for the tau part of the integrals (sigma sigma|tau tau)
      * 
      *  @return the writable tensor representations of all the parameters (integrals) of the different components of this second-quantized operator, for the requested spin components.
      */
-    std::array<QCRankFourTensor<Scalar>, Components>& allParameters(const Spin left, const Spin right) {
-
-        if (left == Spin::alpha && right == Spin::alpha) {
-            return this->gs_aa;
-        }
-
-        else if (left == Spin::alpha && right == Spin::beta) {
-            return this->gs_ab;
-        }
-
-        else if (left == Spin::beta && right == Spin::alpha) {
-            return this->gs_ba;
-        }
-
-        else {
-            return this->gs_bb;
-        };
-    }
-
+    std::array<QCRankFourTensor<Scalar>, Components>& allParameters(const Spin sigma, const Spin tau) { return const_cast<std::array<QCRankFourTensor<Scalar>, Components>&>(const_cast<const USQTwoElectronOperator*>(this)->allParameters(sigma, tau)); }
 
     /**
      *  @param d                    the spin-resolved 2-DM that represents the wave function
      *
      *  @return the expectation values of all the components of the two-electron operator, with the given 2-DMs: this includes the prefactor 1/2
      */
-    Vector<Scalar, Components> calculateExpectationValue(const SpinResolvedTwoDM<Scalar>& d) const {
+    Vector<Scalar, Components> calculateExpectationValue(const SpinResolved2DM<Scalar>& d) const {
 
         if ((this->numberOfOrbitals(Spin::alpha, Spin::alpha) != d.numberOfOrbitals(Spin::alpha, Spin::alpha)) ||
             (this->numberOfOrbitals(Spin::alpha, Spin::beta) != d.numberOfOrbitals(Spin::alpha, Spin::beta)) ||
@@ -226,22 +208,22 @@ public:
 
 
     /**
-     *  @param left            the requested spin for the left part of the integrals (left left|right right)
-     *  @param right           the requested spin for the right part of the integrals (left left|right right)
+     *  @param sigma            the requested spin for the sigma part of the integrals (sigma sigma|tau tau)
+     *  @param tau              the requested spin for the tau part of the integrals (sigma sigma|tau tau)
      * 
      *  @return the dimension of the tensors for the requested spin components.
      */
-    size_t numberOfOrbitals(const Spin left, const Spin right) const {
+    size_t numberOfOrbitals(const Spin sigma, const Spin tau) const {
 
-        if (left == Spin::alpha && right == Spin::alpha) {
+        if (sigma == Spin::alpha && tau == Spin::alpha) {
             return this->gs_aa[0].numberOfOrbitals();
         }
 
-        else if (left == Spin::alpha && right == Spin::beta) {
+        else if (sigma == Spin::alpha && tau == Spin::beta) {
             return this->gs_ab[0].numberOfOrbitals();
         }
 
-        else if (left == Spin::beta && right == Spin::alpha) {
+        else if (sigma == Spin::beta && tau == Spin::alpha) {
             return this->gs_ba[0].numberOfOrbitals();
         }
 
@@ -252,23 +234,23 @@ public:
 
 
     /**
-     *  @param left            the requested spin for the left part of the integrals (left left|right right)
-     *  @param right           the requested spin for the right part of the integrals (left left|right right)
-     *  @param i               the index of the component
+     *  @param sigma            the requested spin for the sigma part of the integrals (sigma sigma|tau tau)
+     *  @param tau              the requested spin for the tau part of the integrals (sigma sigma|tau tau)
+     *  @param i                the index of the component
      * 
      *  @return a read-only tensor representation of the parameters (integrals) of one of the the different components of this second-quantized operator, for the requested spin components.
      */
-    const QCRankFourTensor<Scalar>& parameters(const Spin left, const Spin right, const size_t i = 0) const {
+    const QCRankFourTensor<Scalar>& parameters(const Spin sigma, const Spin tau, const size_t i = 0) const {
 
-        if (left == Spin::alpha && right == Spin::alpha) {
+        if (sigma == Spin::alpha && tau == Spin::alpha) {
             return this->gs_aa[i];
         }
 
-        else if (left == Spin::alpha && right == Spin::beta) {
+        else if (sigma == Spin::alpha && tau == Spin::beta) {
             return this->gs_ab[i];
         }
 
-        else if (left == Spin::beta && right == Spin::alpha) {
+        else if (sigma == Spin::beta && tau == Spin::alpha) {
             return this->gs_ba[i];
         }
 
@@ -279,31 +261,13 @@ public:
 
 
     /**
-     *  @param left            the requested spin for the left part of the integrals (left left|right right)
-     *  @param right           the requested spin for the right part of the integrals (left left|right right)
-     *  @param i               the index of the component
+     *  @param sigma            the requested spin for the sigma part of the integrals (sigma sigma|tau tau)
+     *  @param tau              the requested spin for the tau part of the integrals (sigma sigma|tau tau)
+     *  @param i                the index of the component
      * 
      *  @return a writable tensor representation of the parameters (integrals) of one of the the different components of this second-quantized operator, for the requested spin components.
      */
-    QCRankFourTensor<Scalar>& parameters(const Spin left, const Spin right, const size_t i = 0) {
-
-        if (left == Spin::alpha && right == Spin::alpha) {
-            return this->gs_aa[i];
-        }
-
-        else if (left == Spin::alpha && right == Spin::beta) {
-            return this->gs_ab[i];
-        }
-
-        else if (left == Spin::beta && right == Spin::alpha) {
-            return this->gs_ba[i];
-        }
-
-        else {
-            return this->gs_bb[i];
-        };
-    }
-
+    QCRankFourTensor<Scalar>& parameters(const Spin sigma, const Spin tau, const size_t i = 0) { return const_cast<QCRankFourTensor<Scalar>&>(const_cast<const USQTwoElectronOperator*>(this)->parameters(sigma, tau, i)); }
 
     /**
      *  In-place rotate the operator to another basis. The alpha-alpha, alpha-beta, beta-alpha and beta-beta components are transformed in the same way.
@@ -393,8 +357,8 @@ using ScalarUSQTwoElectronOperator = USQTwoElectronOperator<Scalar, 1>;
  *  @tparam RHSScalar           the scalar type of the right-hand side
  *  @tparam Components          the number of components of the two-electron operators
  * 
- *  @param lhs                  the left-hand side
- *  @param rhs                  the right-hand side
+ *  @param lhs                  the sigma-hand side
+ *  @param rhs                  the tau-hand side
  */
 template <typename LHSScalar, typename RHSScalar, size_t Components>
 auto operator+(const USQTwoElectronOperator<LHSScalar, Components>& lhs, const USQTwoElectronOperator<RHSScalar, Components>& rhs) -> USQTwoElectronOperator<sum_t<LHSScalar, RHSScalar>, Components> {

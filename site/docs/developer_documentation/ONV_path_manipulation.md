@@ -125,7 +125,7 @@ onv_path.create(1, 0);
 ![first_create](/GQCP/img/ONVPath_01110.png)
 
 
-This was not the only way to close the path related to the ONV `|00110>`. Clearly, it is possible to create an electron in the orbital with index `4`. In order to update the path's state, we'll have to shift diagonal arcs (indicating occupied orbitals) to the left until a vertical arc is encountered to close the gap. For this purpose, GQCP offers the API `leftTranslate()`.
+This was not the only way to close the path related to the ONV `|00110>`. Clearly, it is possible to create an electron in the orbital with index `4`. In order to update the path's state, we'll have to shift diagonal arcs (indicating occupied orbitals) to the left until a vertical arc is encountered to close the gap. For this purpose, GQCP offers the API `leftTranslateDiagonalArc()`.
 
 ```C++
 /**
@@ -134,7 +134,7 @@ This was not the only way to close the path related to the ONV `|00110>`. Clearl
   *  @param p        the index of the orbital that should be annihilated
   *  @param n        the number of electrons in the ONV/path up to the orbital index p
   */
- void ONVPath::leftTranslate(const size_t p, const size_t n) {
+ void ONVPath::leftTranslateDiagonalArc(const size_t p, const size_t n) {
 
      // Translating a diagonal arc can be rewritten as an annihilation, followed by a creation.
      this->annihilate(p, n);
@@ -145,7 +145,7 @@ This was not the only way to close the path related to the ONV `|00110>`. Clearl
 }
 ```
 
-> Note: `leftTranslate()` keep track of the overall sign of the annihilations and creations due to the fermionic anti-commutation relations.
+> Note: `leftTranslateDiagonalArc()` keep track of the overall sign of the annihilations and creations due to the fermionic anti-commutation relations.
 
 The initial situation may be described in the following figure, on the left.
 
@@ -160,13 +160,13 @@ We'll get started by moving the diagonal arc that starts at [2, 1], yielding the
 <!--Python-->
 ```Python
 # Translate the diagonal arc that starts at (2, 1) to (2, 0).
-onv_path.leftTranslate(2, 1)
+onv_path.leftTranslateDiagonalArc(2, 1)
 ```
 
 <!--C++-->
 ```C++
 // Translate the diagonal arc that starts at (2, 1) to (2, 0).
-onv_path.leftTranslate(2, 1);
+onv_path.leftTranslateDiagonalArc(2, 1);
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -178,36 +178,36 @@ Since we have removed an arc with weight `1`, and created one with weight `2`, t
 <!--Python-->
 ```Python
 # Translate the diagonal arc that starts at (3, 2) to (3, 1).
-onv_path.leftTranslate(3, 2)
+onv_path.leftTranslateDiagonalArc(3, 2)
 ```
 
 <!--C++-->
 ```C++
 // Translate the diagonal arc that starts at (3, 2) to (3, 1).
-onv_path.leftTranslate(3, 2);
+onv_path.leftTranslateDiagonalArc(3, 2);
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-Instead of translating the occupied arcs to the left manually, there is also the possibility to keep translating occupied arcs until an unoccupied, vertical ar is found. This is done with `leftTranslateUntilVertical()`. This function translates diagonal arcs using the `leftTranslate()` function, until an unoccupied creation index is found. 
+Instead of translating the occupied arcs to the left manually, there is also the possibility to keep translating occupied arcs until an unoccupied, vertical ar is found. This is done with `leftTranslateDiagonalArcUntilVerticalArc()`. This function translates diagonal arcs using the `leftTranslateDiagonalArc()` function, until an unoccupied creation index is found. 
 
 <!--DOCUSAURUS_CODE_TABS-->
 
 <!--Python-->
 ```Python
 # Keep translating diagonal arcs to the left, until an unoccupied index is found.
-onv_path.leftTranslateUntilVertical()
+onv_path.leftTranslateDiagonalArcUntilVerticalArc()
 ```
 
 <!--C++-->
 ```C++
 // Keep translating diagonal arcs to the left, until an unoccupied index is found.
-onv_path.leftTranslateUntilVertical();
+onv_path.leftTranslateDiagonalArcUntilVerticalArc();
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-This will lead to the exact same ONV as performing the two `leftTranslate()` functions separately. 
+This will lead to the exact same ONV as performing the two `leftTranslateDiagonalArc()` functions separately. 
 
 ![second_shift](/GQCP/img/ONVPath_00110_4.png)
 

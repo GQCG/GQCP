@@ -15,11 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#define BOOST_TEST_MODULE "SpinResolvedTwoDM"
+#define BOOST_TEST_MODULE "SpinResolved2DM"
 
 #include <boost/test/unit_test.hpp>
 
-#include "DensityMatrix/SpinResolvedTwoDM.hpp"
+#include "DensityMatrix/SpinResolved2DM.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
@@ -97,7 +97,7 @@ BOOST_AUTO_TEST_CASE(one_dm_from_two_dm) {
     const auto D = linear_expansion.calculate1DM();
     const auto d = linear_expansion.calculate2DM();
 
-    GQCP::OneDM<double> D_from_reduction = (1.0 / (N - 1)) * d.reduce();
+    GQCP::Orbital1DM<double> D_from_reduction = (1.0 / (N - 1)) * d.reduce();
     BOOST_CHECK(D.isApprox(D_from_reduction, 1.0e-12));
 }
 

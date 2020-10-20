@@ -26,6 +26,10 @@
 namespace GQCP {
 
 
+/*
+ *  MARK: SimpleTransformationMatrix implementation
+ */
+
 /**
  *  A basis transformation that is represented by a single transformation matrix.
  * 
@@ -39,8 +43,9 @@ namespace GQCP {
 template <typename _Scalar, typename _DerivedTransformationMatrix>
 class SimpleTransformationMatrix:
     public SquareMatrix<_Scalar>,
-    public BasisTransformable<_DerivedTransformationMatrix, _DerivedTransformationMatrix>,
+    public BasisTransformable<_DerivedTransformationMatrix>,
     public JacobiRotatable<_DerivedTransformationMatrix> {
+
 public:
     // The scalar type used for a transformation coefficient: real or complex.
     using Scalar = _Scalar;
@@ -110,10 +115,10 @@ public:
 
 
     // Allow the `rotate` method from `BasisTransformable`, since there's also a `rotate` from `JacobiRotatable`.
-    using BasisTransformable<DerivedTransformationMatrix, DerivedTransformationMatrix>::rotate;
+    using BasisTransformable<DerivedTransformationMatrix>::rotate;
 
     // Allow the `rotated` method from `BasisTransformable`, since there's also a `rotated` from `JacobiRotatable`.
-    using BasisTransformable<DerivedTransformationMatrix, DerivedTransformationMatrix>::rotated;
+    using BasisTransformable<DerivedTransformationMatrix>::rotated;
 
 
     /*
@@ -143,6 +148,21 @@ public:
 
     // Allow the `rotate` method from `JacobiRotatable`, since there's also a `rotate` from `BasisTransformable`.
     using JacobiRotatable<DerivedTransformationMatrix>::rotate;
+};
+
+
+/*
+ *  MARK: BasisTransformableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
+ */
+template <typename Scalar, typename DerivedTransformationMatrix>
+struct BasisTransformableTraits<SimpleTransformationMatrix<Scalar, DerivedTransformationMatrix>> {
+
+    // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix". A transformation matrix should naturally be transformable with itself.
+    using TM = DerivedTransformationMatrix;
 };
 
 

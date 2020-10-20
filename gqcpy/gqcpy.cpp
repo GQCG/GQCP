@@ -70,7 +70,7 @@ void bindNucleus(py::module& module);
 
 
 // ONVBasis
-void bindONVPath(py::module& module);
+void bindONVPaths(py::module& module);
 void bindSeniorityZeroONVBasis(py::module& module);
 void bindSpinResolvedONV(py::module& module);
 void bindSpinResolvedONVBasis(py::module& module);
@@ -95,10 +95,10 @@ void bindUSQHamiltonian(py::module& module);
 
 
 // Processing - DensityMatrices
-void bindOneDM(py::module& module);
+void bindOrbital1DM(py::module& module);
 void bindSpinResolvedOneDM(py::module& module);
-void bindSpinResolvedTwoDM(py::module& module);
-void bindTwoDM(py::module& module);
+void bindSpinResolved2DM(py::module& module);
+void bindOrbital2DM(py::module& module);
 
 
 // Processing - Properties
@@ -236,7 +236,7 @@ PYBIND11_MODULE(gqcpy, module) {
 
 
     // ONVBasis
-    gqcpy::bindONVPath(module);
+    gqcpy::bindONVPaths(module);
     gqcpy::bindSeniorityZeroONVBasis(module);
     gqcpy::bindSpinResolvedONV(module);
     gqcpy::bindSpinResolvedONVBasis(module);
@@ -261,10 +261,10 @@ PYBIND11_MODULE(gqcpy, module) {
 
 
     // Processing - DensityMatrices
-    gqcpy::bindOneDM(module);
+    gqcpy::bindOrbital1DM(module);
     gqcpy::bindSpinResolvedOneDM(module);
-    gqcpy::bindSpinResolvedTwoDM(module);
-    gqcpy::bindTwoDM(module);
+    gqcpy::bindSpinResolved2DM(module);
+    gqcpy::bindOrbital2DM(module);
 
 
     // Processing - Properties

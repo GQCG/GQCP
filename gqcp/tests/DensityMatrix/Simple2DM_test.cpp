@@ -15,24 +15,24 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#define BOOST_TEST_MODULE "TwoDM"
+#define BOOST_TEST_MODULE "Simple2DM"
 
 #include <boost/test/unit_test.hpp>
 
-#include "DensityMatrix/TwoDM.hpp"
+#include "DensityMatrix/G2DM.hpp"
 
 
 /*
- *  HELPER FUNCTIONS
+ *  MARK: Helper functions
  */
 
 /**
  *  @return a toy 2-DM where
  *      d(i,j,k,l) = l + 2k + 4j + 8i
  */
-GQCP::TwoDM<double> calculateToy2DMTensor() {
+GQCP::G2DM<double> calculateToy2DMTensor() {
 
-    GQCP::TwoDM<double> d(2);
+    GQCP::G2DM<double> d {2};
 
     for (size_t i = 0; i < 2; i++) {
         for (size_t j = 0; j < 2; j++) {
@@ -54,35 +54,30 @@ GQCP::TwoDM<double> calculateToy2DMTensor() {
 
 
 /*
- *  UNIT TESTS
+ *  MARK: Unit tests
  */
 
-BOOST_AUTO_TEST_CASE(TwoDM_constructor) {
 
-    // Check a correct constructor
-    GQCP::Tensor<double, 4> tensor {3, 3, 3, 3};
-    BOOST_CHECK_NO_THROW(GQCP::TwoDM<double> d {tensor});
-
-
-    // Check a faulty constructor
-    GQCP::Tensor<double, 4> tensor2 {3, 3, 3, 2};
-    BOOST_CHECK_THROW(GQCP::TwoDM<double> d2 {tensor2}, std::invalid_argument);
-}
-
-
+/**
+ *  Check if the 2-DM `trace` method is correctly implemented, from a manual calculation.
+ */
 BOOST_AUTO_TEST_CASE(trace) {
 
-    auto d = calculateToy2DMTensor();
+    const auto d = calculateToy2DMTensor();
 
-    BOOST_CHECK(std::abs(d.trace() - 30.0) < 1.0e-12);  // manual calculation
+    BOOST_CHECK(std::abs(d.trace() - 30.0) < 1.0e-12);
 }
 
 
+/**
+ *  Check if the 2-DM `reduce` method is correctly implemented, from a manual calculation.
+ */
 BOOST_AUTO_TEST_CASE(reduce) {
 
-    auto d = calculateToy2DMTensor();
+    const auto d = calculateToy2DMTensor();
 
-    GQCP::OneDM<double> D_ref = GQCP::OneDM<double>::Zero(2);
+    // Set up the reference result.
+    GQCP::G1DM<double> D_ref = GQCP::G1DM<double>::Zero(2);
 
     // clang-format off
     D_ref <<  3, 11,

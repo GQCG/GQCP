@@ -24,8 +24,9 @@
 #include "Basis/SpinorBasis/USpinorBasis.hpp"
 #include "Basis/Transformations/RTransformationMatrix.hpp"
 #include "DensityMatrix/Orbital1DM.hpp"
+#include "DensityMatrix/Orbital2DM.hpp"
 #include "DensityMatrix/SpinResolved1DM.hpp"
-#include "DensityMatrix/SpinResolvedTwoDM.hpp"
+#include "DensityMatrix/SpinResolved2DM.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 #include "ONVBasis/SpinResolvedONV.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
@@ -547,12 +548,37 @@ public:
 
 
     /**
-     *  Calculate the one-electron density matrix for a seniority-zero wave function expansion.
+     *  Calculate the orbital one-electron density matrix for a seniority-zero wave function expansion.
      * 
-     *  @return the total (spin-summed) 1-DM
+     *  @return The orbital (total, spin-summed) 1-DM.
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, OneDM<double>> calculate1DM() const { return this->calculateSpinResolved1DM().spinSummed(); }
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, Orbital1DM<double>> calculate1DM() const {
+
+        // Prepare some variables.
+        const auto K = this->onv_basis.numberOfSpatialOrbitals();
+        const auto dimension = this->onv_basis.dimension();
+        Orbital1DM<double> D = Orbital1DM<double>::Zero(K);
+
+        // Create the first ONV (with address 0). In DOCI, the ONV basis for alpha and beta is equal, so we can use the proxy ONV basis.
+        const auto onv_basis_proxy = this->onv_basis.proxy();
+        SpinUnresolvedONV onv = onv_basis_proxy.constructONVFromAddress(0);
+        for (size_t I = 0; I < dimension; I++) {  // I loops over all the addresses of the doubly-occupied ONVs
+
+            for (size_t e1 = 0; e1 < onv_basis_proxy.numberOfElectrons(); e1++) {  // e1 (electron 1) loops over the number of electrons
+                const size_t p = onv.occupationIndexOf(e1);                        // retrieve the index of the orbital the electron occupies
+                const double c_I = this->coefficient(I);                           // coefficient of the I-th basis vector
+
+                D(p, p) += 2 * std::pow(c_I, 2);
+            }
+
+            if (I < dimension - 1) {  // prevent the last permutation from occurring
+                onv_basis_proxy.transformONVToNextPermutation(onv);
+            }
+        }
+
+        return D;
+    }
 
 
     /**
@@ -561,7 +587,7 @@ public:
      *  @return the total (spin-summed) 2-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, TwoDM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().spinSummed(); }
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, Orbital2DM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().orbitalDensity(); }
 
 
     /**
@@ -655,37 +681,10 @@ public:
     /**
      *  Calculate the spin-resolved one-electron density matrix for a seniority-zero wave function expansion.
      * 
-     *  @return the spin-resolved 1-DM
+     *  @return The spin-resolved 1-DM.
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const {
-
-        // Prepare some variables.
-        const auto K = this->onv_basis.numberOfSpatialOrbitals();
-        const auto dimension = this->onv_basis.dimension();
-
-        // For seniority-zero linear expansions, one DM covers both alpha and beta spins.
-        OneDM<double> D = OneDM<double>::Zero(K);
-
-        // Create the first ONV (with address 0). In DOCI, the ONV basis for alpha and beta is equal, so we can use the proxy ONV basis.
-        const auto onv_basis_proxy = this->onv_basis.proxy();
-        SpinUnresolvedONV onv = onv_basis_proxy.constructONVFromAddress(0);
-        for (size_t I = 0; I < dimension; I++) {  // I loops over all the addresses of the doubly-occupied ONVs
-
-            for (size_t e1 = 0; e1 < onv_basis_proxy.numberOfElectrons(); e1++) {  // e1 (electron 1) loops over the number of electrons
-                const size_t p = onv.occupationIndexOf(e1);                        // retrieve the index of the orbital the electron occupies
-                const double c_I = this->coefficient(I);                           // coefficient of the I-th basis vector
-
-                D(p, p) += 2 * std::pow(c_I, 2);
-            }
-
-            if (I < dimension - 1) {  // prevent the last permutation from occurring
-                onv_basis_proxy.transformONVToNextPermutation(onv);
-            }
-        }
-
-        return SpinResolved1DM<double>::FromRestricted(D);
-    }
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const { return SpinResolved1DM<double>::FromOrbital1DM(this->calculate1DM()); }
 
 
     /**
@@ -694,7 +693,7 @@ public:
      *  @return the spin-resolved 2-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolvedTwoDM<double>> calculateSpinResolved2DM() const {
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolved2DM<double>> calculateSpinResolved2DM() const {
 
         // Prepare some variables.
         const auto K = this->onv_basis.numberOfSpatialOrbitals();
@@ -702,11 +701,8 @@ public:
 
 
         // For seniority-zero linear expansions, we only have to calculate d_aaaa and d_aabb.
-        TwoDM<double> d_aaaa(K);
-        d_aaaa.setZero();
-
-        TwoDM<double> d_aabb(K);
-        d_aabb.setZero();
+        SpinResolved2DMComponent<double> d_aaaa = SpinResolved2DMComponent<double>::Zero(K);
+        SpinResolved2DMComponent<double> d_aabb = SpinResolved2DMComponent<double>::Zero(K);
 
 
         // Create the first ONV (with address 0). In DOCI, the ONV basis for alpha and beta is equal, so we can use the proxy ONV basis.
@@ -753,7 +749,7 @@ public:
         }
 
         // For seniority-zero linear expansions, we have additional symmetries (two_rdm_aaaa = two_rdm_bbbb, two_rdm_aabb = two_rdm_bbaa)
-        return SpinResolvedTwoDM<double>(d_aaaa, d_aabb, d_aabb, d_aaaa);
+        return SpinResolved2DM<double> {d_aaaa, d_aabb, d_aabb, d_aaaa};
     }
 
 
@@ -763,7 +759,7 @@ public:
      *  @return The total, spin-summed, orbital 1-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, Orbital1DM<double>> calculate1DM() const { return this->calculateSpinResolved1DM().spinSummed(); }
+    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, Orbital1DM<double>> calculate1DM() const { return this->calculateSpinResolved1DM().orbitalDensity(); }
 
 
     /**
@@ -772,7 +768,7 @@ public:
      *  @return the total (spin-summed) 2-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, TwoDM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().spinSummed(); }
+    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, Orbital2DM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().orbitalDensity(); }
 
 
     /**
@@ -786,8 +782,8 @@ public:
         // Initialize as zero matrices
         size_t K = this->onv_basis.numberOfOrbitals();
 
-        OneDM<double> D_aa = OneDM<double>::Zero(K);
-        OneDM<double> D_bb = OneDM<double>::Zero(K);
+        SpinResolved1DMComponent<double> D_aa = SpinResolved1DMComponent<double>::Zero(K);
+        SpinResolved1DMComponent<double> D_bb = SpinResolved1DMComponent<double>::Zero(K);
 
         SpinUnresolvedONVBasis onv_basis_alpha = onv_basis.onvBasisAlpha();
         SpinUnresolvedONVBasis onv_basis_beta = onv_basis.onvBasisBeta();
@@ -900,7 +896,7 @@ public:
      *  @return the spin-resolved 2-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, SpinResolvedTwoDM<double>> calculateSpinResolved2DM() const {
+    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, SpinResolved2DM<double>> calculateSpinResolved2DM() const {
 
         // KISS implementation of the 2-DMs (no symmetry relations are used yet)
 
@@ -913,15 +909,9 @@ public:
         // Initialize as zero matrices
         size_t K = this->onv_basis.numberOfOrbitals();
 
-        TwoDM<double> d_aaaa {K};
-        d_aaaa.setZero();
-
-        TwoDM<double> d_aabb {K};
-        d_aabb.setZero();
-
-        TwoDM<double> d_bbbb {K};
-        d_bbbb.setZero();
-
+        SpinResolved2DMComponent<double> d_aaaa = SpinResolved2DMComponent<double>::Zero(K);
+        SpinResolved2DMComponent<double> d_aabb = SpinResolved2DMComponent<double>::Zero(K);
+        SpinResolved2DMComponent<double> d_bbbb = SpinResolved2DMComponent<double>::Zero(K);
 
         // ALPHA-ALPHA-ALPHA-ALPHA
         SpinUnresolvedONV spin_string_alpha_aaaa = onv_basis_alpha.constructONVFromAddress(0);  // spin string with address 0
@@ -1049,7 +1039,7 @@ public:
         // BETA-BETA-ALPHA-ALPHA
         // We know that d^aabb_pqrs = d^bbaa_rspq
         Eigen::array<int, 4> shuffle {2, 3, 0, 1};  // array specifying the axes that should be swapped
-        TwoDM<double> d_bbaa(d_aabb.Eigen().shuffle(shuffle));
+        SpinResolved2DMComponent<double> d_bbaa {d_aabb.Eigen().shuffle(shuffle)};
 
 
         // BETA-BETA-BETA-BETA
@@ -1109,7 +1099,7 @@ public:
 
         }  // loop over I_beta
 
-        return SpinResolvedTwoDM<double>(d_aaaa, d_aabb, d_bbaa, d_bbbb);
+        return SpinResolved2DM<double> {d_aaaa, d_aabb, d_bbaa, d_bbbb};
     }
 
 
@@ -1119,7 +1109,7 @@ public:
      *  @return the total (spin-summed) 1-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, OneDM<double>> calculate1DM() const { return this->calculateSpinResolved1DM().spinSummed(); }
+    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, Orbital1DM<double>> calculate1DM() const { return this->calculateSpinResolved1DM().orbitalDensity(); }
 
 
     /**
@@ -1128,7 +1118,7 @@ public:
      *  @return the total (spin-summed) 2-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, TwoDM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().spinSummed(); }
+    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, Orbital2DM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().orbitalDensity(); }
 
 
     /**
@@ -1142,8 +1132,8 @@ public:
         size_t K = this->onv_basis.numberOfOrbitals();
         size_t dim = onv_basis.dimension();
 
-        OneDM<double> D_aa = OneDM<double>::Zero(K);
-        OneDM<double> D_bb = OneDM<double>::Zero(K);
+        SpinResolved1DMComponent<double> D_aa = SpinResolved1DMComponent<double>::Zero(K);
+        SpinResolved1DMComponent<double> D_bb = SpinResolved1DMComponent<double>::Zero(K);
 
 
         for (size_t I = 0; I < dim; I++) {  // loop over all addresses (1)
@@ -1217,24 +1207,15 @@ public:
      *  @return the spin-resolved 2-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, SpinResolvedTwoDM<double>> calculateSpinResolved2DM() const {
+    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, SpinResolved2DM<double>> calculateSpinResolved2DM() const {
 
         size_t K = this->onv_basis.numberOfOrbitals();
         size_t dim = onv_basis.dimension();
 
-
-        TwoDM<double> d_aaaa {K};
-        d_aaaa.setZero();
-
-        TwoDM<double> d_aabb {K};
-        d_aabb.setZero();
-
-        TwoDM<double> d_bbaa {K};
-        d_bbaa.setZero();
-
-        TwoDM<double> d_bbbb {K};
-        d_bbbb.setZero();
-
+        SpinResolved2DMComponent<double> d_aaaa = SpinResolved2DMComponent<double>::Zero(K);
+        SpinResolved2DMComponent<double> d_aabb = SpinResolved2DMComponent<double>::Zero(K);
+        SpinResolved2DMComponent<double> d_bbaa = SpinResolved2DMComponent<double>::Zero(K);
+        SpinResolved2DMComponent<double> d_bbbb = SpinResolved2DMComponent<double>::Zero(K);
 
         for (size_t I = 0; I < dim; I++) {  // loop over all addresses I
 
@@ -1448,7 +1429,7 @@ public:
 
         }  // loop over all addresses I
 
-        return SpinResolvedTwoDM<double>(d_aaaa, d_aabb, d_bbaa, d_bbbb);
+        return SpinResolved2DM<double>(d_aaaa, d_aabb, d_bbaa, d_bbbb);
     }
 
 

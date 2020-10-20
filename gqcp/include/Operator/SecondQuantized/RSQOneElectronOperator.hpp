@@ -86,20 +86,11 @@ using TensorRSQOneElectronOperator = RSQOneElectronOperator<Scalar, TensorVector
 /**
  *  A type that provides compile-time information (traits) on `RSQOneElectronOperator` that is otherwise not accessible through a public class alias.
  * 
- *  @tparam _Scalar         The scalar type used for a single parameter: real or complex.
- *  @tparam _Vectorizer     The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
+ *  @tparam Scalar          The scalar type used for a single parameter: real or complex.
+ *  @tparam Vectorizer      The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
  */
-template <typename _Scalar, typename _Vectorizer>
-class OperatorTraits<RSQOneElectronOperator<_Scalar, _Vectorizer>> {
-public:
-    // The scalar type used for a single parameter: real or complex.
-    using Scalar = _Scalar;
-
-    // The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
-    using Vectorizer = _Vectorizer;
-
-    // The operator whose traits are provided.
-    using Operator = RSQOneElectronOperator<Scalar, Vectorizer>;
+template <typename Scalar, typename Vectorizer>
+struct OperatorTraits<RSQOneElectronOperator<Scalar, Vectorizer>> {
 
     // A type that corresponds to the scalar version of the associated restricted one-electron operator type.
     using ScalarOperator = ScalarRSQOneElectronOperator<Scalar>;
@@ -109,6 +100,21 @@ public:
 
     // The type of the one-particle density matrix that is naturally associated to the derived one-electron operator.
     using OneDM = Orbital1DM<Scalar>;
+};
+
+
+/*
+ *  MARK: BasisTransformableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
+ */
+template <typename Scalar, typename Vectorizer>
+struct BasisTransformableTraits<RSQOneElectronOperator<Scalar, Vectorizer>> {
+
+    // The type of transformation matrix that is naturally associated to a restricted one-electron operator.
+    using TM = RTransformationMatrix<Scalar>;
 };
 
 

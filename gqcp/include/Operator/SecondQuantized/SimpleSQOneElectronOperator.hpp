@@ -40,7 +40,7 @@ namespace GQCP {
 template <typename _Scalar, typename _Vectorizer, typename _DerivedOperator>
 class SimpleSQOneElectronOperator:
     public SQOperatorStorage<SquareMatrix<_Scalar>, _Vectorizer, SimpleSQOneElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>>,
-    public BasisTransformable<_DerivedOperator, typename OperatorTraits<_DerivedOperator>::TM>,
+    public BasisTransformable<_DerivedOperator>,
     public JacobiRotatable<_DerivedOperator> {
 public:
     // The scalar type used for a single parameter: real or complex.
@@ -91,7 +91,7 @@ public:
     StorageArray<Scalar, Vectorizer> calculateExpectationValue(const Derived1DM& D) const {
 
         if (this->numberOfOrbitals() != D.numberOfOrbitals()) {
-            throw std::invalid_argument("SimpleSQOneElectronOperator::calculateExpectationValue(const OneDM<Scalar>&): The given 1-DM is not compatible with the one-electron operator.");
+            throw std::invalid_argument("SimpleSQOneElectronOperator::calculateExpectationValue(const Derived1DM<Scalar>&): The given 1-DM is not compatible with the one-electron operator.");
         }
 
         // Calculate the expectation value for every component of the operator.
@@ -233,10 +233,10 @@ public:
 
 
     // Allow the `rotate` method from `BasisTransformable`, since there's also a `rotate` from `JacobiRotatable`.
-    using BasisTransformable<DerivedOperator, TM>::rotate;
+    using BasisTransformable<DerivedOperator>::rotate;
 
     // Allow the `rotated` method from `BasisTransformable`, since there's also a `rotated` from `JacobiRotatable`.
-    using BasisTransformable<DerivedOperator, TM>::rotated;
+    using BasisTransformable<DerivedOperator>::rotated;
 
 
     /*
@@ -290,6 +290,21 @@ public:
 
     // The type of the operator that derives from `SimpleSQOneElectronOperator`, enabling CRTP and compile-time polymorphism.
     using DerivedOperator = _DerivedOperator;
+};
+
+
+/*
+ *  MARK: BasisTransformableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
+ */
+template <typename _Scalar, typename _Vectorizer, typename _DerivedOperator>
+struct BasisTransformableTraits<SimpleSQOneElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>> {
+
+    // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix"
+    using TM = typename OperatorTraits<_DerivedOperator>::TM;
 };
 
 

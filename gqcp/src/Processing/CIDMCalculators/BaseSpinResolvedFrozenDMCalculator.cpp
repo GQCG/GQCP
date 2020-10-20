@@ -49,8 +49,8 @@ SpinResolved1DM<double> BaseSpinResolvedFrozenDMCalculator::calculateSpinResolve
 
     auto K = this->onvBasis()->numberOfOrbitals();
 
-    OneDM<double> D_aa = OneDM<double>::Zero(K);
-    OneDM<double> D_bb = OneDM<double>::Zero(K);
+    SpinResolved1DMComponent<double> D_aa = SpinResolved1DMComponent<double>::Zero(K);
+    SpinResolved1DMComponent<double> D_bb = SpinResolved1DMComponent<double>::Zero(K);
 
     auto K_active = K - this->X;
 
@@ -75,21 +75,14 @@ SpinResolved1DM<double> BaseSpinResolvedFrozenDMCalculator::calculateSpinResolve
  *
  *  @return all 2-DMs given a coefficient vector
  */
-SpinResolvedTwoDM<double> BaseSpinResolvedFrozenDMCalculator::calculateSpinResolved2DM(const VectorX<double>& x) const {
+SpinResolved2DM<double> BaseSpinResolvedFrozenDMCalculator::calculateSpinResolved2DM(const VectorX<double>& x) const {
 
     auto K = this->onvBasis()->numberOfOrbitals();
 
-    TwoDM<double> d_aaaa {K};
-    d_aaaa.setZero();
-
-    TwoDM<double> d_aabb {K};
-    d_aabb.setZero();
-
-    TwoDM<double> d_bbaa {K};
-    d_bbaa.setZero();
-
-    TwoDM<double> d_bbbb {K};
-    d_bbbb.setZero();
+    SpinResolved2DMComponent<double> d_aaaa = SpinResolved2DMComponent<double>::Zero(K);
+    SpinResolved2DMComponent<double> d_aabb = SpinResolved2DMComponent<double>::Zero(K);
+    SpinResolved2DMComponent<double> d_bbaa = SpinResolved2DMComponent<double>::Zero(K);
+    SpinResolved2DMComponent<double> d_bbbb = SpinResolved2DMComponent<double>::Zero(K);
 
 
     SpinResolved1DM<double> one_DMs = this->active_dm_calculator->calculateSpinResolved1DM(x);
@@ -146,14 +139,14 @@ SpinResolvedTwoDM<double> BaseSpinResolvedFrozenDMCalculator::calculateSpinResol
 
 
     // Incorporate the 2-DM subblocks into the total 2DMs
-    SpinResolvedTwoDM<double> sub_2DMs = this->active_dm_calculator->calculateSpinResolved2DM(x);
+    SpinResolved2DM<double> sub_2DMs = this->active_dm_calculator->calculateSpinResolved2DM(x);
 
     d_aaaa.addBlock(sub_2DMs.alphaAlpha(), this->X, this->X, this->X, this->X);
     d_bbbb.addBlock(sub_2DMs.betaBeta(), this->X, this->X, this->X, this->X);
     d_aabb.addBlock(sub_2DMs.alphaBeta(), this->X, this->X, this->X, this->X);
     d_bbaa.addBlock(sub_2DMs.betaAlpha(), this->X, this->X, this->X, this->X);
 
-    return SpinResolvedTwoDM<double>(d_aaaa, d_aabb, d_bbaa, d_bbbb);
+    return SpinResolved2DM<double>(d_aaaa, d_aabb, d_bbaa, d_bbbb);
 };
 
 
