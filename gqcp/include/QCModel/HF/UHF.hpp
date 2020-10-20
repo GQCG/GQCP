@@ -215,7 +215,7 @@ public:
         const auto K_b = C.beta().numberOfOrbitals();
         const auto D_orthonormal = UHF<Scalar>::calculateOrthonormalBasis1DM(K_a, K_b, N_a, N_b);
 
-        return D_orthonormal.transformed(C);
+        return D_orthonormal.transformed(C.inverse());
     }
 
 

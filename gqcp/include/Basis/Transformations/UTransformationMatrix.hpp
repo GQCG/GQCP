@@ -120,7 +120,7 @@ public:
 
 
     /*
-     *  MARK: General information
+     *  MARK: Linear algebraic operations
      */
 
     /**
@@ -129,6 +129,21 @@ public:
      *  @return If this transformation matrix is considered to be unitary, within the given treshold.
      */
     bool isUnitary(const double threshold) const { return this->alpha().isUnitary(threshold) && this->beta().isUnitary(threshold); }
+
+
+    /**
+     *  @return The inverse of this transformation.
+     */
+    UTransformationMatrix<Scalar> inverse() const {
+
+        auto result = *this;
+
+        // The inverse of this compound transformation is the transformation where the alpha- and beta-transformations are inverted.
+        result.alpha() = this->alpha().inverse();
+        result.beta() = this->beta().inverse();
+
+        return result;
+    }
 };
 
 
