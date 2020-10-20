@@ -11,6 +11,6 @@ target_sources(gqcp
         Simple2DM.hpp
         SpinDensity1DM.hpp
         SpinResolved1DM.hpp
-        SpinResolvedTwoDM.hpp
+        SpinResolved2DM.hpp
         TwoDM.hpp
 )

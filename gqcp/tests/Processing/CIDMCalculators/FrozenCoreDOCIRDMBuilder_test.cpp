@@ -80,8 +80,8 @@ BOOST_AUTO_TEST_CASE(FrozenCoreDOCI_two_DMs) {
     // Get the frozen core DOCI and SelectedCI 2-DMs
     GQCP::SpinResolvedSelectedDMCalculator sci_rdm {selected_fock_space};
     GQCP::FrozenCoreDOCIRDMBuilder doci_rdm {fock_space};
-    GQCP::SpinResolvedTwoDM<double> two_DMs_s = sci_rdm.calculateSpinResolved2DM(coef);
-    GQCP::SpinResolvedTwoDM<double> two_DMs = doci_rdm.calculateSpinResolved2DM(coef);
+    GQCP::SpinResolved2DM<double> two_DMs_s = sci_rdm.calculateSpinResolved2DM(coef);
+    GQCP::SpinResolved2DM<double> two_DMs = doci_rdm.calculateSpinResolved2DM(coef);
 
     BOOST_CHECK(two_DMs_s.alphaAlpha().isApprox(two_DMs.alphaAlpha(), 1.0e-06));
     BOOST_CHECK(two_DMs_s.alphaBeta().isApprox(two_DMs.alphaBeta(), 1.0e-06));

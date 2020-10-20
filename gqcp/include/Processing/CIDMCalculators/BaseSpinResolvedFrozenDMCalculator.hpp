@@ -19,7 +19,7 @@
 
 
 #include "DensityMatrix/SpinResolved1DM.hpp"
-#include "DensityMatrix/SpinResolvedTwoDM.hpp"
+#include "DensityMatrix/SpinResolved2DM.hpp"
 
 
 namespace GQCP {
@@ -57,7 +57,7 @@ public:
      *
      *  @return all 2-DMs given a coefficient vector
      */
-    SpinResolvedTwoDM<double> calculateSpinResolved2DM(const VectorX<double>& x) const override;
+    SpinResolved2DM<double> calculateSpinResolved2DM(const VectorX<double>& x) const override;
 };
 
 

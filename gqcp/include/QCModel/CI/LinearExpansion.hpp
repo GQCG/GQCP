@@ -25,7 +25,7 @@
 #include "Basis/Transformations/RTransformationMatrix.hpp"
 #include "DensityMatrix/Orbital1DM.hpp"
 #include "DensityMatrix/SpinResolved1DM.hpp"
-#include "DensityMatrix/SpinResolvedTwoDM.hpp"
+#include "DensityMatrix/SpinResolved2DM.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 #include "ONVBasis/SpinResolvedONV.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
@@ -693,7 +693,7 @@ public:
      *  @return the spin-resolved 2-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolvedTwoDM<double>> calculateSpinResolved2DM() const {
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolved2DM<double>> calculateSpinResolved2DM() const {
 
         // Prepare some variables.
         const auto K = this->onv_basis.numberOfSpatialOrbitals();
@@ -752,7 +752,7 @@ public:
         }
 
         // For seniority-zero linear expansions, we have additional symmetries (two_rdm_aaaa = two_rdm_bbbb, two_rdm_aabb = two_rdm_bbaa)
-        return SpinResolvedTwoDM<double>(d_aaaa, d_aabb, d_aabb, d_aaaa);
+        return SpinResolved2DM<double>(d_aaaa, d_aabb, d_aabb, d_aaaa);
     }
 
 
@@ -899,7 +899,7 @@ public:
      *  @return the spin-resolved 2-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, SpinResolvedTwoDM<double>> calculateSpinResolved2DM() const {
+    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, SpinResolved2DM<double>> calculateSpinResolved2DM() const {
 
         // KISS implementation of the 2-DMs (no symmetry relations are used yet)
 
@@ -1108,7 +1108,7 @@ public:
 
         }  // loop over I_beta
 
-        return SpinResolvedTwoDM<double>(d_aaaa, d_aabb, d_bbaa, d_bbbb);
+        return SpinResolved2DM<double>(d_aaaa, d_aabb, d_bbaa, d_bbbb);
     }
 
 
@@ -1216,7 +1216,7 @@ public:
      *  @return the spin-resolved 2-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, SpinResolvedTwoDM<double>> calculateSpinResolved2DM() const {
+    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, SpinResolved2DM<double>> calculateSpinResolved2DM() const {
 
         size_t K = this->onv_basis.numberOfOrbitals();
         size_t dim = onv_basis.dimension();
@@ -1447,7 +1447,7 @@ public:
 
         }  // loop over all addresses I
 
-        return SpinResolvedTwoDM<double>(d_aaaa, d_aabb, d_bbaa, d_bbbb);
+        return SpinResolved2DM<double>(d_aaaa, d_aabb, d_bbaa, d_bbbb);
     }
 
 

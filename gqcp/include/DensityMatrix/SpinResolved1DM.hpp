@@ -31,7 +31,7 @@ namespace GQCP {
 
 
 /**
- *  A type that encapsulates alpha-alpha and beta-beta (spin-resolved) density matrices.
+ *  A type that encapsulates alpha and beta (spin-resolved) density matrices.
  *
  *  @tparam _Scalar             The scalar type of one of the density matrix elements: real or complex.
  */
@@ -61,7 +61,7 @@ public:
 
 
     /*
-     *  MARK: Constructors
+     *  MARK: Named constructors
      */
 
     /**
@@ -117,17 +117,7 @@ public:
      * 
      *  @return The number of orbitals (spinors or spin-orbitals, depending on the context) that correspond to the given spin.
      */
-    size_t numberOfOrbitals(const Spin sigma) const {
-
-        switch (sigma) {
-        case Spin::alpha: {
-            return this->alpha().numberOfOrbitals();
-        }
-        case Spin::beta: {
-            return this->beta().numberOfOrbitals();
-        }
-        }
-    }
+    size_t numberOfOrbitals(const Spin sigma) const { return this->component(sigma).numberOfOrbitals(); }
 
 
     /*

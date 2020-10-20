@@ -32,7 +32,7 @@ namespace GQCP {
 /**
  *  One of the spin components of a SpinResolved1DM.
  * 
- *  It is specifically designed as one of these spin components, in order to ensuring compile-time correctness. It would be wrong to use either R/GTransformationMatrix as one of the spin components, and it's not possible to use SimpleTransformationMatrix as one of the spin components because it requires a template argument of the type that derives from it.
+ *  It is specifically designed as one of these spin components, in order to ensuring compile-time correctness. It would be wrong to use either Orbital1DM or G1DM as one of the spin components, and it's not possible to use SimpleTransformationMatrix as one of the spin components because it requires a template argument of the type that derives from it.
  * 
  *  @tparam _Scalar                 The scalar type used for a density matrix element: real or complex.
  */
