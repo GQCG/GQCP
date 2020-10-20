@@ -21,6 +21,7 @@
 #include "Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp"
 #include "ONVBasis/BaseONVBasis.hpp"
 #include "ONVBasis/ONVManipulator.hpp"
+#include "ONVBasis/ONVPath.hpp"
 
 #include <functional>
 
@@ -36,6 +37,9 @@ class SpinUnresolvedONVBasis:
     public ONVManipulator<SpinUnresolvedONVBasis> {
 private:
     std::vector<std::vector<size_t>> vertex_weights;  // vertex_weights of the addressing scheme
+
+public:
+    using ONV = SpinUnresolvedONV;
 
 
 public:
@@ -311,6 +315,71 @@ public:
 
         const auto& one_op_par = one_op.parameters();
 
+        const auto dim = this->dimension();
+        MatrixRepresentationEvaluationContainer<Representation> ONV_iterator {dim};
+
+        SpinUnresolvedONV onv = this->constructONVFromAddress(0);  // start with ONV with address 0
+
+        for (; !ONV_iterator.isFinished(); ONV_iterator.increment()) {  // loops over all possible ONVs
+            for (size_t e1 = 0; e1 < N; e1++) {                         // loop over electrons that can be annihilated
+
+                // Create an ONVPath for each new ONV.
+                ONVPath<SpinUnresolvedONVBasis> onv_path {*this, onv};
+
+                size_t q = onv.occupationIndexOf(e1);  // retrieve orbital index of the electron that will be annihilated
+
+                // The diagonal values are a result of annihilation-creation on the same orbital index and are thus the same as the initial ONV.
+                if (diagonal_values) {
+                    ONV_iterator.addRowwise(ONV_iterator.index, one_op_par(q, q));
+                }
+
+                // For the non-diagonal values, we will create all possible matrix elements of the Hamiltonian in the routine below.
+                onv_path.annihilate(q, e1);
+
+                // Stop the loop if 1) the path is finished, meaning that orbital index p is at M (the total number of orbitals) and 2) if the orbital index is out of bounds after left translation of a vertical arc.
+                while (!onv_path.isFinished() && onv_path.isOrbitalIndexValid()) {
+
+                    // Find the next unoccupied orbital, i.e. the next vertical arc in the path.
+                    onv_path.leftTranslateDiagonalArcUntilVerticalArc();
+
+                    // Calculate the address of the path if we would close it right now.
+                    const size_t address = onv_path.addressAfterCreation();
+
+                    const double value = onv_path.sign() * one_op_par(onv_path.orbitalIndex(), q);
+
+                    // Add the one-electron integral as matrix elements of a Hermitian matrix.
+                    ONV_iterator.addColumnwise(address, value);
+                    ONV_iterator.addRowwise(address, value);
+
+                    // Move orbital index such that other unoccupied orbitals can be found within the loop.
+                    onv_path.leftTranslateVerticalArc();
+                }
+            }
+            // Prevent last ONV since there is no possibility for an electron to be annihilated anymore.
+            if (ONV_iterator.index < dim - 1) {
+                this->transformONVToNextPermutation(onv);
+            }
+        }
+
+        return ONV_iterator.evaluation();
+    }
+
+
+    /**
+     *  Evaluate a one-electron operator in this spin-unresolved ONV basis.
+     * 
+     *  @tparam Representation              The matrix representation that is used for storing the result. Essentially, any type that can be used in MatrixRepresentationEvaluationContainer<Representation>.
+     * 
+     *  @param one_op                       A one-electron operator in an orthonormal orbital basis.
+     *  @param should_calculate_diagonal    If diagonal values should be calculated.
+     * 
+     *  @return The matrix representation of the given one-electron operator.
+     */
+    template <typename Representation>
+    Representation evaluate_old(const ScalarSQOneElectronOperator<double>& one_op, const bool diagonal_values) const {
+
+        const auto& one_op_par = one_op.parameters();
+
         MatrixRepresentationEvaluationContainer<Representation> evaluation_iterator {this->dimension()};
 
         const size_t K = this->numberOfOrbitals();
@@ -357,7 +426,6 @@ public:
                 this->transformONVToNextPermutation(onv);
             }
         }
-
         return evaluation_iterator.evaluation();
     }
 

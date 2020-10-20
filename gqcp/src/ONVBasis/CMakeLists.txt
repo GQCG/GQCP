@@ -1,7 +1,6 @@
 target_sources(gqcp
     PRIVATE
         BaseONVBasis.cpp
-        ONVPath.cpp
         SeniorityZeroONVBasis.cpp
         SpinResolvedONV.cpp
         SpinResolvedONVBasis.cpp
