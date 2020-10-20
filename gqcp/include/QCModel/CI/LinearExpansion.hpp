@@ -548,12 +548,37 @@ public:
 
 
     /**
-     *  Calculate the one-electron density matrix for a seniority-zero wave function expansion.
+     *  Calculate the orbital one-electron density matrix for a seniority-zero wave function expansion.
      * 
-     *  @return the total (spin-summed) 1-DM
+     *  @return The orbital (total, spin-summed) 1-DM.
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, OneDM<double>> calculate1DM() const { return this->calculateSpinResolved1DM().spinSummed(); }
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, OneDM<double>> calculate1DM() const {
+
+        // Prepare some variables.
+        const auto K = this->onv_basis.numberOfSpatialOrbitals();
+        const auto dimension = this->onv_basis.dimension();
+        Orbital1DM<double> D = Orbital1DM<double>::Zero(K);
+
+        // Create the first ONV (with address 0). In DOCI, the ONV basis for alpha and beta is equal, so we can use the proxy ONV basis.
+        const auto onv_basis_proxy = this->onv_basis.proxy();
+        SpinUnresolvedONV onv = onv_basis_proxy.constructONVFromAddress(0);
+        for (size_t I = 0; I < dimension; I++) {  // I loops over all the addresses of the doubly-occupied ONVs
+
+            for (size_t e1 = 0; e1 < onv_basis_proxy.numberOfElectrons(); e1++) {  // e1 (electron 1) loops over the number of electrons
+                const size_t p = onv.occupationIndexOf(e1);                        // retrieve the index of the orbital the electron occupies
+                const double c_I = this->coefficient(I);                           // coefficient of the I-th basis vector
+
+                D(p, p) += 2 * std::pow(c_I, 2);
+            }
+
+            if (I < dimension - 1) {  // prevent the last permutation from occurring
+                onv_basis_proxy.transformONVToNextPermutation(onv);
+            }
+        }
+
+        return D;
+    }
 
 
     /**
@@ -656,37 +681,10 @@ public:
     /**
      *  Calculate the spin-resolved one-electron density matrix for a seniority-zero wave function expansion.
      * 
-     *  @return the spin-resolved 1-DM
+     *  @return The spin-resolved 1-DM.
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const {
-
-        // Prepare some variables.
-        const auto K = this->onv_basis.numberOfSpatialOrbitals();
-        const auto dimension = this->onv_basis.dimension();
-
-        // For seniority-zero linear expansions, the alpha- and beta- component of the spin-resolved 1-DM is equal.
-        SpinResolved1DMComponent<double> D = SpinResolved1DMComponent<double>::Zero(K);
-
-        // Create the first ONV (with address 0). In DOCI, the ONV basis for alpha and beta is equal, so we can use the proxy ONV basis.
-        const auto onv_basis_proxy = this->onv_basis.proxy();
-        SpinUnresolvedONV onv = onv_basis_proxy.constructONVFromAddress(0);
-        for (size_t I = 0; I < dimension; I++) {  // I loops over all the addresses of the doubly-occupied ONVs
-
-            for (size_t e1 = 0; e1 < onv_basis_proxy.numberOfElectrons(); e1++) {  // e1 (electron 1) loops over the number of electrons
-                const size_t p = onv.occupationIndexOf(e1);                        // retrieve the index of the orbital the electron occupies
-                const double c_I = this->coefficient(I);                           // coefficient of the I-th basis vector
-
-                D(p, p) += 2 * std::pow(c_I, 2);
-            }
-
-            if (I < dimension - 1) {  // prevent the last permutation from occurring
-                onv_basis_proxy.transformONVToNextPermutation(onv);
-            }
-        }
-
-        return SpinResolved1DM<double>::FromEqual(D);
-    }
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const { return SpinResolved1DM<double>::FromOrbital1DM(this->calculate1DM()); }
 
 
     /**
