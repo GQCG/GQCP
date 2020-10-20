@@ -18,8 +18,7 @@
 #pragma once
 
 
-#include "Basis/Transformations/GTransformationMatrix.hpp"
-#include "DensityMatrix/DensityMatrixTraits.hpp"
+#include "Basis/Transformations/UTransformationMatrixComponent.hpp"
 #include "DensityMatrix/Simple1DM.hpp"
 
 
@@ -27,17 +26,19 @@ namespace GQCP {
 
 
 /*
- *  MARK: G1DM implementation
+ *  MARK: SpinResolved1DMComponent implementation
  */
 
 /**
- *  A type used to represent a one-electron general(ized) density matrix, i.e. the full spinor two-component one-electron density matrix.
+ *  One of the spin components of a SpinResolved1DM.
+ * 
+ *  It is specifically designed as one of these spin components, in order to ensuring compile-time correctness. It would be wrong to use either Orbital1DM or G1DM as one of the spin components, and it's not possible to use SimpleTransformationMatrix as one of the spin components because it requires a template argument of the type that derives from it.
  * 
  *  @tparam _Scalar                 The scalar type used for a density matrix element: real or complex.
  */
 template <typename _Scalar>
-class G1DM:
-    public Simple1DM<_Scalar, G1DM<_Scalar>> {
+class SpinResolved1DMComponent:
+    public Simple1DM<_Scalar, SpinResolved1DMComponent<_Scalar>> {
 public:
     // The scalar type used for a density matrix element: real or complex.
     using Scalar = _Scalar;
@@ -48,7 +49,7 @@ public:
      */
 
     // Inherit `Simple1DM`'s constructors.
-    using Simple1DM<Scalar, G1DM<Scalar>>::Simple1DM;
+    using Simple1DM<Scalar, SpinResolved1DMComponent<Scalar>>::Simple1DM;
 };
 
 
@@ -57,13 +58,13 @@ public:
  */
 
 /**
- *  A type that provides compile-time information on `G1DM` that is otherwise not accessible through a public class alias.
+ *  A type that provides compile-time information on `SpinResolved1DMComponent` that is otherwise not accessible through a public class alias.
  */
 template <typename Scalar>
-class DensityMatrixTraits<G1DM<Scalar>> {
+class DensityMatrixTraits<SpinResolved1DMComponent<Scalar>> {
 public:
-    // The type of transformation matrix that is naturally related to a `G1DM`.
-    using TM = GTransformationMatrix<Scalar>;
+    // The type of transformation matrix that is naturally related to a `SpinResolved1DMComponent`. Since a `SpinResolved1DM` naturally transforms with a `UTransformationMatrix`, a `SpinResolved1DMComponent` naturally transforms with a `UTransformationMatrixComponent`.
+    using TM = UTransformationMatrixComponent<Scalar>;
 };
 
 

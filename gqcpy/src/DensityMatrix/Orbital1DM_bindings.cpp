@@ -15,8 +15,31 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#pragma once
+#include "DensityMatrix/Orbital1DM.hpp"
 
-namespace GQCP {
+#include <pybind11/eigen.h>
+#include <pybind11/pybind11.h>
 
-}  // namespace GQCP
+
+namespace py = pybind11;
+
+
+namespace gqcpy {
+
+
+void bindOrbital1DM(py::module& module) {
+    py::class_<GQCP::Orbital1DM<double>>(module, "Orbital1DM", "The orbital one-electron density matrix.")
+
+        // PUBLIC METHODS
+
+        .def(
+            "transformed",
+            [](const Eigen::MatrixXd& D, const Eigen::MatrixXd& T) {
+                return GQCP::Orbital1DM<double> {D}.transformed(GQCP::RTransformationMatrix<double> {T});
+            },
+            py::arg("T"),
+            "Return the transformed density matrix.");
+}
+
+
+}  // namespace gqcpy

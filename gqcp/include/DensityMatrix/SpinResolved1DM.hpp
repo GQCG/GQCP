@@ -18,153 +18,152 @@
 #pragma once
 
 
-#include "DensityMatrix/OneDM.hpp"
+#include "Basis/Transformations/UTransformationMatrix.hpp"
+#include "DensityMatrix/G1DM.hpp"
 #include "DensityMatrix/Orbital1DM.hpp"
+#include "DensityMatrix/SpinDensity1DM.hpp"
+#include "DensityMatrix/SpinResolved1DMComponent.hpp"
 #include "Mathematical/Functions/VectorSpaceArithmetic.hpp"
-#include "QuantumChemical/Spin.hpp"
+#include "QuantumChemical/SpinResolved.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  A type that encapsulates alpha-alpha and beta-beta spin-resolved density matrices.
+ *  A type that encapsulates alpha and beta (spin-resolved) density matrices.
  *
- *  @tparam _Scalar             The scalar type of one of the elements.
+ *  @tparam _Scalar             The scalar type of one of the density matrix elements: real or complex.
  */
 template <typename _Scalar>
 class SpinResolved1DM:
+    public SpinResolvedBase<SpinResolved1DMComponent<_Scalar>, SpinResolved1DM<_Scalar>>,
+    public BasisTransformable<SpinResolved1DM<_Scalar>>,
     public VectorSpaceArithmetic<SpinResolved1DM<_Scalar>, _Scalar> {
 public:
-    // The scalar type of one of the elements.
+    // The scalar type of one of the density matrix elements: real or complex.
     using Scalar = _Scalar;
+
+    // The type of the transformation matrix that is naturally related to SpinResolved1DM.
+    using TM = UTransformationMatrix<Scalar>;
+
+    // The type of 'this'.
     using Self = SpinResolved1DM<Scalar>;
 
 
-private:
-    OneDM<Scalar> D_aa;  // the alpha-alpha 1-DM
-    OneDM<Scalar> D_bb;  // the beta-beta 1-DM
-
-
 public:
     /*
-     *  CONSTRUCTORS
+     *  MARK: Constructors
      */
 
-    /**
-     *  Create a SpinResolved1DM from its members.
-     *
-     *  @param D_aa             the alpha-alpha 1-DM
-     *  @param D_bb             the beta-beta 1-DM
-     */
-    SpinResolved1DM(const OneDM<Scalar>& D_aa, const OneDM<Scalar>& D_bb) :
-        D_aa {D_aa},
-        D_bb {D_bb} {}
+    // Inherit `SpinResolvedBase`'s constructors.
+    using SpinResolvedBase<SpinResolved1DMComponent<_Scalar>, SpinResolved1DM<_Scalar>>::SpinResolvedBase;
 
 
     /*
-     *  NAMED CONSTRUCTORS
+     *  MARK: Named constructors
      */
 
     /**
-     *  Create a spin-resolved 1-DM as half of the total 1-DM.
+     *  Create a spin-resolved 1-DM from an `Orbital1DM`, attributing half of the orbital 1-DM to each of the spin components.
      * 
-     *  @param D            the spin-summed 1-DM
+     *  @param D            The orbital 1-DM.
      * 
-     *  @return a spin-resolved 1-DM
+     *  @return A spin-resolved 1-DM.
      */
-    static SpinResolved1DM<Scalar> FromRestricted(const OneDM<Scalar>& D) {
+    static SpinResolved1DM<Scalar> FromOrbital1DM(const Orbital1DM<Scalar>& D) {
 
-        const auto D_half = D / 2;
+        const SpinResolved1DMComponent<Scalar> D_half = D / 2;
         return SpinResolved1DM<Scalar>(D_half, D_half);
     }
 
 
     /*
-     *  PUBLIC METHODS
+     *  MARK: Conversions
      */
 
     /**
-     *  @return the alpha-alpha part of the spin-resolved 1-DM
-     */
-    const OneDM<Scalar>& alpha() const { return this->D_aa; }
-
-    /**
-     *  @return the beta-beta part of the spin-resolved 1-DM
-     */
-    const OneDM<Scalar>& beta() const { return this->D_bb; }
-
-    /**
-     * @return the norm of the generalized (spin-blocked) representation of the spin resolved one-DM
-     */
-
-    double norm() const {
-
-        const auto dim = this->alpha().numberOfOrbitals();
-        OneDM<double> generalized_density = OneDM<double>::Zero(dim * 2);
-
-        generalized_density.topLeftCorner(dim, dim) = this->alpha();
-        generalized_density.bottomRightCorner(dim, dim) = this->beta();
-
-        return generalized_density.norm();
-    }
-
-    /**
-     *  @param sigma            alpha or beta
+     *  @return This spin-resolved 1-DM as a generalized 1-DM (`G1DM`).
      * 
-     *  @return the number of orbitals (spinors or spin-orbitals, depending on the context) that correspond to the given spin
+     *  @note We cannot implement this as a named constructor on `G1DM` because we require `norm` to be implemented on `SpinResolved1DM` and that internally uses a `G1DM`, hence we have to avoid the circular dependency.
      */
-    size_t numberOfOrbitals(const Spin sigma) const {
+    G1DM<Scalar> generalized() const {
 
-        switch (sigma) {
-        case Spin::alpha: {
-            return this->alpha().numberOfOrbitals();
-        }
-        case Spin::beta: {
-            return this->beta().numberOfOrbitals();
-        }
-        }
-    }
+        // Determine the dimensions of the generalized, spin-blocked 1-DM.
+        const auto K_alpha = this->alpha().numberOfOrbitals();
+        const auto K_beta = this->beta().numberOfOrbitals();
+        const auto M = K_alpha + K_beta;
 
-    /**
-     *  @return the spin-density matrix, i.e. the difference between the alpha and beta 1-DM
-     */
-    OneDM<Scalar> spinDensity() const {
-        return this->alpha() - this->beta();
-    }
+        // The generalized 1-DM contains the alpha part in the top-left corner, and the beta part in the bottom right corner.
+        G1DM<Scalar> D_generalized = G1DM<Scalar>::Zero(M);
+        D_generalized.topLeftCorner(K_alpha, K_alpha) = this->alpha();
+        D_generalized.bottomRightCorner(K_beta, K_beta) = this->beta();
 
-    /**
-     *  @return the spin-summed density matrix, i.e. the sum of the alpha and beta 1-DM
-     */
-    Orbital1DM<Scalar> spinSummed() const {
-        return this->alpha() + this->beta();
-    }
-
-    /**
-     *  @param T_a          transformation matrix for the alpha component of the spin resolved 1-DM
-     *  @param T_b          transformation matrix for the beta component of the spin resolved 1-DM
-     * 
-     *  @return the transformed spin resolved density matrix, with each component transformed seperately t a different basis.
-     */
-    SpinResolved1DM<Scalar> transformed(const TransformationMatrix<double>& T_a, const TransformationMatrix<double>& T_b) const {
-        OneDM<Scalar> D_a_transformed = T_a.conjugate() * this->alpha() * T_a.transpose();
-        OneDM<Scalar> D_b_transformed = T_b.conjugate() * this->beta() * T_b.transpose();
-
-        return SpinResolved1DM<Scalar> {D_a_transformed, D_b_transformed};
-    }
-
-    /**
-     *  @param T          transformation matrix for the alpha and beta component of the spin resolved 1-DM
-     * 
-     *  @return the transformed spin resolved density matrix, with each component transformed to the same basis.
-     */
-    SpinResolved1DM<Scalar> transform(const TransformationMatrix<double>& T) const {
-        return this->transform(T, T);
+        return D_generalized;
     }
 
 
     /*
-     *  MARK: Vector space arithmetic
+     *  MARK: General information
+     */
+
+    /**
+     * @return The Frobenius norm of this spin-resolved 1-DM.
+     */
+    double norm() const { return this->generalized().norm(); }
+
+    /**
+     *  @param sigma            Alpha or beta.
+     * 
+     *  @return The number of orbitals (spinors or spin-orbitals, depending on the context) that correspond to the given spin.
+     */
+    size_t numberOfOrbitals(const Spin sigma) const { return this->component(sigma).numberOfOrbitals(); }
+
+
+    /*
+     *  MARK: Spin-related operations
+     */
+
+    /**
+     *  @return The spin-density matrix, i.e. the difference between the alpha and beta 1-DM.
+     */
+    SpinDensity1DM<Scalar> spinDensity() const {
+        return this->alpha() - this->beta();
+    }
+
+    /**
+     *  @return The orbital density matrix, i.e. the sum of the alpha and beta 1-DM.
+     */
+    Orbital1DM<Scalar> orbitalDensity() const {
+        return this->alpha() + this->beta();
+    }
+
+
+    /*
+     *  MARK: Conforming to `BasisTransformable`
+     */
+
+    /**
+     *  Apply the basis transformation and return the result.
+     * 
+     *  @param transformation_matrix        The type that encapsulates the basis transformation coefficients.
+     * 
+     *  @return The basis-transformed object.
+     */
+    SpinResolved1DM<Scalar> transformed(const UTransformationMatrix<Scalar>& transformation_matrix) const override {
+
+        auto result = *this;
+
+        // Transform the components with the components of the transformation matrix.
+        result.alpha().transform(transformation_matrix.alpha());
+        result.beta().transform(transformation_matrix.beta());
+
+        return result;
+    }
+
+
+    /*
+     *  MARK: Conforming to `VectorSpaceArithmetic`
      */
 
     /**
@@ -172,35 +171,39 @@ public:
      */
     Self& operator+=(const Self& rhs) override {
 
-        auto D_sum_a = this->alpha();
-        auto D_sum_b = this->beta();
-
-        D_sum_a += rhs.alpha();
-        D_sum_b += rhs.beta();
-
-        this->D_aa = D_sum_a;
-        this->D_bb = D_sum_b;
+        // For addition, the alpha- and beta-parts should be added component-wise.
+        this->alpha() += rhs.alpha();
+        this->beta() += rhs.beta();
 
         return *this;
     }
 
-
     /**
-     *  Scalar multiplication-assignment.
+     *  Scalar multiplication-assignment
      */
     Self& operator*=(const Scalar& a) override {
 
-        auto D_a = this->alpha();
-        auto D_b = this->beta();
-
-        D_a *= a;
-        D_b *= a;
-
-        this->D_aa = D_a;
-        this->D_bb = D_b;
+        // For scalar multiplication, the alpha- and beta-parts should be multiplied with the scalar.
+        this->alpha() *= a;
+        this->beta() *= a;
 
         return *this;
     }
+};
+
+
+/*
+ *  MARK: BasisTransformableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
+ */
+template <typename Scalar>
+struct BasisTransformableTraits<SpinResolved1DM<Scalar>> {
+
+    // The type of the transformation matrix that is naturally related to SpinResolved1DM.
+    using TM = UTransformationMatrix<Scalar>;
 };
 
 

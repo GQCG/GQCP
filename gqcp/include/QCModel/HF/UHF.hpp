@@ -19,7 +19,6 @@
 
 
 #include "Basis/Transformations/TransformationMatrix.hpp"
-#include "DensityMatrix/OneDM.hpp"
 #include "DensityMatrix/SpinResolved1DM.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
@@ -138,7 +137,7 @@ public:
      *
      *  @return the UHF electronic energy for the sigma electrons
      */
-    static double calculateElectronicEnergy(const OneDM<Scalar>& P_sigma, const ScalarSQOneElectronOperator<Scalar>& H_core_sigma, const ScalarSQOneElectronOperator<Scalar>& F_sigma) {
+    static double calculateElectronicEnergy(const SpinResolved1DMComponent<Scalar>& P_sigma, const ScalarSQOneElectronOperator<Scalar>& H_core_sigma, const ScalarSQOneElectronOperator<Scalar>& F_sigma) {
 
         // First, calculate the sum of H_core and F (this saves a contraction).
         const ScalarSQOneElectronOperator<Scalar> Z_sigma = H_core_sigma + F_sigma;
@@ -167,7 +166,7 @@ public:
      * 
      *  @return the sigma-spin error matrix
      */
-    static SquareMatrix<Scalar> calculateError(const SquareMatrix<Scalar>& F_sigma, const OneDM<Scalar>& D_sigma, const SquareMatrix<Scalar>& S) {
+    static SquareMatrix<Scalar> calculateError(const SquareMatrix<Scalar>& F_sigma, const SpinResolved1DMComponent<Scalar>& D_sigma, const SquareMatrix<Scalar>& S) {
         return QCModel::RHF<Scalar>::calculateError(F_sigma, D_sigma, S);
     }
 
@@ -189,10 +188,10 @@ public:
         //    0  0  0  0  0
         //    0  0  0  0  0
 
-        OneDM<Scalar> D_MO_a = OneDM<Scalar>::Zero(K_a);
+        SpinResolved1DMComponent<Scalar> D_MO_a = SpinResolved1DMComponent<Scalar>::Zero(K_a);
         D_MO_a.topLeftCorner(N_a, N_a) = SquareMatrix<Scalar>::Identity(N_a);
 
-        OneDM<Scalar> D_MO_b = OneDM<Scalar>::Zero(K_b);
+        SpinResolved1DMComponent<Scalar> D_MO_b = SpinResolved1DMComponent<Scalar>::Zero(K_b);
         D_MO_b.topLeftCorner(N_b, N_b) = SquareMatrix<Scalar>::Identity(N_b);
 
         return SpinResolved1DM<Scalar> {D_MO_a, D_MO_b};
@@ -200,20 +199,22 @@ public:
 
 
     /**
-     *  @param C_a          the coefficient matrix that expresses the alpha spin-orbitals (as a column) in its underlying scalar basis
-     *  @param C_b          the coefficient matrix that expresses the beta spin-orbitals (as a column) in its underlying scalar basis
-     *  @param N_a          the number of alpha electrons, i.e. the number of occupied alpha spin-orbitals
-     *  @param N_b          the number of beta electrons, i.e. the number of occupied beta spin-orbitals
+     *  Calculate the UHF 1-DM expressed in the underlying scalar basis.
+     * 
+     *  @param C            The coefficient matrix that encapsulates the basis transformations to make the alpha- and beta-spin-orbitals in terms of the underlying scalar basis.
+     *  @param N_a          The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals.
+     *  @param N_b          The number of beta electrons, i.e. the number of occupied beta spin-orbitals.
      *
-     *  @return the spin resolved UHF 1-DM expressed in the underlying scalar basis
+     *  @return The UHF 1-DM expressed in the underlying scalar basis.
      */
-    static SpinResolved1DM<Scalar> calculateScalarBasis1DM(const TransformationMatrix<double>& C_a, const TransformationMatrix<double>& C_b, const size_t N_a, const size_t N_b) {
+    static SpinResolved1DM<Scalar> calculateScalarBasis1DM(const UTransformationMatrix<Scalar>& C, const size_t N_a, const size_t N_b) {
 
-        const auto K_a = C_a.numberOfOrbitals();
-        const auto K_b = C_b.numberOfOrbitals();
+        // Calculate the 1-DM in the spin-orbital basis, and transform to the underlying scalar basis.
+        const auto K_a = C.alpha().numberOfOrbitals();
+        const auto K_b = C.beta().numberOfOrbitals();
         const auto D_orthonormal = UHF<Scalar>::calculateOrthonormalBasis1DM(K_a, K_b, N_a, N_b);
 
-        return D_orthonormal.transformed(C_a, C_b);
+        return D_orthonormal.transformed(C.inverse());
     }
 
 
@@ -336,10 +337,12 @@ public:
 
         const auto C_a = this->coefficientMatrix(Spin::alpha);
         const auto C_b = this->coefficientMatrix(Spin::beta);
+        const UTransformationMatrix<Scalar> C {C_a, C_b};
+
         const auto N_a = this->numberOfElectrons(Spin::alpha);
         const auto N_b = this->numberOfElectrons(Spin::beta);
 
-        return UHF<Scalar>::calculateScalarBasis1DM(C_a, C_b, N_a, N_b);
+        return UHF<Scalar>::calculateScalarBasis1DM(C, N_a, N_b);
     }
 
 

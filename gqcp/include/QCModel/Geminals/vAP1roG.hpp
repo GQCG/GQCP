@@ -18,6 +18,8 @@
 #pragma once
 
 
+#include "DensityMatrix/Orbital1DM.hpp"
+#include "DensityMatrix/Orbital2DM.hpp"
 #include "Mathematical/Representation/ImplicitMatrixSlice.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCModel/Geminals/AP1roG.hpp"
@@ -55,7 +57,7 @@ public:
      *
      *  @return the AP1roG response 1-DM
      */
-    static OneDM<double> calculate1DM(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<double>& multipliers);
+    static Orbital1DM<double> calculate1DM(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<double>& multipliers);
 
     /**
      *  @param G                the AP1roG geminal coefficients
@@ -63,7 +65,7 @@ public:
      *
      *  @return the AP1roG response 2-DM
      */
-    static TwoDM<double> calculate2DM(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<double>& multipliers);
+    static Orbital2DM<double> calculate2DM(const AP1roGGeminalCoefficients& G, const ImplicitMatrixSlice<double>& multipliers);
 
     /**
      *  @param G                    the AP1roG geminal coefficients
@@ -111,12 +113,12 @@ public:
     /**
      *  @return the reponse one-electron density matrix for these vAP1roG parameters
      */
-    OneDM<double> calculate1DM() const { return vAP1roG::calculate1DM(this->G, this->multipliers); };
+    Orbital1DM<double> calculate1DM() const { return vAP1roG::calculate1DM(this->G, this->multipliers); };
 
     /**
      *  @return the reponse two-electron density matrix for these vAP1roG parameters
      */
-    TwoDM<double> calculate2DM() const { return vAP1roG::calculate2DM(this->G, this->multipliers); };
+    Orbital2DM<double> calculate2DM() const { return vAP1roG::calculate2DM(this->G, this->multipliers); };
 
     /**
      *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis

@@ -19,6 +19,7 @@
 
 
 #include "Basis/Transformations/GTransformationMatrix.hpp"
+#include "DensityMatrix/G1DM.hpp"
 #include "Operator/FirstQuantized/ElectronicSpinOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Utilities/aliases.hpp"
@@ -82,7 +83,7 @@ public:
      * 
      *  @return the GHF error matrix
      */
-    static SquareMatrix<Scalar> calculateError(const SquareMatrix<Scalar>& F, const OneDM<Scalar>& P, const SquareMatrix<Scalar>& S) {
+    static SquareMatrix<Scalar> calculateError(const SquareMatrix<Scalar>& F, const G1DM<Scalar>& P, const SquareMatrix<Scalar>& S) {
         return F * P * S - S * P * F;
     }
 
@@ -94,7 +95,7 @@ public:
      *
      *  @return the GHF electronic energy
      */
-    static double calculateElectronicEnergy(const OneDM<Scalar>& P, const ScalarSQOneElectronOperator<Scalar>& H_core, const ScalarSQOneElectronOperator<Scalar>& F) {
+    static double calculateElectronicEnergy(const G1DM<Scalar>& P, const ScalarSQOneElectronOperator<Scalar>& H_core, const ScalarSQOneElectronOperator<Scalar>& F) {
 
         // First, calculate the sum of H_core and F (this saves a contraction)
         ScalarSQOneElectronOperator<Scalar> Z = H_core + F;
@@ -123,7 +124,7 @@ public:
      *
      *  @return the GHF 1-DM expressed in the underlying scalar basis
      */
-    static OneDM<Scalar> calculateScalarBasis1DM(const GTransformationMatrix<double>& C, const size_t N) {
+    static G1DM<Scalar> calculateScalarBasis1DM(const GTransformationMatrix<double>& C, const size_t N) {
 
         const size_t M = C.dimension();
         const auto P_orthonormal = GHF<Scalar>::calculateOrthonormalBasis1DM(M, N);
@@ -143,15 +144,15 @@ public:
      * 
      *  @note The scalar bases for the alpha- and beta-components must be the same.
      */
-    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisDirectMatrix(const OneDM<Scalar>& P, const SQHamiltonian<Scalar>& sq_hamiltonian) {
+    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisDirectMatrix(const G1DM<Scalar>& P, const SQHamiltonian<Scalar>& sq_hamiltonian) {
 
         // To perform the contraction, we will first have to convert the density matrix into a Eigen::Tensor (since contractions are only implemented for tensors).
         // Since the two-electron integrals are spin-blocked (due to the nature of quantizing in a GSpinorBasis), the contractions must happen with a density matrix of the same dimension (M: the number of spinors). Therefore, we will construct a zero density matrix in which we only fill in one of the spin-blocks.
         const auto M = P.dimension();  // the total number of basis functions
-        OneDM<Scalar> P_aa = OneDM<Scalar>::Zero(M);
+        G1DM<Scalar> P_aa = G1DM<Scalar>::Zero(M);
         P_aa.topLeftCorner(M / 2, M / 2) = P.topLeftCorner(M / 2, M / 2);
 
-        OneDM<Scalar> P_bb = OneDM<Scalar>::Zero(M);
+        G1DM<Scalar> P_bb = G1DM<Scalar>::Zero(M);
         P_bb.bottomRightCorner(M / 2, M / 2) = P.bottomRightCorner(M / 2, M / 2);
 
         Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_aa_tensor {P_aa.data(), P_aa.rows(), P_aa.cols()};
@@ -181,22 +182,22 @@ public:
      * 
      *  @return the UHF direct (Coulomb) matrix for spin sigma
      */
-    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisExchangeMatrix(const OneDM<Scalar>& P, const SQHamiltonian<Scalar>& sq_hamiltonian) {
+    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisExchangeMatrix(const G1DM<Scalar>& P, const SQHamiltonian<Scalar>& sq_hamiltonian) {
 
         // To perform the contraction, we will first have to convert the density matrix into a Eigen::Tensor (since contractions are only implemented for tensors).
         // Since the two-electron integrals are spin-blocked (due to the nature of quantizing in a GSpinorBasis), the contractions must happen with a density matrix of the same dimension (M: the number of spinors). Therefore, we will construct a zero density matrix in which we only fill in one of the spin-blocks.
         const auto M = P.dimension();  // the total number of basis functions
 
-        OneDM<Scalar> P_aa = OneDM<Scalar>::Zero(M);
+        G1DM<Scalar> P_aa = G1DM<Scalar>::Zero(M);
         P_aa.topLeftCorner(M / 2, M / 2) = P.topLeftCorner(M / 2, M / 2);
 
-        OneDM<Scalar> P_ab = OneDM<Scalar>::Zero(M);
+        G1DM<Scalar> P_ab = G1DM<Scalar>::Zero(M);
         P_ab.topRightCorner(M / 2, M / 2) = P.topRightCorner(M / 2, M / 2);
 
-        OneDM<Scalar> P_ba = OneDM<Scalar>::Zero(M);
+        G1DM<Scalar> P_ba = G1DM<Scalar>::Zero(M);
         P_ba.bottomLeftCorner(M / 2, M / 2) = P.bottomLeftCorner(M / 2, M / 2);
 
-        OneDM<Scalar> P_bb = OneDM<Scalar>::Zero(M);
+        G1DM<Scalar> P_bb = G1DM<Scalar>::Zero(M);
         P_bb.bottomRightCorner(M / 2, M / 2) = P.bottomRightCorner(M / 2, M / 2);
 
 
@@ -237,7 +238,7 @@ public:
      *
      *  @return the GHF Fock matrix expressed in the scalar basis
      */
-    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(const OneDM<Scalar>& P, const SQHamiltonian<Scalar>& sq_hamiltonian) {
+    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(const G1DM<Scalar>& P, const SQHamiltonian<Scalar>& sq_hamiltonian) {
 
         const auto& H_core = sq_hamiltonian.core();
         const auto J = QCModel::GHF<Scalar>::calculateScalarBasisDirectMatrix(P, sq_hamiltonian);
@@ -253,7 +254,7 @@ public:
      *
      *  @return the GHF 1-DM expressed in an orthonormal spinor basis
      */
-    static OneDM<Scalar> calculateOrthonormalBasis1DM(const size_t M, const size_t N) {
+    static G1DM<Scalar> calculateOrthonormalBasis1DM(const size_t M, const size_t N) {
 
         // The 1-DM for GHF looks like (for M=5, N=3)
         //    1  0  0  0  0
@@ -262,7 +263,7 @@ public:
         //    0  0  0  0  0
         //    0  0  0  0  0
 
-        OneDM<Scalar> D_MO = OneDM<Scalar>::Zero(M);
+        G1DM<Scalar> D_MO = G1DM<Scalar>::Zero(M);
         D_MO.topLeftCorner(N, N) = SquareMatrix<Scalar>::Identity(N);
 
         return D_MO;
@@ -334,7 +335,7 @@ public:
     /**
      *  @return the 1-DM expressed in an orthonormal spinor basis related to these optimal GHF parameters
      */
-    OneDM<Scalar> calculateOrthonormalBasis1DM() const {
+    G1DM<Scalar> calculateOrthonormalBasis1DM() const {
 
         const auto M = this->numberOfSpinors();
         const auto N = this->numberOfElectrons();
@@ -345,7 +346,7 @@ public:
     /**
      *  @return the GHF 1-DM in the scalar/AO basis related to these optimal GHF parameters
      */
-    OneDM<Scalar> calculateScalarBasis1DM() const {
+    G1DM<Scalar> calculateScalarBasis1DM() const {
 
         const auto N = this->numberOfElectrons();
         return GHF<Scalar>::calculateScalarBasis1DM(this->coefficientMatrix(), N);

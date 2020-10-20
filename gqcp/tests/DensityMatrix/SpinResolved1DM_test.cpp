@@ -61,5 +61,5 @@ BOOST_AUTO_TEST_CASE(trace) {
 
     BOOST_CHECK(std::abs(D.alpha().trace() - N_alpha) < 1.0e-12);
     BOOST_CHECK(std::abs(D.beta().trace() - N_beta) < 1.0e-12);
-    BOOST_CHECK(std::abs(D.spinSummed().trace() - (N_alpha + N_beta)) < 1.0e-12);
+    BOOST_CHECK(std::abs(D.orbitalDensity().trace() - (N_alpha + N_beta)) < 1.0e-12);
 }

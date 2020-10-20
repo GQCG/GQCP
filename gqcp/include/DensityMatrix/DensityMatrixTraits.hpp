@@ -15,38 +15,17 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "DensityMatrix/TwoDM.hpp"
-
-#include <pybind11/eigen.h>
-#include <pybind11/pybind11.h>
+#pragma once
 
 
-namespace py = pybind11;
+namespace GQCP {
 
 
-namespace gqcpy {
+/**
+ *  A type that provides compile-time information on density matrices that is otherwise not accessible through a public class alias.
+ */
+template <typename DensityMatrix>
+class DensityMatrixTraits {};
 
 
-void bindTwoDM(py::module& module) {
-
-    py::class_<GQCP::TwoDM<double>>(module, "TwoDM", "A two-particle density matrix")
-
-        // PUBLIC METHODS
-
-        .def(
-            "reduce",
-            [](const GQCP::TwoDM<double>& d) {
-                return d.reduce();
-            },
-            "Return a partial contraction of the 2-DM, where D(p,q) = d(p,q,r,r).")
-
-        .def(
-            "trace",
-            [](const GQCP::TwoDM<double>& d) {
-                return d.trace();
-            },
-            "Return the trace of the 2-DM, i.e. d(p,p,q,q).");
-}
-
-
-}  // namespace gqcpy
+}  // namespace GQCP

@@ -28,28 +28,32 @@ namespace gqcpy {
 
 
 void bindSpinResolvedOneDM(py::module& module) {
-    py::class_<GQCP::SpinResolved1DM<double>>(module, "SpinResolved1DM", "A class that represents a spin resolved one DM.")
+    py::class_<GQCP::SpinResolved1DM<double>>(module, "SpinResolved1DM", "A class that represents a spin resolved 1-DM.")
 
         // CONSTRUCTORS
 
         .def_static(
-            "fromRestricted",
+            "FromOrbital1DM",
             [](const Eigen::MatrixXd& D) {
-                return GQCP::SpinResolved1DM<double>::FromRestricted(GQCP::OneDM<double> {D});
+                return GQCP::SpinResolved1DM<double>::FromOrbital1DM(GQCP::Orbital1DM<double> {D});
             },
-            "Return a spin resolved One DM created from a restricted basis.")
+            "Return a spin resolved 1-DM created from an orbital 1-DM.")
 
         // PUBLIC METHODS
 
         .def(
             "alpha",
-            &GQCP::SpinResolved1DM<double>::alpha,
-            "Return the alpha part of the spin resolved One DM.")
+            [](const GQCP::SpinResolved1DM<double>& D) {
+                return D.alpha();
+            },
+            "Return the alpha part of the spin resolved 1-DM.")
 
         .def(
             "beta",
-            &GQCP::SpinResolved1DM<double>::beta,
-            "Return the beta part of the spin resolved one DM.")
+            [](const GQCP::SpinResolved1DM<double>& D) {
+                return D.beta();
+            },
+            "Return the beta part of the spin resolved 1-DM.")
 
         .def(
             "numberOfOrbitals",
@@ -65,9 +69,9 @@ void bindSpinResolvedOneDM(py::module& module) {
             "Return the spin-density matrix, i.e. the difference between the alpha and beta 1-DM.")
 
         .def(
-            "spinSummed",
-            &GQCP::SpinResolved1DM<double>::spinSummed,
-            "Return the spin-summed density matrix, i.e. the sum of the alpha and beta 1-DM.");
+            "orbitalDensity",
+            &GQCP::SpinResolved1DM<double>::orbitalDensity,
+            "Return the orbital density matrix, i.e. the sum of the alpha and beta 1-DM.");
 }
 
 }  // namespace gqcpy

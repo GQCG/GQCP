@@ -137,6 +137,22 @@ public:
     }
 
 
+    /**
+     *  Initialize a square rank-four tensor to zero.
+     * 
+     *  @param dim          The dimension of each rank of the rank-four tensor.
+     * 
+     *  @return A square rank-four tensor initialized to all zeros.
+     */
+    static Self Zero(const size_t dim) {
+
+        Self T {dim};  // Random initialization happens here.
+        T.setZero();
+
+        return T;
+    }
+
+
     /*
      *  OPERATORS
      */

@@ -21,7 +21,7 @@
 #include "Basis/Transformations/JacobiRotationParameters.hpp"
 #include "Basis/Transformations/TransformationMatrix.hpp"
 #include "DensityMatrix/OneDM.hpp"
-#include "DensityMatrix/SpinResolvedTwoDM.hpp"
+#include "DensityMatrix/SpinResolved2DM.hpp"
 #include "DensityMatrix/TwoDM.hpp"
 #include "Mathematical/Representation/QCRankFourTensor.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
@@ -177,7 +177,7 @@ public:
      *
      *  @return the expectation values of all the components of the two-electron operator, with the given 2-DMs: this includes the prefactor 1/2
      */
-    Vector<Scalar, Components> calculateExpectationValue(const SpinResolvedTwoDM<Scalar>& d) const {
+    Vector<Scalar, Components> calculateExpectationValue(const SpinResolved2DM<Scalar>& d) const {
 
         if ((this->numberOfOrbitals(Spin::alpha, Spin::alpha) != d.numberOfOrbitals(Spin::alpha, Spin::alpha)) ||
             (this->numberOfOrbitals(Spin::alpha, Spin::beta) != d.numberOfOrbitals(Spin::alpha, Spin::beta)) ||

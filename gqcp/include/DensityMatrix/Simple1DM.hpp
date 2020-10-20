@@ -26,24 +26,13 @@ namespace GQCP {
 
 
 /*
- *  MARK: DensityMatrixTraits
- */
-
-/**
- *  A type that provides compile-time information on density matrices that is otherwise not accessible through a public class alias.
- */
-template <typename DensityMatrix>
-class DensityMatrixTraits {};
-
-
-/*
  *  MARK: Simple1DM implementation
  */
 
 /**
  *  A one-electron density matrix that is described by a single matrix.
  * 
- *  This class is used as a base class for `Orbital1DM` and `G1DM`, since they are both expressed using a single matrix, as opposed to `U1DM`, which uses separate alpha- and beta- matrices. The word 'simple' is used here as an antonym for 'compound'.
+ *  This class is used as a base class for `Orbital1DM` and `G1DM`, since they are both expressed using a single matrix, as opposed to `SpinResolved1DM`, which uses separate alpha- and beta- matrices. The word 'simple' is used here as an antonym for 'compound'.
  * 
  *  @tparam _Scalar                 The scalar type used for a density matrix element: real or complex.
  *  @tparam _DerivedDM              The type of the density matrix that derives from this class, enabling CRTP and compile-time polymorphism.
@@ -51,7 +40,7 @@ class DensityMatrixTraits {};
 template <typename _Scalar, typename _DerivedDM>
 class Simple1DM:
     public SquareMatrix<_Scalar>,
-    public BasisTransformable<Simple1DM<_Scalar, _DerivedDM>, typename DensityMatrixTraits<_DerivedDM>::TM> {
+    public BasisTransformable<Simple1DM<_Scalar, _DerivedDM>> {
 public:
     // The scalar type used for a density matrix element: real or complex.
     using Scalar = _Scalar;
@@ -96,6 +85,21 @@ public:
 
         return Self(transformation_matrix.inverse().conjugate() * (*this) * transformation_matrix.inverse().transpose());  // Note that this basis transformation formula is different from the one-electron operator one. See SimpleSQOneElectronOperator.
     }
+};
+
+
+/*
+ *  MARK: BasisTransformableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
+ */
+template <typename Scalar, typename DerivedDM>
+struct BasisTransformableTraits<Simple1DM<Scalar, DerivedDM>> {
+
+    // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix"
+    using TM = typename DensityMatrixTraits<DerivedDM>::TM;
 };
 
 

@@ -416,7 +416,7 @@ BOOST_AUTO_TEST_CASE(spin_resolved_vs_spin_resolved_selected_DMs) {
     const auto D_specialized = linear_expansion_specialized.calculateSpinResolved1DM();
     const auto D_selected = linear_expansion_selected.calculateSpinResolved1DM();
 
-    BOOST_CHECK(D_specialized.spinSummed().isApprox(D_selected.spinSummed(), 1.0e-12));
+    BOOST_CHECK(D_specialized.orbitalDensity().isApprox(D_selected.orbitalDensity(), 1.0e-12));
     BOOST_CHECK(D_specialized.alpha().isApprox(D_selected.alpha(), 1.0e-12));
     BOOST_CHECK(D_specialized.beta().isApprox(D_selected.beta(), 1.0e-12));
 
@@ -429,7 +429,7 @@ BOOST_AUTO_TEST_CASE(spin_resolved_vs_spin_resolved_selected_DMs) {
     BOOST_CHECK(d_specialized.alphaBeta().isApprox(d_selected.alphaBeta(), 1.0e-12));
     BOOST_CHECK(d_specialized.betaAlpha().isApprox(d_selected.betaAlpha(), 1.0e-12));
     BOOST_CHECK(d_specialized.betaBeta().isApprox(d_selected.betaBeta(), 1.0e-12));
-    BOOST_CHECK(d_specialized.spinSummed().isApprox(d_selected.spinSummed(), 1.0e-12));
+    BOOST_CHECK(d_specialized.orbitalDensity().isApprox(d_selected.orbitalDensity(), 1.0e-12));
 }
 
 
@@ -469,7 +469,7 @@ BOOST_AUTO_TEST_CASE(seniority_zero_vs_spin_resolved_selected_DMs) {
     const auto D_specialized = linear_expansion_specialized.calculateSpinResolved1DM();
     const auto D_selected = linear_expansion_selected.calculateSpinResolved1DM();
 
-    BOOST_CHECK(D_specialized.spinSummed().isApprox(D_selected.spinSummed(), 1.0e-12));
+    BOOST_CHECK(D_specialized.orbitalDensity().isApprox(D_selected.orbitalDensity(), 1.0e-12));
     BOOST_CHECK(D_specialized.alpha().isApprox(D_selected.alpha(), 1.0e-12));
     BOOST_CHECK(D_specialized.beta().isApprox(D_selected.beta(), 1.0e-12));
 
@@ -482,5 +482,5 @@ BOOST_AUTO_TEST_CASE(seniority_zero_vs_spin_resolved_selected_DMs) {
     BOOST_CHECK(d_specialized.alphaBeta().isApprox(d_selected.alphaBeta(), 1.0e-12));
     BOOST_CHECK(d_specialized.betaAlpha().isApprox(d_selected.betaAlpha(), 1.0e-12));
     BOOST_CHECK(d_specialized.betaBeta().isApprox(d_selected.betaBeta(), 1.0e-12));
-    BOOST_CHECK(d_specialized.spinSummed().isApprox(d_selected.spinSummed(), 1.0e-12));
+    BOOST_CHECK(d_specialized.orbitalDensity().isApprox(d_selected.orbitalDensity(), 1.0e-12));
 }

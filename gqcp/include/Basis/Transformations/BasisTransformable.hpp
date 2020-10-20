@@ -24,16 +24,36 @@
 namespace GQCP {
 
 
+/*
+ *  MARK: BasisTransformableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
+ * 
+ *  @tparam T       The type that should conform to `BasisTransformable`.
+ */
+template <typename T>
+struct BasisTransformableTraits {};
+
+
+/*
+ *  MARK: BasisTransformable
+ */
+
 /**
  *  An (abstract) interface for types that may be transformed from one orbital basis to another.
  * 
  *  In general, we adopt the convention outlined in (https://gqcg-res.github.io/knowdes/spinor-transformations.html), where the new orbitals' coefficients can be found in the respective **column** of the related transformation matrix.
  * 
  *  @param T        The type that should be basis-transformable. It is given as a template argument, enabling CRTP.
- *  @param TM       The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix"
  */
-template <typename T, typename TM>
+template <typename T>
 class BasisTransformable {
+public:
+    // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix"
+    using TM = typename BasisTransformableTraits<T>::TM;
+
 public:
     /*
      *  MARK: Pure virtual methods

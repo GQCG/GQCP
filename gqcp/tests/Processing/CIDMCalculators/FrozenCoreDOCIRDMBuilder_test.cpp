@@ -52,7 +52,7 @@ BOOST_AUTO_TEST_CASE(FrozenCoreDOCI_one_DMs) {
     GQCP::SpinResolved1DM<double> one_DMs_s = sci_rdm.calculateSpinResolved1DM(coef);
     GQCP::SpinResolved1DM<double> one_DMs = doci_rdm.calculateSpinResolved1DM(coef);
 
-    BOOST_CHECK(one_DMs_s.spinSummed().isApprox(one_DMs.spinSummed()));
+    BOOST_CHECK(one_DMs_s.orbitalDensity().isApprox(one_DMs.orbitalDensity()));
     BOOST_CHECK(one_DMs_s.alpha().isApprox(one_DMs.alpha()));
     BOOST_CHECK(one_DMs_sbeta().isApprox(one_DMs.beta()));
 }
@@ -80,12 +80,12 @@ BOOST_AUTO_TEST_CASE(FrozenCoreDOCI_two_DMs) {
     // Get the frozen core DOCI and SelectedCI 2-DMs
     GQCP::SpinResolvedSelectedDMCalculator sci_rdm {selected_fock_space};
     GQCP::FrozenCoreDOCIRDMBuilder doci_rdm {fock_space};
-    GQCP::SpinResolvedTwoDM<double> two_DMs_s = sci_rdm.calculateSpinResolved2DM(coef);
-    GQCP::SpinResolvedTwoDM<double> two_DMs = doci_rdm.calculateSpinResolved2DM(coef);
+    GQCP::SpinResolved2DM<double> two_DMs_s = sci_rdm.calculateSpinResolved2DM(coef);
+    GQCP::SpinResolved2DM<double> two_DMs = doci_rdm.calculateSpinResolved2DM(coef);
 
     BOOST_CHECK(two_DMs_s.alphaAlpha().isApprox(two_DMs.alphaAlpha(), 1.0e-06));
     BOOST_CHECK(two_DMs_s.alphaBeta().isApprox(two_DMs.alphaBeta(), 1.0e-06));
     BOOST_CHECK(two_DMs_s.betaAlpha().isApprox(two_DMs.betaAlpha(), 1.0e-06));
     BOOST_CHECK(two_DMs_s.betaBeta().isApprox(two_DMs.betaBeta(), 1.0e-06));
-    BOOST_CHECK(two_DMs_s.spinSummed().isApprox(two_DMs.spinSummed(), 1.0e-06));
+    BOOST_CHECK(two_DMs_s.orbitalDensity().isApprox(two_DMs.orbitalDensity(), 1.0e-06));
 }

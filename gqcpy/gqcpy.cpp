@@ -95,10 +95,10 @@ void bindUSQHamiltonian(py::module& module);
 
 
 // Processing - DensityMatrices
-void bindOneDM(py::module& module);
+void bindOrbital1DM(py::module& module);
 void bindSpinResolvedOneDM(py::module& module);
-void bindSpinResolvedTwoDM(py::module& module);
-void bindTwoDM(py::module& module);
+void bindSpinResolved2DM(py::module& module);
+void bindOrbital2DM(py::module& module);
 
 
 // Processing - Properties
@@ -261,10 +261,10 @@ PYBIND11_MODULE(gqcpy, module) {
 
 
     // Processing - DensityMatrices
-    gqcpy::bindOneDM(module);
+    gqcpy::bindOrbital1DM(module);
     gqcpy::bindSpinResolvedOneDM(module);
-    gqcpy::bindSpinResolvedTwoDM(module);
-    gqcpy::bindTwoDM(module);
+    gqcpy::bindSpinResolved2DM(module);
+    gqcpy::bindOrbital2DM(module);
 
 
     // Processing - Properties

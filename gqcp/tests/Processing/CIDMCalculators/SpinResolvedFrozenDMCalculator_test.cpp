@@ -62,7 +62,7 @@ BOOST_AUTO_TEST_CASE(FrozenCoreFCI_one_DMs) {
     const GQCP::SpinResolvedSelectedDMCalculator selected_dm_calculator {selected_onv_basis};
     const auto one_DMs_selected = selected_dm_calculator.calculateSpinResolved1DM(linear_expansion.coefficients());
 
-    BOOST_CHECK(one_DMs_specialized.spinSummed().isApprox(one_DMs_selected.spinSummed(), 1.0e-12));
+    BOOST_CHECK(one_DMs_specialized.orbitalDensity().isApprox(one_DMs_selected.orbitalDensity(), 1.0e-12));
     BOOST_CHECK(one_DMs_specialized.alpha().isApprox(one_DMs_selected.alpha(), 1.0e-12));
     BOOST_CHECK(one_DMs_specialized.beta().isApprox(one_DMs_selected.beta(), 1.0e-12));
 
@@ -75,5 +75,5 @@ BOOST_AUTO_TEST_CASE(FrozenCoreFCI_one_DMs) {
     BOOST_CHECK(two_DMs_specialized.alphaBeta().isApprox(two_DMs_selected.alphaBeta(), 1.0e-12));
     BOOST_CHECK(two_DMs_specialized.betaAlpha().isApprox(two_DMs_selected.betaAlpha(), 1.0e-12));
     BOOST_CHECK(two_DMs_specialized.betaBeta().isApprox(two_DMs_selected.betaBeta(), 1.0e-12));
-    BOOST_CHECK(two_DMs_specialized.spinSummed().isApprox(two_DMs_selected.spinSummed(), 1.0e-12));
+    BOOST_CHECK(two_DMs_specialized.orbitalDensity().isApprox(two_DMs_selected.orbitalDensity(), 1.0e-12));
 }
