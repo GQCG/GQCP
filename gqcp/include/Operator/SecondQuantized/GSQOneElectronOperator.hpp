@@ -44,7 +44,7 @@ public:
     // The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
     using Vectorizer = _Vectorizer;
 
-    // The spinor tag corresponding to an `RSQOneElectronOperator`.
+    // The spinor tag corresponding to a `GSQOneElectronOperator`.
     using SpinorTag = GeneralSpinorTag;
 
 public:
