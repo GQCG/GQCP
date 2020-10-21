@@ -23,6 +23,7 @@
 #include "DensityMatrix/Orbital2DM.hpp"
 #include "Mathematical/Representation/DenseVectorizer.hpp"
 #include "Operator/SecondQuantized/SimpleSQOneElectronOperator.hpp"
+#include "Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp"
 #include "QuantumChemical/spinor_tags.hpp"
 
 
@@ -56,6 +57,27 @@ public:
 
     // Inherit `SimpleSQOneElectronOperator`'s constructors.
     using SimpleSQOneElectronOperator<_Scalar, _Vectorizer, RSQOneElectronOperator<_Scalar, _Vectorizer>>::SimpleSQOneElectronOperator;
+
+
+    /*
+     *  MARK: Conversions to spin components
+     */
+
+    // TODO: Implement 'unrestricted() const'
+
+    /**
+     *  @return The alpha-component of this restricted one-electron operator.
+     */
+    USQOneElectronOperatorComponent<Scalar, Vectorizer> alpha() const {
+
+        // Since f_pq = f_{p alpha, q alpha}, we can just wrap the one-electron integrals (and, by extension, *this) into the correct class.
+        return USQOneElectronOperatorComponent<Scalar, Vectorizer> {*this};
+    }
+
+    /*
+     *  @return The beta-component of this restricted one-electron operator.
+     */
+    USQOneElectronOperatorComponent<Scalar, Vectorizer> beta() const { return this->alpha(); /* The alpha- and beta- integrals are equal for a restricted operator. */ }
 };
 
 

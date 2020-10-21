@@ -142,8 +142,8 @@ SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const ScalarRSQ
     auto dim_alpha = onv_basis_alpha.dimension();
     auto dim_beta = onv_basis_beta.dimension();
 
-    auto beta_evaluation = onv_basis_beta.evaluateOperatorDense(one_op, diagonal_values);
-    auto alpha_evaluation = onv_basis_alpha.evaluateOperatorDense(one_op, diagonal_values);
+    auto beta_evaluation = onv_basis_beta.evaluateOperatorDense(one_op.alpha(), diagonal_values);
+    auto alpha_evaluation = onv_basis_alpha.evaluateOperatorDense(one_op.beta(), diagonal_values);
 
     // BETA separated evaluations
     for (size_t i = 0; i < dim_alpha; i++) {

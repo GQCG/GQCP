@@ -81,6 +81,14 @@ private:
 
 public:
     /*
+     *  MARK: Constructors
+     */
+
+    // Inherit `SQOperatorStorage`'s constructors.
+    using SQOperatorStorage<QCRankFourTensor<Scalar>, Vectorizer, SimpleSQTwoElectronOperator<Scalar, Vectorizer, DerivedOperator>>::SQOperatorStorage;
+
+
+    /*
      *  MARK: Calculations
      */
 
