@@ -20,6 +20,7 @@
 
 #include "Basis/Transformations/RTransformationMatrix.hpp"
 #include "DensityMatrix/Orbital1DM.hpp"
+#include "DensityMatrix/Orbital2DM.hpp"
 #include "Mathematical/Representation/DenseVectorizer.hpp"
 #include "Operator/SecondQuantized/SimpleSQOneElectronOperator.hpp"
 #include "QuantumChemical/spinor_tags.hpp"
@@ -36,7 +37,7 @@ namespace GQCP {
  */
 template <typename _Scalar, typename _Vectorizer>
 class RSQOneElectronOperator:
-    public SimpleSQTwoElectronOperator<_Scalar, _Vectorizer, RSQOneElectronOperator<_Scalar, _Vectorizer>> {
+    public SimpleSQOneElectronOperator<_Scalar, _Vectorizer, RSQOneElectronOperator<_Scalar, _Vectorizer>> {
 public:
     // The scalar type used for a single parameter: real or complex.
     using Scalar = _Scalar;
@@ -98,8 +99,11 @@ struct OperatorTraits<RSQOneElectronOperator<Scalar, Vectorizer>> {
     // The type of transformation matrix that is naturally associated to a restricted one-electron operator.
     using TM = RTransformationMatrix<Scalar>;
 
-    // The type of the one-particle density matrix that is naturally associated to the derived one-electron operator.
+    // The type of the one-particle density matrix that is naturally associated a restricted one-electron operator.
     using OneDM = Orbital1DM<Scalar>;
+
+    // The type of the two-particle density matrix that is naturally associated a restricted one-electron operator.
+    using TwoDM = Orbital2DM<Scalar>;
 };
 
 

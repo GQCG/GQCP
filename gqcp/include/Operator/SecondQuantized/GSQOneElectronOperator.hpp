@@ -20,6 +20,7 @@
 
 #include "Basis/Transformations/GTransformationMatrix.hpp"
 #include "DensityMatrix/G1DM.hpp"
+#include "DensityMatrix/G2DM.hpp"
 #include "Mathematical/Representation/DenseVectorizer.hpp"
 #include "Operator/SecondQuantized/SimpleSQOneElectronOperator.hpp"
 #include "QuantumChemical/spinor_tags.hpp"
@@ -97,8 +98,11 @@ struct OperatorTraits<GSQOneElectronOperator<Scalar, Vectorizer>> {
     // The type of transformation matrix that is naturally associated to a general(ized) one-electron operator.
     using TM = GTransformationMatrix<Scalar>;
 
-    // The type of density matrix that is naturally associated to a general(ized) one-electron operator.
+    // The type of the one-particle density matrix that is naturally associated to a general(ized) one-electron operator.
     using OneDM = G1DM<Scalar>;
+
+    // The type of the two-particle density matrix that is naturally associated a restricted one-electron operator.
+    using TwoDM = G2DM<Scalar>;
 };
 
 

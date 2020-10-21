@@ -22,6 +22,7 @@
 #include "DensityMatrix/Orbital1DM.hpp"
 #include "DensityMatrix/Orbital2DM.hpp"
 #include "Mathematical/Representation/DenseVectorizer.hpp"
+#include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp"
 #include "QuantumChemical/spinor_tags.hpp"
 
@@ -94,7 +95,10 @@ template <typename Scalar, typename Vectorizer>
 struct OperatorTraits<RSQTwoElectronOperator<Scalar, Vectorizer>> {
 
     // A type that corresponds to the scalar version of the associated restricted two-electron operator type.
-    using ScalarOperator = ScalarGSQTwoElectronOperator<Scalar>;
+    using ScalarOperator = ScalarRSQTwoElectronOperator<Scalar>;
+
+    // The type of one-electron operator that is naturally related to a restricted two-electron operator.
+    using SQOneElectronOperator = RSQTwoElectronOperator<Scalar, Vectorizer>;
 
     // The type of transformation matrix that is naturally associated to a restricted two-electron operator.
     using TM = RTransformationMatrix<Scalar>;

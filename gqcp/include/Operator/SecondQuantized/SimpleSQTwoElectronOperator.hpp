@@ -52,11 +52,14 @@ public:
     // The type of the operator that derives from this class, enabling CRTP and compile-time polymorphism.
     using DerivedOperator = _DerivedOperator;
 
+    // The type of 'this'.
+    using Self = SimpleSQTwoElectronOperator<Scalar, Vectorizer, DerivedOperator>;
+
     // The matrix representation of the parameters of (one of the components of) the two-electron operator.
     using MatrixRepresentation = QCRankFourTensor<Scalar>;
 
     // The type of one-electron operator that is naturally related to the derived two-electron operator.
-    using DerivedSQOneElectronOperator = typename OperatorTraits<DerivedOperator>::SQOneElectronOperator_Placeholder;
+    using DerivedSQOneElectronOperator = typename OperatorTraits<DerivedOperator>::SQOneElectronOperator;
 
     // The type of the one-particle density matrix that is naturally associated to the derived two-electron operator.
     using Derived1DM = typename OperatorTraits<DerivedOperator>::OneDM;
@@ -88,10 +91,10 @@ public:
      *
      *  @return The expectation values of all the components of the two-electron operator, with the given 2-DM.
      */
-    StorageArray<Scalar, Vectorizer> calculateExpectationValue(const TwoDM& d) const {
+    StorageArray<Scalar, Vectorizer> calculateExpectationValue(const Derived2DM& d) const {
 
         if (this->numberOfOrbitals() != d.numberOfOrbitals()) {
-            throw std::invalid_argument("SimpleSQTwoElectronOperator::calculateExpectationValue(const TwoDM&): The given 2-DM's dimension is not compatible with the two-electron operator.");
+            throw std::invalid_argument("SimpleSQTwoElectronOperator::calculateExpectationValue(const Derived2DM&): The given 2-DM's dimension is not compatible with the two-electron operator.");
         }
 
 
@@ -197,7 +200,7 @@ public:
         for (size_t i = 0; i < this->numberOfComponents(); i++) {
 
             const auto& g_i = parameters[i];  // The matrix representation of the parameters of the i-th component.
-            const auto& F_i = Fs[i];          // The Fockian matrix of the i-th component.
+            const auto& F_i = F_vector[i];    // The Fockian matrix of the i-th component.
 
             // Calculate the super-Fockian matrix for every component and add it to the array. Add factors 1/2 to accommodate for response density matrices.
             SquareRankFourTensor<Scalar> G_i {this->numberOfOrbitals()};
@@ -240,7 +243,7 @@ public:
         const auto& g = this->allParameters();  // The parameters of this two-electron operator, as a vector.
 
         const auto K = this->numberOfOrbitals();
-        auto DerivedSQOneElectronOperator k_op = DerivedSQOneElectronOperator::Zero(K);  // 'op' for operator.
+        DerivedSQOneElectronOperator k_op = DerivedSQOneElectronOperator::Zero(K);  // 'op' for operator.
         auto& k = k_op.allParameters();
 
         // A KISS-implementation of the elements of the one-electron partition.

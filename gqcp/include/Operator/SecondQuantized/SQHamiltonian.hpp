@@ -29,11 +29,18 @@
 #include "Molecule/Molecule.hpp"
 #include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 #include "Operator/FirstQuantized/OverlapOperator.hpp"
+#include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
+#include "Operator/SecondQuantized/GSQTwoElectronOperator.hpp"
 #include "Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp"
+#include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
+#include "Operator/SecondQuantized/RSQTwoElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
 #include "Utilities/miscellaneous.hpp"
 #include "Utilities/type_traits.hpp"
+
+#include <numeric>
+#include <vector>
 
 
 namespace GQCP {
@@ -557,10 +564,6 @@ namespace GQCP {
 // };
 
 
-#include <numeric>
-#include <vector>
-
-
 /*
  *  MARK: SQHamiltonian
  */
@@ -598,10 +601,13 @@ public:
     using Self = SQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>;
 
     // The 1-DM that is naturally associated with the one-electron operator underlying this Hamiltonian.
-    using OneDM_Placeholder = typename OperatorTraits<Self>::OneDM_Placeholder;
+    using OneDM_Placeholder = typename OperatorTraits<Self>::OneDM;
 
     // The 2-DM that is naturally associated with the two-electron operator underlying this Hamiltonian.
-    using TwoDM_Placeholder = typename OperatorTraits<Self>::TwoDM_Placeholder;
+    using TwoDM_Placeholder = typename OperatorTraits<Self>::TwoDM;
+
+    // The type of transformation matrix that is naturally associated to the Hamiltonian.
+    using TM = typename OperatorTraits<ScalarSQOneElectronOperator_Placeholder>::TM;
 
 
 private:
@@ -681,7 +687,7 @@ public:
      *  @note This named constructor is only available for real matrix representations.
      */
     template <typename Z1 = Scalar, typename Z2 = SpinorTag>
-    static enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, RestrictedSpinorTag>, SQHamiltonian<double>> FromHubbard(const GQCP::HubbardHamiltonian<double>& hubbard_hamiltonian) {
+    static enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, RestrictedSpinorTag>::value, SQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>> FromHubbard(const GQCP::HubbardHamiltonian<double>& hubbard_hamiltonian) {
 
         const auto h = hubbard_hamiltonian.core();
         const auto g = hubbard_hamiltonian.twoElectron();
@@ -730,6 +736,7 @@ public:
      *
      *  @note This named constructor is only available in the real case.
      */
+    template <typename Z = Scalar>
     static enable_if_t<std::is_same<Z, double>::value, Self> Random(const size_t dim) {
 
         const auto h = ScalarSQOneElectronOperator_Placeholder::Random(dim);
@@ -749,7 +756,7 @@ public:
      *  @note This named constructor is only available in the real case.
      */
     template <typename Z1 = Scalar, typename Z2 = SpinorTag>
-    static enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, RestrictedSpinOrbitalTag>::value, SQHamiltonian<double>> FromFCIDUMP(const std::string& fcidump_filename) {
+    static enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, RestrictedSpinOrbitalTag>::value, SQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>> FromFCIDUMP(const std::string& fcidump_filename) {
 
         std::ifstream input_file_stream = validateAndOpen(fcidump_filename, "FCIDUMP");
 
@@ -1069,10 +1076,10 @@ public:
 
 
     // Allow the `rotate` method from `BasisTransformable`, since there's also a `rotate` from `JacobiRotatable`.
-    using BasisTransformable<DerivedOperator, TM>::rotate;
+    using BasisTransformable<Self>::rotate;
 
     // Allow the `rotated` method from `BasisTransformable`, since there's also a `rotated` from `JacobiRotatable`.
-    using BasisTransformable<DerivedOperator, TM>::rotated;
+    using BasisTransformable<Self>::rotated;
 
 
     /*
@@ -1086,7 +1093,7 @@ public:
      * 
      *  @return The jacobi-transformed object.
      */
-    DerivedOperator rotated(const JacobiRotationParameters& jacobi_parameters) const override {
+    Self rotated(const JacobiRotationParameters& jacobi_parameters) const override {
 
         auto result = *this;
 
@@ -1107,7 +1114,7 @@ public:
     }
 
     // Allow the `rotate` method from `JacobiRotatable`, since there's also a `rotate` from `BasisTransformable`.
-    using JacobiRotatable<DerivedOperator>::rotate;
+    using JacobiRotatable<Self>::rotate;
 };
 
 
@@ -1115,17 +1122,20 @@ public:
  *  MARK: Convenience aliases
  */
 
+
 // An `SQHamiltonian` related to restricted spin-orbitals. See `RestrictedSpinOrbitalTag`.
 template <typename Scalar>
-using SQHamiltonian = SQHamiltonian<ScalarRSQOneElectronOperator<Scalar>, ScalarSQTwoElectronOperator<Scalar>>;
+using RSQHamiltonian = SQHamiltonian<ScalarRSQOneElectronOperator<Scalar>, ScalarRSQTwoElectronOperator<Scalar>>;
+
 
 // An `SQHamiltonian` related to unrestricted spin-orbitals. See `UnrestrictedSpinOrbitalTag`.
 // template <typename Scalar>
 // using USQHamiltonian = SQHamiltonian<ScalarUSQOneElectronOperator<Scalar>, ScalarUSQTwoElectronOperator<Scalar>>;
 
+
 // An `SQHamiltonian` related to general spinors. See `GeneralSpinorTag`.
 template <typename Scalar>
-using GSQHamiltonian = GQHamiltonian_Placeholder<ScalarGSQOneElectronOperator<Scalar>, ScalarSQTwoElectronOperator<Scalar>>;
+using GSQHamiltonian = SQHamiltonian<ScalarGSQOneElectronOperator<Scalar>, ScalarGSQTwoElectronOperator<Scalar>>;
 
 
 /*
@@ -1138,11 +1148,14 @@ using GSQHamiltonian = GQHamiltonian_Placeholder<ScalarGSQOneElectronOperator<Sc
 template <typename ScalarSQOneElectronOperator_Placeholder, typename ScalarSQTwoElectronOperator_Placeholder>
 class OperatorTraits<SQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>> {
 public:
-    // The type of transformation matrix that is naturally associated to the Hamiltonian.
+    // The type of transformation matrix that is naturally associated to the second-quantized Hamiltonian.
     using TM = typename OperatorTraits<ScalarSQOneElectronOperator_Placeholder>::TM;
 
-    // The type of the one-particle density matrix that is naturally associated to the Hamiltonian.
-    using OneDM = typename OperatorTraits<ScalarSQOneElectronOperator_Placeholder>::OneDM_Placeholder;
+    // The type of the one-particle density matrix that is naturally associated to the second-quantized Hamiltonian.
+    using OneDM = typename OperatorTraits<ScalarSQOneElectronOperator_Placeholder>::OneDM;
+
+    // The type of the two-particle density matrix that is naturally associated to the second-quantized Hamiltonian.
+    using TwoDM = typename OperatorTraits<ScalarSQOneElectronOperator_Placeholder>::TwoDM;
 };
 
 

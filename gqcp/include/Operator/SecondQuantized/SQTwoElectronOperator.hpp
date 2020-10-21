@@ -149,7 +149,7 @@ public:
             expectation_values[i] = contraction(0);
         }
 
-        return StorageArray<Scalar, Vectorizer> {expectation_values, this->array.vectorizer()};  // convert std::array to Vector
+        return Eigen::Map<Eigen::Matrix<Scalar, Components, 1>>(expectation_values.data());
     }
 
 

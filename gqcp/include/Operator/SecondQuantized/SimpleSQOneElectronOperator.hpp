@@ -67,6 +67,9 @@ public:
     // The type of the one-particle density matrix that is naturally associated to the derived one-electron operator.
     using Derived1DM = typename OperatorTraits<DerivedOperator>::OneDM;
 
+    // The type of the two-particle density matrix that is naturally associated to the derived one-electron operator.
+    using Derived2DM = typename OperatorTraits<DerivedOperator>::TwoDM;
+
 
 public:
     /*
@@ -116,14 +119,14 @@ public:
      *  @note This method is only enabled in the real case.
      */
     template <typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value, StorageArray<SquareMatrix<double>, Vectorizer>> calculateFockianMatrix(const Derived1DM& D, const TwoDM<double>& d) const {
+    enable_if_t<std::is_same<Z, double>::value, StorageArray<SquareMatrix<double>, Vectorizer>> calculateFockianMatrix(const Derived1DM& D, const Derived2DM& d) const {
 
         if (D.numberOfOrbitals() != this->numberOfOrbitals()) {
-            throw std::invalid_argument("SimpleSQOneElectronOperator::calculateFockianMatrix(const Derived1DM&, const TwoDM<double>&): The 1-DM's dimensions are not compatible with this one-electron operator.");
+            throw std::invalid_argument("SimpleSQOneElectronOperator::calculateFockianMatrix(const Derived1DM&, const Derived2DM&): The 1-DM's dimensions are not compatible with this one-electron operator.");
         }
 
         if (d.numberOfOrbitals() != this->numberOfOrbitals()) {
-            throw std::invalid_argument("SimpleSQOneElectronOperator::calculateFockianMatrix(const Derived1DM&, const TwoDM<double>&): The 2-DM's dimensions are not compatible with this one-electron operator.");
+            throw std::invalid_argument("SimpleSQOneElectronOperator::calculateFockianMatrix(const Derived1DM&, const Derived2DM&): The 2-DM's dimensions are not compatible with this one-electron operator.");
         }
 
         const auto& parameters = this->allParameters();                           // The parameters of the one-electron operator, as a vector.
@@ -161,14 +164,14 @@ public:
      *  @note This method is only enabled in the real case.
      */
     template <typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value, StorageArray<SquareRankFourTensor<double>, Vectorizer>> calculateSuperFockianMatrix(const Derived1DM& D, const TwoDM<double>& d) const {
+    enable_if_t<std::is_same<Z, double>::value, StorageArray<SquareRankFourTensor<double>, Vectorizer>> calculateSuperFockianMatrix(const Derived1DM& D, const Derived2DM& d) const {
 
         if (D.numberOfOrbitals() != this->numberOfOrbitals()) {
-            throw std::invalid_argument("SimpleSQOneElectronOperator::calculateFockianMatrix(const Derived1DM&, const TwoDM<double>&): The given 1-DM's dimensions are not compatible with this one-electron operator.");
+            throw std::invalid_argument("SimpleSQOneElectronOperator::calculateFockianMatrix(const Derived1DM&, const Derived2DM&): The given 1-DM's dimensions are not compatible with this one-electron operator.");
         }
 
         if (d.numberOfOrbitals() != this->numberOfOrbitals()) {
-            throw std::invalid_argument("SimpleSQOneElectronOperator::calculateFockianMatrix(const Derived1DM&, const TwoDM<double>&): The given 2-DM's dimensions are not compatible with this one-electron operator.");
+            throw std::invalid_argument("SimpleSQOneElectronOperator::calculateFockianMatrix(const Derived1DM&, const Derived2DM&): The given 2-DM's dimensions are not compatible with this one-electron operator.");
         }
 
 
