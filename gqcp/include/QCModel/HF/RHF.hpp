@@ -143,7 +143,7 @@ public:
         double value {0.0};
 
         // Inactive Fock matrix part
-        const auto F = sq_hamiltonian.calculateInactiveFockianRestricted(orbital_space).parameters();
+        const auto F = sq_hamiltonian.calculateInactiveFockian(orbital_space).parameters();
         if (i == j) {
             value += F(a, b);
         }

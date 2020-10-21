@@ -83,11 +83,11 @@ public:
     // The type of 'this'
     using Self = SQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>;
 
-    // The 1-DM that is naturally associated with the one-electron operator underlying this Hamiltonian.
-    using OneDM_Placeholder = typename OperatorTraits<Self>::OneDM;
+    // The type of the one-particle density matrix that is naturally associated to the second-quantized Hamiltonian.
+    using OneDM = typename OperatorTraits<ScalarSQOneElectronOperator_Placeholder>::OneDM;
 
-    // The 2-DM that is naturally associated with the two-electron operator underlying this Hamiltonian.
-    using TwoDM_Placeholder = typename OperatorTraits<Self>::TwoDM;
+    // The type of the two-particle density matrix that is naturally associated to the second-quantized Hamiltonian.
+    using TwoDM = typename OperatorTraits<ScalarSQOneElectronOperator_Placeholder>::TwoDM;
 
     // The type of transformation matrix that is naturally associated to the Hamiltonian.
     using TM = typename OperatorTraits<ScalarSQOneElectronOperator_Placeholder>::TM;
@@ -190,13 +190,9 @@ public:
      *  @param spinor           The spinor basis in which the Hamiltonian should be expressed.
      *  @param molecule         The molecule that contains the nuclear framework upon which the nuclear attraction operator is based
      *
-     *  @return An  second-quantized molecular Hamiltonian. 
-
-     *
-     *  @note This named constructor is only available for real matrix representations.
+     *  @return A second-quantized molecular Hamiltonian.
      */
-    template <typename Scalar, typename SpinorBasis>
-    static SQHamiltonian<typename SpinorBasis::ScalarSQOneElectronOperator_Placeholder, typename SpinorBasis::ScalarSQTwoElectronOperator_Placeholder> Molecular(const RSpinorBasis<Scalar, GTOShell>& spinor_basis, const Molecule& molecule) {
+    static SQHamiltonian<ScalarRSQOneElectronOperator<double>, ScalarRSQTwoElectronOperator<double>> Molecular(const RSpinorBasis<double, GTOShell>& spinor_basis, const Molecule& molecule) {
 
         // Calculate the integrals for the molecular Hamiltonian
         const auto T = spinor_basis.quantize(Operator::Kinetic());
@@ -205,8 +201,7 @@ public:
 
         const auto g = spinor_basis.quantize(Operator::Coulomb());
 
-        using ReturnType = SQHamiltonian<typename SpinorBasis::ScalarSQOneElectronOperator_Placeholder, typename SpinorBasis::ScalarSQTwoElectronOperator_Placeholder>;
-        return ReturnType {H, g};
+        return SQHamiltonian<ScalarRSQOneElectronOperator<double>, ScalarRSQTwoElectronOperator<double>> {H, g};
     }
 
 
@@ -429,7 +424,7 @@ public:
      *
      *  @return The expectation value of this Hamiltonian.
      */
-    Scalar calculateExpectationValue(const OneDM_Placeholder& D, const TwoDM_Placeholder& d) const {
+    Scalar calculateExpectationValue(const OneDM& D, const TwoDM& d) const {
 
         // An SQHamiltonian contains ScalarSQOperators, so we access their expectation values with ().
         return this->core().calculateExpectationValue(D)() + this->twoElectron().calculateExpectationValue(d)();
@@ -444,7 +439,7 @@ public:
      *
      *  @return The Fockian matrix.
      */
-    SquareMatrix<Scalar> calculateFockianMatrix(const OneDM_Placeholder& D, const TwoDM_Placeholder& d) const {
+    SquareMatrix<Scalar> calculateFockianMatrix(const OneDM& D, const TwoDM& d) const {
 
         // An SQHamiltonian contains ScalarSQOperators, so we access their Fockian matrices with (0).
         return this->core().calculateFockianMatrix(D, d)() + this->twoElectron().calculateFockianMatrix(D, d)();
@@ -459,7 +454,7 @@ public:
      *
      *  @return The super-Fockian matrix.
      */
-    SquareRankFourTensor<Scalar> calculateSuperFockianMatrix(const OneDM_Placeholder& D, const TwoDM_Placeholder& d) const {
+    SquareRankFourTensor<Scalar> calculateSuperFockianMatrix(const OneDM& D, const TwoDM& d) const {
 
         // An SQHamiltonian contains ScalarSQOperators, so we access their Fockian matrices with (0).
         return this->core().calculateSuperFockianMatrix(D, d)().Eigen() + this->twoElectron().calculateSuperFockianMatrix(D, d)().Eigen();  // We have to call .Eigen() because operator+ isn't enabled on SquareRankFourTensor.
@@ -629,8 +624,8 @@ using GSQHamiltonian = SQHamiltonian<ScalarGSQOneElectronOperator<Scalar>, Scala
  *  A type that provides compile-time information on operators that is otherwise not accessible through a public class alias.
  */
 template <typename ScalarSQOneElectronOperator_Placeholder, typename ScalarSQTwoElectronOperator_Placeholder>
-class OperatorTraits<SQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>> {
-public:
+struct OperatorTraits<SQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>> {
+
     // The type of transformation matrix that is naturally associated to the second-quantized Hamiltonian.
     using TM = typename OperatorTraits<ScalarSQOneElectronOperator_Placeholder>::TM;
 

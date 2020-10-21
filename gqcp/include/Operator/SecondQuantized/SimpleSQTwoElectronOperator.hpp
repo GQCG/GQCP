@@ -39,7 +39,7 @@ namespace GQCP {
  */
 template <typename _Scalar, typename _Vectorizer, typename _DerivedOperator>
 class SimpleSQTwoElectronOperator:
-    public SQOperatorStorage<QCRankFourTensor<_Scalar>, _Vectorizer, SimpleSQOneElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>>,
+    public SQOperatorStorage<QCRankFourTensor<_Scalar>, _Vectorizer, SimpleSQTwoElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>>,
     public BasisTransformable<_DerivedOperator>,
     public JacobiRotatable<_DerivedOperator> {
 public:
@@ -488,6 +488,42 @@ public:
      *  In-place change this two-electron operator's integrals to physicist's notation (from chemist's notation).
      */
     void convertToPhysicistsNotation() { *this = this->convertedToPhysicistsNotation(); }
+};
+
+
+/*
+ *  MARK: Operator traits
+ */
+
+/**
+ *  A type that provides compile-time information on operators that is otherwise not accessible through a public class alias.
+ */
+template <typename _Scalar, typename _Vectorizer, typename _DerivedOperator>
+struct OperatorTraits<SimpleSQTwoElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>> {
+
+    // The scalar type used for a single parameter/matrix element/integral: real or complex.
+    using Scalar = _Scalar;
+
+    // The type of the vectorizer that relates a one-dimensional storage of tensors to the tensor structure of two-electron operators. This distinction is carried over from SimpleSQOneElectronOperator.
+    using Vectorizer = _Vectorizer;
+
+    // The type of the operator that derives from `SimpleSQTwoElectronOperator`, enabling CRTP and compile-time polymorphism.
+    using DerivedOperator = _DerivedOperator;
+};
+
+
+/*
+ *  MARK: BasisTransformableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
+ */
+template <typename _Scalar, typename _Vectorizer, typename _DerivedOperator>
+struct BasisTransformableTraits<SimpleSQTwoElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>> {
+
+    // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix"
+    using TM = typename OperatorTraits<_DerivedOperator>::TM;
 };
 
 

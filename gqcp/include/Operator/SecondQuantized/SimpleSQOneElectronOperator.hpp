@@ -282,8 +282,8 @@ public:
  *  A type that provides compile-time information on operators that is otherwise not accessible through a public class alias.
  */
 template <typename _Scalar, typename _Vectorizer, typename _DerivedOperator>
-class OperatorTraits<SimpleSQOneElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>> {
-public:
+struct OperatorTraits<SimpleSQOneElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>> {
+
     // The scalar type used for a single parameter/matrix element/integral: real or complex.
     using Scalar = _Scalar;
 
