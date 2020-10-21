@@ -20,7 +20,7 @@
 
 #include "Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
-#include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
+#include "Operator/SecondQuantized/RSQTwoElectronOperator.hpp"
 
 
 namespace GQCP {

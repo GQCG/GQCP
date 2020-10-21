@@ -139,7 +139,7 @@ public:
      *
      *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the spin-unresolved ONV basis
      */
-    SquareMatrix<double> evaluateOperatorDense(const RSQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const override;
+    SquareMatrix<double> evaluateOperatorDense(const GSQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const;
 
     /**
      *  Evaluate the diagonal of the operator
@@ -166,7 +166,7 @@ public:
      *
      *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the spin-unresolved ONV basis
      */
-    VectorX<double> evaluateOperatorDiagonal(const RSQHamiltonian<double>& sq_hamiltonian) const override;
+    VectorX<double> evaluateOperatorDiagonal(const GSQHamiltonian<double>& sq_hamiltonian) const;
 
     /**
      *  Evaluate the operator in a sparse matrix
@@ -196,7 +196,7 @@ public:
      *
      *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the spin-unresolved ONV basis
      */
-    Eigen::SparseMatrix<double> evaluateOperatorSparse(const RSQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const override;
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const RSQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const;
 
     /**
      *  @param representation       a representation of an spin-unresolved ONV

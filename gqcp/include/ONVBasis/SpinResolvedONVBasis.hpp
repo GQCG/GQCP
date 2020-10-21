@@ -133,7 +133,7 @@ public:
      *
      *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of this ONV basis
      */
-    SquareMatrix<double> evaluateOperatorDense(const RSQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const override;
+    SquareMatrix<double> evaluateOperatorDense(const RSQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const;
 
     /**
      *  Evaluate the unrestricted Hamiltonian in a dense matrix
@@ -170,7 +170,7 @@ public:
      *
      *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of this ONV basis
      */
-    VectorX<double> evaluateOperatorDiagonal(const RSQHamiltonian<double>& sq_hamiltonian) const override;
+    VectorX<double> evaluateOperatorDiagonal(const RSQHamiltonian<double>& sq_hamiltonian) const;
 
     /**
      *  Evaluate the diagonal of the unrestricted Hamiltonian
@@ -224,16 +224,6 @@ public:
      *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of this ONV basis
      */
     VectorX<double> evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
-
-    /**
-     *  Evaluate the Hamiltonian in a sparse matrix
-     *
-     *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
-     *  @param diagonal_values          bool to indicate if diagonal values will be calculated
-     *
-     *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of this ONV basis
-     */
-    Eigen::SparseMatrix<double> evaluateOperatorSparse(const RSQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const override { throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorSparse(RSQHamiltonian<double>, bool): Not implemented."); }
 
     /**
      *  Iterate over all ONVs (implicitly, by resolving in their spin components) in this ONV basis and apply the given callback function.

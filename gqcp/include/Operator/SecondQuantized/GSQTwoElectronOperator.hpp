@@ -38,7 +38,7 @@ namespace GQCP {
  */
 template <typename _Scalar, typename _Vectorizer>
 class GSQTwoElectronOperator:
-    public SimpleSQOneElectronOperator<_Scalar, _Vectorizer, GSQTwoElectronOperator<_Scalar, _Vectorizer>> {
+    public SimpleSQTwoElectronOperator<_Scalar, _Vectorizer, GSQTwoElectronOperator<_Scalar, _Vectorizer>> {
 public:
     // The scalar type used for a single parameter/matrix element: real or complex.
     using Scalar = _Scalar;
