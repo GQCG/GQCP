@@ -92,7 +92,7 @@ public:
      *  @note This method is only available for real scalars.
      */
     template <typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value, ScalarSQTwoElectronOperator<double>> twoElectron() const {
+    enable_if_t<std::is_same<Z, double>::value, ScalarRSQTwoElectronOperator<double>> twoElectron() const {
 
         const auto K = this->numberOfLatticeSites();
         SquareRankFourTensor<double> g_par = SquareRankFourTensor<double>::Zero(K);
@@ -102,7 +102,7 @@ public:
             g_par(p, p, p, p) = this->hoppingMatrix()(p, p);
         }
 
-        return ScalarSQTwoElectronOperator<double> {g_par};
+        return ScalarRSQTwoElectronOperator<double> {g_par};
     }
 
 

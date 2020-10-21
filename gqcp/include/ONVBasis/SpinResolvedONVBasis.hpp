@@ -88,7 +88,7 @@ public:
      *
      *  @return a one-electron operator containing a partition of the two-electron operator
      */
-    ScalarSQOneElectronOperator<double> calculateOneElectronPartition(const size_t p, const size_t q, const ScalarSQTwoElectronOperator<double>& two_op) const;
+    ScalarRSQOneElectronOperator<double> calculateOneElectronPartition(const size_t p, const size_t q, const ScalarRSQTwoElectronOperator<double>& two_op) const;
 
     /**
      *  Calculate the compound address of an ONV represented by the two given alpha- and beta-addresses.
@@ -113,7 +113,7 @@ public:
      *
      *  @return the operator's evaluation in a dense matrix with the dimensions of this basis
      */
-    SquareMatrix<double> evaluateOperatorDense(const ScalarSQOneElectronOperator<double>& one_op, const bool diagonal_values) const override;
+    SquareMatrix<double> evaluateOperatorDense(const ScalarRSQOneElectronOperator<double>& one_op, const bool diagonal_values) const;
 
     /**
      *  Evaluate the operator in a dense matrix
@@ -123,7 +123,7 @@ public:
      *
      *  @return the operator's evaluation in a dense matrix with the dimensions of this ONV basis
      */
-    SquareMatrix<double> evaluateOperatorDense(const ScalarSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const override;
+    SquareMatrix<double> evaluateOperatorDense(const ScalarRSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const;
 
     /**
      *  Evaluate the Hamiltonian in a dense matrix
@@ -152,7 +152,7 @@ public:
      *
      *  @return the operator's diagonal evaluation in a vector with the dimension of this ONV basis
      */
-    VectorX<double> evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>& one_op) const override;
+    VectorX<double> evaluateOperatorDiagonal(const ScalarRSQOneElectronOperator<double>& one_op) const;
 
     /**
      *  Evaluate the diagonal of the operator
@@ -161,7 +161,7 @@ public:
      *
      *  @return the operator's diagonal evaluation in a vector with the dimension of this ONV basis
      */
-    VectorX<double> evaluateOperatorDiagonal(const ScalarSQTwoElectronOperator<double>& two_op) const override;
+    VectorX<double> evaluateOperatorDiagonal(const ScalarRSQTwoElectronOperator<double>& two_op) const;
 
     /**
      *  Evaluate the diagonal of the Hamiltonian
@@ -190,7 +190,7 @@ public:
      *
      *  @return the one electron operator's matrix vector product in a vector with the dimensions of this ONV basis
      */
-    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarRSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
 
     /**
      *  Evaluate a two electron operator in a matrix vector product
@@ -201,7 +201,7 @@ public:
      *
      *  @return the two electron operator's matrix vector product in a vector with the dimensions of this ONV basis
      */
-    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarSQTwoElectronOperator<double>& two_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarRSQTwoElectronOperator<double>& two_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
 
     /**
      *  Evaluate the Hamiltonian in a matrix vector product
@@ -224,26 +224,6 @@ public:
      *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of this ONV basis
      */
     VectorX<double> evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
-
-    /**
-     *  Evaluate the operator in a sparse matrix
-     *
-     *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in this ONV basis
-     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
-     *
-     *  @return the operator's evaluation in a sparse matrix with the dimensions of this ONV basis
-     */
-    Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op, const bool diagonal_values) const override { throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorSparse(ScalarSQOneElectronOperator<double>, bool): Not implemented."); }
-
-    /**
-     *  Evaluate the operator in a sparse matrix
-     *
-     *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in this ONV basis
-     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
-     *
-     *  @return the operator's evaluation in a sparse matrix with the dimensions of this ONV basis
-     */
-    Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const override { throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorSparse(ScalarSQTwoElectronOperator<double>, bool): Not implemented."); }
 
     /**
      *  Evaluate the Hamiltonian in a sparse matrix

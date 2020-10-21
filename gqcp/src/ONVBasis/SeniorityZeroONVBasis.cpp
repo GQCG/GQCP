@@ -65,13 +65,13 @@ size_t SeniorityZeroONVBasis::calculateDimension(const size_t K, const size_t N_
  *
  *  @return the operator's diagonal evaluation in a vector with the dimension of the ONV basis
  */
-VectorX<double> SeniorityZeroONVBasis::evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>& one_op) const {
+VectorX<double> SeniorityZeroONVBasis::evaluateOperatorDiagonal(const ScalarRSQOneElectronOperator<double>& one_op) const {
 
     // Check if the argument is compatible.
     const auto K = one_op.numberOfOrbitals();  // number of spatial orbitals
 
     if (K != this->numberOfSpatialOrbitals()) {
-        throw std::invalid_argument("SeniorityZeroONVBasis::evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>&): The number of spatial orbitals for the ONV basis and one-electron operator are incompatible.");
+        throw std::invalid_argument("SeniorityZeroONVBasis::evaluateOperatorDiagonal(const ScalarRSQOneElectronOperator<double>&): The number of spatial orbitals for the ONV basis and one-electron operator are incompatible.");
     }
 
     // Prepare some variables to be used in the algorithm.
@@ -104,13 +104,13 @@ VectorX<double> SeniorityZeroONVBasis::evaluateOperatorDiagonal(const ScalarSQOn
  *
  *  @return the diagonal of the matrix representation of the two-electron operator in this seniority-zero ONV basis
  */
-VectorX<double> SeniorityZeroONVBasis::evaluateOperatorDiagonal(const ScalarSQTwoElectronOperator<double>& two_op) const {
+VectorX<double> SeniorityZeroONVBasis::evaluateOperatorDiagonal(const ScalarRSQTwoElectronOperator<double>& two_op) const {
 
     // Check if the argument is compatible.
     const auto K = two_op.numberOfOrbitals();  // number of spatial orbitals
 
     if (K != this->numberOfSpatialOrbitals()) {
-        throw std::invalid_argument("SeniorityZeroONVBasis::evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>&): The number of spatial orbitals for the ONV basis and one-electron operator are incompatible.");
+        throw std::invalid_argument("SeniorityZeroONVBasis::evaluateOperatorDiagonal(const ScalarRSQOneElectronOperator<double>&): The number of spatial orbitals for the ONV basis and one-electron operator are incompatible.");
     }
 
     // Prepare some variables to be used in the algorithm.
@@ -158,7 +158,7 @@ VectorX<double> SeniorityZeroONVBasis::evaluateOperatorDiagonal(const RSQHamilto
     const auto K = sq_hamiltonian.numberOfOrbitals();  // number of spatial orbitals
 
     if (K != this->numberOfSpatialOrbitals()) {
-        throw std::invalid_argument("SeniorityZeroONVBasis::evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>&): The number of spatial orbitals for the ONV basis and one-electron operator are incompatible.");
+        throw std::invalid_argument("SeniorityZeroONVBasis::evaluateOperatorDiagonal(const RSQHamiltonian<double>&): The number of spatial orbitals for the ONV basis and one-electron operator are incompatible.");
     }
 
     // Prepare some variables to be used in the algorithm.
@@ -202,7 +202,7 @@ VectorX<double> SeniorityZeroONVBasis::evaluateOperatorDiagonal(const RSQHamilto
  *
  *  @return the one electron operator's matrix vector product in a vector with the dimensions of the ONV basis
  */
-VectorX<double> SeniorityZeroONVBasis::evaluateOperatorMatrixVectorProduct(const ScalarSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+VectorX<double> SeniorityZeroONVBasis::evaluateOperatorMatrixVectorProduct(const ScalarRSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
     const SpinResolvedSelectedONVBasis selected_onv_basis {*this};
     return selected_onv_basis.evaluateOperatorMatrixVectorProduct(one_op, x, diagonal);

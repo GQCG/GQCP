@@ -69,10 +69,10 @@ public:
 
 
     // The type of one-electron operators that are naturally associated with scalar operators expressed in this restricted spin-orbital bases.
-    using ScalarSQOneElectronOperator_Placeholder = ScalarRSQOneElectronOperator<ExpansionScalar>;
+    // using ScalarSQOneElectronOperator = ScalarRSQOneElectronOperator<ExpansionScalar>;
 
     // The type of one-electron operators that are naturally associated with scalar operators expressed in this restricted spin-orbital bases.
-    using ScalarSQTwoElectronOperator_Placeholder = ScalarSQTwoElectronOperator<ExpansionScalar>;
+    // using ScalarSQTwoElectronOperator = ScalarRSQTwoElectronOperator<ExpansionScalar>;
 
 
 private:

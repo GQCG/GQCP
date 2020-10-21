@@ -87,10 +87,10 @@ public:
      *
      *  @return the RHF electronic energy
      */
-    static double calculateElectronicEnergy(const Orbital1DM<Scalar>& D, const ScalarSQOneElectronOperator<Scalar>& H_core, const ScalarSQOneElectronOperator<Scalar>& F) {
+    static double calculateElectronicEnergy(const Orbital1DM<Scalar>& D, const ScalarRSQOneElectronOperator<Scalar>& H_core, const ScalarRSQOneElectronOperator<Scalar>& F) {
 
-        // First, calculate the sum of H_core and F (this saves a contraction)
-        ScalarSQOneElectronOperator<Scalar> Z = H_core + F;
+        // First, calculate the sum of H_core and F (this saves a contraction).
+        const auto Z = H_core + F;
 
         // Convert the matrices Z and D to an Eigen::Tensor<double, 2> D_tensor, as contractions are only implemented for Tensors
         Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> D_tensor {D.data(), D.rows(), D.cols()};
@@ -240,11 +240,8 @@ public:
      *
      *  @return the RHF Fock matrix expressed in the scalar basis
      */
-<<<<<<< HEAD
-    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(const OneDM<Scalar>& D, const RSQHamiltonian<Scalar>& sq_hamiltonian) {
-=======
-    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(const Orbital1DM<Scalar>& D, const SQHamiltonian<Scalar>& sq_hamiltonian) {
->>>>>>> develop
+    static ScalarRSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(const Orbital1DM<Scalar>& D, const RSQHamiltonian<Scalar>& sq_hamiltonian) {
+
         // To perform the contraction, we will first have to convert the MatrixX<double> D to an Eigen::Tensor<const double, 2> D_tensor, as contractions are only implemented for Tensors
         Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> D_tensor {D.data(), D.rows(), D.cols()};
 
@@ -264,7 +261,7 @@ public:
         Eigen::Map<Eigen::MatrixXd> G1 {direct_contraction.data(), direct_contraction.dimension(0), direct_contraction.dimension(1)};
         Eigen::Map<Eigen::MatrixXd> G2 {exchange_contraction.data(), exchange_contraction.dimension(0), exchange_contraction.dimension(1)};
 
-        return ScalarSQOneElectronOperator<Scalar> {sq_hamiltonian.core().parameters() + G1 + G2};
+        return ScalarRSQOneElectronOperator<Scalar> {sq_hamiltonian.core().parameters() + G1 + G2};
     }
 
 
@@ -273,7 +270,8 @@ public:
      *
      *  @return the (spatial orbital, not spin-orbital) index of the RHF HOMO in an implicit orbital space
      */
-    static size_t homoIndex(const size_t N) {
+    static size_t
+    homoIndex(const size_t N) {
 
         if (N % 2 != 0) {
             throw std::invalid_argument("QCModel::RHF::homoIndex(const size_t): Can't calculate the RHF HOMO index for an odd number of electrons N.");
@@ -425,7 +423,7 @@ public:
 
         return total_orbital_energies;
     }
-};
+};  // namespace QCModel
 
 
 }  // namespace QCModel

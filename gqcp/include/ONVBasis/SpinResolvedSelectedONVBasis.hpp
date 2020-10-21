@@ -112,7 +112,7 @@ public:
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template <typename _Matrix>
-    void evaluate(const ScalarSQOneElectronOperator<double>& one_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    void evaluate(const ScalarRSQOneElectronOperator<double>& one_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
 
         // Calling the unrestricted universal method, with identical alpha and beta components does not affect the performance, hence we avoid duplicated code for the restricted part.
         this->evaluate(one_op, one_op, evaluation_iterator, diagonal_values);
@@ -129,7 +129,7 @@ public:
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template <typename _Matrix>
-    void evaluate(const ScalarSQOneElectronOperator<double>& one_op_alpha, const ScalarSQOneElectronOperator<double>& one_op_beta, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    void evaluate(const ScalarRSQOneElectronOperator<double>& one_op_alpha, const ScalarRSQOneElectronOperator<double>& one_op_beta, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
 
         const size_t dim = this->dimension();
         const auto& h_a = one_op_alpha.parameters();
@@ -205,10 +205,10 @@ public:
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template <typename _Matrix>
-    void evaluate(const ScalarSQTwoElectronOperator<double>& two_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    void evaluate(const ScalarRSQTwoElectronOperator<double>& two_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
 
         // Calling this combined method for both the one- and two-electron operator does not affect the performance, hence we avoid writting more code by plugging a zero one-electron operator in the combined method.
-        this->evaluate(ScalarSQOneElectronOperator<double> {this->M}, ScalarSQOneElectronOperator<double> {this->M}, two_op, two_op, two_op, evaluation_iterator, diagonal_values);
+        this->evaluate(ScalarRSQOneElectronOperator<double> {this->M}, ScalarRSQOneElectronOperator<double> {this->M}, two_op, two_op, two_op, evaluation_iterator, diagonal_values);
     }
 
 
@@ -223,7 +223,7 @@ public:
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template <typename _Matrix>
-    void evaluate(const ScalarSQOneElectronOperator<double>& one_op, const ScalarSQTwoElectronOperator<double>& two_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    void evaluate(const ScalarRSQOneElectronOperator<double>& one_op, const ScalarRSQTwoElectronOperator<double>& two_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
 
         // Calling the unrestricted universal method, with identical alpha, beta and mixed components does not affect the performance, hence we avoid duplicated code for the restricted part
         this->evaluate(one_op, one_op, two_op, two_op, two_op, evaluation_iterator, diagonal_values);
@@ -244,7 +244,7 @@ public:
      *  @param diagonal_values                  bool to indicate if diagonal values will be calculated
      */
     template <typename _Matrix>
-    void evaluate(const ScalarSQOneElectronOperator<double>& one_op_alpha, const ScalarSQOneElectronOperator<double>& one_op_beta, const ScalarSQTwoElectronOperator<double>& two_op_alpha, const ScalarSQTwoElectronOperator<double>& two_op_beta, const ScalarSQTwoElectronOperator<double>& two_op_mixed, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    void evaluate(const ScalarRSQOneElectronOperator<double>& one_op_alpha, const ScalarRSQOneElectronOperator<double>& one_op_beta, const ScalarRSQTwoElectronOperator<double>& two_op_alpha, const ScalarRSQTwoElectronOperator<double>& two_op_beta, const ScalarRSQTwoElectronOperator<double>& two_op_mixed, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
 
         const size_t dim = this->dimension();
         const size_t K = this->numberOfOrbitals();
@@ -469,7 +469,7 @@ public:
      *
      *  @return the operator's evaluation in a dense matrix with the dimensions of the ONV basis
      */
-    SquareMatrix<double> evaluateOperatorDense(const ScalarSQOneElectronOperator<double>& one_op, const bool diagonal_values) const override;
+    SquareMatrix<double> evaluateOperatorDense(const ScalarRSQOneElectronOperator<double>& one_op, const bool diagonal_values) const;
 
     /**
      *  Evaluate the operator in a dense matrix
@@ -479,7 +479,7 @@ public:
      *
      *  @return the operator's evaluation in a dense matrix with the dimensions of the ONV basis
      */
-    SquareMatrix<double> evaluateOperatorDense(const ScalarSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const override;
+    SquareMatrix<double> evaluateOperatorDense(const ScalarRSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const;
 
     /**
      *  Evaluate the Hamiltonian in a dense matrix
@@ -508,7 +508,7 @@ public:
      *
      *  @return the operator's diagonal evaluation in a vector with the dimension of the ONV basis
      */
-    VectorX<double> evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>& one_op) const override;
+    VectorX<double> evaluateOperatorDiagonal(const ScalarRSQOneElectronOperator<double>& one_op) const;
 
     /**
      *  Evaluate the diagonal of the operator
@@ -517,7 +517,7 @@ public:
      *
      *  @return the operator's diagonal evaluation in a vector with the dimension of the ONV basis
      */
-    VectorX<double> evaluateOperatorDiagonal(const ScalarSQTwoElectronOperator<double>& two_op) const override;
+    VectorX<double> evaluateOperatorDiagonal(const ScalarRSQTwoElectronOperator<double>& two_op) const;
 
     /**
      *  Evaluate the diagonal of the Hamiltonian
@@ -546,7 +546,7 @@ public:
      *
      *  @return the one electron operator's matrix vector product in a vector with the dimensions of the ONV basis
      */
-    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarRSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
 
     /**
      *  Evaluate a two electron operator in a matrix vector product
@@ -557,7 +557,7 @@ public:
      *
      *  @return the two electron operator's matrix vector product in a vector with the dimensions of the ONV basis
      */
-    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarSQTwoElectronOperator<double>& two_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarRSQTwoElectronOperator<double>& two_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
 
     /**
      *  Evaluate the Hamiltonian in a matrix vector product
@@ -589,7 +589,7 @@ public:
      *
      *  @return the operator's evaluation in a sparse matrix with the dimensions of the ONV basis
      */
-    Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const override;
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarRSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const;
 
     /**
      *  Evaluate the operator in a sparse matrix
@@ -599,7 +599,7 @@ public:
      *
      *  @return the operator's evaluation in a sparse matrix with the dimensions of the ONV basis
      */
-    Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op, const bool diagonal_values) const override;
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarRSQOneElectronOperator<double>& one_op, const bool diagonal_values) const;
 
     /**
      *  Evaluate the Hamiltonian in a sparse matrix

@@ -80,7 +80,7 @@ public:
      *
      *  @return the diagonal of the matrix representation of the one-electron operator in this seniority-zero ONV basis
      */
-    VectorX<double> evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>& one_op) const;
+    VectorX<double> evaluateOperatorDiagonal(const ScalarRSQOneElectronOperator<double>& one_op) const;
 
     /**
      *  Evaluate the diagonal of the matrix representation of a two-electron operator inside this seniority-zero ONV basis.
@@ -89,7 +89,7 @@ public:
      *
      *  @return the diagonal of the matrix representation of the two-electron operator in this seniority-zero ONV basis
      */
-    VectorX<double> evaluateOperatorDiagonal(const ScalarSQTwoElectronOperator<double>& two_op) const;
+    VectorX<double> evaluateOperatorDiagonal(const ScalarRSQTwoElectronOperator<double>& two_op) const;
 
     /**
      *  Evaluate the diagonal of the matrix representation of a Hamiltonian inside this seniority-zero ONV basis.
@@ -109,7 +109,7 @@ public:
      *
      *  @return the one electron operator's matrix vector product in a vector with the dimensions of the ONV basis
      */
-    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarRSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
 
     /**
      *  Iterate over every (proxy) spin-resolved ONV in this seniority-zero ONV basis and apply the given callback.

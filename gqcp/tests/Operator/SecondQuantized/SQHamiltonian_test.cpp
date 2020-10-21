@@ -59,7 +59,7 @@ GQCP::TwoDM<double> calculateToy2DM() {
  *  @return toy 2-electron integrals:
  *      g(p,q,r,s) = -0.5 delta_pq delta_rs
  */
-GQCP::ScalarSQTwoElectronOperator<double> calculateToyTwoElectronIntegrals() {
+GQCP::ScalarRSQTwoElectronOperator<double> calculateToyTwoElectronIntegrals() {
 
     GQCP::QCRankFourTensor<double> g {2};
     g.setZero();
@@ -76,7 +76,7 @@ GQCP::ScalarSQTwoElectronOperator<double> calculateToyTwoElectronIntegrals() {
         }
     }
 
-    return GQCP::ScalarSQTwoElectronOperator<double> {g};
+    return GQCP::ScalarRSQTwoElectronOperator<double> {g};
 };
 
 
@@ -100,7 +100,7 @@ BOOST_AUTO_TEST_CASE(HamiltonianParameters_constructor) {
 
 
     // Check if a correct constructor works
-    GQCP::RSQHamiltonian<double> sq_hamiltonian {GQCP::ScalarSQOneElectronOperator<double>(H_core), GQCP::ScalarSQTwoElectronOperator<double>(g)};
+    GQCP::RSQHamiltonian<double> sq_hamiltonian {GQCP::ScalarRSQOneElectronOperator<double>(H_core), GQCP::ScalarRSQTwoElectronOperator<double>(g)};
 
 
     // Check if wrong arguments result in a throw
@@ -108,8 +108,8 @@ BOOST_AUTO_TEST_CASE(HamiltonianParameters_constructor) {
     GQCP::QCRankFourTensor<double> g_faulty {K + 1};
 
 
-    BOOST_CHECK_THROW(GQCP::RSQHamiltonian<double> sq_hamiltonian({GQCP::ScalarSQOneElectronOperator<double>(H_core_faulty), GQCP::ScalarSQTwoElectronOperator<double>(g)}), std::invalid_argument);
-    BOOST_CHECK_THROW(GQCP::RSQHamiltonian<double> sq_hamiltonian({GQCP::ScalarSQOneElectronOperator<double>(H_core), GQCP::ScalarSQTwoElectronOperator<double>(g_faulty)}), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::RSQHamiltonian<double> sq_hamiltonian({GQCP::ScalarRSQOneElectronOperator<double>(H_core_faulty), GQCP::ScalarRSQTwoElectronOperator<double>(g)}), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::RSQHamiltonian<double> sq_hamiltonian({GQCP::ScalarRSQOneElectronOperator<double>(H_core), GQCP::ScalarRSQTwoElectronOperator<double>(g_faulty)}), std::invalid_argument);
 }
 
 
@@ -121,7 +121,7 @@ BOOST_AUTO_TEST_CASE(rotate_argument) {
     GQCP::QCRankFourTensor<double> g_op {K};
     g_op.setRandom();
 
-    GQCP::RSQHamiltonian<double> sq_hamiltonian {GQCP::ScalarSQOneElectronOperator<double>(H_op), GQCP::ScalarSQTwoElectronOperator<double>(g_op)};
+    GQCP::RSQHamiltonian<double> sq_hamiltonian {GQCP::ScalarRSQOneElectronOperator<double>(H_op), GQCP::ScalarRSQTwoElectronOperator<double>(g_op)};
 
 
     // Check if we can't rotate with a non-unitary matrix
@@ -230,7 +230,7 @@ BOOST_AUTO_TEST_CASE(calculate_generalized_Fock_matrix_and_super_invalid_argumen
     // Initialize toy HamiltonianParameters
     GQCP::SquareMatrix<double> h = GQCP::SquareMatrix<double>::Zero(2);
     GQCP::QCRankFourTensor<double> g {2};
-    GQCP::RSQHamiltonian<double> sq_hamiltonian {GQCP::ScalarSQOneElectronOperator<double>(h), GQCP::ScalarSQTwoElectronOperator<double>(g)};
+    GQCP::RSQHamiltonian<double> sq_hamiltonian {GQCP::ScalarRSQOneElectronOperator<double>(h), GQCP::ScalarRSQTwoElectronOperator<double>(g)};
 
 
     // Create valid and invalid density matrices (with respect to the dimensions of the SOBasis)
@@ -275,7 +275,7 @@ BOOST_AUTO_TEST_CASE(calculate_Fockian_and_super) {
     // clang-format on
 
     auto g = calculateToyTwoElectronIntegrals();
-    GQCP::RSQHamiltonian<double> sq_hamiltonian {GQCP::ScalarSQOneElectronOperator<double>(h), g};
+    GQCP::RSQHamiltonian<double> sq_hamiltonian {GQCP::ScalarRSQOneElectronOperator<double>(h), g};
 
 
     // Construct the reference Fockian matrix
@@ -331,7 +331,7 @@ BOOST_AUTO_TEST_CASE(calculateEdmistonRuedenbergLocalizationIndex) {
         g_op(p, p, p, p) = 2 * static_cast<float>(p);
     }
 
-    GQCP::RSQHamiltonian<double> sq_hamiltonian {GQCP::ScalarSQOneElectronOperator<double>(H_op), GQCP::ScalarSQTwoElectronOperator<double>(g_op)};
+    GQCP::RSQHamiltonian<double> sq_hamiltonian {GQCP::ScalarRSQOneElectronOperator<double>(H_op), GQCP::ScalarRSQTwoElectronOperator<double>(g_op)};
 
 
     // Check the values for the Edmiston-Ruedenberg localization index.

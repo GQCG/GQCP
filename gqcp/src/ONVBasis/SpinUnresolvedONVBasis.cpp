@@ -211,11 +211,11 @@ size_t SpinUnresolvedONVBasis::countTwoElectronCouplings(const SpinUnresolvedONV
  *
  *  @return the operator's evaluation in a dense matrix with the dimensions of this ONV basis
  */
-SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const ScalarSQOneElectronOperator<double>& one_op, const bool diagonal_values) const {
+SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const ScalarGSQOneElectronOperator<double>& one_op, const bool diagonal_values) const {
 
     auto K = one_op.numberOfOrbitals();
     if (K != this->M) {
-        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDense(ScalarSQOneElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
+        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDense(ScalarGSQOneElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
     MatrixRepresentationEvaluationContainer<SquareMatrix<double>> evaluation_iterator(this->dim);
@@ -232,11 +232,11 @@ SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const ScalarS
  *
  *  @return the operator's evaluation in a dense matrix with the dimensions of this ONV basis
  */
-SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const ScalarSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const {
+SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const ScalarGSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const {
 
     const auto K = two_op.numberOfOrbitals();
     if (K != this->M) {
-        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDense(ScalarSQTwoElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
+        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDense(ScalarGSQTwoElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
     MatrixRepresentationEvaluationContainer<SquareMatrix<double>> evaluation_iterator(this->dim);
@@ -273,12 +273,12 @@ SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const RSQHami
  *
  *  @return the operator's diagonal evaluation in a vector with the dimension of this ONV basis
  */
-VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>& one_op) const {
+VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorDiagonal(const ScalarGSQOneElectronOperator<double>& one_op) const {
 
     const auto K = one_op.numberOfOrbitals();
 
     if (K != this->M) {
-        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDiagonal(ScalarSQOneElectronOperator<double>): Basis functions of this ONV basis and the operator are incompatible.");
+        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDiagonal(ScalarGSQOneElectronOperator<double>): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
     const auto& one_op_par = one_op.parameters();
@@ -312,11 +312,11 @@ VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorDiagonal(const ScalarSQO
  *
  *  @return the operator's diagonal evaluation in a vector with the dimension of this ONV basis
  */
-VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorDiagonal(const ScalarSQTwoElectronOperator<double>& two_op) const {
+VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorDiagonal(const ScalarGSQTwoElectronOperator<double>& two_op) const {
 
     auto K = two_op.numberOfOrbitals();
     if (K != this->M) {
-        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDiagonal(ScalarSQTwoElectronOperator<double>): Basis functions of this ONV basis and the operator are incompatible.");
+        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDiagonal(ScalarGSQTwoElectronOperator<double>): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
     size_t N = this->numberOfElectrons();
@@ -378,11 +378,11 @@ VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorDiagonal(const RSQHamilt
  *
  *  @return the operator's evaluation in a sparse matrix with the dimensions of this ONV basis
  */
-Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op, const bool diagonal_values) const {
+Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const ScalarGSQOneElectronOperator<double>& one_op, const bool diagonal_values) const {
 
     auto K = one_op.numberOfOrbitals();
     if (K != this->M) {
-        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorSparse(ScalarSQOneElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
+        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorSparse(ScalarGSQOneElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
     MatrixRepresentationEvaluationContainer<Eigen::SparseMatrix<double>> evaluation_iterator(this->dim);
@@ -407,11 +407,11 @@ Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const
  *
  *  @return the operator's evaluation in a sparse matrix with the dimensions of this ONV basis
  */
-Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const {
+Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const ScalarGSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const {
 
     auto K = two_op.numberOfOrbitals();
     if (K != this->M) {
-        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorSparse(ScalarSQTwoElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
+        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorSparse(ScalarGSQTwoElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
     MatrixRepresentationEvaluationContainer<Eigen::SparseMatrix<double>> evaluation_iterator(this->dim);
@@ -593,11 +593,11 @@ std::vector<Eigen::SparseMatrix<double>> SpinUnresolvedONVBasis::calculateOneEle
  *
  *  @return the one electron operator's matrix vector product in a vector with the dimensions of this ONV basis
  */
-VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(const ScalarSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(const ScalarGSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
     auto K = one_op.numberOfOrbitals();
     if (K != this->M) {
-        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(ScalarSQOneElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of this ONV basis and the operator are incompatible.");
+        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(ScalarGSQOneElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
     MatrixRepresentationEvaluationContainer<VectorX<double>> evaluation_iterator(x, diagonal);
@@ -615,11 +615,11 @@ VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(cons
  *
  *  @return the two electron operator's matrix vector product in a vector with the dimensions of this ONV basis
  */
-VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(const ScalarSQTwoElectronOperator<double>& two_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(const ScalarGSQTwoElectronOperator<double>& two_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
     auto K = two_op.numberOfOrbitals();
     if (K != this->M) {
-        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(ScalarSQTwoElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of this ONV basis and the operator are incompatible.");
+        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(ScalarGSQTwoElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of this ONV basis and the operator are incompatible.");
     }
 
     MatrixRepresentationEvaluationContainer<VectorX<double>> evaluation_iterator(x, diagonal);

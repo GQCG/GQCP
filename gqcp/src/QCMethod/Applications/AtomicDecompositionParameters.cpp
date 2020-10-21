@@ -130,11 +130,11 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
 
     QCRankFourTensor<double> g_abba = g_ab.Eigen() + g_ba.Eigen();
 
-    RSQHamiltonian<double> HAA {ScalarSQOneElectronOperator<double>(h_a), ScalarSQTwoElectronOperator<double>(g_a)};
-    RSQHamiltonian<double> HBB {ScalarSQOneElectronOperator<double>(h_b), ScalarSQTwoElectronOperator<double>(g_b)};
-    RSQHamiltonian<double> HAB {ScalarSQOneElectronOperator<double>(h_ab), ScalarSQTwoElectronOperator<double>(g_abba)};
-    RSQHamiltonian<double> HA {ScalarSQOneElectronOperator<double>(h_a + h_ab / 2), ScalarSQTwoElectronOperator<double>(g_a.Eigen() + 0.5 * g_abba.Eigen())};
-    RSQHamiltonian<double> HB {ScalarSQOneElectronOperator<double>(h_b + h_ab / 2), ScalarSQTwoElectronOperator<double>(g_b.Eigen() + 0.5 * g_abba.Eigen())};
+    RSQHamiltonian<double> HAA {ScalarRSQOneElectronOperator<double>(h_a), ScalarRSQTwoElectronOperator<double>(g_a)};
+    RSQHamiltonian<double> HBB {ScalarRSQOneElectronOperator<double>(h_b), ScalarRSQTwoElectronOperator<double>(g_b)};
+    RSQHamiltonian<double> HAB {ScalarRSQOneElectronOperator<double>(h_ab), ScalarRSQTwoElectronOperator<double>(g_abba)};
+    RSQHamiltonian<double> HA {ScalarRSQOneElectronOperator<double>(h_a + h_ab / 2), ScalarRSQTwoElectronOperator<double>(g_a.Eigen() + 0.5 * g_abba.Eigen())};
+    RSQHamiltonian<double> HB {ScalarRSQOneElectronOperator<double>(h_b + h_ab / 2), ScalarRSQTwoElectronOperator<double>(g_b.Eigen() + 0.5 * g_abba.Eigen())};
 
     std::vector<RSQHamiltonian<double>> net_atomic_parameters {HAA, HBB};
     std::vector<RSQHamiltonian<double>> interaction_parameters {HAB};

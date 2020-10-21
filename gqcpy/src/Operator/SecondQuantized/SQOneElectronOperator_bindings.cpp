@@ -44,10 +44,10 @@ namespace gqcpy {
 template <typename Scalar>
 void bindSQOneElectronOperator(py::module& module, const std::string& suffix) {
 
-    // Create a Python binding for ScalarSQOneElectronOperator
-    py::class_<GQCP::SQOneElectronOperator<Scalar, 1>>(module,
-                                                       ("ScalarSQOneElectronOperator_" + suffix).c_str(),
-                                                       "A class that represents a second-quantized one-electron operator")
+    // Create a Python binding for ScalarRSQOneElectronOperator
+    py::class_<GQCP::ScalarRSQOneElectronOperator<Scalar>>(module,
+                                                           ("ScalarRSQOneElectronOperator_" + suffix).c_str(),
+                                                           "A class that represents a restricted second-quantized one-electron operator")
 
         // PUBLIC METHODS
 
