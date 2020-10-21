@@ -547,7 +547,7 @@ public:
         this->m_coefficients = current_coefficients;
     }
 
-
+    // deze functie met ONVPath API herschrijven
     /**
      *  Calculate the orbital one-electron density matrix for a seniority-zero wave function expansion.
      * 
