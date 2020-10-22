@@ -55,7 +55,7 @@ public:
      * 
      *  @return the parameter response force (F_p) as an (Nx3)-matrix, i.e. the first-order perturbation derivative of the PSEs
      */
-    Matrix<double, Dynamic, 3> calculateParameterResponseForce(const VectorSQOneElectronOperator<double>& dipole_op) const override;
+    Matrix<double, Dynamic, 3> calculateParameterResponseForce(const VectorRSQOneElectronOperator<double>& dipole_op) const override;
 
 
     // PUBLIC METHODS
@@ -72,7 +72,7 @@ public:
      * 
      *  @return the explicit (i.e. the first part of the) Lagrangian multiplier response force, A_lambda
      */
-    Matrix<double, Dynamic, 3> calculateExplicitMultiplierResponseForce(const VectorSQOneElectronOperator<double> dipole_op) const;
+    Matrix<double, Dynamic, 3> calculateExplicitMultiplierResponseForce(const VectorRSQOneElectronOperator<double> dipole_op) const;
 
     /**
      *  @param sq_hamiltonian                   the Hamiltonian expressed in an orthonormal orbital basis
@@ -88,7 +88,7 @@ public:
      * 
      *  @return the Lagrangian multiplier response force (F_lambda)
      */
-    Matrix<double, Dynamic, 3> calculateMultiplierResponseForce(const RSQHamiltonian<double>& sq_hamiltonian, const VectorSQOneElectronOperator<double> dipole_op, const Matrix<double, Dynamic, 3>& x) const;
+    Matrix<double, Dynamic, 3> calculateMultiplierResponseForce(const RSQHamiltonian<double>& sq_hamiltonian, const VectorRSQOneElectronOperator<double> dipole_op, const Matrix<double, Dynamic, 3>& x) const;
 
     /**
      *  Solve the linear response equations for the Lagrangian multiplier response
@@ -99,7 +99,7 @@ public:
      * 
      *  @return the Lagrangian multiplier reponse y
      */
-    Matrix<double, Dynamic, 3> calculateMultiplierResponse(const RSQHamiltonian<double>& sq_hamiltonian, const VectorSQOneElectronOperator<double> dipole_op, const Matrix<double, Dynamic, 3>& x) const;
+    Matrix<double, Dynamic, 3> calculateMultiplierResponse(const RSQHamiltonian<double>& sq_hamiltonian, const VectorRSQOneElectronOperator<double> dipole_op, const Matrix<double, Dynamic, 3>& x) const;
 };
 
 

@@ -36,7 +36,9 @@ namespace GQCP {
  *  We have decided to inherit from Eigen::Tensor, because we will use different hierarchies: see also: https://eigen.tuxfamily.org/dox-devel/TopicCustomizing_InheritingMatrix.html
  */
 template <typename _Scalar, int _Rank>
-class Tensor: public Eigen::Tensor<_Scalar, _Rank> {
+class Tensor:
+    public Eigen::Tensor<_Scalar, _Rank> {
+
 public:
     using Scalar = _Scalar;
     static constexpr auto Rank = _Rank;
@@ -172,14 +174,15 @@ public:
 
 
     /**
-     *  @return this as a const Eigen::Tensor, as a work-around to fix Eigen::Tensor expressions
+     *  @return This as a const Eigen base.
      */
     const Base& Eigen() const { return static_cast<const Base&>(*this); }
 
     /**
-     *  @return this as a non-const Eigen::Tensor, as a work-around to fix Eigen::Tensor expressions
+     *  @return This as a non-const Eigen base.
      */
     Base& Eigen() { return static_cast<Base&>(*this); }
+
 
     /**
      *  @param other        the other tensor

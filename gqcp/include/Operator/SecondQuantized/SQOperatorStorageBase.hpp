@@ -125,7 +125,7 @@ public:
      *  The default constructor.
      */
     SQOperatorStorageBase() :
-        SQOperatorStorageBase(0, Vectorizer()) {}
+        SQOperatorStorageBase(StorageArray<MatrixRepresentation, Vectorizer> {Vectorizer()}) {}
 
 
     /**

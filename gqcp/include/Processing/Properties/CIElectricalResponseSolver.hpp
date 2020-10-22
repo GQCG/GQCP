@@ -65,7 +65,7 @@ public:
      * 
      *  @return the parameter response force (F_p), i.e. the first-order parameter partial derivative of the perturbation derivative of the CI energy function
      */
-    Matrix<double, Dynamic, 3> calculateParameterResponseForce(const VectorSQOneElectronOperator<double>& dipole_op) const override {
+    Matrix<double, Dynamic, 3> calculateParameterResponseForce(const VectorRSQOneElectronOperator<double>& dipole_op) const override {
 
         // Prepare some variables.
         const auto dim = this->linear_expansion.onvBasis().dimension();

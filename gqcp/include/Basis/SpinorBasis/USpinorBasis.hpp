@@ -20,6 +20,7 @@
 
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Basis/Transformations/UTransformationMatrix.hpp"
+#include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
 #include "QuantumChemical/Spin.hpp"
 #include "Utilities/type_traits.hpp"
 

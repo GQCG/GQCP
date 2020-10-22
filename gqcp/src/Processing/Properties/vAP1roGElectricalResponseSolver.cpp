@@ -56,7 +56,7 @@ SquareMatrix<double> vAP1roGElectricalResponseSolver::calculateParameterResponse
  * 
  *  @return the parameter response force (F_p) as an (Nx3)-matrix, i.e. the first-order perturbation derivative of the PSEs
  */
-Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateParameterResponseForce(const VectorSQOneElectronOperator<double>& dipole_op) const {
+Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateParameterResponseForce(const VectorRSQOneElectronOperator<double>& dipole_op) const {
 
     // Prepare some variables.
     const auto& G = this->vap1rog.geminalCoefficients();
@@ -72,7 +72,7 @@ Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateParameterRe
     Matrix<double, Dynamic, 3> F_p = Matrix<double, Dynamic, 3>::Zero(dim, 3);
     for (size_t m = 0; m < 3; m++) {
 
-        const auto mu_m = dipole_op[m].parameters();
+        const auto mu_m = dipole_op(m).parameters();
 
         // Calculate the m-th component of the parameter response force F_p.
         auto F_p_m = orbital_space.initializeRepresentableObjectFor<double>(OccupationType::k_occupied, OccupationType::k_virtual);  // create a representation for occupied-virtual objects
@@ -112,7 +112,7 @@ SquareMatrix<double> vAP1roGElectricalResponseSolver::calculateMultiplierRespons
  * 
  *  @return the explicit (i.e. the first part of the) Lagrangian multiplier response force, A_lambda
  */
-Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateExplicitMultiplierResponseForce(const VectorSQOneElectronOperator<double> dipole_op) const {
+Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateExplicitMultiplierResponseForce(const VectorRSQOneElectronOperator<double> dipole_op) const {
 
     // Prepare some variables.
     const auto& G = this->vap1rog.geminalCoefficients();
@@ -129,7 +129,7 @@ Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateExplicitMul
     Matrix<double, Dynamic, 3> A_lambda = Matrix<double, Dynamic, 3>::Zero(dim, 3);
     for (size_t m = 0; m < 3; m++) {
 
-        const auto mu_m = dipole_op[m].parameters();
+        const auto mu_m = dipole_op(m).parameters();
 
         // Calculate the m-th component.
         auto A_lambda_m = orbital_space.initializeRepresentableObjectFor<double>(OccupationType::k_occupied, OccupationType::k_virtual);  // create a representation for occupied-virtual objects
@@ -207,7 +207,7 @@ ImplicitRankFourTensorSlice<double> vAP1roGElectricalResponseSolver::calculateIm
  * 
  *  @return the Lagrangian multiplier response force (F_lambda)
  */
-Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateMultiplierResponseForce(const RSQHamiltonian<double>& sq_hamiltonian, const VectorSQOneElectronOperator<double> dipole_op, const Matrix<double, Dynamic, 3>& x) const {
+Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateMultiplierResponseForce(const RSQHamiltonian<double>& sq_hamiltonian, const VectorRSQOneElectronOperator<double> dipole_op, const Matrix<double, Dynamic, 3>& x) const {
 
     const auto A_lambda = this->calculateExplicitMultiplierResponseForce(dipole_op);
     const auto B_lambda = this->calculateImplicitMultiplierResponseForceConstant(sq_hamiltonian);
@@ -226,7 +226,7 @@ Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateMultiplierR
  * 
  *  @return the Lagrangian multiplier reponse y
  */
-Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateMultiplierResponse(const RSQHamiltonian<double>& sq_hamiltonian, const VectorSQOneElectronOperator<double> dipole_op, const Matrix<double, Dynamic, 3>& x) const {
+Matrix<double, Dynamic, 3> vAP1roGElectricalResponseSolver::calculateMultiplierResponse(const RSQHamiltonian<double>& sq_hamiltonian, const VectorRSQOneElectronOperator<double> dipole_op, const Matrix<double, Dynamic, 3>& x) const {
 
     const auto k_lambda = this->calculateMultiplierResponseConstant(sq_hamiltonian);
     const auto F_lambda = this->calculateMultiplierResponseForce(sq_hamiltonian, dipole_op, x);

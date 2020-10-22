@@ -18,26 +18,16 @@
 #pragma once
 
 
-#include "Basis/ScalarBasis/ScalarBasis.hpp"
-#include "Basis/SpinorBasis/GSpinorBasis.hpp"
 #include "Basis/SpinorBasis/OrbitalSpace.hpp"
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
-#include "Basis/Transformations/JacobiRotationParameters.hpp"
-#include "Basis/Transformations/TransformationMatrix.hpp"
-#include "DensityMatrix/OneDM.hpp"
-#include "DensityMatrix/TwoDM.hpp"
-#include "Mathematical/Functions/VectorSpaceArithmetic.hpp"
-#include "Molecule/Molecule.hpp"
-#include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
-#include "Operator/FirstQuantized/OverlapOperator.hpp"
+#include "Basis/Transformations/BasisTransformable.hpp"
+#include "Basis/Transformations/JacobiRotatable.hpp"
 #include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/GSQTwoElectronOperator.hpp"
 #include "Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/RSQTwoElectronOperator.hpp"
-#include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
-#include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
-#include "Utilities/miscellaneous.hpp"
+#include "QuantumChemical/spinor_tags.hpp"
 #include "Utilities/type_traits.hpp"
 
 #include <numeric>
@@ -192,7 +182,9 @@ public:
      *
      *  @return A second-quantized molecular Hamiltonian.
      */
-    static SQHamiltonian<ScalarRSQOneElectronOperator<double>, ScalarRSQTwoElectronOperator<double>> Molecular(const RSpinorBasis<double, GTOShell>& spinor_basis, const Molecule& molecule) {
+    // FIXME: This API should be moved to SpinorBasis.
+    template <typename Z = SpinorTag>
+    static enable_if_t<std::is_same<Z, RestrictedSpinOrbitalTag>::value, SQHamiltonian<ScalarRSQOneElectronOperator<double>, ScalarRSQTwoElectronOperator<double>>> Molecular(const RSpinorBasis<double, GTOShell>& spinor_basis, const Molecule& molecule) {
 
         // Calculate the integrals for the molecular Hamiltonian
         const auto T = spinor_basis.quantize(Operator::Kinetic());
@@ -319,7 +311,7 @@ public:
         }  // while loop
 
 
-        return SQHamiltonian(ScalarSQOneElectronOperator<Scalar>(h_core), ScalarSQTwoElectronOperator<Scalar>(g));
+        return SQHamiltonian(ScalarSQOneElectronOperator_Placeholder(h_core), ScalarSQTwoElectronOperator_Placeholder(g));
     }
 
 
@@ -597,26 +589,6 @@ public:
 
 
 /*
- *  MARK: Convenience aliases
- */
-
-
-// An `SQHamiltonian` related to restricted spin-orbitals. See `RestrictedSpinOrbitalTag`.
-template <typename Scalar>
-using RSQHamiltonian = SQHamiltonian<ScalarRSQOneElectronOperator<Scalar>, ScalarRSQTwoElectronOperator<Scalar>>;
-
-
-// An `SQHamiltonian` related to unrestricted spin-orbitals. See `UnrestrictedSpinOrbitalTag`.
-// template <typename Scalar>
-// using USQHamiltonian = SQHamiltonian<ScalarUSQOneElectronOperator<Scalar>, ScalarUSQTwoElectronOperator<Scalar>>;
-
-
-// An `SQHamiltonian` related to general spinors. See `GeneralSpinorTag`.
-template <typename Scalar>
-using GSQHamiltonian = SQHamiltonian<ScalarGSQOneElectronOperator<Scalar>, ScalarGSQTwoElectronOperator<Scalar>>;
-
-
-/*
  *  MARK: Operator traits
  */
 
@@ -648,8 +620,30 @@ template <typename ScalarSQOneElectronOperator_Placeholder, typename ScalarSQTwo
 struct BasisTransformableTraits<SQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>> {
 
     // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix"
-    using TM = typename OperatorTraits<SQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>>::TM;
+    using TM = typename OperatorTraits<ScalarSQOneElectronOperator_Placeholder>::TM;
+
+    // using TM = typename OperatorTraits<SQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>>::TM;
 };
+
+
+/*
+ *  MARK: Convenience aliases
+ */
+
+
+// An `SQHamiltonian` related to restricted spin-orbitals. See `RestrictedSpinOrbitalTag`.
+template <typename Scalar>
+using RSQHamiltonian = SQHamiltonian<ScalarRSQOneElectronOperator<Scalar>, ScalarRSQTwoElectronOperator<Scalar>>;
+
+
+// An `SQHamiltonian` related to unrestricted spin-orbitals. See `UnrestrictedSpinOrbitalTag`.
+// template <typename Scalar>
+// using USQHamiltonian = SQHamiltonian<ScalarUSQOneElectronOperator<Scalar>, ScalarUSQTwoElectronOperator<Scalar>>;
+
+
+// An `SQHamiltonian` related to general spinors. See `GeneralSpinorTag`.
+template <typename Scalar>
+using GSQHamiltonian = SQHamiltonian<ScalarGSQOneElectronOperator<Scalar>, ScalarGSQTwoElectronOperator<Scalar>>;
 
 
 /*
@@ -690,7 +684,7 @@ RSQHamiltonian<Scalar> operator+(const RSQHamiltonian<Scalar>& sq_hamiltonian, c
  *  @return a new second-quantized Hamiltonian
  */
 template <typename Scalar>
-RSQHamiltonian<Scalar> operator-(const RSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarSQOneElectronOperator<Scalar>& sq_one_op) {
+RSQHamiltonian<Scalar> operator-(const RSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarRSQOneElectronOperator<Scalar>& sq_one_op) {
 
     return sq_hamiltonian + (-sq_one_op);
 }
@@ -707,7 +701,7 @@ RSQHamiltonian<Scalar> operator-(const RSQHamiltonian<Scalar>& sq_hamiltonian, c
  *  @return a new second-quantized Hamiltonian
  */
 template <typename Scalar>
-RSQHamiltonian<Scalar> operator+(const RSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarSQTwoElectronOperator<Scalar>& sq_two_op) {
+RSQHamiltonian<Scalar> operator+(const RSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarRSQTwoElectronOperator<Scalar>& sq_two_op) {
 
     // Make a copy of the two-electron part in order to create a new Hamiltonian
     auto sq_two_ops = sq_hamiltonian.twoElectronContributions();
@@ -730,7 +724,7 @@ RSQHamiltonian<Scalar> operator+(const RSQHamiltonian<Scalar>& sq_hamiltonian, c
  *  @return a new second-quantized Hamiltonian
  */
 template <typename Scalar>
-RSQHamiltonian<Scalar> operator-(const RSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarSQTwoElectronOperator<Scalar>& sq_two_op) {
+RSQHamiltonian<Scalar> operator-(const RSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarRSQTwoElectronOperator<Scalar>& sq_two_op) {
 
     return sq_hamiltonian + (-sq_two_op);
 }
