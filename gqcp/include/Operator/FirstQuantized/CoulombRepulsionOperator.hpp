@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Operator/FirstQuantized/BaseFQTwoElectronOperator.hpp"
+#include "Operator/FirstQuantized/BaseFQOperator.hpp"
 
 
 namespace GQCP {
@@ -27,7 +27,8 @@ namespace GQCP {
 /**
  *  The two-electron Coulomb repulsion operator.
  */
-class CoulombRepulsionOperator: public BaseFQTwoElectronOperator<double, 1> {};
+class CoulombRepulsionOperator:
+    public BaseScalarFQTwoElectronOperator<double> {};
 
 
 }  // namespace GQCP

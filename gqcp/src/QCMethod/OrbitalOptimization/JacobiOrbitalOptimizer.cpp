@@ -46,7 +46,7 @@ JacobiOrbitalOptimizer::JacobiOrbitalOptimizer(const size_t dim, const double co
  * 
  *  @return a unitary matrix that will be used to rotate the current Hamiltonian into the next iteration
  */
-RTransformationMatrix<double> JacobiOrbitalOptimizer::calculateNewRotationMatrix(const SQHamiltonian<double>& sq_hamiltonian) const {
+RTransformationMatrix<double> JacobiOrbitalOptimizer::calculateNewRotationMatrix(const RSQHamiltonian<double>& sq_hamiltonian) const {
 
     return RTransformationMatrix<double>::FromJacobi(this->optimal_jacobi_with_scalar.first, sq_hamiltonian.numberOfOrbitals());
 }
@@ -57,7 +57,7 @@ RTransformationMatrix<double> JacobiOrbitalOptimizer::calculateNewRotationMatrix
  * 
  *  @return if the algorithm is considered to be converged
  */
-bool JacobiOrbitalOptimizer::checkForConvergence(const SQHamiltonian<double>& sq_hamiltonian) const {
+bool JacobiOrbitalOptimizer::checkForConvergence(const RSQHamiltonian<double>& sq_hamiltonian) const {
 
     const double optimal_correction = optimal_jacobi_with_scalar.second;
 
@@ -72,7 +72,7 @@ bool JacobiOrbitalOptimizer::checkForConvergence(const SQHamiltonian<double>& sq
 /**
  *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
  */
-void JacobiOrbitalOptimizer::prepareConvergenceChecking(const SQHamiltonian<double>& sq_hamiltonian) {
+void JacobiOrbitalOptimizer::prepareConvergenceChecking(const RSQHamiltonian<double>& sq_hamiltonian) {
 
     this->prepareJacobiSpecificConvergenceChecking(sq_hamiltonian);
 
@@ -91,7 +91,7 @@ void JacobiOrbitalOptimizer::prepareConvergenceChecking(const SQHamiltonian<doub
  * 
  *  @return the optimal Jacobi rotation parameters and the corresponding value for the scalar function that can be obtained when the Jacobi rotation would have taken place
  */
-std::pair<JacobiRotationParameters, double> JacobiOrbitalOptimizer::calculateOptimalJacobiParameters(const SQHamiltonian<double>& sq_hamiltonian) {
+std::pair<JacobiRotationParameters, double> JacobiOrbitalOptimizer::calculateOptimalJacobiParameters(const RSQHamiltonian<double>& sq_hamiltonian) {
 
     const auto& cmp = this->comparer();  // cmp: 'comparer'
     std::priority_queue<pair_type, std::vector<pair_type>, decltype(cmp)> queue {cmp};

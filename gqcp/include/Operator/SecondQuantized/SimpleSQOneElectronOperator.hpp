@@ -67,6 +67,9 @@ public:
     // The type of the one-particle density matrix that is naturally associated to the derived one-electron operator.
     using Derived1DM = typename OperatorTraits<DerivedOperator>::OneDM;
 
+    // The type of the two-particle density matrix that is naturally associated to the derived one-electron operator.
+    using Derived2DM = typename OperatorTraits<DerivedOperator>::TwoDM;
+
 
 public:
     /*
@@ -84,19 +87,19 @@ public:
     /**
      *  Calculate the expectation value of this one-electron operator.
      * 
-     *  @param D                The 1-DM that represents the wave function.
+     *  @param D                The 1-DM (that represents the wave function).
      *
      *  @return The expectation value of all components of the one-electron operator.
      */
     StorageArray<Scalar, Vectorizer> calculateExpectationValue(const Derived1DM& D) const {
 
         if (this->numberOfOrbitals() != D.numberOfOrbitals()) {
-            throw std::invalid_argument("SimpleSQOneElectronOperator::calculateExpectationValue(const Derived1DM<Scalar>&): The given 1-DM is not compatible with the one-electron operator.");
+            throw std::invalid_argument("SimpleSQOneElectronOperator::calculateExpectationValue(const Derived1DM<Scalar>&): The given 1-DM's dimension is not compatible with the one-electron operator.");
         }
 
         // Calculate the expectation value for every component of the operator.
         const auto& parameters = this->allParameters();
-        std::vector<Scalar> expectation_values(this->numberOfComponents());  // zero-initialize the vector with a number of elements
+        std::vector<Scalar> expectation_values(this->numberOfComponents());  // Zero-initialize the vector with a number of elements.
         for (size_t i = 0; i < this->numberOfComponents(); i++) {
             expectation_values[i] = (parameters[i] * D).trace();
         }
@@ -116,25 +119,24 @@ public:
      *  @note This method is only enabled in the real case.
      */
     template <typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value, StorageArray<SquareMatrix<double>, Vectorizer>> calculateFockianMatrix(const Derived1DM& D, const TwoDM<double>& d) const {
+    enable_if_t<std::is_same<Z, double>::value, StorageArray<SquareMatrix<double>, Vectorizer>> calculateFockianMatrix(const Derived1DM& D, const Derived2DM& d) const {
 
         if (D.numberOfOrbitals() != this->numberOfOrbitals()) {
-            throw std::invalid_argument("SimpleSQOneElectronOperator::calculateFockianMatrix(const Derived1DM&, const TwoDM<double>&): The 1-DM's dimensions are not compatible with this one-electron operator.");
+            throw std::invalid_argument("SimpleSQOneElectronOperator::calculateFockianMatrix(const Derived1DM&, const Derived2DM&): The 1-DM's dimensions are not compatible with this one-electron operator.");
         }
 
         if (d.numberOfOrbitals() != this->numberOfOrbitals()) {
-            throw std::invalid_argument("SimpleSQOneElectronOperator::calculateFockianMatrix(const Derived1DM&, const TwoDM<double>&): The 2-DM's dimensions are not compatible with this one-electron operator.");
+            throw std::invalid_argument("SimpleSQOneElectronOperator::calculateFockianMatrix(const Derived1DM&, const Derived2DM&): The 2-DM's dimensions are not compatible with this one-electron operator.");
         }
 
-
-        const auto& parameters = this->parameters();                              // The parameters of the one-electron operator, as a vector.
+        const auto& parameters = this->allParameters();                           // The parameters of the one-electron operator, as a vector.
         std::vector<SquareMatrix<double>> F_vector {this->numberOfComponents()};  // The resulting vector of Fockian matrices.
 
         // A KISS implementation of the calculation of the Fockian matrix.
         for (size_t i = 0; i < this->numberOfComponents(); i++) {
             const auto& f_i = parameters[i];  // The matrix representation of the parameters of the i-th component.
 
-            // Calculate the Fockian matrix for every component and add it to the array.
+            // Calculate the Fockian matrix for every component and add it to the vector.
             SquareMatrix<double> F_i = SquareMatrix<double>::Zero(this->numberOfOrbitals());  // The Fockian matrix of the i-th component.
             for (size_t p = 0; p < this->numberOfOrbitals(); p++) {
                 for (size_t q = 0; q < this->numberOfOrbitals(); q++) {
@@ -147,7 +149,7 @@ public:
             F_vector[i] = F_i;
         }
 
-        return StorageArray<SquareMatrix<double>, Vectorizer> {F_vector, this->array().vectorizer()};
+        return StorageArray<SquareMatrix<double>, Vectorizer> {F_vector, this->array.vectorizer()};
     }
 
 
@@ -162,26 +164,26 @@ public:
      *  @note This method is only enabled in the real case.
      */
     template <typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value, StorageArray<SquareRankFourTensor<double>, Vectorizer>> calculateSuperFockianMatrix(const Derived1DM& D, const TwoDM<double>& d) const {
+    enable_if_t<std::is_same<Z, double>::value, StorageArray<SquareRankFourTensor<double>, Vectorizer>> calculateSuperFockianMatrix(const Derived1DM& D, const Derived2DM& d) const {
 
         if (D.numberOfOrbitals() != this->numberOfOrbitals()) {
-            throw std::invalid_argument("SimpleSQOneElectronOperator::calculateFockianMatrix(const Derived1DM&, const TwoDM<double>&): The given 1-DM's dimensions are not compatible with this one-electron operator.");
+            throw std::invalid_argument("SimpleSQOneElectronOperator::calculateFockianMatrix(const Derived1DM&, const Derived2DM&): The given 1-DM's dimensions are not compatible with this one-electron operator.");
         }
 
         if (d.numberOfOrbitals() != this->numberOfOrbitals()) {
-            throw std::invalid_argument("SimpleSQOneElectronOperator::calculateFockianMatrix(const Derived1DM&, const TwoDM<double>&): The given 2-DM's dimensions are not compatible with this one-electron operator.");
+            throw std::invalid_argument("SimpleSQOneElectronOperator::calculateFockianMatrix(const Derived1DM&, const Derived2DM&): The given 2-DM's dimensions are not compatible with this one-electron operator.");
         }
 
 
-        const auto& parameters = this->parameters();                                      // The parameters of the one-electron operator, as a vector.
+        const auto& parameters = this->allParameters();                                   // The parameters of the one-electron operator, as a vector.
         std::vector<SquareRankFourTensor<double>> G_vector {this->numberOfComponents()};  // The resulting vector of super-Fockian matrices.
-        const auto F_vector = this->calculateFockianMatrix(D, d).array();                 // The Fockian matrices are necessary in the calculation of the super-Fockian matrices.
+        const auto F_vector = this->calculateFockianMatrix(D, d).elements();              // The Fockian matrices are necessary in the calculation of the super-Fockian matrices.
 
         // A KISS implementation of the calculation of the super-Fockian matrix.
         for (size_t i = 0; i < this->numberOfComponents(); i++) {
 
-            const auto& f_i = this->parameters(i);  // The matrix representation of the parameters of the i-th component.
-            const auto& F_i = F_vector[i];          // The Fockian matrix of the i-th component.
+            const auto& f_i = parameters[i];  // The matrix representation of the parameters of the i-th component.
+            const auto& F_i = F_vector[i];    // The Fockian matrix of the i-th component.
 
             // Calculate the super-Fockian matrix for every component and add it to the array. Add factors 1/2 to accommodate for response density matrices.
             SquareRankFourTensor<double> G_i {this->numberOfOrbitals()};
@@ -203,7 +205,7 @@ public:
             G_vector[i] = G_i;
         }
 
-        return StorageArray<SquareRankFourTensor<double>, Vectorizer> {G_vector, this->array().vectorizer()};
+        return StorageArray<SquareRankFourTensor<double>, Vectorizer> {G_vector, this->array.vectorizer()};
     }
 
 
@@ -280,8 +282,8 @@ public:
  *  A type that provides compile-time information on operators that is otherwise not accessible through a public class alias.
  */
 template <typename _Scalar, typename _Vectorizer, typename _DerivedOperator>
-class OperatorTraits<SimpleSQOneElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>> {
-public:
+struct OperatorTraits<SimpleSQOneElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>> {
+
     // The scalar type used for a single parameter/matrix element/integral: real or complex.
     using Scalar = _Scalar;
 

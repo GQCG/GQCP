@@ -15,9 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Processing/Properties/vAP1roGElectricalResponseSolver.hpp"
-
 #include "Processing/Properties/properties.hpp"
+#include "Processing/Properties/vAP1roGElectricalResponseSolver.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
@@ -43,7 +42,7 @@ void bindvAP1roGElectricalResponseSolver(py::module& module) {
 
         .def(
             "calculateWaveFunctionResponse",
-            [](const GQCP::vAP1roGElectricalResponseSolver& response_solver, const GQCP::SQHamiltonian<double>& sq_hamiltonian, const GQCP::VectorSQOneElectronOperator<double>& dipole_op) {
+            [](const GQCP::vAP1roGElectricalResponseSolver& response_solver, const GQCP::RSQHamiltonian<double>& sq_hamiltonian, const GQCP::VectorRSQOneElectronOperator<double>& dipole_op) {
                 return response_solver.calculateWaveFunctionResponse(sq_hamiltonian, dipole_op);
             },
             "Solve the parameter-linear response equations and return the wave function response.",
@@ -52,14 +51,14 @@ void bindvAP1roGElectricalResponseSolver(py::module& module) {
 
         .def(
             "calculateMultiplierResponse",
-            [](const GQCP::vAP1roGElectricalResponseSolver& response_solver, const GQCP::SQHamiltonian<double>& sq_hamiltonian, const GQCP::VectorSQOneElectronOperator<double>& dipole_op, const Eigen::Matrix<double, Eigen::Dynamic, 3>& x) {
+            [](const GQCP::vAP1roGElectricalResponseSolver& response_solver, const GQCP::RSQHamiltonian<double>& sq_hamiltonian, const GQCP::VectorRSQOneElectronOperator<double>& dipole_op, const Eigen::Matrix<double, Eigen::Dynamic, 3>& x) {
                 return response_solver.calculateMultiplierResponse(sq_hamiltonian, dipole_op, x);
             },
             "Solve the multiplier-linear response equations and return the wave function response.")
 
         .def(
             "calculateElectricPolarizability",
-            [](const GQCP::vAP1roGElectricalResponseSolver& response_solver, const Eigen::Matrix<double, Eigen::Dynamic, 3>& x, const GQCP::VectorSQOneElectronOperator<double>& dipole_op, const Eigen::Matrix<double, Eigen::Dynamic, 3>& y) {
+            [](const GQCP::vAP1roGElectricalResponseSolver& response_solver, const Eigen::Matrix<double, Eigen::Dynamic, 3>& x, const GQCP::VectorRSQOneElectronOperator<double>& dipole_op, const Eigen::Matrix<double, Eigen::Dynamic, 3>& y) {
                 const auto F_p = response_solver.calculateParameterResponseForce(dipole_op);
                 const auto A_lambda = response_solver.calculateExplicitMultiplierResponseForce(dipole_op);
 

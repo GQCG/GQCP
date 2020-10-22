@@ -132,20 +132,24 @@ public:
         }
 
 
-        std::array<Scalar, Components> expectation_values {};  // zero initialization
+        // Calculate the expectation value for every component of the operator.
+        const auto& parameters = this->allParameters();
+        std::vector<Scalar> expectation_values(Components);  // Zero-initialize the vector with a number of elements.
+
         for (size_t i = 0; i < Components; i++) {
 
-            // Specify the contractions for the relevant contraction of the two-electron integrals and the 2-DM
+            // Specify the contractions for the relevant contraction of the two-electron integrals/parameters/matrix elements and the 2-DM:
             //      0.5 g(p q r s) d(p q r s)
             Eigen::array<Eigen::IndexPair<int>, 4> contractions {Eigen::IndexPair<int>(0, 0), Eigen::IndexPair<int>(1, 1), Eigen::IndexPair<int>(2, 2), Eigen::IndexPair<int>(3, 3)};
-            //      Perform the contraction
-            Eigen::Tensor<Scalar, 0> contraction = 0.5 * this->parameters(i).contract(d.Eigen(), contractions);
 
-            // As the contraction is a scalar (a tensor of rank 0), we should access by (0).
+            // Perform the actual contraction.
+            Eigen::Tensor<Scalar, 0> contraction = 0.5 * parameters[i].contract(d.Eigen(), contractions);
+
+            // As the contraction is a scalar (a tensor of rank 0), we should access using `operator(0)`.
             expectation_values[i] = contraction(0);
         }
 
-        return Eigen::Map<Eigen::Matrix<Scalar, Components, 1>>(expectation_values.data());  // convert std::array to Vector
+        return Eigen::Map<Eigen::Matrix<Scalar, Components, 1>>(expectation_values.data());
     }
 
 

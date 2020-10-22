@@ -28,8 +28,8 @@
 #include "Molecule/Molecule.hpp"
 #include "Molecule/NuclearFramework.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
-#include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
-#include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
+#include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
+#include "Operator/SecondQuantized/GSQTwoElectronOperator.hpp"
 #include "QuantumChemical/Spin.hpp"
 #include "Utilities/aliases.hpp"
 #include "Utilities/literals.hpp"
@@ -282,10 +282,10 @@ public:
      * 
      *  @return the second-quantized operator corresponding to the Coulomb operator
      */
-    auto quantize(const CoulombRepulsionOperator& fq_two_op) const -> SQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>, CoulombRepulsionOperator::Components> {
+    auto quantize(const CoulombRepulsionOperator& fq_two_op) const -> GSQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>, CoulombRepulsionOperator::Vectorizer> {
 
         using ResultScalar = product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>;
-        using ResultOperator = SQTwoElectronOperator<ResultScalar, CoulombRepulsionOperator::Components>;
+        using ResultOperator = GSQTwoElectronOperator<ResultScalar, CoulombRepulsionOperator::Vectorizer>;
 
         // The strategy for calculating the matrix representation of the two-electron operator in this spinor basis is to:
         //  1. Calculate the Coulomb integrals in the underlying scalar bases;
@@ -347,10 +347,10 @@ public:
      * 
      *  @return the electronic spin operator expressed in this spinor basis
      */
-    auto quantize(const ElectronicSpinOperator& fq_one_op) const -> SQOneElectronOperator<product_t<ElectronicSpinOperator::Scalar, ExpansionScalar>, ElectronicSpinOperator::Components> {
+    auto quantize(const ElectronicSpinOperator& fq_one_op) const -> GSQOneElectronOperator<product_t<ElectronicSpinOperator::Scalar, ExpansionScalar>, ElectronicSpinOperator::Vectorizer> {
 
         using ResultScalar = product_t<ElectronicSpinOperator::Scalar, ExpansionScalar>;
-        using ResultOperator = SQOneElectronOperator<ResultScalar, ElectronicSpinOperator::Components>;
+        using ResultOperator = GSQOneElectronOperator<ResultScalar, ElectronicSpinOperator::Vectorizer>;
 
         const auto K_alpha = this->numberOfCoefficients(Spin::alpha);
         const auto K_beta = this->numberOfCoefficients(Spin::beta);
@@ -361,9 +361,9 @@ public:
         //  2. Then, construct the scalar basis representations of the components of the spin operator by placing the overlaps into the correct blocks.
         //  3. Transform the components (in scalar basis) with the current coefficient matrix to yield the components in spinor basis.
 
-        QCMatrix<ResultScalar> S_x = QCMatrix<ResultScalar>::Zero(M);
-        QCMatrix<ResultScalar> S_y = QCMatrix<ResultScalar>::Zero(M);
-        QCMatrix<ResultScalar> S_z = QCMatrix<ResultScalar>::Zero(M);
+        SquareMatrix<ResultScalar> S_x = SquareMatrix<ResultScalar>::Zero(M);
+        SquareMatrix<ResultScalar> S_y = SquareMatrix<ResultScalar>::Zero(M);
+        SquareMatrix<ResultScalar> S_z = SquareMatrix<ResultScalar>::Zero(M);
 
 
         // 1. Calculate the necessary overlap integrals over the scalar bases.
@@ -385,7 +385,7 @@ public:
 
 
         // 3. Transform using the coefficient matrix
-        ResultOperator spin_op {std::array<QCMatrix<ResultScalar>, 3> {S_x, S_y, S_z}};  // 'op' for operator
+        ResultOperator spin_op {std::vector<SquareMatrix<ResultScalar>> {S_x, S_y, S_z}};  // 'op' for operator
         spin_op.transform(this->coefficientMatrix());
         return spin_op;
     }
@@ -397,10 +397,10 @@ public:
      *  @return the second-quantized operator corresponding to the given spin-independent first-quantized operator
      */
     template <typename FQOneElectronOperator>
-    auto quantize(const FQOneElectronOperator& fq_one_op) const -> SQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, FQOneElectronOperator::Components> {
+    auto quantize(const FQOneElectronOperator& fq_one_op) const -> GSQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, typename FQOneElectronOperator::Vectorizer> {
 
         using ResultScalar = product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>;
-        using ResultOperator = SQOneElectronOperator<ResultScalar, FQOneElectronOperator::Components>;
+        using ResultOperator = GSQOneElectronOperator<ResultScalar, typename FQOneElectronOperator::Vectorizer>;
 
 
         // The strategy for calculating the matrix representation of the one-electron operator in this spinor basis is to:
@@ -409,7 +409,7 @@ public:
         const auto K_alpha = this->numberOfCoefficients(Spin::alpha);
         const auto K_beta = this->numberOfCoefficients(Spin::beta);
         const auto M = this->numberOfSpinors();
-        QCMatrix<ResultScalar> f = QCMatrix<ResultScalar>::Zero(M);  // the total result
+        SquareMatrix<ResultScalar> f = SquareMatrix<ResultScalar>::Zero(M);  // the total result
 
         // 1. Express the operator in the underlying scalar bases: spin-independent operators only have alpha-alpha and beta-beta blocks.
         const auto F_alpha = IntegralCalculator::calculateLibintIntegrals(fq_one_op, this->scalarBasis(Spin::alpha));
@@ -453,6 +453,9 @@ public:
 
     // The type of transformation matrix that is naturally related to a GSpinorBasis.
     using TM = GTransformationMatrix<ExpansionScalar>;  // TODO: Rename to TransformationMatrix once the class is gone
+
+    // The second-quantized representation of the overlap operator related to the derived spinor basis.
+    using SQOverlapOperator = ScalarGSQOneElectronOperator<ExpansionScalar>;
 };
 
 

@@ -41,7 +41,7 @@ void bindRHFElectricalResponseSolver(py::module& module) {
 
         .def(
             "calculateWaveFunctionResponse",
-            [](const GQCP::RHFElectricalResponseSolver& cphf_solver, const GQCP::SQHamiltonian<double>& sq_hamiltonian, const GQCP::VectorSQOneElectronOperator<double>& dipole_op) {
+            [](const GQCP::RHFElectricalResponseSolver& cphf_solver, const GQCP::RSQHamiltonian<double>& sq_hamiltonian, const GQCP::VectorRSQOneElectronOperator<double>& dipole_op) {
                 return cphf_solver.calculateWaveFunctionResponse(sq_hamiltonian, dipole_op);
             },
             "Solve the linear response equations and return the wave function response.",
@@ -50,7 +50,7 @@ void bindRHFElectricalResponseSolver(py::module& module) {
 
         .def(
             "calculateElectricPolarizability",
-            [](const GQCP::RHFElectricalResponseSolver& cphf_solver, const Eigen::Matrix<double, Eigen::Dynamic, 3>& x, const GQCP::VectorSQOneElectronOperator<double>& dipole_op) {
+            [](const GQCP::RHFElectricalResponseSolver& cphf_solver, const Eigen::Matrix<double, Eigen::Dynamic, 3>& x, const GQCP::VectorRSQOneElectronOperator<double>& dipole_op) {
                 const auto F_p = cphf_solver.calculateParameterResponseForce(dipole_op);
                 return GQCP::calculateElectricPolarizability(F_p, x);
             },

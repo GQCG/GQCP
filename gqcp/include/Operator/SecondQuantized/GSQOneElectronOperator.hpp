@@ -20,8 +20,10 @@
 
 #include "Basis/Transformations/GTransformationMatrix.hpp"
 #include "DensityMatrix/G1DM.hpp"
+#include "DensityMatrix/G2DM.hpp"
 #include "Mathematical/Representation/DenseVectorizer.hpp"
 #include "Operator/SecondQuantized/SimpleSQOneElectronOperator.hpp"
+#include "QuantumChemical/spinor_tags.hpp"
 
 
 namespace GQCP {
@@ -42,6 +44,9 @@ public:
 
     // The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
     using Vectorizer = _Vectorizer;
+
+    // The spinor tag corresponding to a `GSQOneElectronOperator`.
+    using SpinorTag = GeneralSpinorTag;
 
 public:
     /*
@@ -93,8 +98,11 @@ struct OperatorTraits<GSQOneElectronOperator<Scalar, Vectorizer>> {
     // The type of transformation matrix that is naturally associated to a general(ized) one-electron operator.
     using TM = GTransformationMatrix<Scalar>;
 
-    // The type of density matrix that is naturally associated to a general(ized) one-electron operator.
+    // The type of the one-particle density matrix that is naturally associated to a general(ized) one-electron operator.
     using OneDM = G1DM<Scalar>;
+
+    // The type of the two-particle density matrix that is naturally associated a restricted one-electron operator.
+    using TwoDM = G2DM<Scalar>;
 };
 
 

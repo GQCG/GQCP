@@ -61,7 +61,7 @@ void bindAP1roGLagrangianNewtonOrbitalOptimizer(py::module& module) {
              })
 
         .def("optimize",
-             [](GQCP::AP1roGLagrangianNewtonOrbitalOptimizer& optimizer, GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis, GQCP::SQHamiltonian<double>& sq_hamiltonian) {
+             [](GQCP::AP1roGLagrangianNewtonOrbitalOptimizer& optimizer, GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis, GQCP::RSQHamiltonian<double>& sq_hamiltonian) {
                  return optimizer.optimize(spinor_basis, sq_hamiltonian);
              });
 }

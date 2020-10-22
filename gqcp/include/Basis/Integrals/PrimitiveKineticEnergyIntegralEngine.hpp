@@ -29,7 +29,7 @@ namespace GQCP {
  */
 class PrimitiveKineticEnergyIntegralEngine {
 public:
-    static constexpr auto Components = KineticOperator::Components;
+    static constexpr auto Components = KineticOperator::NumberOfComponents;
     using IntegralScalar = KineticOperator::Scalar;
 
 

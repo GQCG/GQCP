@@ -211,250 +211,250 @@ size_t SpinUnresolvedONVBasis::countTwoElectronCouplings(const SpinUnresolvedONV
  *
  *  @return the operator's evaluation in a dense matrix with the dimensions of this ONV basis
  */
-SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const ScalarSQOneElectronOperator<double>& one_op, const bool diagonal_values) const {
+// SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const ScalarGSQOneElectronOperator<double>& one_op, const bool diagonal_values) const {
 
-    auto K = one_op.numberOfOrbitals();
-    if (K != this->M) {
-        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDense(ScalarSQOneElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
-    }
+//     auto K = one_op.numberOfOrbitals();
+//     if (K != this->M) {
+//         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDense(ScalarGSQOneElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
+//     }
 
-    MatrixRepresentationEvaluationContainer<SquareMatrix<double>> evaluation_iterator(this->dim);
-    this->evaluate<SquareMatrix<double>>(one_op, evaluation_iterator, diagonal_values);
-    return evaluation_iterator.evaluation();
-}
-
-
-/**
- *  Evaluate the operator in a dense matrix
- *
- *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in this ONV basis
- *  @param diagonal_values      bool to indicate if diagonal values will be calculated
- *
- *  @return the operator's evaluation in a dense matrix with the dimensions of this ONV basis
- */
-SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const ScalarSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const {
-
-    const auto K = two_op.numberOfOrbitals();
-    if (K != this->M) {
-        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDense(ScalarSQTwoElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
-    }
-
-    MatrixRepresentationEvaluationContainer<SquareMatrix<double>> evaluation_iterator(this->dim);
-    this->evaluate<SquareMatrix<double>>(two_op, evaluation_iterator, diagonal_values);
-    return evaluation_iterator.evaluation();
-}
+//     MatrixRepresentationEvaluationContainer<SquareMatrix<double>> evaluation_iterator(this->dim);
+//     this->evaluate<SquareMatrix<double>>(one_op, evaluation_iterator, diagonal_values);
+//     return evaluation_iterator.evaluation();
+// }
 
 
-/**
- *  Evaluate the Hamiltonian in a dense matrix
- *
- *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
- *  @param diagonal_values              bool to indicate if diagonal values will be calculated
- *
- *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of this ONV basis
- */
-SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const SQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const {
+// /**
+//  *  Evaluate the operator in a dense matrix
+//  *
+//  *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in this ONV basis
+//  *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+//  *
+//  *  @return the operator's evaluation in a dense matrix with the dimensions of this ONV basis
+//  */
+// SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const ScalarGSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const {
 
-    auto K = sq_hamiltonian.numberOfOrbitals();
-    if (K != this->M) {
-        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDense(SQHamiltonian<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
-    }
+//     const auto K = two_op.numberOfOrbitals();
+//     if (K != this->M) {
+//         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDense(ScalarGSQTwoElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
+//     }
 
-    MatrixRepresentationEvaluationContainer<SquareMatrix<double>> evaluation_iterator(this->dim);
-    this->evaluate<SquareMatrix<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), evaluation_iterator, diagonal_values);
-    return evaluation_iterator.evaluation();
-}
-
-
-/**
- *  Evaluate the diagonal of the operator
- *
- *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in this ONV basis
- *
- *  @return the operator's diagonal evaluation in a vector with the dimension of this ONV basis
- */
-VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>& one_op) const {
-
-    const auto K = one_op.numberOfOrbitals();
-
-    if (K != this->M) {
-        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDiagonal(ScalarSQOneElectronOperator<double>): Basis functions of this ONV basis and the operator are incompatible.");
-    }
-
-    const auto& one_op_par = one_op.parameters();
-
-    size_t N = this->numberOfElectrons();
-    size_t dim = this->dimension();
-
-    VectorX<double> diagonal = VectorX<double>::Zero(dim);
-
-    SpinUnresolvedONV onv = this->constructONVFromAddress(0);  // onv with address 0
-    for (size_t I = 0; I < dim; I++) {                         // I loops over all addresses in this ONV basis
-
-        if (I > 0) {
-            this->transformONVToNextPermutation(onv);
-        }
-
-        for (size_t e1 = 0; e1 < N; e1++) {  // A1 (annihilation 1)
-            size_t p = onv.occupationIndexOf(e1);
-            diagonal(I) += one_op_par(p, p);
-        }
-    }
-
-    return diagonal;
-};
+//     MatrixRepresentationEvaluationContainer<SquareMatrix<double>> evaluation_iterator(this->dim);
+//     this->evaluate<SquareMatrix<double>>(two_op, evaluation_iterator, diagonal_values);
+//     return evaluation_iterator.evaluation();
+// }
 
 
-/**
- *  Evaluate the diagonal of the operator
- *
- *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in this ONV basis
- *
- *  @return the operator's diagonal evaluation in a vector with the dimension of this ONV basis
- */
-VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorDiagonal(const ScalarSQTwoElectronOperator<double>& two_op) const {
+// /**
+//  *  Evaluate the Hamiltonian in a dense matrix
+//  *
+//  *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+//  *  @param diagonal_values              bool to indicate if diagonal values will be calculated
+//  *
+//  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of this ONV basis
+//  */
+// SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const RSQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const {
 
-    auto K = two_op.numberOfOrbitals();
-    if (K != this->M) {
-        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDiagonal(ScalarSQTwoElectronOperator<double>): Basis functions of this ONV basis and the operator are incompatible.");
-    }
+//     auto K = sq_hamiltonian.numberOfOrbitals();
+//     if (K != this->M) {
+//         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDense(RSQHamiltonian<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
+//     }
 
-    size_t N = this->numberOfElectrons();
-    size_t dim = this->dimension();
-
-    VectorX<double> diagonal = VectorX<double>::Zero(dim);
-
-    const auto k_par = two_op.effectiveOneElectronPartition().parameters();
-    const auto& two_op_par = two_op.parameters();
-
-    SpinUnresolvedONV onv = this->constructONVFromAddress(0);  // onv with address 0
-    for (size_t I = 0; I < dim; I++) {                         // I loops over all addresses in this ONV basis
-
-        if (I > 0) {
-            this->transformONVToNextPermutation(onv);
-        }
-
-        for (size_t e1 = 0; e1 < N; e1++) {  // A1 (annihilation 1)
-            size_t p = onv.occupationIndexOf(e1);
-            diagonal(I) += k_par(p, p);
-
-            for (size_t q = 0; q < K; q++) {  // q loops over SOs
-                if (onv.isOccupied(q)) {
-                    diagonal(I) += 0.5 * two_op_par(p, p, q, q);
-                } else {
-                    diagonal(I) += 0.5 * two_op_par(p, q, q, p);
-                }
-            }
-        }
-    }
-
-    return diagonal;
-};
+//     MatrixRepresentationEvaluationContainer<SquareMatrix<double>> evaluation_iterator(this->dim);
+//     this->evaluate<SquareMatrix<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), evaluation_iterator, diagonal_values);
+//     return evaluation_iterator.evaluation();
+// }
 
 
-/**
- *  Evaluate the diagonal of the Hamiltonian
- *
- *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
- *
- *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of this ONV basis
- */
-VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
+// /**
+//  *  Evaluate the diagonal of the operator
+//  *
+//  *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in this ONV basis
+//  *
+//  *  @return the operator's diagonal evaluation in a vector with the dimension of this ONV basis
+//  */
+// VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorDiagonal(const ScalarGSQOneElectronOperator<double>& one_op) const {
 
-    auto K = sq_hamiltonian.numberOfOrbitals();
-    if (K != this->M) {
-        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDiagonal(SQHamiltonian<double>): Basis functions of this ONV basis and the operator are incompatible.");
-    }
+//     const auto K = one_op.numberOfOrbitals();
 
-    return this->evaluateOperatorDiagonal(sq_hamiltonian.core()) + this->evaluateOperatorDiagonal(sq_hamiltonian.twoElectron());
-};
+//     if (K != this->M) {
+//         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDiagonal(ScalarGSQOneElectronOperator<double>): Basis functions of this ONV basis and the operator are incompatible.");
+//     }
 
+//     const auto& one_op_par = one_op.parameters();
 
-/**
- *  Evaluate the operator in a sparse matrix
- *
- *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in this ONV basis
- *  @param diagonal_values      bool to indicate if diagonal values will be calculated
- *
- *  @return the operator's evaluation in a sparse matrix with the dimensions of this ONV basis
- */
-Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op, const bool diagonal_values) const {
+//     size_t N = this->numberOfElectrons();
+//     size_t dim = this->dimension();
 
-    auto K = one_op.numberOfOrbitals();
-    if (K != this->M) {
-        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorSparse(ScalarSQOneElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
-    }
+//     VectorX<double> diagonal = VectorX<double>::Zero(dim);
 
-    MatrixRepresentationEvaluationContainer<Eigen::SparseMatrix<double>> evaluation_iterator(this->dim);
+//     SpinUnresolvedONV onv = this->constructONVFromAddress(0);  // onv with address 0
+//     for (size_t I = 0; I < dim; I++) {                         // I loops over all addresses in this ONV basis
 
-    size_t memory = this->countTotalOneElectronCouplings();
-    if (diagonal_values) {
-        memory += this->dim;
-    }
+//         if (I > 0) {
+//             this->transformONVToNextPermutation(onv);
+//         }
 
-    evaluation_iterator.reserve(memory);
-    this->evaluate<Eigen::SparseMatrix<double>>(one_op, evaluation_iterator, diagonal_values);
-    evaluation_iterator.addToMatrix();
-    return evaluation_iterator.evaluation();
-}
+//         for (size_t e1 = 0; e1 < N; e1++) {  // A1 (annihilation 1)
+//             size_t p = onv.occupationIndexOf(e1);
+//             diagonal(I) += one_op_par(p, p);
+//         }
+//     }
+
+//     return diagonal;
+// };
 
 
-/**
- *  Evaluate the operator in a sparse matrix
- *
- *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in this ONV basis
- *  @param diagonal_values      bool to indicate if diagonal values will be calculated
- *
- *  @return the operator's evaluation in a sparse matrix with the dimensions of this ONV basis
- */
-Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const {
+// /**
+//  *  Evaluate the diagonal of the operator
+//  *
+//  *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in this ONV basis
+//  *
+//  *  @return the operator's diagonal evaluation in a vector with the dimension of this ONV basis
+//  */
+// VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorDiagonal(const ScalarGSQTwoElectronOperator<double>& two_op) const {
 
-    auto K = two_op.numberOfOrbitals();
-    if (K != this->M) {
-        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorSparse(ScalarSQTwoElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
-    }
+//     auto K = two_op.numberOfOrbitals();
+//     if (K != this->M) {
+//         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDiagonal(ScalarGSQTwoElectronOperator<double>): Basis functions of this ONV basis and the operator are incompatible.");
+//     }
 
-    MatrixRepresentationEvaluationContainer<Eigen::SparseMatrix<double>> evaluation_iterator(this->dim);
+//     size_t N = this->numberOfElectrons();
+//     size_t dim = this->dimension();
 
-    size_t memory = this->countTotalTwoElectronCouplings();
-    if (diagonal_values) {
-        memory += this->dim;
-    }
+//     VectorX<double> diagonal = VectorX<double>::Zero(dim);
 
-    evaluation_iterator.reserve(memory);
-    this->evaluate<Eigen::SparseMatrix<double>>(two_op, evaluation_iterator, diagonal_values);
-    evaluation_iterator.addToMatrix();
-    return evaluation_iterator.evaluation();
-}
+//     const auto k_par = two_op.effectiveOneElectronPartition().parameters();
+//     const auto& two_op_par = two_op.parameters();
+
+//     SpinUnresolvedONV onv = this->constructONVFromAddress(0);  // onv with address 0
+//     for (size_t I = 0; I < dim; I++) {                         // I loops over all addresses in this ONV basis
+
+//         if (I > 0) {
+//             this->transformONVToNextPermutation(onv);
+//         }
+
+//         for (size_t e1 = 0; e1 < N; e1++) {  // A1 (annihilation 1)
+//             size_t p = onv.occupationIndexOf(e1);
+//             diagonal(I) += k_par(p, p);
+
+//             for (size_t q = 0; q < K; q++) {  // q loops over SOs
+//                 if (onv.isOccupied(q)) {
+//                     diagonal(I) += 0.5 * two_op_par(p, p, q, q);
+//                 } else {
+//                     diagonal(I) += 0.5 * two_op_par(p, q, q, p);
+//                 }
+//             }
+//         }
+//     }
+
+//     return diagonal;
+// };
 
 
-/**
- *  Evaluate the Hamiltonian in a sparse matrix
- *
- *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
- *  @param diagonal_values              bool to indicate if diagonal values will be calculated
- *
- *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of this ONV basis
- */
-Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const SQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const {
+// /**
+//  *  Evaluate the diagonal of the Hamiltonian
+//  *
+//  *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
+//  *
+//  *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of this ONV basis
+//  */
+// VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorDiagonal(const RSQHamiltonian<double>& sq_hamiltonian) const {
 
-    auto K = sq_hamiltonian.numberOfOrbitals();
-    if (K != this->M) {
-        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorSparse(SQHamiltonian<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
-    }
+//     auto K = sq_hamiltonian.numberOfOrbitals();
+//     if (K != this->M) {
+//         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDiagonal(RSQHamiltonian<double>): Basis functions of this ONV basis and the operator are incompatible.");
+//     }
 
-    MatrixRepresentationEvaluationContainer<Eigen::SparseMatrix<double>> evaluation_iterator(this->dim);
+//     return this->evaluateOperatorDiagonal(sq_hamiltonian.core()) + this->evaluateOperatorDiagonal(sq_hamiltonian.twoElectron());
+// };
 
-    size_t memory = this->countTotalTwoElectronCouplings();
-    if (diagonal_values) {
-        memory += this->dim;
-    }
 
-    evaluation_iterator.reserve(memory);
-    this->evaluate<Eigen::SparseMatrix<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), evaluation_iterator, diagonal_values);
-    evaluation_iterator.addToMatrix();
-    return evaluation_iterator.evaluation();
-}
+// /**
+//  *  Evaluate the operator in a sparse matrix
+//  *
+//  *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in this ONV basis
+//  *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+//  *
+//  *  @return the operator's evaluation in a sparse matrix with the dimensions of this ONV basis
+//  */
+// Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const ScalarGSQOneElectronOperator<double>& one_op, const bool diagonal_values) const {
+
+//     auto K = one_op.numberOfOrbitals();
+//     if (K != this->M) {
+//         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorSparse(ScalarGSQOneElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
+//     }
+
+//     MatrixRepresentationEvaluationContainer<Eigen::SparseMatrix<double>> evaluation_iterator(this->dim);
+
+//     size_t memory = this->countTotalOneElectronCouplings();
+//     if (diagonal_values) {
+//         memory += this->dim;
+//     }
+
+//     evaluation_iterator.reserve(memory);
+//     this->evaluate<Eigen::SparseMatrix<double>>(one_op, evaluation_iterator, diagonal_values);
+//     evaluation_iterator.addToMatrix();
+//     return evaluation_iterator.evaluation();
+// }
+
+
+// /**
+//  *  Evaluate the operator in a sparse matrix
+//  *
+//  *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in this ONV basis
+//  *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+//  *
+//  *  @return the operator's evaluation in a sparse matrix with the dimensions of this ONV basis
+//  */
+// Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const ScalarGSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const {
+
+//     auto K = two_op.numberOfOrbitals();
+//     if (K != this->M) {
+//         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorSparse(ScalarGSQTwoElectronOperator<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
+//     }
+
+//     MatrixRepresentationEvaluationContainer<Eigen::SparseMatrix<double>> evaluation_iterator(this->dim);
+
+//     size_t memory = this->countTotalTwoElectronCouplings();
+//     if (diagonal_values) {
+//         memory += this->dim;
+//     }
+
+//     evaluation_iterator.reserve(memory);
+//     this->evaluate<Eigen::SparseMatrix<double>>(two_op, evaluation_iterator, diagonal_values);
+//     evaluation_iterator.addToMatrix();
+//     return evaluation_iterator.evaluation();
+// }
+
+
+// /**
+//  *  Evaluate the Hamiltonian in a sparse matrix
+//  *
+//  *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+//  *  @param diagonal_values              bool to indicate if diagonal values will be calculated
+//  *
+//  *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of this ONV basis
+//  */
+// Eigen::SparseMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorSparse(const RSQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const {
+
+//     auto K = sq_hamiltonian.numberOfOrbitals();
+//     if (K != this->M) {
+//         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorSparse(RSQHamiltonian<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
+//     }
+
+//     MatrixRepresentationEvaluationContainer<Eigen::SparseMatrix<double>> evaluation_iterator(this->dim);
+
+//     size_t memory = this->countTotalTwoElectronCouplings();
+//     if (diagonal_values) {
+//         memory += this->dim;
+//     }
+
+//     evaluation_iterator.reserve(memory);
+//     this->evaluate<Eigen::SparseMatrix<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), evaluation_iterator, diagonal_values);
+//     evaluation_iterator.addToMatrix();
+//     return evaluation_iterator.evaluation();
+// }
 
 
 /**
@@ -593,39 +593,39 @@ std::vector<Eigen::SparseMatrix<double>> SpinUnresolvedONVBasis::calculateOneEle
  *
  *  @return the one electron operator's matrix vector product in a vector with the dimensions of this ONV basis
  */
-VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(const ScalarSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+// VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(const ScalarGSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
-    auto K = one_op.numberOfOrbitals();
-    if (K != this->M) {
-        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(ScalarSQOneElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of this ONV basis and the operator are incompatible.");
-    }
+//     auto K = one_op.numberOfOrbitals();
+//     if (K != this->M) {
+//         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(ScalarGSQOneElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of this ONV basis and the operator are incompatible.");
+//     }
 
-    MatrixRepresentationEvaluationContainer<VectorX<double>> evaluation_iterator(x, diagonal);
-    this->evaluate<VectorX<double>>(one_op, evaluation_iterator, false);
-    return evaluation_iterator.evaluation();
-}
+//     MatrixRepresentationEvaluationContainer<VectorX<double>> evaluation_iterator(x, diagonal);
+//     this->evaluate<VectorX<double>>(one_op, evaluation_iterator, false);
+//     return evaluation_iterator.evaluation();
+// }
 
 
-/**
- *  Evaluate a two electron operator in a matrix vector product
- *
- *  @param two_op                       the two electron operator expressed in an orthonormal basis
- *  @param x                            the vector upon which the evaluation acts 
- *  @param diagonal                     the diagonal evaluated in this ONV basis
- *
- *  @return the two electron operator's matrix vector product in a vector with the dimensions of this ONV basis
- */
-VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(const ScalarSQTwoElectronOperator<double>& two_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+// /**
+//  *  Evaluate a two electron operator in a matrix vector product
+//  *
+//  *  @param two_op                       the two electron operator expressed in an orthonormal basis
+//  *  @param x                            the vector upon which the evaluation acts
+//  *  @param diagonal                     the diagonal evaluated in this ONV basis
+//  *
+//  *  @return the two electron operator's matrix vector product in a vector with the dimensions of this ONV basis
+//  */
+// VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(const ScalarGSQTwoElectronOperator<double>& two_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
-    auto K = two_op.numberOfOrbitals();
-    if (K != this->M) {
-        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(ScalarSQTwoElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of this ONV basis and the operator are incompatible.");
-    }
+//     auto K = two_op.numberOfOrbitals();
+//     if (K != this->M) {
+//         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(ScalarGSQTwoElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of this ONV basis and the operator are incompatible.");
+//     }
 
-    MatrixRepresentationEvaluationContainer<VectorX<double>> evaluation_iterator(x, diagonal);
-    this->evaluate<VectorX<double>>(two_op, evaluation_iterator, false);
-    return evaluation_iterator.evaluation();
-}
+//     MatrixRepresentationEvaluationContainer<VectorX<double>> evaluation_iterator(x, diagonal);
+//     this->evaluate<VectorX<double>>(two_op, evaluation_iterator, false);
+//     return evaluation_iterator.evaluation();
+// }
 
 
 /**
@@ -637,17 +637,17 @@ VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(cons
  *
  *  @return the Hamiltonian's matrix vector product in a vector with the dimensions of this ONV basis
  */
-VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+// VectorX<double> SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(const RSQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
-    auto K = sq_hamiltonian.numberOfOrbitals();
-    if (K != this->M) {
-        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of this ONV basis and the operator are incompatible.");
-    }
+//     auto K = sq_hamiltonian.numberOfOrbitals();
+//     if (K != this->M) {
+//         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(RSQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of this ONV basis and the operator are incompatible.");
+//     }
 
-    MatrixRepresentationEvaluationContainer<VectorX<double>> evaluation_iterator(x, diagonal);
-    this->evaluate<VectorX<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), evaluation_iterator, false);
-    return evaluation_iterator.evaluation();
-}
+//     MatrixRepresentationEvaluationContainer<VectorX<double>> evaluation_iterator(x, diagonal);
+//     this->evaluate<VectorX<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), evaluation_iterator, false);
+//     return evaluation_iterator.evaluation();
+// }
 
 
 /**

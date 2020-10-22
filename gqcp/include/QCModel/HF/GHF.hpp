@@ -95,14 +95,14 @@ public:
      *
      *  @return the GHF electronic energy
      */
-    static double calculateElectronicEnergy(const G1DM<Scalar>& P, const ScalarSQOneElectronOperator<Scalar>& H_core, const ScalarSQOneElectronOperator<Scalar>& F) {
+    static double calculateElectronicEnergy(const G1DM<Scalar>& P, const ScalarGSQOneElectronOperator<Scalar>& H_core, const ScalarGSQOneElectronOperator<Scalar>& F) {
 
-        // First, calculate the sum of H_core and F (this saves a contraction)
-        ScalarSQOneElectronOperator<Scalar> Z = H_core + F;
+        // First, calculate the sum of H_core and F (this saves a contraction).
+        const auto Z = H_core + F;
 
-        // Convert the matrices Z and D to an Eigen::Tensor<double, 2> D_tensor, as contractions are only implemented for Tensors
+        // Convert the matrices Z and D to an Eigen::Tensor<double, 2> D_tensor, as contractions are only implemented for Tensors.
         Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_tensor {P.data(), P.rows(), P.cols()};
-        Eigen::TensorMap<Eigen::Tensor<double, 2>> Z_tensor {Z.parameters().data(), P.rows(), P.cols()};
+        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> Z_tensor {Z.parameters().data(), P.rows(), P.cols()};
 
         // Specify the contraction pair.
         // To calculate the electronic energy, we must perform a double contraction.
@@ -144,7 +144,7 @@ public:
      * 
      *  @note The scalar bases for the alpha- and beta-components must be the same.
      */
-    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisDirectMatrix(const G1DM<Scalar>& P, const SQHamiltonian<Scalar>& sq_hamiltonian) {
+    static ScalarGSQOneElectronOperator<Scalar> calculateScalarBasisDirectMatrix(const G1DM<Scalar>& P, const GSQHamiltonian<Scalar>& sq_hamiltonian) {
 
         // To perform the contraction, we will first have to convert the density matrix into a Eigen::Tensor (since contractions are only implemented for tensors).
         // Since the two-electron integrals are spin-blocked (due to the nature of quantizing in a GSpinorBasis), the contractions must happen with a density matrix of the same dimension (M: the number of spinors). Therefore, we will construct a zero density matrix in which we only fill in one of the spin-blocks.
@@ -170,7 +170,7 @@ public:
 
         Eigen::Map<Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>> J {J_tensor.data(), J_tensor.dimension(0), J_tensor.dimension(1)};
 
-        return ScalarSQOneElectronOperator<Scalar>(J);
+        return ScalarGSQOneElectronOperator<Scalar>(J);
     }
 
 
@@ -182,7 +182,7 @@ public:
      * 
      *  @return the UHF direct (Coulomb) matrix for spin sigma
      */
-    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisExchangeMatrix(const G1DM<Scalar>& P, const SQHamiltonian<Scalar>& sq_hamiltonian) {
+    static ScalarGSQOneElectronOperator<Scalar> calculateScalarBasisExchangeMatrix(const G1DM<Scalar>& P, const GSQHamiltonian<Scalar>& sq_hamiltonian) {
 
         // To perform the contraction, we will first have to convert the density matrix into a Eigen::Tensor (since contractions are only implemented for tensors).
         // Since the two-electron integrals are spin-blocked (due to the nature of quantizing in a GSpinorBasis), the contractions must happen with a density matrix of the same dimension (M: the number of spinors). Therefore, we will construct a zero density matrix in which we only fill in one of the spin-blocks.
@@ -226,7 +226,7 @@ public:
 
 
         // Each of the spin-blocks are calculated separately (while the other blocks are zero), so the total exchange matrix can be calculated as the sum of each part.
-        return ScalarSQOneElectronOperator<Scalar>(K_aa + K_ab + K_ba + K_bb);
+        return ScalarGSQOneElectronOperator<Scalar>(K_aa + K_ab + K_ba + K_bb);
     }
 
 
@@ -238,7 +238,7 @@ public:
      *
      *  @return the GHF Fock matrix expressed in the scalar basis
      */
-    static ScalarSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(const G1DM<Scalar>& P, const SQHamiltonian<Scalar>& sq_hamiltonian) {
+    static ScalarGSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(const G1DM<Scalar>& P, const GSQHamiltonian<Scalar>& sq_hamiltonian) {
 
         const auto& H_core = sq_hamiltonian.core();
         const auto J = QCModel::GHF<Scalar>::calculateScalarBasisDirectMatrix(P, sq_hamiltonian);
@@ -254,7 +254,8 @@ public:
      *
      *  @return the GHF 1-DM expressed in an orthonormal spinor basis
      */
-    static G1DM<Scalar> calculateOrthonormalBasis1DM(const size_t M, const size_t N) {
+    static G1DM<Scalar>
+    calculateOrthonormalBasis1DM(const size_t M, const size_t N) {
 
         // The 1-DM for GHF looks like (for M=5, N=3)
         //    1  0  0  0  0
@@ -384,7 +385,7 @@ public:
      *  @return the implicit occupied-virtual orbital space that is associated to these GHF model parameters
      */
     OrbitalSpace orbitalSpace() const { return GHF<Scalar>::orbitalSpace(this->numberOfSpinors(), this->numberOfElectrons()); }
-};
+};  // namespace QCModel
 
 
 }  // namespace QCModel

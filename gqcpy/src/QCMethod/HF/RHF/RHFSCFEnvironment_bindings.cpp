@@ -34,7 +34,7 @@ void bindRHFSCFEnvironment(py::module& module) {
 
         .def_static(
             "WithCoreGuess",
-            [](const size_t N, const GQCP::SQHamiltonian<double>& sq_hamiltonian, const Eigen::MatrixXd& S) {  // use an itermediary Eigen matrix for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Matrix
+            [](const size_t N, const GQCP::RSQHamiltonian<double>& sq_hamiltonian, const Eigen::MatrixXd& S) {  // use an itermediary Eigen matrix for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Matrix
                 return GQCP::RHFSCFEnvironment<double>::WithCoreGuess(N, sq_hamiltonian, GQCP::SquareMatrix<double> {S});
             },
             "Initialize an RHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix.")

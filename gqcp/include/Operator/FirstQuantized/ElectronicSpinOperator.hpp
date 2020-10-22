@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Operator/FirstQuantized/BaseFQOneElectronOperator.hpp"
+#include "Operator/FirstQuantized/BaseFQOperator.hpp"
 #include "Utilities/aliases.hpp"
 
 
@@ -28,7 +28,19 @@ namespace GQCP {
 /**
  *  The (one-electron) vector operator for electron spin.
  */
-class ElectronicSpinOperator: public BaseFQOneElectronOperator<complex, 3> {};
+class ElectronicSpinOperator:
+    public BaseVectorFQOneElectronOperator<complex> {
+public:
+    /*
+     *  MARK: Vectorizer
+     */
+
+    // The number of components of the operator.
+    static constexpr size_t NumberOfComponents = 3;
+
+    // The 3D vector-vectorizer related to this operator.
+    static const VectorVectorizer vectorizer;
+};
 
 
 }  // namespace GQCP

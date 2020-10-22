@@ -71,7 +71,7 @@ public:
      *  @param p            the index of spatial orbital 1
      *  @param q            the index of spatial orbital 2
      */
-    void calculateJacobiCoefficients(const SQHamiltonian<double>& sq_hamiltonian, const size_t p, const size_t q) override;
+    void calculateJacobiCoefficients(const RSQHamiltonian<double>& sq_hamiltonian, const size_t p, const size_t q) override;
 
     /**
      *  @param sq_hamiltonian       the current Hamiltonian
@@ -80,7 +80,7 @@ public:
      *
      *  @return the angle for which the derivative of the scalar function after the Jacobi rotation is zero (and the second derivative is positive), using the current trigoniometric polynomial coefficients
      */
-    double calculateOptimalRotationAngle(const SQHamiltonian<double>& sq_hamiltonian, const size_t p, const size_t q) const override;
+    double calculateOptimalRotationAngle(const RSQHamiltonian<double>& sq_hamiltonian, const size_t p, const size_t q) const override;
 
     /**
      *  @param sq_hamiltonian               the current Hamiltonian
@@ -88,14 +88,14 @@ public:
      * 
      *  @return the change in the value of the scalar function (i.e. the AP1roG energy) if the given Jacobi rotation parameters would be used to rotate the given Hamiltonian
      */
-    double calculateScalarFunctionChange(const SQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rot_par) const override;
+    double calculateScalarFunctionChange(const RSQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rot_par) const override;
 
     /**
      *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
      * 
      *  In the case of this uncoupled AP1roG Jacobi orbital optimizer, we should solve the AP1roG PSEs at the start at every iteration, using the current orbitals
      */
-    void prepareJacobiSpecificConvergenceChecking(const SQHamiltonian<double>& sq_hamiltonian) override;
+    void prepareJacobiSpecificConvergenceChecking(const RSQHamiltonian<double>& sq_hamiltonian) override;
 
 
     // PUBLIC METHODS

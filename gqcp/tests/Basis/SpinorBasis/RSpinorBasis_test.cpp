@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE(RHF_orbitals_are_orthonormal) {
 
 
     // The orbitals in the RHF basis should be orthonormal.
-    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in the scalar/AO basis
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in the scalar/AO basis
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();

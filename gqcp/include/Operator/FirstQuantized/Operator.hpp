@@ -40,80 +40,121 @@ namespace GQCP {
  */
 class Operator {
 public:
-    // PUBLIC STATIC METHODS
+    /*
+     * MARK: Scalar one-electron operators
+     */
 
     /**
-     *  @param reference                the reference point about which the angular momentum is defined
+     *  Create an ElectronicDensityOperator.
      * 
-     *  @return an AngularMomentumOperator
-     */
-    static AngularMomentumOperator AngularMomentum(const Vector<double, 3>& reference = Vector<double, 3>::Zero()) { return AngularMomentumOperator(reference); }
-
-    /**
-     *  @return a CoulombRepulsionOperator
-     */
-    static CoulombRepulsionOperator Coulomb() { return CoulombRepulsionOperator(); }
-
-    /**
-     *  @return an ElectronicDensityOperator
+     *  @return An ElectronicDensityOperator.
      */
     static ElectronicDensityOperator ElectronicDensity() { return ElectronicDensityOperator(); }
 
     /**
-     *  @param origin               the origin of the dipole operator
+     *  Create a KineticOperator.
      * 
-     *  @return an ElectronicDipoleOperator
-     */
-    static ElectronicDipoleOperator ElectronicDipole(const Vector<double, 3>& origin = Vector<double, 3>::Zero()) { return ElectronicDipoleOperator(origin); }
-
-    /**
-     *  @return an ElectronicSpinOperator
-     */
-    static ElectronicSpinOperator ElectronicSpin() { return ElectronicSpinOperator(); }
-
-    /**
-     *  @return a KineticOperator
+     *  @return A KineticOperator.
      */
     static KineticOperator Kinetic() { return KineticOperator(); }
 
     /**
-     *  @return a LinearMomentumOperator
-     */
-    static LinearMomentumOperator LinearMomentum() { return LinearMomentumOperator(); }
-
-    /**
-     *  @param nuclear_framework            the nuclear framework
+     *  Create a NuclearAttractionOperator related to a nuclear framework.
      * 
-     *  @return a NuclearAttractionOperator
+     *  @param nuclear_framework            The nuclear framework.
+     * 
+     *  @return A NuclearAttractionOperator.
      */
     static NuclearAttractionOperator NuclearAttraction(const NuclearFramework& nuclear_framework) { return NuclearAttractionOperator(nuclear_framework); }
 
     /**
-     *  @param molecule              the molecule that contains the nuclear framework
+     *  Create a NuclearAttractionOperator related to a molecule.
      * 
-     *  @return a NuclearAttractionOperator
+     *  @param molecule              The molecule that contains the nuclear framework.
+     * 
+     *  @return A NuclearAttractionOperator.
      */
     static NuclearAttractionOperator NuclearAttraction(const Molecule& molecule) { return Operator::NuclearAttraction(molecule.nuclearFramework()); }
 
     /**
-     *  @param molecule             the molecule that contains the nuclear framework
-     *  @param origin               the origin of the dipole operator
+     *  Create an OverlapOperator.
      * 
-     *  @return a NuclearDipoleOperator
+     *  @return An OverlapOperator.
+     */
+    static OverlapOperator Overlap() { return OverlapOperator(); }
+
+
+    /*
+     * MARK: Vector one-electron operators
+     */
+
+    /**
+     *  Create an AngularMomentumOperator about a reference point.
+     * 
+     *  @param reference                The reference point about which the angular momentum is defined.
+     * 
+     *  @return An AngularMomentumOperator.
+     */
+    static AngularMomentumOperator AngularMomentum(const Vector<double, 3>& reference = Vector<double, 3>::Zero()) { return AngularMomentumOperator(reference); }
+
+    /**
+     *  Create an ElectronicDipoleOperator with the given point as a reference.
+     * 
+     *  @param origin               The origin of the dipole operator.
+     * 
+     *  @return An ElectronicDipoleOperator.
+     */
+    static ElectronicDipoleOperator ElectronicDipole(const Vector<double, 3>& origin = Vector<double, 3>::Zero()) { return ElectronicDipoleOperator(origin); }
+
+    /**
+     *  Create an ElectronicSpinOperator.
+     * 
+     *  @return An ElectronicSpinOperator.
+     */
+    static ElectronicSpinOperator ElectronicSpin() { return ElectronicSpinOperator(); }
+
+    /**
+     *  Create a LinearMomentumOperator.
+     * 
+     *  @return a LinearMomentumOperator.
+     */
+    static LinearMomentumOperator LinearMomentum() { return LinearMomentumOperator(); }
+
+
+    /*
+     *  MARK: Two-electron operators
+     */
+
+    /**
+     *  Create a CoulombRepulsionOperator.
+     * 
+     *  @return A CoulombRepulsionOperator.
+     */
+    static CoulombRepulsionOperator Coulomb() { return CoulombRepulsionOperator(); }
+
+
+    /*
+     * MARK: Nuclear operators
+    */
+
+    /**
+     *  Create a NuclearDipoleOperator from a molecule and a reference point for the dipole.
+     * 
+     *  @param molecule             The molecule that contains the nuclear framework.
+     *  @param origin               The origin of the dipole operator.
+     * 
+     *  @return A NuclearDipoleOperator.
      */
     static NuclearDipoleOperator NuclearDipole(const Molecule& molecule, const Vector<double, 3>& origin = Vector<double, 3>::Zero()) { return NuclearDipoleOperator(molecule.nuclearFramework(), origin); }
 
     /**
-     *  @param molecule              the molecule that contains the nuclear framework
+     *  Create a NuclearRepulsionOperator from a molecule.
      * 
-     *  @return a NuclearRepulsionOperator
+     *  @param molecule              The molecule that contains the nuclear framework.
+     * 
+     *  @return A NuclearRepulsionOperator.
      */
     static NuclearRepulsionOperator NuclearRepulsion(const Molecule& molecule) { return NuclearRepulsionOperator(molecule.nuclearFramework()); }
-
-    /**
-     *  @return an OverlapOperator
-     */
-    static OverlapOperator Overlap() { return OverlapOperator(); }
 };
 
 

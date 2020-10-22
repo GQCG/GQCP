@@ -34,7 +34,7 @@ namespace GQCP {
  *  @param i            the index of spatial orbital 1
  *  @param j            the index of spatial orbital 2
  */
-void ERJacobiLocalizer::calculateJacobiCoefficients(const SQHamiltonian<double>& sq_hamiltonian, const size_t i, const size_t j) {
+void ERJacobiLocalizer::calculateJacobiCoefficients(const RSQHamiltonian<double>& sq_hamiltonian, const size_t i, const size_t j) {
 
     const auto& g = sq_hamiltonian.twoElectron().parameters();  // two-electron integrals
 
@@ -51,7 +51,7 @@ void ERJacobiLocalizer::calculateJacobiCoefficients(const SQHamiltonian<double>&
  *
  *  @return the angle for which the derivative of the scalar function after the Jacobi rotation is zero (and the second derivative is positive), using the current trigoniometric polynomial coefficients
  */
-double ERJacobiLocalizer::calculateOptimalRotationAngle(const SQHamiltonian<double>& sq_hamiltonian, const size_t i, const size_t j) const {
+double ERJacobiLocalizer::calculateOptimalRotationAngle(const RSQHamiltonian<double>& sq_hamiltonian, const size_t i, const size_t j) const {
 
     const double denominator = std::sqrt(std::pow(this->B, 2) + std::pow(this->C, 2));
 
@@ -69,7 +69,7 @@ double ERJacobiLocalizer::calculateOptimalRotationAngle(const SQHamiltonian<doub
  * 
  *  @return the change in the value of the scalar function (i.e. the ER localization index) if the given Jacobi rotation parameters would be used to rotate the given Hamiltonian
  */
-double ERJacobiLocalizer::calculateScalarFunctionChange(const SQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rot_par) const {
+double ERJacobiLocalizer::calculateScalarFunctionChange(const RSQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rot_par) const {
 
     return -(this->A + std::sqrt(std::pow(this->B, 2) + std::pow(this->C, 2)));  // formulate as minimization problem
 }

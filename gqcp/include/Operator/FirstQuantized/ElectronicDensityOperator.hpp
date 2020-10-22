@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Operator/FirstQuantized/BaseFQOneElectronOperator.hpp"
+#include "Operator/FirstQuantized/BaseFQOperator.hpp"
 
 
 namespace GQCP {
@@ -27,7 +27,8 @@ namespace GQCP {
 /**
  *  The (one-electron) electronic density operator.
  */
-class ElectronicDensityOperator: public BaseFQOneElectronOperator<double, 1> {};
+class ElectronicDensityOperator:
+    public BaseScalarFQOneElectronOperator<double> {};
 
 
 }  // namespace GQCP

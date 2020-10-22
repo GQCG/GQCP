@@ -95,7 +95,7 @@ FrozenOperators BaseFrozenCoreONVBasis::freezeOperator(const ScalarSQTwoElectron
  *  @return a 'frozen' Hamiltonian which cover two-electron integral evaluations from the active and inactive orbitals
  *  (see https://drive.google.com/file/d/1Fnhv2XyNO9Xw9YDoJOXU21_6_x2llntI/view?usp=sharing)
  */
-SQHamiltonian<double> BaseFrozenCoreONVBasis::freezeOperator(const SQHamiltonian<double>& sq_hamiltonian, const size_t X) {
+RSQHamiltonian<double> BaseFrozenCoreONVBasis::freezeOperator(const RSQHamiltonian<double>& sq_hamiltonian, const size_t X) {
 
     size_t K_active = sq_hamiltonian.numberOfOrbitals() - X;  // number of non-frozen orbitals
 
@@ -104,7 +104,7 @@ SQHamiltonian<double> BaseFrozenCoreONVBasis::freezeOperator(const SQHamiltonian
     ScalarSQOneElectronOperator<double> h = BaseFrozenCoreONVBasis::freezeOperator(sq_hamiltonian.core(), X) + frozen_components_g.one_op;  // active
     ScalarSQTwoElectronOperator<double> g = frozen_components_g.two_op;
 
-    return SQHamiltonian<double>(h, g);
+    return RSQHamiltonian<double>(h, g);
 }
 
 
@@ -153,8 +153,8 @@ USQHamiltonian<double> BaseFrozenCoreONVBasis::freezeOperator(const USQHamiltoni
         }
     }
 
-    return USQHamiltonian<double>(SQHamiltonian<double>(ScalarSQOneElectronOperator<double> {frozen_one_op_par_alpha}, ScalarSQTwoElectronOperator<double> {frozen_two_op_par_alpha}),
-                                  SQHamiltonian<double>(ScalarSQOneElectronOperator<double> {frozen_one_op_par_beta}, ScalarSQTwoElectronOperator<double> {frozen_two_op_par_beta}),
+    return USQHamiltonian<double>(RSQHamiltonian<double>(ScalarSQOneElectronOperator<double> {frozen_one_op_par_alpha}, ScalarSQTwoElectronOperator<double> {frozen_two_op_par_alpha}),
+                                  RSQHamiltonian<double>(ScalarSQOneElectronOperator<double> {frozen_one_op_par_beta}, ScalarSQTwoElectronOperator<double> {frozen_two_op_par_beta}),
                                   ScalarSQTwoElectronOperator<double>(frozen_two_op_par_mixed));
 }
 
@@ -209,7 +209,7 @@ VectorX<double> BaseFrozenCoreONVBasis::frozenCoreDiagonal(const ScalarSQTwoElec
  *
  *  @return the Hamiltonian diagonal from strictly evaluating the frozen orbitals in the frozen ONV basis
  */
-VectorX<double> BaseFrozenCoreONVBasis::frozenCoreDiagonal(const SQHamiltonian<double>& sq_hamiltonian, const size_t X, const size_t dimension) {
+VectorX<double> BaseFrozenCoreONVBasis::frozenCoreDiagonal(const RSQHamiltonian<double>& sq_hamiltonian, const size_t X, const size_t dimension) {
 
     return BaseFrozenCoreONVBasis::frozenCoreDiagonal(sq_hamiltonian.core(), X, dimension) + BaseFrozenCoreONVBasis::frozenCoreDiagonal(sq_hamiltonian.twoElectron(), X, dimension);
 }
@@ -312,7 +312,7 @@ SquareMatrix<double> BaseFrozenCoreONVBasis::evaluateOperatorDense(const ScalarS
  *
  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the frozen ONV basis
  */
-SquareMatrix<double> BaseFrozenCoreONVBasis::evaluateOperatorDense(const SQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const {
+SquareMatrix<double> BaseFrozenCoreONVBasis::evaluateOperatorDense(const RSQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const {
     // Freeze the operators
     const auto frozen_ham_par = BaseFrozenCoreONVBasis::freezeOperator(sq_hamiltonian, this->X);
 
@@ -379,7 +379,7 @@ VectorX<double> BaseFrozenCoreONVBasis::evaluateOperatorDiagonal(const ScalarSQT
  *
  *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the frozen ONV basis
  */
-VectorX<double> BaseFrozenCoreONVBasis::evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
+VectorX<double> BaseFrozenCoreONVBasis::evaluateOperatorDiagonal(const RSQHamiltonian<double>& sq_hamiltonian) const {
 
     const auto frozen_ham_par = BaseFrozenCoreONVBasis::freezeOperator(sq_hamiltonian, this->X);
 
@@ -454,7 +454,7 @@ Eigen::SparseMatrix<double> BaseFrozenCoreONVBasis::evaluateOperatorSparse(const
  *
  *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the frozen ONV basis
  */
-Eigen::SparseMatrix<double> BaseFrozenCoreONVBasis::evaluateOperatorSparse(const SQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const {
+Eigen::SparseMatrix<double> BaseFrozenCoreONVBasis::evaluateOperatorSparse(const RSQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const {
 
     // Freeze the operators
     const auto frozen_ham_par = BaseFrozenCoreONVBasis::freezeOperator(sq_hamiltonian, this->X);

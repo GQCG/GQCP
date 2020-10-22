@@ -67,7 +67,7 @@ public:
     std::deque<VectorX<Scalar>> error_vectors_alpha;  // expressed in the scalar (AO) basis, used when doing DIIS calculations: the real error matrices should be converted to column-major error vectors for the DIIS algorithm to be used correctly
     std::deque<VectorX<Scalar>> error_vectors_beta;   // expressed in the scalar (AO) basis, used when doing DIIS calculations: the real error matrices should be converted to column-major error vectors for the DIIS algorithm to be used correctly
 
-    SQHamiltonian<Scalar> sq_hamiltonian;  // the Hamiltonian expressed in the scalar (AO) basis
+    RSQHamiltonian<Scalar> sq_hamiltonian;  // the Hamiltonian expressed in the scalar (AO) basis
 
 
 public:
@@ -85,7 +85,7 @@ public:
      *  @param C_alpha_initial          the initial coefficient matrix for the alpha spinors
      *  @param C_beta_initial           the initial coefficient matrix for the beta spinors
      */
-    UHFSCFEnvironment(const size_t N_alpha, const size_t N_beta, const SQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S, const TransformationMatrix<Scalar>& C_alpha_initial, const TransformationMatrix<Scalar>& C_beta_initial) :
+    UHFSCFEnvironment(const size_t N_alpha, const size_t N_beta, const RSQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S, const TransformationMatrix<Scalar>& C_alpha_initial, const TransformationMatrix<Scalar>& C_beta_initial) :
         N_alpha {N_alpha},
         N_beta {N_beta},
         S {S},
@@ -101,7 +101,7 @@ public:
      *  @param sq_hamiltonian           the Hamiltonian expressed in the scalar (AO) basis
      *  @param S                        the overlap matrix (of the scalar (AO) basis)
      */
-    UHFSCFEnvironment(const QCModel::RHF<Scalar>& rhf_parameters, const SQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S) :
+    UHFSCFEnvironment(const QCModel::RHF<Scalar>& rhf_parameters, const RSQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S) :
         UHFSCFEnvironment(rhf_parameters.numberOfElectrons(Spin::alpha), rhf_parameters.numberOfElectrons(Spin::beta),
                           sq_hamiltonian, S,
                           rhf_parameters.coefficientMatrix(), rhf_parameters.coefficientMatrix()) {}
@@ -119,7 +119,7 @@ public:
      *  @param sq_hamiltonian           the Hamiltonian expressed in the scalar (AO) basis
      *  @param S                        the overlap matrix (of the scalar (AO) basis)
      */
-    static UHFSCFEnvironment<Scalar> WithCoreGuess(const size_t N_alpha, const size_t N_beta, const SQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S) {
+    static UHFSCFEnvironment<Scalar> WithCoreGuess(const size_t N_alpha, const size_t N_beta, const RSQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S) {
 
         const auto& H_core = sq_hamiltonian.core().parameters();  // in AO basis
 

@@ -78,7 +78,7 @@ public:
      *  @return a 'frozen' Hamiltonian which cover two-electron integral evaluations from the active and inactive orbitals
      *  (see https://drive.google.com/file/d/1Fnhv2XyNO9Xw9YDoJOXU21_6_x2llntI/view?usp=sharing)
      */
-    static SQHamiltonian<double> freezeOperator(const SQHamiltonian<double>& sq_hamiltonian, const size_t X);
+    static RSQHamiltonian<double> freezeOperator(const RSQHamiltonian<double>& sq_hamiltonian, const size_t X);
 
     /**
      *  @param usq_hamiltonian      the Hamiltonian expressed in an unrestricted orthonormal basis
@@ -112,7 +112,7 @@ public:
      *
      *  @return the Hamiltonian diagonal from strictly evaluating the frozen orbitals in the ONV basis
      */
-    static VectorX<double> frozenCoreDiagonal(const SQHamiltonian<double>& sq_hamiltonian, const size_t X, const size_t dimension);
+    static VectorX<double> frozenCoreDiagonal(const RSQHamiltonian<double>& sq_hamiltonian, const size_t X, const size_t dimension);
 
     /**
      *  @param usq_hamiltonian      the Hamiltonian expressed in an unrestricted orthonormal basis
@@ -154,7 +154,7 @@ public:
      *
      *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the ONV basis
      */
-    SquareMatrix<double> evaluateOperatorDense(const SQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const override;
+    SquareMatrix<double> evaluateOperatorDense(const RSQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const override;
 
     /**
      *  Evaluate the diagonal of the operator
@@ -181,7 +181,7 @@ public:
      *
      *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the ONV basis
      */
-    VectorX<double> evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const override;
+    VectorX<double> evaluateOperatorDiagonal(const RSQHamiltonian<double>& sq_hamiltonian) const override;
 
     /**
      *  Evaluate the operator in a sparse matrix

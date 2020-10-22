@@ -52,14 +52,14 @@ public:
      *
      *  @return the current orbital gradient of the Edmiston-Ruedenberg localization index as a matrix
      */
-    SquareMatrix<double> calculateGradientMatrix(const SQHamiltonian<double>& sq_hamiltonian) const override;
+    SquareMatrix<double> calculateGradientMatrix(const RSQHamiltonian<double>& sq_hamiltonian) const override;
 
     /**
      *  @param sq_hamiltonian      the current Hamiltonian
      *
      *  @return the current orbital Hessian of the Edmiston-Ruedenberg localization index as a tensor
      */
-    SquareRankFourTensor<double> calculateHessianTensor(const SQHamiltonian<double>& sq_hamiltonian) const override;
+    SquareRankFourTensor<double> calculateHessianTensor(const RSQHamiltonian<double>& sq_hamiltonian) const override;
 
     /**
      *  Use gradient and Hessian information to determine a new direction for the 'full' orbital rotation generators kappa. Note that a distinction is made between 'free' generators, i.e. those that are calculated from the gradient and Hessian information and the 'full' generators, which also include the redundant parameters (that can be set to zero). The 'full' generators are used to calculate the total rotation matrix using the matrix exponential
@@ -68,12 +68,12 @@ public:
      * 
      *  @return the new full set orbital generators, including the redundant parameters
      */
-    OrbitalRotationGenerators calculateNewFullOrbitalGenerators(const SQHamiltonian<double>& sq_hamiltonian) const override;
+    OrbitalRotationGenerators calculateNewFullOrbitalGenerators(const RSQHamiltonian<double>& sq_hamiltonian) const override;
 
     /**
      *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
      */
-    void prepareOrbitalDerivativesCalculation(const SQHamiltonian<double>& sq_hamiltonian) override {}
+    void prepareOrbitalDerivativesCalculation(const RSQHamiltonian<double>& sq_hamiltonian) override {}
 
 
     // PUBLIC METHODS
@@ -85,7 +85,7 @@ public:
      *
      *  @return the element (i,j) of the Edmiston-Ruedenberg localization index gradient
      */
-    double calculateGradientMatrixElement(const SQHamiltonian<double>& sq_hamiltonian, const size_t i, const size_t j) const;
+    double calculateGradientMatrixElement(const RSQHamiltonian<double>& sq_hamiltonian, const size_t i, const size_t j) const;
 
     /**
      *  @param sq_hamiltonian       the current Hamiltonian
@@ -96,7 +96,7 @@ public:
      *
      *  @return the element (i,j,k,l) of the Edmiston-Ruedenberg localization index Hessian
      */
-    double calculateHessianTensorElement(const SQHamiltonian<double>& sq_hamiltonian, const size_t i, const size_t j, const size_t k, const size_t l) const;
+    double calculateHessianTensorElement(const RSQHamiltonian<double>& sq_hamiltonian, const size_t i, const size_t j, const size_t k, const size_t l) const;
 };
 
 

@@ -18,222 +18,230 @@
 #pragma once
 
 
-#include "Basis/ScalarBasis/ScalarBasis.hpp"
 #include "Basis/SpinorBasis/GSpinorBasis.hpp"
 #include "Basis/SpinorBasis/OrbitalSpace.hpp"
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
-#include "Basis/Transformations/JacobiRotationParameters.hpp"
-#include "Basis/Transformations/TransformationMatrix.hpp"
-#include "DensityMatrix/OneDM.hpp"
-#include "DensityMatrix/TwoDM.hpp"
-#include "Molecule/Molecule.hpp"
-#include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
-#include "Operator/FirstQuantized/OverlapOperator.hpp"
+#include "Basis/Transformations/BasisTransformable.hpp"
+#include "Basis/Transformations/JacobiRotatable.hpp"
+#include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
+#include "Operator/SecondQuantized/GSQTwoElectronOperator.hpp"
 #include "Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp"
-#include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
-#include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
-#include "Utilities/miscellaneous.hpp"
+#include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
+#include "Operator/SecondQuantized/RSQTwoElectronOperator.hpp"
+#include "QuantumChemical/spinor_tags.hpp"
 #include "Utilities/type_traits.hpp"
+
+#include <numeric>
+#include <vector>
 
 
 namespace GQCP {
 
 
-/**
- *  A class for representing the second-quantized electronic Hamiltonian, it consists of one-electron and two-electron contributions
- *
- *  @tparam Scalar      the scalar type of the second-quantized parameters (i.e. the integrals)
+/*
+ *  MARK: SQHamiltonian implementation
  */
-template <typename Scalar>
-class SQHamiltonian {
-private:
-    ScalarSQOneElectronOperator<Scalar> total_one_op;  // one-electron interactions (i.e. the core Hamiltonian)
-    ScalarSQTwoElectronOperator<Scalar> total_two_op;  // two-electron interactions
 
-    std::vector<ScalarSQOneElectronOperator<Scalar>> one_ops;  // the core (i.e. one-electron) contributions to the Hamiltonian
-    std::vector<ScalarSQTwoElectronOperator<Scalar>> two_ops;  // the two-electron contributions to the Hamiltonian
+/**
+ *  A second-quantized electronic Hamiltonian. It consists of one-electron (core) and two-electron contributions.
+ * 
+ *  @tparam _ScalarSQOneElectronOperator        The type of second-quantized one-electron operator underlying this Hamiltonian.
+ *  @tparam _ScalarSQTwoElectronOperator        The type of second-quantized two-electron operator underlying this Hamiltonian.
+ */
+template <typename ScalarSQOneElectronOperator_Placeholder, typename ScalarSQTwoElectronOperator_Placeholder>
+class SQHamiltonian:
+    public BasisTransformable<SQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>>,
+    public JacobiRotatable<SQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>> {
+public:
+    // // The type of second-quantized one-electron operator underlying this Hamiltonian.
+    // using ScalarSQOneElectronOperator_Placeholder = ScalarSQOneElectronOperator_Placeholder;  // TODO: remove 'placeholder'
+
+    // // The type of second-quantized two-electron operator underlying this Hamiltonian.
+    // using ScalarSQTwoElectronOperator_Placeholder = ScalarSQTwoElectronOperator_Placeholder;  // TODO: remove 'placeholder'
+
+    // Check if the spinor tags of the one- and two-electron operators match.
+    static_assert(std::is_same<typename ScalarSQOneElectronOperator_Placeholder::SpinorTag, typename ScalarSQTwoElectronOperator_Placeholder::SpinorTag>::value, "The spinor tags of the one- and two-electron operators do not match.");
+
+    // The spinor tag associated to this Hamiltonian.
+    using SpinorTag = typename ScalarSQOneElectronOperator_Placeholder::SpinorTag;
+
+    // Check if the scalar type of the parameters/matrix elements of the one-electron and two-electron operators are equal.
+    static_assert(std::is_same<typename ScalarSQOneElectronOperator_Placeholder::Scalar, typename ScalarSQTwoElectronOperator_Placeholder::Scalar>::value, "The scalar type of the one- and two-electron parameters/matrix elements do not match.");
+
+    // The scalar type used for a single parameter/matrix element: real or complex.
+    using Scalar = typename ScalarSQOneElectronOperator_Placeholder::Scalar;
+
+    // The type of 'this'
+    using Self = SQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>;
+
+    // The type of the one-particle density matrix that is naturally associated to the second-quantized Hamiltonian.
+    using OneDM = typename OperatorTraits<ScalarSQOneElectronOperator_Placeholder>::OneDM;
+
+    // The type of the two-particle density matrix that is naturally associated to the second-quantized Hamiltonian.
+    using TwoDM = typename OperatorTraits<ScalarSQOneElectronOperator_Placeholder>::TwoDM;
+
+    // The type of transformation matrix that is naturally associated to the Hamiltonian.
+    using TM = typename OperatorTraits<ScalarSQOneElectronOperator_Placeholder>::TM;
+
+
+private:
+    // The total one-electron interaction operator, i.e. the core Hamiltonian.
+    ScalarSQOneElectronOperator_Placeholder h;
+
+    // The total two-electron interaction operator.
+    ScalarSQTwoElectronOperator_Placeholder g;
+
+    // The contributions to the total one-electron interaction operator.
+    std::vector<ScalarSQOneElectronOperator_Placeholder> h_contributions;
+
+    // The contributions to the total two-electron interaction operator.
+    std::vector<ScalarSQTwoElectronOperator_Placeholder> g_contributions;
 
 
 public:
     /*
-     *  CONSTRUCTORS
+     *  MARK: Constructors
      */
-    SQHamiltonian() = default;
 
     /**
-     *  @param one_ops      the core (i.e. one-electron) contributions to the Hamiltonian
-     *  @param two_ops      the two-electron contributions to the Hamiltonian
+     *  Initialize a `SQHamiltonian` for one- and two-electron contributions.
+     * 
+     *  @param h_contributions      The contributions to the total one-electron interaction operator.
+     *  @param g_contributions      The contributions to the total two-electron interaction operator.
      */
-    SQHamiltonian(const std::vector<ScalarSQOneElectronOperator<Scalar>>& one_ops, const std::vector<ScalarSQTwoElectronOperator<Scalar>>& two_ops) :
-        one_ops {one_ops},
-        two_ops {two_ops} {
+    SQHamiltonian(const std::vector<ScalarSQOneElectronOperator_Placeholder>& h_contributions, const std::vector<ScalarSQTwoElectronOperator_Placeholder>& g_contributions) :
+        h_contributions {h_contributions},
+        g_contributions {g_contributions} {
 
-        // Check if the dimensions are compatible
-        const std::invalid_argument dimension_error("SQHamiltonian::SQHamiltonian(const std::vector<ScalarSQOneElectronOperator<Scalar>& one_ops, const std::vector<ScalarSQTwoElectronOperator<Scalar>& two_ops: The dimensions of the operators and coefficients matrix are incompatible");
+        // Check if the dimensions of the one- and two-electron operators are compatible.
+        const std::invalid_argument dimension_error {"SQHamiltonian::SQHamiltonian(const std::vector<ScalarSQOneElectronOperator<Scalar>& h_contributions, const std::vector<ScalarSQTwoElectronOperator<Scalar>& g_contributions: The dimensions of the contributing operators are incompatible"};
 
-        const auto dim = one_ops[0].numberOfOrbitals();
-        for (const auto& one_op : this->one_ops) {
-            if (one_op.numberOfOrbitals() != dim) {
+        const auto dim = h_contributions[0].numberOfOrbitals();
+        for (const auto& h : this->h_contributions) {
+            if (h.numberOfOrbitals() != dim) {
                 throw dimension_error;
             }
         }
 
-        for (const auto& two_op : this->two_ops) {
-            if (two_op.numberOfOrbitals() != dim) {
+        for (const auto& g : this->g_contributions) {
+            if (g.numberOfOrbitals() != dim) {
                 throw dimension_error;
             }
         }
 
 
-        // Calculate the total one-electron operator
-        SquareMatrix<Scalar> total_one_op_par {dim};
-        total_one_op_par.setZero();
-        for (const auto& one_op : this->one_ops) {
-            total_one_op_par += one_op.parameters();
-        }
-        this->total_one_op = ScalarSQOneElectronOperator<Scalar>(total_one_op_par);
-
-
-        // Calculate the total two-electron operator
-        QCRankFourTensor<Scalar> total_two_op_par(dim);
-        total_two_op_par.setZero();
-        for (const auto& two_op : this->two_ops) {
-            total_two_op_par += two_op.parameters().Eigen();
-        }
-        this->total_two_op = ScalarSQTwoElectronOperator<Scalar>(total_two_op_par);
+        // Calculate the total one- and two-electron operators.
+        this->h = std::accumulate(h_contributions.begin(), h_contributions.end(), ScalarSQOneElectronOperator_Placeholder::Zero(dim));
+        this->g = std::accumulate(g_contributions.begin(), g_contributions.end(), ScalarSQTwoElectronOperator_Placeholder::Zero(dim));
     }
 
 
     /**
-     *  @param h            the (total) one-electron (i.e. core) integrals
-     *  @param g            the (total) two-electron integrals
+     *  Create an `SQHamiltonian` from total one- and two-electron contributions.
+     * 
+     *  @param h            The total one-electron interaction operator, i.e. the core Hamiltonian.
+     *  @param g            The total two-electron interaction operator.
      */
-    SQHamiltonian(const ScalarSQOneElectronOperator<Scalar>& h, const ScalarSQTwoElectronOperator<Scalar>& g) :
-        SQHamiltonian(std::vector<ScalarSQOneElectronOperator<Scalar>> {h}, std::vector<ScalarSQTwoElectronOperator<Scalar>> {g}) {}
+    SQHamiltonian(const ScalarSQOneElectronOperator_Placeholder& h, const ScalarSQTwoElectronOperator_Placeholder& g) :
+        SQHamiltonian(std::vector<ScalarSQOneElectronOperator_Placeholder> {h},
+                      std::vector<ScalarSQTwoElectronOperator_Placeholder> {g}) {}
 
 
-    /*
-     *  NAMED CONSTRUCTORS
+    /**
+     *  MARK: Named constructors
      */
 
     /**
-     *  @param hubbard_hamiltonian              a Hubbard model Hamiltonian
+     *  Create an `SQHamiltonian` from a `HubbardHamiltonian`.
+     * 
+     *  @param hubbard_hamiltonian              The Hubbard model Hamiltonian.
      *
-     *  @return a full SQHamiltonian generated from the given Hubbard model Hamiltonian
+     *  @return An SQHamiltonian generated from the given Hubbard model Hamiltonian.
      *
      *  @note This named constructor is only available for real matrix representations.
      */
-    template <typename Z = Scalar>
-    static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> FromHubbard(const GQCP::HubbardHamiltonian<double>& hubbard_hamiltonian) {
+    template <typename Z1 = Scalar, typename Z2 = SpinorTag>
+    static enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, RestrictedSpinorTag>::value, SQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>> FromHubbard(const GQCP::HubbardHamiltonian<double>& hubbard_hamiltonian) {
 
         const auto h = hubbard_hamiltonian.core();
         const auto g = hubbard_hamiltonian.twoElectron();
 
-        return SQHamiltonian(h, g);
+        return Self {h, g};
     }
 
 
     /**
-     *  Construct the molecular Hamiltonian in a given restricted spin-orbital basis.
-     *
-     *  @param r_spinor_basis       the spinor basis in which the Hamiltonian should be expressed
-     *  @param molecule             the molecule on which the single particle is based
-     *
-     *  @return a second-quantized molecular Hamiltonian. The molecular Hamiltonian has
+     *  Construct the electronic molecular Hamiltonian in a spinor basis basis. The molecular Hamiltonian encompasses the following interactions:
      *      - one-electron contributions:
      *          - kinetic
      *          - nuclear attraction
      *      - two-electron contributions:
      *          - Coulomb repulsion
+     * 
+     *  @param spinor           The spinor basis in which the Hamiltonian should be expressed.
+     *  @param molecule         The molecule that contains the nuclear framework upon which the nuclear attraction operator is based
      *
-     *  @note This named constructor is only available for real matrix representations.
+     *  @return A second-quantized molecular Hamiltonian.
      */
-    template <typename Z = Scalar>
-    static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> Molecular(const RSpinorBasis<Z, GTOShell>& r_spinor_basis, const Molecule& molecule) {
+    // FIXME: This API should be moved to SpinorBasis.
+    template <typename Z = SpinorTag>
+    static enable_if_t<std::is_same<Z, RestrictedSpinOrbitalTag>::value, SQHamiltonian<ScalarRSQOneElectronOperator<double>, ScalarRSQTwoElectronOperator<double>>> Molecular(const RSpinorBasis<double, GTOShell>& spinor_basis, const Molecule& molecule) {
 
         // Calculate the integrals for the molecular Hamiltonian
-        const auto T = r_spinor_basis.quantize(Operator::Kinetic());
-        const auto V = r_spinor_basis.quantize(Operator::NuclearAttraction(molecule));
-        ScalarSQOneElectronOperator<double> H = T + V;
+        const auto T = spinor_basis.quantize(Operator::Kinetic());
+        const auto V = spinor_basis.quantize(Operator::NuclearAttraction(molecule));
+        const auto H = T + V;
 
-        const auto g = r_spinor_basis.quantize(Operator::Coulomb());
+        const auto g = spinor_basis.quantize(Operator::Coulomb());
 
-        return SQHamiltonian(H, g);
+        return SQHamiltonian<ScalarRSQOneElectronOperator<double>, ScalarRSQTwoElectronOperator<double>> {H, g};
     }
-
-
-    /**
-     *  Construct the molecular Hamiltonian in a given (general) spinor basis.
-     *
-     *  @param g_spinor_basis           the (general) spinor basis in which the Hamiltonian should be expressed
-     *  @param molecule                 the molecule on which the single particle is based
-     *
-     *  @return a second-quantized molecular Hamiltonian. The molecular Hamiltonian has
-     *      - one-electron contributions:
-     *          - kinetic
-     *          - nuclear attraction
-     *      - two-electron contributions:
-     *          - Coulomb repulsion
-     *
-     *  @note This named constructor is only available for real matrix representations.
-     */
-    template <typename Z = Scalar>
-    static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> Molecular(const GSpinorBasis<Z, GTOShell>& g_spinor_basis, const Molecule& molecule) {
+    template <typename Z = SpinorTag>
+    static enable_if_t<std::is_same<Z, GeneralSpinorTag>::value, SQHamiltonian<ScalarGSQOneElectronOperator<double>, ScalarGSQTwoElectronOperator<double>>> Molecular(const GSpinorBasis<double, GTOShell>& spinor_basis, const Molecule& molecule) {
 
         // Calculate the integrals for the molecular Hamiltonian
-        const auto T = g_spinor_basis.quantize(Operator::Kinetic());
-        const auto V = g_spinor_basis.quantize(Operator::NuclearAttraction(molecule));
-        ScalarSQOneElectronOperator<double> H = T + V;
+        const auto T = spinor_basis.quantize(Operator::Kinetic());
+        const auto V = spinor_basis.quantize(Operator::NuclearAttraction(molecule));
+        const auto H = T + V;
 
-        const auto g = g_spinor_basis.quantize(Operator::Coulomb());
+        const auto g = spinor_basis.quantize(Operator::Coulomb());
 
-        return SQHamiltonian(H, g);
+        return SQHamiltonian<ScalarGSQOneElectronOperator<double>, ScalarGSQTwoElectronOperator<double>> {H, g};
     }
 
 
     /**
-     *  @param K        the number of orbitals
+     *  Create a random `SQHamiltonian` with values uniformly distributed between [-1,1].
+     * 
+     *  @param dim      The dimension of the matrix representations of the one- and two-electron integrals, i.e. the number of orbitals.
      *
-     *  @return a random Hamiltonian with values uniformly distributed between [-1,1]
+     *  @return A random `SQHamiltonian`.
      *
-     *  Note that this named constructor is only available for real representations
+     *  @note This named constructor is only available in the real case.
      */
     template <typename Z = Scalar>
-    static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> Random(const size_t K) {
+    static enable_if_t<std::is_same<Z, double>::value, Self> Random(const size_t dim) {
 
-        ScalarSQOneElectronOperator<double> H {SquareMatrix<double>::Random(K)};  // uniformly distributed between [-1,1]
+        const auto h = ScalarSQOneElectronOperator_Placeholder::Random(dim);
+        const auto g = ScalarSQTwoElectronOperator_Placeholder::Random(dim);
 
-
-        // Unfortunately, the Tensor module provides uniform random distributions between [0, 1]
-        QCRankFourTensor<double> g {K};
-        g.setRandom();
-
-        // Move the distribution from [0, 1] -> [-1, 1]
-        for (size_t i = 0; i < K; i++) {
-            for (size_t j = 0; j < K; j++) {
-                for (size_t k = 0; k < K; k++) {
-                    for (size_t l = 0; l < K; l++) {
-                        g(i, j, k, l) = 2 * g(i, j, k, l) - 1;  // scale from [0, 1] -> [0, 2] -> [-1, 1]
-                    }
-                }
-            }
-        }
-
-        return SQHamiltonian<double>(H, ScalarSQTwoElectronOperator<double>(g));
+        return Self {h, g};
     }
 
 
     /**
-     *  @param fcidump_file     the name of the FCIDUMP file
+     *  Parse an FCIDUMP file and read in its Hamiltonian.
+     * 
+     *  @param fcidump_filename         The name of the FCIDUMP file.
      *
-     *  @return the Hamiltonian corresponding to the contents of an FCIDUMP file
+     *  @return The Hamiltonian corresponding to the contents of an FCIDUMP file.
      *
-     *  Note that this named constructor is only available for real matrix representations
+     *  @note This named constructor is only available in the real case.
      */
-    template <typename Z = Scalar>
-    static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> ReadFCIDUMP(const std::string& fcidump_file) {
+    template <typename Z1 = Scalar, typename Z2 = SpinorTag>
+    static enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, RestrictedSpinOrbitalTag>::value, SQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>> FromFCIDUMP(const std::string& fcidump_filename) {
 
-        std::ifstream input_file_stream = validateAndOpen(fcidump_file, "FCIDUMP");
+        std::ifstream input_file_stream = validateAndOpen(fcidump_filename, "FCIDUMP");
 
 
         // Do the actual parsing
@@ -254,7 +262,7 @@ public:
         }
 
         if (K == 0) {
-            throw std::invalid_argument("SQHamiltonian::ReadFCIDUMP(std::string): The .FCIDUMP-file is invalid: could not read a number of orbitals.");
+            throw std::invalid_argument("SQHamiltonian::FromFCIDUMP(std::string): The .FCIDUMP-file is invalid: could not read a number of orbitals.");
         }
 
 
@@ -316,31 +324,86 @@ public:
         }  // while loop
 
 
-        return SQHamiltonian(ScalarSQOneElectronOperator<Scalar>(h_core), ScalarSQTwoElectronOperator<Scalar>(g));
+        return SQHamiltonian(ScalarSQOneElectronOperator_Placeholder(h_core), ScalarSQTwoElectronOperator_Placeholder(g));
     }
 
 
     /*
-     *  PUBLIC METHODS
+     *  MARK: Parameter access
+     */
+
+    /**
+     *  @return A read-only reference to the total one-electron interaction operator, i.e. the core Hamiltonian.
+     */
+    const ScalarSQOneElectronOperator_Placeholder& core() const { return this->h; }
+
+    /**
+     *  @return A writable reference to the total one-electron interaction operator, i.e. the core Hamiltonian.
+     */
+    ScalarSQOneElectronOperator_Placeholder& core() { return this->h; }
+
+    /**
+     *  @return A read-only reference to the contributions to the total one-electron interaction operator.
+     */
+    const std::vector<ScalarSQOneElectronOperator_Placeholder>& coreContributions() const { return this->h_contributions; }
+
+    /**
+     *  @return A writable reference to the contributions to the total one-electron interaction operator.
+     */
+    std::vector<ScalarSQOneElectronOperator_Placeholder>& coreContributions() { return this->h_contributions; }
+
+    /**
+     *  @return A read-only reference to the total two-electron interaction operator.
+     */
+    const ScalarSQTwoElectronOperator_Placeholder& twoElectron() const { return this->g; }
+
+    /**
+     *  @return A writable reference to the total two-electron interaction operator.
+     */
+    ScalarSQTwoElectronOperator_Placeholder& twoElectron() { return this->g; }
+
+    /**
+     *  @return A read-only reference to the contributions to the total two-electron interaction operator.
+     */
+    const std::vector<ScalarSQTwoElectronOperator_Placeholder>& twoElectronContributions() const { return this->g_contributions; }
+
+    /**
+     *  @return A writable reference to the contributions to the total two-electron interaction operator.
+     */
+    std::vector<ScalarSQTwoElectronOperator_Placeholder>& twoElectronContributions() { return this->g_contributions; }
+
+
+    /*
+     *  MARK: General information
+     */
+
+    /**
+     *  @return The number of orbitals (spinors or spin-orbitals, depending on the context) this second-quantized Hamiltonian is related to
+     */
+    size_t numberOfOrbitals() const { return this->core().numberOfOrbitals(); }
+
+
+    /*
+     *  MARK: Calculations
      */
 
     /**
      *  Calculate the Edmiston-Ruedenberg localization index, which is the trace of the two-electron integrals over only the occupied orbitals.
      * 
-     *  @param orbital_space                an orbital space which denotes the occupied-active-virtual separation
+     *  @param orbital_space                An orbital space which denotes the occupied-active-virtual separation.
      *
-     *  @return the Edmiston-Ruedenberg localization index
+     *  @return The Edmiston-Ruedenberg localization index.
      *
      *  @note This method is only available for real matrix representations.
      */
-    Scalar calculateEdmistonRuedenbergLocalizationIndex(const OrbitalSpace orbital_space) const {
+    double calculateEdmistonRuedenbergLocalizationIndex(const OrbitalSpace orbital_space) const {
 
-        const auto& g_par = this->total_two_op.parameters();
+        const auto& g_total_par = this->twoElectron().parameters();
 
-        // TODO: when Eigen releases TensorTrace, use it here
+        // TODO: When Eigen releases TensorTrace, use it here.
         double localization_index = 0.0;
         for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
-            localization_index += g_par(i, i, i, i);
+            localization_index += g_total_par(i, i, i, i);
         }
 
         return localization_index;
@@ -348,50 +411,73 @@ public:
 
 
     /**
-     *  @return the effective one-electron integrals
+     *  Calculate the effective one-electron integrals. These are the core integrals, with the contributions form a Kronecker delta-term in the two-electron integrals.
+     * 
+     *  @return The effective one-electron integrals.
      */
-    ScalarSQOneElectronOperator<Scalar> calculateEffectiveOneElectronIntegrals() const {
+    ScalarSQOneElectronOperator_Placeholder calculateEffectiveOneElectronIntegrals() const {
 
         return this->core() + this->twoElectron().effectiveOneElectronPartition();
     }
 
 
     /**
-     *  @param D            the 1-DM
-     *  @param d            the 2-DM
+     *  Calculate the electronic energy, i.e. the expectation value of this Hamiltonian.
+     * 
+     *  @param D            The 1-DM.
+     *  @param d            The 2-DM.
      *
-     *  @return the expectation value of this Hamiltonian
+     *  @return The expectation value of this Hamiltonian.
      */
-    Scalar calculateExpectationValue(const OneDM<Scalar>& D, const TwoDM<Scalar>& d) const {
+    Scalar calculateExpectationValue(const OneDM& D, const TwoDM& d) const {
 
-        return this->core().calculateExpectationValue(D)[0] + this->twoElectron().calculateExpectationValue(d)[0];  // SQHamiltonian contains ScalarSQOperators, so we access with [0]
+        // An SQHamiltonian contains ScalarSQOperators, so we access their expectation values with ().
+        return this->core().calculateExpectationValue(D)() + this->twoElectron().calculateExpectationValue(d)();
     }
 
 
     /**
-     *  @param D      the 1-DM (or the response 1-DM for made-variational wave function models)
-     *  @param d      the 2-DM (or the response 2-DM for made-variational wave function models)
+     *  Calculate the Fockian matrix of this Hamiltonian.
+     * 
+     *  @param D      The 1-DM (or the response 1-DM for made-variational wave function models).
+     *  @param d      The 2-DM (or the response 2-DM for made-variational wave function models).
      *
-     *  @return the (generalized) Fockian matrix
+     *  @return The Fockian matrix.
      */
-    SquareMatrix<Scalar> calculateFockianMatrix(const OneDM<double>& D, const TwoDM<double>& d) const {
+    SquareMatrix<Scalar> calculateFockianMatrix(const OneDM& D, const TwoDM& d) const {
 
-        return this->core().calculateFockianMatrix(D, d)[0] + this->twoElectron().calculateFockianMatrix(D, d)[0];  // SQHamiltonian has one- and two-electron contributions, so access with [0] accordingly
+        // An SQHamiltonian contains ScalarSQOperators, so we access their Fockian matrices with (0).
+        return this->core().calculateFockianMatrix(D, d)() + this->twoElectron().calculateFockianMatrix(D, d)();
     }
 
 
     /**
-     *  Calculate the (general) inactive Fockian operator.
+     *  Calculate the super-Fockian matrix of this Hamiltonian.
      * 
-     *  @param orbital_space                an orbital space which denotes the occupied-virtual separation
-     * 
-     *  @return the inactive Fockian operator
+     *  @param D      The 1-DM (or the response 1-DM for made-variational wave function models).
+     *  @param d      The 2-DM (or the response 2-DM for made-variational wave function models).
+     *
+     *  @return The super-Fockian matrix.
      */
-    ScalarSQOneElectronOperator<Scalar> calculateInactiveFockian(const OrbitalSpace orbital_space) const {
+    SquareRankFourTensor<Scalar> calculateSuperFockianMatrix(const OneDM& D, const TwoDM& d) const {
+
+        // An SQHamiltonian contains ScalarSQOperators, so we access their Fockian matrices with (0).
+        return this->core().calculateSuperFockianMatrix(D, d)().Eigen() + this->twoElectron().calculateSuperFockianMatrix(D, d)().Eigen();  // We have to call .Eigen() because operator+ isn't enabled on SquareRankFourTensor.
+    }
+
+
+    /**
+     *  Calculate the inactive Fockian operator.
+     * 
+     *  @param orbital_space                An orbital space which denotes the occupied-virtual separation.
+     * 
+     *  @return The inactive Fockian operator.
+     */
+    template <typename Z = SpinorTag>
+    enable_if_t<std::is_same<Z, GeneralSpinorTag>::value, ScalarSQOneElectronOperator_Placeholder> calculateInactiveFockian(const OrbitalSpace orbital_space) const {
 
         const auto& h_par = this->core().parameters();
         const auto& g_par = this->twoElectron().parameters();
-
 
         // A KISS implementation of the calculation of the (general) inactive Fockian matrix
         auto F_par = h_par;  // one-electron part
@@ -406,19 +492,19 @@ public:
             }
         }  // F elements loop
 
-        return ScalarSQOneElectronOperator<Scalar>(F_par);
+        return ScalarSQOneElectronOperator_Placeholder {F_par};
     }
 
 
     /**
-     *  Calculate the (restricted) inactive Fockian operator.
+     *  Calculate the inactive Fockian operator.
      * 
-     *  @param orbital_space                an orbital space which denotes the occupied-virtual separation
+     *  @param orbital_space                An orbital space which denotes the occupied-virtual separation.
      * 
-     *  @return the inactive Fockian operator
+     *  @return The inactive Fockian operator.
      */
-    ScalarSQOneElectronOperator<Scalar> calculateInactiveFockianRestricted(const OrbitalSpace orbital_space) const {
-
+    template <typename Z = SpinorTag>
+    enable_if_t<std::is_same<Z, RestrictedSpinOrbitalTag>::value, ScalarSQOneElectronOperator_Placeholder> calculateInactiveFockian(const OrbitalSpace orbital_space) const {
         const auto& h_par = this->core().parameters();
         const auto& g_par = this->twoElectron().parameters();
 
@@ -436,125 +522,141 @@ public:
             }
         }  // F elements loop
 
-        return ScalarSQOneElectronOperator<Scalar>(F_par);
+        return ScalarSQOneElectronOperator_Placeholder {F_par};
     }
 
 
-    /**
-     *  @param D      the 1-DM (or the response 1-DM for made-variational wave function models)
-     *  @param d      the 2-DM (or the response 2-DM for made-variational wave function models)
-     *
-     *  @return the (generalized) super-Fockian matrix
+    /*
+     *  MARK: Conforming to BasisTransformable
      */
-    SquareRankFourTensor<Scalar> calculateSuperFockianMatrix(const OneDM<double>& D, const TwoDM<double>& d) const {
 
-        return this->core().calculateSuperFockianMatrix(D, d)[0].Eigen() + this->twoElectron().calculateSuperFockianMatrix(D, d)[0].Eigen();  // SQHamiltonian contains ScalarSQOperators
+    /**
+     *  Apply the basis transformation and return the resulting one-electron integrals.
+     * 
+     *  @param T            The type that encapsulates the basis transformation coefficients.
+     * 
+     *  @return The basis-transformed one-electron integrals.
+     */
+    Self transformed(const TM& T) const override {
+
+        auto result = *this;
+
+        // Transform the one and two-electron contributions.
+        for (auto& h : result.coreContributions()) {
+            h.transform(T);
+        }
+
+        for (auto& g : result.twoElectronContributions()) {
+            g.transform(T);
+        }
+
+        // Transform the total one- and two-electron interactions.
+        result.core().transform(T);
+        result.twoElectron().transform(T);
+
+        return result;
     }
 
 
-    /**
-     *  @return the 'core' Hamiltonian, i.e. the total of the one-electron contributions to the Hamiltonian
+    // Allow the `rotate` method from `BasisTransformable`, since there's also a `rotate` from `JacobiRotatable`.
+    using BasisTransformable<Self>::rotate;
+
+    // Allow the `rotated` method from `BasisTransformable`, since there's also a `rotated` from `JacobiRotatable`.
+    using BasisTransformable<Self>::rotated;
+
+
+    /*
+     *  MARK: Conforming to JacobiRotatable
      */
-    const ScalarSQOneElectronOperator<Scalar>& core() const { return this->total_one_op; }
 
     /**
-     *  @return the contributions to the 'core' Hamiltonian
+     *  Apply the Jacobi rotation and return the result.
+     * 
+     *  @param jacobi_parameters        The Jacobi rotation parameters.
+     * 
+     *  @return The jacobi-transformed object.
      */
-    const std::vector<ScalarSQOneElectronOperator<Scalar>>& coreContributions() const { return this->one_ops; }
+    Self rotated(const JacobiRotationParameters& jacobi_parameters) const override {
 
-    /**
-     *  @return the number of orbitals (spinors or spin-orbitals, depending on the context) this second-quantized Hamiltonian is related to
-     */
-    size_t numberOfOrbitals() const { return this->core().numberOfOrbitals(); }
+        auto result = *this;
 
-    /**
-     *  Using a random rotation matrix, transform the matrix representations of the Hamiltonian
-     *
-     *  Note that this method is only available for real matrix representations
-     */
-    template <typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value> randomRotate() { this->rotate(TransformationMatrix<double>::RandomUnitary(this->numberOfOrbitals())); }
-
-    /**
-     *  In-place rotate the matrix representations of Hamiltonian
-     *
-     *  @param U    the unitary rotation matrix between the old and the new orbital basis
-     */
-    void rotate(const TransformationMatrix<Scalar>& U) {
-
-        // Rotate the one-electron contributions
-        for (auto& one_op : this->one_ops) {
-            one_op.rotate(U);
+        // Transform the one and two-electron contributions.
+        for (auto& h : result.coreContributions()) {
+            h.rotate(jacobi_parameters);
         }
 
-        // Rotate the two-electron contributions
-        for (auto& two_op : this->two_ops) {
-            two_op.rotate(U);
+        for (auto& g : result.twoElectronContributions()) {
+            g.rotate(jacobi_parameters);
         }
 
-        // Rotate the totals
-        this->total_one_op.rotate(U);
-        this->total_two_op.rotate(U);
+        // Transform the total one- and two-electron interactions.
+        result.core().rotate(jacobi_parameters);
+        result.twoElectron().rotate(jacobi_parameters);
+
+        return result;
     }
 
-
-    /**
-     *  In-place rotate the matrix representations of the Hamiltonian using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters. Note that this function is only available for real (double) matrix representations
-     *
-     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
-     */
-    template <typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
-
-        // Transform the one-electron contributions
-        for (auto& one_op : this->one_ops) {
-            one_op.rotate(jacobi_rotation_parameters);
-        }
-
-        // Transform the two-electron contributions
-        for (auto& two_op : this->two_ops) {
-            two_op.rotate(jacobi_rotation_parameters);
-        }
-
-        // Transform the totals
-        this->total_one_op.rotate(jacobi_rotation_parameters);
-        this->total_two_op.rotate(jacobi_rotation_parameters);
-    }
-
-
-    /**
-     *  In-place transform the matrix representations of Hamiltonian
-     *
-     *  @param T    the transformation matrix between the old and the new orbital basis
-     */
-    void transform(const TransformationMatrix<Scalar>& T) {
-
-        // Transform the one-electron contributions
-        for (auto& one_op : this->one_ops) {
-            one_op.transform(T);
-        }
-
-        // Transform the two-electron contributions
-        for (auto& two_op : this->two_ops) {
-            two_op.transform(T);
-        }
-
-        // Transform the totals
-        this->total_one_op.transform(T);
-        this->total_two_op.transform(T);
-    }
-
-
-    /**
-     *  @return the total of the two-electron contributions to the Hamiltonian
-     */
-    const ScalarSQTwoElectronOperator<Scalar>& twoElectron() const { return this->total_two_op; }
-
-    /**
-     *  @return the contributions to the two-electron part of the Hamiltonian
-     */
-    const std::vector<ScalarSQTwoElectronOperator<Scalar>>& twoElectronContributions() const { return this->two_ops; }
+    // Allow the `rotate` method from `JacobiRotatable`, since there's also a `rotate` from `BasisTransformable`.
+    using JacobiRotatable<Self>::rotate;
 };
+
+
+/*
+ *  MARK: Operator traits
+ */
+
+/**
+ *  A type that provides compile-time information on operators that is otherwise not accessible through a public class alias.
+ */
+template <typename ScalarSQOneElectronOperator_Placeholder, typename ScalarSQTwoElectronOperator_Placeholder>
+struct OperatorTraits<SQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>> {
+
+    // The type of transformation matrix that is naturally associated to the second-quantized Hamiltonian.
+    using TM = typename OperatorTraits<ScalarSQOneElectronOperator_Placeholder>::TM;
+
+    // The type of the one-particle density matrix that is naturally associated to the second-quantized Hamiltonian.
+    using OneDM = typename OperatorTraits<ScalarSQOneElectronOperator_Placeholder>::OneDM;
+
+    // The type of the two-particle density matrix that is naturally associated to the second-quantized Hamiltonian.
+    using TwoDM = typename OperatorTraits<ScalarSQOneElectronOperator_Placeholder>::TwoDM;
+};
+
+
+/*
+ *  MARK: BasisTransformableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
+ */
+template <typename ScalarSQOneElectronOperator_Placeholder, typename ScalarSQTwoElectronOperator_Placeholder>
+struct BasisTransformableTraits<SQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>> {
+
+    // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix"
+    using TM = typename OperatorTraits<ScalarSQOneElectronOperator_Placeholder>::TM;
+
+    // using TM = typename OperatorTraits<SQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>>::TM;
+};
+
+
+/*
+ *  MARK: Convenience aliases
+ */
+
+
+// An `SQHamiltonian` related to restricted spin-orbitals. See `RestrictedSpinOrbitalTag`.
+template <typename Scalar>
+using RSQHamiltonian = SQHamiltonian<ScalarRSQOneElectronOperator<Scalar>, ScalarRSQTwoElectronOperator<Scalar>>;
+
+
+// An `SQHamiltonian` related to unrestricted spin-orbitals. See `UnrestrictedSpinOrbitalTag`.
+// template <typename Scalar>
+// using USQHamiltonian = SQHamiltonian<ScalarUSQOneElectronOperator<Scalar>, ScalarUSQTwoElectronOperator<Scalar>>;
+
+
+// An `SQHamiltonian` related to general spinors. See `GeneralSpinorTag`.
+template <typename Scalar>
+using GSQHamiltonian = SQHamiltonian<ScalarGSQOneElectronOperator<Scalar>, ScalarGSQTwoElectronOperator<Scalar>>;
 
 
 /*
@@ -572,7 +674,7 @@ public:
  *  @return a new second-quantized Hamiltonian
  */
 template <typename Scalar>
-SQHamiltonian<Scalar> operator+(const SQHamiltonian<Scalar>& sq_hamiltonian, const ScalarSQOneElectronOperator<Scalar>& sq_one_op) {
+RSQHamiltonian<Scalar> operator+(const RSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarRSQOneElectronOperator<Scalar>& sq_one_op) {
 
     // Make a copy of the one-electron part in order to create a new Hamiltonian
     auto sq_one_ops = sq_hamiltonian.coreContributions();
@@ -580,7 +682,7 @@ SQHamiltonian<Scalar> operator+(const SQHamiltonian<Scalar>& sq_hamiltonian, con
     // 'Add' the one-electron operator
     sq_one_ops.push_back(sq_one_op);
 
-    return SQHamiltonian<Scalar>(sq_one_ops, sq_hamiltonian.twoElectronContributions());
+    return RSQHamiltonian<Scalar>(sq_one_ops, sq_hamiltonian.twoElectronContributions());
 }
 
 
@@ -595,7 +697,7 @@ SQHamiltonian<Scalar> operator+(const SQHamiltonian<Scalar>& sq_hamiltonian, con
  *  @return a new second-quantized Hamiltonian
  */
 template <typename Scalar>
-SQHamiltonian<Scalar> operator-(const SQHamiltonian<Scalar>& sq_hamiltonian, const ScalarSQOneElectronOperator<Scalar>& sq_one_op) {
+RSQHamiltonian<Scalar> operator-(const RSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarRSQOneElectronOperator<Scalar>& sq_one_op) {
 
     return sq_hamiltonian + (-sq_one_op);
 }
@@ -612,7 +714,7 @@ SQHamiltonian<Scalar> operator-(const SQHamiltonian<Scalar>& sq_hamiltonian, con
  *  @return a new second-quantized Hamiltonian
  */
 template <typename Scalar>
-SQHamiltonian<Scalar> operator+(const SQHamiltonian<Scalar>& sq_hamiltonian, const ScalarSQTwoElectronOperator<Scalar>& sq_two_op) {
+RSQHamiltonian<Scalar> operator+(const RSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarRSQTwoElectronOperator<Scalar>& sq_two_op) {
 
     // Make a copy of the two-electron part in order to create a new Hamiltonian
     auto sq_two_ops = sq_hamiltonian.twoElectronContributions();
@@ -620,7 +722,7 @@ SQHamiltonian<Scalar> operator+(const SQHamiltonian<Scalar>& sq_hamiltonian, con
     // 'Add' the two-electron operator
     sq_two_ops.push_back(sq_two_ops);
 
-    return SQHamiltonian<Scalar>(sq_hamiltonian.coreContributions(), sq_two_ops);
+    return RSQHamiltonian<Scalar>(sq_hamiltonian.coreContributions(), sq_two_ops);
 }
 
 
@@ -635,7 +737,7 @@ SQHamiltonian<Scalar> operator+(const SQHamiltonian<Scalar>& sq_hamiltonian, con
  *  @return a new second-quantized Hamiltonian
  */
 template <typename Scalar>
-SQHamiltonian<Scalar> operator-(const SQHamiltonian<Scalar>& sq_hamiltonian, const ScalarSQTwoElectronOperator<Scalar>& sq_two_op) {
+RSQHamiltonian<Scalar> operator-(const RSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarRSQTwoElectronOperator<Scalar>& sq_two_op) {
 
     return sq_hamiltonian + (-sq_two_op);
 }

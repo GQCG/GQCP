@@ -31,7 +31,7 @@ void bindDiagonalRHFFockMatrixObjective(py::module& module) {
 
         // CONSTRUCTORS
 
-        .def(py::init<const GQCP::SQHamiltonian<double>&, const double>(),
+        .def(py::init<const GQCP::RSQHamiltonian<double>&, const double>(),
              py::arg("sq_hamiltonian"),
              py::arg("precision") = 1.0e-08);
 }

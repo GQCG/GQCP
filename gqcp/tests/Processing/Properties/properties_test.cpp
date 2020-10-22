@@ -24,7 +24,6 @@
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "Processing/Properties/RHFElectricalResponseSolver.hpp"
 #include "Processing/Properties/properties.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
 #include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF/RHF.hpp"
 #include "QCMethod/HF/RHF/RHFSCFSolver.hpp"
@@ -39,7 +38,7 @@ BOOST_AUTO_TEST_CASE(dipole_CO_STO_3G) {
     GQCP::Molecule CO {{C, O}};
 
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {CO, "STO-3G"};
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, CO);  // in an AO basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, CO);  // in an AO basis
 
     size_t K = spinor_basis.numberOfSpatialOrbitals();
     size_t N = CO.numberOfElectrons();
@@ -63,7 +62,7 @@ BOOST_AUTO_TEST_CASE(dipole_CO_STO_3G) {
     auto dipole_op = spinor_basis.quantize(GQCP::Operator::ElectronicDipole());
     dipole_op.transform(rhf_parameters.coefficientMatrix());
 
-    GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(CO).value() + dipole_op.calculateExpectationValue(D);
+    GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(CO).value() + dipole_op.calculateExpectationValue(D).asVector();
     BOOST_CHECK(std::abs(total_dipole_moment.norm() - (0.049)) < 1.0e-03);
 }
 
@@ -78,7 +77,7 @@ BOOST_AUTO_TEST_CASE(dipole_N2_STO_3G) {
     GQCP::Molecule N2 {{N_1, N_2}};
 
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {N2, "STO-3G"};
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, N2);  // in an AO basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, N2);  // in an AO basis
 
     size_t K = spinor_basis.numberOfSpatialOrbitals();
     size_t N = N2.numberOfElectrons();
@@ -102,7 +101,7 @@ BOOST_AUTO_TEST_CASE(dipole_N2_STO_3G) {
     auto dipole_op = spinor_basis.quantize(GQCP::Operator::ElectronicDipole());
     dipole_op.transform(rhf_parameters.coefficientMatrix());
 
-    GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(N2).value() + dipole_op.calculateExpectationValue(D);
+    GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(N2).value() + dipole_op.calculateExpectationValue(D).asVector();
     BOOST_CHECK(std::abs(total_dipole_moment.norm() - (0.0)) < 1.0e-08);
 }
 
@@ -124,7 +123,7 @@ BOOST_AUTO_TEST_CASE(h2_polarizability_RHF) {
     GQCP::Molecule h2 {{H1, H2}, 0};
 
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis(h2, "STO-3G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in the AO basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, h2);  // in the AO basis
 
 
     // Do the RHF calculation to get the canonical RHF orbitals

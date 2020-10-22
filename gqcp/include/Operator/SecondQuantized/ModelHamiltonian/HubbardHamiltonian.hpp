@@ -19,8 +19,8 @@
 
 
 #include "Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp"
-#include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
-#include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
+#include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
+#include "Operator/SecondQuantized/RSQTwoElectronOperator.hpp"
 
 
 namespace GQCP {
@@ -28,88 +28,98 @@ namespace GQCP {
 
 /**
  *  The Hubbard model Hamiltonian.
+ * 
+ *  @tparam _Scalar         The scalar type for a hopping matrix element.
  */
 template <typename _Scalar>
 class HubbardHamiltonian {
 public:
+    // The scalar type for a hopping matrix element.
     using Scalar = _Scalar;
 
 
 private:
-    HoppingMatrix<Scalar> H;  // the Hubbard hopping matrix
+    // The Hubbard hopping matrix.
+    HoppingMatrix<Scalar> H;
 
 
 public:
     /*
-     *  CONSTRUCTORS
+     *  MARK: Constructors
      */
 
     /**
-     *  @param H            the Hubbard hopping matrix
+     *  Create a `HubbardHamiltonian` from a `HoppingMatrix`.
+     * 
+     *  @param H            The Hubbard hopping matrix.
      */
     HubbardHamiltonian(const HoppingMatrix<Scalar>& H) :
         H {H} {}
 
 
     /*
-     *  PUBLIC METHODS
+     *  MARK: Integral access
      */
 
     /**
-     *  @return the core Hamiltonian (i.e. resulting from the Hubbard hopping operator) as a one-electron operator
+     *  @return The core Hamiltonian (i.e. resulting from the Hubbard hopping operator) as a one-electron operator.
      * 
      *  @note This method is only available for real scalars.
      */
     template <typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value, ScalarSQOneElectronOperator<Scalar>> core() const {
+    enable_if_t<std::is_same<Z, double>::value, ScalarRSQOneElectronOperator<double>> core() const {
 
         const auto K = this->numberOfLatticeSites();
-        SquareMatrix<double> h_par = SquareMatrix<double>::Zero(K);  // 'par' for 'parameters'
+        auto h = ScalarRSQOneElectronOperator<double>::Zero(K);
 
         // The one-electron hopping terms can be found on the off-diagonal elements of the hopping matrix.
         for (size_t p = 0; p < K; p++) {
             for (size_t q = p; q < K; q++) {
                 if (p != q) {
-                    h_par(p, q) = this->H(p, q);
-                    h_par(q, p) = this->H(q, p);
+                    h.parameters()(p, q) = this->hoppingMatrix(p, q);
+                    h.parameters()(q, p) = this->hoppingMatrix(q, p);
                 }
             }
         }
 
-        return ScalarSQOneElectronOperator<double> {h_par};
+        return h;
     }
 
 
     /**
-     *  @return the Hubbard hopping matrix for this Hubbard model Hamiltonian
+     *  @return The two-electron part of the Hamiltonian (resulting from the on-site repulsion) as a two-electron operator.
+     * 
+     *  @note This method is only available for real scalars.
+     */
+    template <typename Z = Scalar>
+    enable_if_t<std::is_same<Z, double>::value, ScalarRSQTwoElectronOperator<double>> twoElectron() const {
+
+        const auto K = this->numberOfLatticeSites();
+        SquareRankFourTensor<double> g_par = SquareRankFourTensor<double>::Zero(K);
+
+        // The two-electron on-site repulsion is found on the diagonal of the hopping matrix.
+        for (size_t p = 0; p < K; p++) {
+            g_par(p, p, p, p) = this->hoppingMatrix()(p, p);
+        }
+
+        return ScalarRSQTwoElectronOperator<double> {g_par};
+    }
+
+
+    /**
+     *  @return The Hubbard hopping matrix for this Hubbard model Hamiltonian.
      */
     const HoppingMatrix<Scalar>& hoppingMatrix() const { return this->H; }
+
+
+    /*
+     *  MARK: General information
+     */
 
     /**
      *  @return the number of lattice sites corresponding used in this Hubbard model Hamiltonian
      */
     size_t numberOfLatticeSites() const { return this->H.numberOfLatticeSites(); }
-
-    /**
-     *  @return the two-electron part of the Hamiltonian (resulting from the on-site repulsion) as a two-electron operator
-     * 
-     *  @note This method is only available for real scalars.
-     */
-    template <typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value, ScalarSQTwoElectronOperator<Scalar>> twoElectron() const {
-
-        const auto K = this->numberOfLatticeSites();
-
-        QCRankFourTensor<double> g_par(K);
-        g_par.setZero();
-
-        // The two-electron on-site repulsion is found on the diagonal of the hopping matrix.
-        for (size_t p = 0; p < K; p++) {
-            g_par(p, p, p, p) = H(p, p);
-        }
-
-        return ScalarSQTwoElectronOperator<double> {g_par};
-    }
 };
 
 

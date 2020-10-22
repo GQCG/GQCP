@@ -10,6 +10,7 @@ target_sources(gqcp
         SQOperatorStorageBase.hpp
         SQTwoElectronOperator.hpp
         USQOneElectronOperator.hpp
+        USQOneElectronOperatorComponent.hpp
         USQTwoElectronOperator.hpp
         USQHamiltonian.hpp
 )

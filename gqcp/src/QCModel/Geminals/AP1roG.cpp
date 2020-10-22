@@ -31,7 +31,7 @@ namespace GQCP {
  *
  *  @return the AP1roG electronic energy
  */
-double QCModel::AP1roG::calculateEnergy(const AP1roGGeminalCoefficients& G, const SQHamiltonian<double>& sq_hamiltonian) {
+double QCModel::AP1roG::calculateEnergy(const AP1roGGeminalCoefficients& G, const RSQHamiltonian<double>& sq_hamiltonian) {
 
     // Prepare some variables.
     const auto& h = sq_hamiltonian.core().parameters();
@@ -66,7 +66,7 @@ double QCModel::AP1roG::calculateEnergy(const AP1roGGeminalCoefficients& G, cons
  *
  *  @return the PSE coordinate function with given indices (i,a) at the given geminal coefficients
  */
-double QCModel::AP1roG::calculatePSECoordinateFunction(const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G, const size_t i, const size_t a) {
+double QCModel::AP1roG::calculatePSECoordinateFunction(const RSQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G, const size_t i, const size_t a) {
 
     // Prepare some variables.
     const auto N_P = G.numberOfElectronPairs();
@@ -124,7 +124,7 @@ double QCModel::AP1roG::calculatePSECoordinateFunction(const SQHamiltonian<doubl
  *
  *  @return the PSEs, evaluated at the given geminal coefficients
  */
-ImplicitMatrixSlice<double> QCModel::AP1roG::calculatePSECoordinateFunctions(const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G) {
+ImplicitMatrixSlice<double> QCModel::AP1roG::calculatePSECoordinateFunctions(const RSQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G) {
 
     // Prepare some variables.
     const auto N_P = G.numberOfElectronPairs();
@@ -152,7 +152,7 @@ ImplicitMatrixSlice<double> QCModel::AP1roG::calculatePSECoordinateFunctions(con
  * 
  *  @return a callable (i.e. with operator()) expression for the coordinate functions: the accepted VectorX<double> argument should contain the geminal coefficients in a column-major representation
  */
-VectorFunction<double> QCModel::AP1roG::callablePSECoordinateFunctions(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P) {
+VectorFunction<double> QCModel::AP1roG::callablePSECoordinateFunctions(const RSQHamiltonian<double>& sq_hamiltonian, const size_t N_P) {
 
     VectorFunction<double> callable = [&sq_hamiltonian, N_P](const VectorX<double>& x) {
         const auto K = sq_hamiltonian.numberOfOrbitals();  // the number of spatial orbitals
@@ -175,7 +175,7 @@ VectorFunction<double> QCModel::AP1roG::callablePSECoordinateFunctions(const SQH
  *
  *  @return the Jacobian element with compound indices (i,a) and (j,b) at the given geminal coefficients
  */
-double QCModel::AP1roG::calculatePSEJacobianElement(const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G, const size_t i, const size_t a, const size_t j, const size_t b) {
+double QCModel::AP1roG::calculatePSEJacobianElement(const RSQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G, const size_t i, const size_t a, const size_t j, const size_t b) {
 
     // Prepare some variables.
     const auto& h = sq_hamiltonian.core().parameters();
@@ -234,7 +234,7 @@ double QCModel::AP1roG::calculatePSEJacobianElement(const SQHamiltonian<double>&
  *
  *  @return the Jacobian J_{ia,jb} of the PSEs, i.e. df_i^a/dG_j^b, evaluated at the given geminal coefficients
  */
-ImplicitRankFourTensorSlice<double> QCModel::AP1roG::calculatePSEJacobian(const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G) {
+ImplicitRankFourTensorSlice<double> QCModel::AP1roG::calculatePSEJacobian(const RSQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G) {
 
     // Prepare some variables.
     const auto N_P = G.numberOfElectronPairs();
@@ -266,7 +266,7 @@ ImplicitRankFourTensorSlice<double> QCModel::AP1roG::calculatePSEJacobian(const 
  * 
  *  @return a callable (i.e. with operator()) expression for the Jacobian: the accepted VectorX<double> argument should contain the geminal coefficients in a column-major representation
  */
-MatrixFunction<double> QCModel::AP1roG::callablePSEJacobian(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P) {
+MatrixFunction<double> QCModel::AP1roG::callablePSEJacobian(const RSQHamiltonian<double>& sq_hamiltonian, const size_t N_P) {
 
     MatrixFunction<double> callable = [&sq_hamiltonian, N_P](const VectorX<double>& x) {
         const auto K = sq_hamiltonian.numberOfOrbitals();  // the number of spatial orbitals

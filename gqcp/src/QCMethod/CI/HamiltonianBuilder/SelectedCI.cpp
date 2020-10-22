@@ -1,264 +1,264 @@
-// This file is part of GQCG-GQCP.
-//
-// Copyright (C) 2017-2020  the GQCG developers
-//
-// GQCG-GQCP is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// GQCG-GQCP is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
-
-#include "QCMethod/CI/HamiltonianBuilder/SelectedCI.hpp"
-
-
-namespace GQCP {
-
-
-/*
- *  CONSTRUCTORS
- */
-
-/**
- *  @param onv_basis       the full spin-resolved ONV basis
- */
-SelectedCI::SelectedCI(const SpinResolvedSelectedONVBasis& onv_basis) :
-    HamiltonianBuilder(),
-    onv_basis {onv_basis} {}
-
-
-/*
- *  PUBLIC OVERRIDDEN METHODS
- */
-
-/**
- *  @param sq_hamiltonian               the SelectedCI Hamiltonian parameters in an orthonormal orbital basis
- *
- *  @return the diagonal of the matrix representation of the SelectedCI Hamiltonian
- */
-VectorX<double> SelectedCI::calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
-    return this->onv_basis.evaluateOperatorDiagonal(sq_hamiltonian);
-}
+// // This file is part of GQCG-GQCP.
+// //
+// // Copyright (C) 2017-2020  the GQCG developers
+// //
+// // GQCG-GQCP is free software: you can redistribute it and/or modify
+// // it under the terms of the GNU Lesser General Public License as published by
+// // the Free Software Foundation, either version 3 of the License, or
+// // (at your option) any later version.
+// //
+// // GQCG-GQCP is distributed in the hope that it will be useful,
+// // but WITHOUT ANY WARRANTY; without even the implied warranty of
+// // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// // GNU Lesser General Public License for more details.
+// //
+// // You should have received a copy of the GNU Lesser General Public License
+// // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+
+// #include "QCMethod/CI/HamiltonianBuilder/SelectedCI.hpp"
+
+
+// namespace GQCP {
+
+
+// /*
+//  *  CONSTRUCTORS
+//  */
+
+// /**
+//  *  @param onv_basis       the full spin-resolved ONV basis
+//  */
+// SelectedCI::SelectedCI(const SpinResolvedSelectedONVBasis& onv_basis) :
+//     HamiltonianBuilder(),
+//     onv_basis {onv_basis} {}
+
+
+// /*
+//  *  PUBLIC OVERRIDDEN METHODS
+//  */
+
+// /**
+//  *  @param sq_hamiltonian               the SelectedCI Hamiltonian parameters in an orthonormal orbital basis
+//  *
+//  *  @return the diagonal of the matrix representation of the SelectedCI Hamiltonian
+//  */
+// // VectorX<double> SelectedCI::calculateDiagonal(const RSQHamiltonian<double>& sq_hamiltonian) const {
+// //     return this->onv_basis.evaluateOperatorDiagonal(sq_hamiltonian);
+// // }
 
 
-/**
- *  @param sq_hamiltonian           the SelectedCI Hamiltonian parameters in an orthonormal orbital basis
- *
- *  @return the SelectedCI Hamiltonian matrix
- */
-SquareMatrix<double> SelectedCI::constructHamiltonian(const SQHamiltonian<double>& sq_hamiltonian) const {
-    auto K = sq_hamiltonian.core().numberOfOrbitals();
-    if (K != this->onv_basis.numberOfOrbitals()) {
-        throw std::invalid_argument("SelectedCI::constructHamiltonian(SQHamiltonian<double>): Basis functions of the ONV basis and sq_hamiltonian are incompatible.");
-    }
+// /**
+//  *  @param sq_hamiltonian           the SelectedCI Hamiltonian parameters in an orthonormal orbital basis
+//  *
+//  *  @return the SelectedCI Hamiltonian matrix
+//  */
+// SquareMatrix<double> SelectedCI::constructHamiltonian(const RSQHamiltonian<double>& sq_hamiltonian) const {
+//     auto K = sq_hamiltonian.core().numberOfOrbitals();
+//     if (K != this->onv_basis.numberOfOrbitals()) {
+//         throw std::invalid_argument("SelectedCI::constructHamiltonian(RSQHamiltonian<double>): Basis functions of the ONV basis and sq_hamiltonian are incompatible.");
+//     }
 
-    auto dim = onv_basis.dimension();
+//     auto dim = onv_basis.dimension();
 
-    SquareMatrix<double> result_matrix = SquareMatrix<double>::Zero(dim);
-    result_matrix += this->calculateDiagonal(sq_hamiltonian).asDiagonal();
+//     SquareMatrix<double> result_matrix = SquareMatrix<double>::Zero(dim);
+//     result_matrix += this->calculateDiagonal(sq_hamiltonian).asDiagonal();
 
-    // We should put the calculated elements inside the result matrix
-    PassToMethod addToMatrix = [&result_matrix](size_t I, size_t J, double value) { result_matrix(I, J) += value; };
+//     // We should put the calculated elements inside the result matrix
+//     PassToMethod addToMatrix = [&result_matrix](size_t I, size_t J, double value) { result_matrix(I, J) += value; };
 
-    this->evaluateHamiltonianElements(sq_hamiltonian, addToMatrix);
-    return result_matrix;
-}
+//     this->evaluateHamiltonianElements(sq_hamiltonian, addToMatrix);
+//     return result_matrix;
+// }
 
 
-/**
- *  @param sq_hamiltonian               the SelectedCI Hamiltonian parameters in an orthonormal orbital basis
- *  @param x                            the vector upon which the SelectedCI Hamiltonian acts
- *  @param diagonal                     the diagonal of the SelectedCI Hamiltonian matrix
- *
- *  @return the action of the SelectedCI Hamiltonian on the coefficient vector
- */
-VectorX<double> SelectedCI::matrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+// /**
+//  *  @param sq_hamiltonian               the SelectedCI Hamiltonian parameters in an orthonormal orbital basis
+//  *  @param x                            the vector upon which the SelectedCI Hamiltonian acts
+//  *  @param diagonal                     the diagonal of the SelectedCI Hamiltonian matrix
+//  *
+//  *  @return the action of the SelectedCI Hamiltonian on the coefficient vector
+//  */
+// VectorX<double> SelectedCI::matrixVectorProduct(const RSQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
-    auto K = sq_hamiltonian.core().numberOfOrbitals();
-    if (K != this->onv_basis.numberOfOrbitals()) {
-        throw std::invalid_argument("SelectedCI::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the ONV basis and sq_hamiltonian are incompatible.");
-    }
+//     auto K = sq_hamiltonian.core().numberOfOrbitals();
+//     if (K != this->onv_basis.numberOfOrbitals()) {
+//         throw std::invalid_argument("SelectedCI::matrixVectorProduct(RSQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the ONV basis and sq_hamiltonian are incompatible.");
+//     }
 
-    VectorX<double> matvec = diagonal.cwiseProduct(x);
+//     VectorX<double> matvec = diagonal.cwiseProduct(x);
 
-    // We should pass the calculated elements to the resulting vector and perform the product
-    PassToMethod addToMatvec = [&matvec, &x](size_t I, size_t J, double value) { matvec(I) += value * x(J); };
+//     // We should pass the calculated elements to the resulting vector and perform the product
+//     PassToMethod addToMatvec = [&matvec, &x](size_t I, size_t J, double value) { matvec(I) += value * x(J); };
 
-    this->evaluateHamiltonianElements(sq_hamiltonian, addToMatvec);
+//     this->evaluateHamiltonianElements(sq_hamiltonian, addToMatvec);
 
-    return matvec;
-}
+//     return matvec;
+// }
 
 
-/*
- *  PUBLIC METHODS
- */
+// /*
+//  *  PUBLIC METHODS
+//  */
 
-/**
- *  Evaluate all Hamiltonian elements, putting the results in the Hamiltonian matrix or matvec through the `method` function
- *  This function is used both in `constructHamiltonian()` and `matrixVectorProduct()` to avoid duplicate code.
- *
- *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
- *  @param method                   the method depending to how you wish to construct the Hamiltonian
- */
-void SelectedCI::evaluateHamiltonianElements(const SQHamiltonian<double>& sq_hamiltonian, const PassToMethod& method) const {
+// /**
+//  *  Evaluate all Hamiltonian elements, putting the results in the Hamiltonian matrix or matvec through the `method` function
+//  *  This function is used both in `constructHamiltonian()` and `matrixVectorProduct()` to avoid duplicate code.
+//  *
+//  *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
+//  *  @param method                   the method depending to how you wish to construct the Hamiltonian
+//  */
+// void SelectedCI::evaluateHamiltonianElements(const RSQHamiltonian<double>& sq_hamiltonian, const PassToMethod& method) const {
 
-    const size_t dim = onv_basis.dimension();
-    const size_t K = onv_basis.numberOfOrbitals();
+//     const size_t dim = onv_basis.dimension();
+//     const size_t K = onv_basis.numberOfOrbitals();
 
-    const auto& h = sq_hamiltonian.core().parameters();
-    const auto& g = sq_hamiltonian.twoElectron().parameters();
+//     const auto& h = sq_hamiltonian.core().parameters();
+//     const auto& g = sq_hamiltonian.twoElectron().parameters();
 
-    for (size_t I = 0; I < dim; I++) {  // loop over all addresses (1)
-        SpinResolvedONV configuration_I = this->onv_basis.onvWithIndex(I);
-        SpinUnresolvedONV alpha_I = configuration_I.onv(Spin::alpha);
-        SpinUnresolvedONV beta_I = configuration_I.onv(Spin::beta);
+//     for (size_t I = 0; I < dim; I++) {  // loop over all addresses (1)
+//         SpinResolvedONV configuration_I = this->onv_basis.onvWithIndex(I);
+//         SpinUnresolvedONV alpha_I = configuration_I.onv(Spin::alpha);
+//         SpinUnresolvedONV beta_I = configuration_I.onv(Spin::beta);
 
-        // Calculate the off-diagonal elements, by going over all other ONVs
-        for (size_t J = I + 1; J < dim; J++) {
+//         // Calculate the off-diagonal elements, by going over all other ONVs
+//         for (size_t J = I + 1; J < dim; J++) {
 
-            SpinResolvedONV configuration_J = this->onv_basis.onvWithIndex(J);
-            SpinUnresolvedONV alpha_J = configuration_J.onv(Spin::alpha);
-            SpinUnresolvedONV beta_J = configuration_J.onv(Spin::beta);
+//             SpinResolvedONV configuration_J = this->onv_basis.onvWithIndex(J);
+//             SpinUnresolvedONV alpha_J = configuration_J.onv(Spin::alpha);
+//             SpinUnresolvedONV beta_J = configuration_J.onv(Spin::beta);
 
-            if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
+//             if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
 
-                // Find the orbitals that are occupied in one string, and aren't in the other
-                size_t p = alpha_I.findDifferentOccupations(alpha_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
-                size_t q = alpha_J.findDifferentOccupations(alpha_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+//                 // Find the orbitals that are occupied in one string, and aren't in the other
+//                 size_t p = alpha_I.findDifferentOccupations(alpha_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+//                 size_t q = alpha_J.findDifferentOccupations(alpha_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
 
-                // Calculate the total sign
-                int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q);
+//                 // Calculate the total sign
+//                 int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q);
 
-                double value = h(p, q);
+//                 double value = h(p, q);
 
-                method(I, J, sign * value);
-                method(J, I, sign * value);
+//                 method(I, J, sign * value);
+//                 method(J, I, sign * value);
 
-                for (size_t r = 0; r < K; r++) {  // r loops over spatial orbitals
+//                 for (size_t r = 0; r < K; r++) {  // r loops over spatial orbitals
 
-                    if (alpha_I.isOccupied(r) && alpha_J.isOccupied(r)) {  // r must be occupied on the left and on the right
-                        if ((p != r) && (q != r)) {                        // can't create or annihilate the same orbital
+//                     if (alpha_I.isOccupied(r) && alpha_J.isOccupied(r)) {  // r must be occupied on the left and on the right
+//                         if ((p != r) && (q != r)) {                        // can't create or annihilate the same orbital
 
-                            double value = 0.5 * (g(p, q, r, r) - g(r, q, p, r) - g(p, r, r, q) + g(r, r, p, q));
+//                             double value = 0.5 * (g(p, q, r, r) - g(r, q, p, r) - g(p, r, r, q) + g(r, r, p, q));
 
-                            method(I, J, sign * value);
-                            method(J, I, sign * value);
-                        }
-                    }
+//                             method(I, J, sign * value);
+//                             method(J, I, sign * value);
+//                         }
+//                     }
 
-                    if (beta_I.isOccupied(r)) {  // beta_I == beta_J from the previous if-branch
+//                     if (beta_I.isOccupied(r)) {  // beta_I == beta_J from the previous if-branch
 
-                        double value = 0.5 * (g(p, q, r, r) + g(r, r, p, q));
+//                         double value = 0.5 * (g(p, q, r, r) + g(r, r, p, q));
 
-                        method(I, J, sign * value);
-                        method(J, I, sign * value);
-                    }
-                }
-            }
+//                         method(I, J, sign * value);
+//                         method(J, I, sign * value);
+//                     }
+//                 }
+//             }
 
-            // 0 electron excitations in alpha, 1 in beta
-            if ((alpha_I.countNumberOfDifferences(alpha_J) == 0) && (beta_I.countNumberOfDifferences(beta_J) == 2)) {
+//             // 0 electron excitations in alpha, 1 in beta
+//             if ((alpha_I.countNumberOfDifferences(alpha_J) == 0) && (beta_I.countNumberOfDifferences(beta_J) == 2)) {
 
 
-                // Find the orbitals that are occupied in one string, and aren't in the other
-                size_t p = beta_I.findDifferentOccupations(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
-                size_t q = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+//                 // Find the orbitals that are occupied in one string, and aren't in the other
+//                 size_t p = beta_I.findDifferentOccupations(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+//                 size_t q = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
 
-                // Calculate the total sign
-                int sign = beta_I.operatorPhaseFactor(p) * beta_J.operatorPhaseFactor(q);
+//                 // Calculate the total sign
+//                 int sign = beta_I.operatorPhaseFactor(p) * beta_J.operatorPhaseFactor(q);
 
-                double value = h(p, q);
+//                 double value = h(p, q);
 
-                method(I, J, sign * value);
-                method(J, I, sign * value);
+//                 method(I, J, sign * value);
+//                 method(J, I, sign * value);
 
-                for (size_t r = 0; r < K; r++) {  // r loops over spatial orbitals
+//                 for (size_t r = 0; r < K; r++) {  // r loops over spatial orbitals
 
-                    if (beta_I.isOccupied(r) && beta_J.isOccupied(r)) {  // r must be occupied on the left and on the right
-                        if ((p != r) && (q != r)) {                      // can't create or annihilate the same orbital
-                            double value = 0.5 * (g(p, q, r, r) - g(r, q, p, r) - g(p, r, r, q) + g(r, r, p, q));
+//                     if (beta_I.isOccupied(r) && beta_J.isOccupied(r)) {  // r must be occupied on the left and on the right
+//                         if ((p != r) && (q != r)) {                      // can't create or annihilate the same orbital
+//                             double value = 0.5 * (g(p, q, r, r) - g(r, q, p, r) - g(p, r, r, q) + g(r, r, p, q));
 
-                            method(I, J, sign * value);
-                            method(J, I, sign * value);
-                        }
-                    }
+//                             method(I, J, sign * value);
+//                             method(J, I, sign * value);
+//                         }
+//                     }
 
-                    if (alpha_I.isOccupied(r)) {  // alpha_I == alpha_J from the previous if-branch
+//                     if (alpha_I.isOccupied(r)) {  // alpha_I == alpha_J from the previous if-branch
 
-                        double value = 0.5 * (g(p, q, r, r) + g(r, r, p, q));
+//                         double value = 0.5 * (g(p, q, r, r) + g(r, r, p, q));
 
-                        method(I, J, sign * value);
-                        method(J, I, sign * value);
-                    }
-                }
-            }
+//                         method(I, J, sign * value);
+//                         method(J, I, sign * value);
+//                     }
+//                 }
+//             }
 
-            // 1 electron excitation in alpha, 1 in beta
-            if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 2)) {
+//             // 1 electron excitation in alpha, 1 in beta
+//             if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 2)) {
 
-                // Find the orbitals that are occupied in one string, and aren't in the other
-                size_t p = alpha_I.findDifferentOccupations(alpha_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
-                size_t q = alpha_J.findDifferentOccupations(alpha_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+//                 // Find the orbitals that are occupied in one string, and aren't in the other
+//                 size_t p = alpha_I.findDifferentOccupations(alpha_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+//                 size_t q = alpha_J.findDifferentOccupations(alpha_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
 
-                size_t r = beta_I.findDifferentOccupations(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
-                size_t s = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+//                 size_t r = beta_I.findDifferentOccupations(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+//                 size_t s = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
 
-                int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(s);
-                double value = 0.5 * (g(p, q, r, s) + g(r, s, p, q));
+//                 int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(s);
+//                 double value = 0.5 * (g(p, q, r, s) + g(r, s, p, q));
 
-                method(I, J, sign * value);
-                method(J, I, sign * value);
-            }
+//                 method(I, J, sign * value);
+//                 method(J, I, sign * value);
+//             }
 
-            // 2 electron excitations in alpha, 0 in beta
-            if ((alpha_I.countNumberOfDifferences(alpha_J) == 4) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
+//             // 2 electron excitations in alpha, 0 in beta
+//             if ((alpha_I.countNumberOfDifferences(alpha_J) == 4) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
 
-                // Find the orbitals that are occupied in one string, and aren't in the other
-                std::vector<size_t> occupied_indices_I = alpha_I.findDifferentOccupations(alpha_J);  // we're sure this has two elements
-                size_t p = occupied_indices_I[0];
-                size_t r = occupied_indices_I[1];
+//                 // Find the orbitals that are occupied in one string, and aren't in the other
+//                 std::vector<size_t> occupied_indices_I = alpha_I.findDifferentOccupations(alpha_J);  // we're sure this has two elements
+//                 size_t p = occupied_indices_I[0];
+//                 size_t r = occupied_indices_I[1];
 
-                std::vector<size_t> occupied_indices_J = alpha_J.findDifferentOccupations(alpha_I);  // we're sure this has two elements
-                size_t q = occupied_indices_J[0];
-                size_t s = occupied_indices_J[1];
+//                 std::vector<size_t> occupied_indices_J = alpha_J.findDifferentOccupations(alpha_I);  // we're sure this has two elements
+//                 size_t q = occupied_indices_J[0];
+//                 size_t s = occupied_indices_J[1];
 
-                int sign = alpha_I.operatorPhaseFactor(p) * alpha_I.operatorPhaseFactor(r) * alpha_J.operatorPhaseFactor(q) * alpha_J.operatorPhaseFactor(s);
+//                 int sign = alpha_I.operatorPhaseFactor(p) * alpha_I.operatorPhaseFactor(r) * alpha_J.operatorPhaseFactor(q) * alpha_J.operatorPhaseFactor(s);
 
-                double value = 0.5 * (g(p, q, r, s) - g(p, s, r, q) - g(r, q, p, s) + g(r, s, p, q));
+//                 double value = 0.5 * (g(p, q, r, s) - g(p, s, r, q) - g(r, q, p, s) + g(r, s, p, q));
 
-                method(I, J, sign * value);
-                method(J, I, sign * value);
-            }
+//                 method(I, J, sign * value);
+//                 method(J, I, sign * value);
+//             }
 
-            // 0 electron excitations in alpha, 2 in beta
-            if ((alpha_I.countNumberOfDifferences(alpha_J) == 0) && (beta_I.countNumberOfDifferences(beta_J) == 4)) {
+//             // 0 electron excitations in alpha, 2 in beta
+//             if ((alpha_I.countNumberOfDifferences(alpha_J) == 0) && (beta_I.countNumberOfDifferences(beta_J) == 4)) {
 
-                // Find the orbitals that are occupied in one string, and aren't in the other
-                std::vector<size_t> occupied_indices_I = beta_I.findDifferentOccupations(beta_J);  // we're sure this has two elements
-                size_t p = occupied_indices_I[0];
-                size_t r = occupied_indices_I[1];
+//                 // Find the orbitals that are occupied in one string, and aren't in the other
+//                 std::vector<size_t> occupied_indices_I = beta_I.findDifferentOccupations(beta_J);  // we're sure this has two elements
+//                 size_t p = occupied_indices_I[0];
+//                 size_t r = occupied_indices_I[1];
 
-                std::vector<size_t> occupied_indices_J = beta_J.findDifferentOccupations(beta_I);  // we're sure this has two elements
-                size_t q = occupied_indices_J[0];
-                size_t s = occupied_indices_J[1];
+//                 std::vector<size_t> occupied_indices_J = beta_J.findDifferentOccupations(beta_I);  // we're sure this has two elements
+//                 size_t q = occupied_indices_J[0];
+//                 size_t s = occupied_indices_J[1];
 
-                int sign = beta_I.operatorPhaseFactor(p) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(q) * beta_J.operatorPhaseFactor(s);
+//                 int sign = beta_I.operatorPhaseFactor(p) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(q) * beta_J.operatorPhaseFactor(s);
 
-                double value = 0.5 * (g(p, q, r, s) - g(p, s, r, q) - g(r, q, p, s) + g(r, s, p, q));
+//                 double value = 0.5 * (g(p, q, r, s) - g(p, s, r, q) - g(r, q, p, s) + g(r, s, p, q));
 
-                method(I, J, sign * value);
-                method(J, I, sign * value);
-            }
-        }  // loop over addresses J > I
-    }      // loop over addresses I
-}
+//                 method(I, J, sign * value);
+//                 method(J, I, sign * value);
+//             }
+//         }  // loop over addresses J > I
+//     }      // loop over addresses I
+// }
 
 
-}  // namespace GQCP
+// }  // namespace GQCP

@@ -63,7 +63,7 @@ public:
      *  @param p            the index of spatial orbital 1
      *  @param q            the index of spatial orbital 2
      */
-    virtual void calculateJacobiCoefficients(const SQHamiltonian<double>& sq_hamiltonian, const size_t p, const size_t q) = 0;
+    virtual void calculateJacobiCoefficients(const RSQHamiltonian<double>& sq_hamiltonian, const size_t p, const size_t q) = 0;
 
     /**
      *  @param sq_hamiltonian       the current Hamiltonian
@@ -72,7 +72,7 @@ public:
      *
      *  @return the angle for which the derivative of the scalar function after the Jacobi rotation is zero (and the second derivative is positive), using the current trigoniometric polynomial coefficients
      */
-    virtual double calculateOptimalRotationAngle(const SQHamiltonian<double>& sq_hamiltonian, const size_t p, const size_t q) const = 0;
+    virtual double calculateOptimalRotationAngle(const RSQHamiltonian<double>& sq_hamiltonian, const size_t p, const size_t q) const = 0;
 
     /**
      *  @param sq_hamiltonian               the current Hamiltonian
@@ -80,12 +80,12 @@ public:
      * 
      *  @return the change in value for the scalar function if the given Jacobi rotation parameters would be used to rotate the given Hamiltonian
      */
-    virtual double calculateScalarFunctionChange(const SQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rot_par) const = 0;
+    virtual double calculateScalarFunctionChange(const RSQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rot_par) const = 0;
 
     /**
      *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence in this Jacobi-based orbital optimizer
      */
-    virtual void prepareJacobiSpecificConvergenceChecking(const SQHamiltonian<double>& sq_hamiltonian) = 0;
+    virtual void prepareJacobiSpecificConvergenceChecking(const RSQHamiltonian<double>& sq_hamiltonian) = 0;
 
 
     // PUBLIC OVERRIDDEN METHODS
@@ -95,19 +95,19 @@ public:
      * 
      *  @return a unitary matrix that will be used to rotate the current Hamiltonian into the next iteration
      */
-    RTransformationMatrix<double> calculateNewRotationMatrix(const SQHamiltonian<double>& sq_hamiltonian) const override;
+    RTransformationMatrix<double> calculateNewRotationMatrix(const RSQHamiltonian<double>& sq_hamiltonian) const override;
 
     /**
      *  @param sq_hamiltonian           the current Hamiltonian
      * 
      *  @return if the algorithm is considered to be converged
      */
-    bool checkForConvergence(const SQHamiltonian<double>& sq_hamiltonian) const override;
+    bool checkForConvergence(const RSQHamiltonian<double>& sq_hamiltonian) const override;
 
     /**
      *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
      */
-    void prepareConvergenceChecking(const SQHamiltonian<double>& sq_hamiltonian) override;
+    void prepareConvergenceChecking(const RSQHamiltonian<double>& sq_hamiltonian) override;
 
 
     // PUBLIC METHODS
@@ -117,7 +117,7 @@ public:
      * 
      *  @return the optimal Jacobi rotation and the corresponding value for the scalar function that can be obtained when the Jacobi rotation would have taken place
      */
-    std::pair<JacobiRotationParameters, double> calculateOptimalJacobiParameters(const SQHamiltonian<double>& sq_hamiltonian);
+    std::pair<JacobiRotationParameters, double> calculateOptimalJacobiParameters(const RSQHamiltonian<double>& sq_hamiltonian);
 
     /**
      *  @return the comparer functor that is used to compare two pair_types

@@ -33,7 +33,7 @@ void bindBasisTransform(py::module& module) {
 
     module.def(
         "basisTransform",
-        [](GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis, GQCP::SQHamiltonian<double>& sq_hamiltonian, const Eigen::MatrixXd& T) {
+        [](GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis, GQCP::RSQHamiltonian<double>& sq_hamiltonian, const Eigen::MatrixXd& T) {
             GQCP::basisTransform(spinor_basis, sq_hamiltonian, GQCP::TransformationMatrix<double> {T});
         },
         py::arg("spinor_basis"),

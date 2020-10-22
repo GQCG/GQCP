@@ -20,6 +20,8 @@
 
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Basis/Transformations/UTransformationMatrix.hpp"
+#include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
+#include "Operator/SecondQuantized/RSQTwoElectronOperator.hpp"
 #include "QuantumChemical/Spin.hpp"
 #include "Utilities/type_traits.hpp"
 
@@ -187,12 +189,12 @@ public:
      *  @note This method is only available for real SQOperators.
      */
     template <typename S = ExpansionScalar, typename = IsReal<S>>
-    ScalarSQOneElectronOperator<double> calculateAtomicSpinZ(const std::vector<size_t>& ao_list, const Spin& sigma) const {
+    ScalarRSQOneElectronOperator<double> calculateAtomicSpinZ(const std::vector<size_t>& ao_list, const Spin& sigma) const {
 
         // The atomic spin operator can be calculated as as the atomic Mulliken operator divided by 2, multiplied by the correct sign factor
         int sign = 1 - 2 * sigma;  // 1 for ALPHA, -1 for BETA
         const auto spin_z_par = 0.5 * sign * this->spinor_bases[sigma].calculateMullikenOperator(ao_list).parameters();
-        return ScalarSQOneElectronOperator<double>(spin_z_par);
+        return ScalarRSQOneElectronOperator<double>(spin_z_par);
     }
 
 
@@ -205,7 +207,7 @@ public:
      *  @note This method is only available for real matrix representations.
      */
     template <typename S = ExpansionScalar, typename = IsReal<S>>
-    ScalarSQOneElectronOperator<double> calculateMullikenOperator(const std::vector<size_t>& ao_list, const Spin& sigma) const { return this->spinor_bases[sigma].template calculateMullikenOperator<ExpansionScalar>(ao_list); }
+    ScalarRSQOneElectronOperator<double> calculateMullikenOperator(const std::vector<size_t>& ao_list, const Spin& sigma) const { return this->spinor_bases[sigma].template calculateMullikenOperator<ExpansionScalar>(ao_list); }
 
 
     /**
@@ -281,7 +283,7 @@ public:
      * 
      *  @return the overlap (one-electron) operator of the requested component of this spinor basis
      */
-    ScalarSQOneElectronOperator<ExpansionScalar> overlap(const Spin& sigma) const { return this->spinor_bases[sigma].quantize(Operator::Overlap()); }
+    ScalarRSQOneElectronOperator<ExpansionScalar> overlap(const Spin& sigma) const { return this->spinor_bases[sigma].quantize(Operator::Overlap()); }
 
     /**
      *  @param fq_op                the first-quantized Coulomb operator
@@ -291,7 +293,7 @@ public:
      * 
      *  @note This method is not (yet) capable of calculating 'mixed' integrals such as g_aabb.
      */
-    auto quantize(const CoulombRepulsionOperator& fq_op, const Spin& sigma) const -> SQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>, CoulombRepulsionOperator::Components> { return this->spinor_bases[sigma].quantize(fq_op); }
+    auto quantize(const CoulombRepulsionOperator& fq_op, const Spin& sigma) const -> RSQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>, CoulombRepulsionOperator::Vectorizer> { return this->spinor_bases[sigma].quantize(fq_op); }
 
     /**
      *  @param fq_op                the first-quantized one-electron operator
@@ -300,7 +302,7 @@ public:
      *  @return the second-quantized operator corresponding to the given first-quantized operator in the spinor basis of the requested component
      */
     template <typename FQOneElectronOperator>
-    auto quantize(const FQOneElectronOperator& fq_op, const Spin& sigma) const -> SQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, FQOneElectronOperator::Components> { return this->spinor_bases[sigma].quantize(fq_op); }
+    auto quantize(const FQOneElectronOperator& fq_op, const Spin& sigma) const -> RSQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, typename FQOneElectronOperator::Vectorizer> { return this->spinor_bases[sigma].quantize(fq_op); }
 
     /**
      *  Rotate the spinor basis of the requested component to another one using the given unitary transformation matrix

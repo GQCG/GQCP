@@ -82,7 +82,7 @@ size_t SpinResolvedONVBasis::calculateDimension(const size_t M, const size_t N_a
  *
  *  @return a one-electron operator containing a partition of the two-electron operator
  */
-ScalarSQOneElectronOperator<double> SpinResolvedONVBasis::calculateOneElectronPartition(size_t p, size_t q, const ScalarSQTwoElectronOperator<double>& two_op) const {
+ScalarRSQOneElectronOperator<double> SpinResolvedONVBasis::calculateOneElectronPartition(const size_t p, const size_t q, const ScalarRSQTwoElectronOperator<double>& two_op) const {
 
     const auto& two_op_par = two_op.parameters();
 
@@ -95,7 +95,7 @@ ScalarSQOneElectronOperator<double> SpinResolvedONVBasis::calculateOneElectronPa
         }
     }
 
-    return ScalarSQOneElectronOperator<double>(k_par);
+    return ScalarRSQOneElectronOperator<double>(k_par);
 }
 
 
@@ -135,31 +135,31 @@ size_t SpinResolvedONVBasis::dimension() const {
  *
  *  @return the operator's evaluation in a dense matrix with the dimensions of the spin-resolved ONV basis
  */
-SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const ScalarSQOneElectronOperator<double>& one_op, const bool diagonal_values) const {
+// SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const ScalarRSQOneElectronOperator<double>& one_op, const bool diagonal_values) const {
 
-    SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->dimension());
+//     SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->dimension());
 
-    auto dim_alpha = onv_basis_alpha.dimension();
-    auto dim_beta = onv_basis_beta.dimension();
+//     auto dim_alpha = onv_basis_alpha.dimension();
+//     auto dim_beta = onv_basis_beta.dimension();
 
-    auto beta_evaluation = onv_basis_beta.evaluateOperatorDense(one_op, diagonal_values);
-    auto alpha_evaluation = onv_basis_alpha.evaluateOperatorDense(one_op, diagonal_values);
+//     auto beta_evaluation = onv_basis_beta.evaluateOperatorDense(one_op.alpha(), diagonal_values);
+//     auto alpha_evaluation = onv_basis_alpha.evaluateOperatorDense(one_op.beta(), diagonal_values);
 
-    // BETA separated evaluations
-    for (size_t i = 0; i < dim_alpha; i++) {
-        total_evaluation.block(i * dim_beta, i * dim_beta, dim_beta, dim_beta) += beta_evaluation;
-    }
+//     // BETA separated evaluations
+//     for (size_t i = 0; i < dim_alpha; i++) {
+//         total_evaluation.block(i * dim_beta, i * dim_beta, dim_beta, dim_beta) += beta_evaluation;
+//     }
 
-    // ALPHA separated evaluations
-    const SquareMatrix<double> ones = SquareMatrix<double>::Identity(dim_beta);
-    for (size_t i = 0; i < alpha_evaluation.cols(); i++) {
-        for (size_t j = 0; j < alpha_evaluation.cols(); j++) {
-            total_evaluation.block(i * dim_beta, j * dim_beta, dim_beta, dim_beta) += alpha_evaluation(i, j) * ones;
-        }
-    }
+//     // ALPHA separated evaluations
+//     const SquareMatrix<double> ones = SquareMatrix<double>::Identity(dim_beta);
+//     for (size_t i = 0; i < alpha_evaluation.cols(); i++) {
+//         for (size_t j = 0; j < alpha_evaluation.cols(); j++) {
+//             total_evaluation.block(i * dim_beta, j * dim_beta, dim_beta, dim_beta) += alpha_evaluation(i, j) * ones;
+//         }
+//     }
 
-    return total_evaluation;
-}
+//     return total_evaluation;
+// }
 
 
 /**
@@ -170,60 +170,60 @@ SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const ScalarSQO
  *
  *  @return the operator's evaluation in a dense matrix with the dimensions of the spin-resolved ONV basis
  */
-SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const ScalarSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const {
+// SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const ScalarRSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const {
 
-    SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->dimension());
+//     SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->dimension());
 
-    auto dim_alpha = onv_basis_alpha.dimension();
-    auto dim_beta = onv_basis_beta.dimension();
+//     auto dim_alpha = onv_basis_alpha.dimension();
+//     auto dim_beta = onv_basis_beta.dimension();
 
-    auto beta_evaluation = onv_basis_beta.evaluateOperatorDense(two_op, diagonal_values);
-    auto alpha_evaluation = onv_basis_alpha.evaluateOperatorDense(two_op, diagonal_values);
+//     auto beta_evaluation = onv_basis_beta.evaluateOperatorDense(two_op, diagonal_values);
+//     auto alpha_evaluation = onv_basis_alpha.evaluateOperatorDense(two_op, diagonal_values);
 
-    // BETA separated evaluations
-    for (size_t i = 0; i < dim_alpha; i++) {
-        total_evaluation.block(i * dim_beta, i * dim_beta, dim_beta, dim_beta) += beta_evaluation;
-    }
+//     // BETA separated evaluations
+//     for (size_t i = 0; i < dim_alpha; i++) {
+//         total_evaluation.block(i * dim_beta, i * dim_beta, dim_beta, dim_beta) += beta_evaluation;
+//     }
 
-    // ALPHA separated evaluations
-    const SquareMatrix<double> ones = SquareMatrix<double>::Identity(dim_beta);
-    for (int i = 0; i < alpha_evaluation.cols(); i++) {
-        for (int j = 0; j < alpha_evaluation.cols(); j++) {
-            total_evaluation.block(i * dim_beta, j * dim_beta, dim_beta, dim_beta) += alpha_evaluation(i, j) * ones;
-        }
-    }
+//     // ALPHA separated evaluations
+//     const SquareMatrix<double> ones = SquareMatrix<double>::Identity(dim_beta);
+//     for (int i = 0; i < alpha_evaluation.cols(); i++) {
+//         for (int j = 0; j < alpha_evaluation.cols(); j++) {
+//             total_evaluation.block(i * dim_beta, j * dim_beta, dim_beta, dim_beta) += alpha_evaluation(i, j) * ones;
+//         }
+//     }
 
-    // MIXED evaluations
-    for (size_t p = 0; p < this->M; p++) {
+//     // MIXED evaluations
+//     for (size_t p = 0; p < this->M; p++) {
 
-        const auto& alpha_coupling = this->alpha_couplings[p * (this->M + this->M + 1 - p) / 2];
-        const auto& P = this->calculateOneElectronPartition(p, p, two_op);
-        const auto& beta_two_electron_intermediate = this->onv_basis_beta.evaluateOperatorDense(P, diagonal_values);
+//         const auto& alpha_coupling = this->alpha_couplings[p * (this->M + this->M + 1 - p) / 2];
+//         const auto& P = this->calculateOneElectronPartition(p, p, two_op);
+//         const auto& beta_two_electron_intermediate = this->onv_basis_beta.evaluateOperatorDense(P, diagonal_values);
 
-        for (int i = 0; i < alpha_coupling.outerSize(); ++i) {
-            for (Eigen::SparseMatrix<double>::InnerIterator it {alpha_coupling, i}; it; ++it) {
-                // it.value sigma(pp) element multiplied with the sparse matrix theta(pp) : beta_two_electron_intermediate
-                total_evaluation.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value() * beta_two_electron_intermediate;
-            }
-        }
+//         for (int i = 0; i < alpha_coupling.outerSize(); ++i) {
+//             for (Eigen::SparseMatrix<double>::InnerIterator it {alpha_coupling, i}; it; ++it) {
+//                 // it.value sigma(pp) element multiplied with the sparse matrix theta(pp) : beta_two_electron_intermediate
+//                 total_evaluation.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value() * beta_two_electron_intermediate;
+//             }
+//         }
 
-        for (size_t q = p + 1; q < this->M; q++) {
+//         for (size_t q = p + 1; q < this->M; q++) {
 
-            const auto& alpha_coupling = this->alpha_couplings[p * (this->M + this->M + 1 - p) / 2 + q - p];
-            const auto& P = calculateOneElectronPartition(p, q, two_op);
-            const auto& beta_two_electron_intermediate = onv_basis_beta.evaluateOperatorDense(P, true);
+//             const auto& alpha_coupling = this->alpha_couplings[p * (this->M + this->M + 1 - p) / 2 + q - p];
+//             const auto& P = calculateOneElectronPartition(p, q, two_op);
+//             const auto& beta_two_electron_intermediate = onv_basis_beta.evaluateOperatorDense(P, true);
 
-            for (int i = 0; i < alpha_coupling.outerSize(); ++i) {
-                for (Eigen::SparseMatrix<double>::InnerIterator it {alpha_coupling, i}; it; ++it) {
-                    // it.value (sigma(pq) + sigma(qp)) element multiplied with the sparse matrix theta(pq) : beta_two_electron_intermediate
-                    total_evaluation.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value() * beta_two_electron_intermediate;
-                }
-            }
-        }
-    }
+//             for (int i = 0; i < alpha_coupling.outerSize(); ++i) {
+//                 for (Eigen::SparseMatrix<double>::InnerIterator it {alpha_coupling, i}; it; ++it) {
+//                     // it.value (sigma(pq) + sigma(qp)) element multiplied with the sparse matrix theta(pq) : beta_two_electron_intermediate
+//                     total_evaluation.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value() * beta_two_electron_intermediate;
+//                 }
+//             }
+//         }
+//     }
 
-    return total_evaluation;
-}
+//     return total_evaluation;
+// }
 
 
 /**
@@ -234,595 +234,595 @@ SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const ScalarSQT
  *
  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the spin-resolved ONV basis
  */
-SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const SQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const {
-
-    SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->dimension());
-
-    auto dim_alpha = onv_basis_alpha.dimension();
-    auto dim_beta = onv_basis_beta.dimension();
-
-    auto beta_evaluation = onv_basis_beta.evaluateOperatorDense(sq_hamiltonian, diagonal_values);
-    auto alpha_evaluation = onv_basis_alpha.evaluateOperatorDense(sq_hamiltonian, diagonal_values);
-
-    // BETA separated evaluations
-    for (size_t i = 0; i < dim_alpha; i++) {
-        total_evaluation.block(i * dim_beta, i * dim_beta, dim_beta, dim_beta) += beta_evaluation;
-    }
-
-    // ALPHA separated evaluations
-    const SquareMatrix<double> ones = SquareMatrix<double>::Identity(dim_beta);
-    for (int i = 0; i < alpha_evaluation.cols(); i++) {
-        for (int j = 0; j < alpha_evaluation.cols(); j++) {
-            total_evaluation.block(i * dim_beta, j * dim_beta, dim_beta, dim_beta) += alpha_evaluation(i, j) * ones;
-        }
-    }
-
-    // MIXED evaluations
-    for (size_t p = 0; p < this->M; p++) {
-
-        const auto& alpha_coupling = this->alpha_couplings[p * (this->M + this->M + 1 - p) / 2];
-        const auto& P = this->calculateOneElectronPartition(p, p, sq_hamiltonian.twoElectron());
-        const auto& beta_two_electron_intermediate = this->onv_basis_beta.evaluateOperatorDense(P, diagonal_values);
-
-        for (int i = 0; i < alpha_coupling.outerSize(); ++i) {
-            for (Eigen::SparseMatrix<double>::InnerIterator it {alpha_coupling, i}; it; ++it) {
-                // it.value sigma(pp) element multiplied with the sparse matrix theta(pp) : beta_two_electron_intermediate
-                total_evaluation.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value() * beta_two_electron_intermediate;
-            }
-        }
-
-        for (size_t q = p + 1; q < this->M; q++) {
-
-            const auto& alpha_coupling = this->alpha_couplings[p * (this->M + this->M + 1 - p) / 2 + q - p];
-            const auto& P = calculateOneElectronPartition(p, q, sq_hamiltonian.twoElectron());
-            const auto& beta_two_electron_intermediate = onv_basis_beta.evaluateOperatorDense(P, true);
-
-            for (int i = 0; i < alpha_coupling.outerSize(); ++i) {
-                for (Eigen::SparseMatrix<double>::InnerIterator it {alpha_coupling, i}; it; ++it) {
-                    // it.value (sigma(pq) + sigma(qp)) element multiplied with the sparse matrix theta(pq) : beta_two_electron_intermediate
-                    total_evaluation.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value() * beta_two_electron_intermediate;
-                }
-            }
-        }
-    }
-
-    return total_evaluation;
-}
-
-
-/**
- *  Evaluate the Hamiltonian in a dense matrix
- *
- *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
- *  @param diagonal_values                bool to indicate if diagonal values will be calculated
- *
- *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the spin-resolved ONV basis
- */
-SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, const bool diagonal_values) const {
-
-    const auto M = usq_hamiltonian.numberOfOrbitals() / 2;
-
-    if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
-        throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorDense(USQHamiltonian<double>, bool): Underlying spin Hamiltonians are not of the same dimension, and this is currently required for this method");
-    }
+// SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const RSQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const {
+
+//     SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->dimension());
+
+//     auto dim_alpha = onv_basis_alpha.dimension();
+//     auto dim_beta = onv_basis_beta.dimension();
+
+//     auto beta_evaluation = onv_basis_beta.evaluateOperatorDense(sq_hamiltonian, diagonal_values);
+//     auto alpha_evaluation = onv_basis_alpha.evaluateOperatorDense(sq_hamiltonian, diagonal_values);
+
+//     // BETA separated evaluations
+//     for (size_t i = 0; i < dim_alpha; i++) {
+//         total_evaluation.block(i * dim_beta, i * dim_beta, dim_beta, dim_beta) += beta_evaluation;
+//     }
+
+//     // ALPHA separated evaluations
+//     const SquareMatrix<double> ones = SquareMatrix<double>::Identity(dim_beta);
+//     for (int i = 0; i < alpha_evaluation.cols(); i++) {
+//         for (int j = 0; j < alpha_evaluation.cols(); j++) {
+//             total_evaluation.block(i * dim_beta, j * dim_beta, dim_beta, dim_beta) += alpha_evaluation(i, j) * ones;
+//         }
+//     }
+
+//     // MIXED evaluations
+//     for (size_t p = 0; p < this->M; p++) {
+
+//         const auto& alpha_coupling = this->alpha_couplings[p * (this->M + this->M + 1 - p) / 2];
+//         const auto& P = this->calculateOneElectronPartition(p, p, sq_hamiltonian.twoElectron());
+//         const auto& beta_two_electron_intermediate = this->onv_basis_beta.evaluateOperatorDense(P, diagonal_values);
+
+//         for (int i = 0; i < alpha_coupling.outerSize(); ++i) {
+//             for (Eigen::SparseMatrix<double>::InnerIterator it {alpha_coupling, i}; it; ++it) {
+//                 // it.value sigma(pp) element multiplied with the sparse matrix theta(pp) : beta_two_electron_intermediate
+//                 total_evaluation.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value() * beta_two_electron_intermediate;
+//             }
+//         }
+
+//         for (size_t q = p + 1; q < this->M; q++) {
+
+//             const auto& alpha_coupling = this->alpha_couplings[p * (this->M + this->M + 1 - p) / 2 + q - p];
+//             const auto& P = calculateOneElectronPartition(p, q, sq_hamiltonian.twoElectron());
+//             const auto& beta_two_electron_intermediate = onv_basis_beta.evaluateOperatorDense(P, true);
+
+//             for (int i = 0; i < alpha_coupling.outerSize(); ++i) {
+//                 for (Eigen::SparseMatrix<double>::InnerIterator it {alpha_coupling, i}; it; ++it) {
+//                     // it.value (sigma(pq) + sigma(qp)) element multiplied with the sparse matrix theta(pq) : beta_two_electron_intermediate
+//                     total_evaluation.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value() * beta_two_electron_intermediate;
+//                 }
+//             }
+//         }
+//     }
+
+//     return total_evaluation;
+// }
+
+
+// /**
+//  *  Evaluate the Hamiltonian in a dense matrix
+//  *
+//  *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis
+//  *  @param diagonal_values                bool to indicate if diagonal values will be calculated
+//  *
+//  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the spin-resolved ONV basis
+//  */
+// SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, const bool diagonal_values) const {
+
+//     const auto M = usq_hamiltonian.numberOfOrbitals() / 2;
+
+//     if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
+//         throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorDense(USQHamiltonian<double>, bool): Underlying spin Hamiltonians are not of the same dimension, and this is currently required for this method");
+//     }
 
-    if (M != this->M) {
-        throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorDense(USQHamiltonian<double>, bool): Basis functions of the spin-resolved ONV basis and the operator are incompatible.");
-    }
+//     if (M != this->M) {
+//         throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorDense(USQHamiltonian<double>, bool): Basis functions of the spin-resolved ONV basis and the operator are incompatible.");
+//     }
 
-    SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->dimension());
-
-    auto const& sq_hamiltonian_alpha = usq_hamiltonian.spinHamiltonian(Spin::alpha);
-    auto const& sq_hamiltonian_beta = usq_hamiltonian.spinHamiltonian(Spin::beta);
-    auto const& mixed_two_electron_operator = usq_hamiltonian.twoElectronMixed();
-
-    auto dim_alpha = onv_basis_alpha.dimension();
-    auto dim_beta = onv_basis_beta.dimension();
-
-    auto beta_evaluation = onv_basis_beta.evaluateOperatorDense(sq_hamiltonian_beta, diagonal_values);
-    auto alpha_evaluation = onv_basis_alpha.evaluateOperatorDense(sq_hamiltonian_alpha, diagonal_values);
-
-    // BETA separated evaluations
-    for (size_t i = 0; i < dim_alpha; i++) {
-        total_evaluation.block(i * dim_beta, i * dim_beta, dim_beta, dim_beta) += beta_evaluation;
-    }
+//     SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->dimension());
+
+//     auto const& sq_hamiltonian_alpha = usq_hamiltonian.spinHamiltonian(Spin::alpha);
+//     auto const& sq_hamiltonian_beta = usq_hamiltonian.spinHamiltonian(Spin::beta);
+//     auto const& mixed_two_electron_operator = usq_hamiltonian.twoElectronMixed();
+
+//     auto dim_alpha = onv_basis_alpha.dimension();
+//     auto dim_beta = onv_basis_beta.dimension();
+
+//     auto beta_evaluation = onv_basis_beta.evaluateOperatorDense(sq_hamiltonian_beta, diagonal_values);
+//     auto alpha_evaluation = onv_basis_alpha.evaluateOperatorDense(sq_hamiltonian_alpha, diagonal_values);
+
+//     // BETA separated evaluations
+//     for (size_t i = 0; i < dim_alpha; i++) {
+//         total_evaluation.block(i * dim_beta, i * dim_beta, dim_beta, dim_beta) += beta_evaluation;
+//     }
 
-    // ALPHA separated evaluations
-    const SquareMatrix<double> ones = SquareMatrix<double>::Identity(dim_beta);
-    for (int i = 0; i < alpha_evaluation.cols(); i++) {
-        for (int j = 0; j < alpha_evaluation.cols(); j++) {
-            total_evaluation.block(i * dim_beta, j * dim_beta, dim_beta, dim_beta) += alpha_evaluation(i, j) * ones;
-        }
-    }
-
-    // MIXED evaluations
-    for (size_t p = 0; p < this->M; p++) {
+//     // ALPHA separated evaluations
+//     const SquareMatrix<double> ones = SquareMatrix<double>::Identity(dim_beta);
+//     for (int i = 0; i < alpha_evaluation.cols(); i++) {
+//         for (int j = 0; j < alpha_evaluation.cols(); j++) {
+//             total_evaluation.block(i * dim_beta, j * dim_beta, dim_beta, dim_beta) += alpha_evaluation(i, j) * ones;
+//         }
+//     }
+
+//     // MIXED evaluations
+//     for (size_t p = 0; p < this->M; p++) {
 
-        const auto& alpha_coupling = this->alpha_couplings[p * (this->M + this->M + 1 - p) / 2];
-        const auto& P = this->calculateOneElectronPartition(p, p, mixed_two_electron_operator);
-        const auto& beta_two_electron_intermediate = this->onv_basis_beta.evaluateOperatorDense(P, diagonal_values);
+//         const auto& alpha_coupling = this->alpha_couplings[p * (this->M + this->M + 1 - p) / 2];
+//         const auto& P = this->calculateOneElectronPartition(p, p, mixed_two_electron_operator);
+//         const auto& beta_two_electron_intermediate = this->onv_basis_beta.evaluateOperatorDense(P, diagonal_values);
 
-        for (int i = 0; i < alpha_coupling.outerSize(); ++i) {
-            for (Eigen::SparseMatrix<double>::InnerIterator it {alpha_coupling, i}; it; ++it) {
-                // it.value sigma(pp) element multiplied with the sparse matrix theta(pp) : beta_two_electron_intermediate
-                total_evaluation.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value() * beta_two_electron_intermediate;
-            }
-        }
+//         for (int i = 0; i < alpha_coupling.outerSize(); ++i) {
+//             for (Eigen::SparseMatrix<double>::InnerIterator it {alpha_coupling, i}; it; ++it) {
+//                 // it.value sigma(pp) element multiplied with the sparse matrix theta(pp) : beta_two_electron_intermediate
+//                 total_evaluation.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value() * beta_two_electron_intermediate;
+//             }
+//         }
 
-        for (size_t q = p + 1; q < this->M; q++) {
+//         for (size_t q = p + 1; q < this->M; q++) {
 
-            const auto& alpha_coupling = this->alpha_couplings[p * (this->M + this->M + 1 - p) / 2 + q - p];
-            const auto& P = calculateOneElectronPartition(p, q, mixed_two_electron_operator);
-            const auto& beta_two_electron_intermediate = onv_basis_beta.evaluateOperatorDense(P, true);
+//             const auto& alpha_coupling = this->alpha_couplings[p * (this->M + this->M + 1 - p) / 2 + q - p];
+//             const auto& P = calculateOneElectronPartition(p, q, mixed_two_electron_operator);
+//             const auto& beta_two_electron_intermediate = onv_basis_beta.evaluateOperatorDense(P, true);
 
-            for (int i = 0; i < alpha_coupling.outerSize(); ++i) {
-                for (Eigen::SparseMatrix<double>::InnerIterator it {alpha_coupling, i}; it; ++it) {
-                    // it.value (sigma(pq) + sigma(qp)) element multiplied with the sparse matrix theta(pq) : beta_two_electron_intermediate
-                    total_evaluation.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value() * beta_two_electron_intermediate;
-                }
-            }
-        }
-    }
+//             for (int i = 0; i < alpha_coupling.outerSize(); ++i) {
+//                 for (Eigen::SparseMatrix<double>::InnerIterator it {alpha_coupling, i}; it; ++it) {
+//                     // it.value (sigma(pq) + sigma(qp)) element multiplied with the sparse matrix theta(pq) : beta_two_electron_intermediate
+//                     total_evaluation.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value() * beta_two_electron_intermediate;
+//                 }
+//             }
+//         }
+//     }
 
-    return total_evaluation;
-}
+//     return total_evaluation;
+// }
 
 
-/**
- *  Evaluate the diagonal of the operator in this spin-resolved ONV basis
- *
- *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the spin-resolved ONV basis
- *
- *  @return the operator's diagonal evaluation in a vector with the dimension of the spin-resolved ONV basis
- */
-VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>& one_op) const {
+// /**
+//  *  Evaluate the diagonal of the operator in this spin-resolved ONV basis
+//  *
+//  *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the spin-resolved ONV basis
+//  *
+//  *  @return the operator's diagonal evaluation in a vector with the dimension of the spin-resolved ONV basis
+//  */
+// VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const ScalarRSQOneElectronOperator<double>& one_op) const {
 
-    const auto M = one_op.numberOfOrbitals();
-    if (M != this->M) {
-        throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorDiagonal(ScalarSQOneElectronOperator<double>): Basis functions of the spin-resolved ONV basis and the operator are incompatible.");
-    }
+//     const auto M = one_op.numberOfOrbitals();
+//     if (M != this->M) {
+//         throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorDiagonal(ScalarRSQOneElectronOperator<double>): Basis functions of the spin-resolved ONV basis and the operator are incompatible.");
+//     }
 
-    const auto dim_alpha = onv_basis_alpha.dimension();
-    const auto dim_beta = onv_basis_beta.dimension();
-    const auto& one_op_par = one_op.parameters();
+//     const auto dim_alpha = onv_basis_alpha.dimension();
+//     const auto dim_beta = onv_basis_beta.dimension();
+//     const auto& one_op_par = one_op.parameters();
 
-    VectorX<double> diagonal = VectorX<double>::Zero(this->dim);
+//     VectorX<double> diagonal = VectorX<double>::Zero(this->dim);
 
-    SpinUnresolvedONV onv_alpha = onv_basis_alpha.constructONVFromAddress(0);
-    SpinUnresolvedONV onv_beta = onv_basis_beta.constructONVFromAddress(0);
-    for (size_t Ia = 0; Ia < dim_alpha; Ia++) {  // Ia loops over addresses of alpha spin strings
+//     SpinUnresolvedONV onv_alpha = onv_basis_alpha.constructONVFromAddress(0);
+//     SpinUnresolvedONV onv_beta = onv_basis_beta.constructONVFromAddress(0);
+//     for (size_t Ia = 0; Ia < dim_alpha; Ia++) {  // Ia loops over addresses of alpha spin strings
 
-        onv_basis_beta.transformONVCorrespondingToAddress(onv_beta, 0);
+//         onv_basis_beta.transformONVCorrespondingToAddress(onv_beta, 0);
 
-        for (size_t Ib = 0; Ib < dim_beta; Ib++) {  // Ib loops over addresses of beta spin strings
+//         for (size_t Ib = 0; Ib < dim_beta; Ib++) {  // Ib loops over addresses of beta spin strings
 
-            for (size_t e_a = 0; e_a < onv_basis_alpha.numberOfElectrons(); e_a++) {  // loop over alpha electrons
+//             for (size_t e_a = 0; e_a < onv_basis_alpha.numberOfElectrons(); e_a++) {  // loop over alpha electrons
 
-                size_t p = onv_alpha.occupationIndexOf(e_a);
-                diagonal(Ia * dim_beta + Ib) += one_op_par(p, p);
+//                 size_t p = onv_alpha.occupationIndexOf(e_a);
+//                 diagonal(Ia * dim_beta + Ib) += one_op_par(p, p);
 
-            }  // e_a loop
+//             }  // e_a loop
 
-            for (size_t e_b = 0; e_b < onv_basis_beta.numberOfElectrons(); e_b++) {  // loop over beta electrons
+//             for (size_t e_b = 0; e_b < onv_basis_beta.numberOfElectrons(); e_b++) {  // loop over beta electrons
 
-                size_t p = onv_beta.occupationIndexOf(e_b);
-                diagonal(Ia * dim_beta + Ib) += one_op_par(p, p);
-            }
+//                 size_t p = onv_beta.occupationIndexOf(e_b);
+//                 diagonal(Ia * dim_beta + Ib) += one_op_par(p, p);
+//             }
 
-            if (Ib < dim_beta - 1) {  // prevent the last permutation from occurring
-                onv_basis_beta.transformONVToNextPermutation(onv_beta);
-            }
-        }  // beta address (Ib) loop
+//             if (Ib < dim_beta - 1) {  // prevent the last permutation from occurring
+//                 onv_basis_beta.transformONVToNextPermutation(onv_beta);
+//             }
+//         }  // beta address (Ib) loop
 
-        if (Ia < dim_alpha - 1) {  // prevent the last permutation from occurring
-            onv_basis_alpha.transformONVToNextPermutation(onv_alpha);
-        }
-    }  // alpha address (Ia) loop
+//         if (Ia < dim_alpha - 1) {  // prevent the last permutation from occurring
+//             onv_basis_alpha.transformONVToNextPermutation(onv_alpha);
+//         }
+//     }  // alpha address (Ia) loop
 
-    return diagonal;
-}
+//     return diagonal;
+// }
 
 
-/**
- *  Evaluate the diagonal of the operator in this spin-resolved ONV basis
- *
- *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the spin-resolved ONV basis
- *
- *  @return the operator's diagonal evaluation in a vector with the dimension of the spin-resolved ONV basis
- */
-VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const ScalarSQTwoElectronOperator<double>& two_op) const {
+// /**
+//  *  Evaluate the diagonal of the operator in this spin-resolved ONV basis
+//  *
+//  *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the spin-resolved ONV basis
+//  *
+//  *  @return the operator's diagonal evaluation in a vector with the dimension of the spin-resolved ONV basis
+//  */
+// VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const ScalarRSQTwoElectronOperator<double>& two_op) const {
 
-    const auto M = two_op.numberOfOrbitals();
-    if (M != this->M) {
-        throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorDiagonal(ScalarSQTwoElectronOperator<double>): Basis functions of the SpinUnresolvedONV basis and the operator are incompatible.");
-    }
+//     const auto M = two_op.numberOfOrbitals();
+//     if (M != this->M) {
+//         throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorDiagonal(ScalarRSQTwoElectronOperator<double>): Basis functions of the SpinUnresolvedONV basis and the operator are incompatible.");
+//     }
 
-    const auto dim_alpha = onv_basis_alpha.dimension();
-    const auto dim_beta = onv_basis_beta.dimension();
-    const auto& two_op_par = two_op.parameters();
-    const auto k = two_op.effectiveOneElectronPartition().parameters();
-
-    // Diagonal contributions
-    VectorX<double> diagonal = VectorX<double>::Zero(this->dim);
-
-    SpinUnresolvedONV onv_alpha = onv_basis_alpha.constructONVFromAddress(0);
-    SpinUnresolvedONV onv_beta = onv_basis_beta.constructONVFromAddress(0);
-    for (size_t Ia = 0; Ia < dim_alpha; Ia++) {  // Ia loops over addresses of alpha spin strings
-
-        onv_basis_beta.transformONVCorrespondingToAddress(onv_beta, 0);
+//     const auto dim_alpha = onv_basis_alpha.dimension();
+//     const auto dim_beta = onv_basis_beta.dimension();
+//     const auto& two_op_par = two_op.parameters();
+//     const auto k = two_op.effectiveOneElectronPartition().parameters();
+
+//     // Diagonal contributions
+//     VectorX<double> diagonal = VectorX<double>::Zero(this->dim);
+
+//     SpinUnresolvedONV onv_alpha = onv_basis_alpha.constructONVFromAddress(0);
+//     SpinUnresolvedONV onv_beta = onv_basis_beta.constructONVFromAddress(0);
+//     for (size_t Ia = 0; Ia < dim_alpha; Ia++) {  // Ia loops over addresses of alpha spin strings
+
+//         onv_basis_beta.transformONVCorrespondingToAddress(onv_beta, 0);
 
-        for (size_t Ib = 0; Ib < dim_beta; Ib++) {  // Ib loops over addresses of beta spin strings
+//         for (size_t Ib = 0; Ib < dim_beta; Ib++) {  // Ib loops over addresses of beta spin strings
 
-            for (size_t e_a = 0; e_a < onv_basis_alpha.numberOfElectrons(); e_a++) {  // loop over alpha electrons
+//             for (size_t e_a = 0; e_a < onv_basis_alpha.numberOfElectrons(); e_a++) {  // loop over alpha electrons
 
-                size_t p = onv_alpha.occupationIndexOf(e_a);
-                diagonal(Ia * dim_beta + Ib) += k(p, p);
+//                 size_t p = onv_alpha.occupationIndexOf(e_a);
+//                 diagonal(Ia * dim_beta + Ib) += k(p, p);
 
-                for (size_t q = 0; q < this->M; q++) {  // q loops over SOs
-                    if (onv_alpha.isOccupied(q)) {      // q is in Ia
-                        diagonal(Ia * dim_beta + Ib) += 0.5 * two_op_par(p, p, q, q);
-                    } else {  // q is not in I_alpha
-                        diagonal(Ia * dim_beta + Ib) += 0.5 * two_op_par(p, q, q, p);
-                    }
+//                 for (size_t q = 0; q < this->M; q++) {  // q loops over SOs
+//                     if (onv_alpha.isOccupied(q)) {      // q is in Ia
+//                         diagonal(Ia * dim_beta + Ib) += 0.5 * two_op_par(p, p, q, q);
+//                     } else {  // q is not in I_alpha
+//                         diagonal(Ia * dim_beta + Ib) += 0.5 * two_op_par(p, q, q, p);
+//                     }
 
-                    if (onv_beta.isOccupied(q)) {  // q is in Ib
-                        diagonal(Ia * dim_beta + Ib) += two_op_par(p, p, q, q);
-                    }
-                }  // q loop
-            }      // e_a loop
+//                     if (onv_beta.isOccupied(q)) {  // q is in Ib
+//                         diagonal(Ia * dim_beta + Ib) += two_op_par(p, p, q, q);
+//                     }
+//                 }  // q loop
+//             }      // e_a loop
 
-            for (size_t e_b = 0; e_b < onv_basis_beta.numberOfElectrons(); e_b++) {  // loop over beta electrons
+//             for (size_t e_b = 0; e_b < onv_basis_beta.numberOfElectrons(); e_b++) {  // loop over beta electrons
 
-                size_t p = onv_beta.occupationIndexOf(e_b);
-                diagonal(Ia * dim_beta + Ib) += k(p, p);
+//                 size_t p = onv_beta.occupationIndexOf(e_b);
+//                 diagonal(Ia * dim_beta + Ib) += k(p, p);
 
-                for (size_t q = 0; q < this->M; q++) {  // q loops over SOs
-                    if (onv_beta.isOccupied(q)) {       // q is in Ib
-                        diagonal(Ia * dim_beta + Ib) += 0.5 * two_op_par(p, p, q, q);
+//                 for (size_t q = 0; q < this->M; q++) {  // q loops over SOs
+//                     if (onv_beta.isOccupied(q)) {       // q is in Ib
+//                         diagonal(Ia * dim_beta + Ib) += 0.5 * two_op_par(p, p, q, q);
 
-                    } else {  // q is not in I_beta
-                        diagonal(Ia * dim_beta + Ib) += 0.5 * two_op_par(p, q, q, p);
-                    }
-                }  // q loop
-            }      // e_b loop
+//                     } else {  // q is not in I_beta
+//                         diagonal(Ia * dim_beta + Ib) += 0.5 * two_op_par(p, q, q, p);
+//                     }
+//                 }  // q loop
+//             }      // e_b loop
 
-            if (Ib < dim_beta - 1) {  // prevent the last permutation from occurring
-                onv_basis_beta.transformONVToNextPermutation(onv_beta);
-            }
-        }  // beta address (Ib) loop
+//             if (Ib < dim_beta - 1) {  // prevent the last permutation from occurring
+//                 onv_basis_beta.transformONVToNextPermutation(onv_beta);
+//             }
+//         }  // beta address (Ib) loop
 
-        if (Ia < dim_alpha - 1) {  // prevent the last permutation from occurring
-            onv_basis_alpha.transformONVToNextPermutation(onv_alpha);
-        }
-    }  // alpha address (Ia) loop
+//         if (Ia < dim_alpha - 1) {  // prevent the last permutation from occurring
+//             onv_basis_alpha.transformONVToNextPermutation(onv_alpha);
+//         }
+//     }  // alpha address (Ia) loop
 
-    return diagonal;
-}
+//     return diagonal;
+// }
 
 
-/**
- *  Evaluate the diagonal of the Hamiltonian in this spin-resolved ONV basis
- *
- *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
- *
- *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the spin-resolved ONV basis
- */
-VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
-    return this->evaluateOperatorDiagonal(sq_hamiltonian.core()) + this->evaluateOperatorDiagonal(sq_hamiltonian.twoElectron());
-}
+// /**
+//  *  Evaluate the diagonal of the Hamiltonian in this spin-resolved ONV basis
+//  *
+//  *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
+//  *
+//  *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the spin-resolved ONV basis
+//  */
+// VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const RSQHamiltonian<double>& sq_hamiltonian) const {
+//     return this->evaluateOperatorDiagonal(sq_hamiltonian.core()) + this->evaluateOperatorDiagonal(sq_hamiltonian.twoElectron());
+// }
 
 
-/**
- *  Evaluate the diagonal of the Hamiltonian
- *
- *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
- *
- *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the spin-resolved ONV basis
- */
-VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const {
-
-    const auto M = usq_hamiltonian.numberOfOrbitals() / 2;
+// /**
+//  *  Evaluate the diagonal of the Hamiltonian
+//  *
+//  *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis
+//  *
+//  *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the spin-resolved ONV basis
+//  */
+// VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const {
+
+//     const auto M = usq_hamiltonian.numberOfOrbitals() / 2;
 
-    if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
-        throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorDiagonal(USQHamiltonian<double>): Underlying spin Hamiltonians are not of the same dimension, and this is currently required for this method");
-    }
+//     if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
+//         throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorDiagonal(USQHamiltonian<double>): Underlying spin Hamiltonians are not of the same dimension, and this is currently required for this method");
+//     }
 
-    if (M != this->M) {
-        throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorDiagonal(USQHamiltonian<double>): Basis functions of the spin-resolved ONV basis and the operator are incompatible.");
-    }
+//     if (M != this->M) {
+//         throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorDiagonal(USQHamiltonian<double>): Basis functions of the spin-resolved ONV basis and the operator are incompatible.");
+//     }
 
-    // Evaluation environment
-    auto const& sq_hamiltonian_alpha = usq_hamiltonian.spinHamiltonian(Spin::alpha);
-    auto const& sq_hamiltonian_beta = usq_hamiltonian.spinHamiltonian(Spin::beta);
-    auto const& mixed_two_electron_operator = usq_hamiltonian.twoElectronMixed();
+//     // Evaluation environment
+//     auto const& sq_hamiltonian_alpha = usq_hamiltonian.spinHamiltonian(Spin::alpha);
+//     auto const& sq_hamiltonian_beta = usq_hamiltonian.spinHamiltonian(Spin::beta);
+//     auto const& mixed_two_electron_operator = usq_hamiltonian.twoElectronMixed();
 
-    const auto dim_alpha = onv_basis_alpha.dimension();
-    const auto dim_beta = onv_basis_beta.dimension();
-    auto k_alpha = sq_hamiltonian_alpha.core().parameters();
-    auto k_beta = sq_hamiltonian_beta.core().parameters();
-    const auto& two_op_par_alpha = sq_hamiltonian_alpha.twoElectron().parameters();
-    const auto& two_op_par_beta = sq_hamiltonian_beta.twoElectron().parameters();
+//     const auto dim_alpha = onv_basis_alpha.dimension();
+//     const auto dim_beta = onv_basis_beta.dimension();
+//     auto k_alpha = sq_hamiltonian_alpha.core().parameters();
+//     auto k_beta = sq_hamiltonian_beta.core().parameters();
+//     const auto& two_op_par_alpha = sq_hamiltonian_alpha.twoElectron().parameters();
+//     const auto& two_op_par_beta = sq_hamiltonian_beta.twoElectron().parameters();
 
-    k_alpha = k_alpha + sq_hamiltonian_alpha.twoElectron().effectiveOneElectronPartition().parameters();
-    k_beta = k_beta + sq_hamiltonian_beta.twoElectron().effectiveOneElectronPartition().parameters();
+//     k_alpha = k_alpha + sq_hamiltonian_alpha.twoElectron().effectiveOneElectronPartition().parameters();
+//     k_beta = k_beta + sq_hamiltonian_beta.twoElectron().effectiveOneElectronPartition().parameters();
 
-    // The two_op_par_mixed variable stored as g_aabb, for integrals derived from g_bbaa we reverse the indices as follows : g_aabb(pqrs) = g_bbaa(rspq)
-    const auto& two_op_par_mixed = mixed_two_electron_operator.parameters();
+//     // The two_op_par_mixed variable stored as g_aabb, for integrals derived from g_bbaa we reverse the indices as follows : g_aabb(pqrs) = g_bbaa(rspq)
+//     const auto& two_op_par_mixed = mixed_two_electron_operator.parameters();
 
-    VectorX<double> diagonal = VectorX<double>::Zero(this->dim);
+//     VectorX<double> diagonal = VectorX<double>::Zero(this->dim);
 
-    SpinUnresolvedONV onv_alpha = onv_basis_alpha.constructONVFromAddress(0);
-    SpinUnresolvedONV onv_beta = onv_basis_beta.constructONVFromAddress(0);
-    for (size_t Ia = 0; Ia < dim_alpha; Ia++) {  // Ia loops over addresses of alpha spin strings
+//     SpinUnresolvedONV onv_alpha = onv_basis_alpha.constructONVFromAddress(0);
+//     SpinUnresolvedONV onv_beta = onv_basis_beta.constructONVFromAddress(0);
+//     for (size_t Ia = 0; Ia < dim_alpha; Ia++) {  // Ia loops over addresses of alpha spin strings
 
-        onv_basis_beta.transformONVCorrespondingToAddress(onv_beta, 0);
+//         onv_basis_beta.transformONVCorrespondingToAddress(onv_beta, 0);
 
-        for (size_t Ib = 0; Ib < dim_beta; Ib++) {  // Ib loops over addresses of beta spin strings
+//         for (size_t Ib = 0; Ib < dim_beta; Ib++) {  // Ib loops over addresses of beta spin strings
 
-            for (size_t e_a = 0; e_a < onv_basis_alpha.numberOfElectrons(); e_a++) {  // loop over alpha electrons
+//             for (size_t e_a = 0; e_a < onv_basis_alpha.numberOfElectrons(); e_a++) {  // loop over alpha electrons
 
-                size_t p = onv_alpha.occupationIndexOf(e_a);
-                diagonal(Ia * dim_beta + Ib) += k_alpha(p, p);
-
-                for (size_t q = 0; q < this->M; q++) {  // q loops over SOs
-                    if (onv_alpha.isOccupied(q)) {      // q is in Ia
-                        diagonal(Ia * dim_beta + Ib) += 0.5 * two_op_par_alpha(p, p, q, q);
-                    } else {  // q is not in I_alpha
-                        diagonal(Ia * dim_beta + Ib) += 0.5 * two_op_par_alpha(p, q, q, p);
-                    }
+//                 size_t p = onv_alpha.occupationIndexOf(e_a);
+//                 diagonal(Ia * dim_beta + Ib) += k_alpha(p, p);
+
+//                 for (size_t q = 0; q < this->M; q++) {  // q loops over SOs
+//                     if (onv_alpha.isOccupied(q)) {      // q is in Ia
+//                         diagonal(Ia * dim_beta + Ib) += 0.5 * two_op_par_alpha(p, p, q, q);
+//                     } else {  // q is not in I_alpha
+//                         diagonal(Ia * dim_beta + Ib) += 0.5 * two_op_par_alpha(p, q, q, p);
+//                     }
 
-                    if (onv_beta.isOccupied(q)) {  // q is in Ib
-                        diagonal(Ia * dim_beta + Ib) += two_op_par_mixed(p, p, q, q);
-                    }
-                }  // q loop
-            }      // e_a loop
+//                     if (onv_beta.isOccupied(q)) {  // q is in Ib
+//                         diagonal(Ia * dim_beta + Ib) += two_op_par_mixed(p, p, q, q);
+//                     }
+//                 }  // q loop
+//             }      // e_a loop
 
-            for (size_t e_b = 0; e_b < onv_basis_beta.numberOfElectrons(); e_b++) {  // loop over beta electrons
+//             for (size_t e_b = 0; e_b < onv_basis_beta.numberOfElectrons(); e_b++) {  // loop over beta electrons
 
-                size_t p = onv_beta.occupationIndexOf(e_b);
-                diagonal(Ia * dim_beta + Ib) += k_beta(p, p);
+//                 size_t p = onv_beta.occupationIndexOf(e_b);
+//                 diagonal(Ia * dim_beta + Ib) += k_beta(p, p);
 
-                for (size_t q = 0; q < this->M; q++) {  // q loops over SOs
-                    if (onv_beta.isOccupied(q)) {       // q is in Ib
-                        diagonal(Ia * dim_beta + Ib) += 0.5 * two_op_par_beta(p, p, q, q);
+//                 for (size_t q = 0; q < this->M; q++) {  // q loops over SOs
+//                     if (onv_beta.isOccupied(q)) {       // q is in Ib
+//                         diagonal(Ia * dim_beta + Ib) += 0.5 * two_op_par_beta(p, p, q, q);
 
-                    } else {  // q is not in I_beta
-                        diagonal(Ia * dim_beta + Ib) += 0.5 * two_op_par_beta(p, q, q, p);
-                    }
-                }  // q loop
-            }      // e_b loop
+//                     } else {  // q is not in I_beta
+//                         diagonal(Ia * dim_beta + Ib) += 0.5 * two_op_par_beta(p, q, q, p);
+//                     }
+//                 }  // q loop
+//             }      // e_b loop
 
-            if (Ib < dim_beta - 1) {  // prevent the last permutation from occurring
-                onv_basis_beta.transformONVToNextPermutation(onv_beta);
-            }
-        }  // beta address (Ib) loop
+//             if (Ib < dim_beta - 1) {  // prevent the last permutation from occurring
+//                 onv_basis_beta.transformONVToNextPermutation(onv_beta);
+//             }
+//         }  // beta address (Ib) loop
 
-        if (Ia < dim_alpha - 1) {  // prevent the last permutation from occurring
-            onv_basis_alpha.transformONVToNextPermutation(onv_alpha);
-        }
-    }  // alpha address (Ia) loop
+//         if (Ia < dim_alpha - 1) {  // prevent the last permutation from occurring
+//             onv_basis_alpha.transformONVToNextPermutation(onv_alpha);
+//         }
+//     }  // alpha address (Ia) loop
 
-    return diagonal;
-}
+//     return diagonal;
+// }
 
 
-/**
- *  Evaluate a one electron operator in a matrix vector product
- *
- *  @param one_op                       the one electron operator expressed in an orthonormal basis
- *  @param x                            the vector upon which the evaluation acts 
- *  @param diagonal                     the diagonal evaluated in the spin-resolved ONV basis
- *
- *  @return the one electron operator's matrix vector product in a vector with the dimensions of the spin-resolved ONV basis
- */
-VectorX<double> SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(const ScalarSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+// /**
+//  *  Evaluate a one electron operator in a matrix vector product
+//  *
+//  *  @param one_op                       the one electron operator expressed in an orthonormal basis
+//  *  @param x                            the vector upon which the evaluation acts
+//  *  @param diagonal                     the diagonal evaluated in the spin-resolved ONV basis
+//  *
+//  *  @return the one electron operator's matrix vector product in a vector with the dimensions of the spin-resolved ONV basis
+//  */
+// VectorX<double> SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(const ScalarRSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
-    auto M = one_op.numberOfOrbitals();
-    if (M != this->M) {
-        throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(ScalarSQOneElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of the spin-resolved ONV basis and the operator are incompatible.");
-    }
+//     auto M = one_op.numberOfOrbitals();
+//     if (M != this->M) {
+//         throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(ScalarRSQOneElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of the spin-resolved ONV basis and the operator are incompatible.");
+//     }
 
-    // Environment for evaluations
-    SpinUnresolvedONVBasis onv_basis_alpha = this->onvBasisAlpha();
-    SpinUnresolvedONVBasis onv_basis_beta = this->onvBasisBeta();
+//     // Environment for evaluations
+//     SpinUnresolvedONVBasis onv_basis_alpha = this->onvBasisAlpha();
+//     SpinUnresolvedONVBasis onv_basis_beta = this->onvBasisBeta();
 
-    const auto& alpha_couplings = this->alphaCouplings();
+//     const auto& alpha_couplings = this->alphaCouplings();
 
-    auto dim_alpha = onv_basis_alpha.dimension();
-    auto dim_beta = onv_basis_beta.dimension();
+//     auto dim_alpha = onv_basis_alpha.dimension();
+//     auto dim_beta = onv_basis_beta.dimension();
 
-    VectorX<double> matvec = diagonal.cwiseProduct(x);
+//     VectorX<double> matvec = diagonal.cwiseProduct(x);
 
-    // Map vector to matrix for vectorized multiplications
-    Eigen::Map<Eigen::MatrixXd> matvecmap(matvec.data(), dim_beta, dim_alpha);
-    Eigen::Map<const Eigen::MatrixXd> xmap(x.data(), dim_beta, dim_alpha);
+//     // Map vector to matrix for vectorized multiplications
+//     Eigen::Map<Eigen::MatrixXd> matvecmap(matvec.data(), dim_beta, dim_alpha);
+//     Eigen::Map<const Eigen::MatrixXd> xmap(x.data(), dim_beta, dim_alpha);
 
-    // Spin-resolved evaluation
-    auto beta_evaluation = onv_basis_beta.evaluateOperatorSparse(one_op, false);
-    auto alpha_evaluation = onv_basis_alpha.evaluateOperatorSparse(one_op, false);
+//     // Spin-resolved evaluation
+//     auto beta_evaluation = onv_basis_beta.evaluateOperatorSparse(one_op, false);
+//     auto alpha_evaluation = onv_basis_alpha.evaluateOperatorSparse(one_op, false);
 
-    // Perform the "matvec"
-    matvecmap += xmap * alpha_evaluation + beta_evaluation * xmap;
+//     // Perform the "matvec"
+//     matvecmap += xmap * alpha_evaluation + beta_evaluation * xmap;
 
-    return matvec;
-}
+//     return matvec;
+// }
 
 
-/**
- *  Evaluate a two electron operator in a matrix vector product
- *
- *  @param two_op                       the two electron operator expressed in an orthonormal basis
- *  @param x                            the vector upon which the evaluation acts 
- *  @param diagonal                     the diagonal evaluated in the spin-resolved ONV basis
- *
- *  @return the two electron operator's matrix vector product in a vector with the dimensions of the spin-resolved ONV basis
- */
-VectorX<double> SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(const ScalarSQTwoElectronOperator<double>& two_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+// /**
+//  *  Evaluate a two electron operator in a matrix vector product
+//  *
+//  *  @param two_op                       the two electron operator expressed in an orthonormal basis
+//  *  @param x                            the vector upon which the evaluation acts
+//  *  @param diagonal                     the diagonal evaluated in the spin-resolved ONV basis
+//  *
+//  *  @return the two electron operator's matrix vector product in a vector with the dimensions of the spin-resolved ONV basis
+//  */
+// VectorX<double> SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(const ScalarRSQTwoElectronOperator<double>& two_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
-    auto M = two_op.numberOfOrbitals();
-    if (M != this->M) {
-        throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(ScalarSQTwoElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of the spin-resolved ONV basis and the operator are incompatible.");
-    }
+//     auto M = two_op.numberOfOrbitals();
+//     if (M != this->M) {
+//         throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(ScalarRSQTwoElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of the spin-resolved ONV basis and the operator are incompatible.");
+//     }
 
-    // Environment for evaluations
-    SpinUnresolvedONVBasis onv_basis_alpha = this->onvBasisAlpha();
-    SpinUnresolvedONVBasis onv_basis_beta = this->onvBasisBeta();
+//     // Environment for evaluations
+//     SpinUnresolvedONVBasis onv_basis_alpha = this->onvBasisAlpha();
+//     SpinUnresolvedONVBasis onv_basis_beta = this->onvBasisBeta();
 
-    const auto& alpha_couplings = this->alphaCouplings();
+//     const auto& alpha_couplings = this->alphaCouplings();
 
-    auto dim_alpha = onv_basis_alpha.dimension();
-    auto dim_beta = onv_basis_beta.dimension();
+//     auto dim_alpha = onv_basis_alpha.dimension();
+//     auto dim_beta = onv_basis_beta.dimension();
 
-    VectorX<double> matvec = diagonal.cwiseProduct(x);
+//     VectorX<double> matvec = diagonal.cwiseProduct(x);
 
-    Eigen::Map<Eigen::MatrixXd> matvecmap(matvec.data(), dim_beta, dim_alpha);
-    Eigen::Map<const Eigen::MatrixXd> xmap(x.data(), dim_beta, dim_alpha);
+//     Eigen::Map<Eigen::MatrixXd> matvecmap(matvec.data(), dim_beta, dim_alpha);
+//     Eigen::Map<const Eigen::MatrixXd> xmap(x.data(), dim_beta, dim_alpha);
 
-    // Mixed-spin evaluation
-    for (size_t p = 0; p < this->M; p++) {
+//     // Mixed-spin evaluation
+//     for (size_t p = 0; p < this->M; p++) {
 
-        const auto& P = this->calculateOneElectronPartition(p, p, two_op);
-        const auto& beta_two_electron_intermediate = onv_basis_beta.evaluateOperatorSparse(P, false);
+//         const auto& P = this->calculateOneElectronPartition(p, p, two_op);
+//         const auto& beta_two_electron_intermediate = onv_basis_beta.evaluateOperatorSparse(P, false);
 
-        // matvec : sigma(pp) * X * theta(pp)
-        matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p * (this->M + this->M + 1 - p) / 2]);
-        for (size_t q = p + 1; q < this->M; q++) {
+//         // matvec : sigma(pp) * X * theta(pp)
+//         matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p * (this->M + this->M + 1 - p) / 2]);
+//         for (size_t q = p + 1; q < this->M; q++) {
 
-            const auto& P = this->calculateOneElectronPartition(p, q, two_op);
-            const auto& beta_two_electron_intermediate = onv_basis_beta.evaluateOperatorSparse(P, true);
+//             const auto& P = this->calculateOneElectronPartition(p, q, two_op);
+//             const auto& beta_two_electron_intermediate = onv_basis_beta.evaluateOperatorSparse(P, true);
 
-            // matvec : (sigma(pq) + sigma(qp)) * X * theta(pq)
-            matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p * (this->M + this->M + 1 - p) / 2 + q - p]);
-        }
-    }
+//             // matvec : (sigma(pq) + sigma(qp)) * X * theta(pq)
+//             matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p * (this->M + this->M + 1 - p) / 2 + q - p]);
+//         }
+//     }
 
-    // Spin-resolved evaluation
-    auto beta_evaluation = onv_basis_beta.evaluateOperatorSparse(two_op, false);
-    auto alpha_evaluation = onv_basis_alpha.evaluateOperatorSparse(two_op, false);
+//     // Spin-resolved evaluation
+//     auto beta_evaluation = onv_basis_beta.evaluateOperatorSparse(two_op, false);
+//     auto alpha_evaluation = onv_basis_alpha.evaluateOperatorSparse(two_op, false);
 
-    matvecmap += beta_evaluation * xmap + xmap * alpha_evaluation;
+//     matvecmap += beta_evaluation * xmap + xmap * alpha_evaluation;
 
-    return matvec;
-}
+//     return matvec;
+// }
 
 
-/**
- *  Evaluate the Hamiltonian in a matrix vector product
- *
- *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
- *  @param x                            the vector upon which the evaluation acts 
- *  @param diagonal                     the diagonal evaluated in the spin-resolved ONV basis
- *
- *  @return the Hamiltonian's matrix vector product in a vector with the dimensions of the spin-resolved ONV basis
- */
-VectorX<double> SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+// /**
+//  *  Evaluate the Hamiltonian in a matrix vector product
+//  *
+//  *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+//  *  @param x                            the vector upon which the evaluation acts
+//  *  @param diagonal                     the diagonal evaluated in the spin-resolved ONV basis
+//  *
+//  *  @return the Hamiltonian's matrix vector product in a vector with the dimensions of the spin-resolved ONV basis
+//  */
+// VectorX<double> SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(const RSQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
-    auto M = sq_hamiltonian.numberOfOrbitals();
-    if (M != this->M) {
-        throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the spin-resolved ONV basis and the operator are incompatible.");
-    }
+//     auto M = sq_hamiltonian.numberOfOrbitals();
+//     if (M != this->M) {
+//         throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(RSQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the spin-resolved ONV basis and the operator are incompatible.");
+//     }
 
-    // Environment for evaluations
-    const SpinUnresolvedONVBasis& onv_basis_alpha = this->onvBasisAlpha();
-    const SpinUnresolvedONVBasis& onv_basis_beta = this->onvBasisBeta();
+//     // Environment for evaluations
+//     const SpinUnresolvedONVBasis& onv_basis_alpha = this->onvBasisAlpha();
+//     const SpinUnresolvedONVBasis& onv_basis_beta = this->onvBasisBeta();
 
-    const auto& alpha_couplings = this->alphaCouplings();
+//     const auto& alpha_couplings = this->alphaCouplings();
 
-    auto dim_alpha = onv_basis_alpha.dimension();
-    auto dim_beta = onv_basis_beta.dimension();
+//     auto dim_alpha = onv_basis_alpha.dimension();
+//     auto dim_beta = onv_basis_beta.dimension();
 
-    VectorX<double> matvec = diagonal.cwiseProduct(x);
+//     VectorX<double> matvec = diagonal.cwiseProduct(x);
 
-    Eigen::Map<Eigen::MatrixXd> matvecmap(matvec.data(), dim_beta, dim_alpha);
-    Eigen::Map<const Eigen::MatrixXd> xmap(x.data(), dim_beta, dim_alpha);
+//     Eigen::Map<Eigen::MatrixXd> matvecmap(matvec.data(), dim_beta, dim_alpha);
+//     Eigen::Map<const Eigen::MatrixXd> xmap(x.data(), dim_beta, dim_alpha);
 
-    // Mixed-spin evaluation
-    for (size_t p = 0; p < this->M; p++) {
+//     // Mixed-spin evaluation
+//     for (size_t p = 0; p < this->M; p++) {
 
-        const auto& P = this->calculateOneElectronPartition(p, p, sq_hamiltonian.twoElectron());
-        const auto& beta_two_electron_intermediate = onv_basis_beta.evaluateOperatorSparse(P, false);
+//         const auto& P = this->calculateOneElectronPartition(p, p, sq_hamiltonian.twoElectron());
+//         const auto& beta_two_electron_intermediate = onv_basis_beta.evaluateOperatorSparse(P, false);
 
-        // matvec : sigma(pp) * X * theta(pp)
-        matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p * (this->M + this->M + 1 - p) / 2]);
-        for (size_t q = p + 1; q < this->M; q++) {
+//         // matvec : sigma(pp) * X * theta(pp)
+//         matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p * (this->M + this->M + 1 - p) / 2]);
+//         for (size_t q = p + 1; q < this->M; q++) {
 
-            const auto& P = this->calculateOneElectronPartition(p, q, sq_hamiltonian.twoElectron());
-            const auto& beta_two_electron_intermediate = onv_basis_beta.evaluateOperatorSparse(P, true);
+//             const auto& P = this->calculateOneElectronPartition(p, q, sq_hamiltonian.twoElectron());
+//             const auto& beta_two_electron_intermediate = onv_basis_beta.evaluateOperatorSparse(P, true);
 
-            // matvec : (sigma(pq) + sigma(qp)) * X * theta(pq)
-            matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p * (this->M + this->M + 1 - p) / 2 + q - p]);
-        }
-    }
+//             // matvec : (sigma(pq) + sigma(qp)) * X * theta(pq)
+//             matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p * (this->M + this->M + 1 - p) / 2 + q - p]);
+//         }
+//     }
 
-    // Spin-resolved evaluation
-    auto beta_hamiltonian = onv_basis_beta.evaluateOperatorSparse(sq_hamiltonian, false);
-    auto alpha_hamiltonian = onv_basis_alpha.evaluateOperatorSparse(sq_hamiltonian, false);
+//     // Spin-resolved evaluation
+//     auto beta_hamiltonian = onv_basis_beta.evaluateOperatorSparse(sq_hamiltonian, false);
+//     auto alpha_hamiltonian = onv_basis_alpha.evaluateOperatorSparse(sq_hamiltonian, false);
 
-    matvecmap += beta_hamiltonian * xmap + xmap * alpha_hamiltonian;
+//     matvecmap += beta_hamiltonian * xmap + xmap * alpha_hamiltonian;
 
-    return matvec;
-}
+//     return matvec;
+// }
 
 
-/**
- *  Evaluate the unrestricted Hamiltonian in a matrix vector product
- *
- *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
- *  @param x                              the vector upon which the evaluation acts 
- *  @param diagonal                       the diagonal evaluated in the spin-resolved ONV basis
- *
- *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the spin-resolved ONV basis
- */
-VectorX<double> SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+// /**
+//  *  Evaluate the unrestricted Hamiltonian in a matrix vector product
+//  *
+//  *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis
+//  *  @param x                              the vector upon which the evaluation acts
+//  *  @param diagonal                       the diagonal evaluated in the spin-resolved ONV basis
+//  *
+//  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the spin-resolved ONV basis
+//  */
+// VectorX<double> SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
-    auto M = usq_hamiltonian.numberOfOrbitals() / 2;
+//     auto M = usq_hamiltonian.numberOfOrbitals() / 2;
 
-    if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
-        throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(USQHamiltonian<double>, VectorX<double> , VectorX<double>): Underlying spin Hamiltonians are not of the same dimension, and this is currently required for this method");
-    }
+//     if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
+//         throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(USQHamiltonian<double>, VectorX<double> , VectorX<double>): Underlying spin Hamiltonians are not of the same dimension, and this is currently required for this method");
+//     }
 
-    if (M != this->numberOfOrbitals()) {
-        throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(USQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the spin-resolved ONV basis and usq_hamiltonian are incompatible.");
-    }
+//     if (M != this->numberOfOrbitals()) {
+//         throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(USQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the spin-resolved ONV basis and usq_hamiltonian are incompatible.");
+//     }
 
-    // Environment for evaluations
-    const SpinUnresolvedONVBasis& onv_basis_alpha = this->onvBasisAlpha();
-    const SpinUnresolvedONVBasis& onv_basis_beta = this->onvBasisBeta();
+//     // Environment for evaluations
+//     const SpinUnresolvedONVBasis& onv_basis_alpha = this->onvBasisAlpha();
+//     const SpinUnresolvedONVBasis& onv_basis_beta = this->onvBasisBeta();
 
-    const auto& alpha_couplings = this->alphaCouplings();
+//     const auto& alpha_couplings = this->alphaCouplings();
 
-    auto dim_alpha = onv_basis_alpha.dimension();
-    auto dim_beta = onv_basis_beta.dimension();
+//     auto dim_alpha = onv_basis_alpha.dimension();
+//     auto dim_beta = onv_basis_beta.dimension();
 
-    VectorX<double> matvec = diagonal.cwiseProduct(x);
+//     VectorX<double> matvec = diagonal.cwiseProduct(x);
 
-    Eigen::Map<Eigen::MatrixXd> matvecmap(matvec.data(), dim_beta, dim_alpha);
-    Eigen::Map<const Eigen::MatrixXd> xmap(x.data(), dim_beta, dim_alpha);
+//     Eigen::Map<Eigen::MatrixXd> matvecmap(matvec.data(), dim_beta, dim_alpha);
+//     Eigen::Map<const Eigen::MatrixXd> xmap(x.data(), dim_beta, dim_alpha);
 
-    for (size_t p = 0; p < this->M; p++) {
+//     for (size_t p = 0; p < this->M; p++) {
 
-        const auto& P = this->calculateOneElectronPartition(p, p, usq_hamiltonian.twoElectronMixed());
-        const auto& beta_two_electron_intermediate = onv_basis_beta.evaluateOperatorDense(P, false);
+//         const auto& P = this->calculateOneElectronPartition(p, p, usq_hamiltonian.twoElectronMixed());
+//         const auto& beta_two_electron_intermediate = onv_basis_beta.evaluateOperatorDense(P, false);
 
-        // sigma(pp) * X * theta(pp)
-        matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p * (this->M + this->M + 1 - p) / 2]);
-        for (size_t q = p + 1; q < this->M; q++) {
+//         // sigma(pp) * X * theta(pp)
+//         matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p * (this->M + this->M + 1 - p) / 2]);
+//         for (size_t q = p + 1; q < this->M; q++) {
 
-            const auto& P = this->calculateOneElectronPartition(p, q, usq_hamiltonian.twoElectronMixed());
-            const auto& beta_two_electron_intermediate = onv_basis_beta.evaluateOperatorDense(P, true);
+//             const auto& P = this->calculateOneElectronPartition(p, q, usq_hamiltonian.twoElectronMixed());
+//             const auto& beta_two_electron_intermediate = onv_basis_beta.evaluateOperatorDense(P, true);
 
-            // (sigma(pq) + sigma(qp)) * X * theta(pq)
-            matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p * (this->M + this->M + 1 - p) / 2 + q - p]);
-        }
-    }
+//             // (sigma(pq) + sigma(qp)) * X * theta(pq)
+//             matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p * (this->M + this->M + 1 - p) / 2 + q - p]);
+//         }
+//     }
 
-    auto beta_hamiltonian = onv_basis_beta.evaluateOperatorSparse(usq_hamiltonian.spinHamiltonian(Spin::beta), false);
-    auto alpha_hamiltonian = onv_basis_alpha.evaluateOperatorSparse(usq_hamiltonian.spinHamiltonian(Spin::alpha), false);
+//     auto beta_hamiltonian = onv_basis_beta.evaluateOperatorSparse(usq_hamiltonian.spinHamiltonian(Spin::beta), false);
+//     auto alpha_hamiltonian = onv_basis_alpha.evaluateOperatorSparse(usq_hamiltonian.spinHamiltonian(Spin::alpha), false);
 
-    matvecmap += beta_hamiltonian * xmap + xmap * alpha_hamiltonian;
+//     matvecmap += beta_hamiltonian * xmap + xmap * alpha_hamiltonian;
 
-    return matvec;
-}
+//     return matvec;
+// }
 
 
 /**

@@ -73,7 +73,7 @@ public:
      *
      *  @return the AP1roG electronic energy
      */
-    static double calculateEnergy(const AP1roGGeminalCoefficients& G, const SQHamiltonian<double>& sq_hamiltonian) { return AP1roG::calculateEnergy(G, sq_hamiltonian); }
+    static double calculateEnergy(const AP1roGGeminalCoefficients& G, const RSQHamiltonian<double>& sq_hamiltonian) { return AP1roG::calculateEnergy(G, sq_hamiltonian); }
 
     /**
      *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
@@ -81,7 +81,7 @@ public:
      * 
      *  @return the response force (-F_lambda) that is used to solve the linear equations for the Lagrange multipliers lambda in [k_lambda lambda = -F_lambda]
      */
-    static ImplicitMatrixSlice<double> calculateMultiplierResponseForce(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P);
+    static ImplicitMatrixSlice<double> calculateMultiplierResponseForce(const RSQHamiltonian<double>& sq_hamiltonian, const size_t N_P);
 
     /**
      *  @param G                    the AP1roG geminal coefficients
@@ -89,7 +89,7 @@ public:
      * 
      *  @return the response force constant (k_lambda) that is used to solve the linear equations for the Lagrange multipliers lambda in [k_lambda lambda = -F_lambda]
      */
-    static MatrixX<double> calculateMultiplierResponseForceConstant(const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G);
+    static MatrixX<double> calculateMultiplierResponseForceConstant(const RSQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G);
 
     /**
      *  @param G                the AP1roG geminal coefficients
@@ -125,7 +125,7 @@ public:
      * 
      *  @return the electronic energy for these AP1roG model parameters
      */
-    double calculateEnergy(const SQHamiltonian<double>& sq_hamiltonian) const { return vAP1roG::calculateEnergy(this->G, sq_hamiltonian); }
+    double calculateEnergy(const RSQHamiltonian<double>& sq_hamiltonian) const { return vAP1roG::calculateEnergy(this->G, sq_hamiltonian); }
 
     /**
      *  @return the corresponding geminal coefficients of these AP1roG model parameters

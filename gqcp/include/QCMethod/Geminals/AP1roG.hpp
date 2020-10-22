@@ -38,7 +38,7 @@ private:
     size_t N_P;  // the number of electron pairs
     size_t K;    // the number of spatial orbitals
 
-    SQHamiltonian<double> sq_hamiltonian;  // the second-quantized Hamiltonian in an orthonormal basis
+    RSQHamiltonian<double> sq_hamiltonian;  // the second-quantized Hamiltonian in an orthonormal basis
 
 
 public:
@@ -50,7 +50,7 @@ public:
      *  @param sq_hamiltonian           the second-quantized Hamiltonian in an orthonormal basis
      *  @param N_P                      the number of electron pairs
      */
-    AP1roG(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P) :
+    AP1roG(const RSQHamiltonian<double>& sq_hamiltonian, const size_t N_P) :
         N_P {N_P},
         K {sq_hamiltonian.numberOfOrbitals()},  // number of spatial orbitals
         sq_hamiltonian {sq_hamiltonian} {}

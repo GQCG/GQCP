@@ -23,7 +23,7 @@ static void matvec(benchmark::State& state) {
     const size_t K = state.range(0);
     const size_t N_P = state.range(1);  // number of electron pairs
 
-    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Random(K);  // not necessarily in a non-orthonormal basis, but this doesn't matter here
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Random(K);  // not necessarily in a non-orthonormal basis, but this doesn't matter here
     const GQCP::SeniorityZeroONVBasis onv_basis {K, N_P};
 
     GQCP::DOCI doci_builder {onv_basis};  // the DOCI HamiltonianBuilder

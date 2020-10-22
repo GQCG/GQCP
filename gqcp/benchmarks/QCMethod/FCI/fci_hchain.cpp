@@ -1,127 +1,127 @@
-/*
- *  A benchmark executable to check the performance of finding FCI results using a dense and iterative (Davidson) algorithm.
- * 
- *  The system of interest is a linear H-chain composed of 4 to 10 hydrogen atoms.
- */
+// /*
+//  *  A benchmark executable to check the performance of finding FCI results using a dense and iterative (Davidson) algorithm.
+//  *
+//  *  The system of interest is a linear H-chain composed of 4 to 10 hydrogen atoms.
+//  */
 
-#include "Basis/Transformations/transform.hpp"
-#include "Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"
-#include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
-#include "Molecule/Molecule.hpp"
-#include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "QCMethod/CI/CI.hpp"
-#include "QCMethod/CI/CIEnvironment.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
-#include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
-#include "QCMethod/HF/RHF/RHF.hpp"
-#include "QCMethod/HF/RHF/RHFSCFSolver.hpp"
-#include "QCModel/CI/LinearExpansion.hpp"
+// #include "Basis/Transformations/transform.hpp"
+// #include "Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"
+// #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
+// #include "Molecule/Molecule.hpp"
+// #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+// #include "QCMethod/CI/CI.hpp"
+// #include "QCMethod/CI/CIEnvironment.hpp"
+// #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
+// #include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
+// #include "QCMethod/HF/RHF/RHF.hpp"
+// #include "QCMethod/HF/RHF/RHFSCFSolver.hpp"
+// #include "QCModel/CI/LinearExpansion.hpp"
 
-#include <benchmark/benchmark.h>
-
-
-static void CustomArguments(benchmark::internal::Benchmark* b) {
-    for (int i = 4; i < 11; i++) {  // need int instead of size_t
-        b->Args({i, 4});            // number of hydrogen nuclei, 4 electrons
-    }
-}
+// #include <benchmark/benchmark.h>
 
 
-/**
- *  DENSE
- */
-static void fci_dense_molecule(benchmark::State& state) {
-
-    const auto number_of_H_atoms = state.range(0);
-    const size_t N = state.range(1);  // number of electrons
-    const auto N_P = N / 2;           // number of electron pairs
-    const auto charge = static_cast<int>(number_of_H_atoms - N);
+// static void CustomArguments(benchmark::internal::Benchmark* b) {
+//     for (int i = 4; i < 11; i++) {  // need int instead of size_t
+//         b->Args({i, 4});            // number of hydrogen nuclei, 4 electrons
+//     }
+// }
 
 
-    // Set up the molecular Hamiltonian in the canonical RHF basis.
-    // Construct the initial spinor basis.
-    const auto molecule = GQCP::Molecule::HChain(number_of_H_atoms, 0.742, charge);
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
-    const auto K = spinor_basis.numberOfSpatialOrbitals();
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in AO basis
+// /**
+//  *  DENSE
+//  */
+// static void fci_dense_molecule(benchmark::State& state) {
 
-    // Solve the SCF equations using a plain solver to find the canonical spinors.
-    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(N, sq_hamiltonian, spinor_basis.overlap().parameters());
-    auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-    const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
-    const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
-
-    GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
+//     const auto number_of_H_atoms = state.range(0);
+//     const size_t N = state.range(1);  // number of electrons
+//     const auto N_P = N / 2;           // number of electron pairs
+//     const auto charge = static_cast<int>(number_of_H_atoms - N);
 
 
-    // Do the FCI calculation by setting up a full spin-resolved ONV basis, an eigenvalue problem solver and a corresponding environment.
-    const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
-    auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
-    auto solver = GQCP::EigenproblemSolver::Dense();
+//     // Set up the molecular Hamiltonian in the canonical RHF basis.
+//     // Construct the initial spinor basis.
+//     const auto molecule = GQCP::Molecule::HChain(number_of_H_atoms, 0.742, charge);
+//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+//     const auto K = spinor_basis.numberOfSpatialOrbitals();
+//     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in AO basis
+
+//     // Solve the SCF equations using a plain solver to find the canonical spinors.
+//     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(N, sq_hamiltonian, spinor_basis.overlap().parameters());
+//     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
+//     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
+//     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
+
+//     GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
 
 
-    // Code inside this loop is measured repeatedly
-    for (auto _ : state) {
-        const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
-
-        benchmark::DoNotOptimize(electronic_energy);  // make sure that the variable is not optimized away by compiler
-    }
-
-    state.counters["Hydrogen nuclei"] = number_of_H_atoms;
-    state.counters["Electrons"] = N;
-    state.counters["Dimension"] = onv_basis.dimension();
-}
+//     // Do the FCI calculation by setting up a full spin-resolved ONV basis, an eigenvalue problem solver and a corresponding environment.
+//     const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
+//     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
+//     auto solver = GQCP::EigenproblemSolver::Dense();
 
 
-/**
- *  DAVIDSON
- */
-static void fci_davidson_molecule(benchmark::State& state) {
+//     // Code inside this loop is measured repeatedly
+//     for (auto _ : state) {
+//         const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
-    const auto number_of_H_atoms = state.range(0);
-    const size_t N = state.range(1);  // number of electrons
-    const auto N_P = N / 2;           // number of electron pairs
-    const auto charge = static_cast<int>(number_of_H_atoms - N);
+//         benchmark::DoNotOptimize(electronic_energy);  // make sure that the variable is not optimized away by compiler
+//     }
 
-
-    // Set up the molecular Hamiltonian in the canonical RHF basis.
-    // Construct the initial spinor basis.
-    const auto molecule = GQCP::Molecule::HChain(number_of_H_atoms, 0.742, charge);
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
-    const auto K = spinor_basis.numberOfSpatialOrbitals();
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in AO basis
+//     state.counters["Hydrogen nuclei"] = number_of_H_atoms;
+//     state.counters["Electrons"] = N;
+//     state.counters["Dimension"] = onv_basis.dimension();
+// }
 
 
-    // Solve the SCF equations using a plain solver to find the canonical spinors.
-    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(N, sq_hamiltonian, spinor_basis.overlap().parameters());
-    auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-    const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
-    const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
+// /**
+//  *  DAVIDSON
+//  */
+// static void fci_davidson_molecule(benchmark::State& state) {
 
-    GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
-
-
-    // Do the FCI calculation by setting up a full spin-resolved ONV basis, an eigenvalue problem solver and a corresponding environment.
-    const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
-
-    const auto initial_guess = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::HartreeFock(onv_basis).coefficients();
-    auto environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, initial_guess);
-    auto solver = GQCP::EigenproblemSolver::Davidson();
+//     const auto number_of_H_atoms = state.range(0);
+//     const size_t N = state.range(1);  // number of electrons
+//     const auto N_P = N / 2;           // number of electron pairs
+//     const auto charge = static_cast<int>(number_of_H_atoms - N);
 
 
-    // Code inside this loop is measured repeatedly
-    for (auto _ : state) {
-        const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
-
-        benchmark::DoNotOptimize(electronic_energy);  // make sure that the variable is not optimized away by compiler
-    }
-
-    state.counters["Hydrogen nuclei"] = K;
-    state.counters["Electrons"] = N;
-    state.counters["Dimension"] = onv_basis.dimension();
-}
+//     // Set up the molecular Hamiltonian in the canonical RHF basis.
+//     // Construct the initial spinor basis.
+//     const auto molecule = GQCP::Molecule::HChain(number_of_H_atoms, 0.742, charge);
+//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+//     const auto K = spinor_basis.numberOfSpatialOrbitals();
+//     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in AO basis
 
 
-BENCHMARK(fci_davidson_molecule)->Unit(benchmark::kMillisecond)->Apply(CustomArguments);
-BENCHMARK(fci_dense_molecule)->Unit(benchmark::kMillisecond)->Apply(CustomArguments);
-BENCHMARK_MAIN();
+//     // Solve the SCF equations using a plain solver to find the canonical spinors.
+//     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(N, sq_hamiltonian, spinor_basis.overlap().parameters());
+//     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
+//     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
+//     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
+
+//     GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
+
+
+//     // Do the FCI calculation by setting up a full spin-resolved ONV basis, an eigenvalue problem solver and a corresponding environment.
+//     const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
+
+//     const auto initial_guess = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::HartreeFock(onv_basis).coefficients();
+//     auto environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, initial_guess);
+//     auto solver = GQCP::EigenproblemSolver::Davidson();
+
+
+//     // Code inside this loop is measured repeatedly
+//     for (auto _ : state) {
+//         const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
+
+//         benchmark::DoNotOptimize(electronic_energy);  // make sure that the variable is not optimized away by compiler
+//     }
+
+//     state.counters["Hydrogen nuclei"] = K;
+//     state.counters["Electrons"] = N;
+//     state.counters["Dimension"] = onv_basis.dimension();
+// }
+
+
+// BENCHMARK(fci_davidson_molecule)->Unit(benchmark::kMillisecond)->Apply(CustomArguments);
+// BENCHMARK(fci_dense_molecule)->Unit(benchmark::kMillisecond)->Apply(CustomArguments);
+// BENCHMARK_MAIN();

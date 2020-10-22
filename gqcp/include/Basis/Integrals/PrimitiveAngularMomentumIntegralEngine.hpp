@@ -32,7 +32,7 @@ class PrimitiveAngularMomentumIntegralEngine:
     public PrimitiveCartesianOperatorIntegralEngine {
 public:
     using IntegralScalar = AngularMomentumOperator::Scalar;
-    static constexpr auto Components = AngularMomentumOperator::Components;
+    static constexpr auto Components = AngularMomentumOperator::NumberOfComponents;
 
 
 private:

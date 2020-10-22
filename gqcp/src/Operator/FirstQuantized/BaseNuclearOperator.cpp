@@ -22,28 +22,33 @@ namespace GQCP {
 
 
 /*
- *  CONSTRUCTORS
+ *  MARK: Constructors
  */
 
 /**
- *  @param nuclear_framework            the nuclear framework underlying a nuclear operator
+ *  Construct a `BaseNuclearOperator` from a nuclear framework.
+ * 
+ *  @param nuclear_framework            The nuclear framework underlying a nuclear operator.
  */
 BaseNuclearOperator::BaseNuclearOperator(const NuclearFramework& nuclear_framework) :
     nuclear_framework {nuclear_framework} {}
 
 
 /**
- *  @param nuclei                       the nuclei that are considered to represent the nuclear framework underlying a nuclear operator
+ *  Construct a `BaseNuclearOperator` from a vector of nuclei.
+ * 
+ *  @param nuclei                       The nuclei that are considered to represent the nuclear framework underlying a nuclear operator.
  */
 BaseNuclearOperator::BaseNuclearOperator(const std::vector<Nucleus>& nuclei) :
     BaseNuclearOperator(NuclearFramework(nuclei)) {}
 
 
 /*
- *  DESTRUCTOR
+ *  MARK: Destructor
  */
 
-BaseNuclearOperator::~BaseNuclearOperator() {};  // pure virtual destructor should have an empty implementation
+// A pure virtual destructor should have an empty implementation.
+BaseNuclearOperator::~BaseNuclearOperator() {};
 
 
 }  // namespace GQCP

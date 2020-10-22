@@ -59,21 +59,21 @@ SpinResolvedFrozenONVBasis::SpinResolvedFrozenONVBasis(const SpinResolvedONVBasi
  *
  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the ONV basis
  */
-SquareMatrix<double> SpinResolvedFrozenONVBasis::evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, const bool diagonal_values) const {
-    // Freeze the operators
-    const auto frozen_usq_hamiltonian = BaseFrozenCoreONVBasis::freezeOperator(usq_hamiltonian, this->X);
+// SquareMatrix<double> SpinResolvedFrozenONVBasis::evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, const bool diagonal_values) const {
+//     // Freeze the operators
+//     const auto frozen_usq_hamiltonian = BaseFrozenCoreONVBasis::freezeOperator(usq_hamiltonian, this->X);
 
-    // Evaluate the frozen operator in the active space
-    auto evaluation = this->active_onv_basis.evaluateOperatorDense(frozen_usq_hamiltonian, diagonal_values);
+//     // Evaluate the frozen operator in the active space
+//     auto evaluation = this->active_onv_basis.evaluateOperatorDense(frozen_usq_hamiltonian, diagonal_values);
 
-    if (diagonal_values) {
-        // Diagonal correction
-        const auto frozen_core_diagonal = BaseFrozenCoreONVBasis::frozenCoreDiagonal(usq_hamiltonian, this->X, this->active_onv_basis.dimension());
-        evaluation += frozen_core_diagonal.asDiagonal();
-    }
+//     if (diagonal_values) {
+//         // Diagonal correction
+//         const auto frozen_core_diagonal = BaseFrozenCoreONVBasis::frozenCoreDiagonal(usq_hamiltonian, this->X, this->active_onv_basis.dimension());
+//         evaluation += frozen_core_diagonal.asDiagonal();
+//     }
 
-    return evaluation;
-}
+//     return evaluation;
+// }
 
 
 /**
@@ -83,17 +83,17 @@ SquareMatrix<double> SpinResolvedFrozenONVBasis::evaluateOperatorDense(const USQ
  *
  *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the ONV basis
  */
-VectorX<double> SpinResolvedFrozenONVBasis::evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const {
-    const auto frozen_usq_hamiltonian = BaseFrozenCoreONVBasis::freezeOperator(usq_hamiltonian, this->X);
+// VectorX<double> SpinResolvedFrozenONVBasis::evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const {
+//     const auto frozen_usq_hamiltonian = BaseFrozenCoreONVBasis::freezeOperator(usq_hamiltonian, this->X);
 
-    // Calculate diagonal in the active space with the "frozen" Hamiltonian
-    const auto diagonal = this->active_onv_basis.evaluateOperatorDiagonal(frozen_usq_hamiltonian);
+//     // Calculate diagonal in the active space with the "frozen" Hamiltonian
+//     const auto diagonal = this->active_onv_basis.evaluateOperatorDiagonal(frozen_usq_hamiltonian);
 
-    // Calculate diagonal for the frozen orbitals
-    const auto frozen_core_diagonal = BaseFrozenCoreONVBasis::frozenCoreDiagonal(usq_hamiltonian, this->X, this->active_onv_basis.dimension());
+//     // Calculate diagonal for the frozen orbitals
+//     const auto frozen_core_diagonal = BaseFrozenCoreONVBasis::frozenCoreDiagonal(usq_hamiltonian, this->X, this->active_onv_basis.dimension());
 
-    return diagonal + frozen_core_diagonal;
-}
+//     return diagonal + frozen_core_diagonal;
+// }
 
 
 /**
@@ -105,12 +105,12 @@ VectorX<double> SpinResolvedFrozenONVBasis::evaluateOperatorDiagonal(const USQHa
  *
  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the ONV basis
  */
-VectorX<double> SpinResolvedFrozenONVBasis::evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
-    const auto frozen_ham_par = BaseFrozenCoreONVBasis::freezeOperator(usq_hamiltonian, this->X);
+// VectorX<double> SpinResolvedFrozenONVBasis::evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+//     const auto frozen_ham_par = BaseFrozenCoreONVBasis::freezeOperator(usq_hamiltonian, this->X);
 
-    // Perform the matvec in the active space with the "frozen" parameters
-    return this->active_onv_basis.evaluateOperatorMatrixVectorProduct(frozen_ham_par, x, diagonal);
-}
+//     // Perform the matvec in the active space with the "frozen" parameters
+//     return this->active_onv_basis.evaluateOperatorMatrixVectorProduct(frozen_ham_par, x, diagonal);
+// }
 
 
 }  // namespace GQCP

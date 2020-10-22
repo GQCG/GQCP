@@ -70,7 +70,7 @@ AP1roGLagrangianNewtonOrbitalOptimizer::AP1roGLagrangianNewtonOrbitalOptimizer(c
  * 
  *  In the case of this uncoupled AP1roG Lagrangian orbital optimizer, the PSEs are re-solved in every iteration using the current orbitals
  */
-void AP1roGLagrangianNewtonOrbitalOptimizer::prepareDMCalculation(const SQHamiltonian<double>& sq_hamiltonian) {
+void AP1roGLagrangianNewtonOrbitalOptimizer::prepareDMCalculation(const RSQHamiltonian<double>& sq_hamiltonian) {
 
     // Optimize the vAP1roG wave function model in this basis and update the results.
     auto non_linear_solver = GQCP::NonLinearEquationSolver<double>::Newton();
@@ -108,7 +108,7 @@ Orbital2DM<double> AP1roGLagrangianNewtonOrbitalOptimizer::calculate2DM() const 
  * 
  *  @return the new full set orbital generators, including the redundant parameters
  */
-OrbitalRotationGenerators AP1roGLagrangianNewtonOrbitalOptimizer::calculateNewFullOrbitalGenerators(const SQHamiltonian<double>& sq_hamiltonian) const {
+OrbitalRotationGenerators AP1roGLagrangianNewtonOrbitalOptimizer::calculateNewFullOrbitalGenerators(const RSQHamiltonian<double>& sq_hamiltonian) const {
     return this->calculateNewFreeOrbitalGenerators(sq_hamiltonian);  // no extra step necessary
 }
 

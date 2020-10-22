@@ -59,7 +59,7 @@ sq_hamiltonian = gqcpy.SQHamiltonian.Molecular(spinor_basis, molecule)  # in an 
 
 <!--C++-->
 ```C++
-const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
+const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->
 
@@ -189,7 +189,7 @@ sq_hamiltonian = gqcpy.SQHamiltonian.Molecular(spinor_basis, molecule)  # in an 
 
 <!--C++-->
 ```C++
-const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
+const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->
 

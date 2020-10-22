@@ -179,7 +179,7 @@ BOOST_AUTO_TEST_CASE(integrated_density_sto_3g) {
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2.xyz");
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
 
-    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in the scalar/AO basis
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in the scalar/AO basis
 
     // Prepare the canonical RHF orbitals.
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
@@ -213,7 +213,7 @@ BOOST_AUTO_TEST_CASE(integrated_density_cc_pVTZ) {
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2.xyz");
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "cc-pVDZ"};
 
-    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in the scalar/AO basis
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in the scalar/AO basis
 
     // Prepare the canonical RHF orbitals.
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());

@@ -53,7 +53,7 @@ GQCP::SquareMatrix<double> M (2);  // the matrix representation
 M << 1.0, 2.0,
      3.0, 4.0;
 
-const GQCP::ScalarSQOneElectronOperator<double> op {M};  // the operator itself
+const GQCP::ScalarRSQOneElectronOperator<double> op {M};  // the operator itself
 ```
 
 
@@ -62,12 +62,13 @@ In this example, we first create a matrix representation using Eigen's syntax an
 `SQOneElectronOperator` is actually a class template, which has two template arguments.
 The first one is the underlying type of the matrix elements/integrals/parameters, and the second is the number of components the operator has.
 We are most often working with `SQOperator`s with only one component, like the kinetic energy operator, or the Coulomb repulsion operator, but occasionally, we work with electronic dipole operators as well.
-You might have guessed, but `ScalarSQOperator` is just an alias, which for `SQOneElectronOperator` is written as follows:
+
+You might have guessed, but `ScalarRSQOperator` is just an alias, which for `SQOneElectronOperator` is written as follows:
 
 
 ```cpp
 template <typename Scalar>
-using ScalarSQOneElectronOperator = SQOneElectronOperator<Scalar, 1>;
+using ScalarRSQOneElectronOperator = RSQOneElectronOperator<Scalar, ScalarVectorizer>;
 ```
 
 

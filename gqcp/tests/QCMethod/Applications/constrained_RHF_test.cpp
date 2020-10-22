@@ -34,7 +34,7 @@ BOOST_AUTO_TEST_CASE(constrained_CO_test) {
     // Create a Molecule and the corresponding HamiltonianParameters
     auto CO = GQCP::Molecule::ReadXYZ("data/CO_mulliken.xyz");
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {CO, "STO-3G"};
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, CO);  // in an AO basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, CO);  // in an AO basis
 
     size_t K = sq_hamiltonian.numberOfOrbitals();
     size_t N = CO.numberOfElectrons();
@@ -98,7 +98,7 @@ BOOST_AUTO_TEST_CASE(constrained_CO_test) {
         double expectation_value = rhf_qc_structure.groundStateEnergy();
 
         // Retrieve the expectation value of the Mulliken operator (aka the population)
-        double mulliken_population = mulliken_operator.calculateExpectationValue(D)(0);
+        double mulliken_population = mulliken_operator.calculateExpectationValue(D);  // A scalar-StorageArray can be implicitly converted into the underlying scalar.
 
         // Retrieve the total energy by adding the lambda times the expectation value of the constraining operator
         const double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(CO).value();
@@ -124,7 +124,7 @@ BOOST_AUTO_TEST_CASE(constrained_CO_test_random_transformation) {
     // Create a Molecule and the corresponding HamiltonianParameters
     auto CO = GQCP::Molecule::ReadXYZ("data/CO_mulliken.xyz");
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {CO, "STO-3G"};
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, CO);  // in an AO basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, CO);  // in an AO basis
 
     size_t K = sq_hamiltonian.numberOfOrbitals();
     size_t N = CO.numberOfElectrons();
@@ -196,7 +196,7 @@ BOOST_AUTO_TEST_CASE(constrained_CO_test_random_transformation) {
         double expectation_value = rhf_qc_structure.groundStateEnergy();
 
         // Retrieve the expectation value of the Mulliken operator (aka the population)
-        double mulliken_population = mulliken_operator.calculateExpectationValue(D)(0);
+        double mulliken_population = mulliken_operator.calculateExpectationValue(D);  // A scalar-StorageArray can be implicitly converted into the underlying scalar.
 
         // Retrieve the total energy by adding the lambda times the expectation value of the constraining operator
         double total_energy = expectation_value + lambda * mulliken_population + GQCP::Operator::NuclearRepulsion(CO).value();

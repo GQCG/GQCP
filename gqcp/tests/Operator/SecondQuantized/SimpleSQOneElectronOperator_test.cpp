@@ -40,7 +40,8 @@ BOOST_AUTO_TEST_CASE(SimpleSQOneElectronOperator_constructor) {
     BOOST_CHECK_NO_THROW(GQCP::ScalarRSQOneElectronOperator<double> operator_square {square_matrix3});
 
     // Check a throwing constructor: the dimensions of the square matrices must be equal.
-    BOOST_CHECK_THROW(GQCP::VectorRSQOneElectronOperator<double> operator_rectangular({square_matrix3, square_matrix3, square_matrix4}), std::invalid_argument);
+    std::vector<GQCP::SquareMatrix<double>> matrices {square_matrix3, square_matrix3, square_matrix4};
+    BOOST_CHECK_THROW(GQCP::VectorRSQOneElectronOperator<double> operator_rectangular {matrices}, std::invalid_argument);
 }
 
 
@@ -54,14 +55,14 @@ BOOST_AUTO_TEST_CASE(SimpleSQOneElectronOperator_zero_constructor) {
     const size_t dim = 2;
 
     // Check a zero constructor for scalar operators.
-    const GQCP::ScalarRSQOneElectronOperator<double> zero_scalar_operator {2};
+    const GQCP::ScalarRSQOneElectronOperator<double> zero_scalar_operator = GQCP::ScalarRSQOneElectronOperator<double>::Zero(2);
 
     BOOST_CHECK_EQUAL(zero_scalar_operator.numberOfOrbitals(), dim);
     BOOST_CHECK(zero_scalar_operator.parameters().isZero(1.0e-08));
 
 
     // Check a zero constructor for vector operators.
-    const GQCP::VectorRSQOneElectronOperator<double> zero_vector_operator {2};
+    const GQCP::VectorRSQOneElectronOperator<double> zero_vector_operator = GQCP::VectorRSQOneElectronOperator<double>::Zero(2);
 
     BOOST_CHECK_EQUAL(zero_vector_operator.numberOfOrbitals(), dim);
     for (size_t i = 0; i < 3; i++) {
@@ -82,7 +83,8 @@ BOOST_AUTO_TEST_CASE(operator_call) {
     const GQCP::SquareMatrix<double> M2 = GQCP::SquareMatrix<double>::Random(dim);
     const GQCP::SquareMatrix<double> M3 = GQCP::SquareMatrix<double>::Random(dim);
 
-    const GQCP::VectorRSQOneElectronOperator<double> vector_operator {{M1, M2, M3}};
+    const std::vector<GQCP::SquareMatrix<double>> matrices {M1, M2, M3};
+    const GQCP::VectorRSQOneElectronOperator<double> vector_operator {matrices};
 
     // Check if we can access a single component of this operator.
     BOOST_CHECK(vector_operator(0).parameters().isApprox(M1, 1.0e-12));
@@ -255,7 +257,8 @@ BOOST_AUTO_TEST_CASE(dot) {
             3.0,  0.0;
     // clang-format on
 
-    GQCP::VectorRSQOneElectronOperator<double> h_op {{h_x, h_y, h_z}};
+    const std::vector<GQCP::SquareMatrix<double>> matrices {h_x, h_y, h_z};
+    GQCP::VectorRSQOneElectronOperator<double> h_op {matrices};
 
 
     // Define a vector to do the dot product with, and check the result.
@@ -267,6 +270,8 @@ BOOST_AUTO_TEST_CASE(dot) {
     dot_ref <<  -1.0,  15.0,
                 18.0,  -4.0;
     // clang-format on
+
+    std::cout << h_op.dot(a).parameters() << std::endl;
 
     BOOST_CHECK(h_op.dot(a).parameters().isApprox(dot_ref, 1.0e-12));
 }

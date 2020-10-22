@@ -341,265 +341,265 @@ BOOST_AUTO_TEST_CASE(ONVBasis_setNext) {
  * 
  *  The test system is a H6(2+)-chain with internuclear separation of 0.742 (a.u.) in an STO-3G basis.
  */
-BOOST_AUTO_TEST_CASE(evaluate_one_electron_operator) {
+// BOOST_AUTO_TEST_CASE(evaluate_one_electron_operator) {
 
-    // Set up an example molecular Hamiltonian.
-    const auto molecule = GQCP::Molecule::HChain(6, 0.742, +2);
-    const auto N = molecule.numberOfElectrons();
+//     // Set up an example molecular Hamiltonian.
+//     const auto molecule = GQCP::Molecule::HChain(6, 0.742, +2);
+//     const auto N = molecule.numberOfElectrons();
 
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
-    const auto M = spinor_basis.numberOfSpatialOrbitals();
-    spinor_basis.lowdinOrthonormalize();
-    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in the orthonormal Löwdin basis
+//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+//     const auto M = spinor_basis.numberOfSpatialOrbitals();
+//     spinor_basis.lowdinOrthonormalize();
+//     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in the orthonormal Löwdin basis
 
-    // Set up the two equivalent ONV bases.
-    const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
-    const GQCP::SpinResolvedSelectedONVBasis selected_onv_basis {GQCP::SpinResolvedONVBasis(M, N, 0)};  // no beta electrons
-
-
-    // Check the evaluation of the core Hamiltonian.
-    const auto& h_op = sq_hamiltonian.core();
-
-    // Check the dense evaluation.
-    const auto h_dense = onv_basis.evaluate<GQCP::SquareMatrix<double>>(h_op, true);     // true: calculate diagonal values
-    const auto h_dense_selected = selected_onv_basis.evaluateOperatorDense(h_op, true);  // true: calculate diagonal values
-
-    BOOST_CHECK(h_dense.isApprox(h_dense_selected));
+//     // Set up the two equivalent ONV bases.
+//     const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
+//     const GQCP::SpinResolvedSelectedONVBasis selected_onv_basis {GQCP::SpinResolvedONVBasis(M, N, 0)};  // no beta electrons
 
 
-    // Check the sparse evaluation.
+//     // Check the evaluation of the core Hamiltonian.
+//     const auto& h_op = sq_hamiltonian.core();
+
+//     // Check the dense evaluation.
+//     const auto h_dense = onv_basis.evaluate<GQCP::SquareMatrix<double>>(h_op, true);     // true: calculate diagonal values
+//     const auto h_dense_selected = selected_onv_basis.evaluateOperatorDense(h_op, true);  // true: calculate diagonal values
+
+//     BOOST_CHECK(h_dense.isApprox(h_dense_selected));
 
 
-    //
-}
+//     // Check the sparse evaluation.
+
+
+//     //
+// }
 
 
 /**
  *  Perform a dense evaluation of a one-, two-electron operator and the Hamiltonian in the SpinUnresolvedONV basis (including the diagonal)
  *  and compare these to the selected CI solutions.
  */
-BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_Dense_diagonal_true) {
+// BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_Dense_diagonal_true) {
 
-    GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
-    spinor_basis.lowdinOrthonormalize();
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
+//     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
+//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
+//     spinor_basis.lowdinOrthonormalize();
+//     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
-    GQCP::SpinUnresolvedONVBasis fock_space {6, 4};
-    GQCP::SpinResolvedONVBasis product_fock_space {6, 4, 0};  // 4 alpha 0 beta product SpinUnresolvedONV basis as selected SpinUnresolvedONV basis constructor argument will mimic a spin orbital SpinUnresolvedONV basis
-    GQCP::SpinResolvedSelectedONVBasis selected_fock_space {product_fock_space};
+//     GQCP::SpinUnresolvedONVBasis fock_space {6, 4};
+//     GQCP::SpinResolvedONVBasis product_fock_space {6, 4, 0};  // 4 alpha 0 beta product SpinUnresolvedONV basis as selected SpinUnresolvedONV basis constructor argument will mimic a spin orbital SpinUnresolvedONV basis
+//     GQCP::SpinResolvedSelectedONVBasis selected_fock_space {product_fock_space};
 
-    const auto& h = sq_hamiltonian.core();
-    const auto& g = sq_hamiltonian.twoElectron();
+//     const auto& h = sq_hamiltonian.core();
+//     const auto& g = sq_hamiltonian.twoElectron();
 
-    // Test the evaluation of the operators with selected SpinUnresolvedONV basis (the reference) versus that of the product SpinUnresolvedONV basis
-    auto one_electron_evaluation1 = fock_space.evaluateOperatorDense(h, true);
-    auto one_electron_evaluation2 = selected_fock_space.evaluateOperatorDense(h, true);
+//     // Test the evaluation of the operators with selected SpinUnresolvedONV basis (the reference) versus that of the product SpinUnresolvedONV basis
+//     auto one_electron_evaluation1 = fock_space.evaluateOperatorDense(h, true);
+//     auto one_electron_evaluation2 = selected_fock_space.evaluateOperatorDense(h, true);
 
-    auto two_electron_evaluation1 = fock_space.evaluateOperatorDense(g, true);
-    auto two_electron_evaluation2 = selected_fock_space.evaluateOperatorDense(g, true);
+//     auto two_electron_evaluation1 = fock_space.evaluateOperatorDense(g, true);
+//     auto two_electron_evaluation2 = selected_fock_space.evaluateOperatorDense(g, true);
 
-    auto hamiltonian_evaluation1 = fock_space.evaluateOperatorDense(sq_hamiltonian, true);
-    auto hamiltonian_evaluation2 = selected_fock_space.evaluateOperatorDense(sq_hamiltonian, true);
+//     auto hamiltonian_evaluation1 = fock_space.evaluateOperatorDense(sq_hamiltonian, true);
+//     auto hamiltonian_evaluation2 = selected_fock_space.evaluateOperatorDense(sq_hamiltonian, true);
 
-    BOOST_CHECK(one_electron_evaluation1.isApprox(one_electron_evaluation2));
-    BOOST_CHECK(two_electron_evaluation1.isApprox(two_electron_evaluation2));
-    BOOST_CHECK(hamiltonian_evaluation1.isApprox(hamiltonian_evaluation2));
-}
+//     BOOST_CHECK(one_electron_evaluation1.isApprox(one_electron_evaluation2));
+//     BOOST_CHECK(two_electron_evaluation1.isApprox(two_electron_evaluation2));
+//     BOOST_CHECK(hamiltonian_evaluation1.isApprox(hamiltonian_evaluation2));
+// }
 
 
 /**
  *  Perform a dense evaluation of a one-, two-electron operator and the Hamiltonian in the SpinUnresolvedONV basis (excluding the diagonal)
  *  and compare these to the selected CI solutions.
  */
-BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_Dense_diagonal_false) {
+// BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_Dense_diagonal_false) {
 
-    GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
-    spinor_basis.lowdinOrthonormalize();
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
+//     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
+//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
+//     spinor_basis.lowdinOrthonormalize();
+//     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
-    GQCP::SpinUnresolvedONVBasis fock_space {6, 4};
-    GQCP::SpinResolvedONVBasis product_fock_space {6, 4, 0};  // 4 alpha 0 beta product SpinUnresolvedONV basis as selected SpinUnresolvedONV basis constructor argument will mimic a spin orbital SpinUnresolvedONV basis
-    GQCP::SpinResolvedSelectedONVBasis selected_fock_space {product_fock_space};
+//     GQCP::SpinUnresolvedONVBasis fock_space {6, 4};
+//     GQCP::SpinResolvedONVBasis product_fock_space {6, 4, 0};  // 4 alpha 0 beta product SpinUnresolvedONV basis as selected SpinUnresolvedONV basis constructor argument will mimic a spin orbital SpinUnresolvedONV basis
+//     GQCP::SpinResolvedSelectedONVBasis selected_fock_space {product_fock_space};
 
-    const auto& h = sq_hamiltonian.core();
-    const auto& g = sq_hamiltonian.twoElectron();
+//     const auto& h = sq_hamiltonian.core();
+//     const auto& g = sq_hamiltonian.twoElectron();
 
-    // Test the evaluation of the operators with selected SpinUnresolvedONV basis (the reference) versus that of the product SpinUnresolvedONV basis
-    auto one_electron_evaluation1 = fock_space.evaluateOperatorDense(h, false);
-    auto one_electron_evaluation2 = selected_fock_space.evaluateOperatorDense(h, false);
+//     // Test the evaluation of the operators with selected SpinUnresolvedONV basis (the reference) versus that of the product SpinUnresolvedONV basis
+//     auto one_electron_evaluation1 = fock_space.evaluateOperatorDense(h, false);
+//     auto one_electron_evaluation2 = selected_fock_space.evaluateOperatorDense(h, false);
 
-    auto two_electron_evaluation1 = fock_space.evaluateOperatorDense(g, false);
-    auto two_electron_evaluation2 = selected_fock_space.evaluateOperatorDense(g, false);
+//     auto two_electron_evaluation1 = fock_space.evaluateOperatorDense(g, false);
+//     auto two_electron_evaluation2 = selected_fock_space.evaluateOperatorDense(g, false);
 
-    auto hamiltonian_evaluation1 = fock_space.evaluateOperatorDense(sq_hamiltonian, false);
-    auto hamiltonian_evaluation2 = selected_fock_space.evaluateOperatorDense(sq_hamiltonian, false);
+//     auto hamiltonian_evaluation1 = fock_space.evaluateOperatorDense(sq_hamiltonian, false);
+//     auto hamiltonian_evaluation2 = selected_fock_space.evaluateOperatorDense(sq_hamiltonian, false);
 
-    BOOST_CHECK(one_electron_evaluation1.isApprox(one_electron_evaluation2));
-    BOOST_CHECK(two_electron_evaluation1.isApprox(two_electron_evaluation2));
-    BOOST_CHECK(hamiltonian_evaluation1.isApprox(hamiltonian_evaluation2));
-}
+//     BOOST_CHECK(one_electron_evaluation1.isApprox(one_electron_evaluation2));
+//     BOOST_CHECK(two_electron_evaluation1.isApprox(two_electron_evaluation2));
+//     BOOST_CHECK(hamiltonian_evaluation1.isApprox(hamiltonian_evaluation2));
+// }
 
 
 /**
  *  Perform a sparse evaluation of a one-, two-electron operator and the Hamiltonian in the SpinUnresolvedONV basis (including the diagonal)
  *  and compare these to the selected CI solutions.
  */
-BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_Sparse_diagonal_true) {
+// BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_Sparse_diagonal_true) {
 
-    GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
-    spinor_basis.lowdinOrthonormalize();
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
+//     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
+//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
+//     spinor_basis.lowdinOrthonormalize();
+//     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
-    GQCP::SpinUnresolvedONVBasis fock_space {6, 4};
-    GQCP::SpinResolvedONVBasis product_fock_space {6, 4, 0};  // 4 alpha 0 beta product SpinUnresolvedONV basis as selected SpinUnresolvedONV basis constructor argument will mimic a spin orbital SpinUnresolvedONV basis
-    GQCP::SpinResolvedSelectedONVBasis selected_fock_space {product_fock_space};
+//     GQCP::SpinUnresolvedONVBasis fock_space {6, 4};
+//     GQCP::SpinResolvedONVBasis product_fock_space {6, 4, 0};  // 4 alpha 0 beta product SpinUnresolvedONV basis as selected SpinUnresolvedONV basis constructor argument will mimic a spin orbital SpinUnresolvedONV basis
+//     GQCP::SpinResolvedSelectedONVBasis selected_fock_space {product_fock_space};
 
-    const auto& h = sq_hamiltonian.core();
-    const auto& g = sq_hamiltonian.twoElectron();
+//     const auto& h = sq_hamiltonian.core();
+//     const auto& g = sq_hamiltonian.twoElectron();
 
-    // Test the evaluation of the operators with selected SpinUnresolvedONV basis (the reference) versus that of the product SpinUnresolvedONV basis
-    auto one_electron_evaluation1 = GQCP::SquareMatrix<double>(fock_space.evaluateOperatorSparse(h, true));
-    auto one_electron_evaluation2 = GQCP::SquareMatrix<double>(selected_fock_space.evaluateOperatorSparse(h, true));
+//     // Test the evaluation of the operators with selected SpinUnresolvedONV basis (the reference) versus that of the product SpinUnresolvedONV basis
+//     auto one_electron_evaluation1 = GQCP::SquareMatrix<double>(fock_space.evaluateOperatorSparse(h, true));
+//     auto one_electron_evaluation2 = GQCP::SquareMatrix<double>(selected_fock_space.evaluateOperatorSparse(h, true));
 
-    auto two_electron_evaluation1 = GQCP::SquareMatrix<double>(fock_space.evaluateOperatorSparse(g, true));
-    auto two_electron_evaluation2 = GQCP::SquareMatrix<double>(selected_fock_space.evaluateOperatorSparse(g, true));
+//     auto two_electron_evaluation1 = GQCP::SquareMatrix<double>(fock_space.evaluateOperatorSparse(g, true));
+//     auto two_electron_evaluation2 = GQCP::SquareMatrix<double>(selected_fock_space.evaluateOperatorSparse(g, true));
 
-    auto hamiltonian_evaluation1 = GQCP::SquareMatrix<double>(fock_space.evaluateOperatorSparse(sq_hamiltonian, true));
-    auto hamiltonian_evaluation2 = GQCP::SquareMatrix<double>(selected_fock_space.evaluateOperatorSparse(sq_hamiltonian, true));
+//     auto hamiltonian_evaluation1 = GQCP::SquareMatrix<double>(fock_space.evaluateOperatorSparse(sq_hamiltonian, true));
+//     auto hamiltonian_evaluation2 = GQCP::SquareMatrix<double>(selected_fock_space.evaluateOperatorSparse(sq_hamiltonian, true));
 
-    BOOST_CHECK(one_electron_evaluation1.isApprox(one_electron_evaluation2));
-    BOOST_CHECK(two_electron_evaluation1.isApprox(two_electron_evaluation2));
-    BOOST_CHECK(hamiltonian_evaluation1.isApprox(hamiltonian_evaluation2));
-}
+//     BOOST_CHECK(one_electron_evaluation1.isApprox(one_electron_evaluation2));
+//     BOOST_CHECK(two_electron_evaluation1.isApprox(two_electron_evaluation2));
+//     BOOST_CHECK(hamiltonian_evaluation1.isApprox(hamiltonian_evaluation2));
+// }
 
 
 /**
  *  Perform a sparse evaluation of a one-, two-electron operator and the Hamiltonian in the SpinUnresolvedONV basis (excluding the diagonal)
  *  and compare these to the selected CI solutions.
  */
-BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_Sparse_diagonal_false) {
+// BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_Sparse_diagonal_false) {
 
-    GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
-    spinor_basis.lowdinOrthonormalize();
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
+//     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
+//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
+//     spinor_basis.lowdinOrthonormalize();
+//     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
-    GQCP::SpinUnresolvedONVBasis fock_space {6, 4};
-    GQCP::SpinResolvedONVBasis product_fock_space {6, 4, 0};  // 4 alpha 0 beta product SpinUnresolvedONV basis as selected SpinUnresolvedONV basis constructor argument will mimic a spin orbital SpinUnresolvedONV basis
-    GQCP::SpinResolvedSelectedONVBasis selected_fock_space {product_fock_space};
+//     GQCP::SpinUnresolvedONVBasis fock_space {6, 4};
+//     GQCP::SpinResolvedONVBasis product_fock_space {6, 4, 0};  // 4 alpha 0 beta product SpinUnresolvedONV basis as selected SpinUnresolvedONV basis constructor argument will mimic a spin orbital SpinUnresolvedONV basis
+//     GQCP::SpinResolvedSelectedONVBasis selected_fock_space {product_fock_space};
 
-    const auto& h = sq_hamiltonian.core();
-    const auto& g = sq_hamiltonian.twoElectron();
+//     const auto& h = sq_hamiltonian.core();
+//     const auto& g = sq_hamiltonian.twoElectron();
 
-    // Test the evaluation of the operators with selected SpinUnresolvedONV basis (the reference) versus that of the product SpinUnresolvedONV basis
-    auto one_electron_evaluation1 = GQCP::SquareMatrix<double>(fock_space.evaluateOperatorSparse(h, false));
-    auto one_electron_evaluation2 = GQCP::SquareMatrix<double>(selected_fock_space.evaluateOperatorSparse(h, false));
+//     // Test the evaluation of the operators with selected SpinUnresolvedONV basis (the reference) versus that of the product SpinUnresolvedONV basis
+//     auto one_electron_evaluation1 = GQCP::SquareMatrix<double>(fock_space.evaluateOperatorSparse(h, false));
+//     auto one_electron_evaluation2 = GQCP::SquareMatrix<double>(selected_fock_space.evaluateOperatorSparse(h, false));
 
-    auto two_electron_evaluation1 = GQCP::SquareMatrix<double>(fock_space.evaluateOperatorSparse(g, false));
-    auto two_electron_evaluation2 = GQCP::SquareMatrix<double>(selected_fock_space.evaluateOperatorSparse(g, false));
+//     auto two_electron_evaluation1 = GQCP::SquareMatrix<double>(fock_space.evaluateOperatorSparse(g, false));
+//     auto two_electron_evaluation2 = GQCP::SquareMatrix<double>(selected_fock_space.evaluateOperatorSparse(g, false));
 
-    auto hamiltonian_evaluation1 = GQCP::SquareMatrix<double>(fock_space.evaluateOperatorSparse(sq_hamiltonian, false));
-    auto hamiltonian_evaluation2 = GQCP::SquareMatrix<double>(selected_fock_space.evaluateOperatorSparse(sq_hamiltonian, false));
+//     auto hamiltonian_evaluation1 = GQCP::SquareMatrix<double>(fock_space.evaluateOperatorSparse(sq_hamiltonian, false));
+//     auto hamiltonian_evaluation2 = GQCP::SquareMatrix<double>(selected_fock_space.evaluateOperatorSparse(sq_hamiltonian, false));
 
-    BOOST_CHECK(one_electron_evaluation1.isApprox(one_electron_evaluation2));
-    BOOST_CHECK(two_electron_evaluation1.isApprox(two_electron_evaluation2));
-    BOOST_CHECK(hamiltonian_evaluation1.isApprox(hamiltonian_evaluation2));
-}
+//     BOOST_CHECK(one_electron_evaluation1.isApprox(one_electron_evaluation2));
+//     BOOST_CHECK(two_electron_evaluation1.isApprox(two_electron_evaluation2));
+//     BOOST_CHECK(hamiltonian_evaluation1.isApprox(hamiltonian_evaluation2));
+// }
 
 
 /**
  *  Evaluate the diagonal of a one-, two-electron operator and the Hamiltonian in the SpinUnresolvedONV basis 
  *  and compare these to the selected CI solutions.
  */
-BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_diagonal) {
+// BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_diagonal) {
 
-    GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
-    spinor_basis.lowdinOrthonormalize();
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
+//     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
+//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
+//     spinor_basis.lowdinOrthonormalize();
+//     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
-    GQCP::SpinUnresolvedONVBasis fock_space {6, 4};
-    GQCP::SpinResolvedONVBasis product_fock_space {6, 4, 0};  // 4 alpha 0 beta product SpinUnresolvedONV basis as selected SpinUnresolvedONV basis constructor argument will mimic a spin orbital SpinUnresolvedONV basis
-    GQCP::SpinResolvedSelectedONVBasis selected_fock_space {product_fock_space};
+//     GQCP::SpinUnresolvedONVBasis fock_space {6, 4};
+//     GQCP::SpinResolvedONVBasis product_fock_space {6, 4, 0};  // 4 alpha 0 beta product SpinUnresolvedONV basis as selected SpinUnresolvedONV basis constructor argument will mimic a spin orbital SpinUnresolvedONV basis
+//     GQCP::SpinResolvedSelectedONVBasis selected_fock_space {product_fock_space};
 
-    const auto& h = sq_hamiltonian.core();
-    const auto& g = sq_hamiltonian.twoElectron();
+//     const auto& h = sq_hamiltonian.core();
+//     const auto& g = sq_hamiltonian.twoElectron();
 
-    // Test the evaluation of the operators with selected SpinUnresolvedONV basis (the reference) versus that of the product SpinUnresolvedONV basis
-    auto one_electron_evaluation1 = fock_space.evaluateOperatorDiagonal(h);
-    auto one_electron_evaluation2 = selected_fock_space.evaluateOperatorDiagonal(h);
+//     // Test the evaluation of the operators with selected SpinUnresolvedONV basis (the reference) versus that of the product SpinUnresolvedONV basis
+//     auto one_electron_evaluation1 = fock_space.evaluateOperatorDiagonal(h);
+//     auto one_electron_evaluation2 = selected_fock_space.evaluateOperatorDiagonal(h);
 
-    auto two_electron_evaluation1 = fock_space.evaluateOperatorDiagonal(g);
-    auto two_electron_evaluation2 = selected_fock_space.evaluateOperatorDiagonal(g);
+//     auto two_electron_evaluation1 = fock_space.evaluateOperatorDiagonal(g);
+//     auto two_electron_evaluation2 = selected_fock_space.evaluateOperatorDiagonal(g);
 
-    auto hamiltonian_evaluation1 = fock_space.evaluateOperatorDiagonal(sq_hamiltonian);
-    auto hamiltonian_evaluation2 = selected_fock_space.evaluateOperatorDiagonal(sq_hamiltonian);
+//     auto hamiltonian_evaluation1 = fock_space.evaluateOperatorDiagonal(sq_hamiltonian);
+//     auto hamiltonian_evaluation2 = selected_fock_space.evaluateOperatorDiagonal(sq_hamiltonian);
 
-    BOOST_CHECK(one_electron_evaluation1.isApprox(one_electron_evaluation2));
-    BOOST_CHECK(two_electron_evaluation1.isApprox(two_electron_evaluation2));
-    BOOST_CHECK(hamiltonian_evaluation1.isApprox(hamiltonian_evaluation2));
-}
+//     BOOST_CHECK(one_electron_evaluation1.isApprox(one_electron_evaluation2));
+//     BOOST_CHECK(two_electron_evaluation1.isApprox(two_electron_evaluation2));
+//     BOOST_CHECK(hamiltonian_evaluation1.isApprox(hamiltonian_evaluation2));
+// }
 
 
 /**
  *  Check the Dense evaluations with diagonal to that of the Dense with the diagonal excluded + the diagonal individually for the Hamiltonian
  */
-BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_diagonal_vs_no_diagonal) {
+// BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_diagonal_vs_no_diagonal) {
 
-    GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
-    spinor_basis.lowdinOrthonormalize();
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
+//     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
+//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
+//     spinor_basis.lowdinOrthonormalize();
+//     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
-    GQCP::SpinUnresolvedONVBasis fock_space {6, 4};
+//     GQCP::SpinUnresolvedONVBasis fock_space {6, 4};
 
-    GQCP::SquareMatrix<double> hamiltonian = fock_space.evaluateOperatorDense(sq_hamiltonian, true);
-    GQCP::SquareMatrix<double> hamiltonian_no_diagonal = fock_space.evaluateOperatorDense(sq_hamiltonian, false);
-    GQCP::VectorX<double> hamiltonian_diagonal = fock_space.evaluateOperatorDiagonal(sq_hamiltonian);
+//     GQCP::SquareMatrix<double> hamiltonian = fock_space.evaluateOperatorDense(sq_hamiltonian, true);
+//     GQCP::SquareMatrix<double> hamiltonian_no_diagonal = fock_space.evaluateOperatorDense(sq_hamiltonian, false);
+//     GQCP::VectorX<double> hamiltonian_diagonal = fock_space.evaluateOperatorDiagonal(sq_hamiltonian);
 
-    // Test if non-diagonal evaluation and diagonal evaluations are correct
-    BOOST_CHECK(hamiltonian.isApprox(hamiltonian_no_diagonal + GQCP::SquareMatrix<double>(hamiltonian_diagonal.asDiagonal())));
-}
+//     // Test if non-diagonal evaluation and diagonal evaluations are correct
+//     BOOST_CHECK(hamiltonian.isApprox(hamiltonian_no_diagonal + GQCP::SquareMatrix<double>(hamiltonian_diagonal.asDiagonal())));
+// }
 
 
 /**
  *  Perform a matrix-vector product evaluation of a one-, two-electron operator and the Hamiltonian in the SpinUnresolvedONV basis
  *  and compare these to the matrix-vector product of the actual dense evaluations
  */
-BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_MatrixVectorProduct) {
+// BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_MatrixVectorProduct) {
 
-    GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
-    spinor_basis.lowdinOrthonormalize();
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
+//     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
+//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
+//     spinor_basis.lowdinOrthonormalize();
+//     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
-    GQCP::SpinUnresolvedONVBasis fock_space {6, 4};
+//     GQCP::SpinUnresolvedONVBasis fock_space {6, 4};
 
-    const auto& h = sq_hamiltonian.core();
-    const auto& g = sq_hamiltonian.twoElectron();
+//     const auto& h = sq_hamiltonian.core();
+//     const auto& g = sq_hamiltonian.twoElectron();
 
-    // Generate diagonals for the matvec input
-    auto one_electron_diagonal = fock_space.evaluateOperatorDiagonal(h);
-    auto two_electron_diagonal = fock_space.evaluateOperatorDiagonal(g);
-    auto hamiltonian_diagonal = fock_space.evaluateOperatorDiagonal(sq_hamiltonian);
+//     // Generate diagonals for the matvec input
+//     auto one_electron_diagonal = fock_space.evaluateOperatorDiagonal(h);
+//     auto two_electron_diagonal = fock_space.evaluateOperatorDiagonal(g);
+//     auto hamiltonian_diagonal = fock_space.evaluateOperatorDiagonal(sq_hamiltonian);
 
-    // Test the evaluation of the operators with selected SpinUnresolvedONV basis (the reference) versus that of the product SpinUnresolvedONV basis
-    auto one_electron_evaluation1 = fock_space.evaluateOperatorMatrixVectorProduct(h, one_electron_diagonal, one_electron_diagonal);
-    GQCP::VectorX<double> one_electron_evaluation2 = fock_space.evaluateOperatorDense(h, true) * one_electron_diagonal;
+//     // Test the evaluation of the operators with selected SpinUnresolvedONV basis (the reference) versus that of the product SpinUnresolvedONV basis
+//     auto one_electron_evaluation1 = fock_space.evaluateOperatorMatrixVectorProduct(h, one_electron_diagonal, one_electron_diagonal);
+//     GQCP::VectorX<double> one_electron_evaluation2 = fock_space.evaluateOperatorDense(h, true) * one_electron_diagonal;
 
-    auto two_electron_evaluation1 = fock_space.evaluateOperatorMatrixVectorProduct(g, two_electron_diagonal, two_electron_diagonal);
-    GQCP::VectorX<double> two_electron_evaluation2 = fock_space.evaluateOperatorDense(g, true) * two_electron_diagonal;
+//     auto two_electron_evaluation1 = fock_space.evaluateOperatorMatrixVectorProduct(g, two_electron_diagonal, two_electron_diagonal);
+//     GQCP::VectorX<double> two_electron_evaluation2 = fock_space.evaluateOperatorDense(g, true) * two_electron_diagonal;
 
-    auto hamiltonian_evaluation1 = fock_space.evaluateOperatorMatrixVectorProduct(sq_hamiltonian, hamiltonian_diagonal, hamiltonian_diagonal);
-    GQCP::VectorX<double> hamiltonian_evaluation2 = fock_space.evaluateOperatorDense(sq_hamiltonian, true) * hamiltonian_diagonal;
+//     auto hamiltonian_evaluation1 = fock_space.evaluateOperatorMatrixVectorProduct(sq_hamiltonian, hamiltonian_diagonal, hamiltonian_diagonal);
+//     GQCP::VectorX<double> hamiltonian_evaluation2 = fock_space.evaluateOperatorDense(sq_hamiltonian, true) * hamiltonian_diagonal;
 
-    BOOST_CHECK(one_electron_evaluation1.isApprox(one_electron_evaluation2));
-    BOOST_CHECK(two_electron_evaluation1.isApprox(two_electron_evaluation2));
-    BOOST_CHECK(hamiltonian_evaluation1.isApprox(hamiltonian_evaluation2));
-}
+//     BOOST_CHECK(one_electron_evaluation1.isApprox(one_electron_evaluation2));
+//     BOOST_CHECK(two_electron_evaluation1.isApprox(two_electron_evaluation2));
+//     BOOST_CHECK(hamiltonian_evaluation1.isApprox(hamiltonian_evaluation2));
+// }
 
 /**
  * Compare the "old" evaluate method with the "new" one that uses the ONVPath API.

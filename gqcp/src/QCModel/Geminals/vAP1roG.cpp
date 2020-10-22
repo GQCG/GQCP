@@ -88,7 +88,7 @@ Orbital1DM<double> vAP1roG::calculate1DM(const AP1roGGeminalCoefficients& G, con
  * 
  *  @return the response force (-F_lambda) that is used to solve the linear equations for the Lagrange multipliers lambda in [k_lambda lambda = -F_lambda]
  */
-ImplicitMatrixSlice<double> vAP1roG::calculateMultiplierResponseForce(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P) {
+ImplicitMatrixSlice<double> vAP1roG::calculateMultiplierResponseForce(const RSQHamiltonian<double>& sq_hamiltonian, const size_t N_P) {
 
     // Prepare some variables.
     const auto& g = sq_hamiltonian.twoElectron().parameters();
@@ -114,7 +114,7 @@ ImplicitMatrixSlice<double> vAP1roG::calculateMultiplierResponseForce(const SQHa
  * 
  *  @return the response force constant (k_lambda) that is used to solve the linear equations for the Lagrange multipliers lambda in [k_lambda lambda = -F_lambda]
  */
-MatrixX<double> vAP1roG::calculateMultiplierResponseForceConstant(const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G) {
+MatrixX<double> vAP1roG::calculateMultiplierResponseForceConstant(const RSQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G) {
 
     const auto N_P = G.numberOfElectronPairs();
 

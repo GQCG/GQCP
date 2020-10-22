@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
+#include "Operator/SecondQuantized/RSQTwoElectronOperator.hpp"
 #include "Utilities/linalg.hpp"
 #include "Utilities/miscellaneous.hpp"
 
@@ -33,12 +33,12 @@ BOOST_AUTO_TEST_CASE(SQTwoElectronOperator_constructor) {
 
     // Check a correct constructor
     const GQCP::QCRankFourTensor<double> tensor {3};
-    GQCP::ScalarSQTwoElectronOperator<double> O {tensor};
+    GQCP::ScalarRSQTwoElectronOperator<double> O {tensor};
 
 
     // Check a faulty constructor
     GQCP::Tensor<double, 4> tensor2 {3, 3, 3, 2};
-    BOOST_CHECK_THROW(GQCP::ScalarSQTwoElectronOperator<double> O2 {tensor2}, std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::ScalarRSQTwoElectronOperator<double> O2 {tensor2}, std::invalid_argument);
 }
 
 
@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_CASE(SQTwoElectronOperator_constructor) {
 BOOST_AUTO_TEST_CASE(SQTwoElectronOperator_zero_constructor) {
 
     const size_t dim = 2;
-    GQCP::ScalarSQTwoElectronOperator<double> op {dim};
+    GQCP::ScalarRSQTwoElectronOperator<double> op = GQCP::ScalarRSQTwoElectronOperator<double>::Zero(dim);
 
     // Create a reference zero tensor
     GQCP::QCRankFourTensor<double> ref {dim};
@@ -80,7 +80,7 @@ BOOST_AUTO_TEST_CASE(SQTwoElectronOperator_effectiveOneElectronPartition) {
         }
     }
 
-    GQCP::ScalarSQTwoElectronOperator<double> g {g_par};
+    GQCP::ScalarRSQTwoElectronOperator<double> g {g_par};
 
 
     // Set up the reference effective one-electron integrals by manual calculation
@@ -94,7 +94,6 @@ BOOST_AUTO_TEST_CASE(SQTwoElectronOperator_effectiveOneElectronPartition) {
         }
     }
 
-
     BOOST_CHECK(k_par_ref.isApprox(g.effectiveOneElectronPartition().parameters(), 1.0e-08));
 }
 
@@ -104,7 +103,7 @@ BOOST_AUTO_TEST_CASE(SQTwoElectronOperator_effectiveOneElectronPartition) {
  */
 BOOST_AUTO_TEST_CASE(calculateExpectationValue_throw) {
 
-    const GQCP::ScalarSQTwoElectronOperator<double> g {2};
+    const GQCP::ScalarRSQTwoElectronOperator<double> g {2};
 
     const GQCP::TwoDM<double> d_valid {2};
     const GQCP::TwoDM<double> d_invalid {3};
@@ -133,7 +132,7 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
             }
         }
     }
-    const GQCP::ScalarSQTwoElectronOperator<double> op(T1);
+    const GQCP::ScalarRSQTwoElectronOperator<double> op(T1);
 
     // Initialize an alpha and beta density matrix, each one is chosen as a Hermitian matrix.
     GQCP::TwoDM<double> d {dim};
@@ -151,7 +150,7 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
     // Initialize a reference value
     const double reference_expectation_value = 180.0;
 
-    const auto expectation_value = op.calculateExpectationValue(d)(0);
+    const double expectation_value = op.calculateExpectationValue(d);  // A scalar-StorageArray can be implicitly casted into its underlying scalar.
     BOOST_CHECK(std::abs(expectation_value - reference_expectation_value) < 1.0e-08);
 }
 
@@ -175,7 +174,7 @@ BOOST_AUTO_TEST_CASE(SQTwoElectronOperator_addition) {
             }
         }
     }
-    const GQCP::ScalarSQTwoElectronOperator<double> op1 {T1};
+    const GQCP::ScalarRSQTwoElectronOperator<double> op1 {T1};
 
     GQCP::QCRankFourTensor<double> T2 {dim};
 
@@ -188,7 +187,7 @@ BOOST_AUTO_TEST_CASE(SQTwoElectronOperator_addition) {
             }
         }
     }
-    const GQCP::ScalarSQTwoElectronOperator<double> op2 {T2};
+    const GQCP::ScalarRSQTwoElectronOperator<double> op2 {T2};
 
 
     // Initialize the reference and check the result
@@ -229,7 +228,7 @@ BOOST_AUTO_TEST_CASE(SQTwoElectronOperator_scalar_product) {
             }
         }
     }
-    const GQCP::ScalarSQTwoElectronOperator<double> op1 {T1};
+    const GQCP::ScalarRSQTwoElectronOperator<double> op1 {T1};
 
     const auto op_prod = scalar * op1;
     BOOST_CHECK(op_prod.parameters().isApprox((2 * T1), 1.0e-08));
@@ -255,7 +254,7 @@ BOOST_AUTO_TEST_CASE(SQTwoElectronOperator_negate) {
             }
         }
     }
-    const GQCP::ScalarSQTwoElectronOperator<double> op1 {T1};
+    const GQCP::ScalarRSQTwoElectronOperator<double> op1 {T1};
 
     // Initialize the reference and check the result
     GQCP::QCRankFourTensor<double> T_neg_ref {dim};
@@ -294,7 +293,7 @@ BOOST_AUTO_TEST_CASE(SQTwoElectronOperator_difference) {
             }
         }
     }
-    const GQCP::ScalarSQTwoElectronOperator<double> op1 {T1};
+    const GQCP::ScalarRSQTwoElectronOperator<double> op1 {T1};
 
     GQCP::QCRankFourTensor<double> T2 {dim};
 
@@ -307,7 +306,7 @@ BOOST_AUTO_TEST_CASE(SQTwoElectronOperator_difference) {
             }
         }
     }
-    const GQCP::ScalarSQTwoElectronOperator<double> op2 {T2};
+    const GQCP::ScalarRSQTwoElectronOperator<double> op2 {T2};
 
     const auto op_diff = op2 - op1;
     BOOST_CHECK(op_diff.parameters().isApprox(T1, 1.0e-08));
@@ -333,7 +332,7 @@ BOOST_AUTO_TEST_CASE(rotate_with_unitary_transformation_matrix) {
             }
         }
     }
-    GQCP::ScalarSQTwoElectronOperator<double> op {T1};
+    GQCP::ScalarRSQTwoElectronOperator<double> op {T1};
 
     // Initialize a unitary transformation matrix
     GQCP::TransformationMatrix<double> U {dim};
@@ -366,7 +365,7 @@ BOOST_AUTO_TEST_CASE(transform_with_transformation_matrix) {
             }
         }
     }
-    GQCP::ScalarSQTwoElectronOperator<double> op {T1};
+    GQCP::ScalarRSQTwoElectronOperator<double> op {T1};
 
     // Initialize a transformation matrix
     GQCP::TransformationMatrix<double> T {dim};
@@ -425,7 +424,7 @@ BOOST_AUTO_TEST_CASE(transform_with_jacobi_matrix) {
             }
         }
     }
-    GQCP::ScalarSQTwoElectronOperator<double> op {T1};
+    GQCP::ScalarRSQTwoElectronOperator<double> op {T1};
 
     // Initialize a transformation matrix
     GQCP::JacobiRotationParameters J {1, 0, (boost::math::constants::pi<double>() / 2)};

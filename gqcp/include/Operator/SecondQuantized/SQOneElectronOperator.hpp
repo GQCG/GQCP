@@ -39,7 +39,7 @@ namespace GQCP {
  *
  *  @tparam _Scalar             the scalar type, i.e. the scalar representation of one of the parameters
  *  @tparam _Components         the number of components of the second-quantized operator
- * 
+ *
  *  @note Depending on the context, this class can be used to represent integrals over restricted spatial orbitals, or general spinors.
  */
 template <typename _Scalar, size_t _Components>
@@ -86,9 +86,9 @@ public:
 
     /**
      *  A constructor for ScalarSQOneElectronOperators that doesn't require the argument to be a vector of just one element.
-     * 
+     *
      *  @param f            the matrix representation of the integrals of this scalar second-quantized operator
-     * 
+     *
      *  @note This constructor is only available for ScalarSQOneElectronOperators (for the std::enable_if, see https://stackoverflow.com/a/17842695/7930415)
      */
     template <size_t Z = Components>
@@ -97,7 +97,7 @@ public:
 
     /**
      *  Construct a one-electron operator with parameters that are zero
-     * 
+     *
      *  @param dim          the dimension of the matrix representation of the parameters, i.e. the number of orbitals/sites
      */
     SQOneElectronOperator(const size_t dim) {
@@ -141,11 +141,11 @@ public:
 
     /**
      *  Evaluate the expectation value of this second-quantized (one-electron) density operator.
-     * 
+     *
      *  @param D                the 1-DM
-     * 
+     *
      *  @return the expectation value of this second-quantized (one-electron) density operator, i.e. the electron density
-     * 
+     *
      *  @note This method is only enabled for SQOneElectronOperators that represent second-quantized electron density operators.
      */
     template <typename S = Scalar, typename = enable_if_t<std::is_same<S, ScalarFunctionProduct<LinearCombination<double, LinearCombination<double, CartesianGTO>>>>::value>>
@@ -310,7 +310,7 @@ public:
 
     /**
      *  @param i            the index
-     * 
+     *
      *  @return the i-th component of this operator
      */
     SQOneElectronOperator<Scalar, 1> operator[](const size_t i) const {
@@ -324,14 +324,14 @@ public:
 
     /**
      *  @param i            the index of the component
-     * 
+     *
      *  @return a read-only the matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator
      */
     const QCMatrix<Scalar>& parameters(const size_t i = 0) const { return this->fs[i]; }
 
     /**
      *  @param i            the index of the component
-     * 
+     *
      *  @return a writable matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator
      */
     QCMatrix<Scalar>& parameters(const size_t i = 0) { return this->fs[i]; }
@@ -353,7 +353,7 @@ public:
 
     /**
      *  In-place rotate the operator to another basis
-     * 
+     *
      *  @param U                            the (unitary) rotation matrix
      */
     void rotate(const TransformationMatrix<Scalar>& U) {
@@ -367,7 +367,7 @@ public:
 
     /**
      *  In-place rotate the operator using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters
-     * 
+     *
      *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
      */
     void rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
@@ -381,7 +381,7 @@ public:
 
     /**
      *  In-place transform the operator to another basis
-     * 
+     *
      *  @param T                            the transformation matrix
      */
     void transform(const TransformationMatrix<Scalar>& T) {
@@ -399,7 +399,7 @@ public:
 
     /**
      *  @param a        the vector
-     * 
+     *
      *  @return the dot product of this second-quantized one-electron operator with the given vector
      */
     SQOneElectronOperator<Scalar, 1> dot(const Vector<Scalar, Components>& a) const {
@@ -434,11 +434,11 @@ using VectorSQOneElectronOperator = SQOneElectronOperator<Scalar, 3>;
 
 /**
  *  Add two one-electron operators by adding their parameters
- * 
+ *
  *  @tparam LHSScalar           the scalar type of the left-hand side
  *  @tparam RHSScalar           the scalar type of the right-hand side
  *  @tparam Components          the number of components of the one-electron operators
- * 
+ *
  *  @param lhs                  the left-hand side
  *  @param rhs                  the right-hand side
  */
@@ -458,10 +458,10 @@ auto operator+(const SQOneElectronOperator<LHSScalar, Components>& lhs, const SQ
 
 /**
  *  Multiply a one-electron operator with a scalar
- * 
+ *
  *  @tparam Scalar              the scalar type of the scalar
  *  @tparam OperatorScalar      the scalar type of the operator
- * 
+ *
  *  @tparam scalar              the scalar of the scalar multiplication
  *  @tparam op                  the one-electron operator
  */
@@ -481,10 +481,10 @@ auto operator*(const Scalar& scalar, const SQOneElectronOperator<OperatorScalar,
 
 /**
  *  Negate a one-electron operator
- * 
+ *
  *  @tparam Scalar              the scalar type of the operator
  *  @tparam Components          the number of components of the one-electron operator
- * 
+ *
  *  @param op                   the operator
  */
 template <typename Scalar, size_t Components>
@@ -496,11 +496,11 @@ SQOneElectronOperator<Scalar, Components> operator-(const SQOneElectronOperator<
 
 /**
  *  Subtract two one-electron operators by adding their parameters
- * 
+ *
  *  @tparam LHSScalar           the scalar type of the left-hand side
  *  @tparam RHSScalar           the scalar type of the right-hand side
  *  @tparam Components          the number of components of the one-electron operators
- * 
+ *
  *  @param lhs                  the left-hand side
  *  @param rhs                  the right-hand side
  */

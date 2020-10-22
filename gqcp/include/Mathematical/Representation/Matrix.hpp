@@ -247,17 +247,15 @@ public:
         return this_copy;
     }
 
-
     /**
-     *  @return this as a const Eigen::Matrix
+     *  @return This as a const Eigen base.
      */
     const Base& Eigen() const { return static_cast<const Base&>(*this); }
 
     /**
-     *  @return this as a non-const Eigen::Matrix
+     *  @return This as a non-const Eigen base.
      */
     Base& Eigen() { return static_cast<Base&>(*this); }
-
 
     /**
      *  @param start_i      the index at which the rows should start

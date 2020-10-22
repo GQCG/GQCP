@@ -27,7 +27,7 @@ namespace GQCP {
  *
  *  @return the RMP2 energy correction
  */
-double calculateRMP2EnergyCorrection(const SQHamiltonian<double>& sq_hamiltonian, const QCModel::RHF<double>& rhf_parameters) {
+double calculateRMP2EnergyCorrection(const RSQHamiltonian<double>& sq_hamiltonian, const QCModel::RHF<double>& rhf_parameters) {
 
     // Prepare some variables.
     const auto orbital_space = rhf_parameters.orbitalSpace();

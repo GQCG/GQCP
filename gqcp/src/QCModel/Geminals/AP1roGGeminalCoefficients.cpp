@@ -130,7 +130,7 @@ AP1roGGeminalCoefficients AP1roGGeminalCoefficients::FromRowMajor(const VectorX<
  *
  *  @return the AP1roG geminal coefficients in the weak interaction limit
  */
-AP1roGGeminalCoefficients AP1roGGeminalCoefficients::WeakInteractionLimit(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P) {
+AP1roGGeminalCoefficients AP1roGGeminalCoefficients::WeakInteractionLimit(const RSQHamiltonian<double>& sq_hamiltonian, const size_t N_P) {
 
     // Prepare some variables.
     const auto& h = sq_hamiltonian.core().parameters();         // core Hamiltonian integrals

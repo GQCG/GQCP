@@ -91,9 +91,9 @@ OneElectronIntegralEngine<PrimitiveOverlapIntegralEngine> IntegralEngine::InHous
  * 
  *  @return a two-electron integral engine that can calculate integrals over the Coulomb repulsion operator using the Libint integral library backend
  */
-auto IntegralEngine::Libint(const CoulombRepulsionOperator& op, const size_t max_nprim, const size_t max_l) -> LibintTwoElectronIntegralEngine<CoulombRepulsionOperator::Components> {
+auto IntegralEngine::Libint(const CoulombRepulsionOperator& op, const size_t max_nprim, const size_t max_l) -> LibintTwoElectronIntegralEngine<CoulombRepulsionOperator::NumberOfComponents> {
 
-    return LibintTwoElectronIntegralEngine<CoulombRepulsionOperator::Components>(op, max_nprim, max_l);
+    return LibintTwoElectronIntegralEngine<CoulombRepulsionOperator::NumberOfComponents>(op, max_nprim, max_l);
 }
 
 
@@ -104,9 +104,9 @@ auto IntegralEngine::Libint(const CoulombRepulsionOperator& op, const size_t max
  * 
  *  @return a one-electron integral engine that can calculate integrals over the electronic electric dipole operator using the Libint integral library backend
  */
-auto IntegralEngine::Libint(const ElectronicDipoleOperator& op, const size_t max_nprim, const size_t max_l) -> LibintOneElectronIntegralEngine<ElectronicDipoleOperator::Components> {
+auto IntegralEngine::Libint(const ElectronicDipoleOperator& op, const size_t max_nprim, const size_t max_l) -> LibintOneElectronIntegralEngine<ElectronicDipoleOperator::NumberOfComponents> {
 
-    return LibintOneElectronIntegralEngine<ElectronicDipoleOperator::Components>(op, max_nprim, max_l);
+    return LibintOneElectronIntegralEngine<ElectronicDipoleOperator::NumberOfComponents>(op, max_nprim, max_l);
 }
 
 
@@ -117,9 +117,9 @@ auto IntegralEngine::Libint(const ElectronicDipoleOperator& op, const size_t max
  * 
  *  @return a one-electron integral engine that can calculate integrals over the kinetic operator using the Libint integral library backend
  */
-auto IntegralEngine::Libint(const KineticOperator& op, const size_t max_nprim, const size_t max_l) -> LibintOneElectronIntegralEngine<KineticOperator::Components> {
+auto IntegralEngine::Libint(const KineticOperator& op, const size_t max_nprim, const size_t max_l) -> LibintOneElectronIntegralEngine<KineticOperator::NumberOfComponents> {
 
-    return LibintOneElectronIntegralEngine<KineticOperator::Components>(op, max_nprim, max_l);
+    return LibintOneElectronIntegralEngine<KineticOperator::NumberOfComponents>(op, max_nprim, max_l);
 }
 
 
@@ -130,9 +130,9 @@ auto IntegralEngine::Libint(const KineticOperator& op, const size_t max_nprim, c
  * 
  *  @return a one-electron integral engine that can calculate integrals over the nuclear attraction operator using the Libint integral library backend
  */
-auto IntegralEngine::Libint(const NuclearAttractionOperator& op, const size_t max_nprim, const size_t max_l) -> LibintOneElectronIntegralEngine<NuclearAttractionOperator::Components> {
+auto IntegralEngine::Libint(const NuclearAttractionOperator& op, const size_t max_nprim, const size_t max_l) -> LibintOneElectronIntegralEngine<NuclearAttractionOperator::NumberOfComponents> {
 
-    return LibintOneElectronIntegralEngine<NuclearAttractionOperator::Components>(op, max_nprim, max_l);
+    return LibintOneElectronIntegralEngine<NuclearAttractionOperator::NumberOfComponents>(op, max_nprim, max_l);
 }
 
 
@@ -143,9 +143,9 @@ auto IntegralEngine::Libint(const NuclearAttractionOperator& op, const size_t ma
  * 
  *  @return a one-electron integral engine that can calculate integrals over the overlap operator using the Libint integral library backend
  */
-auto IntegralEngine::Libint(const OverlapOperator& op, const size_t max_nprim, const size_t max_l) -> LibintOneElectronIntegralEngine<OverlapOperator::Components> {
+auto IntegralEngine::Libint(const OverlapOperator& op, const size_t max_nprim, const size_t max_l) -> LibintOneElectronIntegralEngine<OverlapOperator::NumberOfComponents> {
 
-    return LibintOneElectronIntegralEngine<OverlapOperator::Components>(op, max_nprim, max_l);
+    return LibintOneElectronIntegralEngine<OverlapOperator::NumberOfComponents>(op, max_nprim, max_l);
 }
 
 
@@ -159,9 +159,9 @@ auto IntegralEngine::Libint(const OverlapOperator& op, const size_t max_nprim, c
  * 
  *  @return a two-electron integral engine that can calculate integrals over the Coulomb repulsion operator using the Libcint integral library backend
  */
-auto IntegralEngine::Libcint(const CoulombRepulsionOperator& op, const ShellSet<GTOShell>& shell_set) -> LibcintTwoElectronIntegralEngine<GTOShell, CoulombRepulsionOperator::Components, double> {
+auto IntegralEngine::Libcint(const CoulombRepulsionOperator& op, const ShellSet<GTOShell>& shell_set) -> LibcintTwoElectronIntegralEngine<GTOShell, CoulombRepulsionOperator::NumberOfComponents, double> {
 
-    return LibcintTwoElectronIntegralEngine<GTOShell, CoulombRepulsionOperator::Components, double>(op, shell_set);
+    return LibcintTwoElectronIntegralEngine<GTOShell, CoulombRepulsionOperator::NumberOfComponents, double>(op, shell_set);
 }
 
 
@@ -170,9 +170,9 @@ auto IntegralEngine::Libcint(const CoulombRepulsionOperator& op, const ShellSet<
  * 
  *  @return a one-electron integral engine that can calculate integrals over the electronic dipole operator using the Libcint integral library backend
  */
-auto IntegralEngine::Libcint(const ElectronicDipoleOperator& op, const ShellSet<GTOShell>& shell_set) -> LibcintOneElectronIntegralEngine<GTOShell, ElectronicDipoleOperator::Components, double> {
+auto IntegralEngine::Libcint(const ElectronicDipoleOperator& op, const ShellSet<GTOShell>& shell_set) -> LibcintOneElectronIntegralEngine<GTOShell, ElectronicDipoleOperator::NumberOfComponents, double> {
 
-    return LibcintOneElectronIntegralEngine<GTOShell, ElectronicDipoleOperator::Components, double>(op, shell_set);
+    return LibcintOneElectronIntegralEngine<GTOShell, ElectronicDipoleOperator::NumberOfComponents, double>(op, shell_set);
 }
 
 
@@ -182,9 +182,9 @@ auto IntegralEngine::Libcint(const ElectronicDipoleOperator& op, const ShellSet<
  * 
  *  @return a one-electron integral engine that can calculate integrals over the kinetic operator using the Libcint integral library backend
  */
-auto IntegralEngine::Libcint(const KineticOperator& op, const ShellSet<GTOShell>& shell_set) -> LibcintOneElectronIntegralEngine<GTOShell, KineticOperator::Components, double> {
+auto IntegralEngine::Libcint(const KineticOperator& op, const ShellSet<GTOShell>& shell_set) -> LibcintOneElectronIntegralEngine<GTOShell, KineticOperator::NumberOfComponents, double> {
 
-    return LibcintOneElectronIntegralEngine<GTOShell, KineticOperator::Components, double>(op, shell_set);
+    return LibcintOneElectronIntegralEngine<GTOShell, KineticOperator::NumberOfComponents, double>(op, shell_set);
 }
 
 
@@ -194,9 +194,9 @@ auto IntegralEngine::Libcint(const KineticOperator& op, const ShellSet<GTOShell>
  * 
  *  @return a one-electron integral engine that can calculate integrals over the nuclear attraction operator using the Libcint integral library backend
  */
-auto IntegralEngine::Libcint(const NuclearAttractionOperator& op, const ShellSet<GTOShell>& shell_set) -> LibcintOneElectronIntegralEngine<GTOShell, NuclearAttractionOperator::Components, double> {
+auto IntegralEngine::Libcint(const NuclearAttractionOperator& op, const ShellSet<GTOShell>& shell_set) -> LibcintOneElectronIntegralEngine<GTOShell, NuclearAttractionOperator::NumberOfComponents, double> {
 
-    return LibcintOneElectronIntegralEngine<GTOShell, NuclearAttractionOperator::Components, double>(op, shell_set);
+    return LibcintOneElectronIntegralEngine<GTOShell, NuclearAttractionOperator::NumberOfComponents, double>(op, shell_set);
 }
 
 
@@ -206,9 +206,9 @@ auto IntegralEngine::Libcint(const NuclearAttractionOperator& op, const ShellSet
  * 
  *  @return a one-electron integral engine that can calculate integrals over the overlap operator using the Libcint integral library backend
  */
-auto IntegralEngine::Libcint(const OverlapOperator& op, const ShellSet<GTOShell>& shell_set) -> LibcintOneElectronIntegralEngine<GTOShell, OverlapOperator::Components, double> {
+auto IntegralEngine::Libcint(const OverlapOperator& op, const ShellSet<GTOShell>& shell_set) -> LibcintOneElectronIntegralEngine<GTOShell, OverlapOperator::NumberOfComponents, double> {
 
-    return LibcintOneElectronIntegralEngine<GTOShell, OverlapOperator::Components, double>(op, shell_set);
+    return LibcintOneElectronIntegralEngine<GTOShell, OverlapOperator::NumberOfComponents, double>(op, shell_set);
 }
 
 

@@ -604,7 +604,7 @@ BOOST_AUTO_TEST_CASE(GHF_overlap) {
     const auto K = r_spinor_basis.numberOfSpatialOrbitals();
     const auto S_restricted = r_spinor_basis.overlap().parameters();
 
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(r_spinor_basis, h2);  // in an AO basis
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(r_spinor_basis, h2);  // in an AO basis
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(N, sq_hamiltonian, S_restricted);
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();

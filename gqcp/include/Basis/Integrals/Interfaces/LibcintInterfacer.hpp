@@ -21,8 +21,6 @@
 #include "Basis/ScalarBasis/ShellSet.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
-#include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
-#include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
 
 #include <functional>
 

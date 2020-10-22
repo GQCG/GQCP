@@ -58,7 +58,7 @@ public:
     std::deque<SquareMatrix<Scalar>> fock_matrices;   // expressed in the scalar (AO) basis
     std::deque<VectorX<Scalar>> error_vectors;        // expressed in the scalar (AO) basis, used when doing DIIS calculations: the real error matrices should be converted to column-major error vectors for the DIIS algorithm to be used correctly
 
-    SQHamiltonian<Scalar> sq_hamiltonian;  // the Hamiltonian expressed in the scalar (AO) basis
+    RSQHamiltonian<Scalar> sq_hamiltonian;  // the Hamiltonian expressed in the scalar (AO) basis
 
 
 public:
@@ -74,14 +74,14 @@ public:
      *  @param S                    the overlap matrix (of the scalar (AO) basis)
      *  @param C_initial            the initial coefficient matrix
      */
-    RHFSCFEnvironment(const size_t N, const SQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S, const RTransformationMatrix<Scalar>& C_initial) :
+    RHFSCFEnvironment(const size_t N, const RSQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S, const RTransformationMatrix<Scalar>& C_initial) :
         N {N},
         S {S},
         sq_hamiltonian {sq_hamiltonian},
         coefficient_matrices {C_initial} {
 
         if (this->N % 2 != 0) {  // if the total number of electrons is odd
-            throw std::invalid_argument("RHFSCFEnvironment::RHFSCFEnvironment(const size_t, const SQHamiltonian<Scalar>&, const SquareMatrix<Scalar>&, const RTransformationMatrix<Scalar>&): You have given an odd number of electrons.");
+            throw std::invalid_argument("RHFSCFEnvironment::RHFSCFEnvironment(const size_t, const RSQHamiltonian<Scalar>&, const SquareMatrix<Scalar>&, const RTransformationMatrix<Scalar>&): You have given an odd number of electrons.");
         }
     }
 
@@ -97,7 +97,7 @@ public:
      *  @param sq_hamiltonian       the Hamiltonian expressed in the scalar (AO) basis
      *  @param S                    the overlap matrix (of the scalar (AO) basis)
      */
-    static RHFSCFEnvironment<Scalar> WithCoreGuess(const size_t N, const SQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S) {
+    static RHFSCFEnvironment<Scalar> WithCoreGuess(const size_t N, const RSQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S) {
 
         const auto& H_core = sq_hamiltonian.core().parameters();  // in AO basis
 

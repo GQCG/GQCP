@@ -30,7 +30,7 @@ namespace GQCP {
  * 
  *  @return the current orbital gradient as a matrix
  */
-SquareMatrix<double> QCMethodNewtonOrbitalOptimizer::calculateGradientMatrix(const SQHamiltonian<double>& sq_hamiltonian) const {
+SquareMatrix<double> QCMethodNewtonOrbitalOptimizer::calculateGradientMatrix(const RSQHamiltonian<double>& sq_hamiltonian) const {
 
     // Calculate the gradient from the Fockian matrix
     const auto F = sq_hamiltonian.calculateFockianMatrix(this->D, this->d);
@@ -43,7 +43,7 @@ SquareMatrix<double> QCMethodNewtonOrbitalOptimizer::calculateGradientMatrix(con
  * 
  *  @return the current orbital Hessian as a tensor
  */
-SquareRankFourTensor<double> QCMethodNewtonOrbitalOptimizer::calculateHessianTensor(const SQHamiltonian<double>& sq_hamiltonian) const {
+SquareRankFourTensor<double> QCMethodNewtonOrbitalOptimizer::calculateHessianTensor(const RSQHamiltonian<double>& sq_hamiltonian) const {
 
     const auto K = sq_hamiltonian.numberOfOrbitals();
 
@@ -72,7 +72,7 @@ SquareRankFourTensor<double> QCMethodNewtonOrbitalOptimizer::calculateHessianTen
 /**
  *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence in this Newton-based orbital optimizer for quantum chemical methods.
  */
-void QCMethodNewtonOrbitalOptimizer::prepareOrbitalDerivativesCalculation(const SQHamiltonian<double>& sq_hamiltonian) {
+void QCMethodNewtonOrbitalOptimizer::prepareOrbitalDerivativesCalculation(const RSQHamiltonian<double>& sq_hamiltonian) {
 
     this->prepareDMCalculation(sq_hamiltonian);  // this should prepare the calculation of the 1- and 2-DMs
 

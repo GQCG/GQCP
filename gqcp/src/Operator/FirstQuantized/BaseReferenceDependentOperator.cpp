@@ -22,20 +22,24 @@ namespace GQCP {
 
 
 /*
- *  CONSTRUCTORS
+ *  MARK: Constructors
  */
 
 /**
- *  @param reference            the point that is used as a reference to define the operator
+ *  Create a `BaseReferenceDependentOperator` using a point of reference.
+ * 
+ *  @param reference            The point that is used as a reference to define the operator.
  */
 BaseReferenceDependentOperator::BaseReferenceDependentOperator(const Vector<double, 3>& reference) :
     m_reference {reference} {}
 
 
 /*
- *  DESTRUCTOR
+ *  MARK: Destructor
  */
 
-BaseReferenceDependentOperator::~BaseReferenceDependentOperator() {};  // pure virtual destructor should have an empty implementation
+// A pure virtual destructor should have an empty implementation.
+BaseReferenceDependentOperator::~BaseReferenceDependentOperator() {};
+
 
 }  // namespace GQCP
