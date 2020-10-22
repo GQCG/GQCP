@@ -67,7 +67,7 @@ BOOST_AUTO_TEST_CASE(h2o_crawdad) {
     // Create a GSpinorBasis since we have implement spinor-CCD, and quantize the molecular Hamiltonian in it.
     const auto g_spinor_basis = GQCP::GSpinorBasis<double, GQCP::GTOShell>::FromRestricted(r_spinor_basis);
     const auto M = g_spinor_basis.numberOfSpinors();
-    const auto g_sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(g_spinor_basis, molecule);  // in the canonical restricted spin-orbitals
+    const auto g_sq_hamiltonian = GQCP::GSQHamiltonian<double>::Molecular(g_spinor_basis, molecule);  // in the canonical restricted spin-orbitals
 
     // Create the GHF ONV (which is actually just the RHF ONV, since we're using the canonical RHF orbitals) and the corresponding orbital space.
     const auto reference_onv = GQCP::SpinUnresolvedONV::GHF(2 * K, N, rhf_parameters.spinOrbitalEnergiesBlocked());

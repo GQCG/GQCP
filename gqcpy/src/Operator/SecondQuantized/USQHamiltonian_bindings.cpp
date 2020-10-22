@@ -55,7 +55,7 @@ void bindUSQHamiltonian(py::module& module) {
 
         .def(
             "constrain",
-            [](GQCP::USQHamiltonian<double>& usq_hamiltonian, const GQCP::ScalarSQOneElectronOperator<double>& one_electron_op, const double lambda, const GQCP::Spin sigma) {
+            [](GQCP::USQHamiltonian<double>& usq_hamiltonian, const GQCP::ScalarRSQOneElectronOperator<double>& one_electron_op, const double lambda, const GQCP::Spin sigma) {
                 return usq_hamiltonian.constrain(one_electron_op, lambda, sigma);
             },
             py::arg("one_electron_op"),

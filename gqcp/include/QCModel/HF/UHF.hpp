@@ -21,6 +21,7 @@
 #include "Basis/Transformations/TransformationMatrix.hpp"
 #include "DensityMatrix/SpinResolved1DM.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
+#include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
 #include "QCModel/HF/RHF.hpp"
 #include "QuantumChemical/Spin.hpp"
@@ -137,10 +138,10 @@ public:
      *
      *  @return the UHF electronic energy for the sigma electrons
      */
-    static double calculateElectronicEnergy(const SpinResolved1DMComponent<Scalar>& P_sigma, const ScalarSQOneElectronOperator<Scalar>& H_core_sigma, const ScalarSQOneElectronOperator<Scalar>& F_sigma) {
+    static double calculateElectronicEnergy(const SpinResolved1DMComponent<Scalar>& P_sigma, const ScalarRSQOneElectronOperator<Scalar>& H_core_sigma, const ScalarRSQOneElectronOperator<Scalar>& F_sigma) {
 
         // First, calculate the sum of H_core and F (this saves a contraction).
-        const ScalarSQOneElectronOperator<Scalar> Z_sigma = H_core_sigma + F_sigma;
+        const auto Z_sigma = H_core_sigma + F_sigma;
 
         // Convert the matrices Z and P to a tensor, as contractions are only implemented for tensors.
         Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_sigma_tensor {P_sigma.data(), P_sigma.rows(), P_sigma.cols()};

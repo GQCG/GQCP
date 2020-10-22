@@ -18,8 +18,8 @@
 #pragma once
 
 
-#include "Mathematical/Functions/VectorSpaceArithmetic.hpp"
 #include "Mathematical/Representation/DenseVectorizer.hpp"
+#include "Mathematical/Representation/Matrix.hpp"
 #include "Utilities/type_traits.hpp"
 
 #include <vector>
@@ -93,6 +93,19 @@ public:
         StorageArray(std::vector<Element>(vectorizer.numberOfElements()), vectorizer) {}
 
 
+    /**
+     *  Create an array from a `std::array` and a vectorizer.
+     * 
+     *  @param elements         The one-dimensional representation of the elements of the array.
+     *  @param vectorizer       The vectorizer that relates multiple tuple coordinates to a one-dimensional index.
+     * 
+     *  @tparam N               The number of elements in the `std::array`.
+     */
+    template <size_t N>
+    StorageArray(const std::array<Element, N>& elements, const Vectorizer& vectorizer) :
+        StorageArray(std::vector<Element>(elements.begin(), elements.end()), vectorizer) {}  // Convert the std::array into a std::vector.
+
+
     /*
      *  MARK: Conversions
      */
@@ -162,6 +175,22 @@ public:
      *  @return The vectorizer that relates multiple tuple coordinates to a one-dimensional index.
      */
     const Vectorizer& vectorizer() const { return this->m_vectorizer; }
+
+
+    /*
+     *  MARK: Conversions
+     */
+
+    /**
+     *  Convert this `StorageArray` to a `Vector`, if possible.
+     * 
+     *  @note This method is only available for `StorageArrays` that admit vector-like storage.
+     */
+    template <typename Z = Vectorizer>
+    enable_if_t<std::is_same<Z, VectorVectorizer>::value, VectorX<Element>> asVector() {  // Marking this method `const` causes compile-time errors related to Eigen.
+
+        return Eigen::Map<Eigen::Matrix<Element, Eigen::Dynamic, 1>> {this->elements().data(), static_cast<long>(this->vectorizer().dimension(0))};  // The dimension of the '0'-th axis is the number of rows, i.e. the dimension of the columns.
+    }
 };
 
 

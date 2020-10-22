@@ -178,7 +178,7 @@ BOOST_AUTO_TEST_CASE(constructMolecularHamiltonianParameters) {
 
 BOOST_AUTO_TEST_CASE(FCIDUMP_reader) {
 
-    auto fcidump_ham_par = GQCP::RSQHamiltonian<double>::ReadFCIDUMP("data/beh_cation_631g_caitlin.FCIDUMP");
+    auto fcidump_ham_par = GQCP::RSQHamiltonian<double>::FromFCIDUMP("data/beh_cation_631g_caitlin.FCIDUMP");
 
     // Check if the one-electron integrals are read in correctly from a previous implementation
     GQCP::SquareMatrix<double> h_SO = fcidump_ham_par.core().parameters();
@@ -214,7 +214,7 @@ BOOST_AUTO_TEST_CASE(FCIDUMP_reader) {
 BOOST_AUTO_TEST_CASE(FCIDUMP_reader_HORTON) {
 
     // Check the same reference value that HORTON does
-    auto fcidump_ham_par = GQCP::RSQHamiltonian<double>::ReadFCIDUMP("data/h2_psi4_horton.FCIDUMP");
+    auto fcidump_ham_par = GQCP::RSQHamiltonian<double>::FromFCIDUMP("data/h2_psi4_horton.FCIDUMP");
 
     GQCP::QCRankFourTensor<double> g_SO = fcidump_ham_par.twoElectron().parameters();
     BOOST_CHECK(std::abs(g_SO(6, 5, 1, 0) - 0.0533584656) < 1.0e-7);

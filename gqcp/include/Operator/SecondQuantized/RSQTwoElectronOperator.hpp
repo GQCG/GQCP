@@ -98,7 +98,7 @@ struct OperatorTraits<RSQTwoElectronOperator<Scalar, Vectorizer>> {
     using ScalarOperator = ScalarRSQTwoElectronOperator<Scalar>;
 
     // The type of one-electron operator that is naturally related to a restricted two-electron operator.
-    using SQOneElectronOperator = RSQTwoElectronOperator<Scalar, Vectorizer>;
+    using SQOneElectronOperator = RSQOneElectronOperator<Scalar, Vectorizer>;
 
     // The type of transformation matrix that is naturally associated to a restricted two-electron operator.
     using TM = RTransformationMatrix<Scalar>;

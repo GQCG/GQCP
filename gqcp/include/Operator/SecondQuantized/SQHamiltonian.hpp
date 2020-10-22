@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/SpinorBasis/GSpinorBasis.hpp"
 #include "Basis/SpinorBasis/OrbitalSpace.hpp"
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Basis/Transformations/BasisTransformable.hpp"
@@ -195,6 +196,18 @@ public:
 
         return SQHamiltonian<ScalarRSQOneElectronOperator<double>, ScalarRSQTwoElectronOperator<double>> {H, g};
     }
+    template <typename Z = SpinorTag>
+    static enable_if_t<std::is_same<Z, GeneralSpinorTag>::value, SQHamiltonian<ScalarGSQOneElectronOperator<double>, ScalarGSQTwoElectronOperator<double>>> Molecular(const GSpinorBasis<double, GTOShell>& spinor_basis, const Molecule& molecule) {
+
+        // Calculate the integrals for the molecular Hamiltonian
+        const auto T = spinor_basis.quantize(Operator::Kinetic());
+        const auto V = spinor_basis.quantize(Operator::NuclearAttraction(molecule));
+        const auto H = T + V;
+
+        const auto g = spinor_basis.quantize(Operator::Coulomb());
+
+        return SQHamiltonian<ScalarGSQOneElectronOperator<double>, ScalarGSQTwoElectronOperator<double>> {H, g};
+    }
 
 
     /**
@@ -249,7 +262,7 @@ public:
         }
 
         if (K == 0) {
-            throw std::invalid_argument("SQHamiltonian::ReadFCIDUMP(std::string): The .FCIDUMP-file is invalid: could not read a number of orbitals.");
+            throw std::invalid_argument("SQHamiltonian::FromFCIDUMP(std::string): The .FCIDUMP-file is invalid: could not read a number of orbitals.");
         }
 
 
@@ -385,12 +398,12 @@ public:
      */
     double calculateEdmistonRuedenbergLocalizationIndex(const OrbitalSpace orbital_space) const {
 
-        const auto& g = this->g_total.parameters();
+        const auto& g_total_par = this->twoElectron().parameters();
 
         // TODO: When Eigen releases TensorTrace, use it here.
         double localization_index = 0.0;
         for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
-            localization_index += g(i, i, i, i);
+            localization_index += g_total_par(i, i, i, i);
         }
 
         return localization_index;

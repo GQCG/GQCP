@@ -123,7 +123,7 @@ public:
         }
 
         const auto dimension = this->numberOfOrbitals();
-        ScalarFinalOperator result {dimension};  // initializes a scalar one-electron operator with parameters that are zero
+        ScalarFinalOperator result = ScalarFinalOperator::Zero(dimension);  // Initializes a scalar-like operator with parameters that are zero.
 
         // Calculate the dot/inner product of two vectors.
         for (size_t i = 0; i < this->numberOfComponents(); i++) {

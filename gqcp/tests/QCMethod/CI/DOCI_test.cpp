@@ -40,7 +40,7 @@
 //     const double reference_energy = -14.8782216937;
 
 //     // Read in the molecular Hamiltonian from a FCIDUMP file.
-//     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::ReadFCIDUMP("data/beh_cation_631g_caitlin.FCIDUMP");
+//     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::FromFCIDUMP("data/beh_cation_631g_caitlin.FCIDUMP");
 //     const auto K = sq_hamiltonian.numberOfOrbitals();  // the number of spatial orbitals
 
 //     // The species contains 4 electrons, so 2 electron pairs.
@@ -70,7 +70,7 @@
 //     const double reference_energy = -8.0029560313;
 
 //     // Read in the molecular Hamiltonian from a FCIDUMP file.
-//     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
+//     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::FromFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
 //     const auto K = sq_hamiltonian.numberOfOrbitals();  // the number of spatial orbitals
 
 //     // The species contains 4 electrons, so 2 electron pairs.
@@ -100,7 +100,7 @@
 //     const double reference_energy = -15.1153976060;
 
 //     // Read in the molecular Hamiltonian from a FCIDUMP file.
-//     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::ReadFCIDUMP("data/li2_321g_klaas.FCIDUMP");
+//     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::FromFCIDUMP("data/li2_321g_klaas.FCIDUMP");
 //     const auto K = sq_hamiltonian.numberOfOrbitals();  // the number of spatial orbitals
 
 //     // The species contains 6 electrons, so 3 electron pairs.
@@ -135,7 +135,7 @@
 //     const double reference_energy = -74.9671366903;
 
 //     // Read in the molecular Hamiltonian from a FCIDUMP file.
-//     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::ReadFCIDUMP("data/h2o_sto3g_klaas.FCIDUMP");
+//     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::FromFCIDUMP("data/h2o_sto3g_klaas.FCIDUMP");
 //     const auto K = sq_hamiltonian.numberOfOrbitals();  // the number of spatial orbitals
 
 //     // The species contains 10 electrons, so 5 electron pairs.
@@ -166,7 +166,7 @@
 //     const double reference_energy = -14.8782216937;
 
 //     // Read in the molecular Hamiltonian from a FCIDUMP file.
-//     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::ReadFCIDUMP("data/beh_cation_631g_caitlin.FCIDUMP");
+//     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::FromFCIDUMP("data/beh_cation_631g_caitlin.FCIDUMP");
 //     const auto K = sq_hamiltonian.numberOfOrbitals();  // the number of spatial orbitals
 
 //     // The species contains 4 electrons, so 2 electron pairs.
@@ -197,7 +197,7 @@
 //     const double reference_energy = -107.5813316864;
 
 //     // Read in the molecular Hamiltonian from a FCIDUMP file.
-//     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::ReadFCIDUMP("data/n2_sto-3g_klaas.FCIDUMP");
+//     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::FromFCIDUMP("data/n2_sto-3g_klaas.FCIDUMP");
 //     const auto K = sq_hamiltonian.numberOfOrbitals();  // the number of spatial orbitals
 
 //     // The species contains 14 electrons, so 7 electron pairs.
@@ -228,7 +228,7 @@
 //     const double reference_energy = -8.0029560313;
 
 //     // Read in the molecular Hamiltonian from a FCIDUMP file.
-//     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
+//     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::FromFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
 //     const auto K = sq_hamiltonian.numberOfOrbitals();  // the number of spatial orbitals
 
 //     // The species contains 4 electrons, so 2 electron pairs.
@@ -259,7 +259,7 @@
 //     const double reference_energy = -15.1153976060;
 
 //     // Read in the molecular Hamiltonian from a FCIDUMP file.
-//     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::ReadFCIDUMP("data/li2_321g_klaas.FCIDUMP");
+//     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::FromFCIDUMP("data/li2_321g_klaas.FCIDUMP");
 //     const auto K = sq_hamiltonian.numberOfOrbitals();  // the number of spatial orbitals
 
 //     // The species contains 6 electrons, so 3 electron pairs.
@@ -290,7 +290,7 @@
 //     const double reference_energy = -76.0125161011;
 
 //     // Read in the molecular Hamiltonian from a FCIDUMP file.
-//     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::ReadFCIDUMP("data/h2o_631g_klaas.FCIDUMP");
+//     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::FromFCIDUMP("data/h2o_631g_klaas.FCIDUMP");
 //     const auto K = sq_hamiltonian.numberOfOrbitals();  // the number of spatial orbitals
 
 //     // The species contains 10 electrons, so 5 electron pairs.

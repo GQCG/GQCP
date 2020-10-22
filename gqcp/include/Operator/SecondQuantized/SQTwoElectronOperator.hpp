@@ -134,7 +134,7 @@ public:
 
         // Calculate the expectation value for every component of the operator.
         const auto& parameters = this->allParameters();
-        std::vector<Scalar> expectation_values(this->numberOfComponents());  // Zero-initialize the vector with a number of elements.
+        std::vector<Scalar> expectation_values(Components);  // Zero-initialize the vector with a number of elements.
 
         for (size_t i = 0; i < Components; i++) {
 

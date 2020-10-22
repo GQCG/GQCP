@@ -63,8 +63,8 @@ void basisTransform(RSpinorBasis<TransformationScalar, Shell>& spinor_basis, RSQ
  *  @param one_op                       the one-electron operator
  *  @param T                            the transformation matrix
  */
-template <typename TransformationScalar, typename Shell, size_t Components>
-void basisTransform(RSpinorBasis<TransformationScalar, Shell>& spinor_basis, SQOneElectronOperator<TransformationScalar, Components>& one_op, const TransformationMatrix<TransformationScalar>& T) {
+template <typename TransformationScalar, typename Shell, typename Vectorizer>
+void basisTransform(RSpinorBasis<TransformationScalar, Shell>& spinor_basis, RSQOneElectronOperator<TransformationScalar, Vectorizer>& one_op, const TransformationMatrix<TransformationScalar>& T) {
 
     spinor_basis.transform(T);
     one_op.transform(T);

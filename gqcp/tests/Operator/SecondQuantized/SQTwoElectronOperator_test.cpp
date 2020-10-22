@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
+#include "Operator/SecondQuantized/RSQTwoElectronOperator.hpp"
 #include "Utilities/linalg.hpp"
 #include "Utilities/miscellaneous.hpp"
 
@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_CASE(SQTwoElectronOperator_constructor) {
 BOOST_AUTO_TEST_CASE(SQTwoElectronOperator_zero_constructor) {
 
     const size_t dim = 2;
-    GQCP::ScalarRSQTwoElectronOperator<double> op {dim};
+    GQCP::ScalarRSQTwoElectronOperator<double> op = GQCP::ScalarRSQTwoElectronOperator<double>::Zero(dim);
 
     // Create a reference zero tensor
     GQCP::QCRankFourTensor<double> ref {dim};
@@ -93,7 +93,6 @@ BOOST_AUTO_TEST_CASE(SQTwoElectronOperator_effectiveOneElectronPartition) {
             k_par_ref(p, q) = -K_ / 2 * (p_ + 8 * q_ + 3 * K_ + 3);
         }
     }
-
 
     BOOST_CHECK(k_par_ref.isApprox(g.effectiveOneElectronPartition().parameters(), 1.0e-08));
 }
@@ -151,7 +150,7 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
     // Initialize a reference value
     const double reference_expectation_value = 180.0;
 
-    const auto expectation_value = op.calculateExpectationValue(d)(0);
+    const double expectation_value = op.calculateExpectationValue(d);  // A scalar-StorageArray can be implicitly casted into its underlying scalar.
     BOOST_CHECK(std::abs(expectation_value - reference_expectation_value) < 1.0e-08);
 }
 

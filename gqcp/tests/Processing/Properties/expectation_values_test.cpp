@@ -64,6 +64,6 @@ BOOST_AUTO_TEST_CASE(mulliken_N2_STO_3G) {
     // Create the RHF 1-DM for N2 and check the total Mulliken operator.
     const auto D = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1DM(K, N);
 
-    const auto mulliken_population = mulliken_op.calculateExpectationValue(D)(0);
+    const double mulliken_population = mulliken_op.calculateExpectationValue(D);  // A scalar-StorageArray can be implicitly converted into the underlying scalar.
     BOOST_CHECK(std::abs(mulliken_population - N) < 1.0e-12);
 }

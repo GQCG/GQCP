@@ -122,6 +122,16 @@ public:
 
 
     /**
+     *  Construct a second-quantized operator storage from a set of three matrix representations, for each of the operator's components.
+     * 
+     *  @param parameters           A set of three matrix representations of the one-electron parameters/matrix elements/integrals, one for each of the operator's components.
+     */
+    template <typename Z = Vectorizer>
+    SQOperatorStorageBase(const std::array<MatrixRepresentation, 3>& parameters, typename std::enable_if<std::is_same<Z, VectorVectorizer>::value>::type* = 0) :
+        SQOperatorStorageBase(StorageArray<MatrixRepresentation, VectorVectorizer>(std::vector<MatrixRepresentation>(parameters.begin(), parameters.end()), VectorVectorizer({3}))) {}  // Convert the `std::vector` to a `std::array`.
+
+
+    /**
      *  The default constructor.
      */
     SQOperatorStorageBase() :
