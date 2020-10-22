@@ -1,12 +1,12 @@
 target_sources(gqcp
     PRIVATE
-        # BaseONVBasis.hpp
-        # ONVManipulator.hpp
-        # ONVPath.hpp
-        # SeniorityZeroONVBasis.hpp
-        # SpinResolvedONV.hpp
-        # SpinResolvedONVBasis.hpp
-        # SpinResolvedSelectedONVBasis.hpp
-        # SpinUnresolvedONV.hpp
-        # SpinUnresolvedONVBasis.hpp
+        BaseONVBasis.hpp
+        ONVManipulator.hpp
+        ONVPath.hpp
+        SeniorityZeroONVBasis.hpp
+        SpinResolvedONV.hpp
+        SpinResolvedONVBasis.hpp
+        SpinResolvedSelectedONVBasis.hpp
+        SpinUnresolvedONV.hpp
+        SpinUnresolvedONVBasis.hpp
 )

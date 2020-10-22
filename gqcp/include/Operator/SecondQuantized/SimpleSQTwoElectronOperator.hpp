@@ -173,7 +173,7 @@ public:
             F_vector[i] = F_i;
         }
 
-        return StorageArray<SquareMatrix<double>, Vectorizer> {F_vector, this->array().vectorizer()};
+        return StorageArray<SquareMatrix<double>, Vectorizer> {F_vector, this->array.vectorizer()};
     }
 
 
@@ -201,7 +201,7 @@ public:
 
         const auto& parameters = this->allParameters();                                   // The parameters of this two-electron operator, as a vector.
         std::vector<SquareRankFourTensor<double>> G_vector {this->numberOfComponents()};  // The resulting vector of super-Fockian matrices.
-        const auto F_vector = this->calculateFockianMatrix(D, d).array();                 // The Fockian matrices are necessary in the calculation of the super-Fockian matrices.
+        const auto F_vector = this->calculateFockianMatrix(D, d).elements();              // The Fockian matrices are necessary in the calculation of the super-Fockian matrices.
 
 
         // A KISS implementation of the calculation of the super-Fockian matrix
@@ -238,7 +238,7 @@ public:
             G_vector[i] = G_i;
         }
 
-        return StorageArray<SquareRankFourTensor<double>, Vectorizer> {G_vector, this->array().vectorizer()};
+        return StorageArray<SquareRankFourTensor<double>, Vectorizer> {G_vector, this->array.vectorizer()};
     }
 
 

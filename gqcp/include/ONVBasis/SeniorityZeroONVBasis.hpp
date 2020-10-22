@@ -73,43 +73,43 @@ public:
      */
     size_t dimension() const { return this->dim; }
 
-    /**
-     *  Evaluate the diagonal of the matrix representation of a one-electron operator inside this seniority-zero ONV basis.
-     *
-     *  @param one_op               a one-electron operator expressed in an orthonormal orbital basis
-     *
-     *  @return the diagonal of the matrix representation of the one-electron operator in this seniority-zero ONV basis
-     */
-    VectorX<double> evaluateOperatorDiagonal(const ScalarRSQOneElectronOperator<double>& one_op) const;
+    // /**
+    //  *  Evaluate the diagonal of the matrix representation of a one-electron operator inside this seniority-zero ONV basis.
+    //  *
+    //  *  @param one_op               a one-electron operator expressed in an orthonormal orbital basis
+    //  *
+    //  *  @return the diagonal of the matrix representation of the one-electron operator in this seniority-zero ONV basis
+    //  */
+    // VectorX<double> evaluateOperatorDiagonal(const ScalarRSQOneElectronOperator<double>& one_op) const;
 
-    /**
-     *  Evaluate the diagonal of the matrix representation of a two-electron operator inside this seniority-zero ONV basis.
-     *
-     *  @param two_op               a two-electron operator expressed in an orthonormal orbital basis
-     *
-     *  @return the diagonal of the matrix representation of the two-electron operator in this seniority-zero ONV basis
-     */
-    VectorX<double> evaluateOperatorDiagonal(const ScalarRSQTwoElectronOperator<double>& two_op) const;
+    // /**
+    //  *  Evaluate the diagonal of the matrix representation of a two-electron operator inside this seniority-zero ONV basis.
+    //  *
+    //  *  @param two_op               a two-electron operator expressed in an orthonormal orbital basis
+    //  *
+    //  *  @return the diagonal of the matrix representation of the two-electron operator in this seniority-zero ONV basis
+    //  */
+    // VectorX<double> evaluateOperatorDiagonal(const ScalarRSQTwoElectronOperator<double>& two_op) const;
 
-    /**
-     *  Evaluate the diagonal of the matrix representation of a Hamiltonian inside this seniority-zero ONV basis.
-     *
-     *  @param sq_hamiltonian               a Hamiltonian expressed in an orthonormal orbital basis
-     *
-     *  @return the diagonal of the matrix representation of the Hamiltonian in this seniority-zero ONV basis
-     */
-    VectorX<double> evaluateOperatorDiagonal(const RSQHamiltonian<double>& sq_hamiltonian) const;
+    // /**
+    //  *  Evaluate the diagonal of the matrix representation of a Hamiltonian inside this seniority-zero ONV basis.
+    //  *
+    //  *  @param sq_hamiltonian               a Hamiltonian expressed in an orthonormal orbital basis
+    //  *
+    //  *  @return the diagonal of the matrix representation of the Hamiltonian in this seniority-zero ONV basis
+    //  */
+    // VectorX<double> evaluateOperatorDiagonal(const RSQHamiltonian<double>& sq_hamiltonian) const;
 
-    /**
-     *  Evaluate a one electron operator in a matrix vector product
-     *
-     *  @param one_op                       the one electron operator expressed in an orthonormal basis
-     *  @param x                            the vector upon which the evaluation acts 
-     *  @param diagonal                     the diagonal evaluated in the ONV basis
-     *
-     *  @return the one electron operator's matrix vector product in a vector with the dimensions of the ONV basis
-     */
-    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarRSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+    // /**
+    //  *  Evaluate a one electron operator in a matrix vector product
+    //  *
+    //  *  @param one_op                       the one electron operator expressed in an orthonormal basis
+    //  *  @param x                            the vector upon which the evaluation acts
+    //  *  @param diagonal                     the diagonal evaluated in the ONV basis
+    //  *
+    //  *  @return the one electron operator's matrix vector product in a vector with the dimensions of the ONV basis
+    //  */
+    // VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarRSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
 
     /**
      *  Iterate over every (proxy) spin-resolved ONV in this seniority-zero ONV basis and apply the given callback.

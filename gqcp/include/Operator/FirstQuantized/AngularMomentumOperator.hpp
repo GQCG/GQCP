@@ -54,8 +54,4 @@ public:
 };
 
 
-// Instantiate the static const vectorizer.
-const VectorVectorizer AngularMomentumOperator::vectorizer {{AngularMomentumOperator::NumberOfComponents}};
-
-
 }  // namespace GQCP

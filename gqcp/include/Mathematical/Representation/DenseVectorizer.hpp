@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include <array>
 #include <cstddef>
 #include <numeric>
 

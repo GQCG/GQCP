@@ -15,33 +15,14 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#pragma once
-
-
-#include "Mathematical/Representation/DenseVectorizer.hpp"
-#include "Operator/FirstQuantized/BaseFQOperator.hpp"
-#include "Utilities/aliases.hpp"
+#include "Operator/FirstQuantized/AngularMomentumOperator.hpp"
 
 
 namespace GQCP {
 
 
-/**
- *  The (one-electron) vector operator for an electron's linear momentum.
- */
-class LinearMomentumOperator:
-    public BaseVectorFQOneElectronOperator<complex> {
-public:
-    /*
-     *  MARK: Vectorizer
-     */
-
-    // The number of components of the operator.
-    static constexpr size_t NumberOfComponents = 3;
-
-    // The 3D vector-vectorizer related to this operator.
-    static const VectorVectorizer vectorizer;
-};
+// Instantiate the static const vectorizer.
+const VectorVectorizer AngularMomentumOperator::vectorizer {{AngularMomentumOperator::NumberOfComponents}};
 
 
 }  // namespace GQCP

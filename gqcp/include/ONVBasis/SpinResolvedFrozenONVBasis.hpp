@@ -76,9 +76,9 @@ public:
      *
      *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of this spin-resolved ONV basis
      */
-    SquareMatrix<double> evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, const bool diagonal_values) const;
+    // SquareMatrix<double> evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, const bool diagonal_values) const;
 
-    using BaseFrozenCoreONVBasis::evaluateOperatorDiagonal;
+    // using BaseFrozenCoreONVBasis::evaluateOperatorDiagonal;
 
     /**
      *  Evaluate the diagonal of the Hamiltonian
@@ -86,19 +86,19 @@ public:
      *  @param usq_hamiltonian          the Hamiltonian expressed in an unrestricted orthonormal basis 
      *
      *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of this spin-resolved basis
-     */
-    VectorX<double> evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const;
+    //  */
+    // VectorX<double> evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const;
 
-    /**
-     *  Evaluate the unrestricted Hamiltonian in a matrix vector product
-     *
-     *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
-     *  @param x                              the vector upon which the evaluation acts 
-     *  @param diagonal                       the diagonal evaluated in this spin-resolved basis
-     *
-     *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of this spin-resolved basis
-     */
-    VectorX<double> evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+    // /**
+    //  *  Evaluate the unrestricted Hamiltonian in a matrix vector product
+    //  *
+    //  *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis
+    //  *  @param x                              the vector upon which the evaluation acts
+    //  *  @param diagonal                       the diagonal evaluated in this spin-resolved basis
+    //  *
+    //  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of this spin-resolved basis
+    //  */
+    // VectorX<double> evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
 
     /**
      *  @return the frozen ONV basis for the alpha-spinors

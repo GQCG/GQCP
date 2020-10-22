@@ -119,84 +119,84 @@ public:
      *
      *  @return the operator's evaluation in a dense matrix with the dimensions of the spin-unresolved ONV basis
      */
-    SquareMatrix<double> evaluateOperatorDense(const ScalarGSQOneElectronOperator<double>& one_op, const bool diagonal_values) const;
+    // SquareMatrix<double> evaluateOperatorDense(const ScalarGSQOneElectronOperator<double>& one_op, const bool diagonal_values) const;
 
-    /**
-     *  Evaluate the operator in a dense matrix
-     *
-     *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the spin-unresolved ONV basis
-     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
-     *
-     *  @return the operator's evaluation in a dense matrix with the dimensions of the spin-unresolved ONV basis
-     */
-    SquareMatrix<double> evaluateOperatorDense(const ScalarGSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const;
+    // /**
+    //  *  Evaluate the operator in a dense matrix
+    //  *
+    //  *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the spin-unresolved ONV basis
+    //  *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+    //  *
+    //  *  @return the operator's evaluation in a dense matrix with the dimensions of the spin-unresolved ONV basis
+    //  */
+    // SquareMatrix<double> evaluateOperatorDense(const ScalarGSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const;
 
-    /**
-     *  Evaluate the Hamiltonian in a dense matrix
-     *
-     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
-     *  @param diagonal_values              bool to indicate if diagonal values will be calculated
-     *
-     *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the spin-unresolved ONV basis
-     */
-    SquareMatrix<double> evaluateOperatorDense(const GSQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const;
+    // /**
+    //  *  Evaluate the Hamiltonian in a dense matrix
+    //  *
+    //  *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+    //  *  @param diagonal_values              bool to indicate if diagonal values will be calculated
+    //  *
+    //  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the spin-unresolved ONV basis
+    //  */
+    // SquareMatrix<double> evaluateOperatorDense(const GSQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const;
 
-    /**
-     *  Evaluate the diagonal of the operator
-     *
-     *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the spin-unresolved ONV basis
-     *
-     *  @return the operator's diagonal evaluation in a vector with the dimension of the spin-unresolved ONV basis
-     */
-    VectorX<double> evaluateOperatorDiagonal(const ScalarGSQOneElectronOperator<double>& one_op) const;
+    // /**
+    //  *  Evaluate the diagonal of the operator
+    //  *
+    //  *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the spin-unresolved ONV basis
+    //  *
+    //  *  @return the operator's diagonal evaluation in a vector with the dimension of the spin-unresolved ONV basis
+    //  */
+    // VectorX<double> evaluateOperatorDiagonal(const ScalarGSQOneElectronOperator<double>& one_op) const;
 
-    /**
-     *  Evaluate the diagonal of the operator
-     *
-     *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the spin-unresolved ONV basis
-     *
-     *  @return the operator's diagonal evaluation in a vector with the dimension of the spin-unresolved ONV basis
-     */
-    VectorX<double> evaluateOperatorDiagonal(const ScalarGSQTwoElectronOperator<double>& two_op) const;
+    // /**
+    //  *  Evaluate the diagonal of the operator
+    //  *
+    //  *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the spin-unresolved ONV basis
+    //  *
+    //  *  @return the operator's diagonal evaluation in a vector with the dimension of the spin-unresolved ONV basis
+    //  */
+    // VectorX<double> evaluateOperatorDiagonal(const ScalarGSQTwoElectronOperator<double>& two_op) const;
 
-    /**
-     *  Evaluate the diagonal of the Hamiltonian
-     *
-     *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
-     *
-     *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the spin-unresolved ONV basis
-     */
-    VectorX<double> evaluateOperatorDiagonal(const GSQHamiltonian<double>& sq_hamiltonian) const;
+    // /**
+    //  *  Evaluate the diagonal of the Hamiltonian
+    //  *
+    //  *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
+    //  *
+    //  *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the spin-unresolved ONV basis
+    //  */
+    // VectorX<double> evaluateOperatorDiagonal(const GSQHamiltonian<double>& sq_hamiltonian) const;
 
-    /**
-     *  Evaluate the operator in a sparse matrix
-     *
-     *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the spin-unresolved ONV basis
-     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
-     *
-     *  @return the operator's evaluation in a sparse matrix with the dimensions of the spin-unresolved ONV basis
-     */
-    Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarGSQOneElectronOperator<double>& one_op, const bool diagonal_values) const;
+    // /**
+    //  *  Evaluate the operator in a sparse matrix
+    //  *
+    //  *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the spin-unresolved ONV basis
+    //  *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+    //  *
+    //  *  @return the operator's evaluation in a sparse matrix with the dimensions of the spin-unresolved ONV basis
+    //  */
+    // Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarGSQOneElectronOperator<double>& one_op, const bool diagonal_values) const;
 
-    /**
-     *  Evaluate the operator in a sparse matrix
-     *
-     *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the spin-unresolved ONV basis
-     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
-     *
-     *  @return the operator's evaluation in a sparse matrix with the dimensions of the spin-unresolved ONV basis
-     */
-    Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarGSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const;
+    // /**
+    //  *  Evaluate the operator in a sparse matrix
+    //  *
+    //  *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the spin-unresolved ONV basis
+    //  *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+    //  *
+    //  *  @return the operator's evaluation in a sparse matrix with the dimensions of the spin-unresolved ONV basis
+    //  */
+    // Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarGSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const;
 
-    /**
-     *  Evaluate the Hamiltonian in a sparse matrix
-     *
-     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
-     *  @param diagonal_values              bool to indicate if diagonal values will be calculated
-     *
-     *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the spin-unresolved ONV basis
-     */
-    Eigen::SparseMatrix<double> evaluateOperatorSparse(const RSQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const;
+    // /**
+    //  *  Evaluate the Hamiltonian in a sparse matrix
+    //  *
+    //  *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+    //  *  @param diagonal_values              bool to indicate if diagonal values will be calculated
+    //  *
+    //  *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the spin-unresolved ONV basis
+    //  */
+    // Eigen::SparseMatrix<double> evaluateOperatorSparse(const RSQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const;
 
     /**
      *  @param representation       a representation of an spin-unresolved ONV

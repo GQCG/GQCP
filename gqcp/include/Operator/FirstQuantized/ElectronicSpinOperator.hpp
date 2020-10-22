@@ -43,8 +43,4 @@ public:
 };
 
 
-// Instantiate the static const vectorizer.
-const VectorVectorizer ElectronicSpinOperator::vectorizer {{ElectronicSpinOperator::NumberOfComponents}};
-
-
 }  // namespace GQCP

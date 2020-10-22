@@ -52,8 +52,4 @@ public:
 };
 
 
-// Instantiate the static const vectorizer.
-const VectorVectorizer ElectronicDipoleOperator::vectorizer {{ElectronicDipoleOperator::NumberOfComponents}};
-
-
 }  // namespace GQCP

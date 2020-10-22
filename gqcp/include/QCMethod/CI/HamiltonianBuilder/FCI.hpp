@@ -52,28 +52,28 @@ public:
 
     // PUBLIC OVERRIDDEN METHODS
 
-    /**
-     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
-     *
-     *  @return the diagonal of the matrix representation of the Hamiltonian
-     */
-    VectorX<double> calculateDiagonal(const RSQHamiltonian<double>& sq_hamiltonian) const override;
+    // /**
+    //  *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+    //  *
+    //  *  @return the diagonal of the matrix representation of the Hamiltonian
+    //  */
+    // VectorX<double> calculateDiagonal(const RSQHamiltonian<double>& sq_hamiltonian) const override;
 
-    /**
-     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
-     *
-     *  @return the FCI Hamiltonian matrix
-     */
-    SquareMatrix<double> constructHamiltonian(const RSQHamiltonian<double>& sq_hamiltonian) const override;
+    // /**
+    //  *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+    //  *
+    //  *  @return the FCI Hamiltonian matrix
+    //  */
+    // SquareMatrix<double> constructHamiltonian(const RSQHamiltonian<double>& sq_hamiltonian) const override;
 
-    /**
-     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
-     *  @param x                            the vector upon which the FCI Hamiltonian acts
-     *  @param diagonal                     the diagonal of the FCI Hamiltonian matrix
-     *
-     *  @return the action of the FCI Hamiltonian on the coefficient vector
-     */
-    VectorX<double> matrixVectorProduct(const RSQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const override;
+    // /**
+    //  *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+    //  *  @param x                            the vector upon which the FCI Hamiltonian acts
+    //  *  @param diagonal                     the diagonal of the FCI Hamiltonian matrix
+    //  *
+    //  *  @return the action of the FCI Hamiltonian on the coefficient vector
+    //  */
+    // VectorX<double> matrixVectorProduct(const RSQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const override;
 
     /**
      *  @return the ONV basis that is associated to this HamiltonianBuilder

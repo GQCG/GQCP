@@ -43,28 +43,28 @@ public:
 
     // PUBLIC METHODS
 
-    /**
-     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
-     *
-     *  @return the diagonal of the matrix representation of the DOCI Hamiltonian
-     */
-    VectorX<double> calculateDiagonal(const RSQHamiltonian<double>& sq_hamiltonian) const;
+    // /**
+    //  *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+    //  *
+    //  *  @return the diagonal of the matrix representation of the DOCI Hamiltonian
+    //  */
+    // VectorX<double> calculateDiagonal(const RSQHamiltonian<double>& sq_hamiltonian) const;
 
-    /**
-     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
-     *
-     *  @return the DOCI Hamiltonian matrix
-     */
-    SquareMatrix<double> constructHamiltonian(const RSQHamiltonian<double>& sq_hamiltonian) const;
+    // /**
+    //  *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+    //  *
+    //  *  @return the DOCI Hamiltonian matrix
+    //  */
+    // SquareMatrix<double> constructHamiltonian(const RSQHamiltonian<double>& sq_hamiltonian) const;
 
-    /**
-     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
-     *  @param x                            the vector upon which the DOCI Hamiltonian acts
-     *  @param diagonal                     the diagonal of the DOCI Hamiltonian matrix
-     *
-     *  @return the action of the DOCI Hamiltonian on the coefficient vector
-     */
-    VectorX<double> matrixVectorProduct(const RSQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+    // /**
+    //  *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+    //  *  @param x                            the vector upon which the DOCI Hamiltonian acts
+    //  *  @param diagonal                     the diagonal of the DOCI Hamiltonian matrix
+    //  *
+    //  *  @return the action of the DOCI Hamiltonian on the coefficient vector
+    //  */
+    // VectorX<double> matrixVectorProduct(const RSQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
 };
 
 

@@ -42,74 +42,74 @@ FCI::FCI(const SpinResolvedONVBasis& onv_basis) :
  *
  *  @return the diagonal of the matrix representation of the Hamiltonian
  */
-VectorX<double> FCI::calculateDiagonal(const RSQHamiltonian<double>& sq_hamiltonian) const {
+// VectorX<double> FCI::calculateDiagonal(const RSQHamiltonian<double>& sq_hamiltonian) const {
 
-    return this->onv_basis.evaluateOperatorDiagonal(sq_hamiltonian);
-}
-
-
-/**
- *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
- *
- *  @return the FCI Hamiltonian matrix
- */
-SquareMatrix<double> FCI::constructHamiltonian(const RSQHamiltonian<double>& sq_hamiltonian) const {
-
-    return this->onv_basis.evaluateOperatorDense(sq_hamiltonian, true);
-}
+//     return this->onv_basis.evaluateOperatorDiagonal(sq_hamiltonian);
+// }
 
 
-/**
- *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
- *  @param x                            the vector upon which the FCI Hamiltonian acts
- *  @param diagonal                     the diagonal of the FCI Hamiltonian matrix
- *
- *  @return the action of the FCI Hamiltonian on the coefficient vector
- */
-VectorX<double> FCI::matrixVectorProduct(const RSQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+// /**
+//  *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
+//  *
+//  *  @return the FCI Hamiltonian matrix
+//  */
+// SquareMatrix<double> FCI::constructHamiltonian(const RSQHamiltonian<double>& sq_hamiltonian) const {
 
-    auto K = sq_hamiltonian.core().numberOfOrbitals();
-    if (K != this->onv_basis.numberOfOrbitals()) {
-        throw std::invalid_argument("FCI::matrixVectorProduct(RSQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the ONV basis and sq_hamiltonian are incompatible.");
-    }
+//     return this->onv_basis.evaluateOperatorDense(sq_hamiltonian, true);
+// }
 
-    SpinUnresolvedONVBasis fock_space_alpha = onv_basis.onvBasisAlpha();
-    SpinUnresolvedONVBasis fock_space_beta = onv_basis.onvBasisBeta();
 
-    const auto& alpha_couplings = this->onv_basis.alphaCouplings();
+// /**
+//  *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+//  *  @param x                            the vector upon which the FCI Hamiltonian acts
+//  *  @param diagonal                     the diagonal of the FCI Hamiltonian matrix
+//  *
+//  *  @return the action of the FCI Hamiltonian on the coefficient vector
+//  */
+// VectorX<double> FCI::matrixVectorProduct(const RSQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
-    auto dim_alpha = fock_space_alpha.dimension();
-    auto dim_beta = fock_space_beta.dimension();
+//     auto K = sq_hamiltonian.core().numberOfOrbitals();
+//     if (K != this->onv_basis.numberOfOrbitals()) {
+//         throw std::invalid_argument("FCI::matrixVectorProduct(RSQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the ONV basis and sq_hamiltonian are incompatible.");
+//     }
 
-    VectorX<double> matvec = diagonal.cwiseProduct(x);
+//     SpinUnresolvedONVBasis fock_space_alpha = onv_basis.onvBasisAlpha();
+//     SpinUnresolvedONVBasis fock_space_beta = onv_basis.onvBasisBeta();
 
-    Eigen::Map<Eigen::MatrixXd> matvecmap {matvec.data(), static_cast<long>(dim_beta), static_cast<long>(dim_alpha)};
-    Eigen::Map<const Eigen::MatrixXd> xmap {x.data(), static_cast<long>(dim_beta), static_cast<long>(dim_alpha)};
+//     const auto& alpha_couplings = this->onv_basis.alphaCouplings();
 
-    for (size_t p = 0; p < K; p++) {
+//     auto dim_alpha = fock_space_alpha.dimension();
+//     auto dim_beta = fock_space_beta.dimension();
 
-        const auto& P = this->onv_basis.calculateOneElectronPartition(p, p, sq_hamiltonian.twoElectron());
-        const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorDense(P, false);
+//     VectorX<double> matvec = diagonal.cwiseProduct(x);
 
-        // sigma(pp) * X * theta(pp)
-        matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p * (K + K + 1 - p) / 2]);
-        for (size_t q = p + 1; q < K; q++) {
+//     Eigen::Map<Eigen::MatrixXd> matvecmap {matvec.data(), static_cast<long>(dim_beta), static_cast<long>(dim_alpha)};
+//     Eigen::Map<const Eigen::MatrixXd> xmap {x.data(), static_cast<long>(dim_beta), static_cast<long>(dim_alpha)};
 
-            const auto& P = this->onv_basis.calculateOneElectronPartition(p, q, sq_hamiltonian.twoElectron());
-            const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorDense(P, true);
+//     for (size_t p = 0; p < K; p++) {
 
-            // (sigma(pq) + sigma(qp)) * X * theta(pq)
-            matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p * (K + K + 1 - p) / 2 + q - p]);
-        }
-    }
+//         const auto& P = this->onv_basis.calculateOneElectronPartition(p, p, sq_hamiltonian.twoElectron());
+//         const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorDense(P, false);
 
-    auto beta_hamiltonian = fock_space_beta.evaluateOperatorSparse(sq_hamiltonian, false);
-    auto alpha_hamiltonian = fock_space_alpha.evaluateOperatorSparse(sq_hamiltonian, false);
+//         // sigma(pp) * X * theta(pp)
+//         matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p * (K + K + 1 - p) / 2]);
+//         for (size_t q = p + 1; q < K; q++) {
 
-    matvecmap += beta_hamiltonian * xmap + xmap * alpha_hamiltonian;
+//             const auto& P = this->onv_basis.calculateOneElectronPartition(p, q, sq_hamiltonian.twoElectron());
+//             const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorDense(P, true);
 
-    return matvec;
-}
+//             // (sigma(pq) + sigma(qp)) * X * theta(pq)
+//             matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p * (K + K + 1 - p) / 2 + q - p]);
+//         }
+//     }
+
+//     auto beta_hamiltonian = fock_space_beta.evaluateOperatorSparse(sq_hamiltonian, false);
+//     auto alpha_hamiltonian = fock_space_alpha.evaluateOperatorSparse(sq_hamiltonian, false);
+
+//     matvecmap += beta_hamiltonian * xmap + xmap * alpha_hamiltonian;
+
+//     return matvec;
+// }
 
 
 }  // namespace GQCP
