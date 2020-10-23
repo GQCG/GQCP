@@ -254,7 +254,7 @@ BOOST_AUTO_TEST_CASE(selfAdjoint) {
     using namespace GQCP::literals;
     GQCP::SquareMatrix<GQCP::complex> H2 {2};
     // clang-format off
-    H1 <<  1.0, -3.0_ii,
+    H2 <<  1.0, -3.0_ii,
            3.0_ii,  2.0;
     // clang-format on
     BOOST_CHECK(H2.isSelfAdjoint());
