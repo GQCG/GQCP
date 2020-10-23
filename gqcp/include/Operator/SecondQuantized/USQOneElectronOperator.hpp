@@ -73,9 +73,9 @@ public:
      * 
      *  @param fs_a                 All the matrix representations of the components of the alpha-part of the unrestricted one-electron operator.
      *  @param fs_b                 All the matrix representations of the components of the beta-part of the unrestricted one-electron operator.
-     *  @param vectorizer           The type of the vectorizer that relates a one-dimensional storage of matrix representations to the tensor structure of the second-quantized operators. Equal for alpha and beta.
+     *  @param vectorizer           The type of the vectorizer that relates a one-dimensional storage of matrix representations to the tensor structure of the second-quantized operator. Equal for alpha and beta.
      * 
-     *  @tparam N           The number of components for the alpha- and beta-part of the unrestricted one-electron operator.
+     *  @tparam N                   The number of components for the alpha- and beta-part of the unrestricted one-electron operator.
      */
     template <size_t N>
     USQOneElectronOperator(const std::array<SquareMatrix<Scalar>, N>& fs_a, const std::array<SquareMatrix<Scalar>, N>& fs_b, const Vectorizer& vectorizer) :
@@ -101,7 +101,7 @@ public:
 
 
     /**
-     *  A constructor for ScalarUSQOneElectronOperators that doesn't require the argument to be a vector of just one element.
+     *  A constructor for ScalarUSQOneElectronOperators that doesn't require the argument to be an array of just one element.
      *
      *  @param f_a          The matrix representation of the alpha-part of the unrestricted one-electron operator.
      *  @param f_b          The matrix representation of the beta-part of the unrestricted one-electron operator.
@@ -118,8 +118,7 @@ public:
      *  The default constructor.
      */
     USQOneElectronOperator() :
-        USQOneElectronOperator(USQOneElectronOperator<Scalar, Vectorizer>::Zero(0))  // The dimensions of the representations are zero.
-    {}
+        USQOneElectronOperator(USQOneElectronOperator<Scalar, Vectorizer>::Zero(0)) {}
 
 
     /*
@@ -134,7 +133,7 @@ public:
     static USQOneElectronOperator<Scalar, Vectorizer> Zero(const size_t dim) {
 
         const auto zero_component = USQOneElectronOperatorComponent<Scalar, Vectorizer>::Zero(dim);
-        return USQOneElectronOperator<Scalar, Vectorizer> {zero_component, zero_component};
+        return USQOneElectronOperator<Scalar, Vectorizer>::FromEqual(zero_component, zero_component);
     }
 
 
@@ -204,25 +203,12 @@ public:
     size_t numberOfOrbitals(const Spin sigma) const { return this->component(sigma).numberOfOrbitals(); }
 
 
-    /**
-     *  Apply the basis transformation and return the result.
-     * 
-     *  @param transformation_matrix        The type that encapsulates the basis transformation coefficients.
-     * 
-     *  @return The basis-transformed object.
-     */
-    // Self transformed(const TM& transformation_matrix) const {
-
-    //     auto result = *this;
-    // }
-
-
     /*
      *  MARK: Conforming to VectorSpaceArithmetic
      */
 
     /**
-     *  Addition-assignment, to be implemented in derived classes.
+     *  Addition-assignment.
      */
     Self& operator+=(const Self& rhs) {
 
@@ -235,7 +221,7 @@ public:
 
 
     /**
-     *  Scalar multiplication-assignment, to be implemented in derived classes.
+     *  Scalar multiplication-assignment.
      */
     Self& operator*=(const Scalar& a) {
 
