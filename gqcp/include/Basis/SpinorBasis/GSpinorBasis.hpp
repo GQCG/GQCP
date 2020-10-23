@@ -377,6 +377,7 @@ public:
         S_x.block(0, K_alpha, K_alpha, K_beta) = 0.5 * S_ab;
         S_x.block(K_alpha, 0, K_beta, K_alpha) = 0.5 * S_ba;
 
+        using namespace GQCP::literals;
         S_y.block(0, K_alpha, K_alpha, K_beta) = -0.5 * 1_ii * S_ab;
         S_y.block(K_alpha, 0, K_beta, K_alpha) = 0.5 * 1_ii * S_ba;
 

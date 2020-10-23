@@ -27,23 +27,38 @@ namespace GQCP {
 /**
  *  The Hubbard hopping matrix.
  * 
- *  @tparam _Scalar         the scalar type of the elements
+ *  @tparam _Scalar         The scalar type of the elements of the hopping matrix.
  */
 template <typename _Scalar>
 class HoppingMatrix:
     public SquareMatrix<_Scalar> {
 
 public:
+    // The scalar type of the elements of the hopping matrix.
     using Scalar = _Scalar;
 
 
 public:
     /*
-     *  CONSTRUCTORS
+     *  MARK: Constructors
      */
 
     /**
-     *  A default constructor.
+     *  Create a hopping matrix from its representation as a `SquareMatrix`.
+     * 
+     *  @param H        The Hubbard hopping matrix, represented as a `SquareMatrix`.
+     */
+    HoppingMatrix(const SquareMatrix<Scalar>& H) :
+        SquareMatrix<Scalar>(H) {
+
+        if (!H.isHermitian()) {
+            throw std::invalid_argument("HoppingMatrix::HoppingMatrix(const SquareMatrix<Scalar>&): The given hopping matrix must be Hermitian.");
+        }
+    }
+
+
+    /**
+     *  The default constructor.
      */
     HoppingMatrix() :
         SquareMatrix<Scalar>() {}
@@ -57,23 +72,11 @@ public:
 
 
     /**
-     *  @param H        the Hubbard hopping matrix
-     */
-    HoppingMatrix(const SquareMatrix<Scalar>& H) :
-        SquareMatrix<Scalar>(H) {
-
-        if (!H.adjoint().isApprox(H)) {
-            throw std::invalid_argument("HoppingMatrix::HoppingMatrix(const SquareMatrix<Scalar>&): The given hopping matrix must be Hermitian.");
-        }
-    }
-
-
-    /**
      *  Generate the Hubbard hopping matrix from an adjacency matrix and Hubbard model parameters U and t.
      *
-     *  @param A        the Hubbard adjacency matrix, specifying the connectivity of the Hubbard lattice
-     *  @param t        the Hubbard parameter t. Note that a positive value for t means a negative neighbour hopping term
-     *  @param U        the Hubbard parameter U
+     *  @param A        The Hubbard adjacency matrix, specifying the connectivity of the Hubbard lattice.
+     *  @param t        The Hubbard parameter t. Note that a positive value for t means a negative neighbour hopping term.
+     *  @param U        The Hubbard parameter U.
      *
      *  @note This constructor is only available in the real case (for the std::enable_if, see https://stackoverflow.com/a/17842695/7930415).
      */
@@ -84,13 +87,15 @@ public:
 
 
     /*
-     *  NAMED CONSTRUCTORS
+     *  MARK: Named constructors
      */
 
     /**
-     *  @param csline           a comma-separated line that contains the upper triangle (in column-major ordering) of the Hubbard hopping matrix
+     *  Create a hopping matrix from a comma-separated line.
      * 
-     *  @return the hopping matrix that corresponds to the given comma-separated line
+     *  @param csline           A comma-separated line that contains the upper triangle (in column-major ordering) of the Hubbard hopping matrix.
+     * 
+     *  @return The hopping matrix that corresponds to the given comma-separated line.
      */
     template <typename Z = Scalar>
     static enable_if_t<std::is_same<Z, double>::value, HoppingMatrix<double>> FromCSLine(const std::string& csline) {
@@ -115,23 +120,20 @@ public:
 
 
     /**
-     *  @param K        the number of lattice sites
+     *  Create a random Hopping matrix with elements distributed uniformly in [-1.0, 1.0].
+     * 
+     *  @param K        The number of lattice sites.
      *
-     *  @return a random hopping matrix with elements distributed uniformly in [-1.0, 1.0]
+     *  @return A random hopping matrix.
      * 
      *  @note This method is only available for real scalars.
      */
     template <typename Z = Scalar>
-    static enable_if_t<std::is_same<Z, double>::value, HoppingMatrix<double>> Random(const size_t K) {
-
-        VectorX<double> v = VectorX<double>::Random(K * (K + 1) / 2);  // random free variables
-
-        return HoppingMatrix<double>::SymmetricFromUpperTriangle(v);
-    }
+    static enable_if_t<std::is_same<Z, double>::value, HoppingMatrix<double>> Random(const size_t K) { return HoppingMatrix::RandomSymmetric(K); }
 
 
     /*
-     *  PUBLIC METHODS
+     *  MARK: General information
      */
 
     /**
