@@ -7,6 +7,7 @@ target_sources(gqcp
         OrbitalRotationGenerators.hpp
         RTransformationMatrix.hpp
         SimpleTransformationMatrix.hpp
+        SpinResolvedBasisTransformable.hpp
         UTransformationMatrix.hpp
         UTransformationMatrixComponent.hpp
         transform.hpp
