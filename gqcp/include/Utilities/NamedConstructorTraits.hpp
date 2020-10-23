@@ -15,27 +15,19 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "ONVBasis/BaseONVBasis.hpp"
-
-// #include "ONVBasis/SpinResolvedONVBasis.hpp"
-// #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
-// #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
+#pragma once
 
 
 namespace GQCP {
 
 
-/*
- * PROTECTED CONSTRUCTORS
- */
-
 /**
- *  @param M            the number of orbitals
- *  @param dim          the dimension of the ONV basis
+ *  A type that provides compile-time information for named constructors. TODO: Add link to why this is needed?
+ * 
+ *  This type is used to provides traits on types T that derive from a type that requires traits on an instantiated class template T.
  */
-BaseONVBasis::BaseONVBasis(const size_t M, const size_t dim) :
-    M {M},
-    dim {dim} {}
+template <typename T>
+struct NamedConstructorTraits {};
 
 
 }  // namespace GQCP

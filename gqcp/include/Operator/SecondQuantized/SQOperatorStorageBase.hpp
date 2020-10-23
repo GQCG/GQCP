@@ -285,6 +285,11 @@ public:
      *  @return The number of orbitals this operator is quantized in. For 'restricted' operators, this is the number of spatial orbitals, for 'general' operators, this is the number of spinors.
      */
     size_t numberOfOrbitals() const { return this->array.elements()[0].dimension(); /* all the dimensions are the same, this is checked in the constructor */ }
+
+    /**
+     *  @return The vectorizer (i.e. the instance that relates a one-dimensional storage of matrix representations to the tensor structure of the second-quantized operators) for this operator.
+     */
+    const Vectorizer& vectorizer() const { return this->array.vectorizer(); }
 };
 
 

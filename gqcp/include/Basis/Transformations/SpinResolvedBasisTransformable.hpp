@@ -53,11 +53,10 @@ public:
     T transformed(const TM& transformation_matrix) const override {
 
         // Transform the components of 'this' with the components of the transformation matrix.
-        auto result = static_cast<T&>(*this);
-        result.alpha().transform(transformation_matrix.alpha());
-        result.beta().transform(transformation_matrix.beta());
+        const auto alpha_transformed = static_cast<const T&>(*this).alpha().transformed(transformation_matrix.alpha());
+        const auto beta_transformed = static_cast<const T&>(*this).beta().transformed(transformation_matrix.beta());
 
-        return result;
+        return T {alpha_transformed, beta_transformed};
     }
 };
 

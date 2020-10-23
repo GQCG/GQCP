@@ -3,6 +3,7 @@ target_sources(gqcp
         BasisTransformable.hpp
         GTransformationMatrix.hpp
         JacobiRotationParameters.hpp
+        UJacobiRotation.hpp
         JacobiRotatable.hpp
         OrbitalRotationGenerators.hpp
         RTransformationMatrix.hpp

@@ -20,6 +20,9 @@
 
 #include "Basis/Transformations/SpinResolvedBasisTransformable.hpp"
 #include "Basis/Transformations/UTransformationMatrix.hpp"
+#include "DensityMatrix/SpinResolved1DM.hpp"
+#include "DensityMatrix/SpinResolved2DM.hpp"
+#include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp"
 #include "QuantumChemical/SpinResolvedBase.hpp"
 #include "QuantumChemical/spinor_tags.hpp"
@@ -68,25 +71,30 @@ public:
     /**
      *  Create an `USQOneElectronOperator` from all the matrix representations of its components.
      * 
-     *  @param fs_a         All the matrix representations of the components of the alpha-part of the unrestricted one-electron operator.
-     *  @param fs_b         All the matrix representations of the components of the beta-part of the unrestricted one-electron operator.
+     *  @param fs_a                 All the matrix representations of the components of the alpha-part of the unrestricted one-electron operator.
+     *  @param fs_b                 All the matrix representations of the components of the beta-part of the unrestricted one-electron operator.
+     *  @param vectorizer           The type of the vectorizer that relates a one-dimensional storage of matrix representations to the tensor structure of the second-quantized operators. Equal for alpha and beta.
+     * 
+     *  @tparam N           The number of components for the alpha- and beta-part of the unrestricted one-electron operator.
      */
-    USQOneElectronOperator(const std::array<QCMatrix<Scalar>, Components>& fs_a, const std::array<QCMatrix<Scalar>, Components>& fs_b) :
+    template <size_t N>
+    USQOneElectronOperator(const std::array<SquareMatrix<Scalar>, N>& fs_a, const std::array<SquareMatrix<Scalar>, N>& fs_b, const Vectorizer& vectorizer) :
 
         // Encapsulate the array of matrix representations in the alpha- and beta- operator components, and put them together to form the `USQOneElectronOperator`.
         SpinResolvedBase<USQOneElectronOperatorComponent<Scalar, Vectorizer>, USQOneElectronOperator<Scalar, Vectorizer>>(
-            USQOneElectronOperatorComponent<Scalar, Vectorizer> {fs_a}, USQOneElectronOperatorComponent<Scalar, Vectorizer> {fs_b}) {
+            USQOneElectronOperatorComponent<Scalar, Vectorizer> {StorageArray<SquareMatrix<Scalar>, Vectorizer> {fs_a, vectorizer}},
+            USQOneElectronOperatorComponent<Scalar, Vectorizer> {StorageArray<SquareMatrix<Scalar>, Vectorizer> {fs_b, vectorizer}}) {
 
         // Check if the given matrix representations have the same dimensions.
-        const auto dimension_of_first_a = fs_a[0].numberOfOrbitals();
-        const auto dimension_of_first_b = fs_b[0].numberOfOrbitals();
+        const auto dimension_of_first_a = fs_a[0].dimension();
+        const auto dimension_of_first_b = fs_b[0].dimension();
 
-        for (size_t i = 1; i < Components; i++) {
-            const auto dimension_of_ith_a = fs_a[i].numberOfOrbitals();
-            const auto dimension_of_ith_b = fs_b[i].numberOfOrbitals();
+        for (size_t i = 1; i < N; i++) {
+            const auto dimension_of_ith_a = fs_a[i].dimension();
+            const auto dimension_of_ith_b = fs_b[i].dimension();
 
             if ((dimension_of_first_a != dimension_of_ith_a) || (dimension_of_first_b != dimension_of_ith_b)) {
-                throw std::invalid_argument("USQOneElectronOperator(const std::array<QCMatrix<Scalar>, Components>&, const std::array<QCMatrix<Scalar>, components>&): The given matrix representations do not have the same dimensions for either the alpha or beta component.");
+                throw std::invalid_argument("USQOneElectronOperator(const std::array<SquareMatrix<Scalar>, Components>&, const std::array<SquareMatrix<Scalar>, components>&): The given matrix representations do not have the same dimensions for either the alpha or beta component.");
             }
         }
     }
@@ -101,9 +109,9 @@ public:
      *  @note This constructor is only available for ScalarUSQOneElectronOperators (for the std::enable_if, see https://stackoverflow.com/a/17842695/7930415).
      */
     template <typename Z = Vectorizer>
-    USQOneElectronOperator(const QCMatrix<Scalar>& f_a, const QCMatrix<Scalar>& f_b,
+    USQOneElectronOperator(const SquareMatrix<Scalar>& f_a, const SquareMatrix<Scalar>& f_b,
                            typename std::enable_if<std::is_same<Z, ScalarVectorizer>::value>::type* = 0) :
-        USQOneElectronOperator(std::array<QCMatrix<Scalar>, 1> {f_a}, std::array<QCMatrix<Scalar>, 1> {f_b}) {}
+        USQOneElectronOperator(std::array<SquareMatrix<Scalar>, 1> {f_a}, std::array<SquareMatrix<Scalar>, 1> {f_b}, ScalarVectorizer()) {}
 
 
     /**
@@ -144,7 +152,7 @@ public:
     template <typename... Indices>
     USQOneElectronOperator<Scalar, ScalarVectorizer> operator()(const Indices&... indices) const {
 
-        return USQOneElectronOperator<Scalar, ScalarVectorizer> {this->alpha().parameters(indices), this->beta().parameters(indices)};
+        return USQOneElectronOperator<Scalar, ScalarVectorizer> {this->alpha().parameters(indices...), this->beta().parameters(indices...)};
     }
 
 
@@ -162,7 +170,16 @@ public:
     StorageArray<Scalar, Vectorizer> calculateExpectationValue(const SpinResolved1DM<Scalar>& D) const {
 
         // Calculate the sum of the alpha- and beta-contributions.
-        return this->alpha().calculateExpectationValue(D.alpha()) + this->beta().calculateExpectationValue(D.beta());
+        // Unfortunately, we can't give `StorageArray` out-of-the-box vector-space arithmetic (since the default scalar type for scalar multiplication is unknown), so we'll have to do the summation ourselves.
+        auto result_elements = this->alpha().calculateExpectationValue(D.alpha()).elements();  // Initialize the calculation with the alpha elements.
+        const auto beta_expectation_value_elements = this->beta().calculateExpectationValue(D.beta()).elements();
+
+        // Use the STL to implement element-wise addition.
+        std::transform(result_elements.begin(), result_elements.end(),
+                       beta_expectation_value_elements.begin(), result_elements.begin(),
+                       std::plus<Scalar> {});
+
+        return StorageArray<Scalar, Vectorizer> {result_elements, this->alpha().vectorizer()};
     }
 
 
@@ -232,45 +249,24 @@ public:
 
 
 /*
- *  MARK: Operator traits
- */
-
-/**
- *  A type that provides compile-time information on operators that is otherwise not accessible through a public class alias.
- */
-template <typename _Scalar, typename _Vectorizer, typename _DerivedOperator>
-struct OperatorTraits<USQSQOneElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>> {
-
-    // The scalar type used for a single parameter/matrix element/integral: real or complex.
-    using Scalar = _Scalar;
-
-    // The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
-    using Vectorizer = _Vectorizer;
-
-    // The type of the operator that derives from `SimpleSQOneElectronOperator`, enabling CRTP and compile-time polymorphism.
-    using DerivedOperator = _DerivedOperator;
-};
-
-
-/*
  *  MARK: Convenience aliases
  */
 
 // A scalar-like USQOneElectronOperator, i.e. with scalar-like access.
 template <typename Scalar>
-using ScalarRSQOneElectronOperator = USQOneElectronOperator<Scalar, ScalarVectorizer>;
+using ScalarUSQOneElectronOperator = USQOneElectronOperator<Scalar, ScalarVectorizer>;
 
 // A vector-like USQOneElectronOperator, i.e. with vector-like access.
 template <typename Scalar>
-using VectorRSQOneElectronOperator = USQOneElectronOperator<Scalar, VectorVectorizer>;
+using VectorUSQOneElectronOperator = USQOneElectronOperator<Scalar, VectorVectorizer>;
 
 // A matrix-like USQOneElectronOperator, i.e. with matrix-like access.
 template <typename Scalar>
-using MatrixRSQOneElectronOperator = USQOneElectronOperator<Scalar, MatrixVectorizer>;
+using MatrixUSQOneElectronOperator = USQOneElectronOperator<Scalar, MatrixVectorizer>;
 
 // A tensor-like USQOneElectronOperator, i.e. with tensor-like access.
 template <typename Scalar, size_t N>
-using TensorRSQOneElectronOperator = USQOneElectronOperator<Scalar, TensorVectorizer<N>>;
+using TensorUSQOneElectronOperator = USQOneElectronOperator<Scalar, TensorVectorizer<N>>;
 
 
 /*

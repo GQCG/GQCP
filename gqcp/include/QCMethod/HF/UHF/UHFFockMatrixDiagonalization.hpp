@@ -65,7 +65,7 @@ public:
 
         using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
 
-        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver_alpha {F.parameters(Spin::alpha), environment.S};
+        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver_alpha {F.alpha().parameters(), environment.S};
         const TransformationMatrix<Scalar>& C_alpha = generalized_eigensolver_alpha.eigenvectors();
         environment.coefficient_matrices_alpha.push_back(C_alpha);
 
@@ -73,7 +73,7 @@ public:
         environment.orbital_energies_alpha.push_back(orbital_energies_alpha);
 
 
-        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver_beta {F.parameters(Spin::beta), environment.S};
+        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver_beta {F.beta().parameters(), environment.S};
         const TransformationMatrix<Scalar>& C_beta = generalized_eigensolver_beta.eigenvectors();
         environment.coefficient_matrices_beta.push_back(C_beta);
 

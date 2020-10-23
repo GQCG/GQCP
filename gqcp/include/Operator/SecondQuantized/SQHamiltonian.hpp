@@ -29,6 +29,7 @@
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/RSQTwoElectronOperator.hpp"
 #include "QuantumChemical/spinor_tags.hpp"
+// #include "Utilities/NamedConstructorTraits.hpp"
 #include "Utilities/type_traits.hpp"
 
 #include <numeric>
@@ -184,8 +185,9 @@ public:
      *  @return A second-quantized molecular Hamiltonian.
      */
     // FIXME: This API should be moved to SpinorBasis.
+    // using RestrictedReturnType = NamedConstructorTraits<Self>::RestrictedReturnType<Scalar>;
     template <typename Z = SpinorTag>
-    static enable_if_t<std::is_same<Z, RestrictedSpinOrbitalTag>::value, SQHamiltonian<ScalarRSQOneElectronOperator<double>, ScalarRSQTwoElectronOperator<double>>> Molecular(const RSpinorBasis<double, GTOShell>& spinor_basis, const Molecule& molecule) {
+    static enable_if_t<std::is_same<Z, RestrictedSpinOrbitalTag>::value, Self> Molecular(const RSpinorBasis<double, GTOShell>& spinor_basis, const Molecule& molecule) {
 
         // Calculate the integrals for the molecular Hamiltonian
         const auto T = spinor_basis.quantize(Operator::Kinetic());
@@ -194,10 +196,12 @@ public:
 
         const auto g = spinor_basis.quantize(Operator::Coulomb());
 
-        return SQHamiltonian<ScalarRSQOneElectronOperator<double>, ScalarRSQTwoElectronOperator<double>> {H, g};
+        return Self {H, g};
     }
+
+    // using GeneralReturnType = NamedConstructorTraits<Self>::GeneralReturnType<Scalar>;
     template <typename Z = SpinorTag>
-    static enable_if_t<std::is_same<Z, GeneralSpinorTag>::value, SQHamiltonian<ScalarGSQOneElectronOperator<double>, ScalarGSQTwoElectronOperator<double>>> Molecular(const GSpinorBasis<double, GTOShell>& spinor_basis, const Molecule& molecule) {
+    static enable_if_t<std::is_same<Z, GeneralSpinorTag>::value, Self> Molecular(const GSpinorBasis<double, GTOShell>& spinor_basis, const Molecule& molecule) {
 
         // Calculate the integrals for the molecular Hamiltonian
         const auto T = spinor_basis.quantize(Operator::Kinetic());
@@ -206,7 +210,7 @@ public:
 
         const auto g = spinor_basis.quantize(Operator::Coulomb());
 
-        return SQHamiltonian<ScalarGSQOneElectronOperator<double>, ScalarGSQTwoElectronOperator<double>> {H, g};
+        return Self {H, g};
     }
 
 
@@ -599,6 +603,26 @@ public:
     // Allow the `rotate` method from `JacobiRotatable`, since there's also a `rotate` from `BasisTransformable`.
     using JacobiRotatable<Self>::rotate;
 };
+
+
+/*
+ *  MARK: NamedConstructorTraits
+ */
+
+/**
+ *  A type that provides compile-time information for named constructors.
+ */
+// template <typename ScalarSQOneElectronOperator_Placeholder, typename ScalarSQTwoElectronOperator_Placeholder>
+// struct NamedConstructorTraits<SQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>> {
+
+//     // The type of a restricted second-quantized Hamiltonian.
+//     template <typename Scalar>
+//     using RestrictedReturnType = SQHamiltonian<ScalarRSQOneElectronOperator<Scalar>, ScalarRSQTwoElectronOperator<Scalar>>;
+
+//     // The type of a generalized second-quantized Hamiltonian.
+//     template <typename Scalar>
+//     using GeneralReturnType = SQHamiltonian<ScalarGSQOneElectronOperator<Scalar>, ScalarGSQTwoElectronOperator<Scalar>>;
+// };
 
 
 /*

@@ -188,7 +188,7 @@ public:
             return this->alphaBeta();
         } else if (sigma == Spin::beta && tau == Spin::alpha) {
             return this->betaAlpha();
-        } else if (sigma == Spin::beta && tau == Spin::beta) {
+        } else {
             return this->betaBeta();
         }
     }
