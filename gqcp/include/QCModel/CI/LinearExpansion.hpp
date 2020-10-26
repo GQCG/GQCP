@@ -594,7 +594,7 @@ public:
 
                     const double value = onv_path.sign() * this->coefficient(I) * this->coefficient(J);
 
-                    // Add the one-electron integral as matrix elements of a Hermitian matrix.
+                    // Add the density matrix elements as elements of a Hermitian matrix.
                     ONV_iterator.addColumnwise(I, value);
                     ONV_iterator.addRowwise(I, value);
 
