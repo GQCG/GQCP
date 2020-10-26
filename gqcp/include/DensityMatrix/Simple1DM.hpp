@@ -19,6 +19,7 @@
 
 
 #include "Basis/Transformations/BasisTransformable.hpp"
+#include "DensityMatrix/DensityMatrixTraits.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 
 

@@ -18,6 +18,9 @@
 #pragma once
 
 
+#include "Basis/Transformations/UTransformationMatrixComponent.hpp"
+#include "DensityMatrix/SpinResolved1DMComponent.hpp"
+#include "DensityMatrix/SpinResolved2DMComponent.hpp"
 #include "Mathematical/Representation/QCRankFourTensor.hpp"
 #include "Operator/SecondQuantized/SQOperatorStorage.hpp"
 #include "QuantumChemical/Spin.hpp"
@@ -42,6 +45,9 @@ public:
     // The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of two-electron operators. This distinction is carried over from `USQOneElectronOperator`.
     using Vectorizer = _Vectorizer;
 
+    // The type of 'this'.
+    using Self = MixedUSQTwoElectronOperatorComponent<Scalar, Vectorizer>;
+
 
 public:
     /*
@@ -49,7 +55,7 @@ public:
      */
 
     // Inherit `SQOperatorStorage`'s constructors.
-    SQOperatorStorage<QCRankFourTensor<_Scalar>, _Vectorizer, MixedUSQTwoElectronOperatorComponent<_Scalar, _Vectorizer>>::SQOperatorStorage;
+    using SQOperatorStorage<QCRankFourTensor<_Scalar>, _Vectorizer, MixedUSQTwoElectronOperatorComponent<_Scalar, _Vectorizer>>::SQOperatorStorage;
 
 
     /**
@@ -62,7 +68,7 @@ public:
      * 
      *  @note We apologize for this half-baked API. It is currently present in the code, while issue #559 (https://github.com/GQCG/GQCP/issues/688) is being implemented.
      */
-    MixedUSQTwoElectronOperatorComponent transformed(const UTransformationMatrixComponent<Scalar>& transformation_matrix, const Spin sigma) const override {
+    Self transformed(const UTransformationMatrixComponent<Scalar>& transformation_matrix, const Spin sigma) const override {
 
         // // Since we're only getting T as a matrix, we should convert it to an appropriate tensor to perform contractions.
         // const Tensor<double, 2> T = Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>>(transformation_matrix.data(), transformation_matrix.rows(), transformation_matrix.cols());
@@ -104,7 +110,7 @@ public:
             result[i].template contractWithMatrix<Scalar>(transformation_matrix, second_contraction_index);
         }
 
-        return DerivedOperator {StorageArray<MatrixRepresentation, Vectorizer>(result, this->array.vectorizer())};
+        return Self {StorageArray<MatrixRepresentation, Vectorizer>(result, this->array.vectorizer())};  // TODO: Try to rewrite this.
     }
 };
 

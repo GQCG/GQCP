@@ -18,6 +18,9 @@
 #pragma once
 
 
+#include "Basis/Transformations/UTransformationMatrixComponent.hpp"
+#include "DensityMatrix/SpinResolved1DMComponent.hpp"
+#include "DensityMatrix/SpinResolved2DMComponent.hpp"
 #include "Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp"
 
 
