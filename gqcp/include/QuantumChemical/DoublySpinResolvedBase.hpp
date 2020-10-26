@@ -45,7 +45,7 @@ public:
     using Derived = _Derived;
 
     // The type of 'this'.
-    using Self = DoublySpinResolvedBase<Of, Derived>;
+    using Self = DoublySpinResolvedBase<Pure, Mixed, Derived>;
 
 
 private:

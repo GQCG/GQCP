@@ -33,7 +33,7 @@ namespace GQCP {
  */
 template <typename _Scalar>
 class SpinResolved2DM:
-    public DoublySpinResolvedBase<SpinResolved2DMComponent<_Scalar>, SpinResolved2DM<_Scalar>> {
+    public DoublySpinResolvedBase<SpinResolved2DMComponent<_Scalar>, SpinResolved2DMComponent<_Scalar>, SpinResolved2DM<_Scalar>> {
 public:
     // The scalar type of one of the density matrix elements: real or complex.
     using Scalar = _Scalar;
@@ -45,7 +45,7 @@ public:
      */
 
     // Inherit `DoublySpinResolvedBase`'s constructors.
-    using DoublySpinResolvedBase<SpinResolved2DMComponent<_Scalar>, SpinResolved2DM<_Scalar>>::DoublySpinResolvedBase;
+    using DoublySpinResolvedBase<SpinResolved2DMComponent<_Scalar>, SpinResolved2DMComponent<_Scalar>, SpinResolved2DM<_Scalar>>::DoublySpinResolvedBase;
 
 
     /*

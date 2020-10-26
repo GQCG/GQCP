@@ -64,30 +64,47 @@ public:
      */
     MixedUSQTwoElectronOperatorComponent transformed(const UTransformationMatrixComponent<Scalar>& transformation_matrix, const Spin sigma) const override {
 
+        // // Since we're only getting T as a matrix, we should convert it to an appropriate tensor to perform contractions.
+        // const Tensor<double, 2> T = Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>>(transformation_matrix.data(), transformation_matrix.rows(), transformation_matrix.cols());
+
+        // const Tensor<double, 2> T_conjugate = T.conjugate();
+
+
+        // // Depending on the given spin-component, we should either transform the first two, or the second two axes.
+        // auto result = *this;
+
+        // for (size_t i = 0; i < this->numberOfComponents(); i++) {
+        //     switch (sigma) {
+        //     case Spin::alpha: {
+        //         result.allParameters(i)
+        //             .template einsum<1>(T_conjugate, "PQRS", "PT", "TQRS")
+        //             .template einsum<1>(T, "TQRS", "QU", "TURS");
+        //     }
+
+        //     case Spin::beta: {
+        //         result.allParameters(i)
+        //             .template einsum<1>(T_conjugate, "PQRS", "RT", "PQTS")
+        //             .template einsum<1>(T, "PQTS", "SU", "PQTU");
+        //     }
+        //     }
+        // }
+
+        // return result;
+
         // Since we're only getting T as a matrix, we should convert it to an appropriate tensor to perform contractions.
-        const Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> T_tensor {transformation_matrix.data(), transformation_matrix.rows(), transformation_matrix.cols()};
+        // const Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> T_tensor {transformation_matrix.data(), transformation_matrix.rows(), transformation_matrix.cols()};
 
+        const size_t first_contraction_index = 2 * sigma;
+        const size_t second_contraction_index = 2 * sigma + 1;
 
-        // Depending on the given spin-component, we should either transform the first two, or the second two axes.
-        auto result = *this;
+        auto result = this->allParameters();
 
         for (size_t i = 0; i < this->numberOfComponents(); i++) {
-            switch (sigma) {
-            case Spin::alpha: {
-                result.allParameters(i)
-                    .einsum(T_tensor.conjugate(), "PQRS", "PT", "TQRS")
-                    .einsum(T_tensor, "TQRS", "QU", "TURS");
-            }
-
-            case Spin::beta: {
-                result.allParameters(i)
-                    .einsum(T_tensor.conjugate(), "PQRS", "RT", "PQTS")
-                    .einsum(T_tensor, "PQTS", "SU", "PQTU");
-            }
-            }
+            result[i].template contractWithMatrix<Scalar>(transformation_matrix, first_contraction_index);
+            result[i].template contractWithMatrix<Scalar>(transformation_matrix, second_contraction_index);
         }
 
-        return result;
+        return DerivedOperator {StorageArray<MatrixRepresentation, Vectorizer>(result, this->array.vectorizer())};
     }
 };
 

@@ -256,11 +256,11 @@ public:
      * 
      *  @return The result of the tensor contraction.
      */
-    template <size_t N, size_t LHSRank = Rank, size_t RHSRank>
-    Tensor<Scalar, LHSRank - N> einsum(const Tensor<Scalar, RHSRank>& rhs, const std::string& lhs_labels, const std::string& rhs_labels, const std::string& output_labels) const {
+    template <int N, int LHSRank = Rank, int RHSRank>
+    Tensor<Scalar, LHSRank + RHSRank - 2 * N> einsum(const Tensor<Scalar, RHSRank>& rhs, const std::string& lhs_labels, const std::string& rhs_labels, const std::string& output_labels) const {
 
         // Check the length of the indices.
-        constexpr auto ResultRank = LHSRank - N;
+        constexpr auto ResultRank = LHSRank + RHSRank - 2 * N;
 
         if (lhs_labels.size() != LHSRank) {
             throw std::invalid_argument("Tensor.einsum(const Tensor<Scalar, RHSRank>&, const std::string&, const std::string&, const std::string&): The number of indices for the left-hand side of the contraction does not match the rank of the left-hand side tensor.");
@@ -281,7 +281,8 @@ public:
         Eigen::array<Eigen::IndexPair<int>, N> contraction_pairs {};
         size_t array_position = 0;              // The index at which an `Eigen::IndexPair` should be placed.
         for (size_t i = 0; i < LHSRank; i++) {  // 'i' loops over the lhs-indices
-            const auto match = std::find(rhs_labels, lhs_labels[i]);
+            const auto current_label = lhs_labels[i];
+            const auto match = rhs_labels.find(current_label);
             if (match != std::string::npos) {  // an actual match was found
                 contraction_pairs[array_position] = Eigen::IndexPair<int>(i, match);
                 array_position++;
@@ -301,7 +302,7 @@ public:
 
             // Check if the current index label appears in the substring before it.
             const auto current_label = intermediate_indices[i];
-            const auto match = std::find(intermediate_indices.substr(0, i), current_label);
+            const auto match = intermediate_indices.substr(0, i).find(current_label);
             if (match != std::string::npos) {  // an actual match was found
                 intermediate_indices.erase(match);
                 intermediate_indices.erase(i);
@@ -315,7 +316,7 @@ public:
         Eigen::array<int, 4> shuffle_indices {};
         for (size_t i = 0; i < 4; i++) {
             const auto current_label = intermediate_indices[i];
-            shuffle_indices[i] = std::find(output_labels, current_label);
+            shuffle_indices[i] = output_labels.find(current_label);
         }
 
         return T_intermediate.shuffle(shuffle_indices);

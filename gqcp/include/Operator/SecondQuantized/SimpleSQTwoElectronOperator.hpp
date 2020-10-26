@@ -24,6 +24,8 @@
 #include "Mathematical/Representation/StorageArray.hpp"
 #include "Operator/SecondQuantized/SQOperatorStorage.hpp"
 
+#include <string>
+
 
 namespace GQCP {
 
@@ -286,41 +288,7 @@ public:
         // Since we're only getting T as a matrix, we should convert it to an appropriate tensor to perform contractions.
         const Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> T_tensor {transformation_matrix.data(), transformation_matrix.rows(), transformation_matrix.cols()};
 
-
-        // Calculate the basis transformation for every component of the operator.
-        const auto& parameters = this->allParameters();
-        auto result = this->allParameters();
-
-        for (size_t i = 0; i < this->numberOfComponents(); i++) {
-            const auto transformed_component = parameters[i]
-                                                   .einsum(T_tensor.conjugate(), "TUVW", "VR", "TURW")
-                                                   .einsum(T_tensor, "TURW", "WS", "TURS")
-                                                   .einsum(T_tensor, "TURS", "UQ", "TQRS")
-                                                   .einsum(T_tensor.conjugate(), "TQRS", "TP", "PQRS");
-
-            result[i] = transformed_component;
-        }
-
-        return DerivedOperator {StorageArray<MatrixRepresentation, Vectorizer>(result, this->array.vectorizer())};
-
-        // // We will have to do four single contractions, so we'll have to specify the contraction indices.
-        // // Eigen3 does not document its tensor contraction clearly, so see the accepted answer on stackoverflow (https://stackoverflow.com/a/47558349/7930415):
-        // //      Eigen3 does not accept a way to specify the output axes: instead, it retains the order from left to right of the axes that survive the contraction.
-        // //      This means that, in order to get the right ordering of the axes, we will have to swap axes.
-
-        // // g(T U V W)  T^*(V R) -> a(T U R W) but we get a(T U W R).
-        // const Eigen::array<Eigen::IndexPair<int>, 1> contraction_pair1 = {Eigen::IndexPair<int>(2, 0)};
-        // const Eigen::array<int, 4> shuffle_1 {0, 1, 3, 2};
-
-        // // a(T U R W)  T(W S) -> b(T U R S) and we get b(T U R S), so no shuffle is needed.
-        // const Eigen::array<Eigen::IndexPair<int>, 1> contraction_pair2 = {Eigen::IndexPair<int>(3, 0)};
-
-        // // T(U Q)  b(T U R S) -> c(T Q R S) but we get c(Q T R S).
-        // const Eigen::array<Eigen::IndexPair<int>, 1> contraction_pair3 = {Eigen::IndexPair<int>(0, 1)};
-        // const Eigen::array<int, 4> shuffle_3 {1, 0, 2, 3};
-
-        // // T^*(T P)  c(T Q R S) -> g'(P Q R S) and we get g_SO(P Q R S), so no shuffle is needed.
-        // const Eigen::array<Eigen::IndexPair<int>, 1> contraction_pair4 = {Eigen::IndexPair<int>(0, 0)};
+        // const Tensor<double, 2> T_conjugate = T.conjugate();
 
 
         // // Calculate the basis transformation for every component of the operator.
@@ -328,20 +296,56 @@ public:
         // auto result = this->allParameters();
 
         // for (size_t i = 0; i < this->numberOfComponents(); i++) {
-        //     // Calculate the contractions. We write this as one chain of contractions to
-        //     //      1) avoid storing intermediate contractions;
-        //     //      2) let Eigen figure out some optimizations.
-        //     const SquareRankFourTensor<Scalar> g_transformed = T_tensor.conjugate().contract(
-        //         T_tensor.contract(
-        //                     parameters[i].contract(T_tensor.conjugate(), contraction_pair1).shuffle(shuffle_1)  // the 'inner' contraction, the first one
-        //                         .contract(T_tensor, contraction_pair2),
-        //                     contraction_pair3)
-        //             .shuffle(shuffle_3),
-        //         contraction_pair4);
-        //     result[i] = g_transformed;
+        //     const auto transformed_component = parameters[i]
+        //                                            .template einsum<1>(T_conjugate, "TUVW", "VR", "TURW")
+        //                                            .template einsum<1>(T, "TURW", "WS", "TURS")
+        //                                            .template einsum<1>(T, "TURS", "UQ", "TQRS")
+        //                                            .template einsum<1>(T_conjugate, "TQRS", "TP", "PQRS");
+
+        //     result[i] = transformed_component;
         // }
 
         // return DerivedOperator {StorageArray<MatrixRepresentation, Vectorizer>(result, this->array.vectorizer())};
+
+        // We will have to do four single contractions, so we'll have to specify the contraction indices.
+        // Eigen3 does not document its tensor contraction clearly, so see the accepted answer on stackoverflow (https://stackoverflow.com/a/47558349/7930415):
+        //      Eigen3 does not accept a way to specify the output axes: instead, it retains the order from left to right of the axes that survive the contraction.
+        //      This means that, in order to get the right ordering of the axes, we will have to swap axes.
+
+        // g(T U V W)  T^*(V R) -> a(T U R W) but we get a(T U W R).
+        const Eigen::array<Eigen::IndexPair<int>, 1> contraction_pair1 = {Eigen::IndexPair<int>(2, 0)};
+        const Eigen::array<int, 4> shuffle_1 {0, 1, 3, 2};
+
+        // a(T U R W)  T(W S) -> b(T U R S) and we get b(T U R S), so no shuffle is needed.
+        const Eigen::array<Eigen::IndexPair<int>, 1> contraction_pair2 = {Eigen::IndexPair<int>(3, 0)};
+
+        // T(U Q)  b(T U R S) -> c(T Q R S) but we get c(Q T R S).
+        const Eigen::array<Eigen::IndexPair<int>, 1> contraction_pair3 = {Eigen::IndexPair<int>(0, 1)};
+        const Eigen::array<int, 4> shuffle_3 {1, 0, 2, 3};
+
+        // T^*(T P)  c(T Q R S) -> g'(P Q R S) and we get g_SO(P Q R S), so no shuffle is needed.
+        const Eigen::array<Eigen::IndexPair<int>, 1> contraction_pair4 = {Eigen::IndexPair<int>(0, 0)};
+
+
+        // Calculate the basis transformation for every component of the operator.
+        const auto& parameters = this->allParameters();
+        auto result = this->allParameters();
+
+        for (size_t i = 0; i < this->numberOfComponents(); i++) {
+            // Calculate the contractions. We write this as one chain of contractions to
+            //      1) avoid storing intermediate contractions;
+            //      2) let Eigen figure out some optimizations.
+            const SquareRankFourTensor<Scalar> g_transformed = T_tensor.conjugate().contract(
+                T_tensor.contract(
+                            parameters[i].contract(T_tensor.conjugate(), contraction_pair1).shuffle(shuffle_1)  // the 'inner' contraction, the first one
+                                .contract(T_tensor, contraction_pair2),
+                            contraction_pair3)
+                    .shuffle(shuffle_3),
+                contraction_pair4);
+            result[i] = g_transformed;
+        }
+
+        return DerivedOperator {StorageArray<MatrixRepresentation, Vectorizer>(result, this->array.vectorizer())};
     }
 
 
