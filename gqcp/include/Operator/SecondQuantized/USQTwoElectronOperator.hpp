@@ -21,7 +21,8 @@
 #include "Basis/Transformations/BasisTransformable.hpp"
 #include "Basis/Transformations/UTransformationMatrix.hpp"
 #include "Mathematical/Functions/VectorSpaceArithmetic.hpp"
-#include "Operator/SecondQuantized/USQTwoElectronOperatorComponent.hpp"
+#include "Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp"
+#include "Operator/SecondQuantized/PureUSQTwoElectronOperatorComponent.hpp"
 #include "QuantumChemical/DoublySpinResolvedBase.hpp"
 
 
@@ -36,7 +37,7 @@ namespace GQCP {
  */
 template <typename _Scalar, typename _Vectorizer>
 class USQTwoElectronOperator:
-    public DoublySpinResolvedBase<USQTwoElectronOperatorComponent<_Scalar, _Vectorizer>, USQTwoElectronOperator<_Scalar, _Vectorizer>>,
+    public DoublySpinResolvedBase<PureUSQTwoElectronOperatorComponent<_Scalar, _Vectorizer>, MixedUSQTwoElectronOperatorComponent<_Scalar, _Vectorizer>, USQTwoElectronOperator<_Scalar, _Vectorizer>>,
     public BasisTransformable<USQTwoElectronOperator<_Scalar, _Vectorizer>>,
     public VectorSpaceArithmetic<USQTwoElectronOperator<_Scalar, _Vectorizer>, _Scalar> {
 public:
@@ -73,7 +74,7 @@ public:
      * 
      *  @tparam N                   The number of components for the different spin components of the unrestricted two-electron operator.
      */
-    template <typename N>
+    template <size_t N>
     USQTwoElectronOperator(const std::array<QCRankFourTensor<Scalar>, N>& gs_aa, const std::array<QCRankFourTensor<Scalar>, N>& gs_ab, const std::array<QCRankFourTensor<Scalar>, N>& gs_ba, const std::array<QCRankFourTensor<Scalar>, N>& gs_bb, const Vectorizer& vectorizer) :
 
         // Encapsulate the array of matrix representations in the different spin-components components, and put them together to form the `USQTwoElectronOperator`.
@@ -196,7 +197,23 @@ public:
      * 
      *  @return The basis-transformed object.
      */
-    Self transformed(const TM& transformation_matrix) const = 0;
+    Self transformed(const TM& transformation_matrix) const {
+
+        auto result = *this;
+
+        // Transform each of the spin-components of this two-electron operator.
+        this->alphaAlpha().transform(transformation_matrix.alpha());
+
+        this->alphaBeta().transform(transformation_matrix.alpha(), Spin::alpha);  // See `MixedUSQTwoElectronOperatorComponent::transform` for explanation of the API.
+        this->alphaBeta().transform(transformation_matrix.beta(), Spin::beta);
+
+        this->betaAlpha().transform(transformation_matrix.beta(), Spin::alpha);
+        this->betaAlpha().transform(transformation_matrix.alpha(), Spin::beta);
+
+        this->betaAlpha().transform(transformation_matrix.beta());
+
+        return result;
+    };
 
 
     /*

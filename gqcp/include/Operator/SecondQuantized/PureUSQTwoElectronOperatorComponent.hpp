@@ -25,14 +25,14 @@ namespace GQCP {
 
 
 /**
- *  One of the spin components of an unrestricted two-electron operator.
+ *  One of the pure (i.e. alpha-alpha or beta-beta) spin components of an unrestricted two-electron operator.
  * 
  *  @tparam _Scalar         The scalar type used for a single parameter: real or complex.
  *  @tparam _Vectorizer     The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of two-electron operators. This distinction is carried over from `USQOneElectronOperator`.
  */
 template <typename _Scalar, typename _Vectorizer>
-class USQTwoElectronOperatorComponent:
-    public SimpleSQTwoElectronOperator<_Scalar, _Vectorizer, USQTwoElectronOperator<_Scalar, _Vectorizer>> {
+class PureUSQTwoElectronOperatorComponent:
+    public SimpleSQTwoElectronOperator<_Scalar, _Vectorizer, PureUSQTwoElectronOperatorComponent<_Scalar, _Vectorizer>> {
 public:
     // The scalar type used for a single parameter: real or complex.
     using Scalar = _Scalar;
@@ -47,7 +47,7 @@ public:
      */
 
     // Inherit `SimpleSQTwoElectronOperator`'s constructors.
-    using SimpleSQTwoElectronOperator<Scalar, Vectorizer, USQTwoElectronOperatorComponent<Scalar, Vectorizer>>::SimpleSQTwoElectronOperator;
+    using SimpleSQTwoElectronOperator<Scalar, Vectorizer, PureUSQTwoElectronOperatorComponent<Scalar, Vectorizer>>::SimpleSQTwoElectronOperator;
 };
 
 
@@ -55,21 +55,21 @@ public:
  *  MARK: Convenience aliases
  */
 
-// A scalar-like USQTwoElectronOperatorComponent, i.e. with scalar-like access.
+// A scalar-like PureUSQTwoElectronOperatorComponent, i.e. with scalar-like access.
 template <typename Scalar>
-using ScalarUSQTwoElectronOperatorComponent = USQTwoElectronOperatorComponent<Scalar, ScalarVectorizer>;
+using ScalarPureUSQTwoElectronOperatorComponent = PureUSQTwoElectronOperatorComponent<Scalar, ScalarVectorizer>;
 
-// A vector-like USQTwoElectronOperatorComponent, i.e. with vector-like access.
+// A vector-like PureUSQTwoElectronOperatorComponent, i.e. with vector-like access.
 template <typename Scalar>
-using VectorUSQTwoElectronOperatorComponent = USQTwoElectronOperatorComponent<Scalar, VectorVectorizer>;
+using VectorPureUSQTwoElectronOperatorComponent = PureUSQTwoElectronOperatorComponent<Scalar, VectorVectorizer>;
 
-// A matrix-like USQTwoElectronOperatorComponent, i.e. with matrix-like access.
+// A matrix-like PureUSQTwoElectronOperatorComponent, i.e. with matrix-like access.
 template <typename Scalar>
-using MatrixUSQTwoElectronOperatorComponent = USQTwoElectronOperatorComponent<Scalar, MatrixVectorizer>;
+using MatrixPureUSQTwoElectronOperatorComponent = PureUSQTwoElectronOperatorComponent<Scalar, MatrixVectorizer>;
 
-// A tensor-like USQTwoElectronOperatorComponent, i.e. with tensor-like access.
+// A tensor-like PureUSQTwoElectronOperatorComponent, i.e. with tensor-like access.
 template <typename Scalar, size_t N>
-using TensorUSQTwoElectronOperatorComponent = USQTwoElectronOperatorComponent<Scalar, TensorVectorizer<N>>;
+using TensorPureUSQTwoElectronOperatorComponent = PureUSQTwoElectronOperatorComponent<Scalar, TensorVectorizer<N>>;
 
 
 /*
@@ -77,16 +77,16 @@ using TensorUSQTwoElectronOperatorComponent = USQTwoElectronOperatorComponent<Sc
  */
 
 /**
- *  A type that provides compile-time information (traits) on `USQTwoElectronOperatorComponent` that is otherwise not accessible through a public class alias.
+ *  A type that provides compile-time information (traits) on `PureUSQTwoElectronOperatorComponent` that is otherwise not accessible through a public class alias.
  * 
  *  @tparam Scalar          The scalar type used for a single parameter: real or complex.
  *  @tparam Vectorizer      The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of two-electron operators. This distinction is carried over from `USQOneElectronOperator`.
  */
 template <typename Scalar, typename Vectorizer>
-struct OperatorTraits<USQTwoElectronOperatorComponent<Scalar, Vectorizer>> {
+struct OperatorTraits<PureUSQTwoElectronOperatorComponent<Scalar, Vectorizer>> {
 
     // A type that corresponds to the scalar version of the associated component of an unrestricted two-electron operator type.
-    using ScalarOperator = ScalarUSQTwoElectronOperatorComponent<Scalar>;
+    using ScalarOperator = ScalarPureUSQTwoElectronOperatorComponent<Scalar>;
 
     // The type of transformation matrix that is naturally associated to a component of an unestricted two-electron operator.
     using TM = UTransformationMatrixComponent<Scalar>;
@@ -107,7 +107,7 @@ struct OperatorTraits<USQTwoElectronOperatorComponent<Scalar, Vectorizer>> {
  *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
  */
 template <typename Scalar, typename Vectorizer>
-struct BasisTransformableTraits<USQTwoElectronOperatorComponent<Scalar, Vectorizer>> {
+struct BasisTransformableTraits<PureUSQTwoElectronOperatorComponent<Scalar, Vectorizer>> {
 
     // The type of transformation matrix that is naturally associated to a component of an unestricted two-electron operator.
     using TM = UTransformationMatrixComponent<Scalar>;

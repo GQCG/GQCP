@@ -23,39 +23,49 @@
 
 #include <unsupported/Eigen/CXX11/Tensor>
 
+#include <string>
+
 
 namespace GQCP {
 
 
 /**
- *  An extension of the Eigen::Tensor class, with extra operations
+ *  An extension of the Eigen::Tensor class, with extra operations.
  *
- *  @tparam _Scalar     the scalar representation type
- *  @tparam _Rank       the rank of the tensor, i.e. the number of indices
+ *  @tparam _Scalar         The scalar type of one of the elements of the tensor.
+ *  @tparam _Rank           The rank of the tensor, i.e. the number of axes.
  *
- *  We have decided to inherit from Eigen::Tensor, because we will use different hierarchies: see also: https://eigen.tuxfamily.org/dox-devel/TopicCustomizing_InheritingMatrix.html
+ *  We have decided to inherit from Eigen::Tensor, because we will use different hierarchies: see also: https://eigen.tuxfamily.org/dox-devel/TopicCustomizing_InheritingMatrix.html.
  */
 template <typename _Scalar, int _Rank>
 class Tensor:
     public Eigen::Tensor<_Scalar, _Rank> {
 
 public:
+    // The scalar type of one of the elements of the tensor.
     using Scalar = _Scalar;
+
+    // The rank of the tensor, i.e. the number of axes.
     static constexpr auto Rank = _Rank;
+
+    // The type of 'this'.
     using Self = Tensor<Scalar, Rank>;
+
+    // The Eigen base type.
     using Base = Eigen::Tensor<Scalar, Rank>;
 
 
 public:
     /*
-     *  CONSTRUCTORS
+     *  MARK: Constructors
      */
 
-    using Eigen::Tensor<Scalar, _Rank>::Tensor;  // inherit base constructors
+    // Inherit `Eigen::Tensor`'s constructors.
+    using Eigen::Tensor<Scalar, _Rank>::Tensor;
 
 
     /*
-     *  NAMED CONSTRUCTORS
+     *  MARK: Named constructors
      */
 
     /**
@@ -93,7 +103,22 @@ public:
 
 
     /*
-     *  PUBLIC METHODS
+     *  MARK: Conversions
+     */
+
+    /**
+     *  @return This as a const Eigen base.
+     */
+    const Base& Eigen() const { return static_cast<const Base&>(*this); }
+
+    /**
+     *  @return This as a non-const Eigen base.
+     */
+    Base& Eigen() { return static_cast<Base&>(*this); }
+
+
+    /*
+     *  MARK: Tensor operations
      */
 
     /**
@@ -174,15 +199,132 @@ public:
 
 
     /**
-     *  @return This as a const Eigen base.
+     *  @param start_i      the index at which the first rank should start
+     *  @param start_j      the index at which the second rank should start
+     *  @param start_k      the index at which the third rank should start
+     *  @param start_l      the index at which the fourth rank should start
+     * 
+     *  @return a pair-wise reduced form of this rank-4 tensor. The elements of the tensor are put into the matrix such that
+     *      M(m,n) = T(i,j,k,l)
+     *
+     *  in which
+     *      m is calculated from i and j in a column-major way
+     *      n is calculated from k and l in a column-major way
      */
-    const Base& Eigen() const { return static_cast<const Base&>(*this); }
+    template <int Z = Rank>
+    enable_if_t<Z == 4, Matrix<Scalar>> pairWiseReduced(const size_t start_i = 0, const size_t start_j = 0, const size_t start_k = 0, const size_t start_l = 0) const {
+
+        // Initialize the resulting matrix
+        const auto dims = this->dimensions();
+        Matrix<Scalar> M {(dims[0] - start_i) * (dims[1] - start_j),
+                          (dims[2] - start_k) * (dims[3] - start_l)};
+
+        // Calculate the compound indices and bring the elements from the tensor over into the matrix
+        size_t row_index = 0;
+        for (size_t j = start_j; j < dims[1]; j++) {      // "column major" ordering for row_index<-i,j so we do j first, then i
+            for (size_t i = start_i; i < dims[0]; i++) {  // in column major indices, columns are contiguous, so the first of two indices changes more rapidly
+
+                size_t column_index = 0;
+                for (size_t l = start_l; l < dims[3]; l++) {      // "column major" ordering for column_index<-k,l so we do l first, then k
+                    for (size_t k = start_k; k < dims[2]; k++) {  // in column major indices, columns are contiguous, so the first of two indices changes more rapidly
+
+                        M(row_index, column_index) = this->operator()(i, j, k, l);
+
+                        column_index++;
+                    }
+                }
+
+                row_index++;
+            }
+        }
+
+        return M;
+    }
+
 
     /**
-     *  @return This as a non-const Eigen base.
+     *  Contract this tensor with another one, using a NumPy 'einsum'-like API.
+     * 
+     *  @param rhs                  The right-hand side of the contraction.
+     *  @param lhs_labels           The labels for the axes of the tensor on the left-hand side of the contraction.
+     *  @param rhs_labels           The labels for the axes of the tensor on the right-hand side of the contraction.
+     *  @param output_labels        The labels for the the resulting/output tensor.
+     * 
+     *  @tparam N                   The number of axes that should be contracted over.
+     * 
+     *  @example T1.einsum(T2, 'ijkl', 'ia', 'jkla') will contract the first axis of T1 (with labels 'ijkl') with the first axis of T2 (with labels 'ia') (because of the matching index labels 'i') and return a tensor wose axes are labelled as 'jkla'.
+     * 
+     *  @return The result of the tensor contraction.
      */
-    Base& Eigen() { return static_cast<Base&>(*this); }
+    template <size_t N, size_t LHSRank = Rank, size_t RHSRank>
+    Tensor<Scalar, LHSRank - N> einsum(const Tensor<Scalar, RHSRank>& rhs, const std::string& lhs_labels, const std::string& rhs_labels, const std::string& output_labels) const {
 
+        // Check the length of the indices.
+        constexpr auto ResultRank = LHSRank - N;
+
+        if (lhs_labels.size() != LHSRank) {
+            throw std::invalid_argument("Tensor.einsum(const Tensor<Scalar, RHSRank>&, const std::string&, const std::string&, const std::string&): The number of indices for the left-hand side of the contraction does not match the rank of the left-hand side tensor.");
+        }
+
+        if (rhs_labels.size() != RHSRank) {
+            throw std::invalid_argument("Tensor.einsum(const Tensor<Scalar, RHSRank>&, const std::string&, const std::string&, const std::string&): The number of indices for the right-hand side of the contraction does not match the rank of the right-hand side tensor.");
+        }
+
+        if (output_labels.size() != ResultRank) {
+            throw std::invalid_argument("Tensor.einsum(const Tensor<Scalar, RHSRank>&, const std::string&, const std::string&, const std::string&): The number of output indices does not match the number of axes that should be contracted over.");
+        }
+
+
+        // Find the indices that should be contracted over, these are the positions of the axis labels that are both in the lhs- and rhs-indices.
+
+        // TODO: findMatchingCharacters
+        Eigen::array<Eigen::IndexPair<int>, N> contraction_pairs {};
+        size_t array_position = 0;              // The index at which an `Eigen::IndexPair` should be placed.
+        for (size_t i = 0; i < LHSRank; i++) {  // 'i' loops over the lhs-indices
+            const auto match = std::find(rhs_labels, lhs_labels[i]);
+            if (match != std::string::npos) {  // an actual match was found
+                contraction_pairs[array_position] = Eigen::IndexPair<int>(i, match);
+                array_position++;
+            }
+        }
+
+
+        // Perform the contraction. It is an intermediate result, because we still have to align the tensor axes that Eigen's contraction module produces with the user's requested axes.
+        Tensor<Scalar, ResultRank> T_intermediate = this->contract(rhs, contraction_pairs);
+
+
+        // Finally, we should find the shuffle indices that map the obtained intermediate axes to the requested axes.
+
+        // The intermediate axes are just concatenated from left to right, removing any duplicates.
+        auto intermediate_indices = lhs_labels + rhs_labels;
+        for (size_t i = 1; i < LHSRank + RHSRank; i++) {  // We should skip the first iteration, since there wouldn't be any duplicates anyways.
+
+            // Check if the current index label appears in the substring before it.
+            const auto current_label = intermediate_indices[i];
+            const auto match = std::find(intermediate_indices.substr(0, i), current_label);
+            if (match != std::string::npos) {  // an actual match was found
+                intermediate_indices.erase(match);
+                intermediate_indices.erase(i);
+
+                // We have to set back the current index to account for the removed indices.
+                i -= 2;
+            }
+        }
+
+        // Find the position of the intermediate axes' labels in the requested output labels in order to set up the required shuffle indices.
+        Eigen::array<int, 4> shuffle_indices {};
+        for (size_t i = 0; i < 4; i++) {
+            const auto current_label = intermediate_indices[i];
+            shuffle_indices[i] = std::find(output_labels, current_label);
+        }
+
+        return T_intermediate.shuffle(shuffle_indices);
+    }
+
+
+    /*
+     *  MARK: General information
+     */
 
     /**
      *  @param other        the other tensor
@@ -228,50 +370,6 @@ public:
         }  // rank-4 tensor traversing
 
         return true;
-    }
-
-
-    /**
-     *  @param start_i      the index at which the first rank should start
-     *  @param start_j      the index at which the second rank should start
-     *  @param start_k      the index at which the third rank should start
-     *  @param start_l      the index at which the fourth rank should start
-     * 
-     *  @return a pair-wise reduced form of this rank-4 tensor. The elements of the tensor are put into the matrix such that
-     *      M(m,n) = T(i,j,k,l)
-     *
-     *  in which
-     *      m is calculated from i and j in a column-major way
-     *      n is calculated from k and l in a column-major way
-     */
-    template <int Z = Rank>
-    enable_if_t<Z == 4, Matrix<Scalar>> pairWiseReduced(const size_t start_i = 0, const size_t start_j = 0, const size_t start_k = 0, const size_t start_l = 0) const {
-
-        // Initialize the resulting matrix
-        const auto dims = this->dimensions();
-        Matrix<Scalar> M {(dims[0] - start_i) * (dims[1] - start_j),
-                          (dims[2] - start_k) * (dims[3] - start_l)};
-
-        // Calculate the compound indices and bring the elements from the tensor over into the matrix
-        size_t row_index = 0;
-        for (size_t j = start_j; j < dims[1]; j++) {      // "column major" ordering for row_index<-i,j so we do j first, then i
-            for (size_t i = start_i; i < dims[0]; i++) {  // in column major indices, columns are contiguous, so the first of two indices changes more rapidly
-
-                size_t column_index = 0;
-                for (size_t l = start_l; l < dims[3]; l++) {      // "column major" ordering for column_index<-k,l so we do l first, then k
-                    for (size_t k = start_k; k < dims[2]; k++) {  // in column major indices, columns are contiguous, so the first of two indices changes more rapidly
-
-                        M(row_index, column_index) = this->operator()(i, j, k, l);
-
-                        column_index++;
-                    }
-                }
-
-                row_index++;
-            }
-        }
-
-        return M;
     }
 
 
