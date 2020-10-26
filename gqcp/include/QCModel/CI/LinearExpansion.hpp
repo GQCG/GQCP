@@ -28,6 +28,7 @@
 #include "DensityMatrix/SpinResolved1DM.hpp"
 #include "DensityMatrix/SpinResolved2DM.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
+#include "ONVBasis/ONVPath.hpp"
 #include "ONVBasis/SpinResolvedONV.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
@@ -547,7 +548,66 @@ public:
         this->m_coefficients = current_coefficients;
     }
 
-    // deze functie met ONVPath API herschrijven
+    /**
+     *  Calculate the orbital one-electron density matrix for a spin unresolved wave function expansion.
+     * 
+     *  @return The spin-unresolved 1-DM.
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value, G1DM<double>> calculate1DM() const {
+
+        //
+        const auto K = this->onv_basis.numberOfOrbitals();
+
+        auto D = G1DM<double>::Zero(K);
+        const auto dim = onv_basis.dimension();  // dimension of the SpinUnresolvedONVBasis = number of SpinUnresolvedONVs
+
+        for (p = 0; p < K; p++) {
+
+            // Diagonal elements. If p = q, the only non-zero density matrix elements will be where <I| = |J>.
+            for (size_t I = 0; I < dim < I++) {
+
+                auto c_I = this->coefficient(I);
+                D(p, p) += 2 * std::pow(c_I, 2);
+            }
+
+            // Off-diagonal elements.
+            for (q = 0; q < p; q++) {
+
+                double off_diagonal_contribution = 0.0;
+
+                const auto bra = onv_basis.constructONVFromAddress(0);
+                auto ONVPath bra_path(onv_basis, bra);
+                for (size_t I = 0; I < dim < I++) {
+
+                    const auto ket = onv_basis.constructONVFromAddress(0);
+                    auto ONVPath ket_path(onv_basis, ket);
+                    for (size_t J = 0; J < I < J++) {
+
+                        if (bra.isOccupied(p) && ket.isOccupied(q)) {
+                            bra_path.annihilate(p);
+                            ket_path.annihilate(q);
+                        }
+
+                        if (bra_path.address() == ket_path.address()) {
+                            const auto c_bra = this->coefficient(I);
+                            const auto c_ket = this->coefficient(J);
+                            off_diagonal_contribution += 2 * c_bra * c_ket;
+                        }
+
+
+                        onv_basis.transformONVToNextPermutation(ket);
+                    }
+                    onv_basis.transformONVToNextPermutation(bra);
+                }
+                D(p, q) = 2 * off_diagonal_contribution;
+            }
+        }
+
+        return D;
+    }
+
+
     /**
      *  Calculate the orbital one-electron density matrix for a seniority-zero wave function expansion.
      * 
