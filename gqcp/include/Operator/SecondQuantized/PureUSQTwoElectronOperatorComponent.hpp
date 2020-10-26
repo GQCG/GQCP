@@ -22,6 +22,7 @@
 #include "DensityMatrix/SpinResolved1DMComponent.hpp"
 #include "DensityMatrix/SpinResolved2DMComponent.hpp"
 #include "Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp"
+#include "Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp"
 
 
 namespace GQCP {
@@ -90,6 +91,9 @@ struct OperatorTraits<PureUSQTwoElectronOperatorComponent<Scalar, Vectorizer>> {
 
     // A type that corresponds to the scalar version of the associated component of an unrestricted two-electron operator type.
     using ScalarOperator = ScalarPureUSQTwoElectronOperatorComponent<Scalar>;
+
+    // The type of one-electron operator that is naturally related to a restricted two-electron operator.
+    using SQOneElectronOperator = USQOneElectronOperatorComponent<Scalar, Vectorizer>;
 
     // The type of transformation matrix that is naturally associated to a component of an unestricted two-electron operator.
     using TM = UTransformationMatrixComponent<Scalar>;

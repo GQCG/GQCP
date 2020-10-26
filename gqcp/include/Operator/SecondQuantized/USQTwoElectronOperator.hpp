@@ -20,6 +20,8 @@
 
 #include "Basis/Transformations/BasisTransformable.hpp"
 #include "Basis/Transformations/UTransformationMatrix.hpp"
+#include "DensityMatrix/SpinResolved1DM.hpp"
+#include "DensityMatrix/SpinResolved2DM.hpp"
 #include "Mathematical/Functions/VectorSpaceArithmetic.hpp"
 #include "Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp"
 #include "Operator/SecondQuantized/PureUSQTwoElectronOperatorComponent.hpp"
@@ -60,7 +62,7 @@ public:
      */
 
     // Inherit `DoublySpinResolvedBase`'s constructors.
-    using DoublySpinResolvedBase<USQTwoElectronOperatorComponent<Scalar, Vectorizer>, USQTwoElectronOperator<Scalar, Vectorizer>>::DoublySpinResolvedBase;
+    using DoublySpinResolvedBase<PureUSQTwoElectronOperatorComponent<Scalar, Vectorizer>, MixedUSQTwoElectronOperatorComponent<Scalar, Vectorizer>, USQTwoElectronOperator<Scalar, Vectorizer>>::DoublySpinResolvedBase;
 
 
     /**
@@ -78,11 +80,11 @@ public:
     USQTwoElectronOperator(const std::array<QCRankFourTensor<Scalar>, N>& gs_aa, const std::array<QCRankFourTensor<Scalar>, N>& gs_ab, const std::array<QCRankFourTensor<Scalar>, N>& gs_ba, const std::array<QCRankFourTensor<Scalar>, N>& gs_bb, const Vectorizer& vectorizer) :
 
         // Encapsulate the array of matrix representations in the different spin-components components, and put them together to form the `USQTwoElectronOperator`.
-        DoublySpinResolvedBase<USQTwoElectronOperatorComponent<Scalar, Vectorizer>, USQTwoElectronOperator<Scalar, Vectorizer>>(
-            USQTwoElectronOperatorComponent<Scalar, Vectorizer> {StorageArray<QCRankFourTensor<Scalar>, Vectorizer> {gs_aa, vectorizer}},
-            USQTwoElectronOperatorComponent<Scalar, Vectorizer> {StorageArray<QCRankFourTensor<Scalar>, Vectorizer> {gs_ab, vectorizer}},
-            USQTwoElectronOperatorComponent<Scalar, Vectorizer> {StorageArray<QCRankFourTensor<Scalar>, Vectorizer> {gs_ba, vectorizer}},
-            USQTwoElectronOperatorComponent<Scalar, Vectorizer> {StorageArray<QCRankFourTensor<Scalar>, Vectorizer> {gs_bb, vectorizer}}) {
+        DoublySpinResolvedBase<PureUSQTwoElectronOperatorComponent<Scalar, Vectorizer>, MixedUSQTwoElectronOperatorComponent<Scalar, Vectorizer>, USQTwoElectronOperator<Scalar, Vectorizer>>(
+            PureUSQTwoElectronOperatorComponent<Scalar, Vectorizer> {StorageArray<QCRankFourTensor<Scalar>, Vectorizer> {gs_aa, vectorizer}},
+            MixedUSQTwoElectronOperatorComponent<Scalar, Vectorizer> {StorageArray<QCRankFourTensor<Scalar>, Vectorizer> {gs_ab, vectorizer}},
+            MixedUSQTwoElectronOperatorComponent<Scalar, Vectorizer> {StorageArray<QCRankFourTensor<Scalar>, Vectorizer> {gs_ba, vectorizer}},
+            PureUSQTwoElectronOperatorComponent<Scalar, Vectorizer> {StorageArray<QCRankFourTensor<Scalar>, Vectorizer> {gs_bb, vectorizer}}) {
 
         // Check if the given tensor representations have the same dimensions, for each spin part.
         const auto dimension_of_first_aa = this->gs_aa[0].dimension();
@@ -116,7 +118,7 @@ public:
      */
     template <typename Z = Vectorizer>
     USQTwoElectronOperator(const QCRankFourTensor<Scalar>& g_aa, const QCRankFourTensor<Scalar>& g_ab, const QCRankFourTensor<Scalar>& g_ba, const QCRankFourTensor<Scalar>& g_bb,
-                           typename std::enable_if<Z == 1>::type* = 0) :
+                           typename std::enable_if<std::is_same<Z, ScalarVectorizer>::value>::type* = 0) :
         USQTwoElectronOperator(std::array<QCRankFourTensor<Scalar>, 1> {g_aa}, std::array<QCRankFourTensor<Scalar>, 1> {g_ab}, std::array<QCRankFourTensor<Scalar>, 1> {g_ba}, std::array<QCRankFourTensor<Scalar>, 1> {g_bb}) {}
 
 
@@ -134,12 +136,14 @@ public:
     /**
      *  Construct an unrestricted two-electron operator with parameters that are zero. The dimensions different spin components are equal.
      * 
-     *  @param dim        The dimension of the axes of the the matrix representation of the different spin components. Equal for all spin componentsK
+     *  @param dim        The dimension of the axes of the the matrix representation of the different spin components. Equal for all spin components.
      */
     static USQTwoElectronOperator<Scalar, Vectorizer> Zero(const size_t dim) {
 
-        const auto zero_component = USQTwoElectronOperatorComponent<Scalar, Vectorizer>::Zero(dim);
-        return USQTwoElectronOperator<Scalar, Vectorizer>::FromEqual(zero_component);
+        const auto zero_component_pure = PureUSQTwoElectronOperatorComponent<Scalar, Vectorizer>::Zero(dim);
+        const auto zero_component_mixed = MixedUSQTwoElectronOperatorComponent<Scalar, Vectorizer>::Zero(dim);
+
+        return USQTwoElectronOperator<Scalar, Vectorizer> {zero_component_pure, zero_component_mixed, zero_component_mixed, zero_component_pure};
     }
 
 
@@ -282,7 +286,7 @@ template <typename Scalar, typename Vectorizer>
 struct OperatorTraits<USQTwoElectronOperator<Scalar, Vectorizer>> {
 
     // A type that corresponds to the scalar version of the associated unrestricted one-electron operator type.
-    using ScalarOperator = USQTwoElectronOperator<Scalar>;
+    using ScalarOperator = ScalarUSQTwoElectronOperator<Scalar>;
 
     // The type of transformation matrix that is naturally associated to an unrestricted two-electron operator.
     using TM = UTransformationMatrix<Scalar>;

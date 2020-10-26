@@ -68,7 +68,7 @@ public:
      * 
      *  @note We apologize for this half-baked API. It is currently present in the code, while issue #559 (https://github.com/GQCG/GQCP/issues/688) is being implemented.
      */
-    Self transformed(const UTransformationMatrixComponent<Scalar>& transformation_matrix, const Spin sigma) const override {
+    Self transformed(const UTransformationMatrixComponent<Scalar>& transformation_matrix, const Spin sigma) const {
 
         // // Since we're only getting T as a matrix, we should convert it to an appropriate tensor to perform contractions.
         // const Tensor<double, 2> T = Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>>(transformation_matrix.data(), transformation_matrix.rows(), transformation_matrix.cols());
@@ -110,7 +110,7 @@ public:
             result[i].template contractWithMatrix<Scalar>(transformation_matrix, second_contraction_index);
         }
 
-        return Self {StorageArray<MatrixRepresentation, Vectorizer>(result, this->array.vectorizer())};  // TODO: Try to rewrite this.
+        return Self {StorageArray<QCRankFourTensor<Scalar>, Vectorizer>(result, this->array.vectorizer())};  // TODO: Try to rewrite this.
     }
 };
 
@@ -143,14 +143,23 @@ using TensorMixedUSQTwoElectronOperatorComponent = MixedUSQTwoElectronOperatorCo
 /**
  *  A type that provides compile-time information (traits) on `MixedUSQTwoElectronOperatorComponent` that is otherwise not accessible through a public class alias.
  * 
- *  @tparam Scalar          The scalar type used for a single parameter: real or complex.
- *  @tparam Vectorizer      The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of two-electron operators. This distinction is carried over from `USQOneElectronOperator`.
+ *  @tparam _Scalar         The scalar type used for a single parameter: real or complex.
+ *  @tparam _Vectorizer     The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of two-electron operators. This distinction is carried over from `USQOneElectronOperator`.
  */
-template <typename Scalar, typename Vectorizer>
-struct OperatorTraits<MixedUSQTwoElectronOperatorComponent<Scalar, Vectorizer>> {
+template <typename _Scalar, typename _Vectorizer>
+struct OperatorTraits<MixedUSQTwoElectronOperatorComponent<_Scalar, _Vectorizer>> {
+
+    // The scalar type used for a single parameter: real or complex.
+    using Scalar = _Scalar;
+
+    // The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of two-electron operators. This distinction is carried over from `USQOneElectronOperator`.
+    using Vectorizer = _Vectorizer;
 
     // A type that corresponds to the scalar version of the associated component of an unrestricted two-electron operator type.
     using ScalarOperator = ScalarMixedUSQTwoElectronOperatorComponent<Scalar>;
+
+    // The type of the final derived operator (that derives from SQOperatorStorage), enabling CRTP and compile-time polymorphism. VectorSpaceArithmetic (and other functionality) should be implemented on the **final** deriving class, not on intermediate classes.
+    using DerivedOperator = MixedUSQTwoElectronOperatorComponent<Scalar, Vectorizer>;
 
     // The type of transformation matrix that is naturally associated to a component of an unestricted two-electron operator.
     using TM = UTransformationMatrixComponent<Scalar>;
