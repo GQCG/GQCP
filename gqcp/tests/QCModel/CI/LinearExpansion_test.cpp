@@ -238,6 +238,29 @@ BOOST_AUTO_TEST_CASE(expansions) {
     BOOST_CHECK(std::abs(random_expansion.coefficients().norm() - 1.0) < 1.0e-12);  // check if the coefficient vector is normalized
 }
 
+/**
+ *  Check some 1-DM values calculated for the SpinUnresolvedONVBasis by comparing them to the general function calculateNDMElement.
+ */
+BOOST_AUTO_TEST_CASE(calculate1DM_SpinUnresolved) {
+
+    // Set up an example linear expansion.
+    const size_t M = 3;
+    const size_t N = 1;
+    const GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
+
+    GQCP::VectorX<double> coefficients {onv_basis.dimension()};
+    coefficients << 1, 2, -3;
+
+    const GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis> linear_expansion {onv_basis, coefficients};
+
+
+    // Check some 1-DM values.
+    const auto D = linear_expansion.calculate1DM();
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({0}, {0}) - D(0, 0)) < 1.0e-12);  // d(0,0) : a^\dagger_0 a_0
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({0}, {1}) - D(0, 1)) < 1.0e-12);  // d(0,1) : a^\dagger_0 a_1
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({2}, {1}) - D(2, 1)) < 1.0e-12);  // d(2,1) : a^\dagger_2 a_1
+}
+
 
 /**
  *  Check if calculateNDMElement throws as expected.

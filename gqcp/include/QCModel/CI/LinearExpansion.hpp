@@ -28,6 +28,7 @@
 #include "DensityMatrix/SpinResolved1DM.hpp"
 #include "DensityMatrix/SpinResolved2DM.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
+#include "Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp"
 #include "ONVBasis/ONVPath.hpp"
 #include "ONVBasis/SpinResolvedONV.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
@@ -558,53 +559,56 @@ public:
 
         //
         const auto K = this->onv_basis.numberOfOrbitals();
-
-        auto D = G1DM<double>::Zero(K);
+        const auto N = this->onv_basis.numberOfElectrons();
         const auto dim = onv_basis.dimension();  // dimension of the SpinUnresolvedONVBasis = number of SpinUnresolvedONVs
 
-        for (p = 0; p < K; p++) {
+        MatrixRepresentationEvaluationContainer<G1DM<double>> ONV_iterator {dim};
 
-            // Diagonal elements. If p = q, the only non-zero density matrix elements will be where <I| = |J>.
-            for (size_t I = 0; I < dim < I++) {
+        SpinUnresolvedONV onv = onv_basis.constructONVFromAddress(0);  // start with ONV with address 0
 
-                auto c_I = this->coefficient(I);
-                D(p, p) += 2 * std::pow(c_I, 2);
-            }
+        for (; !ONV_iterator.isFinished(); ONV_iterator.increment()) {  // loops over all possible ONVs
 
-            // Off-diagonal elements.
-            for (q = 0; q < p; q++) {
+            auto J = ONV_iterator.index;  // address of the original state |J>
 
-                double off_diagonal_contribution = 0.0;
+            for (size_t e1 = 0; e1 < N; e1++) {  // loop over electrons that can be annihilated in an ONV
 
-                const auto bra = onv_basis.constructONVFromAddress(0);
-                auto ONVPath bra_path(onv_basis, bra);
-                for (size_t I = 0; I < dim < I++) {
+                // Create an ONVPath for each new ONV.
+                ONVPath<SpinUnresolvedONVBasis> onv_path {onv_basis, onv};
 
-                    const auto ket = onv_basis.constructONVFromAddress(0);
-                    auto ONVPath ket_path(onv_basis, ket);
-                    for (size_t J = 0; J < I < J++) {
+                size_t q = onv.occupationIndexOf(e1);  // retrieve orbital index of the electron that will be annihilated
 
-                        if (bra.isOccupied(p) && ket.isOccupied(q)) {
-                            bra_path.annihilate(p);
-                            ket_path.annihilate(q);
-                        }
+                // The diagonal values are a result of annihilation-creation on the same orbital index and are thus the same as the initial ONV.
+                ONV_iterator.addRowwise(J, this->coefficient(J));
 
-                        if (bra_path.address() == ket_path.address()) {
-                            const auto c_bra = this->coefficient(I);
-                            const auto c_ket = this->coefficient(J);
-                            off_diagonal_contribution += 2 * c_bra * c_ket;
-                        }
+                // For the non-diagonal values, we will create all possible matrix elements of the density matrix in the routine below.
+                onv_path.annihilate(q, e1);
 
+                // Stop the loop if 1) the path is finished, meaning that orbital index p is at M (the total number of orbitals) and 2) if the orbital index is out of bounds after left translation of a vertical arc.
+                while (!onv_path.isFinished() && onv_path.isOrbitalIndexValid()) {
 
-                        onv_basis.transformONVToNextPermutation(ket);
-                    }
-                    onv_basis.transformONVToNextPermutation(bra);
+                    // Find the next unoccupied orbital, i.e. the next vertical arc in the path.
+                    onv_path.leftTranslateDiagonalArcUntilVerticalArc();
+
+                    // Calculate the address of the path if we would close it right now.
+                    const size_t I = onv_path.addressAfterCreation();
+
+                    const double value = onv_path.sign() * this->coefficient(I) * this->coefficient(J);
+
+                    // Add the one-electron integral as matrix elements of a Hermitian matrix.
+                    ONV_iterator.addColumnwise(I, value);
+                    ONV_iterator.addRowwise(I, value);
+
+                    // Move orbital index such that other unoccupied orbitals can be found within the loop.
+                    onv_path.leftTranslateVerticalArc();
                 }
-                D(p, q) = 2 * off_diagonal_contribution;
+            }
+            // Prevent last ONV since there is no possibility for an electron to be annihilated anymore.
+            if (ONV_iterator.index < dim - 1) {
+                onv_basis.transformONVToNextPermutation(onv);
             }
         }
 
-        return D;
+        return ONV_iterator.evaluation();
     }
 
 
