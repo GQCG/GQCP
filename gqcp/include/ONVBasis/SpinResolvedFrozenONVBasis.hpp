@@ -22,7 +22,6 @@
 #include "ONVBasis/BaseONVBasis.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinUnresolvedFrozenONVBasis.hpp"
-#include "Operator/SecondQuantized/USQHamiltonian.hpp"
 #include "QuantumChemical/Spin.hpp"
 
 

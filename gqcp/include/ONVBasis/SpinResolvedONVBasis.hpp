@@ -22,7 +22,6 @@
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/RSQTwoElectronOperator.hpp"
-// #include "Operator/SecondQuantized/USQHamiltonian.hpp"
 
 #include <functional>
 

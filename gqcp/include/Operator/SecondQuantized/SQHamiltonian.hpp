@@ -28,8 +28,9 @@
 #include "Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/RSQTwoElectronOperator.hpp"
+#include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
+#include "Operator/SecondQuantized/USQTwoElectronOperator.hpp"
 #include "QuantumChemical/spinor_tags.hpp"
-// #include "Utilities/NamedConstructorTraits.hpp"
 #include "Utilities/type_traits.hpp"
 
 #include <numeric>
@@ -185,7 +186,6 @@ public:
      *  @return A second-quantized molecular Hamiltonian.
      */
     // FIXME: This API should be moved to SpinorBasis.
-    // using RestrictedReturnType = NamedConstructorTraits<Self>::RestrictedReturnType<Scalar>;
     template <typename Z = SpinorTag>
     static enable_if_t<std::is_same<Z, RestrictedSpinOrbitalTag>::value, Self> Molecular(const RSpinorBasis<double, GTOShell>& spinor_basis, const Molecule& molecule) {
 
@@ -199,7 +199,6 @@ public:
         return Self {H, g};
     }
 
-    // using GeneralReturnType = NamedConstructorTraits<Self>::GeneralReturnType<Scalar>;
     template <typename Z = SpinorTag>
     static enable_if_t<std::is_same<Z, GeneralSpinorTag>::value, Self> Molecular(const GSpinorBasis<double, GTOShell>& spinor_basis, const Molecule& molecule) {
 
@@ -397,10 +396,11 @@ public:
      *  @param orbital_space                An orbital space which denotes the occupied-active-virtual separation.
      *
      *  @return The Edmiston-Ruedenberg localization index.
-     *
-     *  @note This method is only available for real matrix representations.
+     * 
+     *  @note This method is not enabled for unrestricted Hamiltonians.
      */
-    double calculateEdmistonRuedenbergLocalizationIndex(const OrbitalSpace orbital_space) const {
+    template <typename Z = SpinorTag>
+    enable_if_t<std::is_same<Z, RestrictedSpinOrbitalTag>::value || std::is_same<Z, GeneralSpinOrbitalTag>::value, double> calculateEdmistonRuedenbergLocalizationIndex(const OrbitalSpace orbital_space) const {
 
         const auto& g_total_par = this->twoElectron().parameters();
 
@@ -418,8 +418,11 @@ public:
      *  Calculate the effective one-electron integrals. These are the core integrals, with the contributions form a Kronecker delta-term in the two-electron integrals.
      * 
      *  @return The effective one-electron integrals.
+     * 
+     *  @note This method is not enabled for unrestricted Hamiltonians.
      */
-    ScalarSQOneElectronOperator_Placeholder calculateEffectiveOneElectronIntegrals() const {
+    template <typename Z = SpinorTag>
+    enable_if_t<std::is_same<Z, RestrictedSpinOrbitalTag>::value || std::is_same<Z, GeneralSpinOrbitalTag>::value, ScalarSQOneElectronOperator_Placeholder> calculateEffectiveOneElectronIntegrals() const {
 
         return this->core() + this->twoElectron().effectiveOneElectronPartition();
     }
@@ -447,8 +450,11 @@ public:
      *  @param d      The 2-DM (or the response 2-DM for made-variational wave function models).
      *
      *  @return The Fockian matrix.
+     * 
+     *  @note This method is not enabled for unrestricted Hamiltonians.
      */
-    SquareMatrix<Scalar> calculateFockianMatrix(const OneDM& D, const TwoDM& d) const {
+    template <typename Z = SpinorTag>
+    enable_if_t<std::is_same<Z, RestrictedSpinOrbitalTag>::value || std::is_same<Z, GeneralSpinOrbitalTag>::value, SquareMatrix<Scalar>> calculateFockianMatrix(const OneDM& D, const TwoDM& d) const {
 
         // An SQHamiltonian contains ScalarSQOperators, so we access their Fockian matrices with (0).
         return this->core().calculateFockianMatrix(D, d)() + this->twoElectron().calculateFockianMatrix(D, d)();
@@ -463,15 +469,16 @@ public:
      *
      *  @return The super-Fockian matrix.
      */
-    SquareRankFourTensor<Scalar> calculateSuperFockianMatrix(const OneDM& D, const TwoDM& d) const {
+    template <typename Z = SpinorTag>
+    enable_if_t<std::is_same<Z, RestrictedSpinOrbitalTag>::value || std::is_same<Z, GeneralSpinOrbitalTag>::value, SquareRankFourTensor<Scalar>> calculateSuperFockianMatrix(const OneDM& D, const TwoDM& d) const {
 
         // An SQHamiltonian contains ScalarSQOperators, so we access their Fockian matrices with (0).
-        return this->core().calculateSuperFockianMatrix(D, d)().Eigen() + this->twoElectron().calculateSuperFockianMatrix(D, d)().Eigen();  // We have to call .Eigen() because operator+ isn't enabled on SquareRankFourTensor.
+        return this->core().calculateSuperFockianMatrix(D, d)().Eigen() + this->twoElectron().calculateSuperFockianMatrix(D, d)().Eigen();  // We have to call .Eigen() because operator+ isn't fully enabled on SquareRankFourTensor.
     }
 
 
     /**
-     *  Calculate the inactive Fockian operator.
+     *  Calculate the inactive Fockian operator for a general Hamiltonian.
      * 
      *  @param orbital_space                An orbital space which denotes the occupied-virtual separation.
      * 
@@ -501,7 +508,7 @@ public:
 
 
     /**
-     *  Calculate the inactive Fockian operator.
+     *  Calculate the inactive Fockian operator for a restricted Hamiltonian.
      * 
      *  @param orbital_space                An orbital space which denotes the occupied-virtual separation.
      * 
@@ -535,11 +542,11 @@ public:
      */
 
     /**
-     *  Apply the basis transformation and return the resulting one-electron integrals.
+     *  Apply the basis transformation and return the resulting Hamiltonian.
      * 
      *  @param T            The type that encapsulates the basis transformation coefficients.
      * 
-     *  @return The basis-transformed one-electron integrals.
+     *  @return The basis-transformed Hamiltonian.
      */
     Self transformed(const TM& T) const override {
 
@@ -606,26 +613,6 @@ public:
 
 
 /*
- *  MARK: NamedConstructorTraits
- */
-
-/**
- *  A type that provides compile-time information for named constructors.
- */
-// template <typename ScalarSQOneElectronOperator_Placeholder, typename ScalarSQTwoElectronOperator_Placeholder>
-// struct NamedConstructorTraits<SQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>> {
-
-//     // The type of a restricted second-quantized Hamiltonian.
-//     template <typename Scalar>
-//     using RestrictedReturnType = SQHamiltonian<ScalarRSQOneElectronOperator<Scalar>, ScalarRSQTwoElectronOperator<Scalar>>;
-
-//     // The type of a generalized second-quantized Hamiltonian.
-//     template <typename Scalar>
-//     using GeneralReturnType = SQHamiltonian<ScalarGSQOneElectronOperator<Scalar>, ScalarGSQTwoElectronOperator<Scalar>>;
-// };
-
-
-/*
  *  MARK: Operator traits
  */
 
@@ -658,8 +645,6 @@ struct BasisTransformableTraits<SQHamiltonian<ScalarSQOneElectronOperator_Placeh
 
     // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix"
     using TM = typename OperatorTraits<ScalarSQOneElectronOperator_Placeholder>::TM;
-
-    // using TM = typename OperatorTraits<SQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>>::TM;
 };
 
 
@@ -674,8 +659,8 @@ using RSQHamiltonian = SQHamiltonian<ScalarRSQOneElectronOperator<Scalar>, Scala
 
 
 // An `SQHamiltonian` related to unrestricted spin-orbitals. See `UnrestrictedSpinOrbitalTag`.
-// template <typename Scalar>
-// using USQHamiltonian = SQHamiltonian<ScalarUSQOneElectronOperator<Scalar>, ScalarUSQTwoElectronOperator<Scalar>>;
+template <typename Scalar>
+using USQHamiltonian = SQHamiltonian<ScalarUSQOneElectronOperator<Scalar>, ScalarUSQTwoElectronOperator<Scalar>>;
 
 
 // An `SQHamiltonian` related to general spinors. See `GeneralSpinorTag`.

@@ -23,7 +23,6 @@
 #include "ONVBasis/SeniorityZeroONVBasis.hpp"
 #include "ONVBasis/SpinResolvedONV.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
-// #include "Operator/SecondQuantized/USQHamiltonian.hpp"
 
 
 namespace GQCP {

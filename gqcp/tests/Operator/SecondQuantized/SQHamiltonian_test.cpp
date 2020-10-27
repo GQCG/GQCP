@@ -343,9 +343,11 @@ BOOST_AUTO_TEST_CASE(calculateEdmistonRuedenbergLocalizationIndex) {
 }
 
 
+/**
+ *  Test if we can succesfully initialize NO+ at long intra molecular distance.
+ */
 BOOST_AUTO_TEST_CASE(dissociatedMoleculeParameters) {
 
-    // Test if we can succesfully initialize NO+ at long intra molecular distance
     GQCP::Nucleus N {7, 3.5, 0, 0};
     GQCP::Nucleus O {8, -3.5, 0, 0};
     std::vector<GQCP::Nucleus> nuclei {N, O};

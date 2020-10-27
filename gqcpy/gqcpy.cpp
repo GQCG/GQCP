@@ -91,7 +91,7 @@ void bindHubbardHamiltonian(py::module& module);
 void bindSQHamiltonian(py::module& module);
 void bindSQOneElectronOperators(py::module& module);
 void bindSQTwoElectronOperator(py::module& module);
-void bindUSQHamiltonian(py::module& module);
+// void bindUSQHamiltonian(py::module& module);
 
 
 // Processing - DensityMatrices
@@ -257,7 +257,7 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindSQHamiltonian(module);
     gqcpy::bindSQOneElectronOperators(module);
     gqcpy::bindSQTwoElectronOperator(module);
-    gqcpy::bindUSQHamiltonian(module);
+    // gqcpy::bindUSQHamiltonian(module);
 
 
     // Processing - DensityMatrices

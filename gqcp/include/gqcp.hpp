@@ -167,7 +167,6 @@
 #include "Operator/SecondQuantized/SQOperatorStorageBase.hpp"
 #include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
 #include "Operator/SecondQuantized/SimpleSQOneElectronOperator.hpp"
-#include "Operator/SecondQuantized/USQHamiltonian.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/USQTwoElectronOperator.hpp"
 #include "Processing/Properties/BaseElectricalResponseSolver.hpp"

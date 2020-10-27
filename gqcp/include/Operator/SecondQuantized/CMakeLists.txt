@@ -12,7 +12,6 @@ target_sources(gqcp
         USQOneElectronOperator.hpp
         USQOneElectronOperatorComponent.hpp
         USQTwoElectronOperator.hpp
-        USQHamiltonian.hpp
 )
 
 add_subdirectory(ModelHamiltonian)

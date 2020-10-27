@@ -22,7 +22,6 @@
 #include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
 #include "Basis/Transformations/transform.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "Operator/SecondQuantized/USQHamiltonian.hpp"
 #include "Processing/Properties/expectation_values.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
