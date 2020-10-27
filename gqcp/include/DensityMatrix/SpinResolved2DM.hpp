@@ -21,6 +21,7 @@
 #include "DensityMatrix/Orbital2DM.hpp"
 #include "DensityMatrix/SpinResolved2DMComponent.hpp"
 #include "QuantumChemical/DoublySpinResolvedBase.hpp"
+#include "QuantumChemical/Spin.hpp"
 
 
 namespace GQCP {
@@ -58,7 +59,18 @@ public:
      * 
      *  @return The number of orbitals (spinors or spin-orbitals, depending on the context) that are related to the sigma-tau part of the spin-resolved 2-DM.
      */
-    size_t numberOfOrbitals(const Spin sigma, const Spin tau) const { return this->component(sigma, tau).numberOfOrbitals(); }
+    size_t numberOfOrbitals(const Spin sigma, const Spin tau) const {
+
+        if (sigma == Spin::alpha && tau == Spin::beta) {
+            return this->alphaAlpha().numberOfOrbitals();
+        } else if (sigma == Spin::alpha && tau == Spin::beta) {
+            return this->alphaBeta().numberOfOrbitals();
+        } else if (sigma == Spin::beta && tau == Spin::alpha) {
+            return this->betaAlpha().numberOfOrbitals();
+        } else {
+            return this->betaBeta().numberOfOrbitals();
+        }
+    }
 
 
     /**

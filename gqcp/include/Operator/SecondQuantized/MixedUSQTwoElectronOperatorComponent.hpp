@@ -58,6 +58,51 @@ public:
     using SQOperatorStorage<QCRankFourTensor<_Scalar>, _Vectorizer, MixedUSQTwoElectronOperatorComponent<_Scalar, _Vectorizer>>::SQOperatorStorage;
 
 
+    /*
+     *  MARK: Calculations
+     */
+
+    /**
+     *  Calculate the expectation value of this two-electron operator, given a two-electron density matrix. (This includes the prefactor 1/2.)
+     * 
+     *  @param d            The 2-DM (that represents the wave function).
+     *
+     *  @return The expectation values of all the components of the two-electron operator, with the given 2-DM.
+     */
+    StorageArray<Scalar, Vectorizer> calculateExpectationValue(const SpinResolved2DMComponent<Scalar>& d) const {
+
+        // FIXME: This is duplicate code from `SimpleSQTwoElectronOperator`. It would be double work to introduce a temporary intermediate class before resolving issue #559 (https://github.com/GQCG/GQCP/issues/559), which is why we chose to just copy-paste the implementation.
+
+        if (this->numberOfOrbitals() != d.numberOfOrbitals()) {
+            throw std::invalid_argument("MixedUSQTwoElectronOperatorComponent::calculateExpectationValue(const SpinResolved2DMComponent&): The given 2-DM's dimension is not compatible with the two-electron operator.");
+        }
+
+
+        // Calculate the expectation value for every component of the operator.
+        const auto& parameters = this->allParameters();
+        std::vector<Scalar> expectation_values(this->numberOfComponents());  // Zero-initialize the vector with a number of elements.
+
+        for (size_t i = 0; i < this->numberOfComponents(); i++) {
+
+            // Specify the contractions for the relevant contraction of the two-electron integrals/parameters/matrix elements and the 2-DM:
+            //      0.5 g(p q r s) d(p q r s)
+            Eigen::array<Eigen::IndexPair<int>, 4> contractions {Eigen::IndexPair<int>(0, 0), Eigen::IndexPair<int>(1, 1), Eigen::IndexPair<int>(2, 2), Eigen::IndexPair<int>(3, 3)};
+
+            // Perform the actual contraction.
+            Eigen::Tensor<Scalar, 0> contraction = 0.5 * parameters[i].contract(d.Eigen(), contractions);
+
+            // As the contraction is a scalar (a tensor of rank 0), we should access using `operator(0)`.
+            expectation_values[i] = contraction(0);
+        }
+
+        return StorageArray<Scalar, Vectorizer> {expectation_values, this->array.vectorizer()};  // convert std::array to Vector
+    }
+
+
+    /*
+     *  MARK: basis transformations
+     */
+
     /**
      *  Apply the basis transformation for the spin component sigma, and return the resulting two-electron integrals.
      * 
@@ -111,6 +156,21 @@ public:
         }
 
         return Self {StorageArray<QCRankFourTensor<Scalar>, Vectorizer>(result, this->array.vectorizer())};  // TODO: Try to rewrite this.
+    }
+
+
+    /**
+     *  In-place apply the basis transformation for the spin component sigma.
+     * 
+     *  @param transformation_matrix        The type that encapsulates the basis transformation coefficients.
+     *  @param sigma                        Alpha indicates a transformation of the first two axes, beta indicates a transformation of the second two axes.
+     * 
+     *  @note We apologize for this half-baked API. It is currently present in the code, while issue #559 (https://github.com/GQCG/GQCP/issues/688) is being implemented.
+     */
+    void transform(const UTransformationMatrixComponent<Scalar>& transformation_matrix, const Spin sigma) {
+
+        auto result = this->transformed(transformation_matrix, sigma);
+        *this = result;
     }
 };
 

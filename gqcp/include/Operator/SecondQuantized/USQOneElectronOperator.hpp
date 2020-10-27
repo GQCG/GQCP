@@ -133,7 +133,7 @@ public:
     static USQOneElectronOperator<Scalar, Vectorizer> Zero(const size_t dim) {
 
         const auto zero_component = USQOneElectronOperatorComponent<Scalar, Vectorizer>::Zero(dim);
-        return USQOneElectronOperator<Scalar, Vectorizer>::FromEqual(zero_component, zero_component);
+        return USQOneElectronOperator<Scalar, Vectorizer>::FromEqual(zero_component);
     }
 
 

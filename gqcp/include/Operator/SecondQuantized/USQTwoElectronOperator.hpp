@@ -87,17 +87,17 @@ public:
             PureUSQTwoElectronOperatorComponent<Scalar, Vectorizer> {StorageArray<QCRankFourTensor<Scalar>, Vectorizer> {gs_bb, vectorizer}}) {
 
         // Check if the given tensor representations have the same dimensions, for each spin part.
-        const auto dimension_of_first_aa = this->gs_aa[0].dimension();
-        const auto dimension_of_first_ab = this->gs_ab[0].dimension();
-        const auto dimension_of_first_ba = this->gs_ba[0].dimension();
-        const auto dimension_of_first_bb = this->gs_bb[0].dimension();
+        const auto dimension_of_first_aa = gs_aa[0].dimension();
+        const auto dimension_of_first_ab = gs_ab[0].dimension();
+        const auto dimension_of_first_ba = gs_ba[0].dimension();
+        const auto dimension_of_first_bb = gs_bb[0].dimension();
 
         for (size_t i = 1; i < N; i++) {
 
-            const auto dimension_of_ith_aa = this->gs_aa[i].dimension();
-            const auto dimension_of_ith_ab = this->gs_ab[i].dimension();
-            const auto dimension_of_ith_ba = this->gs_ba[i].dimension();
-            const auto dimension_of_ith_bb = this->gs_bb[i].dimension();
+            const auto dimension_of_ith_aa = gs_aa[i].dimension();
+            const auto dimension_of_ith_ab = gs_ab[i].dimension();
+            const auto dimension_of_ith_ba = gs_ba[i].dimension();
+            const auto dimension_of_ith_bb = gs_bb[i].dimension();
 
             if ((dimension_of_first_aa != dimension_of_ith_aa) || (dimension_of_first_ab != dimension_of_ith_ab) || (dimension_of_first_ba != dimension_of_ith_ba) || (dimension_of_first_bb != dimension_of_ith_bb)) {
                 throw std::invalid_argument("USQTwoElectronOperator(const std::array<QCRankFourTensor<Scalar>, N>&, const std::array<QCRankFourTensor<Scalar>, N>&, const std::array<QCRankFourTensor<Scalar>, N>&, const std::array<QCRankFourTensor<Scalar>, N>&): The given tensor representations do not have the same dimensions for either the alpha, beta or one of the mixed components.");
@@ -119,7 +119,7 @@ public:
     template <typename Z = Vectorizer>
     USQTwoElectronOperator(const QCRankFourTensor<Scalar>& g_aa, const QCRankFourTensor<Scalar>& g_ab, const QCRankFourTensor<Scalar>& g_ba, const QCRankFourTensor<Scalar>& g_bb,
                            typename std::enable_if<std::is_same<Z, ScalarVectorizer>::value>::type* = 0) :
-        USQTwoElectronOperator(std::array<QCRankFourTensor<Scalar>, 1> {g_aa}, std::array<QCRankFourTensor<Scalar>, 1> {g_ab}, std::array<QCRankFourTensor<Scalar>, 1> {g_ba}, std::array<QCRankFourTensor<Scalar>, 1> {g_bb}) {}
+        USQTwoElectronOperator(std::array<QCRankFourTensor<Scalar>, 1> {g_aa}, std::array<QCRankFourTensor<Scalar>, 1> {g_ab}, std::array<QCRankFourTensor<Scalar>, 1> {g_ba}, std::array<QCRankFourTensor<Scalar>, 1> {g_bb}, ScalarVectorizer()) {}
 
 
     /**
@@ -185,9 +185,20 @@ public:
      *  @param sigma            Alpha or beta.
      *  @param tau              Alpha or beta.
      * 
-     *  @return The number of orbitals for the given spin components.
+     *  @return The number of orbitals (spinors or spin-orbitals, depending on the context) that are related to the sigma-tau part of the unrestricted two-electron operator.
      */
-    size_t numberOfOrbitals(const Spin sigma, const Spin tau) const { return this->component(sigma, tau).numberOfOrbitals(); }
+    size_t numberOfOrbitals(const Spin sigma, const Spin tau) const {
+
+        if (sigma == Spin::alpha && tau == Spin::beta) {
+            return this->alphaAlpha().numberOfOrbitals();
+        } else if (sigma == Spin::alpha && tau == Spin::beta) {
+            return this->alphaBeta().numberOfOrbitals();
+        } else if (sigma == Spin::beta && tau == Spin::alpha) {
+            return this->betaAlpha().numberOfOrbitals();
+        } else {
+            return this->betaBeta().numberOfOrbitals();
+        }
+    }
 
 
     /*
@@ -206,15 +217,15 @@ public:
         auto result = *this;
 
         // Transform each of the spin-components of this two-electron operator.
-        this->alphaAlpha().transform(transformation_matrix.alpha());
+        result.alphaAlpha().transform(transformation_matrix.alpha());
 
-        this->alphaBeta().transform(transformation_matrix.alpha(), Spin::alpha);  // See `MixedUSQTwoElectronOperatorComponent::transform` for explanation of the API.
-        this->alphaBeta().transform(transformation_matrix.beta(), Spin::beta);
+        result.alphaBeta().transform(transformation_matrix.alpha(), Spin::alpha);  // See `MixedUSQTwoElectronOperatorComponent::transform` for explanation of the API.
+        result.alphaBeta().transform(transformation_matrix.beta(), Spin::beta);
 
-        this->betaAlpha().transform(transformation_matrix.beta(), Spin::alpha);
-        this->betaAlpha().transform(transformation_matrix.alpha(), Spin::beta);
+        result.betaAlpha().transform(transformation_matrix.beta(), Spin::alpha);
+        result.betaAlpha().transform(transformation_matrix.alpha(), Spin::beta);
 
-        this->betaAlpha().transform(transformation_matrix.beta());
+        result.betaBeta().transform(transformation_matrix.beta());
 
         return result;
     };
