@@ -353,52 +353,52 @@ BOOST_AUTO_TEST_CASE(transform_with_transformation_matrix) {
 }
 
 
-// TODO: Re-enable jacobi transformations for USQ operators.
-// /**
-//  * Check whether or not the jacobi rotation method works as expected.
-//  */
-// BOOST_AUTO_TEST_CASE(transform_with_jacobi_matrix) {
+/**
+ * Check whether or not the jacobi rotation method works as expected.
+ */
+BOOST_AUTO_TEST_CASE(transform_with_jacobi_matrix) {
 
-//     const size_t dim = 2;
+    const size_t dim = 2;
 
-//     // Initialize a test tensor and convert it into an operator.
-//     auto T1 = GQCP::QCRankFourTensor<double>::Zero(dim);
+    // Initialize a test tensor and convert it into an operator.
+    auto T1 = GQCP::QCRankFourTensor<double>::Zero(dim);
 
-//     for (size_t i = 0; i < dim; i++) {
-//         for (size_t j = 0; j < dim; j++) {
-//             for (size_t k = 0; k < dim; k++) {
-//                 for (size_t l = 0; l < dim; l++) {
-//                     T1(i, j, k, l) = 1;
-//                 }
-//             }
-//         }
-//     }
-//     GQCP::ScalarUSQTwoElectronOperator<double> op {T1, T1, T1, T1};
+    for (size_t i = 0; i < dim; i++) {
+        for (size_t j = 0; j < dim; j++) {
+            for (size_t k = 0; k < dim; k++) {
+                for (size_t l = 0; l < dim; l++) {
+                    T1(i, j, k, l) = 1;
+                }
+            }
+        }
+    }
+    GQCP::ScalarUSQTwoElectronOperator<double> op {T1, T1, T1, T1};
 
-//     // Initialize a Jacobi rotation.
-//     GQCP::JacobiRotation J {1, 0, (boost::math::constants::pi<double>() / 2)};
+    // Initialize a Jacobi rotation.
+    const GQCP::JacobiRotation J_component {1, 0, (boost::math::constants::pi<double>() / 2)};
+    const auto J = GQCP::UJacobiRotation::FromEqual(J_component);
 
-//     // Initialize a reference tensor.
-//     auto ref = GQCP::QCRankFourTensor<double>::Zero(dim);
+    // Initialize a reference tensor.
+    auto ref = GQCP::QCRankFourTensor<double>::Zero(dim);
 
-//     for (size_t i = 0; i < dim; i++) {
-//         for (size_t j = 0; j < dim; j++) {
-//             for (size_t k = 0; k < dim; k++) {
-//                 for (size_t l = 0; l < dim; l++) {
-//                     if ((i + j + k + l) % 2 == 0) {
-//                         ref(i, j, k, l) = 1.0;
-//                     }
-//                     if ((i + j + k + l) % 2 != 0) {
-//                         ref(i, j, k, l) = -1.0;
-//                     }
-//                 }
-//             }
-//         }
-//     }
+    for (size_t i = 0; i < dim; i++) {
+        for (size_t j = 0; j < dim; j++) {
+            for (size_t k = 0; k < dim; k++) {
+                for (size_t l = 0; l < dim; l++) {
+                    if ((i + j + k + l) % 2 == 0) {
+                        ref(i, j, k, l) = 1.0;
+                    }
+                    if ((i + j + k + l) % 2 != 0) {
+                        ref(i, j, k, l) = -1.0;
+                    }
+                }
+            }
+        }
+    }
 
-//     op.rotate(J);
-//     BOOST_CHECK(op.alphaAlpha().parameters().isApprox(ref, 1.0e-08));
-//     BOOST_CHECK(op.alphaBeta().parameters().isApprox(ref, 1.0e-08));
-//     BOOST_CHECK(op.betaAlpha().parameters().isApprox(ref, 1.0e-08));
-//     BOOST_CHECK(op.betaBeat().parameters().isApprox(ref, 1.0e-08));
-// }
+    op.rotate(J);
+    BOOST_CHECK(op.alphaAlpha().parameters().isApprox(ref, 1.0e-08));
+    BOOST_CHECK(op.alphaBeta().parameters().isApprox(ref, 1.0e-08));
+    BOOST_CHECK(op.betaAlpha().parameters().isApprox(ref, 1.0e-08));
+    BOOST_CHECK(op.betaBeta().parameters().isApprox(ref, 1.0e-08));
+}

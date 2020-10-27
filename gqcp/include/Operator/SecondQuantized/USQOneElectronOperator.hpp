@@ -19,6 +19,7 @@
 
 
 #include "Basis/Transformations/SpinResolvedBasisTransformable.hpp"
+#include "Basis/Transformations/SpinResolvedJacobiRotatable.hpp"
 #include "Basis/Transformations/UTransformationMatrix.hpp"
 #include "DensityMatrix/SpinResolved1DM.hpp"
 #include "DensityMatrix/SpinResolved2DM.hpp"
@@ -41,6 +42,7 @@ template <typename _Scalar, typename _Vectorizer>
 class USQOneElectronOperator:
     public SpinResolvedBase<USQOneElectronOperatorComponent<_Scalar, _Vectorizer>, USQOneElectronOperator<_Scalar, _Vectorizer>>,
     public SpinResolvedBasisTransformable<USQOneElectronOperator<_Scalar, _Vectorizer>>,
+    public SpinResolvedJacobiRotatable<USQOneElectronOperator<_Scalar, _Vectorizer>>,
     public VectorSpaceArithmetic<USQOneElectronOperator<_Scalar, _Vectorizer>, _Scalar> {
 public:
     // The scalar type used for a single parameter: real or complex.
@@ -231,6 +233,25 @@ public:
 
         return *this;
     }
+
+
+    /**
+     *  MARK: Enabling basis transformations
+     */
+
+    // Since `rotate` and `rotated` are both defined in `SpinResolvedBasisTransformable` and `SpinResolvedJacobiRotatable`, we have to explicitly enable these methods here.
+
+    // Allow the `rotate` method from `SpinResolvedBasisTransformable`, since there's also a `rotate` from `SpinResolvedJacobiRotatable`.
+    using SpinResolvedBasisTransformable<Self>::rotate;
+
+    // Allow the `rotated` method from `SpinResolvedBasisTransformable`, since there's also a `rotated` from `SpinResolvedJacobiRotatable`.
+    using SpinResolvedBasisTransformable<Self>::rotated;
+
+    // Allow the `rotate` method from `SpinResolvedJacobiRotatable`, since there's also a `rotate` from `SpinResolvedBasisTransformable`.
+    using SpinResolvedJacobiRotatable<Self>::rotate;
+
+    // Allow the `rotated` method from `SpinResolvedJacobiRotatable`, since there's also a `rotated` from `SpinResolvedBasisTransformable`.
+    using SpinResolvedJacobiRotatable<Self>::rotated;
 };
 
 
@@ -294,6 +315,21 @@ struct BasisTransformableTraits<USQOneElectronOperator<Scalar, Vectorizer>> {
 
     // The type of transformation matrix that is naturally related to a `USQOneElectronOperator`.
     using TM = UTransformationMatrix<Scalar>;
+};
+
+
+/*
+ *  MARK: JacobiRotatableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
+ */
+template <typename Scalar, typename Vectorizer>
+struct JacobiRotatableTraits<USQOneElectronOperator<Scalar, Vectorizer>> {
+
+    // The type of Jacobi rotation for which the Jacobi rotation should be defined.
+    using JacobiRotationType = UJacobiRotation;
 };
 
 

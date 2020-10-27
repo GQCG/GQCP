@@ -172,6 +172,38 @@ public:
         auto result = this->transformed(transformation_matrix, sigma);
         *this = result;
     }
+
+
+    /**
+     *  Apply the basis rotation for the spin component sigma, and return the resulting two-electron integrals.
+     * 
+     *  @param jacobi_rotation              The Jacobi rotation.
+     *  @param sigma                        Alpha indicates a transformation of the first two axes, beta indicates a transformation of the second two axes.
+     * 
+     *  @return The basis-rotated two-electron operator.
+     * 
+     *  @note We apologize for this half-baked API. It is currently present in the code, while issue #559 (https://github.com/GQCG/GQCP/issues/688) is being implemented.
+     */
+    Self rotated(const JacobiRotation& jacobi_rotation, const Spin sigma) const {
+
+        const auto J = UTransformationMatrixComponent<Scalar>::FromJacobi(jacobi_rotation, this->numberOfOrbitals());
+        return this->transformed(J, sigma);
+    }
+
+
+    /**
+     *  In-place apply the basis rotation for the spin component sigma, and return the resulting two-electron integrals.
+     * 
+     *  @param jacobi_rotation              The Jacobi rotation.
+     *  @param sigma                        Alpha indicates a transformation of the first two axes, beta indicates a transformation of the second two axes.
+     * 
+     *  @note We apologize for this half-baked API. It is currently present in the code, while issue #559 (https://github.com/GQCG/GQCP/issues/688) is being implemented.
+     */
+    void rotate(const JacobiRotation& jacobi_rotation, const Spin sigma) {
+
+        auto result = this->rotated(jacobi_rotation, sigma);
+        *this = result;
+    }
 };
 
 
@@ -229,21 +261,6 @@ struct OperatorTraits<MixedUSQTwoElectronOperatorComponent<_Scalar, _Vectorizer>
 
     // The type of the two-particle density matrix that is naturally associated a component of an unestricted two-electron operator.
     using TwoDM = SpinResolved2DMComponent<Scalar>;
-};
-
-
-/*
- *  MARK: BasisTransformableTraits
- */
-
-/**
- *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
- */
-template <typename Scalar, typename Vectorizer>
-struct BasisTransformableTraits<MixedUSQTwoElectronOperatorComponent<Scalar, Vectorizer>> {
-
-    // The type of transformation matrix that is naturally associated to a component of an unestricted two-electron operator.
-    using TM = UTransformationMatrixComponent<Scalar>;
 };
 
 

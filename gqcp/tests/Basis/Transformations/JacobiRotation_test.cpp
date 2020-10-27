@@ -26,9 +26,9 @@
 
 BOOST_AUTO_TEST_CASE(JacobiRotation_constructor) {
 
-    // Check if a correct constructor works
-    GQCP::JacobiRotation jacobi_rotation {3, 1, 0.5};
+    // Check if a correct constructor works.
+    BOOST_CHECK_NO_THROW(GQCP::JacobiRotation(3, 1, 0.5));
 
-    // Check if we can't construct when p < q
-    BOOST_CHECK_THROW(GQCP::jacobi_rotation(1, 3, 0.5), std::invalid_argument);
+    // Check if we can't construct when p < q.
+    BOOST_CHECK_THROW(GQCP::JacobiRotation(1, 3, 0.5), std::invalid_argument);
 }

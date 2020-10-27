@@ -29,7 +29,16 @@ namespace GQCP {
  *  A class that encapsulates an alpha- and a beta- Jacobirotation.
  */
 class UJacobiRotation:
-    public SpinResolvedBase<JacobiRotation, UJacobiRotation> {};
+    public SpinResolvedBase<JacobiRotation, UJacobiRotation> {
+
+public:
+    /*
+     *  MARK: Constructors
+     */
+
+    // Inherit `SpinResolvedBase`'s constructors.
+    using SpinResolvedBase<JacobiRotation, UJacobiRotation>::SpinResolvedBase;
+};
 
 
 }  // namespace GQCP

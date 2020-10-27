@@ -24,6 +24,23 @@
 namespace GQCP {
 
 
+/*
+ *  MARK: JacobiRotatableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
+ * 
+ *  @tparam T       The type that should conform to `JacobiRotatable`.
+ */
+template <typename T>
+struct JacobiRotatableTraits {};
+
+
+/*
+ *  MARK: JacobiRotatable
+ */
+
 /**
  *  An (abstract) interface for types that may be transformed from one orbital basis to another, using a Jacobi rotation.
  * 
@@ -33,6 +50,11 @@ namespace GQCP {
  */
 template <typename T>
 class JacobiRotatable {
+public:
+    // The type of Jacobi rotation for which the basis rotation should be defined.
+    using JacobiRotationType = typename JacobiRotatableTraits<T>::JacobiRotationType;
+
+
 public:
     /*
      *  MARK: Pure virtual methods
@@ -45,7 +67,7 @@ public:
      * 
      *  @return The jacobi-transformed object.
      */
-    virtual T rotated(const JacobiRotation& jacobi_rotation) const = 0;
+    virtual T rotated(const JacobiRotationType& jacobi_rotation) const = 0;
 
 
     /*
@@ -57,7 +79,7 @@ public:
      * 
      *  @param jacobi_rotation          The Jacobi rotation.
      */
-    void rotate(const JacobiRotation& jacobi_rotation) {
+    void rotate(const JacobiRotationType& jacobi_rotation) {
         static_cast<T&>(*this) = this->rotated(jacobi_rotation);
     }
 };

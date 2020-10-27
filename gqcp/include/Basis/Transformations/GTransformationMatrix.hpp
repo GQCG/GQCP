@@ -66,4 +66,19 @@ struct BasisTransformableTraits<GTransformationMatrix<Scalar>> {
 };
 
 
+/*
+ *  MARK: JacobiRotatableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
+ */
+template <typename Scalar>
+struct JacobiRotatableTraits<GTransformationMatrix<Scalar>> {
+
+    // The type of Jacobi rotation for which the Jacobi rotation should be defined.
+    using JacobiRotationType = JacobiRotation;
+};
+
+
 }  // namespace GQCP

@@ -19,7 +19,6 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Mathematical/Functions/CartesianGTO.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
 #include "Utilities/miscellaneous.hpp"
 
@@ -315,35 +314,36 @@ BOOST_AUTO_TEST_CASE(transform_with_transformation_matrix) {
 
 
 /**
- * Check whether or not the rotate with Jacobi rotation method works as expected
+ * Check whether or not the rotate with a Jacobi rotation works as expected.
  */
-// BOOST_AUTO_TEST_CASE(transform_with_jacobi_matrix) {
+BOOST_AUTO_TEST_CASE(transform_with_jacobi_matrix) {
 
-//     const size_t dim = 4;
+    const size_t dim = 4;
 
-//     // Initialize a test matrix and convert it into an operator
-//     GQCP::SquareMatrix<double> M1 {dim};
-//     // clang-format off
-//     M1 <<  1.0,  2.0,  3.0,  4.0,
-//            5.0,  6.0,  7.0,  8.0,
-//            9.0, 10.0, 11.0, 12.0,
-//           13.0, 14.0, 15.0, 16.0;
-//     // clang-format on
-//     GQCP::ScalarUSQOneElectronOperator<double> op {M1, M1};
+    // Initialize a test matrix and convert it into an operator.
+    GQCP::SquareMatrix<double> M1 {dim};
+    // clang-format off
+    M1 <<  1.0,  2.0,  3.0,  4.0,
+           5.0,  6.0,  7.0,  8.0,
+           9.0, 10.0, 11.0, 12.0,
+          13.0, 14.0, 15.0, 16.0;
+    // clang-format on
+    GQCP::ScalarUSQOneElectronOperator<double> op {M1, M1};
 
-//     // Initialize a transformation matrix
-//     GQCP::JacobiRotation J {2, 1, (boost::math::constants::pi<double>() / 2)};
+    // Initialize the Jacobi rotation.
+    const GQCP::JacobiRotation J_component {2, 1, (boost::math::constants::pi<double>() / 2)};
+    const auto J = GQCP::UJacobiRotation::FromEqual(J_component);
 
-//     // Initialize a reference matrix
-//     GQCP::SquareMatrix<double> ref {dim};
-//     // clang-format off
-//     ref <<  1.0,  3.0,  -2.0,  4.0,
-//             9.0, 11.0, -10.0, 12.0,
-//            -5.0, -7.0,   6.0, -8.0,
-//            13.0, 15.0, -14.0, 16.0;
-//     // clang-format on
+    // Initialize the reference matrix.
+    GQCP::SquareMatrix<double> ref {dim};
+    // clang-format off
+    ref <<  1.0,  3.0,  -2.0,  4.0,
+            9.0, 11.0, -10.0, 12.0,
+           -5.0, -7.0,   6.0, -8.0,
+           13.0, 15.0, -14.0, 16.0;
+    // clang-format on
 
-//     op.rotate(J);
-//     BOOST_CHECK(op.parameters(GQCP::Spin::alpha).isApprox(ref, 1.0e-08));
-//     BOOST_CHECK(op.parameters(GQCP::Spin::beta).isApprox(ref, 1.0e-08));
-// }
+    op.rotate(J);
+    BOOST_CHECK(op.alpha().parameters().isApprox(ref, 1.0e-08));
+    BOOST_CHECK(op.beta().parameters().isApprox(ref, 1.0e-08));
+}

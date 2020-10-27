@@ -19,6 +19,8 @@
 
 
 #include "Basis/Transformations/BasisTransformable.hpp"
+#include "Basis/Transformations/JacobiRotatable.hpp"
+#include "Basis/Transformations/UJacobiRotation.hpp"
 #include "Basis/Transformations/UTransformationMatrix.hpp"
 #include "DensityMatrix/SpinResolved1DM.hpp"
 #include "DensityMatrix/SpinResolved2DM.hpp"
@@ -41,6 +43,7 @@ template <typename _Scalar, typename _Vectorizer>
 class USQTwoElectronOperator:
     public DoublySpinResolvedBase<PureUSQTwoElectronOperatorComponent<_Scalar, _Vectorizer>, MixedUSQTwoElectronOperatorComponent<_Scalar, _Vectorizer>, USQTwoElectronOperator<_Scalar, _Vectorizer>>,
     public BasisTransformable<USQTwoElectronOperator<_Scalar, _Vectorizer>>,
+    public JacobiRotatable<USQTwoElectronOperator<_Scalar, _Vectorizer>>,
     public VectorSpaceArithmetic<USQTwoElectronOperator<_Scalar, _Vectorizer>, _Scalar> {
 public:
     // The scalar type used for a single parameter: real or complex.
@@ -54,6 +57,9 @@ public:
 
     // The type of the transformation matrix that is naturally related to an unrestricted two-electron operator.
     using TM = UTransformationMatrix<Scalar>;
+
+    // The type of Jacobi rotation that is naturally related to an unrestricted two-electron operator.
+    using JacobiRotationType = UJacobiRotation;
 
 
 public:
@@ -212,7 +218,7 @@ public:
      * 
      *  @return The basis-transformed object.
      */
-    Self transformed(const TM& transformation_matrix) const {
+    Self transformed(const TM& transformation_matrix) const override {
 
         auto result = *this;
 
@@ -229,6 +235,46 @@ public:
 
         return result;
     };
+
+
+    // Allow the `rotate` method from `BasisTransformable`, since there's also a `rotate` from `JacobiRotatable`.
+    using BasisTransformable<Self>::rotate;
+
+    // Allow the `rotated` method from `BasisTransformable`, since there's also a `rotate` from `JacobiRotatable`.
+    using BasisTransformable<Self>::rotated;
+
+
+    /*
+     *  MARK: Conforming to `JacobiRotatable`
+     */
+
+    /**
+     *  Apply the Jacobi rotation and return the result.
+     * 
+     *  @param jacobi_rotation          The Jacobi rotation.
+     * 
+     *  @return The jacobi-transformed object.
+     */
+    Self rotated(const JacobiRotationType& jacobi_rotation) const override {
+
+        auto result = *this;
+
+        // Rotate each of the spin-components of this two-electron operator.
+        result.alphaAlpha().rotate(jacobi_rotation.alpha());
+
+        result.alphaBeta().rotate(jacobi_rotation.alpha(), Spin::alpha);  // See `MixedUSQTwoElectronOperatorComponent::rotate` for explanation of the API.
+        result.alphaBeta().rotate(jacobi_rotation.beta(), Spin::beta);
+
+        result.betaAlpha().rotate(jacobi_rotation.beta(), Spin::alpha);
+        result.betaAlpha().rotate(jacobi_rotation.alpha(), Spin::beta);
+
+        result.betaBeta().rotate(jacobi_rotation.beta());
+
+        return result;
+    }
+
+    // Allow the `rotate` method from `JacobiRotatable`, since there's also a `rotate` from `BasisTransformable`.
+    using JacobiRotatable<Self>::rotate;
 
 
     /*
@@ -322,6 +368,21 @@ struct BasisTransformableTraits<USQTwoElectronOperator<Scalar, Vectorizer>> {
 
     // The type of transformation matrix that is naturally related to a `USQTwoElectronOperator`.
     using TM = UTransformationMatrix<Scalar>;
+};
+
+
+/*
+ *  MARK: JacobiRotatableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
+ */
+template <typename Scalar, typename Vectorizer>
+struct JacobiRotatableTraits<USQTwoElectronOperator<Scalar, Vectorizer>> {
+
+    // The type of Jacobi rotation for which the Jacobi rotation should be defined.
+    using JacobiRotationType = UJacobiRotation;
 };
 
 

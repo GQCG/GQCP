@@ -400,7 +400,7 @@ public:
      *  @note This method is not enabled for unrestricted Hamiltonians.
      */
     template <typename Z = SpinorTag>
-    enable_if_t<std::is_same<Z, RestrictedSpinOrbitalTag>::value || std::is_same<Z, GeneralSpinOrbitalTag>::value, double> calculateEdmistonRuedenbergLocalizationIndex(const OrbitalSpace orbital_space) const {
+    enable_if_t<std::is_same<Z, RestrictedSpinOrbitalTag>::value || std::is_same<Z, GeneralSpinorTag>::value, double> calculateEdmistonRuedenbergLocalizationIndex(const OrbitalSpace orbital_space) const {
 
         const auto& g_total_par = this->twoElectron().parameters();
 
@@ -422,7 +422,7 @@ public:
      *  @note This method is not enabled for unrestricted Hamiltonians.
      */
     template <typename Z = SpinorTag>
-    enable_if_t<std::is_same<Z, RestrictedSpinOrbitalTag>::value || std::is_same<Z, GeneralSpinOrbitalTag>::value, ScalarSQOneElectronOperator_Placeholder> calculateEffectiveOneElectronIntegrals() const {
+    enable_if_t<std::is_same<Z, RestrictedSpinOrbitalTag>::value || std::is_same<Z, GeneralSpinorTag>::value, ScalarSQOneElectronOperator_Placeholder> calculateEffectiveOneElectronIntegrals() const {
 
         return this->core() + this->twoElectron().effectiveOneElectronPartition();
     }
@@ -454,7 +454,7 @@ public:
      *  @note This method is not enabled for unrestricted Hamiltonians.
      */
     template <typename Z = SpinorTag>
-    enable_if_t<std::is_same<Z, RestrictedSpinOrbitalTag>::value || std::is_same<Z, GeneralSpinOrbitalTag>::value, SquareMatrix<Scalar>> calculateFockianMatrix(const OneDM& D, const TwoDM& d) const {
+    enable_if_t<std::is_same<Z, RestrictedSpinOrbitalTag>::value || std::is_same<Z, GeneralSpinorTag>::value, SquareMatrix<Scalar>> calculateFockianMatrix(const OneDM& D, const TwoDM& d) const {
 
         // An SQHamiltonian contains ScalarSQOperators, so we access their Fockian matrices with (0).
         return this->core().calculateFockianMatrix(D, d)() + this->twoElectron().calculateFockianMatrix(D, d)();
@@ -470,7 +470,7 @@ public:
      *  @return The super-Fockian matrix.
      */
     template <typename Z = SpinorTag>
-    enable_if_t<std::is_same<Z, RestrictedSpinOrbitalTag>::value || std::is_same<Z, GeneralSpinOrbitalTag>::value, SquareRankFourTensor<Scalar>> calculateSuperFockianMatrix(const OneDM& D, const TwoDM& d) const {
+    enable_if_t<std::is_same<Z, RestrictedSpinOrbitalTag>::value || std::is_same<Z, GeneralSpinorTag>::value, SquareRankFourTensor<Scalar>> calculateSuperFockianMatrix(const OneDM& D, const TwoDM& d) const {
 
         // An SQHamiltonian contains ScalarSQOperators, so we access their Fockian matrices with (0).
         return this->core().calculateSuperFockianMatrix(D, d)().Eigen() + this->twoElectron().calculateSuperFockianMatrix(D, d)().Eigen();  // We have to call .Eigen() because operator+ isn't fully enabled on SquareRankFourTensor.
@@ -645,6 +645,21 @@ struct BasisTransformableTraits<SQHamiltonian<ScalarSQOneElectronOperator_Placeh
 
     // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix"
     using TM = typename OperatorTraits<ScalarSQOneElectronOperator_Placeholder>::TM;
+};
+
+
+/*
+ *  MARK: JacobiRotatableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
+ */
+template <typename ScalarSQOneElectronOperator_Placeholder, typename ScalarSQTwoElectronOperator_Placeholder>
+struct JacobiRotatableTraits<SQHamiltonian<ScalarSQOneElectronOperator_Placeholder, ScalarSQTwoElectronOperator_Placeholder>> {
+
+    // The type of Jacobi rotation for which the Jacobi rotation should be defined.
+    using JacobiRotationType = typename JacobiRotatableTraits<ScalarSQOneElectronOperator_Placeholder>::JacobiRotationType;
 };
 
 

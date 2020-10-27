@@ -80,10 +80,10 @@ public:
         // Use Eigen's Jacobi module to apply the Jacobi rotations directly (cfr. T.adjoint() * M * T)
         const auto p = jacobi_rotation.p();
         const auto q = jacobi_rotation.q();
-        const auto jacobi_rotation = jacobi_rotation.Eigen();
+        const auto eigen_jacobi_rotation = jacobi_rotation.Eigen();
 
-        this->applyOnTheLeft(p, q, jacobi_rotation.adjoint());
-        this->applyOnTheRight(p, q, jacobi_rotation);
+        this->applyOnTheLeft(p, q, eigen_jacobi_rotation.adjoint());
+        this->applyOnTheRight(p, q, eigen_jacobi_rotation);
     }
 
 
