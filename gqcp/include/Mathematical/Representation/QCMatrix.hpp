@@ -69,18 +69,18 @@ public:
 
 
     /**
-     *  In-place rotate this chemical matrix using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters
+     *  In-place rotate this chemical matrix using a unitary Jacobi rotation matrix constructed from the Jacobi rotation.
      * 
      *  @note This function should only be available for real (double) matrix representations
      *
-     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix. See transform() for how the transformation matrix between the two bases should be represented
+     *  @param jacobi_rotation          The Jacobi rotation.
      */
-    void basisRotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
+    void basisRotate(const JacobiRotation& jacobi_rotation) {
 
         // Use Eigen's Jacobi module to apply the Jacobi rotations directly (cfr. T.adjoint() * M * T)
-        const auto p = jacobi_rotation_parameters.p();
-        const auto q = jacobi_rotation_parameters.q();
-        const auto jacobi_rotation = jacobi_rotation_parameters.Eigen();
+        const auto p = jacobi_rotation.p();
+        const auto q = jacobi_rotation.q();
+        const auto jacobi_rotation = jacobi_rotation.Eigen();
 
         this->applyOnTheLeft(p, q, jacobi_rotation.adjoint());
         this->applyOnTheRight(p, q, jacobi_rotation);

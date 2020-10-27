@@ -96,19 +96,19 @@ void basisRotate(RSpinorBasis<TransformationScalar, Shell>& spinor_basis, RSQHam
 
 
 /**
- *  Rotate both the spinor basis and the Hamiltonian to another basis using the given Jacobi-rotation parameters
+ *  Rotate both the spinor basis and the Hamiltonian to another basis using the given Jacobi rotation.
  * 
  *  @tparam Shell                           the type of shell that the scalar basis contains
  * 
  *  @param spinor_basis                     the spinor basis
  *  @param sq_hamiltonian                   the Hamiltonian
- *  @param jacobi_rotation_parameters       the Jacobi-rotation parameters
+ *  @param jacobi_rotation                  The Jacobi rotation.
  */
 template <typename Shell>
-void basisRotate(RSpinorBasis<double, Shell>& spinor_basis, RSQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rotation_parameters) {
+void basisRotate(RSpinorBasis<double, Shell>& spinor_basis, RSQHamiltonian<double>& sq_hamiltonian, const JacobiRotation& jacobi_rotation) {
 
-    spinor_basis.rotate(jacobi_rotation_parameters);
-    sq_hamiltonian.rotate(jacobi_rotation_parameters);
+    spinor_basis.rotate(jacobi_rotation);
+    sq_hamiltonian.rotate(jacobi_rotation);
 }
 
 
@@ -203,7 +203,7 @@ void basisRotate(RSpinorBasis<double, Shell>& spinor_basis, RSQHamiltonian<doubl
  *  @param component                        the spin component
  */
 // template <typename Shell>
-// void basisRotate(USpinorBasis<double, Shell>& spinor_basis, USQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rotation_parameters, const Spin& component) {
+// void basisRotate(USpinorBasis<double, Shell>& spinor_basis, USQHamiltonian<double>& sq_hamiltonian, const JacobiRotation& jacobi_rotation_parameters, const Spin& component) {
 
 //     spinor_basis.rotate(jacobi_rotation_parameters, component);
 //     sq_hamiltonian.rotate(jacobi_rotation_parameters, component);
@@ -220,7 +220,7 @@ void basisRotate(RSpinorBasis<double, Shell>& spinor_basis, RSQHamiltonian<doubl
  *  @param jacobi_rotation_parameters       the Jacobi-rotation parameters
  */
 // template <typename Shell>
-// void basisRotate(USpinorBasis<double, Shell>& spinor_basis, USQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rotation_parameters) {
+// void basisRotate(USpinorBasis<double, Shell>& spinor_basis, USQHamiltonian<double>& sq_hamiltonian, const JacobiRotation& jacobi_rotation_parameters) {
 
 //     spinor_basis.rotate(jacobi_rotation_parameters);
 //     sq_hamiltonian.rotate(jacobi_rotation_parameters);

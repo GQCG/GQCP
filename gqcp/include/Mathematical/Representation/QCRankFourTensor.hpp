@@ -116,16 +116,16 @@ public:
 
 
     /**
-     *  In-place rotate this chemical rank-4 tensor using Jacobi rotation parameters.
+     *  In-place rotate this chemical rank-4 tensor using Jacobi rotation.
      * 
-     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
+     *  @param jacobi_rotation              The Jacobi rotation.
      */
-    void basisRotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
+    void basisRotate(const JacobiRotation& jacobi_rotation) {
 
         /**
          *  While waiting for an analogous Eigen::Tensor Jacobi module, we implement this rotation by constructing a Jacobi rotation matrix and then simply doing a rotation with it
          */
-        const auto J = TransformationMatrix<double>::FromJacobi(jacobi_rotation_parameters, this->numberOfOrbitals());
+        const auto J = TransformationMatrix<double>::FromJacobi(jacobi_rotation, this->numberOfOrbitals());
         this->basisRotate(J);
     }
 

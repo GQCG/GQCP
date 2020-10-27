@@ -315,7 +315,7 @@ BOOST_AUTO_TEST_CASE(transform_with_transformation_matrix) {
 
 
 /**
- * Check whether or not the rotate with Jacobi rotation parameters method works as expected
+ * Check whether or not the rotate with Jacobi rotation method works as expected
  */
 // BOOST_AUTO_TEST_CASE(transform_with_jacobi_matrix) {
 
@@ -332,7 +332,7 @@ BOOST_AUTO_TEST_CASE(transform_with_transformation_matrix) {
 //     GQCP::ScalarUSQOneElectronOperator<double> op {M1, M1};
 
 //     // Initialize a transformation matrix
-//     GQCP::JacobiRotationParameters J {2, 1, (boost::math::constants::pi<double>() / 2)};
+//     GQCP::JacobiRotation J {2, 1, (boost::math::constants::pi<double>() / 2)};
 
 //     // Initialize a reference matrix
 //     GQCP::SquareMatrix<double> ref {dim};

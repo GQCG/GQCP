@@ -97,7 +97,7 @@ BOOST_AUTO_TEST_CASE(QCMatrix_rotate_throws) {
 
 
 /**
- *  Check if rotating with JacobiRotationParameters is the same as with the corresponding Jacobi rotation matrix
+ *  Check if rotating with JacobiRotation is the same as with the corresponding Jacobi rotation matrix
  */
 BOOST_AUTO_TEST_CASE(SQOneElectronOperator_rotate_JacobiRotationParameters) {
 
@@ -106,13 +106,13 @@ BOOST_AUTO_TEST_CASE(SQOneElectronOperator_rotate_JacobiRotationParameters) {
     GQCP::QCMatrix<double> M1 = GQCP::QCMatrix<double>::Random(dim, dim);
     auto M2 = M1;
 
-    // Create random Jacobi rotation parameters and the corresponding Jacobi rotation matrix
-    GQCP::JacobiRotationParameters jacobi_rotation_parameters {4, 2, 56.81};
-    const auto J = GQCP::TransformationMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
+    // Create random Jacobi rotation and the corresponding Jacobi rotation matrix.
+    GQCP::JacobiRotation jacobi_rotation {4, 2, 56.81};
+    const auto J = GQCP::TransformationMatrix<double>::FromJacobi(jacobi_rotation, dim);
 
 
     // Rotate and check the result
-    M1.basisRotate(jacobi_rotation_parameters);
+    M1.basisRotate(jacobi_rotation);
     M2.basisRotate(J);
 
     BOOST_CHECK(M1.isApprox(M2, 1.0e-12));
@@ -158,11 +158,11 @@ BOOST_AUTO_TEST_CASE(rotate_overlap_invariant) {
 
 
 /**
- *  Check a rotation through Jacobi rotation parameters through a manual calculation
+ *  Check a rotation through Jacobi rotation through a manual calculation
  */
 BOOST_AUTO_TEST_CASE(rotate_Jacobi_manual) {
 
-    // Initialize the test overlap matrix and rotation parameters
+    // Initialize the test overlap matrix and rotation.
     const size_t K = 3;
     GQCP::QCMatrix<double> S {K};
     // clang-format off
@@ -171,7 +171,7 @@ BOOST_AUTO_TEST_CASE(rotate_Jacobi_manual) {
          0.0, 0.0, 1.0;
     // clang-format on
 
-    const GQCP::JacobiRotationParameters jacobi_rotation_parameters {1, 0, boost::math::constants::half_pi<double>()};  // interchanges two orbitals
+    const GQCP::JacobiRotation jacobi_rotation {1, 0, boost::math::constants::half_pi<double>()};  // interchanges two orbitals
 
 
     // Initialize the reference, rotate the overlap matrix and check the result
@@ -183,6 +183,6 @@ BOOST_AUTO_TEST_CASE(rotate_Jacobi_manual) {
     // clang-format on
 
 
-    S.basisRotate(jacobi_rotation_parameters);
+    S.basisRotate(jacobi_rotation);
     BOOST_CHECK(S.isApprox(S_rotated_ref, 1.0e-08));
 }

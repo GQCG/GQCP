@@ -57,7 +57,7 @@ BOOST_AUTO_TEST_CASE(analytical_rotation_energy_AP1roG) {
     for (size_t q = 0; q < K; q++) {          // p and q loop over spatial orbitals
         for (size_t p = q + 1; p < K; p++) {  // p > q
 
-            const GQCP::JacobiRotationParameters jacobi_rot_par {p, q, theta};
+            const GQCP::JacobiRotation jacobi_rotation {p, q, theta};
 
             // Calculate geminal coefficients as an ingredient for the AP1roG energy
             auto solver = GQCP::NonLinearEquationSolver<double>::Newton();
@@ -69,13 +69,13 @@ BOOST_AUTO_TEST_CASE(analytical_rotation_energy_AP1roG) {
             // The analytical function is implemented in AP1roGJacobiOrbitalOptimizer
             GQCP::AP1roGJacobiOrbitalOptimizer orbital_optimizer {G, 1.0e-04};
             orbital_optimizer.calculateJacobiCoefficients(sq_hamiltonian, p, q);
-            const double E_correction_analytical = orbital_optimizer.calculateScalarFunctionChange(sq_hamiltonian, jacobi_rot_par);
+            const double E_correction_analytical = orbital_optimizer.calculateScalarFunctionChange(sq_hamiltonian, jacobi_rotation);
 
 
             // Calculate the energy after a numerical rotation (using a Jacobi rotation matrix)
             const double E_before = GQCP::QCModel::AP1roG::calculateEnergy(G, sq_hamiltonian);
             auto sq_ham_copy = sq_hamiltonian;
-            sq_ham_copy.rotate(jacobi_rot_par);
+            sq_ham_copy.rotate(jacobi_rotation);
             const double E_after = GQCP::QCModel::AP1roG::calculateEnergy(G, sq_ham_copy);
             const double E_correction_numerical = E_after - E_before;
 

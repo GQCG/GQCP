@@ -326,29 +326,29 @@ public:
 
 
     /**
-     *  Rotate the spinor basis of the requested component to another one using the unitary transformation matrix that corresponds to the given Jacobi rotation parameters
+     *  Rotate the spinor basis of the requested component to another one using the unitary transformation matrix that corresponds to the given Jacobi rotation
      * 
-     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
+     *  @param jacobi_rotation                  The jacobi rotation.
      *  @param sigma                            alpha or beta
      * 
-     *  @note This function is only available for real spinor bases because Jacobi rotation parameters generate real rotations.
+     *  @note This function is only available for real spinor bases because Jacobi rotation generate real rotations.
      */
     template <typename S = ExpansionScalar, typename = IsReal<S>>
-    void rotate(const JacobiRotationParameters& jacobi_rotation_parameters, const Spin& sigma) { this->spinor_bases[sigma].rotate(jacobi_rotation_parameters); }
+    void rotate(const JacobiRotation& jacobi_rotation, const Spin& sigma) { this->spinor_bases[sigma].rotate(jacobi_rotation); }
 
     /**
-     *  Rotate the spinor basis for both the alpha- and beta components to another one using the unitary transformation matrix that corresponds to the given Jacobi rotation parameters
+     *  Rotate the spinor basis for both the alpha- and beta components to another one using the unitary transformation matrix that corresponds to the given Jacobi rotation
      * 
-     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
+     *  @param jacobi_rotation          The jacobi rotation.
      * 
-     *  @note This function is only available for real spinor bases because Jacobi rotation parameters generate real rotations.
+     *  @note This function is only available for real spinor bases because Jacobi rotation generate real rotations.
      * 
      *  @note this method is only valid when the beta and alpha component are of the same dimension, and will only accept parameters of the same dimension as the individual component.
      */
     template <typename S = ExpansionScalar, typename = IsReal<S>>
-    void rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
-        this->rotate(jacobi_rotation_parameters, Spin::alpha);
-        this->rotate(jacobi_rotation_parameters, Spin::beta);
+    void rotate(const JacobiRotation& jacobi_rotation) {
+        this->rotate(jacobi_rotation, Spin::alpha);
+        this->rotate(jacobi_rotation, Spin::beta);
     }
 
 

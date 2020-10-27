@@ -28,13 +28,19 @@ namespace GQCP {
 
 
 /**
- *  A type that encapsulates the parameters that define a real Jacobi rotation.
+ *  A type that encapsulates the parameters that define a real-valued Jacobi rotation.
  */
-class JacobiRotationParameters {
+class JacobiRotation {
 private:
-    size_t m_p;      // p > q, starts from 0
-    size_t m_q;      // starts from 0
-    double m_angle;  // expressed in radians
+    // The index of the first rotated orbital. (p > q)
+    size_t m_p;
+
+    // The index of the second rotated orbital. (p > q)
+    size_t m_q;
+
+    // The angle of rotation, in radians.
+    double m_angle;
+
 
 public:
     /*
@@ -42,16 +48,16 @@ public:
      */
 
     /**
-     *  @param p        the index of the first rotated orbital
-     *  @param q        the index of the second rotated orbital
-     *  @param angle    the angle of rotation, in radians
+     *  @param p            The index of the first rotated orbital. (p > q)
+     *  @param q            The index of the second rotated orbital. (p > q)
+     *  @param angle        The angle of rotation, in radians.
      */
-    JacobiRotationParameters(const size_t p, const size_t q, const double angle);
+    JacobiRotation(const size_t p, const size_t q, const double angle);
 
     /**
-     *  Default constructor setting everything to zero
+     *  The default constructor.
      */
-    JacobiRotationParameters();
+    JacobiRotation();
 
 
     /*
@@ -59,12 +65,12 @@ public:
      */
 
     /**
-     *  @param os                               the output stream which the parameters should be concatenated to
-     *  @param jacobi_rotation_parameters       the parameters that should be concatenated to the output stream
+     *  @param os                               The output stream which the parameters should be concatenated to.
+     *  @param jacobi_rotation                  The Jacobi rotation.
      *
-     *  @return the updated output stream
+     *  @return A reference to the updated output stream.
      */
-    friend std::ostream& operator<<(std::ostream& os, const JacobiRotationParameters& jacobi_rotation_parameters);
+    friend std::ostream& operator<<(std::ostream& os, const JacobiRotation& jacobi_rotation);
 
 
     /*
@@ -72,17 +78,17 @@ public:
      */
 
     /**
-     *  @return the angle of rotation, in radians
+     *  @return The angle of rotation, in radians
      */
     double angle() const { return this->m_angle; }
 
     /**
-     *  @return the index of the first rotated orbital
+     *  @return The index of the first rotated orbital. (p > q)
      */
     size_t p() const { return this->m_p; }
 
     /**
-     *  @return the index of the second rotated orbital
+     *  @return The index of the second rotated orbital. (p > q)
      */
     size_t q() const { return this->m_q; }
 

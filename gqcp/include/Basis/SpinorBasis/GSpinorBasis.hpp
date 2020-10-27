@@ -24,7 +24,7 @@
 #include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
 #include "Basis/SpinorBasis/USpinorBasis.hpp"
 #include "Basis/Transformations/GTransformationMatrix.hpp"
-#include "Basis/Transformations/JacobiRotationParameters.hpp"
+#include "Basis/Transformations/JacobiRotation.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Molecule/NuclearFramework.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"

@@ -76,7 +76,7 @@ void JacobiOrbitalOptimizer::prepareConvergenceChecking(const RSQHamiltonian<dou
 
     this->prepareJacobiSpecificConvergenceChecking(sq_hamiltonian);
 
-    // Every Jacobi orbital optimizer should set a pair_type with the best Jacobi rotation parameters
+    // Every Jacobi orbital optimizer should set a pair_type with the best Jacobi rotation.
     this->optimal_jacobi_with_scalar = this->calculateOptimalJacobiParameters(sq_hamiltonian);
 }
 
@@ -89,9 +89,9 @@ void JacobiOrbitalOptimizer::prepareConvergenceChecking(const RSQHamiltonian<dou
  *  @param sq_hamiltonian           the current Hamiltonian
  *  @param dim                      the dimension of the orbital space that should be scanned. The valid orbital indices then are 0 ... dim (not included)
  * 
- *  @return the optimal Jacobi rotation parameters and the corresponding value for the scalar function that can be obtained when the Jacobi rotation would have taken place
+ *  @return the optimal Jacobi rotation and the corresponding value for the scalar function that can be obtained when the Jacobi rotation would have taken place
  */
-std::pair<JacobiRotationParameters, double> JacobiOrbitalOptimizer::calculateOptimalJacobiParameters(const RSQHamiltonian<double>& sq_hamiltonian) {
+std::pair<JacobiRotation, double> JacobiOrbitalOptimizer::calculateOptimalJacobiParameters(const RSQHamiltonian<double>& sq_hamiltonian) {
 
     const auto& cmp = this->comparer();  // cmp: 'comparer'
     std::priority_queue<pair_type, std::vector<pair_type>, decltype(cmp)> queue {cmp};
@@ -101,11 +101,11 @@ std::pair<JacobiRotationParameters, double> JacobiOrbitalOptimizer::calculateOpt
             this->calculateJacobiCoefficients(sq_hamiltonian, p, q);  // initialize the trigoniometric polynomial coefficients
 
             const double theta = this->calculateOptimalRotationAngle(sq_hamiltonian, p, q);
-            const JacobiRotationParameters jacobi_rot_par(p, q, theta);
+            const JacobiRotation jacobi_rotation {p, q, theta};
 
-            const double E_change = this->calculateScalarFunctionChange(sq_hamiltonian, jacobi_rot_par);
+            const double E_change = this->calculateScalarFunctionChange(sq_hamiltonian, jacobi_rotation);
 
-            queue.emplace(jacobi_rot_par, E_change);  // construct a pair_type
+            queue.emplace(jacobi_rotation, E_change);  // construct a pair_type
         }
     }
 

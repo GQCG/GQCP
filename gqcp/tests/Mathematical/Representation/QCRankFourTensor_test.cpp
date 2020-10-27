@@ -113,7 +113,7 @@ BOOST_AUTO_TEST_CASE(QCRankFourTensor_rotate_throws) {
 
 
 /**
- *  Check that rotating using JacobiRotationParameters is the same as using the corresponding Jacobi rotation matrix.
+ *  Check that rotating using JacobiRotation is the same as using the corresponding Jacobi rotation matrix.
  */
 BOOST_AUTO_TEST_CASE(QCRankFourTensor_basisRotateInPlace_JacobiRotationParameters) {
 
@@ -125,10 +125,10 @@ BOOST_AUTO_TEST_CASE(QCRankFourTensor_basisRotateInPlace_JacobiRotationParameter
     GQCP::QCRankFourTensor<double> G2 {g};
 
 
-    const GQCP::JacobiRotationParameters jacobi_rotation_parameters(4, 2, 56.81);
-    const auto U = GQCP::TransformationMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
+    const GQCP::JacobiRotation jacobi_rotation(4, 2, 56.81);
+    const auto U = GQCP::TransformationMatrix<double>::FromJacobi(jacobi_rotation, dim);
 
-    G1.basisRotate(jacobi_rotation_parameters);
+    G1.basisRotate(jacobi_rotation);
     G2.basisRotate(U);
 
 

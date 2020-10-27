@@ -71,19 +71,19 @@ public:
      */
 
     /**
-     *  Create a transformation matrix from Jacobi rotation parameters. Note that we work with the (cos, sin, -sin, cos) definition.
+     *  Create a transformation matrix from Jacobi rotation. Note that we work with the (cos, sin, -sin, cos) definition.
      * 
-     *  @param jacobi_rotation_parameters               The parameters that define the Jacobi rotation matrix.
-     *  @param dim                                      The dimension of the resulting matrix.
+     *  @param jacobi_rotation                      The Jacobi rotation.
+     *  @param dim                                  The dimension of the resulting matrix.
      *
-     *  @return The Jacobi rotation matrix that corresponds to Jacobi rotation parameters.
+     *  @return The Jacobi rotation matrix that corresponds to Jacobi rotation.
      */
-    static DerivedTransformationMatrix FromJacobi(const JacobiRotationParameters& jacobi_rotation_parameters, const size_t dim) {
+    static DerivedTransformationMatrix FromJacobi(const JacobiRotation& jacobi_rotation, const size_t dim) {
 
         // Create an identity transformation matrix and apply a Jacobi rotation.
         DerivedTransformationMatrix J = SquareMatrix<Scalar>::Identity(dim);
 
-        return J.rotated(jacobi_rotation_parameters);
+        return J.rotated(jacobi_rotation);
     }
 
 
@@ -128,20 +128,20 @@ public:
     /**
      *  Apply the Jacobi rotation and return the result.
      * 
-     *  @param jacobi_parameters        The Jacobi rotation parameters.
+     *  @param jacobi_rotation          The Jacobi rotation.
      * 
      *  @return The transformation matrix that that encapsulates the sequential application of this transformation, followed by the Jacobi rotation.
      */
-    virtual DerivedTransformationMatrix rotated(const JacobiRotationParameters& jacobi_parameters) const override {
+    virtual DerivedTransformationMatrix rotated(const JacobiRotation& jacobi_rotation) const override {
 
-        const auto p = jacobi_parameters.p();
-        const auto q = jacobi_parameters.q();
+        const auto p = jacobi_rotation.p();
+        const auto q = jacobi_rotation.q();
 
         // Create the matrix representation of a Jacobi rotation using Eigen's APIs.
         // We're applying the Jacobi rotation as J = I * jacobi_rotation (cfr. B' = B T).
-        const auto jacobi_rotation = jacobi_parameters.Eigen();
+        const auto eigen_jacobi_rotation = jacobi_rotation.Eigen();
         auto result = (*this);
-        result.applyOnTheRight(p, q, jacobi_rotation);
+        result.applyOnTheRight(p, q, eigen_jacobi_rotation);
 
         return DerivedTransformationMatrix {result};
     }

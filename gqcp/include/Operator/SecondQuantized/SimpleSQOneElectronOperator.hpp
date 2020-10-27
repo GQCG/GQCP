@@ -248,22 +248,22 @@ public:
     /**
      *  Apply the Jacobi rotation and return the result.
      * 
-     *  @param jacobi_parameters        The Jacobi rotation parameters.
+     *  @param jacobi_rotation          The Jacobi rotation.
      * 
      *  @return The jacobi-transformed object.
      */
-    DerivedOperator rotated(const JacobiRotationParameters& jacobi_parameters) const override {
+    DerivedOperator rotated(const JacobiRotation& jacobi_rotation) const override {
 
         // Use Eigen's Jacobi module to apply the Jacobi rotations directly (cfr. T.adjoint() * M * T).
-        const auto p = jacobi_parameters.p();
-        const auto q = jacobi_parameters.q();
-        const auto jacobi_rotation = jacobi_parameters.Eigen();
+        const auto p = jacobi_rotation.p();
+        const auto q = jacobi_rotation.q();
+        const auto jacobi_rotation_eigen = jacobi_rotation.Eigen();
 
         // Calculate the basis transformation for every component of the operator.
         auto result = this->allParameters();
         for (size_t i = 0; i < this->numberOfComponents(); i++) {
-            result[i].applyOnTheLeft(p, q, jacobi_rotation.adjoint());
-            result[i].applyOnTheRight(p, q, jacobi_rotation);
+            result[i].applyOnTheLeft(p, q, jacobi_rotation_eigen.adjoint());
+            result[i].applyOnTheRight(p, q, jacobi_rotation_eigen);
         }
 
         return DerivedOperator {StorageArray<MatrixRepresentation, Vectorizer>(result, this->array.vectorizer())};

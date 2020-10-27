@@ -33,7 +33,7 @@ BOOST_AUTO_TEST_CASE(jacobi_rotation) {
 
     // Set up an identity transformation matrix.
     GQCP::RTransformationMatrix<double> T = GQCP::SquareMatrix<double>::Identity(dim);
-    const GQCP::JacobiRotationParameters jacobi {1, 0, boost::math::constants::half_pi<double>()};
+    const GQCP::JacobiRotation jacobi {1, 0, boost::math::constants::half_pi<double>()};
 
 
     // Set up the reference and check the results.
@@ -59,8 +59,8 @@ BOOST_AUTO_TEST_CASE(jacobi_rotation) {
  */
 BOOST_AUTO_TEST_CASE(FromJacobi_unitary) {
 
-    BOOST_CHECK(GQCP::RTransformationMatrix<double>::FromJacobi(GQCP::JacobiRotationParameters(7, 4, 6.9921), 10).isUnitary());
-    BOOST_CHECK(GQCP::RTransformationMatrix<double>::FromJacobi(GQCP::JacobiRotationParameters(9, 1, 78.00166), 22).isUnitary());
+    BOOST_CHECK(GQCP::RTransformationMatrix<double>::FromJacobi(GQCP::JacobiRotation(7, 4, 6.9921), 10).isUnitary());
+    BOOST_CHECK(GQCP::RTransformationMatrix<double>::FromJacobi(GQCP::JacobiRotation(9, 1, 78.00166), 22).isUnitary());
 }
 
 

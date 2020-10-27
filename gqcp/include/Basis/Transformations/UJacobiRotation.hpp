@@ -15,20 +15,21 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#define BOOST_TEST_MODULE "JacobiRotation"
+#pragma once
 
-#include <boost/test/unit_test.hpp>
 
 #include "Basis/Transformations/JacobiRotation.hpp"
+#include "QuantumChemical/SpinResolvedBase.hpp"
 
-#include <iostream>
+
+namespace GQCP {
 
 
-BOOST_AUTO_TEST_CASE(JacobiRotation_constructor) {
+/**
+ *  A class that encapsulates an alpha- and a beta- Jacobirotation.
+ */
+class UJacobiRotation:
+    public SpinResolvedBase<JacobiRotation, UJacobiRotation> {};
 
-    // Check if a correct constructor works
-    GQCP::JacobiRotation jacobi_rotation {3, 1, 0.5};
 
-    // Check if we can't construct when p < q
-    BOOST_CHECK_THROW(GQCP::jacobi_rotation(1, 3, 0.5), std::invalid_argument);
-}
+}  // namespace GQCP

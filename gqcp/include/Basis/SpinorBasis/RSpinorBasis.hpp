@@ -22,7 +22,7 @@
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
 #include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
 #include "Basis/SpinorBasis/Spinor.hpp"
-#include "Basis/Transformations/JacobiRotationParameters.hpp"
+#include "Basis/Transformations/JacobiRotation.hpp"
 #include "Basis/Transformations/RTransformationMatrix.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Molecule/Molecule.hpp"

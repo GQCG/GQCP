@@ -363,14 +363,14 @@ public:
     /**
      *  Apply the Jacobi rotation and return the result.
      * 
-     *  @param jacobi_parameters        The Jacobi rotation parameters.
+     *  @param jacobi_rotation          The Jacobi rotation.
      * 
      *  @return The jacobi-transformed object.
      */
-    DerivedOperator rotated(const JacobiRotationParameters& jacobi_parameters) const override {
+    DerivedOperator rotated(const JacobiRotation& jacobi_rotation) const override {
 
         // While waiting for an analogous Eigen::Tensor Jacobi module, we implement this rotation by constructing a Jacobi rotation matrix and then simply doing a rotation with it.
-        const auto J = TM::FromJacobi(jacobi_parameters, this->numberOfOrbitals());
+        const auto J = TM::FromJacobi(jacobi_rotation, this->numberOfOrbitals());
         return this->rotated(J);
     }
 

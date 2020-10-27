@@ -89,18 +89,18 @@ void bindUSQHamiltonian(py::module& module) {
 
         .def(
             "rotate",
-            [](GQCP::USQHamiltonian<double>& usq_hamiltonian, const GQCP::JacobiRotationParameters& jacobi_rotation_parameters) {
-                usq_hamiltonian.rotate(jacobi_rotation_parameters);
+            [](GQCP::USQHamiltonian<double>& usq_hamiltonian, const GQCP::JacobiRotation& jacobi_rotation) {
+                usq_hamiltonian.rotate(jacobi_rotation);
             },
-            py::arg("jacobi_rotation_parameters"),
-            "Rotate both components of the USQ Hamiltonian using jacobi parameters.")
+            py::arg("jacobi_rotation"),
+            "Rotate both components of the USQ Hamiltonian using Jacobi parameters.")
 
         .def(
             "rotate",
-            [](GQCP::USQHamiltonian<double>& usq_hamiltonian, const GQCP::JacobiRotationParameters& jacobi_rotation_parameters, const GQCP::Spin sigma) {
-                usq_hamiltonian.rotate(jacobi_rotation_parameters);
+            [](GQCP::USQHamiltonian<double>& usq_hamiltonian, const GQCP::JacobiRotation& jacobi_rotation, const GQCP::Spin sigma) {
+                usq_hamiltonian.rotate(jacobi_rotation);
             },
-            py::arg("jacobi_rotation_parameters"),
+            py::arg("jacobi_rotation"),
             py::arg("sigma"),
             "Rotate the spin sigma component of the USQ Hamiltonian using jacobi parameters.")
 

@@ -273,7 +273,7 @@ BOOST_AUTO_TEST_CASE(transform_with_jacobi_matrix) {
     auto op = toyTwoElectronIntegrals2(dim);
 
     // Initialize a transformation matrix.
-    GQCP::JacobiRotationParameters J {1, 0, (boost::math::constants::pi<double>() / 2)};
+    GQCP::JacobiRotation J {1, 0, (boost::math::constants::pi<double>() / 2)};
 
     // Initialize the reference tensor.
     GQCP::QCRankFourTensor<double> ref {dim};

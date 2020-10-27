@@ -583,26 +583,26 @@ public:
     /**
      *  Apply the Jacobi rotation and return the result.
      * 
-     *  @param jacobi_parameters        The Jacobi rotation parameters.
+     *  @param jacobi_rotation          The Jacobi rotation.
      * 
-     *  @return The jacobi-transformed object.
+     *  @return The Jacobi-rotated object.
      */
-    Self rotated(const JacobiRotationParameters& jacobi_parameters) const override {
+    Self rotated(const JacobiRotation& jacobi_rotation) const override {
 
         auto result = *this;
 
         // Transform the one and two-electron contributions.
         for (auto& h : result.coreContributions()) {
-            h.rotate(jacobi_parameters);
+            h.rotate(jacobi_rotation);
         }
 
         for (auto& g : result.twoElectronContributions()) {
-            g.rotate(jacobi_parameters);
+            g.rotate(jacobi_rotation);
         }
 
         // Transform the total one- and two-electron interactions.
-        result.core().rotate(jacobi_parameters);
-        result.twoElectron().rotate(jacobi_parameters);
+        result.core().rotate(jacobi_rotation);
+        result.twoElectron().rotate(jacobi_rotation);
 
         return result;
     }

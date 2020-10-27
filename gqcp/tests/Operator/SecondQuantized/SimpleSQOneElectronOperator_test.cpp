@@ -462,7 +462,7 @@ BOOST_AUTO_TEST_CASE(rotate_throws) {
 
 
 /**
- *  Check if rotating with JacobiRotationParameters is the same as with the corresponding Jacobi rotation matrix.
+ *  Check if rotating with JacobiRotation is the same as with the corresponding Jacobi rotation matrix.
  */
 BOOST_AUTO_TEST_CASE(rotate_jacobi_vs_matrix) {
 
@@ -471,13 +471,13 @@ BOOST_AUTO_TEST_CASE(rotate_jacobi_vs_matrix) {
     const GQCP::SquareMatrix<double> f = GQCP::SquareMatrix<double>::Random(dim);
     GQCP::ScalarRSQOneElectronOperator<double> op {f};
 
-    // Create Jacobi rotation parameters and the corresponding Jacobi rotation matrix.
-    GQCP::JacobiRotationParameters jacobi_rotation_parameters {4, 2, 56.81};
-    const auto J = GQCP::RTransformationMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
+    // Create Jacobi rotation and the corresponding Jacobi rotation matrix.
+    GQCP::JacobiRotation jacobi_rotation {4, 2, 56.81};
+    const auto J = GQCP::RTransformationMatrix<double>::FromJacobi(jacobi_rotation, dim);
 
 
     // Rotate using both representations and check the result.
-    BOOST_CHECK(op.rotated(jacobi_rotation_parameters).parameters().isApprox(op.rotated(J).parameters(), 1.0e-12));
+    BOOST_CHECK(op.rotated(jacobi_rotation).parameters().isApprox(op.rotated(J).parameters(), 1.0e-12));
 }
 
 
@@ -499,7 +499,7 @@ BOOST_AUTO_TEST_CASE(jacobi_rotation_3) {
 
 
     // Initialize the Jacobi rotation.
-    const GQCP::JacobiRotationParameters J {1, 0, boost::math::constants::half_pi<double>()};  // interchanges two orbitals and applies a sign change
+    const GQCP::JacobiRotation J {1, 0, boost::math::constants::half_pi<double>()};  // interchanges two orbitals and applies a sign change
 
 
     // Initialize the reference result.
@@ -538,7 +538,7 @@ BOOST_AUTO_TEST_CASE(jacobi_rotation_4) {
     GQCP::ScalarRSQOneElectronOperator<double> op {f};
 
     // Initialize the Jacobi rotation.
-    const GQCP::JacobiRotationParameters J {2, 1, boost::math::constants::half_pi<double>()};  // interchanges two orbitals and applies a sign change
+    const GQCP::JacobiRotation J {2, 1, boost::math::constants::half_pi<double>()};  // interchanges two orbitals and applies a sign change
 
     // Initialize the reference result.
     GQCP::SquareMatrix<double> ref {dim};

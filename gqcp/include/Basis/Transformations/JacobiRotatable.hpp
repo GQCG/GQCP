@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/Transformations/JacobiRotationParameters.hpp"
+#include "Basis/Transformations/JacobiRotation.hpp"
 
 
 namespace GQCP {
@@ -41,11 +41,11 @@ public:
     /**
      *  Apply the Jacobi rotation and return the result.
      * 
-     *  @param jacobi_parameters        The Jacobi rotation parameters.
+     *  @param jacobi_rotation          The Jacobi rotation.
      * 
      *  @return The jacobi-transformed object.
      */
-    virtual T rotated(const JacobiRotationParameters& jacobi_parameters) const = 0;
+    virtual T rotated(const JacobiRotation& jacobi_rotation) const = 0;
 
 
     /*
@@ -55,10 +55,10 @@ public:
     /**
      *  In-place apply the Jacobi rotation.
      * 
-     *  @param jacobi_parameters        The Jacobi rotation parameters.
+     *  @param jacobi_rotation          The Jacobi rotation.
      */
-    void rotate(const JacobiRotationParameters& jacobi_parameters) {
-        static_cast<T&>(*this) = this->rotated(jacobi_parameters);
+    void rotate(const JacobiRotation& jacobi_rotation) {
+        static_cast<T&>(*this) = this->rotated(jacobi_rotation);
     }
 };
 

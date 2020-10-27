@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Basis/Transformations/JacobiRotationParameters.hpp"
+#include "Basis/Transformations/JacobiRotation.hpp"
 
 #include <stdexcept>
 
@@ -24,45 +24,46 @@ namespace GQCP {
 
 
 /*
- *  CONSTRUCTORS
+ *  MARK: Constructors
  */
 
 /**
- *  @param p        the index of the first rotated orbital
- *  @param q        the index of the second rotated orbital
- *  @param angle    the angle of rotation, in radians
+ *  @param p            The index of the first rotated orbital. (p > q)
+ *  @param q            The index of the second rotated orbital. (p > q)
+ *  @param angle        The angle of rotation, in radians.
  */
-JacobiRotationParameters::JacobiRotationParameters(const size_t p, const size_t q, const double angle) :
+JacobiRotation::JacobiRotation(const size_t p, const size_t q, const double angle) :
     m_p {p},
     m_q {q},
     m_angle {angle} {
 
     // Check if p > q
     if (this->m_p <= this->m_q) {
-        throw std::invalid_argument("JacobiRotationParameters::JacobiRotationParameters(size_t, size_t, double): Can't construct a JacobiRotationParameter with p < q.");
+        throw std::invalid_argument("JacobiRotation::JacobiRotation(size_t, size_t, double): Can't construct a JacobiRotationParameter with p < q.");
     }
 }
 
 
 /**
- *  Default constructor
+ *  The default constructor.
  */
-JacobiRotationParameters::JacobiRotationParameters() :
-    JacobiRotationParameters(1, 0, 0.0) {}
+JacobiRotation::JacobiRotation() :
+    JacobiRotation(1, 0, 0.0) {}
 
 
 /*
- *  OPERATORS
+ *  MARK: Operators
  */
-/**
- *  @param os                               the output stream which the jacobi rotation parameters should be concatenated to
- *  @param jacobi_rotation_parameters       the parameters that should be concatenated to the output stream
- *
- *  @return the updated output stream
- */
-std::ostream& operator<<(std::ostream& os, const JacobiRotationParameters& jacobi_rotation_parameters) {
 
-    os << "p: " << jacobi_rotation_parameters.p() << ", q: " << jacobi_rotation_parameters.q() << ", angle: " << jacobi_rotation_parameters.angle();
+/**
+ *  @param os                               The output stream which the parameters should be concatenated to.
+ *  @param jacobi_rotation                  The Jacobi rotation.
+ *
+ *  @return A reference to the updated output stream.
+ */
+std::ostream& operator<<(std::ostream& os, const JacobiRotation& jacobi_rotation) {
+
+    os << "p: " << jacobi_rotation.p() << ", q: " << jacobi_rotation.q() << ", angle: " << jacobi_rotation.angle();
     return os;
 }
 

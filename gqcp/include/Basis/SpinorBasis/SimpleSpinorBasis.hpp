@@ -134,17 +134,17 @@ public:
 
 
     /**
-     *  Rotate the spinor basis to another one using the unitary transformation matrix that corresponds to the given Jacobi rotation parameters
+     *  Rotate the spinor basis to another one using the unitary transformation matrix that corresponds to the given Jacobi rotation.
      * 
-     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
+     *  @param jacobi_rotation          The Jacobi rotation.
      * 
-     *  @note This function is only available for real spinor bases because Jacobi rotation parameters generate real rotations.
+     *  @note This function is only available for real spinor bases because Jacobi rotation generate real rotations.
      */
     template <typename S = ExpansionScalar, typename = IsReal<S>>
-    void rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
+    void rotate(const JacobiRotation& jacobi_rotation) {
 
         const auto dim = this->simpleDimension();
-        const auto J = TM::FromJacobi(jacobi_rotation_parameters, dim);
+        const auto J = TM::FromJacobi(jacobi_rotation, dim);
         this->rotate(J);
     }
 
