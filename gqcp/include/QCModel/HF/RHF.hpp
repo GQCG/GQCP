@@ -134,8 +134,9 @@ public:
     static Scalar calculateOrbitalHessianElement(const RSQHamiltonian<Scalar>& sq_hamiltonian, const size_t N_P, const size_t a, const size_t i, const size_t b, const size_t j) {
 
         // Prepare some variables.
-        const auto& g = sq_hamiltonian.twoElectron().parameters();
-        const auto K = g.numberOfOrbitals();  // the number of spatial orbitals
+        const auto& g_op = sq_hamiltonian.twoElectron();
+        const auto K = g_op.numberOfOrbitals();  // The number of spatial orbitals.
+        const auto& g = g_op.parameters();
 
         const auto orbital_space = RHF<Scalar>::orbitalSpace(K, N_P);
 

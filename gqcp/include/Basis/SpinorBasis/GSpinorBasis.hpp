@@ -305,8 +305,7 @@ public:
         const auto K_beta = this->numberOfCoefficients(Spin::beta);
 
         const auto M = this->numberOfSpinors();
-        QCRankFourTensor<ResultScalar> g_par(M);  // 'par' for 'parameters'
-        g_par.setZero();
+        auto g_par = SquareRankFourTensor<ResultScalar>::Zero(M);  // 'par' for 'parameters'
 
         // Primed indices are indices in the larger representation, normal ones are those in the smaller tensors.
         for (size_t mu_ = 0; mu_ < M; mu_++) {  // mu 'prime'

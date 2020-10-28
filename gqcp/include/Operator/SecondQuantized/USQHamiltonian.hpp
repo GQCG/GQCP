@@ -69,7 +69,7 @@ public:
         }
 
         // Calculate the total two-electron operator
-        QCRankFourTensor<Scalar> total_two_op_par {dim};
+        SquareRankFourTensor<Scalar> total_two_op_par {dim};
         total_two_op_par.setZero();
         for (const auto& two_op : this->two_op_mixed) {
             total_two_op_par += two_op.parameters().Eigen();

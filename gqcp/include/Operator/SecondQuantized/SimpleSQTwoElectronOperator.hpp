@@ -20,7 +20,7 @@
 
 #include "Basis/Transformations/BasisTransformable.hpp"
 #include "Basis/Transformations/JacobiRotatable.hpp"
-#include "Mathematical/Representation/QCRankFourTensor.hpp"
+#include "Mathematical/Representation/SquareRankFourTensor.hpp"
 #include "Mathematical/Representation/StorageArray.hpp"
 #include "Operator/SecondQuantized/SQOperatorStorage.hpp"
 
@@ -41,7 +41,7 @@ namespace GQCP {
  */
 template <typename _Scalar, typename _Vectorizer, typename _DerivedOperator>
 class SimpleSQTwoElectronOperator:
-    public SQOperatorStorage<QCRankFourTensor<_Scalar>, _Vectorizer, SimpleSQTwoElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>>,
+    public SQOperatorStorage<SquareRankFourTensor<_Scalar>, _Vectorizer, SimpleSQTwoElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>>,
     public BasisTransformable<_DerivedOperator>,
     public JacobiRotatable<_DerivedOperator> {
 public:
@@ -58,7 +58,7 @@ public:
     using Self = SimpleSQTwoElectronOperator<Scalar, Vectorizer, DerivedOperator>;
 
     // The matrix representation of the parameters of (one of the components of) the two-electron operator.
-    using MatrixRepresentation = QCRankFourTensor<Scalar>;
+    using MatrixRepresentation = SquareRankFourTensor<Scalar>;
 
     // The type of one-electron operator that is naturally related to the derived two-electron operator.
     using DerivedSQOneElectronOperator = typename OperatorTraits<DerivedOperator>::SQOneElectronOperator;
@@ -87,7 +87,7 @@ public:
      */
 
     // Inherit `SQOperatorStorage`'s constructors.
-    using SQOperatorStorage<QCRankFourTensor<Scalar>, Vectorizer, SimpleSQTwoElectronOperator<Scalar, Vectorizer, DerivedOperator>>::SQOperatorStorage;
+    using SQOperatorStorage<SquareRankFourTensor<Scalar>, Vectorizer, SimpleSQTwoElectronOperator<Scalar, Vectorizer, DerivedOperator>>::SQOperatorStorage;
 
 
     /*
@@ -467,7 +467,7 @@ public:
             Eigen::array<int, 4> shuffle_indices {0, 2, 1, 3};
 
             for (size_t i = 0; i < this->numberOfComponents(); i++) {
-                copy_parameters[i] = QCRankFourTensor<double>(parameters[i].shuffle(shuffle_indices));
+                copy_parameters[i] = SquareRankFourTensor<double>(parameters[i].shuffle(shuffle_indices));
             }
 
             copy.is_expressed_using_chemists_notation = true;
@@ -491,7 +491,7 @@ public:
             Eigen::array<int, 4> shuffle_indices {0, 2, 1, 3};
 
             for (size_t i = 0; i < this->numberOfComponents(); i++) {
-                copy_parameters[i] = QCRankFourTensor<double>(parameters[i].shuffle(shuffle_indices));
+                copy_parameters[i] = SquareRankFourTensor<double>(parameters[i].shuffle(shuffle_indices));
             }
 
             copy.is_expressed_using_chemists_notation = false;

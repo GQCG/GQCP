@@ -270,7 +270,7 @@ public:
 
 
         SquareMatrix<double> h_core = SquareMatrix<double>::Zero(K);
-        QCRankFourTensor<double> g {K};
+        SquareRankFourTensor<double> g {K};
         g.setZero();
 
         //  Skip 3 lines

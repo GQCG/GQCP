@@ -128,7 +128,7 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
     g_ba.contractWithMatrix<double>(p_b, 0);
     g_ba.contractWithMatrix<double>(p_a, 2);
 
-    QCRankFourTensor<double> g_abba = g_ab.Eigen() + g_ba.Eigen();
+    SquareRankFourTensor<double> g_abba = g_ab.Eigen() + g_ba.Eigen();
 
     RSQHamiltonian<double> HAA {ScalarRSQOneElectronOperator<double>(h_a), ScalarRSQTwoElectronOperator<double>(g_a)};
     RSQHamiltonian<double> HBB {ScalarRSQOneElectronOperator<double>(h_b), ScalarRSQTwoElectronOperator<double>(g_b)};

@@ -20,6 +20,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Operator/SecondQuantized/RSQTwoElectronOperator.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Utilities/linalg.hpp"
 #include "Utilities/miscellaneous.hpp"
 
@@ -47,7 +48,7 @@
 GQCP::ScalarRSQTwoElectronOperator<double> toyTwoElectronIntegrals(const size_t dim) {
 
     // Initialize a tensor and convert it to an operator.
-    auto g = GQCP::QCRankFourTensor<double>::Zero(dim);
+    auto g = GQCP::SquareRankFourTensor<double>::Zero(dim);
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
@@ -72,7 +73,7 @@ GQCP::ScalarRSQTwoElectronOperator<double> toyTwoElectronIntegrals(const size_t 
 GQCP::ScalarRSQTwoElectronOperator<double> toyTwoElectronIntegrals2(const size_t dim) {
 
     // Initialize a tensor and convert it into an operator.
-    auto g = GQCP::QCRankFourTensor<double>::Zero(dim);
+    auto g = GQCP::SquareRankFourTensor<double>::Zero(dim);
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
@@ -93,12 +94,12 @@ GQCP::ScalarRSQTwoElectronOperator<double> toyTwoElectronIntegrals2(const size_t
  */
 
 /**
- *  Check the interface for constructing SQTwoElectronOperators from `QCRankFourTensor`s.
+ *  Check the interface for constructing SQTwoElectronOperators from `SquareRankFourTensor`s.
  */
 BOOST_AUTO_TEST_CASE(constructor) {
 
     // Check a correct constructor.
-    const GQCP::QCRankFourTensor<double> tensor {3};
+    const GQCP::SquareRankFourTensor<double> tensor {3};
     BOOST_CHECK_NO_THROW(GQCP::ScalarRSQTwoElectronOperator<double> O {tensor});
 
 
@@ -117,7 +118,7 @@ BOOST_AUTO_TEST_CASE(Zero) {
     const auto op = GQCP::ScalarRSQTwoElectronOperator<double>::Zero(dim);
 
     // Create a reference zero tensor.
-    GQCP::QCRankFourTensor<double> ref = GQCP::QCRankFourTensor<double>::Zero(dim);
+    GQCP::SquareRankFourTensor<double> ref = GQCP::SquareRankFourTensor<double>::Zero(dim);
 
     BOOST_CHECK_EQUAL(op.numberOfOrbitals(), dim);
     BOOST_CHECK(op.parameters().isApprox(ref.setZero(), 1.0e-08));
@@ -215,6 +216,37 @@ BOOST_AUTO_TEST_CASE(rotate_trivial) {
 
 
 /**
+ *  Check the basis transformation formula using an other implementation (the old olsens code) from Ayers' Lab.
+ */
+BOOST_AUTO_TEST_CASE(transform_olsens) {
+
+    // Set an example transformation matrix and two-electron integrals.
+    const size_t dim = 2;
+    GQCP::TransformationMatrix<double> T {dim};
+    // clang-format off
+    T << 1, 2,
+         3, 4;
+    // clang-format on
+
+    auto g_par = GQCP::SquareRankFourTensor<double>::Zero(dim);
+    for (size_t i = 0; i < dim; i++) {
+        for (size_t j = 0; j < dim; j++) {
+            for (size_t k = 0; k < dim; k++) {
+                for (size_t l = 0; l < dim; l++) {
+                    g_par(i, j, k, l) = l + 2 * k + 4 * j + 8 * i;
+                }
+            }
+        }
+    }
+    GQCP::ScalarRSQTwoElectronOperator<double> g {g_par};
+
+    // Read in the reference and check the result.
+    const auto g_transformed_par_ref = GQCP::SquareRankFourTensor<double>::FromFile("data/rotated_two_electron_integrals_olsens.data", dim);
+    BOOST_CHECK(g.transformed(T).parameters().isApprox(g_transformed_par_ref, 1.0e-12));
+}
+
+
+/**
  *  Check whether or not the transform with transformation matrix method works as expected.
  */
 BOOST_AUTO_TEST_CASE(transform_with_transformation_matrix) {
@@ -232,7 +264,7 @@ BOOST_AUTO_TEST_CASE(transform_with_transformation_matrix) {
     // clang-format
 
     // Initialize the reference tensor.
-    GQCP::QCRankFourTensor<double> ref {dim};
+    GQCP::SquareRankFourTensor<double> ref {dim};
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
             for (size_t k = 0; k < dim; k++) {
@@ -276,7 +308,7 @@ BOOST_AUTO_TEST_CASE(transform_with_jacobi_matrix) {
     GQCP::JacobiRotation J {1, 0, (boost::math::constants::pi<double>() / 2)};
 
     // Initialize the reference tensor.
-    GQCP::QCRankFourTensor<double> ref {dim};
+    GQCP::SquareRankFourTensor<double> ref {dim};
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
@@ -295,4 +327,94 @@ BOOST_AUTO_TEST_CASE(transform_with_jacobi_matrix) {
 
     op.rotate(J);
     BOOST_CHECK(op.parameters().isApprox(ref, 1.0e-08));
+}
+
+
+/**
+ *  Check if antisymmetrizing two-electron integrals works as expected.
+ * 
+ *  The two-electron integrals under consideration are those from H2 in an STO-3G basisset.
+ */
+BOOST_AUTO_TEST_CASE(antisymmetrize) {
+
+    // Prepare the two-electron repulsion integrals from the molecular Hamiltonian for H2.
+    const auto molecule = GQCP::Molecule::HChain(2, 1.0);
+    const GQCP::RSpinorBasis<double, GQCP::GTOShell> r_spinor_basis {molecule, "STO-3G"};
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(r_spinor_basis, molecule);
+    const auto& g = sq_hamiltonian.twoElectron();  // In chemist's notation.
+    const auto g_A = g.antisymmetrized();
+
+    // Antisymmetrize the chemist's two-electron integrals and check the results.
+    const auto g_A_par = g_A.parameters();
+    for (size_t p = 0; p < 2; p++) {
+        for (size_t q = 0; q < 2; q++) {
+            for (size_t r = 0; r < 2; r++) {
+                for (size_t s = 0; s < 2; s++) {
+                    BOOST_CHECK(std::abs(g_A_par(p, q, r, s) + g_A_par(r, q, p, s)) < 1.0e-12);
+                    BOOST_CHECK(std::abs(g_A_par(p, q, r, s) + g_A_par(p, s, r, q)) < 1.0e-12);
+                    BOOST_CHECK(std::abs(g_A_par(p, q, r, s) - g_A_par(r, s, p, q)) < 1.0e-12);
+                }
+            }
+        }
+    }
+
+
+    // Convert the chemist's to physicist's two-electron integrals, antisymmetrize them and check the results.
+    const auto V_A_par = g.convertedToPhysicistsNotation().antisymmetrized().parameters();
+    for (size_t p = 0; p < 2; p++) {
+        for (size_t q = 0; q < 2; q++) {
+            for (size_t r = 0; r < 2; r++) {
+                for (size_t s = 0; s < 2; s++) {
+                    BOOST_CHECK(std::abs(V_A_par(p, q, r, s) + V_A_par(q, p, r, s)) < 1.0e-12);
+                    BOOST_CHECK(std::abs(V_A_par(p, q, r, s) + V_A_par(p, q, s, r)) < 1.0e-12);
+                    BOOST_CHECK(std::abs(V_A_par(p, q, r, s) - V_A_par(q, p, s, r)) < 1.0e-12);
+                }
+            }
+        }
+    }
+}
+
+
+/**
+ *  Check if converting in-between chemist's and physicist's notation of two-electron integrals works as expected.
+ * 
+ *  The two-electron integrals under consideration are those from H2 in an STO-3G basisset.
+ */
+BOOST_AUTO_TEST_CASE(chemists_physicists) {
+
+    // Prepare the two-electron repulsion integrals from the molecular Hamiltonian for H2.
+    const auto molecule = GQCP::Molecule::HChain(2, 1.0);
+    const GQCP::RSpinorBasis<double, GQCP::GTOShell> r_spinor_basis {molecule, "STO-3G"};
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(r_spinor_basis, molecule);
+    const auto& g = sq_hamiltonian.twoElectron();  // In chemist's notation.
+
+
+    // Check if modifying chemist's integrals to chemist's integrals is a no-operation.
+    const auto g_chemists = g.convertedToChemistsNotation();
+    const auto& g_chemists_par = g_chemists.parameters();
+    BOOST_CHECK(g_chemists.parameters().isApprox(g.parameters(), 1.0e-12));
+
+
+    // Check if the conversion from chemist's to physicist's notation works as expected.
+    const auto V_physicists = g_chemists.convertedToPhysicistsNotation();
+    const auto& V_physicists_par = V_physicists.parameters();
+    for (size_t p = 0; p < 2; p++) {
+        for (size_t q = 0; q < 2; q++) {
+            for (size_t r = 0; r < 2; r++) {
+                for (size_t s = 0; s < 2; s++) {
+                    BOOST_CHECK(std::abs(V_physicists_par(p, q, r, s) - g_chemists_par(p, r, q, s)) < 1.0e-12);
+                }
+            }
+        }
+    }
+
+
+    // Check if modifying physicist's integrals to physicist's integrals is a no-operation.
+    const auto V = V_physicists.convertedToPhysicistsNotation();
+    BOOST_CHECK(V.parameters().isApprox(V_physicists.parameters(), 1.0e-12));
+
+
+    // Check if the conversion from physicist's to chemist's notation works as expected.
+    const auto g_again = V.convertedToChemistsNotation();
+    BOOST_CHECK(g_again.parameters().isApprox(g.parameters(), 1.0e-12));
 }

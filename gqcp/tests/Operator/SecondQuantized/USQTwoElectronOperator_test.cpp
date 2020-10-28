@@ -32,7 +32,7 @@
 BOOST_AUTO_TEST_CASE(USQTwoElectronOperator_constructor) {
 
     // Check a correct constructor.
-    const GQCP::QCRankFourTensor<double> tensor {3};
+    const GQCP::SquareRankFourTensor<double> tensor {3};
     GQCP::ScalarUSQTwoElectronOperator<double> O {tensor, tensor, tensor, tensor};  // All dimensions are equal.
 
 
@@ -54,7 +54,7 @@ BOOST_AUTO_TEST_CASE(USQTwoElectronOperator_zero_constructor) {
     const auto op = GQCP::ScalarUSQTwoElectronOperator<double>::Zero(K);  // Should initialize to zeros.
 
     // Create a reference zero tensor.
-    GQCP::QCRankFourTensor<double> zero {K};
+    GQCP::SquareRankFourTensor<double> zero {K};
     zero.setZero();
 
     // Check if the number of orbitals is correct.
@@ -110,7 +110,7 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
     const size_t dim = 2;
 
     // Initialize test two-electron operators.
-    auto T_pure = GQCP::QCRankFourTensor<double>::Zero(dim);
+    auto T_pure = GQCP::SquareRankFourTensor<double>::Zero(dim);
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
@@ -122,7 +122,7 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
         }
     }
 
-    auto T_mixed = GQCP::QCRankFourTensor<double>::Zero(dim);
+    auto T_mixed = GQCP::SquareRankFourTensor<double>::Zero(dim);
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
@@ -179,7 +179,7 @@ BOOST_AUTO_TEST_CASE(USQTwoElectronOperator_addition) {
     const size_t dim = 2;
 
     // Initialize a test unrestricted two-electron operator.
-    auto T1 = GQCP::QCRankFourTensor<double>::Zero(dim);
+    auto T1 = GQCP::SquareRankFourTensor<double>::Zero(dim);
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
@@ -194,7 +194,7 @@ BOOST_AUTO_TEST_CASE(USQTwoElectronOperator_addition) {
 
 
     // Initialize the reference and check the result.
-    auto T_sum_ref = GQCP::QCRankFourTensor<double>::Zero(dim);
+    auto T_sum_ref = GQCP::SquareRankFourTensor<double>::Zero(dim);
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
@@ -222,7 +222,7 @@ BOOST_AUTO_TEST_CASE(USQTwoElectronOperator_scalar_product) {
     const size_t dim = 2;
 
     // Initialize a test unrestricted two-electron operator.
-    GQCP::QCRankFourTensor<double> T1 {dim};
+    GQCP::SquareRankFourTensor<double> T1 {dim};
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
@@ -237,7 +237,7 @@ BOOST_AUTO_TEST_CASE(USQTwoElectronOperator_scalar_product) {
 
 
     // Initialize the reference and check the result.
-    auto T_mult_ref = GQCP::QCRankFourTensor<double>::Zero(dim);
+    auto T_mult_ref = GQCP::SquareRankFourTensor<double>::Zero(dim);
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
@@ -265,7 +265,7 @@ BOOST_AUTO_TEST_CASE(rotate_with_unitary_transformation_matrix) {
     const size_t dim = 2;
 
     // Initialize a test tensor and convert it into an operator.
-    auto T1 = GQCP::QCRankFourTensor<double>::Zero(dim);
+    auto T1 = GQCP::SquareRankFourTensor<double>::Zero(dim);
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
@@ -297,7 +297,7 @@ BOOST_AUTO_TEST_CASE(transform_with_transformation_matrix) {
     const size_t dim = 2;
 
     // Initialize a test tensor and convert it into an operator.
-    auto T1 = GQCP::QCRankFourTensor<double>::Zero(dim);
+    auto T1 = GQCP::SquareRankFourTensor<double>::Zero(dim);
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
@@ -320,7 +320,7 @@ BOOST_AUTO_TEST_CASE(transform_with_transformation_matrix) {
 
 
     // Initialize a reference tensor, transform the original operator and check the result.
-    auto ref = GQCP::QCRankFourTensor<double>::Zero(dim);
+    auto ref = GQCP::SquareRankFourTensor<double>::Zero(dim);
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
             for (size_t k = 0; k < dim; k++) {
@@ -361,7 +361,7 @@ BOOST_AUTO_TEST_CASE(transform_with_jacobi_matrix) {
     const size_t dim = 2;
 
     // Initialize a test tensor and convert it into an operator.
-    auto T1 = GQCP::QCRankFourTensor<double>::Zero(dim);
+    auto T1 = GQCP::SquareRankFourTensor<double>::Zero(dim);
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
@@ -379,7 +379,7 @@ BOOST_AUTO_TEST_CASE(transform_with_jacobi_matrix) {
     const auto J = GQCP::UJacobiRotation::FromEqual(J_component);
 
     // Initialize a reference tensor.
-    auto ref = GQCP::QCRankFourTensor<double>::Zero(dim);
+    auto ref = GQCP::SquareRankFourTensor<double>::Zero(dim);
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {

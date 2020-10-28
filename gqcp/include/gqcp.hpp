@@ -125,7 +125,6 @@
 #include "Mathematical/Representation/ImplicitRankFourTensorSlice.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 #include "Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp"
-#include "Mathematical/Representation/QCRankFourTensor.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Mathematical/Representation/SquareRankFourTensor.hpp"
 #include "Mathematical/Representation/StorageArray.hpp"

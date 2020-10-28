@@ -69,7 +69,7 @@ public:
      * 
      *  @return the CCD correlation energy
      */
-    static Scalar calculateCorrelationEnergy(const SquareMatrix<Scalar>& f, const QCRankFourTensor<Scalar>& V_A, const T2Amplitudes<Scalar>& t2) {
+    static Scalar calculateCorrelationEnergy(const SquareMatrix<Scalar>& f, const SquareRankFourTensor<Scalar>& V_A, const T2Amplitudes<Scalar>& t2) {
 
         const auto orbital_space = t2.orbitalSpace();
 
@@ -110,7 +110,7 @@ public:
      * 
      *  @return the value for one of the CCD T2-amplitude equations
      */
-    static Scalar calculateT2AmplitudeEquation(const size_t i, const size_t j, const size_t a, const size_t b, const SquareMatrix<Scalar>& f, const QCRankFourTensor<Scalar>& V_A, const T2Amplitudes<Scalar>& t2, const ImplicitMatrixSlice<Scalar>& F1, const ImplicitMatrixSlice<Scalar>& F2, const ImplicitRankFourTensorSlice<Scalar>& W1, const ImplicitRankFourTensorSlice<Scalar>& W2, const ImplicitRankFourTensorSlice<Scalar>& W3) {
+    static Scalar calculateT2AmplitudeEquation(const size_t i, const size_t j, const size_t a, const size_t b, const SquareMatrix<Scalar>& f, const SquareRankFourTensor<Scalar>& V_A, const T2Amplitudes<Scalar>& t2, const ImplicitMatrixSlice<Scalar>& F1, const ImplicitMatrixSlice<Scalar>& F2, const ImplicitRankFourTensorSlice<Scalar>& W1, const ImplicitRankFourTensorSlice<Scalar>& W2, const ImplicitRankFourTensorSlice<Scalar>& W3) {
 
         const auto orbital_space = t2.orbitalSpace();
 
@@ -173,7 +173,7 @@ public:
      * 
      *  @note This is one of the intermediate quantities in the factorization of CCD. In particular, F1 represents equation (3) in Stanton1991.
      */
-    static ImplicitMatrixSlice<Scalar> calculateF1(const SquareMatrix<Scalar>& f, const QCRankFourTensor<Scalar>& V_A, const T2Amplitudes<Scalar>& t2) {
+    static ImplicitMatrixSlice<Scalar> calculateF1(const SquareMatrix<Scalar>& f, const SquareRankFourTensor<Scalar>& V_A, const T2Amplitudes<Scalar>& t2) {
 
         const auto& orbital_space = t2.orbitalSpace();
 
@@ -214,7 +214,7 @@ public:
      * 
      *  @note This is one of the intermediate quantities in the factorization of CCD. In particular, F2 represents equation (4) in Stanton1991.
      */
-    static ImplicitMatrixSlice<Scalar> calculateF2(const SquareMatrix<Scalar>& f, const QCRankFourTensor<Scalar>& V_A, const T2Amplitudes<Scalar>& t2) {
+    static ImplicitMatrixSlice<Scalar> calculateF2(const SquareMatrix<Scalar>& f, const SquareRankFourTensor<Scalar>& V_A, const T2Amplitudes<Scalar>& t2) {
 
         const auto& orbital_space = t2.orbitalSpace();
 
@@ -254,7 +254,7 @@ public:
      * 
      *  @note This is one of the intermediate quantities in the factorization of CCD. In particular, W1 represents equation (6) in Stanton1991.
      */
-    static ImplicitRankFourTensorSlice<Scalar> calculateW1(const QCRankFourTensor<Scalar>& V_A, const T2Amplitudes<Scalar>& t2) {
+    static ImplicitRankFourTensorSlice<Scalar> calculateW1(const SquareRankFourTensor<Scalar>& V_A, const T2Amplitudes<Scalar>& t2) {
 
         const auto& orbital_space = t2.orbitalSpace();
 
@@ -294,7 +294,7 @@ public:
      * 
      *  @note This is one of the intermediate quantities in the factorization of CCD. In particular, W2 represents equation (7) in Stanton1991.
      */
-    static ImplicitRankFourTensorSlice<Scalar> calculateW2(const QCRankFourTensor<Scalar>& V_A, const T2Amplitudes<Scalar>& t2) {
+    static ImplicitRankFourTensorSlice<Scalar> calculateW2(const SquareRankFourTensor<Scalar>& V_A, const T2Amplitudes<Scalar>& t2) {
 
         const auto& orbital_space = t2.orbitalSpace();
 
@@ -334,7 +334,7 @@ public:
      * 
      *  @note This is one of the intermediate quantities in the factorization of CCD. In particular, W3 represents equation (8) in Stanton1991.
      */
-    static ImplicitRankFourTensorSlice<Scalar> calculateW3(const QCRankFourTensor<Scalar>& V_A, const T2Amplitudes<Scalar>& t2) {
+    static ImplicitRankFourTensorSlice<Scalar> calculateW3(const SquareRankFourTensor<Scalar>& V_A, const T2Amplitudes<Scalar>& t2) {
 
         const auto& orbital_space = t2.orbitalSpace();
 

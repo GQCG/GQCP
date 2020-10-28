@@ -47,8 +47,8 @@ public:
     std::deque<T1Amplitudes<Scalar>> t1_amplitudes;
     std::deque<T2Amplitudes<Scalar>> t2_amplitudes;
 
-    SquareMatrix<Scalar> f;        // the (inactive) Fock matrix
-    QCRankFourTensor<Scalar> V_A;  // the antisymmetrized two-electron integrals (in physicist's notation)
+    SquareMatrix<Scalar> f;            // the (inactive) Fock matrix
+    SquareRankFourTensor<Scalar> V_A;  // the antisymmetrized two-electron integrals (in physicist's notation)
 
     ImplicitMatrixSlice<Scalar> F1;  // represents equation (3) in Stanton1991
     ImplicitMatrixSlice<Scalar> F2;  // represents equation (4) in Stanton1991
@@ -75,7 +75,7 @@ public:
      *  @param f                        the (inactive) Fock matrix
      *  @param V_A                      the antisymmetrized two-electron integrals (in physicist's notation)
      */
-    CCSDEnvironment(const T1Amplitudes<Scalar>& t1_amplitudes, const T2Amplitudes<Scalar>& t2_amplitudes, const SquareMatrix<Scalar>& f, const QCRankFourTensor<Scalar>& V_A) :
+    CCSDEnvironment(const T1Amplitudes<Scalar>& t1_amplitudes, const T2Amplitudes<Scalar>& t2_amplitudes, const SquareMatrix<Scalar>& f, const SquareRankFourTensor<Scalar>& V_A) :
         electronic_energies {QCModel::CCSD<Scalar>::calculateCorrelationEnergy(f, V_A, t1_amplitudes, t2_amplitudes)},  // already calculate the initial CCSD energy correction
         t1_amplitudes {t1_amplitudes},
         t2_amplitudes {t2_amplitudes},
@@ -89,7 +89,7 @@ public:
      *  @param f                        the (inactive) Fock matrix
      *  @param V_A                      the antisymmetrized two-electron integrals (in physicist's notation)
      */
-    CCSDEnvironment(const T2Amplitudes<Scalar>& t2_amplitudes, const SquareMatrix<Scalar>& f, const QCRankFourTensor<Scalar>& V_A) :
+    CCSDEnvironment(const T2Amplitudes<Scalar>& t2_amplitudes, const SquareMatrix<Scalar>& f, const SquareRankFourTensor<Scalar>& V_A) :
         electronic_energies {QCModel::CCD<Scalar>::calculateCorrelationEnergy(f, V_A, t2_amplitudes)},  // already calculate the initial CCD energy correction
         t2_amplitudes {t2_amplitudes},
         f {f},
@@ -113,8 +113,8 @@ public:
         // For the CCSD environment equation, we need the inactive Fock matrix and the anti-symmetrized two-electron integrals in physicist's notation.
         const auto f = sq_hamiltonian.calculateInactiveFockian(orbital_space).parameters();
 
-        const auto& g_chemists = sq_hamiltonian.twoElectron().parameters();
-        const auto V_A = g_chemists.convertedToPhysicistsNotation().antisymmetrized();
+        const auto& g_chemists = sq_hamiltonian.twoElectron();
+        const auto V_A = g_chemists.convertedToPhysicistsNotation().antisymmetrized().parameters();
 
 
         const auto t1_amplitudes = T1Amplitudes<Scalar>::Perturbative(f, orbital_space);
@@ -136,8 +136,8 @@ public:
         // For the CCSD environment equation, we need the inactive Fock matrix and the anti-symmetrized two-electron integrals in physicist's notation.
         const auto f = sq_hamiltonian.calculateInactiveFockian(orbital_space).parameters();
 
-        const auto& g_chemists = sq_hamiltonian.twoElectron().parameters();
-        const auto V_A = g_chemists.convertedToPhysicistsNotation().antisymmetrized();
+        const auto& g_chemists = sq_hamiltonian.twoElectron();
+        const auto V_A = g_chemists.convertedToPhysicistsNotation().antisymmetrized().parameters();
 
         const auto t2_amplitudes = T2Amplitudes<Scalar>::Perturbative(f, V_A, orbital_space);
 

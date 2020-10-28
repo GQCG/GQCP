@@ -21,7 +21,7 @@
 #include "Basis/Transformations/UTransformationMatrixComponent.hpp"
 #include "DensityMatrix/SpinResolved1DMComponent.hpp"
 #include "DensityMatrix/SpinResolved2DMComponent.hpp"
-#include "Mathematical/Representation/QCRankFourTensor.hpp"
+#include "Mathematical/Representation/SquareRankFourTensor.hpp"
 #include "Operator/SecondQuantized/SQOperatorStorage.hpp"
 #include "QuantumChemical/Spin.hpp"
 
@@ -37,7 +37,7 @@ namespace GQCP {
  */
 template <typename _Scalar, typename _Vectorizer>
 class MixedUSQTwoElectronOperatorComponent:
-    public SQOperatorStorage<QCRankFourTensor<_Scalar>, _Vectorizer, MixedUSQTwoElectronOperatorComponent<_Scalar, _Vectorizer>> {
+    public SQOperatorStorage<SquareRankFourTensor<_Scalar>, _Vectorizer, MixedUSQTwoElectronOperatorComponent<_Scalar, _Vectorizer>> {
 public:
     // The scalar type used for a single parameter: real or complex.
     using Scalar = _Scalar;
@@ -55,7 +55,7 @@ public:
      */
 
     // Inherit `SQOperatorStorage`'s constructors.
-    using SQOperatorStorage<QCRankFourTensor<_Scalar>, _Vectorizer, MixedUSQTwoElectronOperatorComponent<_Scalar, _Vectorizer>>::SQOperatorStorage;
+    using SQOperatorStorage<SquareRankFourTensor<_Scalar>, _Vectorizer, MixedUSQTwoElectronOperatorComponent<_Scalar, _Vectorizer>>::SQOperatorStorage;
 
 
     /*
@@ -155,7 +155,7 @@ public:
             result[i].template contractWithMatrix<Scalar>(transformation_matrix, second_contraction_index);
         }
 
-        return Self {StorageArray<QCRankFourTensor<Scalar>, Vectorizer>(result, this->array.vectorizer())};  // TODO: Try to rewrite this.
+        return Self {StorageArray<SquareRankFourTensor<Scalar>, Vectorizer>(result, this->array.vectorizer())};  // TODO: Try to rewrite this.
     }
 
 

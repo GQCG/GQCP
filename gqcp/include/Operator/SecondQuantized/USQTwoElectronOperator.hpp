@@ -83,14 +83,14 @@ public:
      *  @tparam N                   The number of components for the different spin components of the unrestricted two-electron operator.
      */
     template <size_t N>
-    USQTwoElectronOperator(const std::array<QCRankFourTensor<Scalar>, N>& gs_aa, const std::array<QCRankFourTensor<Scalar>, N>& gs_ab, const std::array<QCRankFourTensor<Scalar>, N>& gs_ba, const std::array<QCRankFourTensor<Scalar>, N>& gs_bb, const Vectorizer& vectorizer) :
+    USQTwoElectronOperator(const std::array<SquareRankFourTensor<Scalar>, N>& gs_aa, const std::array<SquareRankFourTensor<Scalar>, N>& gs_ab, const std::array<SquareRankFourTensor<Scalar>, N>& gs_ba, const std::array<SquareRankFourTensor<Scalar>, N>& gs_bb, const Vectorizer& vectorizer) :
 
         // Encapsulate the array of matrix representations in the different spin-components components, and put them together to form the `USQTwoElectronOperator`.
         DoublySpinResolvedBase<PureUSQTwoElectronOperatorComponent<Scalar, Vectorizer>, MixedUSQTwoElectronOperatorComponent<Scalar, Vectorizer>, USQTwoElectronOperator<Scalar, Vectorizer>>(
-            PureUSQTwoElectronOperatorComponent<Scalar, Vectorizer> {StorageArray<QCRankFourTensor<Scalar>, Vectorizer> {gs_aa, vectorizer}},
-            MixedUSQTwoElectronOperatorComponent<Scalar, Vectorizer> {StorageArray<QCRankFourTensor<Scalar>, Vectorizer> {gs_ab, vectorizer}},
-            MixedUSQTwoElectronOperatorComponent<Scalar, Vectorizer> {StorageArray<QCRankFourTensor<Scalar>, Vectorizer> {gs_ba, vectorizer}},
-            PureUSQTwoElectronOperatorComponent<Scalar, Vectorizer> {StorageArray<QCRankFourTensor<Scalar>, Vectorizer> {gs_bb, vectorizer}}) {
+            PureUSQTwoElectronOperatorComponent<Scalar, Vectorizer> {StorageArray<SquareRankFourTensor<Scalar>, Vectorizer> {gs_aa, vectorizer}},
+            MixedUSQTwoElectronOperatorComponent<Scalar, Vectorizer> {StorageArray<SquareRankFourTensor<Scalar>, Vectorizer> {gs_ab, vectorizer}},
+            MixedUSQTwoElectronOperatorComponent<Scalar, Vectorizer> {StorageArray<SquareRankFourTensor<Scalar>, Vectorizer> {gs_ba, vectorizer}},
+            PureUSQTwoElectronOperatorComponent<Scalar, Vectorizer> {StorageArray<SquareRankFourTensor<Scalar>, Vectorizer> {gs_bb, vectorizer}}) {
 
         // Check if the given tensor representations have the same dimensions, for each spin part.
         const auto dimension_of_first_aa = gs_aa[0].dimension();
@@ -106,7 +106,7 @@ public:
             const auto dimension_of_ith_bb = gs_bb[i].dimension();
 
             if ((dimension_of_first_aa != dimension_of_ith_aa) || (dimension_of_first_ab != dimension_of_ith_ab) || (dimension_of_first_ba != dimension_of_ith_ba) || (dimension_of_first_bb != dimension_of_ith_bb)) {
-                throw std::invalid_argument("USQTwoElectronOperator(const std::array<QCRankFourTensor<Scalar>, N>&, const std::array<QCRankFourTensor<Scalar>, N>&, const std::array<QCRankFourTensor<Scalar>, N>&, const std::array<QCRankFourTensor<Scalar>, N>&): The given tensor representations do not have the same dimensions for either the alpha, beta or one of the mixed components.");
+                throw std::invalid_argument("USQTwoElectronOperator(const std::array<SquareRankFourTensor<Scalar>, N>&, const std::array<SquareRankFourTensor<Scalar>, N>&, const std::array<SquareRankFourTensor<Scalar>, N>&, const std::array<SquareRankFourTensor<Scalar>, N>&): The given tensor representations do not have the same dimensions for either the alpha, beta or one of the mixed components.");
             }
         }
     }
@@ -123,9 +123,9 @@ public:
      *  @note This constructor is only available for `ScalarUSQTwoElectronOperators` (for the std::enable_if, see https://stackoverflow.com/a/17842695/7930415)
      */
     template <typename Z = Vectorizer>
-    USQTwoElectronOperator(const QCRankFourTensor<Scalar>& g_aa, const QCRankFourTensor<Scalar>& g_ab, const QCRankFourTensor<Scalar>& g_ba, const QCRankFourTensor<Scalar>& g_bb,
+    USQTwoElectronOperator(const SquareRankFourTensor<Scalar>& g_aa, const SquareRankFourTensor<Scalar>& g_ab, const SquareRankFourTensor<Scalar>& g_ba, const SquareRankFourTensor<Scalar>& g_bb,
                            typename std::enable_if<std::is_same<Z, ScalarVectorizer>::value>::type* = 0) :
-        USQTwoElectronOperator(std::array<QCRankFourTensor<Scalar>, 1> {g_aa}, std::array<QCRankFourTensor<Scalar>, 1> {g_ab}, std::array<QCRankFourTensor<Scalar>, 1> {g_ba}, std::array<QCRankFourTensor<Scalar>, 1> {g_bb}, ScalarVectorizer()) {}
+        USQTwoElectronOperator(std::array<SquareRankFourTensor<Scalar>, 1> {g_aa}, std::array<SquareRankFourTensor<Scalar>, 1> {g_ab}, std::array<SquareRankFourTensor<Scalar>, 1> {g_ba}, std::array<SquareRankFourTensor<Scalar>, 1> {g_bb}, ScalarVectorizer()) {}
 
 
     /**

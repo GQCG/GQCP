@@ -63,7 +63,7 @@ FrozenOperators BaseFrozenCoreONVBasis::freezeOperator(const ScalarSQTwoElectron
     size_t K_active = two_op.numberOfOrbitals() - X;
     SquareMatrix<double> frozen_one_op_par = SquareMatrix<double>::Zero(K_active);
     const auto& two_op_par = two_op.parameters();
-    const auto frozen_two_op_par = QCRankFourTensor<double>::FromBlock(two_op_par, X, X, X, X);
+    const auto frozen_two_op_par = SquareRankFourTensor<double>::FromBlock(two_op_par, X, X, X, X);
 
     // Frozen two-electron integrals can be rewritten partially as one electron integrals.
     for (size_t i = 0; i < K_active; i++) {  // iterate over the active orbitals
@@ -126,9 +126,9 @@ USQHamiltonian<double> BaseFrozenCoreONVBasis::freezeOperator(const USQHamiltoni
     const auto& two_op_par_beta = usq_hamiltonian.spinHamiltonian(Spin::beta).twoElectron().parameters();
     const auto& two_op_par_mixed = usq_hamiltonian.twoElectronMixed().parameters();
 
-    QCRankFourTensor<double> frozen_two_op_par_alpha = QCRankFourTensor<double>::FromBlock(usq_hamiltonian.spinHamiltonian(Spin::alpha).twoElectron().parameters(), X, X, X, X);
-    const auto frozen_two_op_par_beta = QCRankFourTensor<double>::FromBlock(usq_hamiltonian.spinHamiltonian(Spin::beta).twoElectron().parameters(), X, X, X, X);
-    const auto frozen_two_op_par_mixed = QCRankFourTensor<double>::FromBlock(usq_hamiltonian.twoElectronMixed().parameters(), X, X, X, X);
+    SquareRankFourTensor<double> frozen_two_op_par_alpha = SquareRankFourTensor<double>::FromBlock(usq_hamiltonian.spinHamiltonian(Spin::alpha).twoElectron().parameters(), X, X, X, X);
+    const auto frozen_two_op_par_beta = SquareRankFourTensor<double>::FromBlock(usq_hamiltonian.spinHamiltonian(Spin::beta).twoElectron().parameters(), X, X, X, X);
+    const auto frozen_two_op_par_mixed = SquareRankFourTensor<double>::FromBlock(usq_hamiltonian.twoElectronMixed().parameters(), X, X, X, X);
 
     // Frozen two-electron integrals can be rewritten partially as one electron integrals
     for (size_t i = 0; i < K_active; i++) {  // iterate over the active orbitals
