@@ -63,8 +63,6 @@ public:
      *  MARK: Conversions to spin components
      */
 
-    // TODO: Implement 'unrestricted() const'
-
     /**
      *  @return The alpha-component of this restricted one-electron operator.
      */

@@ -155,7 +155,7 @@ public:
             result[i].template contractWithMatrix<Scalar>(transformation_matrix, second_contraction_index);
         }
 
-        return Self {StorageArray<SquareRankFourTensor<Scalar>, Vectorizer>(result, this->array.vectorizer())};  // TODO: Try to rewrite this.
+        return Self {StorageArray<SquareRankFourTensor<Scalar>, Vectorizer>(result, this->array.vectorizer())};
     }
 
 

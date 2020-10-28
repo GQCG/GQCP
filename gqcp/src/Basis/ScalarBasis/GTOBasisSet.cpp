@@ -45,8 +45,6 @@ GTOBasisSet::GTOBasisSet(const std::string& basisset_name) :
  */
 ShellSet<GTOShell> GTOBasisSet::generate(const NuclearFramework& nuclear_framework) const {
 
-    // TODO no longer use libint2 to read this
-
     const auto& nuclei = nuclear_framework.nucleiAsVector();
     libint2::BasisSet libint_basis {basisset_name, LibintInterfacer::get().interface(nuclei)};
 

@@ -123,7 +123,7 @@ public:
 
         // Read in dummy lines up until we actually get to the ONVs and coefficients.
         std::string line;
-        std::string buffer;  // dummy for the counting stream  TODO: find "correcter" way if possible
+        std::string buffer;  // dummy for the counting stream
         while (std::getline(input_file_stream, line)) {
             std::getline(input_file_stream_count, buffer);
 

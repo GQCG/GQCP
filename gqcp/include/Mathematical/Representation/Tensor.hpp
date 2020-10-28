@@ -276,8 +276,6 @@ public:
 
 
         // Find the indices that should be contracted over, these are the positions of the axis labels that are both in the lhs- and rhs-indices.
-
-        // TODO: findMatchingCharacters
         Eigen::array<Eigen::IndexPair<int>, N> contraction_pairs {};
         size_t array_position = 0;              // The index at which an `Eigen::IndexPair` should be placed.
         for (size_t i = 0; i < LHSRank; i++) {  // 'i' loops over the lhs-indices
