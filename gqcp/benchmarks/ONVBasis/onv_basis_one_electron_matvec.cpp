@@ -3,7 +3,7 @@
 //  */
 
 // #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
-// #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
+// #include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
 // #include "QCModel/CI/LinearExpansion.hpp"
 
 // #include <benchmark/benchmark.h>

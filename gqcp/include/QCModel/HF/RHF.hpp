@@ -23,8 +23,8 @@
 #include "DensityMatrix/Orbital1DM.hpp"
 #include "Mathematical/Representation/ImplicitRankFourTensorSlice.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
+#include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "QuantumChemical/Spin.hpp"
 
 
