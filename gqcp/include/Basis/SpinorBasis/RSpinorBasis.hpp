@@ -95,7 +95,7 @@ public:
      */
 
     /**
-     *  Quantize a first-quantized one-electron operator.
+     *  Quantize a first-quantized one-electron operator in this restricted spin-orbital basis.
      * 
      *  @param fq_one_op                            The first-quantized one-electron operator.
      * 
