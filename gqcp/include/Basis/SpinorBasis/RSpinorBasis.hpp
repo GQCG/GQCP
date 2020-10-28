@@ -19,14 +19,11 @@
 
 
 #include "Basis/Integrals/IntegralCalculator.hpp"
-#include "Basis/ScalarBasis/ScalarBasis.hpp"
-#include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
+#include "Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp"
 #include "Basis/SpinorBasis/Spinor.hpp"
 #include "Basis/Transformations/JacobiRotation.hpp"
 #include "Basis/Transformations/RTransformationMatrix.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
-#include "Molecule/Molecule.hpp"
-#include "Molecule/NuclearFramework.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
@@ -34,22 +31,18 @@
 #include "Utilities/aliases.hpp"
 #include "Utilities/type_traits.hpp"
 
-#include <Eigen/Dense>
-
-
 namespace GQCP {
 
 
 /**
- *  A class that represents a spinor basis in which the expansion of the alpha and beta components in terms of the underlying scalar orbitals are restricted to be equal
+ *  A restricted spin-orbital basis, i.e. a spin-orbital basis where the alpha- and beta-spinors are equal.
  * 
- *  @tparam _ExpansionScalar        the scalar type of the expansion coefficients
- *  @tparam _Shell                  the type of shell that the underlying scalar basis contains
+ *  @tparam _ExpansionScalar        The scalar type used to represent an expansion coefficient of the spin-orbitals in the underlying scalar orbitals: real or complex.
+ *  @tparam _Shell                  The type of shell the underlying scalar basis contains.
  */
 template <typename _ExpansionScalar, typename _Shell>
 class RSpinorBasis:
-    public SimpleSpinorBasis<_ExpansionScalar, RSpinorBasis<_ExpansionScalar, _Shell>> {
-
+    public SimpleSpinOrbitalBasis<_ExpansionScalar, _Shell, RSpinorBasis<_ExpansionScalar, _Shell>> {
 public:
     // The scalar type used to represent an expansion coefficient of the spinors in the underlying scalar orbitals: real or complex.
     using ExpansionScalar = _ExpansionScalar;
@@ -58,7 +51,7 @@ public:
     using Shell = _Shell;
 
     // The type of the base spinor basis.
-    using Base = SimpleSpinorBasis<_ExpansionScalar, RSpinorBasis<_ExpansionScalar, _Shell>>;
+    using BaseSpinorBasis = SimpleSpinorBasis<_ExpansionScalar, RSpinorBasis<_ExpansionScalar, _Shell>>;
 
     // The type of transformation matrix that is naturally related to a GSpinorBasis.
     using TM = RTransformationMatrix<ExpansionScalar>;  // TODO: Rename to TransformationMatrix once the class is gone
@@ -68,103 +61,60 @@ public:
     using SpatialOrbital = LinearCombination<product_t<ExpansionScalar, typename BasisFunction::CoefficientScalar>, BasisFunction>;
 
 
-    // The type of one-electron operators that are naturally associated with scalar operators expressed in this restricted spin-orbital bases.
-    // using ScalarSQOneElectronOperator = ScalarRSQOneElectronOperator<ExpansionScalar>;
-
-    // The type of one-electron operators that are naturally associated with scalar operators expressed in this restricted spin-orbital bases.
-    // using ScalarSQTwoElectronOperator = ScalarRSQTwoElectronOperator<ExpansionScalar>;
-
-
-private:
-    ScalarBasis<Shell> scalar_basis;  // the underlying scalar basis that is equal for both the alpha- and beta components
-
-
 public:
     /*
-     *  CONSTRUCTORS
+     *  MARK: Constructors
      */
 
-    /**
-     *  @param scalar_basis         the underlying scalar basis that is equal for both the alpha- and beta components
-     *  @param C                    the matrix that holds the the expansion coefficients, i.e. that expresses the restricted spinors in terms of the underlying scalar basis
-     */
-    RSpinorBasis(const ScalarBasis<Shell>& scalar_basis, const TM& C) :
-        Base(C),
-        scalar_basis {scalar_basis} {}
-
-
-    /**
-     *  Construct a restricted spinor basis with an initial coefficient matrix that is the identity
-     * 
-     *  @param scalar_basis             the underlying scalar basis that is equal for both the alpha- and beta components
-     * 
-     *  @note the resulting restricted spinor basis is (most likely) non-orthogonal
-     */
-    RSpinorBasis(const ScalarBasis<Shell>& scalar_basis) :
-        RSpinorBasis(scalar_basis, TM::Identity(scalar_basis.numberOfBasisFunctions())) {}
-
-
-    /**
-     *  Construct a restricted spinor basis with an underlying scalar basis (for both the alpha and beta components) by placing shells corresponding to the basisset specification on every nucleus of the nuclear framework
-     *
-     *  @param nuclear_framework        the nuclear framework containing the nuclei on which the shells should be centered
-     *  @param basisset_name            the name of the basisset, e.g. "STO-3G"
-     *
-     *  @note the normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells
-     *  @note the resulting restricted spinor basis is (most likely) non-orthogonal
-     */
-    RSpinorBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name) :
-        RSpinorBasis(ScalarBasis<Shell>(nuclear_framework, basisset_name)) {}
-
-
-    /**
-     *  Construct a restricted spinor basis with an underlying scalar basis (for both the alpha and beta components) by placing shells corresponding to the basisset specification on every nucleus of the molecule
-     *
-     *  @param molecule             the molecule containing the nuclei on which the shells should be centered
-     *  @param basisset_name        the name of the basisset, e.g. "STO-3G"
-     *
-     *  @note the normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells
-     *  @note the resulting restricted spinor basis is (most likely) non-orthogonal
-     */
-    RSpinorBasis(const Molecule& molecule, const std::string& basisset_name) :
-        RSpinorBasis(molecule.nuclearFramework(), basisset_name) {}
+    // Inherit `SimpleSpinOrbitalBasis`'s constructors.
+    using SimpleSpinOrbitalBasis<_ExpansionScalar, _Shell, RSpinorBasis<_ExpansionScalar, _Shell>>::SimpleSpinOrbitalBasis;
 
 
     /*
-     *  PUBLIC METHODS
+     *  MARK: General information
      */
 
     /**
-     *  @param ao_list     indices of the AOs used for the Mulliken populations
-     *
-     *  @return the Mulliken operator for a set of given AO indices
-     *
-     *  @note this method is only available for real matrix representations
-     */
-    template <typename S = ExpansionScalar, typename = IsReal<S>>
-    ScalarRSQOneElectronOperator<double> calculateMullikenOperator(const std::vector<size_t>& ao_list) const {
-
-        const auto K = this->numberOfSpatialOrbitals();
-        if (ao_list.size() > K) {
-            throw std::invalid_argument("RSpinorBasis::calculateMullikenOperator(std::vector<size_t>): Too many AOs are selected in the given ao_list");
-        }
-
-        const SquareMatrix<double> p_a = SquareMatrix<double>::PartitionMatrix(ao_list, K);                       // the partitioning matrix
-        const auto S_AO = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalar_basis);  // the overlap matrix expressed in the AO basis
-
-        ScalarRSQOneElectronOperator<double> mulliken_op {0.5 * (this->C.adjoint() * p_a * S_AO * this->C + this->C.adjoint() * S_AO * p_a * this->C)};
-        return mulliken_op;
-    }
-
-    /**
-     *  @return the number of different spatial orbitals that are used in this restricted spinor basis
+     *  @return The number of different spatial orbitals that are used in this restricted spin-orbital basis.
      */
     size_t numberOfSpatialOrbitals() const { return this->scalar_basis.numberOfBasisFunctions(); }
 
     /**
-     *  @return the number of spinors that 'are' in this restricted spinor basis
+     *  @return The number of spinors that are described by this restricted spin-orbital basis.
      */
     size_t numberOfSpinors() const { return 2 * this->numberOfSpatialOrbitals(); /* alpha and beta spinors are equal*/ }
+
+    /**
+     *  @return The number of spin-orbitals that are described by this restricted spin-orbital basis.
+     */
+    size_t numberOfSpinOrbitals() const { return this->numberOfSpinors(); }
+
+
+    /*
+     *  MARK: Quantization of first-quantized operators
+     */
+
+    /**
+     *  Quantize a first-quantized one-electron operator.
+     * 
+     *  @param fq_one_op                            The first-quantized one-electron operator.
+     * 
+     *  @tparam FQOneElectronOperator               The type of the first-quantized one-electron operator.
+     * 
+     *  @return The second-quantized operator corresponding to the given first-quantized operator, i.e. expressed in/projected onto this spin-orbital basis.
+     */
+    template <typename FQOneElectronOperator>
+    auto quantize(const FQOneElectronOperator& fq_one_op) const -> RSQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, typename FQOneElectronOperator::Vectorizer> {
+
+        using ResultScalar = product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>;
+        using ResultOperator = RSQOneElectronOperator<ResultScalar, typename FQOneElectronOperator::Vectorizer>;
+
+        const auto one_op_par = IntegralCalculator::calculateLibintIntegrals(fq_one_op, this->scalarBasis());  // in AO/scalar basis
+
+        ResultOperator op {one_op_par};           // op for 'operator'
+        op.transform(this->coefficientMatrix());  // now in the spatial/spin-orbital basis
+        return op;
+    }
 
 
     /**
@@ -212,31 +162,9 @@ public:
     }
 
 
-    /**
-     *  @param fq_one_op                            the first-quantized one-electron operator
-     * 
-     *  @tparam FQOneElectronOperator               the type of the first-quantized one-electron operator
-     * 
-     *  @return the second-quantized operator corresponding to the given first-quantized operator
+    /*
+     *  MARK: Orbitals
      */
-    template <typename FQOneElectronOperator>
-    auto quantize(const FQOneElectronOperator& fq_one_op) const -> RSQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, typename FQOneElectronOperator::Vectorizer> {
-
-        using ResultScalar = product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>;
-        using ResultOperator = RSQOneElectronOperator<ResultScalar, typename FQOneElectronOperator::Vectorizer>;
-
-        const auto one_op_par = IntegralCalculator::calculateLibintIntegrals(fq_one_op, this->scalarBasis());  // in AO/scalar basis
-
-        ResultOperator op {one_op_par};           // op for 'operator'
-        op.transform(this->coefficientMatrix());  // now in the spatial/spin-orbital basis
-        return op;
-    }
-
-
-    /**
-     *  @return the underlying scalar basis, which is equal for the alpha and beta components
-     */
-    const ScalarBasis<Shell>& scalarBasis() const { return this->scalar_basis; }
 
     /**
      *  @return the set of spatial orbitals that is associated to this spin-orbital basis
@@ -289,6 +217,33 @@ public:
         }
 
         return spin_orbitals;
+    }
+
+
+    /*
+     *  MARK: Mulliken partitioning
+     */
+
+    /**
+     *  @param ao_list     indices of the AOs used for the Mulliken populations
+     *
+     *  @return the Mulliken operator for a set of given AO indices
+     *
+     *  @note this method is only available for real matrix representations
+     */
+    template <typename S = ExpansionScalar, typename = IsReal<S>>
+    ScalarRSQOneElectronOperator<double> calculateMullikenOperator(const std::vector<size_t>& ao_list) const {
+
+        const auto K = this->numberOfSpatialOrbitals();
+        if (ao_list.size() > K) {
+            throw std::invalid_argument("RSpinorBasis::calculateMullikenOperator(std::vector<size_t>): Too many AOs are selected in the given ao_list");
+        }
+
+        const SquareMatrix<double> p_a = SquareMatrix<double>::PartitionMatrix(ao_list, K);                       // the partitioning matrix
+        const auto S_AO = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalar_basis);  // the overlap matrix expressed in the AO basis
+
+        ScalarRSQOneElectronOperator<double> mulliken_op {0.5 * (this->C.adjoint() * p_a * S_AO * this->C + this->C.adjoint() * S_AO * p_a * this->C)};
+        return mulliken_op;
     }
 };
 

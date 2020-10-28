@@ -24,67 +24,97 @@
 
 namespace GQCP {
 
+/*
+ *  MARK: SpinorBasisTraits
+ */
 
 /**
  *  A type that provides compile-time information on spinor bases that is otherwise not accessible through a public class alias.
  */
 template <typename SpinorBasis>
-class SpinorBasisTraits {};
+struct SpinorBasisTraits {};
 
+
+/*
+ *  MARK: SimpleSpinorBasis
+ */
 
 /**
- *  A class that represents a spinor basis that has no internal structure (hence 'simple'). It is used as a CRTP base class for restricted and generalized spinor bases because they admit common functionality.
+ *  A class that represents a spinor basis that has no internal structure (hence 'simple') with respect to spin components.
  * 
  *  @tparam _ExpansionScalar            The scalar type used to represent an expansion coefficient of the spinors in the underlying scalar orbitals: real or complex.
- *  @tparam _DerivedSpinorBasis         The spinor basis that derives from this class, enabling CRTP and compile-time polymorphism.
+ *  @tparam _FinalSpinorBasis           The spinor basis that ultimately derives from this class, enabling CRTP and compile-time polymorphism.
  */
-template <typename _ExpansionScalar, typename _DerivedSpinorBasis>
+template <typename _ExpansionScalar, typename _FinalSpinorBasis>
 class SimpleSpinorBasis:
-    public CRTP<_DerivedSpinorBasis> {
+    public CRTP<_FinalSpinorBasis> {
 
 public:
     // The scalar type used to represent an expansion coefficient of the spinors in the underlying scalar orbitals: real or complex.
     using ExpansionScalar = _ExpansionScalar;
 
-    // The spinor basis that derives from this class, enabling CRTP and compile-time polymorphism.
-    using DerivedSpinorBasis = _DerivedSpinorBasis;
+    // The spinor basis that ultimately derives from this class, enabling CRTP and compile-time polymorphism.
+    using FinalSpinorBasis = _FinalSpinorBasis;
 
     // The type of transformation matrix that is naturally related to the derived spinor basis.
-    using TM = typename SpinorBasisTraits<DerivedSpinorBasis>::TM;  // TODO: Rename to TransformationMatrix once the class is gone
+    using TM = typename SpinorBasisTraits<FinalSpinorBasis>::TM;  // TODO: Rename to TransformationMatrix once the class is gone
 
     // The second-quantized representation of the overlap operator related to the derived spinor basis.
-    using SQOverlapOperator = typename SpinorBasisTraits<DerivedSpinorBasis>::SQOverlapOperator;
+    using SQOverlapOperator = typename SpinorBasisTraits<FinalSpinorBasis>::SQOverlapOperator;
 
 
 protected:
-    TM C;  // the matrix that holds the the expansion coefficients, i.e. that expresses the spinors in terms of the underlying scalar basis/bases
+    // The matrix that holds the expansion coefficients, i.e. that expresses the spinors/spin-orbitals in terms of the underlying scalar basis/bases.
+    TM C;
 
 
 public:
     /*
-     *  CONSTRUCTORS
+     *  MARK: Constructors
      */
 
     /**
-     *  @param C                    the matrix that holds the the expansion coefficients, i.e. that expresses the spinors in terms of the underlying scalar basis
+     *  @param C                The matrix that holds the expansion coefficients, i.e. that expresses the spinors/spin-orbitals in terms of the underlying scalar basis/bases
      */
     SimpleSpinorBasis(const TM& C) :
         C {C} {}
 
 
     /* 
-     *  PUBLIC METHODS
+     *  MARK: Coefficient access
      */
 
     /**
-     *  @return the transformation matrix between the scalar basis and the current orbitals
+     *  @return A read-only reference to the matrix that holds the expansion coefficients, i.e. that expresses the spinors/spin-orbitals in terms of the underlying scalar basis/bases.
      */
     const TM& coefficientMatrix() const { return this->C; }
 
+
+    /*
+     *  MARK: General information
+     */
+
     /**
-     *  @param precision                the precision used to test orthonormality
+     *  @return The dimension of this simple spinor basis, i.e. the dimension of the underlying coefficient matrix.
+     */
+    size_t simpleDimension() const { return this->C.cols(); }
+
+
+    /*
+     *  MARK: Orthonormality
+     */
+
+    /**
+     *  @return the overlap (one-electron) operator of this restricted spinor basis
+     */
+    SQOverlapOperator overlap() const { return this->derived().quantize(Operator::Overlap()); }
+
+    /**
+     *  Check if this spinor basis is orthonormal within the given precision.
      * 
-     *  @return if this spinor basis is orthonormal within the given precision
+     *  @param precision                The precision used to test orthonormality.
+     * 
+     *  @return If this spinor basis is orthonormal.
      */
     bool isOrthonormal(const double precision = 1.0e-08) const {
 
@@ -93,7 +123,6 @@ public:
         const auto dim = this->simpleDimension();
         return S.isApprox(SquareMatrix<ExpansionScalar>::Identity(dim), precision);
     }
-
 
     /**
      *  @return the transformation matrix to the Löwdin basis: T = S_current^{-1/2}
@@ -106,16 +135,20 @@ public:
         return TM {saes.operatorInverseSqrt()};
     }
 
-
     /**
      *  Transform the spinor basis to the 'Löwdin basis', which is the orthonormal basis that we transform to with T = S^{-1/2}, where S is the current overlap matrix.
      */
     void lowdinOrthonormalize() { this->C = this->lowdinOrthonormalizationMatrix(); }
 
-    /**
-     *  @return the overlap (one-electron) operator of this restricted spinor basis
+
+    /*
+     *  MARK: Conforming to `BasisTransformable`
      */
-    SQOverlapOperator overlap() const { return this->derived().quantize(Operator::Overlap()); }
+
+
+    /*
+     *  MARK: Conforming to `JacobiRotatable`.
+     */
 
     /**
      *  Rotate the spinor basis to another one using the given unitary transformation matrix
@@ -148,11 +181,6 @@ public:
         this->rotate(J);
     }
 
-
-    /**
-     *  @return the dimension of this simple spinor basis, i.e. the dimension of the underlying coefficient matrix
-     */
-    size_t simpleDimension() const { return this->C.cols(); }
 
     /**
      *  Transform the spinor basis another one using the given transformation matrix
