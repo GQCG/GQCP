@@ -20,8 +20,8 @@
 
 #include "Basis/SpinorBasis/GSpinorBasis.hpp"
 #include "Basis/SpinorBasis/OrbitalSpace.hpp"
-#include "Basis/SpinorBasis/RSpinorBasis.hpp"
-#include "Basis/SpinorBasis/USpinorBasis.hpp"
+#include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
+#include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
 #include "Basis/Transformations/BasisTransformable.hpp"
 #include "Basis/Transformations/JacobiRotatable.hpp"
 #include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
@@ -53,8 +53,8 @@ namespace GQCP {
  */
 template <typename _ScalarSQOneElectronOperator, typename _ScalarSQTwoElectronOperator>
 class SQHamiltonian:
-    public BasisTransformable<SQHamiltonian<ScalarSQOneElectronOperator, ScalarSQTwoElectronOperator>>,
-    public JacobiRotatable<SQHamiltonian<ScalarSQOneElectronOperator, ScalarSQTwoElectronOperator>> {
+    public BasisTransformable<SQHamiltonian<_ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator>>,
+    public JacobiRotatable<SQHamiltonian<_ScalarSQOneElectronOperator, _ScalarSQTwoElectronOperator>> {
 public:
     // The type of second-quantized one-electron operator underlying this Hamiltonian.
     using ScalarSQOneElectronOperator = _ScalarSQOneElectronOperator;
@@ -184,7 +184,7 @@ public:
      *  @return A second-quantized molecular Hamiltonian.
      */
     template <typename Z = SpinorTag>
-    static enable_if_t<std::is_same<Z, RestrictedSpinOrbitalTag>::value, Self> Molecular(const RSpinorBasis<double, GTOShell>& spinor_basis, const Molecule& molecule) {
+    static enable_if_t<std::is_same<Z, RestrictedSpinOrbitalTag>::value, Self> Molecular(const RSpinOrbitalBasis<double, GTOShell>& spinor_basis, const Molecule& molecule) {
 
         // Calculate the integrals for the molecular Hamiltonian
         const auto T = spinor_basis.quantize(Operator::Kinetic());
@@ -205,7 +205,7 @@ public:
      *  @return A second-quantized molecular Hamiltonian.
      */
     template <typename Z = SpinorTag>
-    static enable_if_t<std::is_same<Z, UnrestrictedSpinOrbitalTag>::value, Self> Molecular(const USpinorBasis<double, GTOShell>& spinor_basis, const Molecule& molecule) {
+    static enable_if_t<std::is_same<Z, UnrestrictedSpinOrbitalTag>::value, Self> Molecular(const USpinOrbitalBasis<double, GTOShell>& spinor_basis, const Molecule& molecule) {
 
         // Calculate the integrals for the molecular Hamiltonian
         const auto T = spinor_basis.quantize(Operator::Kinetic());

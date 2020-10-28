@@ -88,7 +88,7 @@ BOOST_AUTO_TEST_CASE(HamiltonianParameters_constructor) {
 
     // Create the spinor basis basis
     auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {water, "STO-3G"};
+    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {water, "STO-3G"};
 
 
     // Create one- and two-electron operators and a transformation matrix with compatible dimensions
@@ -146,7 +146,7 @@ BOOST_AUTO_TEST_CASE(constructMolecularHamiltonianParameters) {
 
 
     // Check if we can construct the molecular Hamiltonian
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {h2, "STO-3G"};
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {h2, "STO-3G"};
     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
     auto g = sq_hamiltonian.twoElectron().parameters();
 
@@ -353,6 +353,6 @@ BOOST_AUTO_TEST_CASE(dissociatedMoleculeParameters) {
     std::vector<GQCP::Nucleus> nuclei {N, O};
     GQCP::Molecule NO {nuclei, +1};
 
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {NO, "STO-3G"};
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {NO, "STO-3G"};
     BOOST_CHECK_NO_THROW(GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, NO));
 }

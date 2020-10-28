@@ -30,8 +30,8 @@ namespace gqcpy {
 void bindGSpinorBasis(py::module& module);
 void bindOccupationType(py::module& module);
 void bindOrbitalSpace(py::module& module);
-void bindRSpinorBasis(py::module& module);
-// void bindUSpinorBasis(py::module& module);
+void bindRSpinOrbitalBasis(py::module& module);
+// void bindUSpinOrbitalBasis(py::module& module);
 
 
 // Basis
@@ -196,8 +196,8 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindGSpinorBasis(module);
     gqcpy::bindOccupationType(module);
     gqcpy::bindOrbitalSpace(module);
-    gqcpy::bindRSpinorBasis(module);
-    // gqcpy::bindUSpinorBasis(module);
+    gqcpy::bindRSpinOrbitalBasis(module);
+    // gqcpy::bindUSpinOrbitalBasis(module);
 
 
     // Basis

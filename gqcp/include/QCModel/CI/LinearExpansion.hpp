@@ -20,8 +20,8 @@
 
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Basis/SpinorBasis/GSpinorBasis.hpp"
-#include "Basis/SpinorBasis/RSpinorBasis.hpp"
-#include "Basis/SpinorBasis/USpinorBasis.hpp"
+#include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
+#include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
 #include "Basis/Transformations/RTransformationMatrix.hpp"
 #include "DensityMatrix/Orbital1DM.hpp"
 #include "DensityMatrix/Orbital2DM.hpp"
@@ -215,7 +215,7 @@ public:
 
 
     /**
-     *  Create the linear expansion of the given spin-resolved ONV that is expressed in the given USpinorBasis, by projection onto the spin-resolved ONVs expressed with respect to the given RSpinorBasis.
+     *  Create the linear expansion of the given spin-resolved ONV that is expressed in the given USpinOrbitalBasis, by projection onto the spin-resolved ONVs expressed with respect to the given RSpinOrbitalBasis.
      * 
      *  @param onv                      a spin-resolved ONV expressed with respect to an unrestricted spin-orbital basis
      *  @param r_spinor_basis           the restricted spin-orbital basis that is used to define the resulting linear expansion of ONVs against
@@ -224,7 +224,7 @@ public:
      *  @return a linear expansion inside a spin-resolved ONV basis
      */
     template <typename Z = ONVBasis>
-    static enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, LinearExpansion<Z>> FromONVProjection(const SpinResolvedONV& onv, const RSpinorBasis<double, GTOShell>& r_spinor_basis, const USpinorBasis<double, GTOShell>& u_spinor_basis) {
+    static enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, LinearExpansion<Z>> FromONVProjection(const SpinResolvedONV& onv, const RSpinOrbitalBasis<double, GTOShell>& r_spinor_basis, const USpinOrbitalBasis<double, GTOShell>& u_spinor_basis) {
 
         // Determine the overlap matrices of the underlying scalar orbital bases, which is needed later on.
         auto S_r = r_spinor_basis.overlap();                          // the overlap matrix of the restricted MOs/spin-orbitals
@@ -234,7 +234,7 @@ public:
         S_u.transform(u_spinor_basis.coefficientMatrix().inverse());  // Now in AO basis.
 
         if (!(S_r.parameters().isApprox(S_u.alpha().parameters(), 1.0e-08)) || !(S_r.parameters().isApprox(S_u.beta().parameters(), 1.0e-08))) {
-            throw std::invalid_argument("LinearExpansion::FromONVProjection(const SpinResolvedONV&, const RSpinorBasis<double, GTOShell>&, const USpinorBasis<double, GTOShell>&): The given spinor bases are not expressed using the same scalar orbital basis.");
+            throw std::invalid_argument("LinearExpansion::FromONVProjection(const SpinResolvedONV&, const RSpinOrbitalBasis<double, GTOShell>&, const USpinOrbitalBasis<double, GTOShell>&): The given spinor bases are not expressed using the same scalar orbital basis.");
         }
 
 
@@ -287,7 +287,7 @@ public:
         S_of.transform(spinor_basis_of.coefficientMatrix().inverse());  // now in AO basis
 
         if (!(S_on.parameters().isApprox(S_of.parameters(), 1.0e-08))) {
-            throw std::invalid_argument("LinearExpansion::FromONVProjection(const SpinUnresolvedONV&, const RSpinorBasis<double, GTOShell>&, const GSpinorBasis<double, GTOShell>&): The given spinor bases are not expressed using the same scalar orbital basis.");
+            throw std::invalid_argument("LinearExpansion::FromONVProjection(const SpinUnresolvedONV&, const RSpinOrbitalBasis<double, GTOShell>&, const GSpinorBasis<double, GTOShell>&): The given spinor bases are not expressed using the same scalar orbital basis.");
         }
 
 

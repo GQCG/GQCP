@@ -28,7 +28,7 @@ namespace GQCP {
 
 
 /**
- *  A type specifically designed as one of the spin-components of a `USpinorBasis`.
+ *  A type specifically designed as one of the spin-components of a `USpinOrbitalBasis`.
  * 
  *  @tparam _ExpansionScalar        The scalar type used to represent an expansion coefficient of the spin-orbitals in the underlying scalar orbitals: real or complex.
  *  @tparam _Shell                  The type of shell the underlying scalar basis contains.

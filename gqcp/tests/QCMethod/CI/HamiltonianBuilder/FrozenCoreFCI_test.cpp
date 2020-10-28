@@ -61,7 +61,7 @@
 //     // Create H-chain HamiltonianParameters to test results
 //     size_t K = 5;
 //     const auto H5 = GQCP::Molecule::HChain(K, 1.1);
-//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {H5, "STO-3G"};
+//     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {H5, "STO-3G"};
 //     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, H5);  // in an AO basis
 
 //     // Create compatible ONV bases

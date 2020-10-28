@@ -42,7 +42,7 @@ void bindGSpinorBasis(py::module& module) {
 
 
         .def_static("FromRestricted",
-                    [](const GQCP::RSpinorBasis<double, GQCP::GTOShell>& r_spinor_basis) {
+                    [](const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>& r_spinor_basis) {
                         return GQCP::GSpinorBasis<double, GQCP::GTOShell>::FromRestricted(r_spinor_basis);
                     })
 
@@ -98,7 +98,7 @@ void bindGSpinorBasis(py::module& module) {
             "Rotate the spinor basis to another one using the given unitary transformation matrix.")
 
         .def(
-            "transform", [](GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& T) {
+            "transform", [](GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& T) {
                 spinor_basis.transform(GQCP::GTransformationMatrix<double>(T));
             },
             py::arg("T"), "Transform the current spinor basis using a given transformation matrix")

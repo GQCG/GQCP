@@ -19,7 +19,7 @@
 
 // #include <boost/test/unit_test.hpp>
 
-// #include "Basis/SpinorBasis/RSpinorBasis.hpp"
+// #include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 // #include "DensityMatrix/TwoDM.hpp"
 // #include "Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"
 // #include "ONVBasis/SpinResolvedONVBasis.hpp"
@@ -45,7 +45,7 @@
 //     const auto N_P = molecule.numberOfElectrons() / 2;
 
 //     const GQCP::AtomicDecompositionParameters adp = GQCP::AtomicDecompositionParameters::Nuclear(molecule, "STO-3G");  // the molecular Hamiltonian in its atomic contributions
-//     const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+//     const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
 
 //     auto sq_hamiltonian = adp.molecularHamiltonian();
 //     const auto K = sq_hamiltonian.numberOfOrbitals();  // number of spatial orbitals

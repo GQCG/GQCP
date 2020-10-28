@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Basis/SpinorBasis/RSpinorBasis.hpp"
+#include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include "Mathematical/Grid/CubicGrid.hpp"
 #include "Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
@@ -177,7 +177,7 @@ BOOST_AUTO_TEST_CASE(integrated_density_sto_3g) {
 
     // Prepare the molecular Hamiltonian (in AO basis).
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2.xyz");
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
 
     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in the scalar/AO basis
 
@@ -211,7 +211,7 @@ BOOST_AUTO_TEST_CASE(integrated_density_cc_pVTZ) {
 
     // Prepare the molecular Hamiltonian (in AO basis).
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2.xyz");
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "cc-pVDZ"};
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "cc-pVDZ"};
 
     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in the scalar/AO basis
 

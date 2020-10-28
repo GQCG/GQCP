@@ -339,7 +339,7 @@ BOOST_AUTO_TEST_CASE(antisymmetrize) {
 
     // Prepare the two-electron repulsion integrals from the molecular Hamiltonian for H2.
     const auto molecule = GQCP::Molecule::HChain(2, 1.0);
-    const GQCP::RSpinorBasis<double, GQCP::GTOShell> r_spinor_basis {molecule, "STO-3G"};
+    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> r_spinor_basis {molecule, "STO-3G"};
     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(r_spinor_basis, molecule);
     const auto& g = sq_hamiltonian.twoElectron();  // In chemist's notation.
     const auto g_A = g.antisymmetrized();
@@ -384,7 +384,7 @@ BOOST_AUTO_TEST_CASE(chemists_physicists) {
 
     // Prepare the two-electron repulsion integrals from the molecular Hamiltonian for H2.
     const auto molecule = GQCP::Molecule::HChain(2, 1.0);
-    const GQCP::RSpinorBasis<double, GQCP::GTOShell> r_spinor_basis {molecule, "STO-3G"};
+    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> r_spinor_basis {molecule, "STO-3G"};
     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(r_spinor_basis, molecule);
     const auto& g = sq_hamiltonian.twoElectron();  // In chemist's notation.
 

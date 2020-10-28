@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/SpinorBasis/RSpinorBasis.hpp"
+#include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include "Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp"
 #include "Basis/Transformations/SpinResolvedBasisTransformable.hpp"
 #include "Basis/Transformations/SpinResolvedJacobiRotatable.hpp"
@@ -39,10 +39,10 @@ namespace GQCP {
 the type of shell the underlying scalar bases contain
  */
 template <typename _ExpansionScalar, typename _Shell>
-class USpinorBasis:
-    public SpinResolvedBase<USpinOrbitalBasisComponent<_ExpansionScalar, _Shell>, USpinorBasis<_ExpansionScalar, _Shell>>,
-    public SpinResolvedBasisTransformable<USpinorBasis<_ExpansionScalar, _Shell>>,
-    public SpinResolvedJacobiRotatable<USpinorBasis<_ExpansionScalar, _Shell>> {
+class USpinOrbitalBasis:
+    public SpinResolvedBase<USpinOrbitalBasisComponent<_ExpansionScalar, _Shell>, USpinOrbitalBasis<_ExpansionScalar, _Shell>>,
+    public SpinResolvedBasisTransformable<USpinOrbitalBasis<_ExpansionScalar, _Shell>>,
+    public SpinResolvedJacobiRotatable<USpinOrbitalBasis<_ExpansionScalar, _Shell>> {
 public:
     // The scalar type used to represent an expansion coefficient of the spinors in the underlying scalar orbitals: real or complex.
     using ExpansionScalar = _ExpansionScalar;
@@ -56,27 +56,27 @@ public:
      */
 
     // Inherit `SpinResolvedBase`'s constructors.
-    using SpinResolvedBase<USpinOrbitalBasisComponent<ExpansionScalar, Shell>, USpinorBasis<ExpansionScalar, Shell>>::SpinResolvedBase;
+    using SpinResolvedBase<USpinOrbitalBasisComponent<ExpansionScalar, Shell>, USpinOrbitalBasis<ExpansionScalar, Shell>>::SpinResolvedBase;
 
 
     /**
-     *  Create an `USpinorBasis` from an alpha and a beta-spin-orbital basis and a transformation that expresses the current spin-orbitals in terms of that underlying scalar basis.
+     *  Create an `USpinOrbitalBasis` from an alpha and a beta-spin-orbital basis and a transformation that expresses the current spin-orbitals in terms of that underlying scalar basis.
      * 
      *  @param alpha_scalar_basis           The scalar basis in which the alpha spin-orbitals are expanded.
      *  @param beta_scalar_basis            The scalar basis in which the beta spin-orbitals are expanded.
      *  @param C                            The transformation that expresses the current spin-orbitals in terms of the underlying scalar basis.
      */
-    USpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis, const UTransformationMatrix<ExpansionScalar>& C) :
-        USpinorBasis(USpinOrbitalBasisComponent<ExpansionScalar, Shell> {alpha_scalar_basis, C.alpha()},
-                     USpinOrbitalBasisComponent<ExpansionScalar, Shell> {beta_scalar_basis, C.beta()}) {
+    USpinOrbitalBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis, const UTransformationMatrix<ExpansionScalar>& C) :
+        USpinOrbitalBasis(USpinOrbitalBasisComponent<ExpansionScalar, Shell> {alpha_scalar_basis, C.alpha()},
+                          USpinOrbitalBasisComponent<ExpansionScalar, Shell> {beta_scalar_basis, C.beta()}) {
 
         // Check if the dimensions of the given objects are compatible.
         if (C.alpha().numberOfOrbitals() != alpha_scalar_basis.numberOfBasisFunctions()) {
-            throw std::invalid_argument("USpinorBasis(const ScalarBasis<Shell>&, const ScalarBasis<Shell>&, const UTransformationMatrix<ExpansionScalar>&): The given dimensions of the scalar basis and coefficient matrix for the alpha spin-orbitals are incompatible.");
+            throw std::invalid_argument("USpinOrbitalBasis(const ScalarBasis<Shell>&, const ScalarBasis<Shell>&, const UTransformationMatrix<ExpansionScalar>&): The given dimensions of the scalar basis and coefficient matrix for the alpha spin-orbitals are incompatible.");
         }
 
         if (C.beta().numberOfOrbitals() != beta_scalar_basis.numberOfBasisFunctions()) {
-            throw std::invalid_argument("USpinorBasis(const ScalarBasis<Shell>&, const ScalarBasis<Shell>&, const UTransformationMatrix<ExpansionScalar>&): The given dimensions of the scalar basis and coefficient matrix for the beta spin-orbitals are incompatible.");
+            throw std::invalid_argument("USpinOrbitalBasis(const ScalarBasis<Shell>&, const ScalarBasis<Shell>&, const UTransformationMatrix<ExpansionScalar>&): The given dimensions of the scalar basis and coefficient matrix for the beta spin-orbitals are incompatible.");
         }
     }
 
@@ -87,8 +87,8 @@ public:
      *  @param scalar_basis         The scalar basis in which both the alpha and beta spin-orbitals are expanded.
      *  @param C                    The transformation that expresses the current spin-orbitals in terms of the underlying scalar basis.
      */
-    USpinorBasis(const ScalarBasis<Shell>& scalar_basis, const UTransformationMatrixComponent<ExpansionScalar>& C) :
-        USpinorBasis(scalar_basis, scalar_basis, UTransformationMatrix<ExpansionScalar>::FromEqual(C)) {}
+    USpinOrbitalBasis(const ScalarBasis<Shell>& scalar_basis, const UTransformationMatrixComponent<ExpansionScalar>& C) :
+        USpinOrbitalBasis(scalar_basis, scalar_basis, UTransformationMatrix<ExpansionScalar>::FromEqual(C)) {}
 
 
     /**
@@ -97,11 +97,11 @@ public:
      *  @param alpha_scalar_basis           The scalar basis in which the alpha spin-orbitals are expanded.
      *  @param beta_scalar_basis            The scalar basis in which the beta spin-orbitals are expanded.
      */
-    USpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis) :
-        USpinorBasis(alpha_scalar_basis, beta_scalar_basis,
-                     UTransformationMatrix<ExpansionScalar>(
-                         UTransformationMatrixComponent<ExpansionScalar>::Identity(alpha_scalar_basis.numberOfBasisFunctions()),
-                         UTransformationMatrixComponent<ExpansionScalar>::Identity(beta_scalar_basis.numberOfBasisFunctions()))) {}
+    USpinOrbitalBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis) :
+        USpinOrbitalBasis(alpha_scalar_basis, beta_scalar_basis,
+                          UTransformationMatrix<ExpansionScalar>(
+                              UTransformationMatrixComponent<ExpansionScalar>::Identity(alpha_scalar_basis.numberOfBasisFunctions()),
+                              UTransformationMatrixComponent<ExpansionScalar>::Identity(beta_scalar_basis.numberOfBasisFunctions()))) {}
 
 
     /**
@@ -109,8 +109,8 @@ public:
      *
      *  @param scalar_basis         The scalar basis in which both the alpha and beta spin-orbitals are expanded.
      */
-    USpinorBasis(const ScalarBasis<Shell>& scalar_basis) :
-        USpinorBasis(scalar_basis, scalar_basis) {}
+    USpinOrbitalBasis(const ScalarBasis<Shell>& scalar_basis) :
+        USpinOrbitalBasis(scalar_basis, scalar_basis) {}
 
 
     /**
@@ -121,8 +121,8 @@ public:
      *
      *  @note The normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells.
      */
-    USpinorBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name) :
-        USpinorBasis(ScalarBasis<Shell>(nuclear_framework, basisset_name)) {}
+    USpinOrbitalBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name) :
+        USpinOrbitalBasis(ScalarBasis<Shell>(nuclear_framework, basisset_name)) {}
 
 
     /**
@@ -133,8 +133,8 @@ public:
      *
      *  @note The normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells.
      */
-    USpinorBasis(const Molecule& molecule, const std::string& basisset_name) :
-        USpinorBasis(ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name)) {}
+    USpinOrbitalBasis(const Molecule& molecule, const std::string& basisset_name) :
+        USpinOrbitalBasis(ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name)) {}
 
 
     /**
@@ -146,9 +146,9 @@ public:
      *
      *  @note The normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells.
      */
-    USpinorBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name_alpha, const std::string& basisset_name_beta) :
-        USpinorBasis(ScalarBasis<Shell>(nuclear_framework, basisset_name_alpha),
-                     ScalarBasis<Shell>(nuclear_framework, basisset_name_beta)) {}
+    USpinOrbitalBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name_alpha, const std::string& basisset_name_beta) :
+        USpinOrbitalBasis(ScalarBasis<Shell>(nuclear_framework, basisset_name_alpha),
+                          ScalarBasis<Shell>(nuclear_framework, basisset_name_beta)) {}
 
 
     /**
@@ -160,9 +160,9 @@ public:
      *
      *  @note The normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells.
      */
-    USpinorBasis(const Molecule& molecule, const std::string& basisset_name_alpha, const std::string& basisset_name_beta) :
-        USpinorBasis(ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name_alpha),
-                     ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name_beta)) {}
+    USpinOrbitalBasis(const Molecule& molecule, const std::string& basisset_name_alpha, const std::string& basisset_name_beta) :
+        USpinOrbitalBasis(ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name_alpha),
+                          ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name_beta)) {}
 
 
     /*
@@ -176,11 +176,11 @@ public:
      *
      *  @return an unrestricted spinor basis
      */
-    static USpinorBasis<ExpansionScalar, Shell> FromRestricted(const RSpinorBasis<ExpansionScalar, Shell>& r_spinor_basis) {
+    static USpinOrbitalBasis<ExpansionScalar, Shell> FromRestricted(const RSpinOrbitalBasis<ExpansionScalar, Shell>& r_spinor_basis) {
 
         const auto scalar_basis = r_spinor_basis.scalarBasis();
         const auto C = r_spinor_basis.coefficientMatrix();
-        return USpinorBasis<ExpansionScalar, Shell>(scalar_basis, scalar_basis, UTransformationMatrix<ExpansionScalar>::FromRestricted(C));
+        return USpinOrbitalBasis<ExpansionScalar, Shell>(scalar_basis, scalar_basis, UTransformationMatrix<ExpansionScalar>::FromRestricted(C));
     }
 
 
@@ -344,6 +344,12 @@ public:
     // ScalarRSQOneElectronOperator<double> calculateMullikenOperator(const std::vector<size_t>& ao_list, const Spin& sigma) const { return this->spinor_bases[sigma].template calculateMullikenOperator<ExpansionScalar>(ao_list); }
 };
 
+/*
+ *  MARK: Convenience aliases
+ */
+template <typename ExpansionScalar, typename Shell>
+using USpinorBasis = USpinOrbitalBasis<ExpansionScalar, Shell>;
+
 
 /*
  *  MARK: BasisTransformableTraits
@@ -353,7 +359,7 @@ public:
  *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
  */
 template <typename _ExpansionScalar, typename _Shell>
-struct BasisTransformableTraits<USpinorBasis<_ExpansionScalar, _Shell>> {
+struct BasisTransformableTraits<USpinOrbitalBasis<_ExpansionScalar, _Shell>> {
 
     // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix". A transformation matrix should naturally be transformable with itself.
     using TM = UTransformationMatrix<_ExpansionScalar>;
@@ -368,7 +374,7 @@ struct BasisTransformableTraits<USpinorBasis<_ExpansionScalar, _Shell>> {
  *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
  */
 template <typename _ExpansionScalar, typename _Shell>
-struct JacobiRotatableTraits<USpinorBasis<_ExpansionScalar, _Shell>> {
+struct JacobiRotatableTraits<USpinOrbitalBasis<_ExpansionScalar, _Shell>> {
 
     // The type of Jacobi rotation for which the Jacobi rotation should be defined.
     using JacobiRotationType = UJacobiRotation;

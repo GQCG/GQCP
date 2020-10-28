@@ -38,7 +38,7 @@ BOOST_AUTO_TEST_CASE(h2_sto3g_szabo_plain) {
 
     // Create the molecular Hamiltonian in an AO basis
     const auto h2 = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
-    const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {h2, "STO-3G"};
+    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {h2, "STO-3G"};
     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
 
     // Create a plain RHF SCF solver and solve the SCF equations
@@ -77,7 +77,7 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_horton_plain) {
 
     // Do our own RHF calculation
     const auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {water, "STO-3G"};
+    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {water, "STO-3G"};
     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, water);  // in an AO basis
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(water.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
@@ -106,7 +106,7 @@ BOOST_AUTO_TEST_CASE(crawdad_h2o_sto3g_plain) {
     // Check if the internuclear distance between O and H is really 1.1 A (= 2.07869 bohr), as specified in the text
     BOOST_REQUIRE(std::abs(water.calculateInternuclearDistanceBetween(0, 1) - 2.07869) < 1.0e-4);
 
-    const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {water, "STO-3G"};
+    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {water, "STO-3G"};
     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, water);  // in an AO basis
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(water.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
@@ -132,7 +132,7 @@ BOOST_AUTO_TEST_CASE(crawdad_ch4_sto3g_plain) {
     // Check if the internuclear distance between C and H is really around 2.05 bohr, which is the bond distance Wikipedia (108.7 pm) specifies
     BOOST_CHECK(std::abs(methane.calculateInternuclearDistanceBetween(0, 1) - 2.05) < 1.0e-1);
 
-    const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {methane, "STO-3G"};
+    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {methane, "STO-3G"};
     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, methane);  // in an AO basis
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(methane.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
@@ -155,7 +155,7 @@ BOOST_AUTO_TEST_CASE(h2_631gdp_plain) {
 
     // Do our own RHF calculation
     const auto h2 = GQCP::Molecule::ReadXYZ("data/h2_olsens.xyz");
-    const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {h2, "6-31G**"};
+    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {h2, "6-31G**"};
     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
@@ -191,7 +191,7 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_horton_damped) {
 
     // Do our own RHF calculation
     const auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {water, "STO-3G"};
+    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {water, "STO-3G"};
     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, water);  // in an AO basis
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(water.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
@@ -216,7 +216,7 @@ BOOST_AUTO_TEST_CASE(h2_sto3g_szabo_diis) {
 
     // Create the molecular Hamiltonian in an AO basis
     const auto h2 = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
-    const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {h2, "STO-3G"};
+    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {h2, "STO-3G"};
     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
 
     // Create a DIIS RHF SCF solver and solve the SCF equations
@@ -255,7 +255,7 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_horton_diis) {
 
     // Do our own RHF calculation
     const auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {water, "STO-3G"};
+    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {water, "STO-3G"};
     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, water);  // in an AO basis
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(water.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
@@ -284,7 +284,7 @@ BOOST_AUTO_TEST_CASE(crawdad_h2o_sto3g_diis) {
     // Check if the internuclear distance between O and H is really 1.1 A (= 2.07869 bohr), as specified in the text
     BOOST_REQUIRE(std::abs(water.calculateInternuclearDistanceBetween(0, 1) - 2.07869) < 1.0e-4);
 
-    const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {water, "STO-3G"};
+    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {water, "STO-3G"};
     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, water);  // in an AO basis
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(water.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
@@ -311,7 +311,7 @@ BOOST_AUTO_TEST_CASE(crawdad_ch4_sto3g_diis) {
     // Check if the internuclear distance between C and H is really around 2.05 bohr, which is the bond distance Wikipedia (108.7 pm) specifies
     BOOST_CHECK(std::abs(methane.calculateInternuclearDistanceBetween(0, 1) - 2.05) < 1.0e-1);
 
-    const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {methane, "STO-3G"};
+    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {methane, "STO-3G"};
     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, methane);  // in an AO basis
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(methane.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
@@ -334,7 +334,7 @@ BOOST_AUTO_TEST_CASE(h2_631gdp_diis) {
 
     // Do our own RHF calculation
     const auto h2 = GQCP::Molecule::ReadXYZ("data/h2_olsens.xyz");
-    const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {h2, "6-31G**"};
+    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {h2, "6-31G**"};
     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());

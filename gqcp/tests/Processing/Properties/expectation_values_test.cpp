@@ -42,7 +42,7 @@ BOOST_AUTO_TEST_CASE(mulliken_N2_STO_3G) {
     const GQCP::Molecule molecule {{N1, N2}};
     const auto N = molecule.numberOfElectrons();
 
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
     spinor_basis.lowdinOrthonormalize();
     const auto K = spinor_basis.numberOfSpatialOrbitals();
 

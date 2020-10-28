@@ -81,12 +81,12 @@ BOOST_AUTO_TEST_CASE(FromString) {
  */
 BOOST_AUTO_TEST_CASE(RHF_UHF_overlap) {
 
-    // Create an RSpinorBasis with the canonical RHF spin-orbitals.
+    // Create an RSpinOrbitalBasis with the canonical RHF spin-orbitals.
     const auto h2 = GQCP::Molecule::ReadXYZ("data/h2.xyz");
     const auto N = h2.numberOfElectrons();
     const auto N_P = h2.numberOfElectronPairs();
 
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> r_spinor_basis {h2, "STO-3G"};
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> r_spinor_basis {h2, "STO-3G"};
     const auto K = r_spinor_basis.numberOfSpatialOrbitals();
     const auto S = r_spinor_basis.overlap().parameters();
 
@@ -101,8 +101,8 @@ BOOST_AUTO_TEST_CASE(RHF_UHF_overlap) {
     r_spinor_basis.transform(rhf_parameters.coefficientMatrix());
 
 
-    // Convert the RSpinorBasis into an USpinorBasis, yielding an unrestricted spin-orbital basis where C_alpha == C_beta.
-    const auto u_spinor_basis = GQCP::USpinorBasis<double, GQCP::GTOShell>::FromRestricted(r_spinor_basis);
+    // Convert the RSpinOrbitalBasis into an USpinOrbitalBasis, yielding an unrestricted spin-orbital basis where C_alpha == C_beta.
+    const auto u_spinor_basis = GQCP::USpinOrbitalBasis<double, GQCP::GTOShell>::FromRestricted(r_spinor_basis);
 
 
     // Check if the UHF determinant has overlap 1 with the corresponding RHF determinant, and overlap 0 with the excitations on top of the RHF reference.

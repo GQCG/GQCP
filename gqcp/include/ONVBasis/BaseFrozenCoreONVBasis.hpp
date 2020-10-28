@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/SpinorBasis/RSpinorBasis.hpp"
+#include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include "ONVBasis/BaseONVBasis.hpp"
 
 

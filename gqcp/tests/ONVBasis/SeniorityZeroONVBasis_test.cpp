@@ -32,7 +32,7 @@
 //     const auto molecule = GQCP::Molecule::HChain(3, 1.0);  // a H3-chain
 //     const auto N_P = molecule.numberOfElectronPairs();
 
-//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+//     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
 //     const auto K = spinor_basis.numberOfSpatialOrbitals();
 //     spinor_basis.lowdinOrthonormalize();
 

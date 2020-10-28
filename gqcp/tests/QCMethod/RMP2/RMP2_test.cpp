@@ -34,7 +34,7 @@ BOOST_AUTO_TEST_CASE(crawdad_sto3g_water) {
 
     // Create the molecular Hamiltonian in the RHF basis
     auto water = GQCP::Molecule::ReadXYZ("data/h2o_crawdad.xyz");
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {water, "STO-3G"};
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {water, "STO-3G"};
     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, water);  // in an AO basis
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(water.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
@@ -58,7 +58,7 @@ BOOST_AUTO_TEST_CASE(crawdad_sto3g_methane) {
 
     // Create the molecular Hamiltonian in the RHF basis
     auto methane = GQCP::Molecule::ReadXYZ("data/ch4_crawdad.xyz");
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {methane, "STO-3G"};
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {methane, "STO-3G"};
     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, methane);  // in an AO basis
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(methane.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());

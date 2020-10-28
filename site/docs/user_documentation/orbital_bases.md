@@ -8,18 +8,18 @@ sidebar_label: Orbital bases
 
 An intermediary step in-between the creation of a `Molecule` object and the calculation of the _integrals_ for this molecule, is the initialization of an orbital basis. In molecular electronic structure theory based on wave function models, we often express a set of orthonormal spinors or spin-orbitals as linear combinations of basis functions.
 
-Here's where the spinor-basis objects come into play. They encapsulate the expansion coefficients, together with the atomic orbital basis. You can create a restricted spin-orbital basis (`RSpinorBasis`) by specifying the molecule and the name of the basisset that you would like to use.
+Here's where the spinor-basis objects come into play. They encapsulate the expansion coefficients, together with the atomic orbital basis. You can create a restricted spin-orbital basis (`RSpinOrbitalBasis`) by specifying the molecule and the name of the basisset that you would like to use.
 
 <!--DOCUSAURUS_CODE_TABS-->
 
 <!--Python-->
 ```python
-spinor_basis = RSpinorBasis(molecule, "STO-3G")
+spinor_basis = RSpinOrbitalBasis(molecule, "STO-3G")
 ```
 
 <!--C++-->
 ```C++
-const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};  // note that you have to specify the type of shell that underlies this spin-orbital basis
+const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};  // note that you have to specify the type of shell that underlies this spin-orbital basis
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->
 

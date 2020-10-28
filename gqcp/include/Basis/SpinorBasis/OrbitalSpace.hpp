@@ -35,7 +35,7 @@ namespace GQCP {
  *  A class that encapsulates occupied, active and virtual orbital indices.
  * 
  *  @note The union of these three sets of indices is supposed to be the full set of orbital indices.
- *  @note This class is intended to be used in conjunction with restricted spin-orbital bases (RSpinorBasis) or general spinor bases (GSpinorBasis).
+ *  @note This class is intended to be used in conjunction with restricted spin-orbital bases (RSpinOrbitalBasis) or general spinor bases (GSpinorBasis).
  */
 class OrbitalSpace {
 private:

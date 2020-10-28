@@ -47,7 +47,7 @@ void bindDOCINewtonOrbitalOptimizer(py::module& module, const std::string& suffi
 
         .def(
             "optimize",
-            [](GQCP::DOCINewtonOrbitalOptimizer<EigenproblemSolver>& optimizer, GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis, GQCP::RSQHamiltonian<double>& sq_hamiltonian) {
+            [](GQCP::DOCINewtonOrbitalOptimizer<EigenproblemSolver>& optimizer, GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis, GQCP::RSQHamiltonian<double>& sq_hamiltonian) {
                 optimizer.optimize(spinor_basis, sq_hamiltonian);
             },
             py::arg("spinor_basis"),

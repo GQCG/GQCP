@@ -15,12 +15,12 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#define BOOST_TEST_MODULE "USpinorBasis_test"
+#define BOOST_TEST_MODULE "USpinOrbitalBasis_test"
 
 #include <boost/test/unit_test.hpp>
 
 #include "Basis/ScalarBasis/GTOShell.hpp"
-#include "Basis/SpinorBasis/USpinorBasis.hpp"
+#include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
 #include "Molecule/Molecule.hpp"
 
 
@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE(constructor_throws) {
 
 
     // Check if the constructor throws upon receiving incompatible arguments.
-    using SpinorBasisType = GQCP::USpinorBasis<double, GQCP::GTOShell>;  // needed to resolve compilation errors with boost
+    using SpinorBasisType = GQCP::USpinOrbitalBasis<double, GQCP::GTOShell>;  // needed to resolve compilation errors with boost
     BOOST_CHECK_THROW(SpinorBasisType spinor_basis(alpha_scalar_basis, beta_scalar_basis, T_incompatible_alpha), std::invalid_argument);
     BOOST_CHECK_THROW(SpinorBasisType spinor_basis(alpha_scalar_basis, beta_scalar_basis, T_incompatible_beta), std::invalid_argument);
 
@@ -62,7 +62,7 @@ BOOST_AUTO_TEST_CASE(basic_functionality) {
 
     // Initialize an unrestricted spin-orbital basis.
     const auto h2 = GQCP::Molecule::ReadXYZ("data/h2.xyz");
-    const GQCP::USpinorBasis<double, GQCP::GTOShell> spinor_basis {h2, "STO-3G"};
+    const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {h2, "STO-3G"};
 
     // Check if the number of spin-orbitals is correct.
     BOOST_CHECK(spinor_basis.numberOfSpinors() == 4);

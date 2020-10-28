@@ -91,7 +91,7 @@ SpinResolvedONV SpinResolvedONV::FromString(const std::string& string_representa
  * 
  *  @return a spin-resolved ONV that represents the RHF single Slater determinant
  * 
- * @note The ordering of the spin-orbitals is implicit: this method assumes that the spin-orbitals in the corresponding RSpinorBasis are sorted with increasing one-particle energy.
+ * @note The ordering of the spin-orbitals is implicit: this method assumes that the spin-orbitals in the corresponding RSpinOrbitalBasis are sorted with increasing one-particle energy.
  */
 SpinResolvedONV SpinResolvedONV::RHF(const size_t K, const size_t N_P) {
 
@@ -111,7 +111,7 @@ SpinResolvedONV SpinResolvedONV::RHF(const size_t K, const size_t N_P) {
  * 
  *  @return a spin-resolved ONV that represents the UHF single Slater determinant
  * 
- * @note The ordering of the spin-orbitals is implicit: this method assumes that the spin-orbitals in the corresponding USpinorBasis are sorted with increasing one-particle energy.
+ * @note The ordering of the spin-orbitals is implicit: this method assumes that the spin-orbitals in the corresponding USpinOrbitalBasis are sorted with increasing one-particle energy.
  */
 SpinResolvedONV SpinResolvedONV::UHF(const size_t K, const size_t N_alpha, const size_t N_beta) {
 

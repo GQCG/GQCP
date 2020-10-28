@@ -19,8 +19,8 @@
 
 
 #include "Basis/ScalarBasis/GTOShell.hpp"
-#include "Basis/SpinorBasis/RSpinorBasis.hpp"
-#include "Basis/SpinorBasis/USpinorBasis.hpp"
+#include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
+#include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
 #include "ONVBasis/SpinUnresolvedONV.hpp"
 #include "QuantumChemical/Spin.hpp"
 
@@ -83,7 +83,7 @@ public:
      * 
      *  @return a spin-resolved ONV that represents the RHF single Slater determinant
      * 
-     * @note The ordering of the spin-orbitals is implicit: this method assumes that the spin-orbitals in the corresponding RSpinorBasis are sorted with increasing one-particle energy.
+     * @note The ordering of the spin-orbitals is implicit: this method assumes that the spin-orbitals in the corresponding RSpinOrbitalBasis are sorted with increasing one-particle energy.
      */
     static SpinResolvedONV RHF(const size_t K, const size_t N_P);
 
@@ -96,7 +96,7 @@ public:
      * 
      *  @return a spin-resolved ONV that represents the UHF single Slater determinant
      * 
-     * @note The ordering of the spin-orbitals is implicit: this method assumes that the spin-orbitals in the corresponding USpinorBasis are sorted with increasing one-particle energy.
+     * @note The ordering of the spin-orbitals is implicit: this method assumes that the spin-orbitals in the corresponding USpinOrbitalBasis are sorted with increasing one-particle energy.
      */
     static SpinResolvedONV UHF(const size_t K, const size_t N_alpha, const size_t N_beta);
 

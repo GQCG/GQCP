@@ -41,8 +41,8 @@ namespace GQCP {
  *  @tparam _Shell                  The type of shell the underlying scalar basis contains.
  */
 template <typename _ExpansionScalar, typename _Shell>
-class RSpinorBasis:
-    public SimpleSpinOrbitalBasis<_ExpansionScalar, _Shell, RSpinorBasis<_ExpansionScalar, _Shell>> {
+class RSpinOrbitalBasis:
+    public SimpleSpinOrbitalBasis<_ExpansionScalar, _Shell, RSpinOrbitalBasis<_ExpansionScalar, _Shell>> {
 public:
     // The scalar type used to represent an expansion coefficient of the spinors in the underlying scalar orbitals: real or complex.
     using ExpansionScalar = _ExpansionScalar;
@@ -51,7 +51,7 @@ public:
     using Shell = _Shell;
 
     // The type of the base spinor basis.
-    using BaseSpinorBasis = SimpleSpinorBasis<_ExpansionScalar, RSpinorBasis<_ExpansionScalar, _Shell>>;
+    using BaseSpinorBasis = SimpleSpinorBasis<_ExpansionScalar, RSpinOrbitalBasis<_ExpansionScalar, _Shell>>;
 
     // The type of transformation matrix that is naturally related to a GSpinorBasis.
     using TM = RTransformationMatrix<ExpansionScalar>;  // TODO: Rename to TransformationMatrix once the class is gone
@@ -67,7 +67,7 @@ public:
      */
 
     // Inherit `SimpleSpinOrbitalBasis`'s constructors.
-    using SimpleSpinOrbitalBasis<_ExpansionScalar, _Shell, RSpinorBasis<_ExpansionScalar, _Shell>>::SimpleSpinOrbitalBasis;
+    using SimpleSpinOrbitalBasis<_ExpansionScalar, _Shell, RSpinOrbitalBasis<_ExpansionScalar, _Shell>>::SimpleSpinOrbitalBasis;
 
 
     /*
@@ -236,7 +236,7 @@ public:
 
         const auto K = this->numberOfSpatialOrbitals();
         if (ao_list.size() > K) {
-            throw std::invalid_argument("RSpinorBasis::calculateMullikenOperator(std::vector<size_t>): Too many AOs are selected in the given ao_list");
+            throw std::invalid_argument("RSpinOrbitalBasis::calculateMullikenOperator(std::vector<size_t>): Too many AOs are selected in the given ao_list");
         }
 
         const SquareMatrix<double> p_a = SquareMatrix<double>::PartitionMatrix(ao_list, K);                       // the partitioning matrix
@@ -249,6 +249,13 @@ public:
 
 
 /*
+ *  MARK: Convenience aliases
+ */
+template <typename ExpansionScalar, typename Shell>
+using RSpinorBasis = RSpinOrbitalBasis<ExpansionScalar, Shell>;
+
+
+/*
  *  MARK: SpinorBasisTraits
  */
 
@@ -256,15 +263,15 @@ public:
  *  A type that provides compile-time information on spinor bases that is otherwise not accessible through a public class alias.
  */
 template <typename _ExpansionScalar, typename _Shell>
-class SpinorBasisTraits<RSpinorBasis<_ExpansionScalar, _Shell>> {
+class SpinorBasisTraits<RSpinOrbitalBasis<_ExpansionScalar, _Shell>> {
 public:
     // The scalar type used to represent an expansion coefficient of the spinors in the underlying scalar orbitals: real or complex.
     using ExpansionScalar = _ExpansionScalar;
 
-    // The type of transformation matrix that is naturally related to an RSpinorBasis.
+    // The type of transformation matrix that is naturally related to an RSpinOrbitalBasis.
     using TM = RTransformationMatrix<ExpansionScalar>;  // TODO: Rename to TransformationMatrix once the class is gone
 
-    // The second-quantized representation of the overlap operator related to an RSpinorBasis.
+    // The second-quantized representation of the overlap operator related to an RSpinOrbitalBasis.
     using SQOverlapOperator = ScalarRSQOneElectronOperator<ExpansionScalar>;
 };
 
@@ -277,7 +284,7 @@ public:
  *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
  */
 template <typename _ExpansionScalar, typename _Shell>
-struct BasisTransformableTraits<RSpinorBasis<_ExpansionScalar, _Shell>> {
+struct BasisTransformableTraits<RSpinOrbitalBasis<_ExpansionScalar, _Shell>> {
 
     // The type of transformation matrix that is naturally related to an `RSpinOrbitalBasis`.
     using TM = RTransformationMatrix<_ExpansionScalar>;
@@ -292,7 +299,7 @@ struct BasisTransformableTraits<RSpinorBasis<_ExpansionScalar, _Shell>> {
  *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
  */
 template <typename _ExpansionScalar, typename _Shell>
-struct JacobiRotatableTraits<RSpinorBasis<_ExpansionScalar, _Shell>> {
+struct JacobiRotatableTraits<RSpinOrbitalBasis<_ExpansionScalar, _Shell>> {
 
     // The type of Jacobi rotation that is naturally related to an `RSpinOrbitalBasis`.
     using JacobiRotationType = JacobiRotation;

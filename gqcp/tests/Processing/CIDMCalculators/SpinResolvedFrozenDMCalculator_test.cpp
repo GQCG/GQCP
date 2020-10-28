@@ -38,7 +38,7 @@
 //     const auto N_alpha = 3;
 //     const auto N_beta = 2;
 
-//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+//     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
 //     const auto K = spinor_basis.numberOfSpatialOrbitals();
 //     spinor_basis.lowdinOrthonormalize();
 

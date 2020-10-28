@@ -101,7 +101,7 @@ public:
         const auto& parameters = this->allParameters();
         std::vector<Scalar> expectation_values(this->numberOfComponents());  // Zero-initialize the vector with a number of elements.
         for (size_t i = 0; i < this->numberOfComponents(); i++) {
-            expectation_values[i] = (parameters[i] * D).trace();
+            expectation_values[i] = (parameters[i].transpose() * D).trace();
         }
 
         return StorageArray<Scalar, Vectorizer> {expectation_values, this->array.vectorizer()};

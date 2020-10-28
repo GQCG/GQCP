@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/SpinorBasis/USpinorBasis.hpp"
+#include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QuantumChemical/Spin.hpp"
 #include "Utilities/type_traits.hpp"
@@ -104,7 +104,7 @@ public:
      *  Note that this named constructor is only available for real matrix representations
      */
     template <typename Z = Scalar>
-    static enable_if_t<std::is_same<Z, double>::value, USQHamiltonian<double>> Molecular(const USpinorBasis<Z, GTOShell>& u_spinor_basis, const Molecule& molecule) {
+    static enable_if_t<std::is_same<Z, double>::value, USQHamiltonian<double>> Molecular(const USpinOrbitalBasis<Z, GTOShell>& u_spinor_basis, const Molecule& molecule) {
 
         const RSQHamiltonian<Scalar> sq_hamiltonian_alpha = RSQHamiltonian<double>::Molecular(u_spinor_basis.spinorBasis(Spin::alpha), molecule);
         const RSQHamiltonian<Scalar> sq_hamiltonian_beta = RSQHamiltonian<double>::Molecular(u_spinor_basis.spinorBasis(Spin::beta), molecule);

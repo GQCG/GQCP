@@ -3,9 +3,9 @@ target_sources(gqcp
         GSpinorBasis.hpp
         OccupationType.hpp
         OrbitalSpace.hpp
-        RSpinorBasis.hpp
+        RSpinOrbitalBasis.hpp
         SimpleSpinorBasis.hpp
         SimpleSpinOrbitalBasis.hpp
-        USpinorBasis.hpp
+        USpinOrbitalBasis.hpp
         USpinOrbitalBasisComponent.hpp
 )

@@ -15,11 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#define BOOST_TEST_MODULE "RSpinorBasis_test"
+#define BOOST_TEST_MODULE "RSpinOrbitalBasis"
 
 #include <boost/test/unit_test.hpp>
 
-#include "Basis/SpinorBasis/RSpinorBasis.hpp"
+#include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include "Mathematical/Grid/CubicGrid.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
@@ -34,7 +34,7 @@ BOOST_AUTO_TEST_CASE(RHF_orbitals_are_orthonormal) {
 
     // The orbitals in an AO basis are not orthonormal.
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
     BOOST_CHECK(!spinor_basis.isOrthonormal());
 
 
@@ -60,7 +60,7 @@ BOOST_AUTO_TEST_CASE(basisFunctions_integration) {
 
     // Calculate the overlap matrix through Libint2.
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2.xyz");
-    const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
     const auto S = spinor_basis.overlap().parameters();
 
 

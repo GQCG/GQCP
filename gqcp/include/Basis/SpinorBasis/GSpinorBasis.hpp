@@ -20,9 +20,9 @@
 
 #include "Basis/Integrals/IntegralCalculator.hpp"
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
-#include "Basis/SpinorBasis/RSpinorBasis.hpp"
+#include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
-#include "Basis/SpinorBasis/USpinorBasis.hpp"
+#include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
 #include "Basis/Transformations/GTransformationMatrix.hpp"
 #include "Basis/Transformations/JacobiRotation.hpp"
 #include "Molecule/Molecule.hpp"
@@ -185,10 +185,10 @@ public:
      * 
      *  @return the restricted spinor basis as a generalized one
      */
-    static GSpinorBasis<ExpansionScalar, Shell> FromRestricted(const RSpinorBasis<ExpansionScalar, Shell>& r_spinor_basis) {
+    static GSpinorBasis<ExpansionScalar, Shell> FromRestricted(const RSpinOrbitalBasis<ExpansionScalar, Shell>& r_spinor_basis) {
 
-        // Create an USpinorBasis from the restricted one and use ::FromUnrestricted.
-        const auto u_spinor_basis = USpinorBasis<ExpansionScalar, Shell>::FromRestricted(r_spinor_basis);
+        // Create an USpinOrbitalBasis from the restricted one and use ::FromUnrestricted.
+        const auto u_spinor_basis = USpinOrbitalBasis<ExpansionScalar, Shell>::FromRestricted(r_spinor_basis);
 
         return GSpinorBasis<ExpansionScalar, Shell>::FromUnrestricted(u_spinor_basis);
     }
@@ -203,7 +203,7 @@ public:
      * 
      *  @note We assume that the unrestricted spin-orbital basis has equal underlying scalar bases for the alpha- and beta-spin-orbitals.
      */
-    static GSpinorBasis<ExpansionScalar, Shell> FromUnrestricted(const USpinorBasis<ExpansionScalar, Shell>& u_spinor_basis) {
+    static GSpinorBasis<ExpansionScalar, Shell> FromUnrestricted(const USpinOrbitalBasis<ExpansionScalar, Shell>& u_spinor_basis) {
 
         // The goal in this named constructor is to build up the general coefficient matrix (2K x 2K) from the restricted (K x K) one.
         const auto M = u_spinor_basis.numberOfSpinOrbitals();
