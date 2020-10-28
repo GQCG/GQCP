@@ -18,6 +18,8 @@
 #pragma once
 
 
+#include "Basis/Transformations/BasisTransformable.hpp"
+#include "Basis/Transformations/JacobiRotatable.hpp"
 #include "Utilities/CRTP.hpp"
 #include "Utilities/type_traits.hpp"
 
@@ -47,7 +49,9 @@ struct SpinorBasisTraits {};
  */
 template <typename _ExpansionScalar, typename _FinalSpinorBasis>
 class SimpleSpinorBasis:
-    public CRTP<_FinalSpinorBasis> {
+    public CRTP<_FinalSpinorBasis>,
+    public BasisTransformable<_FinalSpinorBasis>,
+    public JacobiRotatable<_FinalSpinorBasis> {
 
 public:
     // The scalar type used to represent an expansion coefficient of the spinors in the underlying scalar orbitals: real or complex.
@@ -56,10 +60,13 @@ public:
     // The spinor basis that ultimately derives from this class, enabling CRTP and compile-time polymorphism.
     using FinalSpinorBasis = _FinalSpinorBasis;
 
-    // The type of transformation matrix that is naturally related to the derived spinor basis.
-    using TM = typename SpinorBasisTraits<FinalSpinorBasis>::TM;  // TODO: Rename to TransformationMatrix once the class is gone
+    // The type of transformation matrix that is naturally related to the final spinor basis.
+    using TM = typename BasisTransformableTraits<FinalSpinorBasis>::TM;  // TODO: Rename to TransformationMatrix once the class is gone
 
-    // The second-quantized representation of the overlap operator related to the derived spinor basis.
+    // The type of Jacobi rotation that is naturally related to the final spinor basis.
+    using JacobiRotationType = typename JacobiRotatableTraits<FinalSpinorBasis>::JacobiRotationType;
+
+    // The second-quantized representation of the overlap operator related to the final spinor basis.
     using SQOverlapOperator = typename SpinorBasisTraits<FinalSpinorBasis>::SQOverlapOperator;
 
 
@@ -145,52 +152,46 @@ public:
      *  MARK: Conforming to `BasisTransformable`
      */
 
+    /**
+     *  Apply the basis transformation and return the result.
+     * 
+     *  @param transformation_matrix        The type that encapsulates the basis transformation coefficients.
+     * 
+     *  @return The basis-transformed object.
+     */
+    FinalSpinorBasis transformed(const TM& transformation_matrix) const {
+
+        auto result = this->derived();
+        result.C.transform(transformation_matrix);
+        return result;
+    }
+
+    // Allow the `rotate` method from `BasisTransformable`, since there's also a `rotate` from `JacobiRotatable`.
+    using BasisTransformable<FinalSpinorBasis>::rotate;
+
+    // Allow the `rotated` method from `BasisTransformable`, since there's also a `rotated` from `JacobiRotatable`.
+    using BasisTransformable<FinalSpinorBasis>::rotated;
+
 
     /*
      *  MARK: Conforming to `JacobiRotatable`.
      */
 
     /**
-     *  Rotate the spinor basis to another one using the given unitary transformation matrix
-     * 
-     *  @param U            the unitary transformation matrix that transforms both the alpha- and beta components
-     */
-    void rotate(const TM& U) {
-
-        // Check if the given matrix is actually unitary
-        if (!U.isUnitary(1.0e-12)) {
-            throw std::invalid_argument("SimpleSpinorBasis::rotate(const TM&): The given transformation matrix is not unitary.");
-        }
-
-        this->transform(U);
-    }
-
-
-    /**
-     *  Rotate the spinor basis to another one using the unitary transformation matrix that corresponds to the given Jacobi rotation.
+     *  Apply the Jacobi rotation and return the result.
      * 
      *  @param jacobi_rotation          The Jacobi rotation.
      * 
-     *  @note This function is only available for real spinor bases because Jacobi rotation generate real rotations.
+     *  @return The Jacobi-rotated object.
      */
-    template <typename S = ExpansionScalar, typename = IsReal<S>>
-    void rotate(const JacobiRotation& jacobi_rotation) {
+    FinalSpinorBasis rotated(const JacobiRotationType& jacobi_rotation) const override {
 
-        const auto dim = this->simpleDimension();
-        const auto J = TM::FromJacobi(jacobi_rotation, dim);
-        this->rotate(J);
+        const auto J = TM::FromJacobi(jacobi_rotation, this->simpleDimension());
+        return this->rotated(J);
     }
 
-
-    /**
-     *  Transform the spinor basis another one using the given transformation matrix
-     * 
-     *  @param T            the transformation matrix that transforms both the alpha- and beta components
-     */
-    void transform(const TM& T) {
-
-        this->C.transform(T);
-    }
+    // Allow the `rotate` method from `JacobiRotatable`, since there's also a `rotate` from `BasisTransformable`.
+    using JacobiRotatable<FinalSpinorBasis>::rotate;
 };
 
 

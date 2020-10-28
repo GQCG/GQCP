@@ -227,16 +227,13 @@ public:
     static enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, LinearExpansion<Z>> FromONVProjection(const SpinResolvedONV& onv, const RSpinorBasis<double, GTOShell>& r_spinor_basis, const USpinorBasis<double, GTOShell>& u_spinor_basis) {
 
         // Determine the overlap matrices of the underlying scalar orbital bases, which is needed later on.
-        auto S = r_spinor_basis.overlap();                          // the overlap matrix of the restricted MOs/spin-orbitals
-        S.transform(r_spinor_basis.coefficientMatrix().inverse());  // now in AO basis
+        auto S_r = r_spinor_basis.overlap();                          // the overlap matrix of the restricted MOs/spin-orbitals
+        S_r.transform(r_spinor_basis.coefficientMatrix().inverse());  // now in AO basis
 
-        auto S_alpha = u_spinor_basis.overlap(Spin::alpha);                          // the overlap matrix of the alpha spin-orbitals
-        S_alpha.transform(u_spinor_basis.coefficientMatrix(Spin::alpha).inverse());  // now in AO basis
+        auto S_u = u_spinor_basis.overlap();                          // The overlap matrix of the unrestricted spin-orbitals.
+        S_u.transform(u_spinor_basis.coefficientMatrix().inverse());  // Now in AO basis.
 
-        auto S_beta = u_spinor_basis.overlap(Spin::beta);                          // the overlap matrix of the beta spin-orbitals
-        S_beta.transform(u_spinor_basis.coefficientMatrix(Spin::beta).inverse());  // now in AO basis
-
-        if (!(S.parameters().isApprox(S_alpha.parameters(), 1.0e-08)) || !(S.parameters().isApprox(S_beta.parameters(), 1.0e-08))) {
+        if (!(S_r.parameters().isApprox(S_u.alpha().parameters(), 1.0e-08)) || !(S_r.parameters().isApprox(S_u.beta().parameters(), 1.0e-08))) {
             throw std::invalid_argument("LinearExpansion::FromONVProjection(const SpinResolvedONV&, const RSpinorBasis<double, GTOShell>&, const USpinorBasis<double, GTOShell>&): The given spinor bases are not expressed using the same scalar orbital basis.");
         }
 
@@ -244,9 +241,7 @@ public:
         // Prepare some parameters.
         const auto& C_restricted = r_spinor_basis.coefficientMatrix();
 
-        const auto& C_alpha = u_spinor_basis.coefficientMatrix(Spin::alpha);
-        const auto& C_beta = u_spinor_basis.coefficientMatrix(Spin::beta);
-        const UTransformationMatrix<double> C_unrestricted {C_alpha, C_beta};
+        const auto C_unrestricted = u_spinor_basis.coefficientMatrix();
 
 
         // Set up the required spin-resolved ONV basis.
@@ -259,10 +254,10 @@ public:
         // Determine the coefficients through calculating the overlap between two ONVs.
         VectorX<double> coefficients = VectorX<double>::Zero(onv_basis.dimension());
 
-        onv_basis.forEach([&onv, &C_unrestricted, &C_restricted, &S, &coefficients, &onv_basis](const SpinUnresolvedONV& alpha_onv, const size_t I_alpha, const SpinUnresolvedONV& beta_onv, const size_t I_beta) {
+        onv_basis.forEach([&onv, &C_unrestricted, &C_restricted, &S_r, &coefficients, &onv_basis](const SpinUnresolvedONV& alpha_onv, const size_t I_alpha, const SpinUnresolvedONV& beta_onv, const size_t I_beta) {
             const SpinResolvedONV onv_on {alpha_onv, beta_onv};  // the spin-resolved ONV that should be projected 'on'
 
-            const auto coefficient = onv.calculateProjection(onv_on, C_unrestricted, C_restricted, S.parameters());
+            const auto coefficient = onv.calculateProjection(onv_on, C_unrestricted, C_restricted, S_r.parameters());
             const auto address = onv_basis.compoundAddress(I_alpha, I_beta);
 
             coefficients(address) = coefficient;

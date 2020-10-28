@@ -22,7 +22,7 @@
 #include "Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp"
 #include "Basis/Transformations/SpinResolvedBasisTransformable.hpp"
 #include "Basis/Transformations/SpinResolvedJacobiRotatable.hpp"
-#include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"
+#include "Operator/FirstQuantized/Operator.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/USQTwoElectronOperator.hpp"
 #include "QuantumChemical/SpinResolvedBase.hpp"
@@ -67,8 +67,8 @@ public:
      *  @param C                            The transformation that expresses the current spin-orbitals in terms of the underlying scalar basis.
      */
     USpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis, const UTransformationMatrix<ExpansionScalar>& C) :
-        SpinResolvedBase(USpinOrbitalBasisComponent<ExpansionScalar, Shell> {alpha_scalar_basis, C.alpha()},
-                         USpinOrbitalBasisComponent<ExpansionScalar, Shell> {beta_scalar_basis, C.beta()}) {
+        USpinorBasis(USpinOrbitalBasisComponent<ExpansionScalar, Shell> {alpha_scalar_basis, C.alpha()},
+                     USpinOrbitalBasisComponent<ExpansionScalar, Shell> {beta_scalar_basis, C.beta()}) {
 
         // Check if the dimensions of the given objects are compatible.
         if (C.alpha().numberOfOrbitals() != alpha_scalar_basis.numberOfBasisFunctions()) {
@@ -192,7 +192,7 @@ public:
      *  @return The transformation that expresses the current spin-orbitals in terms of the underlying scalar basis.
      */
     UTransformationMatrix<ExpansionScalar> coefficientMatrix() const {
-        return UTransformationMatrixComponent<ExpansionScalar> {this->alpha().coefficientMatrix(), this->beta().coefficientMatrix()};
+        return UTransformationMatrix<ExpansionScalar> {this->alpha().coefficientMatrix(), this->beta().coefficientMatrix()};
     }
 
 
@@ -253,7 +253,6 @@ public:
      *  MARK: Quantizing first-quantized operators
      */
 
-
     /**
      *  Quantize a one-electron operator in this unrestricted spin-orbital basis, i.e. express/project the one-electron operator in/onto this spin-orbital basis.
      * 
@@ -275,6 +274,14 @@ public:
 
         return ResultOperator {f_a, f_b};
     }
+
+
+    /**
+     *  Quantize the overlap operator in this spin-orbital basis.
+     * 
+     *  @return The second-quantized overlap operator.
+     */
+    ScalarUSQOneElectronOperator<ExpansionScalar> overlap() const { return this->quantize(Operator::Overlap()); }
 
 
     /**
@@ -349,7 +356,7 @@ template <typename _ExpansionScalar, typename _Shell>
 struct BasisTransformableTraits<USpinorBasis<_ExpansionScalar, _Shell>> {
 
     // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix". A transformation matrix should naturally be transformable with itself.
-    using TM = UTransformationMatrix<Scalar>;
+    using TM = UTransformationMatrix<_ExpansionScalar>;
 };
 
 

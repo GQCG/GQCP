@@ -197,26 +197,27 @@ public:
     /**
      *  Convert an unrestricted spinor basis into a generalized framework, yielding a generalized coefficient matrix that is spin-blocked out.
      * 
-     *  @param u_spinor_basis           the unrestricted spinor basis
+     *  @param u_spinor_basis           The unrestricted spinor basis.
      * 
-     *  @return the unrestricted spinor basis as a generalized one
+     *  @return The generalized spinor basis corresponding to the unrestricted spin-orbital basis.
+     * 
+     *  @note We assume that the unrestricted spin-orbital basis has equal underlying scalar bases for the alpha- and beta-spin-orbitals.
      */
     static GSpinorBasis<ExpansionScalar, Shell> FromUnrestricted(const USpinorBasis<ExpansionScalar, Shell>& u_spinor_basis) {
 
         // The goal in this named constructor is to build up the general coefficient matrix (2K x 2K) from the restricted (K x K) one.
-        const auto K = u_spinor_basis.numberOfSpinors(Spin::alpha);  // assume K_alpha == K_beta
-        const auto M = u_spinor_basis.numberOfSpinors();             // the total number of spinors, i.e. K_alpha + K_beta
-        const auto& C_alpha = u_spinor_basis.coefficientMatrix(Spin::alpha);
-        const auto& C_beta = u_spinor_basis.coefficientMatrix(Spin::beta);
+        const auto M = u_spinor_basis.numberOfSpinOrbitals();
+        const auto K = M / 2;
+        const auto C = u_spinor_basis.coefficientMatrix();
 
         TM C_general = TM::Zero(M);
 
         //      alpha |  0
         //        0   | beta
-        C_general.topLeftCorner(K, K) = C_alpha;
-        C_general.bottomRightCorner(K, K) = C_beta;
+        C_general.topLeftCorner(K, K) = C.alpha();
+        C_general.bottomRightCorner(K, K) = C.beta();
 
-        return GSpinorBasis<ExpansionScalar, Shell>(u_spinor_basis.scalarBasis(Spin::alpha), C_general);  // assume the alpha- and beta- scalar bases are equal
+        return GSpinorBasis<ExpansionScalar, Shell>(u_spinor_basis.alpha().scalarBasis(), C_general);  // Assume the alpha- and beta- scalar bases are equal.
     }
 
 
@@ -457,6 +458,36 @@ public:
 
     // The second-quantized representation of the overlap operator related to the derived spinor basis.
     using SQOverlapOperator = ScalarGSQOneElectronOperator<ExpansionScalar>;
+};
+
+
+/*
+ *  MARK: BasisTransformableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
+ */
+template <typename _ExpansionScalar, typename _Shell>
+struct BasisTransformableTraits<GSpinorBasis<_ExpansionScalar, _Shell>> {
+
+    // The type of transformation matrix that is naturally related to a `GSpinorBasis`.
+    using TM = GTransformationMatrix<_ExpansionScalar>;
+};
+
+
+/*
+ *  MARK: JacobiRotatableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
+ */
+template <typename _ExpansionScalar, typename _Shell>
+struct JacobiRotatableTraits<GSpinorBasis<_ExpansionScalar, _Shell>> {
+
+    // The type of Jacobi rotation that is naturally related to a `GSpinorBasis`.
+    using JacobiRotationType = JacobiRotation;
 };
 
 

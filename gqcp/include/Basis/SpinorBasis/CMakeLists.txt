@@ -7,6 +7,5 @@ target_sources(gqcp
         SimpleSpinorBasis.hpp
         SimpleSpinOrbitalBasis.hpp
         USpinorBasis.hpp
-        USpinOrbitalBasis.hpp
         USpinOrbitalBasisComponent.hpp
 )

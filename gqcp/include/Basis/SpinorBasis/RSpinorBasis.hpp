@@ -269,4 +269,34 @@ public:
 };
 
 
+/*
+ *  MARK: BasisTransformableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
+ */
+template <typename _ExpansionScalar, typename _Shell>
+struct BasisTransformableTraits<RSpinorBasis<_ExpansionScalar, _Shell>> {
+
+    // The type of transformation matrix that is naturally related to an `RSpinOrbitalBasis`.
+    using TM = RTransformationMatrix<_ExpansionScalar>;
+};
+
+
+/*
+ *  MARK: JacobiRotatableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
+ */
+template <typename _ExpansionScalar, typename _Shell>
+struct JacobiRotatableTraits<RSpinorBasis<_ExpansionScalar, _Shell>> {
+
+    // The type of Jacobi rotation that is naturally related to an `RSpinOrbitalBasis`.
+    using JacobiRotationType = JacobiRotation;
+};
+
+
 }  // namespace GQCP

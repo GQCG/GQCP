@@ -18,7 +18,8 @@
 #pragma once
 
 
-#include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
+#include "Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp"
+#include "Basis/Transformations/JacobiRotation.hpp"
 #include "Basis/Transformations/UTransformationMatrixComponent.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp"
 
@@ -34,7 +35,7 @@ namespace GQCP {
  */
 template <typename _ExpansionScalar, typename _Shell>
 class USpinOrbitalBasisComponent:
-    public SimpleSpinorBasis<_ExpansionScalar, USpinOrbitalBasisComponent<_ExpansionScalar, _Shell>> {
+    public SimpleSpinOrbitalBasis<_ExpansionScalar, _Shell, USpinOrbitalBasisComponent<_ExpansionScalar, _Shell>> {
 public:
     // The scalar type used to represent an expansion coefficient of the spinors in the underlying scalar orbitals: real or complex.
     using ExpansionScalar = _ExpansionScalar;
@@ -95,6 +96,36 @@ struct SpinorBasisTraits<USpinOrbitalBasisComponent<ExpansionScalar, Shell>> {
 
     // The second-quantized representation of the overlap operator related to a `USpinOrbitalBasisComponent`.
     using SQOverlapOperator = ScalarUSQOneElectronOperatorComponent<ExpansionScalar>;
+};
+
+
+/*
+ *  MARK: BasisTransformableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
+ */
+template <typename _ExpansionScalar, typename _Shell>
+struct BasisTransformableTraits<USpinOrbitalBasisComponent<_ExpansionScalar, _Shell>> {
+
+    // The type of transformation matrix that is naturally related to a `USpinOrbitalBasisComponent`.
+    using TM = UTransformationMatrixComponent<_ExpansionScalar>;
+};
+
+
+/*
+ *  MARK: JacobiRotatableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
+ */
+template <typename _ExpansionScalar, typename _Shell>
+struct JacobiRotatableTraits<USpinOrbitalBasisComponent<_ExpansionScalar, _Shell>> {
+
+    // The type of Jacobi rotation that is naturally related to a `USpinOrbitalBasisComponent`.
+    using JacobiRotationType = JacobiRotation;
 };
 
 
