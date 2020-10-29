@@ -48,6 +48,35 @@ public:
 
     // Inherit SimpleTransformationMatrix' constructors.
     using SimpleTransformationMatrix<Scalar, GTransformationMatrix<Scalar>>::SimpleTransformationMatrix;
+
+
+    /*
+     *  MARK: Components
+     */
+
+    // /**
+    //  *  @return The part of the general transformation that describes the alpha spinors.
+    //  */
+    // MatrixX<Scalar> alpha() const {
+
+    // }
+
+
+    // /**
+    //  *  @return The part of the general transformation that describes the beta spinors.
+    //  */
+    // MatrixX<Scalar> beta() const {
+
+    // }
+
+    // /**
+    //  *  @param sigma            Alpha or beta.
+    //  *
+    //  *  @return The part of the general transformation that describes the spinors of the requested component.
+    //  */
+    // MatrixX<Scalar> component(const Spin sigma) const {
+
+    // }
 };
 
 
