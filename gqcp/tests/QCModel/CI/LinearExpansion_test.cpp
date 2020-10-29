@@ -246,28 +246,28 @@ BOOST_AUTO_TEST_CASE(calculate1DM_SpinUnresolved) {
     // Set up an example linear expansion.
     const size_t M = 3;
     const size_t N = 1;
-    const GQCP::SpinUnresolvedONVBasis onv_basis_SUR {M, N};
+    const GQCP::SpinUnresolvedONVBasis onv_basis_SU {M, N};
 
-    GQCP::VectorX<double> coefficients {onv_basis_SUR.dimension()};
+    GQCP::VectorX<double> coefficients {onv_basis_SU.dimension()};
     coefficients << 1, 2, -3;
 
-    const GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis> linear_expansion_SUR {onv_basis_SUR, coefficients};
+    const GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis> linear_expansion_SU {onv_basis_SU, coefficients};
 
 
     // Check some 1-DM values with calculateNDMElement().
-    const auto D_SUR = linear_expansion_SUR.calculate1DM();
-    BOOST_CHECK(std::abs(linear_expansion_SUR.calculateNDMElement({0}, {0}) - D_SUR(0, 0)) < 1.0e-12);  // D(0,0) : a^\dagger_0 a_0
-    BOOST_CHECK(std::abs(linear_expansion_SUR.calculateNDMElement({0}, {1}) - D_SUR(0, 1)) < 1.0e-12);  // D(0,1) : a^\dagger_0 a_1
-    BOOST_CHECK(std::abs(linear_expansion_SUR.calculateNDMElement({2}, {1}) - D_SUR(2, 1)) < 1.0e-12);  // D(2,1) : a^\dagger_2 a_1
+    const auto D_SU = linear_expansion_SU.calculate1DM();
+    BOOST_CHECK(std::abs(linear_expansion_SU.calculateNDMElement({0}, {0}) - D_SU(0, 0)) < 1.0e-12);  // D(0,0) : a^\dagger_0 a_0
+    BOOST_CHECK(std::abs(linear_expansion_SU.calculateNDMElement({0}, {1}) - D_SU(0, 1)) < 1.0e-12);  // D(0,1) : a^\dagger_0 a_1
+    BOOST_CHECK(std::abs(linear_expansion_SU.calculateNDMElement({2}, {1}) - D_SU(2, 1)) < 1.0e-12);  // D(2,1) : a^\dagger_2 a_1
 
     // Check with a reference SpinResolved 1-DM.
     const GQCP::SpinResolvedONVBasis onv_basis_SR {M, N, 0};
     const GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis> linear_expansion_SR {onv_basis_SR, coefficients};
 
     const auto D_SR = linear_expansion_SR.calculate1DM();
-    BOOST_CHECK(std::abs(D_SUR(0, 0) - D_SR(0, 0)) < 1.0e-12);  // D(0,0) : a^\dagger_0 a_0
-    BOOST_CHECK(std::abs(D_SUR(0, 1) - D_SR(0, 1)) < 1.0e-12);  // D(0,1) : a^\dagger_0 a_1
-    BOOST_CHECK(std::abs(D_SUR(2, 1) - D_SR(2, 1)) < 1.0e-12);  // D(2,1) : a^\dagger_2 a_1
+    BOOST_CHECK(std::abs(D_SU(0, 0) - D_SR(0, 0)) < 1.0e-12);  // D(0,0) : a^\dagger_0 a_0
+    BOOST_CHECK(std::abs(D_SU(0, 1) - D_SR(0, 1)) < 1.0e-12);  // D(0,1) : a^\dagger_0 a_1
+    BOOST_CHECK(std::abs(D_SU(2, 1) - D_SR(2, 1)) < 1.0e-12);  // D(2,1) : a^\dagger_2 a_1
 }
 
 
