@@ -17,7 +17,7 @@
 
 #include "QCMethod/Applications/AtomicDecompositionParameters.hpp"
 
-#include "Basis/SpinorBasis/RSpinorBasis.hpp"
+#include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 
 
@@ -69,7 +69,7 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
         throw std::invalid_argument("AtomicDecompositionParameters::Nuclear(Molecule, std::string): Only available for diatomic molecules");
     }
 
-    const RSpinorBasis<double, GTOShell> spinor_basis {molecule, basisset_name};
+    const RSpinOrbitalBasis<double, GTOShell> spinor_basis {molecule, basisset_name};
     const auto K = spinor_basis.numberOfSpatialOrbitals();
 
 
@@ -77,8 +77,8 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
     const NuclearFramework nuclear_framework_a {{atoms[0]}};
     const NuclearFramework nuclear_framework_b {{atoms[1]}};
 
-    RSpinorBasis<double, GTOShell> spinor_basis_a {nuclear_framework_a, basisset_name};  // in non-orthogonal AO basis
-    RSpinorBasis<double, GTOShell> spinor_basis_b {nuclear_framework_b, basisset_name};  // in non-orthogonal AO basis
+    RSpinOrbitalBasis<double, GTOShell> spinor_basis_a {nuclear_framework_a, basisset_name};  // in non-orthogonal AO basis
+    RSpinOrbitalBasis<double, GTOShell> spinor_basis_b {nuclear_framework_b, basisset_name};  // in non-orthogonal AO basis
 
     const auto K_a = spinor_basis_a.numberOfSpatialOrbitals();
     const auto K_b = spinor_basis_b.numberOfSpatialOrbitals();
@@ -128,7 +128,7 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
     g_ba.contractWithMatrix<double>(p_b, 0);
     g_ba.contractWithMatrix<double>(p_a, 2);
 
-    QCRankFourTensor<double> g_abba = g_ab.Eigen() + g_ba.Eigen();
+    SquareRankFourTensor<double> g_abba = g_ab.Eigen() + g_ba.Eigen();
 
     RSQHamiltonian<double> HAA {ScalarRSQOneElectronOperator<double>(h_a), ScalarRSQTwoElectronOperator<double>(g_a)};
     RSQHamiltonian<double> HBB {ScalarRSQOneElectronOperator<double>(h_b), ScalarRSQTwoElectronOperator<double>(g_b)};

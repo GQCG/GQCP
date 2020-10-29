@@ -20,6 +20,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Mathematical/Representation/SquareMatrix.hpp"
+#include "Utilities/literals.hpp"
 
 
 /**
@@ -232,4 +233,38 @@ BOOST_AUTO_TEST_CASE(noPivotLUDecompose) {
 
     BOOST_CHECK(U2.isApprox(U_ref2, 1.0e-5));
     BOOST_CHECK(L2.isApprox(L_ref2, 1.0e-5));
+}
+
+
+/*
+ *  Check if `selfAdjoint` works as expected.
+ */
+BOOST_AUTO_TEST_CASE(selfAdjoint) {
+
+    // Set up a test self-adjoint matrix.
+    GQCP::SquareMatrix<double> H1 {2};
+    // clang-format off
+    H1 <<  1.0, -3.0,
+          -3.0,  2.0;
+    // clang-format on
+    BOOST_CHECK(H1.isSelfAdjoint());
+
+
+    // Set up another test self-adjoint matrix, this time with complex values.
+    using namespace GQCP::literals;
+    GQCP::SquareMatrix<GQCP::complex> H2 {2};
+    // clang-format off
+    H2 <<  1.0, -3.0_ii,
+           3.0_ii,  2.0;
+    // clang-format on
+    BOOST_CHECK(H2.isSelfAdjoint());
+
+
+    // Set up a test non-self-adjoint matrix.
+    GQCP::SquareMatrix<GQCP::complex> H_not {2};
+    // clang-format off
+    H_not <<  1.0_ii, -3.0_ii,
+              3.0_ii,  2.0;
+    // clang-format on
+    BOOST_CHECK(!H_not.isSelfAdjoint());  // Not self-adjoint because there's a complex value on the diagonal.
 }

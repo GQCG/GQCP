@@ -22,6 +22,7 @@
 #include "ONVBasis/BaseONVBasis.hpp"
 #include "ONVBasis/ONVManipulator.hpp"
 #include "ONVBasis/ONVPath.hpp"
+#include "ONVBasis/SpinUnresolvedONV.hpp"
 
 #include <functional>
 
@@ -249,121 +250,56 @@ public:
      *  @param evaluation_iterator           evaluation iterator to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
-    template <typename _Matrix>
-    void evaluate(const ScalarGSQOneElectronOperator<double>& one_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    // template <typename _Matrix>
+    // void evaluate(const ScalarGSQOneElectronOperator<double>& one_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
 
-        const auto& one_op_par = one_op.parameters();
+    //     const auto& one_op_par = one_op.parameters();
 
-        const size_t K = this->numberOfOrbitals();
-        const size_t N = this->numberOfElectrons();
-        const size_t dim = this->dimension();
+    //     const size_t K = this->numberOfOrbitals();
+    //     const size_t N = this->numberOfElectrons();
+    //     const size_t dim = this->dimension();
 
-        SpinUnresolvedONV onv = this->constructONVFromAddress(0);  // onv with address 0
+    //     SpinUnresolvedONV onv = this->constructONVFromAddress(0);  // onv with address 0
 
-        for (; !evaluation_iterator.isFinished(); evaluation_iterator.increment()) {  // I loops over all the addresses of the onv
-            for (size_t e1 = 0; e1 < N; e1++) {                                       // e1 (electron 1) loops over the (number of) electrons
+    //     for (; !evaluation_iterator.isFinished(); evaluation_iterator.increment()) {  // I loops over all the addresses of the onv
+    //         for (size_t e1 = 0; e1 < N; e1++) {                                       // e1 (electron 1) loops over the (number of) electrons
 
-                size_t p = onv.occupationIndexOf(e1);  // retrieve the index of a given electron
-                // remove the weight from the initial address I, because we annihilate
-                size_t address = evaluation_iterator.index - this->vertexWeight(p, e1 + 1);
+    //             size_t p = onv.occupationIndexOf(e1);  // retrieve the index of a given electron
+    //             // remove the weight from the initial address I, because we annihilate
+    //             size_t address = evaluation_iterator.index - this->vertexWeight(p, e1 + 1);
 
-                if (diagonal_values) {
-                    evaluation_iterator.addRowwise(evaluation_iterator.index, one_op_par(p, p));
-                }
+    //             if (diagonal_values) {
+    //                 evaluation_iterator.addRowwise(evaluation_iterator.index, one_op_par(p, p));
+    //             }
 
-                // The e2 iteration counts the number of encountered electrons for the creation operator
-                // We only consider greater addresses than the initial one (because of symmetry)
-                // Hence we only count electron after the annihilated electron (e1)
-                size_t e2 = e1 + 1;
-                size_t q = p + 1;
+    //             // The e2 iteration counts the number of encountered electrons for the creation operator
+    //             // We only consider greater addresses than the initial one (because of symmetry)
+    //             // Hence we only count electron after the annihilated electron (e1)
+    //             size_t e2 = e1 + 1;
+    //             size_t q = p + 1;
 
-                int sign_e2 = 1;
-                // perform a shift
-                this->shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
+    //             int sign_e2 = 1;
+    //             // perform a shift
+    //             this->shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
 
-                while (q < K) {
-                    size_t J = address + this->vertexWeight(q, e2);
-                    double value = sign_e2 * one_op_par(p, q);
-                    evaluation_iterator.addColumnwise(J, value);
-                    evaluation_iterator.addRowwise(J, value);
+    //             while (q < K) {
+    //                 size_t J = address + this->vertexWeight(q, e2);
+    //                 double value = sign_e2 * one_op_par(p, q);
+    //                 evaluation_iterator.addColumnwise(J, value);
+    //                 evaluation_iterator.addRowwise(J, value);
 
-                    q++;  // go to the next orbital
+    //                 q++;  // go to the next orbital
 
-                    // perform a shift
-                    this->shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
-                }  //  (creation)
-            }      // e1 loop (annihilation)
-            // Prevent last permutation
-            if (evaluation_iterator.index < dim - 1) {
-                this->transformONVToNextPermutation(onv);
-            }
-        }
-    }
-
-    /**
-     *  Evaluate a one-electron operator in this spin-unresolved ONV basis.
-     * 
-     *  @tparam Representation              The matrix representation that is used for storing the result. Essentially, any type that can be used in MatrixRepresentationEvaluationContainer<Representation>.
-     * 
-     *  @param one_op                       A one-electron operator in an orthonormal orbital basis.
-     *  @param should_calculate_diagonal    If diagonal values should be calculated.
-     * 
-     *  @return The matrix representation of the given one-electron operator.
-     */
-    template <typename Representation>
-    Representation evaluate(const ScalarGSQOneElectronOperator<double>& one_op, const bool diagonal_values) const {
-
-        const auto& one_op_par = one_op.parameters();
-
-        const auto dim = this->dimension();
-        MatrixRepresentationEvaluationContainer<Representation> ONV_iterator {dim};
-
-        SpinUnresolvedONV onv = this->constructONVFromAddress(0);  // start with ONV with address 0
-
-        for (; !ONV_iterator.isFinished(); ONV_iterator.increment()) {  // loops over all possible ONVs
-            for (size_t e1 = 0; e1 < N; e1++) {                         // loop over electrons that can be annihilated
-
-                // Create an ONVPath for each new ONV.
-                ONVPath<SpinUnresolvedONVBasis> onv_path {*this, onv};
-
-                size_t q = onv.occupationIndexOf(e1);  // retrieve orbital index of the electron that will be annihilated
-
-                // The diagonal values are a result of annihilation-creation on the same orbital index and are thus the same as the initial ONV.
-                if (diagonal_values) {
-                    ONV_iterator.addRowwise(ONV_iterator.index, one_op_par(q, q));
-                }
-
-                // For the non-diagonal values, we will create all possible matrix elements of the Hamiltonian in the routine below.
-                onv_path.annihilate(q, e1);
-
-                // Stop the loop if 1) the path is finished, meaning that orbital index p is at M (the total number of orbitals) and 2) if the orbital index is out of bounds after left translation of a vertical arc.
-                while (!onv_path.isFinished() && onv_path.isOrbitalIndexValid()) {
-
-                    // Find the next unoccupied orbital, i.e. the next vertical arc in the path.
-                    onv_path.leftTranslateDiagonalArcUntilVerticalArc();
-
-                    // Calculate the address of the path if we would close it right now.
-                    const size_t address = onv_path.addressAfterCreation();
-
-                    const double value = onv_path.sign() * one_op_par(onv_path.orbitalIndex(), q);
-
-                    // Add the one-electron integral as matrix elements of a Hermitian matrix.
-                    ONV_iterator.addColumnwise(address, value);
-                    ONV_iterator.addRowwise(address, value);
-
-                    // Move orbital index such that other unoccupied orbitals can be found within the loop.
-                    onv_path.leftTranslateVerticalArc();
-                }
-            }
-            // Prevent last ONV since there is no possibility for an electron to be annihilated anymore.
-            if (ONV_iterator.index < dim - 1) {
-                this->transformONVToNextPermutation(onv);
-            }
-        }
-
-        return ONV_iterator.evaluation();
-    }
-
+    //                 // perform a shift
+    //                 this->shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
+    //             }  //  (creation)
+    //         }      // e1 loop (annihilation)
+    //         // Prevent last permutation
+    //         if (evaluation_iterator.index < dim - 1) {
+    //             this->transformONVToNextPermutation(onv);
+    //         }
+    //     }
+    // }
 
     /**
      *  Evaluate a one-electron operator in this spin-unresolved ONV basis.
@@ -375,59 +311,124 @@ public:
      * 
      *  @return The matrix representation of the given one-electron operator.
      */
-    template <typename Representation>
-    Representation evaluate_old(const ScalarGSQOneElectronOperator<double>& one_op, const bool diagonal_values) const {
+    // template <typename Representation>
+    // Representation evaluate(const ScalarGSQOneElectronOperator<double>& one_op, const bool diagonal_values) const {
 
-        const auto& one_op_par = one_op.parameters();
+    //     const auto& one_op_par = one_op.parameters();
 
-        MatrixRepresentationEvaluationContainer<Representation> evaluation_iterator {this->dimension()};
+    //     const auto dim = this->dimension();
+    //     MatrixRepresentationEvaluationContainer<Representation> ONV_iterator {dim};
 
-        const size_t K = this->numberOfOrbitals();
-        const size_t N = this->numberOfElectrons();
-        const size_t dim = this->dimension();
+    //     SpinUnresolvedONV onv = this->constructONVFromAddress(0);  // start with ONV with address 0
 
-        SpinUnresolvedONV onv = this->constructONVFromAddress(0);  // onv with address 0
+    //     for (; !ONV_iterator.isFinished(); ONV_iterator.increment()) {  // loops over all possible ONVs
+    //         for (size_t e1 = 0; e1 < N; e1++) {                         // loop over electrons that can be annihilated
 
-        for (; !evaluation_iterator.isFinished(); evaluation_iterator.increment()) {  // I loops over all the addresses of the onv
-            for (size_t e1 = 0; e1 < N; e1++) {                                       // e1 (electron 1) loops over the (number of) electrons
+    //             // Create an ONVPath for each new ONV.
+    //             ONVPath<SpinUnresolvedONVBasis> onv_path {*this, onv};
 
-                size_t p = onv.occupationIndexOf(e1);  // retrieve the index of a given electron
-                // remove the weight from the initial address I, because we annihilate
-                size_t address = evaluation_iterator.index - this->vertexWeight(p, e1 + 1);
+    //             size_t q = onv.occupationIndexOf(e1);  // retrieve orbital index of the electron that will be annihilated
 
-                if (diagonal_values) {
-                    evaluation_iterator.addRowwise(evaluation_iterator.index, one_op_par(p, p));
-                }
+    //             // The diagonal values are a result of annihilation-creation on the same orbital index and are thus the same as the initial ONV.
+    //             if (diagonal_values) {
+    //                 ONV_iterator.addRowwise(ONV_iterator.index, one_op_par(q, q));
+    //             }
 
-                // The e2 iteration counts the number of encountered electrons for the creation operator
-                // We only consider greater addresses than the initial one (because of symmetry)
-                // Hence we only count electron after the annihilated electron (e1)
-                size_t e2 = e1 + 1;
-                size_t q = p + 1;
+    //             // For the non-diagonal values, we will create all possible matrix elements of the Hamiltonian in the routine below.
+    //             onv_path.annihilate(q, e1);
 
-                int sign_e2 = 1;
-                // perform a shift
-                this->shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
+    //             // Stop the loop if 1) the path is finished, meaning that orbital index p is at M (the total number of orbitals) and 2) if the orbital index is out of bounds after left translation of a vertical arc.
+    //             while (!onv_path.isFinished() && onv_path.isOrbitalIndexValid()) {
 
-                while (q < K) {
-                    size_t J = address + this->vertexWeight(q, e2);
-                    double value = sign_e2 * one_op_par(p, q);
-                    evaluation_iterator.addColumnwise(J, value);
-                    evaluation_iterator.addRowwise(J, value);
+    //                 // Find the next unoccupied orbital, i.e. the next vertical arc in the path.
+    //                 onv_path.leftTranslateDiagonalArcUntilVerticalArc();
 
-                    q++;  // go to the next orbital
+    //                 // Calculate the address of the path if we would close it right now.
+    //                 const size_t address = onv_path.addressAfterCreation();
 
-                    // perform a shift
-                    this->shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
-                }  //  (creation)
-            }      // e1 loop (annihilation)
-            // Prevent last permutation
-            if (evaluation_iterator.index < dim - 1) {
-                this->transformONVToNextPermutation(onv);
-            }
-        }
-        return evaluation_iterator.evaluation();
-    }
+    //                 const double value = onv_path.sign() * one_op_par(onv_path.orbitalIndex(), q);
+
+    //                 // Add the one-electron integral as matrix elements of a Hermitian matrix.
+    //                 ONV_iterator.addColumnwise(address, value);
+    //                 ONV_iterator.addRowwise(address, value);
+
+    //                 // Move orbital index such that other unoccupied orbitals can be found within the loop.
+    //                 onv_path.leftTranslateVerticalArc();
+    //             }
+    //         }
+    //         // Prevent last ONV since there is no possibility for an electron to be annihilated anymore.
+    //         if (ONV_iterator.index < dim - 1) {
+    //             this->transformONVToNextPermutation(onv);
+    //         }
+    //     }
+
+    //     return ONV_iterator.evaluation();
+    // }
+
+
+    /**
+     *  Evaluate a one-electron operator in this spin-unresolved ONV basis.
+     * 
+     *  @tparam Representation              The matrix representation that is used for storing the result. Essentially, any type that can be used in MatrixRepresentationEvaluationContainer<Representation>.
+     * 
+     *  @param one_op                       A one-electron operator in an orthonormal orbital basis.
+     *  @param should_calculate_diagonal    If diagonal values should be calculated.
+     * 
+     *  @return The matrix representation of the given one-electron operator.
+     */
+    // template <typename Representation>
+    // Representation evaluate_old(const ScalarGSQOneElectronOperator<double>& one_op, const bool diagonal_values) const {
+
+    //     const auto& one_op_par = one_op.parameters();
+
+    //     MatrixRepresentationEvaluationContainer<Representation> evaluation_iterator {this->dimension()};
+
+    //     const size_t K = this->numberOfOrbitals();
+    //     const size_t N = this->numberOfElectrons();
+    //     const size_t dim = this->dimension();
+
+    //     SpinUnresolvedONV onv = this->constructONVFromAddress(0);  // onv with address 0
+
+    //     for (; !evaluation_iterator.isFinished(); evaluation_iterator.increment()) {  // I loops over all the addresses of the onv
+    //         for (size_t e1 = 0; e1 < N; e1++) {                                       // e1 (electron 1) loops over the (number of) electrons
+
+    //             size_t p = onv.occupationIndexOf(e1);  // retrieve the index of a given electron
+    //             // remove the weight from the initial address I, because we annihilate
+    //             size_t address = evaluation_iterator.index - this->vertexWeight(p, e1 + 1);
+
+    //             if (diagonal_values) {
+    //                 evaluation_iterator.addRowwise(evaluation_iterator.index, one_op_par(p, p));
+    //             }
+
+    //             // The e2 iteration counts the number of encountered electrons for the creation operator
+    //             // We only consider greater addresses than the initial one (because of symmetry)
+    //             // Hence we only count electron after the annihilated electron (e1)
+    //             size_t e2 = e1 + 1;
+    //             size_t q = p + 1;
+
+    //             int sign_e2 = 1;
+    //             // perform a shift
+    //             this->shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
+
+    //             while (q < K) {
+    //                 size_t J = address + this->vertexWeight(q, e2);
+    //                 double value = sign_e2 * one_op_par(p, q);
+    //                 evaluation_iterator.addColumnwise(J, value);
+    //                 evaluation_iterator.addRowwise(J, value);
+
+    //                 q++;  // go to the next orbital
+
+    //                 // perform a shift
+    //                 this->shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
+    //             }  //  (creation)
+    //         }      // e1 loop (annihilation)
+    //         // Prevent last permutation
+    //         if (evaluation_iterator.index < dim - 1) {
+    //             this->transformONVToNextPermutation(onv);
+    //         }
+    //     }
+    //     return evaluation_iterator.evaluation();
+    // }
 
 
     /**
@@ -439,12 +440,12 @@ public:
      *  @param evaluation_iterator           evaluation iterator to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
-    template <typename _Matrix>
-    void evaluate(const ScalarGSQTwoElectronOperator<double>& two_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    // template <typename _Matrix>
+    // void evaluate(const ScalarGSQTwoElectronOperator<double>& two_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
 
-        // Calling this combined method for both the one- and two-electron operator does not affect the performance, hence we avoid writing more code by plugging a zero operator in the combined method
-        evaluate(ScalarGSQOneElectronOperator<double> {this->M}, two_op, evaluation_iterator, diagonal_values);
-    }
+    //     // Calling this combined method for both the one- and two-electron operator does not affect the performance, hence we avoid writing more code by plugging a zero operator in the combined method
+    //     evaluate(ScalarGSQOneElectronOperator<double> {this->M}, two_op, evaluation_iterator, diagonal_values);
+    // }
 
 
     /**
@@ -457,189 +458,189 @@ public:
      *  @param evaluation_iterator           evaluation iterator to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
-    template <typename _Matrix>
-    void evaluate(const ScalarGSQOneElectronOperator<double>& one_op, const ScalarGSQTwoElectronOperator<double>& two_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    // template <typename _Matrix>
+    // void evaluate(const ScalarGSQOneElectronOperator<double>& one_op, const ScalarGSQTwoElectronOperator<double>& two_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
 
-        const auto& two_op_par = two_op.parameters();
+    //     const auto& two_op_par = two_op.parameters();
 
-        const size_t K = this->numberOfOrbitals();
-        const size_t N = this->numberOfElectrons();
-        const size_t dim = this->dimension();
+    //     const size_t K = this->numberOfOrbitals();
+    //     const size_t N = this->numberOfElectrons();
+    //     const size_t dim = this->dimension();
 
-        ScalarGSQOneElectronOperator<double> k = two_op.effectiveOneElectronPartition() + one_op;
-        const auto& k_par = k.parameters();
+    //     ScalarGSQOneElectronOperator<double> k = two_op.effectiveOneElectronPartition() + one_op;
+    //     const auto& k_par = k.parameters();
 
-        SpinUnresolvedONV onv = this->constructONVFromAddress(0);  // onv with address 0
+    //     SpinUnresolvedONV onv = this->constructONVFromAddress(0);  // onv with address 0
 
-        for (; !evaluation_iterator.isFinished(); evaluation_iterator.increment()) {  // I loops over all addresses in the spin-unresolved ONV basis
-            if (evaluation_iterator.index > 0) {
-                this->transformONVToNextPermutation(onv);
-            }
-            int sign1 = -1;                      // start with -1 because we flip at the start of the annihilation (so we start at 1, followed by:  -1, 1, ...)
-            for (size_t e1 = 0; e1 < N; e1++) {  // A1 (annihilation 1)
+    //     for (; !evaluation_iterator.isFinished(); evaluation_iterator.increment()) {  // I loops over all addresses in the spin-unresolved ONV basis
+    //         if (evaluation_iterator.index > 0) {
+    //             this->transformONVToNextPermutation(onv);
+    //         }
+    //         int sign1 = -1;                      // start with -1 because we flip at the start of the annihilation (so we start at 1, followed by:  -1, 1, ...)
+    //         for (size_t e1 = 0; e1 < N; e1++) {  // A1 (annihilation 1)
 
-                sign1 *= -1;
-                size_t p = onv.occupationIndexOf(e1);  // retrieve the index of a given electron
-                size_t address = evaluation_iterator.index - this->vertexWeight(p, e1 + 1);
+    //             sign1 *= -1;
+    //             size_t p = onv.occupationIndexOf(e1);  // retrieve the index of a given electron
+    //             size_t address = evaluation_iterator.index - this->vertexWeight(p, e1 + 1);
 
-                // Strictly diagonal values
-                if (diagonal_values) {
-                    evaluation_iterator.addRowwise(evaluation_iterator.index, k_par(p, p));
-                    for (size_t q = 0; q < K; q++) {  // q loops over SOs
-                        if (onv.isOccupied(q)) {
-                            evaluation_iterator.addRowwise(evaluation_iterator.index, 0.5 * two_op_par(p, p, q, q));
-                        } else {
-                            evaluation_iterator.addRowwise(evaluation_iterator.index, 0.5 * two_op_par(p, q, q, p));
-                        }
-                    }
-                }
+    //             // Strictly diagonal values
+    //             if (diagonal_values) {
+    //                 evaluation_iterator.addRowwise(evaluation_iterator.index, k_par(p, p));
+    //                 for (size_t q = 0; q < K; q++) {  // q loops over SOs
+    //                     if (onv.isOccupied(q)) {
+    //                         evaluation_iterator.addRowwise(evaluation_iterator.index, 0.5 * two_op_par(p, p, q, q));
+    //                     } else {
+    //                         evaluation_iterator.addRowwise(evaluation_iterator.index, 0.5 * two_op_par(p, q, q, p));
+    //                     }
+    //                 }
+    //             }
 
-                size_t address1 = address;
-                size_t e2 = e1;
-                size_t q = p;
+    //             size_t address1 = address;
+    //             size_t e2 = e1;
+    //             size_t q = p;
 
-                /**
-                 *  A1 > C1 (annihlation 1 > creation 1)
-                 */
-                int sign2 = sign1;
-                q--;
-                e2--;
-                this->shiftUntilPreviousUnoccupiedOrbital<1>(onv, address1, q, e2, sign2);
-                while (q != -1) {
+    //             /**
+    //              *  A1 > C1 (annihlation 1 > creation 1)
+    //              */
+    //             int sign2 = sign1;
+    //             q--;
+    //             e2--;
+    //             this->shiftUntilPreviousUnoccupiedOrbital<1>(onv, address1, q, e2, sign2);
+    //             while (q != -1) {
 
-                    size_t address2 = address1 + this->vertexWeight(q, e2 + 2);
+    //                 size_t address2 = address1 + this->vertexWeight(q, e2 + 2);
 
-                    /**
-                     *  C2 > A2
-                     */
-                    int sign3 = sign1;
-                    for (size_t e3 = e1 + 1; e3 < N; e3++) {
-                        sign3 *= -1;  // initial sign3 = sign of the annihilation, with one extra electron(from crea) = *-1
-                        size_t r = onv.occupationIndexOf(e3);
-                        size_t address3 = address2 - this->vertexWeight(r, e3 + 1);
+    //                 /**
+    //                  *  C2 > A2
+    //                  */
+    //                 int sign3 = sign1;
+    //                 for (size_t e3 = e1 + 1; e3 < N; e3++) {
+    //                     sign3 *= -1;  // initial sign3 = sign of the annihilation, with one extra electron(from crea) = *-1
+    //                     size_t r = onv.occupationIndexOf(e3);
+    //                     size_t address3 = address2 - this->vertexWeight(r, e3 + 1);
 
-                        size_t e4 = e3 + 1;
-                        size_t s = r + 1;
+    //                     size_t e4 = e3 + 1;
+    //                     size_t s = r + 1;
 
-                        int sign4 = sign3;
-                        this->shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign4);
+    //                     int sign4 = sign3;
+    //                     this->shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign4);
 
-                        while (s < K) {
-                            size_t J = address3 + this->vertexWeight(s, e4);
-                            int signev = sign1 * sign2 * sign3 * sign4;
-                            double value = signev * 0.5 * (two_op_par(p, q, r, s) + two_op_par(r, s, p, q) - two_op_par(p, s, r, q) - two_op_par(r, q, p, s));
+    //                     while (s < K) {
+    //                         size_t J = address3 + this->vertexWeight(s, e4);
+    //                         int signev = sign1 * sign2 * sign3 * sign4;
+    //                         double value = signev * 0.5 * (two_op_par(p, q, r, s) + two_op_par(r, s, p, q) - two_op_par(p, s, r, q) - two_op_par(r, q, p, s));
 
 
-                            evaluation_iterator.addColumnwise(J, value);
-                            evaluation_iterator.addRowwise(J, value);
+    //                         evaluation_iterator.addColumnwise(J, value);
+    //                         evaluation_iterator.addRowwise(J, value);
 
-                            s++;
-                            this->shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign4);
-                        }
-                    }
-                    q--;
-                    this->shiftUntilPreviousUnoccupiedOrbital<1>(onv, address1, q, e2, sign2);
-                }
+    //                         s++;
+    //                         this->shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign4);
+    //                     }
+    //                 }
+    //                 q--;
+    //                 this->shiftUntilPreviousUnoccupiedOrbital<1>(onv, address1, q, e2, sign2);
+    //             }
 
-                e2 = e1 + 1;
-                q = p + 1;
-                sign2 = sign1;
-                this->shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign2);
+    //             e2 = e1 + 1;
+    //             q = p + 1;
+    //             sign2 = sign1;
+    //             this->shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign2);
 
-                /**
-                 *  A1 < C1
-                 */
-                while (q < K) {
+    //             /**
+    //              *  A1 < C1
+    //              */
+    //             while (q < K) {
 
-                    address1 = address + this->vertexWeight(q, e2);
+    //                 address1 = address + this->vertexWeight(q, e2);
 
-                    /**
-                     *  A2 > C1
-                     */
-                    int sign3 = sign2;
-                    for (size_t e3 = e2; e3 < N; e3++) {
-                        sign3 *= -1;  // -1 cause we created electron (creation) sign of A is now the that of C *-1
-                        size_t r = onv.occupationIndexOf(e3);
-                        size_t address3 = address1 - this->vertexWeight(r, e3 + 1);
+    //                 /**
+    //                  *  A2 > C1
+    //                  */
+    //                 int sign3 = sign2;
+    //                 for (size_t e3 = e2; e3 < N; e3++) {
+    //                     sign3 *= -1;  // -1 cause we created electron (creation) sign of A is now the that of C *-1
+    //                     size_t r = onv.occupationIndexOf(e3);
+    //                     size_t address3 = address1 - this->vertexWeight(r, e3 + 1);
 
-                        size_t e4 = e3 + 1;
-                        size_t s = r + 1;
-                        int sign4 = sign3;
-                        this->shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign4);
+    //                     size_t e4 = e3 + 1;
+    //                     size_t s = r + 1;
+    //                     int sign4 = sign3;
+    //                     this->shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign4);
 
-                        while (s < K) {
-                            size_t J = address3 + this->vertexWeight(s, e4);
-                            int signev = sign1 * sign2 * sign3 * sign4;
+    //                     while (s < K) {
+    //                         size_t J = address3 + this->vertexWeight(s, e4);
+    //                         int signev = sign1 * sign2 * sign3 * sign4;
 
-                            double value = signev * 0.5 * (two_op_par(p, q, r, s) + two_op_par(r, s, p, q) - two_op_par(r, q, p, s) - two_op_par(p, s, r, q));
+    //                         double value = signev * 0.5 * (two_op_par(p, q, r, s) + two_op_par(r, s, p, q) - two_op_par(r, q, p, s) - two_op_par(p, s, r, q));
 
-                            evaluation_iterator.addColumnwise(J, value);
-                            evaluation_iterator.addRowwise(J, value);
+    //                         evaluation_iterator.addColumnwise(J, value);
+    //                         evaluation_iterator.addRowwise(J, value);
 
-                            s++;  // go to the next orbital
-                            this->shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign4);
+    //                         s++;  // go to the next orbital
+    //                         this->shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign4);
 
-                        }  // (creation)
-                    }
+    //                     }  // (creation)
+    //                 }
 
-                    size_t r = q;
-                    sign3 = sign2;
-                    size_t address1c = address1;
+    //                 size_t r = q;
+    //                 sign3 = sign2;
+    //                 size_t address1c = address1;
 
-                    /**
-                     *  A2 < C1, (A2 > A1)
-                     */
-                    for (size_t e3 = e2 - 1; e3 > e1; e3--) {
-                        sign3 *= -1;
-                        size_t e4 = e2;
-                        address1c += this->vertexWeight(r, e3) - this->vertexWeight(r, e3 + 1);
-                        r = onv.occupationIndexOf(e3);
-                        size_t address2 = address1c - this->vertexWeight(r, e3);
-                        int sign4 = sign2;
-                        size_t s = q + 1;
-                        this->shiftUntilNextUnoccupiedOrbital<1>(onv, address2, s, e4, sign4);
-                        while (s < K) {
+    //                 /**
+    //                  *  A2 < C1, (A2 > A1)
+    //                  */
+    //                 for (size_t e3 = e2 - 1; e3 > e1; e3--) {
+    //                     sign3 *= -1;
+    //                     size_t e4 = e2;
+    //                     address1c += this->vertexWeight(r, e3) - this->vertexWeight(r, e3 + 1);
+    //                     r = onv.occupationIndexOf(e3);
+    //                     size_t address2 = address1c - this->vertexWeight(r, e3);
+    //                     int sign4 = sign2;
+    //                     size_t s = q + 1;
+    //                     this->shiftUntilNextUnoccupiedOrbital<1>(onv, address2, s, e4, sign4);
+    //                     while (s < K) {
 
-                            size_t J = address2 + this->vertexWeight(s, e4);
+    //                         size_t J = address2 + this->vertexWeight(s, e4);
 
-                            int signev = sign1 * sign2 * sign3 * sign4;
-                            double value = signev * 0.5 * (two_op_par(p, q, r, s) + two_op_par(r, s, p, q) - two_op_par(r, q, p, s) - two_op_par(p, s, r, q));
+    //                         int signev = sign1 * sign2 * sign3 * sign4;
+    //                         double value = signev * 0.5 * (two_op_par(p, q, r, s) + two_op_par(r, s, p, q) - two_op_par(r, q, p, s) - two_op_par(p, s, r, q));
 
-                            evaluation_iterator.addColumnwise(J, value);
-                            evaluation_iterator.addRowwise(J, value);
+    //                         evaluation_iterator.addColumnwise(J, value);
+    //                         evaluation_iterator.addRowwise(J, value);
 
-                            s++;
-                            this->shiftUntilNextUnoccupiedOrbital<1>(onv, address2, s, e4, sign4);
-                        }
-                    }
+    //                         s++;
+    //                         this->shiftUntilNextUnoccupiedOrbital<1>(onv, address2, s, e4, sign4);
+    //                     }
+    //                 }
 
-                    /**
-                     *  A2 = C1
-                     */
-                    int signev = sign2 * sign1;
+    //                 /**
+    //                  *  A2 = C1
+    //                  */
+    //                 int signev = sign2 * sign1;
 
-                    double value_I = k_par(p, q);  // cover the one electron calculations
+    //                 double value_I = k_par(p, q);  // cover the one electron calculations
 
-                    for (size_t s = 0; s < K; s++) {
-                        if (!onv.isOccupied(s)) {
-                            value_I += 0.5 * (two_op_par(p, s, s, q));
-                        } else {
-                            value_I += 0.5 * (two_op_par(s, s, p, q) - two_op_par(s, q, p, s) + two_op_par(p, q, s, s));
-                        }
-                    }
+    //                 for (size_t s = 0; s < K; s++) {
+    //                     if (!onv.isOccupied(s)) {
+    //                         value_I += 0.5 * (two_op_par(p, s, s, q));
+    //                     } else {
+    //                         value_I += 0.5 * (two_op_par(s, s, p, q) - two_op_par(s, q, p, s) + two_op_par(p, q, s, s));
+    //                     }
+    //                 }
 
-                    value_I *= signev;
+    //                 value_I *= signev;
 
-                    q++;
+    //                 q++;
 
-                    evaluation_iterator.addColumnwise(address1, value_I);
-                    evaluation_iterator.addRowwise(address1, value_I);
+    //                 evaluation_iterator.addColumnwise(address1, value_I);
+    //                 evaluation_iterator.addRowwise(address1, value_I);
 
-                    this->shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign2);
-                }
-            }
-        }
-    }
+    //                 this->shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign2);
+    //             }
+    //         }
+    //     }
+    // }
 
 
     /**
@@ -651,7 +652,7 @@ public:
      *
      *  @return a vector that is equal to the matrix-vector product of the one-electron operator's matrix representation and the given vector
      */
-    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarGSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+    // VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarGSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
 
     /**
      *  Evaluate a two electron operator in a matrix vector product
@@ -662,7 +663,7 @@ public:
      *
      *  @return a vector that is equal to the matrix-vector product of the two-electron operator's matrix representation and the given vector
      */
-    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarGSQTwoElectronOperator<double>& two_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+    // VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarGSQTwoElectronOperator<double>& two_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
 
     /**
      *  Evaluate the Hamiltonian in a matrix vector product
@@ -673,7 +674,7 @@ public:
      *
      *  @return a vector that is equal to the matrix-vector product of the Hamiltonian's matrix representation and the given vector
      */
-    VectorX<double> evaluateOperatorMatrixVectorProduct(const RSQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+    // VectorX<double> evaluateOperatorMatrixVectorProduct(const RSQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
 
     /**
      *  Iterate over all ONVs in this ONV basis and apply the given callback function.

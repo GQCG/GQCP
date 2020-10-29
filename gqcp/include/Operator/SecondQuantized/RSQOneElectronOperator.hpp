@@ -63,8 +63,6 @@ public:
      *  MARK: Conversions to spin components
      */
 
-    // TODO: Implement 'unrestricted() const'
-
     /**
      *  @return The alpha-component of this restricted one-electron operator.
      */
@@ -141,6 +139,21 @@ struct BasisTransformableTraits<RSQOneElectronOperator<Scalar, Vectorizer>> {
 
     // The type of transformation matrix that is naturally associated to a restricted one-electron operator.
     using TM = RTransformationMatrix<Scalar>;
+};
+
+
+/*
+ *  MARK: JacobiRotatableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
+ */
+template <typename Scalar, typename Vectorizer>
+struct JacobiRotatableTraits<RSQOneElectronOperator<Scalar, Vectorizer>> {
+
+    // The type of Jacobi rotation for which the Jacobi rotation should be defined.
+    using JacobiRotationType = JacobiRotation;
 };
 
 

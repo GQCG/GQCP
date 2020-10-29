@@ -65,11 +65,11 @@ double ERJacobiLocalizer::calculateOptimalRotationAngle(const RSQHamiltonian<dou
 
 /**
  *  @param sq_hamiltonian               the current Hamiltonian
- *  @param jacobi_rot_par               the Jacobi rotation parameters
+ *  @param jacobi_rotation              The Jacobi rotation.
  * 
- *  @return the change in the value of the scalar function (i.e. the ER localization index) if the given Jacobi rotation parameters would be used to rotate the given Hamiltonian
+ *  @return the change in the value of the scalar function (i.e. the ER localization index) if the given Jacobi rotation would be used to rotate the given Hamiltonian
  */
-double ERJacobiLocalizer::calculateScalarFunctionChange(const RSQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rot_par) const {
+double ERJacobiLocalizer::calculateScalarFunctionChange(const RSQHamiltonian<double>& sq_hamiltonian, const JacobiRotation& jacobi_rotation) const {
 
     return -(this->A + std::sqrt(std::pow(this->B, 2) + std::pow(this->C, 2)));  // formulate as minimization problem
 }

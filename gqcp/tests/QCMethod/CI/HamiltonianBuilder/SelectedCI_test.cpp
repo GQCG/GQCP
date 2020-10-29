@@ -64,7 +64,7 @@
 //     // Create H-chain HamiltonianParameters to test results from FCI and selected CI
 //     size_t K = 4;
 //     GQCP::Molecule molecule = GQCP::Molecule::HChain(K, 1.1);
-//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+//     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
 //     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
 
 //     // Create compatible ONV bases
@@ -97,7 +97,7 @@
 //     // Set up a Hamiltonian in an orthonormal spinor basis for a linear chain of 4 hydrogens, 1.1 bohr apart.
 //     const auto molecule = GQCP::Molecule::HChain(4, 1.1);
 
-//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+//     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
 //     const auto K = spinor_basis.numberOfSpatialOrbitals();
 //     spinor_basis.lowdinOrthonormalize();
 

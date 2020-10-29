@@ -84,7 +84,7 @@ BOOST_AUTO_TEST_CASE(addONV) {
 
 //     // Create the molecular Hamiltonian in an AO basis
 //     auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
-//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {h2o, "STO-3G"};
+//     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {h2o, "STO-3G"};
 //     spinor_basis.lowdinOrthonormalize();
 //     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, h2o);  // in the Löwdin basis
 //     auto K = sq_hamiltonian.numberOfOrbitals();
@@ -134,7 +134,7 @@ BOOST_AUTO_TEST_CASE(addONV) {
 
 //     // Create the molecular Hamiltonian in an AO basis
 //     auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
-//     GQCP::USpinorBasis<double, GQCP::GTOShell> spinor_basis {h2o, "STO-3G"};
+//     GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {h2o, "STO-3G"};
 //     spinor_basis.lowdinOrthonormalize();
 //     auto usq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(spinor_basis, h2o);  // unrestricted Hamiltonian in the Löwdin basis
 

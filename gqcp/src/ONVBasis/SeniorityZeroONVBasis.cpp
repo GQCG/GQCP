@@ -17,7 +17,7 @@
 
 #include "ONVBasis/SeniorityZeroONVBasis.hpp"
 
-#include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
+// #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 
 

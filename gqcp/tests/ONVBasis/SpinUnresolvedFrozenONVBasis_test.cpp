@@ -124,7 +124,7 @@ BOOST_AUTO_TEST_CASE(address_setNext_frozen_space) {
 // BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_diagonal_vs_no_diagonal) {
 
 //     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
-//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
+//     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
 //     spinor_basis.lowdinOrthonormalize();
 //     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 

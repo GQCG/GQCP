@@ -31,40 +31,43 @@
  */
 BOOST_AUTO_TEST_CASE(USQTwoElectronOperator_constructor) {
 
-    // Check a correct constructor
-    const GQCP::QCRankFourTensor<double> tensor {3};
-    GQCP::ScalarUSQTwoElectronOperator<double> O {tensor, tensor, tensor, tensor};
+    // Check a correct constructor.
+    const GQCP::SquareRankFourTensor<double> tensor {3};
+    GQCP::ScalarUSQTwoElectronOperator<double> O {tensor, tensor, tensor, tensor};  // All dimensions are equal.
 
 
-    // Check a faulty constructor
+    // Check a faulty constructor.
     GQCP::Tensor<double, 4> tensor2 {3, 3, 3, 2};
-    BOOST_CHECK_THROW(GQCP::ScalarUSQTwoElectronOperator<double> O2(tensor2, tensor2, tensor2, tensor2), std::invalid_argument);
-    BOOST_CHECK_THROW(GQCP::ScalarUSQTwoElectronOperator<double> O2(tensor, tensor2, tensor, tensor), std::invalid_argument);
-    BOOST_CHECK_THROW(GQCP::ScalarUSQTwoElectronOperator<double> O2(tensor2, tensor, tensor2, tensor), std::invalid_argument);
-    BOOST_CHECK_THROW(GQCP::ScalarUSQTwoElectronOperator<double> O2(tensor2, tensor2, tensor2, tensor), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::ScalarUSQTwoElectronOperator<double> O2(tensor2, tensor2, tensor2, tensor2), std::invalid_argument);  // All tensors have the wrong dimension.
+    BOOST_CHECK_THROW(GQCP::ScalarUSQTwoElectronOperator<double> O2(tensor, tensor2, tensor, tensor), std::invalid_argument);     // Tensor 2 has the wrong dimension.
+    BOOST_CHECK_THROW(GQCP::ScalarUSQTwoElectronOperator<double> O2(tensor2, tensor, tensor2, tensor), std::invalid_argument);    // Tensor 1 and 3 have the wrong dimension.
+    BOOST_CHECK_THROW(GQCP::ScalarUSQTwoElectronOperator<double> O2(tensor2, tensor2, tensor2, tensor), std::invalid_argument);   // Tensor 1, 2, and 3 have the wrong dimension.
 }
 
 
 /**
- *  Check if the zero constructor really sets its parameters to all zeros
+ *  Check if the zero named constructor really sets its parameters to all zeros.
  */
 BOOST_AUTO_TEST_CASE(USQTwoElectronOperator_zero_constructor) {
 
     const size_t K = 2;
-    GQCP::ScalarUSQTwoElectronOperator<double> op {K};  // should initialize zeros
+    const auto op = GQCP::ScalarUSQTwoElectronOperator<double>::Zero(K);  // Should initialize to zeros.
 
-    // Create a reference zero tensor
-    GQCP::QCRankFourTensor<double> ref {K};
+    // Create a reference zero tensor.
+    GQCP::SquareRankFourTensor<double> zero {K};
+    zero.setZero();
 
+    // Check if the number of orbitals is correct.
     BOOST_CHECK_EQUAL(op.numberOfOrbitals(GQCP::Spin::alpha, GQCP::Spin::alpha), K);
     BOOST_CHECK_EQUAL(op.numberOfOrbitals(GQCP::Spin::alpha, GQCP::Spin::beta), K);
     BOOST_CHECK_EQUAL(op.numberOfOrbitals(GQCP::Spin::beta, GQCP::Spin::alpha), K);
     BOOST_CHECK_EQUAL(op.numberOfOrbitals(GQCP::Spin::beta, GQCP::Spin::beta), K);
 
-    BOOST_CHECK(op.parameters(GQCP::Spin::alpha, GQCP::Spin::alpha).isApprox(ref.setZero(), 1.0e-08));
-    BOOST_CHECK(op.parameters(GQCP::Spin::alpha, GQCP::Spin::beta).isApprox(ref.setZero(), 1.0e-08));
-    BOOST_CHECK(op.parameters(GQCP::Spin::beta, GQCP::Spin::alpha).isApprox(ref.setZero(), 1.0e-08));
-    BOOST_CHECK(op.parameters(GQCP::Spin::beta, GQCP::Spin::beta).isApprox(ref.setZero(), 1.0e-08));
+
+    BOOST_CHECK(op.alphaAlpha().parameters().isApprox(zero, 1.0e-08));
+    BOOST_CHECK(op.alphaBeta().parameters().isApprox(zero, 1.0e-08));
+    BOOST_CHECK(op.betaAlpha().parameters().isApprox(zero, 1.0e-08));
+    BOOST_CHECK(op.betaBeta().parameters().isApprox(zero, 1.0e-08));
 }
 
 
@@ -76,7 +79,7 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_throw) {
     const size_t dim = 2;
 
     // Initialize a test operator.
-    const GQCP::ScalarUSQTwoElectronOperator<double> g {dim};
+    const auto g = GQCP::ScalarUSQTwoElectronOperator<double>::Zero(dim);
 
     // Initialize valid and invalid test 2-DMs.
     const GQCP::TwoDM<double> d_valid {2};
@@ -90,10 +93,10 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_throw) {
     const GQCP::SpinResolved2DM<double> d_valid_spin_resolved {d_valid, d_valid, d_valid, d_valid};
 
     // Check if the calculateExpectationValue calls throw when expected.
-    BOOST_CHECK_THROW(g.calculateExpectationValue(d_invalid_aa), std::invalid_argument);
-    BOOST_CHECK_THROW(g.calculateExpectationValue(d_invalid_ab), std::invalid_argument);
-    BOOST_CHECK_THROW(g.calculateExpectationValue(d_invalid_ba), std::invalid_argument);
-    BOOST_CHECK_THROW(g.calculateExpectationValue(d_invalid_bb), std::invalid_argument);
+    BOOST_CHECK_THROW(g.calculateExpectationValue(d_invalid_aa), std::invalid_argument);  // Wrong fist component.
+    BOOST_CHECK_THROW(g.calculateExpectationValue(d_invalid_ab), std::invalid_argument);  // Wrong second component.
+    BOOST_CHECK_THROW(g.calculateExpectationValue(d_invalid_ba), std::invalid_argument);  // Wrong third component.
+    BOOST_CHECK_THROW(g.calculateExpectationValue(d_invalid_bb), std::invalid_argument);  // Wrong fourth component.
 
     BOOST_CHECK_NO_THROW(g.calculateExpectationValue(d_valid_spin_resolved));
 }
@@ -107,34 +110,34 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
     const size_t dim = 2;
 
     // Initialize test two-electron operators.
-    GQCP::QCRankFourTensor<double> T1 {dim};
+    auto T_pure = GQCP::SquareRankFourTensor<double>::Zero(dim);
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
             for (size_t k = 0; k < dim; k++) {
                 for (size_t l = 0; l < dim; l++) {
-                    T1(i, j, k, l) = (i + 1) + 2 * (j + 1) + 4 * (k + 1) + 8 * (l + 1);
+                    T_pure(i, j, k, l) = (i + 1) + 2 * (j + 1) + 4 * (k + 1) + 8 * (l + 1);
                 }
             }
         }
     }
 
-    GQCP::QCRankFourTensor<double> T2 {dim};
+    auto T_mixed = GQCP::SquareRankFourTensor<double>::Zero(dim);
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
             for (size_t k = 0; k < dim; k++) {
                 for (size_t l = 0; l < dim; l++) {
-                    T2(i, j, k, l) = (i + 1) + (j + 1) + (k + 1) + (l + 1);
+                    T_mixed(i, j, k, l) = (i + 1) + (j + 1) + (k + 1) + (l + 1);
                 }
             }
         }
     }
-    const GQCP::ScalarUSQTwoElectronOperator<double> op {T1, T2, T2, T1};
+    const GQCP::ScalarUSQTwoElectronOperator<double> op {T_pure, T_mixed, T_mixed, T_pure};
 
 
     // Initialize test 2-DMs: each one is chosen to have the correct four-index symmetries.
-    GQCP::TwoDM<double> d1 {dim};
+    auto d1 = GQCP::TwoDM<double>::Zero(dim);
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
@@ -146,7 +149,7 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
         }
     }
 
-    GQCP::TwoDM<double> d2 {dim};
+    auto d2 = GQCP::TwoDM<double>::Zero(dim);
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
@@ -163,20 +166,20 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
     // Initialize a reference value and check the result.
     const double reference_expectation_value = 684.0;
 
-    const auto expectation_value = op.calculateExpectationValue(d)(0);
+    const double expectation_value = op.calculateExpectationValue(d);  // A scalar-StorageArray can be implicitly converted to its underlying scalar.
     BOOST_CHECK(std::abs(expectation_value - reference_expectation_value) < 1.0e-08);
 }
 
 
 /**
- *  Check if addition of operators works as expected
+ *  Check if addition of unrestricted two-electron operators works as expected.
  */
 BOOST_AUTO_TEST_CASE(USQTwoElectronOperator_addition) {
 
     const size_t dim = 2;
 
-    // Initialize two test tensors and convert them into operators
-    GQCP::QCRankFourTensor<double> T1 {dim};
+    // Initialize a test unrestricted two-electron operator.
+    auto T1 = GQCP::SquareRankFourTensor<double>::Zero(dim);
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
@@ -190,8 +193,8 @@ BOOST_AUTO_TEST_CASE(USQTwoElectronOperator_addition) {
     const GQCP::ScalarUSQTwoElectronOperator<double> op1 {T1, T1, T1, T1};
 
 
-    // Initialize the reference and check the result
-    GQCP::QCRankFourTensor<double> T_sum_ref {dim};
+    // Initialize the reference and check the result.
+    auto T_sum_ref = GQCP::SquareRankFourTensor<double>::Zero(dim);
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
@@ -204,81 +207,22 @@ BOOST_AUTO_TEST_CASE(USQTwoElectronOperator_addition) {
     }
 
     auto op_sum = op1 + op1;
-    BOOST_CHECK(op_sum.parameters(GQCP::Spin::alpha, GQCP::Spin::alpha).isApprox(T_sum_ref, 1.0e-08));
-    BOOST_CHECK(op_sum.parameters(GQCP::Spin::alpha, GQCP::Spin::beta).isApprox(T_sum_ref, 1.0e-08));
-    BOOST_CHECK(op_sum.parameters(GQCP::Spin::beta, GQCP::Spin::alpha).isApprox(T_sum_ref, 1.0e-08));
-    BOOST_CHECK(op_sum.parameters(GQCP::Spin::beta, GQCP::Spin::beta).isApprox(T_sum_ref, 1.0e-08));
+    BOOST_CHECK(op_sum.alphaAlpha().parameters().isApprox(T_sum_ref, 1.0e-08));
+    BOOST_CHECK(op_sum.alphaBeta().parameters().isApprox(T_sum_ref, 1.0e-08));
+    BOOST_CHECK(op_sum.betaAlpha().parameters().isApprox(T_sum_ref, 1.0e-08));
+    BOOST_CHECK(op_sum.betaBeta().parameters().isApprox(T_sum_ref, 1.0e-08));
 }
 
 
 /**
- *  Check if the scalar product with an operator works as expected
+ *  Check if the scalar multiplication with an unrestricted two-electron operator works as expected.
  */
 BOOST_AUTO_TEST_CASE(USQTwoElectronOperator_scalar_product) {
 
     const size_t dim = 2;
-    const double scalar = 2.0;
 
-    // Initialize two test tensors and convert them into operators
-    GQCP::QCRankFourTensor<double> T1 {dim};
-
-    for (size_t i = 0; i < dim; i++) {
-        for (size_t j = 0; j < dim; j++) {
-            for (size_t k = 0; k < dim; k++) {
-                for (size_t l = 0; l < dim; l++) {
-                    T1(i, j, k, l) = (i + 1) + 2 * (j + 1) + 4 * (k + 1) + 8 * (l + 1);
-                }
-            }
-        }
-    }
-    const GQCP::ScalarUSQTwoElectronOperator<double> op1 {T1, T1, T1, T1};
-
-    auto op_prod = scalar * op1;
-    BOOST_CHECK(op_prod.parameters(GQCP::Spin::alpha, GQCP::Spin::alpha).isApprox((2 * T1), 1.0e-08));
-    BOOST_CHECK(op_prod.parameters(GQCP::Spin::alpha, GQCP::Spin::beta).isApprox((2 * T1), 1.0e-08));
-    BOOST_CHECK(op_prod.parameters(GQCP::Spin::beta, GQCP::Spin::alpha).isApprox((2 * T1), 1.0e-08));
-    BOOST_CHECK(op_prod.parameters(GQCP::Spin::beta, GQCP::Spin::beta).isApprox((2 * T1), 1.0e-08));
-}
-
-
-/**
- *  Check if negating an operator works as expected
- */
-BOOST_AUTO_TEST_CASE(USQTwoElectronOperator_negate) {
-
-    const size_t dim = 2;
-
-    // Initialize two test tensors and convert them into operators
-    GQCP::QCRankFourTensor<double> T1 {dim};
-
-    for (size_t i = 0; i < dim; i++) {
-        for (size_t j = 0; j < dim; j++) {
-            for (size_t k = 0; k < dim; k++) {
-                for (size_t l = 0; l < dim; l++) {
-                    T1(i, j, k, l) = 5;
-                }
-            }
-        }
-    }
-    const GQCP::ScalarUSQTwoElectronOperator<double> op1 {T1, T1, T1, T1};
-
-    auto op_neg = -op1;
-    BOOST_CHECK(op_neg.parameters(GQCP::Spin::alpha, GQCP::Spin::alpha).isApprox(-T1, 1.0e-08));
-    BOOST_CHECK(op_neg.parameters(GQCP::Spin::alpha, GQCP::Spin::beta).isApprox(-T1, 1.0e-08));
-    BOOST_CHECK(op_neg.parameters(GQCP::Spin::beta, GQCP::Spin::alpha).isApprox(-T1, 1.0e-08));
-    BOOST_CHECK(op_neg.parameters(GQCP::Spin::beta, GQCP::Spin::beta).isApprox(-T1, 1.0e-08));
-}
-
-
-/**
- *  Check if taking the difference of two operators works as expected
- */
-BOOST_AUTO_TEST_CASE(USQTwoElectronOperator_difference) {
-
-    const size_t dim = 2;
-
-    // Initialize two test tensors and convert them into operators
-    GQCP::QCRankFourTensor<double> T1 {dim};
+    // Initialize a test unrestricted two-electron operator.
+    GQCP::SquareRankFourTensor<double> T1 {dim};
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
@@ -291,36 +235,37 @@ BOOST_AUTO_TEST_CASE(USQTwoElectronOperator_difference) {
     }
     const GQCP::ScalarUSQTwoElectronOperator<double> op1 {T1, T1, T1, T1};
 
-    GQCP::QCRankFourTensor<double> T2 {dim};
+
+    // Initialize the reference and check the result.
+    auto T_mult_ref = GQCP::SquareRankFourTensor<double>::Zero(dim);
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
             for (size_t k = 0; k < dim; k++) {
                 for (size_t l = 0; l < dim; l++) {
-                    T2(i, j, k, l) = 2 * (i + 1) + 4 * (j + 1) + 8 * (k + 1) + 16 * (l + 1);
+                    T_mult_ref(i, j, k, l) = 2 * (i + 1) + 4 * (j + 1) + 8 * (k + 1) + 16 * (l + 1);
                 }
             }
         }
     }
-    const GQCP::ScalarUSQTwoElectronOperator<double> op2 {T2, T2, T2, T2};
 
-    auto op_diff = op2 - op1;
-    BOOST_CHECK(op_diff.parameters(GQCP::Spin::alpha, GQCP::Spin::alpha).isApprox(T1, 1.0e-08));
-    BOOST_CHECK(op_diff.parameters(GQCP::Spin::alpha, GQCP::Spin::beta).isApprox(T1, 1.0e-08));
-    BOOST_CHECK(op_diff.parameters(GQCP::Spin::beta, GQCP::Spin::alpha).isApprox(T1, 1.0e-08));
-    BOOST_CHECK(op_diff.parameters(GQCP::Spin::beta, GQCP::Spin::beta).isApprox(T1, 1.0e-08));
+    auto op_prod = 2.0 * op1;
+    BOOST_CHECK(op_prod.alphaAlpha().parameters().isApprox(T_mult_ref, 1.0e-08));
+    BOOST_CHECK(op_prod.alphaBeta().parameters().isApprox(T_mult_ref, 1.0e-08));
+    BOOST_CHECK(op_prod.betaAlpha().parameters().isApprox(T_mult_ref, 1.0e-08));
+    BOOST_CHECK(op_prod.betaBeta().parameters().isApprox(T_mult_ref, 1.0e-08));
 }
 
 
 /**
- * Check whether or not the rotate with transformation matrix method works as expected
+ *  Check whether or not rotating with a trivial unitary matrix has no apparent effect.
  */
 BOOST_AUTO_TEST_CASE(rotate_with_unitary_transformation_matrix) {
 
     const size_t dim = 2;
 
-    // Initialize a test tensor and convert it into an operator
-    GQCP::QCRankFourTensor<double> T1(dim);
+    // Initialize a test tensor and convert it into an operator.
+    auto T1 = GQCP::SquareRankFourTensor<double>::Zero(dim);
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
@@ -333,30 +278,26 @@ BOOST_AUTO_TEST_CASE(rotate_with_unitary_transformation_matrix) {
     }
     GQCP::ScalarUSQTwoElectronOperator<double> op {T1, T1, T1, T1};
 
-    // Initialize a unitary transformation matrix
-    GQCP::TransformationMatrix<double> U {dim};
-    // clang-format off
-    U << 1.0, 0.0,
-         0.0, 1.0;
-    // clang-format on
+    // Initialize the identity unitary transformation matrix and use it for the rotation.
+    const auto U = GQCP::UTransformationMatrix<double>::Identity(dim);
 
     op.rotate(U);
-    BOOST_CHECK(op.parameters(GQCP::Spin::alpha, GQCP::Spin::alpha).isApprox(T1, 1.0e-08));
-    BOOST_CHECK(op.parameters(GQCP::Spin::alpha, GQCP::Spin::beta).isApprox(T1, 1.0e-08));
-    BOOST_CHECK(op.parameters(GQCP::Spin::beta, GQCP::Spin::alpha).isApprox(T1, 1.0e-08));
-    BOOST_CHECK(op.parameters(GQCP::Spin::beta, GQCP::Spin::beta).isApprox(T1, 1.0e-08));
+    BOOST_CHECK(op.alphaAlpha().parameters().isApprox(T1, 1.0e-08));
+    BOOST_CHECK(op.alphaBeta().parameters().isApprox(T1, 1.0e-08));
+    BOOST_CHECK(op.betaAlpha().parameters().isApprox(T1, 1.0e-08));
+    BOOST_CHECK(op.betaBeta().parameters().isApprox(T1, 1.0e-08));
 }
 
 
 /**
- * Check whether or not the transform with transformation matrix method works as expected
+ * Check whether or not the transformation method works as expected.
  */
 BOOST_AUTO_TEST_CASE(transform_with_transformation_matrix) {
 
     const size_t dim = 2;
 
-    // Initialize a test tensor and convert it into an operator
-    GQCP::QCRankFourTensor<double> T1 {dim};
+    // Initialize a test tensor and convert it into an operator.
+    auto T1 = GQCP::SquareRankFourTensor<double>::Zero(dim);
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
@@ -369,15 +310,17 @@ BOOST_AUTO_TEST_CASE(transform_with_transformation_matrix) {
     }
     GQCP::ScalarUSQTwoElectronOperator<double> op {T1, T1, T1, T1};
 
-    // Initialize a transformation matrix
-    GQCP::TransformationMatrix<double> T {dim};
+    // Initialize a test transformation matrix, equal for alpha and beta.
+    GQCP::UTransformationMatrixComponent<double> T_component {dim};
     // clang-format off
-    T << 2.0, 3.0,
-         3.0, 4.0;
+    T_component << 2.0, 3.0,
+                   3.0, 4.0;
     // clang-format on
+    const auto T = GQCP::UTransformationMatrix<double>::FromEqual(T_component);
 
-    // Initialize a reference tensor
-    GQCP::QCRankFourTensor<double> ref {dim};
+
+    // Initialize a reference tensor, transform the original operator and check the result.
+    auto ref = GQCP::SquareRankFourTensor<double>::Zero(dim);
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
             for (size_t k = 0; k < dim; k++) {
@@ -403,22 +346,22 @@ BOOST_AUTO_TEST_CASE(transform_with_transformation_matrix) {
     }
 
     op.transform(T);
-    BOOST_CHECK(op.parameters(GQCP::Spin::alpha, GQCP::Spin::alpha).isApprox(ref, 1.0e-08));
-    BOOST_CHECK(op.parameters(GQCP::Spin::alpha, GQCP::Spin::beta).isApprox(ref, 1.0e-08));
-    BOOST_CHECK(op.parameters(GQCP::Spin::beta, GQCP::Spin::alpha).isApprox(ref, 1.0e-08));
-    BOOST_CHECK(op.parameters(GQCP::Spin::beta, GQCP::Spin::beta).isApprox(ref, 1.0e-08));
+    BOOST_CHECK(op.alphaAlpha().parameters().isApprox(ref, 1.0e-08));
+    BOOST_CHECK(op.alphaBeta().parameters().isApprox(ref, 1.0e-08));
+    BOOST_CHECK(op.betaAlpha().parameters().isApprox(ref, 1.0e-08));
+    BOOST_CHECK(op.betaBeta().parameters().isApprox(ref, 1.0e-08));
 }
 
 
 /**
- * Check whether or not the jacobi rotation method works as expected
+ * Check whether or not the jacobi rotation method works as expected.
  */
 BOOST_AUTO_TEST_CASE(transform_with_jacobi_matrix) {
 
     const size_t dim = 2;
 
-    // Initialize a test tensor and convert it into an operator
-    GQCP::QCRankFourTensor<double> T1 {dim};
+    // Initialize a test tensor and convert it into an operator.
+    auto T1 = GQCP::SquareRankFourTensor<double>::Zero(dim);
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
@@ -431,11 +374,12 @@ BOOST_AUTO_TEST_CASE(transform_with_jacobi_matrix) {
     }
     GQCP::ScalarUSQTwoElectronOperator<double> op {T1, T1, T1, T1};
 
-    // Initialize a transformation matrix
-    GQCP::JacobiRotationParameters J {1, 0, (boost::math::constants::pi<double>() / 2)};
+    // Initialize a Jacobi rotation.
+    const GQCP::JacobiRotation J_component {1, 0, (boost::math::constants::pi<double>() / 2)};
+    const auto J = GQCP::UJacobiRotation::FromEqual(J_component);
 
-    // Initialize a reference tensor
-    GQCP::QCRankFourTensor<double> ref {dim};
+    // Initialize a reference tensor.
+    auto ref = GQCP::SquareRankFourTensor<double>::Zero(dim);
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
@@ -453,8 +397,8 @@ BOOST_AUTO_TEST_CASE(transform_with_jacobi_matrix) {
     }
 
     op.rotate(J);
-    BOOST_CHECK(op.parameters(GQCP::Spin::alpha, GQCP::Spin::alpha).isApprox(ref, 1.0e-08));
-    BOOST_CHECK(op.parameters(GQCP::Spin::alpha, GQCP::Spin::beta).isApprox(ref, 1.0e-08));
-    BOOST_CHECK(op.parameters(GQCP::Spin::beta, GQCP::Spin::alpha).isApprox(ref, 1.0e-08));
-    BOOST_CHECK(op.parameters(GQCP::Spin::beta, GQCP::Spin::beta).isApprox(ref, 1.0e-08));
+    BOOST_CHECK(op.alphaAlpha().parameters().isApprox(ref, 1.0e-08));
+    BOOST_CHECK(op.alphaBeta().parameters().isApprox(ref, 1.0e-08));
+    BOOST_CHECK(op.betaAlpha().parameters().isApprox(ref, 1.0e-08));
+    BOOST_CHECK(op.betaBeta().parameters().isApprox(ref, 1.0e-08));
 }

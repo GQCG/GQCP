@@ -123,7 +123,7 @@ void bindUHFSCFEnvironment(py::module& module) {
             "fock_matrices_alpha",
             [](const GQCP::UHFSCFEnvironment<double>& environment) {
                 std::vector<GQCP::MatrixX<double>> alpha_fock_matrices;
-                std::transform(environment.fock_matrices.begin(), environment.fock_matrices.end(), std::back_inserter(alpha_fock_matrices), [](const GQCP::ScalarUSQOneElectronOperator<double>& F) { return F.parameters(GQCP::Spin::alpha); });
+                std::transform(environment.fock_matrices.begin(), environment.fock_matrices.end(), std::back_inserter(alpha_fock_matrices), [](const GQCP::ScalarUSQOneElectronOperator<double>& F) { return F.alpha().parameters(); });
 
                 return alpha_fock_matrices;
             })
@@ -132,7 +132,7 @@ void bindUHFSCFEnvironment(py::module& module) {
             "fock_matrices_beta",
             [](const GQCP::UHFSCFEnvironment<double>& environment) {
                 std::vector<GQCP::MatrixX<double>> beta_fock_matrices;
-                std::transform(environment.fock_matrices.begin(), environment.fock_matrices.end(), std::back_inserter(beta_fock_matrices), [](const GQCP::ScalarUSQOneElectronOperator<double>& F) { return F.parameters(GQCP::Spin::beta); });
+                std::transform(environment.fock_matrices.begin(), environment.fock_matrices.end(), std::back_inserter(beta_fock_matrices), [](const GQCP::ScalarUSQOneElectronOperator<double>& F) { return F.beta().parameters(); });
 
                 return beta_fock_matrices;
             })
@@ -169,7 +169,7 @@ void bindUHFSCFEnvironment(py::module& module) {
         .def("replace_current_fock_matrix_alpha",
              [](GQCP::UHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& new_fock_matrix_alpha) {
                  const auto last_USQ_Fock = environment.fock_matrices.back();
-                 const auto last_fock_matrix_beta = last_USQ_Fock.parameters(GQCP::Spin::beta);
+                 const auto last_fock_matrix_beta = last_USQ_Fock.beta().parameters();
                  GQCP::ScalarUSQOneElectronOperator<double> new_fock {new_fock_matrix_alpha, last_fock_matrix_beta};
 
                  environment.fock_matrices.pop_back();
@@ -179,7 +179,7 @@ void bindUHFSCFEnvironment(py::module& module) {
         .def("replace_current_fock_matrix_beta",
              [](GQCP::UHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& new_fock_matrix_beta) {
                  const auto last_USQ_Fock = environment.fock_matrices.back();
-                 const auto last_fock_matrix_alpha = last_USQ_Fock.parameters(GQCP::Spin::alpha);
+                 const auto last_fock_matrix_alpha = last_USQ_Fock.alpha().parameters();
                  GQCP::ScalarUSQOneElectronOperator<double> new_fock {last_fock_matrix_alpha, new_fock_matrix_beta};
 
                  environment.fock_matrices.pop_back();

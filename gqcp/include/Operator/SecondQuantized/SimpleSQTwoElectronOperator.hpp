@@ -20,9 +20,11 @@
 
 #include "Basis/Transformations/BasisTransformable.hpp"
 #include "Basis/Transformations/JacobiRotatable.hpp"
-#include "Mathematical/Representation/QCRankFourTensor.hpp"
+#include "Mathematical/Representation/SquareRankFourTensor.hpp"
 #include "Mathematical/Representation/StorageArray.hpp"
 #include "Operator/SecondQuantized/SQOperatorStorage.hpp"
+
+#include <string>
 
 
 namespace GQCP {
@@ -39,7 +41,7 @@ namespace GQCP {
  */
 template <typename _Scalar, typename _Vectorizer, typename _DerivedOperator>
 class SimpleSQTwoElectronOperator:
-    public SQOperatorStorage<QCRankFourTensor<_Scalar>, _Vectorizer, SimpleSQTwoElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>>,
+    public SQOperatorStorage<SquareRankFourTensor<_Scalar>, _Vectorizer, SimpleSQTwoElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>>,
     public BasisTransformable<_DerivedOperator>,
     public JacobiRotatable<_DerivedOperator> {
 public:
@@ -56,7 +58,7 @@ public:
     using Self = SimpleSQTwoElectronOperator<Scalar, Vectorizer, DerivedOperator>;
 
     // The matrix representation of the parameters of (one of the components of) the two-electron operator.
-    using MatrixRepresentation = QCRankFourTensor<Scalar>;
+    using MatrixRepresentation = SquareRankFourTensor<Scalar>;
 
     // The type of one-electron operator that is naturally related to the derived two-electron operator.
     using DerivedSQOneElectronOperator = typename OperatorTraits<DerivedOperator>::SQOneElectronOperator;
@@ -85,7 +87,7 @@ public:
      */
 
     // Inherit `SQOperatorStorage`'s constructors.
-    using SQOperatorStorage<QCRankFourTensor<Scalar>, Vectorizer, SimpleSQTwoElectronOperator<Scalar, Vectorizer, DerivedOperator>>::SQOperatorStorage;
+    using SQOperatorStorage<SquareRankFourTensor<Scalar>, Vectorizer, SimpleSQTwoElectronOperator<Scalar, Vectorizer, DerivedOperator>>::SQOperatorStorage;
 
 
     /*
@@ -286,6 +288,25 @@ public:
         // Since we're only getting T as a matrix, we should convert it to an appropriate tensor to perform contractions.
         const Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> T_tensor {transformation_matrix.data(), transformation_matrix.rows(), transformation_matrix.cols()};
 
+        // const Tensor<double, 2> T_conjugate = T.conjugate();
+
+
+        // // Calculate the basis transformation for every component of the operator.
+        // const auto& parameters = this->allParameters();
+        // auto result = this->allParameters();
+
+        // for (size_t i = 0; i < this->numberOfComponents(); i++) {
+        //     const auto transformed_component = parameters[i]
+        //                                            .template einsum<1>(T_conjugate, "TUVW", "VR", "TURW")
+        //                                            .template einsum<1>(T, "TURW", "WS", "TURS")
+        //                                            .template einsum<1>(T, "TURS", "UQ", "TQRS")
+        //                                            .template einsum<1>(T_conjugate, "TQRS", "TP", "PQRS");
+
+        //     result[i] = transformed_component;
+        // }
+
+        // return DerivedOperator {StorageArray<MatrixRepresentation, Vectorizer>(result, this->array.vectorizer())};
+
         // We will have to do four single contractions, so we'll have to specify the contraction indices.
         // Eigen3 does not document its tensor contraction clearly, so see the accepted answer on stackoverflow (https://stackoverflow.com/a/47558349/7930415):
         //      Eigen3 does not accept a way to specify the output axes: instead, it retains the order from left to right of the axes that survive the contraction.
@@ -342,14 +363,14 @@ public:
     /**
      *  Apply the Jacobi rotation and return the result.
      * 
-     *  @param jacobi_parameters        The Jacobi rotation parameters.
+     *  @param jacobi_rotation          The Jacobi rotation.
      * 
      *  @return The jacobi-transformed object.
      */
-    DerivedOperator rotated(const JacobiRotationParameters& jacobi_parameters) const override {
+    DerivedOperator rotated(const JacobiRotation& jacobi_rotation) const override {
 
         // While waiting for an analogous Eigen::Tensor Jacobi module, we implement this rotation by constructing a Jacobi rotation matrix and then simply doing a rotation with it.
-        const auto J = TM::FromJacobi(jacobi_parameters, this->numberOfOrbitals());
+        const auto J = TM::FromJacobi(jacobi_rotation, this->numberOfOrbitals());
         return this->rotated(J);
     }
 
@@ -446,7 +467,7 @@ public:
             Eigen::array<int, 4> shuffle_indices {0, 2, 1, 3};
 
             for (size_t i = 0; i < this->numberOfComponents(); i++) {
-                copy_parameters[i] = QCRankFourTensor<double>(parameters[i].shuffle(shuffle_indices));
+                copy_parameters[i] = SquareRankFourTensor<double>(parameters[i].shuffle(shuffle_indices));
             }
 
             copy.is_expressed_using_chemists_notation = true;
@@ -470,7 +491,7 @@ public:
             Eigen::array<int, 4> shuffle_indices {0, 2, 1, 3};
 
             for (size_t i = 0; i < this->numberOfComponents(); i++) {
-                copy_parameters[i] = QCRankFourTensor<double>(parameters[i].shuffle(shuffle_indices));
+                copy_parameters[i] = SquareRankFourTensor<double>(parameters[i].shuffle(shuffle_indices));
             }
 
             copy.is_expressed_using_chemists_notation = false;
@@ -524,6 +545,21 @@ struct BasisTransformableTraits<SimpleSQTwoElectronOperator<_Scalar, _Vectorizer
 
     // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix"
     using TM = typename OperatorTraits<_DerivedOperator>::TM;
+};
+
+
+/*
+ *  MARK: JacobiRotatableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
+ */
+template <typename _Scalar, typename _Vectorizer, typename _DerivedOperator>
+struct JacobiRotatableTraits<SimpleSQTwoElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>> {
+
+    // The type of Jacobi rotation for which the Jacobi rotation should be defined.
+    using JacobiRotationType = JacobiRotation;
 };
 
 

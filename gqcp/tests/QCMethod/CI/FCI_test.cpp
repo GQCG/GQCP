@@ -44,7 +44,7 @@
 //     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2_cristina.xyz");
 //     const auto N_P = molecule.numberOfElectrons() / 2;
 
-//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "6-31G**"};
+//     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "6-31G**"};
 //     const auto K = spinor_basis.numberOfSpatialOrbitals();
 
 //     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
@@ -84,7 +84,7 @@
 // //     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2.xyz");
 // //     const auto N_P = molecule.numberOfElectrons() / 2;
 
-// //     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+// //     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
 // //     auto K = spinor_basis.numberOfSpatialOrbitals();
 
 // //     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
@@ -125,7 +125,7 @@
 //     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
 //     const auto N_P = molecule.numberOfElectrons() / 2;
 
-//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+//     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
 //     const auto K = spinor_basis.numberOfSpatialOrbitals();
 
 //     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
@@ -167,7 +167,7 @@
 //     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2_cristina.xyz");
 //     const auto N_P = molecule.numberOfElectrons() / 2;
 
-//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "6-31G**"};
+//     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "6-31G**"};
 //     const auto K = spinor_basis.numberOfSpatialOrbitals();
 
 //     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
@@ -209,7 +209,7 @@
 //     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
 //     const auto N_P = molecule.numberOfElectrons() / 2;
 
-//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+//     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
 //     const auto K = spinor_basis.numberOfSpatialOrbitals();
 
 //     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
@@ -251,7 +251,7 @@
 //     const GQCP::Molecule molecule = GQCP::Molecule::HChain(6, 1.1);
 //     const auto N_P = molecule.numberOfElectrons() / 2;
 
-//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+//     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
 //     const auto K = spinor_basis.numberOfSpatialOrbitals();
 
 //     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis

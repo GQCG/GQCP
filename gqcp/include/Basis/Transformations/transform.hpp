@@ -18,11 +18,10 @@
 #pragma once
 
 
-#include "Basis/SpinorBasis/RSpinorBasis.hpp"
-#include "Basis/SpinorBasis/USpinorBasis.hpp"
+#include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
+#include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
 #include "Basis/Transformations/TransformationMatrix.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "Operator/SecondQuantized/USQHamiltonian.hpp"
 #include "QuantumChemical/Spin.hpp"
 
 
@@ -40,14 +39,14 @@ namespace GQCP {
  *  @param T                            the transformation matrix
  */
 template <typename TransformationScalar, typename Shell>
-void basisTransform(RSpinorBasis<TransformationScalar, Shell>& spinor_basis, RSQHamiltonian<TransformationScalar>& sq_hamiltonian, const TransformationMatrix<TransformationScalar>& T) {
+void basisTransform(RSpinOrbitalBasis<TransformationScalar, Shell>& spinor_basis, RSQHamiltonian<TransformationScalar>& sq_hamiltonian, const TransformationMatrix<TransformationScalar>& T) {
 
     spinor_basis.transform(T);
     sq_hamiltonian.transform(T);
 }
 
 template <typename TransformationScalar, typename Shell>
-void basisTransform(RSpinorBasis<TransformationScalar, Shell>& spinor_basis, RSQHamiltonian<TransformationScalar>& sq_hamiltonian, const RTransformationMatrix<TransformationScalar>& T) {
+void basisTransform(RSpinOrbitalBasis<TransformationScalar, Shell>& spinor_basis, RSQHamiltonian<TransformationScalar>& sq_hamiltonian, const RTransformationMatrix<TransformationScalar>& T) {
 
     spinor_basis.transform(T);
     sq_hamiltonian.transform(T);
@@ -64,7 +63,7 @@ void basisTransform(RSpinorBasis<TransformationScalar, Shell>& spinor_basis, RSQ
  *  @param T                            the transformation matrix
  */
 template <typename TransformationScalar, typename Shell, typename Vectorizer>
-void basisTransform(RSpinorBasis<TransformationScalar, Shell>& spinor_basis, RSQOneElectronOperator<TransformationScalar, Vectorizer>& one_op, const TransformationMatrix<TransformationScalar>& T) {
+void basisTransform(RSpinOrbitalBasis<TransformationScalar, Shell>& spinor_basis, RSQOneElectronOperator<TransformationScalar, Vectorizer>& one_op, const TransformationMatrix<TransformationScalar>& T) {
 
     spinor_basis.transform(T);
     one_op.transform(T);
@@ -82,14 +81,14 @@ void basisTransform(RSpinorBasis<TransformationScalar, Shell>& spinor_basis, RSQ
  *  @param U                            the unitary transformation matrix
  */
 template <typename TransformationScalar, typename Shell>
-void basisRotate(RSpinorBasis<TransformationScalar, Shell>& spinor_basis, RSQHamiltonian<TransformationScalar>& sq_hamiltonian, const TransformationMatrix<TransformationScalar>& U) {
+void basisRotate(RSpinOrbitalBasis<TransformationScalar, Shell>& spinor_basis, RSQHamiltonian<TransformationScalar>& sq_hamiltonian, const TransformationMatrix<TransformationScalar>& U) {
 
     spinor_basis.rotate(U);
     sq_hamiltonian.rotate(U);
 }
 
 template <typename TransformationScalar, typename Shell>
-void basisRotate(RSpinorBasis<TransformationScalar, Shell>& spinor_basis, RSQHamiltonian<TransformationScalar>& sq_hamiltonian, const RTransformationMatrix<TransformationScalar>& U) {
+void basisRotate(RSpinOrbitalBasis<TransformationScalar, Shell>& spinor_basis, RSQHamiltonian<TransformationScalar>& sq_hamiltonian, const RTransformationMatrix<TransformationScalar>& U) {
 
     spinor_basis.rotate(U);
     sq_hamiltonian.rotate(U);
@@ -97,19 +96,19 @@ void basisRotate(RSpinorBasis<TransformationScalar, Shell>& spinor_basis, RSQHam
 
 
 /**
- *  Rotate both the spinor basis and the Hamiltonian to another basis using the given Jacobi-rotation parameters
+ *  Rotate both the spinor basis and the Hamiltonian to another basis using the given Jacobi rotation.
  * 
  *  @tparam Shell                           the type of shell that the scalar basis contains
  * 
  *  @param spinor_basis                     the spinor basis
  *  @param sq_hamiltonian                   the Hamiltonian
- *  @param jacobi_rotation_parameters       the Jacobi-rotation parameters
+ *  @param jacobi_rotation                  The Jacobi rotation.
  */
 template <typename Shell>
-void basisRotate(RSpinorBasis<double, Shell>& spinor_basis, RSQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rotation_parameters) {
+void basisRotate(RSpinOrbitalBasis<double, Shell>& spinor_basis, RSQHamiltonian<double>& sq_hamiltonian, const JacobiRotation& jacobi_rotation) {
 
-    spinor_basis.rotate(jacobi_rotation_parameters);
-    sq_hamiltonian.rotate(jacobi_rotation_parameters);
+    spinor_basis.rotate(jacobi_rotation);
+    sq_hamiltonian.rotate(jacobi_rotation);
 }
 
 
@@ -128,11 +127,11 @@ void basisRotate(RSpinorBasis<double, Shell>& spinor_basis, RSQHamiltonian<doubl
  *  @param T                            the transformation matrix for one of the spin components
  *  @param component                    the spin component
  */
-template <typename TransformationScalar, typename ShellType>
-void basisTransform(USpinorBasis<TransformationScalar, ShellType>& spinor_basis, USQHamiltonian<TransformationScalar>& usq_hamiltonian, const TransformationMatrix<TransformationScalar>& T, const Spin& component) {
-    spinor_basis.transform(T, component);
-    usq_hamiltonian.transform(T, component);
-}
+// template <typename TransformationScalar, typename ShellType>
+// void basisTransform(USpinOrbitalBasis<TransformationScalar, ShellType>& spinor_basis, USQHamiltonian<TransformationScalar>& usq_hamiltonian, const TransformationMatrix<TransformationScalar>& T, const Spin& component) {
+//     spinor_basis.transform(T, component);
+//     usq_hamiltonian.transform(T, component);
+// }
 
 
 /**
@@ -145,16 +144,16 @@ void basisTransform(USpinorBasis<TransformationScalar, ShellType>& spinor_basis,
  *  @param usq_hamiltonian              the Hamiltonian, expressed in an unrestricted spinor basis
  *  @param T                            the transformation matrix for both of the spin components
  */
-template <typename TransformationScalar, typename ShellType>
-void basisTransform(USpinorBasis<TransformationScalar, ShellType>& spinor_basis, USQHamiltonian<TransformationScalar>& usq_hamiltonian, const TransformationMatrix<TransformationScalar>& T) {
-    spinor_basis.transform(T);
-    usq_hamiltonian.transform(T);
-}
-template <typename TransformationScalar, typename ShellType>
-void basisTransform(USpinorBasis<TransformationScalar, ShellType>& spinor_basis, USQHamiltonian<TransformationScalar>& usq_hamiltonian, const UTransformationMatrixComponent<TransformationScalar>& T) {
-    spinor_basis.transform(T);
-    usq_hamiltonian.transform(T);
-}
+// template <typename TransformationScalar, typename ShellType>
+// void basisTransform(USpinOrbitalBasis<TransformationScalar, ShellType>& spinor_basis, USQHamiltonian<TransformationScalar>& usq_hamiltonian, const TransformationMatrix<TransformationScalar>& T) {
+//     spinor_basis.transform(T);
+//     usq_hamiltonian.transform(T);
+// }
+// template <typename TransformationScalar, typename ShellType>
+// void basisTransform(USpinOrbitalBasis<TransformationScalar, ShellType>& spinor_basis, USQHamiltonian<TransformationScalar>& usq_hamiltonian, const UTransformationMatrixComponent<TransformationScalar>& T) {
+//     spinor_basis.transform(T);
+//     usq_hamiltonian.transform(T);
+// }
 
 /**
  *  Rotate a single component (alpha or beta) of both the spinor basis and the Hamiltonian to another basis using the given unitary transformation matrix
@@ -167,12 +166,12 @@ void basisTransform(USpinorBasis<TransformationScalar, ShellType>& spinor_basis,
  *  @param U                            the unitary transformation matrix for the given spin component
  *  @param component                    the spin component
  */
-template <typename TransformationScalar, typename Shell>
-void basisRotate(USpinorBasis<TransformationScalar, Shell>& spinor_basis, USQHamiltonian<TransformationScalar>& sq_hamiltonian, const TransformationMatrix<TransformationScalar>& U, const Spin& component) {
+// template <typename TransformationScalar, typename Shell>
+// void basisRotate(USpinOrbitalBasis<TransformationScalar, Shell>& spinor_basis, USQHamiltonian<TransformationScalar>& sq_hamiltonian, const TransformationMatrix<TransformationScalar>& U, const Spin& component) {
 
-    spinor_basis.rotate(U, component);
-    sq_hamiltonian.rotate(U, component);
-}
+//     spinor_basis.rotate(U, component);
+//     sq_hamiltonian.rotate(U, component);
+// }
 
 
 /**
@@ -185,12 +184,12 @@ void basisRotate(USpinorBasis<TransformationScalar, Shell>& spinor_basis, USQHam
  *  @param usq_hamiltonian              the Hamiltonian, expressed in an unrestricted spinor basis
  *  @param U                            the unitary transformation matrix for both of the spin components
  */
-template <typename TransformationScalar, typename Shell>
-void basisRotate(USpinorBasis<TransformationScalar, Shell>& spinor_basis, USQHamiltonian<TransformationScalar>& sq_hamiltonian, const TransformationMatrix<TransformationScalar>& U) {
+// template <typename TransformationScalar, typename Shell>
+// void basisRotate(USpinOrbitalBasis<TransformationScalar, Shell>& spinor_basis, USQHamiltonian<TransformationScalar>& sq_hamiltonian, const TransformationMatrix<TransformationScalar>& U) {
 
-    spinor_basis.rotate(U);
-    sq_hamiltonian.rotate(U);
-}
+//     spinor_basis.rotate(U);
+//     sq_hamiltonian.rotate(U);
+// }
 
 
 /**
@@ -203,12 +202,12 @@ void basisRotate(USpinorBasis<TransformationScalar, Shell>& spinor_basis, USQHam
  *  @param jacobi_rotation_parameters       the Jacobi-rotation parameters for one of the spin components
  *  @param component                        the spin component
  */
-template <typename Shell>
-void basisRotate(USpinorBasis<double, Shell>& spinor_basis, USQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rotation_parameters, const Spin& component) {
+// template <typename Shell>
+// void basisRotate(USpinOrbitalBasis<double, Shell>& spinor_basis, USQHamiltonian<double>& sq_hamiltonian, const JacobiRotation& jacobi_rotation_parameters, const Spin& component) {
 
-    spinor_basis.rotate(jacobi_rotation_parameters, component);
-    sq_hamiltonian.rotate(jacobi_rotation_parameters, component);
-}
+//     spinor_basis.rotate(jacobi_rotation_parameters, component);
+//     sq_hamiltonian.rotate(jacobi_rotation_parameters, component);
+// }
 
 
 /**
@@ -220,12 +219,12 @@ void basisRotate(USpinorBasis<double, Shell>& spinor_basis, USQHamiltonian<doubl
  *  @param usq_hamiltonian                  the Hamiltonian, expressed in an unrestricted spinor basis
  *  @param jacobi_rotation_parameters       the Jacobi-rotation parameters
  */
-template <typename Shell>
-void basisRotate(USpinorBasis<double, Shell>& spinor_basis, USQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rotation_parameters) {
+// template <typename Shell>
+// void basisRotate(USpinOrbitalBasis<double, Shell>& spinor_basis, USQHamiltonian<double>& sq_hamiltonian, const JacobiRotation& jacobi_rotation_parameters) {
 
-    spinor_basis.rotate(jacobi_rotation_parameters);
-    sq_hamiltonian.rotate(jacobi_rotation_parameters);
-}
+//     spinor_basis.rotate(jacobi_rotation_parameters);
+//     sq_hamiltonian.rotate(jacobi_rotation_parameters);
+// }
 
 
 }  // namespace GQCP

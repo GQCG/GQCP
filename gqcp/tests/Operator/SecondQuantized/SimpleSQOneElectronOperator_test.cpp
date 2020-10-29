@@ -25,9 +25,11 @@
 
 
 /**
+ *  In this test suite, we'll test the behavior of `SimpleSQOneElectronOperator` through a derived class `RSQOneElectronOperator`.
+ */
+
+/**
  *  Check the construction of one-electron operators from matrices.
- * 
- *  Since RSQOneElectronOperator derives from SimpleSQOneElectronOperator, we test the base functionality using a derived class.
  */
 BOOST_AUTO_TEST_CASE(SimpleSQOneElectronOperator_constructor) {
 
@@ -46,23 +48,21 @@ BOOST_AUTO_TEST_CASE(SimpleSQOneElectronOperator_constructor) {
 
 
 /**
- *  Check if the zero constructor actually sets its parameters to zeros.
- * 
- *  Since RSQOneElectronOperator derives from SimpleSQOneElectronOperator, we test the base functionality using a derived class.
+ *  Check if the `Zero` named constructor actually sets its parameters to zeros.
  */
-BOOST_AUTO_TEST_CASE(SimpleSQOneElectronOperator_zero_constructor) {
+BOOST_AUTO_TEST_CASE(SimpleSQOneElectronOperator_zero) {
 
     const size_t dim = 2;
 
     // Check a zero constructor for scalar operators.
-    const GQCP::ScalarRSQOneElectronOperator<double> zero_scalar_operator = GQCP::ScalarRSQOneElectronOperator<double>::Zero(2);
+    const auto zero_scalar_operator = GQCP::ScalarRSQOneElectronOperator<double>::Zero(2);
 
     BOOST_CHECK_EQUAL(zero_scalar_operator.numberOfOrbitals(), dim);
     BOOST_CHECK(zero_scalar_operator.parameters().isZero(1.0e-08));
 
 
     // Check a zero constructor for vector operators.
-    const GQCP::VectorRSQOneElectronOperator<double> zero_vector_operator = GQCP::VectorRSQOneElectronOperator<double>::Zero(2);
+    const auto zero_vector_operator = GQCP::VectorRSQOneElectronOperator<double>::Zero(2);
 
     BOOST_CHECK_EQUAL(zero_vector_operator.numberOfOrbitals(), dim);
     for (size_t i = 0; i < 3; i++) {
@@ -104,14 +104,12 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_throw) {
     const GQCP::Orbital1DM<double> D_invalid = GQCP::Orbital1DM<double>::Zero(3);
 
     BOOST_CHECK_NO_THROW(f_operator.calculateExpectationValue(D_valid));
-    BOOST_CHECK_THROW(f_operator.calculateExpectationValue(D_invalid), std::invalid_argument);
+    BOOST_CHECK_THROW(f_operator.calculateExpectationValue(D_invalid), std::invalid_argument);  // Invalid dimension for the density matrix.
 }
 
 
 /**
  *  Check if calculateExpectationValue shows the correct behaviour.
- * 
- *  We're testing this behavior for 'restricted' operators, but since the function is a method on its base class `SimpleSQOneElectronOperator`, this test also checks the validity on 'general' operators.
  */
 BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
 
@@ -135,7 +133,7 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
     // Initialize a reference value and check the result.
     const double reference_expectation_value = 5.0;
 
-    const auto expectation_value = op.calculateExpectationValue(D)();  // extract the 'scalar' from a one-dimensional array
+    const double expectation_value = op.calculateExpectationValue(D);  // A scalar-StorageArray can be implicitly converted to the underlying scalar.
     BOOST_CHECK(std::abs(expectation_value - reference_expectation_value) < 1.0e-08);
 }
 
@@ -271,8 +269,6 @@ BOOST_AUTO_TEST_CASE(dot) {
                 18.0,  -4.0;
     // clang-format on
 
-    std::cout << h_op.dot(a).parameters() << std::endl;
-
     BOOST_CHECK(h_op.dot(a).parameters().isApprox(dot_ref, 1.0e-12));
 }
 
@@ -301,7 +297,7 @@ BOOST_AUTO_TEST_CASE(transform_trivial) {
 
 
 /**
- *  Check if the basis transformation method works as expected, for a non-trivial case
+ *  Check if the basis transformation method works as expected, for a non-trivial case.
  */
 BOOST_AUTO_TEST_CASE(transform) {
 
@@ -466,7 +462,7 @@ BOOST_AUTO_TEST_CASE(rotate_throws) {
 
 
 /**
- *  Check if rotating with JacobiRotationParameters is the same as with the corresponding Jacobi rotation matrix.
+ *  Check if rotating with JacobiRotation is the same as with the corresponding Jacobi rotation matrix.
  */
 BOOST_AUTO_TEST_CASE(rotate_jacobi_vs_matrix) {
 
@@ -475,13 +471,13 @@ BOOST_AUTO_TEST_CASE(rotate_jacobi_vs_matrix) {
     const GQCP::SquareMatrix<double> f = GQCP::SquareMatrix<double>::Random(dim);
     GQCP::ScalarRSQOneElectronOperator<double> op {f};
 
-    // Create Jacobi rotation parameters and the corresponding Jacobi rotation matrix.
-    GQCP::JacobiRotationParameters jacobi_rotation_parameters {4, 2, 56.81};
-    const auto J = GQCP::RTransformationMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
+    // Create Jacobi rotation and the corresponding Jacobi rotation matrix.
+    GQCP::JacobiRotation jacobi_rotation {4, 2, 56.81};
+    const auto J = GQCP::RTransformationMatrix<double>::FromJacobi(jacobi_rotation, dim);
 
 
     // Rotate using both representations and check the result.
-    BOOST_CHECK(op.rotated(jacobi_rotation_parameters).parameters().isApprox(op.rotated(J).parameters(), 1.0e-12));
+    BOOST_CHECK(op.rotated(jacobi_rotation).parameters().isApprox(op.rotated(J).parameters(), 1.0e-12));
 }
 
 
@@ -503,7 +499,7 @@ BOOST_AUTO_TEST_CASE(jacobi_rotation_3) {
 
 
     // Initialize the Jacobi rotation.
-    const GQCP::JacobiRotationParameters J {1, 0, boost::math::constants::half_pi<double>()};  // interchanges two orbitals and applies a sign change
+    const GQCP::JacobiRotation J {1, 0, boost::math::constants::half_pi<double>()};  // interchanges two orbitals and applies a sign change
 
 
     // Initialize the reference result.
@@ -542,7 +538,7 @@ BOOST_AUTO_TEST_CASE(jacobi_rotation_4) {
     GQCP::ScalarRSQOneElectronOperator<double> op {f};
 
     // Initialize the Jacobi rotation.
-    const GQCP::JacobiRotationParameters J {2, 1, boost::math::constants::half_pi<double>()};  // interchanges two orbitals and applies a sign change
+    const GQCP::JacobiRotation J {2, 1, boost::math::constants::half_pi<double>()};  // interchanges two orbitals and applies a sign change
 
     // Initialize the reference result.
     GQCP::SquareMatrix<double> ref {dim};

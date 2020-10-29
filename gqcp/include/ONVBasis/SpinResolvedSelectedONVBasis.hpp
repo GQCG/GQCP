@@ -23,7 +23,6 @@
 #include "ONVBasis/SeniorityZeroONVBasis.hpp"
 #include "ONVBasis/SpinResolvedONV.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
-#include "Operator/SecondQuantized/USQHamiltonian.hpp"
 
 
 namespace GQCP {
@@ -111,12 +110,12 @@ public:
      *  @param evaluation_iterator           evaluation iterator to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
-    template <typename _Matrix>
-    void evaluate(const ScalarRSQOneElectronOperator<double>& one_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    // template <typename _Matrix>
+    // void evaluate(const ScalarRSQOneElectronOperator<double>& one_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
 
-        // Calling the unrestricted universal method, with identical alpha and beta components does not affect the performance, hence we avoid duplicated code for the restricted part.
-        this->evaluate(one_op, one_op, evaluation_iterator, diagonal_values);
-    }
+    //     // Calling the unrestricted universal method, with identical alpha and beta components does not affect the performance, hence we avoid duplicated code for the restricted part.
+    //     this->evaluate(one_op, one_op, evaluation_iterator, diagonal_values);
+    // }
 
     /**
      *  Evaluate the operator in a given evaluation iterator in the ONV basis
@@ -128,71 +127,71 @@ public:
      *  @param evaluation_iterator           evaluation iterator to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
-    template <typename _Matrix>
-    void evaluate(const ScalarRSQOneElectronOperator<double>& one_op_alpha, const ScalarRSQOneElectronOperator<double>& one_op_beta, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    // template <typename _Matrix>
+    // void evaluate(const ScalarRSQOneElectronOperator<double>& one_op_alpha, const ScalarRSQOneElectronOperator<double>& one_op_beta, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
 
-        const size_t dim = this->dimension();
-        const auto& h_a = one_op_alpha.parameters();
-        const auto& h_b = one_op_beta.parameters();
+    //     const size_t dim = this->dimension();
+    //     const auto& h_a = one_op_alpha.parameters();
+    //     const auto& h_b = one_op_beta.parameters();
 
-        for (; !evaluation_iterator.isFinished(); evaluation_iterator.increment()) {  // loop over all addresses (1)
-            SpinResolvedONV configuration_I = this->onvWithIndex(evaluation_iterator.index);
-            SpinUnresolvedONV alpha_I = configuration_I.onv(Spin::alpha);
-            SpinUnresolvedONV beta_I = configuration_I.onv(Spin::beta);
+    //     for (; !evaluation_iterator.isFinished(); evaluation_iterator.increment()) {  // loop over all addresses (1)
+    //         SpinResolvedONV configuration_I = this->onvWithIndex(evaluation_iterator.index);
+    //         SpinUnresolvedONV alpha_I = configuration_I.onv(Spin::alpha);
+    //         SpinUnresolvedONV beta_I = configuration_I.onv(Spin::beta);
 
-            if (diagonal_values) {
-                for (size_t p = 0; p < this->M; p++) {
-                    if (alpha_I.isOccupied(p)) {
-                        evaluation_iterator.addRowwise(evaluation_iterator.index, h_a(p, p));
-                    }
+    //         if (diagonal_values) {
+    //             for (size_t p = 0; p < this->M; p++) {
+    //                 if (alpha_I.isOccupied(p)) {
+    //                     evaluation_iterator.addRowwise(evaluation_iterator.index, h_a(p, p));
+    //                 }
 
-                    if (beta_I.isOccupied(p)) {
-                        evaluation_iterator.addRowwise(evaluation_iterator.index, h_b(p, p));
-                    }
-                }  // loop over q
-            }
+    //                 if (beta_I.isOccupied(p)) {
+    //                     evaluation_iterator.addRowwise(evaluation_iterator.index, h_b(p, p));
+    //                 }
+    //             }  // loop over q
+    //         }
 
-            // Calculate the off-diagonal elements, by going over all other ONVs
-            for (size_t J = evaluation_iterator.index + 1; J < dim; J++) {
+    //         // Calculate the off-diagonal elements, by going over all other ONVs
+    //         for (size_t J = evaluation_iterator.index + 1; J < dim; J++) {
 
-                SpinResolvedONV configuration_J = this->onvWithIndex(J);
-                SpinUnresolvedONV alpha_J = configuration_J.onv(Spin::alpha);
-                SpinUnresolvedONV beta_J = configuration_J.onv(Spin::beta);
+    //             SpinResolvedONV configuration_J = this->onvWithIndex(J);
+    //             SpinUnresolvedONV alpha_J = configuration_J.onv(Spin::alpha);
+    //             SpinUnresolvedONV beta_J = configuration_J.onv(Spin::beta);
 
-                if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
+    //             if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
 
-                    // Find the orbitals that are occupied in one string, and aren't in the other
-                    size_t p = alpha_I.findDifferentOccupations(alpha_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
-                    size_t q = alpha_J.findDifferentOccupations(alpha_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+    //                 // Find the orbitals that are occupied in one string, and aren't in the other
+    //                 size_t p = alpha_I.findDifferentOccupations(alpha_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+    //                 size_t q = alpha_J.findDifferentOccupations(alpha_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
 
-                    // Calculate the total sign
-                    int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q);
+    //                 // Calculate the total sign
+    //                 int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q);
 
-                    double value = h_a(p, q);
+    //                 double value = h_a(p, q);
 
-                    evaluation_iterator.addColumnwise(J, sign * value);
-                    evaluation_iterator.addRowwise(J, sign * value);
-                }
+    //                 evaluation_iterator.addColumnwise(J, sign * value);
+    //                 evaluation_iterator.addRowwise(J, sign * value);
+    //             }
 
-                // 0 electron excitations in alpha, 1 in beta
-                if ((alpha_I.countNumberOfDifferences(alpha_J) == 0) && (beta_I.countNumberOfDifferences(beta_J) == 2)) {
+    //             // 0 electron excitations in alpha, 1 in beta
+    //             if ((alpha_I.countNumberOfDifferences(alpha_J) == 0) && (beta_I.countNumberOfDifferences(beta_J) == 2)) {
 
 
-                    // Find the orbitals that are occupied in one string, and aren't in the other
-                    size_t p = beta_I.findDifferentOccupations(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
-                    size_t q = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+    //                 // Find the orbitals that are occupied in one string, and aren't in the other
+    //                 size_t p = beta_I.findDifferentOccupations(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+    //                 size_t q = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
 
-                    // Calculate the total sign
-                    int sign = beta_I.operatorPhaseFactor(p) * beta_J.operatorPhaseFactor(q);
+    //                 // Calculate the total sign
+    //                 int sign = beta_I.operatorPhaseFactor(p) * beta_J.operatorPhaseFactor(q);
 
-                    double value = h_b(p, q);
+    //                 double value = h_b(p, q);
 
-                    evaluation_iterator.addColumnwise(J, sign * value);
-                    evaluation_iterator.addRowwise(J, sign * value);
-                }
-            }  // loop over addresses J > I
-        }      // loop over addresses I
-    }
+    //                 evaluation_iterator.addColumnwise(J, sign * value);
+    //                 evaluation_iterator.addRowwise(J, sign * value);
+    //             }
+    //         }  // loop over addresses J > I
+    //     }      // loop over addresses I
+    // }
 
 
     /**
@@ -204,12 +203,12 @@ public:
      *  @param evaluation_iterator           evaluation iterator to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
-    template <typename _Matrix>
-    void evaluate(const ScalarRSQTwoElectronOperator<double>& two_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    // template <typename _Matrix>
+    // void evaluate(const ScalarRSQTwoElectronOperator<double>& two_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
 
-        // Calling this combined method for both the one- and two-electron operator does not affect the performance, hence we avoid writting more code by plugging a zero one-electron operator in the combined method.
-        this->evaluate(ScalarRSQOneElectronOperator<double> {this->M}, ScalarRSQOneElectronOperator<double> {this->M}, two_op, two_op, two_op, evaluation_iterator, diagonal_values);
-    }
+    //     // Calling this combined method for both the one- and two-electron operator does not affect the performance, hence we avoid writting more code by plugging a zero one-electron operator in the combined method.
+    //     this->evaluate(ScalarRSQOneElectronOperator<double> {this->M}, ScalarRSQOneElectronOperator<double> {this->M}, two_op, two_op, two_op, evaluation_iterator, diagonal_values);
+    // }
 
 
     /**
@@ -222,12 +221,12 @@ public:
      *  @param evaluation_iterator           evaluation iterator to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
-    template <typename _Matrix>
-    void evaluate(const ScalarRSQOneElectronOperator<double>& one_op, const ScalarRSQTwoElectronOperator<double>& two_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    // template <typename _Matrix>
+    // void evaluate(const ScalarRSQOneElectronOperator<double>& one_op, const ScalarRSQTwoElectronOperator<double>& two_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
 
-        // Calling the unrestricted universal method, with identical alpha, beta and mixed components does not affect the performance, hence we avoid duplicated code for the restricted part
-        this->evaluate(one_op, one_op, two_op, two_op, two_op, evaluation_iterator, diagonal_values);
-    }
+    //     // Calling the unrestricted universal method, with identical alpha, beta and mixed components does not affect the performance, hence we avoid duplicated code for the restricted part
+    //     this->evaluate(one_op, one_op, two_op, two_op, two_op, evaluation_iterator, diagonal_values);
+    // }
 
 
     /**
@@ -243,202 +242,202 @@ public:
      *  @param evaluation_iterator              evaluation iterator to which the evaluations are added
      *  @param diagonal_values                  bool to indicate if diagonal values will be calculated
      */
-    template <typename _Matrix>
-    void evaluate(const ScalarRSQOneElectronOperator<double>& one_op_alpha, const ScalarRSQOneElectronOperator<double>& one_op_beta, const ScalarRSQTwoElectronOperator<double>& two_op_alpha, const ScalarRSQTwoElectronOperator<double>& two_op_beta, const ScalarRSQTwoElectronOperator<double>& two_op_mixed, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    // template <typename _Matrix>
+    // void evaluate(const ScalarRSQOneElectronOperator<double>& one_op_alpha, const ScalarRSQOneElectronOperator<double>& one_op_beta, const ScalarRSQTwoElectronOperator<double>& two_op_alpha, const ScalarRSQTwoElectronOperator<double>& two_op_beta, const ScalarRSQTwoElectronOperator<double>& two_op_mixed, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
 
-        const size_t dim = this->dimension();
-        const size_t K = this->numberOfOrbitals();
+    //     const size_t dim = this->dimension();
+    //     const size_t K = this->numberOfOrbitals();
 
-        const auto& h_a = one_op_alpha.parameters();
-        const auto& g_a = two_op_alpha.parameters();
-        const auto& h_b = one_op_beta.parameters();
-        const auto& g_b = two_op_beta.parameters();
+    //     const auto& h_a = one_op_alpha.parameters();
+    //     const auto& g_a = two_op_alpha.parameters();
+    //     const auto& h_b = one_op_beta.parameters();
+    //     const auto& g_b = two_op_beta.parameters();
 
-        // Only g_ab is stored, for integrals derived from g_ba we reverse the indices as follows : g_ab(pqrs) = g_ba(rspq)
-        const auto& g_ab = two_op_mixed.parameters();
+    //     // Only g_ab is stored, for integrals derived from g_ba we reverse the indices as follows : g_ab(pqrs) = g_ba(rspq)
+    //     const auto& g_ab = two_op_mixed.parameters();
 
-        for (; !evaluation_iterator.isFinished(); evaluation_iterator.increment()) {  // loop over all addresses (1)
-            SpinResolvedONV configuration_I = this->onvWithIndex(evaluation_iterator.index);
-            SpinUnresolvedONV alpha_I = configuration_I.onv(Spin::alpha);
-            SpinUnresolvedONV beta_I = configuration_I.onv(Spin::beta);
+    //     for (; !evaluation_iterator.isFinished(); evaluation_iterator.increment()) {  // loop over all addresses (1)
+    //         SpinResolvedONV configuration_I = this->onvWithIndex(evaluation_iterator.index);
+    //         SpinUnresolvedONV alpha_I = configuration_I.onv(Spin::alpha);
+    //         SpinUnresolvedONV beta_I = configuration_I.onv(Spin::beta);
 
-            if (diagonal_values) {
-                for (size_t p = 0; p < K; p++) {
-                    if (alpha_I.isOccupied(p)) {
-                        evaluation_iterator.addRowwise(evaluation_iterator.index, h_a(p, p));
-                        for (size_t q = 0; q < K; q++) {
+    //         if (diagonal_values) {
+    //             for (size_t p = 0; p < K; p++) {
+    //                 if (alpha_I.isOccupied(p)) {
+    //                     evaluation_iterator.addRowwise(evaluation_iterator.index, h_a(p, p));
+    //                     for (size_t q = 0; q < K; q++) {
 
-                            if (p != q) {  // can't create/annihilate the same orbital twice
-                                if (alpha_I.isOccupied(q)) {
-                                    evaluation_iterator.addRowwise(evaluation_iterator.index, 0.5 * g_a(p, p, q, q));
-                                    evaluation_iterator.addRowwise(evaluation_iterator.index, -0.5 * g_a(p, q, q, p));
-                                }
-                            }
+    //                         if (p != q) {  // can't create/annihilate the same orbital twice
+    //                             if (alpha_I.isOccupied(q)) {
+    //                                 evaluation_iterator.addRowwise(evaluation_iterator.index, 0.5 * g_a(p, p, q, q));
+    //                                 evaluation_iterator.addRowwise(evaluation_iterator.index, -0.5 * g_a(p, q, q, p));
+    //                             }
+    //                         }
 
-                            if (beta_I.isOccupied(q)) {
-                                evaluation_iterator.addRowwise(evaluation_iterator.index, 0.5 * g_ab(p, p, q, q));
-                            }
-                        }  // loop over q
-                    }
+    //                         if (beta_I.isOccupied(q)) {
+    //                             evaluation_iterator.addRowwise(evaluation_iterator.index, 0.5 * g_ab(p, p, q, q));
+    //                         }
+    //                     }  // loop over q
+    //                 }
 
-                    if (beta_I.isOccupied(p)) {
-                        evaluation_iterator.addRowwise(evaluation_iterator.index, h_b(p, p));
-                        for (size_t q = 0; q < K; q++) {
+    //                 if (beta_I.isOccupied(p)) {
+    //                     evaluation_iterator.addRowwise(evaluation_iterator.index, h_b(p, p));
+    //                     for (size_t q = 0; q < K; q++) {
 
-                            if (p != q) {  // can't create/annihilate the same orbital twice
-                                if (beta_I.isOccupied(q)) {
-                                    evaluation_iterator.addRowwise(evaluation_iterator.index, 0.5 * g_b(p, p, q, q));
-                                    evaluation_iterator.addRowwise(evaluation_iterator.index, -0.5 * g_b(p, q, q, p));
-                                }
-                            }
+    //                         if (p != q) {  // can't create/annihilate the same orbital twice
+    //                             if (beta_I.isOccupied(q)) {
+    //                                 evaluation_iterator.addRowwise(evaluation_iterator.index, 0.5 * g_b(p, p, q, q));
+    //                                 evaluation_iterator.addRowwise(evaluation_iterator.index, -0.5 * g_b(p, q, q, p));
+    //                             }
+    //                         }
 
-                            if (alpha_I.isOccupied(q)) {
-                                evaluation_iterator.addRowwise(evaluation_iterator.index, 0.5 * g_ab(q, q, p, p));  // g_ab(pqrs) = g_ba(rspq)
-                            }
-                        }  // loop over q
-                    }
-                }  // loop over q
-            }
+    //                         if (alpha_I.isOccupied(q)) {
+    //                             evaluation_iterator.addRowwise(evaluation_iterator.index, 0.5 * g_ab(q, q, p, p));  // g_ab(pqrs) = g_ba(rspq)
+    //                         }
+    //                     }  // loop over q
+    //                 }
+    //             }  // loop over q
+    //         }
 
-            // Calculate the off-diagonal elements, by going over all other ONVs
-            for (size_t J = evaluation_iterator.index + 1; J < dim; J++) {
+    //         // Calculate the off-diagonal elements, by going over all other ONVs
+    //         for (size_t J = evaluation_iterator.index + 1; J < dim; J++) {
 
-                SpinResolvedONV configuration_J = this->onvWithIndex(J);
-                SpinUnresolvedONV alpha_J = configuration_J.onv(Spin::alpha);
-                SpinUnresolvedONV beta_J = configuration_J.onv(Spin::beta);
+    //             SpinResolvedONV configuration_J = this->onvWithIndex(J);
+    //             SpinUnresolvedONV alpha_J = configuration_J.onv(Spin::alpha);
+    //             SpinUnresolvedONV beta_J = configuration_J.onv(Spin::beta);
 
-                if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
+    //             if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
 
-                    // Find the orbitals that are occupied in one string, and aren't in the other
-                    size_t p = alpha_I.findDifferentOccupations(alpha_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
-                    size_t q = alpha_J.findDifferentOccupations(alpha_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+    //                 // Find the orbitals that are occupied in one string, and aren't in the other
+    //                 size_t p = alpha_I.findDifferentOccupations(alpha_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+    //                 size_t q = alpha_J.findDifferentOccupations(alpha_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
 
-                    // Calculate the total sign
-                    int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q);
+    //                 // Calculate the total sign
+    //                 int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q);
 
-                    double value = h_a(p, q);
+    //                 double value = h_a(p, q);
 
-                    evaluation_iterator.addColumnwise(J, sign * value);
-                    evaluation_iterator.addRowwise(J, sign * value);
+    //                 evaluation_iterator.addColumnwise(J, sign * value);
+    //                 evaluation_iterator.addRowwise(J, sign * value);
 
-                    for (size_t r = 0; r < K; r++) {  // r loops over spatial orbitals
+    //                 for (size_t r = 0; r < K; r++) {  // r loops over spatial orbitals
 
-                        if (alpha_I.isOccupied(r) && alpha_J.isOccupied(r)) {  // r must be occupied on the left and on the right
-                            if ((p != r) && (q != r)) {                        // can't create or annihilate the same orbital
+    //                     if (alpha_I.isOccupied(r) && alpha_J.isOccupied(r)) {  // r must be occupied on the left and on the right
+    //                         if ((p != r) && (q != r)) {                        // can't create or annihilate the same orbital
 
-                                double value = 0.5 * (g_a(p, q, r, r) - g_a(r, q, p, r) - g_a(p, r, r, q) + g_a(r, r, p, q));
+    //                             double value = 0.5 * (g_a(p, q, r, r) - g_a(r, q, p, r) - g_a(p, r, r, q) + g_a(r, r, p, q));
 
-                                evaluation_iterator.addColumnwise(J, sign * value);
-                                evaluation_iterator.addRowwise(J, sign * value);
-                            }
-                        }
+    //                             evaluation_iterator.addColumnwise(J, sign * value);
+    //                             evaluation_iterator.addRowwise(J, sign * value);
+    //                         }
+    //                     }
 
-                        if (beta_I.isOccupied(r)) {  // beta_I == beta_J from the previous if-branch
+    //                     if (beta_I.isOccupied(r)) {  // beta_I == beta_J from the previous if-branch
 
-                            double value = 0.5 * 2 * g_ab(p, q, r, r);  // g_ab(pqrs) = g_ba(rspq)
+    //                         double value = 0.5 * 2 * g_ab(p, q, r, r);  // g_ab(pqrs) = g_ba(rspq)
 
-                            evaluation_iterator.addColumnwise(J, sign * value);
-                            evaluation_iterator.addRowwise(J, sign * value);
-                        }
-                    }
-                }
+    //                         evaluation_iterator.addColumnwise(J, sign * value);
+    //                         evaluation_iterator.addRowwise(J, sign * value);
+    //                     }
+    //                 }
+    //             }
 
-                // 0 electron excitations in alpha, 1 in beta
-                if ((alpha_I.countNumberOfDifferences(alpha_J) == 0) && (beta_I.countNumberOfDifferences(beta_J) == 2)) {
+    //             // 0 electron excitations in alpha, 1 in beta
+    //             if ((alpha_I.countNumberOfDifferences(alpha_J) == 0) && (beta_I.countNumberOfDifferences(beta_J) == 2)) {
 
 
-                    // Find the orbitals that are occupied in one string, and aren't in the other
-                    size_t p = beta_I.findDifferentOccupations(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
-                    size_t q = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+    //                 // Find the orbitals that are occupied in one string, and aren't in the other
+    //                 size_t p = beta_I.findDifferentOccupations(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+    //                 size_t q = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
 
-                    // Calculate the total sign
-                    int sign = beta_I.operatorPhaseFactor(p) * beta_J.operatorPhaseFactor(q);
+    //                 // Calculate the total sign
+    //                 int sign = beta_I.operatorPhaseFactor(p) * beta_J.operatorPhaseFactor(q);
 
-                    double value = h_b(p, q);
+    //                 double value = h_b(p, q);
 
-                    evaluation_iterator.addColumnwise(J, sign * value);
-                    evaluation_iterator.addRowwise(J, sign * value);
+    //                 evaluation_iterator.addColumnwise(J, sign * value);
+    //                 evaluation_iterator.addRowwise(J, sign * value);
 
-                    for (size_t r = 0; r < K; r++) {  // r loops over spatial orbitals
+    //                 for (size_t r = 0; r < K; r++) {  // r loops over spatial orbitals
 
-                        if (beta_I.isOccupied(r) && beta_J.isOccupied(r)) {  // r must be occupied on the left and on the right
-                            if ((p != r) && (q != r)) {                      // can't create or annihilate the same orbital
-                                double value = 0.5 * (g_b(p, q, r, r) - g_b(r, q, p, r) - g_b(p, r, r, q) + g_b(r, r, p, q));
+    //                     if (beta_I.isOccupied(r) && beta_J.isOccupied(r)) {  // r must be occupied on the left and on the right
+    //                         if ((p != r) && (q != r)) {                      // can't create or annihilate the same orbital
+    //                             double value = 0.5 * (g_b(p, q, r, r) - g_b(r, q, p, r) - g_b(p, r, r, q) + g_b(r, r, p, q));
 
-                                evaluation_iterator.addColumnwise(J, sign * value);
-                                evaluation_iterator.addRowwise(J, sign * value);
-                            }
-                        }
+    //                             evaluation_iterator.addColumnwise(J, sign * value);
+    //                             evaluation_iterator.addRowwise(J, sign * value);
+    //                         }
+    //                     }
 
-                        if (alpha_I.isOccupied(r)) {  // alpha_I == alpha_J from the previous if-branch
+    //                     if (alpha_I.isOccupied(r)) {  // alpha_I == alpha_J from the previous if-branch
 
-                            double value = 0.5 * 2 * g_ab(r, r, p, q);  // g_ab(pqrs) = g_ba(rspq)
+    //                         double value = 0.5 * 2 * g_ab(r, r, p, q);  // g_ab(pqrs) = g_ba(rspq)
 
-                            evaluation_iterator.addColumnwise(J, sign * value);
-                            evaluation_iterator.addRowwise(J, sign * value);
-                        }
-                    }
-                }
+    //                         evaluation_iterator.addColumnwise(J, sign * value);
+    //                         evaluation_iterator.addRowwise(J, sign * value);
+    //                     }
+    //                 }
+    //             }
 
-                // 1 electron excitation in alpha, 1 in beta
-                if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 2)) {
+    //             // 1 electron excitation in alpha, 1 in beta
+    //             if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 2)) {
 
-                    // Find the orbitals that are occupied in one string, and aren't in the other
-                    size_t p = alpha_I.findDifferentOccupations(alpha_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
-                    size_t q = alpha_J.findDifferentOccupations(alpha_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+    //                 // Find the orbitals that are occupied in one string, and aren't in the other
+    //                 size_t p = alpha_I.findDifferentOccupations(alpha_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+    //                 size_t q = alpha_J.findDifferentOccupations(alpha_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
 
-                    size_t r = beta_I.findDifferentOccupations(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
-                    size_t s = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+    //                 size_t r = beta_I.findDifferentOccupations(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+    //                 size_t s = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
 
-                    int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(s);
-                    double value = 0.5 * 2 * g_ab(p, q, r, s);  // g_ab(pqrs) = g_ba(rspq)
+    //                 int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(s);
+    //                 double value = 0.5 * 2 * g_ab(p, q, r, s);  // g_ab(pqrs) = g_ba(rspq)
 
-                    evaluation_iterator.addColumnwise(J, sign * value);
-                    evaluation_iterator.addRowwise(J, sign * value);
-                }
+    //                 evaluation_iterator.addColumnwise(J, sign * value);
+    //                 evaluation_iterator.addRowwise(J, sign * value);
+    //             }
 
-                // 2 electron excitations in alpha, 0 in beta
-                if ((alpha_I.countNumberOfDifferences(alpha_J) == 4) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
+    //             // 2 electron excitations in alpha, 0 in beta
+    //             if ((alpha_I.countNumberOfDifferences(alpha_J) == 4) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
 
-                    // Find the orbitals that are occupied in one string, and aren't in the other
-                    std::vector<size_t> occupied_indices_I = alpha_I.findDifferentOccupations(alpha_J);  // we're sure this has two elements
-                    size_t p = occupied_indices_I[0];
-                    size_t r = occupied_indices_I[1];
+    //                 // Find the orbitals that are occupied in one string, and aren't in the other
+    //                 std::vector<size_t> occupied_indices_I = alpha_I.findDifferentOccupations(alpha_J);  // we're sure this has two elements
+    //                 size_t p = occupied_indices_I[0];
+    //                 size_t r = occupied_indices_I[1];
 
-                    std::vector<size_t> occupied_indices_J = alpha_J.findDifferentOccupations(alpha_I);  // we're sure this has two elements
-                    size_t q = occupied_indices_J[0];
-                    size_t s = occupied_indices_J[1];
+    //                 std::vector<size_t> occupied_indices_J = alpha_J.findDifferentOccupations(alpha_I);  // we're sure this has two elements
+    //                 size_t q = occupied_indices_J[0];
+    //                 size_t s = occupied_indices_J[1];
 
-                    int sign = alpha_I.operatorPhaseFactor(p) * alpha_I.operatorPhaseFactor(r) * alpha_J.operatorPhaseFactor(q) * alpha_J.operatorPhaseFactor(s);
+    //                 int sign = alpha_I.operatorPhaseFactor(p) * alpha_I.operatorPhaseFactor(r) * alpha_J.operatorPhaseFactor(q) * alpha_J.operatorPhaseFactor(s);
 
-                    double value = 0.5 * (g_a(p, q, r, s) - g_a(p, s, r, q) - g_a(r, q, p, s) + g_a(r, s, p, q));
+    //                 double value = 0.5 * (g_a(p, q, r, s) - g_a(p, s, r, q) - g_a(r, q, p, s) + g_a(r, s, p, q));
 
-                    evaluation_iterator.addColumnwise(J, sign * value);
-                    evaluation_iterator.addRowwise(J, sign * value);
-                }
+    //                 evaluation_iterator.addColumnwise(J, sign * value);
+    //                 evaluation_iterator.addRowwise(J, sign * value);
+    //             }
 
-                // 0 electron excitations in alpha, 2 in beta
-                if ((alpha_I.countNumberOfDifferences(alpha_J) == 0) && (beta_I.countNumberOfDifferences(beta_J) == 4)) {
+    //             // 0 electron excitations in alpha, 2 in beta
+    //             if ((alpha_I.countNumberOfDifferences(alpha_J) == 0) && (beta_I.countNumberOfDifferences(beta_J) == 4)) {
 
-                    // Find the orbitals that are occupied in one string, and aren't in the other
-                    std::vector<size_t> occupied_indices_I = beta_I.findDifferentOccupations(beta_J);  // we're sure this has two elements
-                    size_t p = occupied_indices_I[0];
-                    size_t r = occupied_indices_I[1];
+    //                 // Find the orbitals that are occupied in one string, and aren't in the other
+    //                 std::vector<size_t> occupied_indices_I = beta_I.findDifferentOccupations(beta_J);  // we're sure this has two elements
+    //                 size_t p = occupied_indices_I[0];
+    //                 size_t r = occupied_indices_I[1];
 
-                    std::vector<size_t> occupied_indices_J = beta_J.findDifferentOccupations(beta_I);  // we're sure this has two elements
-                    size_t q = occupied_indices_J[0];
-                    size_t s = occupied_indices_J[1];
+    //                 std::vector<size_t> occupied_indices_J = beta_J.findDifferentOccupations(beta_I);  // we're sure this has two elements
+    //                 size_t q = occupied_indices_J[0];
+    //                 size_t s = occupied_indices_J[1];
 
-                    int sign = beta_I.operatorPhaseFactor(p) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(q) * beta_J.operatorPhaseFactor(s);
+    //                 int sign = beta_I.operatorPhaseFactor(p) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(q) * beta_J.operatorPhaseFactor(s);
 
-                    double value = 0.5 * (g_b(p, q, r, s) - g_b(p, s, r, q) - g_b(r, q, p, s) + g_b(r, s, p, q));
+    //                 double value = 0.5 * (g_b(p, q, r, s) - g_b(p, s, r, q) - g_b(r, q, p, s) + g_b(r, s, p, q));
 
-                    evaluation_iterator.addColumnwise(J, sign * value);
-                    evaluation_iterator.addRowwise(J, sign * value);
-                }
-            }  // loop over addresses J > I
-        }      // loop over addresses I
-    }
+    //                 evaluation_iterator.addColumnwise(J, sign * value);
+    //                 evaluation_iterator.addRowwise(J, sign * value);
+    //             }
+    //         }  // loop over addresses J > I
+    //     }      // loop over addresses I
+    // }
 
 
     /**
@@ -450,15 +449,15 @@ public:
      *  @param evaluation_iterator           evaluation iterator to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
-    template <typename _Matrix>
-    void evaluate(const USQHamiltonian<double>& usq_hamiltonian, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    // template <typename _Matrix>
+    // void evaluate(const USQHamiltonian<double>& usq_hamiltonian, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
 
-        if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
-            throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluate(USQHamiltonian<double>, MatrixRepresentationEvaluationContainer&, bool): Different spinor dimensions of spin components are currently not supported.");
-        }
+    //     if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
+    //         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluate(USQHamiltonian<double>, MatrixRepresentationEvaluationContainer&, bool): Different spinor dimensions of spin components are currently not supported.");
+    //     }
 
-        this->evaluate(usq_hamiltonian.spinHamiltonian(Spin::alpha).core(), usq_hamiltonian.spinHamiltonian(Spin::beta).core(), usq_hamiltonian.spinHamiltonian(Spin::alpha).twoElectron(), usq_hamiltonian.spinHamiltonian(Spin::beta).twoElectron(), usq_hamiltonian.twoElectronMixed(), evaluation_iterator, diagonal_values);
-    }
+    //     this->evaluate(usq_hamiltonian.spinHamiltonian(Spin::alpha).core(), usq_hamiltonian.spinHamiltonian(Spin::beta).core(), usq_hamiltonian.spinHamiltonian(Spin::alpha).twoElectron(), usq_hamiltonian.spinHamiltonian(Spin::beta).twoElectron(), usq_hamiltonian.twoElectronMixed(), evaluation_iterator, diagonal_values);
+    // }
 
 
     /**

@@ -19,6 +19,7 @@
 
 
 #include "Basis/Transformations/BasisTransformable.hpp"
+#include "DensityMatrix/DensityMatrixTraits.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 
 
@@ -100,6 +101,21 @@ struct BasisTransformableTraits<Simple1DM<Scalar, DerivedDM>> {
 
     // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix"
     using TM = typename DensityMatrixTraits<DerivedDM>::TM;
+};
+
+
+/*
+ *  MARK: JacobiRotatableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
+ */
+template <typename Scalar, typename DerivedDM>
+struct JacobiRotatableTraits<Simple1DM<Scalar, DerivedDM>> {
+
+    // The type of Jacobi rotation for which the Jacobi rotation should be defined.
+    using JacobiRotationType = JacobiRotation;
 };
 
 

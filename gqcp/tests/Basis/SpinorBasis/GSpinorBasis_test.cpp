@@ -102,7 +102,7 @@ BOOST_AUTO_TEST_CASE(alpha_beta_coefficient_matrix) {
 BOOST_AUTO_TEST_CASE(FromRestricted) {
 
     const auto molecule = GQCP::Molecule::HChain(2, 1.0);
-    const GQCP::RSpinorBasis<double, GQCP::GTOShell> r_spinor_basis {molecule, "6-31G"};  // a basis with M=2*4=8 spinors
+    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> r_spinor_basis {molecule, "6-31G"};  // a basis with M=2*4=8 spinors
     const auto K = r_spinor_basis.numberOfSpatialOrbitals();
 
 

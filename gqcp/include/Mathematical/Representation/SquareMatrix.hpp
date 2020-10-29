@@ -41,9 +41,6 @@ public:
     // The scalar type.
     using Scalar = _Scalar;
 
-    // The type of this' base.
-    using Base = MatrixX<Scalar>;
-
     // The type of 'this'.
     using Self = SquareMatrix<Scalar>;
 
@@ -54,10 +51,10 @@ public:
      */
 
     /**
-     *  T default constructor.
+     *  The default constructor.
      */
     SquareMatrix() :
-        Base() {}
+        MatrixX<Scalar>() {}
 
 
     /**
@@ -66,7 +63,7 @@ public:
      *  @param dim      The dimension of the square matrix.
      */
     SquareMatrix(const size_t dim) :
-        Base(dim, dim) {}
+        MatrixX<Scalar>(dim, dim) {}
 
 
     /**
@@ -74,12 +71,12 @@ public:
      *
      *  @param M        The matrix that should be square.
      */
-    SquareMatrix(const Base& M) :
-        Base(M) {
+    SquareMatrix(const MatrixX<Scalar>& M) :
+        MatrixX<Scalar>(M) {
 
         // Check if the given matrix is square.
         if (this->cols() != this->rows()) {
-            throw std::invalid_argument("SquareMatrix::SquareMatrix(const Base&): The given matrix is not square.");
+            throw std::invalid_argument("SquareMatrix::SquareMatrix(const MatrixX<Scalar>&): The given matrix is not square.");
         }
     }
 
@@ -93,7 +90,7 @@ public:
      */
     template <typename DerivedExpression>
     SquareMatrix(const Eigen::MatrixBase<DerivedExpression>& expression) :
-        Self(Base(expression))  // The Base constructor returns the required type for the square-checking constructor.
+        Self(MatrixX<Scalar>(expression))  // The base constructor returns the required type for the square-checking constructor.
     {}
 
 
@@ -182,7 +179,7 @@ public:
      * 
      *  @return A random square matrix.
      */
-    static Self Random(const size_t dim) { return Self {Base::Random(dim, dim)}; }
+    static Self Random(const size_t dim) { return Self {MatrixX<Scalar>::Random(dim, dim)}; }
 
 
     /**
@@ -257,13 +254,30 @@ public:
 
 
     /*
-     *  PUBLIC METHODS
+     *  MARK: General information
      */
 
     /**
      *  @return the dimension of this square matrix, i.e. the number of rows or columns
      */
     size_t dimension() const { return static_cast<size_t>(this->cols()); }  // equals this->rows()
+
+
+    /**
+     *  @return If this square matrix is self-adjoint.
+     */
+    bool isSelfAdjoint(const double threshold = 1.0e-08) const { return (*this).adjoint().isApprox(*this, threshold); }
+
+
+    /**
+     *  @return If this square matrix is self-adjoint.
+     */
+    bool isHermitian(const double threshold = 1.0e-08) const { return this->isSelfAdjoint(threshold); }
+
+
+    /*
+     *  MARK: Algebraic manipulations
+     */
 
     /**
      *  @return a non-pivoted LU decomposition in an array, with L at position 0 and U on position 1 of the array.
@@ -354,6 +368,10 @@ public:
     }
 
 
+    /*
+     *  MARK: Permanents
+     */
+
     /**
      *  @return the permanent using a combinatorial algorithm
      */
@@ -367,7 +385,7 @@ public:
         size_t j = 0;  // develop by the first column
         double value = 0.0;
         for (size_t i = 0; i < this->rows(); i++) {
-            value += this->operator()(i, j) * SquareMatrix<Scalar>(this->calculateMinor(i, j)).calculatePermanentCombinatorial();  // need to convert because 'minor' is a Base function and isn't guaranteed to be square
+            value += this->operator()(i, j) * SquareMatrix<Scalar>(this->calculateMinor(i, j)).calculatePermanentCombinatorial();  // need to convert because 'minor' is a base function and isn't guaranteed to be square
         }
 
         return value;
@@ -392,7 +410,7 @@ public:
             size_t gray_code_value = grayCodeOf(S);
             size_t k = __builtin_popcountll(gray_code_value);  // number of columns
 
-            Base X = Base::Zero(n, k);
+            MatrixX<Scalar> X = MatrixX<Scalar>::Zero(n, k);
             size_t j = 0;                                         // the column index in X
             while (gray_code_value != 0) {                        // loop over the set bits in the Gray code
                 size_t index = __builtin_ctzll(gray_code_value);  // the index in the original matrix

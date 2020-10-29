@@ -1,5 +1,5 @@
 target_sources(gqcp
     PRIVATE
-        JacobiRotationParameters.cpp
+        JacobiRotation.cpp
         OrbitalRotationGenerators.cpp
 )

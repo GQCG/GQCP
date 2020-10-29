@@ -84,7 +84,7 @@ public:
      * 
      *  @return T2-amplitudes calculated from an initial perturbative result
      */
-    static T2Amplitudes<Scalar> Perturbative(const SquareMatrix<Scalar>& f, const QCRankFourTensor<Scalar>& V_A, const OrbitalSpace& orbital_space) {
+    static T2Amplitudes<Scalar> Perturbative(const SquareMatrix<Scalar>& f, const SquareRankFourTensor<Scalar>& V_A, const OrbitalSpace& orbital_space) {
 
         // Zero-initialize a tensor representation for the (occupied-occupied-virtual-virtual) T2-amplitudes t_{ij}^{ab}.
         auto t2 = orbital_space.initializeRepresentableObjectFor<double>(OccupationType::k_occupied, OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_virtual);

@@ -44,7 +44,7 @@
 //     const auto N_P = molecule.numberOfElectrons() / 2;
 //     const auto internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(molecule).value();  // 0.713176780299327
 
-//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+//     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
 //     const auto K = spinor_basis.numberOfSpatialOrbitals();
 
 //     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
@@ -90,7 +90,7 @@
 //     const auto N_P = molecule.numberOfElectrons() / 2;
 //     const auto internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(molecule).value();  // 0.713176780299327
 
-//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "6-31G**"};
+//     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "6-31G**"};
 //     const auto K = spinor_basis.numberOfSpatialOrbitals();
 
 //     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis

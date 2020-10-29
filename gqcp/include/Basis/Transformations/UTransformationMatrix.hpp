@@ -19,6 +19,8 @@
 
 
 #include "Basis/Transformations/RTransformationMatrix.hpp"
+#include "Basis/Transformations/SpinResolvedBasisTransformable.hpp"
+#include "Basis/Transformations/SpinResolvedJacobiRotatable.hpp"
 #include "Basis/Transformations/UTransformationMatrixComponent.hpp"
 #include "QuantumChemical/SpinResolvedBase.hpp"
 
@@ -38,7 +40,8 @@ namespace GQCP {
 template <typename _Scalar>
 class UTransformationMatrix:
     public SpinResolvedBase<UTransformationMatrixComponent<_Scalar>, UTransformationMatrix<_Scalar>>,
-    public BasisTransformable<UTransformationMatrix<_Scalar>> {
+    public SpinResolvedBasisTransformable<UTransformationMatrix<_Scalar>>,
+    public SpinResolvedJacobiRotatable<UTransformationMatrix<_Scalar>> {
 public:
     // The scalar type used for a transformation coefficient: real or complex.
     using Scalar = _Scalar;
@@ -98,28 +101,6 @@ public:
 
 
     /*
-     *  MARK: Conforming to `BasisTransformable`
-     */
-
-    /**
-     *  Apply the basis transformation and return the resulting one-electron integrals.
-     * 
-     *  @param transformation_matrix        The type that encapsulates the basis transformation coefficients.
-     * 
-     *  @return The basis-transformed one-electron integrals.
-     */
-    UTransformationMatrix<Scalar> transformed(const TM& transformation_matrix) const override {
-
-        // Transform the components of 'this' with the components of the transformation matrix.
-        auto result = *this;
-        result.alpha().transform(transformation_matrix.alpha());
-        result.beta().transform(transformation_matrix.beta());
-
-        return result;
-    }
-
-
-    /*
      *  MARK: Linear algebraic operations
      */
 
@@ -159,6 +140,21 @@ struct BasisTransformableTraits<UTransformationMatrix<Scalar>> {
 
     // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix". A transformation matrix should naturally be transformable with itself.
     using TM = UTransformationMatrix<Scalar>;
+};
+
+
+/*
+ *  MARK: JacobiRotatableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
+ */
+template <typename Scalar>
+struct JacobiRotatableTraits<UTransformationMatrix<Scalar>> {
+
+    // The type of Jacobi rotation for which the Jacobi rotation should be defined.
+    using JacobiRotationType = UJacobiRotation;
 };
 
 

@@ -35,6 +35,15 @@ class SpinResolved:
 public:
     // The type of the alpha- and beta-objects. The name 'Of' is chosen for a natural reading `SpinResolved<_Of, _Derived>`.
     using Of = _Of;
+
+
+public:
+    /*
+     *  MARK: Constructors
+     */
+
+    // Inherit `SpinResolvedBase`'s constructors.
+    using SpinResolvedBase<Of, SpinResolved<Of>>::SpinResolvedBase;
 };
 
 

@@ -63,7 +63,7 @@
 // BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_diagonal_vs_no_diagonal) {
 
 //     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
-//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
+//     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
 //     spinor_basis.lowdinOrthonormalize();
 //     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
@@ -84,7 +84,7 @@
 // BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_Dense_diagonal_true) {
 
 //     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
-//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
+//     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
 //     spinor_basis.lowdinOrthonormalize();
 //     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
@@ -116,7 +116,7 @@
 // BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_Dense_diagonal_false) {
 
 //     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
-//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
+//     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
 //     spinor_basis.lowdinOrthonormalize();
 //     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
@@ -147,7 +147,7 @@
 // BOOST_AUTO_TEST_CASE(ONVBasis_EvaluateOperator_diagonal) {
 
 //     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
-//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
+//     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
 //     spinor_basis.lowdinOrthonormalize();
 //     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
@@ -179,7 +179,7 @@
 
 //     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
 
-//     GQCP::USpinorBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
+//     GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {hchain, "STO-3G"};
 //     spinor_basis.lowdinOrthonormalize();
 
 //     auto usq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(spinor_basis, hchain);  // unrestricted Hamiltonian in the Löwdin basis

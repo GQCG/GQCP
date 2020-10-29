@@ -208,12 +208,12 @@ double AP1roGJacobiOrbitalOptimizer::calculateOptimalRotationAngle(const RSQHami
             auto minimizer = GQCP::Minimizer<double>::Newton();
             minimizer.perform(minimization_environment);
             const auto& theta_min = minimization_environment.variables.back()(0);  // get inside the VectorX<double>
-            JacobiRotationParameters jacobi_rot_par {p, q, theta_min};
+            JacobiRotation jacobi_rotation {p, q, theta_min};
 
-            const double E_change = this->calculateScalarFunctionChange(sq_hamiltonian, jacobi_rot_par);
+            const double E_change = this->calculateScalarFunctionChange(sq_hamiltonian, jacobi_rotation);
 
-            queue.emplace(jacobi_rot_par, E_change);  // construct a pair_type
-        }                                             // for theta
+            queue.emplace(jacobi_rotation, E_change);  // construct a pair_type
+        }                                              // for theta
 
         const double optimal_theta = queue.top().first.angle();
 
@@ -246,15 +246,15 @@ double AP1roGJacobiOrbitalOptimizer::calculateOptimalRotationAngle(const RSQHami
 
 /**
  *  @param sq_hamiltonian               the current Hamiltonian
- *  @param jacobi_rot_par               the Jacobi rotation parameters
+ *  @param jacobi_rotation              Jacobi rotation.
  * 
- *  @return the value of the scalar function (i.e. the AP1roG energy) if the given Jacobi rotation parameters would be used to rotate the given Hamiltonian
+ *  @return the value of the scalar function (i.e. the AP1roG energy) if the given Jacobi rotation would be used to rotate the given Hamiltonian
  */
-double AP1roGJacobiOrbitalOptimizer::calculateScalarFunctionChange(const RSQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rot_par) const {
+double AP1roGJacobiOrbitalOptimizer::calculateScalarFunctionChange(const RSQHamiltonian<double>& sq_hamiltonian, const JacobiRotation& jacobi_rotation) const {
 
-    const size_t p = jacobi_rot_par.p();
-    const size_t q = jacobi_rot_par.q();
-    const double theta = jacobi_rot_par.angle();
+    const size_t p = jacobi_rotation.p();
+    const size_t q = jacobi_rotation.q();
+    const double theta = jacobi_rotation.angle();
 
 
     // I've written everything in terms of cos(2 theta), sin(2 theta), cos(4 theta) and sin(4 theta)

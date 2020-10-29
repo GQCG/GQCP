@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/SpinorBasis/USpinorBasis.hpp"
+#include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QuantumChemical/Spin.hpp"
 #include "Utilities/type_traits.hpp"
@@ -69,7 +69,7 @@ public:
         }
 
         // Calculate the total two-electron operator
-        QCRankFourTensor<Scalar> total_two_op_par {dim};
+        SquareRankFourTensor<Scalar> total_two_op_par {dim};
         total_two_op_par.setZero();
         for (const auto& two_op : this->two_op_mixed) {
             total_two_op_par += two_op.parameters().Eigen();
@@ -104,7 +104,7 @@ public:
      *  Note that this named constructor is only available for real matrix representations
      */
     template <typename Z = Scalar>
-    static enable_if_t<std::is_same<Z, double>::value, USQHamiltonian<double>> Molecular(const USpinorBasis<Z, GTOShell>& u_spinor_basis, const Molecule& molecule) {
+    static enable_if_t<std::is_same<Z, double>::value, USQHamiltonian<double>> Molecular(const USpinOrbitalBasis<Z, GTOShell>& u_spinor_basis, const Molecule& molecule) {
 
         const RSQHamiltonian<Scalar> sq_hamiltonian_alpha = RSQHamiltonian<double>::Molecular(u_spinor_basis.spinorBasis(Spin::alpha), molecule);
         const RSQHamiltonian<Scalar> sq_hamiltonian_beta = RSQHamiltonian<double>::Molecular(u_spinor_basis.spinorBasis(Spin::beta), molecule);
@@ -175,27 +175,27 @@ public:
 
 
     /**
-     *  In-place rotate the matrix representations of the Hamiltonian using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters. Note that this function is only available for real (double) matrix representations
+     *  In-place rotate the matrix representations of the Hamiltonian using a unitary Jacobi rotation matrix constructed from the Jacobi rotation. Note that this function is only available for real (double) matrix representations
      *
-     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
+     *  @param jacobi_rotation          The Jacobi rotation.
      */
     template <typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
+    enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotation& jacobi_rotation) {
 
-        this->sq_hamiltonians[Spin::alpha].rotate(jacobi_rotation_parameters);
-        this->sq_hamiltonians[Spin::beta].rotate(jacobi_rotation_parameters);
+        this->sq_hamiltonians[Spin::alpha].rotate(jacobi_rotation);
+        this->sq_hamiltonians[Spin::beta].rotate(jacobi_rotation);
     }
 
 
     /**
-     *  In-place rotate the matrix representation of one of the spin components of the Hamiltonian using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters. Note that this function is only available for real (double) matrix representations
+     *  In-place rotate the matrix representation of one of the spin components of the Hamiltonian using a unitary Jacobi rotation matrix constructed from the Jacobi rotation. Note that this function is only available for real (double) matrix representations
      *
-     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
+     *  @param jacobi_rotation       the Jacobi rotation (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
      *  @param sigma                            the spin sigma component
      */
     template <typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters, const Spin& sigma) {
-        this->transform(jacobi_rotation_parameters, sigma);
+    enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotation& jacobi_rotation, const Spin& sigma) {
+        this->transform(jacobi_rotation, sigma);
     }
 
 

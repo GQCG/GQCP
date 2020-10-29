@@ -103,8 +103,8 @@ public:
         std::vector<SquareMatrix<Scalar>> beta_fock_matrices;
 
         for (size_t i = 0; i < fock_matrices.size(); i++) {
-            alpha_fock_matrices.push_back(fock_matrices[i].parameters(Spin::alpha));
-            beta_fock_matrices.push_back(fock_matrices[i].parameters(Spin::beta));
+            alpha_fock_matrices.push_back(fock_matrices[i].alpha().parameters());
+            beta_fock_matrices.push_back(fock_matrices[i].beta().parameters());
         }
 
         // Calculate the accelerated Fock matrices and do a diagonalization step on them.

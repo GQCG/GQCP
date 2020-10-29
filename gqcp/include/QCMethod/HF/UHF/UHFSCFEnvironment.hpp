@@ -62,7 +62,7 @@ public:
 
     std::deque<SpinResolved1DM<double>> density_matrices;  // expressed in the scalar (AO) basis
 
-    std::deque<USQOneElectronOperator<Scalar, 1>> fock_matrices;  // expressed in the scalar (AO) basis
+    std::deque<ScalarUSQOneElectronOperator<Scalar>> fock_matrices;  // expressed in the scalar (AO) basis
 
     std::deque<VectorX<Scalar>> error_vectors_alpha;  // expressed in the scalar (AO) basis, used when doing DIIS calculations: the real error matrices should be converted to column-major error vectors for the DIIS algorithm to be used correctly
     std::deque<VectorX<Scalar>> error_vectors_beta;   // expressed in the scalar (AO) basis, used when doing DIIS calculations: the real error matrices should be converted to column-major error vectors for the DIIS algorithm to be used correctly

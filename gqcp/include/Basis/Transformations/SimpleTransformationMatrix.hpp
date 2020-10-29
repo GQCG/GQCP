@@ -56,6 +56,9 @@ public:
     // The type of 'this'.
     using Self = SimpleTransformationMatrix<_Scalar, _DerivedTransformationMatrix>;
 
+    // The type of Jacobi rotation for which the Jacobi rotation should be defined.
+    using JacobiRotationType = JacobiRotation;
+
 
 public:
     /*
@@ -71,19 +74,19 @@ public:
      */
 
     /**
-     *  Create a transformation matrix from Jacobi rotation parameters. Note that we work with the (cos, sin, -sin, cos) definition.
+     *  Create a transformation matrix from Jacobi rotation. Note that we work with the (cos, sin, -sin, cos) definition.
      * 
-     *  @param jacobi_rotation_parameters               The parameters that define the Jacobi rotation matrix.
-     *  @param dim                                      The dimension of the resulting matrix.
+     *  @param jacobi_rotation                      The Jacobi rotation.
+     *  @param dim                                  The dimension of the resulting matrix.
      *
-     *  @return The Jacobi rotation matrix that corresponds to Jacobi rotation parameters.
+     *  @return The Jacobi rotation matrix that corresponds to Jacobi rotation.
      */
-    static DerivedTransformationMatrix FromJacobi(const JacobiRotationParameters& jacobi_rotation_parameters, const size_t dim) {
+    static DerivedTransformationMatrix FromJacobi(const JacobiRotation& jacobi_rotation, const size_t dim) {
 
         // Create an identity transformation matrix and apply a Jacobi rotation.
         DerivedTransformationMatrix J = SquareMatrix<Scalar>::Identity(dim);
 
-        return J.rotated(jacobi_rotation_parameters);
+        return J.rotated(jacobi_rotation);
     }
 
 
@@ -128,20 +131,20 @@ public:
     /**
      *  Apply the Jacobi rotation and return the result.
      * 
-     *  @param jacobi_parameters        The Jacobi rotation parameters.
+     *  @param jacobi_rotation          The Jacobi rotation.
      * 
      *  @return The transformation matrix that that encapsulates the sequential application of this transformation, followed by the Jacobi rotation.
      */
-    virtual DerivedTransformationMatrix rotated(const JacobiRotationParameters& jacobi_parameters) const override {
+    DerivedTransformationMatrix rotated(const JacobiRotationType& jacobi_rotation) const override {
 
-        const auto p = jacobi_parameters.p();
-        const auto q = jacobi_parameters.q();
+        const auto p = jacobi_rotation.p();
+        const auto q = jacobi_rotation.q();
 
         // Create the matrix representation of a Jacobi rotation using Eigen's APIs.
         // We're applying the Jacobi rotation as J = I * jacobi_rotation (cfr. B' = B T).
-        const auto jacobi_rotation = jacobi_parameters.Eigen();
+        const auto eigen_jacobi_rotation = jacobi_rotation.Eigen();
         auto result = (*this);
-        result.applyOnTheRight(p, q, jacobi_rotation);
+        result.applyOnTheRight(p, q, eigen_jacobi_rotation);
 
         return DerivedTransformationMatrix {result};
     }
@@ -163,6 +166,23 @@ struct BasisTransformableTraits<SimpleTransformationMatrix<Scalar, DerivedTransf
 
     // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix". A transformation matrix should naturally be transformable with itself.
     using TM = DerivedTransformationMatrix;
+};
+
+
+/*
+ *  MARK: JacobiRotatableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
+ * 
+ *  @tparam T       The type that should conform to `JacobiRotatable`.
+ */
+template <typename Scalar, typename DerivedTransformationMatrix>
+struct JacobiRotatableTraits<SimpleTransformationMatrix<Scalar, DerivedTransformationMatrix>> {
+
+    // The type of Jacobi rotation for which the Jacobi rotation should be defined.
+    using JacobiRotationType = JacobiRotation;
 };
 
 

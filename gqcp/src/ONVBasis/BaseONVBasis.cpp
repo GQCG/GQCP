@@ -17,9 +17,9 @@
 
 #include "ONVBasis/BaseONVBasis.hpp"
 
-#include "ONVBasis/SpinResolvedONVBasis.hpp"
-#include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
-#include "ONVBasis/SpinUnresolvedONVBasis.hpp"
+// #include "ONVBasis/SpinResolvedONVBasis.hpp"
+// #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
+// #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 
 
 namespace GQCP {

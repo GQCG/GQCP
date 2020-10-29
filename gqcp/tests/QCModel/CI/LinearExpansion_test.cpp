@@ -19,7 +19,7 @@
 
 // #include <boost/test/unit_test.hpp>
 
-// #include "Basis/SpinorBasis/USpinorBasis.hpp"
+// #include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
 // #include "Basis/Transformations/transform.hpp"
 // #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
 // #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
@@ -96,7 +96,7 @@
 //     const auto molecule = GQCP::Molecule::HChain(3, 0.742, -1);  // charge -1
 //     const auto N_P = molecule.numberOfElectrons() / 2;
 
-//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+//     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
 //     const auto K = spinor_basis.numberOfSpatialOrbitals();
 
 //     spinor_basis.lowdinOrthonormalize();
@@ -138,7 +138,7 @@
 //     const auto molecule = GQCP::Molecule::HChain(4, 0.742);
 //     const auto N_P = molecule.numberOfElectrons() / 2;
 
-//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+//     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
 //     const auto K = spinor_basis.numberOfSpatialOrbitals();
 
 //     spinor_basis.lowdinOrthonormalize();
@@ -181,7 +181,7 @@
 //     const auto N_alpha = 3;
 //     const auto N_beta = 2;
 
-//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+//     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
 //     const auto K = spinor_basis.numberOfSpatialOrbitals();
 
 //     spinor_basis.lowdinOrthonormalize();
@@ -339,7 +339,7 @@
 
 // //     const auto molecule = GQCP::Molecule::HRingFromDistance(4, 1.0);
 
-// //     GQCP::RSpinorBasis<double, GQCP::GTOShell> r_spinor_basis {molecule, "STO-3G"};
+// //     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> r_spinor_basis {molecule, "STO-3G"};
 // //     GQCP::TransformationMatrix<double> C {4};  // RHF canonical orbitals for this system (Xeno)
 // //     // clang-format off
 // //     C << -0.27745359, -0.8505133,   0.85051937,  2.02075317,
@@ -350,7 +350,7 @@
 // //     r_spinor_basis.transform(C);
 
 
-// //     // GQCP::USpinorBasis<double, GQCP::GTOShell> u_spinor_basis {molecule, "STO-3G"};
+// //     // GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> u_spinor_basis {molecule, "STO-3G"};
 // //     GQCP::TransformationMatrix<double> C_alpha {4};  // UHF alpha canonical orbitals for this system (Xeno), triplet
 // //     // clang-format off
 // //     C_alpha << -1.75646828e-01, -1.20606646e-06,  1.20281173e+00,  2.03213486e+00,
@@ -369,7 +369,7 @@
 // //     // u_spinor_basis.transform(C_alpha, C_beta);
 
 
-// //     const auto u_spinor_basis = GQCP::USpinorBasis<double, GQCP::GTOShell>::FromRestricted(r_spinor_basis);
+// //     const auto u_spinor_basis = GQCP::USpinOrbitalBasis<double, GQCP::GTOShell>::FromRestricted(r_spinor_basis);
 
 
 // //     const auto uhf_onv = GQCP::SpinResolvedONV::UHF(4, 2, 2);
@@ -391,7 +391,7 @@
 //     const size_t N_alpha = 4;
 //     const size_t N_beta = 6;
 
-//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+//     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
 //     const auto K = spinor_basis.numberOfSpatialOrbitals();
 //     spinor_basis.lowdinOrthonormalize();
 
@@ -444,7 +444,7 @@
 //     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
 //     const auto N_P = molecule.numberOfElectronPairs();
 
-//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+//     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
 //     const auto K = spinor_basis.numberOfSpatialOrbitals();
 //     spinor_basis.lowdinOrthonormalize();
 

@@ -296,11 +296,11 @@ public:
         const auto& H_core = sq_hamiltonian.core().parameters();
 
         // Get the alpha and beta parameters of the coulomb and exchange matrices
-        const auto J_a = UHF<Scalar>::calculateScalarBasisDirectMatrix(P, sq_hamiltonian).parameters(Spin::alpha);
-        const auto J_b = UHF<Scalar>::calculateScalarBasisDirectMatrix(P, sq_hamiltonian).parameters(Spin::beta);
+        const auto J_a = UHF<Scalar>::calculateScalarBasisDirectMatrix(P, sq_hamiltonian).alpha().parameters();
+        const auto J_b = UHF<Scalar>::calculateScalarBasisDirectMatrix(P, sq_hamiltonian).beta().parameters();
 
-        const auto K_a = UHF<Scalar>::calculateScalarBasisExchangeMatrix(P, sq_hamiltonian).parameters(Spin::alpha);
-        const auto K_b = UHF<Scalar>::calculateScalarBasisExchangeMatrix(P, sq_hamiltonian).parameters(Spin::beta);
+        const auto K_a = UHF<Scalar>::calculateScalarBasisExchangeMatrix(P, sq_hamiltonian).alpha().parameters();
+        const auto K_b = UHF<Scalar>::calculateScalarBasisExchangeMatrix(P, sq_hamiltonian).beta().parameters();
 
 
         // Generate the alpha and beta Fock matrix and put the in a USQOneElectronOperator
