@@ -284,7 +284,7 @@ public:
     /**
      *  Addition-assignment.
      */
-    Self& operator+=(const Self& rhs) {
+    Self& operator+=(const Self& rhs) override {
 
         // Add the spin-components.
         this->alphaAlpha() += rhs.alphaAlpha();
@@ -299,7 +299,7 @@ public:
     /**
      *  Scalar multiplication-assignment, to be implemented in derived classes.
      */
-    Self& operator*=(const Scalar& a) {
+    Self& operator*=(const Scalar& a) override {
 
         // Multiply the spin-components with the scalar.
         this->alphaAlpha() *= a;
