@@ -159,7 +159,7 @@ public:
      * 
      *  @return The basis-transformed object.
      */
-    FinalSpinorBasis transformed(const TM& transformation_matrix) const {
+    FinalSpinorBasis transformed(const TM& transformation_matrix) const override {
 
         auto result = this->derived();
         result.C.transform(transformation_matrix);
