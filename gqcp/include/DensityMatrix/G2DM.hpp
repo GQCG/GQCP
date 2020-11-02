@@ -61,8 +61,7 @@ public:
  *  A type that provides compile-time information on `G2DM` that is otherwise not accessible through a public class alias.
  */
 template <typename Scalar>
-class DensityMatrixTraits<G2DM<Scalar>> {
-public:
+struct DensityMatrixTraits<G2DM<Scalar>> {
     // The type of transformation matrix that is naturally related to a `G2DM`.
     using TM = GTransformationMatrix<Scalar>;
 

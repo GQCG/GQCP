@@ -143,8 +143,7 @@ public:
  *  A type that provides compile-time information on operators that is otherwise not accessible through a public class alias.
  */
 template <typename _Evaluatable>
-class OperatorTraits<EvaluatableScalarRSQOneElectronOperator<_Evaluatable>> {
-public:
+struct OperatorTraits<EvaluatableScalarRSQOneElectronOperator<_Evaluatable>> {
     // The type of evaluatable function that is used as a matrix element of the one-electron operator.
     using Evaluatable = _Evaluatable;
 
