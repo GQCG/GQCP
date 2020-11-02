@@ -61,8 +61,7 @@ public:
  *  A type that provides compile-time information on `SpinResolved1DMComponent` that is otherwise not accessible through a public class alias.
  */
 template <typename Scalar>
-class DensityMatrixTraits<SpinResolved1DMComponent<Scalar>> {
-public:
+struct DensityMatrixTraits<SpinResolved1DMComponent<Scalar>> {
     // The type of transformation matrix that is naturally related to a `SpinResolved1DMComponent`. Since a `SpinResolved1DM` naturally transforms with a `UTransformationMatrix`, a `SpinResolved1DMComponent` naturally transforms with a `UTransformationMatrixComponent`.
     using TM = UTransformationMatrixComponent<Scalar>;
 };

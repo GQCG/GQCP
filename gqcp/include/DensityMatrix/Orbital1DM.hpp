@@ -62,8 +62,7 @@ public:
  *  A type that provides compile-time information on `Orbital1DM` that is otherwise not accessible through a public class alias.
  */
 template <typename Scalar>
-class DensityMatrixTraits<Orbital1DM<Scalar>> {
-public:
+struct DensityMatrixTraits<Orbital1DM<Scalar>> {
     // The type of transformation matrix that is naturally related to an Orbital1DM. The only transformations that should be naturally possible for an orbital 1-DM are restricted transformations, thereby assuming that the density matrices for alpha and beta are equal and thus transform similarly.
     using TM = RTransformationMatrix<Scalar>;
 };

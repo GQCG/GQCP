@@ -263,8 +263,7 @@ using RSpinorBasis = RSpinOrbitalBasis<ExpansionScalar, Shell>;
  *  A type that provides compile-time information on spinor bases that is otherwise not accessible through a public class alias.
  */
 template <typename _ExpansionScalar, typename _Shell>
-class SpinorBasisTraits<RSpinOrbitalBasis<_ExpansionScalar, _Shell>> {
-public:
+struct SpinorBasisTraits<RSpinOrbitalBasis<_ExpansionScalar, _Shell>> {
     // The scalar type used to represent an expansion coefficient of the spinors in the underlying scalar orbitals: real or complex.
     using ExpansionScalar = _ExpansionScalar;
 
