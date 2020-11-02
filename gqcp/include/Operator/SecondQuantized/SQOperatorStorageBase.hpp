@@ -35,7 +35,7 @@ namespace GQCP {
  *  A type that provides compile-time information on operators that is otherwise not accessible through a public class alias.
  */
 template <typename Operator>
-class OperatorTraits {};
+struct OperatorTraits {};
 
 
 /*
