@@ -252,7 +252,7 @@ public:
      * 
      *  @tparam N                   The number of axes that should be contracted over.
      * 
-     *  @example T1.einsum(T2, 'ijkl', 'ia', 'jkla') will contract the first axis of T1 (with labels 'ijkl') with the first axis of T2 (with labels 'ia') (because of the matching index labels 'i') and return a tensor wose axes are labelled as 'jkla'.
+     *  @example T1.einsum(T2, 'ijkl', 'ia', 'jkla') will contract the first axis of T1 (with labels 'ijkl') with the first axis of T2 (with labels 'ia') (because of the matching index labels 'i') and return a tensor whose axes are labelled as 'jkla'.
      * 
      *  @return The result of the tensor contraction.
      */

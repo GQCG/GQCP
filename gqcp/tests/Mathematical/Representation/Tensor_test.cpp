@@ -281,3 +281,31 @@ BOOST_AUTO_TEST_CASE(addBlock_matrix) {
         }
     }
 }
+BOOST_AUTO_TEST_CASE(einsum) {
+
+    // Create an example 2x2x2x2 tensor
+    long dim1 = 2;
+    GQCP::Tensor<double, 4> T1 {dim1, dim1, dim1, dim1};
+    for (size_t i = 0; i < dim1; i++) {
+        for (size_t j = 0; j < dim1; j++) {
+            for (size_t k = 0; k < dim1; k++) {
+                for (size_t l = 0; l < dim1; l++) {
+                    T1(i, j, k, l) = 2 * l + j + 10 * i;
+                }
+            }
+        }
+    }
+
+    // Create an example 2x2x2x2 tensor
+    long dim2 = 2;
+    GQCP::Tensor<double, 2> T2 {dim2, dim2};
+    for (size_t i = 0; i < dim2; i++) {
+        for (size_t j = 0; j < dim2; j++) {
+            T2(i, j) = j + 5 * i;
+        }
+    }
+
+    // Test the einsum API
+    const auto output = T1.einsum<1>(T2, "ijkl", "ia", "jkla");
+    std::cout << output << std::endl;
+}
