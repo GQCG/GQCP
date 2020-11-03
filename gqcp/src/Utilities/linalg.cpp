@@ -17,6 +17,8 @@
 
 #include "Utilities/linalg.hpp"
 
+#include "Mathematical/Representation/Matrix.hpp"
+
 
 namespace GQCP {
 
@@ -56,7 +58,7 @@ bool areEqualSetsOfEigenvectors(const MatrixX<double>& eigenvectors1, const Matr
         const VectorX<double> eigenvector1 = eigenvectors1.col(i);
         const VectorX<double> eigenvector2 = eigenvectors2.col(i);
 
-        if (!areEqualEigenvectors(eigenvector1, eigenvector2, tolerance)) {
+        if (!VectorX<double>::areEqualEigenvectors(eigenvector1, eigenvector2, tolerance)) {
             return false;
         }
     }
