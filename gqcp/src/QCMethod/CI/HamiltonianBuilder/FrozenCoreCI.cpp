@@ -18,7 +18,6 @@
 // #include "QCMethod/CI/HamiltonianBuilder/FrozenCoreCI.hpp"
 
 // #include "ONVBasis/BaseFrozenCoreONVBasis.hpp"
-// #include "Utilities/linalg.hpp"
 
 // #include <utility>
 

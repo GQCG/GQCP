@@ -20,7 +20,6 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Mathematical/Representation/Matrix.hpp"
-#include "Utilities/linalg.hpp"
 
 
 BOOST_AUTO_TEST_CASE(constructor_assignment) {
@@ -91,6 +90,51 @@ BOOST_AUTO_TEST_CASE(Matrix_FromFile) {
     BOOST_CHECK(M.isApprox(M_ref, 1.0e-8));
 }
 
+
+BOOST_AUTO_TEST_CASE(areEqualSetsOfEigenvectors_example) {
+
+    // Test areEqualSetsOfEigenvectors with an example
+    GQCP::MatrixX<double> eigenvectors1 {2, 2};
+    GQCP::MatrixX<double> eigenvectors2 {2, 2};
+    GQCP::MatrixX<double> eigenvectors3 {2, 2};
+    GQCP::MatrixX<double> eigenvectors4 {2, 2};
+
+    // clang-format off
+    eigenvectors1 << 0,  2,
+                     1, -1;
+
+    eigenvectors2 << 0,  2,
+                     1, -1;
+
+    eigenvectors3 << 0, -2,
+                     1,  1;
+
+    eigenvectors4 << 1,  2,
+                     1, -1;
+    // clang-format on
+
+    BOOST_CHECK(GQCP::MatrixX<double>::areEqualSetsOfEigenvectors(eigenvectors1, eigenvectors2, 1.0e-6));
+    BOOST_CHECK(GQCP::MatrixX<double>::areEqualSetsOfEigenvectors(eigenvectors1, eigenvectors3, 1.0e-6));
+
+    BOOST_CHECK(!GQCP::MatrixX<double>::areEqualSetsOfEigenvectors(eigenvectors1, eigenvectors4, 1.0e-6));
+}
+
+BOOST_AUTO_TEST_CASE(areEqualSetsOfEigenvectors_throws) {
+
+    // Check for throws if the dimensions aren't compatible.
+    GQCP::MatrixX<double> C1 {3, 3};
+    GQCP::MatrixX<double> C2 {3, 2};
+
+    BOOST_CHECK_THROW(GQCP::MatrixX<double>::areEqualSetsOfEigenvectors(C1, C2, 1.0e-6), std::invalid_argument);
+
+
+    // Check for no throw if the dimensions are compatible
+    GQCP::MatrixX<double> C3 {3, 3};
+
+    BOOST_CHECK_NO_THROW(GQCP::MatrixX<double>::areEqualSetsOfEigenvectors(C1, C3, 1.0e-6));
+}
+
+
 BOOST_AUTO_TEST_CASE(areEqualEigenvectors) {
 
     // Test areEqualEigenvectors with an example.
@@ -113,21 +157,6 @@ BOOST_AUTO_TEST_CASE(areEqualEigenvectors) {
     BOOST_CHECK(!GQCP::VectorX<double>::areEqualEigenvectors(c, d, 1.0e-6));
 }
 
-
-BOOST_AUTO_TEST_CASE(areEqualSetsOfEigenvectors_throws) {
-
-    // Check for throws if the dimensions aren't compatible.
-    GQCP::MatrixX<double> C1 {3, 3};
-    GQCP::MatrixX<double> C2 {3, 2};
-
-    BOOST_CHECK_THROW(GQCP::areEqualSetsOfEigenvectors(C1, C2, 1.0e-6), std::invalid_argument);
-
-
-    // Check for no throw if the dimensions are compatible
-    GQCP::MatrixX<double> C3 {3, 3};
-
-    BOOST_CHECK_NO_THROW(GQCP::areEqualSetsOfEigenvectors(C1, C3, 1.0e-6));
-}
 
 BOOST_AUTO_TEST_CASE(operator_call_CartesianDirection) {
 

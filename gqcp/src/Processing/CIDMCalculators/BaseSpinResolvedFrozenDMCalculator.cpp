@@ -17,8 +17,6 @@
 
 #include "DensityMatrix/CIDMCalculators/BaseSpinResolvedFrozenDMCalculator.hpp"
 
-#include "Utilities/linalg.hpp"
-
 
 namespace GQCP {
 

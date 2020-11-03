@@ -21,7 +21,6 @@
 
 #include "Operator/SecondQuantized/RSQTwoElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "Utilities/linalg.hpp"
 #include "Utilities/miscellaneous.hpp"
 
 #include <boost/math/constants/constants.hpp>

@@ -170,6 +170,18 @@ public:
 
 
     /**
+     *  @param eigenvalues1     the first set of eigenvalues
+     *  @param eigenvalues2     the second set of eigenvalues
+     *  @param tolerance        the tolerance for comparison
+     *
+     *  @return if two sets of eigenvalues are equal within a given tolerance
+     */
+    static bool areEqualEigenvalues(const Matrix<Scalar, Dynamic, 1>& eigenvalues1, const Matrix<Scalar, Dynamic, 1>& eigenvalues2, double tolerance = 1.0e-12) {
+        return eigenvalues1.isApprox(eigenvalues2, tolerance);
+    }
+
+
+    /**
     *  @param eigenvector1     the first eigenvector
     *  @param eigenvector2     the second eigenvector
     *  @param tolerance        the tolerance for comparison
@@ -181,6 +193,39 @@ public:
         //  Eigenvectors are equal if they are equal up to their sign.
         return (eigenvector1.isApprox(eigenvector2, tolerance) || eigenvector1.isApprox(-eigenvector2, tolerance));
     }
+
+
+    /**
+     *  @param eigenvectors1        the first set of eigenvectors
+     *  @param eigenvectors2        the second set of eigenvectors
+     *  @param tolerance            the tolerance for comparison
+     *
+     *  @return if two sets of eigenvectors are equal within a given tolerance
+     */
+    static bool areEqualSetsOfEigenvectors(const Matrix<Scalar, Dynamic, Dynamic>& eigenvectors1, const Matrix<Scalar, Dynamic, Dynamic>& eigenvectors2, double tolerance = 1.0e-12) {
+
+        // Check if the dimensions of the eigenvectors are equal.
+        if (eigenvectors1.cols() != eigenvectors2.cols()) {
+            throw std::invalid_argument("areEqualSetsOfEigenvectors(MatrixX<double>, MatrixX<double>, double): Cannot compare the two sets of eigenvectors as they have different dimensions.");
+        }
+
+        if (eigenvectors1.rows() != eigenvectors2.rows()) {
+            throw std::invalid_argument("areEqualSetsOfEigenvectors(MatrixX<double>, MatrixX<double>, double): Cannot compare the two sets of eigenvectors as they have different dimensions.");
+        }
+
+
+        for (size_t i = 0; i < eigenvectors1.cols(); i++) {
+            const Matrix<Scalar, Dynamic, 1> eigenvector1 = eigenvectors1.col(i);
+            const Matrix<Scalar, Dynamic, 1> eigenvector2 = eigenvectors2.col(i);
+
+            if (!Matrix<Scalar, Dynamic, 1>::areEqualEigenvectors(eigenvector1, eigenvector2, tolerance)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
 
     /**
      *  Convert a given row-major vector to a matrix with the given number of rows

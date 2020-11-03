@@ -21,7 +21,7 @@
 
 #include "Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
-#include "Utilities/linalg.hpp"
+#include "Mathematical/Representation/Matrix.hpp"
 
 
 /**
@@ -105,7 +105,7 @@ BOOST_AUTO_TEST_CASE(Davidson_ESQC_example_solver) {
 
 
     BOOST_CHECK(std::abs(test_lowest_eigenvalue - ref_lowest_eigenvalue) < 0.005);
-    BOOST_CHECK(GQCP::areEqualEigenvectors(test_lowest_eigenvector, ref_lowest_eigenvector, 0.005));
+    BOOST_CHECK(GQCP::VectorX<double>::areEqualEigenvectors(test_lowest_eigenvector, ref_lowest_eigenvector, 0.005));
     BOOST_CHECK(std::abs(test_lowest_eigenvector.norm() - 1) < 1.0e-12);
 }
 

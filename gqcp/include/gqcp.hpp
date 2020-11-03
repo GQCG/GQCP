@@ -263,7 +263,6 @@
 #include "Utilities/CRTP.hpp"
 #include "Utilities/Eigen.hpp"
 #include "Utilities/aliases.hpp"
-#include "Utilities/linalg.hpp"
 #include "Utilities/literals.hpp"
 #include "Utilities/memory.hpp"
 #include "Utilities/miscellaneous.hpp"

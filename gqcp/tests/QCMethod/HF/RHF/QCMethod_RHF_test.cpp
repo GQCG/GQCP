@@ -21,7 +21,6 @@
 
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/HF/RHF/RHFSCFSolver.hpp"
-#include "Utilities/linalg.hpp"
 
 
 /**
@@ -88,8 +87,8 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_horton_plain) {
     // Check the calculated results with the reference
     const double total_energy = rhf_environment.electronic_energies.back() + GQCP::Operator::NuclearRepulsion(water).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-06);
-    BOOST_CHECK(GQCP::areEqualEigenvalues(ref_orbital_energies, rhf_environment.orbital_energies.back(), 1.0e-06));
-    BOOST_CHECK(GQCP::areEqualSetsOfEigenvectors(ref_C, rhf_environment.coefficient_matrices.back(), 1.0e-05));
+    BOOST_CHECK(GQCP::VectorX<double>::areEqualEigenvalues(ref_orbital_energies, rhf_environment.orbital_energies.back(), 1.0e-06));
+    BOOST_CHECK(GQCP::MatrixX<double>::areEqualSetsOfEigenvectors(ref_C, rhf_environment.coefficient_matrices.back(), 1.0e-05));
 }
 
 
@@ -202,8 +201,8 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_horton_damped) {
     // Check the calculated results with the reference
     const double total_energy = rhf_environment.electronic_energies.back() + GQCP::Operator::NuclearRepulsion(water).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-06);
-    BOOST_CHECK(GQCP::areEqualEigenvalues(ref_orbital_energies, rhf_environment.orbital_energies.back(), 1.0e-06));
-    BOOST_CHECK(GQCP::areEqualSetsOfEigenvectors(ref_C, rhf_environment.coefficient_matrices.back(), 1.0e-05));
+    BOOST_CHECK(GQCP::VectorX<double>::areEqualEigenvalues(ref_orbital_energies, rhf_environment.orbital_energies.back(), 1.0e-06));
+    BOOST_CHECK(GQCP::MatrixX<double>::areEqualSetsOfEigenvectors(ref_C, rhf_environment.coefficient_matrices.back(), 1.0e-05));
 }
 
 
@@ -266,8 +265,8 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_horton_diis) {
     // Check the calculated results with the reference
     const double total_energy = rhf_environment.electronic_energies.back() + GQCP::Operator::NuclearRepulsion(water).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-06);
-    BOOST_CHECK(GQCP::areEqualEigenvalues(ref_orbital_energies, rhf_environment.orbital_energies.back(), 1.0e-06));
-    BOOST_CHECK(GQCP::areEqualSetsOfEigenvectors(ref_C, rhf_environment.coefficient_matrices.back(), 1.0e-05));
+    BOOST_CHECK(GQCP::VectorX<double>::areEqualEigenvalues(ref_orbital_energies, rhf_environment.orbital_energies.back(), 1.0e-06));
+    BOOST_CHECK(GQCP::MatrixX<double>::areEqualSetsOfEigenvectors(ref_C, rhf_environment.coefficient_matrices.back(), 1.0e-05));
 }
 
 

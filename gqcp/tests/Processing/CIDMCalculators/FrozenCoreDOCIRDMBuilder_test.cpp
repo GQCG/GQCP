@@ -24,7 +24,6 @@
 #include "DensityMatrix/CIDMCalculators/SpinResolvedSelectedDMCalculator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FrozenCoreDOCI.hpp"
-#include "Utilities/linalg.hpp"
 
 
 BOOST_AUTO_TEST_CASE(FrozenCoreDOCI_one_DMs) {
