@@ -34,20 +34,6 @@ bool areEqualEigenvalues(const VectorX<double>& eigenvalues1, const VectorX<doub
 
 
 /**
- *  @param eigenvector1     the first eigenvector
- *  @param eigenvector2     the second eigenvector
- *  @param tolerance        the tolerance for comparison
- *
- *  @return if two eigenvectors are equal within a given tolerance
- */
-bool areEqualEigenvectors(const VectorX<double>& eigenvector1, const VectorX<double>& eigenvector2, double tolerance) {
-
-    //  Eigenvectors are equal if they are equal up to their sign.
-    return (eigenvector1.isApprox(eigenvector2, tolerance) || eigenvector1.isApprox(-eigenvector2, tolerance));
-}
-
-
-/**
  *  @param eigenvectors1        the first set of eigenvectors
  *  @param eigenvectors2        the second set of eigenvectors
  *  @param tolerance            the tolerance for comparison

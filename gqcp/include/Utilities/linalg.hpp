@@ -33,14 +33,6 @@ namespace GQCP {
  */
 bool areEqualEigenvalues(const VectorX<double>& eigenvalues1, const VectorX<double>& eigenvalues2, double tolerance = 1.0e-12);
 
-/**
- *  @param eigenvector1     the first eigenvector
- *  @param eigenvector2     the second eigenvector
- *  @param tolerance        the tolerance for comparison
- *
- *  @return if two eigenvectors are equal within a given tolerance
- */
-bool areEqualEigenvectors(const VectorX<double>& eigenvector1, const VectorX<double>& eigenvector2, double tolerance = 1.0e-12);
 
 /**
  *  @param eigenvectors1        the first set of eigenvectors
