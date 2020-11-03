@@ -170,6 +170,19 @@ public:
 
 
     /**
+    *  @param eigenvector1     the first eigenvector
+    *  @param eigenvector2     the second eigenvector
+    *  @param tolerance        the tolerance for comparison
+    *
+    *  @return if two eigenvectors are equal within a given tolerance
+    */
+    static bool areEqualEigenvectors(const Matrix<Scalar, Dynamic, 1>& eigenvector1, const Matrix<Scalar, Dynamic, 1>& eigenvector2, double tolerance = 1.0e-12) {
+
+        //  Eigenvectors are equal if they are equal up to their sign.
+        return (eigenvector1.isApprox(eigenvector2, tolerance) || eigenvector1.isApprox(-eigenvector2, tolerance));
+    }
+
+    /**
      *  Convert a given row-major vector to a matrix with the given number of rows
      * 
      *  @param v            a vector that is supposed to be in a column-major ordering

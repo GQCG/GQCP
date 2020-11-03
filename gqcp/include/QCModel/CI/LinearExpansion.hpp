@@ -1490,7 +1490,7 @@ public:
             return false;
         }
 
-        return areEqualEigenvectors(this->coefficients(), other.coefficients(), tolerance);
+        return VectorX<double>::areEqualEigenvectors(this->coefficients(), other.coefficients(), tolerance);
     }
 
 

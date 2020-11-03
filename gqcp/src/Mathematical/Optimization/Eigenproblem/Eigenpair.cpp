@@ -17,7 +17,7 @@
 
 #include "Mathematical/Optimization/Eigenproblem/Eigenpair.hpp"
 
-#include "Utilities/linalg.hpp"
+#include "Mathematical/Representation/Matrix.hpp"
 
 
 namespace GQCP {
@@ -63,7 +63,7 @@ bool Eigenpair::isEqualTo(const Eigenpair& other, const double tolerance) const 
     }
 
     if (std::abs(this->eigenvalue() - other.eigenvalue()) < tolerance) {
-        if (areEqualEigenvectors(this->eigenvector(), other.eigenvector(), tolerance)) {
+        if (VectorX<double>::areEqualEigenvectors(this->eigenvector(), other.eigenvector(), tolerance)) {
             return true;
         }
     }

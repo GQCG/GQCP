@@ -19,6 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Mathematical/Representation/Matrix.hpp"
 #include "Utilities/linalg.hpp"
 
 
@@ -36,12 +37,12 @@ BOOST_AUTO_TEST_CASE(areEqualEigenvectors) {
     d << 2, 3, 0;
 
 
-    BOOST_CHECK(GQCP::areEqualEigenvectors(a, b, 1.0e-6));
-    BOOST_CHECK(GQCP::areEqualEigenvectors(a, c, 1.0e-6));
-    BOOST_CHECK(GQCP::areEqualEigenvectors(b, c, 1.0e-6));
+    BOOST_CHECK(GQCP::VectorX<double>::areEqualEigenvectors(a, b, 1.0e-6));
+    BOOST_CHECK(GQCP::VectorX<double>::areEqualEigenvectors(a, c, 1.0e-6));
+    BOOST_CHECK(GQCP::VectorX<double>::areEqualEigenvectors(b, c, 1.0e-6));
 
-    BOOST_CHECK(!GQCP::areEqualEigenvectors(a, d, 1.0e-6));
-    BOOST_CHECK(!GQCP::areEqualEigenvectors(c, d, 1.0e-6));
+    BOOST_CHECK(!GQCP::VectorX<double>::areEqualEigenvectors(a, d, 1.0e-6));
+    BOOST_CHECK(!GQCP::VectorX<double>::areEqualEigenvectors(c, d, 1.0e-6));
 }
 
 
