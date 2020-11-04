@@ -21,6 +21,7 @@
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/RSQTwoElectronOperator.hpp"
+#include "QuantumChemical/SpinResolvedBase.hpp"
 
 #include <functional>
 
@@ -29,73 +30,100 @@ namespace GQCP {
 
 
 /**
- *  A full spin-resolved spin-resolved ONV basis.
+ *  A full spin-resolved ONV basis.
  */
-class SpinResolvedONVBasis {
+class SpinResolvedONVBasis:
+    public SpinResolvedBase<SpinUnresolvedONVBasis, SpinResolvedONVBasis> {
 private:
-    SpinUnresolvedONVBasis onv_basis_alpha;
-    SpinUnresolvedONVBasis onv_basis_beta;
-
+    // A vector of sparse matrices containing the one-electron coupling elements for the alpha ONV basis. See also `calculateOneElectronCouplings`.
     std::vector<Eigen::SparseMatrix<double>> alpha_couplings;
 
 
 public:
-    // CONSTRUCTORS
+    /*
+     *  MARK: Constructors
+     */
 
     /**
-     *  @param K            the number of orbitals (equal for alpha and beta)
-     *  @param N_alpha      the number of alpha electrons
-     *  @param N_beta       the number of beta electrons
+     *  @param K            The number of alpha or beta spin-orbitals.
+     *  @param N_alpha      The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals.
+     *  @param N_beta       The number of beta electrons, i.e. the number of occupied beta spin-orbitals.
      */
     SpinResolvedONVBasis(const size_t K, const size_t N_alpha, const size_t N_beta);
 
 
-    // STATIC PUBLIC METHODS
+    /*
+     *  MARK: General information
+     */
 
     /**
-     *  @param K            the number of orbitals (equal for alpha and beta)
-     *  @param N_alpha      the number of alpha electrons
-     *  @param N_beta       the number of beta electrons
+     *  Calculate the dimension of a spin-resolved ONV basis with a given number of orbitals and electrons.
+     * 
+     *  @param K            The number of alpha or beta spin-orbitals.
+     *  @param N_alpha      The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals.
+     *  @param N_beta       The number of beta electrons, i.e. the number of occupied beta spin-orbitals.
      *
-     *  @return the dimension of this ONV basis
+     *  @return The dimension of a spin-resolved ONV basis.
      */
     static size_t calculateDimension(const size_t K, const size_t N_alpha, const size_t N_beta);
 
+    /**
+     *  @return The dimension of this ONV basis.
+     */
+    size_t dimension() const;
 
-    // PUBLIC METHODS
+
+    /*
+     *  MARK: Couplings
+     */
 
     /**
-     *  @return the alpha couplings
+     *  @return A vector of sparse matrices containing the one-electron coupling elements for the alpha ONV basis. See also `calculateOneElectronCouplings`.
      */
     const std::vector<Eigen::SparseMatrix<double>>& alphaCouplings() const { return alpha_couplings; }
 
     /**
-     *  Auxiliary method in order to calculate "theta(pq)",
-     *  it returns a partition of a two-electron operator as one-electron operator
-     *  where A (i,j) = T (p, q, i, j).
+     *  Calculate the one-electron operator intermediate that is required for the calculation of "theta(pq)" in Helgaker, Jørgensen, Olsen (2000). It is a partitioning of a two-electron operator g_{pqrs}, resulting in a one-electron operator t_{rs}.
      *
-     *  @param p            first fixed index of the two-electron operator
-     *  @param q            second fixed index of the two-electron operator
-     *  @param two_op       the two-electron operator
+     *  @param p            The first index of the two-electron operator.
+     *  @param q            The second index of the two-electron operator.
+     *  @param two_op       The two-electron operator.
      *
-     *  @return a one-electron operator containing a partition of the two-electron operator
+     *  @return The intermediate one-electron operator that is required for the calculation of "theta(pq)".
      */
-    ScalarRSQOneElectronOperator<double> calculateOneElectronPartition(const size_t p, const size_t q, const ScalarRSQTwoElectronOperator<double>& two_op) const;
+    ScalarUSQOneElectronOperatorComponent<double> calculateOneElectronPartition(const size_t p, const size_t q, const ScalarRSQTwoElectronOperator<double>& two_op) const;
+
+
+    /*
+     *  MARK: Address calculations
+     */
 
     /**
      *  Calculate the compound address of an ONV represented by the two given alpha- and beta-addresses.
      * 
-     *  @param I_alpha              the alpha-address
-     *  @param I_beta               the beta-address
+     *  @param I_alpha              The alpha-address.
+     *  @param I_beta               The beta-address.
      * 
-     *  @return the compound address of an ONV represented by the two given alpha- and beta-addresses.
+     *  @return The compound address of an ONV represented by the two given alpha- and beta-addresses.
      */
     size_t compoundAddress(const size_t I_alpha, const size_t I_beta) const;
 
-    /**
-     *  @return the dimension of this ONV basis
+
+    /*
+     *  MARK: Iterations
      */
-    size_t dimension() const;
+
+    /**
+     *  Iterate over all ONVs (implicitly, by resolving in their spin components) in this ONV basis and apply the given callback function.
+     * 
+     *  @param callback             The function to be applied in every iteration. Its arguments are two pairs of spin-unresolved ONVs and their corresponding addresses, where the first two arguments are related to alpha-spin. The last two arguments are related to beta-spin.
+     */
+    void forEach(const std::function<void(const SpinUnresolvedONV&, const size_t, const SpinUnresolvedONV&, const size_t)>& callback) const;
+
+
+    /*
+     *  MARK: Operator evaluations
+     */
 
     /**
      *  Evaluate the operator in a dense matrix
@@ -216,33 +244,6 @@ public:
     //  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of this ONV basis
     //  */
     // VectorX<double> evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
-
-    /**
-     *  Iterate over all ONVs (implicitly, by resolving in their spin components) in this ONV basis and apply the given callback function.
-     * 
-     *  @param callback             the function to be applied in every iteration. Its arguments are two pairs of spin-unresolved ONVs and their corresponding addresses, where the first two arguments are related to alpha-spin. The last two arguments are related to beta-spin.
-     */
-    void forEach(const std::function<void(const SpinUnresolvedONV&, const size_t, const SpinUnresolvedONV&, const size_t)>& callback) const;
-
-    /**
-     *  @return the number of alpha-electrons that this ONV basis describes
-     */
-    size_t numberOfAlphaElectrons() const { return this->onv_basis_alpha.numberOfElectrons(); }
-
-    /**
-     *  @return the number of beta-electrons that this ONV basis describes
-     */
-    size_t numberOfBetaElectrons() const { return this->onv_basis_beta.numberOfElectrons(); }
-
-    /**
-     *  @return the ONV basis for the alpha-spin-orbitals
-     */
-    const SpinUnresolvedONVBasis& onvBasisAlpha() const { return this->onv_basis_alpha; }
-
-    /**
-     *  @return the ONV basis for the beta-spin-orbitals
-     */
-    const SpinUnresolvedONVBasis& onvBasisBeta() const { return this->onv_basis_beta; }
 };
 
 

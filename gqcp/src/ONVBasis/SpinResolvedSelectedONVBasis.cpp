@@ -112,12 +112,12 @@ SpinResolvedSelectedONVBasis::SpinResolvedSelectedONVBasis(const SeniorityZeroON
  *  @param onv_basis       the SpinResolvedONVBasis from which the onvs should be generated
  */
 SpinResolvedSelectedONVBasis::SpinResolvedSelectedONVBasis(const SpinResolvedONVBasis& onv_basis) :
-    SpinResolvedSelectedONVBasis(onv_basis.onvBasisAlpha().numberOfOrbitals(), onv_basis.numberOfAlphaElectrons(), onv_basis.numberOfBetaElectrons()) {
+    SpinResolvedSelectedONVBasis(onv_basis.alpha().numberOfOrbitals(), onv_basis.alpha().numberOfElectrons(), onv_basis.beta().numberOfElectrons()) {
 
     std::vector<SpinResolvedONV> onvs;
 
-    const SpinUnresolvedONVBasis& fock_space_alpha = onv_basis.onvBasisAlpha();
-    const SpinUnresolvedONVBasis& fock_space_beta = onv_basis.onvBasisBeta();
+    const SpinUnresolvedONVBasis& fock_space_alpha = onv_basis.alpha();
+    const SpinUnresolvedONVBasis& fock_space_beta = onv_basis.beta();
 
     auto dim_alpha = fock_space_alpha.dimension();
     auto dim_beta = fock_space_beta.dimension();

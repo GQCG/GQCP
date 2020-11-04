@@ -394,8 +394,8 @@ public:
 
 
         // Set up spin-unresolved ONV basis variables for the loops over the ONVs
-        const SpinUnresolvedONVBasis& alpha_onv_basis = onv_basis.onvBasisAlpha();
-        const SpinUnresolvedONVBasis& beta_onv_basis = onv_basis.onvBasisBeta();
+        const SpinUnresolvedONVBasis& alpha_onv_basis = onv_basis.alpha();
+        const SpinUnresolvedONVBasis& beta_onv_basis = onv_basis.beta();
 
         auto dim_alpha = alpha_onv_basis.dimension();
         auto dim_beta = beta_onv_basis.dimension();
@@ -775,13 +775,13 @@ public:
     enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const {
 
         // Initialize as zero matrices
-        size_t K = this->onv_basis.onvBasisAlpha().numberOfOrbitals();
+        size_t K = this->onv_basis.alpha().numberOfOrbitals();
 
         SpinResolved1DMComponent<double> D_aa = SpinResolved1DMComponent<double>::Zero(K);
         SpinResolved1DMComponent<double> D_bb = SpinResolved1DMComponent<double>::Zero(K);
 
-        SpinUnresolvedONVBasis onv_basis_alpha = onv_basis.onvBasisAlpha();
-        SpinUnresolvedONVBasis onv_basis_beta = onv_basis.onvBasisBeta();
+        SpinUnresolvedONVBasis onv_basis_alpha = onv_basis.alpha();
+        SpinUnresolvedONVBasis onv_basis_beta = onv_basis.beta();
 
         auto dim_alpha = onv_basis_alpha.dimension();
         auto dim_beta = onv_basis_beta.dimension();
@@ -895,14 +895,14 @@ public:
 
         // KISS implementation of the 2-DMs (no symmetry relations are used yet)
 
-        SpinUnresolvedONVBasis onv_basis_alpha = onv_basis.onvBasisAlpha();
-        SpinUnresolvedONVBasis onv_basis_beta = onv_basis.onvBasisBeta();
+        SpinUnresolvedONVBasis onv_basis_alpha = onv_basis.alpha();
+        SpinUnresolvedONVBasis onv_basis_beta = onv_basis.beta();
 
         auto dim_alpha = onv_basis_alpha.dimension();
         auto dim_beta = onv_basis_beta.dimension();
 
         // Initialize as zero matrices
-        size_t K = this->onv_basis.onvBasisAlpha().numberOfOrbitals();
+        size_t K = this->onv_basis.alpha().numberOfOrbitals();
 
         SpinResolved2DMComponent<double> d_aaaa = SpinResolved2DMComponent<double>::Zero(K);
         SpinResolved2DMComponent<double> d_aabb = SpinResolved2DMComponent<double>::Zero(K);
