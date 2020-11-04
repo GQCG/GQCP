@@ -170,11 +170,13 @@ public:
 
 
     /**
-     *  @param eigenvalues1     the first set of eigenvalues
-     *  @param eigenvalues2     the second set of eigenvalues
-     *  @param tolerance        the tolerance for comparison
+     * Check if two sets of eigenvalues are equal within a given tolerance.
+     * 
+     *  @param eigenvalues1     The first set of eigenvalues.
+     *  @param eigenvalues2     The second set of eigenvalues.
+     *  @param tolerance        The tolerance for comparison.
      *
-     *  @return if two sets of eigenvalues are equal within a given tolerance
+     *  @return If two sets of eigenvalues are equal within a given tolerance.
      */
     template <typename Z = bool>  // enable_if must have Z inside
     enable_if_t<Self::is_vector, Z> areEqualEigenvaluesAs(const Matrix<Scalar, Dynamic, 1>& other, double tolerance = 1.0e-12) const {
@@ -200,11 +202,13 @@ public:
 
 
     /**
-     *  @param eigenvectors1        the first set of eigenvectors
-     *  @param eigenvectors2        the second set of eigenvectors
-     *  @param tolerance            the tolerance for comparison
+     * Check if two sets of eigenvectors are equal within a given tolerance.
+     * 
+     *  @param eigenvectors1        The first set of eigenvectors.
+     *  @param eigenvectors2        The second set of eigenvectors.
+     *  @param tolerance            The tolerance for comparison.
      *
-     *  @return if two sets of eigenvectors are equal within a given tolerance
+     *  @return If two sets of eigenvectors are equal within a given tolerance.
      */
     template <typename Z = bool>  // enable_if must have Z inside
     enable_if_t<Self::is_matrix, Z> hasEqualSetsOfEigenvectorsAs(const Matrix<Scalar, Dynamic, Dynamic>& other, double tolerance = 1.0e-12) const {
