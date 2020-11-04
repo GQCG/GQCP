@@ -25,8 +25,6 @@
 // #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 // #include "QCMethod/CI/CI.hpp"
 // #include "QCMethod/CI/CIEnvironment.hpp"
-// #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
-// #include "QCMethod/CI/HamiltonianBuilder/Hubbard.hpp"
 
 
 // /**

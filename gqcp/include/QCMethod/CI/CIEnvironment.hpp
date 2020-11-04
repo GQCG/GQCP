@@ -23,10 +23,6 @@
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/Hubbard.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/SelectedCI.hpp"
 
 
 namespace GQCP {
