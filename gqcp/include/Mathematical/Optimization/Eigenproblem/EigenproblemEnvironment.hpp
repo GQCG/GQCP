@@ -117,13 +117,13 @@ public:
      * 
      *  @return the eigenvalues and eigenvectors as a vector of eigenpairs
      */
-    std::vector<Eigenpair> eigenpairs(const size_t number_of_requested_eigenpairs = 1) const {
+    std::vector<Eigenpair<double>> eigenpairs(const size_t number_of_requested_eigenpairs = 1) const {
 
         if (number_of_requested_eigenpairs > this->eigenvectors.cols()) {
             throw std::invalid_argument("EigenproblemEnvironment::eigenpairs(const size_t): You cannot retrieve that many eigenpairs.");
         }
 
-        std::vector<Eigenpair> eigenpairs {};
+        std::vector<Eigenpair<double>> eigenpairs {};
         eigenpairs.reserve(number_of_requested_eigenpairs);
 
         for (size_t i = 0; i < number_of_requested_eigenpairs; i++) {

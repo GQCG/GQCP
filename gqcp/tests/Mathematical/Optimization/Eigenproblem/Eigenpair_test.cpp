@@ -36,11 +36,11 @@ BOOST_AUTO_TEST_CASE(isEqualTo) {
 
 
     // Test isEqualTo for some eigenpairs
-    GQCP::Eigenpair eigenpair1 {1, u1};
-    GQCP::Eigenpair eigenpair2 {1, u2};
-    GQCP::Eigenpair eigenpair3 {2, u1};
-    GQCP::Eigenpair eigenpair4 {1, v};
-    GQCP::Eigenpair eigenpair5 {1, w};
+    GQCP::Eigenpair<double> eigenpair1 {1, u1};
+    GQCP::Eigenpair<double> eigenpair2 {1, u2};
+    GQCP::Eigenpair<double> eigenpair3 {2, u1};
+    GQCP::Eigenpair<double> eigenpair4 {1, v};
+    GQCP::Eigenpair<double> eigenpair5 {1, w};
 
     BOOST_CHECK(eigenpair1.isEqualTo(eigenpair1));
     BOOST_CHECK(eigenpair1.isEqualTo(eigenpair2));  // eigenvectors are equal up to their sign

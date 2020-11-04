@@ -19,56 +19,84 @@
 
 
 #include "Mathematical/Representation/Matrix.hpp"
+#include "Utilities/linalg.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  A container class to store an eigenpair, i.e. an eigenvector with a corresponding eigenvalue
+ *  A container class to store an eigenpair, i.e. an eigenvector with a corresponding eigenvalue.
  */
+template <typename _Scalar = double>
 class Eigenpair {
+public:
+    using Scalar = _Scalar;
+
 private:
-    double m_eigenvalue;
-    VectorX<double> m_eigenvector;
+    Scalar m_eigenvalue;
+    VectorX<Scalar> m_eigenvector;
 
 
 public:
     // CONSTRUCTORS
 
     /**
-     *  @param eigenvalue       the eigenvalue
-     *  @param eigenvector      the eigenvector
+     *  @param eigenvalue       The eigenvalue.
+     *  @param eigenvector      The eigenvector.
      */
-    Eigenpair(const double eigenvalue, const VectorX<double>& eigenvector);
+    Eigenpair(const Scalar eigenvalue, const VectorX<Scalar>& eigenvector) :
+        m_eigenvalue {eigenvalue},
+        m_eigenvector {eigenvector} {}
 
     /**
      *  A constructor that sets the eigenvalue to zero and the corresponding eigenvector to zeros
      *
-     *  @param dimension        the dimension of the eigenvector
+     *  @param dimension        The dimension of the eigenvector.
      */
-    explicit Eigenpair(const size_t dimension = 1);
+    explicit Eigenpair(const size_t dimension = 1) :
+        Eigenpair(0.0, VectorX<double>::Zero(dimension)) {}
 
 
     // PUBLIC METHODS
 
     /**
+     * A function that returns the eigenvalue associated to this eigenpair.
+     * 
      *  @return the eigenvalue associated to this eigenpair
      */
-    double eigenvalue() const { return this->m_eigenvalue; };
+    Scalar eigenvalue() const { return this->m_eigenvalue; };
 
     /**
+     * A function that returns the eigenvector associated to this eigenpair.
+     * 
      *  @return the eigenvector associated to this eigenpair
      */
-    const VectorX<double>& eigenvector() const { return this->m_eigenvector; };
+    const VectorX<Scalar>& eigenvector() const { return this->m_eigenvector; };
 
     /**
-     *  @param other            the other Eigenpair
-     *  @param tolerance        a tolerance for comparison
+     * Checks if this Eigenpair is equal to the other Eigenpair.
+     * 
+     *  @param other            The other Eigenpair.
+     *  @param tolerance        A tolerance for comparison.
      *
      *  @return if this Eigenpair is equal to the other: if the eigenvalues and eigenvectors are equal given the tolerance
      */
-    bool isEqualTo(const Eigenpair& other, const double tolerance = 1.0e-08) const;
+    bool isEqualTo(const Eigenpair& other, const double tolerance = 1.0e-08) const {
+
+
+        if (this->eigenvector().size() != other.eigenvector().size()) {
+            throw std::invalid_argument("Eigenpair::isEqualTo(Eigenpair, double): Can't compare eigenpairs with eigenvectors of different dimension.");
+        }
+
+        if (std::abs(this->eigenvalue() - other.eigenvalue()) < tolerance) {
+            if (areEqualEigenvectors(this->eigenvector(), other.eigenvector(), tolerance)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 };
 
 
