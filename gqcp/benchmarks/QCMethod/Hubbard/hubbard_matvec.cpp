@@ -3,7 +3,6 @@
  */
 
 #include "Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/Hubbard.hpp"
 #include "QCModel/CI/LinearExpansion.hpp"
 
 #include <benchmark/benchmark.h>
