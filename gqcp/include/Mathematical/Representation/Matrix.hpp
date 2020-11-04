@@ -183,12 +183,14 @@ public:
 
 
     /**
-    *  @param eigenvector1     the first eigenvector
-    *  @param eigenvector2     the second eigenvector
-    *  @param tolerance        the tolerance for comparison
-    *
-    *  @return if two eigenvectors are equal within a given tolerance
-    */
+     *  Check if two eigenvectors are equal, within a given tolerance.
+     *
+     *  @param eigenvector1     The first eigenvector.
+     *  @param eigenvector2     The second eigenvector.
+     *  @param tolerance        The tolerance for comparison.
+     *
+     *  @return If two eigenvectors are equal.
+     */
     template <typename Z = bool>  // enable_if must have Z inside
     enable_if_t<Self::is_vector, Z> isEqualEigenvectorAs(const Matrix<Scalar, Dynamic, 1>& other, double tolerance = 1.0e-12) const {
 
