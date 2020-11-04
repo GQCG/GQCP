@@ -63,7 +63,7 @@ bool Eigenpair::isEqualTo(const Eigenpair& other, const double tolerance) const 
     }
 
     if (std::abs(this->eigenvalue() - other.eigenvalue()) < tolerance) {
-        if (VectorX<double>::areEqualEigenvectors(this->eigenvector(), other.eigenvector(), tolerance)) {
+        if ((this->eigenvector()).areEqualEigenvectors(other.eigenvector(), tolerance)) {
             return true;
         }
     }

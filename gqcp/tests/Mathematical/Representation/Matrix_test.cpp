@@ -105,12 +105,12 @@ BOOST_AUTO_TEST_CASE(areEqualEigenvectors) {
     d << 2, 3, 0;
 
 
-    BOOST_CHECK(GQCP::VectorX<double>::areEqualEigenvectors(a, b, 1.0e-6));
-    BOOST_CHECK(GQCP::VectorX<double>::areEqualEigenvectors(a, c, 1.0e-6));
-    BOOST_CHECK(GQCP::VectorX<double>::areEqualEigenvectors(b, c, 1.0e-6));
+    BOOST_CHECK(a.areEqualEigenvectors(b, 1.0e-6));
+    BOOST_CHECK(a.areEqualEigenvectors(c, 1.0e-6));
+    BOOST_CHECK(b.areEqualEigenvectors(c, 1.0e-6));
 
-    BOOST_CHECK(!GQCP::VectorX<double>::areEqualEigenvectors(a, d, 1.0e-6));
-    BOOST_CHECK(!GQCP::VectorX<double>::areEqualEigenvectors(c, d, 1.0e-6));
+    BOOST_CHECK(!a.areEqualEigenvectors(d, 1.0e-6));
+    BOOST_CHECK(!c.areEqualEigenvectors(d, 1.0e-6));
 }
 
 
@@ -136,10 +136,10 @@ BOOST_AUTO_TEST_CASE(areEqualSetsOfEigenvectors_example) {
                      1, -1;
     // clang-format on
 
-    BOOST_CHECK(GQCP::MatrixX<double>::areEqualSetsOfEigenvectors(eigenvectors1, eigenvectors2, 1.0e-6));
-    BOOST_CHECK(GQCP::MatrixX<double>::areEqualSetsOfEigenvectors(eigenvectors1, eigenvectors3, 1.0e-6));
+    BOOST_CHECK(eigenvectors1.areEqualSetsOfEigenvectors(eigenvectors2, 1.0e-6));
+    BOOST_CHECK(eigenvectors1.areEqualSetsOfEigenvectors(eigenvectors3, 1.0e-6));
 
-    BOOST_CHECK(!GQCP::MatrixX<double>::areEqualSetsOfEigenvectors(eigenvectors1, eigenvectors4, 1.0e-6));
+    BOOST_CHECK(!eigenvectors1.areEqualSetsOfEigenvectors(eigenvectors4, 1.0e-6));
 }
 
 BOOST_AUTO_TEST_CASE(areEqualSetsOfEigenvectors_throws) {
@@ -148,13 +148,13 @@ BOOST_AUTO_TEST_CASE(areEqualSetsOfEigenvectors_throws) {
     GQCP::MatrixX<double> C1 {3, 3};
     GQCP::MatrixX<double> C2 {3, 2};
 
-    BOOST_CHECK_THROW(GQCP::MatrixX<double>::areEqualSetsOfEigenvectors(C1, C2, 1.0e-6), std::invalid_argument);
+    BOOST_CHECK_THROW(C1.areEqualSetsOfEigenvectors(C2, 1.0e-6), std::invalid_argument);
 
 
     // Check for no throw if the dimensions are compatible
     GQCP::MatrixX<double> C3 {3, 3};
 
-    BOOST_CHECK_NO_THROW(GQCP::MatrixX<double>::areEqualSetsOfEigenvectors(C1, C3, 1.0e-6));
+    BOOST_CHECK_NO_THROW(C1.areEqualSetsOfEigenvectors(C3, 1.0e-6));
 }
 
 
