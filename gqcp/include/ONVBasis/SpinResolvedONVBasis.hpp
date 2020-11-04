@@ -18,7 +18,6 @@
 #pragma once
 
 
-#include "ONVBasis/BaseONVBasis.hpp"
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/RSQTwoElectronOperator.hpp"
@@ -32,7 +31,7 @@ namespace GQCP {
 /**
  *  A full spin-resolved spin-resolved ONV basis.
  */
-class SpinResolvedONVBasis: public BaseONVBasis {
+class SpinResolvedONVBasis {
 private:
     SpinUnresolvedONVBasis onv_basis_alpha;
     SpinUnresolvedONVBasis onv_basis_beta;

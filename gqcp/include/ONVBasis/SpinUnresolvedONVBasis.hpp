@@ -19,8 +19,6 @@
 
 
 #include "Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp"
-#include "ONVBasis/BaseONVBasis.hpp"
-#include "ONVBasis/ONVManipulator.hpp"
 #include "ONVBasis/ONVPath.hpp"
 #include "ONVBasis/SpinUnresolvedONV.hpp"
 
@@ -33,10 +31,11 @@ namespace GQCP {
 /**
  *  The full spin-unresolved ONV basis for a number of spinors and number of electrons.
  */
-class SpinUnresolvedONVBasis:
-    public BaseONVBasis,
-    public ONVManipulator<SpinUnresolvedONVBasis> {
+class SpinUnresolvedONVBasis {
 private:
+    size_t M;
+    size_t N;
+
     std::vector<std::vector<size_t>> vertex_weights;  // vertex_weights of the addressing scheme
 
 public:
@@ -790,6 +789,62 @@ public:
      *  @return all the vertex weights for this ONV basis
      */
     const std::vector<std::vector<size_t>>& vertexWeights() const { return this->vertex_weights; }
+
+
+    /**
+     *  @param onv      the spin-unresolved ONV
+     *
+     *  @return the address (i.e. the ordering number) of the given spin-unresolved ONV
+     */
+    size_t addressOf(const SpinUnresolvedONV& onv) const {
+
+        const auto& fock_space = this->derived();
+        return fock_space.addressOf(onv.unsignedRepresentation());
+    };
+
+
+    /**
+     *  @param address          the address (i.e. the ordening number) of a spin-unresolved ONV
+     *
+     *  @return the spin-unresolved ONV with the corresponding address
+     */
+    SpinUnresolvedONV constructONVFromAddress(const size_t address) const {
+
+        const auto& fock_space = this->derived();
+
+        SpinUnresolvedONV onv {fock_space.numberOfOrbitals(), this->N};
+        fock_space.transformONVCorrespondingToAddress(onv, address);
+        return onv;
+    }
+
+    /**
+     *  @return the number of electrons that are associated to this ONV manipulator
+     */
+    size_t numberOfElectrons() const { return this->N; }
+
+    /**
+     *  Set the current SpinUnresolvedONV to the next SpinUnresolvedONV: performs nextPermutationOf() and updates the corresponding occupation indices of the SpinUnresolvedONV occupation array
+     *
+     *  @param onv      the current SpinUnresolvedONV
+     */
+    void transformONVToNextPermutation(SpinUnresolvedONV& onv) const {
+
+        const auto& fock_space = this->derived();
+        onv.replaceRepresentationWith(fock_space.nextPermutationOf(onv.unsignedRepresentation()));
+    }
+
+
+    /**
+     *  Transform a spin-unresolved ONV to one corresponding to the given address
+     *
+     *  @param onv          the spin-unresolved ONV
+     *  @param address      the address to which the spin-unresolved ONV will be set
+     */
+    void transformONVCorrespondingToAddress(SpinUnresolvedONV& onv, const size_t address) const {
+
+        const auto& fock_space = this->derived();
+        onv.replaceRepresentationWith((fock_space.representationOf(address)));
+    }
 };
 
 

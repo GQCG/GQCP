@@ -19,7 +19,6 @@
 
 
 #include "Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp"
-#include "ONVBasis/BaseONVBasis.hpp"
 #include "ONVBasis/SeniorityZeroONVBasis.hpp"
 #include "ONVBasis/SpinResolvedONV.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
@@ -31,8 +30,9 @@ namespace GQCP {
 /**
  *  A spin-resolved basis that is flexible in its compromising (spin-resolved) ONVs.
  */
-class SpinResolvedSelectedONVBasis: public BaseONVBasis {
+class SpinResolvedSelectedONVBasis {
 private:
+    size_t M;
     size_t N_alpha;  // number of alpha electrons
     size_t N_beta;   // number of beta electrons
 
