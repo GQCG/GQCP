@@ -26,7 +26,7 @@ namespace GQCP {
 
 
 /*
- *  CONSTRUCTORS
+ *  MARK: Constructors
  */
 
 /**
@@ -43,9 +43,9 @@ SpinResolvedSelectedONVBasis::SpinResolvedSelectedONVBasis(const size_t K, const
 
 
 /**
- *  A constructor that generates 'selected ONVs' based on the given ONVBasis.
+ *  Generate a `SpinResolvedSelectedONVBasis` from a seniority-zero ONV basis.
  *
- *  @param onv_basis        the seniority-zero ONV basis from which the 'selected ONVs' should be generated
+ *  @param onv_basis        The seniority-zero ONV basis.
  */
 SpinResolvedSelectedONVBasis::SpinResolvedSelectedONVBasis(const SeniorityZeroONVBasis& onv_basis) :
     SpinResolvedSelectedONVBasis(onv_basis.numberOfSpatialOrbitals(), onv_basis.numberOfElectronPairs(), onv_basis.numberOfElectronPairs()) {
@@ -71,71 +71,35 @@ SpinResolvedSelectedONVBasis::SpinResolvedSelectedONVBasis(const SeniorityZeroON
 
 
 /**
- *  A constructor that generates the onvs based off the given frozen product spin-resolved ONV basis.
+ *  Generate a `SpinResolvedSelectedONVBasis` from a full spin-resolved ONV basis.
  *
- *  @param onv_basis       the SpinUnresolvedONVBasis from which the onvs should be generated
- */
-// SpinResolvedSelectedONVBasis::SpinResolvedSelectedONVBasis(const SpinResolvedFrozenONVBasis& onv_basis) :
-//     SpinResolvedSelectedONVBasis(onv_basis.numberOfOrbitals(), onv_basis.numberOfAlphaElectrons(), onv_basis.numberOfBetaElectrons()) {
-
-//     std::vector<SpinResolvedONV> onvs;
-
-//     const SpinUnresolvedFrozenONVBasis& frozen_fock_space_alpha = onv_basis.frozenONVBasisAlpha();
-//     const SpinUnresolvedFrozenONVBasis& frozen_fock_space_beta = onv_basis.frozenONVBasisBeta();
-
-//     auto dim_alpha = frozen_fock_space_alpha.dimension();
-//     auto dim_beta = frozen_fock_space_beta.dimension();
-
-//     SpinUnresolvedONV alpha = frozen_fock_space_alpha.constructONVFromAddress(0);
-//     for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
-
-//         SpinUnresolvedONV beta = frozen_fock_space_beta.constructONVFromAddress(0);
-//         for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
-
-//             onvs.push_back(SpinResolvedONV {alpha, beta});
-
-//             if (I_beta < dim_beta - 1) {  // prevent the last permutation from occurring
-//                 frozen_fock_space_beta.transformONVToNextPermutation(beta);
-//             }
-//         }
-//         if (I_alpha < dim_alpha - 1) {  // prevent the last permutation from occurring
-//             frozen_fock_space_alpha.transformONVToNextPermutation(alpha);
-//         }
-//     }
-//     this->onvs = onvs;
-// }
-
-
-/**
- *  A constructor that generates the onvs based off the given SpinResolvedONVBasis.
- *
- *  @param onv_basis       the SpinResolvedONVBasis from which the onvs should be generated
+ *  @param onv_basis        The full spin-resolved ONV basis.
  */
 SpinResolvedSelectedONVBasis::SpinResolvedSelectedONVBasis(const SpinResolvedONVBasis& onv_basis) :
     SpinResolvedSelectedONVBasis(onv_basis.alpha().numberOfOrbitals(), onv_basis.alpha().numberOfElectrons(), onv_basis.beta().numberOfElectrons()) {
 
     std::vector<SpinResolvedONV> onvs;
 
-    const SpinUnresolvedONVBasis& fock_space_alpha = onv_basis.alpha();
-    const SpinUnresolvedONVBasis& fock_space_beta = onv_basis.beta();
+    const SpinUnresolvedONVBasis& onv_basis_alpha = onv_basis.alpha();
+    const SpinUnresolvedONVBasis& onv_basis_beta = onv_basis.beta();
 
-    auto dim_alpha = fock_space_alpha.dimension();
-    auto dim_beta = fock_space_beta.dimension();
+    auto dim_alpha = onv_basis_alpha.dimension();
+    auto dim_beta = onv_basis_beta.dimension();
 
-    SpinUnresolvedONV alpha = fock_space_alpha.constructONVFromAddress(0);
+    SpinUnresolvedONV alpha = onv_basis_alpha.constructONVFromAddress(0);
     for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
 
-        SpinUnresolvedONV beta = fock_space_beta.constructONVFromAddress(0);
+        SpinUnresolvedONV beta = onv_basis_beta.constructONVFromAddress(0);
         for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
 
             onvs.push_back(SpinResolvedONV {alpha, beta});
 
             if (I_beta < dim_beta - 1) {  // prevent the last permutation from occurring
-                fock_space_beta.transformONVToNextPermutation(beta);
+                onv_basis_beta.transformONVToNextPermutation(beta);
             }
         }
         if (I_alpha < dim_alpha - 1) {  // prevent the last permutation from occurring
-            fock_space_alpha.transformONVToNextPermutation(alpha);
+            onv_basis_alpha.transformONVToNextPermutation(alpha);
         }
     }
     this->onvs = onvs;
@@ -143,39 +107,36 @@ SpinResolvedSelectedONVBasis::SpinResolvedSelectedONVBasis(const SpinResolvedONV
 
 
 /*
- *  PUBLIC METHODS
+ *  MARK: Modifying
  */
-
 
 /**
- *  Make a configuration (see makeONV()) and add it to this spin-resolved ONV basis
- *
- *  @param onv1     the alpha ONV as a string representation read from right to left
- *  @param onv2     the beta ONV as a string representation read from right to left
+ *  Expand this ONV basis with the given spin-resolved ONV.
+ * 
+ *  @param onv          The ONV that should be included in this ONV basis.
  */
-void SpinResolvedSelectedONVBasis::addONV(const std::string& onv1, const std::string& onv2) {
+void SpinResolvedSelectedONVBasis::expandWith(const SpinResolvedONV& onv) {
 
-    SpinResolvedONV configuration = makeONV(onv1, onv2);
-    onvs.push_back(configuration);
+    this->onvs.push_back(onv);
 }
 
 
 /**
- *  Make onvs (see makeONV()) and add them to this ONV basis
- *
- *  @param onv1s     the alpha ONVs as string representations read from right to left
- *  @param onv2s     the beta ONVs as string representations read from right to left
+ *  Expand this ONV basis with the given spin-resolved ONVs.
+ * 
+ *  @param onvs         The ONVs that should be included in this ONV basis.
  */
-void SpinResolvedSelectedONVBasis::addONV(const std::vector<std::string>& onv1s, const std::vector<std::string>& onv2s) {
+void SpinResolvedSelectedONVBasis::expandWith(const std::vector<SpinResolvedONV>& onvs) {
 
-    if (onv1s.size() != onv2s.size()) {
-        throw std::invalid_argument("SpinResolvedSelectedONVBasis::addONV(const std::string&, const std::string&): Size of both ONV entry vectors do not match");
-    }
-
-    for (size_t i = 0; i < onv1s.size(); i++) {
-        this->addONV(onv1s[i], onv2s[i]);
+    for (const auto& onv : onvs) {
+        this->expandWith(onv);
     }
 }
+
+
+/*
+ *  MARK: Operator evaluations
+ */
 
 
 /**
@@ -675,37 +636,6 @@ void SpinResolvedSelectedONVBasis::addONV(const std::vector<std::string>& onv1s,
 //     evaluation_iterator.addToMatrix();
 //     return evaluation_iterator.evaluation();
 // }
-
-
-/**
- *  @param onv1     the alpha ONV as a string representation read from right to left
- *  @param onv2     the beta ONV as a string representation read from right to left
- *
- *  @return the configuration that holds both ONVs
- *
- *  IMPORTANT: only works for up to 64 bits!
- */
-SpinResolvedONV SpinResolvedSelectedONVBasis::makeONV(const std::string& onv1, const std::string& onv2) const {
-
-    boost::dynamic_bitset<> alpha_transfer {onv1};
-    boost::dynamic_bitset<> beta_transfer {onv2};
-
-    if (alpha_transfer.size() != this->M | beta_transfer.size() != this->M) {
-        throw std::invalid_argument("SpinResolvedSelectedONVBasis::makeONV(std::string, std::string): Given string representations for ONVs are not compatible with the number of orbitals of this ONV basis");
-    }
-
-    if (alpha_transfer.count() != this->N_alpha | beta_transfer.count() != this->N_beta) {
-        throw std::invalid_argument("SpinResolvedSelectedONVBasis::makeONV(std::string, std::string): Given string representations for ONVs are not compatible with the number of orbitals of this ONV basis");
-    }
-
-    size_t alpha_s = alpha_transfer.to_ulong();
-    size_t beta_s = beta_transfer.to_ulong();
-
-    SpinUnresolvedONV alpha {this->M, this->N_alpha, alpha_s};
-    SpinUnresolvedONV beta {this->M, this->N_beta, beta_s};
-
-    return SpinResolvedONV(alpha, beta);
-}
 
 
 }  // namespace GQCP

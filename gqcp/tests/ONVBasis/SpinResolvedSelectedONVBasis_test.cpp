@@ -24,52 +24,30 @@
 
 
 /**
- *  Test the general functionality of the addONV function, by testing throws and retrieving configurations.
+ *  Test the general functionality of the `expandWith` function, by testing throws and retrieving ONVs.
  */
-BOOST_AUTO_TEST_CASE(addONV) {
+BOOST_AUTO_TEST_CASE(expandWith) {
 
-    // Create a faulty expansion: one of the orbitals is different
-    GQCP::SpinResolvedSelectedONVBasis fock_space {3, 1, 1};
-
-    std::vector<std::string> alpha_set {"001", "010"};
-    std::vector<std::string> beta_set {"001", "010"};
-
-    BOOST_CHECK_NO_THROW(fock_space.addONV(alpha_set, beta_set));
-
-    // Test throw with one of the sets is not the same size
-    std::vector<std::string> beta_set_long = {"001", "010", "100"};
-    BOOST_CHECK_THROW(fock_space.addONV(alpha_set, beta_set_long), std::invalid_argument);
-
-    // Test throw with incompatible orbital numbers
-    BOOST_CHECK_THROW(fock_space.addONV("0001", "0100"), std::invalid_argument);
-
-    // Test throw with incompatible electron numbers
-    BOOST_CHECK_THROW(fock_space.addONV("011", "011"), std::invalid_argument);
-
-    fock_space.addONV(alpha_set, beta_set);
+    // Set up an initial zero ONV basis.
+    GQCP::SpinResolvedSelectedONVBasis onv_basis {3, 1, 1};
 
 
-    // Check if the expansions are equal
-    // Generate the expected results
-    std::string alpha1_ref = "001";
-    std::string alpha2_ref = "010";
-    std::string beta1_ref = "001";
-    std::string beta2_ref = "010";
+    // Add two compatible ONVs.
+    BOOST_CHECK_NO_THROW(onv_basis.expandWith(SpinResolvedONV::FromString("001", "001")));
+    BOOST_CHECK_NO_THROW(onv_basis.expandWith(SpinResolvedONV::FromString("010", "010")));
 
-    // Retrieve the added results
-    GQCP::SpinResolvedONV configuration1 = fock_space.onvWithIndex(0);
-    GQCP::SpinResolvedONV configuration2 = fock_space.onvWithIndex(1);
 
-    // Retrieve the string representation of the ONVs
-    std::string alpha1_test = configuration1.onv(GQCP::Spin::alpha).asString();
-    std::string alpha2_test = configuration2.onv(GQCP::Spin::alpha).asString();
-    std::string beta1_test = configuration1.onv(GQCP::Spin::beta).asString();
-    std::string beta2_test = configuration2.onv(GQCP::Spin::beta).asString();
+    // Check if we receive a throw if we add an ONV with an incompatible number of orbitals.
+    BOOST_CHECK_THROW(onv_basis.expandWith(SpinResolvedONV::FromString("0001", "0100")), std::invalid_argument);
 
-    BOOST_CHECK(alpha1_test == alpha1_ref);
-    BOOST_CHECK(alpha2_test == alpha2_ref);
-    BOOST_CHECK(beta1_test == beta1_ref);
-    BOOST_CHECK(beta2_test == beta2_ref);
+
+    // Check if we receive a throw if we add an ONV with an incompatible number of electrons.
+    BOOST_CHECK_THROW(onv_basis.expandWith(SpinResolvedONV::FromString("011", "011")), std::invalid_argument);
+
+
+    // Check if we can access the ONVs in order.
+    BOOST_CHECK(onv_basis.onvWithIndex(0).asString() == "001|001");
+    BOOST_CHECK(onv_basis.onvWithIndex(1).asString() == "010|010");
 }
 
 
@@ -89,19 +67,19 @@ BOOST_AUTO_TEST_CASE(addONV) {
 //     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, h2o);  // in the Löwdin basis
 //     auto K = sq_hamiltonian.numberOfOrbitals();
 
-//     GQCP::SpinResolvedONVBasis fock_space {K, h2o.numberOfElectrons() / 2, h2o.numberOfElectrons() / 2};  // dim = 441
-//     GQCP::SpinResolvedSelectedONVBasis selected_fock_space {fock_space};
+//     GQCP::SpinResolvedONVBasis onv_basis {K, h2o.numberOfElectrons() / 2, h2o.numberOfElectrons() / 2};  // dim = 441
+//     GQCP::SpinResolvedSelectedONVBasis selected_onv_basis {onv_basis};
 
 
 //     // Evaluate the dense Hamiltonian
-//     GQCP::SquareMatrix<double> hamiltonian = selected_fock_space.evaluateOperatorDense(sq_hamiltonian, true);
-//     GQCP::SquareMatrix<double> hamiltonian_no_diagonal = selected_fock_space.evaluateOperatorDense(sq_hamiltonian, false);
+//     GQCP::SquareMatrix<double> hamiltonian = selected_onv_basis.evaluateOperatorDense(sq_hamiltonian, true);
+//     GQCP::SquareMatrix<double> hamiltonian_no_diagonal = selected_onv_basis.evaluateOperatorDense(sq_hamiltonian, false);
 
 //     // Evaluate the diagonal
-//     GQCP::VectorX<double> hamiltonian_diagonal = selected_fock_space.evaluateOperatorDiagonal(sq_hamiltonian);
+//     GQCP::VectorX<double> hamiltonian_diagonal = selected_onv_basis.evaluateOperatorDiagonal(sq_hamiltonian);
 
 //     // Evaluate the matvec
-//     GQCP::VectorX<double> matvec_evaluation = selected_fock_space.evaluateOperatorMatrixVectorProduct(sq_hamiltonian, hamiltonian_diagonal, hamiltonian_diagonal);
+//     GQCP::VectorX<double> matvec_evaluation = selected_onv_basis.evaluateOperatorMatrixVectorProduct(sq_hamiltonian, hamiltonian_diagonal, hamiltonian_diagonal);
 
 //     // Calculate the explicit matvec with the dense evaluations
 //     GQCP::VectorX<double> matvec_reference = hamiltonian * hamiltonian_diagonal;
@@ -147,18 +125,18 @@ BOOST_AUTO_TEST_CASE(addONV) {
 //     GQCP::basisTransform(spinor_basis, usq_hamiltonian, GQCP::TransformationMatrix<double>(saes.eigenvectors()), GQCP::Spin::beta);
 //     auto K = usq_hamiltonian.numberOfOrbitals() / 2;
 
-//     GQCP::SpinResolvedONVBasis fock_space {K, h2o.numberOfElectrons() / 2, h2o.numberOfElectrons() / 2};  // dim = 441
-//     GQCP::SpinResolvedSelectedONVBasis selected_fock_space {fock_space};
+//     GQCP::SpinResolvedONVBasis onv_basis {K, h2o.numberOfElectrons() / 2, h2o.numberOfElectrons() / 2};  // dim = 441
+//     GQCP::SpinResolvedSelectedONVBasis selected_onv_basis {onv_basis};
 
 //     // Evaluate the dense Hamiltonian
-//     GQCP::SquareMatrix<double> hamiltonian = selected_fock_space.evaluateOperatorDense(usq_hamiltonian, true);
-//     GQCP::SquareMatrix<double> hamiltonian_no_diagonal = selected_fock_space.evaluateOperatorDense(usq_hamiltonian, false);
+//     GQCP::SquareMatrix<double> hamiltonian = selected_onv_basis.evaluateOperatorDense(usq_hamiltonian, true);
+//     GQCP::SquareMatrix<double> hamiltonian_no_diagonal = selected_onv_basis.evaluateOperatorDense(usq_hamiltonian, false);
 
 //     // Evaluate the diagonal
-//     GQCP::VectorX<double> hamiltonian_diagonal = selected_fock_space.evaluateOperatorDiagonal(usq_hamiltonian);
+//     GQCP::VectorX<double> hamiltonian_diagonal = selected_onv_basis.evaluateOperatorDiagonal(usq_hamiltonian);
 
 //     // Evaluate the matvec
-//     GQCP::VectorX<double> matvec_evaluation = selected_fock_space.evaluateOperatorMatrixVectorProduct(usq_hamiltonian, hamiltonian_diagonal, hamiltonian_diagonal);
+//     GQCP::VectorX<double> matvec_evaluation = selected_onv_basis.evaluateOperatorMatrixVectorProduct(usq_hamiltonian, hamiltonian_diagonal, hamiltonian_diagonal);
 
 //     // Evaluate the explicit matvec with the dense evaluations
 //     GQCP::VectorX<double> matvec_reference = hamiltonian * hamiltonian_diagonal;

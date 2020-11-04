@@ -46,7 +46,9 @@ private:
 
 
 public:
-    // CONSTRUCTORS
+    /*
+     *  MARK: Constructors
+     */
 
     /**
      *  Construct an empty spin-resolved selected ONV basis.
@@ -58,59 +60,86 @@ public:
     SpinResolvedSelectedONVBasis(const size_t M, const size_t N_alpha, const size_t N_beta);
 
     /**
-     *  Default constructor setting everything to zero.
+     *  The default constructor.
      */
     SpinResolvedSelectedONVBasis() = default;
 
     /**
-     *  A constructor that generates 'selected ONVs' based on the given ONVBasis.
+     *  Generate a `SpinResolvedSelectedONVBasis` from a seniority-zero ONV basis.
      *
-     *  @param onv_basis        the seniority-zero ONV basis from which the 'selected ONVs' should be generated
+     *  @param onv_basis        The seniority-zero ONV basis.
      */
     SpinResolvedSelectedONVBasis(const SeniorityZeroONVBasis& onv_basis);
 
     /**
-     *  A constructor that generates the onvs based on the given frozen product ONV basis.
+     *  Generate a `SpinResolvedSelectedONVBasis` from a full spin-resolved ONV basis.
      *
-     *  @param onv_basis        the frozen product ONV basis from which the onvs should be generated
-     */
-    // SpinResolvedSelectedONVBasis(const SpinResolvedFrozenONVBasis& onv_basis);
-
-    /**
-     *  A constructor that generates the onvs based on the given SpinResolvedONVBasis.
-     *
-     *  @param onv_basis        the product ONV basis from which the onvs should be generated
+     *  @param onv_basis        The full spin-resolved ONV basis.
      */
     SpinResolvedSelectedONVBasis(const SpinResolvedONVBasis& onv_basis);
 
 
-    // PUBLIC METHODS
-
-    /**
-     *  Make a spin-resolved ONV and add it to this ONV basis
-     *
-     *  @param onv1         the alpha ONV as a string representation read from right to left
-     *  @param onv2         the beta ONV as a string representation read from right to left
+    /*
+     *  MARK: General information
      */
-    void addONV(const std::string& onv1, const std::string& onv2);
-
-    /**
-     *  Make spin-resolved ONVs and add them to the ONV basis
-     *
-     *  @param onv1s        the alpha ONVs as string representations read from right to left
-     *  @param onv2s        the beta ONVs as string representations read from right to left
-     */
-    void addONV(const std::vector<std::string>& onv1s, const std::vector<std::string>& onv2s);
-
-    /**
-     *  @return the ONV that corresponds to the given index
-     */
-    const SpinResolvedONV& onvWithIndex(const size_t index) const { return this->onvs[index]; }
 
     /**
      *  @return The number of spin-orbitals (equal for alpha and beta).
      */
     size_t numberOfOrbitals() const { return this->M; }
+
+    /**
+     *  @return The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals.
+     */
+    size_t numberOfAlphaElectrons() const { return this->N_alpha; }
+
+    /**
+     *  @return The number of beta electrons, i.e. the number of occupied beta spin-orbitals.
+     */
+    size_t numberOfBetaElectrons() const { return this->N_beta; }
+
+    /**
+     *  @return The dimension of the Fock subspace that is spanned by this selected ONV basis.
+     */
+    size_t dimension() const { return this->onvs.size(); }
+
+
+    /*
+     *  MARK: Modifying
+     */
+
+    /**
+     *  Expand this ONV basis with the given spin-resolved ONV.
+     * 
+     *  @param onv          The ONV that should be included in this ONV basis.
+     */
+    void expandWith(const SpinResolvedONV& onv);
+
+    /**
+     *  Expand this ONV basis with the given spin-resolved ONVs.
+     * 
+     *  @param onvs         The ONVs that should be included in this ONV basis.
+     */
+    void expandWith(const std::vector<SpinResolvedONV>& onvs);
+
+
+    /*
+     *  MARK: Accessing
+     */
+
+    /**
+     *  Access the ONV that corresponds to the given index/address.
+     * 
+     *  @param index            The address of the ONV.
+     * 
+     *  @return The ONV that corresponds to the given index/address.
+     */
+    const SpinResolvedONV& onvWithIndex(const size_t index) const { return this->onvs[index]; }
+
+
+    /*
+     *  MARK: Operator evaluations
+     */
 
     /**
      *  Evaluate the operator in a given evaluation iterator in the ONV basis
@@ -630,31 +659,6 @@ public:
     //  *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the ONV basis
     //  */
     // Eigen::SparseMatrix<double> evaluateOperatorSparse(const USQHamiltonian<double>& usq_hamiltonian, const bool diagonal_values) const;
-
-    /**
-     *  @param onv1     the alpha ONV as a string representation read from right to left
-     *  @param onv2     the beta ONV as a string representation read from right to left
-     *
-     *  @return the configuration that holds both ONVs
-     *
-     *  IMPORTANT: only works for up to 64 bits!
-     */
-    SpinResolvedONV makeONV(const std::string& onv1, const std::string& onv2) const;
-
-    /**
-     *  @return the number of alpha-electrons that this ONV basis describes
-     */
-    size_t numberOfAlphaElectrons() const { return this->N_alpha; }
-
-    /**
-     *  @return the number of beta-electrons that this ONV basis describes
-     */
-    size_t numberOfBetaElectrons() const { return this->N_beta; }
-
-    /**
-     *  @return The dimension of the Fock subspace that is spanned by this selected ONV basis.
-     */
-    size_t dimension() const { return this->onvs.size(); }
 };
 
 

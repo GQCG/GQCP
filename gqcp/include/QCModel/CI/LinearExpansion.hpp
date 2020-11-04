@@ -178,7 +178,7 @@ public:
         size_t N_beta = beta_transfer.count();
 
         SpinResolvedSelectedONVBasis onv_basis {K, N_alpha, N_beta};
-        onv_basis.addONV(reversed_alpha, reversed_beta);
+        onv_basis.expandWith(SpinResolvedONV::FromString(reversed_alpha, reversed_beta));
 
 
         // Read in the ONVs and the coefficients by splitting the line on '|', and then trimming whitespace.
@@ -206,7 +206,7 @@ public:
 
             // Create a double for the third field
             coefficients(index_count) = std::stod(splitted_line[2]);
-            onv_basis.addONV(reversed_alpha, reversed_beta);
+            onv_basis.expandWith(SpinResolvedONV::FromString(reversed_alpha, reversed_beta));
 
         }  // while getline
 
