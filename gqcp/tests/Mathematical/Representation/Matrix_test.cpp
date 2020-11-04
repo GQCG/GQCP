@@ -91,6 +91,29 @@ BOOST_AUTO_TEST_CASE(Matrix_FromFile) {
 }
 
 
+BOOST_AUTO_TEST_CASE(areEqualEigenvectors) {
+
+    // Test areEqualEigenvectors with an example.
+    GQCP::VectorX<double> a {3};
+    GQCP::VectorX<double> b {3};
+    GQCP::VectorX<double> c {3};
+    GQCP::VectorX<double> d {3};
+
+    a << 2, 3, 1;
+    b << 2, 3, 1;
+    c << -2, -3, -1;
+    d << 2, 3, 0;
+
+
+    BOOST_CHECK(GQCP::VectorX<double>::areEqualEigenvectors(a, b, 1.0e-6));
+    BOOST_CHECK(GQCP::VectorX<double>::areEqualEigenvectors(a, c, 1.0e-6));
+    BOOST_CHECK(GQCP::VectorX<double>::areEqualEigenvectors(b, c, 1.0e-6));
+
+    BOOST_CHECK(!GQCP::VectorX<double>::areEqualEigenvectors(a, d, 1.0e-6));
+    BOOST_CHECK(!GQCP::VectorX<double>::areEqualEigenvectors(c, d, 1.0e-6));
+}
+
+
 BOOST_AUTO_TEST_CASE(areEqualSetsOfEigenvectors_example) {
 
     // Test areEqualSetsOfEigenvectors with an example
@@ -132,29 +155,6 @@ BOOST_AUTO_TEST_CASE(areEqualSetsOfEigenvectors_throws) {
     GQCP::MatrixX<double> C3 {3, 3};
 
     BOOST_CHECK_NO_THROW(GQCP::MatrixX<double>::areEqualSetsOfEigenvectors(C1, C3, 1.0e-6));
-}
-
-
-BOOST_AUTO_TEST_CASE(areEqualEigenvectors) {
-
-    // Test areEqualEigenvectors with an example.
-    GQCP::VectorX<double> a {3};
-    GQCP::VectorX<double> b {3};
-    GQCP::VectorX<double> c {3};
-    GQCP::VectorX<double> d {3};
-
-    a << 2, 3, 1;
-    b << 2, 3, 1;
-    c << -2, -3, -1;
-    d << 2, 3, 0;
-
-
-    BOOST_CHECK(GQCP::VectorX<double>::areEqualEigenvectors(a, b, 1.0e-6));
-    BOOST_CHECK(GQCP::VectorX<double>::areEqualEigenvectors(a, c, 1.0e-6));
-    BOOST_CHECK(GQCP::VectorX<double>::areEqualEigenvectors(b, c, 1.0e-6));
-
-    BOOST_CHECK(!GQCP::VectorX<double>::areEqualEigenvectors(a, d, 1.0e-6));
-    BOOST_CHECK(!GQCP::VectorX<double>::areEqualEigenvectors(c, d, 1.0e-6));
 }
 
 
