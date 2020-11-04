@@ -306,6 +306,10 @@ BOOST_AUTO_TEST_CASE(einsum) {
     }
 
     // Test the einsum API
-    const auto output = T1.einsum<1>(T2, "ijkl", "ia", "jkla");
+    auto output = T1.einsum<2>(T2, "ijkl", "jk", "il");
+    // std::cout << output(0, 0, 1, 1) << std::endl;
+    // std::cout << output(0, 1, 1, 1) << std::endl;
+    // std::cout << output(1, 0, 1, 1) << std::endl;
+    // std::cout << output(1, 1, 1, 1) << std::endl;
     std::cout << output << std::endl;
 }

@@ -286,30 +286,40 @@ public:
                 array_position++;
             }
         }
-
+        std::cout << "break 1" << std::endl;
 
         // Perform the contraction. It is an intermediate result, because we still have to align the tensor axes that Eigen's contraction module produces with the user's requested axes.
-        Tensor<Scalar, ResultRank> T_intermediate = this->contract(rhs, contraction_pairs);
+        Tensor<Scalar, ResultRank> T_intermediate = this->contract(rhs.Eigen(), contraction_pairs);
 
 
         // Finally, we should find the shuffle indices that map the obtained intermediate axes to the requested axes.
 
         // The intermediate axes are just concatenated from left to right, removing any duplicates.
         auto intermediate_indices = lhs_labels + rhs_labels;
+        std::cout << intermediate_indices << std::endl;
         for (size_t i = 1; i < LHSRank + RHSRank; i++) {  // We should skip the first iteration, since there wouldn't be any duplicates anyways.
-
+            std::cout << i << std::endl;
             // Check if the current index label appears in the substring before it.
             const auto current_label = intermediate_indices[i];
+            std::cout << current_label << std::endl;
             const auto match = intermediate_indices.substr(0, i).find(current_label);
+            std::cout << match << std::endl;
             if (match != std::string::npos) {  // an actual match was found
-                intermediate_indices.erase(match);
-                intermediate_indices.erase(i);
+                std::cout << "if-statement" << std::endl;
+                std::cout << intermediate_indices << std::endl;
+                intermediate_indices.erase(match, 1);  // REMOVES EVERYTHING -> BUG, because the match has value 0
+                std::cout << intermediate_indices << std::endl;
+                std::cout << "erase match" << std::endl;
+                std::cout << intermediate_indices << std::endl;
+                intermediate_indices.erase(i - 1, 1);
+                std::cout << "erase i" << std::endl;
+                std::cout << intermediate_indices << std::endl;
 
                 // We have to set back the current index to account for the removed indices.
                 i -= 2;
             }
         }
-
+        std::cout << "break 2" << std::endl;
         // Find the position of the intermediate axes' labels in the requested output labels in order to set up the required shuffle indices.
         Eigen::array<int, 4> shuffle_indices {};
         for (size_t i = 0; i < 4; i++) {
