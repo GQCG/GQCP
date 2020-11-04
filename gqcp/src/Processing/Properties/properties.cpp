@@ -106,7 +106,7 @@ VectorX<double> calculateDysonOrbitalCoefficients(const LinearExpansion<SpinReso
     const auto& ci_coeffs1 = linear_expansion1.coefficients();
     const auto& ci_coeffs2 = linear_expansion2.coefficients();
 
-    VectorX<double> dyson_coeffs = VectorX<double>::Zero(onv_basis1.numberOfOrbitals());
+    VectorX<double> dyson_coeffs = VectorX<double>::Zero(onv_basis1.onvBasisAlpha().numberOfOrbitals());
 
     // The actual algorithm to determine the Dyson amplitudes
     // Since we want to calculate the overlap between two wave functions, the ONVs should have an equal number of electrons

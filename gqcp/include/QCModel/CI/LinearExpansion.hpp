@@ -775,7 +775,7 @@ public:
     enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const {
 
         // Initialize as zero matrices
-        size_t K = this->onv_basis.numberOfOrbitals();
+        size_t K = this->onv_basis.onvBasisAlpha().numberOfOrbitals();
 
         SpinResolved1DMComponent<double> D_aa = SpinResolved1DMComponent<double>::Zero(K);
         SpinResolved1DMComponent<double> D_bb = SpinResolved1DMComponent<double>::Zero(K);
@@ -902,7 +902,7 @@ public:
         auto dim_beta = onv_basis_beta.dimension();
 
         // Initialize as zero matrices
-        size_t K = this->onv_basis.numberOfOrbitals();
+        size_t K = this->onv_basis.onvBasisAlpha().numberOfOrbitals();
 
         SpinResolved2DMComponent<double> d_aaaa = SpinResolved2DMComponent<double>::Zero(K);
         SpinResolved2DMComponent<double> d_aabb = SpinResolved2DMComponent<double>::Zero(K);

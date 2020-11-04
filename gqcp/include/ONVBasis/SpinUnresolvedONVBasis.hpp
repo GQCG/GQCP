@@ -29,87 +29,218 @@ namespace GQCP {
 
 
 /**
- *  The full spin-unresolved ONV basis for a number of spinors and number of electrons.
+ *  The full spin-unresolved ONV basis for a number of spinors/spin-orbitals and number of electrons.
  */
 class SpinUnresolvedONVBasis {
 private:
+    // The number of spinors/spin-orbitals.
     size_t M;
+
+    // The number of electrons, i.e. the number of occupied spinors/spin-orbitals.
     size_t N;
 
-    std::vector<std::vector<size_t>> vertex_weights;  // vertex_weights of the addressing scheme
+    // The vertex weights corresponding to the addressing scheme for a full spin-unresolved ONV basis. This addressing scheme is taken from Helgaker, Jørgensen, Olsen (2000).
+    std::vector<std::vector<size_t>> vertex_weights;
 
 public:
+    // The ONV that is naturally related to a full spin-unresolved ONV basis. See also `ONVPath`.
     using ONV = SpinUnresolvedONV;
 
 
 public:
     /*
-     *  CONSTRUCTORS
+     *  MARK: Constructors
      */
 
     /**
-     *  The default constructor
-     */
-    SpinUnresolvedONVBasis() = default;
-
-    /**
-     *  @param M            the number of spinors
-     *  @param N            the number of electrons
+     *  @param M            The number of spinors/spin-orbitals.
+     *  @param N            The number of electrons, i.e. the number of occupied spinors/spin-orbitals.
      */
     SpinUnresolvedONVBasis(const size_t M, const size_t N);
 
-
-    // DESTRUCTOR
-
     /**
-     *  The default destructor
+     *  The default constructor.
      */
-    ~SpinUnresolvedONVBasis() override = default;
+    SpinUnresolvedONVBasis() = default;
 
 
-    // STATIC PUBLIC METHODS
+    /*
+     *  MARK: Basic information
+     */
 
     /**
-     *  @param M            the number of spinors
-     *  @param N            the number of electrons
+     *  Calculate the dimension of the full spin-unresolved ONV basis with a given number of spinors/spin-orbitals and number of electrons.
+     * 
+     *  @param M            The number of spinors/spin-orbitals.
+     *  @param N            The number of electrons, i.e. the number of occupied spinors/spin-orbitals.
      *
-     *  @return the dimension of a spin-unresolved ONV basis with the given number of spinors and electrons
+     *  @return The dimension of a spin-unresolved ONV basis.
      */
     static size_t calculateDimension(const size_t M, const size_t N);
 
-
-    // PUBLIC OVERRIDDEN METHODS
+    /**
+     *  @return The dimension of this ONV basis.
+     */
+    size_t dimension() const { return SpinUnresolvedONVBasis::calculateDimension(this->numberOfOrbitals(), this->numberOfElectrons()); }
 
     /**
-     *  @param representation      a representation of an spin-unresolved ONV
+     *  @return The number of electrons, i.e. the number of occupied spinors/spin-orbitals.
+     */
+    size_t numberOfElectrons() const { return this->N; }
+
+    /**
+     *  @return The number of spinors/spin-orbitals.
+     */
+    size_t numberOfOrbitals() const { return this->M; }
+
+
+    /**
+     *  MARK: Addressing scheme, address calculations and ONV manipulations
+     */
+
+    /**
+     *  Access the arc weight of an arc in the addressing scheme of this ONV basis. The addressing scheme is taken from Helgaker, Jørgensen, Olsen (2000).
+     * 
+     *  @param p            The orbital index.
+     *  @param n            The electron index.
      *
-     *  @return the address (i.e. the ordering number) of the given spin-unresolved ONV
+     *  @return The arc weight of the arc starting at the given vertex (p, n).
      */
-    size_t addressOf(const size_t representation) const override;
+    size_t arcWeight(const size_t p, const size_t n) const;
 
     /**
-     *  @param onv       the spin-unresolved ONV
+     *  @param p            The orbital index.
+     *  @param n            The electron index.
+     * 
+     *  @return The vertex weight related to the given indices (p,n).
+     */
+    size_t vertexWeight(const size_t p, const size_t n) const { return this->vertex_weights[p][n]; }
+
+    /**
+     *  @return All the vertex weights for this ONV basis, stored as a vector of vectors. The outer axis represents the orbital indices, the inner axis represents the electron indices.
+     */
+    const std::vector<std::vector<size_t>>& vertexWeights() const { return this->vertex_weights; }
+
+    /**
+     *  Calculate the address (i.e. the ordering number) of an unsigned representation of a spin-unresolved ONV.
+     * 
+     *  @param representation      The unsigned representation of a spin-unresolved ONV.
      *
-     *  @return the number of ONVs (with a larger address) this spin-unresolved ONV would couple with given a one electron operator
+     *  @return The address corresponding to the unsigned representation of a spin-unresolved ONV.
      */
-    size_t countOneElectronCouplings(const SpinUnresolvedONV& onv) const override;
+    size_t addressOf(const size_t representation) const;
 
     /**
-     *  @return the number of non-zero (non-diagonal) couplings of a one electron coupling scheme in the spin-unresolved ONV basis
-     */
-    size_t countTotalOneElectronCouplings() const override;
-
-    /**
-     *  @return the number of non-zero (non-diagonal) couplings of a two electron coupling scheme in the spin-unresolved ONV basis
-     */
-    size_t countTotalTwoElectronCouplings() const override;
-
-    /**
-     *  @param onv       the spin-unresolved ONV
+     *  Calculate the address (i.e. the ordering number) of a spin-unresolved ONV.
+     * 
+     *  @param onv          The spin-unresolved ONV.
      *
-     *  @return the number of ONVs (with a larger address) this spin-unresolved ONV would couple with given a two electron operator
+     *  @return The address (i.e. the ordering number) of the given spin-unresolved ONV.
      */
-    size_t countTwoElectronCouplings(const SpinUnresolvedONV& onv) const override;
+    size_t addressOf(const SpinUnresolvedONV& onv) const { return this->addressOf(onv.unsignedRepresentation()); }
+
+    /**
+     *  Calculate the next allowed unsigned representation of a spin-unresolved ONV in this ONV basis.
+     * 
+     *  @param representation       A representation of a spin-unresolved ONV.
+     *
+     *  @return The next allowed unsigned representation of a spin-unresolved ONV in this ONV basis.
+     *
+     *  @example
+     *          011 -> 101
+     *          101 -> 110
+     */
+    size_t nextPermutationOf(const size_t representation) const;
+
+    /**
+     *  Calculate the unsigned representation of a spin-unresolved ONV that corresponds to the address/ordering number in this ONV basis.
+     *
+     *  @param address                 The address/ordering number of a spin-unresolved ONV in this ONV basis.
+     *
+     *  @return The unsigned representation of a spin-unresolved ONV that corresponds to the address/ordering number in this ONV basis.
+     */
+    size_t representationOf(const size_t address) const;
+
+    /**
+     *  Create the ONV that corresponds to the given address in this ONV basis.
+     * 
+     *  @param address                 The address/ordering number of a spin-unresolved ONV in this ONV basis.
+     *
+     *  @return The ONV that corresponds to the given address in this ONV basis.
+     */
+    SpinUnresolvedONV constructONVFromAddress(const size_t address) const;
+
+    /**
+     *  Modify a `SpinResolvedONV` to the next allowed ONV in this ONV basis.
+     * 
+     *  @param onv      A spin-resolved ONV.
+     */
+    void transformONVToNextPermutation(SpinUnresolvedONV& onv) const;
+
+    /**
+     *  Modify a `SpinResolvedONV` to the one with the given address in this ONV basis.
+     *
+     *  @param onv          A spin-resolved ONV.
+     *  @param address      The target address in this ONV basis.
+     */
+    void transformONVCorrespondingToAddress(SpinUnresolvedONV& onv, const size_t address) const;
+
+
+    /*
+     *  MARK: Couplings
+     */
+
+    /**
+     *  Calculate the number of ONVs (with a larger address) that a given spin-unresolved ONV would couple with in this ONV basis, through a one-electron operator.
+     * 
+     *  @param onv          The spin-unresolved ONV.
+     *
+     *  @return The number of ONVs (with a larger address) that a given spin-unresolved ONV would couple with in this ONV basis, through a one-electron operator.
+     */
+    size_t countOneElectronCouplings(const SpinUnresolvedONV& onv) const;
+
+    /**
+     *  @return The total number of non-zero and non-diagonal couplings of a one-electron operator in this ONV basis.
+     */
+    size_t countTotalOneElectronCouplings() const;
+
+    /**
+     *  @return The total number of non-zero and non-diagonal couplings of a two-electron operator in this ONV basis.
+     */
+    size_t countTotalTwoElectronCouplings() const;
+
+    /**
+     *  Calculate the number of ONVs (with a larger address) that a given spin-unresolved ONV would couple with in this ONV basis, through a two-electron operator.
+     * 
+     *  @param onv          The spin-unresolved ONV.
+     *
+     *  @return The number of ONVs (with a larger address) that a given spin-unresolved ONV would couple with in this ONV basis, through a two-electron operator.
+     */
+    size_t countTwoElectronCouplings(const SpinUnresolvedONV& onv) const;
+
+    /**
+     *  Calculate all one-electron coupling elements for this spin-unresolved ONV basis. These are all the intermediate matrices sigma(pq)_{IJ}, as defined by Helgaker, Jørgensen, Olsen (2000).
+     *
+     *  @return A vector of sparse matrices containing the one-electron coupling elements for this spin-unresolved ONV basis. The elements of this vector are ordered through the one-electron excitation (pq) in ascending order: sigma(00), sigma(01) + sigma(10), sigma(02)+ sigma(20), ...
+     */
+    std::vector<Eigen::SparseMatrix<double>> calculateOneElectronCouplings() const;
+
+
+    /**
+     *  MARK: Iterating
+     */
+
+    /**
+     *  Iterate over all ONVs in this ONV basis and apply the given callback function.
+     * 
+     *  @param callback            The function to be applied in every iteration. Its supplied arguments are a spin-unresolved ONV and its corresponding addresses.
+     */
+    void forEach(const std::function<void(const SpinUnresolvedONV&, const size_t)>& callback) const;
+
+
+    /*
+     *  MARK: Operator evaluations
+     */
 
     /**
      *  Evaluate the operator in a dense matrix
@@ -198,47 +329,9 @@ public:
     //  */
     // Eigen::SparseMatrix<double> evaluateOperatorSparse(const RSQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const;
 
-    /**
-     *  @param representation       a representation of an spin-unresolved ONV
-     *
-     *  @return the next bitstring permutation in the spin-unresolved ONV basis
-     *
-     *      Examples:
-     *          011 -> 101
-     *          101 -> 110
-     */
-    size_t nextPermutationOf(const size_t representation) const override;
-
-    /**
-      *  Calculate unsigned representation for a given address
-      *
-      *  @param address                 the address of the representation is calculated
-      *
-      *  @return unsigned representation of the address
-      */
-    size_t representationOf(const size_t address) const override;
-
 
     // PUBLIC METHODS
 
-    using ONVManipulator<SpinUnresolvedONVBasis>::addressOf;
-
-    /**
-     *  @param p       The orbital index p
-     *  @param n       The electron index n
-     *
-     *  @return the arc weight of the arc starting in the given vertex (p, n) (reference: Helgaker 11.8.6)
-     */
-    size_t arcWeight(const size_t p, const size_t n) const { return this->vertexWeight(p, n + 1); }
-
-    /**
-     *  Calculates sigma(pq) + sigma(qp)'s: all one-electron couplings for each annihilation-creation pair in the (spin) spin-unresolved ONV basis
-     *  and stores them in sparse matrices for each pair combination
-     *
-     *  @return vector of sparse matrices containing the one-electron couplings for the (spin) spin-unresolved ONV basis
-     *      Ordered as: sigma(00), sigma(01) + sigma(10), sigma(02)+ sigma(20), ...
-     */
-    std::vector<Eigen::SparseMatrix<double>> calculateOneElectronCouplings() const;
 
     /**
      *  Evaluate the operator in a given evaluation iterator in the spin-unresolved ONV basis
@@ -675,12 +768,10 @@ public:
      */
     // VectorX<double> evaluateOperatorMatrixVectorProduct(const RSQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
 
-    /**
-     *  Iterate over all ONVs in this ONV basis and apply the given callback function.
-     * 
-     *  @param callback             the function to be applied in every iteration. Its arguments are a spin-unresolved ONV and its corresponding addresses
+
+    /*
+     *  MARK: Legacy code
      */
-    void forEach(const std::function<void(const SpinUnresolvedONV&, const size_t)>& callback) const;
 
     /**
      *  Find the next unoccupied orbital in a given spin-unresolved ONV,
@@ -774,76 +865,6 @@ public:
             q--;
             sign *= -1;
         }
-    }
-
-
-    /**
-     *  @param p            the orbital index
-     *  @param n            the electron index
-     * 
-     *  @return the vertex weight for the given indices
-     */
-    size_t vertexWeight(const size_t p, const size_t n) const { return this->vertex_weights[p][n]; }
-
-    /**
-     *  @return all the vertex weights for this ONV basis
-     */
-    const std::vector<std::vector<size_t>>& vertexWeights() const { return this->vertex_weights; }
-
-
-    /**
-     *  @param onv      the spin-unresolved ONV
-     *
-     *  @return the address (i.e. the ordering number) of the given spin-unresolved ONV
-     */
-    size_t addressOf(const SpinUnresolvedONV& onv) const {
-
-        const auto& fock_space = this->derived();
-        return fock_space.addressOf(onv.unsignedRepresentation());
-    };
-
-
-    /**
-     *  @param address          the address (i.e. the ordening number) of a spin-unresolved ONV
-     *
-     *  @return the spin-unresolved ONV with the corresponding address
-     */
-    SpinUnresolvedONV constructONVFromAddress(const size_t address) const {
-
-        const auto& fock_space = this->derived();
-
-        SpinUnresolvedONV onv {fock_space.numberOfOrbitals(), this->N};
-        fock_space.transformONVCorrespondingToAddress(onv, address);
-        return onv;
-    }
-
-    /**
-     *  @return the number of electrons that are associated to this ONV manipulator
-     */
-    size_t numberOfElectrons() const { return this->N; }
-
-    /**
-     *  Set the current SpinUnresolvedONV to the next SpinUnresolvedONV: performs nextPermutationOf() and updates the corresponding occupation indices of the SpinUnresolvedONV occupation array
-     *
-     *  @param onv      the current SpinUnresolvedONV
-     */
-    void transformONVToNextPermutation(SpinUnresolvedONV& onv) const {
-
-        const auto& fock_space = this->derived();
-        onv.replaceRepresentationWith(fock_space.nextPermutationOf(onv.unsignedRepresentation()));
-    }
-
-
-    /**
-     *  Transform a spin-unresolved ONV to one corresponding to the given address
-     *
-     *  @param onv          the spin-unresolved ONV
-     *  @param address      the address to which the spin-unresolved ONV will be set
-     */
-    void transformONVCorrespondingToAddress(SpinUnresolvedONV& onv, const size_t address) const {
-
-        const auto& fock_space = this->derived();
-        onv.replaceRepresentationWith((fock_space.representationOf(address)));
     }
 };
 

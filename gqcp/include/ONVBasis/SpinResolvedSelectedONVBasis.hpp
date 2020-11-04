@@ -32,22 +32,28 @@ namespace GQCP {
  */
 class SpinResolvedSelectedONVBasis {
 private:
+    // The number of spin-orbitals (equal for alpha and beta).
     size_t M;
-    size_t N_alpha;  // number of alpha electrons
-    size_t N_beta;   // number of beta electrons
 
-    std::vector<SpinResolvedONV> onvs;  // the 'selected' ONVs
+    // The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals.
+    size_t N_alpha;
+
+    // The number of beta electrons, i.e. the number of occupied beta spin-orbitals.
+    size_t N_beta;
+
+    // A collection of ONVs that span a 'selected' part of a Fock space.
+    std::vector<SpinResolvedONV> onvs;
 
 
 public:
     // CONSTRUCTORS
 
     /**
-     *  A constructor with initial ONV basis dimension of 0
+     *  Construct an empty spin-resolved selected ONV basis.
      *
-     *  @param M            the number of orbitals
-     *  @param N_alpha      the number of alpha electrons
-     *  @param N_beta       the number of beta electrons
+     *  @param M            The number of spin-orbitals (equal for alpha and beta).
+     *  @param N_alpha      The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals.
+     *  @param N_beta       The number of beta electrons, i.e. the number of occupied beta spin-orbitals.
      */
     SpinResolvedSelectedONVBasis(const size_t M, const size_t N_alpha, const size_t N_beta);
 
@@ -100,6 +106,11 @@ public:
      *  @return the ONV that corresponds to the given index
      */
     const SpinResolvedONV& onvWithIndex(const size_t index) const { return this->onvs[index]; }
+
+    /**
+     *  @return The number of spin-orbitals (equal for alpha and beta).
+     */
+    size_t numberOfOrbitals() const { return this->M; }
 
     /**
      *  Evaluate the operator in a given evaluation iterator in the ONV basis
@@ -639,6 +650,11 @@ public:
      *  @return the number of beta-electrons that this ONV basis describes
      */
     size_t numberOfBetaElectrons() const { return this->N_beta; }
+
+    /**
+     *  @return The dimension of the Fock subspace that is spanned by this selected ONV basis.
+     */
+    size_t dimension() const { return this->onvs.size(); }
 };
 
 

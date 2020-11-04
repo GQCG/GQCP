@@ -50,14 +50,6 @@ public:
     SpinResolvedONVBasis(const size_t K, const size_t N_alpha, const size_t N_beta);
 
 
-    // DESTRUCTORS
-
-    /**
-     *  The default destructor.
-     */
-    ~SpinResolvedONVBasis() override = default;
-
-
     // STATIC PUBLIC METHODS
 
     /**
