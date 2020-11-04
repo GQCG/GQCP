@@ -94,10 +94,10 @@ BOOST_AUTO_TEST_CASE(Matrix_FromFile) {
 BOOST_AUTO_TEST_CASE(isEqualEigenvectorAs) {
 
     // Test isEqualEigenvectorAs with an example.
-    GQCP::VectorX<double> a {2, 3, 1};
-    GQCP::VectorX<double> b {2, 3, 1};
-    GQCP::VectorX<double> c {-2, -3, -1};
-    GQCP::VectorX<double> d {2, 3, 0};
+    GQCP::Vector<double, 3> a {2, 3, 1};
+    GQCP::Vector<double, 3> b {2, 3, 1};
+    GQCP::Vector<double, 3> c {-2, -3, -1};
+    GQCP::Vector<double, 3> d {2, 3, 0};
 
 
     BOOST_CHECK(a.isEqualEigenvectorAs(b, 1.0e-6));
