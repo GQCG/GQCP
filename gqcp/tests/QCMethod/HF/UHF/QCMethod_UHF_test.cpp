@@ -67,11 +67,11 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_plain) {
     const double total_energy = uhf_environment.electronic_energies.back() + GQCP::Operator::NuclearRepulsion(water).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-06);
 
-    BOOST_CHECK(ref_orbital_energies.areEqualEigenvalues(uhf_environment.orbital_energies_alpha.back(), 1.0e-06));
-    BOOST_CHECK(ref_orbital_energies.areEqualEigenvalues(uhf_environment.orbital_energies_beta.back(), 1.0e-06));
+    BOOST_CHECK(ref_orbital_energies.areEqualEigenvaluesAs(uhf_environment.orbital_energies_alpha.back(), 1.0e-06));
+    BOOST_CHECK(ref_orbital_energies.areEqualEigenvaluesAs(uhf_environment.orbital_energies_beta.back(), 1.0e-06));
 
-    BOOST_CHECK(ref_C.areEqualSetsOfEigenvectors(uhf_environment.coefficient_matrices_alpha.back(), 1.0e-05));
-    BOOST_CHECK(ref_C.areEqualSetsOfEigenvectors(uhf_environment.coefficient_matrices_beta.back(), 1.0e-05));
+    BOOST_CHECK(ref_C.hasEqualSetsOfEigenvectorsAs(uhf_environment.coefficient_matrices_alpha.back(), 1.0e-05));
+    BOOST_CHECK(ref_C.hasEqualSetsOfEigenvectorsAs(uhf_environment.coefficient_matrices_beta.back(), 1.0e-05));
 }
 
 
@@ -114,9 +114,9 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_diis) {
     const double total_energy = uhf_environment.electronic_energies.back() + GQCP::Operator::NuclearRepulsion(water).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-06);
 
-    BOOST_CHECK(ref_orbital_energies.areEqualEigenvalues(uhf_environment.orbital_energies_alpha.back(), 1.0e-06));
-    BOOST_CHECK(ref_orbital_energies.areEqualEigenvalues(uhf_environment.orbital_energies_beta.back(), 1.0e-06));
+    BOOST_CHECK(ref_orbital_energies.areEqualEigenvaluesAs(uhf_environment.orbital_energies_alpha.back(), 1.0e-06));
+    BOOST_CHECK(ref_orbital_energies.areEqualEigenvaluesAs(uhf_environment.orbital_energies_beta.back(), 1.0e-06));
 
-    BOOST_CHECK(ref_C.areEqualSetsOfEigenvectors(uhf_environment.coefficient_matrices_alpha.back(), 1.0e-05));
-    BOOST_CHECK(ref_C.areEqualSetsOfEigenvectors(uhf_environment.coefficient_matrices_beta.back(), 1.0e-05));
+    BOOST_CHECK(ref_C.hasEqualSetsOfEigenvectorsAs(uhf_environment.coefficient_matrices_alpha.back(), 1.0e-05));
+    BOOST_CHECK(ref_C.hasEqualSetsOfEigenvectorsAs(uhf_environment.coefficient_matrices_beta.back(), 1.0e-05));
 }

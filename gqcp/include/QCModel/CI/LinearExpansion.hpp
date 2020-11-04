@@ -1489,7 +1489,7 @@ public:
             return false;
         }
 
-        return (this->coefficients()).areEqualEigenvectors(other.coefficients(), tolerance);
+        return (this->coefficients()).isEqualEigenvectorAs(other.coefficients(), tolerance);
     }
 
 

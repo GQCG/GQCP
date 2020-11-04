@@ -177,7 +177,7 @@ public:
      *  @return if two sets of eigenvalues are equal within a given tolerance
      */
     template <typename Z = bool>  // enable_if must have Z inside
-    enable_if_t<Self::is_vector, Z> areEqualEigenvalues(const Matrix<Scalar, Dynamic, 1>& other, double tolerance = 1.0e-12) const {
+    enable_if_t<Self::is_vector, Z> areEqualEigenvaluesAs(const Matrix<Scalar, Dynamic, 1>& other, double tolerance = 1.0e-12) const {
         return Self::isApprox(other, tolerance);
     }
 
@@ -190,7 +190,7 @@ public:
     *  @return if two eigenvectors are equal within a given tolerance
     */
     template <typename Z = bool>  // enable_if must have Z inside
-    enable_if_t<Self::is_vector, Z> areEqualEigenvectors(const Matrix<Scalar, Dynamic, 1>& other, double tolerance = 1.0e-12) const {
+    enable_if_t<Self::is_vector, Z> isEqualEigenvectorAs(const Matrix<Scalar, Dynamic, 1>& other, double tolerance = 1.0e-12) const {
 
         //  Eigenvectors are equal if they are equal up to their sign.
         return (Self::isApprox(other, tolerance) || Self::isApprox(-other, tolerance));
@@ -205,15 +205,15 @@ public:
      *  @return if two sets of eigenvectors are equal within a given tolerance
      */
     template <typename Z = bool>  // enable_if must have Z inside
-    enable_if_t<Self::is_matrix, Z> areEqualSetsOfEigenvectors(const Matrix<Scalar, Dynamic, Dynamic>& other, double tolerance = 1.0e-12) const {
+    enable_if_t<Self::is_matrix, Z> hasEqualSetsOfEigenvectorsAs(const Matrix<Scalar, Dynamic, Dynamic>& other, double tolerance = 1.0e-12) const {
 
         // Check if the dimensions of the eigenvectors are equal.
         if (Self::cols() != other.cols()) {
-            throw std::invalid_argument("areEqualSetsOfEigenvectors(MatrixX<double>, MatrixX<double>, double): Cannot compare the two sets of eigenvectors as they have different dimensions.");
+            throw std::invalid_argument("hasEqualSetsOfEigenvectorsAs(MatrixX<double>, MatrixX<double>, double): Cannot compare the two sets of eigenvectors as they have different dimensions.");
         }
 
         if (Self::rows() != other.rows()) {
-            throw std::invalid_argument("areEqualSetsOfEigenvectors(MatrixX<double>, MatrixX<double>, double): Cannot compare the two sets of eigenvectors as they have different dimensions.");
+            throw std::invalid_argument("hasEqualSetsOfEigenvectorsAs(MatrixX<double>, MatrixX<double>, double): Cannot compare the two sets of eigenvectors as they have different dimensions.");
         }
 
 
@@ -221,7 +221,7 @@ public:
             const Matrix<Scalar, Dynamic, 1> eigenvector1 = Self::col(i);
             const Matrix<Scalar, Dynamic, 1> eigenvector2 = other.col(i);
 
-            if (!eigenvector1.areEqualEigenvectors(eigenvector2, tolerance)) {
+            if (!eigenvector1.isEqualEigenvectorAs(eigenvector2, tolerance)) {
                 return false;
             }
         }

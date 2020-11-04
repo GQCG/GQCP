@@ -91,9 +91,9 @@ BOOST_AUTO_TEST_CASE(Matrix_FromFile) {
 }
 
 
-BOOST_AUTO_TEST_CASE(areEqualEigenvectors) {
+BOOST_AUTO_TEST_CASE(isEqualEigenvectorAs) {
 
-    // Test areEqualEigenvectors with an example.
+    // Test isEqualEigenvectorAs with an example.
     GQCP::VectorX<double> a {3};
     GQCP::VectorX<double> b {3};
     GQCP::VectorX<double> c {3};
@@ -105,18 +105,18 @@ BOOST_AUTO_TEST_CASE(areEqualEigenvectors) {
     d << 2, 3, 0;
 
 
-    BOOST_CHECK(a.areEqualEigenvectors(b, 1.0e-6));
-    BOOST_CHECK(a.areEqualEigenvectors(c, 1.0e-6));
-    BOOST_CHECK(b.areEqualEigenvectors(c, 1.0e-6));
+    BOOST_CHECK(a.isEqualEigenvectorAs(b, 1.0e-6));
+    BOOST_CHECK(a.isEqualEigenvectorAs(c, 1.0e-6));
+    BOOST_CHECK(b.isEqualEigenvectorAs(c, 1.0e-6));
 
-    BOOST_CHECK(!a.areEqualEigenvectors(d, 1.0e-6));
-    BOOST_CHECK(!c.areEqualEigenvectors(d, 1.0e-6));
+    BOOST_CHECK(!a.isEqualEigenvectorAs(d, 1.0e-6));
+    BOOST_CHECK(!c.isEqualEigenvectorAs(d, 1.0e-6));
 }
 
 
-BOOST_AUTO_TEST_CASE(areEqualSetsOfEigenvectors_example) {
+BOOST_AUTO_TEST_CASE(hasEqualSetsOfEigenvectorsAs_example) {
 
-    // Test areEqualSetsOfEigenvectors with an example
+    // Test hasEqualSetsOfEigenvectorsAs with an example
     GQCP::MatrixX<double> eigenvectors1 {2, 2};
     GQCP::MatrixX<double> eigenvectors2 {2, 2};
     GQCP::MatrixX<double> eigenvectors3 {2, 2};
@@ -136,25 +136,25 @@ BOOST_AUTO_TEST_CASE(areEqualSetsOfEigenvectors_example) {
                      1, -1;
     // clang-format on
 
-    BOOST_CHECK(eigenvectors1.areEqualSetsOfEigenvectors(eigenvectors2, 1.0e-6));
-    BOOST_CHECK(eigenvectors1.areEqualSetsOfEigenvectors(eigenvectors3, 1.0e-6));
+    BOOST_CHECK(eigenvectors1.hasEqualSetsOfEigenvectorsAs(eigenvectors2, 1.0e-6));
+    BOOST_CHECK(eigenvectors1.hasEqualSetsOfEigenvectorsAs(eigenvectors3, 1.0e-6));
 
-    BOOST_CHECK(!eigenvectors1.areEqualSetsOfEigenvectors(eigenvectors4, 1.0e-6));
+    BOOST_CHECK(!eigenvectors1.hasEqualSetsOfEigenvectorsAs(eigenvectors4, 1.0e-6));
 }
 
-BOOST_AUTO_TEST_CASE(areEqualSetsOfEigenvectors_throws) {
+BOOST_AUTO_TEST_CASE(hasEqualSetsOfEigenvectorsAs_throws) {
 
     // Check for throws if the dimensions aren't compatible.
     GQCP::MatrixX<double> C1 {3, 3};
     GQCP::MatrixX<double> C2 {3, 2};
 
-    BOOST_CHECK_THROW(C1.areEqualSetsOfEigenvectors(C2, 1.0e-6), std::invalid_argument);
+    BOOST_CHECK_THROW(C1.hasEqualSetsOfEigenvectorsAs(C2, 1.0e-6), std::invalid_argument);
 
 
     // Check for no throw if the dimensions are compatible
     GQCP::MatrixX<double> C3 {3, 3};
 
-    BOOST_CHECK_NO_THROW(C1.areEqualSetsOfEigenvectors(C3, 1.0e-6));
+    BOOST_CHECK_NO_THROW(C1.hasEqualSetsOfEigenvectorsAs(C3, 1.0e-6));
 }
 
 

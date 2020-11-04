@@ -105,7 +105,7 @@ BOOST_AUTO_TEST_CASE(Davidson_ESQC_example_solver) {
 
 
     BOOST_CHECK(std::abs(test_lowest_eigenvalue - ref_lowest_eigenvalue) < 0.005);
-    BOOST_CHECK(test_lowest_eigenvector.areEqualEigenvectors(ref_lowest_eigenvector, 0.005));
+    BOOST_CHECK(test_lowest_eigenvector.isEqualEigenvectorAs(ref_lowest_eigenvector, 0.005));
     BOOST_CHECK(std::abs(test_lowest_eigenvector.norm() - 1) < 1.0e-12);
 }
 
@@ -145,7 +145,7 @@ BOOST_AUTO_TEST_CASE(Davidson_Liu_50) {
 
 
     BOOST_CHECK(std::abs(test_lowest_eigenvalue - ref_lowest_eigenvalue) < 1.0e-08);
-    BOOST_CHECK(test_lowest_eigenvector.areEqualEigenvectors(ref_lowest_eigenvector, 1.0e-08));
+    BOOST_CHECK(test_lowest_eigenvector.isEqualEigenvectorAs(ref_lowest_eigenvector, 1.0e-08));
     BOOST_CHECK(std::abs(test_lowest_eigenvector.norm() - 1) < 1.0e-12);
 }
 
@@ -188,7 +188,7 @@ BOOST_AUTO_TEST_CASE(Davidson_Liu_50_collapse) {
 
 
     BOOST_CHECK(std::abs(test_lowest_eigenvalue - ref_lowest_eigenvalue) < 1.0e-08);
-    BOOST_CHECK(test_lowest_eigenvector.areEqualEigenvectors(ref_lowest_eigenvector, 1.0e-08));
+    BOOST_CHECK(test_lowest_eigenvector.isEqualEigenvectorAs(ref_lowest_eigenvector, 1.0e-08));
     BOOST_CHECK(std::abs(test_lowest_eigenvector.norm() - 1) < 1.0e-12);
 }
 
@@ -231,7 +231,7 @@ BOOST_AUTO_TEST_CASE(Davidson_Liu_50_number_of_requested_eigenpairs) {
 
         const GQCP::VectorX<double> davidson_eigenvector = davidson_environment.eigenvectors.col(i);
         const GQCP::VectorX<double> ref_eigenvector = ref_lowest_eigenvectors.col(i);
-        BOOST_CHECK(davidson_eigenvector.areEqualEigenvectors(ref_eigenvector, 1.0e-08));
+        BOOST_CHECK(davidson_eigenvector.isEqualEigenvectorAs(ref_eigenvector, 1.0e-08));
 
         BOOST_CHECK(std::abs(davidson_environment.eigenvectors.col(i).norm() - 1) < 1.0e-12);  // check if the found eigenpairs are normalized
     }
@@ -273,7 +273,7 @@ BOOST_AUTO_TEST_CASE(Davidson_Liu_1000) {
 
 
     BOOST_CHECK(std::abs(test_lowest_eigenvalue - ref_lowest_eigenvalue) < 1.0e-08);
-    BOOST_CHECK(test_lowest_eigenvector.areEqualEigenvectors(ref_lowest_eigenvector, 1.0e-08));
+    BOOST_CHECK(test_lowest_eigenvector.isEqualEigenvectorAs(ref_lowest_eigenvector, 1.0e-08));
     BOOST_CHECK(std::abs(test_lowest_eigenvector.norm() - 1) < 1.0e-12);
 }
 
@@ -317,7 +317,7 @@ BOOST_AUTO_TEST_CASE(Davidson_Liu_1000_collapse) {
 
 
     BOOST_CHECK(std::abs(test_lowest_eigenvalue - ref_lowest_eigenvalue) < 1.0e-08);
-    BOOST_CHECK(test_lowest_eigenvector.areEqualEigenvectors(ref_lowest_eigenvector, 1.0e-08));
+    BOOST_CHECK(test_lowest_eigenvector.isEqualEigenvectorAs(ref_lowest_eigenvector, 1.0e-08));
     BOOST_CHECK(std::abs(test_lowest_eigenvector.norm() - 1) < 1.0e-12);
 }
 
@@ -360,7 +360,7 @@ BOOST_AUTO_TEST_CASE(Davidson_Liu_1000_number_of_requested_eigenpairs) {
 
         const GQCP::VectorX<double> davidson_eigenvector = davidson_environment.eigenvectors.col(i);
         const GQCP::VectorX<double> ref_eigenvector = ref_lowest_eigenvectors.col(i);
-        BOOST_CHECK(davidson_eigenvector.areEqualEigenvectors(ref_eigenvector, 1.0e-08));
+        BOOST_CHECK(davidson_eigenvector.isEqualEigenvectorAs(ref_eigenvector, 1.0e-08));
 
         BOOST_CHECK(std::abs(davidson_environment.eigenvectors.col(i).norm() - 1) < 1.0e-12);
     }
