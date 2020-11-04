@@ -33,7 +33,7 @@ namespace GQCP {
 class SpinResolvedSelectedONVBasis {
 private:
     // The number of spin-orbitals (equal for alpha and beta).
-    size_t M;
+    size_t K;
 
     // The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals.
     size_t N_alpha;
@@ -53,11 +53,11 @@ public:
     /**
      *  Construct an empty spin-resolved selected ONV basis.
      *
-     *  @param M            The number of spin-orbitals (equal for alpha and beta).
+     *  @param K            The number of spin-orbitals (equal for alpha and beta).
      *  @param N_alpha      The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals.
      *  @param N_beta       The number of beta electrons, i.e. the number of occupied beta spin-orbitals.
      */
-    SpinResolvedSelectedONVBasis(const size_t M, const size_t N_alpha, const size_t N_beta);
+    SpinResolvedSelectedONVBasis(const size_t K, const size_t N_alpha, const size_t N_beta);
 
     /**
      *  The default constructor.
@@ -86,7 +86,7 @@ public:
     /**
      *  @return The number of spin-orbitals (equal for alpha and beta).
      */
-    size_t numberOfOrbitals() const { return this->M; }
+    size_t numberOfOrbitals() const { return this->K; }
 
     /**
      *  @return The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals.
@@ -138,100 +138,111 @@ public:
 
 
     /*
-     *  MARK: Operator evaluations
+     *  MARK: Operator evaluations - wrappers
      */
 
     /**
-     *  Evaluate the operator in a given evaluation iterator in the ONV basis
+     *  Calculate the dense matrix representation of a restricted one-electron operator in this ONV basis.
      *
-     *  @tparam Matrix                       the type of matrix used to store the evaluations
+     *  @param f                A restricted one-electron operator expressed in an orthonormal orbital basis.
      *
-     *  @param one_op                        the one-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
-     *  @param evaluation_iterator           evaluation iterator to which the evaluations are added
-     *  @param diagonal_values               bool to indicate if diagonal values will be calculated
+     *  @return A dense matrix represention of the one-electron operator.
      */
-    // template <typename _Matrix>
-    // void evaluate(const ScalarRSQOneElectronOperator<double>& one_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    SquareMatrix<double> evaluateOperatorDense(const ScalarRSQOneElectronOperator<double>& f) const;
 
-    //     // Calling the unrestricted universal method, with identical alpha and beta components does not affect the performance, hence we avoid duplicated code for the restricted part.
-    //     this->evaluate(one_op, one_op, evaluation_iterator, diagonal_values);
-    // }
+
+    /*
+     *  MARK: Operator evaluations - general
+     */
 
     /**
-     *  Evaluate the operator in a given evaluation iterator in the ONV basis
+     *  Calculate the matrix representation of a restricted one-electron operator in this ONV basis and emplace it in the given container.
      *
-     *  @tparam Matrix                       the type of matrix used to store the evaluations
+     *  @tparam Matrix                      The type of matrix used to store the evaluations.
      *
-     *  @param one_op_alpha                  the alpha component of a one-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
-     *  @param one_op_beta                   the beta component of a one-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
-     *  @param evaluation_iterator           evaluation iterator to which the evaluations are added
-     *  @param diagonal_values               bool to indicate if diagonal values will be calculated
+     *  @param f                            A restricted one-electron operator expressed in an orthonormal spin-orbital basis.
+     *  @param container                    A specialized container for emplacing evaluations/matrix elements.
      */
-    // template <typename _Matrix>
-    // void evaluate(const ScalarRSQOneElectronOperator<double>& one_op_alpha, const ScalarRSQOneElectronOperator<double>& one_op_beta, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    template <typename Matrix>
+    void evaluate(const ScalarRSQOneElectronOperator<double>& f, MatrixRepresentationEvaluationContainer<Matrix>& container) const {
 
-    //     const size_t dim = this->dimension();
-    //     const auto& h_a = one_op_alpha.parameters();
-    //     const auto& h_b = one_op_beta.parameters();
-
-    //     for (; !evaluation_iterator.isFinished(); evaluation_iterator.increment()) {  // loop over all addresses (1)
-    //         SpinResolvedONV configuration_I = this->onvWithIndex(evaluation_iterator.index);
-    //         SpinUnresolvedONV alpha_I = configuration_I.onv(Spin::alpha);
-    //         SpinUnresolvedONV beta_I = configuration_I.onv(Spin::beta);
-
-    //         if (diagonal_values) {
-    //             for (size_t p = 0; p < this->M; p++) {
-    //                 if (alpha_I.isOccupied(p)) {
-    //                     evaluation_iterator.addRowwise(evaluation_iterator.index, h_a(p, p));
-    //                 }
-
-    //                 if (beta_I.isOccupied(p)) {
-    //                     evaluation_iterator.addRowwise(evaluation_iterator.index, h_b(p, p));
-    //                 }
-    //             }  // loop over q
-    //         }
-
-    //         // Calculate the off-diagonal elements, by going over all other ONVs
-    //         for (size_t J = evaluation_iterator.index + 1; J < dim; J++) {
-
-    //             SpinResolvedONV configuration_J = this->onvWithIndex(J);
-    //             SpinUnresolvedONV alpha_J = configuration_J.onv(Spin::alpha);
-    //             SpinUnresolvedONV beta_J = configuration_J.onv(Spin::beta);
-
-    //             if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
-
-    //                 // Find the orbitals that are occupied in one string, and aren't in the other
-    //                 size_t p = alpha_I.findDifferentOccupations(alpha_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
-    //                 size_t q = alpha_J.findDifferentOccupations(alpha_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
-
-    //                 // Calculate the total sign
-    //                 int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q);
-
-    //                 double value = h_a(p, q);
-
-    //                 evaluation_iterator.addColumnwise(J, sign * value);
-    //                 evaluation_iterator.addRowwise(J, sign * value);
-    //             }
-
-    //             // 0 electron excitations in alpha, 1 in beta
-    //             if ((alpha_I.countNumberOfDifferences(alpha_J) == 0) && (beta_I.countNumberOfDifferences(beta_J) == 2)) {
+        // By delegating the actual implementation of this method to its unrestricted counterpart, we avoid code duplication in this restricted part.
+        // This does not affect performance significantly, because the bottleneck will always be the double iteration over the whole ONV basis.
+        const auto f_unrestricted = ScalarUSQOneElectronOperator<double>::FromRestricted(f);
+        this->evaluate(f_unrestricted, container);
+    }
 
 
-    //                 // Find the orbitals that are occupied in one string, and aren't in the other
-    //                 size_t p = beta_I.findDifferentOccupations(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
-    //                 size_t q = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+    /**
+     *  Calculate the matrix representation of an unrestricted one-electron operator in this ONV basis and emplace it in the given container.
+     * 
+     *  @tparam Matrix                      The type of matrix used to store the evaluations.
+     *
+     *  @param f                            An unrestricted one-electron operator expressed in an orthonormal spin-orbital basis.
+     *  @param container                    A specialized container for emplacing evaluations/matrix elements.
+     */
+    template <typename Matrix>
+    void evaluate(const ScalarUSQOneElectronOperator<double>& f, MatrixRepresentationEvaluationContainer<Matrix>& container) const {
 
-    //                 // Calculate the total sign
-    //                 int sign = beta_I.operatorPhaseFactor(p) * beta_J.operatorPhaseFactor(q);
+        const auto dim = this->dimension();
+        const auto& f_a = f.alpha().parameters();
+        const auto& f_b = f.beta().parameters();
 
-    //                 double value = h_b(p, q);
+        for (; !container.isFinished(); container.increment()) {
+            SpinResolvedONV onv_I = this->onvWithIndex(container.index);
+            SpinUnresolvedONV alpha_I = onv_I.onv(Spin::alpha);
+            SpinUnresolvedONV beta_I = onv_I.onv(Spin::beta);
 
-    //                 evaluation_iterator.addColumnwise(J, sign * value);
-    //                 evaluation_iterator.addRowwise(J, sign * value);
-    //             }
-    //         }  // loop over addresses J > I
-    //     }      // loop over addresses I
-    // }
+            // Calculate the diagonal elements.
+            for (size_t p = 0; p < this->numberOfOrbitals(); p++) {
+                if (alpha_I.isOccupied(p)) {
+                    container.addRowwise(container.index, f_a(p, p));
+                }
+
+                if (beta_I.isOccupied(p)) {
+                    container.addRowwise(container.index, f_b(p, p));
+                }
+            }
+
+            // Calculate the off-diagonal elements, by going over all other ONVs J. (I != J)
+            for (size_t J = container.index + 1; J < dim; J++) {
+
+                SpinResolvedONV onv_J = this->onvWithIndex(J);
+                SpinUnresolvedONV alpha_J = onv_J.onv(Spin::alpha);
+                SpinUnresolvedONV beta_J = onv_J.onv(Spin::beta);
+
+                // 1 excitation in the alpha part, 0 in the beta part.
+                if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
+
+                    // Find the orbitals that are occupied in one string, and aren't in the other.
+                    size_t p = alpha_I.findDifferentOccupations(alpha_J)[0];  // We're sure that there is only 1 element in the std::vector<size_t>.
+                    size_t q = alpha_J.findDifferentOccupations(alpha_I)[0];  // We're sure that there is only 1 element in the std::vector<size_t>.
+
+                    // Calculate the total sign and emplace the evaluation in the container.
+                    int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q);
+                    const double value = f_a(p, q);
+
+                    container.addColumnwise(J, sign * value);
+                    container.addRowwise(J, sign * value);
+                }
+
+                // 0 excitations in alpha part, 1 in the beta.
+                if ((alpha_I.countNumberOfDifferences(alpha_J) == 0) && (beta_I.countNumberOfDifferences(beta_J) == 2)) {
+
+                    // Find the orbitals that are occupied in one string, and aren't in the other.
+                    size_t p = beta_I.findDifferentOccupations(beta_J)[0];  // We're sure that there is only 1 element in the std::vector<size_t>.
+                    size_t q = beta_J.findDifferentOccupations(beta_I)[0];  // We're sure that there is only 1 element in the std::vector<size_t>.
+
+                    // Calculate the total sign and emplace the evaluation in the container.
+                    int sign = beta_I.operatorPhaseFactor(p) * beta_J.operatorPhaseFactor(q);
+                    const double value = f_b(p, q);
+
+                    container.addColumnwise(J, sign * value);
+                    container.addRowwise(J, sign * value);
+                }
+            }  // loop over addresses J > I
+        }      // container loop
+    }
 
 
     /**
@@ -240,14 +251,14 @@ public:
      *  @tparam Matrix                       the type of matrix used to store the evaluations
      *
      *  @param two_op                        the two-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
-     *  @param evaluation_iterator           evaluation iterator to which the evaluations are added
+     *  @param container           evaluation iterator to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     // template <typename _Matrix>
-    // void evaluate(const ScalarRSQTwoElectronOperator<double>& two_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    // void evaluate(const ScalarRSQTwoElectronOperator<double>& two_op, MatrixRepresentationEvaluationContainer<_Matrix>& container, const bool diagonal_values) const {
 
     //     // Calling this combined method for both the one- and two-electron operator does not affect the performance, hence we avoid writting more code by plugging a zero one-electron operator in the combined method.
-    //     this->evaluate(ScalarRSQOneElectronOperator<double> {this->M}, ScalarRSQOneElectronOperator<double> {this->M}, two_op, two_op, two_op, evaluation_iterator, diagonal_values);
+    //     this->evaluate(ScalarRSQOneElectronOperator<double> {this->K}, ScalarRSQOneElectronOperator<double> {this->K}, two_op, two_op, two_op, container, diagonal_values);
     // }
 
 
@@ -258,14 +269,14 @@ public:
      *
      *  @param one_op                        the one-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
      *  @param two_op                        the two-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
-     *  @param evaluation_iterator           evaluation iterator to which the evaluations are added
+     *  @param container           evaluation iterator to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     // template <typename _Matrix>
-    // void evaluate(const ScalarRSQOneElectronOperator<double>& one_op, const ScalarRSQTwoElectronOperator<double>& two_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    // void evaluate(const ScalarRSQOneElectronOperator<double>& one_op, const ScalarRSQTwoElectronOperator<double>& two_op, MatrixRepresentationEvaluationContainer<_Matrix>& container, const bool diagonal_values) const {
 
     //     // Calling the unrestricted universal method, with identical alpha, beta and mixed components does not affect the performance, hence we avoid duplicated code for the restricted part
-    //     this->evaluate(one_op, one_op, two_op, two_op, two_op, evaluation_iterator, diagonal_values);
+    //     this->evaluate(one_op, one_op, two_op, two_op, two_op, container, diagonal_values);
     // }
 
 
@@ -279,60 +290,60 @@ public:
      *  @param two_op_alpha                     the alpha component of a two-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
      *  @param two_op_beta                      the beta component of a two-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
      *  @param two_op_mixed                     the alpha-beta component of a two-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
-     *  @param evaluation_iterator              evaluation iterator to which the evaluations are added
+     *  @param container              evaluation iterator to which the evaluations are added
      *  @param diagonal_values                  bool to indicate if diagonal values will be calculated
      */
     // template <typename _Matrix>
-    // void evaluate(const ScalarRSQOneElectronOperator<double>& one_op_alpha, const ScalarRSQOneElectronOperator<double>& one_op_beta, const ScalarRSQTwoElectronOperator<double>& two_op_alpha, const ScalarRSQTwoElectronOperator<double>& two_op_beta, const ScalarRSQTwoElectronOperator<double>& two_op_mixed, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    // void evaluate(const ScalarRSQOneElectronOperator<double>& one_op_alpha, const ScalarRSQOneElectronOperator<double>& one_op_beta, const ScalarRSQTwoElectronOperator<double>& two_op_alpha, const ScalarRSQTwoElectronOperator<double>& two_op_beta, const ScalarRSQTwoElectronOperator<double>& two_op_mixed, MatrixRepresentationEvaluationContainer<_Matrix>& container, const bool diagonal_values) const {
 
     //     const size_t dim = this->dimension();
     //     const size_t K = this->numberOfOrbitals();
 
-    //     const auto& h_a = one_op_alpha.parameters();
+    //     const auto& f_a = one_op_alpha.parameters();
     //     const auto& g_a = two_op_alpha.parameters();
-    //     const auto& h_b = one_op_beta.parameters();
+    //     const auto& f_b = one_op_beta.parameters();
     //     const auto& g_b = two_op_beta.parameters();
 
     //     // Only g_ab is stored, for integrals derived from g_ba we reverse the indices as follows : g_ab(pqrs) = g_ba(rspq)
     //     const auto& g_ab = two_op_mixed.parameters();
 
-    //     for (; !evaluation_iterator.isFinished(); evaluation_iterator.increment()) {  // loop over all addresses (1)
-    //         SpinResolvedONV configuration_I = this->onvWithIndex(evaluation_iterator.index);
-    //         SpinUnresolvedONV alpha_I = configuration_I.onv(Spin::alpha);
-    //         SpinUnresolvedONV beta_I = configuration_I.onv(Spin::beta);
+    //     for (; !container.isFinished(); container.increment()) {  // loop over all addresses (1)
+    //         SpinResolvedONV onv_I = this->onvWithIndex(container.index);
+    //         SpinUnresolvedONV alpha_I = onv_I.onv(Spin::alpha);
+    //         SpinUnresolvedONV beta_I = onv_I.onv(Spin::beta);
 
     //         if (diagonal_values) {
     //             for (size_t p = 0; p < K; p++) {
     //                 if (alpha_I.isOccupied(p)) {
-    //                     evaluation_iterator.addRowwise(evaluation_iterator.index, h_a(p, p));
+    //                     container.addRowwise(container.index, f_a(p, p));
     //                     for (size_t q = 0; q < K; q++) {
 
     //                         if (p != q) {  // can't create/annihilate the same orbital twice
     //                             if (alpha_I.isOccupied(q)) {
-    //                                 evaluation_iterator.addRowwise(evaluation_iterator.index, 0.5 * g_a(p, p, q, q));
-    //                                 evaluation_iterator.addRowwise(evaluation_iterator.index, -0.5 * g_a(p, q, q, p));
+    //                                 container.addRowwise(container.index, 0.5 * g_a(p, p, q, q));
+    //                                 container.addRowwise(container.index, -0.5 * g_a(p, q, q, p));
     //                             }
     //                         }
 
     //                         if (beta_I.isOccupied(q)) {
-    //                             evaluation_iterator.addRowwise(evaluation_iterator.index, 0.5 * g_ab(p, p, q, q));
+    //                             container.addRowwise(container.index, 0.5 * g_ab(p, p, q, q));
     //                         }
     //                     }  // loop over q
     //                 }
 
     //                 if (beta_I.isOccupied(p)) {
-    //                     evaluation_iterator.addRowwise(evaluation_iterator.index, h_b(p, p));
+    //                     container.addRowwise(container.index, f_b(p, p));
     //                     for (size_t q = 0; q < K; q++) {
 
     //                         if (p != q) {  // can't create/annihilate the same orbital twice
     //                             if (beta_I.isOccupied(q)) {
-    //                                 evaluation_iterator.addRowwise(evaluation_iterator.index, 0.5 * g_b(p, p, q, q));
-    //                                 evaluation_iterator.addRowwise(evaluation_iterator.index, -0.5 * g_b(p, q, q, p));
+    //                                 container.addRowwise(container.index, 0.5 * g_b(p, p, q, q));
+    //                                 container.addRowwise(container.index, -0.5 * g_b(p, q, q, p));
     //                             }
     //                         }
 
     //                         if (alpha_I.isOccupied(q)) {
-    //                             evaluation_iterator.addRowwise(evaluation_iterator.index, 0.5 * g_ab(q, q, p, p));  // g_ab(pqrs) = g_ba(rspq)
+    //                             container.addRowwise(container.index, 0.5 * g_ab(q, q, p, p));  // g_ab(pqrs) = g_ba(rspq)
     //                         }
     //                     }  // loop over q
     //                 }
@@ -340,11 +351,11 @@ public:
     //         }
 
     //         // Calculate the off-diagonal elements, by going over all other ONVs
-    //         for (size_t J = evaluation_iterator.index + 1; J < dim; J++) {
+    //         for (size_t J = container.index + 1; J < dim; J++) {
 
-    //             SpinResolvedONV configuration_J = this->onvWithIndex(J);
-    //             SpinUnresolvedONV alpha_J = configuration_J.onv(Spin::alpha);
-    //             SpinUnresolvedONV beta_J = configuration_J.onv(Spin::beta);
+    //             SpinResolvedONV onv_J = this->onvWithIndex(J);
+    //             SpinUnresolvedONV alpha_J = onv_J.onv(Spin::alpha);
+    //             SpinUnresolvedONV beta_J = onv_J.onv(Spin::beta);
 
     //             if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
 
@@ -355,10 +366,10 @@ public:
     //                 // Calculate the total sign
     //                 int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q);
 
-    //                 double value = h_a(p, q);
+    //                 double value = f_a(p, q);
 
-    //                 evaluation_iterator.addColumnwise(J, sign * value);
-    //                 evaluation_iterator.addRowwise(J, sign * value);
+    //                 container.addColumnwise(J, sign * value);
+    //                 container.addRowwise(J, sign * value);
 
     //                 for (size_t r = 0; r < K; r++) {  // r loops over spatial orbitals
 
@@ -367,8 +378,8 @@ public:
 
     //                             double value = 0.5 * (g_a(p, q, r, r) - g_a(r, q, p, r) - g_a(p, r, r, q) + g_a(r, r, p, q));
 
-    //                             evaluation_iterator.addColumnwise(J, sign * value);
-    //                             evaluation_iterator.addRowwise(J, sign * value);
+    //                             container.addColumnwise(J, sign * value);
+    //                             container.addRowwise(J, sign * value);
     //                         }
     //                     }
 
@@ -376,8 +387,8 @@ public:
 
     //                         double value = 0.5 * 2 * g_ab(p, q, r, r);  // g_ab(pqrs) = g_ba(rspq)
 
-    //                         evaluation_iterator.addColumnwise(J, sign * value);
-    //                         evaluation_iterator.addRowwise(J, sign * value);
+    //                         container.addColumnwise(J, sign * value);
+    //                         container.addRowwise(J, sign * value);
     //                     }
     //                 }
     //             }
@@ -393,10 +404,10 @@ public:
     //                 // Calculate the total sign
     //                 int sign = beta_I.operatorPhaseFactor(p) * beta_J.operatorPhaseFactor(q);
 
-    //                 double value = h_b(p, q);
+    //                 double value = f_b(p, q);
 
-    //                 evaluation_iterator.addColumnwise(J, sign * value);
-    //                 evaluation_iterator.addRowwise(J, sign * value);
+    //                 container.addColumnwise(J, sign * value);
+    //                 container.addRowwise(J, sign * value);
 
     //                 for (size_t r = 0; r < K; r++) {  // r loops over spatial orbitals
 
@@ -404,8 +415,8 @@ public:
     //                         if ((p != r) && (q != r)) {                      // can't create or annihilate the same orbital
     //                             double value = 0.5 * (g_b(p, q, r, r) - g_b(r, q, p, r) - g_b(p, r, r, q) + g_b(r, r, p, q));
 
-    //                             evaluation_iterator.addColumnwise(J, sign * value);
-    //                             evaluation_iterator.addRowwise(J, sign * value);
+    //                             container.addColumnwise(J, sign * value);
+    //                             container.addRowwise(J, sign * value);
     //                         }
     //                     }
 
@@ -413,8 +424,8 @@ public:
 
     //                         double value = 0.5 * 2 * g_ab(r, r, p, q);  // g_ab(pqrs) = g_ba(rspq)
 
-    //                         evaluation_iterator.addColumnwise(J, sign * value);
-    //                         evaluation_iterator.addRowwise(J, sign * value);
+    //                         container.addColumnwise(J, sign * value);
+    //                         container.addRowwise(J, sign * value);
     //                     }
     //                 }
     //             }
@@ -432,8 +443,8 @@ public:
     //                 int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(s);
     //                 double value = 0.5 * 2 * g_ab(p, q, r, s);  // g_ab(pqrs) = g_ba(rspq)
 
-    //                 evaluation_iterator.addColumnwise(J, sign * value);
-    //                 evaluation_iterator.addRowwise(J, sign * value);
+    //                 container.addColumnwise(J, sign * value);
+    //                 container.addRowwise(J, sign * value);
     //             }
 
     //             // 2 electron excitations in alpha, 0 in beta
@@ -452,8 +463,8 @@ public:
 
     //                 double value = 0.5 * (g_a(p, q, r, s) - g_a(p, s, r, q) - g_a(r, q, p, s) + g_a(r, s, p, q));
 
-    //                 evaluation_iterator.addColumnwise(J, sign * value);
-    //                 evaluation_iterator.addRowwise(J, sign * value);
+    //                 container.addColumnwise(J, sign * value);
+    //                 container.addRowwise(J, sign * value);
     //             }
 
     //             // 0 electron excitations in alpha, 2 in beta
@@ -472,8 +483,8 @@ public:
 
     //                 double value = 0.5 * (g_b(p, q, r, s) - g_b(p, s, r, q) - g_b(r, q, p, s) + g_b(r, s, p, q));
 
-    //                 evaluation_iterator.addColumnwise(J, sign * value);
-    //                 evaluation_iterator.addRowwise(J, sign * value);
+    //                 container.addColumnwise(J, sign * value);
+    //                 container.addRowwise(J, sign * value);
     //             }
     //         }  // loop over addresses J > I
     //     }      // loop over addresses I
@@ -486,29 +497,19 @@ public:
      *  @tparam Matrix                       the type of matrix used to store the evaluations
      *
      *  @param usq_hamiltonian               the Hamiltonian expressed in an unrestricted orthonormal basis
-     *  @param evaluation_iterator           evaluation iterator to which the evaluations are added
+     *  @param container           evaluation iterator to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     // template <typename _Matrix>
-    // void evaluate(const USQHamiltonian<double>& usq_hamiltonian, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    // void evaluate(const USQHamiltonian<double>& usq_hamiltonian, MatrixRepresentationEvaluationContainer<_Matrix>& container, const bool diagonal_values) const {
 
     //     if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
     //         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluate(USQHamiltonian<double>, MatrixRepresentationEvaluationContainer&, bool): Different spinor dimensions of spin components are currently not supported.");
     //     }
 
-    //     this->evaluate(usq_hamiltonian.spinHamiltonian(Spin::alpha).core(), usq_hamiltonian.spinHamiltonian(Spin::beta).core(), usq_hamiltonian.spinHamiltonian(Spin::alpha).twoElectron(), usq_hamiltonian.spinHamiltonian(Spin::beta).twoElectron(), usq_hamiltonian.twoElectronMixed(), evaluation_iterator, diagonal_values);
+    //     this->evaluate(usq_hamiltonian.spinHamiltonian(Spin::alpha).core(), usq_hamiltonian.spinHamiltonian(Spin::beta).core(), usq_hamiltonian.spinHamiltonian(Spin::alpha).twoElectron(), usq_hamiltonian.spinHamiltonian(Spin::beta).twoElectron(), usq_hamiltonian.twoElectronMixed(), container, diagonal_values);
     // }
 
-
-    /**
-     *  Evaluate the operator in a dense matrix
-     *
-     *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
-     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
-     *
-     *  @return the operator's evaluation in a dense matrix with the dimensions of the ONV basis
-     */
-    // SquareMatrix<double> evaluateOperatorDense(const ScalarRSQOneElectronOperator<double>& one_op, const bool diagonal_values) const;
 
     // /**
     //  *  Evaluate the operator in a dense matrix

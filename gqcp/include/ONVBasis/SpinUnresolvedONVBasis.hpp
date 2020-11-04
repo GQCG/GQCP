@@ -21,6 +21,8 @@
 #include "Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp"
 #include "ONVBasis/ONVPath.hpp"
 #include "ONVBasis/SpinUnresolvedONV.hpp"
+#include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
+#include "Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp"
 
 #include <functional>
 
@@ -239,18 +241,93 @@ public:
 
 
     /*
-     *  MARK: Operator evaluations
+     *  MARK: Operator evaluations - wrappers
      */
 
     /**
-     *  Evaluate the operator in a dense matrix
+     *  Calculate the dense matrix representation of a generalized one-electron operator in this ONV basis.
      *
-     *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the spin-unresolved ONV basis
-     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *  @param f                A generalized one-electron operator expressed in an orthonormal orbital basis.
      *
-     *  @return the operator's evaluation in a dense matrix with the dimensions of the spin-unresolved ONV basis
+     *  @return A dense matrix represention of the one-electron operator.
      */
-    // SquareMatrix<double> evaluateOperatorDense(const ScalarGSQOneElectronOperator<double>& one_op, const bool diagonal_values) const;
+    SquareMatrix<double> evaluateOperatorDense(const ScalarGSQOneElectronOperator<double>& f) const;
+
+    /**
+     *  Calculate the dense matrix representation of a component of an unrestricted one-electron operator in this ONV basis.
+     *
+     *  @param f                A a component of an unrestricted one-electron operator expressed in an orthonormal orbital basis.
+     *
+     *  @return A dense matrix represention of the one-electron operator.
+     */
+    SquareMatrix<double> evaluateOperatorDense(const ScalarUSQOneElectronOperatorComponent<double>& f) const {
+
+        // We may convert an unrestricted component into the generalized representation.
+        const auto f_generalized = ScalarGSQOneElectronOperator<double>::FromUnrestrictedComponent(f);
+        return this->evaluateOperatorDense(f_generalized);
+    }
+
+
+    /*
+     *  MARK: Operator evaluations - general
+     */
+
+    /**
+     *  Calculate the matrix representation of a generalized one-electron operator in this ONV basis and emplace it in the given container.
+     * 
+     *  @tparam Matrix                      The type of matrix used to store the evaluations.
+     *
+     *  @param f_op                         A generalized one-electron operator expressed in an orthonormal spinor basis.
+     *  @param container                    A specialized container for emplacing evaluations/matrix elements.
+     */
+    template <typename Matrix>
+    void evaluate(const ScalarGSQOneElectronOperator<double>& f_op, MatrixRepresentationEvaluationContainer<Matrix>& container) const {
+
+        const auto& f = f_op.parameters();
+        const auto dim = this->dimension();
+
+        SpinUnresolvedONV onv = this->constructONVFromAddress(0);  // start with ONV with address 0
+
+        for (; !container.isFinished(); container.increment()) {  // loops over all possible ONVs
+            for (size_t e1 = 0; e1 < N; e1++) {                   // loop over electrons that can be annihilated
+
+                // Create an ONVPath for each new ONV.
+                ONVPath<SpinUnresolvedONVBasis> onv_path {*this, onv};
+
+                size_t q = onv.occupationIndexOf(e1);  // retrieve orbital index of the electron that will be annihilated
+
+                // The diagonal values are a result of annihilation-creation on the same orbital index and are thus the same as the initial ONV.
+                container.addRowwise(container.index, f(q, q));
+
+                // For the non-diagonal values, we will create all possible matrix elements of the Hamiltonian in the routine below.
+                onv_path.annihilate(q, e1);
+
+                // Stop the loop if 1) the path is finished, meaning that orbital index p is at M (the total number of orbitals) and 2) if the orbital index is out of bounds after left translation of a vertical arc.
+                while (!onv_path.isFinished() && onv_path.isOrbitalIndexValid()) {
+
+                    // Find the next unoccupied orbital, i.e. the next vertical arc in the path.
+                    onv_path.leftTranslateDiagonalArcUntilVerticalArc();
+
+                    // Calculate the address of the path if we would close it right now.
+                    const size_t address = onv_path.addressAfterCreation();
+
+                    const double value = onv_path.sign() * f(onv_path.orbitalIndex(), q);
+
+                    // Add the one-electron integral as matrix elements of a Hermitian matrix.
+                    container.addColumnwise(address, value);
+                    container.addRowwise(address, value);
+
+                    // Move orbital index such that other unoccupied orbitals can be found within the loop.
+                    onv_path.leftTranslateVerticalArc();
+                }
+            }
+            // Prevent last ONV since there is no possibility for an electron to be annihilated anymore.
+            if (container.index < dim - 1) {
+                this->transformONVToNextPermutation(onv);
+            }
+        }
+    }
+
 
     // /**
     //  *  Evaluate the operator in a dense matrix
@@ -275,11 +352,11 @@ public:
     // /**
     //  *  Evaluate the diagonal of the operator
     //  *
-    //  *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the spin-unresolved ONV basis
+    //  *  @param f_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the spin-unresolved ONV basis
     //  *
     //  *  @return the operator's diagonal evaluation in a vector with the dimension of the spin-unresolved ONV basis
     //  */
-    // VectorX<double> evaluateOperatorDiagonal(const ScalarGSQOneElectronOperator<double>& one_op) const;
+    // VectorX<double> evaluateOperatorDiagonal(const ScalarGSQOneElectronOperator<double>& f_op) const;
 
     // /**
     //  *  Evaluate the diagonal of the operator
@@ -302,12 +379,12 @@ public:
     // /**
     //  *  Evaluate the operator in a sparse matrix
     //  *
-    //  *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the spin-unresolved ONV basis
+    //  *  @param f_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the spin-unresolved ONV basis
     //  *  @param diagonal_values      bool to indicate if diagonal values will be calculated
     //  *
     //  *  @return the operator's evaluation in a sparse matrix with the dimensions of the spin-unresolved ONV basis
     //  */
-    // Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarGSQOneElectronOperator<double>& one_op, const bool diagonal_values) const;
+    // Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarGSQOneElectronOperator<double>& f_op, const bool diagonal_values) const;
 
     // /**
     //  *  Evaluate the operator in a sparse matrix
@@ -338,14 +415,14 @@ public:
      *
      *  @tparam Matrix                       the type of matrix used to store the evaluations
      *
-     *  @param one_op                        the one-electron operator in an orthonormal orbital basis to be evaluated in the spin-unresolved ONV basis
+     *  @param f_op                        the one-electron operator in an orthonormal orbital basis to be evaluated in the spin-unresolved ONV basis
      *  @param evaluation_iterator           evaluation iterator to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     // template <typename _Matrix>
-    // void evaluate(const ScalarGSQOneElectronOperator<double>& one_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    // void evaluate(const ScalarGSQOneElectronOperator<double>& f_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
 
-    //     const auto& one_op_par = one_op.parameters();
+    //     const auto& f = f_op.parameters();
 
     //     const size_t K = this->numberOfOrbitals();
     //     const size_t N = this->numberOfElectrons();
@@ -361,7 +438,7 @@ public:
     //             size_t address = evaluation_iterator.index - this->vertexWeight(p, e1 + 1);
 
     //             if (diagonal_values) {
-    //                 evaluation_iterator.addRowwise(evaluation_iterator.index, one_op_par(p, p));
+    //                 evaluation_iterator.addRowwise(evaluation_iterator.index, f(p, p));
     //             }
 
     //             // The e2 iteration counts the number of encountered electrons for the creation operator
@@ -376,7 +453,7 @@ public:
 
     //             while (q < K) {
     //                 size_t J = address + this->vertexWeight(q, e2);
-    //                 double value = sign_e2 * one_op_par(p, q);
+    //                 double value = sign_e2 * f(p, q);
     //                 evaluation_iterator.addColumnwise(J, value);
     //                 evaluation_iterator.addRowwise(J, value);
 
@@ -393,85 +470,21 @@ public:
     //     }
     // }
 
-    /**
-     *  Evaluate a one-electron operator in this spin-unresolved ONV basis.
-     * 
-     *  @tparam Representation              The matrix representation that is used for storing the result. Essentially, any type that can be used in MatrixRepresentationEvaluationContainer<Representation>.
-     * 
-     *  @param one_op                       A one-electron operator in an orthonormal orbital basis.
-     *  @param should_calculate_diagonal    If diagonal values should be calculated.
-     * 
-     *  @return The matrix representation of the given one-electron operator.
-     */
-    // template <typename Representation>
-    // Representation evaluate(const ScalarGSQOneElectronOperator<double>& one_op, const bool diagonal_values) const {
-
-    //     const auto& one_op_par = one_op.parameters();
-
-    //     const auto dim = this->dimension();
-    //     MatrixRepresentationEvaluationContainer<Representation> ONV_iterator {dim};
-
-    //     SpinUnresolvedONV onv = this->constructONVFromAddress(0);  // start with ONV with address 0
-
-    //     for (; !ONV_iterator.isFinished(); ONV_iterator.increment()) {  // loops over all possible ONVs
-    //         for (size_t e1 = 0; e1 < N; e1++) {                         // loop over electrons that can be annihilated
-
-    //             // Create an ONVPath for each new ONV.
-    //             ONVPath<SpinUnresolvedONVBasis> onv_path {*this, onv};
-
-    //             size_t q = onv.occupationIndexOf(e1);  // retrieve orbital index of the electron that will be annihilated
-
-    //             // The diagonal values are a result of annihilation-creation on the same orbital index and are thus the same as the initial ONV.
-    //             if (diagonal_values) {
-    //                 ONV_iterator.addRowwise(ONV_iterator.index, one_op_par(q, q));
-    //             }
-
-    //             // For the non-diagonal values, we will create all possible matrix elements of the Hamiltonian in the routine below.
-    //             onv_path.annihilate(q, e1);
-
-    //             // Stop the loop if 1) the path is finished, meaning that orbital index p is at M (the total number of orbitals) and 2) if the orbital index is out of bounds after left translation of a vertical arc.
-    //             while (!onv_path.isFinished() && onv_path.isOrbitalIndexValid()) {
-
-    //                 // Find the next unoccupied orbital, i.e. the next vertical arc in the path.
-    //                 onv_path.leftTranslateDiagonalArcUntilVerticalArc();
-
-    //                 // Calculate the address of the path if we would close it right now.
-    //                 const size_t address = onv_path.addressAfterCreation();
-
-    //                 const double value = onv_path.sign() * one_op_par(onv_path.orbitalIndex(), q);
-
-    //                 // Add the one-electron integral as matrix elements of a Hermitian matrix.
-    //                 ONV_iterator.addColumnwise(address, value);
-    //                 ONV_iterator.addRowwise(address, value);
-
-    //                 // Move orbital index such that other unoccupied orbitals can be found within the loop.
-    //                 onv_path.leftTranslateVerticalArc();
-    //             }
-    //         }
-    //         // Prevent last ONV since there is no possibility for an electron to be annihilated anymore.
-    //         if (ONV_iterator.index < dim - 1) {
-    //             this->transformONVToNextPermutation(onv);
-    //         }
-    //     }
-
-    //     return ONV_iterator.evaluation();
-    // }
-
 
     /**
      *  Evaluate a one-electron operator in this spin-unresolved ONV basis.
      * 
      *  @tparam Representation              The matrix representation that is used for storing the result. Essentially, any type that can be used in MatrixRepresentationEvaluationContainer<Representation>.
      * 
-     *  @param one_op                       A one-electron operator in an orthonormal orbital basis.
+     *  @param f_op                       A one-electron operator in an orthonormal orbital basis.
      *  @param should_calculate_diagonal    If diagonal values should be calculated.
      * 
      *  @return The matrix representation of the given one-electron operator.
      */
     // template <typename Representation>
-    // Representation evaluate_old(const ScalarGSQOneElectronOperator<double>& one_op, const bool diagonal_values) const {
+    // Representation evaluate_old(const ScalarGSQOneElectronOperator<double>& f_op, const bool diagonal_values) const {
 
-    //     const auto& one_op_par = one_op.parameters();
+    //     const auto& f = f_op.parameters();
 
     //     MatrixRepresentationEvaluationContainer<Representation> evaluation_iterator {this->dimension()};
 
@@ -489,7 +502,7 @@ public:
     //             size_t address = evaluation_iterator.index - this->vertexWeight(p, e1 + 1);
 
     //             if (diagonal_values) {
-    //                 evaluation_iterator.addRowwise(evaluation_iterator.index, one_op_par(p, p));
+    //                 evaluation_iterator.addRowwise(evaluation_iterator.index, f(p, p));
     //             }
 
     //             // The e2 iteration counts the number of encountered electrons for the creation operator
@@ -504,7 +517,7 @@ public:
 
     //             while (q < K) {
     //                 size_t J = address + this->vertexWeight(q, e2);
-    //                 double value = sign_e2 * one_op_par(p, q);
+    //                 double value = sign_e2 * f(p, q);
     //                 evaluation_iterator.addColumnwise(J, value);
     //                 evaluation_iterator.addRowwise(J, value);
 
@@ -545,13 +558,13 @@ public:
      *
      *  @tparam Matrix                       the type of matrix used to store the evaluations
      *
-     *  @param one_op                        the one-electron operator in an orthonormal orbital basis to be evaluated in the spin-unresolved ONV basis
+     *  @param f_op                        the one-electron operator in an orthonormal orbital basis to be evaluated in the spin-unresolved ONV basis
      *  @param two_op                        the two-electron operator in an orthonormal orbital basis to be evaluated in the spin-unresolved ONV basis
      *  @param evaluation_iterator           evaluation iterator to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     // template <typename _Matrix>
-    // void evaluate(const ScalarGSQOneElectronOperator<double>& one_op, const ScalarGSQTwoElectronOperator<double>& two_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
+    // void evaluate(const ScalarGSQOneElectronOperator<double>& f_op, const ScalarGSQTwoElectronOperator<double>& two_op, MatrixRepresentationEvaluationContainer<_Matrix>& evaluation_iterator, const bool diagonal_values) const {
 
     //     const auto& two_op_par = two_op.parameters();
 
@@ -559,7 +572,7 @@ public:
     //     const size_t N = this->numberOfElectrons();
     //     const size_t dim = this->dimension();
 
-    //     ScalarGSQOneElectronOperator<double> k = two_op.effectiveOneElectronPartition() + one_op;
+    //     ScalarGSQOneElectronOperator<double> k = two_op.effectiveOneElectronPartition() + f_op;
     //     const auto& k_par = k.parameters();
 
     //     SpinUnresolvedONV onv = this->constructONVFromAddress(0);  // onv with address 0
@@ -738,13 +751,13 @@ public:
     /**
      *  Evaluate the matrix-vector product of a one-electron operator
      *
-     *  @param one_op                       the one-electron operator expressed in an orthonormal basis
+     *  @param f_op                       the one-electron operator expressed in an orthonormal basis
      *  @param x                            the vector of the matrix-vector product
      *  @param diagonal                     the diagonal of the matrix representation of the operator inside the spin-unresolved ONV basis
      *
      *  @return a vector that is equal to the matrix-vector product of the one-electron operator's matrix representation and the given vector
      */
-    // VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarGSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+    // VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarGSQOneElectronOperator<double>& f_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
 
     /**
      *  Evaluate a two electron operator in a matrix vector product

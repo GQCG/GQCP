@@ -24,6 +24,7 @@
 #include "DensityMatrix/SpinResolved1DM.hpp"
 #include "DensityMatrix/SpinResolved2DM.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
+#include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp"
 #include "QuantumChemical/SpinResolvedBase.hpp"
 #include "QuantumChemical/spinor_tags.hpp"
@@ -136,6 +137,17 @@ public:
 
         const auto zero_component = USQOneElectronOperatorComponent<Scalar, Vectorizer>::Zero(dim);
         return USQOneElectronOperator<Scalar, Vectorizer>::FromEqual(zero_component);
+    }
+
+
+    /**
+     *  Construct an `USQOneElectronOperator` from an `RSQOneElectronOperator.
+     * 
+     *  @param f_restricted             The restricted one-electron operator that should be converted.
+     */
+    static USQOneElectronOperator<Scalar, Vectorizer> FromRestricted(const RSQOneElectronOperator<Scalar, Vectorizer>& f_restricted) {
+
+        return USQOneElectronOperator<Scalar, Vectorizer> {f_restricted.alpha(), f_restricted.beta()};
     }
 
 
