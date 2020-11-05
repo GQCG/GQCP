@@ -342,9 +342,6 @@ public:
         boost::replace_all(contraction_string, "-", " ");
         boost::replace_all(contraction_string, ",", " ");
 
-        // Convert to stringstream
-        std::stringstream index_stream(contraction_string);
-
         // split the stringstream in the 3 necessary components
         std::vector<std::string> segment_list;
         boost::split(segment_list, contraction_string, boost::is_any_of(" "));
