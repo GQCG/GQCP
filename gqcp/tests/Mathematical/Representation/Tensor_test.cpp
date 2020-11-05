@@ -281,6 +281,7 @@ BOOST_AUTO_TEST_CASE(addBlock_matrix) {
         }
     }
 }
+
 BOOST_AUTO_TEST_CASE(einsum) {
 
     // Create an example 2x2x2x2 tensor
@@ -296,7 +297,7 @@ BOOST_AUTO_TEST_CASE(einsum) {
         }
     }
 
-    // Create an example 2x2x2x2 tensor
+    // Create an example Rank 2 tensor
     long dim2 = 2;
     GQCP::Tensor<double, 2> T2 {dim2, dim2};
     for (size_t i = 0; i < dim2; i++) {
@@ -305,11 +306,48 @@ BOOST_AUTO_TEST_CASE(einsum) {
         }
     }
 
-    // Test the einsum API
-    auto output = T1.einsum<2>(T2, "ijkl", "jk", "il");
-    // std::cout << output(0, 0, 1, 1) << std::endl;
-    // std::cout << output(0, 1, 1, 1) << std::endl;
-    // std::cout << output(1, 0, 1, 1) << std::endl;
-    // std::cout << output(1, 1, 1, 1) << std::endl;
-    std::cout << output << std::endl;
+    // Test the einsum API: double axis contraction
+    // Start by creating a reference
+    GQCP::MatrixX<double> reference {2, 2};
+
+    // clang-format off
+    reference <<   11,   35,
+                  131,  155;
+    // clang-format on
+
+    const auto output = T1.einsum<2>(T2, "ijkl", "jk", "il");
+    const GQCP::Matrix<double> output_as_matrix = output.toMatrix(2, 2);
+    BOOST_CHECK(reference.isApprox(output_as_matrix, 1.0e-12));
+
+    // Test the einsum API: single axis contraction
+    // Start by creating a reference
+    GQCP::Tensor<double, 4> reference_tensor {dim1, dim1, dim1, dim1};
+    for (size_t i = 0; i < dim1; i++) {
+        for (size_t j = 0; j < dim1; j++) {
+            for (size_t k = 0; k < dim1; k++) {
+                for (size_t l = 0; l < dim1; l++) {
+                    reference_tensor(i, j, k, l) = 0;
+                }
+            }
+        }
+    }
+    GQCP::MatrixX<double> reference_block_1 {2, 2};
+    // clang-format off
+    reference_block_1 <<   50,   60,
+                           60,   74;
+    // clang-format on
+
+    GQCP::MatrixX<double> reference_block_2 {2, 2};
+    // clang-format off
+    reference_block_2 <<   55,   67,
+                           65,   81;
+    // clang-format on
+
+    reference_tensor.addBlock<2, 3>(reference_block_1, 0, 0, 0, 0);
+    reference_tensor.addBlock<2, 3>(reference_block_1, 0, 1, 0, 0);
+    reference_tensor.addBlock<2, 3>(reference_block_2, 1, 0, 0, 0);
+    reference_tensor.addBlock<2, 3>(reference_block_2, 1, 1, 0, 0);
+
+    const auto output_2 = T1.einsum<1>(T2, "ijkl", "ia", "jkla");
+    BOOST_CHECK(reference_tensor.isApprox(output_2, 1e-12));
 }
