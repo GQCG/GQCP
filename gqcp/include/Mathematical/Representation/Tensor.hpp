@@ -21,8 +21,12 @@
 #include "Mathematical/Representation/Matrix.hpp"
 #include "Utilities/type_traits.hpp"
 
+#include <boost/algorithm/string.hpp>
+
 #include <unsupported/Eigen/CXX11/Tensor>
 
+#include <algorithm>
+#include <iostream>
 #include <string>
 
 
@@ -316,6 +320,23 @@ public:
         }
 
         return T_intermediate.shuffle(shuffle_indices);
+    }
+
+    template <int N, int LHSRank = Rank, int RHSRank>
+    Tensor<Scalar, LHSRank + RHSRank - 2 * N> einsum(std::string contraction_string, const Tensor<Scalar, RHSRank>& rhs) {
+        // remove unnecessary symbols from string
+        boost::erase_all(contraction_string, ">");
+        boost::replace_all(contraction_string, "-", " ");
+        boost::replace_all(contraction_string, ",", " ");
+
+        // Convert to stringstream
+        std::stringstream index_stream(contraction_string);
+
+        // split the stringstream in the 3 necessary components
+        std::vector<std::string> segment_list;
+        boost::split(segment_list, contraction_string, boost::is_any_of(" "));
+
+        return this->einsum<N>(rhs, segment_list[0], segment_list[1], segment_list[2]);
     }
 
 
