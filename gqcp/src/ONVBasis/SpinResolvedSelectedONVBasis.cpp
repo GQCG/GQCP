@@ -117,6 +117,14 @@ SpinResolvedSelectedONVBasis::SpinResolvedSelectedONVBasis(const SpinResolvedONV
  */
 void SpinResolvedSelectedONVBasis::expandWith(const SpinResolvedONV& onv) {
 
+    if ((onv.onv(Spin::alpha).numberOfElectrons() != this->numberOfAlphaElectrons()) || (onv.onv(Spin::beta).numberOfElectrons() != this->numberOfBetaElectrons())) {
+        throw std::invalid_argument("SpinResolvedSelectedONVBasis::expandWith(const SpinResolvedONV&): The given ONV's number of electrons is not compatible with the number of electrons for this ONV basis.");
+    }
+
+    if ((onv.onv(Spin::alpha).numberOfSpinors() != this->numberOfOrbitals()) || (onv.onv(Spin::beta).numberOfSpinors() != this->numberOfOrbitals())) {
+        throw std::invalid_argument("SpinResolvedSelectedONVBasis::expandWith(const SpinResolvedONV&): The given ONV's number of orbitals is not compatible with the number of orbitals for this ONV basis.");
+    }
+
     this->onvs.push_back(onv);
 }
 
@@ -637,7 +645,6 @@ VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduc
  *  @return A sparse matrix represention of the Hamiltonian.
  */
 Eigen::SparseMatrix<double> SpinResolvedSelectedONVBasis::evaluateOperatorSparse(const USQHamiltonian<double>& hamiltonian) const {
-
 
     if (hamiltonian.numberOfOrbitals() != this->numberOfOrbitals()) {
         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperatorSparse(const USQHamiltonian<double>&): The number of orbitals of the ONV basis and the Hamiltonian are incompatible.");

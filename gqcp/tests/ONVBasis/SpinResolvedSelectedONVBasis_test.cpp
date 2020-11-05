@@ -19,8 +19,8 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Basis/Transformations/transform.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
+#include "QCModel/CI/LinearExpansion.hpp"
 
 
 /**
@@ -33,16 +33,16 @@ BOOST_AUTO_TEST_CASE(expandWith) {
 
 
     // Add two compatible ONVs.
-    BOOST_CHECK_NO_THROW(onv_basis.expandWith(SpinResolvedONV::FromString("001", "001")));
-    BOOST_CHECK_NO_THROW(onv_basis.expandWith(SpinResolvedONV::FromString("010", "010")));
+    BOOST_CHECK_NO_THROW(onv_basis.expandWith(GQCP::SpinResolvedONV::FromString("001", "001")));
+    BOOST_CHECK_NO_THROW(onv_basis.expandWith(GQCP::SpinResolvedONV::FromString("010", "010")));
 
 
     // Check if we receive a throw if we add an ONV with an incompatible number of orbitals.
-    BOOST_CHECK_THROW(onv_basis.expandWith(SpinResolvedONV::FromString("0001", "0100")), std::invalid_argument);
+    BOOST_CHECK_THROW(onv_basis.expandWith(GQCP::SpinResolvedONV::FromString("0001", "0100")), std::invalid_argument);
 
 
     // Check if we receive a throw if we add an ONV with an incompatible number of electrons.
-    BOOST_CHECK_THROW(onv_basis.expandWith(SpinResolvedONV::FromString("011", "011")), std::invalid_argument);
+    BOOST_CHECK_THROW(onv_basis.expandWith(GQCP::SpinResolvedONV::FromString("011", "011")), std::invalid_argument);
 
 
     // Check if we can access the ONVs in order.
@@ -52,108 +52,30 @@ BOOST_AUTO_TEST_CASE(expandWith) {
 
 
 /**
- *  Evaluate the Hamiltonian in a selected ONV basis in which all configurations are selected (Full CI)
- *  Compare the evaluation of a direct matrix vector product to that of the matrix vector product evaluations and test the lowest eigenvalue against of the evaluated Hamiltonian a reference value
+ *  Check if the matrix-vector product through a direct evaluation (i.e. through the dense Hamiltonian matrix representation) and the specialized implementation are equal.
+ * 
+ *  The test system is H2O in an STO-3G basisset, which has a FCI dimension of 441.
  */
-// BOOST_AUTO_TEST_CASE(Selected_Evaluation_H2O) {
+BOOST_AUTO_TEST_CASE(restricted_dense_vs_matvec) {
 
-//     // Psi4 and GAMESS' FCI energy for H2O
-//     double reference_fci_energy = -75.0129803939602;
+    // Create the molecular Hamiltonian in the Löwdin basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+    spinor_basis.lowdinOrthonormalize();
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);
+    const auto K = sq_hamiltonian.numberOfOrbitals();
 
-//     // Create the molecular Hamiltonian in an AO basis
-//     auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
-//     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {h2o, "STO-3G"};
-//     spinor_basis.lowdinOrthonormalize();
-//     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, h2o);  // in the Löwdin basis
-//     auto K = sq_hamiltonian.numberOfOrbitals();
+    // Set up the full spin-resolved selected ONV basis.
+    GQCP::SpinResolvedONVBasis onv_basis {K, molecule.numberOfElectronPairs(), molecule.numberOfElectronPairs()};
+    GQCP::SpinResolvedSelectedONVBasis selected_onv_basis {onv_basis};
 
-//     GQCP::SpinResolvedONVBasis onv_basis {K, h2o.numberOfElectrons() / 2, h2o.numberOfElectrons() / 2};  // dim = 441
-//     GQCP::SpinResolvedSelectedONVBasis selected_onv_basis {onv_basis};
+    // Determine the Hamiltonian matrix and let it act on a random linear expansion.
+    const auto linear_expansion = GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>::Random(selected_onv_basis);
+    const auto H_dense = selected_onv_basis.evaluateOperatorDense(sq_hamiltonian);
+    const GQCP::VectorX<double> direct_mvp = H_dense * linear_expansion.coefficients();  // mvp: matrix-vector-product
 
+    // Determine the specialized matrix-vector product and check if they are equal.
+    const auto specialized_mvp = selected_onv_basis.evaluateOperatorMatrixVectorProduct(sq_hamiltonian, linear_expansion.coefficients());
 
-//     // Evaluate the dense Hamiltonian
-//     GQCP::SquareMatrix<double> hamiltonian = selected_onv_basis.evaluateOperatorDense(sq_hamiltonian, true);
-//     GQCP::SquareMatrix<double> hamiltonian_no_diagonal = selected_onv_basis.evaluateOperatorDense(sq_hamiltonian, false);
-
-//     // Evaluate the diagonal
-//     GQCP::VectorX<double> hamiltonian_diagonal = selected_onv_basis.evaluateOperatorDiagonal(sq_hamiltonian);
-
-//     // Evaluate the matvec
-//     GQCP::VectorX<double> matvec_evaluation = selected_onv_basis.evaluateOperatorMatrixVectorProduct(sq_hamiltonian, hamiltonian_diagonal, hamiltonian_diagonal);
-
-//     // Calculate the explicit matvec with the dense evaluations
-//     GQCP::VectorX<double> matvec_reference = hamiltonian * hamiltonian_diagonal;
-
-//     // Retrieve the lowest eigenvalue (FCI solution)
-//     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> self_adjoint_eigensolver {hamiltonian};
-
-//     double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(h2o).value();
-//     double test_energy = self_adjoint_eigensolver.eigenvalues()(0) + internuclear_repulsion_energy;
-
-//     // Test the energy with the reference
-//     BOOST_CHECK(std::abs(test_energy - reference_fci_energy) < 1e-6);
-
-//     // Test if the non-diagonal evaluation and diagonal evaluations are correct
-//     BOOST_CHECK(hamiltonian.isApprox(hamiltonian_no_diagonal + GQCP::SquareMatrix<double>(hamiltonian_diagonal.asDiagonal())));
-
-//     // Test if the matvecs are identical
-//     BOOST_CHECK(matvec_evaluation.isApprox(matvec_reference));
-// }
-
-
-/**
- *  Evaluate the an unrestricted Hamiltonian where one component (beta) is rotated to a different basis in a selected ONV basis in which all configurations are selected (Full CI)
- *  Compare the evaluation of a direct matrix vector product to that of the matrix vector product evaluations and test the lowest eigenvalue against of the evaluated Hamiltonian a reference value
- */
-// BOOST_AUTO_TEST_CASE(Selected_H2O_Unrestricted) {
-
-//     // Psi4 and GAMESS' FCI energy (restricted)
-//     double reference_fci_energy = -75.0129803939602;
-
-//     // Create the molecular Hamiltonian in an AO basis
-//     auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
-//     GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {h2o, "STO-3G"};
-//     spinor_basis.lowdinOrthonormalize();
-//     auto usq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(spinor_basis, h2o);  // unrestricted Hamiltonian in the Löwdin basis
-
-//     // Transform the Hamiltonian to an orthonormal basis
-//     GQCP::basisTransform(spinor_basis, usq_hamiltonian, spinor_basis.lowdinOrthonormalizationMatrix().alpha());
-
-//     // Transform the beta component
-//     // Create stable unitairy matrix
-//     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes {usq_hamiltonian.spinHamiltonian(GQCP::Spin::alpha).core().parameters()};
-//     GQCP::basisTransform(spinor_basis, usq_hamiltonian, GQCP::TransformationMatrix<double>(saes.eigenvectors()), GQCP::Spin::beta);
-//     auto K = usq_hamiltonian.numberOfOrbitals() / 2;
-
-//     GQCP::SpinResolvedONVBasis onv_basis {K, h2o.numberOfElectrons() / 2, h2o.numberOfElectrons() / 2};  // dim = 441
-//     GQCP::SpinResolvedSelectedONVBasis selected_onv_basis {onv_basis};
-
-//     // Evaluate the dense Hamiltonian
-//     GQCP::SquareMatrix<double> hamiltonian = selected_onv_basis.evaluateOperatorDense(usq_hamiltonian, true);
-//     GQCP::SquareMatrix<double> hamiltonian_no_diagonal = selected_onv_basis.evaluateOperatorDense(usq_hamiltonian, false);
-
-//     // Evaluate the diagonal
-//     GQCP::VectorX<double> hamiltonian_diagonal = selected_onv_basis.evaluateOperatorDiagonal(usq_hamiltonian);
-
-//     // Evaluate the matvec
-//     GQCP::VectorX<double> matvec_evaluation = selected_onv_basis.evaluateOperatorMatrixVectorProduct(usq_hamiltonian, hamiltonian_diagonal, hamiltonian_diagonal);
-
-//     // Evaluate the explicit matvec with the dense evaluations
-//     GQCP::VectorX<double> matvec_reference = hamiltonian * hamiltonian_diagonal;
-
-//     // Retrieve the lowest eigenvalue (FCI solution)
-//     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> self_adjoint_eigensolver {hamiltonian};
-
-//     // Calculate the total FCI energy
-//     double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(h2o).value();
-//     double test_ci_energy = self_adjoint_eigensolver.eigenvalues()(0) + internuclear_repulsion_energy;
-
-//     // Test the energy with the reference
-//     BOOST_CHECK(std::abs(test_ci_energy - (reference_fci_energy)) < 1.0e-06);
-
-//     // Test if non-diagonal evaluation and diagonal evaluations are correct
-//     BOOST_CHECK(hamiltonian.isApprox(hamiltonian_no_diagonal + GQCP::SquareMatrix<double>(hamiltonian_diagonal.asDiagonal())));
-
-//     // Test if the matvecs are identical
-//     BOOST_CHECK(matvec_evaluation.isApprox(matvec_reference));
-// }
+    BOOST_CHECK(specialized_mvp.isApprox(direct_mvp, 1.0e-08));
+}
