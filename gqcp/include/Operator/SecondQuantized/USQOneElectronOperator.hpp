@@ -200,13 +200,12 @@ public:
      *  MARK: General information
      */
 
-    /**
-     *  @return The number of alpha- and beta-orbitals.
+    /*
+     *  @return The number of orbital related to the alpha part of the unrestricted one-electron operator.
+     * 
+     *  @note It is advised to only use this API when it is known that all spin-components of the one-electron operator are equal.
      */
-    size_t numberOfOrbitals() const {
-
-        return this->alpha().numberOfOrbitals() + this->beta().numberOfOrbitals();
-    }
+    size_t numberOfOrbitals() const { return this->alpha().numberOfOrbitals(); }
 
 
     /**

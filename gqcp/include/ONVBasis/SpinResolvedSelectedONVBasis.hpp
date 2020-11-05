@@ -22,6 +22,7 @@
 #include "ONVBasis/SeniorityZeroONVBasis.hpp"
 #include "ONVBasis/SpinResolvedONV.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 
 namespace GQCP {
@@ -138,7 +139,7 @@ public:
 
 
     /*
-     *  MARK: Operator evaluations - wrappers
+     *  MARK: Dense restricted operator evaluations
      */
 
     /**
@@ -150,28 +151,193 @@ public:
      */
     SquareMatrix<double> evaluateOperatorDense(const ScalarRSQOneElectronOperator<double>& f) const;
 
+    /**
+     *  Calculate the dense matrix representation of a restricted two-electron operator in this ONV basis.
+     *
+     *  @param g                A restricted two-electron operator expressed in an orthonormal orbital basis.
+     *
+     *  @return A dense matrix represention of the two-electron operator.
+     */
+    SquareMatrix<double> evaluateOperatorDense(const ScalarRSQTwoElectronOperator<double>& g) const;
+
+    /**
+     *  Calculate the dense matrix representation of a restricted Hamiltonian in this ONV basis.
+     *
+     *  @param hamiltonian      A restricted Hamiltonian expressed in an orthonormal orbital basis.
+     *
+     *  @return A dense matrix represention of the Hamiltonian.
+     */
+    SquareMatrix<double> evaluateOperatorDense(const RSQHamiltonian<double>& hamiltonian) const;
+
 
     /*
-     *  MARK: Operator evaluations - general
+     *  MARK: Diagonal restricted operator evaluations
      */
 
     /**
-     *  Calculate the matrix representation of a restricted one-electron operator in this ONV basis and emplace it in the given container.
+     *  Calculate the diagonal of the matrix representation of a restricted one-electron operator in this ONV basis.
      *
-     *  @tparam Matrix                      The type of matrix used to store the evaluations.
+     *  @param f_op             A restricted one-electron operator expressed in an orthonormal orbital basis.
      *
-     *  @param f                            A restricted one-electron operator expressed in an orthonormal spin-orbital basis.
-     *  @param container                    A specialized container for emplacing evaluations/matrix elements.
+     *  @return The diagonal of the dense matrix represention of the one-electron operator.
      */
-    template <typename Matrix>
-    void evaluate(const ScalarRSQOneElectronOperator<double>& f, MatrixRepresentationEvaluationContainer<Matrix>& container) const {
+    VectorX<double> evaluateOperatorDiagonal(const ScalarRSQOneElectronOperator<double>& f_op) const;
 
-        // By delegating the actual implementation of this method to its unrestricted counterpart, we avoid code duplication in this restricted part.
-        // This does not affect performance significantly, because the bottleneck will always be the double iteration over the whole ONV basis.
-        const auto f_unrestricted = ScalarUSQOneElectronOperator<double>::FromRestricted(f);
-        this->evaluate(f_unrestricted, container);
-    }
+    /**
+     *  Calculate the diagonal of the matrix representation of a restricted two-electron operator in this ONV basis.
+     *
+     *  @param g_op             A restricted two-electron operator expressed in an orthonormal orbital basis.
+     *
+     *  @return The diagonal of the dense matrix represention of the two-electron operator.
+     */
+    VectorX<double> evaluateOperatorDiagonal(const ScalarRSQTwoElectronOperator<double>& g_op) const;
 
+    /**
+     *  Calculate the diagonal of the dense matrix representation of a restricted Hamiltonian in this ONV basis.
+     *
+     *  @param hamiltonian      A restricted Hamiltonian expressed in an orthonormal orbital basis.
+     *
+     *  @return The diagonal of the dense matrix represention of the Hamiltonian.
+     */
+    VectorX<double> evaluateOperatorDiagonal(const RSQHamiltonian<double>& hamiltonian) const;
+
+
+    /*
+     *  MARK: Sparse restricted operator evaluations
+     */
+
+    /**
+     *  Calculate the sparse matrix representation of a restricted one-electron operator in this ONV basis.
+     *
+     *  @param f                A restricted one-electron operator expressed in an orthonormal orbital basis.
+     *
+     *  @return A sparse matrix represention of the one-electron operator.
+     */
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarRSQOneElectronOperator<double>& f) const;
+
+    /**
+     *  Calculate the sparse matrix representation of a restricted two-electron operator in this ONV basis.
+     *
+     *  @param g                A restricted two-electron operator expressed in an orthonormal orbital basis.
+     *
+     *  @return A sparse matrix represention of the two-electron operator.
+     */
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarRSQTwoElectronOperator<double>& g) const;
+
+    /**
+     *  Calculate the sparse matrix representation of a restricted Hamiltonian in this ONV basis.
+     *
+     *  @param hamiltonian      A restricted Hamiltonian expressed in an orthonormal orbital basis.
+     *
+     *  @return A sparse matrix represention of the Hamiltonian.
+     */
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const RSQHamiltonian<double>& hamiltonian) const;
+
+
+    /*
+     *  MARK: Restricted matrix-vector product evaluations.
+     */
+
+    /**
+     *  Calculate the matrix-vector product of (the matrix representation of) a restricted one-electron operator with the given coefficient vector.
+     *
+     *  @param f                A restricted one-electron operator expressed in an orthonormal orbital basis.
+     *  @param x                The coefficient vector of a linear expansion.
+     *
+     *  @return The coefficient vector of the linear expansion after being acted on with the given (matrix representation of) the one-electron operator.
+     */
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarRSQOneElectronOperator<double>& f, const VectorX<double>& x) const;
+
+    /**
+     *  Calculate the matrix-vector product of (the matrix representation of) a restricted two-electron operator with the given coefficient vector.
+     *
+     *  @param g                A restricted two-electron operator expressed in an orthonormal orbital basis.
+     *  @param x                The coefficient vector of a linear expansion.
+     *
+     *  @return The coefficient vector of the linear expansion after being acted on with the given (matrix representation of) the two-electron operator.
+     */
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarRSQTwoElectronOperator<double>& g, const VectorX<double>& x) const;
+
+    /**
+     *  Calculate the matrix-vector product of (the matrix representation of) a restricted Hamiltonian with the given coefficient vector.
+     *
+     *  @param hamiltonian      A restricted Hamiltonian expressed in an orthonormal orbital basis.
+     *  @param x                The coefficient vector of a linear expansion.
+     *
+     *  @return The coefficient vector of the linear expansion after being acted on with the given (matrix representation of) the Hamiltonian.
+     */
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const RSQHamiltonian<double>& hamiltonian, const VectorX<double>& x) const;
+
+
+    /*
+     *  MARK: Dense unrestricted operator evaluations
+     */
+
+    /**
+     *  Calculate the dense matrix representation of an unrestricted one-electron operator in this ONV basis.
+     *
+     *  @param f                An unrestricted one-electron operator expressed in an orthonormal orbital basis.
+     *
+     *  @return A dense matrix represention of the one-electron operator.
+     */
+    SquareMatrix<double> evaluateOperatorDense(const ScalarUSQOneElectronOperator<double>& f) const;
+
+    /**
+     *  Calculate the dense matrix representation of an unrestricted Hamiltonian in this ONV basis.
+     *
+     *  @param hamiltonian      An unrestricted Hamiltonian expressed in an orthonormal orbital basis.
+     *
+     *  @return A dense matrix represention of the Hamiltonian.
+     */
+    SquareMatrix<double> evaluateOperatorDense(const USQHamiltonian<double>& hamiltonian) const;
+
+
+    /*
+     *  MARK: Diagonal unrestricted operator evaluations
+     */
+
+    /**
+     *  Calculate the diagonal of the dense matrix representation of an unrestricted Hamiltonian in this ONV basis.
+     *
+     *  @param hamiltonian      An unrestricted Hamiltonian expressed in an orthonormal orbital basis.
+     *
+     *  @return The diagonal of the dense matrix represention of the Hamiltonian.
+     */
+    VectorX<double> evaluateOperatorDiagonal(const USQHamiltonian<double>& hamiltonian) const;
+
+
+    /*
+     *  MARK: Unrestricted matrix-vector product evaluations.
+     */
+
+    /**
+     *  Calculate the matrix-vector product of (the matrix representation of) an unrestricted Hamiltonian with the given coefficient vector.
+     *
+     *  @param hamiltonian      An unrestricted Hamiltonian expressed in an orthonormal orbital basis.
+     *  @param x                The coefficient vector of a linear expansion.
+     *
+     *  @return The coefficient vector of the linear expansion after being acted on with the given (matrix representation of) the Hamiltonian.
+     */
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x) const;
+
+
+    /*
+     *  MARK: Sparse unrestricted operator evaluations
+     */
+
+    /**
+     *  Calculate the sparse matrix representation of an unrestricted Hamiltonian in this ONV basis.
+     *
+     *  @param hamiltonian      An unrestricted Hamiltonian expressed in an orthonormal orbital basis.
+     *
+     *  @return A sparse matrix represention of the Hamiltonian.
+     */
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const USQHamiltonian<double>& hamiltonian) const;
+
+
+    /*
+     *  MARK: Operator evaluations - general implementations - containers
+     */
 
     /**
      *  Calculate the matrix representation of an unrestricted one-electron operator in this ONV basis and emplace it in the given container.
@@ -246,420 +412,208 @@ public:
 
 
     /**
-     *  Evaluate the operator in a given evaluation iterator in the ONV basis
+     *  Calculate the matrix representation of an unrestricted Hamiltonian in this ONV basis and emplace it in the given container.
      *
-     *  @tparam Matrix                       the type of matrix used to store the evaluations
+     *  @tparam Matrix                      The type of matrix used to store the evaluations.
      *
-     *  @param two_op                        the two-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
-     *  @param container           evaluation iterator to which the evaluations are added
-     *  @param diagonal_values               bool to indicate if diagonal values will be calculated
+     *  @param hamiltonian                  An unrestricted Hamiltonian expressed in an orthonormal spin-orbital basis.
      */
-    // template <typename _Matrix>
-    // void evaluate(const ScalarRSQTwoElectronOperator<double>& two_op, MatrixRepresentationEvaluationContainer<_Matrix>& container, const bool diagonal_values) const {
-
-    //     // Calling this combined method for both the one- and two-electron operator does not affect the performance, hence we avoid writting more code by plugging a zero one-electron operator in the combined method.
-    //     this->evaluate(ScalarRSQOneElectronOperator<double> {this->K}, ScalarRSQOneElectronOperator<double> {this->K}, two_op, two_op, two_op, container, diagonal_values);
-    // }
-
-
-    /**
-     *  Evaluate the operators in a given evaluation iterator in the ONV basis
-     *
-     *  @tparam Matrix                       the type of matrix used to store the evaluations
-     *
-     *  @param one_op                        the one-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
-     *  @param two_op                        the two-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
-     *  @param container           evaluation iterator to which the evaluations are added
-     *  @param diagonal_values               bool to indicate if diagonal values will be calculated
-     */
-    // template <typename _Matrix>
-    // void evaluate(const ScalarRSQOneElectronOperator<double>& one_op, const ScalarRSQTwoElectronOperator<double>& two_op, MatrixRepresentationEvaluationContainer<_Matrix>& container, const bool diagonal_values) const {
-
-    //     // Calling the unrestricted universal method, with identical alpha, beta and mixed components does not affect the performance, hence we avoid duplicated code for the restricted part
-    //     this->evaluate(one_op, one_op, two_op, two_op, two_op, container, diagonal_values);
-    // }
-
-
-    /**
-     *  Evaluate the operators in a given evaluation iterator in the ONV basis
-     *
-     *  @tparam Matrix                       the type of matrix used to store the evaluations
-     *
-     *  @param one_op_alpha                     the alpha component of a one-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
-     *  @param one_op_beta                      the beta component of a one-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
-     *  @param two_op_alpha                     the alpha component of a two-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
-     *  @param two_op_beta                      the beta component of a two-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
-     *  @param two_op_mixed                     the alpha-beta component of a two-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
-     *  @param container              evaluation iterator to which the evaluations are added
-     *  @param diagonal_values                  bool to indicate if diagonal values will be calculated
-     */
-    // template <typename _Matrix>
-    // void evaluate(const ScalarRSQOneElectronOperator<double>& one_op_alpha, const ScalarRSQOneElectronOperator<double>& one_op_beta, const ScalarRSQTwoElectronOperator<double>& two_op_alpha, const ScalarRSQTwoElectronOperator<double>& two_op_beta, const ScalarRSQTwoElectronOperator<double>& two_op_mixed, MatrixRepresentationEvaluationContainer<_Matrix>& container, const bool diagonal_values) const {
-
-    //     const size_t dim = this->dimension();
-    //     const size_t K = this->numberOfOrbitals();
-
-    //     const auto& f_a = one_op_alpha.parameters();
-    //     const auto& g_a = two_op_alpha.parameters();
-    //     const auto& f_b = one_op_beta.parameters();
-    //     const auto& g_b = two_op_beta.parameters();
-
-    //     // Only g_ab is stored, for integrals derived from g_ba we reverse the indices as follows : g_ab(pqrs) = g_ba(rspq)
-    //     const auto& g_ab = two_op_mixed.parameters();
-
-    //     for (; !container.isFinished(); container.increment()) {  // loop over all addresses (1)
-    //         SpinResolvedONV onv_I = this->onvWithIndex(container.index);
-    //         SpinUnresolvedONV alpha_I = onv_I.onv(Spin::alpha);
-    //         SpinUnresolvedONV beta_I = onv_I.onv(Spin::beta);
-
-    //         if (diagonal_values) {
-    //             for (size_t p = 0; p < K; p++) {
-    //                 if (alpha_I.isOccupied(p)) {
-    //                     container.addRowwise(container.index, f_a(p, p));
-    //                     for (size_t q = 0; q < K; q++) {
-
-    //                         if (p != q) {  // can't create/annihilate the same orbital twice
-    //                             if (alpha_I.isOccupied(q)) {
-    //                                 container.addRowwise(container.index, 0.5 * g_a(p, p, q, q));
-    //                                 container.addRowwise(container.index, -0.5 * g_a(p, q, q, p));
-    //                             }
-    //                         }
-
-    //                         if (beta_I.isOccupied(q)) {
-    //                             container.addRowwise(container.index, 0.5 * g_ab(p, p, q, q));
-    //                         }
-    //                     }  // loop over q
-    //                 }
-
-    //                 if (beta_I.isOccupied(p)) {
-    //                     container.addRowwise(container.index, f_b(p, p));
-    //                     for (size_t q = 0; q < K; q++) {
-
-    //                         if (p != q) {  // can't create/annihilate the same orbital twice
-    //                             if (beta_I.isOccupied(q)) {
-    //                                 container.addRowwise(container.index, 0.5 * g_b(p, p, q, q));
-    //                                 container.addRowwise(container.index, -0.5 * g_b(p, q, q, p));
-    //                             }
-    //                         }
-
-    //                         if (alpha_I.isOccupied(q)) {
-    //                             container.addRowwise(container.index, 0.5 * g_ab(q, q, p, p));  // g_ab(pqrs) = g_ba(rspq)
-    //                         }
-    //                     }  // loop over q
-    //                 }
-    //             }  // loop over q
-    //         }
-
-    //         // Calculate the off-diagonal elements, by going over all other ONVs
-    //         for (size_t J = container.index + 1; J < dim; J++) {
-
-    //             SpinResolvedONV onv_J = this->onvWithIndex(J);
-    //             SpinUnresolvedONV alpha_J = onv_J.onv(Spin::alpha);
-    //             SpinUnresolvedONV beta_J = onv_J.onv(Spin::beta);
+    template <typename Matrix>
+    void evaluate(const USQHamiltonian<double>& hamiltonian, MatrixRepresentationEvaluationContainer<Matrix>& container) const {
+
+        // Prepare some variables.
+        const size_t dim = this->dimension();
+        const size_t K = this->numberOfOrbitals();
+
+        const auto& h_a = hamiltonian.core().alpha().parameters();
+        const auto& g_aa = hamiltonian.twoElectron().alphaAlpha().parameters();
+        const auto& h_b = hamiltonian.core().beta().parameters();
+        const auto& g_bb = hamiltonian.twoElectron().betaBeta().parameters();
 
-    //             if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
+        // For the mixed two-electron integrals g_ab and g_ba, we can use the following relation: g_ab(pqrs) = g_ba(rspq) and proceed to only work with g_ab.
+        const auto& g_ab = hamiltonian.twoElectron().alphaBeta().parameters();
 
-    //                 // Find the orbitals that are occupied in one string, and aren't in the other
-    //                 size_t p = alpha_I.findDifferentOccupations(alpha_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
-    //                 size_t q = alpha_J.findDifferentOccupations(alpha_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+        for (; !container.isFinished(); container.increment()) {  // loop over all addresses (I)
+            SpinResolvedONV onv_I = this->onvWithIndex(container.index);
+            SpinUnresolvedONV alpha_I = onv_I.onv(Spin::alpha);
+            SpinUnresolvedONV beta_I = onv_I.onv(Spin::beta);
 
-    //                 // Calculate the total sign
-    //                 int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q);
+            // Calculate the diagonal elements (I=J).
+            for (size_t p = 0; p < K; p++) {
+                if (alpha_I.isOccupied(p)) {
+                    container.addRowwise(container.index, h_a(p, p));
+                    for (size_t q = 0; q < K; q++) {
 
-    //                 double value = f_a(p, q);
+                        if (p != q) {  // can't create/annihilate the same orbital twice
+                            if (alpha_I.isOccupied(q)) {
+                                container.addRowwise(container.index, 0.5 * g_aa(p, p, q, q));
+                                container.addRowwise(container.index, -0.5 * g_aa(p, q, q, p));
+                            }
+                        }
 
-    //                 container.addColumnwise(J, sign * value);
-    //                 container.addRowwise(J, sign * value);
+                        if (beta_I.isOccupied(q)) {
+                            container.addRowwise(container.index, 0.5 * g_ab(p, p, q, q));
+                        }
+                    }  // loop over q
+                }
 
-    //                 for (size_t r = 0; r < K; r++) {  // r loops over spatial orbitals
+                if (beta_I.isOccupied(p)) {
+                    container.addRowwise(container.index, h_b(p, p));
+                    for (size_t q = 0; q < K; q++) {
 
-    //                     if (alpha_I.isOccupied(r) && alpha_J.isOccupied(r)) {  // r must be occupied on the left and on the right
-    //                         if ((p != r) && (q != r)) {                        // can't create or annihilate the same orbital
+                        if (p != q) {  // can't create/annihilate the same orbital twice
+                            if (beta_I.isOccupied(q)) {
+                                container.addRowwise(container.index, 0.5 * g_bb(p, p, q, q));
+                                container.addRowwise(container.index, -0.5 * g_bb(p, q, q, p));
+                            }
+                        }
 
-    //                             double value = 0.5 * (g_a(p, q, r, r) - g_a(r, q, p, r) - g_a(p, r, r, q) + g_a(r, r, p, q));
+                        if (alpha_I.isOccupied(q)) {
+                            container.addRowwise(container.index, 0.5 * g_ab(q, q, p, p));  // g_ab(pqrs) = g_ba(rspq)
+                        }
+                    }  // loop over q
+                }
+            }  // loop over q
 
-    //                             container.addColumnwise(J, sign * value);
-    //                             container.addRowwise(J, sign * value);
-    //                         }
-    //                     }
+            // Calculate the off-diagonal elements, by going over all other ONVs (J>I).
+            for (size_t J = container.index + 1; J < dim; J++) {
 
-    //                     if (beta_I.isOccupied(r)) {  // beta_I == beta_J from the previous if-branch
+                SpinResolvedONV onv_J = this->onvWithIndex(J);
+                SpinUnresolvedONV alpha_J = onv_J.onv(Spin::alpha);
+                SpinUnresolvedONV beta_J = onv_J.onv(Spin::beta);
 
-    //                         double value = 0.5 * 2 * g_ab(p, q, r, r);  // g_ab(pqrs) = g_ba(rspq)
+                // 1 excitation in the alpha part, 0 excitations in the beta part.
+                if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
 
-    //                         container.addColumnwise(J, sign * value);
-    //                         container.addRowwise(J, sign * value);
-    //                     }
-    //                 }
-    //             }
+                    // Find the orbitals that are occupied in one string, and aren't in the other.
+                    size_t p = alpha_I.findDifferentOccupations(alpha_J)[0];  // We're sure that there is only 1 element in the std::vector<size_t>.
+                    size_t q = alpha_J.findDifferentOccupations(alpha_I)[0];  // We're sure that there is only 1 element in the std::vector<size_t>.
 
-    //             // 0 electron excitations in alpha, 1 in beta
-    //             if ((alpha_I.countNumberOfDifferences(alpha_J) == 0) && (beta_I.countNumberOfDifferences(beta_J) == 2)) {
+                    // Calculate the total sign and emplace the one-electron contribution in the container.
+                    int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q);
+                    const double value = h_a(p, q);
 
+                    container.addColumnwise(J, sign * value);
+                    container.addRowwise(J, sign * value);
 
-    //                 // Find the orbitals that are occupied in one string, and aren't in the other
-    //                 size_t p = beta_I.findDifferentOccupations(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
-    //                 size_t q = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
 
-    //                 // Calculate the total sign
-    //                 int sign = beta_I.operatorPhaseFactor(p) * beta_J.operatorPhaseFactor(q);
+                    for (size_t r = 0; r < K; r++) {                           // r loops over spatial orbitals
+                        if (alpha_I.isOccupied(r) && alpha_J.isOccupied(r)) {  // r must be occupied on the left and on the right
+                            if ((p != r) && (q != r)) {                        // can't create or annihilate the same orbital
 
-    //                 double value = f_b(p, q);
+                                double value = 0.5 * (g_aa(p, q, r, r) - g_aa(r, q, p, r) - g_aa(p, r, r, q) + g_aa(r, r, p, q));
 
-    //                 container.addColumnwise(J, sign * value);
-    //                 container.addRowwise(J, sign * value);
+                                container.addColumnwise(J, sign * value);
+                                container.addRowwise(J, sign * value);
+                            }
+                        }
 
-    //                 for (size_t r = 0; r < K; r++) {  // r loops over spatial orbitals
+                        if (beta_I.isOccupied(r)) {  // beta_I == beta_J from the upper-level if-branch
 
-    //                     if (beta_I.isOccupied(r) && beta_J.isOccupied(r)) {  // r must be occupied on the left and on the right
-    //                         if ((p != r) && (q != r)) {                      // can't create or annihilate the same orbital
-    //                             double value = 0.5 * (g_b(p, q, r, r) - g_b(r, q, p, r) - g_b(p, r, r, q) + g_b(r, r, p, q));
+                            double value = 0.5 * 2 * g_ab(p, q, r, r);  // g_ab(pqrs) = g_ba(rspq)
 
-    //                             container.addColumnwise(J, sign * value);
-    //                             container.addRowwise(J, sign * value);
-    //                         }
-    //                     }
+                            container.addColumnwise(J, sign * value);
+                            container.addRowwise(J, sign * value);
+                        }
+                    }
+                }
 
-    //                     if (alpha_I.isOccupied(r)) {  // alpha_I == alpha_J from the previous if-branch
+                // 0 excitations in the alpha part, 1 excitation in the beta part.
+                if ((alpha_I.countNumberOfDifferences(alpha_J) == 0) && (beta_I.countNumberOfDifferences(beta_J) == 2)) {
 
-    //                         double value = 0.5 * 2 * g_ab(r, r, p, q);  // g_ab(pqrs) = g_ba(rspq)
 
-    //                         container.addColumnwise(J, sign * value);
-    //                         container.addRowwise(J, sign * value);
-    //                     }
-    //                 }
-    //             }
+                    // Find the orbitals that are occupied in one string, and aren't in the other
+                    size_t p = beta_I.findDifferentOccupations(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+                    size_t q = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
 
-    //             // 1 electron excitation in alpha, 1 in beta
-    //             if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 2)) {
+                    // Calculate the total sign
+                    int sign = beta_I.operatorPhaseFactor(p) * beta_J.operatorPhaseFactor(q);
 
-    //                 // Find the orbitals that are occupied in one string, and aren't in the other
-    //                 size_t p = alpha_I.findDifferentOccupations(alpha_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
-    //                 size_t q = alpha_J.findDifferentOccupations(alpha_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+                    double value = h_b(p, q);
 
-    //                 size_t r = beta_I.findDifferentOccupations(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
-    //                 size_t s = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+                    container.addColumnwise(J, sign * value);
+                    container.addRowwise(J, sign * value);
 
-    //                 int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(s);
-    //                 double value = 0.5 * 2 * g_ab(p, q, r, s);  // g_ab(pqrs) = g_ba(rspq)
+                    for (size_t r = 0; r < K; r++) {  // r loops over spatial orbitals
 
-    //                 container.addColumnwise(J, sign * value);
-    //                 container.addRowwise(J, sign * value);
-    //             }
+                        if (beta_I.isOccupied(r) && beta_J.isOccupied(r)) {  // r must be occupied on the left and on the right
+                            if ((p != r) && (q != r)) {                      // can't create or annihilate the same orbital
+                                double value = 0.5 * (g_bb(p, q, r, r) - g_bb(r, q, p, r) - g_bb(p, r, r, q) + g_bb(r, r, p, q));
 
-    //             // 2 electron excitations in alpha, 0 in beta
-    //             if ((alpha_I.countNumberOfDifferences(alpha_J) == 4) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
+                                container.addColumnwise(J, sign * value);
+                                container.addRowwise(J, sign * value);
+                            }
+                        }
 
-    //                 // Find the orbitals that are occupied in one string, and aren't in the other
-    //                 std::vector<size_t> occupied_indices_I = alpha_I.findDifferentOccupations(alpha_J);  // we're sure this has two elements
-    //                 size_t p = occupied_indices_I[0];
-    //                 size_t r = occupied_indices_I[1];
+                        if (alpha_I.isOccupied(r)) {  // alpha_I == alpha_J from the previous if-branch
 
-    //                 std::vector<size_t> occupied_indices_J = alpha_J.findDifferentOccupations(alpha_I);  // we're sure this has two elements
-    //                 size_t q = occupied_indices_J[0];
-    //                 size_t s = occupied_indices_J[1];
+                            double value = 0.5 * 2 * g_ab(r, r, p, q);  // g_ab(pqrs) = g_ba(rspq)
 
-    //                 int sign = alpha_I.operatorPhaseFactor(p) * alpha_I.operatorPhaseFactor(r) * alpha_J.operatorPhaseFactor(q) * alpha_J.operatorPhaseFactor(s);
+                            container.addColumnwise(J, sign * value);
+                            container.addRowwise(J, sign * value);
+                        }
+                    }
+                }
 
-    //                 double value = 0.5 * (g_a(p, q, r, s) - g_a(p, s, r, q) - g_a(r, q, p, s) + g_a(r, s, p, q));
+                // 1 excititation in the alpha part, 1 excitation in the beta part.
+                if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 2)) {
 
-    //                 container.addColumnwise(J, sign * value);
-    //                 container.addRowwise(J, sign * value);
-    //             }
-
-    //             // 0 electron excitations in alpha, 2 in beta
-    //             if ((alpha_I.countNumberOfDifferences(alpha_J) == 0) && (beta_I.countNumberOfDifferences(beta_J) == 4)) {
-
-    //                 // Find the orbitals that are occupied in one string, and aren't in the other
-    //                 std::vector<size_t> occupied_indices_I = beta_I.findDifferentOccupations(beta_J);  // we're sure this has two elements
-    //                 size_t p = occupied_indices_I[0];
-    //                 size_t r = occupied_indices_I[1];
-
-    //                 std::vector<size_t> occupied_indices_J = beta_J.findDifferentOccupations(beta_I);  // we're sure this has two elements
-    //                 size_t q = occupied_indices_J[0];
-    //                 size_t s = occupied_indices_J[1];
-
-    //                 int sign = beta_I.operatorPhaseFactor(p) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(q) * beta_J.operatorPhaseFactor(s);
-
-    //                 double value = 0.5 * (g_b(p, q, r, s) - g_b(p, s, r, q) - g_b(r, q, p, s) + g_b(r, s, p, q));
-
-    //                 container.addColumnwise(J, sign * value);
-    //                 container.addRowwise(J, sign * value);
-    //             }
-    //         }  // loop over addresses J > I
-    //     }      // loop over addresses I
-    // }
-
-
-    /**
-     *  Evaluate the operator in a given evaluation iterator in the ONV basis
-     *
-     *  @tparam Matrix                       the type of matrix used to store the evaluations
-     *
-     *  @param usq_hamiltonian               the Hamiltonian expressed in an unrestricted orthonormal basis
-     *  @param container           evaluation iterator to which the evaluations are added
-     *  @param diagonal_values               bool to indicate if diagonal values will be calculated
-     */
-    // template <typename _Matrix>
-    // void evaluate(const USQHamiltonian<double>& usq_hamiltonian, MatrixRepresentationEvaluationContainer<_Matrix>& container, const bool diagonal_values) const {
-
-    //     if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
-    //         throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluate(USQHamiltonian<double>, MatrixRepresentationEvaluationContainer&, bool): Different spinor dimensions of spin components are currently not supported.");
-    //     }
-
-    //     this->evaluate(usq_hamiltonian.spinHamiltonian(Spin::alpha).core(), usq_hamiltonian.spinHamiltonian(Spin::beta).core(), usq_hamiltonian.spinHamiltonian(Spin::alpha).twoElectron(), usq_hamiltonian.spinHamiltonian(Spin::beta).twoElectron(), usq_hamiltonian.twoElectronMixed(), container, diagonal_values);
-    // }
-
-
-    // /**
-    //  *  Evaluate the operator in a dense matrix
-    //  *
-    //  *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
-    //  *  @param diagonal_values      bool to indicate if diagonal values will be calculated
-    //  *
-    //  *  @return the operator's evaluation in a dense matrix with the dimensions of the ONV basis
-    //  */
-    // SquareMatrix<double> evaluateOperatorDense(const ScalarRSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const;
-
-    // /**
-    //  *  Evaluate the Hamiltonian in a dense matrix
-    //  *
-    //  *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
-    //  *  @param diagonal_values          bool to indicate if diagonal values will be calculated
-    //  *
-    //  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the ONV basis
-    //  */
-    // SquareMatrix<double> evaluateOperatorDense(const RSQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const;
-
-    // /**
-    //  *  Evaluate the Hamiltonian in a dense matrix
-    //  *
-    //  *  @param usq_hamiltonian          the Hamiltonian expressed in an unrestricted orthonormal basis
-    //  *  @param diagonal_values          bool to indicate if diagonal values will be calculated
-    //  *
-    //  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the ONV basis
-    //  */
-    // SquareMatrix<double> evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, const bool diagonal_values) const;
-
-    // /**
-    //  *  Evaluate the diagonal of the operator
-    //  *
-    //  *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
-    //  *
-    //  *  @return the operator's diagonal evaluation in a vector with the dimension of the ONV basis
-    //  */
-    // VectorX<double> evaluateOperatorDiagonal(const ScalarRSQOneElectronOperator<double>& one_op) const;
-
-    // /**
-    //  *  Evaluate the diagonal of the operator
-    //  *
-    //  *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
-    //  *
-    //  *  @return the operator's diagonal evaluation in a vector with the dimension of the ONV basis
-    //  */
-    // VectorX<double> evaluateOperatorDiagonal(const ScalarRSQTwoElectronOperator<double>& two_op) const;
-
-    // /**
-    //  *  Evaluate the diagonal of the Hamiltonian
-    //  *
-    //  *  @param sq_hamiltonian              the Hamiltonian expressed in an orthonormal basis
-    //  *
-    //  *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the ONV basis
-    //  */
-    // VectorX<double> evaluateOperatorDiagonal(const RSQHamiltonian<double>& sq_hamiltonian) const;
-
-    // /**
-    //  *  Evaluate the diagonal of the Hamiltonian
-    //  *
-    //  *  @param usq_hamiltonian              the Hamiltonian expressed in an unrestricted orthonormal basis
-    //  *
-    //  *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the ONV basis
-    //  */
-    // VectorX<double> evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const;
-
-    // /**
-    //  *  Evaluate a one electron operator in a matrix vector product
-    //  *
-    //  *  @param one_op                       the one electron operator expressed in an orthonormal basis
-    //  *  @param x                            the vector upon which the evaluation acts
-    //  *  @param diagonal                     the diagonal evaluated in the ONV basis
-    //  *
-    //  *  @return the one electron operator's matrix vector product in a vector with the dimensions of the ONV basis
-    //  */
-    // VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarRSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
-
-    // /**
-    //  *  Evaluate a two electron operator in a matrix vector product
-    //  *
-    //  *  @param two_op                       the two electron operator expressed in an orthonormal basis
-    //  *  @param x                            the vector upon which the evaluation acts
-    //  *  @param diagonal                     the diagonal evaluated in the ONV basis
-    //  *
-    //  *  @return the two electron operator's matrix vector product in a vector with the dimensions of the ONV basis
-    //  */
-    // VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarRSQTwoElectronOperator<double>& two_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
-
-    // /**
-    //  *  Evaluate the Hamiltonian in a matrix vector product
-    //  *
-    //  *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
-    //  *  @param x                            the vector upon which the evaluation acts
-    //  *  @param diagonal                     the diagonal evaluated in the ONV basis
-    //  *
-    //  *  @return the Hamiltonian's matrix vector product in a vector with the dimensions of the ONV basis
-    //  */
-    // VectorX<double> evaluateOperatorMatrixVectorProduct(const RSQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
-
-    // /**
-    //  *  Evaluate the Hamiltonian in a matrix vector product
-    //  *
-    //  *  @param usq_hamiltonian              the Hamiltonian expressed in an unrestricted orthonormal basis
-    //  *  @param x                            the vector upon which the evaluation acts
-    //  *  @param diagonal                     the diagonal evaluated in the ONV basis
-    //  *
-    //  *  @return the Hamiltonian's matrix vector product in a vector with the dimensions of the ONV basis
-    //  */
-    // VectorX<double> evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
-
-    // /**
-    //  *  Evaluate the operator in a sparse matrix
-    //  *
-    //  *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
-    //  *  @param diagonal_values      bool to indicate if diagonal values will be calculated
-    //  *
-    //  *  @return the operator's evaluation in a sparse matrix with the dimensions of the ONV basis
-    //  */
-    // Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarRSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const;
-
-    // /**
-    //  *  Evaluate the operator in a sparse matrix
-    //  *
-    //  *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
-    //  *  @param diagonal_values      bool to indicate if diagonal values will be calculated
-    //  *
-    //  *  @return the operator's evaluation in a sparse matrix with the dimensions of the ONV basis
-    //  */
-    // Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarRSQOneElectronOperator<double>& one_op, const bool diagonal_values) const;
-
-    // /**
-    //  *  Evaluate the Hamiltonian in a sparse matrix
-    //  *
-    //  *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
-    //  *  @param diagonal_values          bool to indicate if diagonal values will be calculated
-    //  *
-    //  *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the ONV basis
-    //  */
-    // Eigen::SparseMatrix<double> evaluateOperatorSparse(const RSQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const;
-
-    // /**
-    //  *  Evaluate the Hamiltonian in a sparse matrix
-    //  *
-    //  *  @param usq_hamiltonian          the Hamiltonian expressed in an unrestricted orthonormal basis
-    //  *  @param diagonal_values          bool to indicate if diagonal values will be calculated
-    //  *
-    //  *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the ONV basis
-    //  */
-    // Eigen::SparseMatrix<double> evaluateOperatorSparse(const USQHamiltonian<double>& usq_hamiltonian, const bool diagonal_values) const;
+                    // Find the orbitals that are occupied in one string, and aren't in the other
+                    size_t p = alpha_I.findDifferentOccupations(alpha_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+                    size_t q = alpha_J.findDifferentOccupations(alpha_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+
+                    size_t r = beta_I.findDifferentOccupations(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+                    size_t s = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+
+                    int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(s);
+                    double value = 0.5 * 2 * g_ab(p, q, r, s);  // g_ab(pqrs) = g_ba(rspq)
+
+                    container.addColumnwise(J, sign * value);
+                    container.addRowwise(J, sign * value);
+                }
+
+                // 2 excitations in the alpha part, 0 excitations in the beta part.
+                if ((alpha_I.countNumberOfDifferences(alpha_J) == 4) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
+
+                    // Find the orbitals that are occupied in one string, and aren't in the other
+                    std::vector<size_t> occupied_indices_I = alpha_I.findDifferentOccupations(alpha_J);  // we're sure this has two elements
+                    size_t p = occupied_indices_I[0];
+                    size_t r = occupied_indices_I[1];
+
+                    std::vector<size_t> occupied_indices_J = alpha_J.findDifferentOccupations(alpha_I);  // we're sure this has two elements
+                    size_t q = occupied_indices_J[0];
+                    size_t s = occupied_indices_J[1];
+
+                    int sign = alpha_I.operatorPhaseFactor(p) * alpha_I.operatorPhaseFactor(r) * alpha_J.operatorPhaseFactor(q) * alpha_J.operatorPhaseFactor(s);
+
+                    double value = 0.5 * (g_aa(p, q, r, s) - g_aa(p, s, r, q) - g_aa(r, q, p, s) + g_aa(r, s, p, q));
+
+                    container.addColumnwise(J, sign * value);
+                    container.addRowwise(J, sign * value);
+                }
+
+                // 0 excitations in the alpha part, 2 excitations in the beta part.
+                if ((alpha_I.countNumberOfDifferences(alpha_J) == 0) && (beta_I.countNumberOfDifferences(beta_J) == 4)) {
+
+                    // Find the orbitals that are occupied in one string, and aren't in the other
+                    std::vector<size_t> occupied_indices_I = beta_I.findDifferentOccupations(beta_J);  // we're sure this has two elements
+                    size_t p = occupied_indices_I[0];
+                    size_t r = occupied_indices_I[1];
+
+                    std::vector<size_t> occupied_indices_J = beta_J.findDifferentOccupations(beta_I);  // we're sure this has two elements
+                    size_t q = occupied_indices_J[0];
+                    size_t s = occupied_indices_J[1];
+
+                    int sign = beta_I.operatorPhaseFactor(p) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(q) * beta_J.operatorPhaseFactor(s);
+
+                    double value = 0.5 * (g_bb(p, q, r, s) - g_bb(p, s, r, q) - g_bb(r, q, p, s) + g_bb(r, s, p, q));
+
+                    container.addColumnwise(J, sign * value);
+                    container.addRowwise(J, sign * value);
+                }
+            }  // loop over addresses J > I
+        }      // loop over addresses I
+    }
 };
 
 
