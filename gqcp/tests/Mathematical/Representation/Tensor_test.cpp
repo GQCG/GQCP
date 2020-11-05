@@ -316,14 +316,24 @@ BOOST_AUTO_TEST_CASE(einsum) {
     // clang-format on
 
     const auto output = T1.einsum<2>(T2, "ijkl", "jk", "il");
-    const auto test = T1.einsum("ijkl,jk->il", T2);
-    const auto test2 = T1.einsum<2>("ijkl,jk->il", T2.toMatrix(2, 2));
+    const auto output2 = T1.einsum<2>("ijkl,jk->il", T2);
 
     BOOST_CHECK(reference.isApprox(output.toMatrix(2, 2), 1.0e-12));
-    BOOST_CHECK(reference.isApprox(test.toMatrix(2, 2), 1e-12));
-    BOOST_CHECK(reference.isApprox(test2.toMatrix(2, 2), 1e-12));
+    BOOST_CHECK(reference.isApprox(output2.toMatrix(2, 2), 1e-12));
 
-    // Test the einsum API: single axis contraction
+    // Test the same for the matrix contraction
+    // Create a matrix containing the same values as T2
+    GQCP::Matrix<double> M {2, 2};
+    for (size_t i = 0; i < 2; i++) {
+        for (size_t j = 0; j < 2; j++) {
+            M(i, j) = j + 5 * i;
+        }
+    }
+
+    const auto output3 = T1.einsum<2>("ijkl,jk->il", M);
+    BOOST_CHECK(reference.isApprox(output3.toMatrix(2, 2), 1e-12));
+
+    // Test the einsum API: single axis contraction, for the same 3 einsum expressions
     // Start by creating a reference
     GQCP::Tensor<double, 4> reference_tensor {dim1, dim1, dim1, dim1};
     for (size_t i = 0; i < dim1; i++) {
@@ -335,10 +345,11 @@ BOOST_AUTO_TEST_CASE(einsum) {
             }
         }
     }
+
     GQCP::MatrixX<double> reference_block_1 {2, 2};
-    // clang-format off d
+    // clang-format off
     reference_block_1 << 50, 60,
-        60, 74;
+                         60, 74;
     // clang-format on
 
     GQCP::MatrixX<double> reference_block_2 {2, 2};
@@ -352,6 +363,11 @@ BOOST_AUTO_TEST_CASE(einsum) {
     reference_tensor.addBlock<2, 3>(reference_block_2, 1, 0, 0, 0);
     reference_tensor.addBlock<2, 3>(reference_block_2, 1, 1, 0, 0);
 
-    const auto output_2 = T1.einsum<1>(T2, "ijkl", "ia", "jkla");
-    BOOST_CHECK(reference_tensor.isApprox(output_2, 1e-12));
+    const auto output4 = T1.einsum<1>(T2, "ijkl", "ia", "jkla");
+    const auto output5 = T1.einsum<1>("ijkl,ia->jkla", T2);
+    const auto output6 = T1.einsum<1>("ijkl,ia->jkla", M);
+
+    BOOST_CHECK(reference_tensor.isApprox(output4, 1e-12));
+    BOOST_CHECK(reference_tensor.isApprox(output5, 1e-12));
+    BOOST_CHECK(reference_tensor.isApprox(output6, 1e-12));
 }

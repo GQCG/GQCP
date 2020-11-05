@@ -359,7 +359,7 @@ public:
 
         const int Z = intersection.size();
 
-        return this->einsum<Z>(rhs, segment_list[0], segment_list[1], segment_list[2]);
+        return this->einsum<N>(rhs, segment_list[0], segment_list[1], segment_list[2]);
     }
 
 
