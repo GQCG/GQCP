@@ -316,10 +316,12 @@ BOOST_AUTO_TEST_CASE(einsum) {
     // clang-format on
 
     const auto output = T1.einsum<2>(T2, "ijkl", "jk", "il");
-    const auto test = T1.einsum<2>("ijkl,jk->il", T2);
-    const GQCP::Matrix<double> output_as_matrix = output.toMatrix(2, 2);
-    BOOST_CHECK(reference.isApprox(output_as_matrix, 1.0e-12));
+    const auto test = T1.einsum("ijkl,jk->il", T2);
+    const auto test2 = T1.einsum<2>("ijkl,jk->il", T2.toMatrix(2, 2));
+
+    BOOST_CHECK(reference.isApprox(output.toMatrix(2, 2), 1.0e-12));
     BOOST_CHECK(reference.isApprox(test.toMatrix(2, 2), 1e-12));
+    BOOST_CHECK(reference.isApprox(test2.toMatrix(2, 2), 1e-12));
 
     // Test the einsum API: single axis contraction
     // Start by creating a reference

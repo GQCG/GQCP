@@ -322,6 +322,19 @@ public:
         return T_intermediate.shuffle(shuffle_indices);
     }
 
+
+    /**
+     *  Contract this tensor with another one, using a NumPy 'einsum'-like API.
+     * 
+     *  @param contraction_string   The string used to specify the wanted contraction, e.g. "ijkl,jk->il"
+     *  @param rhs                  The right-hand side of the contraction.
+     * 
+     *  @tparam N                   The number of axes that should be contracted over.
+     * 
+     *  @example T1.einsum("ijkl,jk->il", T2) will contract the j and k axes of the second tensor with those of the first tensor, resulting in a rank 2 tensor with axes i and l.
+     * 
+     *  @return The result of the tensor contraction.
+     */
     template <int N, int LHSRank = Rank, int RHSRank>
     Tensor<Scalar, LHSRank + RHSRank - 2 * N> einsum(std::string contraction_string, const Tensor<Scalar, RHSRank>& rhs) {
         // remove unnecessary symbols from string
@@ -336,7 +349,37 @@ public:
         std::vector<std::string> segment_list;
         boost::split(segment_list, contraction_string, boost::is_any_of(" "));
 
-        return this->einsum<N>(rhs, segment_list[0], segment_list[1], segment_list[2]);
+        // Determine number of axes to contract over
+        std::vector<char> segment_1(segment_list[0].begin(), segment_list[0].end());
+        std::vector<char> segment_2(segment_list[1].begin(), segment_list[1].end());
+        std::vector<char> intersection;
+
+        std::set_intersection(segment_1.begin(), segment_1.end(),
+                              segment_2.begin(), segment_2.end(), std::back_inserter(intersection));
+
+        const int Z = intersection.size();
+
+        return this->einsum<Z>(rhs, segment_list[0], segment_list[1], segment_list[2]);
+    }
+
+
+    /**
+     *  Contract this tensor with a matrix, using a NumPy 'einsum'-like API.
+     * 
+     *  @param contraction_string   The string used to specify the wanted contraction, e.g. "ijkl,jk->il"
+     *  @param rhs                  The right-hand side of the contraction, a matrix in this case.
+     * 
+     *  @tparam N                   The number of axes that should be contracted over.
+     * 
+     *  @example T.einsum("ijkl,jk->il", M) will contract the j and k axes of the second tensor with those of the first tensor, resulting in a rank 2 tensor with axes i and l.
+     * 
+     *  @return The result of the tensor contraction.
+     */
+    template <int N, int LHSRank = Rank>
+    Tensor<Scalar, LHSRank + 2 - 2 * N> einsum(std::string contraction_string, const Matrix<Scalar> rhs) {
+        // convert matrix to rank 2 tensor
+        const auto tensor_from_matrix = Tensor<Scalar, 2>(Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>>(rhs.data(), rhs.rows(), rhs.cols()));
+        return this->einsum<N>(contraction_string, tensor_from_matrix);
     }
 
 
