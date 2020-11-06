@@ -417,6 +417,7 @@ public:
      *  @tparam Matrix                      The type of matrix used to store the evaluations.
      *
      *  @param hamiltonian                  An unrestricted Hamiltonian expressed in an orthonormal spin-orbital basis.
+     *  @param container                    A specialized container for emplacing evaluations/matrix elements.
      */
     template <typename Matrix>
     void evaluate(const USQHamiltonian<double>& hamiltonian, MatrixRepresentationEvaluationContainer<Matrix>& container) const {

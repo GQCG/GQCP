@@ -431,7 +431,7 @@ void SpinUnresolvedONVBasis::forEach(const std::function<void(const SpinUnresolv
 
 
 /*
- *  MARK: Operator evaluations - wrappers
+ *  MARK: Dense operator evaluations
  */
 
 /**
@@ -455,6 +455,74 @@ SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const ScalarG
 }
 
 
+/**
+ *  Calculate the dense matrix representation of a component of an unrestricted one-electron operator in this ONV basis.
+ *
+ *  @param f                A component of an unrestricted one-electron operator expressed in an orthonormal orbital basis.
+ *
+ *  @return A dense matrix represention of the one-electron operator.
+ */
+SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const ScalarUSQOneElectronOperatorComponent<double>& f) const {
+
+    // We may convert an unrestricted component into the generalized representation.
+    const auto f_generalized = ScalarGSQOneElectronOperator<double>::FromUnrestrictedComponent(f);
+    return this->evaluateOperatorDense(f_generalized);
+}
+
+
+/**
+ *  Calculate the dense matrix representation of a generalized two-electron operator in this ONV basis.
+ *
+ *  @param g                A generalized two-electron operator expressed in an orthonormal orbital basis.
+ *
+ *  @return A dense matrix represention of the two-electron operator.
+ */
+SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const ScalarGSQTwoElectronOperator<double>& g) const {
+
+    // In order to avoid duplicate code, we choose to delegate this method to the evaluation of a `GSQHamiltonian` that contains no core contributions. This does not affect performance significantly, because the bottleneck will always be the iteration over the whole ONV basis.
+    const auto zero = ScalarGSQOneElectronOperator<double>::Zero(g.numberOfOrbitals());
+    const GSQHamiltonian<double> hamiltonian {zero, g};
+
+    return this->evaluateOperatorDense(hamiltonian);
+}
+
+
+/**
+ *  Calculate the dense matrix representation of a component of an unrestricted two-electron operator in this ONV basis.
+ *
+ *  @param g                A component of an unrestricted two-electron operator expressed in an orthonormal orbital basis.
+ *
+ *  @return A dense matrix represention of the one-electron operator.
+ */
+SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const ScalarPureUSQTwoElectronOperatorComponent<double>& g) const {
+
+    // We may convert an unrestricted component into the generalized representation.
+    const auto g_generalized = ScalarGSQTwoElectronOperator<double>::FromUnrestrictedComponent(g);
+    return this->evaluateOperatorDense(g_generalized);
+}
+
+
+/**
+ *  Calculate the dense matrix representation of a generalized Hamiltonian in this ONV basis.
+ *
+ *  @param hamiltonian      A generalized Hamiltonian expressed in an orthonormal orbital basis.
+ *
+ *  @return A dense matrix represention of the Hamiltonian.
+ */
+SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const GSQHamiltonian<double>& hamiltonian) const {
+
+    if (hamiltonian.numberOfOrbitals() != this->numberOfOrbitals()) {
+        throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDense(const USQHamiltonian<double>&): The number of orbitals of this ONV basis and the given Hamiltonian are incompatible.");
+    }
+
+    // Initialize a container for the dense matrix representation, and fill it with the general evaluation function.
+    MatrixRepresentationEvaluationContainer<SquareMatrix<double>> container {this->dimension()};
+    this->evaluate<SquareMatrix<double>>(hamiltonian, container);
+
+    return container.evaluation();
+}
+
+
 // /**
 //  *  Evaluate the operator in a dense matrix
 //  *
@@ -472,27 +540,6 @@ SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const ScalarG
 
 //     MatrixRepresentationEvaluationContainer<SquareMatrix<double>> container(this->dim);
 //     this->evaluate<SquareMatrix<double>>(two_op, container, diagonal_values);
-//     return container.evaluation();
-// }
-
-
-// /**
-//  *  Evaluate the Hamiltonian in a dense matrix
-//  *
-//  *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
-//  *  @param diagonal_values              bool to indicate if diagonal values will be calculated
-//  *
-//  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of this ONV basis
-//  */
-// SquareMatrix<double> SpinUnresolvedONVBasis::evaluateOperatorDense(const RSQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const {
-
-//     auto K = sq_hamiltonian.numberOfOrbitals();
-//     if (K != this->numberOfOrbitals()) {
-//         throw std::invalid_argument("SpinUnresolvedONVBasis::evaluateOperatorDense(RSQHamiltonian<double>, bool): Basis functions of this ONV basis and the operator are incompatible.");
-//     }
-
-//     MatrixRepresentationEvaluationContainer<SquareMatrix<double>> container(this->dim);
-//     this->evaluate<SquareMatrix<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), container, diagonal_values);
 //     return container.evaluation();
 // }
 

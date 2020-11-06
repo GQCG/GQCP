@@ -1,35 +1,36 @@
-// // This file is part of GQCG-GQCP.
-// //
-// // Copyright (C) 2017-2020  the GQCG developers
-// //
-// // GQCG-GQCP is free software: you can redistribute it and/or modify
-// // it under the terms of the GNU Lesser General Public License as published by
-// // the Free Software Foundation, either version 3 of the License, or
-// // (at your option) any later version.
-// //
-// // GQCG-GQCP is distributed in the hope that it will be useful,
-// // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// // GNU Lesser General Public License for more details.
-// //
-// // You should have received a copy of the GNU Lesser General Public License
-// // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
+// This file is part of GQCG-GQCP.
+//
+// Copyright (C) 2017-2020  the GQCG developers
+//
+// GQCG-GQCP is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// GQCG-GQCP is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-// #define BOOST_TEST_MODULE "FCI"
+#define BOOST_TEST_MODULE "FCI"
 
-// #include <boost/test/unit_test.hpp>
+#include <boost/test/unit_test.hpp>
 
-// #include "Basis/Transformations/transform.hpp"
-// #include "Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"
-// #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
-// #include "ONVBasis/SpinResolvedONVBasis.hpp"
-// #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-// #include "QCMethod/CI/CI.hpp"
-// #include "QCMethod/CI/CIEnvironment.hpp"
-// #include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
-// #include "QCMethod/HF/RHF/RHF.hpp"
-// #include "QCMethod/HF/RHF/RHFSCFEnvironment.hpp"
-// #include "QCMethod/HF/RHF/RHFSCFSolver.hpp"
+#include "Basis/Transformations/transform.hpp"
+#include "Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"
+#include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
+#include "ONVBasis/SpinResolvedONVBasis.hpp"
+#include "ONVBasis/SpinUnresolvedONVBasis.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "QCMethod/CI/CI.hpp"
+#include "QCMethod/CI/CIEnvironment.hpp"
+#include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
+#include "QCMethod/HF/RHF/RHF.hpp"
+#include "QCMethod/HF/RHF/RHFSCFEnvironment.hpp"
+#include "QCMethod/HF/RHF/RHFSCFSolver.hpp"
 
 
 // /**
@@ -285,3 +286,36 @@
 //     // Check if the dense and Davidson energies are equal
 //     BOOST_CHECK(std::abs(dense_electronic_energy - davidson_electronic_energy) < 1.0e-08);
 // }
+
+
+/**
+ *  Check if the ground state energy found using our generalized FCI routines matches Psi4 and GAMESS' FCI energy.
+ * 
+ *  The test system is H2O in an STO-3G basisset, which has a generalized FCI dimension of 1001, compared to 441 if the correct spin-resolved sector is used.
+ */
+BOOST_AUTO_TEST_CASE(generalized_FCI) {
+
+    const double reference_energy = -75.0129803939602;
+
+    // Create the molecular Hamiltonian in a random orthonormal generalized spinor basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
+    GQCP::GSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+    spinor_basis.lowdinOrthonormalize();
+
+    auto sq_hamiltonian = GQCP::GSQHamiltonian<double>::Molecular(spinor_basis, molecule);
+    const auto M = sq_hamiltonian.numberOfOrbitals();
+    sq_hamiltonian.rotate(GQCP::GTransformationMatrix<double>::RandomUnitary(M));
+
+
+    // Set up the full spin-unresolved ONV basis.
+    GQCP::SpinUnresolvedONVBasis onv_basis {M, molecule.numberOfElectrons()};
+
+    // Create a dense solver and corresponding environment and put them together in the QCMethod.
+    auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
+    auto solver = GQCP::EigenproblemSolver::Dense();
+    const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinUnresolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
+
+    // Check our result with the reference.
+    const auto energy = electronic_energy + GQCP::Operator::NuclearRepulsion(molecule).value();
+    BOOST_CHECK(std::abs(energy - (reference_energy)) < 1.0e-06);
+}
