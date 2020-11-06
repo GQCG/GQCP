@@ -235,7 +235,7 @@ public:
 
 
     /*
-     *  MARK: Restricted matrix-vector product evaluations.
+     *  MARK: Restricted matrix-vector product evaluations
      */
 
     /**
@@ -307,21 +307,6 @@ public:
 
 
     /*
-     *  MARK: Unrestricted matrix-vector product evaluations.
-     */
-
-    /**
-     *  Calculate the matrix-vector product of (the matrix representation of) an unrestricted Hamiltonian with the given coefficient vector.
-     *
-     *  @param hamiltonian      An unrestricted Hamiltonian expressed in an orthonormal orbital basis.
-     *  @param x                The coefficient vector of a linear expansion.
-     *
-     *  @return The coefficient vector of the linear expansion after being acted on with the given (matrix representation of) the Hamiltonian.
-     */
-    VectorX<double> evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x) const;
-
-
-    /*
      *  MARK: Sparse unrestricted operator evaluations
      */
 
@@ -333,6 +318,21 @@ public:
      *  @return A sparse matrix represention of the Hamiltonian.
      */
     Eigen::SparseMatrix<double> evaluateOperatorSparse(const USQHamiltonian<double>& hamiltonian) const;
+
+
+    /*
+     *  MARK: Unrestricted matrix-vector product evaluations
+     */
+
+    /**
+     *  Calculate the matrix-vector product of (the matrix representation of) an unrestricted Hamiltonian with the given coefficient vector.
+     *
+     *  @param hamiltonian      An unrestricted Hamiltonian expressed in an orthonormal orbital basis.
+     *  @param x                The coefficient vector of a linear expansion.
+     *
+     *  @return The coefficient vector of the linear expansion after being acted on with the given (matrix representation of) the Hamiltonian.
+     */
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x) const;
 
 
     /*

@@ -532,7 +532,7 @@ VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorDiagonal(const USQ
 
 
 /*
- *  MARK: Restricted matrix-vector product evaluations.
+ *  MARK: Restricted matrix-vector product evaluations
  */
 
 /**
@@ -608,32 +608,6 @@ VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduc
 
 
 /*
- *  MARK: Unrestricted matrix-vector product evaluations.
- */
-
-/**
- *  Calculate the matrix-vector product of (the matrix representation of) an unrestricted Hamiltonian with the given coefficient vector.
- *
- *  @param hamiltonian      An unrestricted Hamiltonian expressed in an orthonormal orbital basis.
- *  @param x                The coefficient vector of a linear expansion.
- *
- *  @return The coefficient vector of the linear expansion after being acted on with the given (matrix representation of) the Hamiltonian.
- */
-VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& hamiltonian, const VectorX<double>& x) const {
-
-    if (hamiltonian.numberOfOrbitals() != this->numberOfOrbitals()) {
-        throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>&, const VectorX<double>& x): The number of orbitals of this ONV basis and the given Hamiltonian are incompatible.");
-    }
-
-    // Initialize a container for the matrix-vector product, and fill it with the general evaluation function.
-    MatrixRepresentationEvaluationContainer<VectorX<double>> container {x};
-    this->evaluate<VectorX<double>>(hamiltonian, container);
-
-    return container.evaluation();
-}
-
-
-/*
  *  MARK: Sparse unrestricted operator evaluations
  */
 
@@ -660,6 +634,32 @@ Eigen::SparseMatrix<double> SpinResolvedSelectedONVBasis::evaluateOperatorSparse
 
     // Finalize the creation of the sparse matrix and return the result.
     container.addToMatrix();
+    return container.evaluation();
+}
+
+
+/*
+ *  MARK: Unrestricted matrix-vector product evaluations
+ */
+
+/**
+ *  Calculate the matrix-vector product of (the matrix representation of) an unrestricted Hamiltonian with the given coefficient vector.
+ *
+ *  @param hamiltonian      An unrestricted Hamiltonian expressed in an orthonormal orbital basis.
+ *  @param x                The coefficient vector of a linear expansion.
+ *
+ *  @return The coefficient vector of the linear expansion after being acted on with the given (matrix representation of) the Hamiltonian.
+ */
+VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& hamiltonian, const VectorX<double>& x) const {
+
+    if (hamiltonian.numberOfOrbitals() != this->numberOfOrbitals()) {
+        throw std::invalid_argument("SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>&, const VectorX<double>& x): The number of orbitals of this ONV basis and the given Hamiltonian are incompatible.");
+    }
+
+    // Initialize a container for the matrix-vector product, and fill it with the general evaluation function.
+    MatrixRepresentationEvaluationContainer<VectorX<double>> container {x};
+    this->evaluate<VectorX<double>>(hamiltonian, container);
+
     return container.evaluation();
 }
 
