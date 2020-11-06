@@ -134,7 +134,7 @@ size_t SpinResolvedONVBasis::compoundAddress(const size_t I_alpha, const size_t 
 
 
 /*
- *  MARK: Iterations.
+ *  MARK: Iterations
  */
 
 /**
@@ -170,38 +170,40 @@ void SpinResolvedONVBasis::forEach(const std::function<void(const SpinUnresolved
 
 
 /**
- *  Evaluate the operator in a dense matrix
+ *  Calculate the dense matrix representation of a restricted one-electron operator in this ONV basis.
  *
- *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the spin-resolved ONV basis
- *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+ *  @param f                A restricted one-electron operator expressed in an orthonormal orbital basis.
  *
- *  @return the operator's evaluation in a dense matrix with the dimensions of the spin-resolved ONV basis
+ *  @return A dense matrix represention of the one-electron operator.
  */
-// SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const ScalarRSQOneElectronOperator<double>& one_op, const bool diagonal_values) const {
+SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const ScalarRSQOneElectronOperator<double>& f) const {
 
-//     SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->dimension());
+    // Prepare some variables.
+    SquareMatrix<double> F = SquareMatrix<double>::Zero(this->dimension());
 
-//     auto dim_alpha = this->alpha().dimension();
-//     auto dim_beta = this->beta().dimension();
+    const auto dim_alpha = this->alpha().dimension();
+    const auto dim_beta = this->beta().dimension();
 
-//     auto beta_evaluation = this->beta().evaluateOperatorDense(one_op.alpha(), diagonal_values);
-//     auto alpha_evaluation = this->alpha().evaluateOperatorDense(one_op.beta(), diagonal_values);
 
-//     // BETA separated evaluations
-//     for (size_t i = 0; i < dim_alpha; i++) {
-//         total_evaluation.block(i * dim_beta, i * dim_beta, dim_beta, dim_beta) += beta_evaluation;
-//     }
+    // The total matrix representation can be calculated from the matrix representation of the alpha- and beta-parts, but we have to place the alpha- and beta-evaluations in the correct positions in the total matrix according to the choice that alpha is 'major' and beta is 'minor'.
+    const auto F_alpha = this->alpha().evaluateOperatorDense(f.alpha());
+    const auto F_beta = this->beta().evaluateOperatorDense(f.beta());
 
-//     // ALPHA separated evaluations
-//     const SquareMatrix<double> ones = SquareMatrix<double>::Identity(dim_beta);
-//     for (size_t i = 0; i < alpha_evaluation.cols(); i++) {
-//         for (size_t j = 0; j < alpha_evaluation.cols(); j++) {
-//             total_evaluation.block(i * dim_beta, j * dim_beta, dim_beta, dim_beta) += alpha_evaluation(i, j) * ones;
-//         }
-//     }
+    // Emplace the beta evaluations in the total matrix.
+    for (size_t i = 0; i < dim_alpha; i++) {
+        F.block(i * dim_beta, i * dim_beta, dim_beta, dim_beta) += F_beta;
+    }
 
-//     return total_evaluation;
-// }
+    // Emplace the alpha-evaluations in the total matrix.
+    const SquareMatrix<double> ones = SquareMatrix<double>::Identity(dim_beta);
+    for (size_t i = 0; i < F_alpha.cols(); i++) {
+        for (size_t j = 0; j < F_alpha.cols(); j++) {
+            F.block(i * dim_beta, j * dim_beta, dim_beta, dim_beta) += F_alpha(i, j) * ones;
+        }
+    }
+
+    return F;
+}
 
 
 /**

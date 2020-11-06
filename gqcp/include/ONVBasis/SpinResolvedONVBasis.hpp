@@ -122,18 +122,32 @@ public:
 
 
     /*
-     *  MARK: Operator evaluations
+     *  MARK: Dense restricted operator evaluations
      */
 
     /**
-     *  Evaluate the operator in a dense matrix
+     *  Calculate the dense matrix representation of a restricted one-electron operator in this ONV basis.
      *
-     *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in this ONV basis
-     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *  @param f                A restricted one-electron operator expressed in an orthonormal orbital basis.
      *
-     *  @return the operator's evaluation in a dense matrix with the dimensions of this basis
+     *  @return A dense matrix represention of the one-electron operator.
      */
-    // SquareMatrix<double> evaluateOperatorDense(const ScalarRSQOneElectronOperator<double>& one_op, const bool diagonal_values) const;
+    SquareMatrix<double> evaluateOperatorDense(const ScalarRSQOneElectronOperator<double>& f) const;
+
+
+    /*
+     *  MARK: Diagonal restricted operator evaluations
+     */
+
+
+    /*
+     *  MARK: Sparse restricted operator evaluations
+     */
+
+    /*
+     *  MARK: Restricted matrix-vector product evaluations.
+     */
+
 
     // /**
     //  *  Evaluate the operator in a dense matrix

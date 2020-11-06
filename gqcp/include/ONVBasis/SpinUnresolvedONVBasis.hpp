@@ -241,7 +241,7 @@ public:
 
 
     /*
-     *  MARK: Operator evaluations - wrappers
+     *  MARK: Dense operator evaluations
      */
 
     /**
@@ -269,7 +269,21 @@ public:
 
 
     /*
-     *  MARK: Operator evaluations - general
+     *  MARK: Diagonal restricted operator evaluations
+     */
+
+
+    /*
+     *  MARK: Sparse restricted operator evaluations
+     */
+
+    /*
+     *  MARK: Restricted matrix-vector product evaluations.
+     */
+
+
+    /*
+     *  MARK: Operator evaluations - general implementations - containers
      */
 
     /**
