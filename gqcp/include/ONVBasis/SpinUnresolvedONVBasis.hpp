@@ -23,9 +23,9 @@
 #include "ONVBasis/SpinUnresolvedONV.hpp"
 #include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/GSQTwoElectronOperator.hpp"
-#include "Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp"
 #include "Operator/SecondQuantized/PureUSQTwoElectronOperatorComponent.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp"
 
 #include <functional>
 
@@ -244,7 +244,7 @@ public:
 
 
     /*
-     *  MARK: Dense operator evaluations
+     *  MARK: Dense generalized operator evaluations
      */
 
     /**
@@ -257,15 +257,6 @@ public:
     SquareMatrix<double> evaluateOperatorDense(const ScalarGSQOneElectronOperator<double>& f) const;
 
     /**
-     *  Calculate the dense matrix representation of a component of an unrestricted one-electron operator in this ONV basis.
-     *
-     *  @param f                A component of an unrestricted one-electron operator expressed in an orthonormal orbital basis.
-     *
-     *  @return A dense matrix represention of the one-electron operator.
-     */
-    SquareMatrix<double> evaluateOperatorDense(const ScalarUSQOneElectronOperatorComponent<double>& f) const;
-
-    /**
      *  Calculate the dense matrix representation of a generalized two-electron operator in this ONV basis.
      *
      *  @param g                A generalized two-electron operator expressed in an orthonormal orbital basis.
@@ -273,15 +264,6 @@ public:
      *  @return A dense matrix represention of the two-electron operator.
      */
     SquareMatrix<double> evaluateOperatorDense(const ScalarGSQTwoElectronOperator<double>& g) const;
-
-    /**
-     *  Calculate the dense matrix representation of a component of an unrestricted two-electron operator in this ONV basis.
-     *
-     *  @param g                A component of an unrestricted two-electron operator expressed in an orthonormal orbital basis.
-     *
-     *  @return A dense matrix represention of the one-electron operator.
-     */
-    SquareMatrix<double> evaluateOperatorDense(const ScalarPureUSQTwoElectronOperatorComponent<double>& g) const;
 
     /**
      *  Calculate the dense matrix representation of a generalized Hamiltonian in this ONV basis.
@@ -294,120 +276,148 @@ public:
 
 
     /*
-     *  MARK: Diagonal operator evaluations
+     *  MARK: Dense unrestricted operator evaluations
      */
+
+    /**
+     *  Calculate the dense matrix representation of a component of an unrestricted one-electron operator in this ONV basis.
+     *
+     *  @param f                A component of an unrestricted one-electron operator expressed in an orthonormal orbital basis.
+     *
+     *  @return A dense matrix represention of the one-electron operator.
+     */
+    SquareMatrix<double> evaluateOperatorDense(const ScalarUSQOneElectronOperatorComponent<double>& f) const;
+
+    /**
+     *  Calculate the dense matrix representation of a component of an unrestricted two-electron operator in this ONV basis.
+     *
+     *  @param g                A component of an unrestricted two-electron operator expressed in an orthonormal orbital basis.
+     *
+     *  @return A dense matrix represention of the one-electron operator.
+     */
+    SquareMatrix<double> evaluateOperatorDense(const ScalarPureUSQTwoElectronOperatorComponent<double>& g) const;
 
 
     /*
-     *  MARK: Sparse operator evaluations
+     *  MARK: Diagonal generalized operator evaluations
      */
+
+    /**
+     *  Calculate the diagonal of the matrix representation of a generalized one-electron operator in this ONV basis.
+     *
+     *  @param f_op             A generalized one-electron operator expressed in an orthonormal orbital basis.
+     *
+     *  @return The diagonal of the dense matrix represention of the one-electron operator.
+     */
+    VectorX<double> evaluateOperatorDiagonal(const ScalarGSQOneElectronOperator<double>& f_op) const;
+
+    /**
+     *  Calculate the diagonal of the matrix representation of a generalized two-electron operator in this ONV basis.
+     *
+     *  @param g_op             A generalized two-electron operator expressed in an orthonormal orbital basis.
+     *
+     *  @return The diagonal of the dense matrix represention of the two-electron operator.
+     */
+    VectorX<double> evaluateOperatorDiagonal(const ScalarGSQTwoElectronOperator<double>& g_op) const;
+
+    /**
+     *  Calculate the diagonal of the dense matrix representation of a generalized Hamiltonian in this ONV basis.
+     *
+     *  @param hamiltonian      A generalized Hamiltonian expressed in an orthonormal orbital basis.
+     *
+     *  @return The diagonal of the dense matrix represention of the Hamiltonian.
+     */
+    VectorX<double> evaluateOperatorDiagonal(const GSQHamiltonian<double>& hamiltonian) const;
 
 
     /*
-     *  MARK: Matrix-vector product evaluations
+     *  MARK: Sparse generalized operator evaluations
      */
-
-
-    // /**
-    //  *  Evaluate the operator in a dense matrix
-    //  *
-    //  *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the spin-unresolved ONV basis
-    //  *  @param diagonal_values      bool to indicate if diagonal values will be calculated
-    //  *
-    //  *  @return the operator's evaluation in a dense matrix with the dimensions of the spin-unresolved ONV basis
-    //  */
-    // SquareMatrix<double> evaluateOperatorDense(const ScalarGSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const;
-
-
-    // /**
-    //  *  Evaluate the diagonal of the operator
-    //  *
-    //  *  @param f_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the spin-unresolved ONV basis
-    //  *
-    //  *  @return the operator's diagonal evaluation in a vector with the dimension of the spin-unresolved ONV basis
-    //  */
-    // VectorX<double> evaluateOperatorDiagonal(const ScalarGSQOneElectronOperator<double>& f_op) const;
-
-    // /**
-    //  *  Evaluate the diagonal of the operator
-    //  *
-    //  *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the spin-unresolved ONV basis
-    //  *
-    //  *  @return the operator's diagonal evaluation in a vector with the dimension of the spin-unresolved ONV basis
-    //  */
-    // VectorX<double> evaluateOperatorDiagonal(const ScalarGSQTwoElectronOperator<double>& two_op) const;
-
-    // /**
-    //  *  Evaluate the diagonal of the Hamiltonian
-    //  *
-    //  *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
-    //  *
-    //  *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the spin-unresolved ONV basis
-    //  */
-    // VectorX<double> evaluateOperatorDiagonal(const GSQHamiltonian<double>& sq_hamiltonian) const;
-
-    // /**
-    //  *  Evaluate the operator in a sparse matrix
-    //  *
-    //  *  @param f_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the spin-unresolved ONV basis
-    //  *  @param diagonal_values      bool to indicate if diagonal values will be calculated
-    //  *
-    //  *  @return the operator's evaluation in a sparse matrix with the dimensions of the spin-unresolved ONV basis
-    //  */
-    // Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarGSQOneElectronOperator<double>& f_op, const bool diagonal_values) const;
-
-    // /**
-    //  *  Evaluate the operator in a sparse matrix
-    //  *
-    //  *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the spin-unresolved ONV basis
-    //  *  @param diagonal_values      bool to indicate if diagonal values will be calculated
-    //  *
-    //  *  @return the operator's evaluation in a sparse matrix with the dimensions of the spin-unresolved ONV basis
-    //  */
-    // Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarGSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const;
-
-    // /**
-    //  *  Evaluate the Hamiltonian in a sparse matrix
-    //  *
-    //  *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
-    //  *  @param diagonal_values              bool to indicate if diagonal values will be calculated
-    //  *
-    //  *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the spin-unresolved ONV basis
-    //  */
-    // Eigen::SparseMatrix<double> evaluateOperatorSparse(const RSQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const;
 
     /**
-     *  Evaluate the matrix-vector product of a one-electron operator
+     *  Calculate the sparse matrix representation of a generalized one-electron operator in this ONV basis.
      *
-     *  @param f_op                       the one-electron operator expressed in an orthonormal basis
-     *  @param x                            the vector of the matrix-vector product
-     *  @param diagonal                     the diagonal of the matrix representation of the operator inside the spin-unresolved ONV basis
+     *  @param f                A generalized one-electron operator expressed in an orthonormal orbital basis.
      *
-     *  @return a vector that is equal to the matrix-vector product of the one-electron operator's matrix representation and the given vector
+     *  @return A sparse matrix represention of the one-electron operator.
      */
-    // VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarGSQOneElectronOperator<double>& f_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarGSQOneElectronOperator<double>& f) const;
 
     /**
-     *  Evaluate a two electron operator in a matrix vector product
+     *  Calculate the sparse matrix representation of a generalized two-electron operator in this ONV basis.
      *
-     *  @param two_op                       the two electron operator expressed in an orthonormal basis
-     *  @param x                            the vector upon which the evaluation acts 
-     *  @param diagonal                     the diagonal evaluated in the spin-unresolved ONV basis
+     *  @param g                A generalized two-electron operator expressed in an orthonormal orbital basis.
      *
-     *  @return a vector that is equal to the matrix-vector product of the two-electron operator's matrix representation and the given vector
+     *  @return A sparse matrix represention of the two-electron operator.
      */
-    // VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarGSQTwoElectronOperator<double>& two_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarGSQTwoElectronOperator<double>& g) const;
 
     /**
-     *  Evaluate the Hamiltonian in a matrix vector product
+     *  Calculate the sparse matrix representation of a generalized Hamiltonian in this ONV basis.
      *
-     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
-     *  @param x                            the vector upon which the evaluation acts 
-     *  @param diagonal                     the diagonal evaluated in the spin-unresolved ONV basis
+     *  @param hamiltonian      A generalized Hamiltonian expressed in an orthonormal orbital basis.
      *
-     *  @return a vector that is equal to the matrix-vector product of the Hamiltonian's matrix representation and the given vector
+     *  @return A sparse matrix represention of the Hamiltonian.
      */
-    // VectorX<double> evaluateOperatorMatrixVectorProduct(const RSQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const GSQHamiltonian<double>& hamiltonian) const;
+
+
+    /*
+     *  MARK: Sparse unrestricted operator evaluations
+     */
+
+    /**
+     *  Calculate the sparse matrix representation of a component of an unrestricted one-electron operator in this ONV basis.
+     *
+     *  @param f                A component of an unrestricted one-electron operator expressed in an orthonormal orbital basis.
+     *
+     *  @return A sparse matrix represention of the one-electron operator.
+     */
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarUSQOneElectronOperatorComponent<double>& f) const;
+
+    /**
+     *  Calculate the sparse matrix representation of a component of an unrestricted two-electron operator in this ONV basis.
+     *
+     *  @param g                A component of an unrestricted two-electron operator expressed in an orthonormal orbital basis.
+     *
+     *  @return A sparse matrix represention of the one-electron operator.
+     */
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarPureUSQTwoElectronOperatorComponent<double>& g) const;
+
+
+    /*
+     *  MARK: Generalized matrix-vector product evaluations
+     */
+
+    /**
+     *  Calculate the matrix-vector product of (the matrix representation of) a generalized one-electron operator with the given coefficient vector.
+     *
+     *  @param f                A generalized one-electron operator expressed in an orthonormal orbital basis.
+     *  @param x                The coefficient vector of a linear expansion.
+     *
+     *  @return The coefficient vector of the linear expansion after being acted on with the given (matrix representation of) the one-electron operator.
+     */
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarGSQOneElectronOperator<double>& f, const VectorX<double>& x) const;
+
+    /**
+     *  Calculate the matrix-vector product of (the matrix representation of) a generalized two-electron operator with the given coefficient vector.
+     *
+     *  @param g                A generalized two-electron operator expressed in an orthonormal orbital basis.
+     *  @param x                The coefficient vector of a linear expansion.
+     *
+     *  @return The coefficient vector of the linear expansion after being acted on with the given (matrix representation of) the two-electron operator.
+     */
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarGSQTwoElectronOperator<double>& g, const VectorX<double>& x) const;
+
+    /**
+     *  Calculate the matrix-vector product of (the matrix representation of) a generalized Hamiltonian with the given coefficient vector.
+     *
+     *  @param hamiltonian      A generalized Hamiltonian expressed in an orthonormal orbital basis.
+     *  @param x                The coefficient vector of a linear expansion.
+     *
+     *  @return The coefficient vector of the linear expansion after being acted on with the given (matrix representation of) the Hamiltonian.
+     */
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const GSQHamiltonian<double>& hamiltonian, const VectorX<double>& x) const;
 
 
     /*

@@ -289,11 +289,11 @@
 
 
 /**
- *  Check if the ground state energy found using our generalized FCI routines matches Psi4 and GAMESS' FCI energy.
+ *  Check if the ground state energy found using our dense generalized FCI routines matches Psi4 and GAMESS' FCI energy.
  * 
  *  The test system is H2O in an STO-3G basisset, which has a generalized FCI dimension of 1001, compared to 441 if the correct spin-resolved sector is used.
  */
-BOOST_AUTO_TEST_CASE(generalized_FCI) {
+BOOST_AUTO_TEST_CASE(generalized_FCI_dense) {
 
     const double reference_energy = -75.0129803939602;
 

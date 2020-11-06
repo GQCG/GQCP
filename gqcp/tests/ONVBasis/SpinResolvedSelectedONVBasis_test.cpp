@@ -60,22 +60,48 @@ BOOST_AUTO_TEST_CASE(restricted_dense_vs_matvec) {
 
     // Create the molecular Hamiltonian in the Löwdin basis.
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
-    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
-    spinor_basis.lowdinOrthonormalize();
-    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);
-    const auto K = sq_hamiltonian.numberOfOrbitals();
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
+    spin_orbital_basis.lowdinOrthonormalize();
+    const auto hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);
+    const auto K = hamiltonian.numberOfOrbitals();
 
     // Set up the full spin-resolved selected ONV basis.
-    GQCP::SpinResolvedONVBasis onv_basis {K, molecule.numberOfElectronPairs(), molecule.numberOfElectronPairs()};
-    GQCP::SpinResolvedSelectedONVBasis selected_onv_basis {onv_basis};
+    const GQCP::SpinResolvedONVBasis onv_basis {K, molecule.numberOfElectronPairs(), molecule.numberOfElectronPairs()};
+    const GQCP::SpinResolvedSelectedONVBasis selected_onv_basis {onv_basis};
 
     // Determine the Hamiltonian matrix and let it act on a random linear expansion.
     const auto linear_expansion = GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>::Random(selected_onv_basis);
-    const auto H_dense = selected_onv_basis.evaluateOperatorDense(sq_hamiltonian);
+    const auto H_dense = selected_onv_basis.evaluateOperatorDense(hamiltonian);
     const GQCP::VectorX<double> direct_mvp = H_dense * linear_expansion.coefficients();  // mvp: matrix-vector-product
 
     // Determine the specialized matrix-vector product and check if they are equal.
-    const auto specialized_mvp = selected_onv_basis.evaluateOperatorMatrixVectorProduct(sq_hamiltonian, linear_expansion.coefficients());
+    const auto specialized_mvp = selected_onv_basis.evaluateOperatorMatrixVectorProduct(hamiltonian, linear_expansion.coefficients());
 
     BOOST_CHECK(specialized_mvp.isApprox(direct_mvp, 1.0e-08));
+}
+
+
+/**
+ *  Check if the diagonal of the matrix representation of a restricted Hamiltonian is equal to the diagonal that is calculated through a specialized routine.
+ * 
+ *  The test system is H2O in an STO-3G basisset, which has a FCI dimension of 441.
+ */
+BOOST_AUTO_TEST_CASE(restricted_hamiltonian_diagonal) {
+
+    // Create the molecular Hamiltonian in the Löwdin basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
+    spin_orbital_basis.lowdinOrthonormalize();
+    const auto hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);
+    const auto K = hamiltonian.numberOfOrbitals();
+
+    // Set up the full spin-resolved selected ONV basis.
+    const GQCP::SpinResolvedONVBasis onv_basis {K, molecule.numberOfElectronPairs(), molecule.numberOfElectronPairs()};
+    const GQCP::SpinResolvedSelectedONVBasis selected_onv_basis {onv_basis};
+
+    // Determine the Hamiltonian matrix and the diagonal through a specialized routine, and check if they match.
+    const auto dense_matrix = selected_onv_basis.evaluateOperatorDense(hamiltonian);
+    const auto diagonal_specialized = selected_onv_basis.evaluateOperatorDiagonal(hamiltonian);
+
+    BOOST_CHECK(diagonal_specialized.isApprox(dense_matrix.diagonal(), 1.0e-08));
 }
