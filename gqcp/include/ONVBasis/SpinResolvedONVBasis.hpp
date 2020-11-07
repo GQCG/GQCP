@@ -165,16 +165,16 @@ public:
      *
      *  @return The diagonal of the dense matrix represention of the one-electron operator.
      */
-    // VectorX<double> evaluateOperatorDiagonal(const ScalarRSQOneElectronOperator<double>& f_op) const;
+    VectorX<double> evaluateOperatorDiagonal(const ScalarRSQOneElectronOperator<double>& f_op) const;
 
     /**
      *  Calculate the diagonal of the matrix representation of a restricted two-electron operator in this ONV basis.
      *
-     *  @param g_op             A restricted two-electron operator expressed in an orthonormal orbital basis.
+     *  @param g                A restricted two-electron operator expressed in an orthonormal orbital basis.
      *
      *  @return The diagonal of the dense matrix represention of the two-electron operator.
      */
-    // VectorX<double> evaluateOperatorDiagonal(const ScalarRSQTwoElectronOperator<double>& g_op) const;
+    VectorX<double> evaluateOperatorDiagonal(const ScalarRSQTwoElectronOperator<double>& g) const;
 
     /**
      *  Calculate the diagonal of the dense matrix representation of a restricted Hamiltonian in this ONV basis.
@@ -183,7 +183,7 @@ public:
      *
      *  @return The diagonal of the dense matrix represention of the Hamiltonian.
      */
-    // VectorX<double> evaluateOperatorDiagonal(const RSQHamiltonian<double>& hamiltonian) const;
+    VectorX<double> evaluateOperatorDiagonal(const RSQHamiltonian<double>& hamiltonian) const;
 
 
     /*
@@ -198,7 +198,7 @@ public:
      *
      *  @return The coefficient vector of the linear expansion after being acted on with the given (matrix representation of) the one-electron operator.
      */
-    // VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarRSQOneElectronOperator<double>& f, const VectorX<double>& x) const;
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarRSQOneElectronOperator<double>& f, const VectorX<double>& x) const;
 
     /**
      *  Calculate the matrix-vector product of (the matrix representation of) a restricted two-electron operator with the given coefficient vector.
@@ -208,7 +208,7 @@ public:
      *
      *  @return The coefficient vector of the linear expansion after being acted on with the given (matrix representation of) the two-electron operator.
      */
-    // VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarRSQTwoElectronOperator<double>& g, const VectorX<double>& x) const;
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarRSQTwoElectronOperator<double>& g, const VectorX<double>& x) const;
 
     /**
      *  Calculate the matrix-vector product of (the matrix representation of) a restricted Hamiltonian with the given coefficient vector.
@@ -218,7 +218,7 @@ public:
      *
      *  @return The coefficient vector of the linear expansion after being acted on with the given (matrix representation of) the Hamiltonian.
      */
-    // VectorX<double> evaluateOperatorMatrixVectorProduct(const RSQHamiltonian<double>& hamiltonian, const VectorX<double>& x) const;
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const RSQHamiltonian<double>& hamiltonian, const VectorX<double>& x) const;
 
 
     /*
@@ -246,7 +246,7 @@ public:
      *
      *  @return The diagonal of the dense matrix represention of the Hamiltonian.
      */
-    // VectorX<double> evaluateOperatorDiagonal(const USQHamiltonian<double>& hamiltonian) const;
+    VectorX<double> evaluateOperatorDiagonal(const USQHamiltonian<double>& hamiltonian) const;
 
 
     /*
@@ -261,7 +261,7 @@ public:
      *
      *  @return The coefficient vector of the linear expansion after being acted on with the given (matrix representation of) the Hamiltonian.
      */
-    // VectorX<double> evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x) const;
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x) const;
 };
 
 

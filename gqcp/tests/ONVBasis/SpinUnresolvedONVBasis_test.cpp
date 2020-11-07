@@ -86,143 +86,6 @@ BOOST_AUTO_TEST_CASE(arc_weights_M5_N3) {
 
 
 /**
- *  Test if the shift in address and orbital indices correspond to the correct solutions
- *  
- *  This method does not alter the ONVs in any way.
- */
-BOOST_AUTO_TEST_CASE(iterateToNextUnoccupiedOrbital) {
-
-    GQCP::SpinUnresolvedONVBasis fock_space {5, 3};
-    GQCP::SpinUnresolvedONV onv = fock_space.constructONVFromAddress(3);  // 01110
-
-    size_t address_shift = 0;
-    // test shift if we annihilate one electron and start from orbital index 2
-    size_t e = 1;  // count starts at 1 (translates to orbital index 2)
-    size_t q = 2;  // index starts at orbital index 2
-
-    //  In this instance electron weights at index 2 and 3 should be shifted.
-    //  Initial weight contributions were 1 and 1 respectively,
-    //  these should be shifted to 2 and 3 respectively, the difference is 1 and 2 respectively.
-    //  The total shift is thus 3
-    fock_space.shiftUntilNextUnoccupiedOrbital<1>(onv, address_shift, q, e);
-
-    BOOST_CHECK(address_shift == 3);
-    BOOST_CHECK(e == 3);
-    BOOST_CHECK(q == 4);
-
-    // test shift if we annihilate two electrons and start from orbital index 3
-    e = 2;  // count starts at 2 (translates to orbital index 3)
-    q = 3;  // index starts at orbital index 3
-
-    //  In this instance electron weights at index 3 should be shifted.
-    //  The initial weight contribution was 1,
-    //  this should be shifted to 3, the difference is 2
-    //  The total shift is thus 2
-    address_shift = 0;
-    fock_space.shiftUntilNextUnoccupiedOrbital<2>(onv, address_shift, q, e);
-
-    BOOST_CHECK(address_shift == 2);
-    BOOST_CHECK(e == 3);
-    BOOST_CHECK(q == 4);
-}
-
-
-/**
- *  Test if the shift in address, orbital indices and sign change correspond to the correct solutions
- *  
- *  This method does not alter the ONVs in any way.
- */
-BOOST_AUTO_TEST_CASE(iterateToNextUnoccupiedOrbital_signed) {
-
-    GQCP::SpinUnresolvedONVBasis fock_space {5, 3};
-    GQCP::SpinUnresolvedONV onv = fock_space.constructONVFromAddress(3);  // 01110
-
-    size_t address_shift = 0;
-    int sign = 1;
-    // test shift if we annihilate one electron and start from orbital index 2
-    size_t e = 1;  // count starts at 1 (translates to orbital index 2)
-    size_t q = 2;  // index starts at orbital index 2
-
-    //  In this instance electron weights at index 2 and 3 should be shifted.
-    //  Initial weight contributions were 1 and 1 respectively,
-    //  these should be shifted to 2 and 3 respectively, the difference is 1 and 2 respectively.
-    //  The total shift is thus 3, and the sign should remain the same (flips twice)
-    fock_space.shiftUntilNextUnoccupiedOrbital<1>(onv, address_shift, q, e, sign);
-
-    BOOST_CHECK(address_shift == 3);
-    BOOST_CHECK(e == 3);
-    BOOST_CHECK(q == 4);
-    BOOST_CHECK(sign == 1);
-
-    // test shift if we annihilate two electrons and start from orbital index 3
-    e = 2;  // count starts at 2 (translates to orbital index 3)
-    q = 3;  // index starts at orbital index 3
-
-    //  In this instance electron weights at index 3 should be shifted.
-    //  The initial weight contribution was 1,
-    //  this should be shifted to 3, the difference is 2
-    //  The total shift is thus 2, sign should flip once
-    address_shift = 0;
-    fock_space.shiftUntilNextUnoccupiedOrbital<2>(onv, address_shift, q, e, sign);
-
-    BOOST_CHECK(address_shift == 2);
-    BOOST_CHECK(e == 3);
-    BOOST_CHECK(q == 4);
-    BOOST_CHECK(sign == -1);
-}
-
-
-/**
- *  Test if the shift in address, orbital indices and sign change correspond to the correct solutions
- *  
- *  This method does not alter the ONVs in any way.
- */
-BOOST_AUTO_TEST_CASE(shiftToPreviousOrbital_signed) {
-
-    GQCP::SpinUnresolvedONVBasis fock_space {5, 3};
-    GQCP::SpinUnresolvedONV onv = fock_space.constructONVFromAddress(6);  // 10110
-
-    size_t address_shift = 0;
-    int sign = 1;
-
-    // test shift if we plan on creating one electron and start from orbital index 2
-    size_t e = 0;  // count starts at 0 (translates to orbital index 1)
-    size_t q = 1;  // index starts at orbital index 1
-
-    //  Index 1 is occupied an thus its weight shall shift if we create before an electron on a smaller index.
-    //  In this instance the electron weight at index 1 should be shifted.
-    //  Initial weight contribution is 1,
-    //  This should be shifted to 0, the difference is 1.
-    //  The sign changes (flips once)
-    fock_space.shiftUntilPreviousUnoccupiedOrbital<1>(onv, address_shift, q, e, sign);
-
-    BOOST_CHECK(address_shift == -1);
-    BOOST_CHECK(e == -1);
-    BOOST_CHECK(q == 0);
-    BOOST_CHECK(sign == -1);
-
-    sign = 1;
-    address_shift = 0;
-    onv = fock_space.constructONVFromAddress(9);  // 11100
-    // test shift if we plan on creating two electrons and start from orbital index 2
-    e = 0;  // count starts at 1 (translates to orbital index 2)
-    q = 2;  // index starts at orbital index 2
-
-    //  Index 2 is occupied an thus its weight shall shift if we create before an electron on a smaller index.
-    //  In this instance the electron weight at index 2 should be shifted.
-    //  Initial weight contribution is 2,
-    //  This should be shifted to 0, the difference is 2.
-    //  The sign changes (flips once)
-    fock_space.shiftUntilPreviousUnoccupiedOrbital<2>(onv, address_shift, q, e, sign);
-
-    BOOST_CHECK(address_shift == -2);
-    BOOST_CHECK(e == -1);
-    BOOST_CHECK(q == 1);
-    BOOST_CHECK(sign == -1);
-}
-
-
-/**
  *  Test if the SpinUnresolvedONV basis correctly counts the number of coupling ONVs with larger address for a given SpinUnresolvedONV
  */
 BOOST_AUTO_TEST_CASE(coupling_count) {
@@ -297,7 +160,7 @@ BOOST_AUTO_TEST_CASE(ONV_address_setNext_fullspace) {
 /**
  *  Test wether the SpinUnresolvedONV basis attributes the correct address to a given SpinUnresolvedONV.
  */
-BOOST_AUTO_TEST_CASE(ONVBasis_getAddress) {
+BOOST_AUTO_TEST_CASE(ONVBasis_addressOf) {
 
     GQCP::SpinUnresolvedONVBasis fock_space {6, 3};
 
@@ -309,9 +172,9 @@ BOOST_AUTO_TEST_CASE(ONVBasis_getAddress) {
 
 
 /**
- *  Test setNext for manually chosen ONVs
+ *  Test transformONVToNextPermutation for manually chosen ONVs
  */
-BOOST_AUTO_TEST_CASE(ONVBasis_setNext) {
+BOOST_AUTO_TEST_CASE(transformONVToNextPermutation) {
 
     GQCP::SpinUnresolvedONVBasis fock_space {5, 3};
     // K = 5, N = 3 <-> "00111"
@@ -516,4 +379,145 @@ BOOST_AUTO_TEST_CASE(generalized_dense_vs_matvec) {
     const auto specialized_mvp = onv_basis.evaluateOperatorMatrixVectorProduct(hamiltonian, linear_expansion.coefficients());
 
     BOOST_CHECK(specialized_mvp.isApprox(direct_mvp, 1.0e-08));
+}
+
+
+/*
+ *  MARK: Legacy code
+ */
+
+/**
+ *  Test if the shift in address and orbital indices correspond to the correct solutions
+ *  
+ *  This method does not alter the ONVs in any way.
+ */
+BOOST_AUTO_TEST_CASE(iterateToNextUnoccupiedOrbital) {
+
+    GQCP::SpinUnresolvedONVBasis fock_space {5, 3};
+    GQCP::SpinUnresolvedONV onv = fock_space.constructONVFromAddress(3);  // 01110
+
+    size_t address_shift = 0;
+    // test shift if we annihilate one electron and start from orbital index 2
+    size_t e = 1;  // count starts at 1 (translates to orbital index 2)
+    size_t q = 2;  // index starts at orbital index 2
+
+    //  In this instance electron weights at index 2 and 3 should be shifted.
+    //  Initial weight contributions were 1 and 1 respectively,
+    //  these should be shifted to 2 and 3 respectively, the difference is 1 and 2 respectively.
+    //  The total shift is thus 3
+    fock_space.shiftUntilNextUnoccupiedOrbital<1>(onv, address_shift, q, e);
+
+    BOOST_CHECK(address_shift == 3);
+    BOOST_CHECK(e == 3);
+    BOOST_CHECK(q == 4);
+
+    // test shift if we annihilate two electrons and start from orbital index 3
+    e = 2;  // count starts at 2 (translates to orbital index 3)
+    q = 3;  // index starts at orbital index 3
+
+    //  In this instance electron weights at index 3 should be shifted.
+    //  The initial weight contribution was 1,
+    //  this should be shifted to 3, the difference is 2
+    //  The total shift is thus 2
+    address_shift = 0;
+    fock_space.shiftUntilNextUnoccupiedOrbital<2>(onv, address_shift, q, e);
+
+    BOOST_CHECK(address_shift == 2);
+    BOOST_CHECK(e == 3);
+    BOOST_CHECK(q == 4);
+}
+
+
+/**
+ *  Test if the shift in address, orbital indices and sign change correspond to the correct solutions
+ *  
+ *  This method does not alter the ONVs in any way.
+ */
+BOOST_AUTO_TEST_CASE(iterateToNextUnoccupiedOrbital_signed) {
+
+    GQCP::SpinUnresolvedONVBasis fock_space {5, 3};
+    GQCP::SpinUnresolvedONV onv = fock_space.constructONVFromAddress(3);  // 01110
+
+    size_t address_shift = 0;
+    int sign = 1;
+    // test shift if we annihilate one electron and start from orbital index 2
+    size_t e = 1;  // count starts at 1 (translates to orbital index 2)
+    size_t q = 2;  // index starts at orbital index 2
+
+    //  In this instance electron weights at index 2 and 3 should be shifted.
+    //  Initial weight contributions were 1 and 1 respectively,
+    //  these should be shifted to 2 and 3 respectively, the difference is 1 and 2 respectively.
+    //  The total shift is thus 3, and the sign should remain the same (flips twice)
+    fock_space.shiftUntilNextUnoccupiedOrbital<1>(onv, address_shift, q, e, sign);
+
+    BOOST_CHECK(address_shift == 3);
+    BOOST_CHECK(e == 3);
+    BOOST_CHECK(q == 4);
+    BOOST_CHECK(sign == 1);
+
+    // test shift if we annihilate two electrons and start from orbital index 3
+    e = 2;  // count starts at 2 (translates to orbital index 3)
+    q = 3;  // index starts at orbital index 3
+
+    //  In this instance electron weights at index 3 should be shifted.
+    //  The initial weight contribution was 1,
+    //  this should be shifted to 3, the difference is 2
+    //  The total shift is thus 2, sign should flip once
+    address_shift = 0;
+    fock_space.shiftUntilNextUnoccupiedOrbital<2>(onv, address_shift, q, e, sign);
+
+    BOOST_CHECK(address_shift == 2);
+    BOOST_CHECK(e == 3);
+    BOOST_CHECK(q == 4);
+    BOOST_CHECK(sign == -1);
+}
+
+
+/**
+ *  Test if the shift in address, orbital indices and sign change correspond to the correct solutions
+ *  
+ *  This method does not alter the ONVs in any way.
+ */
+BOOST_AUTO_TEST_CASE(shiftToPreviousOrbital_signed) {
+
+    GQCP::SpinUnresolvedONVBasis fock_space {5, 3};
+    GQCP::SpinUnresolvedONV onv = fock_space.constructONVFromAddress(6);  // 10110
+
+    size_t address_shift = 0;
+    int sign = 1;
+
+    // test shift if we plan on creating one electron and start from orbital index 2
+    size_t e = 0;  // count starts at 0 (translates to orbital index 1)
+    size_t q = 1;  // index starts at orbital index 1
+
+    //  Index 1 is occupied an thus its weight shall shift if we create before an electron on a smaller index.
+    //  In this instance the electron weight at index 1 should be shifted.
+    //  Initial weight contribution is 1,
+    //  This should be shifted to 0, the difference is 1.
+    //  The sign changes (flips once)
+    fock_space.shiftUntilPreviousUnoccupiedOrbital<1>(onv, address_shift, q, e, sign);
+
+    BOOST_CHECK(address_shift == -1);
+    BOOST_CHECK(e == -1);
+    BOOST_CHECK(q == 0);
+    BOOST_CHECK(sign == -1);
+
+    sign = 1;
+    address_shift = 0;
+    onv = fock_space.constructONVFromAddress(9);  // 11100
+    // test shift if we plan on creating two electrons and start from orbital index 2
+    e = 0;  // count starts at 1 (translates to orbital index 2)
+    q = 2;  // index starts at orbital index 2
+
+    //  Index 2 is occupied an thus its weight shall shift if we create before an electron on a smaller index.
+    //  In this instance the electron weight at index 2 should be shifted.
+    //  Initial weight contribution is 2,
+    //  This should be shifted to 0, the difference is 2.
+    //  The sign changes (flips once)
+    fock_space.shiftUntilPreviousUnoccupiedOrbital<2>(onv, address_shift, q, e, sign);
+
+    BOOST_CHECK(address_shift == -2);
+    BOOST_CHECK(e == -1);
+    BOOST_CHECK(q == 1);
+    BOOST_CHECK(sign == -1);
 }
