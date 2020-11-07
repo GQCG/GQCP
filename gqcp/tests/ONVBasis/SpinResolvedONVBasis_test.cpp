@@ -81,6 +81,36 @@ BOOST_AUTO_TEST_CASE(evaluate_RSQOneElectronOperator_dense) {
 
 
 /**
+ *  Check if the dense evaluation of a restricted two-electron operator matches between a full spin-resolved ONV basis and its 'selected' equivalent.
+ * 
+ *  The test system is a H_6 in an STO-3G basisset.
+ */
+BOOST_AUTO_TEST_CASE(evaluate_RSQTwoElectronOperator_dense) {
+
+    // Set up the molecular Hamiltonian in the Löwdin basis.
+    const auto molecule = GQCP::Molecule::HChain(6, 0.742, 2);
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
+    spin_orbital_basis.lowdinOrthonormalize();
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);
+
+
+    // Set up the full spin-resolved ONV basis and its 'selected' equivalent.
+    const auto K = sq_hamiltonian.numberOfOrbitals();
+    const auto N_P = molecule.numberOfElectronPairs();
+    GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
+    GQCP::SpinResolvedSelectedONVBasis selected_onv_basis {onv_basis};
+
+
+    // Calculate the dense evaluations and check the result.
+    const auto& g = sq_hamiltonian.twoElectron();
+    const auto g_dense_specialized = onv_basis.evaluateOperatorDense(g);
+    const auto g_dense_selected = selected_onv_basis.evaluateOperatorDense(g);
+
+    BOOST_CHECK(g_dense_specialized.isApprox(g_dense_selected, 1.0e-12));
+}
+
+
+/**
  *  Check if the dense evaluation of an unrestricted Hamiltonian matches between a full spin-resolved ONV basis and its 'selected' equivalent.
  * 
  *  The test system is a H_6 in an STO-3G basisset.

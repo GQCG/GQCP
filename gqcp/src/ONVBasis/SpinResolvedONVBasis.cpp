@@ -218,7 +218,15 @@ SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const ScalarRSQ
  *
  *  @return A dense matrix represention of the two-electron operator.
  */
-// SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const ScalarRSQTwoElectronOperator<double>& g) const;
+SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const ScalarRSQTwoElectronOperator<double>& g) const {
+
+    // We choose to avoid code duplication by evaluating an equivalent restricted Hamiltonian with zero-valued core contributions.
+    const auto zero = ScalarRSQOneElectronOperator<double>::Zero(g.numberOfOrbitals());
+    const RSQHamiltonian<double> hamiltonian {zero, g};
+
+    return this->evaluateOperatorDense(hamiltonian);
+}
+
 
 /**
  *  Calculate the dense matrix representation of a restricted Hamiltonian in this ONV basis.
@@ -227,7 +235,15 @@ SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const ScalarRSQ
  *
  *  @return A dense matrix represention of the Hamiltonian.
  */
-// SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const RSQHamiltonian<double>& hamiltonian) const;
+SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const RSQHamiltonian<double>& hamiltonian) const {
+
+    // We can avoid code duplication by delegating this method to the evaluation of an unrestricted Hamiltonian.
+    const auto h_unrestricted = ScalarUSQOneElectronOperator<double>::FromRestricted(hamiltonian.core());
+    const auto g_unrestricted = ScalarUSQTwoElectronOperator<double>::FromRestricted(hamiltonian.twoElectron());
+    const USQHamiltonian<double> unrestricted_hamiltonian {h_unrestricted, g_unrestricted};
+
+    return this->evaluateOperatorDense(unrestricted_hamiltonian);
+}
 
 
 /*
@@ -412,137 +428,6 @@ SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const USQHamilt
  *  @return The coefficient vector of the linear expansion after being acted on with the given (matrix representation of) the Hamiltonian.
  */
 // VectorX<double> SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x) const;
-
-
-/**
- *  Calculate the dense matrix representation of a restricted two-electron operator in this ONV basis.
- *
- *  @param g                A restricted two-electron operator expressed in an orthonormal orbital basis.
- *
- *  @return A dense matrix represention of the two-electron operator.
- */
-// SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const ScalarRSQTwoElectronOperator<double>& g) const {
-
-//     // Prepare some variables.
-//     SquareMatrix<double> G = SquareMatrix<double>::Zero(this->dimension());
-
-//     const auto dim_alpha = this->alpha().dimension();
-//     const auto dim_beta = this->beta().dimension();
-
-
-//     // For the two-electron evaluations, we have 'pure' combinations (i.e. alpha-alpha or beta-beta), and 'mixed' combinations (i.e. alpha-beta or beta-alpha).
-//     const auto G_a = this->alpha().evaluateOperatorDense(two_op.alphaAlpha());
-//     const auto G_b = this->beta().evaluateOperatorDense(two_op.betaBeta());
-
-
-//     // BETA separated evaluations
-//     for (size_t i = 0; i < dim_alpha; i++) {
-//         G.block(i * dim_beta, i * dim_beta, dim_beta, dim_beta) += G_b;
-//     }
-
-//     // ALPHA separated evaluations
-//     const SquareMatrix<double> ones = SquareMatrix<double>::Identity(dim_beta);
-//     for (int i = 0; i < alpha_evaluation.cols(); i++) {
-//         for (int j = 0; j < alpha_evaluation.cols(); j++) {
-//             G.block(i * dim_beta, j * dim_beta, dim_beta, dim_beta) += G_a(i, j) * ones;
-//         }
-//     }
-
-//     // MIXED evaluations
-//     for (size_t p = 0; p < this->alpha().numberOfOrbitals(); p++) {
-
-//         const auto& alpha_coupling = this->alphaCouplings()[p * (this->alpha().numberOfOrbitals() + this->alpha().numberOfOrbitals() + 1 - p) / 2];
-//         const auto& P = this->calculateOneElectronPartition(p, p, two_op);
-//         const auto& beta_two_electron_intermediate = this->beta().evaluateOperatorDense(P);
-
-//         for (int i = 0; i < alpha_coupling.outerSize(); ++i) {
-//             for (Eigen::SparseMatrix<double>::InnerIterator it {alpha_coupling, i}; it; ++it) {
-//                 // it.value sigma(pp) element multiplied with the sparse matrix theta(pp) : beta_two_electron_intermediate
-//                 G.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value() * beta_two_electron_intermediate;
-//             }
-//         }
-
-//         for (size_t q = p + 1; q < this->alpha().numberOfOrbitals(); q++) {
-
-//             const auto& alpha_coupling = this->alphaCouplings()[p * (this->alpha().numberOfOrbitals() + this->alpha().numberOfOrbitals() + 1 - p) / 2 + q - p];
-//             const auto& P = this->calculateOneElectronPartition(p, q, two_op);
-//             const auto& beta_two_electron_intermediate = this->beta().evaluateOperatorDense(P);
-
-//             for (int i = 0; i < alpha_coupling.outerSize(); ++i) {
-//                 for (Eigen::SparseMatrix<double>::InnerIterator it {alpha_coupling, i}; it; ++it) {
-//                     // it.value (sigma(pq) + sigma(qp)) element multiplied with the sparse matrix theta(pq) : beta_two_electron_intermediate
-//                     G.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value() * beta_two_electron_intermediate;
-//                 }
-//             }
-//         }
-//     }
-
-//     return G;
-// }
-
-
-/**
- *  Evaluate the Hamiltonian in a dense matrix
- *
- *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
- *  @param diagonal_values              bool to indicate if diagonal values will be calculated
- *
- *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the spin-resolved ONV basis
- */
-// SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const RSQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const {
-
-//     SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->dimension());
-
-//     auto dim_alpha = this->alpha().dimension();
-//     auto dim_beta = this->beta().dimension();
-
-//     auto beta_evaluation = this->beta().evaluateOperatorDense(sq_hamiltonian, diagonal_values);
-//     auto alpha_evaluation = this->alpha().evaluateOperatorDense(sq_hamiltonian, diagonal_values);
-
-//     // BETA separated evaluations
-//     for (size_t i = 0; i < dim_alpha; i++) {
-//         total_evaluation.block(i * dim_beta, i * dim_beta, dim_beta, dim_beta) += beta_evaluation;
-//     }
-
-//     // ALPHA separated evaluations
-//     const SquareMatrix<double> ones = SquareMatrix<double>::Identity(dim_beta);
-//     for (int i = 0; i < alpha_evaluation.cols(); i++) {
-//         for (int j = 0; j < alpha_evaluation.cols(); j++) {
-//             total_evaluation.block(i * dim_beta, j * dim_beta, dim_beta, dim_beta) += alpha_evaluation(i, j) * ones;
-//         }
-//     }
-
-//     // MIXED evaluations
-//     for (size_t p = 0; p < this->alpha().numberOfOrbitals(); p++) {
-
-//         const auto& alpha_coupling = this->alphaCouplings()[p * (this->alpha().numberOfOrbitals() + this->alpha().numberOfOrbitals() + 1 - p) / 2];
-//         const auto& P = this->calculateOneElectronPartition(p, p, sq_hamiltonian.twoElectron());
-//         const auto& beta_two_electron_intermediate = this->beta().evaluateOperatorDense(P, diagonal_values);
-
-//         for (int i = 0; i < alpha_coupling.outerSize(); ++i) {
-//             for (Eigen::SparseMatrix<double>::InnerIterator it {alpha_coupling, i}; it; ++it) {
-//                 // it.value sigma(pp) element multiplied with the sparse matrix theta(pp) : beta_two_electron_intermediate
-//                 total_evaluation.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value() * beta_two_electron_intermediate;
-//             }
-//         }
-
-//         for (size_t q = p + 1; q < this->alpha().numberOfOrbitals(); q++) {
-
-//             const auto& alpha_coupling = this->alphaCouplings()[p * (this->alpha().numberOfOrbitals() + this->alpha().numberOfOrbitals() + 1 - p) / 2 + q - p];
-//             const auto& P = calculateOneElectronPartition(p, q, sq_hamiltonian.twoElectron());
-//             const auto& beta_two_electron_intermediate = this->beta().evaluateOperatorDense(P, true);
-
-//             for (int i = 0; i < alpha_coupling.outerSize(); ++i) {
-//                 for (Eigen::SparseMatrix<double>::InnerIterator it {alpha_coupling, i}; it; ++it) {
-//                     // it.value (sigma(pq) + sigma(qp)) element multiplied with the sparse matrix theta(pq) : beta_two_electron_intermediate
-//                     total_evaluation.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value() * beta_two_electron_intermediate;
-//                 }
-//             }
-//         }
-//     }
-
-//     return total_evaluation;
-// }
 
 
 // /**

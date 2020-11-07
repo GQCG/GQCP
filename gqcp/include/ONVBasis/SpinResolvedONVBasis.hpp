@@ -142,7 +142,7 @@ public:
      *
      *  @return A dense matrix represention of the two-electron operator.
      */
-    // SquareMatrix<double> evaluateOperatorDense(const ScalarRSQTwoElectronOperator<double>& g) const;
+    SquareMatrix<double> evaluateOperatorDense(const ScalarRSQTwoElectronOperator<double>& g) const;
 
     /**
      *  Calculate the dense matrix representation of a restricted Hamiltonian in this ONV basis.
@@ -151,7 +151,7 @@ public:
      *
      *  @return A dense matrix represention of the Hamiltonian.
      */
-    // SquareMatrix<double> evaluateOperatorDense(const RSQHamiltonian<double>& hamiltonian) const;
+    SquareMatrix<double> evaluateOperatorDense(const RSQHamiltonian<double>& hamiltonian) const;
 
 
     /*

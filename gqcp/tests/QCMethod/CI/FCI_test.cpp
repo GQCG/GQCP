@@ -33,46 +33,46 @@
 #include "QCMethod/HF/RHF/RHFSCFSolver.hpp"
 
 
-// /**
-//  *  Check if we can reproduce the FCI energy for H2//6-31G**, with a dense solver. The reference is taken from Cristina (cfr. Ayers' lab).
-//  */
-// BOOST_AUTO_TEST_CASE(FCI_H2_dense) {
+/**
+ *  Check if we can reproduce the FCI energy for H2//6-31G**, with a dense solver. The reference is taken from Cristina (cfr. Ayers' lab).
+ */
+BOOST_AUTO_TEST_CASE(FCI_H2_dense) {
 
-//     const double reference_energy = -1.1651486697;
+    const double reference_energy = -1.1651486697;
 
-//     // Create the molecular Hamiltonian in an AO basis.
-//     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2_cristina.xyz");
-//     const auto N_P = molecule.numberOfElectrons() / 2;
+    // Create the molecular Hamiltonian in an AO basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2_cristina.xyz");
+    const auto N_P = molecule.numberOfElectrons() / 2;
 
-//     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "6-31G**"};
-//     const auto K = spinor_basis.numberOfSpatialOrbitals();
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "6-31G**"};
+    const auto K = spinor_basis.numberOfSpatialOrbitals();
 
-//     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
-
-
-//     // Solve the RHF SCF equations to find an initial orthonormal basis.
-//     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
-//     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-//     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
-//     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
-
-//     GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
 
 
-//     // Set up the full spin-resolved ONV basis (with addressing scheme).
-//     const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};  // dimension = 100
+    // Solve the RHF SCF equations to find an initial orthonormal basis.
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
+    auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
+    const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
+
+    sq_hamiltonian.transform(rhf_parameters.coefficientMatrix());
 
 
-//     // Create a dense solver and corresponding environment and put them together in the QCMethod.
-//     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
-//     auto solver = GQCP::EigenproblemSolver::Dense();
-//     const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
+    // Set up the full spin-resolved ONV basis (with addressing scheme).
+    const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};  // dimension = 100
 
 
-//     // Check our result with the reference.
-//     const auto energy = electronic_energy + GQCP::Operator::NuclearRepulsion(molecule).value();
-//     BOOST_CHECK(std::abs(energy - (reference_energy)) < 1.0e-06);
-// }
+    // Create a dense solver and corresponding environment and put them together in the QCMethod.
+    auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
+    auto solver = GQCP::EigenproblemSolver::Dense();
+    const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
+
+
+    // Check our result with the reference.
+    const auto energy = electronic_energy + GQCP::Operator::NuclearRepulsion(molecule).value();
+    BOOST_CHECK(std::abs(energy - (reference_energy)) < 1.0e-06);
+}
 
 
 // /**
@@ -114,46 +114,46 @@
 // // }
 
 
-// /**
-//  *  Check if we can reproduce the FCI energy for H2O//STO-3G**, with a dense solver. The reference is taken from Psi4 and GAMESS-US.
-//  */
-// BOOST_AUTO_TEST_CASE(FCI_H2O_dense) {
+/**
+ *  Check if we can reproduce the FCI energy for H2O//STO-3G**, with a dense solver. The reference is taken from Psi4 and GAMESS-US.
+ */
+BOOST_AUTO_TEST_CASE(FCI_H2O_dense) {
 
-//     const double reference_energy = -75.0129803939602;
+    const double reference_energy = -75.0129803939602;
 
-//     // Create the molecular Hamiltonian in an AO basis.
-//     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
-//     const auto N_P = molecule.numberOfElectrons() / 2;
+    // Create the molecular Hamiltonian in an AO basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
+    const auto N_P = molecule.numberOfElectrons() / 2;
 
-//     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
-//     const auto K = spinor_basis.numberOfSpatialOrbitals();
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+    const auto K = spinor_basis.numberOfSpatialOrbitals();
 
-//     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
-
-
-//     // Solve the RHF SCF equations to find an initial orthonormal basis.
-//     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
-//     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-//     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
-//     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
-
-//     GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
 
 
-//     // Set up the full spin-resolved ONV basis (with addressing scheme).
-//     const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};  // dimension = 100
+    // Solve the RHF SCF equations to find an initial orthonormal basis.
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
+    auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
+    const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
+
+    sq_hamiltonian.transform(rhf_parameters.coefficientMatrix());
 
 
-//     // Create a dense solver and corresponding environment and put them together in the QCMethod
-//     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
-//     auto solver = GQCP::EigenproblemSolver::Dense();
-//     const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
+    // Set up the full spin-resolved ONV basis (with addressing scheme).
+    const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};  // dimension = 100
 
 
-//     // Check our result with the reference
-//     const auto energy = electronic_energy + GQCP::Operator::NuclearRepulsion(molecule).value();
-//     BOOST_CHECK(std::abs(energy - (reference_energy)) < 1.0e-06);
-// }
+    // Create a dense solver and corresponding environment and put them together in the QCMethod
+    auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
+    auto solver = GQCP::EigenproblemSolver::Dense();
+    const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
+
+
+    // Check our result with the reference
+    const auto energy = electronic_energy + GQCP::Operator::NuclearRepulsion(molecule).value();
+    BOOST_CHECK(std::abs(energy - (reference_energy)) < 1.0e-06);
+}
 
 
 // /**
