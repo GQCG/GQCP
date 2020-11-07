@@ -11,7 +11,6 @@
 // #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 // #include "QCMethod/CI/CI.hpp"
 // #include "QCMethod/CI/CIEnvironment.hpp"
-// #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
 // #include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
 // #include "QCMethod/HF/RHF/RHF.hpp"
 // #include "QCMethod/HF/RHF/RHFSCFSolver.hpp"

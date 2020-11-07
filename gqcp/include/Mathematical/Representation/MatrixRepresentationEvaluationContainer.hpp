@@ -245,6 +245,7 @@ public:
         matvec {diagonal.cwiseProduct(coefficient_vector)} {}
 
     MatrixRepresentationEvaluationContainer(const VectorX<double>& coefficient_vector) :
+        end {static_cast<size_t>(coefficient_vector.rows())},
         coefficient_vector {coefficient_vector},
         matvec {VectorX<double>::Zero(coefficient_vector.rows())} {}
 

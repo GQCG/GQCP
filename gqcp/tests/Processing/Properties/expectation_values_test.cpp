@@ -23,8 +23,6 @@
 #include "Basis/Transformations/transform.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Processing/Properties/expectation_values.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
 #include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF/RHF.hpp"
 #include "QCMethod/HF/RHF/RHFSCFSolver.hpp"

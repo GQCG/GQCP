@@ -3,7 +3,6 @@
  */
 
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
 #include "QCModel/CI/LinearExpansion.hpp"
 
 #include <benchmark/benchmark.h>

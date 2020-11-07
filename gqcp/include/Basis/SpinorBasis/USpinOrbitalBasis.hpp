@@ -294,7 +294,7 @@ public:
     auto quantize(const CoulombRepulsionOperator& coulomb_op) const -> ScalarUSQTwoElectronOperator<product_t<typename CoulombRepulsionOperator::Scalar, ExpansionScalar>> {
 
         using ResultScalar = product_t<typename CoulombRepulsionOperator::Scalar, ExpansionScalar>;
-        using ResultOperator = ScalarUSQOneElectronOperator<ResultScalar>;
+        using ResultOperator = ScalarUSQTwoElectronOperator<ResultScalar>;
 
         // Determine the matrix representation of the four spin-components of the second-quantized Coulomb operator.
         const auto g_aa_par = IntegralCalculator::calculateLibintIntegrals(coulomb_op, this->alpha().scalarBasis(), this->alpha().scalarBasis());

@@ -22,6 +22,8 @@
 #include "DensityMatrix/Orbital1DM.hpp"
 #include "DensityMatrix/Orbital2DM.hpp"
 #include "Mathematical/Representation/DenseVectorizer.hpp"
+#include "Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp"
+#include "Operator/SecondQuantized/PureUSQTwoElectronOperatorComponent.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp"
 #include "QuantumChemical/spinor_tags.hpp"
@@ -57,6 +59,52 @@ public:
 
     // Inherit `SimpleSQOneElectronOperator`'s constructors.
     using SimpleSQTwoElectronOperator<_Scalar, _Vectorizer, RSQTwoElectronOperator<_Scalar, _Vectorizer>>::SimpleSQTwoElectronOperator;
+
+
+    /*
+     *  MARK: Conversions to spin components
+     */
+
+    /**
+     *  @return The alpha-alpha-component of this restricted two-electron operator.
+     */
+    PureUSQTwoElectronOperatorComponent<Scalar, Vectorizer> alphaAlpha() const {
+
+        // Since g_pqrs = g_{p alpha, q alpha, r alpha, s alpha}, we can just wrap the two-electron integrals into the correct class.
+        const StorageArray<SquareRankFourTensor<Scalar>, Vectorizer> array {this->allParameters(), this->vectorizer()};
+        return PureUSQTwoElectronOperatorComponent<Scalar, Vectorizer> {array};
+    }
+
+
+    /**
+     *  @return The alpha-beta-component of this restricted two-electron operator.
+     */
+    MixedUSQTwoElectronOperatorComponent<Scalar, Vectorizer> alphaBeta() const {
+
+        // Since g_pqrs = g_{p alpha, q alpha, r beta, s beta}, we can just wrap the two-electron integrals into the correct class.
+        const StorageArray<SquareRankFourTensor<Scalar>, Vectorizer> array {this->allParameters(), this->vectorizer()};
+        return MixedUSQTwoElectronOperatorComponent<Scalar, Vectorizer> {array};
+    }
+
+
+    /**
+     *  @return The alpha-beta-component of this restricted two-electron operator.
+     */
+    MixedUSQTwoElectronOperatorComponent<Scalar, Vectorizer> betaAlpha() const {
+
+        // The alpha-beta- and beta-alpha integrals are equal for a restricted operator.
+        return this->alphaBeta();
+    }
+
+
+    /*
+     *  @return The beta-beta-component of this restricted two-electron operator.
+     */
+    PureUSQTwoElectronOperatorComponent<Scalar, Vectorizer> betaBeta() const {
+
+        // The alpha-alpha- and beta-beta integrals are equal for a restricted operator.
+        return this->alphaAlpha();
+    }
 };
 
 

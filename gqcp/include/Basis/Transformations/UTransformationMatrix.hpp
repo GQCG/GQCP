@@ -100,6 +100,22 @@ public:
     static UTransformationMatrix<Scalar> Identity(const size_t dim) { return UTransformationMatrix<Scalar>::Identity(dim, dim); }
 
 
+    /**
+     *  Create a random unitary `UTransformationMatrix`.
+     * 
+     *  @param dim              The dimension of the alpha and beta spin-orbitals.
+     * 
+     *  @return A random unitary `UTransformationMatrix`.
+     */
+    static UTransformationMatrix<Scalar> RandomUnitary(const size_t dim) {
+
+        const UTransformationMatrixComponent<Scalar> T_alpha = UTransformationMatrixComponent<Scalar>::RandomUnitary(dim);
+        const UTransformationMatrixComponent<Scalar> T_beta = UTransformationMatrixComponent<Scalar>::RandomUnitary(dim);
+
+        return UTransformationMatrix<Scalar> {T_alpha, T_beta};
+    }
+
+
     /*
      *  MARK: Linear algebraic operations
      */
