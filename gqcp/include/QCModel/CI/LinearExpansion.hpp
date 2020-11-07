@@ -32,7 +32,6 @@
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "Utilities/aliases.hpp"
-#include "Utilities/linalg.hpp"
 
 #include <boost/algorithm/string.hpp>
 #include <boost/dynamic_bitset.hpp>
@@ -1490,7 +1489,7 @@ public:
             return false;
         }
 
-        return areEqualEigenvectors(this->coefficients(), other.coefficients(), tolerance);
+        return (this->coefficients()).isEqualEigenvectorAs(other.coefficients(), tolerance);
     }
 
 
