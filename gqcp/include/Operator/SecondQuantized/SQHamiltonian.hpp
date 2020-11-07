@@ -86,6 +86,9 @@ public:
     // The type of transformation matrix that is naturally associated to the Hamiltonian.
     using TM = typename OperatorTraits<ScalarSQOneElectronOperator>::TM;
 
+    // The type of Jacobi rotation for which the Jacobi rotation should be defined.
+    using JacobiRotationType = typename JacobiRotatableTraits<ScalarSQOneElectronOperator>::JacobiRotationType;
+
 
 private:
     // The total one-electron interaction operator, i.e. the core Hamiltonian.
@@ -407,7 +410,7 @@ public:
      */
 
     /**
-     *  @return The number of orbitals (spinors or spin-orbitals, depending on the context) this second-quantized Hamiltonian is related to
+     *  @return The number of orbitals (spinors or spin-orbitals, depending on the context) this second-quantized Hamiltonian is related to.
      */
     size_t numberOfOrbitals() const { return this->core().numberOfOrbitals(); }
 
@@ -613,7 +616,7 @@ public:
      * 
      *  @return The Jacobi-rotated object.
      */
-    Self rotated(const JacobiRotation& jacobi_rotation) const override {
+    Self rotated(const JacobiRotationType& jacobi_rotation) const override {
 
         auto result = *this;
 

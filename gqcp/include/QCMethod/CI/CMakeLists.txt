@@ -4,5 +4,3 @@ target_sources(gqcp
         CIEnvironment.hpp
         DOCINewtonOrbitalOptimizer.hpp
 )
-
-add_subdirectory(HamiltonianBuilder)

@@ -23,6 +23,7 @@
 #include "DensityMatrix/G2DM.hpp"
 #include "Mathematical/Representation/DenseVectorizer.hpp"
 #include "Operator/SecondQuantized/SimpleSQOneElectronOperator.hpp"
+#include "Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp"
 #include "QuantumChemical/spinor_tags.hpp"
 
 
@@ -55,6 +56,23 @@ public:
 
     // Inherit `SimpleSQOneElectronOperator`'s constructors.
     using SimpleSQOneElectronOperator<_Scalar, _Vectorizer, GSQOneElectronOperator<_Scalar, _Vectorizer>>::SimpleSQOneElectronOperator;
+
+
+    /*
+     *  MARK: Named constructors
+     */
+
+    /**
+     *  Construct a `GSQOneElectronOperator` from a `USQOneElectronOperatorComponent`.
+     * 
+     *  @param f_component          The component of an unrestricted one-electron operator that should be converted.
+     */
+    static GSQOneElectronOperator<Scalar, Vectorizer> FromUnrestrictedComponent(const USQOneElectronOperatorComponent<Scalar, Vectorizer>& f_component) {
+
+        // We can just wrap the one-electron integrals into the correct class.
+        const StorageArray<SquareMatrix<Scalar>, Vectorizer> array {f_component.allParameters(), f_component.vectorizer()};
+        return GSQOneElectronOperator<Scalar, Vectorizer> {array};
+    }
 };
 
 
