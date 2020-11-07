@@ -61,9 +61,7 @@ public:
     // PUBLIC METHODS
 
     /**
-     * A function that returns the eigenvalue associated to this eigenpair.
-     * 
-     *  @return the eigenvalue associated to this eigenpair
+     *  @return The eigenvalue associated to this eigenpair.
      */
     Scalar eigenvalue() const { return this->m_eigenvalue; };
 
@@ -75,7 +73,7 @@ public:
     const VectorX<Scalar>& eigenvector() const { return this->m_eigenvector; };
 
     /**
-     * Checks if this Eigenpair is equal to the other Eigenpair.
+     *  Check if this Eigenpair is equal to the other Eigenpair.
      * 
      *  @param other            The other Eigenpair.
      *  @param tolerance        A tolerance for comparison.
