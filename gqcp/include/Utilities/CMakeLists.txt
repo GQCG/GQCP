@@ -3,7 +3,6 @@ target_sources(gqcp
         aliases.hpp
         CRTP.hpp
         Eigen.hpp
-        linalg.hpp
         memory.hpp
         miscellaneous.hpp
         type_traits.hpp

@@ -170,6 +170,73 @@ public:
 
 
     /**
+     * Check if two sets of eigenvalues are equal within a given tolerance.
+     * 
+     *  @param eigenvalues1     The first set of eigenvalues.
+     *  @param eigenvalues2     The second set of eigenvalues.
+     *  @param tolerance        The tolerance for comparison.
+     *
+     *  @return If two sets of eigenvalues are equal within a given tolerance.
+     */
+    template <typename Z = bool>  // enable_if must have Z inside
+    enable_if_t<Self::is_vector, Z> areEqualEigenvaluesAs(const Matrix<Scalar, Dynamic, 1>& other, double tolerance = 1.0e-12) const {
+        return Self::isApprox(other, tolerance);
+    }
+
+
+    /**
+     *  Check if two eigenvectors are equal, within a given tolerance.
+     *
+     *  @param eigenvector1     The first eigenvector.
+     *  @param eigenvector2     The second eigenvector.
+     *  @param tolerance        The tolerance for comparison.
+     *
+     *  @return If two eigenvectors are equal.
+     */
+    template <typename Z = bool>  // enable_if must have Z inside
+    enable_if_t<Self::is_vector, Z> isEqualEigenvectorAs(const Matrix<Scalar, Dynamic, 1>& other, double tolerance = 1.0e-12) const {
+
+        //  Eigenvectors are equal if they are equal up to their sign.
+        return (Self::isApprox(other, tolerance) || Self::isApprox(-other, tolerance));
+    }
+
+
+    /**
+     * Check if two sets of eigenvectors are equal within a given tolerance.
+     * 
+     *  @param eigenvectors1        The first set of eigenvectors.
+     *  @param eigenvectors2        The second set of eigenvectors.
+     *  @param tolerance            The tolerance for comparison.
+     *
+     *  @return If two sets of eigenvectors are equal within a given tolerance.
+     */
+    template <typename Z = bool>  // enable_if must have Z inside
+    enable_if_t<Self::is_matrix, Z> hasEqualSetsOfEigenvectorsAs(const Matrix<Scalar, Dynamic, Dynamic>& other, double tolerance = 1.0e-12) const {
+
+        // Check if the dimensions of the eigenvectors are equal.
+        if (Self::cols() != other.cols()) {
+            throw std::invalid_argument("hasEqualSetsOfEigenvectorsAs(MatrixX<double>, MatrixX<double>, double): Cannot compare the two sets of eigenvectors as they have different dimensions.");
+        }
+
+        if (Self::rows() != other.rows()) {
+            throw std::invalid_argument("hasEqualSetsOfEigenvectorsAs(MatrixX<double>, MatrixX<double>, double): Cannot compare the two sets of eigenvectors as they have different dimensions.");
+        }
+
+
+        for (size_t i = 0; i < Self::cols(); i++) {
+            const Matrix<Scalar, Dynamic, 1> eigenvector1 = Self::col(i);
+            const Matrix<Scalar, Dynamic, 1> eigenvector2 = other.col(i);
+
+            if (!eigenvector1.isEqualEigenvectorAs(eigenvector2, tolerance)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+
+    /**
      *  Convert a given row-major vector to a matrix with the given number of rows
      * 
      *  @param v            a vector that is supposed to be in a column-major ordering

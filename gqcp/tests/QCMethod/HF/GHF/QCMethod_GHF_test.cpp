@@ -23,7 +23,6 @@
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/HF/GHF/GHF.hpp"
 #include "QCMethod/HF/GHF/GHFSCFSolver.hpp"
-#include "Utilities/linalg.hpp"
 
 
 /**
