@@ -27,7 +27,9 @@
 #include "Mathematical/Functions/VectorSpaceArithmetic.hpp"
 #include "Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp"
 #include "Operator/SecondQuantized/PureUSQTwoElectronOperatorComponent.hpp"
+#include "Operator/SecondQuantized/RSQTwoElectronOperator.hpp"
 #include "QuantumChemical/DoublySpinResolvedBase.hpp"
+#include "QuantumChemical/spinor_tags.hpp"
 
 
 namespace GQCP {
@@ -60,6 +62,9 @@ public:
 
     // The type of Jacobi rotation that is naturally related to an unrestricted two-electron operator.
     using JacobiRotationType = UJacobiRotation;
+
+    // The spinor tag corresponding to a `USQTwoElectronOperator`.
+    using SpinorTag = UnrestrictedSpinOrbitalTag;
 
 
 public:
@@ -153,6 +158,17 @@ public:
     }
 
 
+    /**
+     *  Construct an `USQTwoElectronOperator` from an `RSQTwoElectronOperator.
+     * 
+     *  @param g_restricted             The restricted two-electron operator that should be converted.
+     */
+    static USQTwoElectronOperator<Scalar, Vectorizer> FromRestricted(const RSQTwoElectronOperator<Scalar, Vectorizer>& g_restricted) {
+
+        return USQTwoElectronOperator<Scalar, Vectorizer> {g_restricted.alphaAlpha(), g_restricted.alphaBeta(), g_restricted.betaAlpha(), g_restricted.betaBeta()};
+    }
+
+
     /*
      *  MARK: Calculations
      */
@@ -205,6 +221,14 @@ public:
             return this->betaBeta().numberOfOrbitals();
         }
     }
+
+
+    /*
+     *  @return The number of orbital related to the alpha-alpha part of the unrestricted two-electron operator.
+     * 
+     *  @note It is advised to only use this API when it is known that all spin-components of the two-electron operator are equal.
+     */
+    size_t numberOfOrbitals() const { return this->alphaAlpha().numberOfOrbitals(); }
 
 
     /*

@@ -24,6 +24,7 @@
 #include "DensityMatrix/SpinResolved1DM.hpp"
 #include "DensityMatrix/SpinResolved2DM.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
+#include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp"
 #include "QuantumChemical/SpinResolvedBase.hpp"
 #include "QuantumChemical/spinor_tags.hpp"
@@ -139,6 +140,17 @@ public:
     }
 
 
+    /**
+     *  Construct an `USQOneElectronOperator` from an `RSQOneElectronOperator.
+     * 
+     *  @param f_restricted             The restricted one-electron operator that should be converted.
+     */
+    static USQOneElectronOperator<Scalar, Vectorizer> FromRestricted(const RSQOneElectronOperator<Scalar, Vectorizer>& f_restricted) {
+
+        return USQOneElectronOperator<Scalar, Vectorizer> {f_restricted.alpha(), f_restricted.beta()};
+    }
+
+
     /*
      *  MARK: Parameter access
      */
@@ -188,13 +200,12 @@ public:
      *  MARK: General information
      */
 
-    /**
-     *  @return The number of alpha- and beta-orbitals.
+    /*
+     *  @return The number of orbital related to the alpha part of the unrestricted one-electron operator.
+     * 
+     *  @note It is advised to only use this API when it is known that all spin-components of the one-electron operator are equal.
      */
-    size_t numberOfOrbitals() const {
-
-        return this->alpha().numberOfOrbitals() + this->beta().numberOfOrbitals();
-    }
+    size_t numberOfOrbitals() const { return this->alpha().numberOfOrbitals(); }
 
 
     /**

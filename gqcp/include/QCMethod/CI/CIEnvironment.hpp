@@ -23,10 +23,6 @@
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/Hubbard.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/SelectedCI.hpp"
 
 
 namespace GQCP {
@@ -34,173 +30,46 @@ namespace CIEnvironment {
 
 
 /**
- *  @param hubbard_hamiltonian              the Hubbard model Hamiltonian
- *  @param onv_basis                        the full, spin-resolved ONV basis
+ *  Create an environment suitable for solving dense CI eigenvalue problems for the given Hamiltonian and ONV basis.
  * 
- *  @return an environment suitable for solving Hubbard-related eigenvalue problems
+ *  @tparam Hamiltonian             The type of Hamiltonian whose eigenproblem is trying to be solved.
+ *  @tparam ONVBasis                The type of ONV basis in which the Hamiltonian should be represented.
+ * 
+ *  @param hamiltonian              A second-quantized Hamiltonian expressed in an orthonormal orbital basis.
+ *  @param onv_basis                An ONV basis that spans a Fock (sub)space in which the Hamiltonian eigenproblem should be solved.
+ * 
+ *  @return An `EigenproblemEnvironment` initialized suitable for solving dense CI eigenvalue problems for the given Hamiltonian and ONV basis.
  */
-// template <typename Scalar>
-// EigenproblemEnvironment Dense(const HubbardHamiltonian<Scalar>& hubbard_hamiltonian, const SpinResolvedONVBasis& onv_basis) {
+template <typename Hamiltonian, typename ONVBasis>
+EigenproblemEnvironment Dense(const Hamiltonian& hamiltonian, const ONVBasis& onv_basis) {
 
-//     const Hubbard hubbard_builder {onv_basis};  // the 'HamiltonianBuilder'
-//     const auto H = hubbard_builder.constructHamiltonian(hubbard_hamiltonian);
-//     return EigenproblemEnvironment::Dense(H);
-// }
+    // Determine the dense matrix representation of the Hamiltonian in the given ONV basis, and supply it to an `EigenproblemEnvironment`.
+    const auto H = onv_basis.evaluateOperatorDense(hamiltonian);
+    return EigenproblemEnvironment::Dense(H);
+}
 
 
 /**
- *  @param sq_hamiltonian               the general, second-quantized representation of the Hamiltonian
- *  @param onv_basis                    the full seniority-zero ONV basis
+ *  Create an environment suitable for solving iterative CI eigenvalue problems for the given Hamiltonian and ONV basis.
  * 
- *  @return an environment suitable for solving DOCI eigenvalue problems
- */
-// template <typename Scalar>
-// EigenproblemEnvironment Dense(const RSQHamiltonian<Scalar>& sq_hamiltonian, const SeniorityZeroONVBasis& onv_basis) {
-
-//     const DOCI doci_builder {onv_basis};  // the 'HamiltonianBuilder'
-//     const auto H = doci_builder.constructHamiltonian(sq_hamiltonian);
-//     return EigenproblemEnvironment::Dense(H);
-// }
-
-
-/**
- *  @param sq_hamiltonian               the general, second-quantized representation of the Hamiltonian
- *  @param onv_basis                    a frozen, spin-resolved ONV basis
+ *  @tparam Hamiltonian             The type of Hamiltonian whose eigenproblem is trying to be solved.
+ *  @tparam ONVBasis                The type of ONV basis in which the Hamiltonian should be represented.
  * 
- *  @return an environment suitable for solving frozen core FCI eigenvalue problems
- */
-// template <typename Scalar>
-// EigenproblemEnvironment Dense(const RSQHamiltonian<Scalar>& sq_hamiltonian, const SpinResolvedFrozenONVBasis& onv_basis) {
-
-//     const FrozenCoreFCI frozen_core_fci_builder {onv_basis};  // the 'HamiltonianBuilder'
-//     const auto H = frozen_core_fci_builder.constructHamiltonian(sq_hamiltonian);
-//     return EigenproblemEnvironment::Dense(H);
-// }
-
-
-/**
- *  @param sq_hamiltonian               the general, second-quantized representation of the Hamiltonian
- *  @param onv_basis                    a spin-resolved selected ONV basis
+ *  @param hamiltonian              A second-quantized Hamiltonian expressed in an orthonormal orbital basis.
+ *  @param onv_basis                An ONV basis that spans a Fock (sub)space in which the Hamiltonian eigenproblem should be solved.
+ *  @param V                        A matrix of initial guess vectors, where each column of the matrix is an initial guess vector.
  * 
- *  @return an environment suitable for solving spin-resolved selected CI eigenvalue problems
+ *  @return An `EigenproblemEnvironment` initialized suitable for solving iterative CI eigenvalue problems for the given Hamiltonian and ONV basis.
  */
-// template <typename Scalar>
-// EigenproblemEnvironment Dense(const RSQHamiltonian<Scalar>& sq_hamiltonian, const SpinResolvedSelectedONVBasis& onv_basis) {
+template <typename Hamiltonian, typename ONVBasis>
+EigenproblemEnvironment Iterative(const Hamiltonian& hamiltonian, const ONVBasis& onv_basis, const MatrixX<double>& V) {
 
-//     const SelectedCI selected_ci_builder {onv_basis};  // the 'HamiltonianBuilder'
-//     const auto H = selected_ci_builder.constructHamiltonian(sq_hamiltonian);
-//     return EigenproblemEnvironment::Dense(H);
-// }
+    // Determine the diagonal of the Hamiltonian matrix representation, and supply a matrix-vector product function to the `EigenproblemEnvironment`.
+    const auto diagonal = onv_basis.evaluateOperatorDiagonal(hamiltonian);
+    const auto matvec_function = [&hamiltonian, &onv_basis](const VectorX<double>& x) { return onv_basis.evaluateOperatorMatrixVectorProduct(hamiltonian, x); };
 
-
-/**
- *  @param sq_hamiltonian               the general, second-quantized representation of the Hamiltonian
- *  @param onv_basis                    the full, spin-resolved ONV basis
- * 
- *  @return an environment suitable for solving spin-resolved FCI eigenvalue problems
- */
-// template <typename Scalar>
-// EigenproblemEnvironment Dense(const RSQHamiltonian<Scalar>& sq_hamiltonian, const SpinResolvedONVBasis& onv_basis) {
-
-//     const FCI fci_builder {onv_basis};  // the 'HamiltonianBuilder'
-//     const auto H = fci_builder.constructHamiltonian(sq_hamiltonian);
-//     return EigenproblemEnvironment::Dense(H);
-// }
-
-
-/**
- *  @param hubbard_hamiltonian              the Hubbard model Hamiltonian
- *  @param onv_basis                        the full, spin-resolved ONV basis
- *  @param V                                a matrix of initial guess vectors (each column of the matrix is an initial guess vector)
- * 
- *  @return an environment suitable for solving Hubbard-related eigenvalue problems
- */
-// template <typename Scalar>
-// EigenproblemEnvironment Iterative(const HubbardHamiltonian<Scalar>& hubbard_hamiltonian, const SpinResolvedONVBasis& onv_basis, const MatrixX<double>& V) {
-
-//     const Hubbard hubbard_builder {onv_basis};  // the 'HamiltonianBuilder'
-
-//     const auto diagonal = hubbard_builder.calculateDiagonal(hubbard_hamiltonian);
-//     const auto matvec_function = [diagonal, hubbard_builder, hubbard_hamiltonian](const VectorX<double>& x) { return hubbard_builder.matrixVectorProduct(hubbard_hamiltonian, x, diagonal); };
-
-//     return EigenproblemEnvironment::Iterative(matvec_function, diagonal, V);
-// }
-
-
-/**
- *  @param sq_hamiltonian               the general, second-quantized representation of the Hamiltonian
- *  @param onv_basis                    the full seniority-zero ONV basis
- *  @param V                            a matrix of initial guess vectors (each column of the matrix is an initial guess vector)
- * 
- *  @return an environment suitable for solving DOCI eigenvalue problems
- */
-// template <typename Scalar>
-// EigenproblemEnvironment Iterative(const RSQHamiltonian<Scalar>& sq_hamiltonian, const SeniorityZeroONVBasis& onv_basis, const MatrixX<double>& V) {
-
-//     const DOCI doci_builder {onv_basis};  // the 'HamiltonianBuilder'
-
-//     const auto diagonal = doci_builder.calculateDiagonal(sq_hamiltonian);
-//     const auto matvec_function = [diagonal, doci_builder, sq_hamiltonian](const VectorX<double>& x) { return doci_builder.matrixVectorProduct(sq_hamiltonian, x, diagonal); };
-
-//     return EigenproblemEnvironment::Iterative(matvec_function, diagonal, V);
-// }
-
-
-/**
- *  @param sq_hamiltonian               the general, second-quantized representation of the Hamiltonian
- *  @param onv_basis                    a frozen, spin-resolved ONV basis
- *  @param V                            a matrix of initial guess vectors (each column of the matrix is an initial guess vector)
- * 
- *  @return an environment suitable for solving frozen core FCI eigenvalue problems
- */
-// template <typename Scalar>
-// EigenproblemEnvironment Iterative(const RSQHamiltonian<Scalar>& sq_hamiltonian, const SpinResolvedFrozenONVBasis& onv_basis, const MatrixX<double>& V) {
-
-//     const FrozenCoreFCI frozen_core_fci_builder {onv_basis};  // the 'HamiltonianBuilder'
-
-//     const auto diagonal = frozen_core_fci_builder.calculateDiagonal(sq_hamiltonian);
-//     const auto matvec_function = [diagonal, frozen_core_fci_builder, sq_hamiltonian](const VectorX<double>& x) { return frozen_core_fci_builder.matrixVectorProduct(sq_hamiltonian, x, diagonal); };
-
-//     return EigenproblemEnvironment::Iterative(matvec_function, diagonal, V);
-// }
-
-
-/**
- *  @param sq_hamiltonian               the general, second-quantized representation of the Hamiltonian
- *  @param onv_basis                    a spin-resolved selected ONV basis
- *  @param V                            a matrix of initial guess vectors (each column of the matrix is an initial guess vector)
- * 
- *  @return an environment suitable for solving spin-resolved selected CI eigenvalue problems
- */
-// template <typename Scalar>
-// EigenproblemEnvironment Iterative(const RSQHamiltonian<Scalar>& sq_hamiltonian, const SpinResolvedSelectedONVBasis& onv_basis, const MatrixX<double>& V) {
-
-//     const SelectedCI selected_ci_builder {onv_basis};  // the 'HamiltonianBuilder'
-
-//     const auto diagonal = selected_ci_builder.calculateDiagonal(sq_hamiltonian);
-//     const auto matvec_function = [diagonal, selected_ci_builder, sq_hamiltonian](const VectorX<double>& x) { return selected_ci_builder.matrixVectorProduct(sq_hamiltonian, x, diagonal); };
-
-//     return EigenproblemEnvironment::Iterative(matvec_function, diagonal, V);
-// }
-
-
-/**
- *  @param sq_hamiltonian               the general, second-quantized representation of the Hamiltonian
- *  @param onv_basis                    the full, spin-resolved ONV basis
- *  @param V                            a matrix of initial guess vectors (each column of the matrix is an initial guess vector)
- * 
- *  @return an environment suitable for solving spin-resolved FCI eigenvalue problems
- */
-// template <typename Scalar>
-// EigenproblemEnvironment Iterative(const RSQHamiltonian<Scalar>& sq_hamiltonian, const SpinResolvedONVBasis& onv_basis, const MatrixX<double>& V) {
-
-//     const FCI fci_builder {onv_basis};  // the 'HamiltonianBuilder'
-
-//     const auto diagonal = fci_builder.calculateDiagonal(sq_hamiltonian);
-//     const auto matvec_function = [diagonal, fci_builder, sq_hamiltonian](const VectorX<double>& x) { return fci_builder.matrixVectorProduct(sq_hamiltonian, x, diagonal); };
-
-//     return EigenproblemEnvironment::Iterative(matvec_function, diagonal, V);
-// }
+    return EigenproblemEnvironment::Iterative(matvec_function, diagonal, V);
+}
 
 
 }  // namespace CIEnvironment
