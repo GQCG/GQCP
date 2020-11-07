@@ -846,7 +846,6 @@ INPUT = "@CMAKE_SOURCE_DIR@/gqcp/include" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Mathematical/Functions" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Mathematical/Grid" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Mathematical/Optimization" \
-        "@CMAKE_SOURCE_DIR@/gqcp/src/Mathematical/Optimization/Eigenproblem" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Mathematical/Optimization/Minimization" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Mathematical/Optimization/NonLinearEquation" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Molecule" \
