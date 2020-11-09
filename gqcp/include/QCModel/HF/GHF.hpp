@@ -100,18 +100,16 @@ public:
         // First, calculate the sum of H_core and F (this saves a contraction).
         const auto Z = H_core + F;
 
-        // Convert the matrices Z and D to an Eigen::Tensor<double, 2> D_tensor, as contractions are only implemented for Tensors.
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_tensor {P.data(), P.rows(), P.cols()};
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> Z_tensor {Z.parameters().data(), P.rows(), P.cols()};
+        // Convert the matrix Z to an GQCP::Tensor<double, 2> Z_tensor.
+        // Einsum is only implemented for a tensor + a matrix, not for 2 matrices.
+        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> Z_t {Z.parameters().data(), P.rows(), P.cols()};
+        Tensor<Scalar, 2> Z_tensor = Tensor<Scalar, 2>(Z_t);
 
-        // Specify the contraction pair.
-        // To calculate the electronic energy, we must perform a double contraction.
+        // To calculate the electronic energy, we must perform a double contraction (with prefactor 0.5).
         //      0.5 D(mu nu) Z(mu nu)
         // See knowdes: https://gqcg-res.github.io/knowdes/general-hartree-fock-theory.html
-        Eigen::array<Eigen::IndexPair<int>, 2> contraction_pair = {Eigen::IndexPair<int>(0, 0), Eigen::IndexPair<int>(1, 1)};
 
-        // Calculate the double contraction (with prefactor 0.5).
-        Tensor<Scalar, 0> contraction = 0.5 * P_tensor.contract(Z_tensor, contraction_pair);
+        Tensor<Scalar, 0> contraction = 0.5 * Z_tensor.template einsum<2>("ij, ij ->", P);
 
         // As the double contraction of two matrices is a scalar (a tensor of rank 0), we should access the value as (0).
         return contraction(0);

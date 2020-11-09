@@ -143,17 +143,14 @@ public:
         // First, calculate the sum of H_core and F (this saves a contraction).
         const auto Z_sigma = H_core_sigma + F_sigma;
 
-        // Convert the matrices Z and P to a tensor, as contractions are only implemented for tensors.
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_sigma_tensor {P_sigma.data(), P_sigma.rows(), P_sigma.cols()};
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> Z_sigma_tensor {Z_sigma.parameters().data(), Z_sigma.parameters().rows(), Z_sigma.parameters().cols()};
+        // Convert the matrix Z to a GQCP::Tensor<double, 2> Z_tensor.
+        // Einsum is only implemented for a tensor + a matrix, not for 2 matrices.
+        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> Z_sigma_t {Z_sigma.parameters().data(), Z_sigma.parameters().rows(), Z_sigma.parameters().cols()};
+        Tensor<Scalar, 2> Z_sigma_tensor = Tensor<Scalar, 2>(Z_sigma_t);
 
-        // Specify the contraction pair
-        // To calculate the electronic energy, we must perform a double contraction.
+        // To calculate the electronic energy, we must perform a double contraction (with prefactor 0.5).
         //      0.5 P_sigma(mu nu) P_sigma(mu nu)
-        Eigen::array<Eigen::IndexPair<int>, 2> contraction_pair = {Eigen::IndexPair<int>(0, 0), Eigen::IndexPair<int>(1, 1)};
-
-        // Calculate the double contraction (with prefactor 0.5).
-        Tensor<Scalar, 0> contraction = 0.5 * P_sigma_tensor.contract(Z_sigma_tensor, contraction_pair);
+        Tensor<Scalar, 0> contraction = 0.5 * Z_sigma_tensor.template einsum<2>("ij,ji->", P_sigma);
 
         // As the double contraction of two rank-2 tensors is a scalar (a tensor of rank 0), we should access the value as (0).
         return contraction(0);

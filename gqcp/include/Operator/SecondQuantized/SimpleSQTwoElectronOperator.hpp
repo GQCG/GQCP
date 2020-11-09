@@ -114,12 +114,9 @@ public:
 
         for (size_t i = 0; i < this->numberOfComponents(); i++) {
 
-            // Specify the contractions for the relevant contraction of the two-electron integrals/parameters/matrix elements and the 2-DM:
+            // Perform the actual contraction (with prefactor 0.5):
             //      0.5 g(p q r s) d(p q r s)
-            Eigen::array<Eigen::IndexPair<int>, 4> contractions {Eigen::IndexPair<int>(0, 0), Eigen::IndexPair<int>(1, 1), Eigen::IndexPair<int>(2, 2), Eigen::IndexPair<int>(3, 3)};
-
-            // Perform the actual contraction.
-            Eigen::Tensor<Scalar, 0> contraction = 0.5 * parameters[i].contract(d.Eigen(), contractions);
+            Eigen::Tensor<Scalar, 0> contraction = 0.5 * parameters[i].template einsum<4>("pqrs, pqrs->", d);
 
             // As the contraction is a scalar (a tensor of rank 0), we should access using `operator(0)`.
             expectation_values[i] = contraction(0);

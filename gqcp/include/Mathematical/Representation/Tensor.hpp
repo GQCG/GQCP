@@ -349,11 +349,12 @@ public:
     template <int N, int LHSRank = Rank, int RHSRank>
     Tensor<Scalar, LHSRank + RHSRank - 2 * N> einsum(std::string contraction_string, const Tensor<Scalar, RHSRank>& rhs) const {
         // remove unnecessary symbols from string
+        boost::erase_all(contraction_string, " ");  // remove all spaces. This leaves the freedom to use spaces in the input string
         boost::erase_all(contraction_string, ">");
         boost::replace_all(contraction_string, "-", " ");
         boost::replace_all(contraction_string, ",", " ");
 
-        // split the stringstream in the 3 necessary components
+        // split the stringstream in the necessary components, 3 in most cases.
         std::vector<std::string> segment_list;
         boost::split(segment_list, contraction_string, boost::is_any_of(" "));
 
