@@ -19,7 +19,7 @@
 
 
 #include "Basis/Integrals/IntegralCalculator.hpp"
-#include "Basis/MullikenPartitioning.hpp"
+#include "Basis/MullikenPartitioning/RMullikenPartitioning.hpp"
 #include "Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp"
 #include "Basis/SpinorBasis/Spinor.hpp"
 #include "Basis/Transformations/JacobiRotation.hpp"
@@ -236,9 +236,9 @@ public:
      * 
      *  @param selector             A function that returns true for basis functions that should be included the Mulliken partitioning.
      * 
-     *  @return A `MullikenPartitioning` for the AOs selected by the supplied selector function.
+     *  @return A `RMullikenPartitioning` for the AOs selected by the supplied selector function.
      */
-    MullikenPartitioning<ExpansionScalar> mullikenPartitioning(const std::function<bool(const BasisFunction&)>& selector) const {
+    RMullikenPartitioning<ExpansionScalar> mullikenPartitioning(const std::function<bool(const BasisFunction&)>& selector) const {
 
         const auto basis_functions = this->scalarBasis().basisFunctions();
 
@@ -252,7 +252,7 @@ public:
             }
         }
 
-        return MullikenPartitioning<ExpansionScalar> {ao_indices, this->coefficientMatrix()};
+        return RMullikenPartitioning<ExpansionScalar> {ao_indices, this->coefficientMatrix()};
     }
 
 
@@ -261,9 +261,9 @@ public:
      * 
      *  @param selector             A function that returns true for shells that should be included the Mulliken partitioning.
      * 
-     *  @return A `MullikenPartitioning` for the AOs selected by the supplied selector function.
+     *  @return A `RMullikenPartitioning` for the AOs selected by the supplied selector function.
      */
-    MullikenPartitioning<ExpansionScalar> mullikenPartitioning(const std::function<bool(const Shell&)>& selector) const {
+    RMullikenPartitioning<ExpansionScalar> mullikenPartitioning(const std::function<bool(const Shell&)>& selector) const {
 
         const auto shells = this->scalarBasis().shellSet().asVector();
 
@@ -286,7 +286,7 @@ public:
             }
         }
 
-        return MullikenPartitioning<ExpansionScalar> {ao_indices, this->coefficientMatrix()};
+        return RMullikenPartitioning<ExpansionScalar> {ao_indices, this->coefficientMatrix()};
     }
 };
 

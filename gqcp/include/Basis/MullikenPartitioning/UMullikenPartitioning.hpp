@@ -18,8 +18,9 @@
 #pragma once
 
 
-#include "Basis/Transformations/RTransformationMatrix.hpp"
+#include "Basis/Transformations/UTransformationMatrix.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
+#include "QuantumChemical/SpinResolved.hpp"
 
 #include <vector>
 
@@ -28,12 +29,12 @@ namespace GQCP {
 
 
 /**
- *  A Mulliken-based partitioning of an AO basis.
+ *  An unrestricted Mulliken-based partitioning of an AO basis.
  * 
  *  @param _Scalar          The scalar type used to represent an element of the Mulliken projection matrix: real or complex.
  */
 template <typename _Scalar>
-class MullikenPartitioning {
+class UMullikenPartitioning {
 public:
     // The scalar type used to represent an element of the Mulliken projection matrix: real or complex.
     using Scalar = _Scalar;
@@ -43,8 +44,8 @@ private:
     // A set of indices that correspond to the AOs that are included in the Mulliken-partitioning of an AO basis.
     std::vector<size_t> m_indices;
 
-    // The transformation that relates the atomic spin-orbitals to the set of current spin-orbitals.
-    RTransformationMatrix<Scalar> C;
+    // The transformation that relates the atomic spin-orbitals to the set of current unrestricted spin-orbitals.
+    UTransformationMatrix<Scalar> C;
 
 
 public:
@@ -53,13 +54,13 @@ public:
      */
 
     /**
-     *  Create a Mulliken partitioning from a set of included AO indices.
+     *  Create an unrestricted Mulliken partitioning from a set of included AO indices.
      * 
-     *  @param indices          A set of indices that correspond to the AOs that are included in the Mulliken-partitioning of an AO basis.
-     *  @param C                The transformation that relates the atomic spin-orbitals to the set of current spin-orbitals.
+     *  @param indices          A set of indices that correspond to the AOs that are included in the Mulliken-partitioning of an AO basis. They are equal for the alpha- and beta-underlying scalar bases.
+     *  @param C                The transformation that relates the atomic spin-orbitals to the set of current unrestricted spin-orbitals.
      */
-    MullikenPartitioning(const std::vector<size_t>& m_indices, const RTransformationMatrix<Scalar>& C) :
-        m_indices {m_indices},
+    UMullikenPartitioning(const std::vector<size_t>& indices, const UTransformationMatrix<Scalar>& C) :
+        m_indices {indices},
         C {C} {}
 
 
@@ -74,24 +75,30 @@ public:
 
 
     /**
-     *  @return The number of orbitals that this Mulliken partitioning is related to.
-     */
-    size_t numberOfOrbitals() const { return this->C.numberOfOrbitals(); }
-
-
-    /**
      *  MARK: Partitioning and projecting
      */
 
     /**
-     *  @return The partition matrix 'P_A' related to this Mulliken-partitioning.
+     *  @return The partition matrices 'P_A' (alpha and beta) related to this Mulliken partitioning.
      */
-    SquareMatrix<Scalar> partitionMatrix() const { return SquareMatrix<Scalar>::PartitionMatrix(this->indices(), this->numberOfOrbitals()); }
+    SpinResolved<SquareMatrix<Scalar>> partitionMatrix() const {
+
+        const auto P = SquareMatrix<Scalar>::PartitionMatrix(this->indices(), this->indices().size());
+        return SpinResolved<SquareMatrix<Scalar>>::FromEqual(P);
+    }
+
 
     /**
      *  @return The Mulliken projection matrix defined as C^{-1} P_A C, where C is the transformation matrix and P_A is the partition matrix.
      */
-    RTransformationMatrix<double> projectionMatrix() const { return this->C.inverse() * this->partitionMatrix() * this->C; }
+    UTransformationMatrix<Scalar> projectionMatrix() const {
+
+        const UTransformationMatrixComponent<Scalar> P_alpha = this->C.alpha().inverse() * this->partitionMatrix().alpha() * this->C.alpha();
+
+        const UTransformationMatrixComponent<Scalar> P_beta = this->C.beta().inverse() * this->partitionMatrix().beta() * this->C.beta();
+
+        UTransformationMatrix<Scalar> {P_alpha, P_beta};
+    }
 };
 
 

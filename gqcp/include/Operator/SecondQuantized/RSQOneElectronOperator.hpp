@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/MullikenPartitioning.hpp"
+#include "Basis/MullikenPartitioning/RMullikenPartitioning.hpp"
 #include "Basis/Transformations/RTransformationMatrix.hpp"
 #include "DensityMatrix/Orbital1DM.hpp"
 #include "DensityMatrix/Orbital2DM.hpp"
@@ -96,7 +96,7 @@ public:
      * 
      *  @return A one-electron operator whose integrals/parameters/matrix elements correspond to the Mulliken-partitioning of this one-electron operator.
      */
-    RSQOneElectronOperator<Scalar, Vectorizer> partitioned(const MullikenPartitioning<Scalar>& mulliken_partitioning) const { return 0.5 * this->oneIndexTransformed(mulliken_partitioning.projectionMatrix()); }
+    RSQOneElectronOperator<Scalar, Vectorizer> partitioned(const RMullikenPartitioning<Scalar>& mulliken_partitioning) const { return 0.5 * this->oneIndexTransformed(mulliken_partitioning.projectionMatrix()); }
 
 };  // namespace GQCP
 
