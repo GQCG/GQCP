@@ -351,15 +351,16 @@ public:
         std::vector<std::string> segment_list;
         boost::split(segment_list, contraction_string, boost::is_any_of(" "));
 
+        // The following code can be used to calculate template parameter `N` at runtime. At the moment however, this is not used.
         // Determine number of axes to contract over
-        std::vector<char> segment_1(segment_list[0].begin(), segment_list[0].end());
-        std::vector<char> segment_2(segment_list[1].begin(), segment_list[1].end());
-        std::vector<char> intersection;
+        // std::vector<char> segment_1(segment_list[0].begin(), segment_list[0].end());
+        // std::vector<char> segment_2(segment_list[1].begin(), segment_list[1].end());
+        // std::vector<char> intersection;
 
-        std::set_intersection(segment_1.begin(), segment_1.end(),
-                              segment_2.begin(), segment_2.end(), std::back_inserter(intersection));
+        // std::set_intersection(segment_1.begin(), segment_1.end(),
+        //                       segment_2.begin(), segment_2.end(), std::back_inserter(intersection));
 
-        const int Z = intersection.size();
+        // const int Z = intersection.size();
 
         return this->einsum<N>(rhs, segment_list[0], segment_list[1], segment_list[2]);
     }
