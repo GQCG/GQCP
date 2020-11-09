@@ -230,22 +230,19 @@ public:
      */
     static ScalarUSQOneElectronOperator<Scalar> calculateScalarBasisDirectMatrix(const SpinResolved1DM<Scalar>& P, const RSQHamiltonian<Scalar>& sq_hamiltonian) {
 
-        // To perform the contraction, we will first have to convert the density matrices into tensors (since contractions are only implemented for tensors).
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_alpha_tensor {P.alpha().data(), P.alpha().rows(), P.alpha().cols()};
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_beta_tensor {P.beta().data(), P.beta().rows(), P.beta().cols()};
+        // Get the two-electron parameters
+        const auto& g = sq_hamiltonian.twoElectron().parameters();
 
         // Specify the contraction pairs for the direct contractions:
         //      (mu nu|rho lambda) P(rho lambda)
-        Eigen::array<Eigen::IndexPair<int>, 2> direct_contraction_pair = {Eigen::IndexPair<int>(2, 0), Eigen::IndexPair<int>(3, 1)};
+        Tensor<Scalar, 2> J_alpha_tensor = g.template einsum<2>("ijkl,kl->ij", P.alpha());
+        Tensor<Scalar, 2> J_beta_tensor = g.template einsum<2>("ijkl,kl->ij", P.beta());
 
-        // Do the actual contractions, and convert the given tensor back to a matrix.
-        const auto& g = sq_hamiltonian.twoElectron().parameters();
-        Tensor<Scalar, 2> J_alpha_tensor = g.contract(P_alpha_tensor, direct_contraction_pair);
-        Tensor<Scalar, 2> J_beta_tensor = g.contract(P_beta_tensor, direct_contraction_pair);
-
+        // Calculate the total J tensor
         Tensor<Scalar, 2> J_tensor = J_alpha_tensor.Eigen() + J_beta_tensor.Eigen();
 
-        Eigen::Map<Eigen::MatrixXd> J {J_tensor.data(), J_tensor.dimension(0), J_tensor.dimension(1)};
+        // Convert the given tensor back to a matrix.
+        auto J = J_tensor.toMatrix(J_tensor.dimension(0), J_tensor.dimension(1));
         return ScalarUSQOneElectronOperator<Scalar> {J, J};
     }
 
@@ -260,22 +257,17 @@ public:
      */
     static ScalarUSQOneElectronOperator<Scalar> calculateScalarBasisExchangeMatrix(const SpinResolved1DM<Scalar>& P, const RSQHamiltonian<Scalar>& sq_hamiltonian) {
 
-        // To perform the contraction, we will first have to convert the density matrix into a tensor (since contractions are only implemented for tensors).
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_alpha_tensor {P.alpha().data(), P.alpha().rows(), P.alpha().cols()};
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_beta_tensor {P.beta().data(), P.beta().rows(), P.beta().cols()};
+        // Get the two-electron parameters
+        const auto& g = sq_hamiltonian.twoElectron().parameters();
 
         // Specify the contraction pairs for the exchange contraction:
         //      (mu rho|lambda nu) P(lambda rho)
-        Eigen::array<Eigen::IndexPair<int>, 2> exchange_contraction_pair = {Eigen::IndexPair<int>(1, 1), Eigen::IndexPair<int>(2, 0)};
+        Tensor<Scalar, 2> K_alpha_tensor = g.template einsum<2>("ijkl,kj->il", P.alpha());
+        Tensor<Scalar, 2> K_beta_tensor = g.template einsum<2>("ijkl,kj->il", P.beta());
 
-        // Do the actual contraction, and convert the given tensor back to a matrix.
-        const auto& g = sq_hamiltonian.twoElectron().parameters();
-        Tensor<Scalar, 2> K_alpha_tensor = g.contract(P_alpha_tensor, exchange_contraction_pair);
-        Tensor<Scalar, 2> K_beta_tensor = g.contract(P_beta_tensor, exchange_contraction_pair);
-
-
-        Eigen::Map<Eigen::MatrixXd> K_alpha {K_alpha_tensor.data(), K_alpha_tensor.dimension(0), K_alpha_tensor.dimension(1)};
-        Eigen::Map<Eigen::MatrixXd> K_beta {K_beta_tensor.data(), K_beta_tensor.dimension(0), K_beta_tensor.dimension(1)};
+        // Convert the given tensor back to a matrix.
+        auto K_alpha = K_alpha_tensor.toMatrix(K_alpha_tensor.dimension(0), K_alpha_tensor.dimension(1));
+        auto K_beta = K_beta_tensor.toMatrix(K_beta_tensor.dimension(0), K_beta_tensor.dimension(1));
 
         return ScalarUSQOneElectronOperator<Scalar> {K_alpha, K_beta};
     }

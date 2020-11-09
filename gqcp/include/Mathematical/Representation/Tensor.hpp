@@ -336,7 +336,7 @@ public:
      *  @return The result of the tensor contraction.
      */
     template <int N, int LHSRank = Rank, int RHSRank>
-    Tensor<Scalar, LHSRank + RHSRank - 2 * N> einsum(std::string contraction_string, const Tensor<Scalar, RHSRank>& rhs) {
+    Tensor<Scalar, LHSRank + RHSRank - 2 * N> einsum(std::string contraction_string, const Tensor<Scalar, RHSRank>& rhs) const {
         // remove unnecessary symbols from string
         boost::erase_all(contraction_string, ">");
         boost::replace_all(contraction_string, "-", " ");
@@ -373,7 +373,7 @@ public:
      *  @return The result of the tensor contraction.
      */
     template <int N, int LHSRank = Rank>
-    Tensor<Scalar, LHSRank + 2 - 2 * N> einsum(std::string contraction_string, const Matrix<Scalar> rhs) {
+    Tensor<Scalar, LHSRank + 2 - 2 * N> einsum(std::string contraction_string, const Matrix<Scalar> rhs) const {
         // convert matrix to rank 2 tensor
         const auto tensor_from_matrix = Tensor<Scalar, 2>(Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>>(rhs.data(), rhs.rows(), rhs.cols()));
         return this->einsum<N>(contraction_string, tensor_from_matrix);

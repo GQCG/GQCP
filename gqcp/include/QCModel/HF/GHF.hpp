@@ -155,22 +155,20 @@ public:
         G1DM<Scalar> P_bb = G1DM<Scalar>::Zero(M);
         P_bb.bottomRightCorner(M / 2, M / 2) = P.bottomRightCorner(M / 2, M / 2);
 
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_aa_tensor {P_aa.data(), P_aa.rows(), P_aa.cols()};
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_bb_tensor {P_bb.data(), P_bb.rows(), P_bb.cols()};
-
+        // Get the two-electron parameters
+        const auto& g = sq_hamiltonian.twoElectron().parameters();
 
         // Specify the contraction pairs for the direct contractions:
         //      P(rho lambda) (mu nu|rho lambda)
         // See knowdes: https://gqcg-res.github.io/knowdes/derivation-of-the-ghf-scf-equations-through-lagrange-multipliers.html
-        Eigen::array<Eigen::IndexPair<int>, 2> direct_contraction_pair = {Eigen::IndexPair<int>(0, 2), Eigen::IndexPair<int>(1, 3)};
+        Tensor<Scalar, 2> Ja_tensor = g.template einsum<2>("ijkl,kl->ij", P_aa);
+        Tensor<Scalar, 2> Jb_tensor = g.template einsum<2>("ijkl,kl->ij", P_bb);
 
-        // Do the actual contractions, and convert the given tensor back to a matrix.
-        const auto& g = sq_hamiltonian.twoElectron().parameters();
-        Tensor<Scalar, 2> J_tensor = P_aa_tensor.contract(g.Eigen(), direct_contraction_pair) + P_bb_tensor.contract(g.Eigen(), direct_contraction_pair);
+        // Convert the given tensors back to a matrix.
+        auto Ja = Ja_tensor.toMatrix(Ja_tensor.dimension(0), Ja_tensor.dimension(1));
+        auto Jb = Jb_tensor.toMatrix(Jb_tensor.dimension(0), Jb_tensor.dimension(1));
 
-        Eigen::Map<Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>> J {J_tensor.data(), J_tensor.dimension(0), J_tensor.dimension(1)};
-
-        return ScalarGSQOneElectronOperator<Scalar>(J);
+        return ScalarGSQOneElectronOperator<Scalar>(Ja + Jb);
     }
 
 
@@ -200,30 +198,21 @@ public:
         G1DM<Scalar> P_bb = G1DM<Scalar>::Zero(M);
         P_bb.bottomRightCorner(M / 2, M / 2) = P.bottomRightCorner(M / 2, M / 2);
 
-
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_aa_tensor {P_aa.data(), P_aa.rows(), P_aa.cols()};
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_ab_tensor {P_ab.data(), P_ab.rows(), P_ab.cols()};
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_ba_tensor {P_ba.data(), P_ba.rows(), P_ba.cols()};
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_bb_tensor {P_bb.data(), P_bb.rows(), P_bb.cols()};
-
+        // Get the two-electron parameters
+        const auto& g = sq_hamiltonian.twoElectron().parameters();
 
         // Specify the contraction pairs for the exchange contractions:
         //      P(lambda rho) (mu rho|lambda nu)
-        Eigen::array<Eigen::IndexPair<int>, 2> exchange_contraction_pair = {Eigen::IndexPair<int>(0, 2), Eigen::IndexPair<int>(1, 1)};
+        Tensor<Scalar, 2> K_aa_tensor = g.template einsum<2>("ijkl,kj->il", P_aa);
+        Tensor<Scalar, 2> K_ab_tensor = g.template einsum<2>("ijkl,kj->il", P_ba);
+        Tensor<Scalar, 2> K_ba_tensor = g.template einsum<2>("ijkl,kj->il", P_ab);
+        Tensor<Scalar, 2> K_bb_tensor = g.template einsum<2>("ijkl,kj->il", P_bb);
 
-        // Do the actual contractions, and convert the given tensor back to a matrix.
-        const auto& g = sq_hamiltonian.twoElectron().parameters();
-
-        Tensor<Scalar, 2> K_aa_tensor = P_aa_tensor.contract(g.Eigen(), exchange_contraction_pair);
-        Tensor<Scalar, 2> K_ab_tensor = P_ba_tensor.contract(g.Eigen(), exchange_contraction_pair);
-        Tensor<Scalar, 2> K_ba_tensor = P_ab_tensor.contract(g.Eigen(), exchange_contraction_pair);
-        Tensor<Scalar, 2> K_bb_tensor = P_bb_tensor.contract(g.Eigen(), exchange_contraction_pair);
-
-        Eigen::Map<Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>> K_aa {K_aa_tensor.data(), K_aa_tensor.dimension(0), K_aa_tensor.dimension(1)};
-        Eigen::Map<Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>> K_ab {K_ab_tensor.data(), K_ab_tensor.dimension(0), K_ab_tensor.dimension(1)};
-        Eigen::Map<Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>> K_ba {K_ba_tensor.data(), K_ba_tensor.dimension(0), K_ba_tensor.dimension(1)};
-        Eigen::Map<Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>> K_bb {K_bb_tensor.data(), K_bb_tensor.dimension(0), K_bb_tensor.dimension(1)};
-
+        // Convert the given tensors back to a matrix.
+        auto K_aa = K_aa_tensor.toMatrix(K_aa_tensor.dimension(0), K_aa_tensor.dimension(1));
+        auto K_ab = K_ab_tensor.toMatrix(K_ab_tensor.dimension(0), K_ab_tensor.dimension(1));
+        auto K_ba = K_ba_tensor.toMatrix(K_ba_tensor.dimension(0), K_ba_tensor.dimension(1));
+        auto K_bb = K_bb_tensor.toMatrix(K_bb_tensor.dimension(0), K_bb_tensor.dimension(1));
 
         // Each of the spin-blocks are calculated separately (while the other blocks are zero), so the total exchange matrix can be calculated as the sum of each part.
         return ScalarGSQOneElectronOperator<Scalar>(K_aa + K_ab + K_ba + K_bb);

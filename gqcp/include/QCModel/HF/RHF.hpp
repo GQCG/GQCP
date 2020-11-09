@@ -243,24 +243,18 @@ public:
      */
     static ScalarRSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(const Orbital1DM<Scalar>& D, const RSQHamiltonian<Scalar>& sq_hamiltonian) {
 
-        // To perform the contraction, we will first have to convert the MatrixX<double> D to an Eigen::Tensor<const double, 2> D_tensor, as contractions are only implemented for Tensors
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> D_tensor {D.data(), D.rows(), D.cols()};
+        // get the two-electron parameters
+        const auto& g = sq_hamiltonian.twoElectron().parameters();
 
-        // Specify the contraction pairs
         // To calculate G, we must perform two double contractions
         //      1. (mu nu|rho lambda) P(lambda rho)
-        Eigen::array<Eigen::IndexPair<int>, 2> direct_contraction_pair = {Eigen::IndexPair<int>(3, 0), Eigen::IndexPair<int>(2, 1)};
+        Tensor<Scalar, 2> direct_contraction = g.template einsum<2>("ijkl,lk->ij", D);
         //      2. -0.5 (mu lambda|rho nu) P(lambda rho)
-        Eigen::array<Eigen::IndexPair<int>, 2> exchange_contraction_pair = {Eigen::IndexPair<int>(1, 0), Eigen::IndexPair<int>(2, 1)};
+        Tensor<Scalar, 2> exchange_contraction = -0.5 * g.template einsum<2>("ilkj,lk->ij", D);
 
-        // Calculate both contractions (and incorporate prefactors)
-        const auto& g = sq_hamiltonian.twoElectron().parameters();
-        Tensor<Scalar, 2> direct_contraction = g.contract(D_tensor, direct_contraction_pair);
-        Tensor<Scalar, 2> exchange_contraction = -0.5 * g.contract(D_tensor, exchange_contraction_pair);
-
-        // The previous contractions are Tensor<Scalar, 2> instances. In order to calculate the total G matrix, we will convert them back into MatrixX<double>
-        Eigen::Map<Eigen::MatrixXd> G1 {direct_contraction.data(), direct_contraction.dimension(0), direct_contraction.dimension(1)};
-        Eigen::Map<Eigen::MatrixXd> G2 {exchange_contraction.data(), exchange_contraction.dimension(0), exchange_contraction.dimension(1)};
+        // The previous contractions are Tensor<Scalar, 2> instances. In order to calculate the total G matrix, we will convert them back into GQCP::Matrix<Scalar>
+        auto G1 = direct_contraction.toMatrix(direct_contraction.dimension(0), direct_contraction.dimension(1));
+        auto G2 = exchange_contraction.toMatrix(exchange_contraction.dimension(0), exchange_contraction.dimension(1));
 
         return ScalarRSQOneElectronOperator<Scalar> {sq_hamiltonian.core().parameters() + G1 + G2};
     }
