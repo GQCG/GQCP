@@ -56,9 +56,11 @@ public:
      *  Create a Mulliken partitioning from a set of included AO indices.
      * 
      *  @param indices          A set of indices that correspond to the AOs that are included in the Mulliken-partitioning of an AO basis.
+     *  @param C                The transformation that relates the atomic spin-orbitals to the set of current spin-orbitals.
      */
-    MullikenPartitioning(const std::vector<size_t>& m_indices) :
-        m_indices {m_indices} {}
+    MullikenPartitioning(const std::vector<size_t>& m_indices, const RTransformationMatrix<Scalar>& C) :
+        m_indices {m_indices},
+        C {C} {}
 
 
     /**
