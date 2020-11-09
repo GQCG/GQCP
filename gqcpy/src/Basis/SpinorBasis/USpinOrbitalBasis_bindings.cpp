@@ -60,15 +60,6 @@ void bindUSpinOrbitalBasis(py::module& module) {
             "Return the atomic spin-z operator for a given set of AO indices.")
 
         .def(
-            "calculateMullikenOperator",
-            [](GQCP::USpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis, const std::vector<size_t>& ao_list, const GQCP::Spin sigma) {
-                return spinor_basis.calculateMullikenOperator(ao_list, sigma);
-            },
-            py::arg("ao_list"),
-            py::arg("sigma"),
-            "Return the Mulliken operator for a set of given AO indices.")
-
-        .def(
             "coefficientMatrix",
             [](const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Spin sigma) {
                 return spinor_basis.coefficientMatrix(sigma);

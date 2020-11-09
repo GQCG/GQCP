@@ -21,7 +21,6 @@
 
 #include "Basis/Transformations/transform.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "Processing/Properties/expectation_values.hpp"
 #include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF/RHF.hpp"
 #include "QCMethod/HF/RHF/RHFSCFSolver.hpp"
@@ -29,24 +28,15 @@
 #include <random>
 
 
+/**
+ *  Check constrained RHF Mulliken populations, based on the reference article: "Self-consistent methods constrained to a fixed number of particles in a given fragment and its relation to the electronegativity equalization method", by Andrés Cedillo, Dimitri Van Neck, Patrick Bultinck. (DOI: 10.1007/s00214-012-1227-6).
+ * 
+ *  We still use a lenient threshold because we are not certain of exact the geometry in the paper.
+ */
 BOOST_AUTO_TEST_CASE(constrained_CO_test) {
 
-    // Create a Molecule and the corresponding HamiltonianParameters
-    auto CO = GQCP::Molecule::ReadXYZ("data/CO_mulliken.xyz");
-    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {CO, "STO-3G"};
-    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, CO);  // in an AO basis
-
-    size_t K = sq_hamiltonian.numberOfOrbitals();
-    size_t N = CO.numberOfElectrons();
-
-    GQCP::Orbital1DM<double> D = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1DM(K, N);
-
-    // Initialize the reference data from:
-    // "Self-consistent methods constrained to a fixed number of particles in a given fragment and its relation to the electronegativity equalization method"
-    // Authors: Andrés Cedillo, Dimitri Van Neck, Patrick Bultinck
-    // DOI 10.1007/s00214-012-1227-6
-    Eigen::Matrix<double, 21, 3> CO_data;
-    //          lambda  charge  energy
+    // The reference data from the article (see below). The first column represents the multiplier, the second column the Mulliken charge on 'C', the third column the constrained RHF energy.
+    GQCP::Matrix<double, 21, 3> CO_data;
     // clang-format off
     CO_data <<  -1.0,  1.73, -110.530475,
                 -0.9,  1.62, -110.634766,
@@ -71,44 +61,56 @@ BOOST_AUTO_TEST_CASE(constrained_CO_test) {
                  1.0, -1.77, -110.242423;
     // clang-format on
 
-    // Pick a set of AO's (GTOs of the carbon atom)
-    std::vector<size_t> gto_list {0, 1, 2, 3, 4};
 
-    // Iterate over multipliers
+    // Prepare the molecular Hamiltonian in the AO basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/CO_mulliken.xyz");
+    const auto N = molecule.numberOfElectrons();
+
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
+    const auto S = spin_orbital_basis.overlap();
+
+    const auto hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);  // In the AO basis.
+    const auto K = hamiltonian.numberOfOrbitals();
+
+
+    // Prepare the Mulliken partitioning on 'C'.
+    using Shell = GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>::Shell;
+    const auto mulliken_partitioning = spin_orbital_basis.mullikenPartitioning(
+        [](const Shell& shell) {
+            return shell.nucleus().element() == "C";
+        });
+
+
+    // Iterate over the Lagrange multipliers and check if we can reproduce all values.
     size_t index = 0;
     for (double lambda = -1.0; lambda < 1.01; lambda += 0.1) {
 
-        // Calculate the Mulliken operator
-        auto mulliken_operator = spinor_basis.calculateMullikenOperator(gto_list);  // in AO basis
+        // Do the constrained RHF calculation by adding (-lambda * Mulliken) to the molecular Hamiltonian.
+        auto mulliken_op = S.partitioned(mulliken_partitioning);
+        const auto constrained_hamiltonian = hamiltonian - lambda * mulliken_op;  // In the AO basis.
 
-        // Constrain the original Hamiltonian
-        auto constrained_sq_hamiltonian = sq_hamiltonian - lambda * mulliken_operator;  // in AO basis
-
-        // Create a DIIS RHF SCF solver and solve the SCF equations
-        auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(CO.numberOfElectrons(), constrained_sq_hamiltonian, spinor_basis.overlap().parameters());
+        // Create a DIIS RHF SCF solver and solve the SCF equations.
+        auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), constrained_hamiltonian, S.parameters());
         auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
-        const GQCP::DiagonalRHFFockMatrixObjective<double> objective {constrained_sq_hamiltonian};
+        const GQCP::DiagonalRHFFockMatrixObjective<double> objective {constrained_hamiltonian};
+
         const auto rhf_qc_structure = GQCP::QCMethod::RHF<double>().optimize(objective, diis_rhf_scf_solver, rhf_environment);
         const auto rhf_parameters = rhf_qc_structure.groundStateParameters();
 
-        // Transform only the mulliken operator to the basis in which the RHF energies are calculated
-        mulliken_operator.transform(rhf_parameters.coefficientMatrix());
+        // Calculate the Mulliken population through the expectation value of the Mulliken operator. We can perform this calculation in the AO basis.
+        const auto D_RHF = rhf_parameters.calculateScalarBasis1DM();
+        const double mulliken_population = mulliken_op.calculateExpectationValue(D_RHF);  // A scalar-StorageArray can be implicitly converted into the underlying scalar.
 
-        // Retrieve the RHF "energy"
-        double expectation_value = rhf_qc_structure.groundStateEnergy();
 
-        // Retrieve the expectation value of the Mulliken operator (aka the population)
-        double mulliken_population = mulliken_operator.calculateExpectationValue(D);  // A scalar-StorageArray can be implicitly converted into the underlying scalar.
+        // Calculate the total internuclear energy as a contribution from three sources, and check with the reference value.
+        const double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(molecule).value();
+        double total_energy = rhf_qc_structure.groundStateEnergy() + lambda * mulliken_population + internuclear_repulsion_energy;
 
-        // Retrieve the total energy by adding the lambda times the expectation value of the constraining operator
-        const double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(CO).value();
-        double total_energy = expectation_value + lambda * mulliken_population + internuclear_repulsion_energy;
-
-        // Mulliken charge on the carbon atom
-        double C_charge = 6 - mulliken_population;
-
-        // The lenient threshold is because of we are not certain of exact the geometry in the paper
         BOOST_CHECK(std::abs(total_energy - CO_data(index, 2)) < 1.0e-4);
+
+
+        // Calculate the Mulliken charge on 'C' and check with the reference value.
+        const double C_charge = 6 - mulliken_population;
         BOOST_CHECK(std::abs(C_charge - CO_data(index, 1)) < 1.0e-2);
 
         index++;
@@ -116,35 +118,13 @@ BOOST_AUTO_TEST_CASE(constrained_CO_test) {
 }
 
 
-BOOST_AUTO_TEST_CASE(constrained_CO_test_random_transformation) {
-    // Repeat the same test but perform a random transformation
-    // The Hartree-Fock procedure should be invariant under random transformations
-    // This tests if our Mulliken operator remains correct if we transform before the procedure.
+/**
+ *  Repeat the previous test, but use a random non-orthogonal basis. It'll test the correct implementation of the Mulliken operator (aka the Mulliken-partitioned number operator).
+ */
+BOOST_AUTO_TEST_CASE(constrained_CO_test_random_AO_basis) {
 
-    // Create a Molecule and the corresponding HamiltonianParameters
-    auto CO = GQCP::Molecule::ReadXYZ("data/CO_mulliken.xyz");
-    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {CO, "STO-3G"};
-    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, CO);  // in an AO basis
-
-    size_t K = sq_hamiltonian.numberOfOrbitals();
-    size_t N = CO.numberOfElectrons();
-
-    GQCP::TransformationMatrix<double> T = GQCP::TransformationMatrix<double>::Random(K);
-    // set diagonal elements to 1
-    for (int i = 0; i < K; i++) {
-        T(i, i) = 1;
-    }
-
-    basisTransform(spinor_basis, sq_hamiltonian, T);
-
-    GQCP::Orbital1DM<double> D = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1DM(K, N);
-
-    // Initialize the reference data from:
-    // "Self-consistent methods constrained to a fixed number of particles in a given fragment and its relation to the electronegativity equalization method"
-    // Authors: Andrés Cedillo, Dimitri Van Neck, Patrick Bultinck
-    // DOI 10.1007/s00214-012-1227-6
-    Eigen::Matrix<double, 21, 3> CO_data;
-    //          lambda  charge  energy
+    // The reference data from the article (see below). The first column represents the multiplier, the second column the Mulliken charge on 'C', the third column the constrained RHF energy.
+    GQCP::Matrix<double, 21, 3> CO_data;
     // clang-format off
     CO_data <<  -1.0,  1.73, -110.530475,
                 -0.9,  1.62, -110.634766,
@@ -169,43 +149,62 @@ BOOST_AUTO_TEST_CASE(constrained_CO_test_random_transformation) {
                  1.0, -1.77, -110.242423;
     // clang-format on
 
-    // Pick a set of AO's (GTOs of the carbon atom)
-    std::vector<size_t> gto_list = {0, 1, 2, 3, 4};
 
-    // Iterate over multipliers
+    // Prepare the molecular Hamiltonian in a random AO basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/CO_mulliken.xyz");
+    const auto N = molecule.numberOfElectrons();
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
+    const auto K = spin_orbital_basis.numberOfSpatialOrbitals();
+
+    // Generate a random transformation matrix, but keep the norm of the orbitals intact.
+    GQCP::RTransformationMatrix<double> T = GQCP::RTransformationMatrix<double>::Random(K);
+    for (size_t i = 0; i < K; i++) {
+        T(i, i) = 1.0;
+    }
+    spin_orbital_basis.transform(T);
+    const auto S = spin_orbital_basis.overlap();
+
+    const auto hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);  // In the AO basis.
+
+
+    // Prepare the Mulliken partitioning on 'C'.
+    using Shell = GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>::Shell;
+    const auto mulliken_partitioning = spin_orbital_basis.mullikenPartitioning(
+        [](const Shell& shell) {
+            return shell.nucleus().element() == "C";
+        });
+
+
+    // Iterate over the Lagrange multipliers and check if we can reproduce all values.
     size_t index = 0;
-    for (double lambda = -1; lambda < 1.01; lambda += 0.1) {
+    for (double lambda = -1.0; lambda < 1.01; lambda += 0.1) {
 
-        // Calculate the Mulliken operator
-        auto mulliken_operator = spinor_basis.calculateMullikenOperator(gto_list);
+        // Do the constrained RHF calculation by adding (-lambda * Mulliken) to the molecular Hamiltonian.
+        auto mulliken_op = S.partitioned(mulliken_partitioning);
+        const auto constrained_hamiltonian = hamiltonian - lambda * mulliken_op;  // In the AO basis.
 
-        // Contrain the original Hamiltonian
-        auto sq_hamiltonian_constrained = sq_hamiltonian - lambda * mulliken_operator;
-
-        // Create a DIIS RHF SCF solver and solve the SCF equations
-        auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(CO.numberOfElectrons(), sq_hamiltonian_constrained, spinor_basis.overlap().parameters());
+        // Create a DIIS RHF SCF solver and solve the SCF equations.
+        auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), constrained_hamiltonian, S.parameters());
         auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
-        const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian_constrained};
+        const GQCP::DiagonalRHFFockMatrixObjective<double> objective {constrained_hamiltonian};
+
         const auto rhf_qc_structure = GQCP::QCMethod::RHF<double>().optimize(objective, diis_rhf_scf_solver, rhf_environment);
         const auto rhf_parameters = rhf_qc_structure.groundStateParameters();
 
-        // Transform only the Mulliken operator to the basis in which the RHF energies are calculated
-        mulliken_operator.transform(rhf_parameters.coefficientMatrix());
+        // Calculate the Mulliken population through the expectation value of the Mulliken operator. We can perform this calculation in the AO basis.
+        const auto D_RHF = rhf_parameters.calculateScalarBasis1DM();
+        const double mulliken_population = mulliken_op.calculateExpectationValue(D_RHF);  // A scalar-StorageArray can be implicitly converted into the underlying scalar.
 
-        // Retrieve the RHF "energy"
-        double expectation_value = rhf_qc_structure.groundStateEnergy();
 
-        // Retrieve the expectation value of the Mulliken operator (aka the population)
-        double mulliken_population = mulliken_operator.calculateExpectationValue(D);  // A scalar-StorageArray can be implicitly converted into the underlying scalar.
+        // Calculate the total internuclear energy as a contribution from three sources, and check with the reference value.
+        const double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(molecule).value();
+        double total_energy = rhf_qc_structure.groundStateEnergy() + lambda * mulliken_population + internuclear_repulsion_energy;
 
-        // Retrieve the total energy by adding the lambda times the expectation value of the constraining operator
-        double total_energy = expectation_value + lambda * mulliken_population + GQCP::Operator::NuclearRepulsion(CO).value();
-
-        // Mulliken charge on the carbon atom
-        double C_charge = 6 - mulliken_population;
-
-        // The lenient threshold is because of we are not certain of exact the geometry in the paper
         BOOST_CHECK(std::abs(total_energy - CO_data(index, 2)) < 1.0e-4);
+
+
+        // Calculate the Mulliken charge on 'C' and check with the reference value.
+        const double C_charge = 6 - mulliken_population;
         BOOST_CHECK(std::abs(C_charge - CO_data(index, 1)) < 1.0e-2);
 
         index++;
