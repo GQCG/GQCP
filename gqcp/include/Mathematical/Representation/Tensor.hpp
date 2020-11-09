@@ -312,6 +312,11 @@ public:
                 i -= 2;
             }
         }
+
+        // Eigen3 does not document its tensor contraction clearly, so see the accepted answer on stackoverflow (https://stackoverflow.com/a/47558349/7930415):
+        //      Eigen3 does not accept a way to specify the output axes: instead, it retains the order from left to right of the axes that survive the contraction.
+        //      This means that, in order to get the right ordering of the axes, we will have to swap axes.
+
         // Find the position of the intermediate axes' labels in the requested output labels in order to set up the required shuffle indices.
         Eigen::array<int, 4> shuffle_indices {};
         for (size_t i = 0; i < 4; i++) {
