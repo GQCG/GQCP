@@ -284,7 +284,7 @@ BOOST_AUTO_TEST_CASE(addBlock_matrix) {
 
 BOOST_AUTO_TEST_CASE(einsum) {
 
-    // Create an example 2x2x2x2 tensor
+    // Create an example rank 4tensor
     long dim1 = 2;
     GQCP::Tensor<double, 4> T1 {dim1, dim1, dim1, dim1};
     for (size_t i = 0; i < dim1; i++) {
@@ -307,7 +307,7 @@ BOOST_AUTO_TEST_CASE(einsum) {
     }
 
     // Test the einsum API: double axis contraction
-    // Start by creating a reference
+    // Start by creating a reference, calculated with numpy.einsum()
     GQCP::MatrixX<double> reference {2, 2};
 
     // clang-format off
@@ -317,6 +317,7 @@ BOOST_AUTO_TEST_CASE(einsum) {
 
     const auto output = T1.einsum<2>(T2, "ijkl", "jk", "il");
     const auto output2 = T1.einsum<2>("ijkl,jk->il", T2);
+
 
     BOOST_CHECK(reference.isApprox(output.toMatrix(2, 2), 1.0e-12));
     BOOST_CHECK(reference.isApprox(output2.toMatrix(2, 2), 1e-12));
@@ -334,7 +335,7 @@ BOOST_AUTO_TEST_CASE(einsum) {
     BOOST_CHECK(reference.isApprox(output3.toMatrix(2, 2), 1e-12));
 
     // Test the einsum API: single axis contraction, for the same 3 einsum expressions
-    // Start by creating a reference
+    // Start by creating a reference, which was calculated with numpy.einsum()
     GQCP::Tensor<double, 4> reference_tensor {dim1, dim1, dim1, dim1};
     for (size_t i = 0; i < dim1; i++) {
         for (size_t j = 0; j < dim1; j++) {
@@ -370,4 +371,15 @@ BOOST_AUTO_TEST_CASE(einsum) {
     BOOST_CHECK(reference_tensor.isApprox(output4, 1e-12));
     BOOST_CHECK(reference_tensor.isApprox(output5, 1e-12));
     BOOST_CHECK(reference_tensor.isApprox(output6, 1e-12));
+
+    // Let's test a contraction over all indices as well
+    // We test both einsum notations and the contraction of a tensor with a matrix
+    // reference values were calculated with numpy.einsum()
+    const auto output7 = T1.einsum<4>(T1, "ijkl", "ijkl", "");
+    const auto output8 = T1.einsum<4>("ijkl,ijkl->", T1);
+    const auto output9 = T2.einsum<2>("ij,ij->", M);
+
+    BOOST_CHECK_EQUAL(output7(0), 1096);
+    BOOST_CHECK_EQUAL(output8(0), 1096);
+    BOOST_CHECK_EQUAL(output9(0), 62);
 }

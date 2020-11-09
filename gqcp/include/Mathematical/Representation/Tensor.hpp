@@ -318,13 +318,19 @@ public:
         //      This means that, in order to get the right ordering of the axes, we will have to swap axes.
 
         // Find the position of the intermediate axes' labels in the requested output labels in order to set up the required shuffle indices.
-        Eigen::array<int, 4> shuffle_indices {};
-        for (size_t i = 0; i < 4; i++) {
-            const auto current_label = intermediate_indices[i];
-            shuffle_indices[i] = output_labels.find(current_label);
+        // This is only necessary when not contracting over all axes, in other words, when the string of output labels is not empty.
+        if (output_labels != "") {
+            Eigen::array<int, 4> shuffle_indices {};
+
+            for (size_t i = 0; i < 4; i++) {
+                const auto current_label = intermediate_indices[i];
+                shuffle_indices[i] = output_labels.find(current_label);
+            }
+
+            return T_intermediate.shuffle(shuffle_indices);
         }
 
-        return T_intermediate.shuffle(shuffle_indices);
+        return T_intermediate;
     }
 
 
@@ -351,15 +357,21 @@ public:
         std::vector<std::string> segment_list;
         boost::split(segment_list, contraction_string, boost::is_any_of(" "));
 
+        // If a contraction over all indices is done, only 2 sets of labels are saved in the vector. The last set of labels is an empty string, and is added manually.
+        if (segment_list.size() == 2) {
+            segment_list.push_back("");
+        }
+
         // The following code can be used to calculate template parameter `N` at runtime. At the moment however, this is not used.
         // Determine number of axes to contract over
+        //
         // std::vector<char> segment_1(segment_list[0].begin(), segment_list[0].end());
         // std::vector<char> segment_2(segment_list[1].begin(), segment_list[1].end());
         // std::vector<char> intersection;
-
+        //
         // std::set_intersection(segment_1.begin(), segment_1.end(),
         //                       segment_2.begin(), segment_2.end(), std::back_inserter(intersection));
-
+        //
         // const int Z = intersection.size();
 
         return this->einsum<N>(rhs, segment_list[0], segment_list[1], segment_list[2]);
