@@ -386,6 +386,19 @@ public:
     }
 
 
+    /**
+     *  Convert the given tensor to a matrix with the specified dimensions
+     *
+     *  @param rows        the dimension of the rows of the output matrix
+     *  @param cols        the dimension of the columns of the output matrix
+     */
+    const GQCP::Matrix<Scalar> toMatrix(const size_t rows, const size_t cols) const {
+
+        const auto rank_two_tensor = *this;
+        return GQCP::Matrix<Scalar>(Eigen::Map<const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>>(rank_two_tensor.data(), rows, cols));
+    }
+
+
     /*
      *  MARK: General information
      */
@@ -454,18 +467,6 @@ public:
                 }
             }
         }
-    }
-
-    /**
-     *  Convert the given tensor to a matrix with the specified dimensions
-     *
-     *  @param rows        the dimension of the rows of the output matrix
-     *  @param cols        the dimension of the columns of the output matrix
-     */
-    const GQCP::Matrix<Scalar> toMatrix(const size_t rows, const size_t cols) const {
-
-        const auto rank_two_tensor = *this;
-        return GQCP::Matrix<Scalar>(Eigen::Map<const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>>(rank_two_tensor.data(), rows, cols));
     }
 };
 
