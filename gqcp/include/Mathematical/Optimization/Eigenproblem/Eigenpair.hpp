@@ -19,7 +19,6 @@
 
 
 #include "Mathematical/Representation/Matrix.hpp"
-#include "Utilities/linalg.hpp"
 
 
 namespace GQCP {
@@ -82,13 +81,12 @@ public:
      */
     bool isEqualTo(const Eigenpair& other, const double tolerance = 1.0e-08) const {
 
-
         if (this->eigenvector().size() != other.eigenvector().size()) {
             throw std::invalid_argument("Eigenpair::isEqualTo(Eigenpair, double): Can't compare eigenpairs with eigenvectors of different dimension.");
         }
 
         if (std::abs(this->eigenvalue() - other.eigenvalue()) < tolerance) {
-            if (areEqualEigenvectors(this->eigenvector(), other.eigenvector(), tolerance)) {
+            if ((this->eigenvector()).isEqualEigenvectorAs(other.eigenvector(), tolerance)) {
                 return true;
             }
         }
