@@ -19,6 +19,7 @@
 
 
 #include "Basis/Integrals/IntegralCalculator.hpp"
+#include "Basis/MullikenPartitioning.hpp"
 #include "Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp"
 #include "Basis/SpinorBasis/Spinor.hpp"
 #include "Basis/Transformations/JacobiRotation.hpp"
@@ -30,6 +31,7 @@
 #include "Operator/SecondQuantized/RSQTwoElectronOperator.hpp"
 #include "Utilities/aliases.hpp"
 #include "Utilities/type_traits.hpp"
+
 
 namespace GQCP {
 
@@ -56,8 +58,13 @@ public:
     // The type of transformation matrix that is naturally related to a GSpinorBasis.
     using TM = RTransformationMatrix<ExpansionScalar>;  // TODO: Rename to TransformationMatrix once the class is gone
 
+    // The type that is used for representing the primitive for a basis function of this spin-orbital basis' underlying AO basis.
     using Primitive = typename Shell::Primitive;
+
+    // The type that is used for representing the underlying basis functions of this spin-orbital basis.
     using BasisFunction = typename Shell::BasisFunction;
+
+    // The type that is used to represent a spatial orbital for this spin-orbital basis.
     using SpatialOrbital = LinearCombination<product_t<ExpansionScalar, typename BasisFunction::CoefficientScalar>, BasisFunction>;
 
 
@@ -223,6 +230,31 @@ public:
     /*
      *  MARK: Mulliken partitioning
      */
+
+    /**
+     *  Partition this set of restricted spin-orbitals according to the Mulliken partitioning scheme.
+     * 
+     *  @param selector             A function that returns true for basis functions that should be included the Mulliken partitioning.
+     * 
+     *  @return A `MullikenPartitioning` for the AOs selected by the supplied selector function.
+     */
+    MullikenPartitoning<Scalar> mullikenPartitioning(const std::function<bool(const BasisFunction&)>& selector) const {
+
+        const auto basis_functions = this->scalarBasis().basisFunctions();
+
+        // Find the indices of those basis functions for which the selector returns true.
+        std::vector<size_t> ao_indices;
+        for (size_t i = 0; i < this->numberOfSpatialOrbitals(); i++) {
+            const auto& basis_function = basis_functions[i];
+
+            if (selector(basis_function)) {
+                ao_indices.push_back(i);
+            }
+        }
+
+        return MullikenPartitoning<Scalar> {ao_indices, this->coefficientMatrix()};
+    }
+
 
     /**
      *  @param ao_list     indices of the AOs used for the Mulliken populations

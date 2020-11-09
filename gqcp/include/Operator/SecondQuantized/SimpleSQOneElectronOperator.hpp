@@ -227,7 +227,9 @@ public:
         auto result = this->allParameters();
 
         for (size_t i = 0; i < this->numberOfComponents(); i++) {
-            result[i] = transformation_matrix.adjoint() * (parameters[i]) * transformation_matrix;
+            const auto& f_i = parameters[i];
+
+            result[i] = transformation_matrix.adjoint() * f_i * transformation_matrix;
         }
 
         return DerivedOperator {StorageArray<MatrixRepresentation, Vectorizer>(result, this->array.vectorizer())};
@@ -271,6 +273,33 @@ public:
 
     // Allow the `rotate` method from `JacobiRotatable`, since there's also a `rotate` from `BasisTransformable`.
     using JacobiRotatable<DerivedOperator>::rotate;
+
+
+    /*
+     *  MARK: One-index transformations
+     */
+
+    /**
+     *  Apply a one-index transformation and return the result.
+     * 
+     *  @param T            The transformation that encapsulates the basis transformation coefficients.
+     * 
+     *  @return The one-index-transformed one-electron operator.
+     */
+    DerivedOperator oneIndexTransformed(const TM& T) const {
+
+        // Calculate the basis transformation for every component of the operator.
+        const auto& parameters = this->allParameters();
+        auto result = this->allParameters();
+
+        for (size_t i = 0; i < this->numberOfComponents(); i++) {
+            const auto& f_i = parameters[i];
+
+            result[i] = T.adjoint() * f_i + f_i * T;
+        }
+
+        return DerivedOperator {StorageArray<MatrixRepresentation, Vectorizer>(result, this->array.vectorizer())};
+    }
 };
 
 
