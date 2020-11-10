@@ -576,6 +576,73 @@ public:
      *  MARK: Density matrices for spin-unresolved ONV bases
      */
 
+    /*
+     *  Calculate general one-electron density matrix for a spin-unresolved wave function expansion.
+     * 
+     *  @return The generalized one-electron density matrix.
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value, G1DM<double>> calculate1DM() const {
+
+        // Prepare some variables.
+        const auto M = this->onv_basis.numberOfOrbitals();
+        const auto N = this->onv_basis.numberOfElectrons();
+        const auto dim = onv_basis.dimension();  // dimension of the SpinUnresolvedONVBasis = number of SpinUnresolvedONVs
+
+        GQCP::G1DM<double> D = GQCP::G1DM<double>::Zero(M);
+
+
+        SpinUnresolvedONV onv = onv_basis.constructONVFromAddress(0);  // Start with ONV with address 0.
+        for (size_t J = 0; J < dim; J++) {                             // Loops over all possible ONV indices.
+
+            // Loop over electrons that can be annihilated in an ONV.
+            for (size_t e1 = 0; e1 < N; e1++) {
+
+                // Create an ONVPath for each new ONV.
+                ONVPath<SpinUnresolvedONVBasis> onv_path {onv_basis, onv};
+                const auto c_J = this->coefficient(J);
+
+                // Figure out the orbital index of the electron that will be annihilated.
+                const auto q = onv.occupationIndexOf(e1);
+
+                // The diagonal values are a result of annihilation-creation on the same orbital index and are thus the same as the initial ONV.
+                D(q, q) = c_J * c_J;
+
+                // For the non-diagonal values, we will create all possible matrix elements of the density matrix in the routine below.
+                onv_path.annihilate(q, e1);
+
+                // Stop the loop if 1) the path is finished, meaning that orbital index p is at M (the total number of orbitals) and 2) if the orbital index is out of bounds after left translation of a vertical arc.
+                while (!onv_path.isFinished() && onv_path.isOrbitalIndexValid()) {
+
+                    // Find the next unoccupied orbital, i.e. the next vertical arc in the path.
+                    onv_path.leftTranslateDiagonalArcUntilVerticalArc();
+
+                    // Calculate the address of the path if we would close it right now.
+                    const auto I = onv_path.addressAfterCreation();
+                    const auto c_I = this->coefficient(I);
+
+                    const double value = onv_path.sign() * c_I * c_J;
+
+                    // Add the density matrix elements.
+                    const auto p = onv_path.orbitalIndex();
+                    D(p, q) = value;
+                    D(q, p) = value;
+
+                    // Move orbital index such that other unoccupied orbitals can be found within the loop.
+                    onv_path.leftTranslateVerticalArc();
+                }
+            }
+
+            // Prevent last ONV since there is no possibility for an electron to be annihilated anymore.
+            if (J < dim - 1) {
+                onv_basis.transformONVToNextPermutation(onv);
+            }
+        }
+
+        return D;
+    }
+
+
     /**
      *  Calculate an element of the N-electron density matrix.
      * 
