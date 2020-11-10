@@ -245,9 +245,9 @@ public:
 
         // To calculate G, we must perform two double contractions
         //      1. (mu nu|rho lambda) P(lambda rho)
-        Tensor<Scalar, 2> direct_contraction = g.template einsum<2>("ijkl,lk->ij", D);
+        const Tensor<Scalar, 2> direct_contraction = g.template einsum<2>("ijkl,lk->ij", D);
         //      2. -0.5 (mu lambda|rho nu) P(lambda rho)
-        Tensor<Scalar, 2> exchange_contraction = -0.5 * g.template einsum<2>("ilkj,lk->ij", D);
+        const Tensor<Scalar, 2> exchange_contraction = -0.5 * g.template einsum<2>("ilkj,lk->ij", D);
 
         // The previous contractions are Tensor<Scalar, 2> instances. In order to calculate the total G matrix, we will convert them back into GQCP::Matrix<Scalar>
         auto G1 = direct_contraction.asMatrix();
