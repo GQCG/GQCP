@@ -30,162 +30,161 @@
 #include "Utilities/units.hpp"
 
 
+/**
+ *  Check the calculation of the CO dipole moment from a CCCBDB reference value.
+ */
 BOOST_AUTO_TEST_CASE(dipole_CO_STO_3G) {
 
-    // Initialize the molecule and molecular Hamiltonian for CO
-    GQCP::Nucleus C {6, 0.0, 0.0, 0.0};
-    GQCP::Nucleus O {8, 0.0, 0.0, GQCP::units::angstrom_to_bohr(1.145)};  // from CCCBDB, STO-3G geometry
-    GQCP::Molecule CO {{C, O}};
+    // Initialize the molecule and molecular Hamiltonian for CO.
+    const GQCP::Nucleus C {6, 0.0, 0.0, 0.0};
+    const GQCP::Nucleus O {8, 0.0, 0.0, GQCP::units::angstrom_to_bohr(1.145)};  // From CCCBDB, STO-3G geometry.
+    const GQCP::Molecule molecule {{C, O}};
 
-    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {CO, "STO-3G"};
-    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, CO);  // in an AO basis
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);  // In the AO basis.
 
-    size_t K = spinor_basis.numberOfSpatialOrbitals();
-    size_t N = CO.numberOfElectrons();
+    const auto K = spin_orbital_basis.numberOfSpatialOrbitals();
+    const size_t N = molecule.numberOfElectrons();
 
-    // Solve the SCF equations
-    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(CO.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
+    // Solve the RHF SCF equations.
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spin_orbital_basis.overlap().parameters());
     auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
     const auto rhf_qc_structure = GQCP::QCMethod::RHF<double>().optimize(objective, diis_rhf_scf_solver, rhf_environment);
     const auto rhf_parameters = rhf_qc_structure.groundStateParameters();
 
-    double total_energy = rhf_qc_structure.groundStateEnergy() + GQCP::Operator::NuclearRepulsion(CO).value();
-    BOOST_REQUIRE(std::abs(total_energy - (-111.225)) < 1.0e-02);  // from CCCBDB, require a correct RHF solution to be found
+    const double total_energy = rhf_qc_structure.groundStateEnergy() + GQCP::Operator::NuclearRepulsion(molecule).value();
+    BOOST_REQUIRE(std::abs(total_energy - (-111.225)) < 1.0e-02);  // From CCCBDB, require a correct RHF solution to be found
 
 
-    // Calculate the RHF 1-DM in MO basis
-    auto D = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1DM(K, N);
-    auto D_AO = GQCP::QCModel::RHF<double>::calculateScalarBasis1DM(rhf_parameters.coefficientMatrix(), N);
-
-    // Calculate the dipole integrals, and transform them to the MO basis
-    auto dipole_op = spinor_basis.quantize(GQCP::Operator::ElectronicDipole());
+    // Calculate the RHF 1-DM and the dipole operator in RHF MO basis.
+    const auto D = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1DM(K, N);
+    auto dipole_op = spin_orbital_basis.quantize(GQCP::Operator::ElectronicDipole());
     dipole_op.transform(rhf_parameters.coefficientMatrix());
 
-    GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(CO).value() + dipole_op.calculateExpectationValue(D).asVector();
+    // Calculate the RHF total dipole moment in the MO basis and check with the reference value.
+    GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(molecule).value() + dipole_op.calculateExpectationValue(D).asVector();
     BOOST_CHECK(std::abs(total_dipole_moment.norm() - (0.049)) < 1.0e-03);
 }
 
 
+/**
+ *  Check the the RHF dipole moment for N2 is zero.
+ */
 BOOST_AUTO_TEST_CASE(dipole_N2_STO_3G) {
 
-    // Check that the dipole moment of N2 is zero
+    // Initialize the molecule and the molecular Hamiltonian.
+    const GQCP::Nucleus N_1 {7, 0.0, 0.0, 0.0};
+    const GQCP::Nucleus N_2 {7, 0.0, 0.0, GQCP::units::angstrom_to_bohr(1.134)};  // From CCCBDB, STO-3G geometry.
+    const GQCP::Molecule molecule {{N_1, N_2}};
 
-    // Initialize the molecule and the molecular Hamiltonian for N2
-    GQCP::Nucleus N_1 {7, 0.0, 0.0, 0.0};
-    GQCP::Nucleus N_2 {7, 0.0, 0.0, GQCP::units::angstrom_to_bohr(1.134)};  // from CCCBDB, STO-3G geometry
-    GQCP::Molecule N2 {{N_1, N_2}};
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);  // In the AO basis.
 
-    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {N2, "STO-3G"};
-    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, N2);  // in an AO basis
+    const auto K = spin_orbital_basis.numberOfSpatialOrbitals();
+    const auto N = molecule.numberOfElectrons();
 
-    size_t K = spinor_basis.numberOfSpatialOrbitals();
-    size_t N = N2.numberOfElectrons();
-
-    // Solve the SCF equations
-    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(N2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
+    // Solve the RHF SCF equations.
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spin_orbital_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
     const auto rhf_qc_structure = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment);
     const auto rhf_parameters = rhf_qc_structure.groundStateParameters();
 
-    double total_energy = rhf_qc_structure.groundStateEnergy() + GQCP::Operator::NuclearRepulsion(N2).value();
-    BOOST_REQUIRE(std::abs(total_energy - (-107.500654)) < 1.0e-05);  // from CCCBDB, require a correct RHF solution to be found
+    const double total_energy = rhf_qc_structure.groundStateEnergy() + GQCP::Operator::NuclearRepulsion(molecule).value();
+    BOOST_REQUIRE(std::abs(total_energy - (-107.500654)) < 1.0e-05);  // From CCCBDB, require a correct RHF solution to be found.
 
 
-    // Calculate the RHF 1-DM in MO basis
-    auto D = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1DM(K, N);
-    auto D_AO = GQCP::QCModel::RHF<double>::calculateScalarBasis1DM(rhf_parameters.coefficientMatrix(), N);
-
-    // Calculate the dipole integrals, and transform them to the MO basis
-    auto dipole_op = spinor_basis.quantize(GQCP::Operator::ElectronicDipole());
+    // Calculate the RHF 1-DM and the dipole operator in RHF MO basis.
+    const auto D = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1DM(K, N);
+    auto dipole_op = spin_orbital_basis.quantize(GQCP::Operator::ElectronicDipole());
     dipole_op.transform(rhf_parameters.coefficientMatrix());
 
-    GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(N2).value() + dipole_op.calculateExpectationValue(D).asVector();
+    // Calculate the RHF total dipole moment in the MO basis and check with the reference value.
+    GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(molecule).value() + dipole_op.calculateExpectationValue(D).asVector();
     BOOST_CHECK(std::abs(total_dipole_moment.norm() - (0.0)) < 1.0e-08);
 }
 
 
 /**
- *  Check the calculation of the zz-component of the polarizability for H2 with a reference value from Psi4-numpy
+ *  Check the calculation of the zz-component of the polarizability for H2 with a reference value from Psi4-numpy.
  * 
- *  Note that the reference value is generated from Psi4-numpy, with a fix for the Fockian matrix
+ *  Note that the reference value is generated from Psi4-numpy, with a fix for the Fockian matrix.
  */
 BOOST_AUTO_TEST_CASE(h2_polarizability_RHF) {
 
-    // Initialize the reference value
+    // Initialize the reference value.
     const double ref_alpha_zz = 1.08428;
 
 
-    // Initialize the molecule and the Hamiltonian in the AO basis
-    GQCP::Nucleus H1 {1, 0.0, 0.0, 0.0};
-    GQCP::Nucleus H2 {1, 0.0, 0.0, 0.5};
-    GQCP::Molecule h2 {{H1, H2}, 0};
+    // Initialize the molecule and the Hamiltonian in the AO basis.
+    const GQCP::Nucleus H1 {1, 0.0, 0.0, 0.0};
+    const GQCP::Nucleus H2 {1, 0.0, 0.0, 0.5};
+    const GQCP::Molecule molecule {{H1, H2}, 0};
 
-    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis(h2, "STO-3G");
-    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, h2);  // in the AO basis
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);  // In the AO basis.
 
 
-    // Do the RHF calculation to get the canonical RHF orbitals
-    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
+    // Do the RHF calculation to get the canonical RHF orbitals.
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spin_orbital_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective(sq_hamiltonian);
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
 
-    // Transform the orbitals to the RHF basis and prepare the dipole integrals in the RHF basis
-    GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
-    const auto dipole_op = spinor_basis.quantize(GQCP::Operator::ElectronicDipole());
+    // Transform the orbitals to the RHF basis and prepare the dipole integrals in the RHF basis.
+    GQCP::basisTransform(spin_orbital_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
+    const auto dipole_op = spin_orbital_basis.quantize(GQCP::Operator::ElectronicDipole());
 
 
-    // Find the RHF wave function response
-    GQCP::RHFElectricalResponseSolver cphf_solver(h2.numberOfElectrons() / 2);
+    // Find the RHF wave function response.
+    GQCP::RHFElectricalResponseSolver cphf_solver {molecule.numberOfElectrons() / 2};
     const auto x = cphf_solver.calculateWaveFunctionResponse(sq_hamiltonian, dipole_op);
 
 
-    // Calculate the RHF polarizability
+    // Calculate the RHF polarizability and check with the reference value.
     const auto F_p = cphf_solver.calculateParameterResponseForce(dipole_op);
     const auto alpha = GQCP::calculateElectricPolarizability(F_p, x);
     const auto alpha_zz = alpha(2, 2);
-
 
     BOOST_CHECK(std::abs(alpha_zz - ref_alpha_zz) < 1.0e-05);
 }
 
 
 /**
- *  Test the Dyson algorithm against manually calculated coefficients for two (normalized) toy wave functions
+ *  Test the algorithm for the Dyson amplitudes against manually calculated coefficients for two (normalized) toy wave functions.
  */
-BOOST_AUTO_TEST_CASE(dyson_coefficients) {
+BOOST_AUTO_TEST_CASE(dyson_amplitudes) {
 
-    // Set up the manually calculated references
-    GQCP::VectorX<double> reference_amplitudes_beta = GQCP::VectorX<double>::Zero(2);
-    reference_amplitudes_beta << 0.537653264399, 0.794791398869;
+    // Set up the manually calculated references.
+    GQCP::Vector<double, 2> reference_amplitudes_alpha {0.39739531532399996, 0.9116729926689999};
+    GQCP::Vector<double, 2> reference_amplitudes_beta = {0.537653264399, 0.794791398869};
 
-    GQCP::VectorX<double> reference_amplitudes_alpha = GQCP::VectorX<double>::Zero(2);
-    reference_amplitudes_alpha << 0.39739531532399996, 0.9116729926689999;
 
-    // Set up the toy wave functions
+    // Set up the toy linear expansions.
     const size_t K = 2;
     const size_t N = 2;
-
-    const GQCP::SpinResolvedONVBasis fock_space1 {K, N / 2, N / 2};
-    const GQCP::SpinResolvedONVBasis fock_space2 {K, N / 2, N / 2 - 1};
-    const GQCP::SpinResolvedONVBasis fock_space3 {K, N / 2 - 1, N / 2};
 
     GQCP::VectorX<double> coeffs1 = GQCP::VectorX<double>::Zero(4);
     coeffs1 << 0.182574, 0.365148, 0.547723, 0.730297;
     GQCP::VectorX<double> coeffs2 = GQCP::VectorX<double>::Zero(2);
     coeffs2 << 0.640184, 0.768221;
 
-    const auto linear_expansion1 = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>(fock_space1, coeffs1);
-    const auto linear_expansion2 = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>(fock_space2, coeffs2);
-    const auto linear_expansion3 = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>(fock_space3, coeffs2);
+    const GQCP::SpinResolvedONVBasis onv_basis {K, N / 2, N / 2};            // The reference ONV basis.
+    const GQCP::SpinResolvedONVBasis onv_basis_alpha {K, N / 2 - 1, N / 2};  // An ONV basis with one less alpha electron.
+    const GQCP::SpinResolvedONVBasis onv_basis_beta {K, N / 2, N / 2 - 1};   // An ONV basis with one less beta electron.
 
-    // Calculate the coefficients of the Dyson orbitals and check with the reference
-    const auto dyson_coefficients_beta = GQCP::calculateDysonOrbitalCoefficients(linear_expansion1, linear_expansion2);   // coefficients with a difference in beta occupation
-    const auto dyson_coefficients_alpha = GQCP::calculateDysonOrbitalCoefficients(linear_expansion1, linear_expansion3);  // coefficients with a difference in alpha occupation
+    const auto linear_expansion = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>(onv_basis, coeffs1);
+    const auto linear_expansion_alpha = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>(onv_basis_alpha, coeffs2);
+    const auto linear_expansion_beta = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>(onv_basis_beta, coeffs2);
 
-    BOOST_CHECK(dyson_coefficients_beta.isApprox(reference_amplitudes_beta, 1.0e-6));
-    BOOST_CHECK(dyson_coefficients_alpha.isApprox(reference_amplitudes_alpha, 1.0e-6));
+
+    // Calculate the Dyson amplitudes for both situations (alpha-reference) and (beta-reference), and check with the manual calculations.
+    const auto dyson_coefficients_alpha = GQCP::calculateDysonOrbitalCoefficients(linear_expansion, linear_expansion_alpha);
+
+    const auto dyson_coefficients_beta = GQCP::calculateDysonOrbitalCoefficients(linear_expansion, linear_expansion_beta);
+
+    BOOST_CHECK(dyson_coefficients_alpha.isApprox(reference_amplitudes_alpha, 1.0e-06));
+    BOOST_CHECK(dyson_coefficients_beta.isApprox(reference_amplitudes_beta, 1.0e-06));
 }
