@@ -240,18 +240,7 @@ public:
      */
     RMullikenPartitioning<ExpansionScalar> mullikenPartitioning(const std::function<bool(const BasisFunction&)>& selector) const {
 
-        const auto basis_functions = this->scalarBasis().basisFunctions();
-
-        // Find the indices of those basis functions for which the selector returns true.
-        std::vector<size_t> ao_indices;
-        for (size_t i = 0; i < this->numberOfSpatialOrbitals(); i++) {
-            const auto& basis_function = basis_functions[i];
-
-            if (selector(basis_function)) {
-                ao_indices.push_back(i);
-            }
-        }
-
+        const auto ao_indices = this->scalarBasis().basisFunctionIndices(selector);
         return RMullikenPartitioning<ExpansionScalar> {ao_indices, this->coefficientMatrix()};
     }
 
@@ -265,27 +254,7 @@ public:
      */
     RMullikenPartitioning<ExpansionScalar> mullikenPartitioning(const std::function<bool(const Shell&)>& selector) const {
 
-        const auto shells = this->scalarBasis().shellSet().asVector();
-
-        // Find the indices of those basis functions for which the shell selector returns true.
-        std::vector<size_t> ao_indices;
-        size_t bf_index = 0;
-        for (size_t shell_index = 0; shell_index < shells.size(); shell_index++) {
-            const auto& shell = shells[shell_index];
-
-            // If a shell has to be included, include all indices of the basis functions in it.
-            const auto number_of_bf_in_shell = shell.numberOfBasisFunctions();
-            if (selector(shell)) {
-                for (size_t i = 0; i < number_of_bf_in_shell; i++) {
-                    ao_indices.push_back(bf_index);
-                    bf_index++;
-                }
-            } else {
-                // Increase the current BF index to accommodate to the next shell.
-                bf_index += number_of_bf_in_shell;
-            }
-        }
-
+        const auto ao_indices = this->scalarBasis().basisFunctionIndices(selector);
         return RMullikenPartitioning<ExpansionScalar> {ao_indices, this->coefficientMatrix()};
     }
 };

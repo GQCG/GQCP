@@ -83,21 +83,6 @@ public:
         // The alpha- and beta- integrals are equal for a restricted operator, f_pq = f_{p alpha, q alpha} = f_{p beta, q_beta}.
         return this->alpha();
     }
-
-
-    /*
-     *  MARK: Mulliken partitioning
-     */
-
-    /**
-     *  Partition this restricted one-electron operator according to the supplied Mulliken partitioning scheme.
-     * 
-     *  @param mulliken_partitioning                An encapsulation of the Mulliken partitioning scheme.
-     * 
-     *  @return A one-electron operator whose integrals/parameters/matrix elements correspond to the Mulliken-partitioning of this one-electron operator.
-     */
-    RSQOneElectronOperator<Scalar, Vectorizer> partitioned(const RMullikenPartitioning<Scalar>& mulliken_partitioning) const { return 0.5 * this->oneIndexTransformed(mulliken_partitioning.projectionMatrix()); }
-
 };  // namespace GQCP
 
 
@@ -146,6 +131,9 @@ struct OperatorTraits<RSQOneElectronOperator<Scalar, Vectorizer>> {
 
     // The type of the two-particle density matrix that is naturally associated a restricted one-electron operator.
     using TwoDM = Orbital2DM<Scalar>;
+
+    // The type used to encapsulate the Mulliken partitioning scheme.
+    using MullikenPartitioning = RMullikenPartitioning<Scalar>;
 };
 
 

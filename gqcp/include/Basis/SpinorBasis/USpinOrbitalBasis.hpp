@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/MullikenPartitioning/UMullikenPartitioning.hpp"
 #include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include "Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp"
 #include "Basis/Transformations/SpinResolvedBasisTransformable.hpp"
@@ -49,6 +50,13 @@ public:
 
     // The type of shell the underlying scalar bases contain.
     using Shell = _Shell;
+
+    // The type that is used for representing the primitive for a basis function of this spin-orbital basis' underlying AO basis.
+    using Primitive = typename Shell::Primitive;
+
+    // The type that is used for representing the underlying basis functions of this spin-orbital basis.
+    using BasisFunction = typename Shell::BasisFunction;
+
 
 public:
     /*
@@ -342,6 +350,36 @@ public:
     //  */
     // template <typename S = ExpansionScalar, typename = IsReal<S>>
     // ScalarRSQOneElectronOperator<double> calculateMullikenOperator(const std::vector<size_t>& ao_list, const Spin& sigma) const { return this->spinor_bases[sigma].template calculateMullikenOperator<ExpansionScalar>(ao_list); }
+
+
+    /**
+     *  MARK: Mulliken partitioning
+     */
+
+    /**
+     *  Partition this set of unrestricted spin-orbitals according to the Mulliken partitioning scheme.
+     * 
+     *  @param selector             A function that returns true for basis functions that should be included the Mulliken partitioning.
+     * 
+     *  @return A `UMullikenPartitioning` for the AOs selected by the supplied selector function.
+     */
+    UMullikenPartitioning<ExpansionScalar> mullikenPartitioning(const std::function<bool(const BasisFunction&)>& selector) const {
+
+        return UMullikenPartitioning<ExpansionScalar> {this->alpha().mullikenPartitioning(selector), this->beta().mullikenPartitioning(selector)};
+    }
+
+
+    /**
+     *  Partition this set of unrestricted spin-orbitals according to the Mulliken partitioning scheme.
+     * 
+     *  @param selector             A function that returns true for shells that should be included the Mulliken partitioning.
+     * 
+     *  @return A `UMullikenPartitioning` for the AOs selected by the supplied selector function.
+     */
+    UMullikenPartitioning<ExpansionScalar> mullikenPartitioning(const std::function<bool(const Shell&)>& selector) const {
+
+        return UMullikenPartitioning<ExpansionScalar> {this->alpha().mullikenPartitioning(selector), this->beta().mullikenPartitioning(selector)};
+    }
 };
 
 /*

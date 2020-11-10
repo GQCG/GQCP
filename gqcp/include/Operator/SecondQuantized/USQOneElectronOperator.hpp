@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/MullikenPartitioning/UMullikenPartitioning.hpp"
 #include "Basis/Transformations/SpinResolvedBasisTransformable.hpp"
 #include "Basis/Transformations/SpinResolvedJacobiRotatable.hpp"
 #include "Basis/Transformations/UTransformationMatrix.hpp"
@@ -263,6 +264,38 @@ public:
 
     // Allow the `rotated` method from `SpinResolvedJacobiRotatable`, since there's also a `rotated` from `SpinResolvedBasisTransformable`.
     using SpinResolvedJacobiRotatable<Self>::rotated;
+
+
+    /*
+     *  MARK: One-index transformations
+     */
+
+    /**
+     *  Apply a one-index transformation and return the result.
+     * 
+     *  @param T            The transformation that encapsulates the basis transformation coefficients.
+     * 
+     *  @return The one-index-transformed one-electron operator.
+     */
+    Self oneIndexTransformed(const UTransformationMatrix<Scalar>& T) const {
+
+        // Transform both components of this unrestricted one-electron operator.
+        return Self {this->alpha().oneIndexTransformed(T.alpha()), this->beta().oneIndexTransformed(T.beta())};
+    }
+
+
+    /*
+     *  MARK: Mulliken partitioning
+     */
+
+    /**
+     *  Partition this one-electron operator according to the supplied Mulliken partitioning scheme.
+     * 
+     *  @param mulliken_partitioning                An encapsulation of the Mulliken partitioning scheme.
+     * 
+     *  @return A one-electron operator whose integrals/parameters/matrix elements correspond to the Mulliken-partitioning of this one-electron operator.
+     */
+    Self partitioned(const UMullikenPartitioning<Scalar>& mulliken_partitioning) const { return 0.5 * this->oneIndexTransformed(mulliken_partitioning.projectionMatrix()); }
 };
 
 

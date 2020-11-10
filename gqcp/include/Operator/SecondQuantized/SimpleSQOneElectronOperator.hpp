@@ -70,6 +70,9 @@ public:
     // The type of the two-particle density matrix that is naturally associated to the derived one-electron operator.
     using Derived2DM = typename OperatorTraits<DerivedOperator>::TwoDM;
 
+    // The type used to encapsulate the Mulliken partitioning scheme.
+    using MullikenPartitioning = typename OperatorTraits<DerivedOperator>::MullikenPartitioning;
+
 
 public:
     /*
@@ -300,6 +303,20 @@ public:
 
         return DerivedOperator {StorageArray<MatrixRepresentation, Vectorizer>(result, this->array.vectorizer())};
     }
+
+
+    /*
+     *  MARK: Mulliken partitioning
+     */
+
+    /**
+     *  Partition this one-electron operator according to the supplied Mulliken partitioning scheme.
+     * 
+     *  @param mulliken_partitioning                An encapsulation of the Mulliken partitioning scheme.
+     * 
+     *  @return A one-electron operator whose integrals/parameters/matrix elements correspond to the Mulliken-partitioning of this one-electron operator.
+     */
+    DerivedOperator partitioned(const MullikenPartitioning& mulliken_partitioning) const { return 0.5 * this->oneIndexTransformed(mulliken_partitioning.projectionMatrix()); }
 };
 
 

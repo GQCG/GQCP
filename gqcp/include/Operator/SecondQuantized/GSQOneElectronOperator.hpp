@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/MullikenPartitioning/GMullikenPartitioning.hpp"
 #include "Basis/Transformations/GTransformationMatrix.hpp"
 #include "DensityMatrix/G1DM.hpp"
 #include "DensityMatrix/G2DM.hpp"
@@ -121,6 +122,9 @@ struct OperatorTraits<GSQOneElectronOperator<Scalar, Vectorizer>> {
 
     // The type of the two-particle density matrix that is naturally associated a restricted one-electron operator.
     using TwoDM = G2DM<Scalar>;
+
+    // The type used to encapsulate the Mulliken partitioning scheme.
+    using MullikenPartitioning = GMullikenPartitioning<Scalar>;
 };
 
 

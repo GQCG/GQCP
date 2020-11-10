@@ -24,52 +24,55 @@
 #include "Mathematical/Functions/LinearCombination.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Molecule/NuclearFramework.hpp"
+#include "Utilities/type_traits.hpp"
 
-#include <type_traits>
+#include <functional>
 
 
 namespace GQCP {
 
 
 /**
- *  A class that represents a scalar basis: it represents a collection of scalar basis functions. It provides an interface to obtain basis functions and calculate integrals over the shell type
+ *  A class that represents a scalar basis: it represents a collection of scalar basis functions. It provides an interface to obtain basis functions and calculate integrals over the shell type.
  *
- * @tparam _Shell       the type of shell that this scalar basis contains
+ * @tparam _Shell           The type of shell that this scalar basis contains.
  */
 template <typename _Shell>
 class ScalarBasis {
 public:
+    // The type of shell that this scalar basis contains.
     using Shell = _Shell;
 
-    using Primitive = typename Shell::Primitive;          // the type of the primitive functions that underlie this scalar basis
-    using BasisFunction = typename Shell::BasisFunction;  // the type of basis functions that this scalar basis consists of
+    // The type of the primitive functions that underlie this scalar basis.
+    using Primitive = typename Shell::Primitive;
 
+    // The type of basis functions that this scalar basis consists of.
+    using BasisFunction = typename Shell::BasisFunction;
 
 private:
-    ShellSet<Shell> shell_set;  // a collection of shells that represents this scalar basis
+    // A collection of shells that represents this scalar basis.
+    ShellSet<Shell> shell_set;
 
 
 public:
     /*
-     *  CONSTRUCTORS
+     *  MARK: Constructors
      */
 
     /**
-     *  @param shell_set        a collection of shells that represents this scalar basis
+     *  @param shell_set        A collection of shells that represents this scalar basis.
      */
     ScalarBasis(const ShellSet<Shell>& shell_set) :
         shell_set {shell_set} {}
 
 
     /**
-     *  Construct a scalar basis by placing shells corresponding to the basisset specification on every nucleus of the nuclear framework
+     *  Construct a scalar basis by placing shells corresponding to the basisset specification on every nucleus of the nuclear framework.
      *
-     *  @param nuclear_framework        the nuclear framework containing the nuclei on which the shells should be centered
-     *  @param basisset_name            the name of the basisset, e.g. "STO-3G"
+     *  @param nuclear_framework        The nuclear framework containing the nuclei on which the shells should be centered.
+     *  @param basisset_name            The name of the basisset, e.g. "STO-3G".
      *
-     *  Note that the normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells
-     * 
-     *  @note This constructor is only available for GTOShells (for the std::enable_if, see https://stackoverflow.com/a/17842695/7930415)
+     *  @note The normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells.
      */
     template <typename Z = GTOShell>
     ScalarBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name,
@@ -81,14 +84,12 @@ public:
 
 
     /**
-     *  Construct a scalar basis by placing shells corresponding to the basisset specification on every nucleus of the molecule
+     *  Construct a scalar basis by placing shells corresponding to the basisset specification on every nucleus of the molecule.
      *
-     *  @param molecule             the molecule containing the nuclei on which the shells should be centered
-     *  @param basisset_name        the name of the basisset, e.g. "STO-3G"
+     *  @param molecule             The molecule containing the nuclei on which the shells should be centered.
+     *  @param basisset_name        The name of the basisset, e.g. "STO-3G".
      *
-     *  Note that the normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells
-     * 
-     *  @note This constructor is only available for GTOShells (for the std::enable_if, see https://stackoverflow.com/a/17842695/7930415).
+     *  @note The normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells.
      */
     template <typename Z = GTOShell>
     ScalarBasis(const Molecule& molecule, const std::string& basisset_name,
@@ -97,23 +98,86 @@ public:
 
 
     /*
-     *  PUBLIC METHODS
+     *  MARK: Shell set
      */
 
     /**
-     *  @return the basis functions that 'are' in this scalar basis
+     *  @return The collection of shells that represents this scalar basis.
+     */
+    const ShellSet<Shell>& shellSet() const { return this->shell_set; }
+
+
+    /*
+     *  MARK: Basis functions
+     */
+
+    /**
+     *  @return The basis functions that this scalar basis consists of.
      */
     std::vector<BasisFunction> basisFunctions() const { return this->shell_set.basisFunctions(); }
 
     /**
-     *  @return the number of basis functions that 'are' in this scalar basis
+     *  @return The number of basis functions that this scalar basis consists of.
      */
     size_t numberOfBasisFunctions() const { return this->shell_set.numberOfBasisFunctions(); }
 
     /**
-     *  @return the underlying set of shells
+     *  Find the basis function indices selected by a given selector.
+     * 
+     *  @param selector             A function that returns true if the basis function indices of a particular shell should be included.
+     * 
+     *  @return The indices of the basis functions whose corresponding shells are selected.
      */
-    const ShellSet<Shell>& shellSet() const { return this->shell_set; }
+    std::vector<size_t> basisFunctionIndices(const std::function<bool(const Shell&)>& selector) const {
+
+        const auto shells = this->shellSet().asVector();
+
+        // Find the indices of those basis functions for which the shell selector returns true.
+        std::vector<size_t> ao_indices;
+        size_t bf_index = 0;
+        for (size_t shell_index = 0; shell_index < shells.size(); shell_index++) {
+            const auto& shell = shells[shell_index];
+
+            // If a shell has to be included, include all indices of the basis functions in it.
+            const auto number_of_bf_in_shell = shell.numberOfBasisFunctions();
+            if (selector(shell)) {
+                for (size_t i = 0; i < number_of_bf_in_shell; i++) {
+                    ao_indices.push_back(bf_index);
+                    bf_index++;
+                }
+            } else {
+                // Increase the current BF index to accommodate to the next shell.
+                bf_index += number_of_bf_in_shell;
+            }
+        }
+
+        return ao_indices;
+    }
+
+
+    /**
+     *  Find the basis function indices selected by a given selector.
+     * 
+     *  @param selector             A function that returns true if the basis function index should be included.
+     * 
+     *  @return The indices of the basis functions whose corresponding shells are selected.
+     */
+    std::vector<size_t> basisFunctionIndices(const std::function<bool(const BasisFunction&)>& selector) const {
+
+        const auto basis_functions = this->basisFunctions();
+
+        // Find the indices of those basis functions for which the selector returns true.
+        std::vector<size_t> ao_indices;
+        for (size_t i = 0; i < basis_functions.size(); i++) {
+            const auto& basis_function = basis_functions[i];
+
+            if (selector(basis_function)) {
+                ao_indices.push_back(i);
+            }
+        }
+
+        return ao_indices;
+    }
 };
 
 

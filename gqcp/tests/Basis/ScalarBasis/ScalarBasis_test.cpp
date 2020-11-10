@@ -99,3 +99,69 @@ BOOST_AUTO_TEST_CASE(basisFunctions) {
         BOOST_CHECK(std::abs(bf.function(i).gaussianExponent() - ref_gaussian_exponents[i]) < 1.0e-07);
     }
 }
+
+
+/**
+ *  Check if the basis function selector generates the correct indices for the AOs.
+ */
+BOOST_AUTO_TEST_CASE(selector_CO_basis_functions) {
+
+    // Create a test molecule and scalar basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/CO_mulliken.xyz");
+    const GQCP::Vector<double, 3> C_position {0.0, 0.0, -1.23701};  // In Bohr.
+    const GQCP::Vector<double, 3> O_position {0.0, 0.0, 0.927667};  // In Bohr.
+
+    const GQCP::ScalarBasis<GQCP::GTOShell> scalar_basis {molecule, "STO-3G"};
+
+
+    // Create the reference indices for CO in an STO-3G basis.
+    const std::vector<size_t> ref_C_indices {0, 1, 2, 3, 4};  // The indices of the AOs centered on 'C'.
+    const std::vector<size_t> ref_O_indices {5, 6, 7, 8, 9};  // The indices of the AOs centered on 'O'.
+
+
+    // Check if the basis function selector generates the basis function correct indices.
+    using BasisFunction = GQCP::ScalarBasis<GQCP::GTOShell>::BasisFunction;
+    const auto C_indices = scalar_basis.basisFunctionIndices(
+        [&C_position](const BasisFunction& bf) {
+            return bf.functions()[0].center().isApprox(C_position, 1.0e-04);
+        });
+    BOOST_TEST(C_indices == ref_C_indices, boost::test_tools::per_element());
+
+
+    const auto O_indices = scalar_basis.basisFunctionIndices(
+        [&O_position](const BasisFunction& bf) {
+            return bf.functions()[0].center().isApprox(O_position, 1.0e-04);
+        });
+    BOOST_TEST(O_indices == ref_O_indices, boost::test_tools::per_element());
+}
+
+
+/**
+ *  Check if the shell selector generates the correct indices for the AOs.
+ */
+BOOST_AUTO_TEST_CASE(selector_CO_basis_shells) {
+
+    // Create a test molecule and scalar basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/CO_mulliken.xyz");
+    const GQCP::ScalarBasis<GQCP::GTOShell> scalar_basis {molecule, "STO-3G"};
+
+
+    // Create the reference indices for CO in an STO-3G basis.
+    const std::vector<size_t> ref_C_indices {0, 1, 2, 3, 4};  // The indices of the AOs centered on 'C'.
+    const std::vector<size_t> ref_O_indices {5, 6, 7, 8, 9};  // The indices of the AOs centered on 'O'.
+
+    // Check if the shell selector generates the correct basis function indices.
+    using Shell = GQCP::ScalarBasis<GQCP::GTOShell>::Shell;
+    const auto C_indices = scalar_basis.basisFunctionIndices(
+        [](const Shell& shell) {
+            return shell.nucleus().element() == "C";
+        });
+    BOOST_TEST(C_indices == ref_C_indices, boost::test_tools::per_element());
+
+
+    const auto O_indices = scalar_basis.basisFunctionIndices(
+        [](const Shell& shell) {
+            return shell.nucleus().element() == "O";
+        });
+    BOOST_TEST(O_indices == ref_O_indices, boost::test_tools::per_element());
+}
