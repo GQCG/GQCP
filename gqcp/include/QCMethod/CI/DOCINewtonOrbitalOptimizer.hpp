@@ -57,7 +57,7 @@
 //     LinearExpansion<SeniorityZeroONVBasis> ground_state_expansion;
 
 //     size_t number_of_requested_eigenpairs;
-//     std::vector<Eigenpair> m_eigenpairs;  // eigenvalues and -vectors
+//     std::vector<Eigenpair<double>> m_eigenpairs;  // eigenvalues and -vectors
 
 
 // public:
@@ -149,7 +149,7 @@
 //      *
 //      *  @return the eigenpair that is associated to the given index
 //      */
-//     const Eigenpair& eigenpair(const size_t index = 0) const {
+//     const Eigenpair<double>& eigenpair(const size_t index = 0) const {
 
 //         if (this->is_converged) {
 //             return this->m_eigenpairs[index];
@@ -161,7 +161,7 @@
 //     /**
 //      *  @return all eigenpairs found by this orbital optimizer
 //      */
-//     const std::vector<Eigenpair>& eigenpairs() const {
+//     const std::vector<Eigenpair<double>>& eigenpairs() const {
 
 //         if (this->is_converged) {
 //             return this->m_eigenpairs;

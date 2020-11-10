@@ -4,7 +4,6 @@
 
 #include "ONVBasis/SeniorityZeroONVBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
 
 #include <benchmark/benchmark.h>
 

@@ -5,7 +5,6 @@ target_sources(gqcp
         LibcintOneElectronIntegralEngine.hpp
         LibcintTwoElectronIntegralBuffer.hpp
         LibcintTwoElectronIntegralEngine.hpp
-
         LibintInterfacer.hpp
         LibintOneElectronIntegralBuffer.hpp
         LibintOneElectronIntegralEngine.hpp

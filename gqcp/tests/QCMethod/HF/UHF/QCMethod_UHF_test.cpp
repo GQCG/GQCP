@@ -21,7 +21,6 @@
 
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/HF/UHF/UHFSCFSolver.hpp"
-#include "Utilities/linalg.hpp"
 
 
 /**
@@ -68,11 +67,12 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_plain) {
     const double total_energy = uhf_environment.electronic_energies.back() + GQCP::Operator::NuclearRepulsion(water).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-06);
 
-    BOOST_CHECK(GQCP::areEqualEigenvalues(ref_orbital_energies, uhf_environment.orbital_energies_alpha.back(), 1.0e-06));
-    BOOST_CHECK(GQCP::areEqualEigenvalues(ref_orbital_energies, uhf_environment.orbital_energies_beta.back(), 1.0e-06));
+    BOOST_CHECK(ref_orbital_energies.areEqualEigenvaluesAs(uhf_environment.orbital_energies_alpha.back(), 1.0e-06));
+    BOOST_CHECK(ref_orbital_energies.areEqualEigenvaluesAs(uhf_environment.orbital_energies_beta.back(), 1.0e-06));
 
     BOOST_CHECK(GQCP::areEqualSetsOfEigenvectors(ref_C, uhf_environment.coefficient_matrices.back().alpha(), 1.0e-05));
     BOOST_CHECK(GQCP::areEqualSetsOfEigenvectors(ref_C, uhf_environment.coefficient_matrices.back().beta(), 1.0e-05));
+
 }
 
 
@@ -115,9 +115,10 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_diis) {
     const double total_energy = uhf_environment.electronic_energies.back() + GQCP::Operator::NuclearRepulsion(water).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-06);
 
-    BOOST_CHECK(GQCP::areEqualEigenvalues(ref_orbital_energies, uhf_environment.orbital_energies_alpha.back(), 1.0e-06));
-    BOOST_CHECK(GQCP::areEqualEigenvalues(ref_orbital_energies, uhf_environment.orbital_energies_beta.back(), 1.0e-06));
+    BOOST_CHECK(ref_orbital_energies.areEqualEigenvaluesAs(uhf_environment.orbital_energies_alpha.back(), 1.0e-06));
+    BOOST_CHECK(ref_orbital_energies.areEqualEigenvaluesAs(uhf_environment.orbital_energies_beta.back(), 1.0e-06));
 
     BOOST_CHECK(GQCP::areEqualSetsOfEigenvectors(ref_C, uhf_environment.coefficient_matrices.back().alpha(), 1.0e-05));
     BOOST_CHECK(GQCP::areEqualSetsOfEigenvectors(ref_C, uhf_environment.coefficient_matrices.back().beta(), 1.0e-05));
+
 }

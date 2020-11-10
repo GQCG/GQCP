@@ -68,15 +68,21 @@ public:
      */
     USQOneElectronOperatorComponent<Scalar, Vectorizer> alpha() const {
 
-        // Since f_pq = f_{p alpha, q alpha}, we can just wrap the one-electron integrals (and, by extension, *this) into the correct class.
-        return USQOneElectronOperatorComponent<Scalar, Vectorizer> {*this};
+        // Since f_pq = f_{p alpha, q alpha}, we can just wrap the one-electron integrals into the correct class.
+        const StorageArray<SquareMatrix<Scalar>, Vectorizer> array {this->allParameters(), this->vectorizer()};
+        return USQOneElectronOperatorComponent<Scalar, Vectorizer> {array};
     }
+
 
     /*
      *  @return The beta-component of this restricted one-electron operator.
      */
-    USQOneElectronOperatorComponent<Scalar, Vectorizer> beta() const { return this->alpha(); /* The alpha- and beta- integrals are equal for a restricted operator. */ }
-};
+    USQOneElectronOperatorComponent<Scalar, Vectorizer> beta() const {
+
+        // The alpha- and beta- integrals are equal for a restricted operator, f_pq = f_{p alpha, q alpha} = f_{p beta, q_beta}.
+        return this->alpha();
+    }
+};  // namespace GQCP
 
 
 /*

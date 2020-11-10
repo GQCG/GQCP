@@ -21,7 +21,7 @@
 
 #include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
-#include "Utilities/linalg.hpp"
+#include "Mathematical/Representation/Matrix.hpp"
 
 
 /*

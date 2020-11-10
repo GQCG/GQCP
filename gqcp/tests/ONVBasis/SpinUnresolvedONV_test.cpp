@@ -621,8 +621,9 @@ BOOST_AUTO_TEST_CASE(GHF_overlap) {
     const auto& C_on = g_spinor_basis_on.coefficientMatrix();
     const auto& C_of = g_spinor_basis_of.coefficientMatrix();
 
-    auto S = g_spinor_basis_of.overlap().parameters();  // in MO basis
-    S.basisTransform(C_on.inverse());                   // now in AO basis
+    auto S_op = g_spinor_basis_of.overlap();  // in MO basis
+    S_op.transform(C_on.inverse());           // now in AO basis
+    const auto& S = S_op.parameters();
 
 
     // Check if the one GHF determinant has overlap 1 with the other corresponding GHF determinant, and overlap 0 with the other excitations.
@@ -709,8 +710,10 @@ BOOST_AUTO_TEST_CASE(RHF_UHF_projection) {
     const auto& C_of = g_spinor_basis_of.coefficientMatrix();
     const auto& C_on = g_spinor_basis_on.coefficientMatrix();
 
-    auto S_generalized = g_spinor_basis_of.overlap().parameters();  // in MO basis
-    S_generalized.basisTransform(C_of.inverse());                   // in AO basis
+    auto S_generalized_op = g_spinor_basis_of.overlap();  // in MO basis
+    S_generalized_op.transform(C_of.inverse());           // in AO basis
+    const auto& S_generalized = S_generalized_op.parameters();
+
 
     const auto onv_on = GQCP::SpinUnresolvedONV::FromString("00110011");
     const auto onv_of = GQCP::SpinUnresolvedONV::FromString("00110011");

@@ -91,6 +91,68 @@ BOOST_AUTO_TEST_CASE(Matrix_FromFile) {
 }
 
 
+BOOST_AUTO_TEST_CASE(isEqualEigenvectorAs) {
+
+    // Test isEqualEigenvectorAs with an example.
+    GQCP::Vector<double, 3> a {2, 3, 1};
+    GQCP::Vector<double, 3> b {2, 3, 1};
+    GQCP::Vector<double, 3> c {-2, -3, -1};
+    GQCP::Vector<double, 3> d {2, 3, 0};
+
+
+    BOOST_CHECK(a.isEqualEigenvectorAs(b, 1.0e-6));
+    BOOST_CHECK(a.isEqualEigenvectorAs(c, 1.0e-6));
+    BOOST_CHECK(b.isEqualEigenvectorAs(c, 1.0e-6));
+
+    BOOST_CHECK(!a.isEqualEigenvectorAs(d, 1.0e-6));
+    BOOST_CHECK(!c.isEqualEigenvectorAs(d, 1.0e-6));
+}
+
+
+BOOST_AUTO_TEST_CASE(hasEqualSetsOfEigenvectorsAs_example) {
+
+    // Test hasEqualSetsOfEigenvectorsAs with an example
+    GQCP::MatrixX<double> eigenvectors1 {2, 2};
+    GQCP::MatrixX<double> eigenvectors2 {2, 2};
+    GQCP::MatrixX<double> eigenvectors3 {2, 2};
+    GQCP::MatrixX<double> eigenvectors4 {2, 2};
+
+    // clang-format off
+    eigenvectors1 << 0,  2,
+                     1, -1;
+
+    eigenvectors2 << 0,  2,
+                     1, -1;
+
+    eigenvectors3 << 0, -2,
+                     1,  1;
+
+    eigenvectors4 << 1,  2,
+                     1, -1;
+    // clang-format on
+
+    BOOST_CHECK(eigenvectors1.hasEqualSetsOfEigenvectorsAs(eigenvectors2, 1.0e-6));
+    BOOST_CHECK(eigenvectors1.hasEqualSetsOfEigenvectorsAs(eigenvectors3, 1.0e-6));
+
+    BOOST_CHECK(!eigenvectors1.hasEqualSetsOfEigenvectorsAs(eigenvectors4, 1.0e-6));
+}
+
+BOOST_AUTO_TEST_CASE(hasEqualSetsOfEigenvectorsAs_throws) {
+
+    // Check for throws if the dimensions aren't compatible.
+    GQCP::MatrixX<double> C1 {3, 3};
+    GQCP::MatrixX<double> C2 {3, 2};
+
+    BOOST_CHECK_THROW(C1.hasEqualSetsOfEigenvectorsAs(C2, 1.0e-6), std::invalid_argument);
+
+
+    // Check for no throw if the dimensions are compatible
+    GQCP::MatrixX<double> C3 {3, 3};
+
+    BOOST_CHECK_NO_THROW(C1.hasEqualSetsOfEigenvectorsAs(C3, 1.0e-6));
+}
+
+
 BOOST_AUTO_TEST_CASE(operator_call_CartesianDirection) {
 
     GQCP::Vector<size_t, 3> v {1, 2, 8};

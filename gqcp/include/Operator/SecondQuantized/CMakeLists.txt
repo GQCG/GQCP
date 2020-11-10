@@ -3,7 +3,12 @@ target_sources(gqcp
         EvaluatableScalarRSQOneElectronOperator.hpp
         GSQOneElectronOperator.hpp
         RSQOneElectronOperator.hpp
+        MixedUSQTwoElectronOperatorComponent.hpp
+        PureUSQTwoElectronOperatorComponent.hpp
+        RSQOneElectronOperator.hpp
+        RSQTwoElectronOperator.hpp
         SimpleSQOneElectronOperator.hpp
+        SimpleSQTwoElectronOperator.hpp
         SQHamiltonian.hpp
         SQOperatorStorage.hpp
         SQOperatorStorageBase.hpp
