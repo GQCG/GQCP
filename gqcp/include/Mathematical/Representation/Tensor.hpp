@@ -306,7 +306,7 @@ public:
 
             if (match != std::string::npos) {  // an actual match was found
                 intermediate_indices.erase(match, 1);
-                intermediate_indices.erase(i - 1, 1);
+                intermediate_indices.erase(i - 1, 1);  // i-1 is used because the length of the parameter ìntermediate_indices`changed.
 
                 // We have to set back the current index to account for the removed indices.
                 i -= 2;

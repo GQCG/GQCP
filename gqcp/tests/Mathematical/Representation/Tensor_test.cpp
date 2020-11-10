@@ -282,9 +282,12 @@ BOOST_AUTO_TEST_CASE(addBlock_matrix) {
     }
 }
 
-BOOST_AUTO_TEST_CASE(einsum) {
+/**
+ *  Check if the einsum API for contraction over a single index works as expected.
+ */
+BOOST_AUTO_TEST_CASE(einsum_one_index) {
 
-    // Create an example rank 4tensor
+    // Create an example rank 4 tensor.
     long dim1 = 2;
     GQCP::Tensor<double, 4> T1 {dim1, dim1, dim1, dim1};
     for (size_t i = 0; i < dim1; i++) {
@@ -297,7 +300,7 @@ BOOST_AUTO_TEST_CASE(einsum) {
         }
     }
 
-    // Create an example Rank 2 tensor
+    // Create an example Rank 2 tensor.
     long dim2 = 2;
     GQCP::Tensor<double, 2> T2 {dim2, dim2};
     for (size_t i = 0; i < dim2; i++) {
@@ -306,36 +309,7 @@ BOOST_AUTO_TEST_CASE(einsum) {
         }
     }
 
-    // Test the einsum API: double axis contraction
-    // Start by creating a reference, calculated with numpy.einsum()
-    GQCP::MatrixX<double> reference {2, 2};
-
-    // clang-format off
-    reference <<   11,   35,
-                  131,  155;
-    // clang-format on
-
-    const auto output = T1.einsum<2>(T2, "ijkl", "jk", "il");
-    const auto output2 = T1.einsum<2>("ijkl,jk->il", T2);
-
-
-    BOOST_CHECK(reference.isApprox(output.toMatrix(2, 2), 1.0e-12));
-    BOOST_CHECK(reference.isApprox(output2.toMatrix(2, 2), 1e-12));
-
-    // Test the same for the matrix contraction
-    // Create a matrix containing the same values as T2
-    GQCP::Matrix<double> M {2, 2};
-    for (size_t i = 0; i < 2; i++) {
-        for (size_t j = 0; j < 2; j++) {
-            M(i, j) = j + 5 * i;
-        }
-    }
-
-    const auto output3 = T1.einsum<2>("ijkl,jk->il", M);
-    BOOST_CHECK(reference.isApprox(output3.toMatrix(2, 2), 1e-12));
-
-    // Test the einsum API: single axis contraction, for the same 3 einsum expressions
-    // Start by creating a reference, which was calculated with numpy.einsum()
+    // Start by creating a reference, which was calculated with numpy.einsum().
     GQCP::Tensor<double, 4> reference_tensor {dim1, dim1, dim1, dim1};
     for (size_t i = 0; i < dim1; i++) {
         for (size_t j = 0; j < dim1; j++) {
@@ -364,22 +338,121 @@ BOOST_AUTO_TEST_CASE(einsum) {
     reference_tensor.addBlock<2, 3>(reference_block_2, 1, 0, 0, 0);
     reference_tensor.addBlock<2, 3>(reference_block_2, 1, 1, 0, 0);
 
-    const auto output4 = T1.einsum<1>(T2, "ijkl", "ia", "jkla");
-    const auto output5 = T1.einsum<1>("ijkl,ia->jkla", T2);
-    const auto output6 = T1.einsum<1>("ijkl,ia->jkla", M);
+    const auto output = T1.einsum<1>(T2, "ijkl", "ia", "jkla");
+    const auto output2 = T1.einsum<1>("ijkl,ia->jkla", T2);
 
-    BOOST_CHECK(reference_tensor.isApprox(output4, 1e-12));
-    BOOST_CHECK(reference_tensor.isApprox(output5, 1e-12));
-    BOOST_CHECK(reference_tensor.isApprox(output6, 1e-12));
+    BOOST_CHECK(reference_tensor.isApprox(output, 1e-12));
+    BOOST_CHECK(reference_tensor.isApprox(output2, 1e-12));
 
-    // Let's test a contraction over all indices as well
-    // We test both einsum notations and the contraction of a tensor with a matrix
-    // reference values were calculated with numpy.einsum()
-    const auto output7 = T1.einsum<4>(T1, "ijkl", "ijkl", "");
-    const auto output8 = T1.einsum<4>("ijkl,ijkl->", T1);
-    const auto output9 = T2.einsum<2>("ij,ij->", M);
+    // Test the same for contraction with a matrix.
+    // Create a matrix containing the same values as T2.
+    GQCP::Matrix<double> M {2, 2};
+    for (size_t i = 0; i < 2; i++) {
+        for (size_t j = 0; j < 2; j++) {
+            M(i, j) = j + 5 * i;
+        }
+    }
 
-    BOOST_CHECK_EQUAL(output7(0), 1096);
-    BOOST_CHECK_EQUAL(output8(0), 1096);
-    BOOST_CHECK_EQUAL(output9(0), 62);
+    const auto output3 = T1.einsum<1>("ijkl,ia->jkla", M);
+    BOOST_CHECK(reference_tensor.isApprox(output3, 1e-12));
+}
+
+/**
+ *  Check if the einsum API for contraction over two indices works as expected.
+ */
+BOOST_AUTO_TEST_CASE(einsum_two_indices) {
+
+    // Create an example rank 4 tensor.
+    long dim1 = 2;
+    GQCP::Tensor<double, 4> T1 {dim1, dim1, dim1, dim1};
+    for (size_t i = 0; i < dim1; i++) {
+        for (size_t j = 0; j < dim1; j++) {
+            for (size_t k = 0; k < dim1; k++) {
+                for (size_t l = 0; l < dim1; l++) {
+                    T1(i, j, k, l) = 2 * l + j + 10 * i;
+                }
+            }
+        }
+    }
+
+    // Create an example Rank 2 tensor.
+    long dim2 = 2;
+    GQCP::Tensor<double, 2> T2 {dim2, dim2};
+    for (size_t i = 0; i < dim2; i++) {
+        for (size_t j = 0; j < dim2; j++) {
+            T2(i, j) = j + 5 * i;
+        }
+    }
+
+    // Start by creating a reference, calculated with numpy.einsum().
+    GQCP::MatrixX<double> reference {2, 2};
+
+    // clang-format off
+    reference <<   11,   35,
+                  131,  155;
+    // clang-format on
+
+    const auto output = T1.einsum<2>(T2, "ijkl", "jk", "il");
+    const auto output2 = T1.einsum<2>("ijkl,jk->il", T2);
+
+    BOOST_CHECK(reference.isApprox(output.toMatrix(2, 2), 1.0e-12));
+    BOOST_CHECK(reference.isApprox(output2.toMatrix(2, 2), 1e-12));
+
+    // Test the same for the matrix contraction.
+    // Create a matrix containing the same values as T2.
+    GQCP::Matrix<double> M {2, 2};
+    for (size_t i = 0; i < 2; i++) {
+        for (size_t j = 0; j < 2; j++) {
+            M(i, j) = j + 5 * i;
+        }
+    }
+
+    const auto output3 = T1.einsum<2>("ijkl,jk->il", M);
+    BOOST_CHECK(reference.isApprox(output3.toMatrix(2, 2), 1e-12));
+}
+
+/**
+ *  Check if the einsum API for contraction over all indices works as expected.
+ */
+BOOST_AUTO_TEST_CASE(einsum_all_indices) {
+
+    // Create an example rank 4 tensor.
+    long dim1 = 2;
+    GQCP::Tensor<double, 4> T1 {dim1, dim1, dim1, dim1};
+    for (size_t i = 0; i < dim1; i++) {
+        for (size_t j = 0; j < dim1; j++) {
+            for (size_t k = 0; k < dim1; k++) {
+                for (size_t l = 0; l < dim1; l++) {
+                    T1(i, j, k, l) = 2 * l + j + 10 * i;
+                }
+            }
+        }
+    }
+
+    // Create an example Rank 2 tensor.
+    long dim2 = 2;
+    GQCP::Tensor<double, 2> T2 {dim2, dim2};
+    for (size_t i = 0; i < dim2; i++) {
+        for (size_t j = 0; j < dim2; j++) {
+            T2(i, j) = j + 5 * i;
+        }
+    }
+
+    // Create a matrix containing the same values as T2.
+    GQCP::Matrix<double> M {2, 2};
+    for (size_t i = 0; i < 2; i++) {
+        for (size_t j = 0; j < 2; j++) {
+            M(i, j) = j + 5 * i;
+        }
+    }
+
+    // We test both einsum notations and the contraction of a tensor with a matrix.
+    // Reference values were calculated with numpy.einsum().
+    const auto output = T1.einsum<4>(T1, "ijkl", "ijkl", "");
+    const auto output2 = T1.einsum<4>("ijkl,ijkl->", T1);
+    const auto output3 = T2.einsum<2>("ij,ij->", M);
+
+    BOOST_CHECK_EQUAL(output(0), 1096);
+    BOOST_CHECK_EQUAL(output2(0), 1096);
+    BOOST_CHECK_EQUAL(output3(0), 62);
 }
