@@ -8,6 +8,7 @@ target_sources(gqcp
         ElectronicDensityOperator.hpp
         ElectronicDipoleOperator.hpp
         ElectronicSpinOperator.hpp
+        ElectronicSpin_zOperator.hpp
         KineticOperator.hpp
         LinearMomentumOperator.hpp
         NuclearAttractionOperator.hpp
