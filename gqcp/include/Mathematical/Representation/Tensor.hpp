@@ -21,8 +21,12 @@
 #include "Mathematical/Representation/Matrix.hpp"
 #include "Utilities/type_traits.hpp"
 
+#include <boost/algorithm/string.hpp>
+
 #include <unsupported/Eigen/CXX11/Tensor>
 
+#include <algorithm>
+#include <iostream>
 #include <string>
 
 
@@ -252,7 +256,7 @@ public:
      * 
      *  @tparam N                   The number of axes that should be contracted over.
      * 
-     *  @example T1.einsum(T2, 'ijkl', 'ia', 'jkla') will contract the first axis of T1 (with labels 'ijkl') with the first axis of T2 (with labels 'ia') (because of the matching index labels 'i') and return a tensor wose axes are labelled as 'jkla'.
+     *  @example T1.einsum(T2, 'ijkl', 'ia', 'jkla') will contract the first axis of T1 (with labels 'ijkl') with the first axis of T2 (with labels 'ia') (because of the matching index labels 'i') and return a tensor whose axes are labelled as 'jkla'.
      * 
      *  @return The result of the tensor contraction.
      */
@@ -287,37 +291,124 @@ public:
             }
         }
 
-
         // Perform the contraction. It is an intermediate result, because we still have to align the tensor axes that Eigen's contraction module produces with the user's requested axes.
-        Tensor<Scalar, ResultRank> T_intermediate = this->contract(rhs, contraction_pairs);
-
+        Tensor<Scalar, ResultRank> T_intermediate = this->contract(rhs.Eigen(), contraction_pairs);
 
         // Finally, we should find the shuffle indices that map the obtained intermediate axes to the requested axes.
-
         // The intermediate axes are just concatenated from left to right, removing any duplicates.
         auto intermediate_indices = lhs_labels + rhs_labels;
+
         for (size_t i = 1; i < LHSRank + RHSRank; i++) {  // We should skip the first iteration, since there wouldn't be any duplicates anyways.
 
             // Check if the current index label appears in the substring before it.
             const auto current_label = intermediate_indices[i];
             const auto match = intermediate_indices.substr(0, i).find(current_label);
+
             if (match != std::string::npos) {  // an actual match was found
-                intermediate_indices.erase(match);
-                intermediate_indices.erase(i);
+                intermediate_indices.erase(match, 1);
+                intermediate_indices.erase(i - 1, 1);  // i-1 is used because the length of the parameter ìntermediate_indices`changed.
 
                 // We have to set back the current index to account for the removed indices.
                 i -= 2;
             }
         }
 
+        // Eigen3 does not document its tensor contraction clearly, so see the accepted answer on stackoverflow (https://stackoverflow.com/a/47558349/7930415):
+        //      Eigen3 does not accept a way to specify the output axes: instead, it retains the order from left to right of the axes that survive the contraction.
+        //      This means that, in order to get the right ordering of the axes, we will have to swap axes.
+
         // Find the position of the intermediate axes' labels in the requested output labels in order to set up the required shuffle indices.
-        Eigen::array<int, 4> shuffle_indices {};
-        for (size_t i = 0; i < 4; i++) {
-            const auto current_label = intermediate_indices[i];
-            shuffle_indices[i] = output_labels.find(current_label);
+        // This is only necessary when not contracting over all axes, in other words, when the string of output labels is not empty.
+        if (output_labels != "") {
+            Eigen::array<int, 4> shuffle_indices {};
+
+            for (size_t i = 0; i < 4; i++) {
+                const auto current_label = intermediate_indices[i];
+                shuffle_indices[i] = output_labels.find(current_label);
+            }
+
+            return T_intermediate.shuffle(shuffle_indices);
         }
 
-        return T_intermediate.shuffle(shuffle_indices);
+        return T_intermediate;
+    }
+
+
+    /**
+     *  Contract this tensor with another one, using a NumPy 'einsum'-like API.
+     * 
+     *  @param contraction_string   The string used to specify the wanted contraction, e.g. "ijkl,jk->il". Any spaces are discarded.
+     *  @param rhs                  The right-hand side of the contraction.
+     * 
+     *  @tparam N                   The number of axes that should be contracted over.
+     * 
+     *  @example T1.einsum("ijkl,jk->il", T2) will contract the j and k axes of the second tensor with those of the first tensor, resulting in a rank 2 tensor with axes i and l.
+     * 
+     *  @return The result of the tensor contraction.
+     */
+    template <int N, int LHSRank = Rank, int RHSRank>
+    Tensor<Scalar, LHSRank + RHSRank - 2 * N> einsum(std::string contraction_string, const Tensor<Scalar, RHSRank>& rhs) const {
+        // Remove unnecessary symbols from string.
+        boost::erase_all(contraction_string, " ");  // Remove all spaces.
+        boost::erase_all(contraction_string, ">");
+        boost::replace_all(contraction_string, "-", " ");
+        boost::replace_all(contraction_string, ",", " ");
+
+        // Split the stringstream in the necessary components, 3 in most cases.
+        std::vector<std::string> segment_list;
+        boost::split(segment_list, contraction_string, boost::is_any_of(" "));
+
+        // If a contraction over all indices is done, only 2 sets of labels are saved in the vector. The last set of labels is an empty string, and is added manually.
+        if (segment_list.size() == 2) {
+            segment_list.push_back("");
+        }
+
+        // The following code can be used to calculate template parameter `N` at runtime. At the moment however, this is not used.
+        // Determine number of axes to contract over
+        //
+        // std::vector<char> segment_1(segment_list[0].begin(), segment_list[0].end());
+        // std::vector<char> segment_2(segment_list[1].begin(), segment_list[1].end());
+        // std::vector<char> intersection;
+        //
+        // std::set_intersection(segment_1.begin(), segment_1.end(),
+        //                       segment_2.begin(), segment_2.end(), std::back_inserter(intersection));
+        //
+        // const int Z = intersection.size();
+
+        return this->einsum<N>(rhs, segment_list[0], segment_list[1], segment_list[2]);
+    }
+
+
+    /**
+     *  Contract this tensor with a matrix, using a NumPy 'einsum'-like API.
+     * 
+     *  @param contraction_string   The string used to specify the wanted contraction, e.g. "ijkl,jk->il"
+     *  @param rhs                  The right-hand side of the contraction, a matrix in this case.
+     * 
+     *  @tparam N                   The number of axes that should be contracted over.
+     * 
+     *  @example T.einsum("ijkl,jk->il", M) will contract the j and k axes of the second tensor with those of the first tensor, resulting in a rank 2 tensor with axes i and l.
+     * 
+     *  @return The result of the tensor contraction.
+     */
+    template <int N, int LHSRank = Rank>
+    Tensor<Scalar, LHSRank + 2 - 2 * N> einsum(std::string contraction_string, const Matrix<Scalar> rhs) const {
+        // Convert the given `Matrix` to its equivalent rank-2 `Tensor`.
+        const auto tensor_from_matrix = Tensor<Scalar, 2>(Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>>(rhs.data(), rhs.rows(), rhs.cols()));
+        return this->einsum<N>(contraction_string, tensor_from_matrix);
+    }
+
+
+    /**
+     *  @return This rank-two tensor as a matrix.
+     */
+    template <int Z = Rank>
+    const enable_if_t<Z == 2, GQCP::Matrix<Scalar>> asMatrix() const {
+
+        const auto rows = this->dimension(0);
+        const auto cols = this->dimension(1);
+
+        return GQCP::Matrix<Scalar>(Eigen::Map<const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>>(this->data(), rows, cols));
     }
 
 

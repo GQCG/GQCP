@@ -84,12 +84,9 @@ public:
 
         for (size_t i = 0; i < this->numberOfComponents(); i++) {
 
-            // Specify the contractions for the relevant contraction of the two-electron integrals/parameters/matrix elements and the 2-DM:
+            // Perform the actual contraction (with prefactor 0.5):
             //      0.5 g(p q r s) d(p q r s)
-            Eigen::array<Eigen::IndexPair<int>, 4> contractions {Eigen::IndexPair<int>(0, 0), Eigen::IndexPair<int>(1, 1), Eigen::IndexPair<int>(2, 2), Eigen::IndexPair<int>(3, 3)};
-
-            // Perform the actual contraction.
-            Eigen::Tensor<Scalar, 0> contraction = 0.5 * parameters[i].contract(d.Eigen(), contractions);
+            Eigen::Tensor<Scalar, 0> contraction = 0.5 * parameters[i].template einsum<4>("pqrs, pqrs->", d);
 
             // As the contraction is a scalar (a tensor of rank 0), we should access using `operator(0)`.
             expectation_values[i] = contraction(0);
@@ -115,44 +112,34 @@ public:
      */
     Self transformed(const UTransformationMatrixComponent<Scalar>& transformation_matrix, const Spin sigma) const {
 
-        // // Since we're only getting T as a matrix, we should convert it to an appropriate tensor to perform contractions.
-        // const Tensor<double, 2> T = Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>>(transformation_matrix.data(), transformation_matrix.rows(), transformation_matrix.cols());
-
-        // const Tensor<double, 2> T_conjugate = T.conjugate();
-
-
-        // // Depending on the given spin-component, we should either transform the first two, or the second two axes.
-        // auto result = *this;
-
-        // for (size_t i = 0; i < this->numberOfComponents(); i++) {
-        //     switch (sigma) {
-        //     case Spin::alpha: {
-        //         result.allParameters(i)
-        //             .template einsum<1>(T_conjugate, "PQRS", "PT", "TQRS")
-        //             .template einsum<1>(T, "TQRS", "QU", "TURS");
-        //     }
-
-        //     case Spin::beta: {
-        //         result.allParameters(i)
-        //             .template einsum<1>(T_conjugate, "PQRS", "RT", "PQTS")
-        //             .template einsum<1>(T, "PQTS", "SU", "PQTU");
-        //     }
-        //     }
-        // }
-
-        // return result;
-
         // Since we're only getting T as a matrix, we should convert it to an appropriate tensor to perform contractions.
-        // const Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> T_tensor {transformation_matrix.data(), transformation_matrix.rows(), transformation_matrix.cols()};
+        // Although not a necessity for the einsum implementation, it makes it a lot easier to follow the formulas.
+        const GQCP::Tensor<Scalar, 2> T_tensor = GQCP::Tensor<Scalar, 2>(Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>>(transformation_matrix.data(), transformation_matrix.rows(), transformation_matrix.cols()));
 
-        const size_t first_contraction_index = 2 * sigma;
-        const size_t second_contraction_index = 2 * sigma + 1;
+        // We calculate the conjugate as a tensor as well.
+        const GQCP::Tensor<Scalar, 2> T_conjugate = T_tensor.conjugate();
 
+
+        // Depending on the given spin-component, we should either transform the first two, or the second two axes.
+        const auto& parameters = this->allParameters();
         auto result = this->allParameters();
 
         for (size_t i = 0; i < this->numberOfComponents(); i++) {
-            result[i].template contractWithMatrix<Scalar>(transformation_matrix, first_contraction_index);
-            result[i].template contractWithMatrix<Scalar>(transformation_matrix, second_contraction_index);
+            switch (sigma) {
+            case Spin::alpha: {
+                const auto temp = T_conjugate.template einsum<1>("UQ,TUVW->TQVW", parameters[i]);
+                const auto transformed = T_tensor.template einsum<1>("TP,TQVW->PQVW", temp);
+                result[i] = transformed;
+                break;
+            }
+
+            case Spin::beta: {
+                const auto temp = parameters[i].template einsum<1>("PQVW, WS->PQVS", T_conjugate);
+                const auto transformed = temp.template einsum<1>("PQVS, VR->PQRS", T_tensor);
+                result[i] = transformed;
+                break;
+            }
+            }
         }
 
         return Self {StorageArray<SquareRankFourTensor<Scalar>, Vectorizer>(result, this->array.vectorizer())};

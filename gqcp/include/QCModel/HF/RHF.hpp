@@ -92,17 +92,14 @@ public:
         // First, calculate the sum of H_core and F (this saves a contraction).
         const auto Z = H_core + F;
 
-        // Convert the matrices Z and D to an Eigen::Tensor<double, 2> D_tensor, as contractions are only implemented for Tensors
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> D_tensor {D.data(), D.rows(), D.cols()};
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> Z_tensor {Z.parameters().data(), D.rows(), D.cols()};
+        // Convert the matrix Z to an GQCP::Tensor<double, 2> Z_tensor.
+        // Einsum is only implemented for a tensor + a matrix, not for 2 matrices.
+        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> Z_t {Z.parameters().data(), D.rows(), D.cols()};
+        Tensor<Scalar, 2> Z_tensor = Tensor<Scalar, 2>(Z_t);
 
-        // Specify the contraction pair
-        // To calculate the electronic energy, we must perform a double contraction
+        // To calculate the electronic energy, we must perform a double contraction (with prefactor 0.5)
         //      0.5 D(nu mu) Z(mu nu)
-        Eigen::array<Eigen::IndexPair<int>, 2> contraction_pair = {Eigen::IndexPair<int>(0, 1), Eigen::IndexPair<int>(1, 0)};
-
-        // Calculate the double contraction (with prefactor 0.5)
-        Tensor<Scalar, 0> contraction = 0.5 * D_tensor.contract(Z_tensor, contraction_pair);
+        Tensor<Scalar, 0> contraction = 0.5 * Z_tensor.template einsum<2>("ij,ji->", D);
 
         // As the double contraction of two matrices is a scalar (a tensor of rank 0), we should access the value as (0)
         return contraction(0);
@@ -243,24 +240,18 @@ public:
      */
     static ScalarRSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(const Orbital1DM<Scalar>& D, const RSQHamiltonian<Scalar>& sq_hamiltonian) {
 
-        // To perform the contraction, we will first have to convert the MatrixX<double> D to an Eigen::Tensor<const double, 2> D_tensor, as contractions are only implemented for Tensors
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> D_tensor {D.data(), D.rows(), D.cols()};
+        // get the two-electron parameters
+        const auto& g = sq_hamiltonian.twoElectron().parameters();
 
-        // Specify the contraction pairs
         // To calculate G, we must perform two double contractions
         //      1. (mu nu|rho lambda) P(lambda rho)
-        Eigen::array<Eigen::IndexPair<int>, 2> direct_contraction_pair = {Eigen::IndexPair<int>(3, 0), Eigen::IndexPair<int>(2, 1)};
+        const Tensor<Scalar, 2> direct_contraction = g.template einsum<2>("ijkl,lk->ij", D);
         //      2. -0.5 (mu lambda|rho nu) P(lambda rho)
-        Eigen::array<Eigen::IndexPair<int>, 2> exchange_contraction_pair = {Eigen::IndexPair<int>(1, 0), Eigen::IndexPair<int>(2, 1)};
+        const Tensor<Scalar, 2> exchange_contraction = -0.5 * g.template einsum<2>("ilkj,lk->ij", D);
 
-        // Calculate both contractions (and incorporate prefactors)
-        const auto& g = sq_hamiltonian.twoElectron().parameters();
-        Tensor<Scalar, 2> direct_contraction = g.contract(D_tensor, direct_contraction_pair);
-        Tensor<Scalar, 2> exchange_contraction = -0.5 * g.contract(D_tensor, exchange_contraction_pair);
-
-        // The previous contractions are Tensor<Scalar, 2> instances. In order to calculate the total G matrix, we will convert them back into MatrixX<double>
-        Eigen::Map<Eigen::MatrixXd> G1 {direct_contraction.data(), direct_contraction.dimension(0), direct_contraction.dimension(1)};
-        Eigen::Map<Eigen::MatrixXd> G2 {exchange_contraction.data(), exchange_contraction.dimension(0), exchange_contraction.dimension(1)};
+        // The previous contractions are Tensor<Scalar, 2> instances. In order to calculate the total G matrix, we will convert them back into GQCP::Matrix<Scalar>
+        auto G1 = direct_contraction.asMatrix();
+        auto G2 = exchange_contraction.asMatrix();
 
         return ScalarRSQOneElectronOperator<Scalar> {sq_hamiltonian.core().parameters() + G1 + G2};
     }
