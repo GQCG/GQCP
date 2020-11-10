@@ -638,6 +638,112 @@ public:
 
     // Allow the `rotate` method from `JacobiRotatable`, since there's also a `rotate` from `BasisTransformable`.
     using JacobiRotatable<Self>::rotate;
+
+
+    /*
+     *  MARK: Operations related to one-electron operators
+     */
+
+    /**
+     *  Addition-assignment with a (scalar) one-electron operator.
+     */
+    Self& operator+=(const ScalarSQOneElectronOperator& sq_one_op) {
+
+        // Update the one-electron contributions and the total one-electron operator.
+        this->h_contributions.push_back(sq_one_op);
+        this->h += sq_one_op;
+
+        return *this;
+    }
+
+
+    /**
+     *  Addition, canonically implemented using addition-assignment.
+     */
+    friend Self operator+(Self lhs, const ScalarSQOneElectronOperator& rhs) {
+        lhs += rhs;
+        return lhs;
+    }
+
+
+    /**
+     *  A commutative version of the previous addition.
+     */
+    friend Self operator+(const ScalarSQOneElectronOperator& lhs, Self rhs) {
+        return rhs += lhs;
+    }
+
+
+    /**
+     *  Subtraction-assignment with a (scalar) one-electron operator.
+     */
+    Self& operator-=(const ScalarSQOneElectronOperator& sq_one_op) {
+
+        *this += -sq_one_op;
+        return *this;
+    }
+
+
+    /**
+     *  Subtraction, canonically implemented using addition-assignment.
+     */
+    friend Self operator-(Self lhs, const ScalarSQOneElectronOperator& rhs) {
+        lhs -= rhs;
+        return lhs;
+    }
+
+
+    /*
+     *  MARK: Operations related to two-electron operators
+     */
+
+    /**
+     *  Addition-assignment with a (scalar) two-electron operator.
+     */
+    Self& operator+=(const ScalarSQTwoElectronOperator& sq_two_op) {
+
+        // Update the one-electron contributions and the total one-electron operator.
+        this->g_contributions.push_back(sq_two_op);
+        this->g += sq_two_op;
+
+        return *this;
+    }
+
+
+    /**
+     *  Addition, canonically implemented using addition-assignment.
+     */
+    friend Self operator+(Self lhs, const ScalarSQTwoElectronOperator& rhs) {
+        lhs += rhs;
+        return lhs;
+    }
+
+
+    /**
+     *  A commutative version of the previous addition.
+     */
+    friend Self operator+(const ScalarSQTwoElectronOperator& lhs, Self rhs) {
+        return rhs += lhs;
+    }
+
+
+    /**
+     *  Subtraction-assignment with a (scalar) one-electron operator.
+     */
+    Self& operator-=(const ScalarSQTwoElectronOperator& sq_two_op) {
+
+        *this += -sq_two_op;
+        return *this;
+    }
+
+
+    /**
+     *  Subtraction, canonically implemented using addition-assignment.
+     */
+    friend Self operator-(Self lhs, const ScalarSQTwoElectronOperator& rhs) {
+        lhs -= rhs;
+        return lhs;
+    }
 };
 
 
@@ -710,90 +816,6 @@ using USQHamiltonian = SQHamiltonian<ScalarUSQOneElectronOperator<Scalar>, Scala
 // An `SQHamiltonian` related to general spinors. See `GeneralSpinorTag`.
 template <typename Scalar>
 using GSQHamiltonian = SQHamiltonian<ScalarGSQOneElectronOperator<Scalar>, ScalarGSQTwoElectronOperator<Scalar>>;
-
-
-/*
- *  OPERATORS
- */
-
-/**
- *  Add the second-quantized forms of a (scalar) one-electron operator to that of a Hamiltonian.
- * 
- *  @tparam Scalar              the type that is used to represent elements of the (scalar) one-electron operator and the Hamiltonian
- * 
- *  @param sq_hamiltonian       the second-quantized Hamiltonian
- *  @param sq_one_op            the (scalar) second-quantized one-electron operator
- * 
- *  @return a new second-quantized Hamiltonian
- */
-template <typename Scalar>
-RSQHamiltonian<Scalar> operator+(const RSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarRSQOneElectronOperator<Scalar>& sq_one_op) {
-
-    // Make a copy of the one-electron part in order to create a new Hamiltonian
-    auto sq_one_ops = sq_hamiltonian.coreContributions();
-
-    // 'Add' the one-electron operator
-    sq_one_ops.push_back(sq_one_op);
-
-    return RSQHamiltonian<Scalar>(sq_one_ops, sq_hamiltonian.twoElectronContributions());
-}
-
-
-/**
- *  Subtract a (scalar) second-quantized one-electron operator from a second-quantized Hamiltonian.
- * 
- *  @tparam Scalar              the type that is used to represent elements of the (scalar) one-electron operator and the Hamiltonian
- * 
- *  @param sq_hamiltonian       the second-quantized Hamiltonian
- *  @param sq_one_op            the (scalar) second-quantized one-electron operator
- * 
- *  @return a new second-quantized Hamiltonian
- */
-template <typename Scalar>
-RSQHamiltonian<Scalar> operator-(const RSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarRSQOneElectronOperator<Scalar>& sq_one_op) {
-
-    return sq_hamiltonian + (-sq_one_op);
-}
-
-
-/**
- *  Add the second-quantized forms of a (scalar) two-electron operator to that of a Hamiltonian.
- * 
- *  @tparam Scalar              the type that is used to represent elements of the (scalar) two-electron operator and the Hamiltonian
- * 
- *  @param sq_hamiltonian       the second-quantized Hamiltonian
- *  @param sq_two_op            the (scalar) second-quantized two-electron operator
- * 
- *  @return a new second-quantized Hamiltonian
- */
-template <typename Scalar>
-RSQHamiltonian<Scalar> operator+(const RSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarRSQTwoElectronOperator<Scalar>& sq_two_op) {
-
-    // Make a copy of the two-electron part in order to create a new Hamiltonian
-    auto sq_two_ops = sq_hamiltonian.twoElectronContributions();
-
-    // 'Add' the two-electron operator
-    sq_two_ops.push_back(sq_two_ops);
-
-    return RSQHamiltonian<Scalar>(sq_hamiltonian.coreContributions(), sq_two_ops);
-}
-
-
-/**
- *  Subtract a (scalar) second-quantized two-electron operator from a second-quantized Hamiltonian.
- * 
- *  @tparam Scalar              the type that is used to represent elements of the (scalar) two-electron operator and the Hamiltonian
- * 
- *  @param sq_hamiltonian       the second-quantized Hamiltonian
- *  @param sq_two_op            the (scalar) second-quantized two-electron operator
- * 
- *  @return a new second-quantized Hamiltonian
- */
-template <typename Scalar>
-RSQHamiltonian<Scalar> operator-(const RSQHamiltonian<Scalar>& sq_hamiltonian, const ScalarRSQTwoElectronOperator<Scalar>& sq_two_op) {
-
-    return sq_hamiltonian + (-sq_two_op);
-}
 
 
 }  // namespace GQCP
