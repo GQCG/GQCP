@@ -109,8 +109,8 @@ public:
      */
     UHF(const size_t N_alpha, const size_t N_beta, const UTransformationMatrixComponent<Scalar>& C_alpha, const UTransformationMatrixComponent<Scalar>& C_beta) :
         UHF(N_alpha, N_beta,
-            GQCP::VectorX<double>::Zero(C.alpha().numberOfOrbitals()),
-            GQCP::VectorX<double>::Zero(C.beta().numberOfOrbitals()),
+            GQCP::VectorX<double>::Zero(C_alpha.numberOfOrbitals()),
+            GQCP::VectorX<double>::Zero(C_beta.numberOfOrbitals()),
             C_alpha, C_beta) {
     }
 
