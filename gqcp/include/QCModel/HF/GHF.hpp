@@ -153,12 +153,12 @@ public:
         G1DM<Scalar> P_bb = G1DM<Scalar>::Zero(M);
         P_bb.bottomRightCorner(M / 2, M / 2) = P.bottomRightCorner(M / 2, M / 2);
 
-
         // Specify the contraction pairs for the direct contractions:
         //      P(rho lambda) (mu nu|rho lambda)
         // See knowdes: https://gqcg-res.github.io/knowdes/derivation-of-the-ghf-scf-equations-through-lagrange-multipliers.html
-        const auto Ja_tensor = g.template einsum<2>("ijkl,kl->ij", P_aa).asMatrix();
-        const auto Jb_tensor = g.template einsum<2>("ijkl,kl->ij", P_bb).asMatrix();
+        const auto& g = sq_hamiltonian.twoElectron().parameters();
+        const auto Ja = g.template einsum<2>("ijkl,kl->ij", P_aa).asMatrix();
+        const auto Jb = g.template einsum<2>("ijkl,kl->ij", P_bb).asMatrix();
 
 
         return ScalarGSQOneElectronOperator<Scalar>(Ja + Jb);
@@ -195,7 +195,7 @@ public:
         // Specify the contraction pairs for the exchange contractions:
         //      P(lambda rho) (mu rho|lambda nu)
         const auto& g = sq_hamiltonian.twoElectron().parameters();
-        const auto K_aa= g.template einsum<2>("ijkl,kj->il", P_aa).asMatrix();
+        const auto K_aa = g.template einsum<2>("ijkl,kj->il", P_aa).asMatrix();
         const auto K_ab = g.template einsum<2>("ijkl,kj->il", P_ba).asMatrix();
         const auto K_ba = g.template einsum<2>("ijkl,kj->il", P_ab).asMatrix();
         const auto K_bb = g.template einsum<2>("ijkl,kj->il", P_bb).asMatrix();

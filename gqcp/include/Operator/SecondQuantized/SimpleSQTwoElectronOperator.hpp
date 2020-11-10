@@ -283,7 +283,7 @@ public:
     DerivedOperator transformed(const TM& transformation_matrix) const override {
 
         // Since we're only getting T as a matrix, we should convert it to an appropriate tensor to perform contractions.
-        // Although not a necessity for the einsum implementation, it makes it a lot easier to follow the formulas
+        // Although not a necessity for the einsum implementation, it makes it a lot easier to follow the formulas.
         const GQCP::Tensor<Scalar, 2> T_tensor = GQCP::Tensor<Scalar, 2>(Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>>(transformation_matrix.data(), transformation_matrix.rows(), transformation_matrix.cols()));
 
         // We calculate the conjugate as a tensor as well.

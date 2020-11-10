@@ -347,7 +347,7 @@ public:
      *  @return The result of the tensor contraction.
      */
     template <int N, int LHSRank = Rank, int RHSRank>
-    Tensor<Scalar, LHSRank + RHSRank - 2 * N> einsum(const std::string contraction_string&, const Tensor<Scalar, RHSRank>& rhs) const {
+    Tensor<Scalar, LHSRank + RHSRank - 2 * N> einsum(std::string contraction_string, const Tensor<Scalar, RHSRank>& rhs) const {
         // Remove unnecessary symbols from string.
         boost::erase_all(contraction_string, " ");  // Remove all spaces.
         boost::erase_all(contraction_string, ">");
@@ -402,7 +402,8 @@ public:
     /**
      *  @return This rank-two tensor as a matrix.
      */
-    const GQCP::Matrix<Scalar> asMatrix() const {
+    template <int Z = Rank>
+    const enable_if_t<Z == 2, GQCP::Matrix<Scalar>> asMatrix() const {
 
         const auto rows = this->dimension(0);
         const auto cols = this->dimension(1);

@@ -232,14 +232,12 @@ public:
 
         // Specify the contraction pairs for the direct contractions:
         //      (mu nu|rho lambda) P(rho lambda)
-        Tensor<Scalar, 2> J_alpha_tensor = g.template einsum<2>("ijkl,kl->ij", P.alpha());
-        Tensor<Scalar, 2> J_beta_tensor = g.template einsum<2>("ijkl,kl->ij", P.beta());
+        const auto J_alpha = g.template einsum<2>("ijkl,kl->ij", P.alpha()).asMatrix();
+        const auto J_beta = g.template einsum<2>("ijkl,kl->ij", P.beta()).asMatrix();
 
         // Calculate the total J tensor
-        Tensor<Scalar, 2> J_tensor = J_alpha_tensor.Eigen() + J_beta_tensor.Eigen();
+        const auto J = J_alpha + J_beta;
 
-        // Convert the given tensor back to a matrix.
-        auto J = J_tensor.toMatrix(J_tensor.dimension(0), J_tensor.dimension(1));
         return ScalarUSQOneElectronOperator<Scalar> {J, J};
     }
 
@@ -259,12 +257,8 @@ public:
 
         // Specify the contraction pairs for the exchange contraction:
         //      (mu rho|lambda nu) P(lambda rho)
-        Tensor<Scalar, 2> K_alpha_tensor = g.template einsum<2>("ijkl,kj->il", P.alpha());
-        Tensor<Scalar, 2> K_beta_tensor = g.template einsum<2>("ijkl,kj->il", P.beta());
-
-        // Convert the given tensor back to a matrix.
-        auto K_alpha = K_alpha_tensor.toMatrix(K_alpha_tensor.dimension(0), K_alpha_tensor.dimension(1));
-        auto K_beta = K_beta_tensor.toMatrix(K_beta_tensor.dimension(0), K_beta_tensor.dimension(1));
+        const auto K_alpha = g.template einsum<2>("ijkl,kj->il", P.alpha()).asMatrix();
+        const auto K_beta = g.template einsum<2>("ijkl,kj->il", P.beta()).asMatrix();
 
         return ScalarUSQOneElectronOperator<Scalar> {K_alpha, K_beta};
     }

@@ -395,8 +395,8 @@ BOOST_AUTO_TEST_CASE(einsum_two_indices) {
     const auto output = T1.einsum<2>(T2, "ijkl", "jk", "il");
     const auto output2 = T1.einsum<2>("ijkl,jk->il", T2);
 
-    BOOST_CHECK(reference.isApprox(output.toMatrix(2, 2), 1.0e-12));
-    BOOST_CHECK(reference.isApprox(output2.toMatrix(2, 2), 1e-12));
+    BOOST_CHECK(reference.isApprox(output.asMatrix(), 1.0e-12));
+    BOOST_CHECK(reference.isApprox(output2.asMatrix(), 1e-12));
 
     // Test the same for the matrix contraction.
     // Create a matrix containing the same values as T2.
@@ -408,7 +408,7 @@ BOOST_AUTO_TEST_CASE(einsum_two_indices) {
     }
 
     const auto output3 = T1.einsum<2>("ijkl,jk->il", M);
-    BOOST_CHECK(reference.isApprox(output3.toMatrix(2, 2), 1e-12));
+    BOOST_CHECK(reference.isApprox(output3.asMatrix(), 1e-12));
 }
 
 /**

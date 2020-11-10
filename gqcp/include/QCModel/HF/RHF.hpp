@@ -250,8 +250,8 @@ public:
         Tensor<Scalar, 2> exchange_contraction = -0.5 * g.template einsum<2>("ilkj,lk->ij", D);
 
         // The previous contractions are Tensor<Scalar, 2> instances. In order to calculate the total G matrix, we will convert them back into GQCP::Matrix<Scalar>
-        auto G1 = direct_contraction.toMatrix(direct_contraction.dimension(0), direct_contraction.dimension(1));
-        auto G2 = exchange_contraction.toMatrix(exchange_contraction.dimension(0), exchange_contraction.dimension(1));
+        auto G1 = direct_contraction.asMatrix();
+        auto G2 = exchange_contraction.asMatrix();
 
         return ScalarRSQOneElectronOperator<Scalar> {sq_hamiltonian.core().parameters() + G1 + G2};
     }
