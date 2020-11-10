@@ -348,3 +348,46 @@ BOOST_AUTO_TEST_CASE(generalized_FCI_dense) {
     const auto energy = electronic_energy + GQCP::Operator::NuclearRepulsion(molecule).value();
     BOOST_CHECK(std::abs(energy - (reference_energy)) < 1.0e-06);
 }
+
+
+/**
+ *  Suppose we do a FCI calculation in a random orthonormal basis and we calculate the corresponding 1-DM. Check that, if we rotate to the basis of the FCI naturals, and re-solve the FCI problem, the 1-DM stays the same.
+ */
+BOOST_AUTO_TEST_CASE(naturals) {
+
+    // Create the molecular Hamiltonian in the Löwdin basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
+    const auto N_P = molecule.numberOfElectrons() / 2;
+
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+    const auto K = spinor_basis.numberOfSpatialOrbitals();
+    spinor_basis.lowdinOrthonormalize();
+
+    auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
+
+
+    // Set up the full spin-resolved ONV basis (with addressing scheme).
+    const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};  // dimension = 100
+
+
+    // Create a dense solver and corresponding environment and put them together in the QCMethod.
+    auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
+    auto solver = GQCP::EigenproblemSolver::Dense();
+    const auto linear_expansion_before = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
+
+
+    // Calculate the 1-DM and diagonalize it to obtain the FCI naturals.
+    const auto D_before = linear_expansion_before.calculate1DM();
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> diagonalizer {D_before};
+    GQCP::RTransformationMatrix<double> U {diagonalizer.eigenvectors()};
+
+
+    // Rotate the Hamiltonian to the basis of the FCI naturals, and re-do the FCI calculation. Subsequently check if the 1-DM, calculated from the FCI calculation in the natural orbital basis, is equal to the previously calculated 1-DM's eigenvalues on the diagonal.
+    sq_hamiltonian.rotate(U);
+    environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
+    const auto linear_expansion_after = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
+
+    const auto D_after = linear_expansion_after.calculate1DM();
+
+    BOOST_CHECK(D_after.diagonal().isApprox(diagonalizer.eigenvalues(), 1.0e-12));
+}
