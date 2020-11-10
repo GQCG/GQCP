@@ -153,18 +153,13 @@ public:
         G1DM<Scalar> P_bb = G1DM<Scalar>::Zero(M);
         P_bb.bottomRightCorner(M / 2, M / 2) = P.bottomRightCorner(M / 2, M / 2);
 
-        // Get the two-electron parameters
-        const auto& g = sq_hamiltonian.twoElectron().parameters();
 
         // Specify the contraction pairs for the direct contractions:
         //      P(rho lambda) (mu nu|rho lambda)
         // See knowdes: https://gqcg-res.github.io/knowdes/derivation-of-the-ghf-scf-equations-through-lagrange-multipliers.html
-        Tensor<Scalar, 2> Ja_tensor = g.template einsum<2>("ijkl,kl->ij", P_aa);
-        Tensor<Scalar, 2> Jb_tensor = g.template einsum<2>("ijkl,kl->ij", P_bb);
+        const auto Ja_tensor = g.template einsum<2>("ijkl,kl->ij", P_aa).asMatrix();
+        const auto Jb_tensor = g.template einsum<2>("ijkl,kl->ij", P_bb).asMatrix();
 
-        // Convert the given tensors back to a matrix.
-        auto Ja = Ja_tensor.toMatrix(Ja_tensor.dimension(0), Ja_tensor.dimension(1));
-        auto Jb = Jb_tensor.toMatrix(Jb_tensor.dimension(0), Jb_tensor.dimension(1));
 
         return ScalarGSQOneElectronOperator<Scalar>(Ja + Jb);
     }
@@ -196,21 +191,14 @@ public:
         G1DM<Scalar> P_bb = G1DM<Scalar>::Zero(M);
         P_bb.bottomRightCorner(M / 2, M / 2) = P.bottomRightCorner(M / 2, M / 2);
 
-        // Get the two-electron parameters
-        const auto& g = sq_hamiltonian.twoElectron().parameters();
 
         // Specify the contraction pairs for the exchange contractions:
         //      P(lambda rho) (mu rho|lambda nu)
-        Tensor<Scalar, 2> K_aa_tensor = g.template einsum<2>("ijkl,kj->il", P_aa);
-        Tensor<Scalar, 2> K_ab_tensor = g.template einsum<2>("ijkl,kj->il", P_ba);
-        Tensor<Scalar, 2> K_ba_tensor = g.template einsum<2>("ijkl,kj->il", P_ab);
-        Tensor<Scalar, 2> K_bb_tensor = g.template einsum<2>("ijkl,kj->il", P_bb);
-
-        // Convert the given tensors back to a matrix.
-        auto K_aa = K_aa_tensor.toMatrix(K_aa_tensor.dimension(0), K_aa_tensor.dimension(1));
-        auto K_ab = K_ab_tensor.toMatrix(K_ab_tensor.dimension(0), K_ab_tensor.dimension(1));
-        auto K_ba = K_ba_tensor.toMatrix(K_ba_tensor.dimension(0), K_ba_tensor.dimension(1));
-        auto K_bb = K_bb_tensor.toMatrix(K_bb_tensor.dimension(0), K_bb_tensor.dimension(1));
+        const auto& g = sq_hamiltonian.twoElectron().parameters();
+        const auto K_aa= g.template einsum<2>("ijkl,kj->il", P_aa).asMatrix();
+        const auto K_ab = g.template einsum<2>("ijkl,kj->il", P_ba).asMatrix();
+        const auto K_ba = g.template einsum<2>("ijkl,kj->il", P_ab).asMatrix();
+        const auto K_bb = g.template einsum<2>("ijkl,kj->il", P_bb).asMatrix();
 
         // Each of the spin-blocks are calculated separately (while the other blocks are zero), so the total exchange matrix can be calculated as the sum of each part.
         return ScalarGSQOneElectronOperator<Scalar>(K_aa + K_ab + K_ba + K_bb);

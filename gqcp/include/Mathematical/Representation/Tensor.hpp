@@ -337,7 +337,7 @@ public:
     /**
      *  Contract this tensor with another one, using a NumPy 'einsum'-like API.
      * 
-     *  @param contraction_string   The string used to specify the wanted contraction, e.g. "ijkl,jk->il"
+     *  @param contraction_string   The string used to specify the wanted contraction, e.g. "ijkl,jk->il". Any spaces are discarded.
      *  @param rhs                  The right-hand side of the contraction.
      * 
      *  @tparam N                   The number of axes that should be contracted over.
@@ -347,14 +347,14 @@ public:
      *  @return The result of the tensor contraction.
      */
     template <int N, int LHSRank = Rank, int RHSRank>
-    Tensor<Scalar, LHSRank + RHSRank - 2 * N> einsum(std::string contraction_string, const Tensor<Scalar, RHSRank>& rhs) const {
-        // remove unnecessary symbols from string
-        boost::erase_all(contraction_string, " ");  // remove all spaces. This leaves the freedom to use spaces in the input string
+    Tensor<Scalar, LHSRank + RHSRank - 2 * N> einsum(const std::string contraction_string&, const Tensor<Scalar, RHSRank>& rhs) const {
+        // Remove unnecessary symbols from string.
+        boost::erase_all(contraction_string, " ");  // Remove all spaces.
         boost::erase_all(contraction_string, ">");
         boost::replace_all(contraction_string, "-", " ");
         boost::replace_all(contraction_string, ",", " ");
 
-        // split the stringstream in the necessary components, 3 in most cases.
+        // Split the stringstream in the necessary components, 3 in most cases.
         std::vector<std::string> segment_list;
         boost::split(segment_list, contraction_string, boost::is_any_of(" "));
 
@@ -393,22 +393,21 @@ public:
      */
     template <int N, int LHSRank = Rank>
     Tensor<Scalar, LHSRank + 2 - 2 * N> einsum(std::string contraction_string, const Matrix<Scalar> rhs) const {
-        // convert matrix to rank 2 tensor
+        // Convert the given `Matrix` to its equivalent rank-2 `Tensor`.
         const auto tensor_from_matrix = Tensor<Scalar, 2>(Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>>(rhs.data(), rhs.rows(), rhs.cols()));
         return this->einsum<N>(contraction_string, tensor_from_matrix);
     }
 
 
     /**
-     *  Convert the given tensor to a matrix with the specified dimensions
-     *
-     *  @param rows        the dimension of the rows of the output matrix
-     *  @param cols        the dimension of the columns of the output matrix
+     *  @return This rank-two tensor as a matrix.
      */
-    const GQCP::Matrix<Scalar> toMatrix(const size_t rows, const size_t cols) const {
+    const GQCP::Matrix<Scalar> asMatrix() const {
 
-        const auto rank_two_tensor = *this;
-        return GQCP::Matrix<Scalar>(Eigen::Map<const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>>(rank_two_tensor.data(), rows, cols));
+        const auto rows = this->dimension(0);
+        const auto cols = this->dimension(1);
+
+        return GQCP::Matrix<Scalar>(Eigen::Map<const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>>(this->data(), rows, cols));
     }
 
 
