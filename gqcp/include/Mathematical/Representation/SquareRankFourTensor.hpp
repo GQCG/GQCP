@@ -244,51 +244,6 @@ public:
 
         return M;
     }
-
-
-    /**
-     *  In-place contract of a given matrix with this square rank-4 tensor
-     *
-     *  @tparam TransformationScalar        the type of scalar used for the transformation matrix
-     *
-     *  @param M                            the contraction matrix: contraction performed with the first index axis
-     *  @param tensor_index                 the index axis which is contracted
-     *
-     *    e.g.
-     *     if index 0 (1-st) is chosen:
-     *      T_transformed (i, j , k, l) = Sum(q) T (q j k l) * A (q, i)
-     *     if index 2 (3-rd) is chosen:
-     *      T_transformed (i, j , k, l) = Sum(q) T (i j q l) * A (q, k)
-     *
-     */
-    template <typename MultiplicationScalar = Scalar>
-    void contractWithMatrix(const SquareMatrix<MultiplicationScalar>& M, size_t index) {
-
-        if (index >= 4) {
-            throw std::invalid_argument("SquareRankFourTensor::contractWithMatrix(SquareMatrix<MultiplicationScalar>, size_t): The selected index should be smaller than the rank of the tensor.");
-        }
-
-        Eigen::array<Eigen::IndexPair<int>, 1> contraction_pair = {Eigen::IndexPair<int>(0, index)};
-
-        // Eigen3 does not accept a way to specify the output axes: instead, it retains the order from left to right of the axes that survive the contraction.
-        // This means that, in order to get the right ordering of the axes, we will have to swap axes
-
-        std::array<int, 4> shuffle {1, 2, 3, 0};
-        shuffle[index] = 0;
-        for (int i = index + 1; i < 4; i++) {
-            shuffle[i] = i;
-        }
-
-        // Since we're only getting M as a matrix, we should make the appropriate tensor to perform contractions
-        // For the const argument, we need the const in the template
-        //      For more info, see: https://stackoverflow.com/questions/45283468/eigen-const-tensormap
-        Eigen::TensorMap<Eigen::Tensor<const MultiplicationScalar, 2>> M_tensor(M.data(), M.rows(), M.cols());
-
-        Self T_transformed = M_tensor.contract(this->Eigen(), contraction_pair).shuffle(shuffle);
-
-        *this = T_transformed;
-    }
 };
-
 
 }  // namespace GQCP
