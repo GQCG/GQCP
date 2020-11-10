@@ -351,7 +351,7 @@ public:
      *
      *  @return the coefficient matrix that expresses the sigma spin-orbitals (as a column) in its underlying scalar basis
      */
-    const TransformationMatrix<Scalar>& coefficientMatrix(const Spin sigma) const {
+    const TransformationMatrix<Scalar> coefficientMatrix(const Spin sigma) const {
 
         switch (sigma) {
         case Spin::alpha: {

@@ -65,8 +65,8 @@ public:
         // To make a QCStructure<QCModel::UHF<Scalar>>, we need the electronic energy, coefficient matrices, orbital energies and the numbers of electrons.
         // Furthermore, the current UHF SCF solvers only find the ground state wave function parameters, so the QCStructure only needs to contain the parameters for one state.
         const auto& E_electronic = environment.electronic_energies.back();
-        const auto& C_alpha = environment.coefficient_matrices_alpha.back();
-        const auto& C_beta = environment.coefficient_matrices_beta.back();
+        const auto& C_alpha = environment.coefficient_matrices.back().alpha();
+        const auto& C_beta = environment.coefficient_matrices.back().beta();
         const auto& orbital_energies_alpha = environment.orbital_energies_alpha.back();
         const auto& orbital_energies_beta = environment.orbital_energies_beta.back();
         const auto& N_alpha = environment.N_alpha;
