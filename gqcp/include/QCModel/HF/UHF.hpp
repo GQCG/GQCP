@@ -18,7 +18,8 @@
 #pragma once
 
 
-#include "Basis/Transformations/TransformationMatrix.hpp"
+#include "Basis/Transformations/UTransformationMatrix.hpp"
+#include "Basis/Transformations/UTransformationMatrixComponent.hpp"
 #include "DensityMatrix/SpinResolved1DM.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
@@ -49,8 +50,7 @@ private:
     VectorX<double> orbital_energies_alpha;  // sorted by ascending energy
     VectorX<double> orbital_energies_beta;   // sorted by ascending energy
 
-    TransformationMatrix<Scalar> C_alpha;  // the coefficient matrix that expresses every alpha spatial orbital (as a column) in its underlying scalar basis
-    TransformationMatrix<Scalar> C_beta;   // the coefficient matrix that expresses every beta spatial orbital (as a column) in its underlying scalar basis
+    UTransformationMatrix<Scalar> C;  // the coefficient matrix that expresses every alpha spatial orbital (as a column) in its underlying scalar basis
 
 
 public:
@@ -68,17 +68,16 @@ public:
      *  @param C_alpha                                  the coefficient matrix that expresses every alpha spatial orbital (as a column) in its underlying scalar basis
      *  @param C_beta                                   the coefficient matrix that expresses every beta spatial orbital (as a column) in its underlying scalar basis
      */
-    UHF(const size_t N_alpha, const size_t N_beta, const VectorX<double>& orbital_energies_alpha, const VectorX<double>& orbital_energies_beta, const TransformationMatrix<Scalar>& C_alpha, const TransformationMatrix<Scalar>& C_beta) :
+    UHF(const size_t N_alpha, const size_t N_beta, const VectorX<double>& orbital_energies_alpha, const VectorX<double>& orbital_energies_beta, const UTransformationMatrixComponent<Scalar>& C_alpha, const UTransformationMatrixComponent<Scalar>& C_beta) :
         N_alpha {N_alpha},
         N_beta {N_beta},
         orbital_energies_alpha {orbital_energies_alpha},
         orbital_energies_beta {orbital_energies_beta},
-        C_alpha {C_alpha},
-        C_beta {C_beta} {
+        C {C_alpha, C_beta} {
 
         // Check for valid arguments.
-        const auto K_alpha = C_alpha.numberOfOrbitals();  // number of alpha spatial orbitals
-        const auto K_beta = C_beta.numberOfOrbitals();    // number of beta spatial orbitals
+        const auto K_alpha = C.alpha().numberOfOrbitals();  // number of alpha spatial orbitals
+        const auto K_beta = C.beta().numberOfOrbitals();    // number of beta spatial orbitals
 
         if (N_alpha > K_alpha) {
             throw std::invalid_argument("UHF(const size_t, const size_t, const VectorX<double>&, const VectorX<double>&, const TransformationMatrix<Scalar>&, const TransformationMatrix<Scalar>&): The number of given alpha electrons cannot be larger than the number of alpha spatial orbitals.");
@@ -108,10 +107,10 @@ public:
      *  @param C_alpha                                  the coefficient matrix that expresses every alpha spatial orbital (as a column) in its underlying scalar basis
      *  @param C_beta                                   the coefficient matrix that expresses every beta spatial orbital (as a column) in its underlying scalar basis
      */
-    UHF(const size_t N_alpha, const size_t N_beta, const TransformationMatrix<Scalar>& C_alpha, const TransformationMatrix<Scalar>& C_beta) :
+    UHF(const size_t N_alpha, const size_t N_beta, const UTransformationMatrixComponent<Scalar>& C_alpha, const UTransformationMatrixComponent<Scalar>& C_beta) :
         UHF(N_alpha, N_beta,
-            GQCP::VectorX<double>::Zero(C_alpha.numberOfOrbitals()),
-            GQCP::VectorX<double>::Zero(C_beta.numberOfOrbitals()),
+            GQCP::VectorX<double>::Zero(C.alpha().numberOfOrbitals()),
+            GQCP::VectorX<double>::Zero(C.beta().numberOfOrbitals()),
             C_alpha, C_beta) {
     }
 
@@ -356,12 +355,12 @@ public:
 
         switch (sigma) {
         case Spin::alpha: {
-            return this->C_alpha;
+            return this->C.alpha();
             break;
         }
 
         case Spin::beta: {
-            return this->C_beta;
+            return this->C.beta();
             break;
         }
         }
@@ -407,12 +406,12 @@ public:
 
         switch (sigma) {
         case Spin::alpha: {
-            return this->C_alpha.numberOfOrbitals();
+            return this->C.alpha().numberOfOrbitals();
             break;
         }
 
         case Spin::beta: {
-            return this->C_beta.numberOfOrbitals();
+            return this->C.beta().numberOfOrbitals();
             break;
         }
         }
