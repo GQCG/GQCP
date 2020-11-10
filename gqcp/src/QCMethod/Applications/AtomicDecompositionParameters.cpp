@@ -116,17 +116,17 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
     auto g_ab = g;
     auto g_ba = g;
 
-    g_a.contractWithMatrix<double>(p_a, 0);
-    g_a.contractWithMatrix<double>(p_a, 2);
+    g_a.template einsum<1>("qjkl, qi->ijkl", p_a);
+    g_a.template einsum<1>("ijql, qk->ijkl", p_a);
 
-    g_b.contractWithMatrix<double>(p_b, 0);
-    g_b.contractWithMatrix<double>(p_b, 2);
+    g_b.template einsum<1>("qjkl, qi->ijkl", p_b);
+    g_b.template einsum<1>("ijql, qk->ijkl", p_b);
 
-    g_ab.contractWithMatrix<double>(p_a, 0);
-    g_ab.contractWithMatrix<double>(p_b, 2);
+    g_ab.template einsum<1>("qjkl, qi->ijkl", p_a);
+    g_ab.template einsum<1>("ijql, qk->ijkl", p_b);
 
-    g_ba.contractWithMatrix<double>(p_b, 0);
-    g_ba.contractWithMatrix<double>(p_a, 2);
+    g_ba.template einsum<1>("qjkl, qi->ijkl", p_b);
+    g_ba.template einsum<1>("ijql, qk->ijkl", p_a);
 
     SquareRankFourTensor<double> g_abba = g_ab.Eigen() + g_ba.Eigen();
 
