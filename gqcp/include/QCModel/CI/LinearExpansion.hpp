@@ -46,35 +46,33 @@ namespace GQCP {
 /**
  *  A class that represents a linear expansion inside an ONV basis.
  * 
- *  @tparam _ONVBasis           the type of ONV basis
+ *  @tparam _ONVBasis           The type of ONV basis.
  */
 template <typename _ONVBasis>
 class LinearExpansion {
-
 public:
+    // The type of the ONV basis.
     using ONVBasis = _ONVBasis;
 
 
 private:
-    ONVBasis onv_basis;              // the ONV basis with respect to which the coefficients are defined
-    VectorX<double> m_coefficients;  // the expansion coefficients
+    // The ONV basis with respect to which the coefficients are defined
+    ONVBasis onv_basis;
+
+    // The expansion coefficients.
+    VectorX<double> m_coefficients;
 
 
 public:
     /*
-     *  CONSTRUCTORS
+     *  MARK: Constructors
      */
-
-    /*
-     *  The default constructor.
-     */
-    LinearExpansion() = default;
 
     /**
      *  Construct a linear expansion inside the given ONV basis, with corresponding expansion coefficients.
      *
-     *  @param onv_basis            the ONV basis with respect to which the coefficients are defined
-     *  @param coefficients         the expansion coefficients
+     *  @param onv_basis            The ONV basis with respect to which the coefficients are defined
+     *  @param coefficients         The expansion coefficients.
      */
     LinearExpansion(const ONVBasis& onv_basis, const VectorX<double>& coefficients) :
         onv_basis {onv_basis},
@@ -82,15 +80,21 @@ public:
 
 
     /*
-     *  NAMED CONSTRUCTORS
+     *  The default constructor.
+     */
+    LinearExpansion() = default;
+
+
+    /*
+     *  MARK: Named constructors
      */
 
     /**
      *  Create a linear expansion with a normalized coefficient vector (i.e. all the coefficients are equal).
      * 
-     *  @param onv_basis            the ONV basis with respect to which the coefficients are defined
+     *  @param onv_basis            The ONV basis with respect to which the coefficients are defined
      * 
-     *  @return a LinearExpansion
+     *  @return A constant LinearExpansion.
      */
     static LinearExpansion<ONVBasis> Constant(const ONVBasis& onv_basis) {
 
@@ -102,9 +106,58 @@ public:
 
 
     /**
-     *  @param GAMESSUS_filename      the name of the GAMESS-US file that contains the spin-resolved selected wave function expansion
+     *  Create a linear expansion that represents the Hartree-Fock wave function.
      * 
-     *  @return the corresponding linear expansion from a given GAMESS-US file
+     *  @param onv_basis            The ONV basis with respect to which the coefficients are defined.
+     * 
+     *  @return a LinearExpansion
+     */
+    static LinearExpansion<ONVBasis> HartreeFock(const ONVBasis& onv_basis) {
+
+        VectorX<double> coefficients = VectorX<double>::Unit(onv_basis.dimension(), 0);  // The first ONV in the ONV basis is expected to be the HF determinant.
+
+        return LinearExpansion<ONVBasis>(onv_basis, coefficients);
+    }
+
+
+    /**
+     *  Create a normalized linear expansion inside a given ONV basis with possibly non-normalized coefficients.
+     * 
+     *  @param onv_basis            The ONV basis with respect to which the coefficients are defined.
+     *  @param coefficients         the expansion coefficients
+     * 
+     *  @return A normalized LinearExpansion.
+     */
+    static LinearExpansion<ONVBasis> Normalized(const ONVBasis& onv_basis, const VectorX<double>& coefficients) {
+
+        // Normalize the coefficients if they aren't.
+        return LinearExpansion<ONVBasis>(onv_basis,
+                                         std::abs(coefficients.norm() - 1.0) > 1.0e-12 ? coefficients.normalized() : coefficients);
+    }
+
+
+    /**
+     *  Create a linear expansion with a random, normalized coefficient vector, with coefficients uniformly distributed in [-1, +1] before any normalization.
+     * 
+     *  @param onv_basis            the ONV basis with respect to which the coefficients are defined
+     * 
+     *  @return A random LinearExpansion.
+     */
+    static LinearExpansion<ONVBasis> Random(const ONVBasis& onv_basis) {
+
+        VectorX<double> coefficients = VectorX<double>::Random(onv_basis.dimension());
+        coefficients.normalize();
+
+        return LinearExpansion<ONVBasis>(onv_basis, coefficients);
+    }
+
+
+    /**
+     *  Create a linear expansion by reading in a GAMESS-US file.
+     * 
+     *  @param GAMESSUS_filename      The name of the GAMESS-US file that contains the spin-resolved selected wave function expansion.
+     * 
+     *  @return The corresponding spin-resolved selected linear expansion from a given GAMESS-US file
      */
     template <typename Z = ONVBasis>
     static enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, LinearExpansion<Z>> FromGAMESSUS(const std::string& GAMESSUS_filename) {
@@ -216,11 +269,11 @@ public:
     /**
      *  Create the linear expansion of the given spin-resolved ONV that is expressed in the given USpinOrbitalBasis, by projection onto the spin-resolved ONVs expressed with respect to the given RSpinOrbitalBasis.
      * 
-     *  @param onv                      a spin-resolved ONV expressed with respect to an unrestricted spin-orbital basis
-     *  @param r_spinor_basis           the restricted spin-orbital basis that is used to define the resulting linear expansion of ONVs against
-     *  @param u_spinor_basis           the unrestricted spin-orbital basis against which the given ONV is expressed
+     *  @param onv                      A spin-resolved ONV expressed with respect to an unrestricted spin-orbital basis.
+     *  @param r_spinor_basis           The restricted spin-orbital basis that is used to define the resulting linear expansion of ONVs against.
+     *  @param u_spinor_basis           The unrestricted spin-orbital basis against which the given ONV is expressed.
      * 
-     *  @return a linear expansion inside a spin-resolved ONV basis
+     *  @return A linear expansion inside a spin-resolved ONV basis.
      */
     template <typename Z = ONVBasis>
     static enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, LinearExpansion<Z>> FromONVProjection(const SpinResolvedONV& onv, const RSpinOrbitalBasis<double, GTOShell>& r_spinor_basis, const USpinOrbitalBasis<double, GTOShell>& u_spinor_basis) {
@@ -269,11 +322,11 @@ public:
     /**
      *  Create the linear expansion of the given spin-unresolved ONV that is expressed in the given GSpinorBasis, by projection onto the spin-resolved ONVs expressed with respect to another given GSpinorBasis.
      * 
-     *  @param onv_of                   a spin-unresolved ONV expressed with respect to an general spinor basis
-     *  @param spinor_basis_on          the general spinor basis that is used to define the resulting linear expansion of ONVs against
-     *  @param spinor_basis_of          the general spinor basis against which the given ONV is expressed
+     *  @param onv_of                   A spin-unresolved ONV expressed with respect to a general spinor basis.
+     *  @param spinor_basis_on          The general spinor basis that is used to define the resulting linear expansion of ONVs against.
+     *  @param spinor_basis_of          The general spinor basis against which the given ONV is expressed.
      * 
-     *  @return a linear expansion inside a spin-unresolved ONV basis
+     *  @return A linear expansion inside a spin-unresolved ONV basis.
      */
     template <typename Z = ONVBasis>
     static enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value, LinearExpansion<Z>> FromONVProjection(const SpinUnresolvedONV& onv_of, const GSpinorBasis<double, GTOShell>& spinor_basis_on, const GSpinorBasis<double, GTOShell>& spinor_basis_of) {
@@ -311,60 +364,38 @@ public:
     }
 
 
-    /**
-     *  Create a linear expansion that represents the Hartree-Fock wave function.
-     * 
-     *  @param onv_basis            the ONV basis with respect to which the coefficients are defined
-     * 
-     *  @return a LinearExpansion
+    /*
+     *  MARK: Access
      */
-    static LinearExpansion<ONVBasis> HartreeFock(const ONVBasis& onv_basis) {
-
-        VectorX<double> coefficients = VectorX<double>::Unit(onv_basis.dimension(), 0);  // the first ONV in the ONV basis is expected to be the HF determinant
-
-        return LinearExpansion<ONVBasis>(onv_basis, coefficients);
-    }
-
 
     /**
-     *  Create a normalized linear expansion inside a given ONV basis with possibly non-normalized coefficients.
+     *  Access a coefficient of the linear expansion.
      * 
-     *  @param onv_basis            the ONV basis with respect to which the coefficients are defined
-     *  @param coefficients         the expansion coefficients
+     *  @param i    The index (address) of the coefficient that should be obtained.
      * 
-     *  @return a LinearExpansion
+     *  @return The i-th expansion coefficient.
      */
-    static LinearExpansion<ONVBasis> Normalized(const ONVBasis& onv_basis, const VectorX<double>& coefficients) {
-
-        // Normalize the coefficients if they aren't.
-        return LinearExpansion<ONVBasis>(onv_basis,
-                                         std::abs(coefficients.norm() - 1.0) > 1.0e-12 ? coefficients.normalized() : coefficients);
-    }
+    double coefficient(const size_t i) const { return this->m_coefficients(i); }
 
     /**
-     *  Create a linear expansion with a random, normalized coefficient vector, with coefficients uniformly distributed in [-1, +1] before any normalization.
-     * 
-     *  @param onv_basis            the ONV basis with respect to which the coefficients are defined
-     * 
-     *  @return a LinearExpansion
+     *  @return The expansion coefficients of this linear expansion wave function model.
      */
-    static LinearExpansion<ONVBasis> Random(const ONVBasis& onv_basis) {
+    const VectorX<double>& coefficients() const { return this->m_coefficients; }
 
-        VectorX<double> coefficients = VectorX<double>::Random(onv_basis.dimension());
-        coefficients.normalize();
-
-        return LinearExpansion<ONVBasis>(onv_basis, coefficients);
-    }
+    /**
+     *  @return The ONV basis that is related to this linear expansion wave function model.
+     */
+    const ONVBasis& onvBasis() const { return onv_basis; }
 
 
     /*
-     *  PUBLIC METHODS
+     *  MARK: Basis transformations
      */
 
     /**
      *  Update the expansion coefficients of this linear expansion so that they correspond to the situation after a transformation of the underlying spinor basis with the given transformation matrix.
      *
-     *  @param T            the transformation matrix between the old and the new spinor basis
+     *  @param T            The transformation matrix between the old and the new restricted spin-orbital basis.
      * 
      *  @note This method is only available for the full spin-resolved ONV basis.
      *  @note This algorithm was implemented from a description in Helgaker2000.
@@ -541,48 +572,9 @@ public:
     }
 
 
-    /**
-     *  Calculate the orbital one-electron density matrix for a seniority-zero wave function expansion.
-     * 
-     *  @return The orbital (total, spin-summed) 1-DM.
+    /*
+     *  MARK: Density matrices for spin-unresolved ONV bases
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, Orbital1DM<double>> calculate1DM() const {
-
-        // Prepare some variables.
-        const auto K = this->onv_basis.numberOfSpatialOrbitals();
-        const auto dimension = this->onv_basis.dimension();
-        Orbital1DM<double> D = Orbital1DM<double>::Zero(K);
-
-        // Create the first ONV (with address 0). In DOCI, the ONV basis for alpha and beta is equal, so we can use the proxy ONV basis.
-        const auto onv_basis_proxy = this->onv_basis.proxy();
-        SpinUnresolvedONV onv = onv_basis_proxy.constructONVFromAddress(0);
-        for (size_t I = 0; I < dimension; I++) {  // I loops over all the addresses of the doubly-occupied ONVs
-
-            for (size_t e1 = 0; e1 < onv_basis_proxy.numberOfElectrons(); e1++) {  // e1 (electron 1) loops over the number of electrons
-                const size_t p = onv.occupationIndexOf(e1);                        // retrieve the index of the orbital the electron occupies
-                const double c_I = this->coefficient(I);                           // coefficient of the I-th basis vector
-
-                D(p, p) += 2 * std::pow(c_I, 2);
-            }
-
-            if (I < dimension - 1) {  // prevent the last permutation from occurring
-                onv_basis_proxy.transformONVToNextPermutation(onv);
-            }
-        }
-
-        return D;
-    }
-
-
-    /**
-     *  Calculate the two-electron density matrix for a seniority-zero wave function expansion.
-     * 
-     *  @return the total (spin-summed) 2-DM
-     */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, Orbital2DM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().orbitalDensity(); }
-
 
     /**
      *  Calculate an element of the N-electron density matrix.
@@ -672,103 +664,14 @@ public:
     }
 
 
-    /**
-     *  Calculate the spin-resolved one-electron density matrix for a seniority-zero wave function expansion.
-     * 
-     *  @return The spin-resolved 1-DM.
+    /*
+     *  MARK: Density matrices for spin-resolved ONV bases
      */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const { return SpinResolved1DM<double>::FromOrbital1DM(this->calculate1DM()); }
-
-
-    /**
-     *  Calculate the spin-resolved two-electron density matrix for a seniority-zero wave function expansion.
-     * 
-     *  @return the spin-resolved 2-DM
-     */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolved2DM<double>> calculateSpinResolved2DM() const {
-
-        // Prepare some variables.
-        const auto K = this->onv_basis.numberOfSpatialOrbitals();
-        const auto dimension = this->onv_basis.dimension();
-
-
-        // For seniority-zero linear expansions, we only have to calculate d_aaaa and d_aabb.
-        SpinResolved2DMComponent<double> d_aaaa = SpinResolved2DMComponent<double>::Zero(K);
-        SpinResolved2DMComponent<double> d_aabb = SpinResolved2DMComponent<double>::Zero(K);
-
-
-        // Create the first ONV (with address 0). In DOCI, the ONV basis for alpha and beta is equal, so we can use the proxy ONV basis.
-        const auto onv_basis_proxy = this->onv_basis.proxy();
-        SpinUnresolvedONV onv = onv_basis_proxy.constructONVFromAddress(0);
-        for (size_t I = 0; I < dimension; I++) {  // I loops over all the addresses of the spin strings
-            for (size_t p = 0; p < K; p++) {      // p loops over SOs
-                if (onv.annihilate(p)) {          // if p is occupied in I
-
-                    const double c_I = this->coefficient(I);  // coefficient of the I-th basis vector
-                    const double c_I_2 = std::pow(c_I, 2);    // square of c_I
-
-                    d_aabb(p, p, p, p) += c_I_2;
-
-                    for (size_t q = 0; q < p; q++) {                          // q loops over SOs with an index smaller than p
-                        if (onv.create(q)) {                                  // if q is not occupied in I
-                            const size_t J = onv_basis_proxy.addressOf(onv);  // the address of the coupling string
-                            const double c_J = this->coefficient(J);          // coefficient of the J-th basis vector
-
-                            d_aabb(p, q, p, q) += c_I * c_J;
-                            d_aabb(q, p, q, p) += c_I * c_J;  // since we're looping for q < p
-
-                            onv.annihilate(q);  // reset the spin string after previous creation on q
-                        }
-
-                        else {  // if q is occupied in I
-                            d_aaaa(p, p, q, q) += c_I_2;
-                            d_aaaa(q, q, p, p) += c_I_2;  // since we're looping for q < p
-
-                            d_aaaa(p, q, q, p) -= c_I_2;
-                            d_aaaa(q, p, p, q) -= c_I_2;  // since we're looping for q < p
-
-                            d_aabb(p, p, q, q) += c_I_2;
-                            d_aabb(q, q, p, p) += c_I_2;  // since we're looping for q < p
-                        }
-                    }
-                    onv.create(p);  // reset the spin string after previous annihilation on p
-                }
-            }
-
-            if (I < dimension - 1) {  // prevent the last permutation from occurring
-                onv_basis_proxy.transformONVToNextPermutation(onv);
-            }
-        }
-
-        // For seniority-zero linear expansions, we have additional symmetries (two_rdm_aaaa = two_rdm_bbbb, two_rdm_aabb = two_rdm_bbaa)
-        return SpinResolved2DM<double> {d_aaaa, d_aabb, d_aabb, d_aaaa};
-    }
-
-
-    /**
-     *  Calculate the one-electron density matrix for a full spin-resolved wave function expansion.
-     * 
-     *  @return The total, spin-summed, orbital 1-DM
-     */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, Orbital1DM<double>> calculate1DM() const { return this->calculateSpinResolved1DM().orbitalDensity(); }
-
-
-    /**
-     *  Calculate the two-electron density matrix for a full spin-resolved wave function expansion.
-     * 
-     *  @return the total (spin-summed) 2-DM
-     */
-    template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, Orbital2DM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().orbitalDensity(); }
-
 
     /**
      *  Calculate the spin-resolved one-electron density matrix for a full spin-resolved wave function expansion.
      * 
-     *  @return the spin-resolved 1-DM
+     *  @return The spin-resolved 1-DM.
      */
     template <typename Z = ONVBasis>
     enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const {
@@ -887,7 +790,7 @@ public:
     /**
      *  Calculate the spin-resolved two-electron density matrix for a full spin-resolved wave function expansion.
      * 
-     *  @return the spin-resolved 2-DM
+     *  @return The spin-resolved 2-DM.
      */
     template <typename Z = ONVBasis>
     enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, SpinResolved2DM<double>> calculateSpinResolved2DM() const {
@@ -1098,27 +1001,152 @@ public:
 
 
     /**
-     *  Calculate the one-electron density matrix for a spin-resolved selected wave function expansion.
+     *  Calculate the one-electron density matrix for a full spin-resolved wave function expansion.
      * 
-     *  @return the total (spin-summed) 1-DM
+     *  @return The orbital (total, spin-summed) 1-DM
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, Orbital1DM<double>> calculate1DM() const { return this->calculateSpinResolved1DM().orbitalDensity(); }
+    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, Orbital1DM<double>> calculate1DM() const { return this->calculateSpinResolved1DM().orbitalDensity(); }
 
 
     /**
-     *  Calculate the two-electron density matrix for a spin-resolved selected wave function expansion.
+     *  Calculate the two-electron density matrix for a full spin-resolved wave function expansion.
      * 
-     *  @return the total (spin-summed) 2-DM
+     *  @return The orbital (total, spin-summed) 2-DM.
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, Orbital2DM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().orbitalDensity(); }
+    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, Orbital2DM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().orbitalDensity(); }
 
+
+    /*
+     *  MARK: Density matrices for seniority-zero ONV bases
+     */
+
+    /**
+     *  Calculate the orbital one-electron density matrix for a seniority-zero wave function expansion.
+     * 
+     *  @return The orbital (total, spin-summed) 1-DM.
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, Orbital1DM<double>> calculate1DM() const {
+
+        // Prepare some variables.
+        const auto K = this->onv_basis.numberOfSpatialOrbitals();
+        const auto dimension = this->onv_basis.dimension();
+        Orbital1DM<double> D = Orbital1DM<double>::Zero(K);
+
+        // Create the first ONV (with address 0). In DOCI, the ONV basis for alpha and beta is equal, so we can use the proxy ONV basis.
+        const auto onv_basis_proxy = this->onv_basis.proxy();
+        SpinUnresolvedONV onv = onv_basis_proxy.constructONVFromAddress(0);
+        for (size_t I = 0; I < dimension; I++) {  // I loops over all the addresses of the doubly-occupied ONVs
+
+            for (size_t e1 = 0; e1 < onv_basis_proxy.numberOfElectrons(); e1++) {  // e1 (electron 1) loops over the number of electrons
+                const size_t p = onv.occupationIndexOf(e1);                        // retrieve the index of the orbital the electron occupies
+                const double c_I = this->coefficient(I);                           // coefficient of the I-th basis vector
+
+                D(p, p) += 2 * std::pow(c_I, 2);
+            }
+
+            if (I < dimension - 1) {  // prevent the last permutation from occurring
+                onv_basis_proxy.transformONVToNextPermutation(onv);
+            }
+        }
+
+        return D;
+    }
+
+
+    /**
+     *  Calculate the two-electron density matrix for a seniority-zero wave function expansion.
+     * 
+     *  @return The orbital (total, spin-summed) 2-DM.
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, Orbital2DM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().orbitalDensity(); }
+
+    /**
+     *  Calculate the spin-resolved one-electron density matrix for a seniority-zero wave function expansion.
+     * 
+     *  @return The spin-resolved 1-DM.
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const { return SpinResolved1DM<double>::FromOrbital1DM(this->calculate1DM()); }
+
+
+    /**
+     *  Calculate the spin-resolved two-electron density matrix for a seniority-zero wave function expansion.
+     * 
+     *  @return The spin-resolved 2-DM.
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SeniorityZeroONVBasis>::value, SpinResolved2DM<double>> calculateSpinResolved2DM() const {
+
+        // Prepare some variables.
+        const auto K = this->onv_basis.numberOfSpatialOrbitals();
+        const auto dimension = this->onv_basis.dimension();
+
+
+        // For seniority-zero linear expansions, we only have to calculate d_aaaa and d_aabb.
+        SpinResolved2DMComponent<double> d_aaaa = SpinResolved2DMComponent<double>::Zero(K);
+        SpinResolved2DMComponent<double> d_aabb = SpinResolved2DMComponent<double>::Zero(K);
+
+
+        // Create the first ONV (with address 0). In DOCI, the ONV basis for alpha and beta is equal, so we can use the proxy ONV basis.
+        const auto onv_basis_proxy = this->onv_basis.proxy();
+        SpinUnresolvedONV onv = onv_basis_proxy.constructONVFromAddress(0);
+        for (size_t I = 0; I < dimension; I++) {  // I loops over all the addresses of the spin strings
+            for (size_t p = 0; p < K; p++) {      // p loops over SOs
+                if (onv.annihilate(p)) {          // if p is occupied in I
+
+                    const double c_I = this->coefficient(I);  // coefficient of the I-th basis vector
+                    const double c_I_2 = std::pow(c_I, 2);    // square of c_I
+
+                    d_aabb(p, p, p, p) += c_I_2;
+
+                    for (size_t q = 0; q < p; q++) {                          // q loops over SOs with an index smaller than p
+                        if (onv.create(q)) {                                  // if q is not occupied in I
+                            const size_t J = onv_basis_proxy.addressOf(onv);  // the address of the coupling string
+                            const double c_J = this->coefficient(J);          // coefficient of the J-th basis vector
+
+                            d_aabb(p, q, p, q) += c_I * c_J;
+                            d_aabb(q, p, q, p) += c_I * c_J;  // since we're looping for q < p
+
+                            onv.annihilate(q);  // reset the spin string after previous creation on q
+                        }
+
+                        else {  // if q is occupied in I
+                            d_aaaa(p, p, q, q) += c_I_2;
+                            d_aaaa(q, q, p, p) += c_I_2;  // since we're looping for q < p
+
+                            d_aaaa(p, q, q, p) -= c_I_2;
+                            d_aaaa(q, p, p, q) -= c_I_2;  // since we're looping for q < p
+
+                            d_aabb(p, p, q, q) += c_I_2;
+                            d_aabb(q, q, p, p) += c_I_2;  // since we're looping for q < p
+                        }
+                    }
+                    onv.create(p);  // reset the spin string after previous annihilation on p
+                }
+            }
+
+            if (I < dimension - 1) {  // prevent the last permutation from occurring
+                onv_basis_proxy.transformONVToNextPermutation(onv);
+            }
+        }
+
+        // For seniority-zero linear expansions, we have additional symmetries (two_rdm_aaaa = two_rdm_bbbb, two_rdm_aabb = two_rdm_bbaa)
+        return SpinResolved2DM<double> {d_aaaa, d_aabb, d_aabb, d_aaaa};
+    }
+
+
+    /*
+     *  MARK: Density matrices for spin-resolved selected ONV bases
+     */
 
     /**
      *  Calculate the spin-resolved one-electron density matrix for a spin-resolved selected wave function expansion.
      * 
-     *  @return the spin-resolved 1-DM
+     *  @return The spin-resolved 1-DM.
      */
     template <typename Z = ONVBasis>
     enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const {
@@ -1198,7 +1226,7 @@ public:
     /**
      *  Calculate the spin-resolved two-electron density matrix for a spin-resolved selected wave function expansion.
      * 
-     *  @return the spin-resolved 2-DM
+     *  @return The spin-resolved 2-DM.
      */
     template <typename Z = ONVBasis>
     enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, SpinResolved2DM<double>> calculateSpinResolved2DM() const {
@@ -1428,7 +1456,29 @@ public:
 
 
     /**
-     *  @return the Shannon entropy (or information content) of the wave function
+     *  Calculate the one-electron density matrix for a spin-resolved selected wave function expansion.
+     * 
+     *  @return The orbital (total, spin-summed) 1-DM.
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, Orbital1DM<double>> calculate1DM() const { return this->calculateSpinResolved1DM().orbitalDensity(); }
+
+
+    /**
+     *  Calculate the two-electron density matrix for a spin-resolved selected wave function expansion.
+     * 
+     *  @return The orbital (total, spin-summed) 2-DM.
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, Orbital2DM<double>> calculate2DM() const { return this->calculateSpinResolved2DM().orbitalDensity(); }
+
+
+    /**
+     *  MARK: Entropy
+     */
+
+    /**
+     *  @return The Shannon entropy (information content) of the wave function.
      */
     double calculateShannonEntropy() const {
 
@@ -1442,24 +1492,15 @@ public:
         return -1 / std::log(2) * (coefficients_squared * log_coefficients_squared).sum();
     }
 
-    /**
-     *  @param i    The index (address) of the coefficient that should be obtained.
-     * 
-     *  @return The i-th expansion coefficient.
-     */
-    double coefficient(const size_t i) const { return this->m_coefficients(i); }
 
-    /**
-     *  @return the expansion coefficients of this linear expansion wave function model
+    /*
+     *  MARK: Iterating
      */
-    const VectorX<double>& coefficients() const { return this->m_coefficients; }
-
 
     /**
      *  Iterate over all expansion coefficients and corresponding ONVs, and apply the given callback function.
      * 
-     *  @param callback                 the function to be applied in every iteration. Its arguments are an expansion coefficient and the corresponding ONV.
-     *  
+     *  @param callback                 The function to be applied in every iteration. Its arguments are an expansion coefficient and the corresponding ONV.
      */
     template <typename Z = ONVBasis>
     enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, void> forEach(const std::function<void(const double, const SpinResolvedONV)>& callback) const {
@@ -1477,6 +1518,10 @@ public:
     }
 
 
+    /*
+     *  MARK: Comparing
+     */
+
     /** 
      *  @param other            wave function for the comparison
      *  @param tolerance        tolerance for the comparison of coefficients
@@ -1491,12 +1536,6 @@ public:
 
         return (this->coefficients()).isEqualEigenvectorAs(other.coefficients(), tolerance);
     }
-
-
-    /**
-     *  @return the ONV basis that is related to this linear expansion wave function model
-     */
-    const ONVBasis& onvBasis() const { return onv_basis; }
 };
 
 
