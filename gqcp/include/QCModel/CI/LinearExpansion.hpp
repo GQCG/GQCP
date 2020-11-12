@@ -594,7 +594,6 @@ public:
 
         SpinUnresolvedONV onv = onv_basis.constructONVFromAddress(0);  // Start with ONV with address 0.
         for (size_t J = 0; J < dim; J++) {                             // Loops over all possible ONV indices.
-            //std::cout << "\nONV: " << J << std::endl;
 
             // Loop over electrons that can be annihilated in an ONV.
             for (size_t e1 = 0; e1 < N; e1++) {
@@ -610,10 +609,6 @@ public:
 
                 // The diagonal values are a result of annihilation-creation on the same orbital index and are thus the same as the initial ONV.
                 D(q, q) += c_J * c_J;
-
-                //if (q == 4) {
-                //    std::cout << "calculated: (" << J << "," << J << ") - value: " << sign * c_J * c_J << std::endl;
-                //}
 
                 // For the non-diagonal values, we will create all possible matrix elements of the density matrix in the routine below.
                 onv_path.annihilate(q, e1);
@@ -639,12 +634,6 @@ public:
 
                     D(p, q) += onv_path.sign() * value;
                     D(q, p) += onv_path.sign() * value;
-
-                    //std::cout << "integral (" << p << "," << q << "): " << value << std::endl;
-                    if (p == 2 && q == 0) {
-                        std::cout << "unresolved: (" << I << "," << J << ") - value: " << onv_path.sign() * value << std::endl;
-                    }
-                    //std::cout << "p: " << p << "\tq: " << q << std::endl;
 
                     // Move orbital index such that other unoccupied orbitals can be found within the loop.
                     onv_path.leftTranslateVerticalArc();
@@ -721,8 +710,6 @@ public:
                 }
 
                 if (bra == ket) {
-                    //std::cout << "reference: (" << I << "," << J << ") - value: " << sign * this->coefficient(I) * this->coefficient(J) << std::endl;
-
                     value += sign * this->coefficient(I) * this->coefficient(J);
                 }
 
@@ -787,9 +774,6 @@ public:
                     for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
                         double c_I_alpha_I_beta = this->coefficient(I_alpha * dim_beta + I_beta);
                         diagonal_contribution += std::pow(c_I_alpha_I_beta, 2);
-                        //if (p == 4) {
-                        //    std::cout << "diagonal: " << diagonal_contribution << std::endl;
-                        //}
                     }
                     D_aa(p, p) += diagonal_contribution;
 
@@ -805,9 +789,7 @@ public:
                                 double c_J_alpha_I_beta = this->coefficient(J_alpha * dim_beta + I_beta);
                                 off_diagonal_contribution += c_I_alpha_I_beta * c_J_alpha_I_beta;
                             }
-                            if (p == 2 && q == 0) {
-                                std::cout << "resolved: (" << I_alpha << "," << J_alpha << ") - value: " << sign_pq * off_diagonal_contribution << std::endl;
-                            }
+
                             D_aa(p, q) += sign_pq * off_diagonal_contribution;
                             D_aa(q, p) += sign_pq * off_diagonal_contribution;  // add the symmetric contribution because we are looping over q < p
 
