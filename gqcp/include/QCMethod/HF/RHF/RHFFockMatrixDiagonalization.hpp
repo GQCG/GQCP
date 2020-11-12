@@ -64,7 +64,7 @@ public:
         const auto& F = environment.fock_matrices.back().parameters();  // the most recent scalar/AO basis Fock matrix
 
         using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
-        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver {F, environment.S};
+        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver {F, environment.S.parameters()};
         const RTransformationMatrix<Scalar>& C = generalized_eigensolver.eigenvectors();
         const auto& orbital_energies = generalized_eigensolver.eigenvalues();
 

@@ -52,7 +52,7 @@ public:
 
     std::deque<VectorX<double>> orbital_energies;
 
-    SquareMatrix<Scalar> S;  // the overlap matrix (of the scalar (AO) basis)
+    ScalarRSQOneElectronOperator<Scalar> S;  // the overlap matrix (of the scalar (AO) basis)
 
     std::deque<RTransformationMatrix<Scalar>> coefficient_matrices;
     std::deque<Orbital1DM<Scalar>> density_matrices;                 // expressed in the scalar (AO) basis
