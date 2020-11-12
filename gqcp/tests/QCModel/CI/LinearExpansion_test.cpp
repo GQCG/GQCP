@@ -503,19 +503,20 @@ BOOST_AUTO_TEST_CASE(calculate1DM_SpinUnresolved_NDM) {
     BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({0}, {0}) - D_specialized(0, 0)) < 1.0e-12);  // D(0,0) : a^\dagger_0 a_0
     BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({0}, {1}) - D_specialized(0, 1)) < 1.0e-12);  // D(0,1) : a^\dagger_0 a_1
     BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({2}, {1}) - D_specialized(2, 1)) < 1.0e-12);  // D(2,1) : a^\dagger_2 a_1
+    //std::cout << "!!! DIT TESTJE FAALT !!!" << std::endl;
     BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({4}, {4}) - D_specialized(4, 4)) < 1.0e-12);  // D(4,4) : a^\dagger_4 a_4
-    std::cout << "!!! DIT TESTJE FAALT !!!" << std::endl;
+    //std::cout << "\n"
+    //          << std::endl;
     BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({1}, {1}) - D_specialized(1, 1)) < 1.0e-12);  // D(4,4) : a^\dagger_4 a_4
-    std::cout << "\n"
-              << std::endl;
+
     BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({2}, {2}) - D_specialized(2, 2)) < 1.0e-12);  // D(4,4) : a^\dagger_4 a_4
     BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({3}, {3}) - D_specialized(3, 3)) < 1.0e-12);  // D(4,4) : a^\dagger_4 a_4
 
     //std::cout << "!!! DIT TESTJE FAALT !!!" << std::endl;
-    //const auto testje = linear_expansion.calculateNDMElement({2}, {1});
+    //const auto testje = linear_expansion.calculateNDMElement({4}, {4});
     //BOOST_CHECK(std::abs(testje - D_specialized(2, 1)) < 1.0e-12);  // D(3,3) : a^\dagger_3 a_3
 
-    //std::cout << ">>> ref: " << testje << "\tcalculated: " << D_specialized(2, 1) << std::endl;
+    //std::cout << ">>> ref: " << testje << "\tcalculated: " << D_specialized(4, 4) << std::endl;
 }
 
 
@@ -538,5 +539,11 @@ BOOST_AUTO_TEST_CASE(calculate1DM_SpinUnresolved_ref_spin_resolved) {
     const GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis> linear_expansion_resolved {onv_basis_resolved, linear_expansion_unresolved.coefficients()};
 
     const auto D_resolved = linear_expansion_resolved.calculate1DM();  // This is the orbital 1-DM, but there are no beta contributions anyways.
+
+    //std::cout << "UNRESOLVED" << std::endl;
+    //D_unresolved.print();
+    //std::cout << "\n\nRESOLVED"
+    //          << std::endl;
+    //D_resolved.print();
     BOOST_CHECK(D_unresolved.isApprox(D_resolved, 1.0e-12));
 }
