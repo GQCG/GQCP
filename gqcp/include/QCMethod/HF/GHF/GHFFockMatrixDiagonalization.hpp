@@ -61,7 +61,7 @@ public:
      */
     void execute(Environment& environment) override {
 
-        const auto& F = environment.fock_matrices.back();  // the most recent scalar/AO basis Fock matrix
+        const auto& F = environment.fock_matrices.back().parameters();  // the most recent scalar/AO basis Fock matrix
 
         using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
         Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver {F, environment.S};
