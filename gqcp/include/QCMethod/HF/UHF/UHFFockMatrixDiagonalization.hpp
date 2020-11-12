@@ -65,13 +65,13 @@ public:
 
         using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
 
-        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver_alpha {F.alpha().parameters(), environment.S};
+        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver_alpha {F.alpha().parameters(), environment.S.parameters()};
         const UTransformationMatrixComponent<Scalar>& C_alpha = generalized_eigensolver_alpha.eigenvectors();
 
         const auto& orbital_energies_alpha = generalized_eigensolver_alpha.eigenvalues();
         environment.orbital_energies_alpha.push_back(orbital_energies_alpha);
 
-        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver_beta {F.beta().parameters(), environment.S};
+        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver_beta {F.beta().parameters(), environment.S.parameters()};
         const UTransformationMatrixComponent<Scalar>& C_beta = generalized_eigensolver_beta.eigenvectors();
 
         const UTransformationMatrix<Scalar>& C {C_alpha, C_beta};
