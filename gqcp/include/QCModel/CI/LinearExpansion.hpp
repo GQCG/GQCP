@@ -629,9 +629,6 @@ public:
 
                     const double value = c_I * c_J;
 
-                    //auto a = onv.annihilate(q, sign);
-                    //auto b = onv.create(p, sign);
-
                     D(p, q) += onv_path.sign() * value;
                     D(q, p) += onv_path.sign() * value;
 
