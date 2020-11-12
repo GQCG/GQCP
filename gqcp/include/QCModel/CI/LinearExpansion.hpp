@@ -587,13 +587,14 @@ public:
         // Prepare some variables.
         const auto M = this->onv_basis.numberOfOrbitals();
         const auto N = this->onv_basis.numberOfElectrons();
-        const auto dim = onv_basis.dimension();  // dimension of the SpinUnresolvedONVBasis = number of SpinUnresolvedONVs
+        const auto dim = onv_basis.dimension();  // Dimension of the SpinUnresolvedONVBasis = number of SpinUnresolvedONVs.
 
         GQCP::G1DM<double> D = GQCP::G1DM<double>::Zero(M);
 
 
         SpinUnresolvedONV onv = onv_basis.constructONVFromAddress(0);  // Start with ONV with address 0.
         for (size_t J = 0; J < dim; J++) {                             // Loops over all possible ONV indices.
+            //std::cout << "\nONV: " << J << std::endl;
 
             // Loop over electrons that can be annihilated in an ONV.
             for (size_t e1 = 0; e1 < N; e1++) {
@@ -606,10 +607,18 @@ public:
                 const auto q = onv.occupationIndexOf(e1);
 
                 // The diagonal values are a result of annihilation-creation on the same orbital index and are thus the same as the initial ONV.
-                D(q, q) = c_J * c_J;
+                D(q, q) += onv.operatorPhaseFactor(q) * c_J * c_J;
+
+                if (q == 1) {
+                    std::cout << "calculated: (" << J << "," << J << ") - value: " << onv.operatorPhaseFactor(q) * c_J * c_J << std::endl;
+                }
 
                 // For the non-diagonal values, we will create all possible matrix elements of the density matrix in the routine below.
                 onv_path.annihilate(q, e1);
+
+
+                //std::cout << "q: " << q << std::endl;
+
 
                 // Stop the loop if 1) the path is finished, meaning that orbital index p is at M (the total number of orbitals) and 2) if the orbital index is out of bounds after left translation of a vertical arc.
                 while (!onv_path.isFinished() && onv_path.isOrbitalIndexValid()) {
@@ -621,12 +630,18 @@ public:
                     const auto I = onv_path.addressAfterCreation();
                     const auto c_I = this->coefficient(I);
 
-                    const double value = onv_path.sign() * c_I * c_J;
+                    const double value = onv.operatorPhaseFactor(q) * c_I * c_J;
 
                     // Add the density matrix elements.
                     const auto p = onv_path.orbitalIndex();
-                    D(p, q) = value;
-                    D(q, p) = value;
+                    D(p, q) += value;
+                    D(q, p) += value;
+
+                    //std::cout << "integral (" << p << "," << q << "): " << value << std::endl;
+                    if (p == 100 && q == 100) {
+                        std::cout << "calculated: (" << I << "," << J << ") - value: " << onv_path.sign() << std::endl;
+                    }
+                    //std::cout << "p: " << p << "\tq: " << q << std::endl;
 
                     // Move orbital index such that other unoccupied orbitals can be found within the loop.
                     onv_path.leftTranslateVerticalArc();
@@ -691,7 +706,6 @@ public:
 
                 // Annihilate the ket on the ket indices
                 if (!ket.annihilateAll(ket_indices_reversed, sign)) {  // if we can't annihilate, the ket doesn't change
-
                     // Go to the beginning of this (the inner) while loop with the next bra
                     if (J < dim - 1) {  // prevent the last permutation from occurring
                         this->onv_basis.transformONVToNextPermutation(ket);
@@ -704,6 +718,8 @@ public:
                 }
 
                 if (bra == ket) {
+                    std::cout << "reference: (" << I << "," << J << ") - value: " << sign * this->coefficient(I) * this->coefficient(J) << std::endl;
+
                     value += sign * this->coefficient(I) * this->coefficient(J);
                 }
 

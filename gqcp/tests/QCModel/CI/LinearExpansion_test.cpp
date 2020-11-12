@@ -498,12 +498,24 @@ BOOST_AUTO_TEST_CASE(calculate1DM_SpinUnresolved_NDM) {
 
     const auto linear_expansion = GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>::Random(onv_basis);
 
-
     // Check some 1-DM values with calculateNDMElement().
     const auto D_specialized = linear_expansion.calculate1DM();
     BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({0}, {0}) - D_specialized(0, 0)) < 1.0e-12);  // D(0,0) : a^\dagger_0 a_0
     BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({0}, {1}) - D_specialized(0, 1)) < 1.0e-12);  // D(0,1) : a^\dagger_0 a_1
     BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({2}, {1}) - D_specialized(2, 1)) < 1.0e-12);  // D(2,1) : a^\dagger_2 a_1
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({4}, {4}) - D_specialized(4, 4)) < 1.0e-12);  // D(4,4) : a^\dagger_4 a_4
+    std::cout << "!!! DIT TESTJE FAALT !!!" << std::endl;
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({1}, {1}) - D_specialized(1, 1)) < 1.0e-12);  // D(4,4) : a^\dagger_4 a_4
+    std::cout << "\n"
+              << std::endl;
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({2}, {2}) - D_specialized(2, 2)) < 1.0e-12);  // D(4,4) : a^\dagger_4 a_4
+    BOOST_CHECK(std::abs(linear_expansion.calculateNDMElement({3}, {3}) - D_specialized(3, 3)) < 1.0e-12);  // D(4,4) : a^\dagger_4 a_4
+
+    //std::cout << "!!! DIT TESTJE FAALT !!!" << std::endl;
+    //const auto testje = linear_expansion.calculateNDMElement({2}, {1});
+    //BOOST_CHECK(std::abs(testje - D_specialized(2, 1)) < 1.0e-12);  // D(3,3) : a^\dagger_3 a_3
+
+    //std::cout << ">>> ref: " << testje << "\tcalculated: " << D_specialized(2, 1) << std::endl;
 }
 
 
