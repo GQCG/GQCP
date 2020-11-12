@@ -62,7 +62,7 @@ public:
 
         // Read F, D and S from the environment
         const auto& D = environment.density_matrices.back();
-        const auto& S = environment.S;
+        const auto& S = environment.S.parameters();
         const auto& F = environment.fock_matrices.back().parameters();
 
         // Calculate the error and write it to the environment (as a vector)
