@@ -591,13 +591,11 @@ public:
 
         GQCP::G1DM<double> D = GQCP::G1DM<double>::Zero(M);
 
-
         SpinUnresolvedONV onv = onv_basis.constructONVFromAddress(0);  // Start with ONV with address 0.
         for (size_t J = 0; J < dim; J++) {                             // Loops over all possible ONV indices.
 
             // Loop over electrons that can be annihilated in an ONV.
             for (size_t e1 = 0; e1 < N; e1++) {
-
 
                 // Create an ONVPath for each new ONV.
                 ONVPath<SpinUnresolvedONVBasis> onv_path {onv_basis, onv};
