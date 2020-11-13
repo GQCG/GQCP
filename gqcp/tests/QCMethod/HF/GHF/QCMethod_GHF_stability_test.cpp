@@ -41,18 +41,7 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_1) {
 
     const auto sq_hamiltonian = GQCP::GSQHamiltonian<double>::Molecular(g_spinor_basis, molecule);
 
-
-    // Create a solver and associated environment and let the QCMethod do its job.
-    GQCP::GTransformationMatrix<double> C_initial {6};
-    // clang-format off
-    C_initial << -0.3585282,  0.0,        0.89935394,  0.0,         0.0,        1.57117404,
-                 -0.3585282,  0.0,       -1.81035361,  0.0,         0.0,        0.00672366,
-                 -0.3585282,  0.0,        0.91099966,  0.0,         0.0,        1.56445038,
-                  0.0,       -0.3585282,  0.0,         0.89935394, -1.57117404, 0.0,
-                  0.0,       -0.3585282,  0.0,        -1.81035361,  0.00672366, 0.0,
-                  0.0,       -0.3585282,  0.0,         0.91099966,  1.56445038, 0.0;
-    // clang-format on
-    GQCP::GHFSCFEnvironment<double> environment {N, sq_hamiltonian, S, C_initial};
+    auto environment = GQCP::GHFSCFEnvironment<double>::WithCoreGuess(N, sq_hamiltonian, S);
 
     auto solver = GQCP::GHFSCFSolver<double>::Plain(1.0e-08, 3000);
     const auto qc_structure = GQCP::QCMethod::GHF<double>().optimize(solver, environment);

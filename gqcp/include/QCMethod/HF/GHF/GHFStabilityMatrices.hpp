@@ -44,10 +44,6 @@ public:
      *  PUBLIC METHODS
      */
 
-    void print(std::vector<Scalar> const& input) const {
-        std::copy(input.begin(), input.end(), std::ostream_iterator<Scalar>(std::cout, " "));
-    }
-
     /**
      *  @return the partial stability matrix `A` from the GHF stability conditions.
      * 
@@ -119,8 +115,57 @@ public:
         const auto A_matrix = GQCP::Matrix<Scalar>(Eigen::Map<const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>>(A_iajb.data(),
                                                                                                                            number_of_occupied_orbitals * number_of_virtual_orbitals,
                                                                                                                            number_of_occupied_orbitals * number_of_virtual_orbitals));
+        // We transpose because the way the tensor is transformed into a matrix varies the wrong index the quickest
         return A_matrix.transpose();
     }
+
+
+    // /**
+    //  *  @return the partial stability matrix `B` from the GHF stability conditions.
+    //  *
+    //  *  @note The formula for the `B` matrix is as follows:
+    //  *      B_IAJB = (AI||BJ)
+    //  *
+    //  *  @param ghf_structure        The GHF QCStructure which contains the ground state parameters of the performed GHF calculation
+    //  *  @param gsq_hamiltonian      The generalised, second quantized hamiltonian, which contains the necessary two electron operators.
+    //  */
+    // GQCP::Matrix<Scalar> calculatePartialStabilityMatrixB(const QCStructure<QCModel::GHF<Scalar>>& ghf_structure, const GSQHamiltonian<Scalar>& gsq_hamiltonian) const {
+
+    //     // Get the ground state parameters from the given QCStructure.
+    //     const auto& parameters = ghf_structure.groundStateParameters();
+
+    //     // Determine the number of occupied and virtual orbitals.
+    //     const auto& number_of_occupied_orbitals = parameters.numberOfElectrons();
+    //     const auto& number_of_virtual_orbitals = gsq_hamiltonian.numberOfOrbitals() - number_of_occupied_orbitals;
+
+    //     // We need the two-electron integrals in MO basis, hence why we transform them with the coefficient matrix.
+    //     // The ground state coefficient matrix is obtained from the QCModel.
+    //     // We need the anti-symmetrized tensor: (AI||BJ) = (AI|BJ) - (AJ|BI). This is obtained by the `.antisymmetrized()` method.
+    //     const auto& g = gsq_hamiltonian.twoElectron().transformed(parameters.coefficientMatrix()).antisymmetrized();
+
+    //     // The next step is to create the needed tensor slice.
+    //     // GQCP::Tensor<Scalar, 4> B_iajb(number_of_occupied_orbitals, number_of_virtual_orbitals, number_of_occupied_orbitals, number_of_virtual_orbitals);
+    //     // for (int a = number_of_occupied_orbitals; a < parameters.numberOfSpinors(); a++) {
+    //     //     for (int i = 0; i < number_of_occupied_orbitals; i++) {
+    //     //         for (int b = number_of_occupied_orbitals; b < parameters.numberOfSpinors(); b++) {
+    //     //             for (int j = 0; j < number_of_occupied_orbitals; j++) {
+    //     //                 B_iajb(i, a - number_of_occupied_orbitals, j, b - number_of_occupied_orbitals) = g.parameters()(a, i, b, j);
+    //     //             }
+    //     //         }
+    //     //     }
+    //     // }
+    //     GQCP::Tensor<Scalar, 4> B_iajb = GQCP::ImplicitRankFourTensorSlice<Scalar>::FromBlockRanges(number_of_occupied_orbitals, parameters.numberOfSpinors(),
+    //                                                                                                 0, number_of_occupied_orbitals,
+    //                                                                                                 number_of_occupied_orbitals, parameters.numberOfSpinors(),
+    //                                                                                                 0, number_of_occupied_orbitals, g.parameters())
+    //                                          .asTensor();
+
+    //     //Finally, reshape the tensor to a matrix.
+    //     const auto B_matrix = GQCP::Matrix<Scalar>(Eigen::Map<const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>>(B_iajb.data(),
+    //                                                                                                                        number_of_occupied_orbitals * number_of_virtual_orbitals,
+    //                                                                                                                        number_of_occupied_orbitals * number_of_virtual_orbitals));
+    //     return B_matrix.transpose();
+    // }
 };
 
 }  // namespace QCMethod
