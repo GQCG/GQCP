@@ -20,8 +20,8 @@
 
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Basis/SpinorBasis/GSpinorBasis.hpp"
-#include "Basis/SpinorBasis/RSpinorBasis.hpp"
-#include "Basis/SpinorBasis/USpinorBasis.hpp"
+#include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
+#include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
 #include "Basis/Transformations/RTransformationMatrix.hpp"
 #include "DensityMatrix/Orbital1DM.hpp"
 #include "DensityMatrix/Orbital2DM.hpp"
@@ -32,7 +32,6 @@
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "Utilities/aliases.hpp"
-#include "Utilities/linalg.hpp"
 
 #include <boost/algorithm/string.hpp>
 #include <boost/dynamic_bitset.hpp>
@@ -123,7 +122,7 @@ public:
 
         // Read in dummy lines up until we actually get to the ONVs and coefficients.
         std::string line;
-        std::string buffer;  // dummy for the counting stream  TODO: find "correcter" way if possible
+        std::string buffer;  // dummy for the counting stream
         while (std::getline(input_file_stream, line)) {
             std::getline(input_file_stream_count, buffer);
 
@@ -178,7 +177,7 @@ public:
         size_t N_beta = beta_transfer.count();
 
         SpinResolvedSelectedONVBasis onv_basis {K, N_alpha, N_beta};
-        onv_basis.addONV(reversed_alpha, reversed_beta);
+        onv_basis.expandWith(SpinResolvedONV::FromString(reversed_alpha, reversed_beta));
 
 
         // Read in the ONVs and the coefficients by splitting the line on '|', and then trimming whitespace.
@@ -206,7 +205,7 @@ public:
 
             // Create a double for the third field
             coefficients(index_count) = std::stod(splitted_line[2]);
-            onv_basis.addONV(reversed_alpha, reversed_beta);
+            onv_basis.expandWith(SpinResolvedONV::FromString(reversed_alpha, reversed_beta));
 
         }  // while getline
 
@@ -215,7 +214,7 @@ public:
 
 
     /**
-     *  Create the linear expansion of the given spin-resolved ONV that is expressed in the given USpinorBasis, by projection onto the spin-resolved ONVs expressed with respect to the given RSpinorBasis.
+     *  Create the linear expansion of the given spin-resolved ONV that is expressed in the given USpinOrbitalBasis, by projection onto the spin-resolved ONVs expressed with respect to the given RSpinOrbitalBasis.
      * 
      *  @param onv                      a spin-resolved ONV expressed with respect to an unrestricted spin-orbital basis
      *  @param r_spinor_basis           the restricted spin-orbital basis that is used to define the resulting linear expansion of ONVs against
@@ -224,29 +223,24 @@ public:
      *  @return a linear expansion inside a spin-resolved ONV basis
      */
     template <typename Z = ONVBasis>
-    static enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, LinearExpansion<Z>> FromONVProjection(const SpinResolvedONV& onv, const RSpinorBasis<double, GTOShell>& r_spinor_basis, const USpinorBasis<double, GTOShell>& u_spinor_basis) {
+    static enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, LinearExpansion<Z>> FromONVProjection(const SpinResolvedONV& onv, const RSpinOrbitalBasis<double, GTOShell>& r_spinor_basis, const USpinOrbitalBasis<double, GTOShell>& u_spinor_basis) {
 
         // Determine the overlap matrices of the underlying scalar orbital bases, which is needed later on.
-        auto S = r_spinor_basis.overlap();                          // the overlap matrix of the restricted MOs/spin-orbitals
-        S.transform(r_spinor_basis.coefficientMatrix().inverse());  // now in AO basis
+        auto S_r = r_spinor_basis.overlap();                          // the overlap matrix of the restricted MOs/spin-orbitals
+        S_r.transform(r_spinor_basis.coefficientMatrix().inverse());  // now in AO basis
 
-        auto S_alpha = u_spinor_basis.overlap(Spin::alpha);                          // the overlap matrix of the alpha spin-orbitals
-        S_alpha.transform(u_spinor_basis.coefficientMatrix(Spin::alpha).inverse());  // now in AO basis
+        auto S_u = u_spinor_basis.overlap();                          // The overlap matrix of the unrestricted spin-orbitals.
+        S_u.transform(u_spinor_basis.coefficientMatrix().inverse());  // Now in AO basis.
 
-        auto S_beta = u_spinor_basis.overlap(Spin::beta);                          // the overlap matrix of the beta spin-orbitals
-        S_beta.transform(u_spinor_basis.coefficientMatrix(Spin::beta).inverse());  // now in AO basis
-
-        if (!(S.parameters().isApprox(S_alpha.parameters(), 1.0e-08)) || !(S.parameters().isApprox(S_beta.parameters(), 1.0e-08))) {
-            throw std::invalid_argument("LinearExpansion::FromONVProjection(const SpinResolvedONV&, const RSpinorBasis<double, GTOShell>&, const USpinorBasis<double, GTOShell>&): The given spinor bases are not expressed using the same scalar orbital basis.");
+        if (!(S_r.parameters().isApprox(S_u.alpha().parameters(), 1.0e-08)) || !(S_r.parameters().isApprox(S_u.beta().parameters(), 1.0e-08))) {
+            throw std::invalid_argument("LinearExpansion::FromONVProjection(const SpinResolvedONV&, const RSpinOrbitalBasis<double, GTOShell>&, const USpinOrbitalBasis<double, GTOShell>&): The given spinor bases are not expressed using the same scalar orbital basis.");
         }
 
 
         // Prepare some parameters.
         const auto& C_restricted = r_spinor_basis.coefficientMatrix();
 
-        const auto& C_alpha = u_spinor_basis.coefficientMatrix(Spin::alpha);
-        const auto& C_beta = u_spinor_basis.coefficientMatrix(Spin::beta);
-        const UTransformationMatrix<double> C_unrestricted {C_alpha, C_beta};
+        const auto C_unrestricted = u_spinor_basis.coefficientMatrix();
 
 
         // Set up the required spin-resolved ONV basis.
@@ -259,10 +253,10 @@ public:
         // Determine the coefficients through calculating the overlap between two ONVs.
         VectorX<double> coefficients = VectorX<double>::Zero(onv_basis.dimension());
 
-        onv_basis.forEach([&onv, &C_unrestricted, &C_restricted, &S, &coefficients, &onv_basis](const SpinUnresolvedONV& alpha_onv, const size_t I_alpha, const SpinUnresolvedONV& beta_onv, const size_t I_beta) {
+        onv_basis.forEach([&onv, &C_unrestricted, &C_restricted, &S_r, &coefficients, &onv_basis](const SpinUnresolvedONV& alpha_onv, const size_t I_alpha, const SpinUnresolvedONV& beta_onv, const size_t I_beta) {
             const SpinResolvedONV onv_on {alpha_onv, beta_onv};  // the spin-resolved ONV that should be projected 'on'
 
-            const auto coefficient = onv.calculateProjection(onv_on, C_unrestricted, C_restricted, S.parameters());
+            const auto coefficient = onv.calculateProjection(onv_on, C_unrestricted, C_restricted, S_r.parameters());
             const auto address = onv_basis.compoundAddress(I_alpha, I_beta);
 
             coefficients(address) = coefficient;
@@ -292,7 +286,7 @@ public:
         S_of.transform(spinor_basis_of.coefficientMatrix().inverse());  // now in AO basis
 
         if (!(S_on.parameters().isApprox(S_of.parameters(), 1.0e-08))) {
-            throw std::invalid_argument("LinearExpansion::FromONVProjection(const SpinUnresolvedONV&, const RSpinorBasis<double, GTOShell>&, const GSpinorBasis<double, GTOShell>&): The given spinor bases are not expressed using the same scalar orbital basis.");
+            throw std::invalid_argument("LinearExpansion::FromONVProjection(const SpinUnresolvedONV&, const RSpinOrbitalBasis<double, GTOShell>&, const GSpinorBasis<double, GTOShell>&): The given spinor bases are not expressed using the same scalar orbital basis.");
         }
 
 
@@ -399,8 +393,8 @@ public:
 
 
         // Set up spin-unresolved ONV basis variables for the loops over the ONVs
-        const SpinUnresolvedONVBasis& alpha_onv_basis = onv_basis.onvBasisAlpha();
-        const SpinUnresolvedONVBasis& beta_onv_basis = onv_basis.onvBasisBeta();
+        const SpinUnresolvedONVBasis& alpha_onv_basis = onv_basis.alpha();
+        const SpinUnresolvedONVBasis& beta_onv_basis = onv_basis.beta();
 
         auto dim_alpha = alpha_onv_basis.dimension();
         auto dim_beta = beta_onv_basis.dimension();
@@ -780,13 +774,13 @@ public:
     enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, SpinResolved1DM<double>> calculateSpinResolved1DM() const {
 
         // Initialize as zero matrices
-        size_t K = this->onv_basis.numberOfOrbitals();
+        size_t K = this->onv_basis.alpha().numberOfOrbitals();
 
         SpinResolved1DMComponent<double> D_aa = SpinResolved1DMComponent<double>::Zero(K);
         SpinResolved1DMComponent<double> D_bb = SpinResolved1DMComponent<double>::Zero(K);
 
-        SpinUnresolvedONVBasis onv_basis_alpha = onv_basis.onvBasisAlpha();
-        SpinUnresolvedONVBasis onv_basis_beta = onv_basis.onvBasisBeta();
+        SpinUnresolvedONVBasis onv_basis_alpha = onv_basis.alpha();
+        SpinUnresolvedONVBasis onv_basis_beta = onv_basis.beta();
 
         auto dim_alpha = onv_basis_alpha.dimension();
         auto dim_beta = onv_basis_beta.dimension();
@@ -900,14 +894,14 @@ public:
 
         // KISS implementation of the 2-DMs (no symmetry relations are used yet)
 
-        SpinUnresolvedONVBasis onv_basis_alpha = onv_basis.onvBasisAlpha();
-        SpinUnresolvedONVBasis onv_basis_beta = onv_basis.onvBasisBeta();
+        SpinUnresolvedONVBasis onv_basis_alpha = onv_basis.alpha();
+        SpinUnresolvedONVBasis onv_basis_beta = onv_basis.beta();
 
         auto dim_alpha = onv_basis_alpha.dimension();
         auto dim_beta = onv_basis_beta.dimension();
 
         // Initialize as zero matrices
-        size_t K = this->onv_basis.numberOfOrbitals();
+        size_t K = this->onv_basis.alpha().numberOfOrbitals();
 
         SpinResolved2DMComponent<double> d_aaaa = SpinResolved2DMComponent<double>::Zero(K);
         SpinResolved2DMComponent<double> d_aabb = SpinResolved2DMComponent<double>::Zero(K);
@@ -1495,7 +1489,7 @@ public:
             return false;
         }
 
-        return areEqualEigenvectors(this->coefficients(), other.coefficients(), tolerance);
+        return (this->coefficients()).isEqualEigenvectorAs(other.coefficients(), tolerance);
     }
 
 

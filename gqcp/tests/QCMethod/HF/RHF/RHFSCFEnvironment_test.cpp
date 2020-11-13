@@ -30,7 +30,7 @@ BOOST_AUTO_TEST_CASE(constructor) {
 
     // Check a correct constructor with an even number of electrons
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {h2, "STO-3G"};
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {h2, "STO-3G"};
     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
     const auto K = sq_hamiltonian.numberOfOrbitals();                                 // the number of spatial orbitals
 

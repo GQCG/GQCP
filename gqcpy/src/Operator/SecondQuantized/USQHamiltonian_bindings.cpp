@@ -16,7 +16,7 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Basis/ScalarBasis/GTOShell.hpp"
-#include "Basis/SpinorBasis/USpinorBasis.hpp"
+#include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Operator/SecondQuantized/USQHamiltonian.hpp"
 
@@ -37,7 +37,7 @@ void bindUSQHamiltonian(py::module& module) {
 
         .def_static(
             "Molecular",
-            [](const GQCP::USpinorBasis<double, GQCP::GTOShell>& u_spinor_basis, const GQCP::Molecule& molecule) {
+            [](const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell>& u_spinor_basis, const GQCP::Molecule& molecule) {
                 return GQCP::USQHamiltonian<double>::Molecular(u_spinor_basis, molecule);
             },
             py::arg("u_spinor_basis"),
@@ -89,18 +89,18 @@ void bindUSQHamiltonian(py::module& module) {
 
         .def(
             "rotate",
-            [](GQCP::USQHamiltonian<double>& usq_hamiltonian, const GQCP::JacobiRotationParameters& jacobi_rotation_parameters) {
-                usq_hamiltonian.rotate(jacobi_rotation_parameters);
+            [](GQCP::USQHamiltonian<double>& usq_hamiltonian, const GQCP::JacobiRotation& jacobi_rotation) {
+                usq_hamiltonian.rotate(jacobi_rotation);
             },
-            py::arg("jacobi_rotation_parameters"),
-            "Rotate both components of the USQ Hamiltonian using jacobi parameters.")
+            py::arg("jacobi_rotation"),
+            "Rotate both components of the USQ Hamiltonian using Jacobi parameters.")
 
         .def(
             "rotate",
-            [](GQCP::USQHamiltonian<double>& usq_hamiltonian, const GQCP::JacobiRotationParameters& jacobi_rotation_parameters, const GQCP::Spin sigma) {
-                usq_hamiltonian.rotate(jacobi_rotation_parameters);
+            [](GQCP::USQHamiltonian<double>& usq_hamiltonian, const GQCP::JacobiRotation& jacobi_rotation, const GQCP::Spin sigma) {
+                usq_hamiltonian.rotate(jacobi_rotation);
             },
-            py::arg("jacobi_rotation_parameters"),
+            py::arg("jacobi_rotation"),
             py::arg("sigma"),
             "Rotate the spin sigma component of the USQ Hamiltonian using jacobi parameters.")
 

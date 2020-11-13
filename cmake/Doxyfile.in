@@ -797,6 +797,7 @@ INPUT = "@CMAKE_SOURCE_DIR@/gqcp/include" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Basis/Integrals/Interfaces" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Basis/ScalarBasis" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Basis/SpinorBasis" \
+        "@CMAKE_SOURCE_DIR@/gqcp/include/Basis/Transformations" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/DensityMatrix" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Mathematical" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Mathematical/Algorithm" \
@@ -810,20 +811,16 @@ INPUT = "@CMAKE_SOURCE_DIR@/gqcp/include" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Mathematical/Optimization/NonLinearEquation" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Mathematical/Representation" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Molecule" \
-        "@CMAKE_SOURCE_DIR@/gqcp/include/ONVBasis" \
-        "@CMAKE_SOURCE_DIR@/gqcp/include/ONVBasis/LinearExpansion" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Operator" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Operator/FirstQuantized" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Operator/SecondQuantized" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Operator/SecondQuantized/ModelHamiltonian" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Processing" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Processing/Properties" \
-        "@CMAKE_SOURCE_DIR@/gqcp/include/Processing/CIDMCalculators" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod/Applications" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod/CC" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod/CI" \
-        "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod/CI/HamiltonianBuilder" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod/Geminals" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod/HF" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/QCMethod/HF/GHF" \
@@ -844,11 +841,11 @@ INPUT = "@CMAKE_SOURCE_DIR@/gqcp/include" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Basis/Integrals/Interfaces" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Basis/ScalarBasis" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Basis/SpinorBasis" \
+        "@CMAKE_SOURCE_DIR@/gqcp/src/Basis/Transformations" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Mathematical" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Mathematical/Functions" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Mathematical/Grid" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Mathematical/Optimization" \
-        "@CMAKE_SOURCE_DIR@/gqcp/src/Mathematical/Optimization/Eigenproblem" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Mathematical/Optimization/Minimization" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Mathematical/Optimization/NonLinearEquation" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Molecule" \
@@ -857,11 +854,8 @@ INPUT = "@CMAKE_SOURCE_DIR@/gqcp/include" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Operator/FirstQuantized" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Processing" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Processing/Properties" \
-        "@CMAKE_SOURCE_DIR@/gqcp/src/Processing/CIDMCalculators" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/QCMethod" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/QCMethod/Applications" \
-        "@CMAKE_SOURCE_DIR@/gqcp/src/QCMethod/CI" \
-        "@CMAKE_SOURCE_DIR@/gqcp/src/QCMethod/CI/HamiltonianBuilder" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/QCMethod/Geminals" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/QCMethod/OrbitalOptimization" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/QCMethod/OrbitalOptimization/Localization" \

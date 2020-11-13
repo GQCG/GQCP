@@ -30,8 +30,8 @@ namespace gqcpy {
 void bindGSpinorBasis(py::module& module);
 void bindOccupationType(py::module& module);
 void bindOrbitalSpace(py::module& module);
-void bindRSpinorBasis(py::module& module);
-void bindUSpinorBasis(py::module& module);
+void bindRSpinOrbitalBasis(py::module& module);
+// void bindUSpinOrbitalBasis(py::module& module);
 
 
 // Basis
@@ -89,9 +89,9 @@ void bindHubbardHamiltonian(py::module& module);
 
 // Operator - SecondQuantized
 void bindSQHamiltonian(py::module& module);
-void bindSQOneElectronOperators(py::module& module);
-void bindSQTwoElectronOperator(py::module& module);
-void bindUSQHamiltonian(py::module& module);
+// void bindSQOneElectronOperators(py::module& module);
+// void bindSQTwoElectronOperator(py::module& module);
+// void bindUSQHamiltonian(py::module& module);
 
 
 // Processing - DensityMatrices
@@ -196,8 +196,8 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindGSpinorBasis(module);
     gqcpy::bindOccupationType(module);
     gqcpy::bindOrbitalSpace(module);
-    gqcpy::bindRSpinorBasis(module);
-    gqcpy::bindUSpinorBasis(module);
+    gqcpy::bindRSpinOrbitalBasis(module);
+    // gqcpy::bindUSpinOrbitalBasis(module);
 
 
     // Basis
@@ -255,9 +255,9 @@ PYBIND11_MODULE(gqcpy, module) {
 
     // Operator - SecondQuantized
     gqcpy::bindSQHamiltonian(module);
-    gqcpy::bindSQOneElectronOperators(module);
-    gqcpy::bindSQTwoElectronOperator(module);
-    gqcpy::bindUSQHamiltonian(module);
+    // gqcpy::bindSQOneElectronOperators(module);
+    // gqcpy::bindSQTwoElectronOperator(module);
+    // gqcpy::bindUSQHamiltonian(module);
 
 
     // Processing - DensityMatrices

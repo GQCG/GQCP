@@ -18,9 +18,11 @@
 #pragma once
 
 
-#include "ONVBasis/BaseONVBasis.hpp"
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
-#include "Operator/SecondQuantized/USQHamiltonian.hpp"
+#include "Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp"
+#include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
+#include "Operator/SecondQuantized/RSQTwoElectronOperator.hpp"
+#include "QuantumChemical/SpinResolvedBase.hpp"
 
 #include <functional>
 
@@ -29,228 +31,237 @@ namespace GQCP {
 
 
 /**
- *  A full spin-resolved spin-resolved ONV basis.
+ *  A full spin-resolved ONV basis.
  */
-class SpinResolvedONVBasis: public BaseONVBasis {
+class SpinResolvedONVBasis:
+    public SpinResolvedBase<SpinUnresolvedONVBasis, SpinResolvedONVBasis> {
 private:
-    SpinUnresolvedONVBasis onv_basis_alpha;
-    SpinUnresolvedONVBasis onv_basis_beta;
-
+    // A vector of sparse matrices containing the one-electron coupling elements for the alpha ONV basis. See also `calculateOneElectronCouplings`.
     std::vector<Eigen::SparseMatrix<double>> alpha_couplings;
 
 
 public:
-    // CONSTRUCTORS
+    /*
+     *  MARK: Constructors
+     */
 
     /**
-     *  @param K            the number of orbitals (equal for alpha and beta)
-     *  @param N_alpha      the number of alpha electrons
-     *  @param N_beta       the number of beta electrons
+     *  @param K            The number of alpha or beta spin-orbitals.
+     *  @param N_alpha      The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals.
+     *  @param N_beta       The number of beta electrons, i.e. the number of occupied beta spin-orbitals.
      */
     SpinResolvedONVBasis(const size_t K, const size_t N_alpha, const size_t N_beta);
 
 
-    // DESTRUCTORS
-
-    /**
-     *  The default destructor.
+    /*
+     *  MARK: General information
      */
-    ~SpinResolvedONVBasis() override = default;
-
-
-    // STATIC PUBLIC METHODS
 
     /**
-     *  @param K            the number of orbitals (equal for alpha and beta)
-     *  @param N_alpha      the number of alpha electrons
-     *  @param N_beta       the number of beta electrons
+     *  Calculate the dimension of a spin-resolved ONV basis with a given number of orbitals and electrons.
+     * 
+     *  @param K            The number of alpha or beta spin-orbitals.
+     *  @param N_alpha      The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals.
+     *  @param N_beta       The number of beta electrons, i.e. the number of occupied beta spin-orbitals.
      *
-     *  @return the dimension of this ONV basis
+     *  @return The dimension of a spin-resolved ONV basis.
      */
     static size_t calculateDimension(const size_t K, const size_t N_alpha, const size_t N_beta);
 
+    /**
+     *  @return The dimension of this ONV basis.
+     */
+    size_t dimension() const;
 
-    // PUBLIC METHODS
+
+    /*
+     *  MARK: Couplings
+     */
 
     /**
-     *  @return the alpha couplings
+     *  @return A vector of sparse matrices containing the one-electron coupling elements for the alpha ONV basis. See also `calculateOneElectronCouplings`.
      */
     const std::vector<Eigen::SparseMatrix<double>>& alphaCouplings() const { return alpha_couplings; }
 
     /**
-     *  Auxiliary method in order to calculate "theta(pq)",
-     *  it returns a partition of a two-electron operator as one-electron operator
-     *  where A (i,j) = T (p, q, i, j).
+     *  Calculate the one-electron operator intermediate that is required for the calculation of "theta(pq)" in Helgaker, Jørgensen, Olsen (2000). It is a partitioning of the mixed component of the unrestricted two-electron operator g(ab)_{pqrs}, resulting in a one-electron operator t(b)_{rs}.
      *
-     *  @param p            first fixed index of the two-electron operator
-     *  @param q            second fixed index of the two-electron operator
-     *  @param two_op       the two-electron operator
+     *  @param p            The first index of the two-electron operator.
+     *  @param q            The second index of the two-electron operator.
+     *  @param g_ab_op      The two-electron operator.
      *
-     *  @return a one-electron operator containing a partition of the two-electron operator
+     *  @return The intermediate one-electron operator that is required for the calculation of "theta(pq)".
      */
-    ScalarRSQOneElectronOperator<double> calculateOneElectronPartition(const size_t p, const size_t q, const ScalarRSQTwoElectronOperator<double>& two_op) const;
+    ScalarUSQOneElectronOperatorComponent<double> calculateOneElectronPartition(const size_t p, const size_t q, const ScalarMixedUSQTwoElectronOperatorComponent<double>& g_ab_op) const;
+
+
+    /*
+     *  MARK: Address calculations
+     */
 
     /**
      *  Calculate the compound address of an ONV represented by the two given alpha- and beta-addresses.
      * 
-     *  @param I_alpha              the alpha-address
-     *  @param I_beta               the beta-address
+     *  @param I_alpha              The alpha-address.
+     *  @param I_beta               The beta-address.
      * 
-     *  @return the compound address of an ONV represented by the two given alpha- and beta-addresses.
+     *  @return The compound address of an ONV represented by the two given alpha- and beta-addresses.
      */
     size_t compoundAddress(const size_t I_alpha, const size_t I_beta) const;
 
-    /**
-     *  @return the dimension of this ONV basis
+
+    /*
+     *  MARK: Iterations
      */
-    size_t dimension() const;
-
-    /**
-     *  Evaluate the operator in a dense matrix
-     *
-     *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in this ONV basis
-     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
-     *
-     *  @return the operator's evaluation in a dense matrix with the dimensions of this basis
-     */
-    // SquareMatrix<double> evaluateOperatorDense(const ScalarRSQOneElectronOperator<double>& one_op, const bool diagonal_values) const;
-
-    // /**
-    //  *  Evaluate the operator in a dense matrix
-    //  *
-    //  *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in this ONV basis
-    //  *  @param diagonal_values      bool to indicate if diagonal values will be calculated
-    //  *
-    //  *  @return the operator's evaluation in a dense matrix with the dimensions of this ONV basis
-    //  */
-    // SquareMatrix<double> evaluateOperatorDense(const ScalarRSQTwoElectronOperator<double>& two_op, const bool diagonal_values) const;
-
-    // /**
-    //  *  Evaluate the Hamiltonian in a dense matrix
-    //  *
-    //  *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
-    //  *  @param diagonal_values          bool to indicate if diagonal values will be calculated
-    //  *
-    //  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of this ONV basis
-    //  */
-    // SquareMatrix<double> evaluateOperatorDense(const RSQHamiltonian<double>& sq_hamiltonian, const bool diagonal_values) const;
-
-    // /**
-    //  *  Evaluate the unrestricted Hamiltonian in a dense matrix
-    //  *
-    //  *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis
-    //  *  @param diagonal_values                bool to indicate if diagonal values will be calculated
-    //  *
-    //  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of this ONV basis
-    //  */
-    // SquareMatrix<double> evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, const bool diagonal_values) const;
-
-    // /**
-    //  *  Evaluate the diagonal of the operator
-    //  *
-    //  *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in this ONV basis
-    //  *
-    //  *  @return the operator's diagonal evaluation in a vector with the dimension of this ONV basis
-    //  */
-    // VectorX<double> evaluateOperatorDiagonal(const ScalarRSQOneElectronOperator<double>& one_op) const;
-
-    // /**
-    //  *  Evaluate the diagonal of the operator
-    //  *
-    //  *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in this ONV basis
-    //  *
-    //  *  @return the operator's diagonal evaluation in a vector with the dimension of this ONV basis
-    //  */
-    // VectorX<double> evaluateOperatorDiagonal(const ScalarRSQTwoElectronOperator<double>& two_op) const;
-
-    // /**
-    //  *  Evaluate the diagonal of the Hamiltonian
-    //  *
-    //  *  @param sq_hamiltonian              the Hamiltonian expressed in an orthonormal basis
-    //  *
-    //  *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of this ONV basis
-    //  */
-    // VectorX<double> evaluateOperatorDiagonal(const RSQHamiltonian<double>& sq_hamiltonian) const;
-
-    // /**
-    //  *  Evaluate the diagonal of the unrestricted Hamiltonian
-    //  *
-    //  *  @param usq_hamiltonian          the Hamiltonian expressed in an unrestricted orthonormal basis
-    //  *
-    //  *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of this ONV basis
-    //  */
-    // VectorX<double> evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const;
-
-    // /**
-    //  *  Evaluate a one electron operator in a matrix vector product
-    //  *
-    //  *  @param one_op                       the one electron operator expressed in an orthonormal basis
-    //  *  @param x                            the vector upon which the evaluation acts
-    //  *  @param diagonal                     the diagonal evaluated in this ONV basis
-    //  *
-    //  *  @return the one electron operator's matrix vector product in a vector with the dimensions of this ONV basis
-    //  */
-    // VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarRSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
-
-    // /**
-    //  *  Evaluate a two electron operator in a matrix vector product
-    //  *
-    //  *  @param two_op                       the two electron operator expressed in an orthonormal basis
-    //  *  @param x                            the vector upon which the evaluation acts
-    //  *  @param diagonal                     the diagonal evaluated in this ONV basis
-    //  *
-    //  *  @return the two electron operator's matrix vector product in a vector with the dimensions of this ONV basis
-    //  */
-    // VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarRSQTwoElectronOperator<double>& two_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
-
-    // /**
-    //  *  Evaluate the Hamiltonian in a matrix vector product
-    //  *
-    //  *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
-    //  *  @param x                            the vector upon which the evaluation acts
-    //  *  @param diagonal                     the diagonal evaluated in this ONV basis
-    //  *
-    //  *  @return the Hamiltonian's matrix vector product in a vector with the dimensions of this ONV basis
-    //  */
-    // VectorX<double> evaluateOperatorMatrixVectorProduct(const RSQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
-
-    // /**
-    //  *  Evaluate the unrestricted Hamiltonian in a matrix vector product
-    //  *
-    //  *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis
-    //  *  @param x                              the vector upon which the evaluation acts
-    //  *  @param diagonal                       the diagonal evaluated in this ONV basis
-    //  *
-    //  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of this ONV basis
-    //  */
-    // VectorX<double> evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
 
     /**
      *  Iterate over all ONVs (implicitly, by resolving in their spin components) in this ONV basis and apply the given callback function.
      * 
-     *  @param callback             the function to be applied in every iteration. Its arguments are two pairs of spin-unresolved ONVs and their corresponding addresses, where the first two arguments are related to alpha-spin. The last two arguments are related to beta-spin.
+     *  @param callback             The function to be applied in every iteration. Its arguments are two pairs of spin-unresolved ONVs and their corresponding addresses, where the first two arguments are related to alpha-spin. The last two arguments are related to beta-spin.
      */
     void forEach(const std::function<void(const SpinUnresolvedONV&, const size_t, const SpinUnresolvedONV&, const size_t)>& callback) const;
 
-    /**
-     *  @return the number of alpha-electrons that this ONV basis describes
+
+    /*
+     *  MARK: Dense restricted operator evaluations
      */
-    size_t numberOfAlphaElectrons() const { return this->onv_basis_alpha.numberOfElectrons(); }
 
     /**
-     *  @return the number of beta-electrons that this ONV basis describes
+     *  Calculate the dense matrix representation of a restricted one-electron operator in this ONV basis.
+     *
+     *  @param f                A restricted one-electron operator expressed in an orthonormal orbital basis.
+     *
+     *  @return A dense matrix represention of the one-electron operator.
      */
-    size_t numberOfBetaElectrons() const { return this->onv_basis_beta.numberOfElectrons(); }
+    SquareMatrix<double> evaluateOperatorDense(const ScalarRSQOneElectronOperator<double>& f) const;
 
     /**
-     *  @return the ONV basis for the alpha-spin-orbitals
+     *  Calculate the dense matrix representation of a restricted two-electron operator in this ONV basis.
+     *
+     *  @param g                A restricted two-electron operator expressed in an orthonormal orbital basis.
+     *
+     *  @return A dense matrix represention of the two-electron operator.
      */
-    const SpinUnresolvedONVBasis& onvBasisAlpha() const { return this->onv_basis_alpha; }
+    SquareMatrix<double> evaluateOperatorDense(const ScalarRSQTwoElectronOperator<double>& g) const;
 
     /**
-     *  @return the ONV basis for the beta-spin-orbitals
+     *  Calculate the dense matrix representation of a restricted Hamiltonian in this ONV basis.
+     *
+     *  @param hamiltonian      A restricted Hamiltonian expressed in an orthonormal orbital basis.
+     *
+     *  @return A dense matrix represention of the Hamiltonian.
      */
-    const SpinUnresolvedONVBasis& onvBasisBeta() const { return this->onv_basis_beta; }
+    SquareMatrix<double> evaluateOperatorDense(const RSQHamiltonian<double>& hamiltonian) const;
+
+
+    /*
+     *  MARK: Diagonal restricted operator evaluations
+     */
+
+    /**
+     *  Calculate the diagonal of the matrix representation of a restricted one-electron operator in this ONV basis.
+     *
+     *  @param f_op             A restricted one-electron operator expressed in an orthonormal orbital basis.
+     *
+     *  @return The diagonal of the dense matrix represention of the one-electron operator.
+     */
+    VectorX<double> evaluateOperatorDiagonal(const ScalarRSQOneElectronOperator<double>& f_op) const;
+
+    /**
+     *  Calculate the diagonal of the matrix representation of a restricted two-electron operator in this ONV basis.
+     *
+     *  @param g                A restricted two-electron operator expressed in an orthonormal orbital basis.
+     *
+     *  @return The diagonal of the dense matrix represention of the two-electron operator.
+     */
+    VectorX<double> evaluateOperatorDiagonal(const ScalarRSQTwoElectronOperator<double>& g) const;
+
+    /**
+     *  Calculate the diagonal of the dense matrix representation of a restricted Hamiltonian in this ONV basis.
+     *
+     *  @param hamiltonian      A restricted Hamiltonian expressed in an orthonormal orbital basis.
+     *
+     *  @return The diagonal of the dense matrix represention of the Hamiltonian.
+     */
+    VectorX<double> evaluateOperatorDiagonal(const RSQHamiltonian<double>& hamiltonian) const;
+
+
+    /*
+     *  MARK: Restricted matrix-vector product evaluations
+     */
+
+    /**
+     *  Calculate the matrix-vector product of (the matrix representation of) a restricted one-electron operator with the given coefficient vector.
+     *
+     *  @param f                A restricted one-electron operator expressed in an orthonormal orbital basis.
+     *  @param x                The coefficient vector of a linear expansion.
+     *
+     *  @return The coefficient vector of the linear expansion after being acted on with the given (matrix representation of) the one-electron operator.
+     */
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarRSQOneElectronOperator<double>& f, const VectorX<double>& x) const;
+
+    /**
+     *  Calculate the matrix-vector product of (the matrix representation of) a restricted two-electron operator with the given coefficient vector.
+     *
+     *  @param g                A restricted two-electron operator expressed in an orthonormal orbital basis.
+     *  @param x                The coefficient vector of a linear expansion.
+     *
+     *  @return The coefficient vector of the linear expansion after being acted on with the given (matrix representation of) the two-electron operator.
+     */
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarRSQTwoElectronOperator<double>& g, const VectorX<double>& x) const;
+
+    /**
+     *  Calculate the matrix-vector product of (the matrix representation of) a restricted Hamiltonian with the given coefficient vector.
+     *
+     *  @param hamiltonian      A restricted Hamiltonian expressed in an orthonormal orbital basis.
+     *  @param x                The coefficient vector of a linear expansion.
+     *
+     *  @return The coefficient vector of the linear expansion after being acted on with the given (matrix representation of) the Hamiltonian.
+     */
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const RSQHamiltonian<double>& hamiltonian, const VectorX<double>& x) const;
+
+
+    /*
+     *  MARK: Dense unrestricted operator evaluations
+     */
+
+    /**
+     *  Calculate the dense matrix representation of an unrestricted Hamiltonian in this ONV basis.
+     *
+     *  @param hamiltonian      An unrestricted Hamiltonian expressed in an orthonormal orbital basis.
+     *
+     *  @return A dense matrix represention of the Hamiltonian.
+     */
+    SquareMatrix<double> evaluateOperatorDense(const USQHamiltonian<double>& hamiltonian) const;
+
+
+    /*
+     *  MARK: Diagonal unrestricted operator evaluations
+     */
+
+    /**
+     *  Calculate the diagonal of the dense matrix representation of an unrestricted Hamiltonian in this ONV basis.
+     *
+     *  @param hamiltonian      An unrestricted Hamiltonian expressed in an orthonormal orbital basis.
+     *
+     *  @return The diagonal of the dense matrix represention of the Hamiltonian.
+     */
+    VectorX<double> evaluateOperatorDiagonal(const USQHamiltonian<double>& hamiltonian) const;
+
+
+    /*
+     *  MARK: Unrestricted matrix-vector product evaluations
+     */
+
+    /**
+     *  Calculate the matrix-vector product of (the matrix representation of) an unrestricted Hamiltonian with the given coefficient vector.
+     *
+     *  @param hamiltonian      An unrestricted Hamiltonian expressed in an orthonormal orbital basis.
+     *  @param x                The coefficient vector of a linear expansion.
+     *
+     *  @return The coefficient vector of the linear expansion after being acted on with the given (matrix representation of) the Hamiltonian.
+     */
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x) const;
 };
 
 

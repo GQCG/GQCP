@@ -28,6 +28,7 @@
  */
 
 namespace GQCP {
+namespace literals {
 
 
 /**
@@ -49,4 +50,5 @@ constexpr std::complex<double> operator"" _ii(long double d) {
 }
 
 
+}  // namespace literals
 }  // namespace GQCP

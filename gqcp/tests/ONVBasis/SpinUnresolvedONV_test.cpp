@@ -20,7 +20,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Basis/SpinorBasis/GSpinorBasis.hpp"
-#include "Basis/SpinorBasis/USpinorBasis.hpp"
+#include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
 #include "ONVBasis/SpinResolvedONV.hpp"
 #include "ONVBasis/SpinUnresolvedONV.hpp"
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
@@ -600,7 +600,7 @@ BOOST_AUTO_TEST_CASE(GHF_overlap) {
     const auto N = h2.numberOfElectrons();
     const auto N_P = h2.numberOfElectronPairs();
 
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> r_spinor_basis {h2, "STO-3G"};
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> r_spinor_basis {h2, "STO-3G"};
     const auto K = r_spinor_basis.numberOfSpatialOrbitals();
     const auto S_restricted = r_spinor_basis.overlap().parameters();
 
@@ -621,8 +621,9 @@ BOOST_AUTO_TEST_CASE(GHF_overlap) {
     const auto& C_on = g_spinor_basis_on.coefficientMatrix();
     const auto& C_of = g_spinor_basis_of.coefficientMatrix();
 
-    auto S = g_spinor_basis_of.overlap().parameters();  // in MO basis
-    S.basisTransform(C_on.inverse());                   // now in AO basis
+    auto S_op = g_spinor_basis_of.overlap();  // in MO basis
+    S_op.transform(C_on.inverse());           // now in AO basis
+    const auto& S = S_op.parameters();
 
 
     // Check if the one GHF determinant has overlap 1 with the other corresponding GHF determinant, and overlap 0 with the other excitations.
@@ -662,7 +663,7 @@ BOOST_AUTO_TEST_CASE(RHF_UHF_projection) {
 
 
     // Obtain the canonical RHF spin-orbitals.
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> r_spinor_basis {molecule, "STO-3G"};
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> r_spinor_basis {molecule, "STO-3G"};
     const auto S_restricted = r_spinor_basis.overlap().parameters();  // the AO overlap matrix
     GQCP::RTransformationMatrix<double> C_restricted {4};             // RHF canonical orbitals for this system (Xeno)
     // clang-format off
@@ -675,7 +676,7 @@ BOOST_AUTO_TEST_CASE(RHF_UHF_projection) {
 
 
     // Obtain the canonical UHF spin-orbitals.
-    GQCP::USpinorBasis<double, GQCP::GTOShell> u_spinor_basis {molecule, "STO-3G"};
+    GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> u_spinor_basis {molecule, "STO-3G"};
     GQCP::TransformationMatrix<double> C_alpha {4};  // UHF alpha canonical orbitals for this system (Xeno), triplet
     // clang-format off
     C_alpha << -1.75646828e-01, -1.20606646e-06,  1.20281173e+00,  2.03213486e+00,
@@ -709,8 +710,10 @@ BOOST_AUTO_TEST_CASE(RHF_UHF_projection) {
     const auto& C_of = g_spinor_basis_of.coefficientMatrix();
     const auto& C_on = g_spinor_basis_on.coefficientMatrix();
 
-    auto S_generalized = g_spinor_basis_of.overlap().parameters();  // in MO basis
-    S_generalized.basisTransform(C_of.inverse());                   // in AO basis
+    auto S_generalized_op = g_spinor_basis_of.overlap();  // in MO basis
+    S_generalized_op.transform(C_of.inverse());           // in AO basis
+    const auto& S_generalized = S_generalized_op.parameters();
+
 
     const auto onv_on = GQCP::SpinUnresolvedONV::FromString("00110011");
     const auto onv_of = GQCP::SpinUnresolvedONV::FromString("00110011");

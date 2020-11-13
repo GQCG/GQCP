@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE(h2o_crawdad) {
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o_crawdad.xyz");
     const auto N = molecule.numberOfElectrons();
 
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> r_spinor_basis {molecule, "STO-3G"};
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> r_spinor_basis {molecule, "STO-3G"};
     const auto r_sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(r_spinor_basis, molecule);  // in an AO basis
     const auto K = r_spinor_basis.numberOfSpatialOrbitals();
 

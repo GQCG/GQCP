@@ -37,13 +37,13 @@ Before we go over to the calculation of integrals, an [orbital basis](#orbital_b
 
 <!--Python-->
 ```python
-spinor_basis = gqcpy.RSpinorBasis(molecule, "STO-3G")
+spinor_basis = gqcpy.RSpinOrbitalBasis(molecule, "STO-3G")
 S = spinor_basis.quantizeOverlapOperator().parameters()
 ```
 
 <!--C++-->
 ```C++
-const auto spinor_basis = GQCP::RSpinorBasis::ReadXYZ(molecule, "STO-3G";
+const auto spinor_basis = GQCP::RSpinOrbitalBasis::ReadXYZ(molecule, "STO-3G";
 const auto S = spinor_basis.overlap().parameters();
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -167,13 +167,13 @@ Before we go over to the calculation of integrals, an [orbital basis](#orbital_b
 
 <!--Python-->
 ```python
-spinor_basis = gqcpy.RSpinorBasis(molecule, "STO-3G")
+spinor_basis = gqcpy.RSpinOrbitalBasis(molecule, "STO-3G")
 S = spinor_basis.quantizeOverlapOperator().parameters()
 ```
 
 <!--C++-->
 ```C++
-const auto spinor_basis = GQCP::RSpinorBasis::ReadXYZ(molecule, "STO-3G";
+const auto spinor_basis = GQCP::RSpinOrbitalBasis::ReadXYZ(molecule, "STO-3G";
 const auto S = spinor_basis.overlap().parameters();
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->

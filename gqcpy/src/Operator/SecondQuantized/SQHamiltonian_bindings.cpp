@@ -16,7 +16,7 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Basis/ScalarBasis/GTOShell.hpp"
-#include "Basis/SpinorBasis/RSpinorBasis.hpp"
+#include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
@@ -37,7 +37,7 @@ void bindSQHamiltonian(py::module& module) {
 
         .def_static(
             "Molecular",
-            [](const GQCP::RSpinorBasis<double, GQCP::GTOShell>& r_spinor_basis, const GQCP::Molecule& molecule) {
+            [](const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>& r_spinor_basis, const GQCP::Molecule& molecule) {
                 return GQCP::RSQHamiltonian<double>::Molecular(r_spinor_basis, molecule);
             },
             py::arg("r_spinor_basis"),

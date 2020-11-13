@@ -32,7 +32,7 @@ BOOST_AUTO_TEST_CASE(localization_index_raises) {
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
     const auto N_P = molecule.numberOfElectronPairs();
 
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
     spinor_basis.lowdinOrthonormalize();
     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in the Löwdin basis
 

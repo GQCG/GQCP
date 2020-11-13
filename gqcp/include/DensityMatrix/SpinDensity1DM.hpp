@@ -62,8 +62,7 @@ public:
  *  A type that provides compile-time information on `SpinDensity1DM` that is otherwise not accessible through a public class alias.
  */
 template <typename Scalar>
-class DensityMatrixTraits<SpinDensity1DM<Scalar>> {
-public:
+struct DensityMatrixTraits<SpinDensity1DM<Scalar>> {
     // The type of transformation matrix that is naturally related to a `SpinDensity1DM`. The only transformations that should be naturally possible for a a spin-density 1-DM are restricted transformations, that transform the alpha- and beta-spin-orbitals equally.
     using TM = RTransformationMatrix<Scalar>;
 };

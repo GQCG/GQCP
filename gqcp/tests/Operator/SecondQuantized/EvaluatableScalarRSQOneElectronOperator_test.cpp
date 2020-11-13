@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Basis/SpinorBasis/RSpinorBasis.hpp"
+#include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include "Mathematical/Grid/CubicGrid.hpp"
 #include "Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
@@ -29,7 +29,7 @@
 
 
 /**
- *  Check if the transformation of a one-electron operator consisting of linear combinations of GTOs can be supported through the underlying scalar types
+ *  Check if the transformation of a matrix of linear combinations of GTOs can be supported.
  */
 BOOST_AUTO_TEST_CASE(transform_matrix_representations) {
 
@@ -97,7 +97,7 @@ BOOST_AUTO_TEST_CASE(transform_matrix_representations) {
 
 
 /**
- *  Check if we can evaluate a SQOneElectronOperator consisting of GTOs in a given point r
+ *  Check if we can evaluate an `EvaluatableScalarRSQOneElectronOperator` consisting of GTOs in a given point r.
  */
 
 BOOST_AUTO_TEST_CASE(EvaluatableScalarRSQOneElectronOperator_of_GTOs_evaluate) {
@@ -177,7 +177,7 @@ BOOST_AUTO_TEST_CASE(integrated_density_sto_3g) {
 
     // Prepare the molecular Hamiltonian (in AO basis).
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2.xyz");
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
 
     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in the scalar/AO basis
 
@@ -211,7 +211,7 @@ BOOST_AUTO_TEST_CASE(integrated_density_cc_pVTZ) {
 
     // Prepare the molecular Hamiltonian (in AO basis).
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2.xyz");
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "cc-pVDZ"};
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "cc-pVDZ"};
 
     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in the scalar/AO basis
 
@@ -232,5 +232,5 @@ BOOST_AUTO_TEST_CASE(integrated_density_cc_pVTZ) {
     const auto grid = GQCP::CubicGrid::Centered(GQCP::Vector<double, 3>::Zero(), 50, 0.2);
     const auto density_evaluated = grid.evaluate(density);
 
-    BOOST_CHECK(std::abs(grid.integrate(density_evaluated) - molecule.numberOfElectrons()) < 1.0e-03);  // 1.0e-04 is still reasonable given the accuracy of the grid
+    BOOST_CHECK(std::abs(grid.integrate(density_evaluated) - molecule.numberOfElectrons()) < 1.0e-03);  // 1.0e-03 is still reasonable given the accuracy of the grid
 }

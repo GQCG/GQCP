@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/Transformations/JacobiRotationParameters.hpp"
+#include "Basis/Transformations/JacobiRotation.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 
 
@@ -51,21 +51,21 @@ public:
      */
 
     /**
-     *  @param jacobi_rotation_parameters       the parameters that define the Jacobi rotation matrix
+     *  @param jacobi_rotation                  The Jacobi rotation.
      *  @param M                                the dimension of the resulting matrix
      *
      *  @return the corresponding Jacobi rotation matrix. Note that we work with the (cos, sin, -sin, cos) definition
      */
-    static TransformationMatrix<Scalar> FromJacobi(const JacobiRotationParameters& jacobi_rotation_parameters, size_t M) {
+    static TransformationMatrix<Scalar> FromJacobi(const JacobiRotation& jacobi_rotation, const size_t M) {
 
-        double c = std::cos(jacobi_rotation_parameters.angle());
-        double s = std::sin(jacobi_rotation_parameters.angle());
+        const double c = std::cos(jacobi_rotation.angle());
+        const double s = std::sin(jacobi_rotation.angle());
 
         // We'll start the construction with an identity matrix
         TransformationMatrix<Scalar> J = TransformationMatrix<Scalar>::Identity(M);
 
         // And apply the Jacobi rotation as J = I * jacobi_rotation (cfr. B' = B T)
-        J.applyOnTheRight(jacobi_rotation_parameters.p(), jacobi_rotation_parameters.q(), Eigen::JacobiRotation<double>(c, s));
+        J.applyOnTheRight(jacobi_rotation.p(), jacobi_rotation.q(), Eigen::JacobiRotation<double>(c, s));
         return J;
     }
 

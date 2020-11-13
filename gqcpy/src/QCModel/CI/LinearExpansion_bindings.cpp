@@ -189,13 +189,13 @@ void bindLinearExpansion<GQCP::SpinResolvedONVBasis>(py::module& module, const s
 
         .def_static(
             "FromONVProjection",
-            [](const GQCP::SpinResolvedONV& onv, const GQCP::RSpinorBasis<double, GQCP::GTOShell>& r_spinor_basis, const GQCP::USpinorBasis<double, GQCP::GTOShell>& u_spinor_basis) {
+            [](const GQCP::SpinResolvedONV& onv, const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>& r_spinor_basis, const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell>& u_spinor_basis) {
                 return GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::FromONVProjection(onv, r_spinor_basis, u_spinor_basis);
             },
             py::arg("onv"),
             py::arg("r_spinor_basis"),
             py::arg("u_spinor_basis"),
-            "Create the linear expansion of the given spin-resolved ONV that is expressed in the given USpinorBasis, by projection onto the spin-resolved ONVs expressed with respect to the given RSpinorBasis.")
+            "Create the linear expansion of the given spin-resolved ONV that is expressed in the given USpinOrbitalBasis, by projection onto the spin-resolved ONVs expressed with respect to the given RSpinOrbitalBasis.")
 
         .def_static(
             "HartreeFock",

@@ -18,31 +18,24 @@
 #pragma once
 
 
-#include "Basis/Integrals/IntegralCalculator.hpp"
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
-#include "Basis/SpinorBasis/RSpinorBasis.hpp"
+#include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
-#include "Basis/SpinorBasis/USpinorBasis.hpp"
+#include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
 #include "Basis/Transformations/GTransformationMatrix.hpp"
-#include "Basis/Transformations/JacobiRotationParameters.hpp"
 #include "Molecule/Molecule.hpp"
-#include "Molecule/NuclearFramework.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/GSQTwoElectronOperator.hpp"
-#include "QuantumChemical/Spin.hpp"
-#include "Utilities/aliases.hpp"
-#include "Utilities/literals.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  A class that represents a spinor basis without any restrictions (G for generalized) on the expansion of the alpha and beta components in terms of the underlying (possibly different) scalar bases.
+ *  A general spinor basis, i.e. a spinor basis without any restrictions on the expansion of the alpha and beta components of the spinors in terms of the underlying (possibly different) scalar bases.
  * 
  *  @tparam _ExpansionScalar        The scalar type used to represent an expansion coefficient of the spinors in the underlying scalar orbitals: real or complex.
-
  *  @tparam _Shell                  The type of shell the underlying scalar bases contain.
  * 
  *  @note The individual columns of the coefficient matrix represent the spinors of this basis; they are not ordered by increasing single-particle energy.
@@ -65,7 +58,8 @@ public:
 
 
 private:
-    std::array<ScalarBasis<Shell>, 2> scalar_bases;  // the scalar bases for the alpha and beta components
+    // The scalar bases for the alpha and beta components of the spinors.
+    SpinResolved<ScalarBasis<Shell>> scalar_bases;
 
 
 public:
@@ -74,35 +68,50 @@ public:
      */
 
     /**
-     *  @param alpha_scalar_basis           the scalar basis in which the alpha components are expanded
-     *  @param beta_scalar_basis            the scalar basis in which the beta components are expanded
-     *  @param C                            the coefficient matrix, i.e. the matrix of the expansion coefficients of the spinors in terms of the underlying scalar basis
+     *  Create a `GSpinorBasis` from scalar bases that are not necessarily equal.
+     * 
+     *  @param scalar_bases                 The scalar bases for the alpha and beta components of the spinors.
+     *  @param C                            The matrix that holds the expansion coefficients, i.e. that expresses the spinors in terms of the underlying scalar basis.
      */
-    GSpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis, const TM& C) :
+    GSpinorBasis(const SpinResolved<ScalarBasis<Shell>>& scalar_bases, const TM& C) :
         Base(C),
-        scalar_bases {alpha_scalar_basis, beta_scalar_basis} {
+        scalar_bases {scalar_bases} {
+
         // Check if the dimensions of the given objects are compatible
-        const auto K_alpha = alpha_scalar_basis.numberOfBasisFunctions();
-        const auto K_beta = beta_scalar_basis.numberOfBasisFunctions();
+        const auto K_alpha = scalar_bases.alpha().numberOfBasisFunctions();
+        const auto K_beta = scalar_bases.beta().numberOfBasisFunctions();
 
         if (C.numberOfOrbitals() != K_alpha + K_beta) {
-            throw std::invalid_argument("GSpinorBasis(const ScalarBasis<Shell>&, const ScalarBasis<Shell>&, const GTransformationMatrix<ExpansionScalar>&): The given dimensions of the scalar bases and coefficient matrix are incompatible.");
+            throw std::invalid_argument("GSpinorBasis(const SpinResolved<ScalarBasis<Shell>>&, const TM&): The given dimensions of the scalar bases and coefficient matrix are incompatible.");
         }
     }
 
+    /**
+     *  Create a `GSpinorBasis` from scalar bases that are not necessarily equal.
+     * 
+     *  @param alpha_scalar_basis           The scalar basis in which the alpha components of the spinors are expanded.
+     *  @param beta_scalar_basis            The scalar basis in which the beta components of the spinors are expanded.
+     *  @param C                            The matrix that holds the expansion coefficients, i.e. that expresses the spinors in terms of the underlying scalar basis.
+     */
+    GSpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis, const TM& C) :
+        GSpinorBasis(SpinResolved<ScalarBasis<Shell>> {alpha_scalar_basis, beta_scalar_basis}, C) {}
+
 
     /**
-     *  Construct a generalized spinor basis in which both underlying scalar bases are equal
-     * 
-     *  @param scalar_basis         the scalar basis in which both the alpha and beta components are expanded
-     *  @param C                    the coefficient matrix, i.e. the matrix of the expansion coefficients of the spinors in terms of the underlying scalar basis
+     *  Construct a generalized spinor basis in which both underlying scalar bases are equal.
+     * ^
+     *  @param scalar_basis             The scalar basis in which both the alpha and beta components are expanded.
+     *  @param C                        The matrix that holds the expansion coefficients, i.e. that expresses the spinors in terms of the underlying scalar basis.
      */
     GSpinorBasis(const ScalarBasis<Shell>& scalar_basis, const TM& C) :
         GSpinorBasis(scalar_basis, scalar_basis, C) {}
 
 
     /**
-     *  Construct a generalized spinor basis with two different underlying scalar basis, and a coefficient matrix being the identity
+     *  Construct a generalized spinor basis with two different underlying scalar basis, and a coefficient matrix being the identity. The resulting spinor basis corresponds to the atomic spinors (AOs).
+     * 
+     *  @param alpha_scalar_basis           The scalar basis in which the alpha components of the spinors are expanded.
+     *  @param beta_scalar_basis            The scalar basis in which the beta components of the spinors are expanded.
      */
     GSpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis) :
         GSpinorBasis(alpha_scalar_basis, beta_scalar_basis,
@@ -110,49 +119,46 @@ public:
 
 
     /**
-     *  Construct a generalized spinor basis in which both underlying scalar bases are equal, and a coefficient matrix being the identity
+     *  Construct a generalized spinor basis in which both underlying scalar bases are equal, and a coefficient matrix being the identity. The resulting spinor basis corresponds to the atomic spinors (AOs).
      * 
-     *  @param scalar_basis         the scalar basis in which both the alpha and beta components are expanded
+     *  @param scalar_basis             The scalar basis in which both the alpha and beta components are expanded.
      */
     GSpinorBasis(const ScalarBasis<Shell>& scalar_basis) :
         GSpinorBasis(scalar_basis, scalar_basis) {}
 
 
     /**
-     *  Construct a generalized spinor basis with an underlying scalar basis (equal for both the alpha and beta components) that is made by placing shells corresponding to the basisset specification on every nucleus of the nuclear framework
+     *  Construct a generalized spinor basis with an underlying scalar basis (equal for both the alpha and beta components) that is made by placing shells corresponding to the basisset specification on every nucleus of the nuclear framework. The resulting spinor basis corresponds to the non-orthogonal atomic spinors (AOs).
      *
-     *  @param nuclear_framework        the nuclear framework containing the nuclei on which the shells should be centered
-     *  @param basisset_name            the name of the basisset, e.g. "STO-3G"
+     *  @param nuclear_framework        The nuclear framework containing the nuclei on which the shells should be centered.
+     *  @param basisset_name            The name of the basisset, e.g. "STO-3G".
      *
-     *  @note the normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells
-     *  @note the resulting generalized spinor basis is (most likely) non-orthogonal
+     *  @note The normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells.
      */
     GSpinorBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name) :
         GSpinorBasis(ScalarBasis<Shell>(nuclear_framework, basisset_name)) {}
 
 
     /**
-     *  Construct a generalized spinor basis with an underlying scalar basis (equal for both the alpha and beta components) that is made by placing shells corresponding to the basisset specification on every nucleus of the molecule
+     *  Construct a generalized spinor basis with an underlying scalar basis (equal for both the alpha and beta components) that is made by placing shells corresponding to the basisset specification on every nucleus of the molecule. The resulting spinor basis corresponds to the non-orthogonal atomic spinors (AOs).
      *
-     *  @param molecule                 the molecule containing the nuclei on which the shells should be centered
-     *  @param basisset_name            the name of the basisset, e.g. "STO-3G"
+     *  @param molecule                 The molecule containing the nuclei on which the shells should be centered.
+     *  @param basisset_name            The name of the basisset, e.g. "STO-3G".
      *
-     *  @note the normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells
-     *  @note the resulting generalized spinor basis is (most likely) non-orthogonal
+     *  @note The normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells.
      */
     GSpinorBasis(const Molecule& molecule, const std::string& basisset_name) :
         GSpinorBasis(ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name)) {}
 
 
     /**
-     *  Construct a generalized spinor basis with a underlying scalar bases made by placing shells corresponding to the basisset specifications on every nucleus of the nuclear framework
+     *  Construct a generalized spinor basis with a underlying scalar bases made by placing shells corresponding to the basisset specifications on every nucleus of the nuclear framework. The resulting spinor basis corresponds to the non-orthogonal atomic spinors (AOs).
      *
-     *  @param nuclear_framework            the nuclear framework containing the nuclei on which the shells should be centered
-     *  @param basisset_name_alpha          the name of the basisset, e.g. "STO-3G", used for the expansion of the alpha component
-     *  @param basisset_name_beta           the name of the basisset, e.g. "STO-3G", used for the expansion of the beta component
+     *  @param nuclear_framework            The nuclear framework containing the nuclei on which the shells should be centered.
+     *  @param basisset_name_alpha          The name of the basisset, e.g. "STO-3G", used for the expansion of the alpha component.
+     *  @param basisset_name_beta           The name of the basisset, e.g. "STO-3G", used for the expansion of the beta component.
      *
-     *  @note the normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells
-     *  @note the resulting generalized spinor basis is (most likely) non-orthogonal
+     *  @note The normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells.
      */
     GSpinorBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name_alpha, const std::string& basisset_name_beta) :
         GSpinorBasis(ScalarBasis<Shell>(nuclear_framework, basisset_name_alpha),
@@ -160,14 +166,13 @@ public:
 
 
     /**
-     *  Construct a generalized spinor basis with a underlying scalar bases made by placing shells corresponding to the basisset specifications on every nucleus of the molecule
+     *  Construct a generalized spinor basis with a underlying scalar bases made by placing shells corresponding to the basisset specifications on every nucleus of the molecule. The resulting spinor basis corresponds to the non-orthogonal atomic spinors (AOs).
      *
-     *  @param molecule                     the molecule containing the nuclei on which the shells should be centered
-     *  @param basisset_name_alpha          the name of the basisset, e.g. "STO-3G", used for the expansion of the alpha component
-     *  @param basisset_name_beta           the name of the basisset, e.g. "STO-3G", used for the expansion of the beta component
+     *  @param molecule                     The molecule containing the nuclei on which the shells should be centered.
+     *  @param basisset_name_alpha          The name of the basisset, e.g. "STO-3G", used for the expansion of the alpha component.
+     *  @param basisset_name_beta           The name of the basisset, e.g. "STO-3G", used for the expansion of the beta component.
      *
-     *  @note the normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells
-     *  @note the resulting generalized spinor basis is (most likely) non-orthogonal
+     *  @note The normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells.
      */
     GSpinorBasis(const Molecule& molecule, const std::string& basisset_name_alpha, const std::string& basisset_name_beta) :
         GSpinorBasis(ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name_alpha),
@@ -179,44 +184,45 @@ public:
      */
 
     /**
-     *  Convert a restricted spinor basis into a generalized framework, yielding a generalized coefficient matrix that is spin-blocked out.
+     *  Convert a restricted spin-orbital basis into a generalized framework, yielding a generalized coefficient matrix that is spin-blocked out.
      * 
-     *  @param r_spinor_basis           the restricted spinor basis
+     *  @param r_spinor_basis           The restricted spinor basis.
      * 
-     *  @return the restricted spinor basis as a generalized one
+     *  @return The restricted spinor basis as a generalized one.
      */
-    static GSpinorBasis<ExpansionScalar, Shell> FromRestricted(const RSpinorBasis<ExpansionScalar, Shell>& r_spinor_basis) {
+    static GSpinorBasis<ExpansionScalar, Shell> FromRestricted(const RSpinOrbitalBasis<ExpansionScalar, Shell>& r_spinor_basis) {
 
-        // Create an USpinorBasis from the restricted one and use ::FromUnrestricted.
-        const auto u_spinor_basis = USpinorBasis<ExpansionScalar, Shell>::FromRestricted(r_spinor_basis);
+        // Create an USpinOrbitalBasis from the restricted one and use ::FromUnrestricted.
+        const auto u_spinor_basis = USpinOrbitalBasis<ExpansionScalar, Shell>::FromRestricted(r_spinor_basis);
 
         return GSpinorBasis<ExpansionScalar, Shell>::FromUnrestricted(u_spinor_basis);
     }
 
 
     /**
-     *  Convert an unrestricted spinor basis into a generalized framework, yielding a generalized coefficient matrix that is spin-blocked out.
+     *  Convert an unrestricted spin-orbital basis into a generalized framework, yielding a generalized coefficient matrix that is spin-blocked out.
      * 
-     *  @param u_spinor_basis           the unrestricted spinor basis
+     *  @param u_spinor_basis           The unrestricted spinor basis.
      * 
-     *  @return the unrestricted spinor basis as a generalized one
+     *  @return The generalized spinor basis corresponding to the unrestricted spin-orbital basis.
+     * 
+     *  @note We assume that the unrestricted spin-orbital basis has equal underlying scalar bases for the alpha- and beta-spin-orbitals.
      */
-    static GSpinorBasis<ExpansionScalar, Shell> FromUnrestricted(const USpinorBasis<ExpansionScalar, Shell>& u_spinor_basis) {
+    static GSpinorBasis<ExpansionScalar, Shell> FromUnrestricted(const USpinOrbitalBasis<ExpansionScalar, Shell>& u_spinor_basis) {
 
         // The goal in this named constructor is to build up the general coefficient matrix (2K x 2K) from the restricted (K x K) one.
-        const auto K = u_spinor_basis.numberOfSpinors(Spin::alpha);  // assume K_alpha == K_beta
-        const auto M = u_spinor_basis.numberOfSpinors();             // the total number of spinors, i.e. K_alpha + K_beta
-        const auto& C_alpha = u_spinor_basis.coefficientMatrix(Spin::alpha);
-        const auto& C_beta = u_spinor_basis.coefficientMatrix(Spin::beta);
+        const auto M = u_spinor_basis.numberOfSpinOrbitals();
+        const auto K = M / 2;
+        const auto C = u_spinor_basis.coefficientMatrix();
 
         TM C_general = TM::Zero(M);
 
         //      alpha |  0
         //        0   | beta
-        C_general.topLeftCorner(K, K) = C_alpha;
-        C_general.bottomRightCorner(K, K) = C_beta;
+        C_general.topLeftCorner(K, K) = C.alpha();
+        C_general.bottomRightCorner(K, K) = C.beta();
 
-        return GSpinorBasis<ExpansionScalar, Shell>(u_spinor_basis.scalarBasis(Spin::alpha), C_general);  // assume the alpha- and beta- scalar bases are equal
+        return GSpinorBasis<ExpansionScalar, Shell>(u_spinor_basis.alpha().scalarBasis(), C_general);  // Assume the alpha- and beta- scalar bases are equal.
     }
 
 
@@ -228,9 +234,9 @@ public:
     using Base::coefficientMatrix;
 
     /**
-     *  @param sigma        alpha or beta
+     *  @param sigma        Alpha or beta.
      * 
-     *  @return the coefficient matrix for the requested spin component, i.e. the matrix of the expansion coefficients of the requested components of the spinors in terms of its underlying scalar basis
+     *  @return The coefficient matrix for the requested spin component, i.e. the matrix of the expansion coefficients of the requested components of the spinors in terms of its underlying scalar basis
      */
     MatrixX<ExpansionScalar> coefficientMatrix(const Spin sigma) const {
 
@@ -250,11 +256,11 @@ public:
     }
 
     /**
-     *  @param sigma        alpha or beta
+     *  @param sigma        Alpha or beta.
      * 
-    *  @return the number of coefficients that are used for the expansion of the requested spin-component of a spinor
+    *  @return The number of coefficients that are used for the expansion of the requested spin-component of a spinor.
      */
-    size_t numberOfCoefficients(const Spin& sigma) const { return this->scalarBasis(sigma).numberOfBasisFunctions(); }
+    size_t numberOfCoefficients(const Spin& sigma) const { return this->scalarBases().component(sigma).numberOfBasisFunctions(); }
 
 
     /*
@@ -262,7 +268,7 @@ public:
      */
 
     /**
-     *  @return the number of spinors that 'are' in this generalized spinor basis
+     *  @return The number of spinors that are described by this generalized spinor basis.
      */
     size_t numberOfSpinors() const {
 
@@ -278,11 +284,101 @@ public:
      */
 
     /**
-     *  @param fq_two_op        the first-quantized Coulomb operator
+     *  Quantize a one-electron operator in this general spinor basis.
      * 
-     *  @return the second-quantized operator corresponding to the Coulomb operator
+     *  @param fq_one_op        a spin-independent first-quantized operator (i.e. whose two-component matrix operator form contains the same scalar operator in the upper-left and lower-right corners)
+     * 
+     *  @return the second-quantized operator corresponding to the given spin-independent first-quantized operator
      */
-    auto quantize(const CoulombRepulsionOperator& fq_two_op) const -> GSQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>, CoulombRepulsionOperator::Vectorizer> {
+    template <typename FQOneElectronOperator>
+    auto quantize(const FQOneElectronOperator& fq_one_op) const -> GSQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, typename FQOneElectronOperator::Vectorizer> {
+
+        using ResultScalar = product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>;
+        using ResultOperator = GSQOneElectronOperator<ResultScalar, typename FQOneElectronOperator::Vectorizer>;
+
+
+        // The strategy for calculating the matrix representation of the one-electron operator in this spinor basis is to:
+        //  1. Express the operator in the underlying scalar bases; and
+        //  2. Afterwards transform them using the current coefficient matrix.
+        const auto K_alpha = this->numberOfCoefficients(Spin::alpha);
+        const auto K_beta = this->numberOfCoefficients(Spin::beta);
+        const auto M = this->numberOfSpinors();
+        SquareMatrix<ResultScalar> f = SquareMatrix<ResultScalar>::Zero(M);  // the total result
+
+        // 1. Express the operator in the underlying scalar bases: spin-independent operators only have alpha-alpha and beta-beta blocks.
+        const auto F_alpha = IntegralCalculator::calculateLibintIntegrals(fq_one_op, this->scalarBases().alpha());
+        const auto F_beta = IntegralCalculator::calculateLibintIntegrals(fq_one_op, this->scalarBases().beta());
+
+        f.topLeftCorner(K_alpha, K_alpha) = F_alpha;
+        f.bottomRightCorner(K_beta, K_beta) = F_beta;
+
+        // 2. Transform using the current coefficient matrix.
+        ResultOperator op {{f}};  // op for 'operator'
+        op.transform(this->coefficientMatrix());
+        return op;
+    }
+
+
+    /**
+     *  Quantize the electronic spin operator in this general spinor basis.
+     * 
+     *  @param fq_one_op        The (first-quantized) electronic spin operator.
+     * 
+     *  @return The electronic spin operator expressed in this spinor basis.
+     */
+    auto quantize(const ElectronicSpinOperator& fq_one_op) const -> GSQOneElectronOperator<product_t<ElectronicSpinOperator::Scalar, ExpansionScalar>, ElectronicSpinOperator::Vectorizer> {
+
+        using ResultScalar = product_t<ElectronicSpinOperator::Scalar, ExpansionScalar>;
+        using ResultOperator = GSQOneElectronOperator<ResultScalar, ElectronicSpinOperator::Vectorizer>;
+
+        const auto K_alpha = this->numberOfCoefficients(Spin::alpha);
+        const auto K_beta = this->numberOfCoefficients(Spin::beta);
+        const auto M = this->numberOfSpinors();
+
+        // The strategy to quantize the spin operator is as follows.
+        //  1. First, calculate the necessary overlap integrals over the scalar bases.
+        //  2. Then, construct the scalar basis representations of the components of the spin operator by placing the overlaps into the correct blocks.
+        //  3. Transform the components (in scalar basis) with the current coefficient matrix to yield the components in spinor basis.
+
+        SquareMatrix<ResultScalar> S_x = SquareMatrix<ResultScalar>::Zero(M);
+        SquareMatrix<ResultScalar> S_y = SquareMatrix<ResultScalar>::Zero(M);
+        SquareMatrix<ResultScalar> S_z = SquareMatrix<ResultScalar>::Zero(M);
+
+
+        // 1. Calculate the necessary overlap integrals over the scalar bases.
+        const auto S_aa = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalarBases().alpha());
+        const auto S_ab = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalarBases().alpha(), this->scalarBases().beta());
+        const auto S_ba = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalarBases().beta(), this->scalarBases().alpha());
+        const auto S_bb = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalarBases().beta());
+
+
+        // 2. Place the overlaps into the correct blocks.
+        S_x.block(0, K_alpha, K_alpha, K_beta) = 0.5 * S_ab;
+        S_x.block(K_alpha, 0, K_beta, K_alpha) = 0.5 * S_ba;
+
+        using namespace GQCP::literals;
+        S_y.block(0, K_alpha, K_alpha, K_beta) = -0.5 * 1_ii * S_ab;
+        S_y.block(K_alpha, 0, K_beta, K_alpha) = 0.5 * 1_ii * S_ba;
+
+        S_z.topLeftCorner(K_alpha, K_alpha) = 0.5 * S_aa;
+        S_z.bottomRightCorner(K_beta, K_beta) = -0.5 * S_bb;
+
+
+        // 3. Transform using the coefficient matrix
+        ResultOperator spin_op {std::vector<SquareMatrix<ResultScalar>> {S_x, S_y, S_z}};  // 'op' for operator
+        spin_op.transform(this->coefficientMatrix());
+        return spin_op;
+    }
+
+
+    /**
+     *  Quantize the Coulomb operator in this general spinor basis.
+     * 
+     *  @param coulomb_op           The first-quantized Coulomb operator.
+     * 
+     *  @return The second-quantized operator corresponding to the Coulomb operator.
+     */
+    auto quantize(const CoulombRepulsionOperator& coulomb_op) const -> GSQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>, CoulombRepulsionOperator::Vectorizer> {
 
         using ResultScalar = product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>;
         using ResultOperator = GSQTwoElectronOperator<ResultScalar, CoulombRepulsionOperator::Vectorizer>;
@@ -293,10 +389,10 @@ public:
         //  3. Transform the operator using the current coefficient matrix.
 
         // 1. Calculate the Coulomb integrals in the underlying scalar bases.
-        const auto g_aaaa = IntegralCalculator::calculateLibintIntegrals(Operator::Coulomb(), this->scalarBasis(Spin::alpha));
-        const auto g_aabb = IntegralCalculator::calculateLibintIntegrals(Operator::Coulomb(), this->scalarBasis(Spin::alpha), this->scalarBasis(Spin::beta));
-        const auto g_bbaa = IntegralCalculator::calculateLibintIntegrals(Operator::Coulomb(), this->scalarBasis(Spin::beta), this->scalarBasis(Spin::alpha));
-        const auto g_bbbb = IntegralCalculator::calculateLibintIntegrals(Operator::Coulomb(), this->scalarBasis(Spin::beta));
+        const auto g_aaaa = IntegralCalculator::calculateLibintIntegrals(Operator::Coulomb(), this->scalarBases().alpha());
+        const auto g_aabb = IntegralCalculator::calculateLibintIntegrals(Operator::Coulomb(), this->scalarBases().alpha(), this->scalarBases().beta());
+        const auto g_bbaa = IntegralCalculator::calculateLibintIntegrals(Operator::Coulomb(), this->scalarBases().beta(), this->scalarBases().alpha());
+        const auto g_bbbb = IntegralCalculator::calculateLibintIntegrals(Operator::Coulomb(), this->scalarBases().beta());
 
 
         // 2. Place the calculated integrals as 'blocks' in the larger representation
@@ -304,8 +400,7 @@ public:
         const auto K_beta = this->numberOfCoefficients(Spin::beta);
 
         const auto M = this->numberOfSpinors();
-        QCRankFourTensor<ResultScalar> g_par(M);  // 'par' for 'parameters'
-        g_par.setZero();
+        auto g_par = SquareRankFourTensor<ResultScalar>::Zero(M);  // 'par' for 'parameters'
 
         // Primed indices are indices in the larger representation, normal ones are those in the smaller tensors.
         for (size_t mu_ = 0; mu_ < M; mu_++) {  // mu 'prime'
@@ -342,99 +437,14 @@ public:
     }
 
 
-    /**
-     *  @param fq_one_op        the (first-quantized) electronic spin operator
-     * 
-     *  @return the electronic spin operator expressed in this spinor basis
-     */
-    auto quantize(const ElectronicSpinOperator& fq_one_op) const -> GSQOneElectronOperator<product_t<ElectronicSpinOperator::Scalar, ExpansionScalar>, ElectronicSpinOperator::Vectorizer> {
-
-        using ResultScalar = product_t<ElectronicSpinOperator::Scalar, ExpansionScalar>;
-        using ResultOperator = GSQOneElectronOperator<ResultScalar, ElectronicSpinOperator::Vectorizer>;
-
-        const auto K_alpha = this->numberOfCoefficients(Spin::alpha);
-        const auto K_beta = this->numberOfCoefficients(Spin::beta);
-        const auto M = this->numberOfSpinors();
-
-        // The strategy to quantize the spin operator is as follows.
-        //  1. First, calculate the necessary overlap integrals over the scalar bases.
-        //  2. Then, construct the scalar basis representations of the components of the spin operator by placing the overlaps into the correct blocks.
-        //  3. Transform the components (in scalar basis) with the current coefficient matrix to yield the components in spinor basis.
-
-        SquareMatrix<ResultScalar> S_x = SquareMatrix<ResultScalar>::Zero(M);
-        SquareMatrix<ResultScalar> S_y = SquareMatrix<ResultScalar>::Zero(M);
-        SquareMatrix<ResultScalar> S_z = SquareMatrix<ResultScalar>::Zero(M);
-
-
-        // 1. Calculate the necessary overlap integrals over the scalar bases.
-        const auto S_aa = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalarBasis(Spin::alpha));
-        const auto S_ab = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalarBasis(Spin::alpha), this->scalarBasis(Spin::beta));
-        const auto S_ba = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalarBasis(Spin::beta), this->scalarBasis(Spin::alpha));
-        const auto S_bb = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalarBasis(Spin::beta));
-
-
-        // 2. Place the overlaps into the correct blocks.
-        S_x.block(0, K_alpha, K_alpha, K_beta) = 0.5 * S_ab;
-        S_x.block(K_alpha, 0, K_beta, K_alpha) = 0.5 * S_ba;
-
-        S_y.block(0, K_alpha, K_alpha, K_beta) = -0.5 * 1_ii * S_ab;
-        S_y.block(K_alpha, 0, K_beta, K_alpha) = 0.5 * 1_ii * S_ba;
-
-        S_z.topLeftCorner(K_alpha, K_alpha) = 0.5 * S_aa;
-        S_z.bottomRightCorner(K_beta, K_beta) = -0.5 * S_bb;
-
-
-        // 3. Transform using the coefficient matrix
-        ResultOperator spin_op {std::vector<SquareMatrix<ResultScalar>> {S_x, S_y, S_z}};  // 'op' for operator
-        spin_op.transform(this->coefficientMatrix());
-        return spin_op;
-    }
-
-
-    /**
-     *  @param fq_one_op        a spin-independent first-quantized operator (i.e. whose two-component matrix operator form contains the same scalar operator in the upper-left and lower-right corners)
-     * 
-     *  @return the second-quantized operator corresponding to the given spin-independent first-quantized operator
-     */
-    template <typename FQOneElectronOperator>
-    auto quantize(const FQOneElectronOperator& fq_one_op) const -> GSQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, typename FQOneElectronOperator::Vectorizer> {
-
-        using ResultScalar = product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>;
-        using ResultOperator = GSQOneElectronOperator<ResultScalar, typename FQOneElectronOperator::Vectorizer>;
-
-
-        // The strategy for calculating the matrix representation of the one-electron operator in this spinor basis is to:
-        //  1. Express the operator in the underlying scalar bases; and
-        //  2. Afterwards transform them using the current coefficient matrix.
-        const auto K_alpha = this->numberOfCoefficients(Spin::alpha);
-        const auto K_beta = this->numberOfCoefficients(Spin::beta);
-        const auto M = this->numberOfSpinors();
-        SquareMatrix<ResultScalar> f = SquareMatrix<ResultScalar>::Zero(M);  // the total result
-
-        // 1. Express the operator in the underlying scalar bases: spin-independent operators only have alpha-alpha and beta-beta blocks.
-        const auto F_alpha = IntegralCalculator::calculateLibintIntegrals(fq_one_op, this->scalarBasis(Spin::alpha));
-        const auto F_beta = IntegralCalculator::calculateLibintIntegrals(fq_one_op, this->scalarBasis(Spin::beta));
-
-        f.topLeftCorner(K_alpha, K_alpha) = F_alpha;
-        f.bottomRightCorner(K_beta, K_beta) = F_beta;
-
-        // 2. Transform using the current coefficient matrix.
-        ResultOperator op {{f}};  // op for 'operator'
-        op.transform(this->coefficientMatrix());
-        return op;
-    }
-
-
     /*
      *  MARK: Scalar basis
      */
 
     /**
-     *  @param sigma        alpha or beta
-     * 
-     *  @return the scalar basis that is used for the expansion of the given spin component
+     *  @return The scalar bases for the alpha and beta components of the spinors.
      */
-    const ScalarBasis<Shell>& scalarBasis(const Spin& sigma) const { return this->scalar_bases[sigma]; }
+    const SpinResolved<ScalarBasis<Shell>>& scalarBases() const { return this->scalar_bases; }
 };
 
 
@@ -446,8 +456,7 @@ public:
  *  A type that provides compile-time information on spinor bases that is otherwise not accessible through a public class alias.
  */
 template <typename _ExpansionScalar, typename _Shell>
-class SpinorBasisTraits<GSpinorBasis<_ExpansionScalar, _Shell>> {
-public:
+struct SpinorBasisTraits<GSpinorBasis<_ExpansionScalar, _Shell>> {
     // The scalar type used to represent an expansion coefficient of the spinors in the underlying scalar orbitals: real or complex.
     using ExpansionScalar = _ExpansionScalar;
 
@@ -456,6 +465,36 @@ public:
 
     // The second-quantized representation of the overlap operator related to the derived spinor basis.
     using SQOverlapOperator = ScalarGSQOneElectronOperator<ExpansionScalar>;
+};
+
+
+/*
+ *  MARK: BasisTransformableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
+ */
+template <typename _ExpansionScalar, typename _Shell>
+struct BasisTransformableTraits<GSpinorBasis<_ExpansionScalar, _Shell>> {
+
+    // The type of transformation matrix that is naturally related to a `GSpinorBasis`.
+    using TM = GTransformationMatrix<_ExpansionScalar>;
+};
+
+
+/*
+ *  MARK: JacobiRotatableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
+ */
+template <typename _ExpansionScalar, typename _Shell>
+struct JacobiRotatableTraits<GSpinorBasis<_ExpansionScalar, _Shell>> {
+
+    // The type of Jacobi rotation that is naturally related to a `GSpinorBasis`.
+    using JacobiRotationType = JacobiRotation;
 };
 
 

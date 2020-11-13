@@ -100,18 +100,16 @@ public:
         // First, calculate the sum of H_core and F (this saves a contraction).
         const auto Z = H_core + F;
 
-        // Convert the matrices Z and D to an Eigen::Tensor<double, 2> D_tensor, as contractions are only implemented for Tensors.
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_tensor {P.data(), P.rows(), P.cols()};
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> Z_tensor {Z.parameters().data(), P.rows(), P.cols()};
+        // Convert the matrix Z to an GQCP::Tensor<double, 2> Z_tensor.
+        // Einsum is only implemented for a tensor + a matrix, not for 2 matrices.
+        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> Z_t {Z.parameters().data(), P.rows(), P.cols()};
+        Tensor<Scalar, 2> Z_tensor = Tensor<Scalar, 2>(Z_t);
 
-        // Specify the contraction pair.
-        // To calculate the electronic energy, we must perform a double contraction.
+        // To calculate the electronic energy, we must perform a double contraction (with prefactor 0.5).
         //      0.5 D(mu nu) Z(mu nu)
         // See knowdes: https://gqcg-res.github.io/knowdes/general-hartree-fock-theory.html
-        Eigen::array<Eigen::IndexPair<int>, 2> contraction_pair = {Eigen::IndexPair<int>(0, 0), Eigen::IndexPair<int>(1, 1)};
 
-        // Calculate the double contraction (with prefactor 0.5).
-        Tensor<Scalar, 0> contraction = 0.5 * P_tensor.contract(Z_tensor, contraction_pair);
+        Tensor<Scalar, 0> contraction = 0.5 * Z_tensor.template einsum<2>("ij, ij ->", P);
 
         // As the double contraction of two matrices is a scalar (a tensor of rank 0), we should access the value as (0).
         return contraction(0);
@@ -155,22 +153,15 @@ public:
         G1DM<Scalar> P_bb = G1DM<Scalar>::Zero(M);
         P_bb.bottomRightCorner(M / 2, M / 2) = P.bottomRightCorner(M / 2, M / 2);
 
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_aa_tensor {P_aa.data(), P_aa.rows(), P_aa.cols()};
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_bb_tensor {P_bb.data(), P_bb.rows(), P_bb.cols()};
-
-
         // Specify the contraction pairs for the direct contractions:
         //      P(rho lambda) (mu nu|rho lambda)
         // See knowdes: https://gqcg-res.github.io/knowdes/derivation-of-the-ghf-scf-equations-through-lagrange-multipliers.html
-        Eigen::array<Eigen::IndexPair<int>, 2> direct_contraction_pair = {Eigen::IndexPair<int>(0, 2), Eigen::IndexPair<int>(1, 3)};
-
-        // Do the actual contractions, and convert the given tensor back to a matrix.
         const auto& g = sq_hamiltonian.twoElectron().parameters();
-        Tensor<Scalar, 2> J_tensor = P_aa_tensor.contract(g.Eigen(), direct_contraction_pair) + P_bb_tensor.contract(g.Eigen(), direct_contraction_pair);
+        const auto Ja = g.template einsum<2>("ijkl,kl->ij", P_aa).asMatrix();
+        const auto Jb = g.template einsum<2>("ijkl,kl->ij", P_bb).asMatrix();
 
-        Eigen::Map<Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>> J {J_tensor.data(), J_tensor.dimension(0), J_tensor.dimension(1)};
 
-        return ScalarGSQOneElectronOperator<Scalar>(J);
+        return ScalarGSQOneElectronOperator<Scalar>(Ja + Jb);
     }
 
 
@@ -201,29 +192,13 @@ public:
         P_bb.bottomRightCorner(M / 2, M / 2) = P.bottomRightCorner(M / 2, M / 2);
 
 
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_aa_tensor {P_aa.data(), P_aa.rows(), P_aa.cols()};
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_ab_tensor {P_ab.data(), P_ab.rows(), P_ab.cols()};
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_ba_tensor {P_ba.data(), P_ba.rows(), P_ba.cols()};
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> P_bb_tensor {P_bb.data(), P_bb.rows(), P_bb.cols()};
-
-
         // Specify the contraction pairs for the exchange contractions:
         //      P(lambda rho) (mu rho|lambda nu)
-        Eigen::array<Eigen::IndexPair<int>, 2> exchange_contraction_pair = {Eigen::IndexPair<int>(0, 2), Eigen::IndexPair<int>(1, 1)};
-
-        // Do the actual contractions, and convert the given tensor back to a matrix.
         const auto& g = sq_hamiltonian.twoElectron().parameters();
-
-        Tensor<Scalar, 2> K_aa_tensor = P_aa_tensor.contract(g.Eigen(), exchange_contraction_pair);
-        Tensor<Scalar, 2> K_ab_tensor = P_ba_tensor.contract(g.Eigen(), exchange_contraction_pair);
-        Tensor<Scalar, 2> K_ba_tensor = P_ab_tensor.contract(g.Eigen(), exchange_contraction_pair);
-        Tensor<Scalar, 2> K_bb_tensor = P_bb_tensor.contract(g.Eigen(), exchange_contraction_pair);
-
-        Eigen::Map<Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>> K_aa {K_aa_tensor.data(), K_aa_tensor.dimension(0), K_aa_tensor.dimension(1)};
-        Eigen::Map<Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>> K_ab {K_ab_tensor.data(), K_ab_tensor.dimension(0), K_ab_tensor.dimension(1)};
-        Eigen::Map<Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>> K_ba {K_ba_tensor.data(), K_ba_tensor.dimension(0), K_ba_tensor.dimension(1)};
-        Eigen::Map<Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>> K_bb {K_bb_tensor.data(), K_bb_tensor.dimension(0), K_bb_tensor.dimension(1)};
-
+        const auto K_aa = g.template einsum<2>("ijkl,kj->il", P_aa).asMatrix();
+        const auto K_ab = g.template einsum<2>("ijkl,kj->il", P_ba).asMatrix();
+        const auto K_ba = g.template einsum<2>("ijkl,kj->il", P_ab).asMatrix();
+        const auto K_bb = g.template einsum<2>("ijkl,kj->il", P_bb).asMatrix();
 
         // Each of the spin-blocks are calculated separately (while the other blocks are zero), so the total exchange matrix can be calculated as the sum of each part.
         return ScalarGSQOneElectronOperator<Scalar>(K_aa + K_ab + K_ba + K_bb);

@@ -35,7 +35,7 @@ namespace GQCP {
  *  A type that provides compile-time information on operators that is otherwise not accessible through a public class alias.
  */
 template <typename Operator>
-class OperatorTraits {};
+struct OperatorTraits {};
 
 
 /*
@@ -107,27 +107,30 @@ public:
      *  @param parameters           The matrix representation of operator's parameters/matrix elements/integrals.
      */
     template <typename Z = Vectorizer>
-    SQOperatorStorageBase(const MatrixRepresentation& parameters, typename std::enable_if<std::is_same<Z, ScalarVectorizer>::value>::type* = 0) :
+    SQOperatorStorageBase(const MatrixRepresentation& parameters,
+                          typename std::enable_if<std::is_same<Z, ScalarVectorizer>::value>::type* = 0) :
         SQOperatorStorageBase(StorageArray<MatrixRepresentation, ScalarVectorizer>({parameters}, ScalarVectorizer())) {}
 
 
     /**
      *  Construct a second-quantized operator storage from a set of three matrix representations, for each of the operator's components.
      * 
-     *  @param parameters           A set of three matrix representations of the one-electron parameters/matrix elements/integrals, one for each of the operator's components.
+     *  @param parameters           A set of three matrix representations of the parameters/matrix elements/integrals, one for each of the operator's components.
      */
     template <typename Z = Vectorizer>
-    SQOperatorStorageBase(const std::vector<MatrixRepresentation>& parameters, typename std::enable_if<std::is_same<Z, VectorVectorizer>::value>::type* = 0) :
+    SQOperatorStorageBase(const std::vector<MatrixRepresentation>& parameters,
+                          typename std::enable_if<std::is_same<Z, VectorVectorizer>::value>::type* = 0) :
         SQOperatorStorageBase(StorageArray<MatrixRepresentation, VectorVectorizer>(parameters, VectorVectorizer({3}))) {}
 
 
     /**
      *  Construct a second-quantized operator storage from a set of three matrix representations, for each of the operator's components.
      * 
-     *  @param parameters           A set of three matrix representations of the one-electron parameters/matrix elements/integrals, one for each of the operator's components.
+     *  @param parameters           A set of three matrix representations of the parameters/matrix elements/integrals, one for each of the operator's components.
      */
     template <typename Z = Vectorizer>
-    SQOperatorStorageBase(const std::array<MatrixRepresentation, 3>& parameters, typename std::enable_if<std::is_same<Z, VectorVectorizer>::value>::type* = 0) :
+    SQOperatorStorageBase(const std::array<MatrixRepresentation, 3>& parameters,
+                          typename std::enable_if<std::is_same<Z, VectorVectorizer>::value>::type* = 0) :
         SQOperatorStorageBase(StorageArray<MatrixRepresentation, VectorVectorizer>(std::vector<MatrixRepresentation>(parameters.begin(), parameters.end()), VectorVectorizer({3}))) {}  // Convert the `std::vector` to a `std::array`.
 
 
@@ -233,7 +236,9 @@ public:
     std::vector<MatrixRepresentation>& allParameters() { return this->array.elements(); }
 
     /**
-     *  @param indices      A set of coordinates that accesses this one-electron operator.
+     *  Access the matrix representation of this operator that corresponds to the component indicated by the given indices.
+     * 
+     *  @param indices      A set of coordinates that accesses this operator.
      * 
      *  @return A read-only matrix representation of the parameters/matrix elements/integrals of one of the tensor components of this operator.
      */
@@ -242,7 +247,9 @@ public:
 
 
     /**
-     *  @param indices      A set of coordinates that accesses this one-electron operator.
+     *  Access the matrix representation of this operator that corresponds to the component indicated by the given indices.
+     * 
+     *  @param indices      A set of coordinates that accesses this operator.
      * 
      *  @return A writable matrix representation of the parameters/matrix elements/integrals of one of the tensor components of this operator.
      */
@@ -251,9 +258,11 @@ public:
 
 
     /**
-     *  @param indices      A set of coordinates that accesses this one-electron operator.
+     *  Access a component of this operator.
      * 
-     *  @return The component of this one-electron operator that corresponds to the given coordinate indices.
+     *  @param indices      A set of coordinates that accesses this operator.
+     * 
+     *  @return The component of this operator that corresponds to the given coordinate indices.
      */
     template <typename... Indices>
     ScalarFinalOperator operator()(const Indices&... indices) const {
@@ -268,14 +277,19 @@ public:
      */
 
     /**
-     *  @return The number of components of this one-electron operator. For scalar operators (such as the kinetic energy), this is 1, for vector operators (like the dipole operator), this is 3, etc.
+     *  @return The number of components of this operator. For scalar operators (such as the kinetic energy), this is 1, for vector operators (like the dipole operator), this is 3, etc.
      */
     size_t numberOfComponents() const { return this->array.vectorizer().numberOfElements(); }
 
     /**
-     *  @return The number of orbitals this one-electron operator is quantized in. For 'restricted' operators, this is the number of spatial orbitals, for 'general' operators, this is the number of spinors.
+     *  @return The number of orbitals this operator is quantized in. For 'restricted' operators, this is the number of spatial orbitals, for 'general' operators, this is the number of spinors.
      */
     size_t numberOfOrbitals() const { return this->array.elements()[0].dimension(); /* all the dimensions are the same, this is checked in the constructor */ }
+
+    /**
+     *  @return The vectorizer (i.e. the instance that relates a one-dimensional storage of matrix representations to the tensor structure of the second-quantized operators) for this operator.
+     */
+    const Vectorizer& vectorizer() const { return this->array.vectorizer(); }
 };
 
 

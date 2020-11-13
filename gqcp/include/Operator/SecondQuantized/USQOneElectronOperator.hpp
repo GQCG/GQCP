@@ -18,190 +18,181 @@
 #pragma once
 
 
-#include "Basis/Transformations/JacobiRotationParameters.hpp"
-#include "Basis/Transformations/TransformationMatrix.hpp"
-#include "DensityMatrix/OneDM.hpp"
+#include "Basis/Transformations/SpinResolvedBasisTransformable.hpp"
+#include "Basis/Transformations/SpinResolvedJacobiRotatable.hpp"
+#include "Basis/Transformations/UTransformationMatrix.hpp"
 #include "DensityMatrix/SpinResolved1DM.hpp"
-#include "DensityMatrix/TwoDM.hpp"
-#include "Mathematical/Functions/ScalarFunction.hpp"
-#include "Mathematical/Representation/QCMatrix.hpp"
-#include "QuantumChemical/Spin.hpp"
-#include "Utilities/type_traits.hpp"
-
-#include <array>
+#include "DensityMatrix/SpinResolved2DM.hpp"
+#include "Mathematical/Representation/SquareMatrix.hpp"
+#include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
+#include "Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp"
+#include "QuantumChemical/SpinResolvedBase.hpp"
+#include "QuantumChemical/spinor_tags.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  A class that represents an 'unrestricted second-quantized one-electron operator' suitable for the projection of the non-relativistic Hamiltonian onto an unrestricted spinor basis. It holds the matrix representation of its parameters for both spin components, which are (usually) integrals over first-quantized operators
+ *  A class that represents an 'unrestricted second-quantized one-electron operator'. This type of operator is suitable for the projection of the non-relativistic Hamiltonian onto an unrestricted spinor basis. It holds the matrix representation of its parameters for both spin components.
  *
- *  @tparam _Scalar             the scalar type, i.e. the scalar representation of one of the parameters
- *  @tparam _Components         the number of components of the second-quantized operator
+ *  @tparam _Scalar             The scalar type used for a single parameter: real or complex.
+ *  @tparam _Vectorizer         The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
  */
-template <typename _Scalar, size_t _Components>
-class USQOneElectronOperator {
+template <typename _Scalar, typename _Vectorizer>
+class USQOneElectronOperator:
+    public SpinResolvedBase<USQOneElectronOperatorComponent<_Scalar, _Vectorizer>, USQOneElectronOperator<_Scalar, _Vectorizer>>,
+    public SpinResolvedBasisTransformable<USQOneElectronOperator<_Scalar, _Vectorizer>>,
+    public SpinResolvedJacobiRotatable<USQOneElectronOperator<_Scalar, _Vectorizer>>,
+    public VectorSpaceArithmetic<USQOneElectronOperator<_Scalar, _Vectorizer>, _Scalar> {
 public:
+    // The scalar type used for a single parameter: real or complex.
     using Scalar = _Scalar;
-    static constexpr auto Components = _Components;
 
+    // The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
+    using Vectorizer = _Vectorizer;
 
-private:
-    std::array<QCMatrix<Scalar>, Components> fs_a;  // all the matrix representations of the alpha spin component (hence the s) of the parameters (integrals) of the different components of this second-quantized operator
-    std::array<QCMatrix<Scalar>, Components> fs_b;  // all the matrix representations of the beta spin component (hence the s) of the parameters (integrals) of the different components of this second-quantized operator
+    // The type of 'this'.
+    using Self = USQOneElectronOperator<Scalar, Vectorizer>;
+
+    // The spinor tag corresponding to a `USQOneElectronOperator`.
+    using SpinorTag = UnrestrictedSpinOrbitalTag;
+
+    // The type of transformation matrix that is naturally related to a `USQOneElectronOperator`.
+    using TM = UTransformationMatrix<Scalar>;
 
 
 public:
     /*
-     *  CONSTRUCTORS
+     *  MARK: Constructors
      */
+
+    // Inherit `SpinResolvedBase`'s constructors.
+    using SpinResolvedBase<USQOneElectronOperatorComponent<Scalar, Vectorizer>, USQOneElectronOperator<Scalar, Vectorizer>>::SpinResolvedBase;
+
 
     /**
-     *  @param fs_a    all the matrix representations of the alpha spin component (hence the s) of the parameters (integrals) of the different components of this second-quantized operator
-     *  @param fs_b    all the matrix representations of the beta spin component (hence the s) of the parameters (integrals) of the different components of this second-quantized operator
+     *  Create an `USQOneElectronOperator` from all the matrix representations of its components.
+     * 
+     *  @param fs_a                 All the matrix representations of the components of the alpha-part of the unrestricted one-electron operator.
+     *  @param fs_b                 All the matrix representations of the components of the beta-part of the unrestricted one-electron operator.
+     *  @param vectorizer           The type of the vectorizer that relates a one-dimensional storage of matrix representations to the tensor structure of the second-quantized operator. Equal for alpha and beta.
+     * 
+     *  @tparam N                   The number of components for the alpha- and beta-part of the unrestricted one-electron operator.
      */
-    USQOneElectronOperator(const std::array<QCMatrix<Scalar>, Components>& fs_a, const std::array<QCMatrix<Scalar>, Components>& fs_b) :
-        fs_a {fs_a},
-        fs_b {fs_b} {
+    template <size_t N>
+    USQOneElectronOperator(const std::array<SquareMatrix<Scalar>, N>& fs_a, const std::array<SquareMatrix<Scalar>, N>& fs_b, const Vectorizer& vectorizer) :
+
+        // Encapsulate the array of matrix representations in the alpha- and beta- operator components, and put them together to form the `USQOneElectronOperator`.
+        SpinResolvedBase<USQOneElectronOperatorComponent<Scalar, Vectorizer>, USQOneElectronOperator<Scalar, Vectorizer>>(
+            USQOneElectronOperatorComponent<Scalar, Vectorizer> {StorageArray<SquareMatrix<Scalar>, Vectorizer> {fs_a, vectorizer}},
+            USQOneElectronOperatorComponent<Scalar, Vectorizer> {StorageArray<SquareMatrix<Scalar>, Vectorizer> {fs_b, vectorizer}}) {
 
         // Check if the given matrix representations have the same dimensions.
-        const auto dimension_of_first_a = this->fs_a[0].numberOfOrbitals();
-        const auto dimension_of_first_b = this->fs_b[0].numberOfOrbitals();
+        const auto dimension_of_first_a = fs_a[0].dimension();
+        const auto dimension_of_first_b = fs_b[0].dimension();
 
-        for (size_t i = 1; i < Components; i++) {
-
-            const auto dimension_of_ith_a = this->fs_a[i].numberOfOrbitals();
-            const auto dimension_of_ith_b = this->fs_b[i].numberOfOrbitals();
+        for (size_t i = 1; i < N; i++) {
+            const auto dimension_of_ith_a = fs_a[i].dimension();
+            const auto dimension_of_ith_b = fs_b[i].dimension();
 
             if ((dimension_of_first_a != dimension_of_ith_a) || (dimension_of_first_b != dimension_of_ith_b)) {
-                throw std::invalid_argument("USQOneElectronOperator(const std::array<QCMatrix<Scalar>, Components>&, const std::array<QCMatrix<Scalar>, components>&): The given matrix representations do not have the same dimensions for either the alpha or beta component.");
+                throw std::invalid_argument("USQOneElectronOperator(const std::array<SquareMatrix<Scalar>, Components>&, const std::array<SquareMatrix<Scalar>, components>&): The given matrix representations do not have the same dimensions for either the alpha or beta component.");
             }
         }
     }
 
 
     /**
-     *  A constructor for ScalarUSQOneElectronOperators that doesn't require the argument to be a vector of just one element.
-     * 
-     *  @param f_a            the matrix representation of the integrals of this scalar second-quantized operator, for the alpha spin component
-     *  @param f_b            the matrix representation of the integrals of this scalar second-quantized operator, for the beta spin component
-     * 
-     *  @note This constructor is only available for ScalarUSQOneElectronOperators (for the std::enable_if, see https://stackoverflow.com/a/17842695/7930415)
+     *  A constructor for ScalarUSQOneElectronOperators that doesn't require the argument to be an array of just one element.
+     *
+     *  @param f_a          The matrix representation of the alpha-part of the unrestricted one-electron operator.
+     *  @param f_b          The matrix representation of the beta-part of the unrestricted one-electron operator.
+     *
+     *  @note This constructor is only available for ScalarUSQOneElectronOperators (for the std::enable_if, see https://stackoverflow.com/a/17842695/7930415).
      */
-    template <size_t Z = Components>
-    USQOneElectronOperator(const QCMatrix<Scalar>& f_a, const QCMatrix<Scalar>& f_b, typename std::enable_if<Z == 1>::type* = 0) :
-        USQOneElectronOperator(std::array<QCMatrix<Scalar>, 1> {f_a}, std::array<QCMatrix<Scalar>, 1> {f_b}) {}
+    template <typename Z = Vectorizer>
+    USQOneElectronOperator(const SquareMatrix<Scalar>& f_a, const SquareMatrix<Scalar>& f_b,
+                           typename std::enable_if<std::is_same<Z, ScalarVectorizer>::value>::type* = 0) :
+        USQOneElectronOperator(std::array<SquareMatrix<Scalar>, 1> {f_a}, std::array<SquareMatrix<Scalar>, 1> {f_b}, ScalarVectorizer()) {}
 
 
     /**
-     *  Construct a one-electron operator with parameters that are zero, for both the alpha and beta spin components
-     * 
-     *  @param dim          the dimension of the matrix representation of the parameters, i.e. the number of orbitals/sites. This dimension is the same for the alpha and beta component.
-     */
-    USQOneElectronOperator(const size_t dim) {
-        for (size_t i = 0; i < Components; i++) {
-            this->fs_a[i] = QCMatrix<Scalar>::Zero(dim);
-            this->fs_b[i] = QCMatrix<Scalar>::Zero(dim);
-        }
-    }
-
-
-    /**
-     *  Default constructor: construct a one-electron operator with parameters that are zero, for both spin components.
+     *  The default constructor.
      */
     USQOneElectronOperator() :
-        USQOneElectronOperator(0)  // dimensions of the representations are zero
-    {}
+        USQOneElectronOperator(USQOneElectronOperator<Scalar, Vectorizer>::Zero(0)) {}
 
 
     /*
-     *  MARK: Accessing parameters
+     *  MARK: Named constructors
      */
 
     /**
-     *  @param sigma                The requested spin component. This can be either alpha or beta.
-     * 
-     *  @return read-only matrix representations of all the parameters (integrals) of the different components of this second-quantized operator, for the requested spin component.
+     *  Construct an `USQOneElectronOperator` with parameters that are zero, for both the alpha and beta spin components.
+     *
+     *  @param dim          The dimension of the matrix representation of the parameters, equal for the alpha and beta component.
      */
-    const std::array<QCMatrix<Scalar>, Components>& allParameters(const Spin sigma) const {
+    static USQOneElectronOperator<Scalar, Vectorizer> Zero(const size_t dim) {
 
-        if (sigma == Spin::alpha) {
-            return this->fs_a;
-        } else {
-            return this->fs_b;
-        };
+        const auto zero_component = USQOneElectronOperatorComponent<Scalar, Vectorizer>::Zero(dim);
+        return USQOneElectronOperator<Scalar, Vectorizer>::FromEqual(zero_component);
     }
 
 
     /**
-     *  @param sigma                The requested spin component. This can be either alpha or beta.
+     *  Construct an `USQOneElectronOperator` from an `RSQOneElectronOperator.
      * 
-     *  @return writable matrix representations of all the parameters (integrals) of the different components of this second-quantized operator, for the requested spin component.
+     *  @param f_restricted             The restricted one-electron operator that should be converted.
      */
-    std::array<QCMatrix<Scalar>, Components>& allParameters(const Spin sigma) { return const_cast<std::array<QCMatrix<Scalar>, Components>&>(const_cast<const USQOneElectronOperator*>(this)->allParameters(sigma)); }
+    static USQOneElectronOperator<Scalar, Vectorizer> FromRestricted(const RSQOneElectronOperator<Scalar, Vectorizer>& f_restricted) {
 
-    /**
-     *  @param i            the index
-     * 
-     *  @return the i-th component (i.e. the i-th alpha and i-th beta component) of this operator
-     */
-    USQOneElectronOperator<Scalar, 1> operator[](const size_t i) const {
-
-        if (i >= Components) {
-            throw std::invalid_argument("USQOneElectronOperator::operator[](const size_t): The given index is out of bounds.");
-        }
-
-        return USQOneElectronOperator<Scalar, 1> {this->fs_a[i], this->fs_b[i]};
+        return USQOneElectronOperator<Scalar, Vectorizer> {f_restricted.alpha(), f_restricted.beta()};
     }
 
 
-    /**
-     *  @param sigma                    The requested spin component. This can be either alpha or beta.
-     *  @param i                        The index of the component.
-     * 
-     *  @return a read-only the matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator, for the requested spin component.
+    /*
+     *  MARK: Parameter access
      */
-    const QCMatrix<Scalar>& parameters(const Spin sigma, const size_t i = 0) const {
 
-        if (sigma == Spin::alpha) {
-            return this->fs_a[i];
-        } else {
-            return this->fs_b[i];
-        };
+    /**
+     *  Access a component of this operator.
+     * 
+     *  @param indices      A set of coordinates that accesses this operator.
+     * 
+     *  @return The component of this operator that corresponds to the given coordinate indices.
+     */
+    template <typename... Indices>
+    USQOneElectronOperator<Scalar, ScalarVectorizer> operator()(const Indices&... indices) const {
+
+        return USQOneElectronOperator<Scalar, ScalarVectorizer> {this->alpha().parameters(indices...), this->beta().parameters(indices...)};
     }
 
-
-    /**
-     *  @param sigma                    The requested spin component. This can be either alpha or beta.
-     *  @param i                        The index of the component.
-     * 
-     *  @return the writable matrix representation of the parameters (integrals) of one of the components of this second-quantized operator, for the requested spin component.
-     */
-    QCMatrix<Scalar>& parameters(const Spin sigma, const size_t i = 0) { return const_cast<QCMatrix<Scalar>&>(const_cast<const USQOneElectronOperator*>(this)->parameters(sigma, i)); }
 
     /*
      *  MARK: Calculations
      */
 
     /**
-     *  @param D                the spin-resolved 1-DM that represents the wave function
+     *  Calculate the expectation value of this one-electron operator.
+     * 
+     *  @param D                The 1-DM (that represents the wave function).
      *
-     *  @return the expectation values of all components of the one-electron operator
+     *  @return The expectation value of all components of the one-electron operator.
      */
-    Vector<Scalar, Components> calculateExpectationValue(const SpinResolved1DM<Scalar>& D) const {
+    StorageArray<Scalar, Vectorizer> calculateExpectationValue(const SpinResolved1DM<Scalar>& D) const {
 
-        if (this->fs_a[0].numberOfOrbitals() != D.numberOfOrbitals(Spin::alpha) || this->fs_b[0].numberOfOrbitals() != D.numberOfOrbitals(Spin::beta)) {
-            throw std::invalid_argument("USQOneElectronOperator::calculateExpectationValue(const OneDM<Scalar>&, const OneDM<Scalar>&): The given 1-DM is not compatible with the one-electron operator.");
-        }
+        // Calculate the sum of the alpha- and beta-contributions.
+        // Unfortunately, we can't give `StorageArray` out-of-the-box vector-space arithmetic (since the default scalar type for scalar multiplication is unknown), so we'll have to do the summation ourselves.
+        auto result_elements = this->alpha().calculateExpectationValue(D.alpha()).elements();  // Initialize the calculation with the alpha elements.
+        const auto beta_expectation_value_elements = this->beta().calculateExpectationValue(D.beta()).elements();
 
-        std::array<Scalar, Components> expectation_values {};  // zero initialization
+        // Use the STL to implement element-wise addition.
+        std::transform(result_elements.begin(), result_elements.end(),
+                       beta_expectation_value_elements.begin(), result_elements.begin(),
+                       std::plus<Scalar> {});
 
-        for (size_t i = 0; i < Components; i++) {
-            expectation_values[i] = (this->parameters(GQCP::Spin::alpha, i) * D.alpha()).trace() + (this->parameters(GQCP::Spin::beta, i) * D.beta()).trace();
-        }
-
-        return Eigen::Map<Eigen::Matrix<Scalar, Components, 1>>(expectation_values.data());  // convert std::array to Vector
+        return StorageArray<Scalar, Vectorizer> {result_elements, this->alpha().vectorizer()};
     }
 
 
@@ -209,191 +200,148 @@ public:
      *  MARK: General information
      */
 
-    /**
-     *  @return the sum of the alpha and beta dimensions
-     */
-    size_t numberOfOrbitals() const {
-        return this->numberOfOrbitals(GQCP::Spin::alpha) + this->numberOfOrbitals(GQCP::Spin::beta);
-    }
-
-
-    /**
-     *  @param sigma                The requested spin component. This can be either alpha or beta.
+    /*
+     *  @return The number of orbital related to the alpha part of the unrestricted one-electron operator.
      * 
-     *  @return the dimension of the matrices for the requested spin component.
+     *  @note It is advised to only use this API when it is known that all spin-components of the one-electron operator are equal.
      */
-    size_t numberOfOrbitals(const Spin sigma) const {
+    size_t numberOfOrbitals() const { return this->alpha().numberOfOrbitals(); }
 
-        if (sigma == Spin::alpha) {
-            return this->fs_a[0].numberOfOrbitals();
-        } else {
-            return this->fs_b[0].numberOfOrbitals();
-        };
-    }
+
+    /**
+     *  @param sigma                Alpha or beta.
+     *
+     *  @return The number of orbitals for the given spin component.
+     */
+    size_t numberOfOrbitals(const Spin sigma) const { return this->component(sigma).numberOfOrbitals(); }
 
 
     /*
-     *  MARK: Basis transformations
+     *  MARK: Conforming to VectorSpaceArithmetic
      */
 
     /**
-     *  In-place rotate the operator to another basis. The same matrix is used for the alpha and beta components.   
-     * 
-     *  @param U                            the (unitary) rotation matrix
+     *  Addition-assignment.
      */
-    void rotate(const TransformationMatrix<Scalar>& U) {
+    Self& operator+=(const Self& rhs) {
 
-        // Transform the matrix representations of the components
-        for (auto& f_a : this->allParameters(GQCP::Spin::alpha)) {
-            f_a.basisRotate(U);
-        }
-        for (auto& f_b : this->allParameters(GQCP::Spin::beta)) {
-            f_b.basisRotate(U);
-        }
+        // Add the alpha-components and the beta-components.
+        this->alpha() += rhs.alpha();
+        this->beta() += rhs.beta();
+
+        return *this;
     }
 
 
     /**
-     *  In-place rotate the operator using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters. The same matrix is used to rotate the alpha and beta components.
-     * 
-     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
+     *  Scalar multiplication-assignment.
      */
-    void rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
+    Self& operator*=(const Scalar& a) {
 
-        // Transform the matrix representations of the components
-        for (auto& f_a : this->allParameters(GQCP::Spin::alpha)) {
-            f_a.basisRotate(jacobi_rotation_parameters);
-        }
-        for (auto& f_b : this->allParameters(GQCP::Spin::beta)) {
-            f_b.basisRotate(jacobi_rotation_parameters);
-        }
+        // Multiply the alpha- and beta-components with the scalar.
+        this->alpha() *= a;
+        this->beta() *= a;
+
+        return *this;
     }
 
 
     /**
-     *  In-place transform the operator to another basis. The same transformation is applied on the alpha and beta components.
-     * 
-     *  @param T                            the transformation matrix
+     *  MARK: Enabling basis transformations
      */
-    void transform(const TransformationMatrix<Scalar>& T) {
 
-        // Transform the matrix representations of the components
-        for (auto& f_a : this->allParameters(GQCP::Spin::alpha)) {
-            f_a.basisTransform(T);
-        }
-        for (auto& f_b : this->allParameters(GQCP::Spin::beta)) {
-            f_b.basisTransform(T);
-        }
-    }
+    // Since `rotate` and `rotated` are both defined in `SpinResolvedBasisTransformable` and `SpinResolvedJacobiRotatable`, we have to explicitly enable these methods here.
+
+    // Allow the `rotate` method from `SpinResolvedBasisTransformable`, since there's also a `rotate` from `SpinResolvedJacobiRotatable`.
+    using SpinResolvedBasisTransformable<Self>::rotate;
+
+    // Allow the `rotated` method from `SpinResolvedBasisTransformable`, since there's also a `rotated` from `SpinResolvedJacobiRotatable`.
+    using SpinResolvedBasisTransformable<Self>::rotated;
+
+    // Allow the `rotate` method from `SpinResolvedJacobiRotatable`, since there's also a `rotate` from `SpinResolvedBasisTransformable`.
+    using SpinResolvedJacobiRotatable<Self>::rotate;
+
+    // Allow the `rotated` method from `SpinResolvedJacobiRotatable`, since there's also a `rotated` from `SpinResolvedBasisTransformable`.
+    using SpinResolvedJacobiRotatable<Self>::rotated;
 };
 
 
 /*
- *  MARK: Aliases
+ *  MARK: Convenience aliases
  */
-template <typename Scalar>
-using ScalarUSQOneElectronOperator = USQOneElectronOperator<Scalar, 1>;
 
+// A scalar-like USQOneElectronOperator, i.e. with scalar-like access.
 template <typename Scalar>
-using VectorUSQOneElectronOperator = USQOneElectronOperator<Scalar, 3>;
+using ScalarUSQOneElectronOperator = USQOneElectronOperator<Scalar, ScalarVectorizer>;
+
+// A vector-like USQOneElectronOperator, i.e. with vector-like access.
+template <typename Scalar>
+using VectorUSQOneElectronOperator = USQOneElectronOperator<Scalar, VectorVectorizer>;
+
+// A matrix-like USQOneElectronOperator, i.e. with matrix-like access.
+template <typename Scalar>
+using MatrixUSQOneElectronOperator = USQOneElectronOperator<Scalar, MatrixVectorizer>;
+
+// A tensor-like USQOneElectronOperator, i.e. with tensor-like access.
+template <typename Scalar, size_t N>
+using TensorUSQOneElectronOperator = USQOneElectronOperator<Scalar, TensorVectorizer<N>>;
 
 
 /*
- *  MARK: Vector-like arithmetic
+ *  MARK: Operator traits
  */
 
 /**
- *  Add two one-electron operators by adding their parameters. The two alphas are added together and the two betas are added together. 
+ *  A type that provides compile-time information (traits) on `USQOneElectronOperator` that is otherwise not accessible through a public class alias.
  * 
- *  @tparam LHSScalar           the scalar type of the left-hand side
- *  @tparam RHSScalar           the scalar type of the right-hand side
- *  @tparam Components          the number of components of the one-electron operators
- * 
- *  @param lhs                  the left-hand side
- *  @param rhs                  the right-hand side
+ *  @tparam Scalar          The scalar type used for a single parameter: real or complex.
+ *  @tparam Vectorizer      The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
  */
-template <typename LHSScalar, typename RHSScalar, size_t Components>
-auto operator+(const USQOneElectronOperator<LHSScalar, Components>& lhs, const USQOneElectronOperator<RHSScalar, Components>& rhs) -> USQOneElectronOperator<sum_t<LHSScalar, RHSScalar>, Components> {
+template <typename Scalar, typename Vectorizer>
+struct OperatorTraits<USQOneElectronOperator<Scalar, Vectorizer>> {
 
-    using ResultScalar = sum_t<LHSScalar, RHSScalar>;
+    // A type that corresponds to the scalar version of the associated unrestricted one-electron operator type.
+    using ScalarOperator = ScalarUSQOneElectronOperator<Scalar>;
 
-    auto F_sum_a = lhs.allParameters(GQCP::Spin::alpha);
-    auto F_sum_b = lhs.allParameters(GQCP::Spin::beta);
-    for (size_t i = 0; i < Components; i++) {
-        F_sum_a[i] += rhs.parameters(GQCP::Spin::alpha, i);
-        F_sum_b[i] += rhs.parameters(GQCP::Spin::beta, i);
-    }
+    // The type of transformation matrix that is naturally associated to an unrestricted one-electron operator.
+    using TM = UTransformationMatrix<Scalar>;
 
-    return USQOneElectronOperator<ResultScalar, Components>(F_sum_a, F_sum_b);
-}
+    // The type of the one-particle density matrix that is naturally associated an unrestricted one-electron operator.
+    using OneDM = SpinResolved1DM<Scalar>;
 
+    // The type of the two-particle density matrix that is naturally associated an unrestricted one-electron operator.
+    using TwoDM = SpinResolved2DM<Scalar>;
+};
+
+
+/*
+ *  MARK: BasisTransformableTraits
+ */
 
 /**
- *  Multiply a one-electron operator with a scalar. The alpha and beta components are multiplied with the same scalar.
- * 
- *  @tparam Scalar              the scalar type of the scalar
- *  @tparam OperatorScalar      the scalar type of the operator
- * 
- *  @tparam scalar              the scalar of the scalar multiplication
- *  @tparam op                  the one-electron operator
+ *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
  */
-template <typename Scalar, typename OperatorScalar, size_t Components>
-auto operator*(const Scalar& scalar, const USQOneElectronOperator<OperatorScalar, Components>& op) -> USQOneElectronOperator<product_t<Scalar, OperatorScalar>, Components> {
+template <typename Scalar, typename Vectorizer>
+struct BasisTransformableTraits<USQOneElectronOperator<Scalar, Vectorizer>> {
 
-    using ResultScalar = product_t<Scalar, OperatorScalar>;
+    // The type of transformation matrix that is naturally related to a `USQOneElectronOperator`.
+    using TM = UTransformationMatrix<Scalar>;
+};
 
-    auto fs_a = op.allParameters(GQCP::Spin::alpha);
-    auto fs_b = op.allParameters(GQCP::Spin::beta);
-    for (auto& f_a : fs_a) {
-        f_a *= scalar;
-    }
-    for (auto& f_b : fs_b) {
-        f_b *= scalar;
-    }
 
-    return USQOneElectronOperator<ResultScalar, Components>(fs_a, fs_b);
-}
-
+/*
+ *  MARK: JacobiRotatableTraits
+ */
 
 /**
- *  Negate a one-electron operator
- * 
- *  @tparam Scalar              the scalar type of the operator
- *  @tparam Components          the number of components of the one-electron operator
- * 
- *  @param op                   the operator
+ *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
  */
-template <typename Scalar, size_t Components>
-USQOneElectronOperator<Scalar, Components> operator-(const USQOneElectronOperator<Scalar, Components>& op) {
+template <typename Scalar, typename Vectorizer>
+struct JacobiRotatableTraits<USQOneElectronOperator<Scalar, Vectorizer>> {
 
-    return (-1.0) * op;  // negation is scalar multiplication with (-1.0)
-}
-
-
-/**
- *  Subtract two one-electron operators by subtracting their parameters. The alphas are subtracted from the alphas and the betas from the betas.
- * 
- *  @tparam LHSScalar           the scalar type of the left-hand side
- *  @tparam RHSScalar           the scalar type of the right-hand side
- *  @tparam Components          the number of components of the one-electron operators
- * 
- *  @param lhs                  the left-hand side
- *  @param rhs                  the right-hand side
- */
-template <typename LHSScalar, typename RHSScalar, size_t Components>
-auto operator-(const USQOneElectronOperator<LHSScalar, Components>& lhs, const USQOneElectronOperator<RHSScalar, Components>& rhs) -> USQOneElectronOperator<sum_t<LHSScalar, RHSScalar>, Components> {
-
-    using ResultScalar = sum_t<LHSScalar, RHSScalar>;
-
-    auto F_min_a = lhs.allParameters(GQCP::Spin::alpha);
-    auto F_min_b = lhs.allParameters(GQCP::Spin::beta);
-    for (size_t i = 0; i < Components; i++) {
-        F_min_a[i] -= rhs.parameters(GQCP::Spin::alpha, i);
-        F_min_b[i] -= rhs.parameters(GQCP::Spin::beta, i);
-    }
-
-    return USQOneElectronOperator<ResultScalar, Components>(F_min_a, F_min_b);
-}
+    // The type of Jacobi rotation for which the Jacobi rotation should be defined.
+    using JacobiRotationType = UJacobiRotation;
+};
 
 
 }  // namespace GQCP

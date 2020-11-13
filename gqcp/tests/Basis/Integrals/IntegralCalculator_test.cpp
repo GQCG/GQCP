@@ -105,7 +105,7 @@ BOOST_AUTO_TEST_CASE(HORTON_integrals_h2o_sto3g) {
     const auto ref_S = GQCP::SquareMatrix<double>::FromFile("data/h2o_sto-3g_overlap_horton.data", nbf, nbf);
     const auto ref_T = GQCP::SquareMatrix<double>::FromFile("data/h2o_sto-3g_kinetic_horton.data", nbf, nbf);
     const auto ref_V = GQCP::SquareMatrix<double>::FromFile("data/h2o_sto-3g_nuclear_horton.data", nbf, nbf);
-    const auto ref_g = GQCP::QCRankFourTensor<double>::FromFile("data/h2o_sto-3g_coulomb_horton.data", nbf);
+    const auto ref_g = GQCP::SquareRankFourTensor<double>::FromFile("data/h2o_sto-3g_coulomb_horton.data", nbf);
 
 
     // Check if the calculated integrals are close to those of HORTON

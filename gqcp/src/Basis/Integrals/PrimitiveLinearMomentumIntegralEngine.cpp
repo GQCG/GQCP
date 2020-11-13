@@ -92,6 +92,7 @@ PrimitiveLinearMomentumIntegralEngine::IntegralScalar PrimitiveLinearMomentumInt
 
     PrimitiveOverlapIntegralEngine overlap_engine;
 
+    using namespace GQCP::literals;
     return 2.0 * 1.0_ii * beta * overlap_engine.calculate1D(alpha, K, i, beta, L, j + 1) -
            1.0_ii * static_cast<double>(j) * overlap_engine.calculate1D(alpha, K, i, beta, L, j - 1);
 }

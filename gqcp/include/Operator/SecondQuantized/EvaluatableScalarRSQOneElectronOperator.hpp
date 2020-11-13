@@ -143,19 +143,17 @@ public:
  *  A type that provides compile-time information on operators that is otherwise not accessible through a public class alias.
  */
 template <typename _Evaluatable>
-class OperatorTraits<EvaluatableScalarRSQOneElectronOperator<_Evaluatable>> {
-public:
+struct OperatorTraits<EvaluatableScalarRSQOneElectronOperator<_Evaluatable>> {
     // The type of evaluatable function that is used as a matrix element of the one-electron operator.
     using Evaluatable = _Evaluatable;
 
-    //
-    // TODO: Change name to VectorArithmeticScalar?
+    // The scalar type of the evaluatable one-electron operator.
     using Scalar = typename Evaluatable::Scalar;
 
-    // The origin of this public type name is to let `SQOperatorStorage` implement `VectorSpaceArithmetic` on the final derived type. TODO: Change name to 'final'?
+    // The type of the operator at the end of the inheritance chain of `SQOperatorStorageBase`.
     using DerivedOperator = EvaluatableScalarRSQOneElectronOperator<Evaluatable>;
 
-    // TODO: Change name??
+    // The scalar version of the type of the operator at the end of the inheritance chain of `SQOperatorStorageBase`.
     using ScalarOperator = EvaluatableScalarRSQOneElectronOperator<Evaluatable>;
 };
 

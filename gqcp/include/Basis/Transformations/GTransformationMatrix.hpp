@@ -48,6 +48,35 @@ public:
 
     // Inherit SimpleTransformationMatrix' constructors.
     using SimpleTransformationMatrix<Scalar, GTransformationMatrix<Scalar>>::SimpleTransformationMatrix;
+
+
+    /*
+     *  MARK: Components
+     */
+
+    // /**
+    //  *  @return The part of the general transformation that describes the alpha spinors.
+    //  */
+    // MatrixX<Scalar> alpha() const {
+
+    // }
+
+
+    // /**
+    //  *  @return The part of the general transformation that describes the beta spinors.
+    //  */
+    // MatrixX<Scalar> beta() const {
+
+    // }
+
+    // /**
+    //  *  @param sigma            Alpha or beta.
+    //  *
+    //  *  @return The part of the general transformation that describes the spinors of the requested component.
+    //  */
+    // MatrixX<Scalar> component(const Spin sigma) const {
+
+    // }
 };
 
 
@@ -63,6 +92,21 @@ struct BasisTransformableTraits<GTransformationMatrix<Scalar>> {
 
     // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix". A transformation matrix should naturally be transformable with itself.
     using TM = GTransformationMatrix<Scalar>;
+};
+
+
+/*
+ *  MARK: JacobiRotatableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
+ */
+template <typename Scalar>
+struct JacobiRotatableTraits<GTransformationMatrix<Scalar>> {
+
+    // The type of Jacobi rotation for which the Jacobi rotation should be defined.
+    using JacobiRotationType = JacobiRotation;
 };
 
 

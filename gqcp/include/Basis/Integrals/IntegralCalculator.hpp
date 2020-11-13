@@ -25,8 +25,8 @@
 #include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
 #include "Basis/ScalarBasis/ShellSet.hpp"
-#include "Mathematical/Representation/QCRankFourTensor.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
+#include "Mathematical/Representation/SquareRankFourTensor.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "Utilities/aliases.hpp"
 
@@ -268,9 +268,9 @@ public:
      * 
      *  @return the matrix representation (integrals) of the given first-quantized operator in this scalar basis
      */
-    static QCRankFourTensor<double> calculateLibintIntegrals(const CoulombRepulsionOperator& fq_two_op, const ScalarBasis<GTOShell>& scalar_basis) {
+    static SquareRankFourTensor<double> calculateLibintIntegrals(const CoulombRepulsionOperator& fq_two_op, const ScalarBasis<GTOShell>& scalar_basis) {
 
-        return QCRankFourTensor<double>(IntegralCalculator::calculateLibintIntegrals(fq_two_op, scalar_basis, scalar_basis));  // the same scalar basis appear on the left and right of the operator
+        return SquareRankFourTensor<double>(IntegralCalculator::calculateLibintIntegrals(fq_two_op, scalar_basis, scalar_basis));  // the same scalar basis appear on the left and right of the operator
     }
 
 
@@ -358,7 +358,7 @@ public:
      * 
      *  @return the matrix representation of the Coulomb repulsion operator in this AO basis, using the libcint integral engine
      */
-    static QCRankFourTensor<double> calculateLibcintIntegrals(const CoulombRepulsionOperator& fq_op, const ScalarBasis<GTOShell>& scalar_basis) {
+    static SquareRankFourTensor<double> calculateLibcintIntegrals(const CoulombRepulsionOperator& fq_op, const ScalarBasis<GTOShell>& scalar_basis) {
 
         const auto shell_set = scalar_basis.shellSet();
 

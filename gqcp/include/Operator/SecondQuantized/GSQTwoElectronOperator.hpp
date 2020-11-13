@@ -25,6 +25,7 @@
 #include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp"
 #include "QuantumChemical/spinor_tags.hpp"
+#include "Operator/SecondQuantized/PureUSQTwoElectronOperatorComponent.hpp"
 
 
 namespace GQCP {
@@ -57,6 +58,23 @@ public:
 
     // Inherit `SimpleSQOneElectronOperator`'s constructors.
     using SimpleSQTwoElectronOperator<_Scalar, _Vectorizer, GSQTwoElectronOperator<_Scalar, _Vectorizer>>::SimpleSQTwoElectronOperator;
+
+
+    /*
+     *  MARK: Named constructors
+     */
+
+    /**
+     *  Construct a `GSQTwoElectronOperator` from a `PureUSQTwoElectronOperatorComponent`.
+     * 
+     *  @param g_component          The pure component of an unrestricted two-electron operator that should be converted.
+     */
+    static GSQTwoElectronOperator<Scalar, Vectorizer> FromUnrestrictedComponent(const PureUSQTwoElectronOperatorComponent<Scalar, Vectorizer>& g_component) {
+
+        // We can just wrap the one-electron integrals into the correct class.
+        const StorageArray<SquareRankFourTensor<Scalar>, Vectorizer> array {g_component.allParameters(), g_component.vectorizer()};
+        return GSQTwoElectronOperator<Scalar, Vectorizer> {array};
+    }
 };
 
 
@@ -126,6 +144,21 @@ struct BasisTransformableTraits<GSQTwoElectronOperator<Scalar, Vectorizer>> {
 
     // The type of transformation matrix that is naturally associated to a general(ized) one-electron operator.
     using TM = GTransformationMatrix<Scalar>;
+};
+
+
+/*
+ *  MARK: JacobiRotatableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
+ */
+template <typename Scalar, typename Vectorizer>
+struct JacobiRotatableTraits<GSQTwoElectronOperator<Scalar, Vectorizer>> {
+
+    // The type of Jacobi rotation for which the Jacobi rotation should be defined.
+    using JacobiRotationType = JacobiRotation;
 };
 
 

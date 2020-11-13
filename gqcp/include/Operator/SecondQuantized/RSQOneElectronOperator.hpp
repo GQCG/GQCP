@@ -63,22 +63,26 @@ public:
      *  MARK: Conversions to spin components
      */
 
-    // TODO: Implement 'unrestricted() const'
-
     /**
      *  @return The alpha-component of this restricted one-electron operator.
      */
     USQOneElectronOperatorComponent<Scalar, Vectorizer> alpha() const {
 
-        // Since f_pq = f_{p alpha, q alpha}, we can just wrap the one-electron integrals (and, by extension, *this) into the correct class.
-        return USQOneElectronOperatorComponent<Scalar, Vectorizer> {*this};
+        // Since f_pq = f_{p alpha, q alpha}, we can just wrap the one-electron integrals into the correct class.
+        const StorageArray<SquareMatrix<Scalar>, Vectorizer> array {this->allParameters(), this->vectorizer()};
+        return USQOneElectronOperatorComponent<Scalar, Vectorizer> {array};
     }
+
 
     /*
      *  @return The beta-component of this restricted one-electron operator.
      */
-    USQOneElectronOperatorComponent<Scalar, Vectorizer> beta() const { return this->alpha(); /* The alpha- and beta- integrals are equal for a restricted operator. */ }
-};
+    USQOneElectronOperatorComponent<Scalar, Vectorizer> beta() const {
+
+        // The alpha- and beta- integrals are equal for a restricted operator, f_pq = f_{p alpha, q alpha} = f_{p beta, q_beta}.
+        return this->alpha();
+    }
+};  // namespace GQCP
 
 
 /*
@@ -141,6 +145,21 @@ struct BasisTransformableTraits<RSQOneElectronOperator<Scalar, Vectorizer>> {
 
     // The type of transformation matrix that is naturally associated to a restricted one-electron operator.
     using TM = RTransformationMatrix<Scalar>;
+};
+
+
+/*
+ *  MARK: JacobiRotatableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
+ */
+template <typename Scalar, typename Vectorizer>
+struct JacobiRotatableTraits<RSQOneElectronOperator<Scalar, Vectorizer>> {
+
+    // The type of Jacobi rotation for which the Jacobi rotation should be defined.
+    using JacobiRotationType = JacobiRotation;
 };
 
 

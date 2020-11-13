@@ -20,7 +20,7 @@
 
 #include "Mathematical/Representation/Matrix.hpp"
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
-#include "Operator/SecondQuantized/SQHamiltonian.hpp"
+// #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 #include <functional>
 

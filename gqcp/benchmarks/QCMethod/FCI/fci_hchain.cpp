@@ -11,7 +11,6 @@
 // #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 // #include "QCMethod/CI/CI.hpp"
 // #include "QCMethod/CI/CIEnvironment.hpp"
-// #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
 // #include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
 // #include "QCMethod/HF/RHF/RHF.hpp"
 // #include "QCMethod/HF/RHF/RHFSCFSolver.hpp"
@@ -41,7 +40,7 @@
 //     // Set up the molecular Hamiltonian in the canonical RHF basis.
 //     // Construct the initial spinor basis.
 //     const auto molecule = GQCP::Molecule::HChain(number_of_H_atoms, 0.742, charge);
-//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+//     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
 //     const auto K = spinor_basis.numberOfSpatialOrbitals();
 //     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in AO basis
 
@@ -87,7 +86,7 @@
 //     // Set up the molecular Hamiltonian in the canonical RHF basis.
 //     // Construct the initial spinor basis.
 //     const auto molecule = GQCP::Molecule::HChain(number_of_H_atoms, 0.742, charge);
-//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+//     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
 //     const auto K = spinor_basis.numberOfSpatialOrbitals();
 //     auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in AO basis
 

@@ -26,7 +26,7 @@ Let's explore a full CI calculation using the molecular Hamiltonian as an exampl
 molecule = gqcpy.Molecule.HChain(4, 0.742)
 N_P = molecule.numberOfElectronPairs()
 
-spinor_basis = gqcpy.RSpinorBasis(molecule, "STO-3G")
+spinor_basis = gqcpy.RSpinOrbitalBasis(molecule, "STO-3G")
 K = spinor_basis.numberOfSpatialOrbitals()
 
 sq_hamiltonian = gqcpy.SQHamiltonian.Molecular(spinor_basis, molecule)
@@ -48,7 +48,7 @@ linear_expansion = qc_structure.groundStateParameters()
 const auto molecule = GQCP::Molecule::HChain(4, 0.742);
 const auto N_P = molecule.numberOfElectronPairs();
 
-GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
 const auto K = spinor_basis.numberOfSpatialOrbitals();
 
 spinor_basis.lowdinOrthonormalize();

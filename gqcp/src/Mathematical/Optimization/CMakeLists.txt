@@ -1,3 +1,2 @@
-add_subdirectory(Eigenproblem)
 add_subdirectory(Minimization)
 add_subdirectory(NonLinearEquation)

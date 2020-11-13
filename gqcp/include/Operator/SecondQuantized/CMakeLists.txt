@@ -3,16 +3,18 @@ target_sources(gqcp
         EvaluatableScalarRSQOneElectronOperator.hpp
         GSQOneElectronOperator.hpp
         RSQOneElectronOperator.hpp
+        MixedUSQTwoElectronOperatorComponent.hpp
+        PureUSQTwoElectronOperatorComponent.hpp
+        RSQOneElectronOperator.hpp
+        RSQTwoElectronOperator.hpp
         SimpleSQOneElectronOperator.hpp
+        SimpleSQTwoElectronOperator.hpp
         SQHamiltonian.hpp
-        SQOneElectronOperator.hpp
         SQOperatorStorage.hpp
         SQOperatorStorageBase.hpp
-        SQTwoElectronOperator.hpp
         USQOneElectronOperator.hpp
         USQOneElectronOperatorComponent.hpp
         USQTwoElectronOperator.hpp
-        USQHamiltonian.hpp
 )
 
 add_subdirectory(ModelHamiltonian)

@@ -18,7 +18,6 @@
 #pragma once
 
 
-#include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "QCModel/CI/LinearExpansion.hpp"
 
 

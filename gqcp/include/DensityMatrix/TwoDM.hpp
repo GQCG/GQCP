@@ -19,7 +19,7 @@
 
 
 #include "DensityMatrix/OneDM.hpp"
-#include "Mathematical/Representation/QCRankFourTensor.hpp"
+#include "Mathematical/Representation/SquareRankFourTensor.hpp"
 
 
 namespace GQCP {
@@ -31,11 +31,11 @@ namespace GQCP {
  *  @tparam _Scalar     the scalar type
  */
 template <typename _Scalar>
-class TwoDM: public QCRankFourTensor<_Scalar> {
+class TwoDM: public SquareRankFourTensor<_Scalar> {
 public:
     using Scalar = _Scalar;
 
-    using BaseRepresentation = QCRankFourTensor<Scalar>;
+    using BaseRepresentation = SquareRankFourTensor<Scalar>;
 
 
 public:
@@ -43,7 +43,7 @@ public:
      *  CONSTRUCTORS
      */
 
-    using QCRankFourTensor<Scalar>::QCRankFourTensor;  // use base constructors
+    using SquareRankFourTensor<Scalar>::SquareRankFourTensor;  // use base constructors
 
 
     /*

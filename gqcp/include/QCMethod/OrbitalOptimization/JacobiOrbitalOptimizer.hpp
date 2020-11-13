@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/Transformations/JacobiRotationParameters.hpp"
+#include "Basis/Transformations/JacobiRotation.hpp"
 #include "QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.hpp"
 
 
@@ -32,7 +32,7 @@ class JacobiOrbitalOptimizer: public BaseOrbitalOptimizer {
 protected:
     size_t dim;  // the dimension of the orbital space that should be scanned. The valid orbital indices then are 0 ... dim (not included)
 
-    using pair_type = std::pair<JacobiRotationParameters, double>;
+    using pair_type = std::pair<JacobiRotation, double>;
     pair_type optimal_jacobi_with_scalar;  // holds the optimal Jacobi parameters and the corresponding value for the scalar function trying to optimize
 
 
@@ -76,11 +76,11 @@ public:
 
     /**
      *  @param sq_hamiltonian               the current Hamiltonian
-     *  @param jacobi_rot_par               the Jacobi rotation parameters
+     *  @param jacobi_rotation              The Jacobi rotation.
      * 
-     *  @return the change in value for the scalar function if the given Jacobi rotation parameters would be used to rotate the given Hamiltonian
+     *  @return the change in value for the scalar function if the given Jacobi rotation would be used to rotate the given Hamiltonian
      */
-    virtual double calculateScalarFunctionChange(const RSQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rot_par) const = 0;
+    virtual double calculateScalarFunctionChange(const RSQHamiltonian<double>& sq_hamiltonian, const JacobiRotation& jacobi_rot_par) const = 0;
 
     /**
      *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence in this Jacobi-based orbital optimizer
@@ -117,7 +117,7 @@ public:
      * 
      *  @return the optimal Jacobi rotation and the corresponding value for the scalar function that can be obtained when the Jacobi rotation would have taken place
      */
-    std::pair<JacobiRotationParameters, double> calculateOptimalJacobiParameters(const RSQHamiltonian<double>& sq_hamiltonian);
+    std::pair<JacobiRotation, double> calculateOptimalJacobiParameters(const RSQHamiltonian<double>& sq_hamiltonian);
 
     /**
      *  @return the comparer functor that is used to compare two pair_types
