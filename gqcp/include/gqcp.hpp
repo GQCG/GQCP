@@ -210,6 +210,7 @@
 #include "QCMethod/HF/GHF/GHFFockMatrixDiagonalization.hpp"
 #include "QCMethod/HF/GHF/GHFSCFEnvironment.hpp"
 #include "QCMethod/HF/GHF/GHFSCFSolver.hpp"
+#include "QCMethod/HF/GHF/GHFStabilityMatrices.hpp"
 #include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF/RHF.hpp"
 #include "QCMethod/HF/RHF/RHFDensityMatrixCalculation.hpp"
