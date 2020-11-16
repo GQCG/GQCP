@@ -29,7 +29,7 @@ namespace GQCP {
  * 
  */
 class GHFStabilityProperties {
-private:
+public:
     int internal_stability = Stability::unknown;
     int external_stability = Stability::unknown;
 
