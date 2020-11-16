@@ -18,7 +18,8 @@
 #pragma once
 
 
-#include "Basis/Transformations/TransformationMatrix.hpp"
+#include "Basis/Transformations/UTransformationMatrix.hpp"
+#include "Basis/Transformations/UTransformationMatrixComponent.hpp"
 #include "DensityMatrix/SpinResolved1DM.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
@@ -49,8 +50,7 @@ private:
     VectorX<double> orbital_energies_alpha;  // sorted by ascending energy
     VectorX<double> orbital_energies_beta;   // sorted by ascending energy
 
-    TransformationMatrix<Scalar> C_alpha;  // the coefficient matrix that expresses every alpha spatial orbital (as a column) in its underlying scalar basis
-    TransformationMatrix<Scalar> C_beta;   // the coefficient matrix that expresses every beta spatial orbital (as a column) in its underlying scalar basis
+    UTransformationMatrix<Scalar> C;  // The transformation between the current unrestricted spin-orbitals and the AOs.
 
 
 public:
@@ -68,17 +68,16 @@ public:
      *  @param C_alpha                                  the coefficient matrix that expresses every alpha spatial orbital (as a column) in its underlying scalar basis
      *  @param C_beta                                   the coefficient matrix that expresses every beta spatial orbital (as a column) in its underlying scalar basis
      */
-    UHF(const size_t N_alpha, const size_t N_beta, const VectorX<double>& orbital_energies_alpha, const VectorX<double>& orbital_energies_beta, const TransformationMatrix<Scalar>& C_alpha, const TransformationMatrix<Scalar>& C_beta) :
+    UHF(const size_t N_alpha, const size_t N_beta, const VectorX<double>& orbital_energies_alpha, const VectorX<double>& orbital_energies_beta, const UTransformationMatrix<Scalar>& C) :
         N_alpha {N_alpha},
         N_beta {N_beta},
         orbital_energies_alpha {orbital_energies_alpha},
         orbital_energies_beta {orbital_energies_beta},
-        C_alpha {C_alpha},
-        C_beta {C_beta} {
+        C {C} {
 
         // Check for valid arguments.
-        const auto K_alpha = C_alpha.numberOfOrbitals();  // number of alpha spatial orbitals
-        const auto K_beta = C_beta.numberOfOrbitals();    // number of beta spatial orbitals
+        const auto K_alpha = C.alpha().numberOfOrbitals();  // number of alpha spatial orbitals
+        const auto K_beta = C.beta().numberOfOrbitals();    // number of beta spatial orbitals
 
         if (N_alpha > K_alpha) {
             throw std::invalid_argument("UHF(const size_t, const size_t, const VectorX<double>&, const VectorX<double>&, const TransformationMatrix<Scalar>&, const TransformationMatrix<Scalar>&): The number of given alpha electrons cannot be larger than the number of alpha spatial orbitals.");
@@ -108,11 +107,11 @@ public:
      *  @param C_alpha                                  the coefficient matrix that expresses every alpha spatial orbital (as a column) in its underlying scalar basis
      *  @param C_beta                                   the coefficient matrix that expresses every beta spatial orbital (as a column) in its underlying scalar basis
      */
-    UHF(const size_t N_alpha, const size_t N_beta, const TransformationMatrix<Scalar>& C_alpha, const TransformationMatrix<Scalar>& C_beta) :
+    UHF(const size_t N_alpha, const size_t N_beta, const UTransformationMatrix<Scalar>& C) :
         UHF(N_alpha, N_beta,
-            GQCP::VectorX<double>::Zero(C_alpha.numberOfOrbitals()),
-            GQCP::VectorX<double>::Zero(C_beta.numberOfOrbitals()),
-            C_alpha, C_beta) {
+            GQCP::VectorX<double>::Zero(C.component(Spin::alpha).numberOfOrbitals()),
+            GQCP::VectorX<double>::Zero(C.component(Spin::beta).numberOfOrbitals()),
+            C) {
     }
 
 
@@ -124,7 +123,7 @@ public:
     UHF(const GQCP::QCModel::RHF<Scalar>& rhf_model) :
         UHF(rhf_model.numberOfElectrons(Spin::alpha), rhf_model.numberOfElectrons(Spin::beta),
             rhf_model.orbitalEnergies(), rhf_model.orbitalEnergies(),
-            rhf_model.coefficientMatrix(), rhf_model.coefficientMatrix()) {}
+            GQCP::UTransformationMatrix<Scalar>::FromRestricted(rhf_model.coefficientMatrix())) {}
 
 
     /*
@@ -335,19 +334,8 @@ public:
      *
      *  @return the coefficient matrix that expresses the sigma spin-orbitals (as a column) in its underlying scalar basis
      */
-    const TransformationMatrix<Scalar>& coefficientMatrix(const Spin sigma) const {
-
-        switch (sigma) {
-        case Spin::alpha: {
-            return this->C_alpha;
-            break;
-        }
-
-        case Spin::beta: {
-            return this->C_beta;
-            break;
-        }
-        }
+    const TransformationMatrix<Scalar> coefficientMatrix(const Spin sigma) const {
+        return C.component(sigma);
     }
 
 
@@ -387,18 +375,7 @@ public:
      *  @return the number of sigma spin-orbitals that these UHF model parameters describe
      */
     size_t numberOfSpinOrbitals(const Spin sigma) const {
-
-        switch (sigma) {
-        case Spin::alpha: {
-            return this->C_alpha.numberOfOrbitals();
-            break;
-        }
-
-        case Spin::beta: {
-            return this->C_beta.numberOfOrbitals();
-            break;
-        }
-        }
+        return this->coefficientMatrix(sigma).numberOfOrbitals();
     }
 
 

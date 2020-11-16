@@ -21,6 +21,7 @@
 #include "Basis/Transformations/GTransformationMatrix.hpp"
 #include "DensityMatrix/G1DM.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
+#include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 #include <Eigen/Dense>
@@ -51,12 +52,12 @@ public:
 
     std::deque<VectorX<double>> orbital_energies;
 
-    SquareMatrix<Scalar> S;  // the overlap matrix (of both scalar (AO) bases), expressed in spin-blocked notation
+    ScalarGSQOneElectronOperator<Scalar> S;  // the overlap matrix (of both scalar (AO) bases), expressed in spin-blocked notation
 
     std::deque<GTransformationMatrix<Scalar>> coefficient_matrices;
-    std::deque<G1DM<Scalar>> density_matrices;       // expressed in the scalar (AO) basis
-    std::deque<SquareMatrix<Scalar>> fock_matrices;  // expressed in the scalar (AO) basis
-    std::deque<VectorX<Scalar>> error_vectors;       // expressed in the scalar (AO) basis, used when doing DIIS calculations: the real error matrices should be converted to column-major error vectors for the DIIS algorithm to be used correctly
+    std::deque<G1DM<Scalar>> density_matrices;                       // expressed in the scalar (AO) basis
+    std::deque<ScalarGSQOneElectronOperator<Scalar>> fock_matrices;  // expressed in the scalar (AO) basis
+    std::deque<VectorX<Scalar>> error_vectors;                       // expressed in the scalar (AO) basis, used when doing DIIS calculations: the real error matrices should be converted to column-major error vectors for the DIIS algorithm to be used correctly
 
     GSQHamiltonian<Scalar> sq_hamiltonian;  // the Hamiltonian expressed in the scalar (AO) basis, resulting from a quantization using a GSpinorBasis
 

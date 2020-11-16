@@ -46,26 +46,31 @@ BOOST_AUTO_TEST_CASE(basic_constructor) {
     const GQCP::VectorX<double> orbital_energies_beta2 = GQCP::VectorX<double>::Zero(K_beta2);
 
     // Transformation matrices.
-    const GQCP::TransformationMatrix<double> C_alpha1 = GQCP::TransformationMatrix<double>::Identity(K_alpha1);
-    const GQCP::TransformationMatrix<double> C_beta1 = GQCP::TransformationMatrix<double>::Identity(K_beta1);
-    const GQCP::TransformationMatrix<double> C_alpha2 = GQCP::TransformationMatrix<double>::Identity(K_alpha2);
-    const GQCP::TransformationMatrix<double> C_beta2 = GQCP::TransformationMatrix<double>::Identity(K_beta2);
+    const GQCP::UTransformationMatrixComponent<double> C_alpha1 = GQCP::UTransformationMatrixComponent<double>::Identity(K_alpha1);
+    const GQCP::UTransformationMatrixComponent<double> C_beta1 = GQCP::UTransformationMatrixComponent<double>::Identity(K_beta1);
+    const GQCP::UTransformationMatrixComponent<double> C_alpha2 = GQCP::UTransformationMatrixComponent<double>::Identity(K_alpha2);
+    const GQCP::UTransformationMatrixComponent<double> C_beta2 = GQCP::UTransformationMatrixComponent<double>::Identity(K_beta2);
+
+    const GQCP::UTransformationMatrix<double> C_1 = GQCP::UTransformationMatrix<double> {C_alpha1, C_beta1};
+    const GQCP::UTransformationMatrix<double> C_2 = GQCP::UTransformationMatrix<double> {C_alpha2, C_beta2};
+    const GQCP::UTransformationMatrix<double> C_3 = GQCP::UTransformationMatrix<double> {C_alpha1, C_beta2};
+    const GQCP::UTransformationMatrix<double> C_4 = GQCP::UTransformationMatrix<double> {C_alpha2, C_beta1};
 
 
     // Check if an expected correct constructor doesn't throw.
-    BOOST_CHECK_NO_THROW(GQCP::QCModel::UHF<double>(N_alpha1, N_beta1, orbital_energies_alpha1, orbital_energies_beta1, C_alpha1, C_beta1));
+    BOOST_CHECK_NO_THROW(GQCP::QCModel::UHF<double>(N_alpha1, N_beta1, orbital_energies_alpha1, orbital_energies_beta1, C_1));
 
     // Check throws if there are too many electrons.
-    BOOST_CHECK_THROW(GQCP::QCModel::UHF<double>(N_alpha1, N_beta2, orbital_energies_alpha2, orbital_energies_beta2, C_alpha2, C_beta2), std::invalid_argument);
-    BOOST_CHECK_THROW(GQCP::QCModel::UHF<double>(N_alpha2, N_beta1, orbital_energies_alpha2, orbital_energies_beta2, C_alpha2, C_beta2), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::QCModel::UHF<double>(N_alpha1, N_beta2, orbital_energies_alpha2, orbital_energies_beta2, C_2), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::QCModel::UHF<double>(N_alpha2, N_beta1, orbital_energies_alpha2, orbital_energies_beta2, C_2), std::invalid_argument);
 
     // Check throws if the number of spatial orbitals (dimension of C) doesn't match the number of orbital energies.
-    BOOST_CHECK_THROW(GQCP::QCModel::UHF<double>(N_alpha1, N_beta1, orbital_energies_alpha1, orbital_energies_beta1, C_alpha2, C_beta1), std::invalid_argument);
-    BOOST_CHECK_THROW(GQCP::QCModel::UHF<double>(N_alpha1, N_beta1, orbital_energies_alpha1, orbital_energies_beta1, C_alpha1, C_beta2), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::QCModel::UHF<double>(N_alpha1, N_beta1, orbital_energies_alpha1, orbital_energies_beta1, C_4), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::QCModel::UHF<double>(N_alpha1, N_beta1, orbital_energies_alpha1, orbital_energies_beta1, C_3), std::invalid_argument);
 
 
     // Check that the constructor that sets the orbital energies to zeros doesn't throw.
-    BOOST_CHECK_NO_THROW(GQCP::QCModel::UHF<double>(N_alpha1, N_beta1, C_alpha1, C_beta1));
+    BOOST_CHECK_NO_THROW(GQCP::QCModel::UHF<double>(N_alpha1, N_beta1, C_1));
 }
 
 
