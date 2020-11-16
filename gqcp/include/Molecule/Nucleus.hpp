@@ -103,12 +103,17 @@ public:
      *  @return a textual description of this nucleus.
      */
     std::string description() const {
-        
+
         std::ostringstream os;
-        os << std::left << std::setw(3) << elements::atomicNumberToElement(this->charge()) << '(' << this->position().x() << ", " << this->position().y() << ", " << this->position().z() << ")\n";
+        os << std::left << std::setw(3) << this->element() << '(' << this->position().x() << ", " << this->position().y() << ", " << this->position().z() << ")\n";
 
         return os.str();
     }
+
+    /**
+     *  @return The string representation of the element that corresponds to this nucleus.
+     */
+    std::string element() const { return elements::atomicNumberToElement(this->charge()); }
 
     /**
      *  @return the charge of this nucleus

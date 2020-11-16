@@ -70,6 +70,9 @@ public:
     // The type of the two-particle density matrix that is naturally associated to the derived one-electron operator.
     using Derived2DM = typename OperatorTraits<DerivedOperator>::TwoDM;
 
+    // The type used to encapsulate the Mulliken partitioning scheme.
+    using MullikenPartitioning = typename OperatorTraits<DerivedOperator>::MullikenPartitioning;
+
 
 public:
     /*
@@ -227,7 +230,9 @@ public:
         auto result = this->allParameters();
 
         for (size_t i = 0; i < this->numberOfComponents(); i++) {
-            result[i] = transformation_matrix.adjoint() * (parameters[i]) * transformation_matrix;
+            const auto& f_i = parameters[i];
+
+            result[i] = transformation_matrix.adjoint() * f_i * transformation_matrix;
         }
 
         return DerivedOperator {StorageArray<MatrixRepresentation, Vectorizer>(result, this->array.vectorizer())};
@@ -271,6 +276,47 @@ public:
 
     // Allow the `rotate` method from `JacobiRotatable`, since there's also a `rotate` from `BasisTransformable`.
     using JacobiRotatable<DerivedOperator>::rotate;
+
+
+    /*
+     *  MARK: One-index transformations
+     */
+
+    /**
+     *  Apply a one-index transformation and return the result.
+     * 
+     *  @param T            The transformation that encapsulates the basis transformation coefficients.
+     * 
+     *  @return The one-index-transformed one-electron operator.
+     */
+    DerivedOperator oneIndexTransformed(const TM& T) const {
+
+        // Calculate the basis transformation for every component of the operator.
+        const auto& parameters = this->allParameters();
+        auto result = this->allParameters();
+
+        for (size_t i = 0; i < this->numberOfComponents(); i++) {
+            const auto& f_i = parameters[i];
+
+            result[i] = T.adjoint() * f_i + f_i * T;
+        }
+
+        return DerivedOperator {StorageArray<MatrixRepresentation, Vectorizer>(result, this->array.vectorizer())};
+    }
+
+
+    /*
+     *  MARK: Mulliken partitioning
+     */
+
+    /**
+     *  Partition this one-electron operator according to the supplied Mulliken partitioning scheme.
+     * 
+     *  @param mulliken_partitioning                An encapsulation of the Mulliken partitioning scheme.
+     * 
+     *  @return A one-electron operator whose integrals/parameters/matrix elements correspond to the Mulliken-partitioning of this one-electron operator.
+     */
+    DerivedOperator partitioned(const MullikenPartitioning& mulliken_partitioning) const { return 0.5 * this->oneIndexTransformed(mulliken_partitioning.projectionMatrix()); }
 };
 
 

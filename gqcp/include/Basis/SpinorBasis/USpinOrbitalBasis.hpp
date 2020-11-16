@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/MullikenPartitioning/UMullikenPartitioning.hpp"
 #include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include "Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp"
 #include "Basis/Transformations/SpinResolvedBasisTransformable.hpp"
@@ -49,6 +50,13 @@ public:
 
     // The type of shell the underlying scalar bases contain.
     using Shell = _Shell;
+
+    // The type that is used for representing the primitive for a basis function of this spin-orbital basis' underlying AO basis.
+    using Primitive = typename Shell::Primitive;
+
+    // The type that is used for representing the underlying basis functions of this spin-orbital basis.
+    using BasisFunction = typename Shell::BasisFunction;
+
 
 public:
     /*
@@ -277,6 +285,31 @@ public:
 
 
     /**
+     *  Quantize the z-component of the electronic spin operator in this unrestricted spin-orbital basis, i.e. express/project the one-electron operator in/onto this spin-orbital basis.
+     * 
+     *  @param fq_op                                The first-quantized one-electron operator.
+     *
+     *  @tparam FQOneElectronOperator               The type of the first-quantized one-electron operator.
+     * 
+     *  @return The second-quantized operator corresponding to the given first-quantized operator.
+     */
+    auto quantize(const ElectronicSpin_zOperator& fq_op) const -> USQOneElectronOperator<product_t<ElectronicSpin_zOperator::Scalar, ExpansionScalar>, ElectronicSpin_zOperator::Vectorizer> {
+
+        using ResultScalar = product_t<ElectronicSpin_zOperator::Scalar, ExpansionScalar>;
+        using ResultOperator = USQOneElectronOperator<ResultScalar, ElectronicSpin_zOperator::Vectorizer>;
+
+        // We can use the quantization of the overlap operator for the quantization of S_z.
+        const auto S_a = this->alpha().overlap();  // In the current orbital basis.
+        const auto S_b = this->beta().overlap();   // In the current orbital basis.
+
+        const auto S_z_a = 0.5 * S_a;
+        const auto S_z_b = -0.5 * S_b;
+
+        return ResultOperator {S_z_a, S_z_b};
+    }
+
+
+    /**
      *  Quantize the overlap operator in this spin-orbital basis.
      * 
      *  @return The second-quantized overlap operator.
@@ -310,38 +343,34 @@ public:
     }
 
 
-    /*
+    /**
      *  MARK: Mulliken partitioning
      */
 
     /**
-     *  @param ao_list              indices of the AOs used for the atomic spin operator in the z-direction
-     *  @param sigma                alpha or beta
-     *
-     *  @return the SQ atomic spin operator in the z-direction for a set of AOs
-     *
-     *  @note This method is only available for real SQOperators.
+     *  Partition this set of unrestricted spin-orbitals according to the Mulliken partitioning scheme.
+     * 
+     *  @param selector             A function that returns true for basis functions that should be included the Mulliken partitioning.
+     * 
+     *  @return A `UMullikenPartitioning` for the AOs selected by the supplied selector function.
      */
-    // template <typename S = ExpansionScalar, typename = IsReal<S>>
-    // ScalarUSQOneElectronOperatorComponent<double> calculateAtomicSpinZ(const std::vector<size_t>& ao_list, const Spin& sigma) const {
+    UMullikenPartitioning<ExpansionScalar> mullikenPartitioning(const std::function<bool(const BasisFunction&)>& selector) const {
 
-    //     // The atomic spin operator can be calculated as as the atomic Mulliken operator divided by 2, multiplied by the correct sign factor
-    //     int sign = 1 - 2 * sigma;  // 1 for ALPHA, -1 for BETA
-    //     const auto spin_z_par = 0.5 * sign * this->spinor_bases[sigma].calculateMullikenOperator(ao_list).parameters();
-    //     return ScalarRSQOneElectronOperator<double>(spin_z_par);
-    // }
+        return UMullikenPartitioning<ExpansionScalar> {this->alpha().mullikenPartitioning(selector), this->beta().mullikenPartitioning(selector)};
+    }
 
 
-    // /**
-    //  *  @param ao_list              indices of the AOs used for the Mulliken populations
-    //  *  @param sigma                alpha or beta
-    //  *
-    //  *  @return the Mulliken operator for a set of AOs and the requested component
-    //  *
-    //  *  @note This method is only available for real matrix representations.
-    //  */
-    // template <typename S = ExpansionScalar, typename = IsReal<S>>
-    // ScalarRSQOneElectronOperator<double> calculateMullikenOperator(const std::vector<size_t>& ao_list, const Spin& sigma) const { return this->spinor_bases[sigma].template calculateMullikenOperator<ExpansionScalar>(ao_list); }
+    /**
+     *  Partition this set of unrestricted spin-orbitals according to the Mulliken partitioning scheme.
+     * 
+     *  @param selector             A function that returns true for shells that should be included the Mulliken partitioning.
+     * 
+     *  @return A `UMullikenPartitioning` for the AOs selected by the supplied selector function.
+     */
+    UMullikenPartitioning<ExpansionScalar> mullikenPartitioning(const std::function<bool(const Shell&)>& selector) const {
+
+        return UMullikenPartitioning<ExpansionScalar> {this->alpha().mullikenPartitioning(selector), this->beta().mullikenPartitioning(selector)};
+    }
 };
 
 /*

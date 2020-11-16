@@ -795,6 +795,7 @@ INPUT = "@CMAKE_SOURCE_DIR@/gqcp/include" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Basis" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Basis/Integrals" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Basis/Integrals/Interfaces" \
+        "@CMAKE_SOURCE_DIR@/gqcp/include/Basis/MullikenPartitioning" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Basis/ScalarBasis" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Basis/SpinorBasis" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Basis/Transformations" \

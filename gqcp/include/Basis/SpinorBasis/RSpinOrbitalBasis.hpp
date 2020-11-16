@@ -19,6 +19,7 @@
 
 
 #include "Basis/Integrals/IntegralCalculator.hpp"
+#include "Basis/MullikenPartitioning/RMullikenPartitioning.hpp"
 #include "Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp"
 #include "Basis/SpinorBasis/Spinor.hpp"
 #include "Basis/Transformations/JacobiRotation.hpp"
@@ -30,6 +31,7 @@
 #include "Operator/SecondQuantized/RSQTwoElectronOperator.hpp"
 #include "Utilities/aliases.hpp"
 #include "Utilities/type_traits.hpp"
+
 
 namespace GQCP {
 
@@ -56,8 +58,13 @@ public:
     // The type of transformation matrix that is naturally related to a GSpinorBasis.
     using TM = RTransformationMatrix<ExpansionScalar>;  // TODO: Rename to TransformationMatrix once the class is gone
 
+    // The type that is used for representing the primitive for a basis function of this spin-orbital basis' underlying AO basis.
     using Primitive = typename Shell::Primitive;
+
+    // The type that is used for representing the underlying basis functions of this spin-orbital basis.
     using BasisFunction = typename Shell::BasisFunction;
+
+    // The type that is used to represent a spatial orbital for this spin-orbital basis.
     using SpatialOrbital = LinearCombination<product_t<ExpansionScalar, typename BasisFunction::CoefficientScalar>, BasisFunction>;
 
 
@@ -225,25 +232,30 @@ public:
      */
 
     /**
-     *  @param ao_list     indices of the AOs used for the Mulliken populations
-     *
-     *  @return the Mulliken operator for a set of given AO indices
-     *
-     *  @note this method is only available for real matrix representations
+     *  Partition this set of restricted spin-orbitals according to the Mulliken partitioning scheme.
+     * 
+     *  @param selector             A function that returns true for basis functions that should be included the Mulliken partitioning.
+     * 
+     *  @return A `RMullikenPartitioning` for the AOs selected by the supplied selector function.
      */
-    template <typename S = ExpansionScalar, typename = IsReal<S>>
-    ScalarRSQOneElectronOperator<double> calculateMullikenOperator(const std::vector<size_t>& ao_list) const {
+    RMullikenPartitioning<ExpansionScalar> mullikenPartitioning(const std::function<bool(const BasisFunction&)>& selector) const {
 
-        const auto K = this->numberOfSpatialOrbitals();
-        if (ao_list.size() > K) {
-            throw std::invalid_argument("RSpinOrbitalBasis::calculateMullikenOperator(std::vector<size_t>): Too many AOs are selected in the given ao_list");
-        }
+        const auto ao_indices = this->scalarBasis().basisFunctionIndices(selector);
+        return RMullikenPartitioning<ExpansionScalar> {ao_indices, this->coefficientMatrix()};
+    }
 
-        const SquareMatrix<double> p_a = SquareMatrix<double>::PartitionMatrix(ao_list, K);                       // the partitioning matrix
-        const auto S_AO = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalar_basis);  // the overlap matrix expressed in the AO basis
 
-        ScalarRSQOneElectronOperator<double> mulliken_op {0.5 * (this->C.adjoint() * p_a * S_AO * this->C + this->C.adjoint() * S_AO * p_a * this->C)};
-        return mulliken_op;
+    /**
+     *  Partition this set of restricted spin-orbitals according to the Mulliken partitioning scheme.
+     * 
+     *  @param selector             A function that returns true for shells that should be included the Mulliken partitioning.
+     * 
+     *  @return A `RMullikenPartitioning` for the AOs selected by the supplied selector function.
+     */
+    RMullikenPartitioning<ExpansionScalar> mullikenPartitioning(const std::function<bool(const Shell&)>& selector) const {
+
+        const auto ao_indices = this->scalarBasis().basisFunctionIndices(selector);
+        return RMullikenPartitioning<ExpansionScalar> {ao_indices, this->coefficientMatrix()};
     }
 };
 
