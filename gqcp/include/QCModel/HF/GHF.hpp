@@ -22,6 +22,7 @@
 #include "DensityMatrix/G1DM.hpp"
 #include "Operator/FirstQuantized/ElectronicSpinOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "QCModel/HF/Stability/StabilityProperties/GHFStabilityProperties.hpp"
 #include "Utilities/aliases.hpp"
 
 
@@ -38,6 +39,7 @@ template <typename _Scalar>
 class GHF {
 public:
     using Scalar = _Scalar;
+    using Stability = typename GQCP::GHFStabilityProperties;
 
 
 private:
@@ -46,6 +48,7 @@ private:
     VectorX<double> orbital_energies;  // sorted in ascending energies
     GTransformationMatrix<Scalar> C;   // the coefficient matrix that expresses every spinor (as a column) in the underlying scalar bases
 
+    Stability stability_properties;
 
 public:
     /*
@@ -360,8 +363,19 @@ public:
      *  @return the implicit occupied-virtual orbital space that is associated to these GHF model parameters
      */
     OrbitalSpace orbitalSpace() const { return GHF<Scalar>::orbitalSpace(this->numberOfSpinors(), this->numberOfElectrons()); }
-};  // namespace QCModel
 
+    /**
+     *  @return the stability properties of this GHF model.
+     */
+    Stability stabilityProperties() const { return this->stability_properties; }
+
+    /**
+     *  @return the stability properties of this GHF model.
+     */
+    void updateStabilityProperties(Stability& new_properties) {
+        this->stability_properties = new_properties;
+    }
+};
 
 }  // namespace QCModel
 }  // namespace GQCP

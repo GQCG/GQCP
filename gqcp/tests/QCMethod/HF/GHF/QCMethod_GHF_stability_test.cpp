@@ -23,7 +23,8 @@
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/HF/GHF/GHF.hpp"
 #include "QCMethod/HF/GHF/GHFSCFSolver.hpp"
-#include "QCMethod/HF/GHF/GHFStabilityMatrices.hpp"
+#include "QCMethod/HF/GHF/GHFStabilityChecks.hpp"
+#include "QCModel/HF/Stability/StabilityMatrices/GHFStabilityMatrix.hpp"
 
 /**
  *  Check if the plain GHF SCF solver finds a correct solution.
@@ -46,12 +47,13 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_1) {
 
     auto solver = GQCP::GHFSCFSolver<double>::Plain(1.0e-08, 3000);
     const auto qc_structure = GQCP::QCMethod::GHF<double>().optimize(solver, environment);
-    const auto ghf_parameters = qc_structure.groundStateParameters();
+    auto ghf_parameters = qc_structure.groundStateParameters();
 
-    auto stability_A = GQCP::QCMethod::GHFStability<double>().internalStabilityMatrix(qc_structure, sq_hamiltonian);
-    auto stability_B = GQCP::QCMethod::GHFStability<double>().externalStabilityMatrix(qc_structure, sq_hamiltonian);
+    ghf_parameters.stabilityProperties().print();
 
-    std::cout << stability_A << std::endl;
-    std::cout << "------------------------------------------------------------" << std::endl;
-    std::cout << stability_B << std::endl;
+    // const auto int_stability_matrix = GQCP::GHFStabilityMatrix<double>::Internal(ghf_parameters, sq_hamiltonian);
+
+    GQCP::QCMethod::GHFStabilityChecks<double>().internalStabilityCheck(ghf_parameters, sq_hamiltonian);
+
+    ghf_parameters.stabilityProperties().print();
 }

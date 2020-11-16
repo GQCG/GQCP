@@ -9,5 +9,4 @@ target_sources(gqcp
         GHFFockMatrixDIIS.hpp
         GHFSCFEnvironment.hpp
         GHFSCFSolver.hpp
-        GHFStabilityMatrices.hpp
 )
