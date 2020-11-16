@@ -50,7 +50,7 @@ private:
     VectorX<double> orbital_energies_alpha;  // sorted by ascending energy
     VectorX<double> orbital_energies_beta;   // sorted by ascending energy
 
-    UTransformationMatrix<Scalar> C;  // the coefficient matrix that expresses every alpha spatial orbital (as a column) in its underlying scalar basis
+    UTransformationMatrix<Scalar> C;  // The transformation between the current unrestricted spin-orbitals and the AOs.
 
 
 public:
@@ -68,7 +68,7 @@ public:
      *  @param C_alpha                                  the coefficient matrix that expresses every alpha spatial orbital (as a column) in its underlying scalar basis
      *  @param C_beta                                   the coefficient matrix that expresses every beta spatial orbital (as a column) in its underlying scalar basis
      */
-    UHF(const size_t N_alpha, const size_t N_beta, const VectorX<double>& orbital_energies_alpha, const VectorX<double>& orbital_energies_beta, const UTransformationMatrixComponent<Scalar>& C_alpha, const UTransformationMatrixComponent<Scalar>& C_beta) :
+    UHF(const size_t N_alpha, const size_t N_beta, const VectorX<double>& orbital_energies_alpha, const VectorX<double>& orbital_energies_beta, const UTransformationMatrix<Scalar>& C) :
         N_alpha {N_alpha},
         N_beta {N_beta},
         orbital_energies_alpha {orbital_energies_alpha},
