@@ -104,6 +104,36 @@ public:
         // Update the stability properties of the GHF wavefunction model.
         parameters.updateStabilityProperties(stability);
     }
+
+
+    /**
+     *  @param ghf_parameters           The GHF model containing the ground state parameters of the wavefunction.
+     *  @param gsq_hamiltonian          The second quantized Hamiltonian containing the needed integrals.
+     */
+    template <typename S = Scalar, typename = IsComplex<S>>
+    void internalStabilityCheck(GQCP::QCModel::GHF<complex>& parameters, const GSQHamiltonian<double>& gsq_hamiltonian) {
+
+        // Get the stability properties of the given GHF wavefunction.
+        auto stability = parameters.stabilityProperties();
+
+        // The first step is to calculate the correct stability matrix: This method checks the internal stability of a real valued wavefunction.
+        const auto stability_matrix = GHFStabilityMatrix<complex>::Internal(parameters, gsq_hamiltonian);
+
+        // Create an eigensolver to diagonalize the stability matrix.
+        using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
+        Eigen::SelfAdjointEigenSolver<MatrixType> eigensolver {stability_matrix};
+
+        // Calculate the eigenvalues and check whether they are strictly positive or not, we update the stability properties accordingly.
+        const auto& eigenvalues = eigensolver.eigenvalues().transpose();
+        if (eigenvalues[0] < -1.0e-5) {
+            stability.updateInternalStability(Stability::unstable);
+        } else {
+            stability.updateInternalStability(Stability::stable);
+        }
+
+        // Update the stability properties of the GHF wavefunction model.
+        parameters.updateStabilityProperties(stability);
+    }
 };
 
 }  // namespace QCMethod
