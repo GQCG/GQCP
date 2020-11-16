@@ -73,7 +73,7 @@ public:
         N_beta {N_beta},
         orbital_energies_alpha {orbital_energies_alpha},
         orbital_energies_beta {orbital_energies_beta},
-        C {C_alpha, C_beta} {
+        C {C} {
 
         // Check for valid arguments.
         const auto K_alpha = C.alpha().numberOfOrbitals();  // number of alpha spatial orbitals
@@ -107,11 +107,11 @@ public:
      *  @param C_alpha                                  the coefficient matrix that expresses every alpha spatial orbital (as a column) in its underlying scalar basis
      *  @param C_beta                                   the coefficient matrix that expresses every beta spatial orbital (as a column) in its underlying scalar basis
      */
-    UHF(const size_t N_alpha, const size_t N_beta, const UTransformationMatrixComponent<Scalar>& C_alpha, const UTransformationMatrixComponent<Scalar>& C_beta) :
+    UHF(const size_t N_alpha, const size_t N_beta, const UTransformationMatrix<Scalar>& C) :
         UHF(N_alpha, N_beta,
-            GQCP::VectorX<double>::Zero(C_alpha.numberOfOrbitals()),
-            GQCP::VectorX<double>::Zero(C_beta.numberOfOrbitals()),
-            C_alpha, C_beta) {
+            GQCP::VectorX<double>::Zero(C.component(Spin::alpha).numberOfOrbitals()),
+            GQCP::VectorX<double>::Zero(C.component(Spin::beta).numberOfOrbitals()),
+            C) {
     }
 
 
@@ -123,7 +123,7 @@ public:
     UHF(const GQCP::QCModel::RHF<Scalar>& rhf_model) :
         UHF(rhf_model.numberOfElectrons(Spin::alpha), rhf_model.numberOfElectrons(Spin::beta),
             rhf_model.orbitalEnergies(), rhf_model.orbitalEnergies(),
-            rhf_model.coefficientMatrix(), rhf_model.coefficientMatrix()) {}
+            GQCP::UTransformationMatrix<Scalar>::FromRestricted(rhf_model.coefficientMatrix())) {}
 
 
     /*
@@ -352,18 +352,7 @@ public:
      *  @return the coefficient matrix that expresses the sigma spin-orbitals (as a column) in its underlying scalar basis
      */
     const TransformationMatrix<Scalar> coefficientMatrix(const Spin sigma) const {
-
-        switch (sigma) {
-        case Spin::alpha: {
-            return this->C.alpha();
-            break;
-        }
-
-        case Spin::beta: {
-            return this->C.beta();
-            break;
-        }
-        }
+        return C.component(sigma);
     }
 
 
@@ -403,18 +392,7 @@ public:
      *  @return the number of sigma spin-orbitals that these UHF model parameters describe
      */
     size_t numberOfSpinOrbitals(const Spin sigma) const {
-
-        switch (sigma) {
-        case Spin::alpha: {
-            return this->C.alpha().numberOfOrbitals();
-            break;
-        }
-
-        case Spin::beta: {
-            return this->C.beta().numberOfOrbitals();
-            break;
-        }
-        }
+        return this->coefficientMatrix(sigma).numberOfOrbitals();
     }
 
 
