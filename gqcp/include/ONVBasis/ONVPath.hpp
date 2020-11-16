@@ -243,14 +243,6 @@ public:
      *  @return the total phase factor/sign associated to the original path's modification
      */
     int sign() const { return this->m_sign; }
-
-    /**
-     * 
-     */
-    int signAfterCreation(const size_t p) const {
-
-        return onv.operatorPhaseFactor(p) * this->m_address;
-    }
 };
 
 
