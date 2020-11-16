@@ -33,8 +33,8 @@
 BOOST_AUTO_TEST_CASE(H3_stability_test_1) {
 
     // Set up a general spinor basis to obtain a spin-blocked second-quantized molecular Hamiltonian.
-    // const auto molecule = GQCP::Molecule::HRingFromDistance(3, 1.0);  // H3-triangle, 1 bohr apart
-    const auto molecule = GQCP::Molecule::HChain(2, 1.0);
+    const auto molecule = GQCP::Molecule::HRingFromDistance(3, 1.0);  // H3-triangle, 1 bohr apart
+    //const auto molecule = GQCP::Molecule::HChain(2, 1.0);
     const auto N = molecule.numberOfElectrons();
 
     const GQCP::GSpinorBasis<double, GQCP::GTOShell> g_spinor_basis {molecule, "STO-3G"};
@@ -48,8 +48,8 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_1) {
     const auto qc_structure = GQCP::QCMethod::GHF<double>().optimize(solver, environment);
     const auto ghf_parameters = qc_structure.groundStateParameters();
 
-    auto stability_A = GQCP::QCMethod::GHFStability<double>().calculatePartialStabilityMatrixA(qc_structure, sq_hamiltonian);
-    auto stability_B = GQCP::QCMethod::GHFStability<double>().calculatePartialStabilityMatrixB(qc_structure, sq_hamiltonian);
+    auto stability_A = GQCP::QCMethod::GHFStability<double>().internalStabilityMatrix(qc_structure, sq_hamiltonian);
+    auto stability_B = GQCP::QCMethod::GHFStability<double>().externalStabilityMatrix(qc_structure, sq_hamiltonian);
 
     std::cout << stability_A << std::endl;
     std::cout << "------------------------------------------------------------" << std::endl;
