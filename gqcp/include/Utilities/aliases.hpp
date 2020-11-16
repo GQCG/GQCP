@@ -45,6 +45,8 @@ using complex = std::complex<double>;
 template <typename T>
 using IsReal = enable_if_t<std::is_same<T, double>::value>;
 
+template <typename T>
+using IsComplex = enable_if_t<std::is_same<T, complex>::value>;
 
 template <typename T, typename U>
 using product_t = decltype(std::declval<T>() * std::declval<U>());

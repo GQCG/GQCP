@@ -21,6 +21,7 @@
 #include "Mathematical/Representation/ImplicitRankFourTensorSlice.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/QCStructure.hpp"
+#include "Utilities/aliases.hpp"
 
 
 namespace GQCP {
@@ -50,10 +51,10 @@ public:
      *  @note The formula for the `A` matrix is as follows:
      *      A_IAJB = \delta_IJ * F_BA - \delta_BA * F_IJ + (AI||JB)
      * 
-     *  @param ghf_structure        The GHF QCStructure which contains the ground state parameters of the performed GHF calculation
+     *  @param ghf_structure        The GHF QCStructure which contains the ground state parameters of the performed GHF calculation.
      *  @param gsq_hamiltonian      The generalised, second quantized hamiltonian, which contains the necessary two electron operators.
      */
-    GQCP::Matrix<Scalar> calculatePartialStabilityMatrixA(const QCStructure<QCModel::GHF<Scalar>>& ghf_structure, const GSQHamiltonian<Scalar>& gsq_hamiltonian) const {
+    const GQCP::Matrix<Scalar> calculatePartialStabilityMatrixA(const QCStructure<QCModel::GHF<Scalar>>& ghf_structure, const GSQHamiltonian<Scalar>& gsq_hamiltonian) const {
 
         // Get the ground state parameters from the given QCStructure.
         const auto& parameters = ghf_structure.groundStateParameters();
@@ -110,13 +111,11 @@ public:
                 A_iajb(i, a, i, a) += F_values(a, i);
             }
         }
-
+        A_iajb.print();
         //Finally, reshape the tensor to a matrix.
-        const auto A_matrix = GQCP::Matrix<Scalar>(Eigen::Map<const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>>(A_iajb.data(),
-                                                                                                                           number_of_occupied_orbitals * number_of_virtual_orbitals,
-                                                                                                                           number_of_occupied_orbitals * number_of_virtual_orbitals));
-        // We transpose because the way the tensor is transformed into a matrix varies the wrong index the quickest
-        return A_matrix.transpose();
+        const auto A_matrix = A_iajb.reshape(number_of_occupied_orbitals * number_of_virtual_orbitals, number_of_occupied_orbitals * number_of_virtual_orbitals);
+
+        return A_matrix;
     }
 
 
@@ -126,10 +125,10 @@ public:
      *  @note The formula for the `B` matrix is as follows:
      *      B_IAJB = (AI||BJ)
      *
-     *  @param ghf_structure        The GHF QCStructure which contains the ground state parameters of the performed GHF calculation
+     *  @param ghf_structure        The GHF QCStructure which contains the ground state parameters of the performed GHF calculation.
      *  @param gsq_hamiltonian      The generalised, second quantized hamiltonian, which contains the necessary two electron operators.
      */
-    GQCP::Matrix<Scalar> calculatePartialStabilityMatrixB(const QCStructure<QCModel::GHF<Scalar>>& ghf_structure, const GSQHamiltonian<Scalar>& gsq_hamiltonian) const {
+    const GQCP::Matrix<Scalar> calculatePartialStabilityMatrixB(const QCStructure<QCModel::GHF<Scalar>>& ghf_structure, const GSQHamiltonian<Scalar>& gsq_hamiltonian) const {
 
         // Get the ground state parameters from the given QCStructure.
         const auto& parameters = ghf_structure.groundStateParameters();
@@ -156,12 +155,70 @@ public:
             }
         }
         B_iajb.print();
-        std::cout << "------------" << std::endl;
         //Finally, reshape the tensor to a matrix.
-        const auto B_matrix = GQCP::Matrix<Scalar>(Eigen::Map<const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>>(B_iajb.data(),
-                                                                                                                           number_of_occupied_orbitals * number_of_virtual_orbitals,
-                                                                                                                           number_of_occupied_orbitals * number_of_virtual_orbitals));
-        return B_matrix.transpose();
+        const auto B_matrix = B_iajb.reshape(number_of_occupied_orbitals * number_of_virtual_orbitals, number_of_occupied_orbitals * number_of_virtual_orbitals);
+
+        return B_matrix;
+    }
+
+
+    /**
+     *  @return the internal stability matrix of the real GHF method.
+     *
+     *  @note The internal stability condition of the real GHF method is checked using A+B.
+     *
+     *  @param ghf_structure        The GHF QCStructure which contains the ground state parameters of the performed GHF calculation.
+     *  @param gsq_hamiltonian      The generalised, second quantized hamiltonian, which contains the necessary two electron operators.
+     */
+    template <typename S = Scalar, typename = IsReal<S>>
+    const GQCP::Matrix<double> internalStabilityMatrix(const QCStructure<QCModel::GHF<double>>& ghf_structure, const GSQHamiltonian<double>& gsq_hamiltonian) {
+        return calculatePartialStabilityMatrixA(ghf_structure, gsq_hamiltonian) + calculatePartialStabilityMatrixB(ghf_structure, gsq_hamiltonian);
+    }
+
+
+    /**
+     *  @return the external stability matrix of the real GHF method.
+     *
+     *  @note The external stability condition of the real GHF method is checked using A-B.
+     *
+     *  @param ghf_structure        The GHF QCStructure which contains the ground state parameters of the performed GHF calculation.
+     *  @param gsq_hamiltonian      The generalised, second quantized hamiltonian, which contains the necessary two electron operators.
+     */
+    template <typename S = Scalar, typename = IsReal<S>>
+    const GQCP::Matrix<double> externalStabilityMatrix(const QCStructure<QCModel::GHF<double>>& ghf_structure, const GSQHamiltonian<double>& gsq_hamiltonian) {
+        return calculatePartialStabilityMatrixA(ghf_structure, gsq_hamiltonian) - calculatePartialStabilityMatrixB(ghf_structure, gsq_hamiltonian);
+    }
+
+
+    /**
+     *  @return the internal stability matrix of the complex GHF method.
+     *
+     *  @note The internal stability condition of the real GHF method is checked using (A,   B  )
+     *                                                                                 (B^*, A^*)
+     *
+     *  @param ghf_structure        The GHF QCStructure which contains the ground state parameters of the performed GHF calculation
+     *  @param gsq_hamiltonian      The generalised, second quantized hamiltonian, which contains the necessary two electron operators.
+     */
+    template <typename S = Scalar, typename = IsComplex<S>>
+    const GQCP::Matrix<complex> internalStabilityMatrix(const QCStructure<QCModel::GHF<complex>>& ghf_structure, const GSQHamiltonian<double>& gsq_hamiltonian) {
+
+        // Calculate the necessary partial stability matrices.
+        const auto A = calculatePartialStabilityMatrixA(ghf_structure, gsq_hamiltonian);
+        const auto B = calculatePartialStabilityMatrixB(ghf_structure, gsq_hamiltonian);
+
+        // Determine the dimensions of the total stability matrix.
+        const auto K = A.dimension(0);
+        const auto dim = 2 * K;
+
+        // Create the total stability matrix as specified above in the documentation.
+        auto H = GQCP::Matrix<Scalar> {dim, dim};
+
+        H.topLeftCorner(K, K) = A;
+        H.topRightCorner(K, K) = B;
+        H.bottomLeftCorner(K, K) = B.conjugate();
+        H.bottomRightCorner(K, K) = A.conjugate();
+
+        return H;
     }
 };
 

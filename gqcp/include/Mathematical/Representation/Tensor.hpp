@@ -411,6 +411,34 @@ public:
         return GQCP::Matrix<Scalar>(Eigen::Map<const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>>(this->data(), rows, cols));
     }
 
+    /**
+     *  A numpy-like reshape function that turns a tensor into a matrix using C-like ordering (See numpy documentation: https://numpy.org/doc/stable/reference/generated/numpy.reshape.html).
+     *
+     *  @param rows         The dimension of the matrix rows.
+     *  @param cols         The dimension of the matrix columns.
+     *
+     *  @return This tensor as a matrix of the specified dimensions, ordered using C-like ordering.
+     */
+    const GQCP::Matrix<Scalar> reshape(const int rows, const int cols) const {
+
+        GQCP::Matrix<Scalar> M {rows, cols};
+
+        for (int i = 0; i < this->dimension(0); i++) {
+            for (int j = 0; j < this->dimension(1); j++) {
+                for (int k = 0; k < this->dimension(2); k++) {
+                    for (int l = 0; l < this->dimension(3); l++) {
+                        auto row_index = i + j + i * (this->dimension(1) - 1);
+                        auto col_index = k + l + k * (this->dimension(3) - 1);
+
+                        M(row_index, col_index) = this->operator()(i, j, k, l);
+                    }
+                }
+            }
+        }
+
+        return M;
+    }
+
 
     /*
      *  MARK: General information
