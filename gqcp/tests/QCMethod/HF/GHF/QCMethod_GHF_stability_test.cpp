@@ -51,9 +51,11 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_1) {
 
     ghf_parameters.stabilityProperties().print();
 
-    // const auto int_stability_matrix = GQCP::GHFStabilityMatrix<double>::Internal(ghf_parameters, sq_hamiltonian);
-
     GQCP::QCMethod::GHFStabilityChecks<double>().internalStabilityCheck(ghf_parameters, sq_hamiltonian);
+
+    ghf_parameters.stabilityProperties().print();
+
+    GQCP::QCMethod::GHFStabilityChecks<double>().externalStabilityCheck(ghf_parameters, sq_hamiltonian);
 
     ghf_parameters.stabilityProperties().print();
 }
