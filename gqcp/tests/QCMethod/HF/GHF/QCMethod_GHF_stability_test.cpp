@@ -47,6 +47,6 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_1) {
     const auto qc_structure = GQCP::QCMethod::GHF<double>().optimize(solver, environment);
     const auto ghf_parameters = qc_structure.groundStateParameters();
 
-    auto stability = GQCP::QCMethod::GHFStability<double>().calculatePartialStabilityMatrixA(qc_structure, sq_hamiltonian);
+    auto stability = GQCP::QCMethod::GHFStability<double>().calculatePartialStabilityMatrixB(qc_structure, sq_hamiltonian);
     std::cout << stability << std::endl;
 }
