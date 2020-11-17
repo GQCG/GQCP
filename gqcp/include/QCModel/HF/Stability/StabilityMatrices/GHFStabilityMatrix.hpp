@@ -66,9 +66,12 @@ public:
      */
     static Self SubMatrixA(const GQCP::QCModel::GHF<Scalar>& parameters, const GSQHamiltonian<Scalar>& gsq_hamiltonian) {
 
+        // Create the orbital space to determine the loops.
+        const auto orbital_space = parameters.orbitalSpace(parameters.numberOfSpinors(), parameters.numberOfElectrons());
+
         // Determine the number of occupied and virtual orbitals.
-        const auto& number_of_occupied_orbitals = parameters.numberOfElectrons();
-        const auto& number_of_virtual_orbitals = gsq_hamiltonian.numberOfOrbitals() - number_of_occupied_orbitals;
+        const auto& number_of_occupied_orbitals = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& number_of_virtual_orbitals = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
 
         // We need the two-electron integrals in MO basis, hence why we transform them with the coefficient matrix.
         // The ground state coefficient matrix is obtained from the QCModel.
@@ -102,10 +105,10 @@ public:
 
         // The next step is to create the needed tensor slice.
         GQCP::Tensor<Scalar, 4> A_iajb(number_of_occupied_orbitals, number_of_virtual_orbitals, number_of_occupied_orbitals, number_of_virtual_orbitals);
-        for (int i = 0; i < number_of_occupied_orbitals; i++) {
-            for (int a = number_of_occupied_orbitals; a < parameters.numberOfSpinors(); a++) {
-                for (int j = 0; j < number_of_occupied_orbitals; j++) {
-                    for (int b = number_of_occupied_orbitals; b < parameters.numberOfSpinors(); b++) {
+        for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
+                for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
+                    for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
                         A_iajb(i, a - number_of_occupied_orbitals, j, b - number_of_occupied_orbitals) = g.parameters()(a, i, j, b);
                     }
                 }
@@ -137,9 +140,12 @@ public:
      */
     static Self SubMatrixB(const GQCP::QCModel::GHF<Scalar>& parameters, const GSQHamiltonian<Scalar>& gsq_hamiltonian) {
 
+        // Create the orbital space to determine the loops.
+        const auto orbital_space = parameters.orbitalSpace(parameters.numberOfSpinors(), parameters.numberOfElectrons());
+
         // Determine the number of occupied and virtual orbitals.
-        const auto& number_of_occupied_orbitals = parameters.numberOfElectrons();
-        const auto& number_of_virtual_orbitals = gsq_hamiltonian.numberOfOrbitals() - number_of_occupied_orbitals;
+        const auto& number_of_occupied_orbitals = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& number_of_virtual_orbitals = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
 
         // We need the two-electron integrals in MO basis, hence why we transform them with the coefficient matrix.
         // The ground state coefficient matrix is obtained from the QCModel.
@@ -148,10 +154,10 @@ public:
 
         // The next step is to create the needed tensor slice.
         GQCP::Tensor<Scalar, 4> B_iajb(number_of_occupied_orbitals, number_of_virtual_orbitals, number_of_occupied_orbitals, number_of_virtual_orbitals);
-        for (int i = 0; i < number_of_occupied_orbitals; i++) {
-            for (int a = number_of_occupied_orbitals; a < parameters.numberOfSpinors(); a++) {
-                for (int j = 0; j < number_of_occupied_orbitals; j++) {
-                    for (int b = number_of_occupied_orbitals; b < parameters.numberOfSpinors(); b++) {
+        for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
+                for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
+                    for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
                         B_iajb(i, a - number_of_occupied_orbitals, j, b - number_of_occupied_orbitals) = g.parameters()(a, i, b, j);  // -0.149 & 0.419 switched atm. tensor elements right place, rework reshape function.
                     }
                 }
