@@ -4,3 +4,5 @@ target_sources(gqcp
         RHF.hpp
         UHF.hpp
 )
+
+add_subdirectory(StabilityMatrices)

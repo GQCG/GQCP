@@ -23,8 +23,7 @@
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/HF/GHF/GHF.hpp"
 #include "QCMethod/HF/GHF/GHFSCFSolver.hpp"
-#include "QCMethod/HF/GHF/GHFStabilityChecks.hpp"
-#include "QCModel/HF/Stability/StabilityMatrices/GHFStabilityMatrix.hpp"
+#include "QCModel/HF/StabilityMatrices/GHFStabilityMatrices.hpp"
 
 /**
  *  Starting from a core guess, the GHF SCF algorithm finds a solution that should be both internally and externally unstable for the given system.
@@ -51,24 +50,19 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_1) {
     auto ghf_parameters = qc_structure.groundStateParameters();
 
     // We can now check the stability of the ground state parameters.
-    // Initially, we don't know any of the stability properties.
-    BOOST_CHECK(ghf_parameters.stabilityProperties().internal_stability == GQCP::Stability::unknown);
-    BOOST_CHECK(ghf_parameters.stabilityProperties().external_stability == GQCP::Stability::unknown);
+    // Calculate the stability matrices.
+    const auto stability_matrices = ghf_parameters.calculateStabilityMatrices(sq_hamiltonian);
 
-    // This method should be internally unstable, External should remain unknown.
-    GQCP::QCMethod::GHFStabilityChecks<double>().internal(ghf_parameters, sq_hamiltonian);
+    // This method should be internally unstable.
+    const auto internal_stability = stability_matrices.isInternallyStable();
+    BOOST_CHECK(internal_stability == false);
 
-    BOOST_CHECK(ghf_parameters.stabilityProperties().internal_stability == GQCP::Stability::unstable);
-    BOOST_CHECK(ghf_parameters.stabilityProperties().external_stability == GQCP::Stability::unknown);
-
-    // This wavefunction should also be externally unstable. Internally, it should remain unstable.
-    GQCP::QCMethod::GHFStabilityChecks<double>().external(ghf_parameters, sq_hamiltonian);
-
-    BOOST_CHECK(ghf_parameters.stabilityProperties().internal_stability == GQCP::Stability::unstable);
-    BOOST_CHECK(ghf_parameters.stabilityProperties().external_stability == GQCP::Stability::unstable);
+    // This wavefunction should also be externally unstable.
+    const auto external_stability = stability_matrices.isExternallyStable();
+    BOOST_CHECK(internal_stability == false);
 
     // Check that the stability properties can be printed
-    ghf_parameters.stabilityProperties().print();
+    stability_matrices.printStabilityDescription();
 }
 
 
@@ -108,24 +102,19 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_2) {
     auto ghf_parameters = qc_structure.groundStateParameters();
 
     // We can now check the stability of the ground state parameters.
-    // Initially, we don't know any of the stability properties.
-    BOOST_CHECK(ghf_parameters.stabilityProperties().internal_stability == GQCP::Stability::unknown);
-    BOOST_CHECK(ghf_parameters.stabilityProperties().external_stability == GQCP::Stability::unknown);
+    // Calculate the stability matrices.
+    const auto stability_matrices = ghf_parameters.calculateStabilityMatrices(sq_hamiltonian);
 
-    // This method should be internally unstable, External should remain unknown.
-    GQCP::QCMethod::GHFStabilityChecks<double>().internal(ghf_parameters, sq_hamiltonian);
+    // This method should be internally stable.
+    const auto internal_stability = stability_matrices.isInternallyStable();
+    BOOST_CHECK(internal_stability == true);
 
-    BOOST_CHECK(ghf_parameters.stabilityProperties().internal_stability == GQCP::Stability::stable);
-    BOOST_CHECK(ghf_parameters.stabilityProperties().external_stability == GQCP::Stability::unknown);
-
-    // This wavefunction should also be externally unstable. Internally, it should remain unstable.
-    GQCP::QCMethod::GHFStabilityChecks<double>().external(ghf_parameters, sq_hamiltonian);
-
-    BOOST_CHECK(ghf_parameters.stabilityProperties().internal_stability == GQCP::Stability::stable);
-    BOOST_CHECK(ghf_parameters.stabilityProperties().external_stability == GQCP::Stability::stable);
+    // This wavefunction should also be externally stable.
+    const auto external_stability = stability_matrices.isExternallyStable();
+    BOOST_CHECK(internal_stability == true);
 
     // Check that the stability properties can be printed
-    ghf_parameters.stabilityProperties().print();
+    stability_matrices.printStabilityDescription();
 }
 
 /**
@@ -153,22 +142,17 @@ BOOST_AUTO_TEST_CASE(H2_stability_test) {
     auto ghf_parameters = qc_structure.groundStateParameters();
 
     // We can now check the stability of the ground state parameters.
-    // Initially, we don't know any of the stability properties.
-    BOOST_CHECK(ghf_parameters.stabilityProperties().internal_stability == GQCP::Stability::unknown);
-    BOOST_CHECK(ghf_parameters.stabilityProperties().external_stability == GQCP::Stability::unknown);
+    // Calculate the stability matrices.
+    const auto stability_matrices = ghf_parameters.calculateStabilityMatrices(sq_hamiltonian);
 
-    // This method should be internally unstable, External should remain unknown.
-    GQCP::QCMethod::GHFStabilityChecks<double>().internal(ghf_parameters, sq_hamiltonian);
+    // This method should be internally stable.
+    const auto internal_stability = stability_matrices.isInternallyStable();
+    BOOST_CHECK(internal_stability == true);
 
-    BOOST_CHECK(ghf_parameters.stabilityProperties().internal_stability == GQCP::Stability::stable);
-    BOOST_CHECK(ghf_parameters.stabilityProperties().external_stability == GQCP::Stability::unknown);
-
-    // This wavefunction should also be externally unstable. Internally, it should remain unstable.
-    GQCP::QCMethod::GHFStabilityChecks<double>().external(ghf_parameters, sq_hamiltonian);
-
-    BOOST_CHECK(ghf_parameters.stabilityProperties().internal_stability == GQCP::Stability::stable);
-    BOOST_CHECK(ghf_parameters.stabilityProperties().external_stability == GQCP::Stability::stable);
+    // This wavefunction should also be externally stable.
+    const auto external_stability = stability_matrices.isExternallyStable();
+    BOOST_CHECK(internal_stability == true);
 
     // Check that the stability properties can be printed
-    ghf_parameters.stabilityProperties().print();
+    stability_matrices.printStabilityDescription();
 }
