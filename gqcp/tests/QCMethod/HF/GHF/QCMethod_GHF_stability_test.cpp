@@ -126,7 +126,7 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_2) {
 BOOST_AUTO_TEST_CASE(H2_stability_test) {
 
     // Set up a general spinor basis to obtain a spin-blocked second-quantized molecular Hamiltonian.
-    const auto molecule = GQCP::Molecule::HChain(2, 1.0);  // H3-triangle, 1 bohr apart
+    const auto molecule = GQCP::Molecule::HChain(2, 1.0);  // H2-Chain 1 bohr apart
     const auto N = molecule.numberOfElectrons();
 
     const GQCP::GSpinorBasis<double, GQCP::GTOShell> g_spinor_basis {molecule, "STO-3G"};
