@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "QCModel/HF/Stability/StabilityProperties/StabilityProperties.hpp"
+#include "QCModel/HF/Stability/StabilityProperties/Stability.hpp"
 
 
 namespace GQCP {
