@@ -43,7 +43,7 @@ public:
 
 public:
     /*
-     *  MARK: public methods
+     *  MARK: named constructors
      */
 
     /**
@@ -51,7 +51,7 @@ public:
      *  @param gsq_hamiltonian          The second quantized Hamiltonian containing the needed integrals.
      */
     template <typename S = Scalar, typename = IsReal<S>>
-    void internalStabilityCheck(GQCP::QCModel::GHF<S>& parameters, const GSQHamiltonian<S>& gsq_hamiltonian) {
+    void internal(GQCP::QCModel::GHF<S>& parameters, const GSQHamiltonian<S>& gsq_hamiltonian) {
 
         // Get the stability properties of the given GHF wavefunction.
         auto stability = parameters.stabilityProperties();
@@ -81,7 +81,7 @@ public:
      *  @param gsq_hamiltonian          The second quantized Hamiltonian containing the needed integrals.
      */
     template <typename S = Scalar, typename = IsReal<S>>
-    void externalStabilityCheck(GQCP::QCModel::GHF<S>& parameters, const GSQHamiltonian<S>& gsq_hamiltonian) {
+    void external(GQCP::QCModel::GHF<S>& parameters, const GSQHamiltonian<S>& gsq_hamiltonian) {
 
         // Get the stability properties of the given GHF wavefunction.
         auto stability = parameters.stabilityProperties();
@@ -111,7 +111,7 @@ public:
      *  @param gsq_hamiltonian          The second quantized Hamiltonian containing the needed integrals.
      */
     template <typename S = Scalar, typename = IsComplex<S>>
-    void internalStabilityCheck(GQCP::QCModel::GHF<complex>& parameters, const GSQHamiltonian<double>& gsq_hamiltonian) {
+    void internal(GQCP::QCModel::GHF<complex>& parameters, const GSQHamiltonian<double>& gsq_hamiltonian) {
 
         // Get the stability properties of the given GHF wavefunction.
         auto stability = parameters.stabilityProperties();

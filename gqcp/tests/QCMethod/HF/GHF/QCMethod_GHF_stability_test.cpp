@@ -56,13 +56,13 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_1) {
     BOOST_CHECK(ghf_parameters.stabilityProperties().external_stability == GQCP::Stability::unknown);
 
     // This method should be internally unstable, External should remain unknown.
-    GQCP::QCMethod::GHFStabilityChecks<double>().internalStabilityCheck(ghf_parameters, sq_hamiltonian);
+    GQCP::QCMethod::GHFStabilityChecks<double>().internal(ghf_parameters, sq_hamiltonian);
 
     BOOST_CHECK(ghf_parameters.stabilityProperties().internal_stability == GQCP::Stability::unstable);
     BOOST_CHECK(ghf_parameters.stabilityProperties().external_stability == GQCP::Stability::unknown);
 
     // This wavefunction should also be externally unstable. Internally, it should remain unstable.
-    GQCP::QCMethod::GHFStabilityChecks<double>().externalStabilityCheck(ghf_parameters, sq_hamiltonian);
+    GQCP::QCMethod::GHFStabilityChecks<double>().external(ghf_parameters, sq_hamiltonian);
 
     BOOST_CHECK(ghf_parameters.stabilityProperties().internal_stability == GQCP::Stability::unstable);
     BOOST_CHECK(ghf_parameters.stabilityProperties().external_stability == GQCP::Stability::unstable);
@@ -113,13 +113,13 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_2) {
     BOOST_CHECK(ghf_parameters.stabilityProperties().external_stability == GQCP::Stability::unknown);
 
     // This method should be internally unstable, External should remain unknown.
-    GQCP::QCMethod::GHFStabilityChecks<double>().internalStabilityCheck(ghf_parameters, sq_hamiltonian);
+    GQCP::QCMethod::GHFStabilityChecks<double>().internal(ghf_parameters, sq_hamiltonian);
 
     BOOST_CHECK(ghf_parameters.stabilityProperties().internal_stability == GQCP::Stability::stable);
     BOOST_CHECK(ghf_parameters.stabilityProperties().external_stability == GQCP::Stability::unknown);
 
     // This wavefunction should also be externally unstable. Internally, it should remain unstable.
-    GQCP::QCMethod::GHFStabilityChecks<double>().externalStabilityCheck(ghf_parameters, sq_hamiltonian);
+    GQCP::QCMethod::GHFStabilityChecks<double>().external(ghf_parameters, sq_hamiltonian);
 
     BOOST_CHECK(ghf_parameters.stabilityProperties().internal_stability == GQCP::Stability::stable);
     BOOST_CHECK(ghf_parameters.stabilityProperties().external_stability == GQCP::Stability::stable);
@@ -158,13 +158,13 @@ BOOST_AUTO_TEST_CASE(H2_stability_test) {
     BOOST_CHECK(ghf_parameters.stabilityProperties().external_stability == GQCP::Stability::unknown);
 
     // This method should be internally unstable, External should remain unknown.
-    GQCP::QCMethod::GHFStabilityChecks<double>().internalStabilityCheck(ghf_parameters, sq_hamiltonian);
+    GQCP::QCMethod::GHFStabilityChecks<double>().internal(ghf_parameters, sq_hamiltonian);
 
     BOOST_CHECK(ghf_parameters.stabilityProperties().internal_stability == GQCP::Stability::stable);
     BOOST_CHECK(ghf_parameters.stabilityProperties().external_stability == GQCP::Stability::unknown);
 
     // This wavefunction should also be externally unstable. Internally, it should remain unstable.
-    GQCP::QCMethod::GHFStabilityChecks<double>().externalStabilityCheck(ghf_parameters, sq_hamiltonian);
+    GQCP::QCMethod::GHFStabilityChecks<double>().external(ghf_parameters, sq_hamiltonian);
 
     BOOST_CHECK(ghf_parameters.stabilityProperties().internal_stability == GQCP::Stability::stable);
     BOOST_CHECK(ghf_parameters.stabilityProperties().external_stability == GQCP::Stability::stable);
