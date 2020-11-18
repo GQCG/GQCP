@@ -20,6 +20,7 @@
 
 #include "Basis/Transformations/GTransformationMatrix.hpp"
 #include "DensityMatrix/G1DM.hpp"
+#include "Mathematical/Representation/ImplicitRankFourTensorSlice.hpp"
 #include "Operator/FirstQuantized/ElectronicSpinOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCModel/HF/StabilityMatrices/GHFStabilityMatrices.hpp"
@@ -368,16 +369,20 @@ public:
         const auto& F_values = this->calculateFValues();
 
         // The next step is to create the needed tensor slice.
-        GQCP::Tensor<Scalar, 4> A_iajb(n_occ, n_virt, n_occ, n_virt);
+        // zero-initialize an occupied-virtual-occupied-virtual object
+        auto A_iajb_slice = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_occupied, OccupationType::k_virtual);
         for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                        A_iajb(i, a - n_occ, j, b - n_occ) = g.parameters()(a, i, j, b);
+                        A_iajb_slice(i, a, j, b) = g.parameters()(a, i, j, b);
                     }
                 }
             }
         }
+
+        // Turn the ImplicitRankFourTensorSlice in an actual Tensor
+        auto A_iajb = A_iajb_slice.asTensor();
 
         // Add the previously calculated F values on the correct positions.
         for (int a = 0; a < n_occ; a++) {
@@ -416,16 +421,19 @@ public:
         const auto& g = gsq_hamiltonian.twoElectron().transformed(this->coefficientMatrix()).antisymmetrized();
 
         // The next step is to create the needed tensor slice.
-        GQCP::Tensor<Scalar, 4> B_iajb(n_occ, n_virt, n_occ, n_virt);
+        auto B_iajb_slice = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_occupied, OccupationType::k_virtual);
         for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                        B_iajb(i, a - n_occ, j, b - n_occ) = g.parameters()(a, i, b, j);
+                        B_iajb_slice(i, a, j, b) = g.parameters()(a, i, b, j);
                     }
                 }
             }
         }
+
+        // Turn the ImplicitRankFourTensorSlice in an actual Tensor
+        auto B_iajb = B_iajb_slice.asTensor();
 
         // Finally, reshape the tensor to a matrix.
         const GQCP::MatrixX<Scalar> B_matrix = B_iajb.reshape(n_occ * n_virt, n_occ * n_virt);
