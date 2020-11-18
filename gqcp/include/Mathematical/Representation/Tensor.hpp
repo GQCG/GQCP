@@ -419,7 +419,7 @@ public:
      *
      *  @return This tensor as a matrix of the specified dimensions, ordered using C-like ordering.
      */
-    const GQCP::Matrix<Scalar> reshape(const int rows, const int cols) const {
+    const GQCP::Matrix<Scalar> reshape(const size_t rows, const size_t cols) const {
 
         GQCP::Matrix<Scalar> M {rows, cols};
 
@@ -427,8 +427,8 @@ public:
             for (int j = 0; j < this->dimension(1); j++) {
                 for (int k = 0; k < this->dimension(2); k++) {
                     for (int l = 0; l < this->dimension(3); l++) {
-                        auto row_index = i + j + i * (this->dimension(1) - 1);
-                        auto col_index = k + l + k * (this->dimension(3) - 1);
+                        const auto row_index = i + j + i * (this->dimension(1) - 1);
+                        const auto col_index = k + l + k * (this->dimension(3) - 1);
 
                         M(row_index, col_index) = this->operator()(i, j, k, l);
                     }

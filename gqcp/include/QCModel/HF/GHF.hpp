@@ -324,17 +324,16 @@ public:
      *  @note The formula for the `A` matrix is as follows:
      *      A_IAJB = \delta_IJ * F_BA - \delta_BA * F_IJ + (AI||JB)
      * 
-     *  @param ghf_structure        The GHF QCStructure which contains the ground state parameters of the performed GHF calculation.
      *  @param gsq_hamiltonian      The generalised, second quantized hamiltonian, which contains the necessary two electron operators.
      */
     const GQCP::MatrixX<Scalar> calculatePartialStabilityMatrixA(const GSQHamiltonian<Scalar>& gsq_hamiltonian) const {
 
         // Create the orbital space to determine the loops.
-        const auto orbital_space = this->orbitalSpace(this->numberOfSpinors(), this->numberOfElectrons());
+        const auto orbital_space = this->orbitalSpace();
 
         // Determine the number of occupied and virtual orbitals.
-        const auto& number_of_occupied_orbitals = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
-        const auto& number_of_virtual_orbitals = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
 
         // We need the two-electron integrals in MO basis, hence why we transform them with the coefficient matrix.
         // The ground state coefficient matrix is obtained from the QCModel.
@@ -385,7 +384,7 @@ public:
             }
         }
 
-        //Finally, reshape the tensor to a matrix.
+        // Finally, reshape the tensor to a matrix.
         const GQCP::MatrixX<Scalar> A_matrix = A_iajb.reshape(number_of_occupied_orbitals * number_of_virtual_orbitals, number_of_occupied_orbitals * number_of_virtual_orbitals);
 
         return A_matrix;
@@ -398,13 +397,12 @@ public:
      *  @note The formula for the `B` matrix is as follows:
      *      B_IAJB = (AI||BJ)
      *
-     *  @param ghf_structure        The GHF QCStructure which contains the ground state parameters of the performed GHF calculation.
      *  @param gsq_hamiltonian      The generalised, second quantized hamiltonian, which contains the necessary two electron operators.
      */
     const GQCP::MatrixX<Scalar> calculatePartialStabilityMatrixB(const GSQHamiltonian<Scalar>& gsq_hamiltonian) const {
 
         // Create the orbital space to determine the loops.
-        const auto orbital_space = this->orbitalSpace(this->numberOfSpinors(), this->numberOfElectrons());
+        const auto orbital_space = this->orbitalSpace();
 
         // Determine the number of occupied and virtual orbitals.
         const auto& number_of_occupied_orbitals = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
@@ -427,7 +425,7 @@ public:
             }
         }
 
-        //Finally, reshape the tensor to a matrix.
+        // Finally, reshape the tensor to a matrix.
         const GQCP::MatrixX<Scalar> B_matrix = B_iajb.reshape(number_of_occupied_orbitals * number_of_virtual_orbitals, number_of_occupied_orbitals * number_of_virtual_orbitals);
 
         return B_matrix;
@@ -445,7 +443,9 @@ public:
 
 
     /**
-     *  @return the GHF stability matrices of this wavefunction model.
+     *  Calculate the GHF stability matrices and return them.
+     *
+     *  @return The GHF stability matrices.
      */
     GHFStabilityMatrices<Scalar> calculateStabilityMatrices(const GSQHamiltonian<Scalar>& gsq_hamiltonian) const {
         return GHFStabilityMatrices<Scalar> {this->calculatePartialStabilityMatrixA(gsq_hamiltonian), this->calculatePartialStabilityMatrixB(gsq_hamiltonian)};

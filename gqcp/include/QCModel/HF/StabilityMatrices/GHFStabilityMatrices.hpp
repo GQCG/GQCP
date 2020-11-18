@@ -28,12 +28,12 @@ namespace GQCP {
 /**
  *  The generalized Hartree-Fock stability matrices.
  * 
- *  @tparam _Scalar             the type of scalar that is used for the components of the stability matrix.
+ *  @tparam _Scalar             The type of scalar that is used for the elements of the stability matrices: real or complex.
  */
 template <typename _Scalar>
 class GHFStabilityMatrices {
 public:
-    // The scalar type used for a stability matrix element: real or complex.
+    // The type of scalar that is used for the elements of the stability matrices: real or complex.
     using Scalar = _Scalar;
 
     // The type of one of the two components
@@ -97,7 +97,7 @@ public:
      *  @note The internal stability condition of the real GHF method is checked using A+B.
      */
     template <typename S = Scalar>
-    enable_if_t<std::is_same<S, double>::value, MatrixX<double>> Internal() const { return this->subMatrixA() + this->subMatrixB(); }
+    enable_if_t<std::is_same<S, double>::value, MatrixX<double>> internal() const { return this->subMatrixA() + this->subMatrixB(); }
 
 
     /**
@@ -106,7 +106,7 @@ public:
      *  @note The external stability condition of the real GHF method is checked using A-B.
      */
     template <typename S = Scalar>
-    enable_if_t<std::is_same<S, double>::value, MatrixX<double>> External() const { return this->subMatrixA() - this->subMatrixB(); }
+    enable_if_t<std::is_same<S, double>::value, MatrixX<double>> external() const { return this->subMatrixA() - this->subMatrixB(); }
 
 
     /**
@@ -116,7 +116,7 @@ public:
      *                                                                                 (B^*, A^*)
      */
     template <typename S = Scalar>
-    enable_if_t<std::is_same<S, complex>::value, MatrixX<complex>> Internal() const {
+    enable_if_t<std::is_same<S, complex>::value, MatrixX<complex>> internal() const {
 
         // Calculate the necessary partial stability matrices.
         const auto A = this->subMatrixA();
@@ -149,7 +149,7 @@ public:
     enable_if_t<std::is_same<S, double>::value, bool> isInternallyStable() const {
 
         // The first step is to calculate the correct stability matrix: This method checks the internal stability of a real valued wavefunction.
-        const auto stability_matrix = this->Internal();
+        const auto stability_matrix = this->internal();
 
         // Create an eigensolver to diagonalize the stability matrix.
         using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
@@ -173,7 +173,7 @@ public:
     enable_if_t<std::is_same<S, double>::value, bool> isExternallyStable() const {
 
         // The first step is to calculate the correct stability matrix: This method checks the internal stability of a real valued wavefunction.
-        const auto stability_matrix = this->External();
+        const auto stability_matrix = this->external();
 
         // Create an eigensolver to diagonalize the stability matrix.
         using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
@@ -197,7 +197,7 @@ public:
     enable_if_t<std::is_same<S, complex>::value, bool> isInternallyStable() const {
 
         // The first step is to calculate the correct stability matrix: This method checks the internal stability of a real valued wavefunction.
-        const auto stability_matrix = this->Internal();
+        const auto stability_matrix = this->internal();
 
         // Create an eigensolver to diagonalize the stability matrix.
         using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
