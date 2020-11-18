@@ -72,19 +72,9 @@ public:
     const Matrix& subMatrixA() const { return this->A; }
 
     /**
-     *  @return A writable reference to the A submatrix.
-     */
-    Matrix& subMatrixA() { return this->A; }
-
-    /**
      *  @return A read-only reference to the B submatrix.
      */
     const Matrix& subMatrixB() const { return this->B; }
-
-    /**
-     *  @return A writable reference to the B submatrix.
-     */
-    Matrix& subMatrixB() { return this->B; }
 
 
     /*
@@ -145,24 +135,13 @@ public:
     /**
      *  @return a boolean, telling us whether or not the real valued internal stability matrix belongs to a stable or unstable set of parameters.
      */
-    template <typename S = Scalar>
-    enable_if_t<std::is_same<S, double>::value, bool> isInternallyStable() const {
+    const bool isInternallyStable(const double threshold = -1.0e-5) const {
 
         // The first step is to calculate the correct stability matrix: This method checks the internal stability of a real valued wavefunction.
         const auto stability_matrix = this->internal();
 
-        // Create an eigensolver to diagonalize the stability matrix.
-        using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
-        Eigen::SelfAdjointEigenSolver<MatrixType> eigensolver {stability_matrix};
-
-        // Calculate the eigenvalues and check whether they are strictly positive or not, we update the stability properties accordingly.
-        const auto& eigenvalues = eigensolver.eigenvalues().transpose();
-
-        if (eigenvalues[0] < -1.0e-5) {
-            return false;
-        } else {
-            return true;
-        }
+        // Check whether or not the stability matrix is positive semi-definite. This indicates stability.
+        return stability_matrix.isPositiveSemiDefinite(threshold);
     }
 
 
@@ -170,47 +149,13 @@ public:
      *  @return a boolean, telling us whether or not the real valued external stability matrix belongs to a stable or unstable set of parameters.
      */
     template <typename S = Scalar>
-    enable_if_t<std::is_same<S, double>::value, bool> isExternallyStable() const {
+    enable_if_t<std::is_same<S, double>::value, bool> isExternallyStable(const double threshold = -1.0e-5) const {
 
         // The first step is to calculate the correct stability matrix: This method checks the internal stability of a real valued wavefunction.
         const auto stability_matrix = this->external();
 
-        // Create an eigensolver to diagonalize the stability matrix.
-        using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
-        Eigen::SelfAdjointEigenSolver<MatrixType> eigensolver {stability_matrix};
-
-        // Calculate the eigenvalues and check whether they are strictly positive or not, we update the stability properties accordingly.
-        const auto& eigenvalues = eigensolver.eigenvalues().transpose();
-
-        if (eigenvalues[0] < -1.0e-5) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-
-    /**
-     *  @return a boolean, telling us whether or not the complex valued internal stability matrix belongs to a stable or unstable set of parameters.
-     */
-    template <typename S = Scalar>
-    enable_if_t<std::is_same<S, complex>::value, bool> isInternallyStable() const {
-
-        // The first step is to calculate the correct stability matrix: This method checks the internal stability of a real valued wavefunction.
-        const auto stability_matrix = this->internal();
-
-        // Create an eigensolver to diagonalize the stability matrix.
-        using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
-        Eigen::SelfAdjointEigenSolver<MatrixType> eigensolver {stability_matrix};
-
-        // Calculate the eigenvalues and check whether they are strictly positive or not, we update the stability properties accordingly.
-        const auto& eigenvalues = eigensolver.eigenvalues().transpose();
-
-        if (eigenvalues[0] < -1.0e-5) {
-            return false;
-        } else {
-            return true;
-        }
+        // Check whether or not the stability matrix is positive semi-definite. This indicates stability.
+        return stability_matrix.isPositiveSemiDefinite(threshold);
     }
 
 

@@ -42,9 +42,8 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_1) {
 
     const auto sq_hamiltonian = GQCP::GSQHamiltonian<double>::Molecular(g_spinor_basis, molecule);
 
-    auto environment = GQCP::GHFSCFEnvironment<double>::WithCoreGuess(N, sq_hamiltonian, S);
-
     // Perform a GHF SCF calculation
+    auto environment = GQCP::GHFSCFEnvironment<double>::WithCoreGuess(N, sq_hamiltonian, S);
     auto solver = GQCP::GHFSCFSolver<double>::Plain(1.0e-08, 3000);
     const auto qc_structure = GQCP::QCMethod::GHF<double>().optimize(solver, environment);
     auto ghf_parameters = qc_structure.groundStateParameters();
@@ -95,8 +94,8 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_2) {
                   0.18059725, -0.8326703,   0.16282789, -0.03436191, -0.27832567, -0.41095738,
                   0.19477298,  0.13713633, -0.4018331,   0.77416187,  0.01572939, -0.42686445;
     // clang-format on
-    GQCP::GHFSCFEnvironment<double> environment {N, sq_hamiltonian, S, C_initial};
 
+    GQCP::GHFSCFEnvironment<double> environment {N, sq_hamiltonian, S, C_initial};
     auto solver = GQCP::GHFSCFSolver<double>::Plain(1.0e-08, 4000);
     const auto qc_structure = GQCP::QCMethod::GHF<double>().optimize(solver, environment);
     auto ghf_parameters = qc_structure.groundStateParameters();
@@ -134,9 +133,8 @@ BOOST_AUTO_TEST_CASE(H2_stability_test) {
 
     const auto sq_hamiltonian = GQCP::GSQHamiltonian<double>::Molecular(g_spinor_basis, molecule);
 
-    auto environment = GQCP::GHFSCFEnvironment<double>::WithCoreGuess(N, sq_hamiltonian, S);
-
     // Perform a GHF SCF calculation
+    auto environment = GQCP::GHFSCFEnvironment<double>::WithCoreGuess(N, sq_hamiltonian, S);
     auto solver = GQCP::GHFSCFSolver<double>::Plain(1.0e-08, 3000);
     const auto qc_structure = GQCP::QCMethod::GHF<double>().optimize(solver, environment);
     auto ghf_parameters = qc_structure.groundStateParameters();

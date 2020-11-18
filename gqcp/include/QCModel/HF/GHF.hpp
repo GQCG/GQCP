@@ -308,6 +308,29 @@ public:
 
 
     /**
+     *  @return the eigenvalues of the one-electron Fock Operator as a matrix.
+     */
+    const GQCP::MatrixX<Scalar> calculateFValues() const {
+
+        // Create the orbital space to determine the loops.
+        const auto orbital_space = this->orbitalSpace();
+
+        // Determine the number of occupied and virtual orbitals.
+        const auto& n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
+
+        // Create the F matrix
+        GQCP::MatrixX<Scalar> F_values(n_occ, n_virt);
+        for (int a = 0; a < n_occ; a++) {
+            for (int i = 0; i < n_virt; i++) {
+                F_values(a, i) = this->virtualOrbitalEnergies()[a] + (-1 * this->occupiedOrbitalEnergies()[i]);
+            }
+        }
+        return F_values;
+    }
+
+
+    /**
      *  @return the 1-DM expressed in an orthonormal spinor basis related to these optimal GHF parameters
      */
     G1DM<Scalar> calculateOrthonormalBasis1DM() const {
@@ -340,52 +363,31 @@ public:
         // We need the anti-symmetrized tensor: (AI||JB) = (AI|JB) - (AB|JI). This is obtained by the `.antisymmetrized()` method.
         const auto& g = gsq_hamiltonian.twoElectron().transformed(this->coefficientMatrix()).antisymmetrized();
 
-        // The elements F_BA and F_IJ are the eigenvalues of the one-electron Fock operator. This can be done using the MO energies.
-        // The MO energies are contained within the QC Structure.
-        std::vector<Scalar> mo_energies;  // We use a std::vector in order to be able to slice the vector later on.
-
-        for (int i = 0; i < this->numberOfSpinors(); i++) {
-            mo_energies.push_back(this->orbitalEnergy(i));
-        }
-
-        // The MO energies should be split in the respective real and virtual parts.
-        std::vector<Scalar> mo_energies_occupied;
-        std::copy(mo_energies.begin(), mo_energies.begin() + number_of_occupied_orbitals, std::back_inserter(mo_energies_occupied));
-
-        std::vector<Scalar> mo_energies_virtual;
-        std::copy(mo_energies.begin() + number_of_occupied_orbitals, mo_energies.end(), std::back_inserter(mo_energies_virtual));
-
-        // We create a matrix containing the correct elements needed in the formula.
-        // These values will be added to the final tensor in the last step of this calculation.
-        GQCP::MatrixX<Scalar> F_values(number_of_virtual_orbitals, number_of_occupied_orbitals);
-
-        for (int a = 0; a < number_of_virtual_orbitals; a++) {
-            for (int i = 0; i < number_of_occupied_orbitals; i++) {
-                F_values(a, i) = mo_energies_virtual[a] + (-1 * mo_energies_occupied[i]);
-            }
-        }
+        // The elements F_BA and F_IJ are the eigenvalues of the one-electron Fock operator.
+        // The calculateFValues API can be used to find these values
+        const auto& F_values = this->calculateFValues();
 
         // The next step is to create the needed tensor slice.
-        GQCP::Tensor<Scalar, 4> A_iajb(number_of_occupied_orbitals, number_of_virtual_orbitals, number_of_occupied_orbitals, number_of_virtual_orbitals);
+        GQCP::Tensor<Scalar, 4> A_iajb(n_occ, n_virt, n_occ, n_virt);
         for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                        A_iajb(i, a - number_of_occupied_orbitals, j, b - number_of_occupied_orbitals) = g.parameters()(a, i, j, b);
+                        A_iajb(i, a - n_occ, j, b - n_occ) = g.parameters()(a, i, j, b);
                     }
                 }
             }
         }
 
-        // Add the previously calculated F elements on the correct positions.
-        for (int a = 0; a < number_of_virtual_orbitals; a++) {
-            for (int i = 0; i < number_of_occupied_orbitals; i++) {
+        // Add the previously calculated F values on the correct positions.
+        for (int a = 0; a < n_occ; a++) {
+            for (int i = 0; i < n_virt; i++) {
                 A_iajb(i, a, i, a) += F_values(a, i);
             }
         }
 
         // Finally, reshape the tensor to a matrix.
-        const GQCP::MatrixX<Scalar> A_matrix = A_iajb.reshape(number_of_occupied_orbitals * number_of_virtual_orbitals, number_of_occupied_orbitals * number_of_virtual_orbitals);
+        const GQCP::MatrixX<Scalar> A_matrix = A_iajb.reshape(n_occ * n_virt, n_occ * n_virt);
 
         return A_matrix;
     }
@@ -405,8 +407,8 @@ public:
         const auto orbital_space = this->orbitalSpace();
 
         // Determine the number of occupied and virtual orbitals.
-        const auto& number_of_occupied_orbitals = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
-        const auto& number_of_virtual_orbitals = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
 
         // We need the two-electron integrals in MO basis, hence why we transform them with the coefficient matrix.
         // The ground state coefficient matrix is obtained from the QCModel.
@@ -414,19 +416,19 @@ public:
         const auto& g = gsq_hamiltonian.twoElectron().transformed(this->coefficientMatrix()).antisymmetrized();
 
         // The next step is to create the needed tensor slice.
-        GQCP::Tensor<Scalar, 4> B_iajb(number_of_occupied_orbitals, number_of_virtual_orbitals, number_of_occupied_orbitals, number_of_virtual_orbitals);
+        GQCP::Tensor<Scalar, 4> B_iajb(n_occ, n_virt, n_occ, n_virt);
         for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                        B_iajb(i, a - number_of_occupied_orbitals, j, b - number_of_occupied_orbitals) = g.parameters()(a, i, b, j);
+                        B_iajb(i, a - n_occ, j, b - n_occ) = g.parameters()(a, i, b, j);
                     }
                 }
             }
         }
 
         // Finally, reshape the tensor to a matrix.
-        const GQCP::MatrixX<Scalar> B_matrix = B_iajb.reshape(number_of_occupied_orbitals * number_of_virtual_orbitals, number_of_occupied_orbitals * number_of_virtual_orbitals);
+        const GQCP::MatrixX<Scalar> B_matrix = B_iajb.reshape(n_occ * n_virt, n_occ * n_virt);
 
         return B_matrix;
     }
@@ -468,6 +470,26 @@ public:
     size_t numberOfSpinors() const { return this->orbital_energies.size(); }
 
     /**
+     *  @return the orbital energies belonging to the occupied orbitals
+     */
+    std::vector<double> occupiedOrbitalEnergies() const {
+
+        // Determine the number of occupied orbitals
+        const auto& n_occ = this->orbitalSpace().numberOfOrbitals(OccupationType::k_occupied);
+
+        std::vector<double> mo_energies;  // We use a std::vector in order to be able to slice the vector later on.
+        for (int i = 0; i < this->numberOfSpinors(); i++) {
+            mo_energies.push_back(this->orbitalEnergy(i));
+        }
+
+        // Add the values with indices smaller than the occupied orbital indices, to the new vector.
+        std::vector<double> mo_energies_occupied;
+        std::copy(mo_energies.begin(), mo_energies.begin() + n_occ, std::back_inserter(mo_energies_occupied));
+        return mo_energies_occupied;
+    }
+
+
+    /**
      *  @return the orbital energies
      */
     const VectorX<double>& orbitalEnergies() const { return this->orbital_energies; }
@@ -483,6 +505,25 @@ public:
      *  @return the implicit occupied-virtual orbital space that is associated to these GHF model parameters
      */
     OrbitalSpace orbitalSpace() const { return GHF<Scalar>::orbitalSpace(this->numberOfSpinors(), this->numberOfElectrons()); }
+
+    /**
+     *  @return the orbital energies belonging to the virtual orbitals
+     */
+    std::vector<double> virtualOrbitalEnergies() const {
+
+        // Determine the number of occupied orbitals
+        const auto& n_occ = this->orbitalSpace().numberOfOrbitals(OccupationType::k_occupied);
+
+        std::vector<double> mo_energies;  // We use a std::vector in order to be able to slice the vector later on.
+        for (int i = 0; i < this->numberOfSpinors(); i++) {
+            mo_energies.push_back(this->orbitalEnergy(i));
+        }
+
+        // Add the values with indices greater than the occupied orbital indices, i.e. the virtual orbital indices, to the new vector.
+        std::vector<double> mo_energies_virtual;
+        std::copy(mo_energies.begin() + n_occ, mo_energies.end(), std::back_inserter(mo_energies_virtual));
+        return mo_energies_virtual;
+    }
 };
 
 }  // namespace QCModel
