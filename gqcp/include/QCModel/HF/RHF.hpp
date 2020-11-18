@@ -120,29 +120,6 @@ public:
 
 
     /**
-     *  @return the eigenvalues of the one-electron Fock Operator as a matrix.
-     */
-    const GQCP::MatrixX<Scalar> calculateFValues() const {
-
-        // Create the orbital space to determine the loops.
-        const auto orbital_space = this->orbitalSpace();
-
-        // Determine the number of occupied and virtual orbitals.
-        const auto& n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
-        const auto& n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
-
-        // Create the F matrix
-        GQCP::MatrixX<Scalar> F_values(n_occ, n_virt);
-        for (int a = 0; a < n_occ; a++) {
-            for (int i = 0; i < n_virt; i++) {
-                F_values(a, i) = this->virtualOrbitalEnergies()[a] + (-1 * this->occupiedOrbitalEnergies()[i]);
-            }
-        }
-        return F_values;
-    }
-
-
-    /**
      *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
      *  @param N_P                  the number of electron pairs
      *  @param a                    the first virtual orbital index
@@ -341,6 +318,29 @@ public:
 
 
     /**
+     *  @return the eigenvalues of the one-electron Fock Operator as a matrix.
+     */
+    const GQCP::MatrixX<Scalar> calculateFValues() const {
+
+        // Create the orbital space to determine the loops.
+        const auto orbital_space = this->orbitalSpace();
+
+        // Determine the number of occupied and virtual orbitals.
+        const auto& n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
+
+        // Create the F matrix
+        GQCP::MatrixX<Scalar> F_values(n_virt, n_occ);
+        for (int a = 0; a < n_virt; a++) {
+            for (int i = 0; i < n_occ; i++) {
+                F_values(a, i) = this->virtualOrbitalEnergies()[a] + (-1 * this->occupiedOrbitalEnergies()[i]);
+            }
+        }
+        return F_values;
+    }
+
+
+    /**
      *  @return the RHF 1-DM in the scalar/AO basis related to these optimal RHF parameters
      */
     Orbital1DM<Scalar> calculateScalarBasis1DM() const {
@@ -377,34 +377,23 @@ public:
 
         // The next step is to create the needed tensor slices.
         // Zero-initialize an occupied-virtual-occupied-virtual object.
-        auto singlet_A_slice_1 = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_occupied, OccupationType::k_virtual);
+        auto singlet_A_slice = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_occupied, OccupationType::k_virtual);
         for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                        singlet_A_slice_1(i, a, j, b) = 2 * g.parameters()(a, i, j, b) - 1 * g.parameters()(a, b, j, i);
+                        singlet_A_slice(i, a, j, b) = 2 * g.parameters()(a, i, j, b) - 1 * g.parameters()(a, b, j, i);
                     }
                 }
             }
         }
 
-        // auto singlet_A_slice_2 = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_occupied, OccupationType::k_virtual);
-        // for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
-        //     for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
-        //         for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
-        //             for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-        //                 singlet_A_slice_2(i, a, j, b) = -1 * g.parameters()(a, b, j, i);
-        //             }
-        //         }
-        //     }
-        // }
-
         // Turn the ImplicitRankFourTensorSlices in an actual Tensor and add them together.
-        auto singlet_A_iajb = singlet_A_slice_1.asTensor();  // + singlet_A_slice_2.asTensor();
+        auto singlet_A_iajb = singlet_A_slice.asTensor();  // + singlet_A_slice_2.asTensor();
 
         // Add the previously calculated F values on the correct positions.
-        for (int a = 0; a < n_occ; a++) {
-            for (int i = 0; i < n_virt; i++) {
+        for (int a = 0; a < n_virt; a++) {
+            for (int i = 0; i < n_occ; i++) {
                 singlet_A_iajb(i, a, i, a) += F_values(a, i);
             }
         }
@@ -439,30 +428,19 @@ public:
 
         // The next step is to create the needed tensor slices.
         // Zero-initialize an occupied-virtual-occupied-virtual object.
-        auto singlet_B_slice_1 = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_occupied, OccupationType::k_virtual);
+        auto singlet_B_slice = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_occupied, OccupationType::k_virtual);
         for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                        singlet_B_slice_1(i, a, j, b) = 2 * g.parameters()(a, i, b, j) - 1 * g.parameters()(a, j, b, i);
+                        singlet_B_slice(i, a, j, b) = 2 * g.parameters()(a, i, b, j) - 1 * g.parameters()(a, j, b, i);
                     }
                 }
             }
         }
 
-        // auto singlet_B_slice_2 = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_occupied, OccupationType::k_virtual);
-        // for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
-        //     for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
-        //         for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
-        //             for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-        //                 singlet_B_slice_2(i, a, j, b) = -1 * g.parameters()(a, j, b, i);
-        //             }
-        //         }
-        //     }
-        // }
-
         // Turn the ImplicitRankFourTensorSlices in an actual Tensor and add them together.
-        auto singlet_B_iajb = singlet_B_slice_1.asTensor();  // + singlet_B_slice_2.asTensor();
+        auto singlet_B_iajb = singlet_B_slice.asTensor();  // + singlet_B_slice_2.asTensor();
 
         // Finally, reshape the tensor to a matrix.
         const GQCP::MatrixX<Scalar> singlet_B_matrix = singlet_B_iajb.reshape(n_occ * n_virt, n_occ * n_virt);
@@ -513,8 +491,8 @@ public:
         auto triplet_A_iajb = triplet_A_slice.asTensor();
 
         // Add the previously calculated F values on the correct positions.
-        for (int a = 0; a < n_occ; a++) {
-            for (int i = 0; i < n_virt; i++) {
+        for (int a = 0; a < n_virt; a++) {
+            for (int i = 0; i < n_occ; i++) {
                 triplet_A_iajb(i, a, i, a) += F_values(a, i);
             }
         }

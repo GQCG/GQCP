@@ -321,9 +321,9 @@ public:
         const auto& n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
 
         // Create the F matrix
-        GQCP::MatrixX<Scalar> F_values(n_occ, n_virt);
-        for (int a = 0; a < n_occ; a++) {
-            for (int i = 0; i < n_virt; i++) {
+        GQCP::MatrixX<Scalar> F_values(n_virt, n_occ);
+        for (int a = 0; a < n_virt; a++) {
+            for (int i = 0; i < n_occ; i++) {
                 F_values(a, i) = this->virtualOrbitalEnergies()[a] + (-1 * this->occupiedOrbitalEnergies()[i]);
             }
         }
@@ -385,8 +385,8 @@ public:
         auto A_iajb = A_iajb_slice.asTensor();
 
         // Add the previously calculated F values on the correct positions.
-        for (int a = 0; a < n_occ; a++) {
-            for (int i = 0; i < n_virt; i++) {
+        for (int a = 0; a < n_virt; a++) {
+            for (int i = 0; i < n_occ; i++) {
                 A_iajb(i, a, i, a) += F_values(a, i);
             }
         }
