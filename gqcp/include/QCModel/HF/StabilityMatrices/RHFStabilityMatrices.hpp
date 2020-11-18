@@ -116,7 +116,7 @@ public:
      *  @note The real->complex external stability condition of the real RHF method is checked using singlet_A - singlet_B.
      */
     template <typename S = Scalar>
-    enable_if_t<std::is_same<S, double>::value, MatrixX<double>> realComplexExternal() const { return this->singletA() - this->singletB(); }
+    enable_if_t<std::is_same<S, double>::value, MatrixX<double>> realComplex() const { return this->singletA() - this->singletB(); }
 
 
     /**
@@ -125,7 +125,7 @@ public:
      *  @note The restricted->unrestricted external stability condition of the real RHF method is checked using triplet_A + triplet_B.
      */
     template <typename S = Scalar>
-    enable_if_t<std::is_same<S, double>::value, MatrixX<double>> restrictedUnrestrictedExternal() const { return this->tripletA() + this->tripletB(); }
+    enable_if_t<std::is_same<S, double>::value, MatrixX<double>> restrictedUnrestricted() const { return this->tripletA() + this->tripletB(); }
 
 
     /**
@@ -164,7 +164,7 @@ public:
      *                                                                                 (triplet_B^*, triplet_A^*)
      */
     template <typename S = Scalar>
-    enable_if_t<std::is_same<S, complex>::value, MatrixX<complex>> restrictedUnrestrictedExternal() const {
+    enable_if_t<std::is_same<S, complex>::value, MatrixX<complex>> restrictedUnrestricted() const {
 
         // Calculate the necessary partial stability matrices.
         const auto triplet_A = this->tripletA();
@@ -209,7 +209,7 @@ public:
     const bool isTripletStable(const double threshold = -1.0e-5) const {
 
         // The first step is to calculate the correct stability matrix: This method checks the restricted->unrestricted stability of a real or complex valued wavefunction.
-        const auto stability_matrix = this->restrictedUnrestrictedExternal();
+        const auto stability_matrix = this->restrictedUnrestricted();
 
         // Check whether or not the stability matrix is positive semi-definite. This indicates stability.
         return stability_matrix.isPositiveSemiDefinite(threshold);
@@ -223,7 +223,7 @@ public:
     enable_if_t<std::is_same<S, double>::value, bool> isComplexConjugateStable(const double threshold = -1.0e-5) const {
 
         // The first step is to calculate the correct stability matrix: This method checks the real->complex stability of a real valued wavefunction.
-        const auto stability_matrix = this->restrictedUnrestrictedExternal();
+        const auto stability_matrix = this->realComplex();
 
         // Check whether or not the stability matrix is positive semi-definite. This indicates stability.
         return stability_matrix.isPositiveSemiDefinite(threshold);
@@ -282,7 +282,7 @@ public:
 
         // The real->complex external stability on vector position 0.
         if (external_stabilities[0] == true) {
-            std::cout << "The real valued RHF wavefunction is stable within the real RHF space." << std::endl;
+            std::cout << "The real valued RHF wavefunction is stable within the real/complex RHF space." << std::endl;
         } else {
             std::cout << "The real valued RHF wavefunction contains a real->complex instability." << std::endl;
         }

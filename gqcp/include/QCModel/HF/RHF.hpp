@@ -375,7 +375,7 @@ public:
         // The calculateFValues API can be used to find these values
         const auto& F_values = this->calculateFValues();
 
-        // The next step is to create the needed tensor slices.
+        // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object.
         auto singlet_A_slice = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_occupied, OccupationType::k_virtual);
         for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
@@ -388,8 +388,8 @@ public:
             }
         }
 
-        // Turn the ImplicitRankFourTensorSlices in an actual Tensor and add them together.
-        auto singlet_A_iajb = singlet_A_slice.asTensor();  // + singlet_A_slice_2.asTensor();
+        // Turn the ImplicitRankFourTensorSlice in an actual Tensor.
+        auto singlet_A_iajb = singlet_A_slice.asTensor();
 
         // Add the previously calculated F values on the correct positions.
         for (int a = 0; a < n_virt; a++) {
@@ -426,7 +426,7 @@ public:
         // The ground state coefficient matrix is obtained from the QCModel.
         const auto& g = rsq_hamiltonian.twoElectron().transformed(this->coefficientMatrix());
 
-        // The next step is to create the needed tensor slices.
+        // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object.
         auto singlet_B_slice = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_occupied, OccupationType::k_virtual);
         for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
@@ -439,8 +439,8 @@ public:
             }
         }
 
-        // Turn the ImplicitRankFourTensorSlices in an actual Tensor and add them together.
-        auto singlet_B_iajb = singlet_B_slice.asTensor();  // + singlet_B_slice_2.asTensor();
+        // Turn the ImplicitRankFourTensorSlice in an actual Tensor.
+        auto singlet_B_iajb = singlet_B_slice.asTensor();
 
         // Finally, reshape the tensor to a matrix.
         const GQCP::MatrixX<Scalar> singlet_B_matrix = singlet_B_iajb.reshape(n_occ * n_virt, n_occ * n_virt);
@@ -487,7 +487,7 @@ public:
             }
         }
 
-        // Turn the ImplicitRankFourTensorSlice in an actual Tensor
+        // Turn the ImplicitRankFourTensorSlice in an actual Tensor.
         auto triplet_A_iajb = triplet_A_slice.asTensor();
 
         // Add the previously calculated F values on the correct positions.
@@ -538,7 +538,7 @@ public:
             }
         }
 
-        // Turn the ImplicitRankFourTensorSlice in an actual Tensor
+        // Turn the ImplicitRankFourTensorSlice in an actual Tensor.
         auto triplet_B_iajb = triplet_B_slice.asTensor();
 
         // Finally, reshape the tensor to a matrix.

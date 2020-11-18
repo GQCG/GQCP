@@ -27,7 +27,8 @@
 
 
 /**
- *  Check if our plain RHF SCF solver finds results (energy, orbital energies and coefficient matrix) that are equal to results from HORTON.
+ *  The RHF solution of H_2O should be stable both internally and externally.
+ *  This test checks whether the RHF stability analysis confirms this.
  */
 BOOST_AUTO_TEST_CASE(h2o_sto3g_stability) {
 
@@ -60,7 +61,8 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_stability) {
 }
 
 /**
- *  Check if our plain RHF SCF solver finds results (energy, orbital energies and coefficient matrix) that are equal to results from HORTON.
+ *  The RHF solution of a equilateral H_4 ring is internally stable, but externally unstable. (As confirmed by the implementation of @xdvriend.)
+ *  This test checks whether the RHF stability analysis confirms this.
  */
 BOOST_AUTO_TEST_CASE(h4_sto3g_stability) {
 
