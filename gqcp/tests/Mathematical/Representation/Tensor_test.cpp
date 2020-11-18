@@ -456,3 +456,35 @@ BOOST_AUTO_TEST_CASE(einsum_all_indices) {
     BOOST_CHECK_EQUAL(output2(0), 1096);
     BOOST_CHECK_EQUAL(output3(0), 62);
 }
+
+/**
+ *  Test the numpy-like reshape method and check whether it behaves correctly.
+ */
+BOOST_AUTO_TEST_CASE(reshape) {
+
+    // Create an example rank 4 tensor.
+    long dim1 = 2;
+    GQCP::Tensor<double, 4> T1 {dim1, dim1, dim1, dim1};
+    for (size_t i = 0; i < dim1; i++) {
+        for (size_t j = 0; j < dim1; j++) {
+            for (size_t k = 0; k < dim1; k++) {
+                for (size_t l = 0; l < dim1; l++) {
+                    T1(i, j, k, l) = 2 * l + j + 10 * i;
+                }
+            }
+        }
+    }
+
+    // Create a reference matrix.
+    GQCP::MatrixX<double> reference {4, 4};
+
+    // clang-format off
+    reference <<  0,  2,  0,  2,
+                  1,  3,  1,  3,
+                 10, 12, 10, 12,
+                 11, 13, 11, 13;
+    // clang-format on
+
+    // Check whether the reshape API behaves as expected and turns the tensor into the reference matrix.
+    BOOST_CHECK(reference.isApprox(T1.reshape(4, 4), 1e-12));
+}
