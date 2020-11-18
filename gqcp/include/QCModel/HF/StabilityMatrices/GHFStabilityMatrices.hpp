@@ -165,6 +165,8 @@ public:
 
     /*
      *  Print the description of the stability properties of a real valued GHF wavefunction.
+     * 
+     *  @note   This method runs the stability calculation before printing the results.
      */
     template <typename S = Scalar>
     enable_if_t<std::is_same<S, double>::value, void> printStabilityDescription() const {
@@ -187,6 +189,8 @@ public:
 
     /*
      *  Print the description of the stability properties of a complex valued GHF wavefunction.
+     * 
+     *  @note   This method runs the stability calculation before printing the results.
      */
     template <typename S = Scalar>
     enable_if_t<std::is_same<S, complex>::value, void> printStabilityDescription() const {
