@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE(energy_as_contraction) {
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
-    GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
+    GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.expansion());
 
 
     // Optimize the AP1roG wave function model for the geminal coefficients.

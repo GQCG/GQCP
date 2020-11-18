@@ -44,9 +44,9 @@ void bindRSpinOrbitalBasis(py::module& module) {
         // INHERITED METHODS
 
         .def(
-            "coefficientMatrix",
+            "expansion",
             [](const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis) {
-                return spinor_basis.coefficientMatrix();
+                return spinor_basis.expansion();
             },
             "Return the transformation matrix between the scalar basis and the current orbitals.")
 

@@ -46,8 +46,8 @@ void bindQCModelRHF(py::module& module) {
             },
             "Return the RHF 1-DM in the scalar/AO basis related to these optimal RHF parameters")
 
-        .def("coefficientMatrix",
-             &GQCP::QCModel::RHF<double>::coefficientMatrix,
+        .def("expansion",
+             &GQCP::QCModel::RHF<double>::expansion,
              "Return the coefficient matrix that expresses every spatial orbital (as a column) in its underlying scalar basis.")
 
         .def("orbitalEnergies",

@@ -50,9 +50,9 @@ void bindUSpinOrbitalBasis(py::module& module) {
 
         // PUBLIC METHODS
         .def(
-            "coefficientMatrix",
+            "expansion",
             [](const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Spin sigma) {
-                return spinor_basis.coefficientMatrix(sigma);
+                return spinor_basis.expansion(sigma);
             },
             py::arg("sigma"),
             "Return the coefficient matrix for the requested component, i.e. the matrix of the expansion coefficients of the requested component of the spinors in terms of its underlying scalar basis")

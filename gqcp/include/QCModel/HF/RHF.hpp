@@ -322,14 +322,14 @@ public:
     Orbital1DM<Scalar> calculateScalarBasis1DM() const {
 
         const auto N = 2 * this->numberOfElectronPairs();
-        return RHF<Scalar>::calculateScalarBasis1DM(this->coefficientMatrix(), N);
+        return RHF<Scalar>::calculateScalarBasis1DM(this->expansion(), N);
     }
 
 
     /**
      *  @return the coefficient matrix that expresses every spatial orbital (as a column) in its underlying scalar basis
      */
-    const RTransformation<Scalar>& coefficientMatrix() const { return this->C; }
+    const RTransformation<Scalar>& expansion() const { return this->C; }
 
     /**
      *  @param N            the number of electrons
@@ -366,7 +366,7 @@ public:
     /**
      *  @return the number of spatial orbitals that these RHF model parameters describe
      */
-    size_t numberOfSpatialOrbitals() const { return this->coefficientMatrix().numberOfOrbitals(); }
+    size_t numberOfSpatialOrbitals() const { return this->expansion().numberOfOrbitals(); }
 
     /**
      *  @return all the spatial orbital energies

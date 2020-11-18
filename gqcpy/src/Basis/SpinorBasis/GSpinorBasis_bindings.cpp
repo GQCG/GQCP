@@ -49,15 +49,15 @@ void bindGSpinorBasis(py::module& module) {
         // INHERITED METHODS
 
         .def(
-            "coefficientMatrix",
+            "expansion",
             [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
-                return spinor_basis.coefficientMatrix();
+                return spinor_basis.expansion();
             },
             "Return the transformation matrix between the scalar bases and the current spinors.")
 
-        .def("coefficientMatrix",
+        .def("expansion",
              [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Spin sigma) {
-                 return spinor_basis.coefficientMatrix(sigma);
+                 return spinor_basis.expansion(sigma);
              })
 
         .def(
@@ -107,8 +107,8 @@ void bindGSpinorBasis(py::module& module) {
         // PUBLIC METHODS
 
         .def(
-            "coefficientMatrix", [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Spin sigma) {
-                return spinor_basis.coefficientMatrix(sigma);
+            "expansion", [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Spin sigma) {
+                return spinor_basis.expansion(sigma);
             },
             py::arg("sigma"), "Return the coefficient matrix for the requested spin component, i.e. the matrix of the expansion coefficients of the requested components of the spinors in terms of its underlying scalar basis")
 

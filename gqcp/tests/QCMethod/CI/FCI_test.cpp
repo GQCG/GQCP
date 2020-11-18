@@ -56,7 +56,7 @@ BOOST_AUTO_TEST_CASE(FCI_H2_dense) {
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
-    sq_hamiltonian.transform(rhf_parameters.coefficientMatrix());
+    sq_hamiltonian.transform(rhf_parameters.expansion());
 
 
     // Set up the full spin-resolved ONV basis (with addressing scheme).
@@ -95,7 +95,7 @@ BOOST_AUTO_TEST_CASE(FCI_rotated_diagonal_sum) {
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
-    sq_hamiltonian.transform(rhf_parameters.coefficientMatrix());
+    sq_hamiltonian.transform(rhf_parameters.expansion());
 
 
     // Set up the full spin-resolved ONV basis (with addressing scheme).
@@ -136,7 +136,7 @@ BOOST_AUTO_TEST_CASE(FCI_H2O_dense) {
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
-    sq_hamiltonian.transform(rhf_parameters.coefficientMatrix());
+    sq_hamiltonian.transform(rhf_parameters.expansion());
 
 
     // Set up the full spin-resolved ONV basis (with addressing scheme).
@@ -177,7 +177,7 @@ BOOST_AUTO_TEST_CASE(FCI_H2_Davidson) {
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
-    sq_hamiltonian.transform(rhf_parameters.coefficientMatrix());
+    sq_hamiltonian.transform(rhf_parameters.expansion());
 
 
     // Set up the full spin-resolved ONV basis (with addressing scheme).
@@ -218,7 +218,7 @@ BOOST_AUTO_TEST_CASE(FCI_H2O_Davidson) {
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
-    sq_hamiltonian.transform(rhf_parameters.coefficientMatrix());
+    sq_hamiltonian.transform(rhf_parameters.expansion());
 
 
     // Set up the full spin-resolved ONV basis (with addressing scheme).
@@ -259,7 +259,7 @@ BOOST_AUTO_TEST_CASE(FCI_H6_dense_vs_Davidson) {
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
-    sq_hamiltonian.transform(rhf_parameters.coefficientMatrix());
+    sq_hamiltonian.transform(rhf_parameters.expansion());
 
 
     // Set up the full spin-resolved ONV basis (with addressing scheme).

@@ -123,7 +123,7 @@ public:
     UHF(const GQCP::QCModel::RHF<Scalar>& rhf_model) :
         UHF(rhf_model.numberOfElectrons(Spin::alpha), rhf_model.numberOfElectrons(Spin::beta),
             rhf_model.orbitalEnergies(), rhf_model.orbitalEnergies(),
-            GQCP::UTransformation<Scalar>::FromRestricted(rhf_model.coefficientMatrix())) {}
+            GQCP::UTransformation<Scalar>::FromRestricted(rhf_model.expansion())) {}
 
 
     /*
@@ -318,8 +318,8 @@ public:
      */
     SpinResolved1DM<Scalar> calculateScalarBasis1DM() const {
 
-        const auto C_a = this->coefficientMatrix(Spin::alpha);
-        const auto C_b = this->coefficientMatrix(Spin::beta);
+        const auto C_a = this->expansion(Spin::alpha);
+        const auto C_b = this->expansion(Spin::beta);
         const UTransformation<Scalar> C {C_a, C_b};
 
         const auto N_a = this->numberOfElectrons(Spin::alpha);
@@ -334,7 +334,7 @@ public:
      *
      *  @return the coefficient matrix that expresses the sigma spin-orbitals (as a column) in its underlying scalar basis
      */
-    const TransformationMatrix<Scalar> coefficientMatrix(const Spin sigma) const {
+    const TransformationMatrix<Scalar> expansion(const Spin sigma) const {
         return C.component(sigma);
     }
 
@@ -375,7 +375,7 @@ public:
      *  @return the number of sigma spin-orbitals that these UHF model parameters describe
      */
     size_t numberOfSpinOrbitals(const Spin sigma) const {
-        return this->coefficientMatrix(sigma).numberOfOrbitals();
+        return this->expansion(sigma).numberOfOrbitals();
     }
 
 

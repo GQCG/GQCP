@@ -56,7 +56,7 @@ BOOST_AUTO_TEST_CASE(h2o_crawdad) {
     const auto rhf_qc_structure = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment);
     const auto rhf_parameters = rhf_qc_structure.groundStateParameters();
 
-    r_spinor_basis.transform(rhf_parameters.coefficientMatrix());
+    r_spinor_basis.transform(rhf_parameters.expansion());
 
     // Check if the intermediate RHF results are correct. We can't continue if this isn't the case.
     const auto rhf_energy = rhf_qc_structure.groundStateEnergy() + GQCP::Operator::NuclearRepulsion(molecule).value();

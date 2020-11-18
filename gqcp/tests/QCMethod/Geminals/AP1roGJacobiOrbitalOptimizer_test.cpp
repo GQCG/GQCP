@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE(analytical_rotation_energy_AP1roG) {
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
-    basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
+    basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.expansion());
 
 
     // Loop over all possible Jacobi pairs for a given (random) angle and check if the analytical result matches the numerical result
@@ -103,7 +103,7 @@ BOOST_AUTO_TEST_CASE(orbital_optimize) {
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
-    basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
+    basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.expansion());
 
 
     // Get the initial AP1roG energy

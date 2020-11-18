@@ -94,7 +94,7 @@ public:
     /**
      *  @return A read-only reference to the matrix that holds the expansion coefficients, i.e. that expresses the spinors/spin-orbitals in terms of the underlying scalar basis/bases.
      */
-    const TM& coefficientMatrix() const { return this->C; }
+    const TM& expansion() const { return this->C; }
 
 
     /*

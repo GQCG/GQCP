@@ -187,7 +187,7 @@ public:
     static USpinOrbitalBasis<ExpansionScalar, Shell> FromRestricted(const RSpinOrbitalBasis<ExpansionScalar, Shell>& r_spinor_basis) {
 
         const auto scalar_basis = r_spinor_basis.scalarBasis();
-        const auto C = r_spinor_basis.coefficientMatrix();
+        const auto C = r_spinor_basis.expansion();
         return USpinOrbitalBasis<ExpansionScalar, Shell>(scalar_basis, scalar_basis, UTransformation<ExpansionScalar>::FromRestricted(C));
     }
 
@@ -199,8 +199,8 @@ public:
     /**
      *  @return The transformation that expresses the current spin-orbitals in terms of the underlying scalar basis.
      */
-    UTransformation<ExpansionScalar> coefficientMatrix() const {
-        return UTransformation<ExpansionScalar> {this->alpha().coefficientMatrix(), this->beta().coefficientMatrix()};
+    UTransformation<ExpansionScalar> expansion() const {
+        return UTransformation<ExpansionScalar> {this->alpha().expansion(), this->beta().expansion()};
     }
 
 
@@ -337,7 +337,7 @@ public:
 
         // We have previously calculated the representations in the AO basis, so we'll still have to transform these representations to the current spin-orbitals.
         ResultOperator g {g_aa_par, g_ab_par, g_ba_par, g_bb_par};
-        g.transform(this->coefficientMatrix());  // Now, g is expressed in the current spin-orbital basis.
+        g.transform(this->expansion());  // Now, g is expressed in the current spin-orbital basis.
 
         return g;
     }

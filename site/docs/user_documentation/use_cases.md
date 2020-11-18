@@ -122,13 +122,13 @@ These optimized RHF parameters can be obtained through the `QCStructure` object.
 
 <!--Python-->
 ```python
-C = rhf_parameters.coefficientMatrix()
+C = rhf_parameters.expansion()
 energies = rhf_parameters.orbitalEnergies()
 ```
 
 <!--C++-->
 ```C++
-const auto C = rhf_parameters.coefficientMatrix();
+const auto C = rhf_parameters.expansion();
 const auto E = rhf_parameters.orbitalEnergies();
 ```
 

@@ -220,7 +220,7 @@ public:
         // The goal in this named constructor is to build up the general coefficient matrix (2K x 2K) from the restricted (K x K) one.
         const auto M = u_spinor_basis.numberOfSpinOrbitals();
         const auto K = M / 2;
-        const auto C = u_spinor_basis.coefficientMatrix();
+        const auto C = u_spinor_basis.expansion();
 
         TM C_general = TM::Zero(M);
 
@@ -237,26 +237,26 @@ public:
      *  MARK: Coefficient matrix
      */
 
-    // Use `coefficientMatrix` from the base spinor basis, since we're implementing `coefficientMatrix` in this type as well.
-    using Base::coefficientMatrix;
+    // Use `expansion` from the base spinor basis, since we're implementing `expansion` in this type as well.
+    using Base::expansion;
 
     /**
      *  @param sigma        Alpha or beta.
      * 
      *  @return The coefficient matrix for the requested spin component, i.e. the matrix of the expansion coefficients of the requested components of the spinors in terms of its underlying scalar basis
      */
-    MatrixX<ExpansionScalar> coefficientMatrix(const Spin sigma) const {
+    MatrixX<ExpansionScalar> expansion(const Spin sigma) const {
 
         const size_t K = this->numberOfCoefficients(sigma);
 
         switch (sigma) {
         case Spin::alpha: {
-            return this->coefficientMatrix().topRows(K);
+            return this->expansion().topRows(K);
             break;
         }
 
         case Spin::beta: {
-            return this->coefficientMatrix().bottomRows(K);
+            return this->expansion().bottomRows(K);
             break;
         }
         }
@@ -321,7 +321,7 @@ public:
 
         // 2. Transform using the current coefficient matrix.
         ResultOperator op {{f}};  // op for 'operator'
-        op.transform(this->coefficientMatrix());
+        op.transform(this->expansion());
         return op;
     }
 
@@ -373,7 +373,7 @@ public:
 
         // 3. Transform using the coefficient matrix
         ResultOperator spin_op {std::vector<SquareMatrix<ResultScalar>> {S_x, S_y, S_z}};  // 'op' for operator
-        spin_op.transform(this->coefficientMatrix());
+        spin_op.transform(this->expansion());
         return spin_op;
     }
 
@@ -439,7 +439,7 @@ public:
 
         // 3. Transform the operator using the current coefficient matrix.
         ResultOperator g_op {g_par};  // 'op' for 'operator'
-        g_op.transform(this->coefficientMatrix());
+        g_op.transform(this->expansion());
         return g_op;
     }
 
@@ -471,7 +471,7 @@ public:
 
         // Assume the underlying scalar bases are equal, and proceed to work with the one for the alpha component.
         const auto ao_indices = this->scalarBases().alpha().basisFunctionIndices(selector);
-        return GMullikenPartitioning<ExpansionScalar> {ao_indices, this->coefficientMatrix()};
+        return GMullikenPartitioning<ExpansionScalar> {ao_indices, this->expansion()};
     }
 
 
@@ -488,7 +488,7 @@ public:
 
         // Assume the underlying scalar bases are equal, and proceed to work with the one for the alpha component.
         const auto ao_indices = this->scalarBases().alpha().basisFunctionIndices(selector);
-        return GMullikenPartitioning<ExpansionScalar> {ao_indices, this->coefficientMatrix()};
+        return GMullikenPartitioning<ExpansionScalar> {ao_indices, this->expansion()};
     }
 };
 

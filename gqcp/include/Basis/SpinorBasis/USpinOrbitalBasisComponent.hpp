@@ -83,7 +83,7 @@ public:
         const auto f_par = IntegralCalculator::calculateLibintIntegrals(fq_one_op, this->scalarBasis());  // Currently f is expressed in the AO basis. 'par' for 'parameters'
 
         ResultOperator f {f_par};
-        f.transform(this->coefficientMatrix());  // Now, f is expressed in the spin-orbital basis.
+        f.transform(this->expansion());  // Now, f is expressed in the spin-orbital basis.
         return f;
     }
 
@@ -104,7 +104,7 @@ public:
         // FIXME: Try to move this API to SimpleSpinOrbitalBasis.
 
         const auto ao_indices = this->scalarBasis().basisFunctionIndices(selector);
-        return UMullikenPartitioningComponent<ExpansionScalar> {ao_indices, this->coefficientMatrix()};
+        return UMullikenPartitioningComponent<ExpansionScalar> {ao_indices, this->expansion()};
     }
 
 
@@ -120,7 +120,7 @@ public:
         // FIXME: Try to move this API to SimpleSpinOrbitalBasis.
 
         const auto ao_indices = this->scalarBasis().basisFunctionIndices(selector);
-        return UMullikenPartitioningComponent<ExpansionScalar> {ao_indices, this->coefficientMatrix()};
+        return UMullikenPartitioningComponent<ExpansionScalar> {ao_indices, this->expansion()};
     }
 };
 

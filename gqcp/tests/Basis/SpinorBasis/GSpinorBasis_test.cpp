@@ -90,9 +90,9 @@ BOOST_AUTO_TEST_CASE(alpha_beta_coefficient_matrix) {
 
     GQCP::SquareMatrix<double> C_ref = GQCP::SquareMatrix<double>::Identity(M);
 
-    BOOST_CHECK(spinor_basis.coefficientMatrix(GQCP::Spin::alpha).isApprox(C_alpha_ref, 1.0e-08));
-    BOOST_CHECK(spinor_basis.coefficientMatrix(GQCP::Spin::beta).isApprox(C_beta_ref, 1.0e-08));
-    BOOST_CHECK(spinor_basis.coefficientMatrix().isApprox(C_ref, 1.0e-08));
+    BOOST_CHECK(spinor_basis.expansion(GQCP::Spin::alpha).isApprox(C_alpha_ref, 1.0e-08));
+    BOOST_CHECK(spinor_basis.expansion(GQCP::Spin::beta).isApprox(C_beta_ref, 1.0e-08));
+    BOOST_CHECK(spinor_basis.expansion().isApprox(C_ref, 1.0e-08));
 }
 
 
@@ -109,7 +109,7 @@ BOOST_AUTO_TEST_CASE(FromRestricted) {
     // There should be zero blocks bottom-left and top-right.
     const auto g_spinor_basis = GQCP::GSpinorBasis<double, GQCP::GTOShell>::FromRestricted(r_spinor_basis);
 
-    const auto& C_spin_blocked = g_spinor_basis.coefficientMatrix();
+    const auto& C_spin_blocked = g_spinor_basis.expansion();
 
     BOOST_CHECK(C_spin_blocked.bottomLeftCorner(K, K).isApprox(GQCP::MatrixX<double>::Zero(K, K), 1.0e-12));
     BOOST_CHECK(C_spin_blocked.topRightCorner(K, K).isApprox(GQCP::MatrixX<double>::Zero(K, K), 1.0e-12));

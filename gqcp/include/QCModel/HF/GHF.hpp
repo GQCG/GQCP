@@ -272,8 +272,8 @@ public:
 
         // Prepare some variables.
         const auto M = this->numberOfSpinors();
-        const MatrixX<complex> C_alpha = this->coefficientMatrix().topRows(M / 2);
-        const MatrixX<complex> C_beta = this->coefficientMatrix().bottomRows(M / 2);
+        const MatrixX<complex> C_alpha = this->expansion().topRows(M / 2);
+        const MatrixX<complex> C_beta = this->expansion().bottomRows(M / 2);
         const SquareMatrix<complex> S_AO = S.topLeftCorner(M / 2, M / 2);  // assume equal for alpha and beta
 
         // Calculate overlaps between the alpha- and beta-spinors.
@@ -325,14 +325,14 @@ public:
     G1DM<Scalar> calculateScalarBasis1DM() const {
 
         const auto N = this->numberOfElectrons();
-        return GHF<Scalar>::calculateScalarBasis1DM(this->coefficientMatrix(), N);
+        return GHF<Scalar>::calculateScalarBasis1DM(this->expansion(), N);
     }
 
 
     /**
      *  @return the coefficient matrix that expresses every spinor orbital (as a column) in the underlying scalar bases
      */
-    const GTransformation<Scalar>& coefficientMatrix() const { return this->C; }
+    const GTransformation<Scalar>& expansion() const { return this->C; }
 
     /**
      *  @return the number of electrons that these GHF model parameters describe

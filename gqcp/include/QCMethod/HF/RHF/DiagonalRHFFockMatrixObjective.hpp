@@ -67,7 +67,7 @@ public:
 
         // Prepare the calculation of the Fock matrix in the spinor basis
         const auto N_P = rhf_parameters.numberOfElectronPairs();
-        const auto C = rhf_parameters.coefficientMatrix();
+        const auto C = rhf_parameters.expansion();
         const auto D = QCModel::RHF<Scalar>::calculateScalarBasis1DM(C, 2 * N_P);
 
         // Calculate the Fock matrix in the orthonormal spinor and check if it is diagonal

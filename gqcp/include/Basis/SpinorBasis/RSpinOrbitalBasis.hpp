@@ -118,8 +118,8 @@ public:
 
         const auto one_op_par = IntegralCalculator::calculateLibintIntegrals(fq_one_op, this->scalarBasis());  // in AO/scalar basis
 
-        ResultOperator op {one_op_par};           // op for 'operator'
-        op.transform(this->coefficientMatrix());  // now in the spatial/spin-orbital basis
+        ResultOperator op {one_op_par};   // op for 'operator'
+        op.transform(this->expansion());  // now in the spatial/spin-orbital basis
         return op;
     }
 
@@ -136,8 +136,8 @@ public:
 
         const auto one_op_par = IntegralCalculator::calculateLibintIntegrals(fq_op, this->scalarBasis());  // in AO/scalar basis
 
-        ResultOperator op {one_op_par};           // op for 'operator'
-        op.transform(this->coefficientMatrix());  // now in spatial/spin-orbital basis
+        ResultOperator op {one_op_par};   // op for 'operator'
+        op.transform(this->expansion());  // now in spatial/spin-orbital basis
         return op;
     }
 
@@ -241,7 +241,7 @@ public:
     RMullikenPartitioning<ExpansionScalar> mullikenPartitioning(const std::function<bool(const BasisFunction&)>& selector) const {
 
         const auto ao_indices = this->scalarBasis().basisFunctionIndices(selector);
-        return RMullikenPartitioning<ExpansionScalar> {ao_indices, this->coefficientMatrix()};
+        return RMullikenPartitioning<ExpansionScalar> {ao_indices, this->expansion()};
     }
 
 
@@ -255,7 +255,7 @@ public:
     RMullikenPartitioning<ExpansionScalar> mullikenPartitioning(const std::function<bool(const Shell&)>& selector) const {
 
         const auto ao_indices = this->scalarBasis().basisFunctionIndices(selector);
-        return RMullikenPartitioning<ExpansionScalar> {ao_indices, this->coefficientMatrix()};
+        return RMullikenPartitioning<ExpansionScalar> {ao_indices, this->expansion()};
     }
 };
 

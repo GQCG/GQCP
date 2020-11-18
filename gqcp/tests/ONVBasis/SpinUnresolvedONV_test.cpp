@@ -613,13 +613,13 @@ BOOST_AUTO_TEST_CASE(GHF_overlap) {
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
     // Create a GSpinorBasis from the canonical RHF spin-orbitals, yielding a general spinor basis with alternating alpha- and beta-spin-orbitals.
-    r_spinor_basis.transform(rhf_parameters.coefficientMatrix());
+    r_spinor_basis.transform(rhf_parameters.expansion());
 
     const auto g_spinor_basis_of = GQCP::GSpinorBasis<double, GQCP::GTOShell>::FromRestricted(r_spinor_basis);
     const auto g_spinor_basis_on = g_spinor_basis_of;
 
-    const auto& C_on = g_spinor_basis_on.coefficientMatrix();
-    const auto& C_of = g_spinor_basis_of.coefficientMatrix();
+    const auto& C_on = g_spinor_basis_on.expansion();
+    const auto& C_of = g_spinor_basis_of.expansion();
 
     auto S_op = g_spinor_basis_of.overlap();  // in MO basis
     S_op.transform(C_on.inverse());           // now in AO basis
@@ -707,8 +707,8 @@ BOOST_AUTO_TEST_CASE(RHF_UHF_projection) {
     const auto g_spinor_basis_of = GQCP::GSpinorBasis<double, GQCP::GTOShell>::FromRestricted(r_spinor_basis);
     const auto g_spinor_basis_on = GQCP::GSpinorBasis<double, GQCP::GTOShell>::FromUnrestricted(u_spinor_basis);
 
-    const auto& C_of = g_spinor_basis_of.coefficientMatrix();
-    const auto& C_on = g_spinor_basis_on.coefficientMatrix();
+    const auto& C_of = g_spinor_basis_of.expansion();
+    const auto& C_on = g_spinor_basis_on.expansion();
 
     auto S_generalized_op = g_spinor_basis_of.overlap();  // in MO basis
     S_generalized_op.transform(C_of.inverse());           // in AO basis

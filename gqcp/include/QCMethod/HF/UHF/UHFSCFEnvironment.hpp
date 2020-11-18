@@ -103,7 +103,7 @@ public:
     UHFSCFEnvironment(const QCModel::RHF<Scalar>& rhf_parameters, const RSQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S) :
         UHFSCFEnvironment(rhf_parameters.numberOfElectrons(Spin::alpha), rhf_parameters.numberOfElectrons(Spin::beta),
                           sq_hamiltonian, S,
-                          rhf_parameters.coefficientMatrix(), rhf_parameters.coefficientMatrix()) {}
+                          rhf_parameters.expansion(), rhf_parameters.expansion()) {}
 
 
     /*

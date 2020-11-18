@@ -46,7 +46,7 @@ BOOST_AUTO_TEST_CASE(lih_6_31G_orbital_optimize) {
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
-    basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
+    basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.expansion());
 
 
     // Get the initial AP1roG solution.
