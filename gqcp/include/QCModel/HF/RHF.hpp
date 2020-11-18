@@ -419,7 +419,7 @@ public:
      *  Construct the `singlet B` stability matrix from the RHF stability conditions.
      * 
      *  @note The formula for the `singlet B` matrix is as follows:
-     *      A_IAJB = 2 * (AI|BJ) - (AJ|BI)
+     *      B_IAJB = 2 * (AI|BJ) - (AJ|BI)
      * 
      *  @param rsq_hamiltonian      The second quantized hamiltonian, which contains the necessary two electron operators.
      */
@@ -478,7 +478,7 @@ public:
      * 
      *  @param rsq_hamiltonian      The second quantized hamiltonian, which contains the necessary two electron operators.
      */
-    const GQCP::MatrixX<Scalar> calculateSingletAStabilityMatrix(const RSQHamiltonian<Scalar>& rsq_hamiltonian) const {
+    const GQCP::MatrixX<Scalar> calculateTripletAStabilityMatrix(const RSQHamiltonian<Scalar>& rsq_hamiltonian) const {
 
         // Create the orbital space.
         const auto orbital_space = this->orbitalSpace();
@@ -522,6 +522,50 @@ public:
         const GQCP::MatrixX<Scalar> triplet_A_matrix = triplet_A_iajb.reshape(n_occ * n_virt, n_occ * n_virt);
 
         return triplet_A_matrix;
+    }
+
+
+    /**
+     *  Construct the `triplet B` stability matrix from the RHF stability conditions.
+     * 
+     *  @note The formula for the `triplet B` matrix is as follows:
+     *      B_IAJB = - (AJ|BI)
+     * 
+     *  @param rsq_hamiltonian      The second quantized hamiltonian, which contains the necessary two electron operators.
+     */
+    const GQCP::MatrixX<Scalar> calculateTripletBStabilityMatrix(const RSQHamiltonian<Scalar>& rsq_hamiltonian) const {
+
+        // Create the orbital space.
+        const auto orbital_space = this->orbitalSpace();
+
+        // Create the number of occupied and virtual orbitals.
+        const auto& n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
+
+        // We need the two-electron integrals in MO basis, hence why we transform them with the coefficient matrix.
+        // The ground state coefficient matrix is obtained from the QCModel.
+        const auto& g = rsq_hamiltonian.twoElectron().transformed(this->coefficientMatrix());
+
+        // The next step is to create the needed tensor slice.
+        // Zero-initialize an occupied-virtual-occupied-virtual object.
+        auto triplet_B_slice = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_occupied, OccupationType::k_virtual);
+        for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
+                for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
+                    for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
+                        triplet_A_slice(i, a, j, b) = -1 * g.parameters()(a, j, b, i);
+                    }
+                }
+            }
+        }
+
+        // Turn the ImplicitRankFourTensorSlice in an actual Tensor
+        auto triplet_B_iajb = triplet_B_slice.asTensor();
+
+        // Finally, reshape the tensor to a matrix.
+        const GQCP::MatrixX<Scalar> triplet_B_matrix = triplet_B_iajb.reshape(n_occ * n_virt, n_occ * n_virt);
+
+        return triplet_B_matrix;
     }
 
 
