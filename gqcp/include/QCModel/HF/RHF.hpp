@@ -25,6 +25,7 @@
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "QCModel/HF/StabilityMatrices/RHFStabilityMatrices.hpp"
 #include "QuantumChemical/Spin.hpp"
 
 
@@ -443,7 +444,7 @@ public:
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                        singlet_A_slice_1(i, a, j, b) = 2 * g.parameters()(a, i, b, j);
+                        singlet_B_slice_1(i, a, j, b) = 2 * g.parameters()(a, i, b, j);
                     }
                 }
             }
@@ -454,14 +455,14 @@ public:
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                        singlet_A_slice_2(i, a, j, b) = -1 * g.parameters()(a, j, b, i);
+                        singlet_B_slice_2(i, a, j, b) = -1 * g.parameters()(a, j, b, i);
                     }
                 }
             }
         }
 
         // Turn the ImplicitRankFourTensorSlices in an actual Tensor and add them together.
-        auto singlet_B_iajb = singlet_B_slice_1.asTensor() + singlet_A_slice_2.asTensor();
+        auto singlet_B_iajb = singlet_B_slice_1.asTensor() + singlet_B_slice_2.asTensor();
 
         // Finally, reshape the tensor to a matrix.
         const GQCP::MatrixX<Scalar> singlet_B_matrix = singlet_B_iajb.reshape(n_occ * n_virt, n_occ * n_virt);
@@ -553,7 +554,7 @@ public:
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                        triplet_A_slice(i, a, j, b) = -1 * g.parameters()(a, j, b, i);
+                        triplet_B_slice(i, a, j, b) = -1 * g.parameters()(a, j, b, i);
                     }
                 }
             }
@@ -566,6 +567,17 @@ public:
         const GQCP::MatrixX<Scalar> triplet_B_matrix = triplet_B_iajb.reshape(n_occ * n_virt, n_occ * n_virt);
 
         return triplet_B_matrix;
+    }
+
+
+    /**
+     *  Calculate the RHF stability matrices and return them.
+     *
+     *  @return The RHF stability matrices.
+     */
+    RHFStabilityMatrices<Scalar> calculateStabilityMatrices(const RSQHamiltonian<Scalar>& rsq_hamiltonian) const {
+        return RHFStabilityMatrices<Scalar> {this->calculateSingletAStabilityMatrix(rsq_hamiltonian), this->calculateSingletBStabilityMatrix(rsq_hamiltonian),
+                                             this->calculateTripletAStabilityMatrix(rsq_hamiltonian), this->calculateTripletBStabilityMatrix(rsq_hamiltonian)};
     }
 
 
