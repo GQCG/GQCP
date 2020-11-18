@@ -21,7 +21,7 @@
 #include "Basis/MullikenPartitioning/UMullikenPartitioning.hpp"
 #include "Basis/Transformations/SpinResolvedBasisTransformable.hpp"
 #include "Basis/Transformations/SpinResolvedJacobiRotatable.hpp"
-#include "Basis/Transformations/UTransformationMatrix.hpp"
+#include "Basis/Transformations/UTransformation.hpp"
 #include "DensityMatrix/SpinResolved1DM.hpp"
 #include "DensityMatrix/SpinResolved2DM.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
@@ -60,7 +60,7 @@ public:
     using SpinorTag = UnrestrictedSpinOrbitalTag;
 
     // The type of transformation matrix that is naturally related to a `USQOneElectronOperator`.
-    using TM = UTransformationMatrix<Scalar>;
+    using TM = UTransformation<Scalar>;
 
 
 public:
@@ -277,7 +277,7 @@ public:
      * 
      *  @return The one-index-transformed one-electron operator.
      */
-    Self oneIndexTransformed(const UTransformationMatrix<Scalar>& T) const {
+    Self oneIndexTransformed(const UTransformation<Scalar>& T) const {
 
         // Transform both components of this unrestricted one-electron operator.
         return Self {this->alpha().oneIndexTransformed(T.alpha()), this->beta().oneIndexTransformed(T.beta())};
@@ -337,7 +337,7 @@ struct OperatorTraits<USQOneElectronOperator<Scalar, Vectorizer>> {
     using ScalarOperator = ScalarUSQOneElectronOperator<Scalar>;
 
     // The type of transformation matrix that is naturally associated to an unrestricted one-electron operator.
-    using TM = UTransformationMatrix<Scalar>;
+    using TM = UTransformation<Scalar>;
 
     // The type of the one-particle density matrix that is naturally associated an unrestricted one-electron operator.
     using OneDM = SpinResolved1DM<Scalar>;
@@ -358,7 +358,7 @@ template <typename Scalar, typename Vectorizer>
 struct BasisTransformableTraits<USQOneElectronOperator<Scalar, Vectorizer>> {
 
     // The type of transformation matrix that is naturally related to a `USQOneElectronOperator`.
-    using TM = UTransformationMatrix<Scalar>;
+    using TM = UTransformation<Scalar>;
 };
 
 

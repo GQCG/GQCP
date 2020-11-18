@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE(H3_test_1) {
 
 
     // Create a solver and associated environment and let the QCMethod do its job.
-    GQCP::GTransformationMatrix<double> C_initial {6};
+    GQCP::GTransformation<double> C_initial {6};
     // clang-format off
     C_initial << -0.3585282,  0.0,        0.89935394,  0.0,         0.0,        1.57117404,
                  -0.3585282,  0.0,       -1.81035361,  0.0,         0.0,        0.00672366,
@@ -113,7 +113,7 @@ BOOST_AUTO_TEST_CASE(H3_test_2) {
 
 
     // Create a solver and associated environment and let the QCMethod do its job.
-    GQCP::GTransformationMatrix<double> C_initial {6};
+    GQCP::GTransformation<double> C_initial {6};
     // We take a randomly generated matrix (from @xdvriend's implementation) as the initial guess. This makes sure the off-diagonal spin-blocks are not zero blocks and helps the calculation to converge to a true GHF solution.
     // clang-format off
     C_initial << -0.3100721,  -0.15761163, -0.51612194, -0.38100148,  0.57090929, -0.37620802,
@@ -181,7 +181,7 @@ BOOST_AUTO_TEST_CASE(H3_test_DIIS) {
 
 
     // Create a solver and associated environment and let the QCMethod do its job.
-    GQCP::GTransformationMatrix<double> C_initial {6};
+    GQCP::GTransformation<double> C_initial {6};
     // clang-format off
     C_initial << -0.3585282,  0.0,        0.89935394,  0.0,         0.0,        1.57117404,
                  -0.3585282,  0.0,       -1.81035361,  0.0,         0.0,        0.00672366,

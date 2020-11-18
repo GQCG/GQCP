@@ -19,7 +19,7 @@
 
 
 #include "Basis/MullikenPartitioning/GMullikenPartitioning.hpp"
-#include "Basis/Transformations/GTransformationMatrix.hpp"
+#include "Basis/Transformations/GTransformation.hpp"
 #include "DensityMatrix/G1DM.hpp"
 #include "DensityMatrix/G2DM.hpp"
 #include "Mathematical/Representation/DenseVectorizer.hpp"
@@ -115,7 +115,7 @@ struct OperatorTraits<GSQOneElectronOperator<Scalar, Vectorizer>> {
     using ScalarOperator = ScalarGSQOneElectronOperator<Scalar>;
 
     // The type of transformation matrix that is naturally associated to a general(ized) one-electron operator.
-    using TM = GTransformationMatrix<Scalar>;
+    using TM = GTransformation<Scalar>;
 
     // The type of the one-particle density matrix that is naturally associated to a general(ized) one-electron operator.
     using OneDM = G1DM<Scalar>;
@@ -142,7 +142,7 @@ template <typename Scalar, typename Vectorizer>
 struct BasisTransformableTraits<GSQOneElectronOperator<Scalar, Vectorizer>> {
 
     // The type of transformation matrix that is naturally associated to a general(ized) one-electron operator.
-    using TM = GTransformationMatrix<Scalar>;
+    using TM = GTransformation<Scalar>;
 };
 
 

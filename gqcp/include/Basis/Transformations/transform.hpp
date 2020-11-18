@@ -46,7 +46,7 @@ void basisTransform(RSpinOrbitalBasis<TransformationScalar, Shell>& spinor_basis
 }
 
 template <typename TransformationScalar, typename Shell>
-void basisTransform(RSpinOrbitalBasis<TransformationScalar, Shell>& spinor_basis, RSQHamiltonian<TransformationScalar>& sq_hamiltonian, const RTransformationMatrix<TransformationScalar>& T) {
+void basisTransform(RSpinOrbitalBasis<TransformationScalar, Shell>& spinor_basis, RSQHamiltonian<TransformationScalar>& sq_hamiltonian, const RTransformation<TransformationScalar>& T) {
 
     spinor_basis.transform(T);
     sq_hamiltonian.transform(T);
@@ -88,7 +88,7 @@ void basisRotate(RSpinOrbitalBasis<TransformationScalar, Shell>& spinor_basis, R
 }
 
 template <typename TransformationScalar, typename Shell>
-void basisRotate(RSpinOrbitalBasis<TransformationScalar, Shell>& spinor_basis, RSQHamiltonian<TransformationScalar>& sq_hamiltonian, const RTransformationMatrix<TransformationScalar>& U) {
+void basisRotate(RSpinOrbitalBasis<TransformationScalar, Shell>& spinor_basis, RSQHamiltonian<TransformationScalar>& sq_hamiltonian, const RTransformation<TransformationScalar>& U) {
 
     spinor_basis.rotate(U);
     sq_hamiltonian.rotate(U);
@@ -150,7 +150,7 @@ void basisRotate(RSpinOrbitalBasis<double, Shell>& spinor_basis, RSQHamiltonian<
 //     usq_hamiltonian.transform(T);
 // }
 // template <typename TransformationScalar, typename ShellType>
-// void basisTransform(USpinOrbitalBasis<TransformationScalar, ShellType>& spinor_basis, USQHamiltonian<TransformationScalar>& usq_hamiltonian, const UTransformationMatrixComponent<TransformationScalar>& T) {
+// void basisTransform(USpinOrbitalBasis<TransformationScalar, ShellType>& spinor_basis, USQHamiltonian<TransformationScalar>& usq_hamiltonian, const UTransformationComponent<TransformationScalar>& T) {
 //     spinor_basis.transform(T);
 //     usq_hamiltonian.transform(T);
 // }

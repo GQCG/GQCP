@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/Transformations/GTransformationMatrix.hpp"
+#include "Basis/Transformations/GTransformation.hpp"
 #include "DensityMatrix/DensityMatrixTraits.hpp"
 #include "DensityMatrix/G1DM.hpp"
 #include "DensityMatrix/Simple2DM.hpp"
@@ -63,7 +63,7 @@ public:
 template <typename Scalar>
 struct DensityMatrixTraits<G2DM<Scalar>> {
     // The type of transformation matrix that is naturally related to a `G2DM`.
-    using TM = GTransformationMatrix<Scalar>;
+    using TM = GTransformation<Scalar>;
 
     // The type of the one-electron density matrix that is naturally related to a `G2DM`.
     using OneDM_Placeholder = G1DM<Scalar>;

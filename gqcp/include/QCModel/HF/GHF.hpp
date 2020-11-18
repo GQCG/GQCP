@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/Transformations/GTransformationMatrix.hpp"
+#include "Basis/Transformations/GTransformation.hpp"
 #include "DensityMatrix/G1DM.hpp"
 #include "Operator/FirstQuantized/ElectronicSpinOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
@@ -44,7 +44,7 @@ private:
     size_t N;  // the number of electrons
 
     VectorX<double> orbital_energies;  // sorted in ascending energies
-    GTransformationMatrix<Scalar> C;   // the coefficient matrix that expresses every spinor (as a column) in the underlying scalar bases
+    GTransformation<Scalar> C;         // the coefficient matrix that expresses every spinor (as a column) in the underlying scalar bases
 
 
 public:
@@ -59,7 +59,7 @@ public:
      *  @param C                    the coefficient matrix that expresses every spinor (as a column) in the underlying scalar bases
      *  @param orbital_energies     the GHF MO energies
      */
-    GHF(const size_t N, const VectorX<double>& orbital_energies, const GTransformationMatrix<Scalar>& C) :
+    GHF(const size_t N, const VectorX<double>& orbital_energies, const GTransformation<Scalar>& C) :
         N {N},
         orbital_energies {orbital_energies},
         C {C} {}
@@ -69,7 +69,7 @@ public:
      *  Default constructor setting everything to zero
      */
     GHF() :
-        GHF(0, VectorX<double>::Zero(0), GTransformationMatrix<Scalar>::Zero(0, 0)) {}
+        GHF(0, VectorX<double>::Zero(0), GTransformation<Scalar>::Zero(0, 0)) {}
 
 
     /*
@@ -122,7 +122,7 @@ public:
      *
      *  @return the GHF 1-DM expressed in the underlying scalar basis
      */
-    static G1DM<Scalar> calculateScalarBasis1DM(const GTransformationMatrix<double>& C, const size_t N) {
+    static G1DM<Scalar> calculateScalarBasis1DM(const GTransformation<double>& C, const size_t N) {
 
         const size_t M = C.dimension();
         const auto P_orthonormal = GHF<Scalar>::calculateOrthonormalBasis1DM(M, N);
@@ -332,7 +332,7 @@ public:
     /**
      *  @return the coefficient matrix that expresses every spinor orbital (as a column) in the underlying scalar bases
      */
-    const GTransformationMatrix<Scalar>& coefficientMatrix() const { return this->C; }
+    const GTransformation<Scalar>& coefficientMatrix() const { return this->C; }
 
     /**
      *  @return the number of electrons that these GHF model parameters describe

@@ -19,7 +19,7 @@
 
 
 #include "Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp"
-#include "Basis/Transformations/UTransformationMatrix.hpp"
+#include "Basis/Transformations/UTransformation.hpp"
 #include "QuantumChemical/SpinResolved.hpp"
 #include "QuantumChemical/SpinResolvedBase.hpp"
 
@@ -64,9 +64,9 @@ public:
     /**
      *  @return The Mulliken projection matrix (as an unrestricted transformation) defined as C^{-1} P_A C, where C is the transformation matrix and P_A is the partition matrix.
      */
-    UTransformationMatrix<Scalar> projectionMatrix() const {
+    UTransformation<Scalar> projectionMatrix() const {
 
-        return UTransformationMatrix<Scalar> {this->alpha().projectionMatrix(), this->beta().projectionMatrix()};
+        return UTransformation<Scalar> {this->alpha().projectionMatrix(), this->beta().projectionMatrix()};
     }
 };
 

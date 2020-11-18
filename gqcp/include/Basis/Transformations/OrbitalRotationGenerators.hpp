@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/Transformations/RTransformationMatrix.hpp"
+#include "Basis/Transformations/RTransformation.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 
 #include <unsupported/Eigen/MatrixFunctions>
@@ -78,7 +78,7 @@ public:
     /**
      *  @return the unitary matrix that corresponds to these orbital rotation generators, i.e. exp(-kappa)
      */
-    RTransformationMatrix<double> calculateRotationMatrix() const { return RTransformationMatrix<double> {(-this->asMatrix()).exp()}; }
+    RTransformation<double> calculateRotationMatrix() const { return RTransformation<double> {(-this->asMatrix()).exp()}; }
 
     /*
      *  @return the number of spatial orbitals that can be rotated using these orbital rotation generators

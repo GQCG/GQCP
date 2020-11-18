@@ -23,7 +23,7 @@
 #include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
 #include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
-#include "Basis/Transformations/GTransformationMatrix.hpp"
+#include "Basis/Transformations/GTransformation.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
@@ -55,7 +55,7 @@ public:
     using Base = SimpleSpinorBasis<_ExpansionScalar, GSpinorBasis<_ExpansionScalar, _Shell>>;
 
     // The type of transformation matrix that is naturally related to a GSpinorBasis.
-    using TM = GTransformationMatrix<ExpansionScalar>;  // TODO: Rename to TransformationMatrix once the class is gone
+    using TM = GTransformation<ExpansionScalar>;  // TODO: Rename to TransformationMatrix once the class is gone
 
     // The type that is used for representing the primitive for a basis function of this spin-orbital basis' underlying AO basis.
     using Primitive = typename Shell::Primitive;
@@ -506,7 +506,7 @@ struct SpinorBasisTraits<GSpinorBasis<_ExpansionScalar, _Shell>> {
     using ExpansionScalar = _ExpansionScalar;
 
     // The type of transformation matrix that is naturally related to a GSpinorBasis.
-    using TM = GTransformationMatrix<ExpansionScalar>;  // TODO: Rename to TransformationMatrix once the class is gone
+    using TM = GTransformation<ExpansionScalar>;  // TODO: Rename to TransformationMatrix once the class is gone
 
     // The second-quantized representation of the overlap operator related to the derived spinor basis.
     using SQOverlapOperator = ScalarGSQOneElectronOperator<ExpansionScalar>;
@@ -524,7 +524,7 @@ template <typename _ExpansionScalar, typename _Shell>
 struct BasisTransformableTraits<GSpinorBasis<_ExpansionScalar, _Shell>> {
 
     // The type of transformation matrix that is naturally related to a `GSpinorBasis`.
-    using TM = GTransformationMatrix<_ExpansionScalar>;
+    using TM = GTransformation<_ExpansionScalar>;
 };
 
 

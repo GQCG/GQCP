@@ -22,7 +22,7 @@
 #include "Basis/SpinorBasis/GSpinorBasis.hpp"
 #include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
-#include "Basis/Transformations/RTransformationMatrix.hpp"
+#include "Basis/Transformations/RTransformation.hpp"
 #include "DensityMatrix/Orbital1DM.hpp"
 #include "DensityMatrix/Orbital2DM.hpp"
 #include "DensityMatrix/SpinResolved1DM.hpp"
@@ -401,11 +401,11 @@ public:
      *  @note This algorithm was implemented from a description in Helgaker2000.
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value> basisTransform(const RTransformationMatrix<double>& T) {
+    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value> basisTransform(const RTransformation<double>& T) {
 
         const auto K = onv_basis.numberOfOrbitals();  // number of spatial orbitals
         if (K != T.numberOfOrbitals()) {
-            throw std::invalid_argument("LinearExpansion::basisTransform(const RTransformationMatrix<double>&): The number of spatial orbitals does not match the dimension of the transformation matrix.");
+            throw std::invalid_argument("LinearExpansion::basisTransform(const RTransformation<double>&): The number of spatial orbitals does not match the dimension of the transformation matrix.");
         }
 
 

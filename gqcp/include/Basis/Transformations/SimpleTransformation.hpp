@@ -27,7 +27,7 @@ namespace GQCP {
 
 
 /*
- *  MARK: SimpleTransformationMatrix implementation
+ *  MARK: SimpleTransformation implementation
  */
 
 /**
@@ -35,13 +35,13 @@ namespace GQCP {
  * 
  *  In general, we adopt the convention outlined in (https://gqcg-res.github.io/knowdes/spinor-transformations.html), where the new orbitals' coefficients can be found in the respective **column** of the related transformation matrix.
  *  
- *  This class is used as a base class for `RTransformationMatrix` and `GTransformationMatrix`, since they are both expressed using a single matrix, as opposed to `UTransformationMatrix`, which uses separate transformation coefficients for alpha- and beta- matrices. The word 'simple' is used here as an antonym for 'compound'.
+ *  This class is used as a base class for `RTransformation` and `GTransformation`, since they are both expressed using a single matrix, as opposed to `UTransformation`, which uses separate transformation coefficients for alpha- and beta- matrices. The word 'simple' is used here as an antonym for 'compound'.
  * 
  *  @tparam _Scalar                                 The scalar type used for a transformation coefficient: real or complex.
  *  @tparam _DerivedTransformationMatrix            The type of the transformation matrix that derives from this class, enabling CRTP and compile-time polymorphism.
  */
 template <typename _Scalar, typename _DerivedTransformationMatrix>
-class SimpleTransformationMatrix:
+class SimpleTransformation:
     public SquareMatrix<_Scalar>,
     public BasisTransformable<_DerivedTransformationMatrix>,
     public JacobiRotatable<_DerivedTransformationMatrix> {
@@ -54,7 +54,7 @@ public:
     using DerivedTransformationMatrix = _DerivedTransformationMatrix;
 
     // The type of 'this'.
-    using Self = SimpleTransformationMatrix<_Scalar, _DerivedTransformationMatrix>;
+    using Self = SimpleTransformation<_Scalar, _DerivedTransformationMatrix>;
 
     // The type of Jacobi rotation for which the Jacobi rotation should be defined.
     using JacobiRotationType = JacobiRotation;
@@ -162,7 +162,7 @@ public:
  *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
  */
 template <typename Scalar, typename DerivedTransformationMatrix>
-struct BasisTransformableTraits<SimpleTransformationMatrix<Scalar, DerivedTransformationMatrix>> {
+struct BasisTransformableTraits<SimpleTransformation<Scalar, DerivedTransformationMatrix>> {
 
     // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix". A transformation matrix should naturally be transformable with itself.
     using TM = DerivedTransformationMatrix;
@@ -179,7 +179,7 @@ struct BasisTransformableTraits<SimpleTransformationMatrix<Scalar, DerivedTransf
  *  @tparam T       The type that should conform to `JacobiRotatable`.
  */
 template <typename Scalar, typename DerivedTransformationMatrix>
-struct JacobiRotatableTraits<SimpleTransformationMatrix<Scalar, DerivedTransformationMatrix>> {
+struct JacobiRotatableTraits<SimpleTransformation<Scalar, DerivedTransformationMatrix>> {
 
     // The type of Jacobi rotation for which the Jacobi rotation should be defined.
     using JacobiRotationType = JacobiRotation;

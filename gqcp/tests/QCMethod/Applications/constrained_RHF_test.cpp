@@ -157,7 +157,7 @@ BOOST_AUTO_TEST_CASE(constrained_CO_test_random_AO_basis) {
     const auto K = spin_orbital_basis.numberOfSpatialOrbitals();
 
     // Generate a random transformation matrix, but keep the norm of the orbitals intact.
-    GQCP::RTransformationMatrix<double> T = GQCP::RTransformationMatrix<double>::Random(K);
+    GQCP::RTransformation<double> T = GQCP::RTransformation<double>::Random(K);
     for (size_t i = 0; i < K; i++) {
         T(i, i) = 1.0;
     }

@@ -18,38 +18,37 @@
 #pragma once
 
 
-#include "Basis/Transformations/SimpleTransformationMatrix.hpp"
+#include "Basis/Transformations/SimpleTransformation.hpp"
 
 
 namespace GQCP {
 
 
 /*
- *  MARK: UTransformationMatrixComponent implementation
+ *  MARK: RTransformation implementation
  */
 
 /**
- *  One of the spin components of an UTransformationMatrix.
+ *  A 'restricted' basis transformation, i.e. a spin-orbital basis transformation where the transformation is applied equally to the alpha- and beta-spin-orbitals.
  * 
- *  It is specifically designed as one of these spin components, in order to ensuring compile-time correctness. It would be wrong to use either R/GTransformationMatrix as one of the spin components, and it's not possible to use SimpleTransformationMatrix as one of the spin components because it requires a template argument of the type that derives from it.
+ *  In general, we adopt the convention outlined in (https://gqcg-res.github.io/knowdes/spinor-transformations.html), where the new orbitals' coefficients can be found in the respective **column** of the related transformation matrix.
  * 
  *  @tparam _Scalar         The scalar type used for a transformation coefficient: real or complex.
  */
 template <typename _Scalar>
-class UTransformationMatrixComponent:
-    public SimpleTransformationMatrix<_Scalar, UTransformationMatrixComponent<_Scalar>> {
+class RTransformation:
+    public SimpleTransformation<_Scalar, RTransformation<_Scalar>> {
 public:
     // The scalar type used for a transformation coefficient: real or complex.
     using Scalar = _Scalar;
-
 
 public:
     /*
      *  MARK: Constructors
      */
 
-    // Inherit SimpleTransformationMatrix' constructors.
-    using SimpleTransformationMatrix<Scalar, UTransformationMatrixComponent<Scalar>>::SimpleTransformationMatrix;
+    // Inherit SimpleTransformation' constructors.
+    using SimpleTransformation<Scalar, RTransformation<Scalar>>::SimpleTransformation;
 };
 
 
@@ -61,10 +60,10 @@ public:
  *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
  */
 template <typename Scalar>
-struct BasisTransformableTraits<UTransformationMatrixComponent<Scalar>> {
+struct BasisTransformableTraits<RTransformation<Scalar>> {
 
     // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix". A transformation matrix should naturally be transformable with itself.
-    using TM = UTransformationMatrixComponent<Scalar>;
+    using TM = RTransformation<Scalar>;
 };
 
 
@@ -76,7 +75,7 @@ struct BasisTransformableTraits<UTransformationMatrixComponent<Scalar>> {
  *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
  */
 template <typename Scalar>
-struct JacobiRotatableTraits<UTransformationMatrixComponent<Scalar>> {
+struct JacobiRotatableTraits<RTransformation<Scalar>> {
 
     // The type of Jacobi rotation for which the Jacobi rotation should be defined.
     using JacobiRotationType = JacobiRotation;

@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/Transformations/UTransformationMatrix.hpp"
+#include "Basis/Transformations/UTransformation.hpp"
 #include "DensityMatrix/G1DM.hpp"
 #include "DensityMatrix/Orbital1DM.hpp"
 #include "DensityMatrix/SpinDensity1DM.hpp"
@@ -45,7 +45,7 @@ public:
     using Scalar = _Scalar;
 
     // The type of the transformation matrix that is naturally related to SpinResolved1DM.
-    using TM = UTransformationMatrix<Scalar>;
+    using TM = UTransformation<Scalar>;
 
     // The type of 'this'.
     using Self = SpinResolved1DM<Scalar>;
@@ -150,7 +150,7 @@ public:
      * 
      *  @return The basis-transformed object.
      */
-    SpinResolved1DM<Scalar> transformed(const UTransformationMatrix<Scalar>& transformation_matrix) const override {
+    SpinResolved1DM<Scalar> transformed(const UTransformation<Scalar>& transformation_matrix) const override {
 
         auto result = *this;
 
@@ -203,7 +203,7 @@ template <typename Scalar>
 struct BasisTransformableTraits<SpinResolved1DM<Scalar>> {
 
     // The type of the transformation matrix that is naturally related to SpinResolved1DM.
-    using TM = UTransformationMatrix<Scalar>;
+    using TM = UTransformation<Scalar>;
 };
 
 

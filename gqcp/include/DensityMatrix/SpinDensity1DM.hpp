@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/Transformations/RTransformationMatrix.hpp"
+#include "Basis/Transformations/RTransformation.hpp"
 #include "DensityMatrix/DensityMatrixTraits.hpp"
 #include "DensityMatrix/Simple1DM.hpp"
 
@@ -64,7 +64,7 @@ public:
 template <typename Scalar>
 struct DensityMatrixTraits<SpinDensity1DM<Scalar>> {
     // The type of transformation matrix that is naturally related to a `SpinDensity1DM`. The only transformations that should be naturally possible for a a spin-density 1-DM are restricted transformations, that transform the alpha- and beta-spin-orbitals equally.
-    using TM = RTransformationMatrix<Scalar>;
+    using TM = RTransformation<Scalar>;
 };
 
 

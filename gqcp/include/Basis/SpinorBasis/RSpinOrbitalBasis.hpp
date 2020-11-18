@@ -23,7 +23,7 @@
 #include "Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp"
 #include "Basis/SpinorBasis/Spinor.hpp"
 #include "Basis/Transformations/JacobiRotation.hpp"
-#include "Basis/Transformations/RTransformationMatrix.hpp"
+#include "Basis/Transformations/RTransformation.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp"
@@ -56,7 +56,7 @@ public:
     using BaseSpinorBasis = SimpleSpinorBasis<_ExpansionScalar, RSpinOrbitalBasis<_ExpansionScalar, _Shell>>;
 
     // The type of transformation matrix that is naturally related to a GSpinorBasis.
-    using TM = RTransformationMatrix<ExpansionScalar>;  // TODO: Rename to TransformationMatrix once the class is gone
+    using TM = RTransformation<ExpansionScalar>;  // TODO: Rename to TransformationMatrix once the class is gone
 
     // The type that is used for representing the primitive for a basis function of this spin-orbital basis' underlying AO basis.
     using Primitive = typename Shell::Primitive;
@@ -280,7 +280,7 @@ struct SpinorBasisTraits<RSpinOrbitalBasis<_ExpansionScalar, _Shell>> {
     using ExpansionScalar = _ExpansionScalar;
 
     // The type of transformation matrix that is naturally related to an RSpinOrbitalBasis.
-    using TM = RTransformationMatrix<ExpansionScalar>;  // TODO: Rename to TransformationMatrix once the class is gone
+    using TM = RTransformation<ExpansionScalar>;  // TODO: Rename to TransformationMatrix once the class is gone
 
     // The second-quantized representation of the overlap operator related to an RSpinOrbitalBasis.
     using SQOverlapOperator = ScalarRSQOneElectronOperator<ExpansionScalar>;
@@ -298,7 +298,7 @@ template <typename _ExpansionScalar, typename _Shell>
 struct BasisTransformableTraits<RSpinOrbitalBasis<_ExpansionScalar, _Shell>> {
 
     // The type of transformation matrix that is naturally related to an `RSpinOrbitalBasis`.
-    using TM = RTransformationMatrix<_ExpansionScalar>;
+    using TM = RTransformation<_ExpansionScalar>;
 };
 
 

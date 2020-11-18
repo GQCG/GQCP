@@ -21,7 +21,7 @@
 #include "Basis/Transformations/BasisTransformable.hpp"
 #include "Basis/Transformations/JacobiRotatable.hpp"
 #include "Basis/Transformations/UJacobiRotation.hpp"
-#include "Basis/Transformations/UTransformationMatrix.hpp"
+#include "Basis/Transformations/UTransformation.hpp"
 #include "DensityMatrix/SpinResolved1DM.hpp"
 #include "DensityMatrix/SpinResolved2DM.hpp"
 #include "Mathematical/Functions/VectorSpaceArithmetic.hpp"
@@ -58,7 +58,7 @@ public:
     using Self = USQTwoElectronOperator<Scalar, Vectorizer>;
 
     // The type of the transformation matrix that is naturally related to an unrestricted two-electron operator.
-    using TM = UTransformationMatrix<Scalar>;
+    using TM = UTransformation<Scalar>;
 
     // The type of Jacobi rotation that is naturally related to an unrestricted two-electron operator.
     using JacobiRotationType = UJacobiRotation;
@@ -370,7 +370,7 @@ struct OperatorTraits<USQTwoElectronOperator<Scalar, Vectorizer>> {
     using ScalarOperator = ScalarUSQTwoElectronOperator<Scalar>;
 
     // The type of transformation matrix that is naturally associated to an unrestricted two-electron operator.
-    using TM = UTransformationMatrix<Scalar>;
+    using TM = UTransformation<Scalar>;
 
     // The type of the one-particle density matrix that is naturally associated an unrestricted two-electron operator.
     using OneDM = SpinResolved1DM<Scalar>;
@@ -391,7 +391,7 @@ template <typename Scalar, typename Vectorizer>
 struct BasisTransformableTraits<USQTwoElectronOperator<Scalar, Vectorizer>> {
 
     // The type of transformation matrix that is naturally related to a `USQTwoElectronOperator`.
-    using TM = UTransformationMatrix<Scalar>;
+    using TM = UTransformation<Scalar>;
 };
 
 

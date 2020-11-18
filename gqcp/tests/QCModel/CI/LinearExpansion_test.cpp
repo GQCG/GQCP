@@ -113,7 +113,7 @@ BOOST_AUTO_TEST_CASE(transform_wave_function_h3) {
 
 
     // Generate a random rotation matrix and calculate the transformation of the linear expansion coefficients.
-    const GQCP::RTransformationMatrix<double> U_random = GQCP::RTransformationMatrix<double>::RandomUnitary(K);
+    const GQCP::RTransformation<double> U_random = GQCP::RTransformation<double>::RandomUnitary(K);
     linear_expansion_direct.basisTransform(U_random);
 
 
@@ -155,7 +155,7 @@ BOOST_AUTO_TEST_CASE(transform_wave_function_h4) {
 
 
     // Generate a random rotation matrix and calculate the transformation of the linear expansion coefficients.
-    const GQCP::RTransformationMatrix<double> U_random = GQCP::RTransformationMatrix<double>::RandomUnitary(K);
+    const GQCP::RTransformation<double> U_random = GQCP::RTransformation<double>::RandomUnitary(K);
     linear_expansion_direct.basisTransform(U_random);
 
 
@@ -198,7 +198,7 @@ BOOST_AUTO_TEST_CASE(transform_wave_function_h5) {
 
 
     // Generate a random rotation matrix and calculate the transformation of the linear expansion coefficients.
-    const GQCP::RTransformationMatrix<double> U_random = GQCP::RTransformationMatrix<double>::RandomUnitary(K);
+    const GQCP::RTransformation<double> U_random = GQCP::RTransformation<double>::RandomUnitary(K);
     linear_expansion_direct.basisTransform(U_random);
 
 

@@ -665,7 +665,7 @@ BOOST_AUTO_TEST_CASE(RHF_UHF_projection) {
     // Obtain the canonical RHF spin-orbitals.
     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> r_spinor_basis {molecule, "STO-3G"};
     const auto S_restricted = r_spinor_basis.overlap().parameters();  // the AO overlap matrix
-    GQCP::RTransformationMatrix<double> C_restricted {4};             // RHF canonical orbitals for this system (Xeno)
+    GQCP::RTransformation<double> C_restricted {4};                   // RHF canonical orbitals for this system (Xeno)
     // clang-format off
     C_restricted << -0.27745359, -0.8505133,   0.85051937,  2.02075317,
                     -0.27745362, -0.85051937, -0.8505133,  -2.02075317,
@@ -692,7 +692,7 @@ BOOST_AUTO_TEST_CASE(RHF_UHF_projection) {
               -3.78560533e-01, -1.20281173e+00, -1.21724558e-06,  2.00427438e+00,
               -1.75646828e-01, -1.21724558e-06,  1.20281173e+00, -2.03213486e+00;
     // clang-format on
-    GQCP::UTransformationMatrix<double> C_unrestricted {C_alpha, C_beta};
+    GQCP::UTransformation<double> C_unrestricted {C_alpha, C_beta};
     u_spinor_basis.transform(C_unrestricted);
 
 

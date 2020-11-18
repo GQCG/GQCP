@@ -15,11 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#define BOOST_TEST_MODULE "SimpleTransformationMatrix"
+#define BOOST_TEST_MODULE "SimpleTransformation"
 
 #include <boost/test/unit_test.hpp>
 
-#include "Basis/Transformations/RTransformationMatrix.hpp"
+#include "Basis/Transformations/RTransformation.hpp"
 
 #include <boost/math/constants/constants.hpp>
 
@@ -32,7 +32,7 @@ BOOST_AUTO_TEST_CASE(jacobi_rotation) {
     const size_t dim = 3;
 
     // Set up an identity transformation matrix.
-    GQCP::RTransformationMatrix<double> T = GQCP::SquareMatrix<double>::Identity(dim);
+    GQCP::RTransformation<double> T = GQCP::SquareMatrix<double>::Identity(dim);
     const GQCP::JacobiRotation jacobi {1, 0, boost::math::constants::half_pi<double>()};
 
 
@@ -59,8 +59,8 @@ BOOST_AUTO_TEST_CASE(jacobi_rotation) {
  */
 BOOST_AUTO_TEST_CASE(FromJacobi_unitary) {
 
-    BOOST_CHECK(GQCP::RTransformationMatrix<double>::FromJacobi(GQCP::JacobiRotation(7, 4, 6.9921), 10).isUnitary());
-    BOOST_CHECK(GQCP::RTransformationMatrix<double>::FromJacobi(GQCP::JacobiRotation(9, 1, 78.00166), 22).isUnitary());
+    BOOST_CHECK(GQCP::RTransformation<double>::FromJacobi(GQCP::JacobiRotation(7, 4, 6.9921), 10).isUnitary());
+    BOOST_CHECK(GQCP::RTransformation<double>::FromJacobi(GQCP::JacobiRotation(9, 1, 78.00166), 22).isUnitary());
 }
 
 
@@ -70,13 +70,13 @@ BOOST_AUTO_TEST_CASE(FromJacobi_unitary) {
 BOOST_AUTO_TEST_CASE(transform) {
 
     // Create two transformation matrices.
-    GQCP::RTransformationMatrix<double> T1 {2};
+    GQCP::RTransformation<double> T1 {2};
     // clang-format off
     T1 << 1.0, 0.0,
           1.0, 3.0;
     // clang-format on
 
-    GQCP::RTransformationMatrix<double> T2 {2};
+    GQCP::RTransformation<double> T2 {2};
     // clang-format off
     T2 << 1.0, 2.0,
           3.0, 4.0;
@@ -84,7 +84,7 @@ BOOST_AUTO_TEST_CASE(transform) {
 
 
     // Set up and check the expected result
-    GQCP::RTransformationMatrix<double> T_total_ref {2};
+    GQCP::RTransformation<double> T_total_ref {2};
     // clang-format off
     T_total_ref <<  1.0,  2.0,
                    10.0, 14.0;

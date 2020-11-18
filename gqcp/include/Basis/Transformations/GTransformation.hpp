@@ -18,13 +18,13 @@
 #pragma once
 
 
-#include "Basis/Transformations/SimpleTransformationMatrix.hpp"
+#include "Basis/Transformations/SimpleTransformation.hpp"
 
 namespace GQCP {
 
 
 /*
- *  MARK: GTransformationMatrix implementation
+ *  MARK: GTransformation implementation
  */
 
 /**
@@ -35,8 +35,8 @@ namespace GQCP {
  *  @tparam _Scalar         The scalar type used for a transformation coefficient: real or complex.
  */
 template <typename _Scalar>
-class GTransformationMatrix:
-    public SimpleTransformationMatrix<_Scalar, GTransformationMatrix<_Scalar>> {
+class GTransformation:
+    public SimpleTransformation<_Scalar, GTransformation<_Scalar>> {
 public:
     // The scalar type used for a transformation coefficient: real or complex.
     using Scalar = _Scalar;
@@ -46,8 +46,8 @@ public:
      *  MARK: Constructors
      */
 
-    // Inherit SimpleTransformationMatrix' constructors.
-    using SimpleTransformationMatrix<Scalar, GTransformationMatrix<Scalar>>::SimpleTransformationMatrix;
+    // Inherit SimpleTransformation' constructors.
+    using SimpleTransformation<Scalar, GTransformation<Scalar>>::SimpleTransformation;
 
 
     /*
@@ -88,10 +88,10 @@ public:
  *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
  */
 template <typename Scalar>
-struct BasisTransformableTraits<GTransformationMatrix<Scalar>> {
+struct BasisTransformableTraits<GTransformation<Scalar>> {
 
     // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix". A transformation matrix should naturally be transformable with itself.
-    using TM = GTransformationMatrix<Scalar>;
+    using TM = GTransformation<Scalar>;
 };
 
 
@@ -103,7 +103,7 @@ struct BasisTransformableTraits<GTransformationMatrix<Scalar>> {
  *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
  */
 template <typename Scalar>
-struct JacobiRotatableTraits<GTransformationMatrix<Scalar>> {
+struct JacobiRotatableTraits<GTransformation<Scalar>> {
 
     // The type of Jacobi rotation for which the Jacobi rotation should be defined.
     using JacobiRotationType = JacobiRotation;

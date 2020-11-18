@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/Transformations/GTransformationMatrix.hpp"
+#include "Basis/Transformations/GTransformation.hpp"
 #include "DensityMatrix/G1DM.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
@@ -54,7 +54,7 @@ public:
 
     ScalarGSQOneElectronOperator<Scalar> S;  // the overlap matrix (of both scalar (AO) bases), expressed in spin-blocked notation
 
-    std::deque<GTransformationMatrix<Scalar>> coefficient_matrices;
+    std::deque<GTransformation<Scalar>> coefficient_matrices;
     std::deque<G1DM<Scalar>> density_matrices;                       // expressed in the scalar (AO) basis
     std::deque<ScalarGSQOneElectronOperator<Scalar>> fock_matrices;  // expressed in the scalar (AO) basis
     std::deque<VectorX<Scalar>> error_vectors;                       // expressed in the scalar (AO) basis, used when doing DIIS calculations: the real error matrices should be converted to column-major error vectors for the DIIS algorithm to be used correctly
@@ -75,7 +75,7 @@ public:
      *  @param S                    the overlap matrix (of both scalar (AO) bases), expressed in spin-blocked notation
      *  @param C_initial            the initial coefficient matrix
      */
-    GHFSCFEnvironment(const size_t N, const GSQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S, const GTransformationMatrix<Scalar>& C_initial) :
+    GHFSCFEnvironment(const size_t N, const GSQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S, const GTransformation<Scalar>& C_initial) :
         N {N},
         S {S},
         sq_hamiltonian {sq_hamiltonian},
@@ -99,7 +99,7 @@ public:
 
         using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
         Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver {H_core, S};
-        const GTransformationMatrix<Scalar> C_initial = generalized_eigensolver.eigenvectors();
+        const GTransformation<Scalar> C_initial = generalized_eigensolver.eigenvectors();
 
         return GHFSCFEnvironment<Scalar>(N, sq_hamiltonian, S, C_initial);
     }

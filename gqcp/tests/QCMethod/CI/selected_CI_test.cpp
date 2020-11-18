@@ -74,7 +74,7 @@ BOOST_AUTO_TEST_CASE(unrestricted_selected_FCI) {
 
     auto sq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);
     const auto K = sq_hamiltonian.numberOfOrbitals();
-    sq_hamiltonian.rotate(GQCP::UTransformationMatrix<double>::RandomUnitary(K));
+    sq_hamiltonian.rotate(GQCP::UTransformation<double>::RandomUnitary(K));
 
 
     // Set up the full spin-resolved selected ONV basis.

@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/Transformations/RTransformationMatrix.hpp"
+#include "Basis/Transformations/RTransformation.hpp"
 #include "DensityMatrix/Orbital1DM.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
@@ -54,7 +54,7 @@ public:
 
     ScalarRSQOneElectronOperator<Scalar> S;  // the overlap matrix (of the scalar (AO) basis)
 
-    std::deque<RTransformationMatrix<Scalar>> coefficient_matrices;
+    std::deque<RTransformation<Scalar>> coefficient_matrices;
     std::deque<Orbital1DM<Scalar>> density_matrices;                 // expressed in the scalar (AO) basis
     std::deque<ScalarRSQOneElectronOperator<Scalar>> fock_matrices;  // expressed in the scalar (AO) basis
     std::deque<VectorX<Scalar>> error_vectors;                       // expressed in the scalar (AO) basis, used when doing DIIS calculations: the real error matrices should be converted to column-major error vectors for the DIIS algorithm to be used correctly
@@ -75,14 +75,14 @@ public:
      *  @param S                    the overlap matrix (of the scalar (AO) basis)
      *  @param C_initial            the initial coefficient matrix
      */
-    RHFSCFEnvironment(const size_t N, const RSQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S, const RTransformationMatrix<Scalar>& C_initial) :
+    RHFSCFEnvironment(const size_t N, const RSQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S, const RTransformation<Scalar>& C_initial) :
         N {N},
         S {S},
         sq_hamiltonian {sq_hamiltonian},
         coefficient_matrices {C_initial} {
 
         if (this->N % 2 != 0) {  // if the total number of electrons is odd
-            throw std::invalid_argument("RHFSCFEnvironment::RHFSCFEnvironment(const size_t, const RSQHamiltonian<Scalar>&, const SquareMatrix<Scalar>&, const RTransformationMatrix<Scalar>&): You have given an odd number of electrons.");
+            throw std::invalid_argument("RHFSCFEnvironment::RHFSCFEnvironment(const size_t, const RSQHamiltonian<Scalar>&, const SquareMatrix<Scalar>&, const RTransformation<Scalar>&): You have given an odd number of electrons.");
         }
     }
 
@@ -104,7 +104,7 @@ public:
 
         using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
         Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver {H_core, S};
-        const RTransformationMatrix<Scalar> C_initial = generalized_eigensolver.eigenvectors();
+        const RTransformation<Scalar> C_initial = generalized_eigensolver.eigenvectors();
 
         return RHFSCFEnvironment<Scalar>(N, sq_hamiltonian, S, C_initial);
     }

@@ -18,8 +18,8 @@
 #pragma once
 
 
-#include "Basis/Transformations/UTransformationMatrix.hpp"
-#include "Basis/Transformations/UTransformationMatrixComponent.hpp"
+#include "Basis/Transformations/UTransformation.hpp"
+#include "Basis/Transformations/UTransformationComponent.hpp"
 #include "DensityMatrix/SpinResolved1DM.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
@@ -50,7 +50,7 @@ private:
     VectorX<double> orbital_energies_alpha;  // sorted by ascending energy
     VectorX<double> orbital_energies_beta;   // sorted by ascending energy
 
-    UTransformationMatrix<Scalar> C;  // The transformation between the current unrestricted spin-orbitals and the AOs.
+    UTransformation<Scalar> C;  // The transformation between the current unrestricted spin-orbitals and the AOs.
 
 
 public:
@@ -68,7 +68,7 @@ public:
      *  @param C_alpha                                  the coefficient matrix that expresses every alpha spatial orbital (as a column) in its underlying scalar basis
      *  @param C_beta                                   the coefficient matrix that expresses every beta spatial orbital (as a column) in its underlying scalar basis
      */
-    UHF(const size_t N_alpha, const size_t N_beta, const VectorX<double>& orbital_energies_alpha, const VectorX<double>& orbital_energies_beta, const UTransformationMatrix<Scalar>& C) :
+    UHF(const size_t N_alpha, const size_t N_beta, const VectorX<double>& orbital_energies_alpha, const VectorX<double>& orbital_energies_beta, const UTransformation<Scalar>& C) :
         N_alpha {N_alpha},
         N_beta {N_beta},
         orbital_energies_alpha {orbital_energies_alpha},
@@ -107,7 +107,7 @@ public:
      *  @param C_alpha                                  the coefficient matrix that expresses every alpha spatial orbital (as a column) in its underlying scalar basis
      *  @param C_beta                                   the coefficient matrix that expresses every beta spatial orbital (as a column) in its underlying scalar basis
      */
-    UHF(const size_t N_alpha, const size_t N_beta, const UTransformationMatrix<Scalar>& C) :
+    UHF(const size_t N_alpha, const size_t N_beta, const UTransformation<Scalar>& C) :
         UHF(N_alpha, N_beta,
             GQCP::VectorX<double>::Zero(C.component(Spin::alpha).numberOfOrbitals()),
             GQCP::VectorX<double>::Zero(C.component(Spin::beta).numberOfOrbitals()),
@@ -123,7 +123,7 @@ public:
     UHF(const GQCP::QCModel::RHF<Scalar>& rhf_model) :
         UHF(rhf_model.numberOfElectrons(Spin::alpha), rhf_model.numberOfElectrons(Spin::beta),
             rhf_model.orbitalEnergies(), rhf_model.orbitalEnergies(),
-            GQCP::UTransformationMatrix<Scalar>::FromRestricted(rhf_model.coefficientMatrix())) {}
+            GQCP::UTransformation<Scalar>::FromRestricted(rhf_model.coefficientMatrix())) {}
 
 
     /*
@@ -204,7 +204,7 @@ public:
      *
      *  @return The UHF 1-DM expressed in the underlying scalar basis.
      */
-    static SpinResolved1DM<Scalar> calculateScalarBasis1DM(const UTransformationMatrix<Scalar>& C, const size_t N_a, const size_t N_b) {
+    static SpinResolved1DM<Scalar> calculateScalarBasis1DM(const UTransformation<Scalar>& C, const size_t N_a, const size_t N_b) {
 
         // Calculate the 1-DM in the spin-orbital basis, and transform to the underlying scalar basis.
         const auto K_a = C.alpha().numberOfOrbitals();
@@ -320,7 +320,7 @@ public:
 
         const auto C_a = this->coefficientMatrix(Spin::alpha);
         const auto C_b = this->coefficientMatrix(Spin::beta);
-        const UTransformationMatrix<Scalar> C {C_a, C_b};
+        const UTransformation<Scalar> C {C_a, C_b};
 
         const auto N_a = this->numberOfElectrons(Spin::alpha);
         const auto N_b = this->numberOfElectrons(Spin::beta);

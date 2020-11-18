@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/Transformations/UTransformationMatrixComponent.hpp"
+#include "Basis/Transformations/UTransformationComponent.hpp"
 #include "DensityMatrix/Simple2DM.hpp"
 #include "DensityMatrix/SpinResolved1DMComponent.hpp"
 
@@ -33,7 +33,7 @@ namespace GQCP {
 /**
  *  One of the spin components of a SpinResolved2DM.
  * 
- *  It is specifically designed as one of these spin components, in order to ensuring compile-time correctness. It would be wrong to use either Orbital2DM or G2DM as one of the spin components, and it's not possible to use SimpleTransformationMatrix as one of the spin components because it requires a template argument of the type that derives from it.
+ *  It is specifically designed as one of these spin components, in order to ensuring compile-time correctness. It would be wrong to use either Orbital2DM or G2DM as one of the spin components, and it's not possible to use SimpleTransformation as one of the spin components because it requires a template argument of the type that derives from it.
  * 
  *  @tparam _Scalar                 The scalar type used for a density matrix element: real or complex.
  */
@@ -63,8 +63,8 @@ public:
  */
 template <typename Scalar>
 struct DensityMatrixTraits<SpinResolved2DMComponent<Scalar>> {
-    // The type of transformation matrix that is naturally related to a `SpinResolved2DMComponent`. Since a `SpinResolved2DM` naturally transforms with a `UTransformationMatrix`, a `SpinResolved2DMComponent` naturally transforms with a `UTransformationMatrixComponent`.
-    using TM = UTransformationMatrixComponent<Scalar>;
+    // The type of transformation matrix that is naturally related to a `SpinResolved2DMComponent`. Since a `SpinResolved2DM` naturally transforms with a `UTransformation`, a `SpinResolved2DMComponent` naturally transforms with a `UTransformationComponent`.
+    using TM = UTransformationComponent<Scalar>;
 
     // The type of the one-electron density matrix that is naturally related to a `SpinResolved2DMComponent`. It is the return type of `SpinResolved2DMComponent`'s method `reduce`.
     using OneDM_Placeholder = SpinResolved1DMComponent<Scalar>;

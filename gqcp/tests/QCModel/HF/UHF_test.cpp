@@ -46,15 +46,15 @@ BOOST_AUTO_TEST_CASE(basic_constructor) {
     const GQCP::VectorX<double> orbital_energies_beta2 = GQCP::VectorX<double>::Zero(K_beta2);
 
     // Transformation matrices.
-    const GQCP::UTransformationMatrixComponent<double> C_alpha1 = GQCP::UTransformationMatrixComponent<double>::Identity(K_alpha1);
-    const GQCP::UTransformationMatrixComponent<double> C_beta1 = GQCP::UTransformationMatrixComponent<double>::Identity(K_beta1);
-    const GQCP::UTransformationMatrixComponent<double> C_alpha2 = GQCP::UTransformationMatrixComponent<double>::Identity(K_alpha2);
-    const GQCP::UTransformationMatrixComponent<double> C_beta2 = GQCP::UTransformationMatrixComponent<double>::Identity(K_beta2);
+    const GQCP::UTransformationComponent<double> C_alpha1 = GQCP::UTransformationComponent<double>::Identity(K_alpha1);
+    const GQCP::UTransformationComponent<double> C_beta1 = GQCP::UTransformationComponent<double>::Identity(K_beta1);
+    const GQCP::UTransformationComponent<double> C_alpha2 = GQCP::UTransformationComponent<double>::Identity(K_alpha2);
+    const GQCP::UTransformationComponent<double> C_beta2 = GQCP::UTransformationComponent<double>::Identity(K_beta2);
 
-    const GQCP::UTransformationMatrix<double> C_1 = GQCP::UTransformationMatrix<double> {C_alpha1, C_beta1};
-    const GQCP::UTransformationMatrix<double> C_2 = GQCP::UTransformationMatrix<double> {C_alpha2, C_beta2};
-    const GQCP::UTransformationMatrix<double> C_3 = GQCP::UTransformationMatrix<double> {C_alpha1, C_beta2};
-    const GQCP::UTransformationMatrix<double> C_4 = GQCP::UTransformationMatrix<double> {C_alpha2, C_beta1};
+    const GQCP::UTransformation<double> C_1 = GQCP::UTransformation<double> {C_alpha1, C_beta1};
+    const GQCP::UTransformation<double> C_2 = GQCP::UTransformation<double> {C_alpha2, C_beta2};
+    const GQCP::UTransformation<double> C_3 = GQCP::UTransformation<double> {C_alpha1, C_beta2};
+    const GQCP::UTransformation<double> C_4 = GQCP::UTransformation<double> {C_alpha2, C_beta1};
 
 
     // Check if an expected correct constructor doesn't throw.

@@ -278,7 +278,7 @@ BOOST_AUTO_TEST_CASE(rotate_with_unitary_transformation_matrix) {
     GQCP::ScalarUSQTwoElectronOperator<double> op {T1, T1, T1, T1};
 
     // Initialize the identity unitary transformation matrix and use it for the rotation.
-    const auto U = GQCP::UTransformationMatrix<double>::Identity(dim);
+    const auto U = GQCP::UTransformation<double>::Identity(dim);
 
     op.rotate(U);
     BOOST_CHECK(op.alphaAlpha().parameters().isApprox(T1, 1.0e-08));
@@ -310,12 +310,12 @@ BOOST_AUTO_TEST_CASE(transform_with_transformation_matrix) {
     GQCP::ScalarUSQTwoElectronOperator<double> op {T1, T1, T1, T1};
 
     // Initialize a test transformation matrix, equal for alpha and beta.
-    GQCP::UTransformationMatrixComponent<double> T_component {dim};
+    GQCP::UTransformationComponent<double> T_component {dim};
     // clang-format off
     T_component << 2.0, 3.0,
                    3.0, 4.0;
     // clang-format on
-    const auto T = GQCP::UTransformationMatrix<double>::FromEqual(T_component);
+    const auto T = GQCP::UTransformation<double>::FromEqual(T_component);
 
 
     // Initialize a reference tensor, transform the original operator and check the result.

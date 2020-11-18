@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/Transformations/UTransformationMatrixComponent.hpp"
+#include "Basis/Transformations/UTransformationComponent.hpp"
 #include "DensityMatrix/Simple1DM.hpp"
 
 
@@ -32,7 +32,7 @@ namespace GQCP {
 /**
  *  One of the spin components of a SpinResolved1DM.
  * 
- *  It is specifically designed as one of these spin components, in order to ensuring compile-time correctness. It would be wrong to use either Orbital1DM or G1DM as one of the spin components, and it's not possible to use SimpleTransformationMatrix as one of the spin components because it requires a template argument of the type that derives from it.
+ *  It is specifically designed as one of these spin components, in order to ensuring compile-time correctness. It would be wrong to use either Orbital1DM or G1DM as one of the spin components, and it's not possible to use SimpleTransformation as one of the spin components because it requires a template argument of the type that derives from it.
  * 
  *  @tparam _Scalar                 The scalar type used for a density matrix element: real or complex.
  */
@@ -62,8 +62,8 @@ public:
  */
 template <typename Scalar>
 struct DensityMatrixTraits<SpinResolved1DMComponent<Scalar>> {
-    // The type of transformation matrix that is naturally related to a `SpinResolved1DMComponent`. Since a `SpinResolved1DM` naturally transforms with a `UTransformationMatrix`, a `SpinResolved1DMComponent` naturally transforms with a `UTransformationMatrixComponent`.
-    using TM = UTransformationMatrixComponent<Scalar>;
+    // The type of transformation matrix that is naturally related to a `SpinResolved1DMComponent`. Since a `SpinResolved1DM` naturally transforms with a `UTransformation`, a `SpinResolved1DMComponent` naturally transforms with a `UTransformationComponent`.
+    using TM = UTransformationComponent<Scalar>;
 };
 
 

@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/Transformations/UTransformationMatrixComponent.hpp"
+#include "Basis/Transformations/UTransformationComponent.hpp"
 #include "DensityMatrix/SpinResolved1DMComponent.hpp"
 #include "DensityMatrix/SpinResolved2DMComponent.hpp"
 #include "Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp"
@@ -96,7 +96,7 @@ struct OperatorTraits<PureUSQTwoElectronOperatorComponent<Scalar, Vectorizer>> {
     using SQOneElectronOperator = USQOneElectronOperatorComponent<Scalar, Vectorizer>;
 
     // The type of transformation matrix that is naturally associated to a component of an unestricted two-electron operator.
-    using TM = UTransformationMatrixComponent<Scalar>;
+    using TM = UTransformationComponent<Scalar>;
 
     // The type of the one-particle density matrix that is naturally associated a component of an unestricted two-electron operator.
     using OneDM = SpinResolved1DMComponent<Scalar>;
@@ -117,7 +117,7 @@ template <typename Scalar, typename Vectorizer>
 struct BasisTransformableTraits<PureUSQTwoElectronOperatorComponent<Scalar, Vectorizer>> {
 
     // The type of transformation matrix that is naturally associated to a component of an unestricted two-electron operator.
-    using TM = UTransformationMatrixComponent<Scalar>;
+    using TM = UTransformationComponent<Scalar>;
 };
 
 

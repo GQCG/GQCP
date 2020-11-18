@@ -65,7 +65,7 @@ public:
 
         using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
         Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver {F, environment.S.parameters()};
-        const GTransformationMatrix<Scalar>& C = generalized_eigensolver.eigenvectors();
+        const GTransformation<Scalar>& C = generalized_eigensolver.eigenvectors();
         const auto& orbital_energies = generalized_eigensolver.eigenvalues();
 
         environment.coefficient_matrices.push_back(C);

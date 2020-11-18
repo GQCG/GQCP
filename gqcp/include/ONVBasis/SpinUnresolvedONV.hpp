@@ -19,7 +19,7 @@
 
 
 #include "Basis/SpinorBasis/OrbitalSpace.hpp"
-#include "Basis/Transformations/GTransformationMatrix.hpp"
+#include "Basis/Transformations/GTransformation.hpp"
 
 
 namespace GQCP {
@@ -201,7 +201,7 @@ public:
      * 
      *  @return the overlap element <on|of>
      */
-    double calculateProjection(const SpinUnresolvedONV& onv_on, const GTransformationMatrix<double>& C_of, const GTransformationMatrix<double>& C_on, const SquareMatrix<double>& S) const;
+    double calculateProjection(const SpinUnresolvedONV& onv_on, const GTransformation<double>& C_of, const GTransformation<double>& C_on, const SquareMatrix<double>& S) const;
 
     /**
      *  @param other        the other spin-unresolved ONV

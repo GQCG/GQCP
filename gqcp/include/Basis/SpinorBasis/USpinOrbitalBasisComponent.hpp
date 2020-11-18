@@ -21,7 +21,7 @@
 #include "Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp"
 #include "Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp"
 #include "Basis/Transformations/JacobiRotation.hpp"
-#include "Basis/Transformations/UTransformationMatrixComponent.hpp"
+#include "Basis/Transformations/UTransformationComponent.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp"
 
 
@@ -136,7 +136,7 @@ template <typename ExpansionScalar, typename Shell>
 struct SpinorBasisTraits<USpinOrbitalBasisComponent<ExpansionScalar, Shell>> {
 
     // The type of transformation matrix that is naturally related to a `USpinOrbitalBasisComponent`.
-    using TM = UTransformationMatrixComponent<ExpansionScalar>;  // TODO: Rename to TransformationMatrix once the class is gone
+    using TM = UTransformationComponent<ExpansionScalar>;  // TODO: Rename to TransformationMatrix once the class is gone
 
     // The second-quantized representation of the overlap operator related to a `USpinOrbitalBasisComponent`.
     using SQOverlapOperator = ScalarUSQOneElectronOperatorComponent<ExpansionScalar>;
@@ -154,7 +154,7 @@ template <typename _ExpansionScalar, typename _Shell>
 struct BasisTransformableTraits<USpinOrbitalBasisComponent<_ExpansionScalar, _Shell>> {
 
     // The type of transformation matrix that is naturally related to a `USpinOrbitalBasisComponent`.
-    using TM = UTransformationMatrixComponent<_ExpansionScalar>;
+    using TM = UTransformationComponent<_ExpansionScalar>;
 };
 
 

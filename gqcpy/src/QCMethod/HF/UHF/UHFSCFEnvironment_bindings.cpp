@@ -97,7 +97,7 @@ void bindUHFSCFEnvironment(py::module& module) {
             "coefficient_matrices_alpha",
             [](const GQCP::UHFSCFEnvironment<double>& environment) {
                 std::vector<GQCP::TransformationMatrix<double>> coefficient_matrices_alpha;
-                std::transform(environment.coefficient_matrices.begin(), environment.coefficient_matrices.end(), std::back_inserter(coefficient_matrices_alpha), [](const GQCP::UTransformationMatrix<double>& C) { return C.alpha(); });
+                std::transform(environment.coefficient_matrices.begin(), environment.coefficient_matrices.end(), std::back_inserter(coefficient_matrices_alpha), [](const GQCP::UTransformation<double>& C) { return C.alpha(); });
 
                 return coefficient_matrices_alpha;
             })
@@ -106,7 +106,7 @@ void bindUHFSCFEnvironment(py::module& module) {
             "coefficient_matrices_beta",
             [](const GQCP::UHFSCFEnvironment<double>& environment) {
                 std::vector<GQCP::TransformationMatrix<double>> coefficient_matrices_beta;
-                std::transform(environment.coefficient_matrices.begin(), environment.coefficient_matrices.end(), std::back_inserter(coefficient_matrices_beta), [](const GQCP::UTransformationMatrix<double>& C) { return C.beta(); });
+                std::transform(environment.coefficient_matrices.begin(), environment.coefficient_matrices.end(), std::back_inserter(coefficient_matrices_beta), [](const GQCP::UTransformation<double>& C) { return C.beta(); });
 
                 return coefficient_matrices_beta;
             })
@@ -153,7 +153,7 @@ void bindUHFSCFEnvironment(py::module& module) {
                  const auto last_spin_resolved_C = environment.coefficient_matrices.back();
                  const auto last_C_beta = last_spin_resolved_C.beta();
                  environment.coefficient_matrices.pop_back();
-                 environment.coefficient_matrices.push_back(GQCP::UTransformationMatrix<double>(new_coefficient_matrix_alpha, last_C_beta));
+                 environment.coefficient_matrices.push_back(GQCP::UTransformation<double>(new_coefficient_matrix_alpha, last_C_beta));
              })
 
         .def("replace_current_coefficient_matrix_beta",
@@ -161,7 +161,7 @@ void bindUHFSCFEnvironment(py::module& module) {
                  const auto last_spin_resolved_C = environment.coefficient_matrices.back();
                  const auto last_C_alpha = last_spin_resolved_C.alpha();
                  environment.coefficient_matrices.pop_back();
-                 environment.coefficient_matrices.push_back(GQCP::UTransformationMatrix<double>(last_C_alpha, new_coefficient_matrix_beta));
+                 environment.coefficient_matrices.push_back(GQCP::UTransformation<double>(last_C_alpha, new_coefficient_matrix_beta));
              })
 
         .def("replace_current_density_matrix_alpha",

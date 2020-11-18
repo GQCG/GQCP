@@ -19,7 +19,7 @@
 
 
 #include "Basis/Transformations/OrbitalRotationGenerators.hpp"
-#include "Basis/Transformations/RTransformationMatrix.hpp"
+#include "Basis/Transformations/RTransformation.hpp"
 #include "Mathematical/Optimization/Minimization/BaseHessianModifier.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Mathematical/Representation/SquareRankFourTensor.hpp"
@@ -103,7 +103,7 @@ public:
      * 
      *  @return a unitary matrix that will be used to rotate the current Hamiltonian into the next iteration
      */
-    RTransformationMatrix<double> calculateNewRotationMatrix(const RSQHamiltonian<double>& sq_hamiltonian) const override;
+    RTransformation<double> calculateNewRotationMatrix(const RSQHamiltonian<double>& sq_hamiltonian) const override;
 
     /**
      *  Determine if the algorithm has converged or not

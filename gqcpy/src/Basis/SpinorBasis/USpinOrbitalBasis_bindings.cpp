@@ -167,7 +167,7 @@ void bindUSpinOrbitalBasis(py::module& module) {
         .def(
             "transform",
             [](GQCP::USpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& T_alpha, const Eigen::MatrixXd& T_beta) {
-                spinor_basis.transform(GQCP::UTransformationMatrix<double>(T_alpha, T_beta));
+                spinor_basis.transform(GQCP::UTransformation<double>(T_alpha, T_beta));
             },
             py::arg("T_alpha"),
             py::arg("T_beta"),

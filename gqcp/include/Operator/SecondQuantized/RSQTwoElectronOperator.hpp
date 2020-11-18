@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/Transformations/RTransformationMatrix.hpp"
+#include "Basis/Transformations/RTransformation.hpp"
 #include "DensityMatrix/Orbital1DM.hpp"
 #include "DensityMatrix/Orbital2DM.hpp"
 #include "Mathematical/Representation/DenseVectorizer.hpp"
@@ -149,7 +149,7 @@ struct OperatorTraits<RSQTwoElectronOperator<Scalar, Vectorizer>> {
     using SQOneElectronOperator = RSQOneElectronOperator<Scalar, Vectorizer>;
 
     // The type of transformation matrix that is naturally associated to a restricted two-electron operator.
-    using TM = RTransformationMatrix<Scalar>;
+    using TM = RTransformation<Scalar>;
 
     // The type of density matrix that is naturally associated to a restricted two-electron operator.
     using OneDM = Orbital1DM<Scalar>;
@@ -173,7 +173,7 @@ template <typename Scalar, typename Vectorizer>
 struct BasisTransformableTraits<RSQTwoElectronOperator<Scalar, Vectorizer>> {
 
     // The type of transformation matrix that is naturally associated to a general(ized) one-electron operator.
-    using TM = RTransformationMatrix<Scalar>;
+    using TM = RTransformation<Scalar>;
 };
 
 

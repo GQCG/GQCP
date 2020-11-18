@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/Transformations/UTransformationMatrixComponent.hpp"
+#include "Basis/Transformations/UTransformationComponent.hpp"
 #include "DensityMatrix/SpinResolved1DMComponent.hpp"
 #include "DensityMatrix/SpinResolved2DMComponent.hpp"
 #include "Mathematical/Representation/SquareRankFourTensor.hpp"
@@ -110,7 +110,7 @@ public:
      * 
      *  @note We apologize for this half-baked API. It is currently present in the code, while issue #559 (https://github.com/GQCG/GQCP/issues/688) is being implemented.
      */
-    Self transformed(const UTransformationMatrixComponent<Scalar>& transformation_matrix, const Spin sigma) const {
+    Self transformed(const UTransformationComponent<Scalar>& transformation_matrix, const Spin sigma) const {
 
         // Since we're only getting T as a matrix, we should convert it to an appropriate tensor to perform contractions.
         // Although not a necessity for the einsum implementation, it makes it a lot easier to follow the formulas.
@@ -154,7 +154,7 @@ public:
      * 
      *  @note We apologize for this half-baked API. It is currently present in the code, while issue #559 (https://github.com/GQCG/GQCP/issues/688) is being implemented.
      */
-    void transform(const UTransformationMatrixComponent<Scalar>& transformation_matrix, const Spin sigma) {
+    void transform(const UTransformationComponent<Scalar>& transformation_matrix, const Spin sigma) {
 
         auto result = this->transformed(transformation_matrix, sigma);
         *this = result;
@@ -173,7 +173,7 @@ public:
      */
     Self rotated(const JacobiRotation& jacobi_rotation, const Spin sigma) const {
 
-        const auto J = UTransformationMatrixComponent<Scalar>::FromJacobi(jacobi_rotation, this->numberOfOrbitals());
+        const auto J = UTransformationComponent<Scalar>::FromJacobi(jacobi_rotation, this->numberOfOrbitals());
         return this->transformed(J, sigma);
     }
 
@@ -241,7 +241,7 @@ struct OperatorTraits<MixedUSQTwoElectronOperatorComponent<_Scalar, _Vectorizer>
     using DerivedOperator = MixedUSQTwoElectronOperatorComponent<Scalar, Vectorizer>;
 
     // The type of transformation matrix that is naturally associated to a component of an unestricted two-electron operator.
-    using TM = UTransformationMatrixComponent<Scalar>;
+    using TM = UTransformationComponent<Scalar>;
 
     // The type of the one-particle density matrix that is naturally associated a component of an unestricted two-electron operator.
     using OneDM = SpinResolved1DMComponent<Scalar>;
