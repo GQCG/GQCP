@@ -119,6 +119,29 @@ public:
 
 
     /**
+     *  @return the eigenvalues of the one-electron Fock Operator as a matrix.
+     */
+    const GQCP::MatrixX<Scalar> calculateFValues() const {
+
+        // Create the orbital space to determine the loops.
+        const auto orbital_space = this->orbitalSpace();
+
+        // Determine the number of occupied and virtual orbitals.
+        const auto& n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
+
+        // Create the F matrix
+        GQCP::MatrixX<Scalar> F_values(n_occ, n_virt);
+        for (int a = 0; a < n_occ; a++) {
+            for (int i = 0; i < n_virt; i++) {
+                F_values(a, i) = this->virtualOrbitalEnergies()[a] + (-1 * this->occupiedOrbitalEnergies()[i]);
+            }
+        }
+        return F_values;
+    }
+
+
+    /**
      *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
      *  @param N_P                  the number of electron pairs
      *  @param a                    the first virtual orbital index
@@ -369,6 +392,26 @@ public:
     size_t numberOfSpatialOrbitals() const { return this->coefficientMatrix().numberOfOrbitals(); }
 
     /**
+     *  @return the orbital energies belonging to the occupied orbitals
+     */
+    std::vector<double> occupiedOrbitalEnergies() const {
+
+        // Determine the number of occupied orbitals
+        const auto& n_occ = this->orbitalSpace().numberOfOrbitals(OccupationType::k_occupied);
+
+        std::vector<double> mo_energies;  // We use a std::vector in order to be able to slice the vector later on.
+        for (int i = 0; i < this->numberOfSpinors(); i++) {
+            mo_energies.push_back(this->orbitalEnergy(i));
+        }
+
+        // Add the values with indices smaller than the occupied orbital indices, to the new vector.
+        std::vector<double> mo_energies_occupied;
+        std::copy(mo_energies.begin(), mo_energies.begin() + n_occ, std::back_inserter(mo_energies_occupied));
+        return mo_energies_occupied;
+    }
+
+
+    /**
      *  @return all the spatial orbital energies
      */
     const VectorX<double>& orbitalEnergies() const { return this->orbital_energies; }
@@ -415,6 +458,27 @@ public:
 
         return total_orbital_energies;
     }
+
+
+    /**
+     *  @return the orbital energies belonging to the virtual orbitals
+     */
+    std::vector<double> virtualOrbitalEnergies() const {
+
+        // Determine the number of occupied orbitals
+        const auto& n_occ = this->orbitalSpace().numberOfOrbitals(OccupationType::k_occupied);
+
+        std::vector<double> mo_energies;  // We use a std::vector in order to be able to slice the vector later on.
+        for (int i = 0; i < this->numberOfSpinors(); i++) {
+            mo_energies.push_back(this->orbitalEnergy(i));
+        }
+
+        // Add the values with indices greater than the occupied orbital indices, i.e. the virtual orbital indices, to the new vector.
+        std::vector<double> mo_energies_virtual;
+        std::copy(mo_energies.begin() + n_occ, mo_energies.end(), std::back_inserter(mo_energies_virtual));
+        return mo_energies_virtual;
+    }
+
 };  // namespace QCModel
 
 
