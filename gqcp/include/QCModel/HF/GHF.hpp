@@ -369,7 +369,7 @@ public:
         const auto& F_values = this->calculateFValues();
 
         // The next step is to create the needed tensor slice.
-        // zero-initialize an occupied-virtual-occupied-virtual object
+        // Zero-initialize an occupied-virtual-occupied-virtual object.
         auto A_iajb_slice = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_occupied, OccupationType::k_virtual);
         for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
@@ -421,6 +421,7 @@ public:
         const auto& g = gsq_hamiltonian.twoElectron().transformed(this->coefficientMatrix()).antisymmetrized();
 
         // The next step is to create the needed tensor slice.
+        // Zero-initialize an occupied-virtual-occupied-virtual object.
         auto B_iajb_slice = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_occupied, OccupationType::k_virtual);
         for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
