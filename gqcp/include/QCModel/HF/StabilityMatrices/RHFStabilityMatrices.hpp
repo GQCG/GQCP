@@ -158,10 +158,10 @@ public:
 
 
     /**
-     *  @return the internal stability matrix of the complex RHF method.
+     *  @return the restricted->unrestricted external stability matrix of the complex RHF method.
      *
-     *  @note The internal stability condition of the real GHF method is checked using (triplet_A,   triplet_B  )
-     *                                                                                 (triplet_B^*, triplet_A^*)
+     *  @note The restricted->unrestricted external stability condition of the real GHF method is checked using (triplet_A,   triplet_B  )
+     *                                                                                                          (triplet_B^*, triplet_A^*)
      */
     template <typename S = Scalar>
     enable_if_t<std::is_same<S, complex>::value, MatrixX<complex>> restrictedUnrestricted() const {
