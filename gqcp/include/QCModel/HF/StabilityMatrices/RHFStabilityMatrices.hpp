@@ -242,8 +242,8 @@ public:
         std::vector<bool> stabilities;
 
         // Check both external stabilities and add the results to the vector.
-        stabilities.push_back(this->isComplexConjugateStable());
-        stabilities.push_back(this->isTripletStable()));
+        stabilities.push_back(this->isComplexConjugateStable(threshold));
+        stabilities.push_back(this->isTripletStable(threshold));
 
         return stabilities;
     }
@@ -254,7 +254,7 @@ public:
      */
     template <typename S = Scalar>
     enable_if_t<std::is_same<S, complex>::value, bool> isExternallyStable(const double threshold = -1.0e-5) const {
-        return this->isTripletStable();
+        return this->isTripletStable(threshold);
     }
 
 
@@ -281,14 +281,14 @@ public:
         const auto external_stabilities = this->isExternallyStable();
 
         // The real->complex external stability on vector position 0.
-        if (this->external_stabilities[0] == true) {
+        if (external_stabilities[0] == true) {
             std::cout << "The real valued RHF wavefunction is stable within the real RHF space." << std::endl;
         } else {
             std::cout << "The real valued RHF wavefunction contains a real->complex instability." << std::endl;
         }
 
         // The restricted->unrestricted external stability on vector position 1.
-        if (this->external_stabilities[1] == true) {
+        if (external_stabilities[1] == true) {
             std::cout << "The real valued RHF wavefunction is stable within the real RHF/UHF space." << std::endl;
         } else {
             std::cout << "The real valued RHF wavefunction contains a restricted->unrestricted instability." << std::endl;

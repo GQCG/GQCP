@@ -382,25 +382,25 @@ public:
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                        singlet_A_slice_1(i, a, j, b) = 2 * g.parameters()(a, i, j, b);
+                        singlet_A_slice_1(i, a, j, b) = 2 * g.parameters()(a, i, j, b) - 1 * g.parameters()(a, b, j, i);
                     }
                 }
             }
         }
 
-        auto singlet_A_slice_2 = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_occupied, OccupationType::k_virtual);
-        for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
-            for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
-                for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
-                    for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                        singlet_A_slice_2(i, a, j, b) = -1 * g.parameters()(a, b, j, i);
-                    }
-                }
-            }
-        }
+        // auto singlet_A_slice_2 = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_occupied, OccupationType::k_virtual);
+        // for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+        //     for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
+        //         for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
+        //             for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
+        //                 singlet_A_slice_2(i, a, j, b) = -1 * g.parameters()(a, b, j, i);
+        //             }
+        //         }
+        //     }
+        // }
 
         // Turn the ImplicitRankFourTensorSlices in an actual Tensor and add them together.
-        auto singlet_A_iajb = singlet_A_slice_1.asTensor() + singlet_A_slice_2.asTensor();
+        auto singlet_A_iajb = singlet_A_slice_1.asTensor();  // + singlet_A_slice_2.asTensor();
 
         // Add the previously calculated F values on the correct positions.
         for (int a = 0; a < n_occ; a++) {
@@ -424,7 +424,7 @@ public:
      * 
      *  @param rsq_hamiltonian      The second quantized hamiltonian, which contains the necessary two electron operators.
      */
-    const GQCP::MatrixX<Scalar> calculateSingletAStabilityMatrix(const RSQHamiltonian<Scalar>& rsq_hamiltonian) const {
+    const GQCP::MatrixX<Scalar> calculateSingletBStabilityMatrix(const RSQHamiltonian<Scalar>& rsq_hamiltonian) const {
 
         // Create the orbital space.
         const auto orbital_space = this->orbitalSpace();
@@ -444,25 +444,25 @@ public:
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                        singlet_B_slice_1(i, a, j, b) = 2 * g.parameters()(a, i, b, j);
+                        singlet_B_slice_1(i, a, j, b) = 2 * g.parameters()(a, i, b, j) - 1 * g.parameters()(a, j, b, i);
                     }
                 }
             }
         }
 
-        auto singlet_B_slice_2 = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_occupied, OccupationType::k_virtual);
-        for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
-            for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
-                for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
-                    for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                        singlet_B_slice_2(i, a, j, b) = -1 * g.parameters()(a, j, b, i);
-                    }
-                }
-            }
-        }
+        // auto singlet_B_slice_2 = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_occupied, OccupationType::k_virtual);
+        // for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+        //     for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
+        //         for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
+        //             for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
+        //                 singlet_B_slice_2(i, a, j, b) = -1 * g.parameters()(a, j, b, i);
+        //             }
+        //         }
+        //     }
+        // }
 
         // Turn the ImplicitRankFourTensorSlices in an actual Tensor and add them together.
-        auto singlet_B_iajb = singlet_B_slice_1.asTensor() + singlet_B_slice_2.asTensor();
+        auto singlet_B_iajb = singlet_B_slice_1.asTensor();  // + singlet_B_slice_2.asTensor();
 
         // Finally, reshape the tensor to a matrix.
         const GQCP::MatrixX<Scalar> singlet_B_matrix = singlet_B_iajb.reshape(n_occ * n_virt, n_occ * n_virt);
@@ -632,7 +632,7 @@ public:
         const auto& n_occ = this->orbitalSpace().numberOfOrbitals(OccupationType::k_occupied);
 
         std::vector<double> mo_energies;  // We use a std::vector in order to be able to slice the vector later on.
-        for (int i = 0; i < this->numberOfSpinors(); i++) {
+        for (int i = 0; i < this->numberOfSpatialOrbitals(); i++) {
             mo_energies.push_back(this->orbitalEnergy(i));
         }
 
@@ -701,7 +701,7 @@ public:
         const auto& n_occ = this->orbitalSpace().numberOfOrbitals(OccupationType::k_occupied);
 
         std::vector<double> mo_energies;  // We use a std::vector in order to be able to slice the vector later on.
-        for (int i = 0; i < this->numberOfSpinors(); i++) {
+        for (int i = 0; i < this->numberOfSpatialOrbitals(); i++) {
             mo_energies.push_back(this->orbitalEnergy(i));
         }
 

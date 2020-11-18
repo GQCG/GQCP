@@ -58,7 +58,7 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_1) {
 
     // This wavefunction should also be externally unstable.
     const auto external_stability = stability_matrices.isExternallyStable();
-    BOOST_CHECK(internal_stability == false);
+    BOOST_CHECK(external_stability == false);
 
     // Check that the stability properties can be printed
     stability_matrices.printStabilityDescription();
@@ -109,7 +109,7 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_2) {
 
     // This wavefunction should also be externally stable.
     const auto external_stability = stability_matrices.isExternallyStable();
-    BOOST_CHECK(internal_stability == true);
+    BOOST_CHECK(external_stability == true);
 
     // Check that the stability properties can be printed
     stability_matrices.printStabilityDescription();
@@ -148,7 +148,7 @@ BOOST_AUTO_TEST_CASE(H2_stability_test) {
 
     // This wavefunction should also be externally stable.
     const auto external_stability = stability_matrices.isExternallyStable();
-    BOOST_CHECK(internal_stability == true);
+    BOOST_CHECK(external_stability == true);
 
     // Check that the stability properties can be printed
     stability_matrices.printStabilityDescription();
