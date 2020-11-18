@@ -133,7 +133,7 @@ public:
      */
 
     /**
-     *  @return a boolean, telling us whether or not the real valued internal stability matrix belongs to a stable or unstable set of parameters.
+     *  @return a boolean, telling us whether or not the real or complex valued internal stability matrix belongs to a stable or unstable set of parameters.
      */
     const bool isInternallyStable(const double threshold = -1.0e-5) const {
 
