@@ -82,7 +82,6 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_2) {
 
     const auto sq_hamiltonian = GQCP::GSQHamiltonian<double>::Molecular(g_spinor_basis, molecule);
 
-
     // Create a solver and associated environment and let the QCMethod do its job.
     GQCP::GTransformationMatrix<double> C_initial {6};
     // We take a randomly generated matrix (from @xdvriend's implementation) as the initial guess. This makes sure the off-diagonal spin-blocks are not zero blocks and helps the calculation to converge to a true GHF solution.
