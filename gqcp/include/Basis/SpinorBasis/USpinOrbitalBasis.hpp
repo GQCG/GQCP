@@ -240,10 +240,10 @@ public:
     /**
      *  @return The transformation to the Löwdin basis. See also `SimpleSpinOrbitalBasis`.
      */
-    UTransformation<ExpansionScalar> lowdinOrthonormalizationMatrix() const {
+    UTransformation<ExpansionScalar> lowdinOrthonormalization() const {
 
-        const auto T_a = this->alpha().lowdinOrthonormalizationMatrix();
-        const auto T_b = this->beta().lowdinOrthonormalizationMatrix();
+        const auto T_a = this->alpha().lowdinOrthonormalization();
+        const auto T_b = this->beta().lowdinOrthonormalization();
 
         return UTransformation<ExpansionScalar> {T_a, T_b};
     }

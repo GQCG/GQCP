@@ -134,7 +134,7 @@ public:
     /**
      *  @return The transformation to the Löwdin basis: T = S_current^{-1/2}
      */
-    Transformation lowdinOrthonormalizationMatrix() const {
+    Transformation lowdinOrthonormalization() const {
 
         // Calculate S^{-1/2}, where S is expressed with respect to the current spinors.
         const auto S = this->overlap().parameters();
@@ -145,7 +145,7 @@ public:
     /**
      *  Transform the spinor basis to the 'Löwdin basis', which is the orthonormal basis that we transform to with T = S^{-1/2}, where S is the current overlap matrix.
      */
-    void lowdinOrthonormalize() { this->C = this->lowdinOrthonormalizationMatrix(); }
+    void lowdinOrthonormalize() { this->C = this->lowdinOrthonormalization(); }
 
 
     /*

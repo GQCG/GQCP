@@ -78,7 +78,7 @@ public:
     /**
      *  @return The unitary transformation corresponds to these orbital rotation generators, i.e. exp(-kappa).
      */
-    RTransformation<double> calculateRotationMatrix() const { return RTransformation<double> {(-this->asMatrix()).exp()}; }
+    RTransformation<double> rotation() const { return RTransformation<double> {(-this->asMatrix()).exp()}; }
 
     /*
      *  @return the number of spatial orbitals that can be rotated using these orbital rotation generators

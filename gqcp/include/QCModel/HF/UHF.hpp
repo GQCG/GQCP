@@ -332,7 +332,7 @@ public:
      *
      *  @return the coefficient matrix that expresses the sigma spin-orbitals (as a column) in its underlying scalar basis
      */
-    const TransformationMatrix<Scalar> expansion(const Spin sigma) const {
+    const UTransformationMatrixComponent<Scalar> expansion(const Spin sigma) const {
         return C.component(sigma);
     }
 

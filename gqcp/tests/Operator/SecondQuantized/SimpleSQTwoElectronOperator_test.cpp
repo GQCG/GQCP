@@ -207,7 +207,7 @@ BOOST_AUTO_TEST_CASE(rotate_trivial) {
     auto op = toyTwoElectronIntegrals(dim);
 
     // Initialize an identity transformation.
-    const auto U = GQCP::TransformationMatrix<double>::Identity(dim);
+    const auto U = GQCP::RTransformation<double>::Identity(dim);
 
     BOOST_CHECK(op.rotated(U).parameters().isApprox(op.parameters(), 1.0e-08));
 }

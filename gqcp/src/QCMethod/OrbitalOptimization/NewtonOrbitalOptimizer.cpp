@@ -62,7 +62,7 @@ RTransformation<double> NewtonOrbitalOptimizer::calculateNewRotationMatrix(const
 
     const auto full_kappa = this->calculateNewFullOrbitalGenerators(sq_hamiltonian);  // should internally calculate the free orbital rotation generators
 
-    return full_kappa.calculateRotationMatrix();  // matrix exponential
+    return full_kappa.rotation();  // matrix exponential
 }
 
 

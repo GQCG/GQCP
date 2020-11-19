@@ -69,9 +69,9 @@ void bindGSpinorBasis(py::module& module) {
             "Return if this spinor basis is orthonormal within the given precision")
 
         .def(
-            "lowdinOrthonormalizationMatrix",
+            "lowdinOrthonormalization",
             [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
-                return spinor_basis.lowdinOrthonormalizationMatrix();
+                return spinor_basis.lowdinOrthonormalization();
             },
             "Return the transformation matrix to the Löwdin basis: T = S_current^{-1/2}")
 

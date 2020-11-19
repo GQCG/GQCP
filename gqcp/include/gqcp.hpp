@@ -69,7 +69,6 @@
 #include "Basis/Transformations/SimpleTransformation.hpp"
 #include "Basis/Transformations/SpinResolvedBasisTransformable.hpp"
 #include "Basis/Transformations/SpinResolvedJacobiRotatable.hpp"
-#include "Basis/Transformations/TransformationMatrix.hpp"
 #include "Basis/Transformations/UJacobiRotation.hpp"
 #include "Basis/Transformations/UTransformation.hpp"
 #include "Basis/Transformations/UTransformationComponent.hpp"
