@@ -64,7 +64,7 @@ public:
 template <typename Scalar>
 struct DensityMatrixTraits<SpinResolved2DMComponent<Scalar>> {
     // The type of transformation that is naturally related to a `SpinResolved2DMComponent`. Since a `SpinResolved2DM` naturally transforms with a `UTransformation`, a `SpinResolved2DMComponent` naturally transforms with a `UTransformationComponent`.
-    using TM = UTransformationComponent<Scalar>;
+    using Transformation = UTransformationComponent<Scalar>;
 
     // The type of the one-electron density matrix that is naturally related to a `SpinResolved2DMComponent`. It is the return type of `SpinResolved2DMComponent`'s method `reduce`.
     using OneDM_Placeholder = SpinResolved1DMComponent<Scalar>;
