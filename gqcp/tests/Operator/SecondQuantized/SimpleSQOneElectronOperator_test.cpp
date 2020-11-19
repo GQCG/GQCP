@@ -19,13 +19,19 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/SpinorBasis/GSpinorBasis.hpp"
+#include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
+#include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
+#include "QCModel/HF/GHF.hpp"
+#include "QCModel/HF/RHF.hpp"
+#include "Utilities/units.hpp"
 
 #include <boost/math/constants/constants.hpp>
 
 
 /**
- *  In this test suite, we'll test the behavior of `SimpleSQOneElectronOperator` through a derived class `RSQOneElectronOperator`.
+ *  In this test suite, we'll test the behavior of `SimpleSQOneElectronOperator` through the derived classes `RSQOneElectronOperator` and `GSQOneElectronOperator`.
  */
 
 /**
@@ -555,4 +561,76 @@ BOOST_AUTO_TEST_CASE(jacobi_rotation_4) {
 
     op.rotate(J);
     BOOST_CHECK(op.parameters().isApprox(ref, 1.0e-08));
+}
+
+
+/**
+ *  Check that the total RHF Mulliken population (i.e. Mulliken-partitioned number operator expectation value) of N2 is 14, for a restricted partitioning.
+ */
+BOOST_AUTO_TEST_CASE(mulliken_N2_STO_3G_restricted) {
+
+    // Initialize the molecular Hamiltonian for N2 in the Löwdin-orthonormalized basis.
+    const GQCP::Nucleus N1 {7, 0.0, 0.0, 0.0};
+    const GQCP::Nucleus N2 {7, 0.0, 0.0, GQCP::units::angstrom_to_bohr(1.134)};  // From CCCBDB, STO-3G geometry.
+    const GQCP::Molecule molecule {{N1, N2}};
+
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
+    spin_orbital_basis.lowdinOrthonormalize();
+
+
+    // Set up the Mulliken partitioning scheme.
+    using Shell = GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>::Shell;
+    const auto mulliken_partitioning = spin_orbital_basis.mullikenPartitioning(
+        [](const Shell& shell) {
+            return shell.nucleus().element() == "N";
+        });
+
+    // The Mulliken operator is the Mulliken-partitioned number (i.e. overlap) operator.
+    const auto S = spin_orbital_basis.overlap();
+    const auto mulliken_op = S.partitioned(mulliken_partitioning);
+
+
+    // Create the RHF 1-DM for N2 and check the total Mulliken operator.
+    const auto K = spin_orbital_basis.numberOfSpatialOrbitals();
+    const auto N = molecule.numberOfElectrons();
+    const auto D = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1DM(K, N);
+
+    const double mulliken_population = mulliken_op.calculateExpectationValue(D);  // A scalar-StorageArray can be implicitly converted into the underlying scalar.
+    BOOST_CHECK(std::abs(mulliken_population - N) < 1.0e-12);
+}
+
+
+/**
+ *  Check that the total RHF Mulliken population (i.e. Mulliken-partitioned number operator expectation value) of N2 is 14, for a restricted partitioning.
+ */
+BOOST_AUTO_TEST_CASE(mulliken_N2_STO_3G_generalized) {
+
+    // Initialize the molecular Hamiltonian for N2 in the Löwdin-orthonormalized basis.
+    const GQCP::Nucleus N1 {7, 0.0, 0.0, 0.0};
+    const GQCP::Nucleus N2 {7, 0.0, 0.0, GQCP::units::angstrom_to_bohr(1.134)};  // From CCCBDB, STO-3G geometry.
+    const GQCP::Molecule molecule {{N1, N2}};
+
+    GQCP::GSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+    spinor_basis.lowdinOrthonormalize();
+
+
+    // Set up the Mulliken partitioning scheme.
+    using Shell = GQCP::GSpinorBasis<double, GQCP::GTOShell>::Shell;
+    const auto mulliken_partitioning = spinor_basis.mullikenPartitioning(
+        [](const Shell& shell) {
+            return shell.nucleus().element() == "N";
+        });
+
+    // The Mulliken operator is the Mulliken-partitioned number (i.e. overlap) operator.
+    const auto S = spinor_basis.overlap();
+    const auto mulliken_op = S.partitioned(mulliken_partitioning);
+
+
+    // Create the GHF 1-DM for N2 and check the total Mulliken operator.
+    const auto M = spinor_basis.numberOfSpinors();
+    const auto N = molecule.numberOfElectrons();
+    const auto D = GQCP::QCModel::GHF<double>::calculateOrthonormalBasis1DM(M, N);
+
+    const double mulliken_population = mulliken_op.calculateExpectationValue(D);  // A scalar-StorageArray can be implicitly converted into the underlying scalar.
+    BOOST_CHECK(std::abs(mulliken_population - N) < 1.0e-12);
 }

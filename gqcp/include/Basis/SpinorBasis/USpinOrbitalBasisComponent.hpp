@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp"
 #include "Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp"
 #include "Basis/Transformations/JacobiRotation.hpp"
 #include "Basis/Transformations/UTransformationMatrixComponent.hpp"
@@ -42,6 +43,13 @@ public:
 
     // The type of shell the underlying scalar bases contain.
     using Shell = _Shell;
+
+    // The type that is used for representing the primitive for a basis function of this spin-orbital basis' underlying AO basis.
+    using Primitive = typename Shell::Primitive;
+
+    // The type that is used for representing the underlying basis functions of this spin-orbital basis.
+    using BasisFunction = typename Shell::BasisFunction;
+
 
 public:
     /*
@@ -77,6 +85,42 @@ public:
         ResultOperator f {f_par};
         f.transform(this->coefficientMatrix());  // Now, f is expressed in the spin-orbital basis.
         return f;
+    }
+
+
+    /**
+     *  MARK: Mulliken partitioning
+     */
+
+    /**
+     *  Partition this set of spin-orbitals related to one of the components of an unrestricted spin-orbital basis according to the Mulliken partitioning scheme.
+     * 
+     *  @param selector             A function that returns true for basis functions that should be included the Mulliken partitioning.
+     * 
+     *  @return A `UMullikenPartitioningComponent` for the AOs selected by the supplied selector function.
+     */
+    UMullikenPartitioningComponent<ExpansionScalar> mullikenPartitioning(const std::function<bool(const BasisFunction&)>& selector) const {
+
+        // FIXME: Try to move this API to SimpleSpinOrbitalBasis.
+
+        const auto ao_indices = this->scalarBasis().basisFunctionIndices(selector);
+        return UMullikenPartitioningComponent<ExpansionScalar> {ao_indices, this->coefficientMatrix()};
+    }
+
+
+    /**
+     *  Partition this set of spin-orbitals related to one of the components of an unrestricted spin-orbital basis according to the Mulliken partitioning scheme.
+     * 
+     *  @param selector             A function that returns true for shells that should be included the Mulliken partitioning.
+     * 
+     *  @return A `UMullikenPartitioningComponent` for the AOs selected by the supplied selector function.
+     */
+    UMullikenPartitioningComponent<ExpansionScalar> mullikenPartitioning(const std::function<bool(const Shell&)>& selector) const {
+
+        // FIXME: Try to move this API to SimpleSpinOrbitalBasis.
+
+        const auto ao_indices = this->scalarBasis().basisFunctionIndices(selector);
+        return UMullikenPartitioningComponent<ExpansionScalar> {ao_indices, this->coefficientMatrix()};
     }
 };
 

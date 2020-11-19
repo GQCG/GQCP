@@ -24,6 +24,7 @@
 #include "Operator/FirstQuantized/ElectronicDensityOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicDipoleOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicSpinOperator.hpp"
+#include "Operator/FirstQuantized/ElectronicSpin_zOperator.hpp"
 #include "Operator/FirstQuantized/KineticOperator.hpp"
 #include "Operator/FirstQuantized/LinearMomentumOperator.hpp"
 #include "Operator/FirstQuantized/NuclearAttractionOperator.hpp"
@@ -83,6 +84,12 @@ public:
      */
     static OverlapOperator Overlap() { return OverlapOperator(); }
 
+    /**
+     *  Create an `ElectronicSpin_zOperator`.
+     * 
+     *  @return An `ElectronicSpin_zOperator`.
+     */
+    static ElectronicSpin_zOperator ElectronicSpin_z() { return ElectronicSpin_zOperator(); }
 
     /*
      * MARK: Vector one-electron operators

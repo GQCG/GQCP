@@ -97,12 +97,6 @@ void bindRSpinOrbitalBasis(py::module& module) {
         // PUBLIC METHODS
 
         .def(
-            "calculateMullikenOperator", [](const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis, const std::vector<size_t>& ao_list) {
-                return spinor_basis.calculateMullikenOperator(ao_list);
-            },
-            "Return the Mulliken operator for a set of given AO indices.")
-
-        .def(
             "numberOfSpatialOrbitals", [](GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis) {
                 return spinor_basis.numberOfSpatialOrbitals();
             },

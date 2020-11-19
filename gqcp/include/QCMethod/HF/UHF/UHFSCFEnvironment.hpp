@@ -18,7 +18,8 @@
 #pragma once
 
 
-#include "Basis/Transformations/TransformationMatrix.hpp"
+#include "Basis/Transformations/UTransformationMatrix.hpp"
+#include "Basis/Transformations/UTransformationMatrixComponent.hpp"
 #include "DensityMatrix/SpinResolved1DM.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
@@ -55,10 +56,9 @@ public:
     std::deque<VectorX<double>> orbital_energies_alpha;
     std::deque<VectorX<double>> orbital_energies_beta;
 
-    SquareMatrix<Scalar> S;  // the overlap matrix (of the scalar (AO) basis)
+    ScalarUSQOneElectronOperatorComponent<Scalar> S;  // the overlap matrix (of the scalar (AO) basis)
 
-    std::deque<TransformationMatrix<Scalar>> coefficient_matrices_alpha;
-    std::deque<TransformationMatrix<Scalar>> coefficient_matrices_beta;
+    std::deque<UTransformationMatrix<Scalar>> coefficient_matrices;
 
     std::deque<SpinResolved1DM<double>> density_matrices;  // expressed in the scalar (AO) basis
 
@@ -85,13 +85,12 @@ public:
      *  @param C_alpha_initial          the initial coefficient matrix for the alpha spinors
      *  @param C_beta_initial           the initial coefficient matrix for the beta spinors
      */
-    UHFSCFEnvironment(const size_t N_alpha, const size_t N_beta, const RSQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S, const TransformationMatrix<Scalar>& C_alpha_initial, const TransformationMatrix<Scalar>& C_beta_initial) :
+    UHFSCFEnvironment(const size_t N_alpha, const size_t N_beta, const RSQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S, const UTransformationMatrixComponent<Scalar>& C_alpha_initial, const UTransformationMatrixComponent<Scalar>& C_beta_initial) :
         N_alpha {N_alpha},
         N_beta {N_beta},
         S {S},
         sq_hamiltonian {sq_hamiltonian},
-        coefficient_matrices_alpha {C_alpha_initial},
-        coefficient_matrices_beta {C_beta_initial} {}
+        coefficient_matrices {UTransformationMatrix<Scalar> {C_alpha_initial, C_beta_initial}} {}
 
 
     /**
@@ -125,7 +124,7 @@ public:
 
         using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
         Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver {H_core, S};
-        const TransformationMatrix<Scalar> C_initial = generalized_eigensolver.eigenvectors();  // for both alpha and beta
+        const UTransformationMatrixComponent<Scalar> C_initial = generalized_eigensolver.eigenvectors();  // for both alpha and beta
 
         return UHFSCFEnvironment<Scalar>(N_alpha, N_beta, sq_hamiltonian, S, C_initial, C_initial);
     }

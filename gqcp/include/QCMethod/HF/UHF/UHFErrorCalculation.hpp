@@ -61,7 +61,7 @@ public:
     void execute(Environment& environment) override {
 
         // Read F, D and S from the environment.
-        const auto& S = environment.S;
+        const auto& S = environment.S.parameters();
 
         const auto& F_alpha = environment.fock_matrices.back().alpha().parameters();
         const auto& F_beta = environment.fock_matrices.back().beta().parameters();

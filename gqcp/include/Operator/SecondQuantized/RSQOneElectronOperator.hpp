@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/MullikenPartitioning/RMullikenPartitioning.hpp"
 #include "Basis/Transformations/RTransformationMatrix.hpp"
 #include "DensityMatrix/Orbital1DM.hpp"
 #include "DensityMatrix/Orbital2DM.hpp"
@@ -130,6 +131,9 @@ struct OperatorTraits<RSQOneElectronOperator<Scalar, Vectorizer>> {
 
     // The type of the two-particle density matrix that is naturally associated a restricted one-electron operator.
     using TwoDM = Orbital2DM<Scalar>;
+
+    // The type used to encapsulate the Mulliken partitioning scheme.
+    using MullikenPartitioning = RMullikenPartitioning<Scalar>;
 };
 
 

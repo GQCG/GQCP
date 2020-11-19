@@ -96,7 +96,7 @@ public:
     /**
      *  Construct a spin-resolved instance from an initializer list containing its alpha and beta objects.
      * 
-     *  @param both         An initializer list containin both alpha and beta objects (in that order).
+     *  @param both         An initializer list containing both alpha and beta objects (in that order).
      */
     SpinResolvedBase(const std::initializer_list<Of>& both) :
         SpinResolvedBase(std::vector<Of>(both)) {}

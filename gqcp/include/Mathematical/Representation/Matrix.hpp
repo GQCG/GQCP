@@ -325,6 +325,30 @@ public:
     Base& Eigen() { return static_cast<Base&>(*this); }
 
     /**
+     *  @param threshold            The threshold on which the lowest eigenvalue is judged. 
+     * 
+     *  @return a boolean that states whether or not the matrix is positive semi-definite, i.e. has no strictly negative eigenvalues.
+     */
+    const bool isPositiveSemiDefinite(const double threshold = -1.0e-5) const {
+
+        const auto matrix = *this;
+
+        // Create an eigensolver to diagonalize the matrix.
+        using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
+        Eigen::SelfAdjointEigenSolver<MatrixType> eigensolver {matrix};
+
+        // Calculate the eigenvalues and check whether they are strictly positive or not.
+        const auto& eigenvalues = eigensolver.eigenvalues().transpose();
+
+        if (eigenvalues[0] < threshold) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+
+    /**
      *  @param start_i      the index at which the rows should start
      *  @param start_j      the index at which the columns should start
      * 

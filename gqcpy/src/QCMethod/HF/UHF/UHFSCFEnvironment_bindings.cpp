@@ -81,14 +81,6 @@ void bindUHFSCFEnvironment(py::module& module) {
 
         // Define read-only 'getters'
         .def_readonly(
-            "coefficient_matrices_alpha",
-            &GQCP::UHFSCFEnvironment<double>::coefficient_matrices_alpha)
-
-        .def_readonly(
-            "coefficient_matrices_beta",
-            &GQCP::UHFSCFEnvironment<double>::coefficient_matrices_beta)
-
-        .def_readonly(
             "density_matrices",
             &GQCP::UHFSCFEnvironment<double>::density_matrices)
 
@@ -101,6 +93,24 @@ void bindUHFSCFEnvironment(py::module& module) {
             &GQCP::UHFSCFEnvironment<double>::error_vectors_beta)
 
         // Define getters for non-native components
+        .def(
+            "coefficient_matrices_alpha",
+            [](const GQCP::UHFSCFEnvironment<double>& environment) {
+                std::vector<GQCP::TransformationMatrix<double>> coefficient_matrices_alpha;
+                std::transform(environment.coefficient_matrices.begin(), environment.coefficient_matrices.end(), std::back_inserter(coefficient_matrices_alpha), [](const GQCP::UTransformationMatrix<double>& C) { return C.alpha(); });
+
+                return coefficient_matrices_alpha;
+            })
+
+        .def(
+            "coefficient_matrices_beta",
+            [](const GQCP::UHFSCFEnvironment<double>& environment) {
+                std::vector<GQCP::TransformationMatrix<double>> coefficient_matrices_beta;
+                std::transform(environment.coefficient_matrices.begin(), environment.coefficient_matrices.end(), std::back_inserter(coefficient_matrices_beta), [](const GQCP::UTransformationMatrix<double>& C) { return C.beta(); });
+
+                return coefficient_matrices_beta;
+            })
+
         .def(
             "density_matrices_alpha",
             [](const GQCP::UHFSCFEnvironment<double>& environment) {
@@ -140,14 +150,18 @@ void bindUHFSCFEnvironment(py::module& module) {
         // Bind methods for the replacement of the most current iterates.
         .def("replace_current_coefficient_matrix_alpha",
              [](GQCP::UHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& new_coefficient_matrix_alpha) {
-                 environment.coefficient_matrices_alpha.pop_back();
-                 environment.coefficient_matrices_alpha.push_back(GQCP::SquareMatrix<double>(new_coefficient_matrix_alpha));
+                 const auto last_spin_resolved_C = environment.coefficient_matrices.back();
+                 const auto last_C_beta = last_spin_resolved_C.beta();
+                 environment.coefficient_matrices.pop_back();
+                 environment.coefficient_matrices.push_back(GQCP::UTransformationMatrix<double>(new_coefficient_matrix_alpha, last_C_beta));
              })
 
         .def("replace_current_coefficient_matrix_beta",
              [](GQCP::UHFSCFEnvironment<double>& environment, const Eigen::MatrixXd& new_coefficient_matrix_beta) {
-                 environment.coefficient_matrices_beta.pop_back();
-                 environment.coefficient_matrices_beta.push_back(GQCP::SquareMatrix<double>(new_coefficient_matrix_beta));
+                 const auto last_spin_resolved_C = environment.coefficient_matrices.back();
+                 const auto last_C_alpha = last_spin_resolved_C.alpha();
+                 environment.coefficient_matrices.pop_back();
+                 environment.coefficient_matrices.push_back(GQCP::UTransformationMatrix<double>(last_C_alpha, new_coefficient_matrix_beta));
              })
 
         .def("replace_current_density_matrix_alpha",

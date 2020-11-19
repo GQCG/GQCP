@@ -73,6 +73,11 @@ public:
      */
     size_t dimension() const;
 
+    /**
+     *  @return The number of alpha or beta spin-orbitals.
+     */
+    size_t numberOfOrbitals() const { return this->alpha().numberOfOrbitals(); }
+
 
     /*
      *  MARK: Couplings
