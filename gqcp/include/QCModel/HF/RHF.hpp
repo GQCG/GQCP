@@ -47,7 +47,9 @@ private:
     size_t N_P;  // the number of electron pairs
 
     VectorX<double> orbital_energies;  // sorted in ascending energies
-    RTransformation<Scalar> C;         // the coefficient matrix that expresses every spatial orbital (as a column) in its underlying scalar basis
+
+    // The transformation that expresses the RHF MOs in terms of the atomic spinors.
+    RTransformation<Scalar> C;
 
 
 public:
@@ -59,7 +61,7 @@ public:
      *  The standard member-wise constructor
      * 
      *  @param N_P                  the number of electron pairs
-     *  @param C                    the coefficient matrix that expresses every spatial orbital (as a column) in its underlying scalar basis
+     *  @param C                    The transformation that expresses the RHF MOs in terms of the atomic spinors.
      *  @param orbital_energies     the RHF MO energies
      */
     RHF(const size_t N_P, const VectorX<double>& orbital_energies, const RTransformation<double>& C) :

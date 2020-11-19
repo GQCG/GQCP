@@ -29,7 +29,7 @@ namespace GQCP {
  */
 
 /**
- *  One of the spin components of an UTransformation.
+ *  One of the spin components of a `UTransformation`.
  * 
  *  It is specifically designed as one of these spin components, in order to ensuring compile-time correctness. It would be wrong to use either R/GTransformation as one of the spin components, and it's not possible to use SimpleTransformation as one of the spin components because it requires a template argument of the type that derives from it.
  * 
@@ -63,8 +63,8 @@ public:
 template <typename Scalar>
 struct BasisTransformableTraits<UTransformationComponent<Scalar>> {
 
-    // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix". A transformation matrix should naturally be transformable with itself.
-    using TM = UTransformationComponent<Scalar>;
+    // The type of the transformation for which the basis transformation should be defined. A transformation matrix should naturally be transformable with itself.
+    using Transformation = UTransformationComponent<Scalar>;
 };
 
 

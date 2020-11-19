@@ -104,11 +104,11 @@ public:
 
 
     /**
-     *  @return The Mulliken projection matrix defined as C^{-1} P_A C, where C is the transformation matrix and P_A is the partition matrix.
+     *  @return The Mulliken projection, defined as C^{-1} P_A C, where C is the transformation matrix and P_A is the partition matrix.
      * 
      *  @note We are aware that this formula is duplicate code (see `RMullikenPartitioning`), but it isn't worth (yet) to refactor this common functionality into a base class.
      */
-    GTransformation<Scalar> projectionMatrix() const { return this->C.inverse() * this->partitionMatrix() * this->C; }
+    GTransformation<Scalar> projectionMatrix() const { return this->C.inverse().matrix() * this->partitionMatrix() * this->C.matrix(); }
 };
 
 

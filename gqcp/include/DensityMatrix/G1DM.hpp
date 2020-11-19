@@ -62,8 +62,8 @@ public:
 template <typename Scalar>
 struct DensityMatrixTraits<G1DM<Scalar>> {
 public:
-    // The type of transformation matrix that is naturally related to a `G1DM`.
-    using TM = GTransformation<Scalar>;
+    // The type of transformation that is naturally related to a `G1DM`.
+    using Transformation = GTransformation<Scalar>;
 };
 
 

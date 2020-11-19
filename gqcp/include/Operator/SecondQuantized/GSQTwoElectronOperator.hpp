@@ -115,16 +115,16 @@ struct OperatorTraits<GSQTwoElectronOperator<Scalar, Vectorizer>> {
     // A type that corresponds to the scalar version of the associated general(ized) two-electron operator type.
     using ScalarOperator = ScalarGSQTwoElectronOperator<Scalar>;
 
-    // The type of one-electron operator that is naturally related to a restricted two-electron operator.
+    // The type of one-electron operator that is naturally related to a `GSQTwoElectronOperator`.
     using SQOneElectronOperator = GSQOneElectronOperator<Scalar, Vectorizer>;
 
-    // The type of transformation matrix that is naturally associated to a general(ized) two-electron operator.
-    using TM = GTransformation<Scalar>;
+    // The type of transformation that is naturally associated to a `GSQTwoElectronOperator`.
+    using Transformation = GTransformation<Scalar>;
 
-    // The type of density matrix that is naturally associated to a general(ized) two-electron operator.
+    // The type of density matrix that is naturally associated to a `GSQTwoElectronOperator`.
     using OneDM = G1DM<Scalar>;
 
-    // The type of density matrix that is naturally associated to a general(ized) two-electron operator.
+    // The type of density matrix that is naturally associated to a `GSQTwoElectronOperator`.
     using TwoDM = G2DM<Scalar>;
 };
 
@@ -142,8 +142,8 @@ struct OperatorTraits<GSQTwoElectronOperator<Scalar, Vectorizer>> {
 template <typename Scalar, typename Vectorizer>
 struct BasisTransformableTraits<GSQTwoElectronOperator<Scalar, Vectorizer>> {
 
-    // The type of transformation matrix that is naturally associated to a general(ized) one-electron operator.
-    using TM = GTransformation<Scalar>;
+    // The type of transformation matrix that is naturally associated to a `GSQTwoElectronOperator`.
+    using Transformation = GTransformation<Scalar>;
 };
 
 

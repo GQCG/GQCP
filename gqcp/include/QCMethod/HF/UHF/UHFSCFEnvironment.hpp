@@ -82,8 +82,8 @@ public:
      *  @param N_beta                   the number of beta electrons (the number of occupied beta-spin-orbitals)
      *  @param sq_hamiltonian           the Hamiltonian expressed in the scalar (AO) basis
      *  @param S                        the overlap matrix (of the scalar (AO) basis)
-     *  @param C_alpha_initial          the initial coefficient matrix for the alpha spinors
-     *  @param C_beta_initial           the initial coefficient matrix for the beta spinors
+     *  @param C_alpha_initial          The initial coefficient matrix for the alpha spin-orbitals.
+     *  @param C_beta_initial           The initial coefficient matrix for the beta spin-orbitals.
      */
     UHFSCFEnvironment(const size_t N_alpha, const size_t N_beta, const RSQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S, const UTransformationComponent<Scalar>& C_alpha_initial, const UTransformationComponent<Scalar>& C_beta_initial) :
         N_alpha {N_alpha},

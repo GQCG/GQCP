@@ -57,8 +57,8 @@ public:
     // The type of 'this'.
     using Self = USQTwoElectronOperator<Scalar, Vectorizer>;
 
-    // The type of the transformation matrix that is naturally related to an unrestricted two-electron operator.
-    using TM = UTransformation<Scalar>;
+    // The type of the transformation that is naturally related to an unrestricted two-electron operator.
+    using Transformation = UTransformation<Scalar>;
 
     // The type of Jacobi rotation that is naturally related to an unrestricted two-electron operator.
     using JacobiRotationType = UJacobiRotation;
@@ -238,24 +238,24 @@ public:
     /**
      *  Apply the basis transformation and return the result.
      * 
-     *  @param transformation_matrix        The type that encapsulates the basis transformation coefficients.
+     *  @param T            The basis transformation.
      * 
      *  @return The basis-transformed object.
      */
-    Self transformed(const TM& transformation_matrix) const override {
+    Self transformed(const Transformation& T) const override {
 
         auto result = *this;
 
         // Transform each of the spin-components of this two-electron operator.
-        result.alphaAlpha().transform(transformation_matrix.alpha());
+        result.alphaAlpha().transform(T.alpha());
 
-        result.alphaBeta().transform(transformation_matrix.alpha(), Spin::alpha);  // See `MixedUSQTwoElectronOperatorComponent::transform` for explanation of the API.
-        result.alphaBeta().transform(transformation_matrix.beta(), Spin::beta);
+        result.alphaBeta().transform(T.alpha(), Spin::alpha);  // See `MixedUSQTwoElectronOperatorComponent::transform` for explanation of the API.
+        result.alphaBeta().transform(T.beta(), Spin::beta);
 
-        result.betaAlpha().transform(transformation_matrix.beta(), Spin::alpha);
-        result.betaAlpha().transform(transformation_matrix.alpha(), Spin::beta);
+        result.betaAlpha().transform(T.beta(), Spin::alpha);
+        result.betaAlpha().transform(T.alpha(), Spin::beta);
 
-        result.betaBeta().transform(transformation_matrix.beta());
+        result.betaBeta().transform(T.beta());
 
         return result;
     };
@@ -369,8 +369,8 @@ struct OperatorTraits<USQTwoElectronOperator<Scalar, Vectorizer>> {
     // A type that corresponds to the scalar version of the associated unrestricted one-electron operator type.
     using ScalarOperator = ScalarUSQTwoElectronOperator<Scalar>;
 
-    // The type of transformation matrix that is naturally associated to an unrestricted two-electron operator.
-    using TM = UTransformation<Scalar>;
+    // The type of transformation that is naturally associated to an unrestricted two-electron operator.
+    using Transformation = UTransformation<Scalar>;
 
     // The type of the one-particle density matrix that is naturally associated an unrestricted two-electron operator.
     using OneDM = SpinResolved1DM<Scalar>;
@@ -390,8 +390,8 @@ struct OperatorTraits<USQTwoElectronOperator<Scalar, Vectorizer>> {
 template <typename Scalar, typename Vectorizer>
 struct BasisTransformableTraits<USQTwoElectronOperator<Scalar, Vectorizer>> {
 
-    // The type of transformation matrix that is naturally related to a `USQTwoElectronOperator`.
-    using TM = UTransformation<Scalar>;
+    // The type of transformation that is naturally related to a `USQTwoElectronOperator`.
+    using Transformation = UTransformation<Scalar>;
 };
 
 

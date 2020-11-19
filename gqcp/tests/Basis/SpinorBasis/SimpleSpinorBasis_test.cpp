@@ -55,10 +55,10 @@ BOOST_AUTO_TEST_CASE(lowdinOrthonormalizationMatrix) {
     const auto T_lowdin_1 = spinor_basis.lowdinOrthonormalizationMatrix();
 
 
-    // Transform the restricted spinor basis and re-calculate the Löwdin orthonormalization matrix and check the result
+    // Transform the restricted spinor basis and re-calculate the Löwdin orthonormalization and check the result
     const auto K = spinor_basis.numberOfSpatialOrbitals();
     spinor_basis.transform(GQCP::RTransformation<double>::Random(K));
     const auto T_lowdin_2 = spinor_basis.lowdinOrthonormalizationMatrix();
 
-    BOOST_CHECK(!T_lowdin_1.isApprox(T_lowdin_2, 1.0e-08));  // the two Löwdin transformation matrices should not be equal
+    BOOST_CHECK(!T_lowdin_1.matrix().isApprox(T_lowdin_2.matrix(), 1.0e-08));  // The two Löwdin transformation matrices should not be equal.
 }

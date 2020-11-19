@@ -73,7 +73,7 @@ public:
      *  @param N                    the total number of electrons
      *  @param sq_hamiltonian       the Hamiltonian expressed in the scalar (AO) basis
      *  @param S                    the overlap matrix (of the scalar (AO) basis)
-     *  @param C_initial            the initial coefficient matrix
+     *  @param C_initial            The initial coefficient matrix.
      */
     RHFSCFEnvironment(const size_t N, const RSQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S, const RTransformation<Scalar>& C_initial) :
         N {N},
@@ -104,7 +104,7 @@ public:
 
         using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
         Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver {H_core, S};
-        const RTransformation<Scalar> C_initial = generalized_eigensolver.eigenvectors();
+        const RTransformation<Scalar> C_initial {generalized_eigensolver.eigenvectors()};
 
         return RHFSCFEnvironment<Scalar>(N, sq_hamiltonian, S, C_initial);
     }

@@ -62,8 +62,8 @@ public:
 template <typename Scalar>
 struct BasisTransformableTraits<RTransformation<Scalar>> {
 
-    // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix". A transformation matrix should naturally be transformable with itself.
-    using TM = RTransformation<Scalar>;
+    // The type of the transformation for which the basis transformation should be defined. A transformation should naturally be transformable with itself.
+    using Transformation = RTransformation<Scalar>;
 };
 
 

@@ -142,12 +142,12 @@ std::string SpinResolvedONV::asString() const {
 /**
  *  Calculate the overlap <on|of>: the projection of between this spin-resolved ONV ('of') and another spin-resolved ONV ('on'), expressed in different R/U-spinor bases. The 'on'-ONV is supposed to be expressed in restricted spin-orbitals, and the 'of'-ONV is supposed to be expressed in unrestricted spin-orbitals.
  * 
- *  @param onv_on                       the spin-resolved ONV that should be projected on
- *  @param C_unrestricted               the coefficient matrix that describes the expansion of the alpha- and beta-spin-orbitals in terms of the underlying AOs
- *  @param C_restricted                 the coefficient matrix that describes the expansion of the restricted alpha/beta-spin-orbitals in terms of the underlying AOs
- *  @param S                            the overlap matrix of the underlying AOs
+ *  @param onv_on                       The spin-resolved ONV that should be projected on.
+ *  @param C_unrestricted               The transformation between the unrestricted spin-orbitals and the atomic spin-orbitals.
+ *  @param C_restricted                 The transformation between the restricted spin-orbitals and the atomic spin-orbitals.
+ *  @param S                            The overlap matrix of the underlying AOs.
  * 
- *  @return the overlap element <on|of>
+ *  @return The overlap element <on|of>.
  * 
  *  @example This method can be used to project UHF-ONVs onto RHF-ONVs, by calling
  *          uhf_onv.calculateProjection(rhf_onv, C_unrestricted, C_restricted, S)
@@ -159,9 +159,9 @@ double SpinResolvedONV::calculateProjection(const SpinResolvedONV& onv_on, const
     const auto& onv_of = *this;
 
 
-    // Calculate the transformation matrices between both sets of spin-orbitals.
-    TransformationMatrix<double> T_alpha = C_restricted.adjoint() * S * C_unrestricted.alpha();
-    TransformationMatrix<double> T_beta = C_restricted.adjoint() * S * C_unrestricted.beta();
+    // Calculate the raw transformation matrices between both sets of spin-orbitals. We'll need the raw matrix representation because we have to slice its rows and columns.
+    MatrixX<double> T_alpha = C_restricted.adjoint().matrix() * S * C_unrestricted.alpha().matrix();
+    MatrixX<double> T_beta = C_restricted.adjoint().matrix() * S * C_unrestricted.beta().matrix();
 
 
     // T's columns should be the ones occupied in the 'of'-ONV.

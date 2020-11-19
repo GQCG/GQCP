@@ -62,8 +62,8 @@ public:
  */
 template <typename Scalar>
 struct DensityMatrixTraits<G2DM<Scalar>> {
-    // The type of transformation matrix that is naturally related to a `G2DM`.
-    using TM = GTransformation<Scalar>;
+    // The type of transformation that is naturally related to a `G2DM`.
+    using Transformation = GTransformation<Scalar>;
 
     // The type of the one-electron density matrix that is naturally related to a `G2DM`.
     using OneDM_Placeholder = G1DM<Scalar>;

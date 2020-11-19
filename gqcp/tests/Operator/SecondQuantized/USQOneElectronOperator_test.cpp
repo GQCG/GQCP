@@ -258,7 +258,7 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
 /**
  *  Check if a trivial rotation works as expected.
  */
-BOOST_AUTO_TEST_CASE(rotate_with_unitary_transformation_matrix) {
+BOOST_AUTO_TEST_CASE(rotate_with_unitary_transformation) {
 
     const size_t dim = 2;
 
@@ -270,7 +270,7 @@ BOOST_AUTO_TEST_CASE(rotate_with_unitary_transformation_matrix) {
     // clang-format on
     GQCP::ScalarUSQOneElectronOperator<double> op {M1, M1};
 
-    // Initialize a unitary transformation matrix
+    // Initialize a unitary transformation
     const auto U = GQCP::UTransformation<double>::Identity(dim);
 
     op.rotate(U);
@@ -280,9 +280,9 @@ BOOST_AUTO_TEST_CASE(rotate_with_unitary_transformation_matrix) {
 
 
 /**
- *  Check whether or not the transformation with a transformation matrix method works as expected.
+ *  Check whether or not the transformation method works as expected.
  */
-BOOST_AUTO_TEST_CASE(transform_with_transformation_matrix) {
+BOOST_AUTO_TEST_CASE(transform_with_transformation) {
 
     const size_t dim = 2;
 
@@ -294,8 +294,8 @@ BOOST_AUTO_TEST_CASE(transform_with_transformation_matrix) {
     // clang-format on
     GQCP::ScalarUSQOneElectronOperator<double> op {M1, M1};
 
-    // Initialize a transformation matrix
-    GQCP::UTransformationComponent<double> T_component {dim};
+    // Initialize a test transformation.
+    GQCP::SquareMatrix<double> T_component {dim};
     // clang-format off
     T_component << 2.0, 3.0,
                    4.0, 5.0;

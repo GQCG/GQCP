@@ -29,7 +29,7 @@ namespace GQCP {
 /**
  *  An iteration step that calculates the alpha- and beta- error matrices from the Fock and density matrices (expressed in the scalar/AO basis).
  * 
- *  @tparam _Scalar              the scalar type used to represent the expansion coefficient/elements of the transformation matrix
+ *  @tparam _Scalar              The scalar type used to represent the expansion coefficient/elements of the transformation matrix: real or complex.
  */
 template <typename _Scalar>
 class UHFErrorCalculation:

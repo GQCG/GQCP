@@ -59,8 +59,8 @@ public:
     // The spinor tag corresponding to a `USQOneElectronOperator`.
     using SpinorTag = UnrestrictedSpinOrbitalTag;
 
-    // The type of transformation matrix that is naturally related to a `USQOneElectronOperator`.
-    using TM = UTransformation<Scalar>;
+    // The type of transformation that is naturally related to a `USQOneElectronOperator`.
+    using Transformation = UTransformation<Scalar>;
 
 
 public:
@@ -273,7 +273,7 @@ public:
     /**
      *  Apply a one-index transformation and return the result.
      * 
-     *  @param T            The transformation that encapsulates the basis transformation coefficients.
+     *  @param T            The basis transformation.
      * 
      *  @return The one-index-transformed one-electron operator.
      */
@@ -336,8 +336,8 @@ struct OperatorTraits<USQOneElectronOperator<Scalar, Vectorizer>> {
     // A type that corresponds to the scalar version of the associated unrestricted one-electron operator type.
     using ScalarOperator = ScalarUSQOneElectronOperator<Scalar>;
 
-    // The type of transformation matrix that is naturally associated to an unrestricted one-electron operator.
-    using TM = UTransformation<Scalar>;
+    // The type of transformation that is naturally associated to an unrestricted one-electron operator.
+    using Transformation = UTransformation<Scalar>;
 
     // The type of the one-particle density matrix that is naturally associated an unrestricted one-electron operator.
     using OneDM = SpinResolved1DM<Scalar>;
@@ -357,8 +357,8 @@ struct OperatorTraits<USQOneElectronOperator<Scalar, Vectorizer>> {
 template <typename Scalar, typename Vectorizer>
 struct BasisTransformableTraits<USQOneElectronOperator<Scalar, Vectorizer>> {
 
-    // The type of transformation matrix that is naturally related to a `USQOneElectronOperator`.
-    using TM = UTransformation<Scalar>;
+    // The type of transformation that is naturally related to a `USQOneElectronOperator`.
+    using Transformation = UTransformation<Scalar>;
 };
 
 

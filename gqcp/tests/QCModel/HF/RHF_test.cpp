@@ -73,13 +73,13 @@ BOOST_AUTO_TEST_CASE(HOMO_LUMO_index) {
 }
 
 /**
- *  Check if the methods for returning spinorbital energies are correctly implemented.
+ *  Check if the methods for returning spin-orbital energies are correctly implemented.
  */
 BOOST_AUTO_TEST_CASE(spinorbitalEnergies) {
 
     // Set up toy RHF model parameters.
     const size_t K = 2;
-    const GQCP::RTransformation<double> C = GQCP::RTransformation<double>::Identity(K);
+    const auto C = GQCP::RTransformation<double>::Identity(K);
     GQCP::VectorX<double> orbital_energies {K};
     orbital_energies << -0.5, 0.5;
 

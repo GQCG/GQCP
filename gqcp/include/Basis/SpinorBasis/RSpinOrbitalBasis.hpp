@@ -55,8 +55,8 @@ public:
     // The type of the base spinor basis.
     using BaseSpinorBasis = SimpleSpinorBasis<_ExpansionScalar, RSpinOrbitalBasis<_ExpansionScalar, _Shell>>;
 
-    // The type of transformation matrix that is naturally related to a GSpinorBasis.
-    using TM = RTransformation<ExpansionScalar>;  // TODO: Rename to TransformationMatrix once the class is gone
+    // The type of transformation that is naturally related to an `RSpinOrbitalBasis`.
+    using Transformation = RTransformation<ExpansionScalar>;
 
     // The type that is used for representing the primitive for a basis function of this spin-orbital basis' underlying AO basis.
     using Primitive = typename Shell::Primitive;
@@ -279,8 +279,8 @@ struct SpinorBasisTraits<RSpinOrbitalBasis<_ExpansionScalar, _Shell>> {
     // The scalar type used to represent an expansion coefficient of the spinors in the underlying scalar orbitals: real or complex.
     using ExpansionScalar = _ExpansionScalar;
 
-    // The type of transformation matrix that is naturally related to an RSpinOrbitalBasis.
-    using TM = RTransformation<ExpansionScalar>;  // TODO: Rename to TransformationMatrix once the class is gone
+    // The type of transformation that is naturally related to an `RSpinOrbitalBasis`.
+    using Transformation = RTransformation<ExpansionScalar>;
 
     // The second-quantized representation of the overlap operator related to an RSpinOrbitalBasis.
     using SQOverlapOperator = ScalarRSQOneElectronOperator<ExpansionScalar>;
@@ -297,8 +297,8 @@ struct SpinorBasisTraits<RSpinOrbitalBasis<_ExpansionScalar, _Shell>> {
 template <typename _ExpansionScalar, typename _Shell>
 struct BasisTransformableTraits<RSpinOrbitalBasis<_ExpansionScalar, _Shell>> {
 
-    // The type of transformation matrix that is naturally related to an `RSpinOrbitalBasis`.
-    using TM = RTransformation<_ExpansionScalar>;
+    // The type of transformation that is naturally related to an `RSpinOrbitalBasis`.
+    using Transformation = RTransformation<_ExpansionScalar>;
 };
 
 

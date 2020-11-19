@@ -19,6 +19,9 @@
 
 
 #include "Basis/Transformations/SimpleTransformation.hpp"
+#include "Basis/Transformations/UTransformation.hpp"
+#include "QuantumChemical/SpinResolved.hpp"
+
 
 namespace GQCP {
 
@@ -41,42 +44,104 @@ public:
     // The scalar type used for a transformation coefficient: real or complex.
     using Scalar = _Scalar;
 
+
+private:
+    // The number of alpha and beta orbitals.
+    SpinResolved<size_t> K;
+
+
 public:
     /*
      *  MARK: Constructors
      */
 
-    // Inherit SimpleTransformation' constructors.
-    using SimpleTransformation<Scalar, GTransformation<Scalar>>::SimpleTransformation;
+    /**
+     *  Construct a `GTransformation` from the transformation matrix that it encapsulates.
+     * 
+     *  @param T                The transformation matrix that collects the expansion coefficients of the new basis (vectors) in the old basis as columns.
+     */
+    GTransformation(const SquareMatrix<Scalar>& T) :
+        SimpleTransformation<_Scalar, GTransformation<_Scalar>>(T),
+        K {SpinResolved<size_t>::FromEqual(T.dimension() / 2)} {}
+
+
+    /**
+     *  Construct a `GTransformation` from the transformation matrix that it encapsulates.
+     * 
+     *  @param T                The transformation matrix that collects the expansion coefficients of the new basis (vectors) in the old basis as columns.
+     */
+    GTransformation(const SquareMatrix<Scalar>& T, const size_t K_alpha, const size_t K_beta) :
+        SimpleTransformation<_Scalar, GTransformation<_Scalar>>(T),
+        K {K_alpha, K_beta} {
+
+        if (T.dimension() != K_alpha + K_beta) {
+            throw std::invalid_argument("GTransformation(const SquareMatrix<Scalar>&, const size_t, const size_t): The given transformation matrix is not compatible with the number of given overbitals.");
+        }
+    }
+
+
+    /*
+     *  MARK: Named constructors
+     */
+
+    /**
+     *  Convert an `UTransformation` into its generalized counterpart.
+     * 
+     *  @param u_transformation             The unrestricted transformation.
+     * 
+     *  @return The `GTransformation` that corresponds to the `UTransformation`.
+     */
+    static GTransformation<Scalar> FromUnrestricted(const UTransformation<Scalar>& u_transformation) {
+
+        // The goal in this named constructor is to build up the general coefficient matrix (2K x 2K) from the unrestricted (K_sigma x K_sigma) ones.
+        const auto K_alpha = u_transformation.alpha().numberOfOrbitals();
+        const auto K_beta = u_transformation.beta().numberOfOrbitals();
+        const auto M = K_alpha + K_beta;
+
+        SquareMatrix<Scalar> T_general = SquareMatrix<Scalar>::Zero(M);
+
+        //      alpha |  0
+        //        0   | beta
+        T_general.topLeftCorner(K_alpha, K_alpha) = u_transformation.alpha().matrix();
+        T_general.bottomRightCorner(K_beta, K_beta) = u_transformation.beta().matrix();
+
+        return GTransformation<Scalar> {T_general, K_alpha, K_beta};
+    }
 
 
     /*
      *  MARK: Components
      */
 
-    // /**
-    //  *  @return The part of the general transformation that describes the alpha spinors.
-    //  */
-    // MatrixX<Scalar> alpha() const {
+    /**
+     *  @return The part of the general transformation matrix that describes the expansion coefficients of the alpha components of the spinors.
+     */
+    MatrixX<Scalar> alpha() const { return this->matrix().topRows(this->K.alpha()); }
 
-    // }
+    /**
+     *  @return The part of the general transformation matrix that describes the expansion coefficients of the beta components of the spinors.
+     */
+    MatrixX<Scalar> beta() const { return this->matrix().bottomRows(this->K.beta()); }
 
+    /**
+     *  @param sigma            Alpha or beta.
+     *
+     *  @return The part of the general transformation that describes the spinors of the requested component.
+     */
+    MatrixX<Scalar> component(const Spin sigma) const {
 
-    // /**
-    //  *  @return The part of the general transformation that describes the beta spinors.
-    //  */
-    // MatrixX<Scalar> beta() const {
+        switch (sigma) {
+        case Spin::alpha: {
+            return this->alpha();
+            break;
+        }
 
-    // }
-
-    // /**
-    //  *  @param sigma            Alpha or beta.
-    //  *
-    //  *  @return The part of the general transformation that describes the spinors of the requested component.
-    //  */
-    // MatrixX<Scalar> component(const Spin sigma) const {
-
-    // }
+        case Spin::beta: {
+            return this->beta();
+            break;
+        }
+        }
+    }
 };
 
 
@@ -90,8 +155,8 @@ public:
 template <typename Scalar>
 struct BasisTransformableTraits<GTransformation<Scalar>> {
 
-    // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix". A transformation matrix should naturally be transformable with itself.
-    using TM = GTransformation<Scalar>;
+    // The type of the transformation for which the basis transformation should be defined. A transformation matrix should naturally be transformable with itself.
+    using Transformation = GTransformation<Scalar>;
 };
 
 

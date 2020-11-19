@@ -393,9 +393,9 @@ public:
      */
 
     /**
-     *  Update the expansion coefficients of this linear expansion so that they correspond to the situation after a transformation of the underlying spinor basis with the given transformation matrix.
+     *  Update the expansion coefficients of this linear expansion so that they correspond to the situation after a transformation of the underlying spinor basis with the given basis transformation.
      *
-     *  @param T            The transformation matrix between the old and the new restricted spin-orbital basis.
+     *  @param T            The transformation between the old and the new restricted spin-orbital basis.
      * 
      *  @note This method is only available for the full spin-resolved ONV basis.
      *  @note This algorithm was implemented from a description in Helgaker2000.
@@ -410,7 +410,7 @@ public:
 
 
         // LU-decompose the transformation matrix LU decomposition for T
-        const auto& lu_decomposition = T.noPivotLUDecompose();
+        const auto& lu_decomposition = T.matrix().noPivotLUDecompose();
 
         SquareMatrix<double> L = SquareMatrix<double>::Identity(K);
         L.triangularView<Eigen::StrictlyLower>() = lu_decomposition[0];

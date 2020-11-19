@@ -44,7 +44,8 @@ private:
     size_t N;  // the number of electrons
 
     VectorX<double> orbital_energies;  // sorted in ascending energies
-    GTransformation<Scalar> C;         // the coefficient matrix that expresses every spinor (as a column) in the underlying scalar bases
+    // The transformation that expresses the GHF MOs in terms of the atomic spinors.
+    GTransformation<Scalar> C;
 
 
 public:
@@ -56,7 +57,7 @@ public:
      *  The standard member-wise constructor
      * 
      *  @param N                    the number of electrons
-     *  @param C                    the coefficient matrix that expresses every spinor (as a column) in the underlying scalar bases
+     *  @param C                    The transformation that expresses the GHF MOs in terms of the atomic spinors.
      *  @param orbital_energies     the GHF MO energies
      */
     GHF(const size_t N, const VectorX<double>& orbital_energies, const GTransformation<Scalar>& C) :

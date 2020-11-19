@@ -73,7 +73,7 @@ public:
      *  @param N                    the total number of electrons
      *  @param sq_hamiltonian       the Hamiltonian expressed in the scalar (AO) basis, resulting from a quantization using a GSpinorBasis
      *  @param S                    the overlap matrix (of both scalar (AO) bases), expressed in spin-blocked notation
-     *  @param C_initial            the initial coefficient matrix
+     *  @param C_initial            The initial coefficient matrix.
      */
     GHFSCFEnvironment(const size_t N, const GSQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S, const GTransformation<Scalar>& C_initial) :
         N {N},

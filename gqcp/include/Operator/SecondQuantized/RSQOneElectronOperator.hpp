@@ -123,13 +123,13 @@ struct OperatorTraits<RSQOneElectronOperator<Scalar, Vectorizer>> {
     // A type that corresponds to the scalar version of the associated restricted one-electron operator type.
     using ScalarOperator = ScalarRSQOneElectronOperator<Scalar>;
 
-    // The type of transformation matrix that is naturally associated to a restricted one-electron operator.
-    using TM = RTransformation<Scalar>;
+    // The type of transformation that is naturally associated to an `RSQOneElectronOperator`.
+    using Transformation = RTransformation<Scalar>;
 
-    // The type of the one-particle density matrix that is naturally associated a restricted one-electron operator.
+    // The type of the one-particle density matrix that is naturally associated an `RSQOneElectronOperator`.
     using OneDM = Orbital1DM<Scalar>;
 
-    // The type of the two-particle density matrix that is naturally associated a restricted one-electron operator.
+    // The type of the two-particle density matrix that is naturally associated an `RSQOneElectronOperator`.
     using TwoDM = Orbital2DM<Scalar>;
 
     // The type used to encapsulate the Mulliken partitioning scheme.
@@ -147,8 +147,8 @@ struct OperatorTraits<RSQOneElectronOperator<Scalar, Vectorizer>> {
 template <typename Scalar, typename Vectorizer>
 struct BasisTransformableTraits<RSQOneElectronOperator<Scalar, Vectorizer>> {
 
-    // The type of transformation matrix that is naturally associated to a restricted one-electron operator.
-    using TM = RTransformation<Scalar>;
+    // The type of transformation that is naturally associated to an `RSQOneElectronOperator`.
+    using Transformation = RTransformation<Scalar>;
 };
 
 

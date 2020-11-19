@@ -50,7 +50,8 @@ private:
     VectorX<double> orbital_energies_alpha;  // sorted by ascending energy
     VectorX<double> orbital_energies_beta;   // sorted by ascending energy
 
-    UTransformation<Scalar> C;  // The transformation between the current unrestricted spin-orbitals and the AOs.
+    // The transformation between the UHF MOs and the atomic spin-orbitals.
+    UTransformation<Scalar> C;
 
 
 public:
@@ -65,8 +66,7 @@ public:
      *  @param N_beta                                   the number of beta electrons
      *  @param orbital_energies_alpha                   the orbital energies for the alpha-spin-orbitals, sorted by ascending energy
      *  @param orbital_energies_beta                    the orbital energies for the beta-spin-orbitals, sorted by ascending energy
-     *  @param C_alpha                                  the coefficient matrix that expresses every alpha spatial orbital (as a column) in its underlying scalar basis
-     *  @param C_beta                                   the coefficient matrix that expresses every beta spatial orbital (as a column) in its underlying scalar basis
+     *  @param C                                        The transformation between the UHF MOs and the atomic spin-orbitals.
      */
     UHF(const size_t N_alpha, const size_t N_beta, const VectorX<double>& orbital_energies_alpha, const VectorX<double>& orbital_energies_beta, const UTransformation<Scalar>& C) :
         N_alpha {N_alpha},
@@ -80,19 +80,19 @@ public:
         const auto K_beta = C.beta().numberOfOrbitals();    // number of beta spatial orbitals
 
         if (N_alpha > K_alpha) {
-            throw std::invalid_argument("UHF(const size_t, const size_t, const VectorX<double>&, const VectorX<double>&, const TransformationMatrix<Scalar>&, const TransformationMatrix<Scalar>&): The number of given alpha electrons cannot be larger than the number of alpha spatial orbitals.");
+            throw std::invalid_argument("UHF(const size_t, const size_t, const VectorX<double>&, const VectorX<double>&, const UTransformation<Scalar>&): The number of given alpha electrons cannot be larger than the number of alpha spatial orbitals.");
         }
 
         if (N_beta > K_beta) {
-            throw std::invalid_argument("UHF(const size_t, const size_t, const VectorX<double>&, const VectorX<double>&, const TransformationMatrix<Scalar>&, const TransformationMatrix<Scalar>&): The number of given beta electrons cannot be larger than the number of beta spatial orbitals.");
+            throw std::invalid_argument("UHF(const size_t, const size_t, const VectorX<double>&, const VectorX<double>&, const UTransformation<Scalar>&): The number of given beta electrons cannot be larger than the number of beta spatial orbitals.");
         }
 
         if (K_alpha != orbital_energies_alpha.size()) {
-            throw std::invalid_argument("UHF(const size_t, const size_t, const VectorX<double>&, const VectorX<double>&, const TransformationMatrix<Scalar>&, const TransformationMatrix<Scalar>&): The number of given alpha-spin-orbital energies does not match the number of alpha spin-orbitals.");
+            throw std::invalid_argument("UHF(const size_t, const size_t, const VectorX<double>&, const VectorX<double>&, const UTransformation<Scalar>&): The number of given alpha-spin-orbital energies does not match the number of alpha spin-orbitals.");
         }
 
         if (K_beta != orbital_energies_beta.size()) {
-            throw std::invalid_argument("UHF(const size_t, const size_t, const VectorX<double>&, const VectorX<double>&, const TransformationMatrix<Scalar>&, const TransformationMatrix<Scalar>&): The number of given beta-spin-orbital energies does not match the beta of beta spin-orbitals.");
+            throw std::invalid_argument("UHF(const size_t, const size_t, const VectorX<double>&, const VectorX<double>&, const UTransformation<Scalar>&): The number of given beta-spin-orbital energies does not match the beta of beta spin-orbitals.");
         }
     }
 
@@ -104,8 +104,7 @@ public:
      *  @param N_beta                                   the number of beta electrons
      *  @param orbital_energies_alpha                   the orbital energies for the alpha-spin-orbitals, sorted by ascending energy
      *  @param orbital_energies_beta                    the orbital energies for the beta-spin-orbitals, sorted by ascending energy
-     *  @param C_alpha                                  the coefficient matrix that expresses every alpha spatial orbital (as a column) in its underlying scalar basis
-     *  @param C_beta                                   the coefficient matrix that expresses every beta spatial orbital (as a column) in its underlying scalar basis
+     *  @param C                                        The transformation between the UHF MOs and the atomic spin-orbitals.
      */
     UHF(const size_t N_alpha, const size_t N_beta, const UTransformation<Scalar>& C) :
         UHF(N_alpha, N_beta,
@@ -198,7 +197,7 @@ public:
     /**
      *  Calculate the UHF 1-DM expressed in the underlying scalar basis.
      * 
-     *  @param C            The coefficient matrix that encapsulates the basis transformations to make the alpha- and beta-spin-orbitals in terms of the underlying scalar basis.
+     *  @param C            The transformation between the UHF MOs and the atomic spin-orbitals.
      *  @param N_a          The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals.
      *  @param N_b          The number of beta electrons, i.e. the number of occupied beta spin-orbitals.
      *
@@ -313,8 +312,7 @@ public:
 
 
     /**
-     *
-     *  @return the spin resolved UHF 1-DM expressed in the underlying scalar basis for these UHF model parameters
+     *  @return The spin resolved UHF 1-DM expressed in the underlying scalar basis for these UHF model parameters.
      */
     SpinResolved1DM<Scalar> calculateScalarBasis1DM() const {
 

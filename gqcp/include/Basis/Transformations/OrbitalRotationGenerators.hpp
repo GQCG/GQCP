@@ -28,7 +28,7 @@ namespace GQCP {
 
 
 /**
- *  A class that represents the orbital rotation generators kappa
+ *  The real singlet orbital rotation generators kappa.
  */
 class OrbitalRotationGenerators {
 private:
@@ -76,7 +76,7 @@ public:
     const VectorX<double>& asVector() const { return this->kappa_vector; }
 
     /**
-     *  @return the unitary matrix that corresponds to these orbital rotation generators, i.e. exp(-kappa)
+     *  @return The unitary transformation corresponds to these orbital rotation generators, i.e. exp(-kappa).
      */
     RTransformation<double> calculateRotationMatrix() const { return RTransformation<double> {(-this->asMatrix()).exp()}; }
 

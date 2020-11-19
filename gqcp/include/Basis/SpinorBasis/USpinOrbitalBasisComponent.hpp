@@ -135,8 +135,8 @@ public:
 template <typename ExpansionScalar, typename Shell>
 struct SpinorBasisTraits<USpinOrbitalBasisComponent<ExpansionScalar, Shell>> {
 
-    // The type of transformation matrix that is naturally related to a `USpinOrbitalBasisComponent`.
-    using TM = UTransformationComponent<ExpansionScalar>;  // TODO: Rename to TransformationMatrix once the class is gone
+    // The type of transformation that is naturally related to a `USpinOrbitalBasisComponent`.
+    using Transformation = UTransformationComponent<ExpansionScalar>;
 
     // The second-quantized representation of the overlap operator related to a `USpinOrbitalBasisComponent`.
     using SQOverlapOperator = ScalarUSQOneElectronOperatorComponent<ExpansionScalar>;
@@ -153,8 +153,8 @@ struct SpinorBasisTraits<USpinOrbitalBasisComponent<ExpansionScalar, Shell>> {
 template <typename _ExpansionScalar, typename _Shell>
 struct BasisTransformableTraits<USpinOrbitalBasisComponent<_ExpansionScalar, _Shell>> {
 
-    // The type of transformation matrix that is naturally related to a `USpinOrbitalBasisComponent`.
-    using TM = UTransformationComponent<_ExpansionScalar>;
+    // The type of transformation that is naturally related to a `USpinOrbitalBasisComponent`.
+    using Transformation = UTransformationComponent<_ExpansionScalar>;
 };
 
 

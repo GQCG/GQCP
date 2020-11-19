@@ -68,7 +68,7 @@ BOOST_AUTO_TEST_CASE(transform_matrix_representations) {
     // clang-format on
 
 
-    // Create the transformation matrix and transform the operator manually: .transform() for does not work yet
+    // Create the transformation and transform the operator manually: .transform() for does not work yet
     GQCP::Matrix<double, 2, 2> T = GQCP::Matrix<double, 2, 2>::Zero();
     // clang-format off
     T << 2.0, 1.0,

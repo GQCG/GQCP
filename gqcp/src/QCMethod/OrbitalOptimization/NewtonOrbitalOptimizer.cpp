@@ -49,9 +49,9 @@ NewtonOrbitalOptimizer::NewtonOrbitalOptimizer(std::shared_ptr<BaseHessianModifi
  *      - continuing in the direction of the largest (in absolute value) non-conforming eigenvalue (i.e. the smallest (negative) eigenvalue for minimization algorithms and the largest (positive) eigenvalue for maximization algorithms)
  *      - using the Newton step if it is well-defined
  * 
- *  @param sq_hamiltonian           the current Hamiltonian
+ *  @param sq_hamiltonian           The current Hamiltonian.
  * 
- *  @return a unitary matrix that will be used to rotate the current Hamiltonian into the next iteration
+ *  @return The unitary transformation that will be used to rotate the current Hamiltonian into the next iteration.
  */
 RTransformation<double> NewtonOrbitalOptimizer::calculateNewRotationMatrix(const RSQHamiltonian<double>& sq_hamiltonian) const {
 

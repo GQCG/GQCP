@@ -62,7 +62,7 @@ public:
 
 
     /**
-     *  @return The Mulliken projection matrix (as an unrestricted transformation) defined as C^{-1} P_A C, where C is the transformation matrix and P_A is the partition matrix.
+     *  @return The Mulliken projection matrix (as an unrestricted transformation) defined as C^{-1} P_A C, where C is the transformation matrix and P_A is the partition matrix, for both spin components.
      */
     UTransformation<Scalar> projectionMatrix() const {
 

@@ -63,8 +63,8 @@ public:
  */
 template <typename Scalar>
 struct DensityMatrixTraits<SpinDensity1DM<Scalar>> {
-    // The type of transformation matrix that is naturally related to a `SpinDensity1DM`. The only transformations that should be naturally possible for a a spin-density 1-DM are restricted transformations, that transform the alpha- and beta-spin-orbitals equally.
-    using TM = RTransformation<Scalar>;
+    // The type of transformation that is naturally related to a `SpinDensity1DM`. The only transformations that should be naturally possible for a a spin-density 1-DM are restricted transformations, that transform the alpha- and beta-spin-orbitals equally.
+    using Transformation = RTransformation<Scalar>;
 };
 
 

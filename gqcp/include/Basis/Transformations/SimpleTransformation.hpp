@@ -31,33 +31,37 @@ namespace GQCP {
  */
 
 /**
- *  A basis transformation that is represented by a single transformation matrix.
+ *  A basis transformation that can be represented by a single transformation matrix.
  * 
  *  In general, we adopt the convention outlined in (https://gqcg-res.github.io/knowdes/spinor-transformations.html), where the new orbitals' coefficients can be found in the respective **column** of the related transformation matrix.
  *  
  *  This class is used as a base class for `RTransformation` and `GTransformation`, since they are both expressed using a single matrix, as opposed to `UTransformation`, which uses separate transformation coefficients for alpha- and beta- matrices. The word 'simple' is used here as an antonym for 'compound'.
  * 
  *  @tparam _Scalar                                 The scalar type used for a transformation coefficient: real or complex.
- *  @tparam _DerivedTransformationMatrix            The type of the transformation matrix that derives from this class, enabling CRTP and compile-time polymorphism.
+ *  @tparam _DerivedTransformation                  The type of the transformation matrix that derives from this class, enabling CRTP and compile-time polymorphism.
  */
-template <typename _Scalar, typename _DerivedTransformationMatrix>
+template <typename _Scalar, typename _DerivedTransformation>
 class SimpleTransformation:
-    public SquareMatrix<_Scalar>,
-    public BasisTransformable<_DerivedTransformationMatrix>,
-    public JacobiRotatable<_DerivedTransformationMatrix> {
+    public BasisTransformable<_DerivedTransformation>,
+    public JacobiRotatable<_DerivedTransformation> {
 
 public:
     // The scalar type used for a transformation coefficient: real or complex.
     using Scalar = _Scalar;
 
-    // The type of the transformation matrix that derives from this class, enabling CRTP and compile-time polymorphism.
-    using DerivedTransformationMatrix = _DerivedTransformationMatrix;
+    // The type of the transformation that derives from this class, enabling CRTP and compile-time polymorphism.
+    using DerivedTransformation = _DerivedTransformation;
 
     // The type of 'this'.
-    using Self = SimpleTransformation<_Scalar, _DerivedTransformationMatrix>;
+    using Self = SimpleTransformation<Scalar, DerivedTransformation>;
 
     // The type of Jacobi rotation for which the Jacobi rotation should be defined.
     using JacobiRotationType = JacobiRotation;
+
+
+protected:
+    // The transformation matrix that collects the expansion coefficients of the new basis (vectors) in the old basis as columns.
+    SquareMatrix<Scalar> T;
 
 
 public:
@@ -65,8 +69,13 @@ public:
      *  MARK: Constructors
      */
 
-    // Inherit SquareMatrix' constructors.
-    using SquareMatrix<Scalar>::SquareMatrix;
+    /**
+     *  Construct a `SimpleTransformation` from the transformation matrix that it encapsulates.
+     * 
+     *  @param T                The transformation matrix that collects the expansion coefficients of the new basis (vectors) in the old basis as columns.
+     */
+    SimpleTransformation(const SquareMatrix<Scalar>& T) :
+        T {T} {}
 
 
     /*
@@ -74,20 +83,36 @@ public:
      */
 
     /**
-     *  Create a transformation matrix from Jacobi rotation. Note that we work with the (cos, sin, -sin, cos) definition.
+     *  Create a general transformation from Jacobi rotation. Note that we work with the (cos, sin, -sin, cos) definition.
      * 
      *  @param jacobi_rotation                      The Jacobi rotation.
      *  @param dim                                  The dimension of the resulting matrix.
      *
-     *  @return The Jacobi rotation matrix that corresponds to Jacobi rotation.
+     *  @return The general transformation that corresponds to the given Jacobi rotation.
      */
-    static DerivedTransformationMatrix FromJacobi(const JacobiRotation& jacobi_rotation, const size_t dim) {
+    static DerivedTransformation FromJacobi(const JacobiRotation& jacobi_rotation, const size_t dim) {
 
         // Create an identity transformation matrix and apply a Jacobi rotation.
-        DerivedTransformationMatrix J = SquareMatrix<Scalar>::Identity(dim);
+        DerivedTransformation J = SquareMatrix<Scalar>::Identity(dim);
 
         return J.rotated(jacobi_rotation);
     }
+
+
+    /**
+     *  Create an identity transformation between two orbital bases.
+     * 
+     *  @param dim              The dimension of the transformation matrix.
+     */
+    static DerivedTransformation Identity(const size_t dim) { return DerivedTransformation {SquareMatrix<Scalar>::Identity(dim)}; }
+
+
+    /**
+     *  Create a random unitary transformation.
+     * 
+     *  @param dim          The dimension of the transformation matrix.
+     */
+    static DerivedTransformation RandomUnitary(const size_t dim) { return DerivedTransformation {SquareMatrix<Scalar>::RandomUnitary(dim)}; }
 
 
     /*
@@ -95,33 +120,63 @@ public:
      */
 
     /**
-     *  @return The number of orbitals (spinors, spin-orbitals or spatial orbitals, depending on the context/derived class) this transformation matrix is related to.
+     *  @return The number of orbitals (spinors, spin-orbitals or spatial orbitals, depending on the context/derived class) this transformation is related to.
      */
-    size_t numberOfOrbitals() const { return this->dimension(); /* the dimension of the square matrix */ }
+    size_t numberOfOrbitals() const { return this->matrix()->dimension(); }
 
 
     /*
-     *  MARK: Conforming to BasisTransformable
+     *  MARK: Transformation matrix
      */
 
     /**
-     *  Apply the basis transformation and return the resulting one-electron integrals.
-     * 
-     *  @param transformation_matrix        The type that encapsulates the basis transformation coefficients.
-     * 
-     *  @return The basis-transformed one-electron integrals.
+     *  @return The transformation matrix that collects the expansion coefficients of the new basis (vectors) in the old basis as columns.
      */
-    DerivedTransformationMatrix transformed(const DerivedTransformationMatrix& transformation_matrix) const override {
+    const SquareMatrix<Scalar>& matrix() const { return this->T; }
 
-        return DerivedTransformationMatrix {(*this) * transformation_matrix};
-    }
 
+    /*
+     *  MARK: Linear algebra
+     */
+
+    /**
+     *  @return The adjoint transformation of this one.
+     */
+    DerivedTransformation adjoint() const { return DerivedTransformation {this->matrix().adjoint()}; }
+
+    /**
+     *  @return The inverse transformation of this one.
+     */
+    DerivedTransformation inverse() const { return DerivedTransformation {this->matrix().inverse()}; }
+
+    /**
+     *  Check if this transformation is unitary.
+     * 
+     *  @param threshold                The threshold used to check for unitarity.
+     * 
+     *  @return If this transformation is unitary, within the given threshold.
+     */
+    bool isUnitary(const double threshold = 1.0e-12) const { return this->matrix().isUnitary(threshold); }
+
+
+    /*
+     *  MARK: Conforming to `BasisTransformable`
+     */
+
+    /**
+     *  Apply the basis transformation and return the result, which corresponds to the concatenation of two basis transformations.
+     * 
+     *  @param T        The basis transformation.
+     * 
+     *  @return The transformation that encapsulates the sequential application of this transformation, followed by the given transformation.
+     */
+    DerivedTransformation transformed(const DerivedTransformation& T) const override { return DerivedTransformation {this->matrix() * T.matrix()}; }
 
     // Allow the `rotate` method from `BasisTransformable`, since there's also a `rotate` from `JacobiRotatable`.
-    using BasisTransformable<DerivedTransformationMatrix>::rotate;
+    using BasisTransformable<DerivedTransformation>::rotate;
 
     // Allow the `rotated` method from `BasisTransformable`, since there's also a `rotated` from `JacobiRotatable`.
-    using BasisTransformable<DerivedTransformationMatrix>::rotated;
+    using BasisTransformable<DerivedTransformation>::rotated;
 
 
     /*
@@ -133,9 +188,9 @@ public:
      * 
      *  @param jacobi_rotation          The Jacobi rotation.
      * 
-     *  @return The transformation matrix that that encapsulates the sequential application of this transformation, followed by the Jacobi rotation.
+     *  @return The transformation that encapsulates the sequential application of this transformation, followed by the Jacobi rotation.
      */
-    DerivedTransformationMatrix rotated(const JacobiRotationType& jacobi_rotation) const override {
+    DerivedTransformation rotated(const JacobiRotationType& jacobi_rotation) const override {
 
         const auto p = jacobi_rotation.p();
         const auto q = jacobi_rotation.q();
@@ -143,14 +198,14 @@ public:
         // Create the matrix representation of a Jacobi rotation using Eigen's APIs.
         // We're applying the Jacobi rotation as J = I * jacobi_rotation (cfr. B' = B T).
         const auto eigen_jacobi_rotation = jacobi_rotation.Eigen();
-        auto result = (*this);
+        auto result = this->matrix();
         result.applyOnTheRight(p, q, eigen_jacobi_rotation);
 
-        return DerivedTransformationMatrix {result};
+        return DerivedTransformation {result};
     }
 
     // Allow the `rotate` method from `JacobiRotatable`, since there's also a `rotate` from `BasisTransformable`.
-    using JacobiRotatable<DerivedTransformationMatrix>::rotate;
+    using JacobiRotatable<DerivedTransformation>::rotate;
 };
 
 
@@ -161,11 +216,11 @@ public:
 /**
  *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
  */
-template <typename Scalar, typename DerivedTransformationMatrix>
-struct BasisTransformableTraits<SimpleTransformation<Scalar, DerivedTransformationMatrix>> {
+template <typename Scalar, typename DerivedTransformation>
+struct BasisTransformableTraits<SimpleTransformation<Scalar, DerivedTransformation>> {
 
-    // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix". A transformation matrix should naturally be transformable with itself.
-    using TM = DerivedTransformationMatrix;
+    // The type of the transformation for which the basis transformation should be defined. A transformation matrix should naturally be transformable with itself.
+    using Transformation = DerivedTransformation;
 };
 
 
@@ -178,8 +233,8 @@ struct BasisTransformableTraits<SimpleTransformation<Scalar, DerivedTransformati
  * 
  *  @tparam T       The type that should conform to `JacobiRotatable`.
  */
-template <typename Scalar, typename DerivedTransformationMatrix>
-struct JacobiRotatableTraits<SimpleTransformation<Scalar, DerivedTransformationMatrix>> {
+template <typename Scalar, typename DerivedTransformation>
+struct JacobiRotatableTraits<SimpleTransformation<Scalar, DerivedTransformation>> {
 
     // The type of Jacobi rotation for which the Jacobi rotation should be defined.
     using JacobiRotationType = JacobiRotation;

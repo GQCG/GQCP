@@ -60,8 +60,8 @@ public:
     // The spinor basis that ultimately derives from this class, enabling CRTP and compile-time polymorphism.
     using FinalSpinorBasis = _FinalSpinorBasis;
 
-    // The type of transformation matrix that is naturally related to the final spinor basis.
-    using TM = typename BasisTransformableTraits<FinalSpinorBasis>::TM;  // TODO: Rename to TransformationMatrix once the class is gone
+    // The type of transformation that is naturally related to the final spinor basis.
+    using Transformation = typename BasisTransformableTraits<FinalSpinorBasis>::Transformation;
 
     // The type of Jacobi rotation that is naturally related to the final spinor basis.
     using JacobiRotationType = typename JacobiRotatableTraits<FinalSpinorBasis>::JacobiRotationType;
@@ -71,8 +71,8 @@ public:
 
 
 protected:
-    // The matrix that holds the expansion coefficients, i.e. that expresses the spinors/spin-orbitals in terms of the underlying scalar basis/bases.
-    TM C;
+    // The transformation that relates the current set of spinors with the atomic spinors.
+    Transformation C;
 
 
 public:
@@ -81,9 +81,9 @@ public:
      */
 
     /**
-     *  @param C                The matrix that holds the expansion coefficients, i.e. that expresses the spinors/spin-orbitals in terms of the underlying scalar basis/bases
+     *  @param C                The transformation that relates the current set of spinors with the atomic spinors.
      */
-    SimpleSpinorBasis(const TM& C) :
+    SimpleSpinorBasis(const Transformation& C) :
         C {C} {}
 
 
@@ -92,9 +92,9 @@ public:
      */
 
     /**
-     *  @return A read-only reference to the matrix that holds the expansion coefficients, i.e. that expresses the spinors/spin-orbitals in terms of the underlying scalar basis/bases.
+     *  @return A read-only reference to the transformation that relates the current set of spinors with the atomic spinors.
      */
-    const TM& expansion() const { return this->C; }
+    const Transformation& expansion() const { return this->C; }
 
 
     /*
@@ -132,14 +132,14 @@ public:
     }
 
     /**
-     *  @return the transformation matrix to the Löwdin basis: T = S_current^{-1/2}
+     *  @return The transformation to the Löwdin basis: T = S_current^{-1/2}
      */
-    TM lowdinOrthonormalizationMatrix() const {
+    Transformation lowdinOrthonormalizationMatrix() const {
 
-        // Calculate S^{-1/2}, where S is epxressed in the current spinor basis
+        // Calculate S^{-1/2}, where S is expressed with respect to the current spinors.
         const auto S = this->overlap().parameters();
-        Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes {S};
-        return TM {saes.operatorInverseSqrt()};
+        Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> eigensolver {S};
+        return Transformation {eigensolver.operatorInverseSqrt()};
     }
 
     /**
@@ -155,11 +155,11 @@ public:
     /**
      *  Apply the basis transformation and return the result.
      * 
-     *  @param transformation_matrix        The type that encapsulates the basis transformation coefficients.
+     *  @param T            The basis transformation.
      * 
      *  @return The basis-transformed object.
      */
-    FinalSpinorBasis transformed(const TM& transformation_matrix) const override {
+    FinalSpinorBasis transformed(const Transformation& T) const override {
 
         auto result = this->derived();
         result.C.transform(transformation_matrix);
@@ -186,7 +186,7 @@ public:
      */
     FinalSpinorBasis rotated(const JacobiRotationType& jacobi_rotation) const override {
 
-        const auto J = TM::FromJacobi(jacobi_rotation, this->simpleDimension());
+        const auto J = Transformation::FromJacobi(jacobi_rotation, this->simpleDimension());
         return this->rotated(J);
     }
 

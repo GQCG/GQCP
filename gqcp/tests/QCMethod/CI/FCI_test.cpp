@@ -106,7 +106,7 @@ BOOST_AUTO_TEST_CASE(FCI_rotated_diagonal_sum) {
     const auto diagonal = onv_basis.evaluateOperatorDiagonal(sq_hamiltonian);
 
 
-    // Rotate the Hamiltonian with a random unitary matrix, evaluate the diagonal of the FCI Hamiltonian matrix in that basis, and check the result.
+    // Rotate the Hamiltonian with a random unitary transformation, evaluate the diagonal of the FCI Hamiltonian matrix in that basis, and check the result.
     sq_hamiltonian.rotate(GQCP::RTransformation<double>::RandomUnitary(K));
     const auto diagonal_rotated = onv_basis.evaluateOperatorDiagonal(sq_hamiltonian);
     BOOST_CHECK(std::abs(diagonal.sum() - diagonal_rotated.sum()) < 1.0e-10);

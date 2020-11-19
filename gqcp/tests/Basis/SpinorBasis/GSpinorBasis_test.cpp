@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE(constructor_throws) {
     const auto K_beta = beta_scalar_basis.numberOfBasisFunctions();  // 4
 
 
-    // Initialize two coefficient matrices, one with compatible and one with incompatible dimensions.
+    // Initialize two expansions, one with compatible and one with incompatible dimensions.
     const GQCP::GTransformation<double> T_compatible {K_alpha + K_beta};
     const GQCP::GTransformation<double> T_incompatible {K_alpha + K_beta - 1};
 

@@ -302,12 +302,12 @@ std::string SpinUnresolvedONV::asString() const {
 /**
  *  Calculate the overlap <on|of>: the projection of between this spin-unresolved ONV ('of') and another spin-unresolved ONV ('on'), expressed in different general orthonormal spinor bases.
  * 
- *  @param onv_on                       the spin-unresolved ONV that should be projected on
- *  @param C_of                         the coefficient matrix that describes the expansion of the general spinors related to the ONV that is being projected
- *  @param C_on                         the coefficient matrix that describes the expansion of the general spinors related to the ONV that is being projected on
- *  @param S                            the overlap matrix of the underlying AOs
+ *  @param onv_on                       The spin-unresolved ONV that should be projected on.
+ *  @param C_of                         The transformation between the spinors related to the ONV that is being projected and the atomic spinors.
+ *  @param C_on                         The transformation between the spinors related to the ONV that is being projected on and the atomic spinors.
+ *  @param S                            The overlap matrix of the underlying AOs.
  * 
- *  @return the overlap element <on|of>
+ *  @return The overlap element <on|of>.
  */
 double SpinUnresolvedONV::calculateProjection(const SpinUnresolvedONV& onv_on, const GTransformation<double>& C_of, const GTransformation<double>& C_on, const SquareMatrix<double>& S) const {
 
@@ -315,8 +315,8 @@ double SpinUnresolvedONV::calculateProjection(const SpinUnresolvedONV& onv_on, c
     const auto& onv_of = *this;
 
 
-    // Calculate the transformation matrix between the spinors.
-    GTransformation<double> U = C_on.adjoint() * S * C_of;
+    // Calculate the raw matrix representation of the transformation between the spinor bases, since we're going to have to slice its rows and columns.
+    MatrixX<double> U = C_on.matrix().adjoint() * S * C_of.matrix();
 
 
     // U's columns should be the ones occupied in the 'of'-ONV.

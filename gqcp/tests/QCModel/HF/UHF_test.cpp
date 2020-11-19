@@ -75,13 +75,13 @@ BOOST_AUTO_TEST_CASE(basic_constructor) {
 
 
 /**
- *  Check if the methods for returning spinorbital energies are correctly implemented.
+ *  Check if the methods for returning spin-orbital energies are correctly implemented.
  */
 BOOST_AUTO_TEST_CASE(spinorbitalEnergies) {
 
     // Set up toy UHF model parameters.
     const size_t K = 2;
-    const GQCP::TransformationMatrix<double> C = GQCP::TransformationMatrix<double>::Identity(K);
+    const auto C = GQCP::UTransformation<double>::Identity(K);
     GQCP::VectorX<double> orbital_energies {K};
     orbital_energies << -0.5, 0.5;
 

@@ -97,24 +97,24 @@ public:
 
 
     /*
-     *  MARK: basis transformations
+     *  MARK: Basis transformations
      */
 
     /**
      *  Apply the basis transformation for the spin component sigma, and return the resulting two-electron integrals.
      * 
-     *  @param transformation_matrix        The type that encapsulates the basis transformation coefficients.
+     *  @param T                            The basis transformation.
      *  @param sigma                        Alpha indicates a transformation of the first two axes, beta indicates a transformation of the second two axes.
      * 
      *  @return The basis-transformed two-electron operator.
      * 
      *  @note We apologize for this half-baked API. It is currently present in the code, while issue #559 (https://github.com/GQCG/GQCP/issues/688) is being implemented.
      */
-    Self transformed(const UTransformationComponent<Scalar>& transformation_matrix, const Spin sigma) const {
+    Self transformed(const UTransformationComponent<Scalar>& T, const Spin sigma) const {
 
         // Since we're only getting T as a matrix, we should convert it to an appropriate tensor to perform contractions.
         // Although not a necessity for the einsum implementation, it makes it a lot easier to follow the formulas.
-        const GQCP::Tensor<Scalar, 2> T_tensor = GQCP::Tensor<Scalar, 2>(Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>>(transformation_matrix.data(), transformation_matrix.rows(), transformation_matrix.cols()));
+        const GQCP::Tensor<Scalar, 2> T_tensor = GQCP::Tensor<Scalar, 2>(Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>>(T.matrix().data(), T.matrix().rows(), T.matrix().cols()));
 
         // We calculate the conjugate as a tensor as well.
         const GQCP::Tensor<Scalar, 2> T_conjugate = T_tensor.conjugate();
@@ -149,14 +149,14 @@ public:
     /**
      *  In-place apply the basis transformation for the spin component sigma.
      * 
-     *  @param transformation_matrix        The type that encapsulates the basis transformation coefficients.
-     *  @param sigma                        Alpha indicates a transformation of the first two axes, beta indicates a transformation of the second two axes.
+     *  @param T                    The basis transformation.
+     *  @param sigma                Alpha indicates a transformation of the first two axes, beta indicates a transformation of the second two axes.
      * 
      *  @note We apologize for this half-baked API. It is currently present in the code, while issue #559 (https://github.com/GQCG/GQCP/issues/688) is being implemented.
      */
-    void transform(const UTransformationComponent<Scalar>& transformation_matrix, const Spin sigma) {
+    void transform(const UTransformationComponent<Scalar>& T, const Spin sigma) {
 
-        auto result = this->transformed(transformation_matrix, sigma);
+        auto result = this->transformed(T, sigma);
         *this = result;
     }
 
@@ -240,8 +240,8 @@ struct OperatorTraits<MixedUSQTwoElectronOperatorComponent<_Scalar, _Vectorizer>
     // The type of the final derived operator (that derives from SQOperatorStorage), enabling CRTP and compile-time polymorphism. VectorSpaceArithmetic (and other functionality) should be implemented on the **final** deriving class, not on intermediate classes.
     using DerivedOperator = MixedUSQTwoElectronOperatorComponent<Scalar, Vectorizer>;
 
-    // The type of transformation matrix that is naturally associated to a component of an unestricted two-electron operator.
-    using TM = UTransformationComponent<Scalar>;
+    // The type of transformation that is naturally associated to a component of an unestricted two-electron operator.
+    using Transformation = UTransformationComponent<Scalar>;
 
     // The type of the one-particle density matrix that is naturally associated a component of an unestricted two-electron operator.
     using OneDM = SpinResolved1DMComponent<Scalar>;

@@ -114,8 +114,8 @@ struct OperatorTraits<GSQOneElectronOperator<Scalar, Vectorizer>> {
     // A type that corresponds to the scalar version of the associated general(ized) one-electron operator type.
     using ScalarOperator = ScalarGSQOneElectronOperator<Scalar>;
 
-    // The type of transformation matrix that is naturally associated to a general(ized) one-electron operator.
-    using TM = GTransformation<Scalar>;
+    // The type of transformation that is naturally associated to a general(ized) one-electron operator.
+    using Transformation = GTransformation<Scalar>;
 
     // The type of the one-particle density matrix that is naturally associated to a general(ized) one-electron operator.
     using OneDM = G1DM<Scalar>;
@@ -141,8 +141,8 @@ struct OperatorTraits<GSQOneElectronOperator<Scalar, Vectorizer>> {
 template <typename Scalar, typename Vectorizer>
 struct BasisTransformableTraits<GSQOneElectronOperator<Scalar, Vectorizer>> {
 
-    // The type of transformation matrix that is naturally associated to a general(ized) one-electron operator.
-    using TM = GTransformation<Scalar>;
+    // The type of transformation that is naturally associated to a `GSQOneElectronOperator`.
+    using Transformation = GTransformation<Scalar>;
 };
 
 

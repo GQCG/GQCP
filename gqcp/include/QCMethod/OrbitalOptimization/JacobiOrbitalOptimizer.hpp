@@ -91,9 +91,9 @@ public:
     // PUBLIC OVERRIDDEN METHODS
 
     /**
-     *  @param sq_hamiltonian           the current Hamiltonian
+     *  @param sq_hamiltonian           The current Hamiltonian.
      * 
-     *  @return a unitary matrix that will be used to rotate the current Hamiltonian into the next iteration
+     *  @return The unitary transformation that will be used to rotate the current Hamiltonian into the next iteration.
      */
     RTransformation<double> calculateNewRotationMatrix(const RSQHamiltonian<double>& sq_hamiltonian) const override;
 

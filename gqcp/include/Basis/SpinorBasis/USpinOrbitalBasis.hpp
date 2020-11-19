@@ -72,7 +72,7 @@ public:
      * 
      *  @param alpha_scalar_basis           The scalar basis in which the alpha spin-orbitals are expanded.
      *  @param beta_scalar_basis            The scalar basis in which the beta spin-orbitals are expanded.
-     *  @param C                            The transformation that expresses the current spin-orbitals in terms of the underlying scalar basis.
+     *  @param C                            The transformation that relates the current set of spinors with the atomic spinors.
      */
     USpinOrbitalBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis, const UTransformation<ExpansionScalar>& C) :
         USpinOrbitalBasis(USpinOrbitalBasisComponent<ExpansionScalar, Shell> {alpha_scalar_basis, C.alpha()},
@@ -180,14 +180,15 @@ public:
     /**
      *  Create an unrestricted spin-orbital basis from a restricted spin-orbital basis, leading to alpha- and beta- coefficient matrices that are equal.
      *
-     *  @param r_spinor_basis               the restricted spinor basis
+     *  @param r_spinor_basis               The restricted spin-orbital basis.
      *
-     *  @return an unrestricted spinor basis
+     *  @return An `USpinOrbitalBasis` that corresponds to the given restricted one.
      */
     static USpinOrbitalBasis<ExpansionScalar, Shell> FromRestricted(const RSpinOrbitalBasis<ExpansionScalar, Shell>& r_spinor_basis) {
 
-        const auto scalar_basis = r_spinor_basis.scalarBasis();
-        const auto C = r_spinor_basis.expansion();
+        const auto& scalar_basis = r_spinor_basis.scalarBasis();
+        const auto& C = r_spinor_basis.expansion();
+
         return USpinOrbitalBasis<ExpansionScalar, Shell>(scalar_basis, scalar_basis, UTransformation<ExpansionScalar>::FromRestricted(C));
     }
 
@@ -237,7 +238,7 @@ public:
 
 
     /**
-     *  @return The transformation T to the Löwdin basis, i.e. T = S_current^{-1/2}.
+     *  @return The transformation to the Löwdin basis. See also `SimpleSpinOrbitalBasis`.
      */
     UTransformation<ExpansionScalar> lowdinOrthonormalizationMatrix() const {
 
@@ -249,7 +250,7 @@ public:
 
 
     /**
-     *  Transform this spin-orbital basis to the 'Löwdin basis', which is the orthonormal basis characterized by the transformation T = S_current^{-1/2}, where S_current is the current overlap matrix.
+     *  Transform this spin-orbital basis to the 'Löwdin basis'. See also `SimpleSpinOrbitalBasis`.
      */
     void lowdinOrthonormalize() {
         this->alpha().lowdinOrthonormalize();
@@ -390,8 +391,8 @@ using USpinorBasis = USpinOrbitalBasis<ExpansionScalar, Shell>;
 template <typename _ExpansionScalar, typename _Shell>
 struct BasisTransformableTraits<USpinOrbitalBasis<_ExpansionScalar, _Shell>> {
 
-    // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix". A transformation matrix should naturally be transformable with itself.
-    using TM = UTransformation<_ExpansionScalar>;
+    // The type of transformation that is naturally related to a `USpinOrbitalBasis`.
+    using Transformation = UTransformation<_ExpansionScalar>;
 };
 
 

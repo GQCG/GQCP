@@ -50,8 +50,8 @@ public:
     // The type of the base spinor basis.
     using BaseSpinorBasis = SimpleSpinorBasis<ExpansionScalar, DerivedSpinOrbitalBasis>;
 
-    // The type of transformation matrix that is naturally related to the derived spinor basis.
-    using TM = typename SpinorBasisTraits<DerivedSpinOrbitalBasis>::TM;  // TODO: Rename to TransformationMatrix once the class is gone
+    // The type of transformation that is naturally related to the derived spin-orbital basis.
+    using Transformation = typename SpinorBasisTraits<DerivedSpinOrbitalBasis>::Transformation;
 
 
 protected:
@@ -68,9 +68,9 @@ public:
      *  Construct a `SimpleSpinOrbitalBasis` from a scalar basis and a transformation that expresses the current spin-orbitals in terms of that underlying scalar basis.
      * 
      *  @param scalar_basis         The underlying scalar basis with respect to which the basis coefficients are expressed.
-     *  @param C                    The matrix that holds the expansion coefficients, i.e. that expresses the spin-orbitals in terms of the underlying scalar basis.
+     *  @param C                    The transformation that relates the current set of spinors with the atomic spinors.
      */
-    SimpleSpinOrbitalBasis(const ScalarBasis<Shell>& scalar_basis, const TM& C) :
+    SimpleSpinOrbitalBasis(const ScalarBasis<Shell>& scalar_basis, const Transformation& C) :
         BaseSpinorBasis(C),
         scalar_basis {scalar_basis} {}
 
@@ -81,7 +81,7 @@ public:
      *  @param scalar_basis         The underlying scalar basis with respect to which the basis coefficients are expressed.
      */
     SimpleSpinOrbitalBasis(const ScalarBasis<Shell>& scalar_basis) :
-        SimpleSpinOrbitalBasis(scalar_basis, TM::Identity(scalar_basis.numberOfBasisFunctions())) {}
+        SimpleSpinOrbitalBasis(scalar_basis, Transformation::Identity(scalar_basis.numberOfBasisFunctions())) {}
 
 
     /**

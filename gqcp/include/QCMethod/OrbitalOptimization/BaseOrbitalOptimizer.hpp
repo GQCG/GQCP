@@ -56,7 +56,7 @@ public:
     /**
      *  @param sq_hamiltonian      the current Hamiltonian
      * 
-     *  @return a unitary matrix that will be used to rotate the current Hamiltonian into the next iteration
+     *  @return The unitary transformation that will be used to rotate the current Hamiltonian into the next iteration.
      */
     virtual RTransformation<double> calculateNewRotationMatrix(const RSQHamiltonian<double>& sq_hamiltonian) const = 0;
 

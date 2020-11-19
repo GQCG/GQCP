@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE(constructor_throws) {
     const auto K_beta = beta_scalar_basis.numberOfBasisFunctions();  // 4
 
 
-    // Initialize compatible and incompatible test coefficient matrices.
+    // Initialize compatible and incompatible test expansion coefficients.
     const GQCP::UTransformation<double> T_compatible {GQCP::TransformationMatrix<double>::Zero(K_alpha), GQCP::TransformationMatrix<double>::Zero(K_beta)};
 
     const GQCP::UTransformation<double> T_incompatible_alpha {GQCP::TransformationMatrix<double>::Zero(K_alpha + 1), GQCP::TransformationMatrix<double>::Zero(K_beta)};

@@ -112,8 +112,8 @@ BOOST_AUTO_TEST_CASE(transform_wave_function_h3) {
     auto linear_expansion_direct = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver_direct, environment_direct).groundStateParameters();
 
 
-    // Generate a random rotation matrix and calculate the transformation of the linear expansion coefficients.
-    const GQCP::RTransformation<double> U_random = GQCP::RTransformation<double>::RandomUnitary(K);
+    // Generate a random rotation and calculate the transformation of the linear expansion coefficients.
+    const auto U_random = GQCP::RTransformation<double>::RandomUnitary(K);
     linear_expansion_direct.basisTransform(U_random);
 
 
@@ -154,8 +154,8 @@ BOOST_AUTO_TEST_CASE(transform_wave_function_h4) {
     auto linear_expansion_direct = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver_direct, environment_direct).groundStateParameters();
 
 
-    // Generate a random rotation matrix and calculate the transformation of the linear expansion coefficients.
-    const GQCP::RTransformation<double> U_random = GQCP::RTransformation<double>::RandomUnitary(K);
+    // Generate a random rotation and calculate the transformation of the linear expansion coefficients.
+    const auto U_random = GQCP::RTransformation<double>::RandomUnitary(K);
     linear_expansion_direct.basisTransform(U_random);
 
 
@@ -197,8 +197,8 @@ BOOST_AUTO_TEST_CASE(transform_wave_function_h5) {
     auto linear_expansion_direct = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver_direct, environment_direct).groundStateParameters();
 
 
-    // Generate a random rotation matrix and calculate the transformation of the linear expansion coefficients.
-    const GQCP::RTransformation<double> U_random = GQCP::RTransformation<double>::RandomUnitary(K);
+    // Generate a random rotation and calculate the transformation of the linear expansion coefficients.
+    const auto U_random = GQCP::RTransformation<double>::RandomUnitary(K);
     linear_expansion_direct.basisTransform(U_random);
 
 
