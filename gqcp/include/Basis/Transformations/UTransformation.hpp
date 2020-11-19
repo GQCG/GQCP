@@ -70,7 +70,12 @@ public:
      * 
      *  @return A `UTransformation` corresponding to the given `RTransformation`.
      */
-    static UTransformation<Scalar> FromRestricted(const RTransformation<Scalar>& T) { return UTransformation<Scalar>::FromEqual(T); }
+    static UTransformation<Scalar> FromRestricted(const RTransformation<Scalar>& T) {
+
+        // Wrap the restricted transformation in the correct class and return the result.
+        const UTransformationComponent<Scalar> T_component {T.matrix()};
+        return UTransformation<Scalar>::FromEqual(T_component);
+    }
 
 
     /**

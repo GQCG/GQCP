@@ -103,7 +103,7 @@ public:
     UHFSCFEnvironment(const QCModel::RHF<Scalar>& rhf_parameters, const RSQHamiltonian<Scalar>& sq_hamiltonian, const SquareMatrix<Scalar>& S) :
         UHFSCFEnvironment(rhf_parameters.numberOfElectrons(Spin::alpha), rhf_parameters.numberOfElectrons(Spin::beta),
                           sq_hamiltonian, S,
-                          rhf_parameters.expansion(), rhf_parameters.expansion()) {}
+                          rhf_parameters.expansion().matrix(), rhf_parameters.expansion().matrix()) {}
 
 
     /*
@@ -124,7 +124,7 @@ public:
 
         using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
         Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver {H_core, S};
-        const UTransformationComponent<Scalar> C_initial = generalized_eigensolver.eigenvectors();  // for both alpha and beta
+        const UTransformationComponent<Scalar> C_initial {generalized_eigensolver.eigenvectors()};  // for both alpha and beta
 
         return UHFSCFEnvironment<Scalar>(N_alpha, N_beta, sq_hamiltonian, S, C_initial, C_initial);
     }

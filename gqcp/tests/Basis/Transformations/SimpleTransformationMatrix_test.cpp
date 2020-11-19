@@ -47,10 +47,10 @@ BOOST_AUTO_TEST_CASE(jacobi_rotation) {
 
     // Check the in-place and the returning methods.
     const auto T_transformed = T.rotated(jacobi);
-    BOOST_CHECK(T_transformed.isApprox(T_rotated_ref, 1.0e-12));
+    BOOST_CHECK(T_transformed.matrix().isApprox(T_rotated_ref, 1.0e-12));
 
     T.rotate(jacobi);
-    BOOST_CHECK(T.isApprox(T_rotated_ref, 1.0e-12));
+    BOOST_CHECK(T.matrix().isApprox(T_rotated_ref, 1.0e-12));
 }
 
 

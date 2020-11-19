@@ -694,7 +694,7 @@ BOOST_AUTO_TEST_CASE(RHF_UHF_projection) {
                      -3.78560533e-01, -1.20281173e+00, -1.21724558e-06,  2.00427438e+00,
                      -1.75646828e-01, -1.21724558e-06,  1.20281173e+00, -2.03213486e+00;
     // clang-format on
-    GQCP::UTransformation<double> C_unrestricted {C_alpha, C_beta};
+    GQCP::UTransformation<double> C_unrestricted {C_alpha_matrix, C_beta_matrix};
     u_spinor_basis.transform(C_unrestricted);
 
 

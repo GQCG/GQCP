@@ -92,8 +92,8 @@ BOOST_AUTO_TEST_CASE(constructor) {
     const size_t K = 3;
 
     // Create one- and two-electron operators with compatible dimensions.
-    const auto h_core = GQCP::RSQOneElectronOperator<double>::Random(K);
-    const auto g = GQCP::RSQTwoElectronOperator<double>::Random(K);
+    const auto h_core = GQCP::ScalarRSQOneElectronOperator<double>::Random(K);
+    const auto g = GQCP::ScalarRSQTwoElectronOperator<double>::Random(K);
 
 
     // Check if a correct constructor works.
@@ -101,13 +101,13 @@ BOOST_AUTO_TEST_CASE(constructor) {
 
 
     // Check if wrong arguments result in a throw.
-    const auto h_core_faulty = GQCP::RSQOneElectronOperator<double>::Random(K + 1);
-    const auto g_faulty = GQCP::RSQTwoElectronOperator<double>::Random(K + 1);
+    const auto h_core_faulty = GQCP::ScalarRSQOneElectronOperator<double>::Random(K + 1);
+    const auto g_faulty = GQCP::ScalarRSQTwoElectronOperator<double>::Random(K + 1);
 
     BOOST_CHECK_THROW(GQCP::RSQHamiltonian<double> sq_hamiltonian(h_core, g_faulty), std::invalid_argument);
     BOOST_CHECK_THROW(GQCP::RSQHamiltonian<double> sq_hamiltonian(h_core_faulty, g), std::invalid_argument);
 
-    BOOST_CHECK_NO_THROW(GQCP::RSQHamiltonian<double> sq_hamiltonian(h_core_faulty, g_fault));
+    BOOST_CHECK_NO_THROW(GQCP::RSQHamiltonian<double> sq_hamiltonian(h_core_faulty, g_faulty));
 }
 
 

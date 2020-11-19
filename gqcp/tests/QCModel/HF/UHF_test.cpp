@@ -81,7 +81,7 @@ BOOST_AUTO_TEST_CASE(spinorbitalEnergies) {
 
     // Set up toy UHF model parameters.
     const size_t K = 2;
-    const auto C = GQCP::UTransformation<double>::Identity(K);
+    const auto C = GQCP::RTransformation<double>::Identity(K);
     GQCP::VectorX<double> orbital_energies {K};
     orbital_energies << -0.5, 0.5;
 

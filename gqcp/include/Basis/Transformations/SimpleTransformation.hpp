@@ -106,6 +106,12 @@ public:
      */
     static DerivedTransformation Identity(const size_t dim) { return DerivedTransformation {SquareMatrix<Scalar>::Identity(dim)}; }
 
+    /**
+     *  Create a random transformation.
+     * 
+     *  @param dim          The dimension of the transformation matrix.
+     */
+    static DerivedTransformation Random(const size_t dim) { return DerivedTransformation {SquareMatrix<Scalar>::Random(dim)}; }
 
     /**
      *  Create a random unitary transformation.
@@ -113,6 +119,13 @@ public:
      *  @param dim          The dimension of the transformation matrix.
      */
     static DerivedTransformation RandomUnitary(const size_t dim) { return DerivedTransformation {SquareMatrix<Scalar>::RandomUnitary(dim)}; }
+
+    /**
+     *  Create a zero transformation.
+     * 
+     *  @param dim              The dimension of the transformation matrix.
+     */
+    static DerivedTransformation Zero(const size_t dim) { return DerivedTransformation {SquareMatrix<Scalar>::Zero(dim)}; }
 
 
     /*
@@ -122,7 +135,12 @@ public:
     /**
      *  @return The number of orbitals (spinors, spin-orbitals or spatial orbitals, depending on the context/derived class) this transformation is related to.
      */
-    size_t numberOfOrbitals() const { return this->matrix()->dimension(); }
+    size_t numberOfOrbitals() const { return this->matrix().dimension(); }
+
+    /**
+     *  @return The dimension of this basis transformation.
+     */
+    size_t dimension() const { return this->numberOfOrbitals(); }
 
 
     /*

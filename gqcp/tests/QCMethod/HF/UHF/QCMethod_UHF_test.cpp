@@ -71,8 +71,8 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_plain) {
     BOOST_CHECK(ref_orbital_energies.areEqualEigenvaluesAs(uhf_environment.orbital_energies_alpha.back(), 1.0e-06));
     BOOST_CHECK(ref_orbital_energies.areEqualEigenvaluesAs(uhf_environment.orbital_energies_beta.back(), 1.0e-06));
 
-    BOOST_CHECK(ref_C.hasEqualSetsOfEigenvectorsAs(uhf_environment.coefficient_matrices.back().alpha(), 1.0e-05));
-    BOOST_CHECK(ref_C.hasEqualSetsOfEigenvectorsAs(uhf_environment.coefficient_matrices.back().beta(), 1.0e-05));
+    BOOST_CHECK(ref_C.matrix().hasEqualSetsOfEigenvectorsAs(uhf_environment.coefficient_matrices.back().alpha().matrix(), 1.0e-05));
+    BOOST_CHECK(ref_C.matrix().hasEqualSetsOfEigenvectorsAs(uhf_environment.coefficient_matrices.back().beta().matrix(), 1.0e-05));
 }
 
 
@@ -119,6 +119,6 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_diis) {
     BOOST_CHECK(ref_orbital_energies.areEqualEigenvaluesAs(uhf_environment.orbital_energies_alpha.back(), 1.0e-06));
     BOOST_CHECK(ref_orbital_energies.areEqualEigenvaluesAs(uhf_environment.orbital_energies_beta.back(), 1.0e-06));
 
-    BOOST_CHECK(ref_C.hasEqualSetsOfEigenvectorsAs(uhf_environment.coefficient_matrices.back().alpha(), 1.0e-05));
-    BOOST_CHECK(ref_C.hasEqualSetsOfEigenvectorsAs(uhf_environment.coefficient_matrices.back().beta(), 1.0e-05));
+    BOOST_CHECK(ref_C.matrix().hasEqualSetsOfEigenvectorsAs(uhf_environment.coefficient_matrices.back().alpha().matrix(), 1.0e-05));
+    BOOST_CHECK(ref_C.matrix().hasEqualSetsOfEigenvectorsAs(uhf_environment.coefficient_matrices.back().beta().matrix(), 1.0e-05));
 }

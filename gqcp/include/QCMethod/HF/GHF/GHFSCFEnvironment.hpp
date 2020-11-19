@@ -99,7 +99,7 @@ public:
 
         using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
         Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver {H_core, S};
-        const GTransformation<Scalar> C_initial = generalized_eigensolver.eigenvectors();
+        const GTransformation<Scalar> C_initial {generalized_eigensolver.eigenvectors()};
 
         return GHFSCFEnvironment<Scalar>(N, sq_hamiltonian, S, C_initial);
     }

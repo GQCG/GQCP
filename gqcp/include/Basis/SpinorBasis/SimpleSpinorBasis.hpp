@@ -104,7 +104,7 @@ public:
     /**
      *  @return The dimension of this simple spinor basis, i.e. the dimension of the underlying coefficient matrix.
      */
-    size_t simpleDimension() const { return this->C.cols(); }
+    size_t simpleDimension() const { return this->expansion().dimension(); }
 
 
     /*
@@ -162,7 +162,7 @@ public:
     FinalSpinorBasis transformed(const Transformation& T) const override {
 
         auto result = this->derived();
-        result.C.transform(transformation_matrix);
+        result.C.transform(T);
         return result;
     }
 

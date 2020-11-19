@@ -109,6 +109,15 @@ public:
     }
 
 
+    /**
+     *  Construct an identity transformation related to different number of alpha and beta atomic spinors.
+     */
+    static GTransformation<Scalar> Identity(const size_t K_alpha, const size_t K_beta) {
+
+        return GTransformation<Scalar> {SquareMatrix<Scalar>::Identity(K_alpha + K_beta), K_alpha, K_beta};
+    }
+
+
     /*
      *  MARK: Components
      */

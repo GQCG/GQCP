@@ -122,7 +122,7 @@ public:
      */
     GSpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis) :
         GSpinorBasis(alpha_scalar_basis, beta_scalar_basis,
-                     Transformation::Identity(alpha_scalar_basis.numberOfBasisFunctions() + beta_scalar_basis.numberOfBasisFunctions())) {}
+                     Transformation::Identity(alpha_scalar_basis.numberOfBasisFunctions(), beta_scalar_basis.numberOfBasisFunctions())) {}
 
 
     /**
@@ -217,18 +217,15 @@ public:
      */
     static GSpinorBasis<ExpansionScalar, Shell> FromUnrestricted(const USpinOrbitalBasis<ExpansionScalar, Shell>& u_spinor_basis) {
 
-        const auto C_general = GTransformation<Scalar>::FromUnrestricted(u_spinor_basis.expansion());
+        const auto C_general = GTransformation<ExpansionScalar>::FromUnrestricted(u_spinor_basis.expansion());
 
         return GSpinorBasis<ExpansionScalar, Shell>(u_spinor_basis.alpha().scalarBasis(), C_general);  // Assume the alpha- and beta- scalar bases are equal.
     }
 
 
     /*
-     *  MARK: Coefficient matrix
+     *  MARK: Coefficients
      */
-
-    // Use `expansion` from the base spinor basis, since we're implementing `expansion` in this type as well.
-    using Base::expansion;
 
 
     /**

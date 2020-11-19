@@ -55,11 +55,6 @@ void bindGSpinorBasis(py::module& module) {
             },
             "Return the transformation matrix between the scalar bases and the current spinors.")
 
-        .def("expansion",
-             [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Spin sigma) {
-                 return spinor_basis.expansion(sigma);
-             })
-
         .def(
             "isOrthonormal",
             [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const double precision) {
@@ -98,19 +93,13 @@ void bindGSpinorBasis(py::module& module) {
             "Rotate the spinor basis to another one using the given unitary transformation matrix.")
 
         .def(
-            "transform", [](GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& T) {
+            "transform", [](GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& T) {
                 spinor_basis.transform(GQCP::GTransformation<double>(T));
             },
             py::arg("T"), "Transform the current spinor basis using a given transformation matrix")
 
 
         // PUBLIC METHODS
-
-        .def(
-            "expansion", [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Spin sigma) {
-                return spinor_basis.expansion(sigma);
-            },
-            py::arg("sigma"), "Return the coefficient matrix for the requested spin component, i.e. the matrix of the expansion coefficients of the requested components of the spinors in terms of its underlying scalar basis")
 
         .def(
             "numberOfCoefficients", [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Spin sigma) {
@@ -148,11 +137,12 @@ void bindGSpinorBasis(py::module& module) {
             },
             "Return the overlap operator expressed in this spinor basis.")
 
-        .def(
-            "quantizeSpinOperator", [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
-                return spinor_basis.quantize(GQCP::Operator::ElectronicSpin());
-            },
-            "Return the electronic spin operator expressed in this spinor basis.")
+        // This will be fixed after #383 and #762.
+        // .def(
+        //     "quantizeSpinOperator", [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
+        //         return spinor_basis.quantize(GQCP::Operator::ElectronicSpin());
+        //     },
+        //     "Return the electronic spin operator expressed in this spinor basis.")
 
         .def(
             "transform", [](GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& T_matrix) {

@@ -63,7 +63,7 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_horton_plain) {
     GQCP::VectorX<double> ref_orbital_energies {7};  // the STO-3G basisset has 7 basis functions for water
     ref_orbital_energies << -20.26289322, -1.20969863, -0.54796582, -0.43652631, -0.38758791, 0.47762043, 0.5881361;
 
-    GQCP::RTransformation<double> ref_C_matrix {7};
+    GQCP::SquareMatrix<double> ref_C_matrix {7};
     // clang-format off
     ref_C_matrix << -9.94434594e-01, -2.39158997e-01,  3.61117086e-17, -9.36837259e-02,  3.73303682e-31, -1.11639152e-01, -9.04958229e-17,
                     -2.40970260e-02,  8.85736467e-01, -1.62817254e-16,  4.79589270e-01, -1.93821120e-30,  6.69575233e-01,  5.16088339e-16,
@@ -89,7 +89,7 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_horton_plain) {
     const double total_energy = rhf_environment.electronic_energies.back() + GQCP::Operator::NuclearRepulsion(water).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-06);
     BOOST_CHECK(ref_orbital_energies.areEqualEigenvaluesAs(rhf_environment.orbital_energies.back(), 1.0e-06));
-    BOOST_CHECK(ref_C.hasEqualSetsOfEigenvectorsAs(rhf_environment.coefficient_matrices.back(), 1.0e-05));
+    BOOST_CHECK(ref_C.matrix().hasEqualSetsOfEigenvectorsAs(rhf_environment.coefficient_matrices.back().matrix(), 1.0e-05));
 }
 
 
@@ -178,7 +178,7 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_horton_damped) {
     GQCP::VectorX<double> ref_orbital_energies {7};  // the STO-3G basisset has 7 basis functions for water
     ref_orbital_energies << -20.26289322, -1.20969863, -0.54796582, -0.43652631, -0.38758791, 0.47762043, 0.5881361;
 
-    GQCP::RTransformation<double> ref_C_matrix {7};
+    GQCP::SquareMatrix<double> ref_C_matrix {7};
     // clang-format off
     ref_C_matrix << -9.94434594e-01, -2.39158997e-01,  3.61117086e-17, -9.36837259e-02,  3.73303682e-31, -1.11639152e-01, -9.04958229e-17,
                     -2.40970260e-02,  8.85736467e-01, -1.62817254e-16,  4.79589270e-01, -1.93821120e-30,  6.69575233e-01,  5.16088339e-16,
@@ -204,7 +204,7 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_horton_damped) {
     const double total_energy = rhf_environment.electronic_energies.back() + GQCP::Operator::NuclearRepulsion(water).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-06);
     BOOST_CHECK(ref_orbital_energies.areEqualEigenvaluesAs(rhf_environment.orbital_energies.back(), 1.0e-06));
-    BOOST_CHECK(ref_C.hasEqualSetsOfEigenvectorsAs(rhf_environment.coefficient_matrices.back(), 1.0e-05));
+    BOOST_CHECK(ref_C.matrix().hasEqualSetsOfEigenvectorsAs(rhf_environment.coefficient_matrices.back().matrix(), 1.0e-05));
 }
 
 
@@ -243,7 +243,7 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_horton_diis) {
     GQCP::VectorX<double> ref_orbital_energies {7};  // the STO-3G basisset has 7 basis functions for water
     ref_orbital_energies << -20.26289322, -1.20969863, -0.54796582, -0.43652631, -0.38758791, 0.47762043, 0.5881361;
 
-    GQCP::RTransformation<double> ref_C_matrix {7};
+    GQCP::SquareMatrix<double> ref_C_matrix {7};
     // clang-format off
     ref_C_matrix << -9.94434594e-01, -2.39158997e-01,  3.61117086e-17, -9.36837259e-02,  3.73303682e-31, -1.11639152e-01, -9.04958229e-17,
                     -2.40970260e-02,  8.85736467e-01, -1.62817254e-16,  4.79589270e-01, -1.93821120e-30,  6.69575233e-01,  5.16088339e-16,
@@ -269,7 +269,7 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_horton_diis) {
     const double total_energy = rhf_environment.electronic_energies.back() + GQCP::Operator::NuclearRepulsion(water).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-06);
     BOOST_CHECK(ref_orbital_energies.areEqualEigenvaluesAs(rhf_environment.orbital_energies.back(), 1.0e-06));
-    BOOST_CHECK(ref_C.hasEqualSetsOfEigenvectorsAs(rhf_environment.coefficient_matrices.back(), 1.0e-05));
+    BOOST_CHECK(ref_C.matrix().hasEqualSetsOfEigenvectorsAs(rhf_environment.coefficient_matrices.back().matrix(), 1.0e-05));
 }
 
 

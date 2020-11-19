@@ -129,7 +129,7 @@ public:
         const auto P_orthonormal = GHF<Scalar>::calculateOrthonormalBasis1DM(M, N);
 
         // Transform the 1-DM in an orthonormal basis to the underlying scalar basis
-        return C.conjugate() * P_orthonormal * C.transpose();
+        return C.matrix().conjugate() * P_orthonormal * C.matrix().transpose();
     }
 
 
@@ -273,8 +273,8 @@ public:
 
         // Prepare some variables.
         const auto M = this->numberOfSpinors();
-        const MatrixX<complex> C_alpha = this->expansion().topRows(M / 2);
-        const MatrixX<complex> C_beta = this->expansion().bottomRows(M / 2);
+        const auto C_alpha = this->expansion().alpha();
+        const auto C_beta = this->expansion().beta();
         const SquareMatrix<complex> S_AO = S.topLeftCorner(M / 2, M / 2);  // assume equal for alpha and beta
 
         // Calculate overlaps between the alpha- and beta-spinors.

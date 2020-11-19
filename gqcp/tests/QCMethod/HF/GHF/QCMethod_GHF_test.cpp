@@ -61,7 +61,7 @@ BOOST_AUTO_TEST_CASE(H3_test_1) {
 
     auto solver = GQCP::GHFSCFSolver<double>::Plain(1.0e-08, 3000);
     const auto qc_structure = GQCP::QCMethod::GHF<double>().optimize(solver, environment);
-    const auto ghf_parameters = qc_structure.groundStateParameters();
+    const auto& ghf_parameters = qc_structure.groundStateParameters();
 
 
     // Provide reference values (from @xdvriend implementation) and check the results.
@@ -81,8 +81,11 @@ BOOST_AUTO_TEST_CASE(H3_test_1) {
     const double reference_s_y = 0.0;  // an UHF solution
     const double reference_s_z = 0.5;  // an UHF solution
 
-    const auto P = ghf_parameters.calculateScalarBasis1DM();                      // AO density matrix
-    const auto S_op = g_spinor_basis.quantize(GQCP::Operator::ElectronicSpin());  // AO representation of the spin operator
+    const auto P = ghf_parameters.calculateScalarBasis1DM();  // AO density matrix
+
+    // Set up a complex spinor basis that can quantize the electronic spin operator.
+    const GQCP::GSpinorBasis<GQCP::complex, GQCP::GTOShell> complex_g_spinor_basis {molecule, "STO-3G"};
+    const auto S_op = complex_g_spinor_basis.quantize(GQCP::Operator::ElectronicSpin());  // AO representation of the spin operator
 
     const auto s_x = ghf_parameters.calculateExpectationValueOf(GQCP::ElectronicSpinOperator(), S)(GQCP::CartesianDirection::x);
     const auto s_y = ghf_parameters.calculateExpectationValueOf(GQCP::ElectronicSpinOperator(), S)(GQCP::CartesianDirection::y);
@@ -114,7 +117,7 @@ BOOST_AUTO_TEST_CASE(H3_test_2) {
 
 
     // Create a solver and associated environment and let the QCMethod do its job.
-    GQCP::GTransformation<double> C_initial_matrix {6};
+    GQCP::SquareMatrix<double> C_initial_matrix {6};
     // We take a randomly generated matrix (from @xdvriend's implementation) as the initial guess. This makes sure the off-diagonal spin-blocks are not zero blocks and helps the calculation to converge to a true GHF solution.
     // clang-format off
     C_initial_matrix << -0.3100721,  -0.15761163, -0.51612194, -0.38100148,  0.57090929, -0.37620802,
@@ -129,7 +132,7 @@ BOOST_AUTO_TEST_CASE(H3_test_2) {
 
     auto solver = GQCP::GHFSCFSolver<double>::Plain(1.0e-08, 4000);
     const auto qc_structure = GQCP::QCMethod::GHF<double>().optimize(solver, environment);
-    const auto ghf_parameters = qc_structure.groundStateParameters();
+    const auto& ghf_parameters = qc_structure.groundStateParameters();
 
 
     // Provide reference values (from @xdvriend implementation) and check the results.
@@ -150,8 +153,11 @@ BOOST_AUTO_TEST_CASE(H3_test_2) {
     const double reference_s_y = 0.0;                     // a true GHF solution
     const double reference_s_z = -4.903573113845816e-05;  // a true GHF solution
 
-    const auto P = ghf_parameters.calculateScalarBasis1DM();                      // AO density matrix
-    const auto S_op = g_spinor_basis.quantize(GQCP::Operator::ElectronicSpin());  // AO representation of the spin operator
+    const auto P = ghf_parameters.calculateScalarBasis1DM();  // AO density matrix
+
+    // Set up a complex spinor basis that can quantize the electronic spin operator.
+    const GQCP::GSpinorBasis<GQCP::complex, GQCP::GTOShell> complex_g_spinor_basis {molecule, "STO-3G"};
+    const auto S_op = complex_g_spinor_basis.quantize(GQCP::Operator::ElectronicSpin());  // AO representation of the spin operator
 
     const auto s_x = ghf_parameters.calculateExpectationValueOf(GQCP::ElectronicSpinOperator(), S)(GQCP::CartesianDirection::x);
     const auto s_y = ghf_parameters.calculateExpectationValueOf(GQCP::ElectronicSpinOperator(), S)(GQCP::CartesianDirection::y);
@@ -183,7 +189,7 @@ BOOST_AUTO_TEST_CASE(H3_test_DIIS) {
 
 
     // Create a solver and associated environment and let the QCMethod do its job.
-    GQCP::GTransformation<double> C_initial_matrix {6};
+    GQCP::SquareMatrix<double> C_initial_matrix {6};
     // clang-format off
     C_initial_matrix << -0.3585282,  0.0,        0.89935394,  0.0,         0.0,        1.57117404,
                         -0.3585282,  0.0,       -1.81035361,  0.0,         0.0,        0.00672366,
@@ -217,8 +223,11 @@ BOOST_AUTO_TEST_CASE(H3_test_DIIS) {
     const double reference_s_y = 0.0;                 // an UHF solution
     const double reference_s_z = 0.4999999999999999;  // an UHF solution
 
-    const auto P = ghf_parameters.calculateScalarBasis1DM();                      // AO density matrix
-    const auto S_op = g_spinor_basis.quantize(GQCP::Operator::ElectronicSpin());  // AO representation of the spin operator
+    const auto P = ghf_parameters.calculateScalarBasis1DM();  // AO density matrix
+
+    // Set up a complex spinor basis that can quantize the electronic spin operator.
+    const GQCP::GSpinorBasis<GQCP::complex, GQCP::GTOShell> complex_g_spinor_basis {molecule, "STO-3G"};
+    const auto S_op = complex_g_spinor_basis.quantize(GQCP::Operator::ElectronicSpin());  // AO representation of the spin operator
 
     const auto s_x = ghf_parameters.calculateExpectationValueOf(GQCP::ElectronicSpinOperator(), S)(GQCP::CartesianDirection::x);
     const auto s_y = ghf_parameters.calculateExpectationValueOf(GQCP::ElectronicSpinOperator(), S)(GQCP::CartesianDirection::y);

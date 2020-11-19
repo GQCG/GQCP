@@ -108,7 +108,7 @@ public:
      * 
      *  @note We are aware that this formula is duplicate code (see `RMullikenPartitioning`), but it isn't worth (yet) to refactor this common functionality into a base class.
      */
-    GTransformation<Scalar> projectionMatrix() const { return this->C.inverse().matrix() * this->partitionMatrix() * this->C.matrix(); }
+    GTransformation<Scalar> projectionMatrix() const { return GTransformation<Scalar> {this->C.inverse().matrix() * this->partitionMatrix() * this->C.matrix()}; }
 };
 
 

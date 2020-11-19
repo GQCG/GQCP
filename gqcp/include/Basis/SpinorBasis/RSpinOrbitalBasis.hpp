@@ -191,7 +191,7 @@ public:
             // Calculate the spatial orbitals as a contraction between a column of the coefficient matrix and the basis functions.
             SpatialOrbital spatial_orbital {};
             for (size_t mu = 0; mu < basis_functions.size(); mu++) {
-                const auto coefficient = this->C.col(p)(mu);
+                const auto coefficient = this->expansion().matrix().col(p)(mu);
                 const auto& function = basis_functions[mu];
                 spatial_orbital.append({coefficient}, {function});
             }

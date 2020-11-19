@@ -91,7 +91,7 @@ public:
     /**
      *  @return The Mulliken projection, defined as C^{-1} P_A C, where C is the transformation matrix and P_A is the partition matrix.
      */
-    RTransformation<Scalar> projectionMatrix() const { return this->C.matrix().inverse() * this->partitionMatrix() * this->C.matrix(); }
+    RTransformation<Scalar> projectionMatrix() const { return RTransformation<Scalar> {this->C.matrix().inverse() * this->partitionMatrix() * this->C.matrix()}; }
 };
 
 
