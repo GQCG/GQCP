@@ -57,6 +57,7 @@
 #include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include "Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp"
 #include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
+#include "Basis/SpinorBasis/SpinResolvedOrbitalSpace.hpp"
 #include "Basis/SpinorBasis/Spinor.hpp"
 #include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
 #include "Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp"

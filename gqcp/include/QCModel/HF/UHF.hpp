@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/SpinorBasis/SpinResolvedOrbitalSpace.hpp"
 #include "Basis/Transformations/UTransformationMatrix.hpp"
 #include "Basis/Transformations/UTransformationMatrixComponent.hpp"
 #include "DensityMatrix/SpinResolved1DM.hpp"
@@ -293,6 +294,23 @@ public:
     }
 
 
+    /**
+     *  @param K_a            the number of alpha spatial orbitals
+     *  @param K_b            the number of beta spatial orbitals
+     *  @param N_a            the number of alpha electrons
+     *  @param N_b            the number of beta electrons
+     * 
+     *  @return the implicit (i.e. with ascending and contiguous orbital indices) occupied-virtual orbital space for both the alpha and beta components that corresponds to these UHF model parameters
+     */
+    static SpinResolvedOrbitalSpace orbitalSpace(const size_t K_a, const size_t K_b, const size_t N_a, const size_t N_b) {
+
+        const auto alpha_orbital_space = OrbitalSpace::Implicit({{OccupationType::k_occupied, N_a}, {OccupationType::k_virtual, K_a - N_a}});
+        const auto beta_orbital_space = OrbitalSpace::Implicit({{OccupationType::k_occupied, N_b}, {OccupationType::k_virtual, K_b - N_b}});
+
+        return SpinResolvedOrbitalSpace {alpha_orbital_space, beta_orbital_space};
+    }
+
+
     /*
      *  PUBLIC METHODS
      */
@@ -398,6 +416,13 @@ public:
         }
         }
     }
+
+
+    /**
+     *  @return the implicit alpha and beta occupied-virtual orbital spaces that are associated to these UHF model parameters
+     */
+    SpinResolvedOrbitalSpace orbitalSpace() const { return UHF<Scalar>::orbitalSpace(this->numberOfSpinOrbitals(Spin::alpha), this->numberOfElectrons(Spin::alpha),
+                                                                                     this->numberOfSpinOrbitals(Spin::beta), this->numberOfElectrons(Spin::beta)); }
 
 
     /**
