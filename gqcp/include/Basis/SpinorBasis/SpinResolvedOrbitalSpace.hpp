@@ -182,7 +182,7 @@ public:
         // Zero-initialize a matrix of the specified dimensions.
         const MatrixX<Scalar> M = MatrixX<Scalar>::Zero(rows, columns);
 
-        return this->createMixedRepresentableObjectFor<Scalar>(row_type, column_type, M);
+        return this->createMixedRepresentableObjectFor<Scalar>(row_type, row_spin, column_type, column_spin, M);
     }
 
 
@@ -209,38 +209,37 @@ public:
 
         // Prepare the necessary members for the other method.
         // The spin component of each axis determines from which of the two internal OrbitalSpace members the orbitals of the chosen occupation type are used.
-        // We need to use static_cast to determine the Tensor dimension.
 
         // Determine the spin component and dimension of the first axis.
-        size_t axis1_dimension {};
+        int axis1_dimension;
         if (axis1_spin == Spin::alpha) {
-            axis1_dimension = static_cast<long>(this->alpha().numberOfOrbitals(axis1_type));
+            axis1_dimension = this->alpha().numberOfOrbitals(axis1_type);
         } else {
-            axis1_dimension = static_cast<long>(this->beta().numberOfOrbitals(axis1_type));
+            axis1_dimension = this->beta().numberOfOrbitals(axis1_type);
         }
 
         // Determine the spin component and dimension of the second axis.
-        size_t axis2_dimension {};
+        int axis2_dimension;
         if (axis2_spin == Spin::alpha) {
-            axis2_dimension = static_cast<long>(this->alpha().numberOfOrbitals(axis2_type));
+            axis2_dimension = this->alpha().numberOfOrbitals(axis2_type);
         } else {
-            axis2_dimension = static_cast<long>(this->beta().numberOfOrbitals(axis2_type));
+            axis2_dimension = this->beta().numberOfOrbitals(axis2_type);
         }
 
         // Determine the spin component and dimension of the second axis.
-        size_t axis3_dimension {};
+        int axis3_dimension;
         if (axis3_spin == Spin::alpha) {
-            axis3_dimension = static_cast<long>(this->alpha().numberOfOrbitals(axis3_type));
+            axis3_dimension = this->alpha().numberOfOrbitals(axis3_type);
         } else {
-            axis3_dimension = static_cast<long>(this->beta().numberOfOrbitals(axis3_type));
+            axis3_dimension = this->beta().numberOfOrbitals(axis3_type);
         }
 
         // Determine the spin component and dimension of the second axis.
-        size_t axis4_dimension {};
+        int axis4_dimension;
         if (axis4_spin == Spin::alpha) {
-            axis4_dimension = static_cast<long>(this->alpha().numberOfOrbitals(axis4_type));
+            axis4_dimension = this->alpha().numberOfOrbitals(axis4_type);
         } else {
-            axis4_dimension = static_cast<long>(this->beta().numberOfOrbitals(axis4_type));
+            axis4_dimension = this->beta().numberOfOrbitals(axis4_type);
         }
 
         // Zero-initialize the tensor of the specified dimensions.
