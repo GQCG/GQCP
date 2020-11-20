@@ -182,6 +182,7 @@
 #include "Operator/SecondQuantized/USQTwoElectronOperator.hpp"
 #include "Processing/Properties/BaseElectricalResponseSolver.hpp"
 #include "Processing/Properties/CIElectricalResponseSolver.hpp"
+#include "Processing/Properties/DysonOrbital.hpp"
 #include "Processing/Properties/RHFElectricalResponseSolver.hpp"
 #include "Processing/Properties/expectation_values.hpp"
 #include "Processing/Properties/properties.hpp"
