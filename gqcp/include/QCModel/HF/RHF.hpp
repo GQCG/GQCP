@@ -319,8 +319,10 @@ public:
 
     /**
      *  @return a matrix containing all the possible excitation energies of the wavefunction model.
+     * 
+     *  @note       The rows are determined by the number of virtual orbitals, the columns by the number of occupied orbitals.
      */
-    GQCP::MatrixX<Scalar> calculateExcitationEnergies() const {
+    GQCP::MatrixX<Scalar> excitationEnergies() const {
 
         // Create the orbital space to determine the loops.
         const auto orbital_space = this->orbitalSpace();
@@ -376,8 +378,8 @@ public:
         const auto g = rsq_hamiltonian.twoElectron().transformed(this->coefficientMatrix());
 
         // The elements (F_R)_AA and (F_R)_IJ are the eigenvalues of the one-electron Fock operator.
-        // The calculateExcitationEnergies API can be used to find these values
-        const auto F_values = this->calculateExcitationEnergies();
+        // The excitationEnergies API can be used to find these values
+        const auto F_values = this->excitationEnergies();
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object.
@@ -475,8 +477,8 @@ public:
         const auto g = rsq_hamiltonian.twoElectron().transformed(this->coefficientMatrix());
 
         // The elements (F_R)_AA and (F_R)_IJ are the eigenvalues of the one-electron Fock operator.
-        // The calculateExcitationEnergies API can be used to find these values
-        const auto F_values = this->calculateExcitationEnergies();
+        // The excitationEnergies API can be used to find these values
+        const auto F_values = this->excitationEnergies();
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object.
