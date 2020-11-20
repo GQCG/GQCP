@@ -46,6 +46,46 @@ public:
      */
 
     /**
+     *  Create an implicit mathematical object that can serve as the representation of a object with the given occupation types, from the dense representation of the matrix slice.
+     *  Each occupation type can belong to either the alpha or beta spin component, initializing a mixed spin mathematical object.
+     * 
+     *  @tparam Scalar                      the scalar type of the elements of the implicit matrix
+     * 
+     *  @param row_type                     the spinor occupation type for the rows
+     *  @param row_spin                     the spin component for the rows
+     *  @param column_type                  the spinor occupation type for the columns
+     *  @param column_spin                  the spin component for the columns
+     *  @param M                            the dense representation of the matrix slice
+     * 
+     *  @return an implicit matrix slice, according to the given occupation types
+     */
+    template <typename Scalar>
+    ImplicitMatrixSlice<Scalar> createMixedRepresentableObjectFor(const OccupationType row_type, const Spin row_spin,
+                                                                  const OccupationType column_type, const Spin column_spin, const MatrixX<Scalar>& M) const {
+
+        // Prepare the necessary members for ImplicitMatrixSlice.
+        // The spin component of each axis determines from which of the two internal OrbitalSpace members the orbitals of the chosen occupation type are used.
+        // Determine the spin component and dimension of the rows.
+        std::vector<size_t> row_indices;
+        if (row_spin == Spin::alpha) {
+            row_indices = this->alpha().indices(row_type);
+        } else {
+            row_indices = this->beta().indices(row_type);
+        }
+
+        // Determine the spin component and dimension of the columns.
+        std::vector<size_t> column_indices;
+        if (column_spin == Spin::alpha) {
+            column_indices = this->alpha().indices(column_type);
+        } else {
+            column_indices = this->beta().indices(column_type);
+        }
+
+        return ImplicitMatrixSlice<Scalar>::FromIndices(row_indices, column_indices, M);
+    }
+
+
+    /**
      *  Create an implicit mathematical object that can serve as the representation of a object with the given occupation types, from the dense tensor representation of a slice.
      *  Each occupation type can belong to either the alpha or beta spin component, initializing a mixed spin mathematical object.
      * 
@@ -70,39 +110,78 @@ public:
         // Prepare the necessary members for ImplicitRankFourTensor.
         // The spin component of each axis determines from which of the two internal OrbitalSpace members the orbitals of the chosen occupation type are used.
         // Determine the spin component and dimension of the first axis.
-        const std::vector<size_t> axis1_indices;
+        std::vector<size_t> axis1_indices;
         if (axis1_spin == Spin::alpha) {
-            const auto axis1_indices = this->alpha().indices(axis1_type);
+            axis1_indices = this->alpha().indices(axis1_type);
         } else {
-            const auto axis1_indices = this->beta().indices(axis1_type);
+            axis1_indices = this->beta().indices(axis1_type);
         }
 
         // Determine the spin component and dimension of the second axis.
-        const std::vector<size_t> axis2_indices;
+        std::vector<size_t> axis2_indices;
         if (axis2_spin == Spin::alpha) {
-            const auto axis2_indices = this->alpha().indices(axis2_type);
+            axis2_indices = this->alpha().indices(axis2_type);
         } else {
-            const auto axis2_indices = this->beta().indices(axis2_type);
+            axis2_indices = this->beta().indices(axis2_type);
         }
 
         // Determine the spin component and dimension of the third axis.
-        const std::vector<size_t> axis3_indices;
+        std::vector<size_t> axis3_indices;
         if (axis3_spin == Spin::alpha) {
-            const auto axis3_indices = this->alpha().indices(axis3_type);
+            axis3_indices = this->alpha().indices(axis3_type);
         } else {
-            const auto axis3_indices = this->beta().indices(axis3_type);
+            axis3_indices = this->beta().indices(axis3_type);
         }
 
         // Determine the spin component and dimension of the fourth axis.
-        const std::vector<size_t> axis4_indices;
+        std::vector<size_t> axis4_indices;
         if (axis4_spin == Spin::alpha) {
-            const auto axis4_indices = this->alpha().indices(axis4_type);
+            axis4_indices = this->alpha().indices(axis4_type);
         } else {
-            const auto axis4_indices = this->beta().indices(axis4_type);
+            axis4_indices = this->beta().indices(axis4_type);
         }
 
         return ImplicitRankFourTensorSlice<Scalar>::FromIndices(axis1_indices, axis2_indices, axis3_indices, axis4_indices, T);
     }
+
+
+    /**
+     *  Create an implicit, zero-initialized, mathematical object that can serve as the representation of a object with the given occupation types.
+     *  Each occupation type can belong to either the alpha or beta spin component, initializing a mixed spin mathematical object.
+     * 
+     *  @tparam Scalar                      the scalar type of the elements of the implicit matrix
+     * 
+     *  @param row_type                     the spinor occupation type for the rows
+     *  @param row_spin                     the spin component for the rows
+     *  @param column_type                  the spinor occupation type for the columns
+     *  @param column_spin                  the spin component for the columns
+     * 
+     *  @return a zero-initialized implicit matrix slice, according to the given occupation types
+     */
+    template <typename Scalar>
+    ImplicitMatrixSlice<Scalar> initializeMixedRepresentableObjectFor(const OccupationType row_type, const Spin row_spin,
+                                                                      const OccupationType column_type, const Spin column_spin) const {
+
+        // Prepare the necessary members for the other method.
+        size_t rows {};
+        if (row_spin == Spin::alpha) {
+            rows = this->alpha().numberOfOrbitals(row_type);
+        } else {
+            rows = this->beta().numberOfOrbitals(row_type);
+        }
+
+        size_t columns {};
+        if (column_spin == Spin::alpha) {
+            columns = this->alpha().numberOfOrbitals(column_type);
+        } else {
+            columns = this->beta().numberOfOrbitals(column_type);
+        }
+
+        const MatrixX<Scalar> M = MatrixX<Scalar>::Zero(rows, columns);
+
+        return this->createMixedRepresentableObjectFor<Scalar>(row_type, column_type, M);
+    }
+
 
     /**
      *  Create an implicit, zero-initialized, mathematical object that can serve as the representation of a object with the given occupation types, from the dense tensor representation of a slice.
@@ -130,35 +209,35 @@ public:
         // We need to use static_cast to determine the Tensor dimension.
 
         // Determine the spin component and dimension of the first axis.
-        const size_t axis1_dimension {};
+        size_t axis1_dimension {};
         if (axis1_spin == Spin::alpha) {
-            const auto axis1_dimension = static_cast<long>(this->alpha().numberOfOrbitals(axis1_type));
+            axis1_dimension = static_cast<long>(this->alpha().numberOfOrbitals(axis1_type));
         } else {
-            const auto axis1_dimension = static_cast<long>(this->beta().numberOfOrbitals(axis1_type));
+            axis1_dimension = static_cast<long>(this->beta().numberOfOrbitals(axis1_type));
         }
 
         // Determine the spin component and dimension of the second axis.
-        const size_t axis2_dimension {};
+        size_t axis2_dimension {};
         if (axis2_spin == Spin::alpha) {
-            const auto axis2_dimension = static_cast<long>(this->alpha().numberOfOrbitals(axis2_type));
+            axis2_dimension = static_cast<long>(this->alpha().numberOfOrbitals(axis2_type));
         } else {
-            const auto axis2_dimension = static_cast<long>(this->beta().numberOfOrbitals(axis2_type));
+            axis2_dimension = static_cast<long>(this->beta().numberOfOrbitals(axis2_type));
         }
 
         // Determine the spin component and dimension of the second axis.
-        const size_t axis3_dimension {};
+        size_t axis3_dimension {};
         if (axis3_spin == Spin::alpha) {
-            const auto axis3_dimension = static_cast<long>(this->alpha().numberOfOrbitals(axis3_type));
+            axis3_dimension = static_cast<long>(this->alpha().numberOfOrbitals(axis3_type));
         } else {
-            const auto axis3_dimension = static_cast<long>(this->beta().numberOfOrbitals(axis3_type));
+            axis3_dimension = static_cast<long>(this->beta().numberOfOrbitals(axis3_type));
         }
 
         // Determine the spin component and dimension of the second axis.
-        const size_t axis4_dimension {};
+        size_t axis4_dimension {};
         if (axis4_spin == Spin::alpha) {
-            const auto axis4_dimension = static_cast<long>(this->alpha().numberOfOrbitals(axis4_type));
+            axis4_dimension = static_cast<long>(this->alpha().numberOfOrbitals(axis4_type));
         } else {
-            const auto axis4_dimension = static_cast<long>(this->beta().numberOfOrbitals(axis4_type));
+            axis4_dimension = static_cast<long>(this->beta().numberOfOrbitals(axis4_type));
         }
 
         // Zero-initialize the tensor of the specified dimensions.
