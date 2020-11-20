@@ -30,7 +30,7 @@ namespace GQCP {
 template <typename Scalar>
 class DysonOrbital {
 private:
-    VectorX<Scalar> coefficients;
+    VectorX<Scalar> dyson_coefficients;
 
 
 public:
@@ -45,28 +45,31 @@ public:
     DysonOrbital() = default;
 
     DysonOrbital(const size_t K) :
-        coefficients(VectorX<Scalar>::Zero(K)) {}
+        dyson_coefficients(VectorX<Scalar>::Zero(K)) {}
 
     DysonOrbital(const VectorX<Scalar> dyson_amplitudes) :
-        coefficients {dyson_amplitudes} {}
+        dyson_coefficients {dyson_amplitudes} {}
+
+    /*
+     *  MARK: Named constructors
+     */
 
     /**
-     *  Calculate the Dyson 'amplitudes' (the coefficients of a Dyson orbital) between two wave function expressed in the same spinor basis 
+     *  Calculate the coefficients of a Dyson orbital, expressed as the overlap between two wave functions expressed in the same spinor basis.
      * 
-     *  @param linear_expansion1        a wave function in a spin-unresolved ONV basis  
-     *  @param linear_expansion2        a wave function in a spin-unresolved ONV basis containing one fewer electron and the same number of orbitals that is expressed in the same basis
+     *  @param linear_expansion1        A wave function in a spin-unresolved ONV basis.
+     *  @param linear_expansion2        A wave function in a spin-unresolved ONV basis containing one fewer electron and the same number of orbitals that is expressed in the same basis
      *
      *  @return a vector with the Dyson orbital amplitudes
      */
     static DysonOrbital<Scalar> calculateDysonOrbital(const LinearExpansion<SpinResolvedONVBasis>& linear_expansion1, const LinearExpansion<SpinResolvedONVBasis>& linear_expansion2) {
-
 
         const auto onv_basis1 = linear_expansion1.onvBasis();
         const auto onv_basis2 = linear_expansion2.onvBasis();
 
         if ((onv_basis1.alpha().numberOfElectrons() - onv_basis2.alpha().numberOfElectrons() != 0) && (onv_basis1.beta().numberOfElectrons() - onv_basis2.beta().numberOfElectrons() != 1)) {
             if ((onv_basis1.alpha().numberOfElectrons() - onv_basis2.alpha().numberOfElectrons() != 1) && (onv_basis1.beta().numberOfElectrons() - onv_basis2.beta().numberOfElectrons() != 0)) {
-                throw std::runtime_error("DysonOrbital::calculateDysonOrbital(LinearExpansion, LinearExpansion): linear_expansion2 is not expressed in a spin-resolved ONVBasis with one fewer electron than linear_expansion1.");
+                throw std::runtime_error("DysonOrbital::calculateDysonOrbital(LinearExpansion, LinearExpansion): linear_expansion2 is not expressed in a spin-resolved ONV basis with one fewer electron than linear_expansion1.");
             }
         }
 
@@ -137,6 +140,15 @@ public:
 
         return DysonOrbital<Scalar>(dyson_coeffs);
     }
+
+    /*
+     *  MARK: Access
+     */
+
+    /**
+     *  @return The expansion coefficients of this Dyson orbital.
+     */
+    const VectorX<double>& coefficients() const { return this->dyson_coefficients; }
 
 };  // DysonOrbital
 
