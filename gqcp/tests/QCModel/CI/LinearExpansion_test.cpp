@@ -118,7 +118,7 @@ BOOST_AUTO_TEST_CASE(transform_wave_function_h3) {
 
 
     // Calculate a new linear expansion by rotation the underlying spinor basis and doing another dense calculation, and check if they deviate.
-    GQCP::basisRotate(spinor_basis, sq_hamiltonian, U_random);
+    GQCP::rotate(U_random, spinor_basis, sq_hamiltonian);
 
     auto environment_indirect = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
     auto solver_indirect = GQCP::EigenproblemSolver::Dense();
@@ -160,7 +160,7 @@ BOOST_AUTO_TEST_CASE(transform_wave_function_h4) {
 
 
     // Calculate a new linear expansion by rotation the underlying spinor basis and doing another dense calculation, and check if they deviate.
-    GQCP::basisRotate(spinor_basis, sq_hamiltonian, U_random);
+    GQCP::rotate(U_random, spinor_basis, sq_hamiltonian);
 
     auto environment_indirect = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
     auto solver_indirect = GQCP::EigenproblemSolver::Dense();
@@ -203,7 +203,7 @@ BOOST_AUTO_TEST_CASE(transform_wave_function_h5) {
 
 
     // Calculate a new linear expansion by rotation the underlying spinor basis and doing another dense calculation, and check if they deviate.
-    GQCP::basisRotate(spinor_basis, sq_hamiltonian, U_random);
+    GQCP::rotate(U_random, spinor_basis, sq_hamiltonian);
 
     auto environment_indirect = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
     auto solver_indirect = GQCP::EigenproblemSolver::Dense();

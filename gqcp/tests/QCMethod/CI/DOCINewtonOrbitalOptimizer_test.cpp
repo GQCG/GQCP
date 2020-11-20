@@ -54,7 +54,7 @@
 //     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
 //     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
-//     basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.expansion());
+//     transform(rhf_parameters.expansion(), spinor_basis, sq_hamiltonian);
 
 
 //     // Do the DOCI orbital optimization: construct the orbital optimizer and let it do its work.
@@ -100,7 +100,7 @@
 //     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
 //     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
-//     basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.expansion());
+//     transform(rhf_parameters.expansion(), spinor_basis, sq_hamiltonian);
 
 
 //     // Do the DOCI orbital optimization: construct the orbital optimizer and let it do its work.

@@ -134,7 +134,7 @@ BOOST_AUTO_TEST_CASE(h2_polarizability_RHF) {
 
 
     // Transform the orbitals to the RHF basis and prepare the dipole integrals in the RHF basis.
-    GQCP::basisTransform(spin_orbital_basis, sq_hamiltonian, rhf_parameters.expansion());
+    GQCP::transform(rhf_parameters.expansion(), spin_orbital_basis, sq_hamiltonian);
     const auto dipole_op = spin_orbital_basis.quantize(GQCP::Operator::ElectronicDipole());
 
 

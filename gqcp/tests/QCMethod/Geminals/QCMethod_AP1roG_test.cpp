@@ -52,7 +52,7 @@ BOOST_AUTO_TEST_CASE(h2_631gdp) {
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
-    GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.expansion());
+    GQCP::transform(rhf_parameters.expansion(), spinor_basis, sq_hamiltonian);
 
 
     // Do an AP1roG calculation in that basis, using a zero initial guess.
@@ -96,7 +96,7 @@ BOOST_AUTO_TEST_CASE(h2_631gdp_weak_interaction_limit) {
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
-    GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.expansion());
+    GQCP::transform(rhf_parameters.expansion(), spinor_basis, sq_hamiltonian);
 
 
     // Do an AP1roG calculation in that basis, using an initial guess being the weak interaction limit coefficients.

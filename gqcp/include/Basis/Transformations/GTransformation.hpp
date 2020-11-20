@@ -66,9 +66,11 @@ public:
 
 
     /**
-     *  Construct a `GTransformation` from the transformation matrix that it encapsulates.
+     *  Construct a `GTransformation` from the transformation matrix that it encapsulates, where the number of basis functions used for the expansion of the alpha components may differ from the number of basis functions for the beta components.
      * 
      *  @param T                The transformation matrix that collects the expansion coefficients of the new basis (vectors) in the old basis as columns.
+     *  @param K_alpha          The number of basis functions that are used for the expansion of the alpha components.
+     *  @param K_beta           The number of basis functions that are used for the expansion of the beta components.
      */
     GTransformation(const SquareMatrix<Scalar>& T, const size_t K_alpha, const size_t K_beta) :
         SimpleTransformation<_Scalar, GTransformation<_Scalar>>(T),

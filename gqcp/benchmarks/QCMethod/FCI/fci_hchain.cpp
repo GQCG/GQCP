@@ -50,7 +50,7 @@
 //     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
 //     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
-//     GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.expansion());
+//     GQCP::transform(rhf_parameters.expansion(), spinor_basis, sq_hamiltonian);
 
 
 //     // Do the FCI calculation by setting up a full spin-resolved ONV basis, an eigenvalue problem solver and a corresponding environment.
@@ -97,7 +97,7 @@
 //     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
 //     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
-//     GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.expansion());
+//     GQCP::transform(rhf_parameters.expansion(), spinor_basis, sq_hamiltonian);
 
 
 //     // Do the FCI calculation by setting up a full spin-resolved ONV basis, an eigenvalue problem solver and a corresponding environment.
