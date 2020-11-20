@@ -163,6 +163,7 @@ public:
                                                                       const OccupationType column_type, const Spin column_spin) const {
 
         // Prepare the necessary members for the other method.
+        // Determine the dimension of the matrix rows
         size_t rows {};
         if (row_spin == Spin::alpha) {
             rows = this->alpha().numberOfOrbitals(row_type);
@@ -170,6 +171,7 @@ public:
             rows = this->beta().numberOfOrbitals(row_type);
         }
 
+        // determine the dimension of the matrix columns.
         size_t columns {};
         if (column_spin == Spin::alpha) {
             columns = this->alpha().numberOfOrbitals(column_type);
@@ -177,6 +179,7 @@ public:
             columns = this->beta().numberOfOrbitals(column_type);
         }
 
+        // Zero-initialize a matrix of the specified dimensions.
         const MatrixX<Scalar> M = MatrixX<Scalar>::Zero(rows, columns);
 
         return this->createMixedRepresentableObjectFor<Scalar>(row_type, column_type, M);
