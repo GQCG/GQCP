@@ -55,7 +55,7 @@ Matrix<double, 3, 3> calculateElectricPolarizability(const Matrix<double, Dynami
     return -(x.transpose() * A_lambda + y.transpose() * F_p);  // minus sign because of definition of electric polarizability
 }
 
-// Understand + Python bindings for this function.
+
 /**
  *  Calculate the Dyson 'amplitudes' (the coefficients of a Dyson orbital) between two wave function expressed in the same spinor basis 
  * 
