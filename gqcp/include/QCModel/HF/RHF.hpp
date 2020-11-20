@@ -320,20 +320,24 @@ public:
     /**
      *  @return the eigenvalues of the one-electron Fock Operator as a matrix.
      */
-    const GQCP::MatrixX<Scalar> calculateFValues() const {
+    GQCP::MatrixX<Scalar> calculateFockOperatorEigenvalues() const {
 
         // Create the orbital space to determine the loops.
         const auto orbital_space = this->orbitalSpace();
 
         // Determine the number of occupied and virtual orbitals.
-        const auto& n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
-        const auto& n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
+        const auto n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+        const auto n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
+
+        // Calculate the occupied and virtual orbital energies.
+        const auto occupied_energies = this->occupiedOrbitalEnergies();
+        const auto virtual_energies = this->virtualOrbitalEnergies();
 
         // Create the F matrix
         GQCP::MatrixX<Scalar> F_values(n_virt, n_occ);
         for (int a = 0; a < n_virt; a++) {
             for (int i = 0; i < n_occ; i++) {
-                F_values(a, i) = this->virtualOrbitalEnergies()[a] + (-1 * this->occupiedOrbitalEnergies()[i]);
+                F_values(a, i) = virtual_energies[a] - occupied_energies[i];
             }
         }
         return F_values;
@@ -358,22 +362,22 @@ public:
      * 
      *  @param rsq_hamiltonian      The second quantized hamiltonian, which contains the necessary two electron operators.
      */
-    const GQCP::MatrixX<Scalar> calculateSingletAStabilityMatrix(const RSQHamiltonian<Scalar>& rsq_hamiltonian) const {
+    GQCP::MatrixX<Scalar> calculateSingletAStabilityMatrix(const RSQHamiltonian<Scalar>& rsq_hamiltonian) const {
 
         // Create the orbital space.
         const auto orbital_space = this->orbitalSpace();
 
         // Create the number of occupied and virtual orbitals.
-        const auto& n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
-        const auto& n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
+        const auto n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+        const auto n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
 
         // We need the two-electron integrals in MO basis, hence why we transform them with the coefficient matrix.
         // The ground state coefficient matrix is obtained from the QCModel.
-        const auto& g = rsq_hamiltonian.twoElectron().transformed(this->coefficientMatrix());
+        const auto g = rsq_hamiltonian.twoElectron().transformed(this->coefficientMatrix());
 
         // The elements (F_R)_AA and (F_R)_IJ are the eigenvalues of the one-electron Fock operator.
-        // The calculateFValues API can be used to find these values
-        const auto& F_values = this->calculateFValues();
+        // The calculateFockOperatorEigenvalues API can be used to find these values
+        const auto F_values = this->calculateFockOperatorEigenvalues();
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object.
@@ -382,7 +386,7 @@ public:
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                        singlet_A_slice(i, a, j, b) = 2 * g.parameters()(a, i, j, b) - 1 * g.parameters()(a, b, j, i);
+                        singlet_A_slice(i, a, j, b) = 2 * g.parameters()(a, i, j, b) - g.parameters()(a, b, j, i);
                     }
                 }
             }
@@ -399,7 +403,7 @@ public:
         }
 
         // Finally, reshape the tensor to a matrix.
-        const GQCP::MatrixX<Scalar> singlet_A_matrix = singlet_A_iajb.reshape(n_occ * n_virt, n_occ * n_virt);
+        const auto singlet_A_matrix = singlet_A_iajb.reshape(n_occ * n_virt, n_occ * n_virt);
 
         return singlet_A_matrix;
     }
@@ -413,18 +417,18 @@ public:
      * 
      *  @param rsq_hamiltonian      The second quantized hamiltonian, which contains the necessary two electron operators.
      */
-    const GQCP::MatrixX<Scalar> calculateSingletBStabilityMatrix(const RSQHamiltonian<Scalar>& rsq_hamiltonian) const {
+    GQCP::MatrixX<Scalar> calculateSingletBStabilityMatrix(const RSQHamiltonian<Scalar>& rsq_hamiltonian) const {
 
         // Create the orbital space.
         const auto orbital_space = this->orbitalSpace();
 
         // Create the number of occupied and virtual orbitals.
-        const auto& n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
-        const auto& n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
+        const auto n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+        const auto n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
 
         // We need the two-electron integrals in MO basis, hence why we transform them with the coefficient matrix.
         // The ground state coefficient matrix is obtained from the QCModel.
-        const auto& g = rsq_hamiltonian.twoElectron().transformed(this->coefficientMatrix());
+        const auto g = rsq_hamiltonian.twoElectron().transformed(this->coefficientMatrix());
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object.
@@ -433,7 +437,7 @@ public:
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                        singlet_B_slice(i, a, j, b) = 2 * g.parameters()(a, i, b, j) - 1 * g.parameters()(a, j, b, i);
+                        singlet_B_slice(i, a, j, b) = 2 * g.parameters()(a, i, b, j) - g.parameters()(a, j, b, i);
                     }
                 }
             }
@@ -443,7 +447,7 @@ public:
         auto singlet_B_iajb = singlet_B_slice.asTensor();
 
         // Finally, reshape the tensor to a matrix.
-        const GQCP::MatrixX<Scalar> singlet_B_matrix = singlet_B_iajb.reshape(n_occ * n_virt, n_occ * n_virt);
+        const auto singlet_B_matrix = singlet_B_iajb.reshape(n_occ * n_virt, n_occ * n_virt);
 
         return singlet_B_matrix;
     }
@@ -457,22 +461,22 @@ public:
      * 
      *  @param rsq_hamiltonian      The second quantized hamiltonian, which contains the necessary two electron operators.
      */
-    const GQCP::MatrixX<Scalar> calculateTripletAStabilityMatrix(const RSQHamiltonian<Scalar>& rsq_hamiltonian) const {
+    GQCP::MatrixX<Scalar> calculateTripletAStabilityMatrix(const RSQHamiltonian<Scalar>& rsq_hamiltonian) const {
 
         // Create the orbital space.
         const auto orbital_space = this->orbitalSpace();
 
         // Create the number of occupied and virtual orbitals.
-        const auto& n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
-        const auto& n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
+        const auto n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+        const auto n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
 
         // We need the two-electron integrals in MO basis, hence why we transform them with the coefficient matrix.
         // The ground state coefficient matrix is obtained from the QCModel.
-        const auto& g = rsq_hamiltonian.twoElectron().transformed(this->coefficientMatrix());
+        const auto g = rsq_hamiltonian.twoElectron().transformed(this->coefficientMatrix());
 
         // The elements (F_R)_AA and (F_R)_IJ are the eigenvalues of the one-electron Fock operator.
-        // The calculateFValues API can be used to find these values
-        const auto& F_values = this->calculateFValues();
+        // The calculateFockOperatorEigenvalues API can be used to find these values
+        const auto F_values = this->calculateFockOperatorEigenvalues();
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object.
@@ -481,7 +485,7 @@ public:
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                        triplet_A_slice(i, a, j, b) = -1 * g.parameters()(a, b, j, i);
+                        triplet_A_slice(i, a, j, b) = -g.parameters()(a, b, j, i);
                     }
                 }
             }
@@ -498,7 +502,7 @@ public:
         }
 
         // Finally, reshape the tensor to a matrix.
-        const GQCP::MatrixX<Scalar> triplet_A_matrix = triplet_A_iajb.reshape(n_occ * n_virt, n_occ * n_virt);
+        const auto triplet_A_matrix = triplet_A_iajb.reshape(n_occ * n_virt, n_occ * n_virt);
 
         return triplet_A_matrix;
     }
@@ -512,18 +516,18 @@ public:
      * 
      *  @param rsq_hamiltonian      The second quantized hamiltonian, which contains the necessary two electron operators.
      */
-    const GQCP::MatrixX<Scalar> calculateTripletBStabilityMatrix(const RSQHamiltonian<Scalar>& rsq_hamiltonian) const {
+    GQCP::MatrixX<Scalar> calculateTripletBStabilityMatrix(const RSQHamiltonian<Scalar>& rsq_hamiltonian) const {
 
         // Create the orbital space.
         const auto orbital_space = this->orbitalSpace();
 
         // Create the number of occupied and virtual orbitals.
-        const auto& n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
-        const auto& n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
+        const auto n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+        const auto n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
 
         // We need the two-electron integrals in MO basis, hence why we transform them with the coefficient matrix.
         // The ground state coefficient matrix is obtained from the QCModel.
-        const auto& g = rsq_hamiltonian.twoElectron().transformed(this->coefficientMatrix());
+        const auto g = rsq_hamiltonian.twoElectron().transformed(this->coefficientMatrix());
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object.
@@ -532,7 +536,7 @@ public:
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                        triplet_B_slice(i, a, j, b) = -1 * g.parameters()(a, j, b, i);
+                        triplet_B_slice(i, a, j, b) = -g.parameters()(a, j, b, i);
                     }
                 }
             }
@@ -542,7 +546,7 @@ public:
         auto triplet_B_iajb = triplet_B_slice.asTensor();
 
         // Finally, reshape the tensor to a matrix.
-        const GQCP::MatrixX<Scalar> triplet_B_matrix = triplet_B_iajb.reshape(n_occ * n_virt, n_occ * n_virt);
+        const auto triplet_B_matrix = triplet_B_iajb.reshape(n_occ * n_virt, n_occ * n_virt);
 
         return triplet_B_matrix;
     }

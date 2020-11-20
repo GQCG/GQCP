@@ -311,7 +311,7 @@ public:
     /**
      *  @return the eigenvalues of the one-electron Fock Operator as a matrix.
      */
-    GQCP::MatrixX<Scalar> calculateFockMatrix() const {
+    GQCP::MatrixX<Scalar> calculateFockOperatorEigenvalues() const {
 
         // Create the orbital space to determine the loops.
         const auto orbital_space = this->orbitalSpace();
@@ -369,8 +369,8 @@ public:
         const auto g = gsq_hamiltonian.twoElectron().transformed(this->coefficientMatrix()).antisymmetrized().parameters();
 
         // The elements F_BA and F_IJ are the eigenvalues of the one-electron Fock operator.
-        // The calculateFockMatrix API can be used to find these values
-        const auto F_values = this->calculateFockMatrix();
+        // The calculateFockOperatorEigenvalues API can be used to find these values
+        const auto F_values = this->calculateFockOperatorEigenvalues();
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object.

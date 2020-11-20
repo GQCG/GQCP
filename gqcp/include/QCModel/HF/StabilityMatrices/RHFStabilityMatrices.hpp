@@ -269,18 +269,15 @@ public:
             std::cout << "The real valued RHF wavefunction contains an internal instability." << std::endl;
         }
 
-        // `isExternallyStable()` checks 2 possible external stabilities.
-        const auto external_stabilities = this->isExternallyStable();
-
         // The real->complex external stability on vector position 0.
-        if (external_stabilities[0] == true) {
+        if (this->isComplexConjugateStable() == true) {
             std::cout << "The real valued RHF wavefunction is stable within the real/complex RHF space." << std::endl;
         } else {
             std::cout << "The real valued RHF wavefunction contains a real->complex instability." << std::endl;
         }
 
         // The restricted->unrestricted external stability on vector position 1.
-        if (external_stabilities[1] == true) {
+        if (this->isTripletStable() == true) {
             std::cout << "The real valued RHF wavefunction is stable within the real RHF/UHF space." << std::endl;
         } else {
             std::cout << "The real valued RHF wavefunction contains a restricted->unrestricted instability." << std::endl;

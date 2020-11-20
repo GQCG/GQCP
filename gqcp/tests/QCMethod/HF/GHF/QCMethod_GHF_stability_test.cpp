@@ -121,20 +121,20 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_2) {
  * 
  *  The system of interest is a H2-chain, 1 bohr apart and the reference implementation was done by @xdvriend.
  */
-BOOST_AUTO_TEST_CASE(H2_stability_test) {
+BOOST_AUTO_TEST_CASE(H3_stability_test_3) {
 
     // Set up a general spinor basis to obtain a spin-blocked second-quantized molecular Hamiltonian.
-    const auto molecule = GQCP::Molecule::HChain(2, 1.0);  // H2-Chain 1 bohr apart
+    const auto molecule = GQCP::Molecule::HRingFromDistance(3, 1.8897);  // H3-triangle, 1 angstrom apart
     const auto N = molecule.numberOfElectrons();
 
-    const GQCP::GSpinorBasis<double, GQCP::GTOShell> g_spinor_basis {molecule, "STO-3G"};
+    const GQCP::GSpinorBasis<double, GQCP::GTOShell> g_spinor_basis {molecule, "6-31G"};
     const auto S = g_spinor_basis.overlap().parameters();
 
     const auto sq_hamiltonian = GQCP::GSQHamiltonian<double>::Molecular(g_spinor_basis, molecule);
 
     // Perform a GHF SCF calculation
     auto environment = GQCP::GHFSCFEnvironment<double>::WithCoreGuess(N, sq_hamiltonian, S);
-    auto solver = GQCP::GHFSCFSolver<double>::Plain(1.0e-08, 3000);
+    auto solver = GQCP::GHFSCFSolver<double>::Plain(1.0e-05, 5000);
     const auto qc_structure = GQCP::QCMethod::GHF<double>().optimize(solver, environment);
     auto ghf_parameters = qc_structure.groundStateParameters();
 
@@ -144,11 +144,11 @@ BOOST_AUTO_TEST_CASE(H2_stability_test) {
 
     // This method should be internally stable.
     const auto internal_stability = stability_matrices.isInternallyStable();
-    BOOST_CHECK(internal_stability == true);
+    BOOST_CHECK(internal_stability == false);
 
     // This wavefunction should also be externally stable.
     const auto external_stability = stability_matrices.isExternallyStable();
-    BOOST_CHECK(external_stability == true);
+    BOOST_CHECK(external_stability == false);
 
     // Check that the stability properties can be printed
     stability_matrices.printStabilityDescription();

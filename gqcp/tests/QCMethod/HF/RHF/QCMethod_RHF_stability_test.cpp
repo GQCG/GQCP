@@ -53,8 +53,7 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_stability) {
 
     // This wavefunction should also be externally stable.
     const auto external_stability = stability_matrices.isExternallyStable();
-    BOOST_CHECK(external_stability[0] == true);
-    BOOST_CHECK(external_stability[1] == true);
+    BOOST_CHECK(external_stability == true);
 
     // Check that the stability properties can be printed
     stability_matrices.printStabilityDescription();
@@ -86,10 +85,13 @@ BOOST_AUTO_TEST_CASE(h4_sto3g_stability) {
     const auto internal_stability = stability_matrices.isInternallyStable();
     BOOST_CHECK(internal_stability == true);
 
-    // This wavefunction should also be externally stable.
+    // This wavefunction should be externally unstable.
     const auto external_stability = stability_matrices.isExternallyStable();
-    BOOST_CHECK(external_stability[0] == false);
-    BOOST_CHECK(external_stability[1] == false);
+    BOOST_CHECK(external_stability == false);
+
+    // Both external stability subcases are checked individually as well.
+    BOOST_CHECK(stability_matrices.isTripletStable() == false);
+    BOOST_CHECK(stability_matrices.isComplexConjugateStable() == false);
 
     // Check that the stability properties can be printed
     stability_matrices.printStabilityDescription();
