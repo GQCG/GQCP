@@ -309,9 +309,11 @@ public:
 
 
     /**
-     *  @return the eigenvalues of the one-electron Fock Operator as a matrix.
+     *  @return a matrix containing all the possible excitation energies of the wavefunction model. 
+     * 
+     *  @note       The rows are determined by the number of virtual orbitals, the columns by the number of occupied orbitals.
      */
-    GQCP::MatrixX<Scalar> calculateFockOperatorEigenvalues() const {
+    GQCP::MatrixX<Scalar> excitationEnergies() const {
 
         // Create the orbital space to determine the loops.
         const auto orbital_space = this->orbitalSpace();
@@ -369,8 +371,8 @@ public:
         const auto g = gsq_hamiltonian.twoElectron().transformed(this->coefficientMatrix()).antisymmetrized().parameters();
 
         // The elements F_BA and F_IJ are the eigenvalues of the one-electron Fock operator.
-        // The calculateFockOperatorEigenvalues API can be used to find these values
-        const auto F_values = this->calculateFockOperatorEigenvalues();
+        // The excitationEnergies API can be used to find these values
+        const auto F_values = this->excitationEnergies();
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object.
