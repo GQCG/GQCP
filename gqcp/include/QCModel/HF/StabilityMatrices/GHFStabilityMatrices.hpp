@@ -137,7 +137,7 @@ public:
      */
     const bool isInternallyStable(const double threshold = -1.0e-5) const {
 
-        // The first step is to calculate the correct stability matrix: This method checks the internal stability of a real valued wavefunction.
+        // The first step is to calculate the correct stability matrix: This method checks the internal stability of a real or complex valued wavefunction.
         const auto stability_matrix = this->internal();
 
         // Check whether or not the stability matrix is positive semi-definite. This indicates stability.
@@ -151,7 +151,7 @@ public:
     template <typename S = Scalar>
     enable_if_t<std::is_same<S, double>::value, bool> isExternallyStable(const double threshold = -1.0e-5) const {
 
-        // The first step is to calculate the correct stability matrix: This method checks the internal stability of a real valued wavefunction.
+        // The first step is to calculate the correct stability matrix: This method checks the external stability of a real valued wavefunction.
         const auto stability_matrix = this->external();
 
         // Check whether or not the stability matrix is positive semi-definite. This indicates stability.
@@ -199,7 +199,7 @@ public:
         if (this->isInternallyStable() == true) {
             std::cout << "The complex valued GHF wavefunction is internally stable." << std::endl;
         } else {
-            std::cout << "The real complex GHF wavefunction contains an internal instability." << std::endl;
+            std::cout << "The complex valued GHF wavefunction contains an internal instability." << std::endl;
         }
     }
 };

@@ -311,20 +311,24 @@ public:
     /**
      *  @return the eigenvalues of the one-electron Fock Operator as a matrix.
      */
-    const GQCP::MatrixX<Scalar> calculateFValues() const {
+    GQCP::MatrixX<Scalar> calculateFockOperatorEigenvalues() const {
 
         // Create the orbital space to determine the loops.
         const auto orbital_space = this->orbitalSpace();
 
         // Determine the number of occupied and virtual orbitals.
-        const auto& n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
-        const auto& n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
+        const auto n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+        const auto n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
+
+        // Calculate the occupied and virtual orbital energies.
+        const auto occupied_energies = this->occupiedOrbitalEnergies();
+        const auto virtual_energies = this->virtualOrbitalEnergies();
 
         // Create the F matrix
-        GQCP::MatrixX<Scalar> F_values(n_occ, n_virt);
-        for (int a = 0; a < n_occ; a++) {
-            for (int i = 0; i < n_virt; i++) {
-                F_values(a, i) = this->virtualOrbitalEnergies()[a] + (-1 * this->occupiedOrbitalEnergies()[i]);
+        GQCP::MatrixX<Scalar> F_values {n_virt, n_occ};
+        for (int a = 0; a < n_virt; a++) {
+            for (int i = 0; i < n_occ; i++) {
+                F_values(a, i) = virtual_energies[a] - occupied_energies[i];
             }
         }
         return F_values;
@@ -350,32 +354,32 @@ public:
      * 
      *  @param gsq_hamiltonian      The generalised, second quantized hamiltonian, which contains the necessary two electron operators.
      */
-    const GQCP::MatrixX<Scalar> calculatePartialStabilityMatrixA(const GSQHamiltonian<Scalar>& gsq_hamiltonian) const {
+    GQCP::MatrixX<Scalar> calculatePartialStabilityMatrixA(const GSQHamiltonian<Scalar>& gsq_hamiltonian) const {
 
         // Create the orbital space to determine the loops.
         const auto orbital_space = this->orbitalSpace();
 
         // Determine the number of occupied and virtual orbitals.
-        const auto& n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
-        const auto& n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
+        const auto n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+        const auto n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
 
         // We need the two-electron integrals in MO basis, hence why we transform them with the coefficient matrix.
         // The ground state coefficient matrix is obtained from the QCModel.
         // We need the anti-symmetrized tensor: (AI||JB) = (AI|JB) - (AB|JI). This is obtained by the `.antisymmetrized()` method.
-        const auto& g = gsq_hamiltonian.twoElectron().transformed(this->coefficientMatrix()).antisymmetrized();
+        const auto g = gsq_hamiltonian.twoElectron().transformed(this->coefficientMatrix()).antisymmetrized().parameters();
 
         // The elements F_BA and F_IJ are the eigenvalues of the one-electron Fock operator.
-        // The calculateFValues API can be used to find these values
-        const auto& F_values = this->calculateFValues();
+        // The calculateFockOperatorEigenvalues API can be used to find these values
+        const auto F_values = this->calculateFockOperatorEigenvalues();
 
         // The next step is to create the needed tensor slice.
-        // zero-initialize an occupied-virtual-occupied-virtual object
+        // Zero-initialize an occupied-virtual-occupied-virtual object.
         auto A_iajb_slice = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_occupied, OccupationType::k_virtual);
         for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                        A_iajb_slice(i, a, j, b) = g.parameters()(a, i, j, b);
+                        A_iajb_slice(i, a, j, b) = g(a, i, j, b);
                     }
                 }
             }
@@ -385,14 +389,14 @@ public:
         auto A_iajb = A_iajb_slice.asTensor();
 
         // Add the previously calculated F values on the correct positions.
-        for (int a = 0; a < n_occ; a++) {
-            for (int i = 0; i < n_virt; i++) {
+        for (int a = 0; a < n_virt; a++) {
+            for (int i = 0; i < n_occ; i++) {
                 A_iajb(i, a, i, a) += F_values(a, i);
             }
         }
 
         // Finally, reshape the tensor to a matrix.
-        const GQCP::MatrixX<Scalar> A_matrix = A_iajb.reshape(n_occ * n_virt, n_occ * n_virt);
+        const auto A_matrix = A_iajb.reshape(n_occ * n_virt, n_occ * n_virt);
 
         return A_matrix;
     }
@@ -406,27 +410,28 @@ public:
      *
      *  @param gsq_hamiltonian      The generalised, second quantized hamiltonian, which contains the necessary two electron operators.
      */
-    const GQCP::MatrixX<Scalar> calculatePartialStabilityMatrixB(const GSQHamiltonian<Scalar>& gsq_hamiltonian) const {
+    GQCP::MatrixX<Scalar> calculatePartialStabilityMatrixB(const GSQHamiltonian<Scalar>& gsq_hamiltonian) const {
 
         // Create the orbital space to determine the loops.
         const auto orbital_space = this->orbitalSpace();
 
         // Determine the number of occupied and virtual orbitals.
-        const auto& n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
-        const auto& n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
+        const auto n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+        const auto n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
 
         // We need the two-electron integrals in MO basis, hence why we transform them with the coefficient matrix.
         // The ground state coefficient matrix is obtained from the QCModel.
         // We need the anti-symmetrized tensor: (AI||BJ) = (AI|BJ) - (AJ|BI). This is obtained by the `.antisymmetrized()` method.
-        const auto& g = gsq_hamiltonian.twoElectron().transformed(this->coefficientMatrix()).antisymmetrized();
+        const auto g = gsq_hamiltonian.twoElectron().transformed(this->coefficientMatrix()).antisymmetrized().parameters();
 
         // The next step is to create the needed tensor slice.
+        // Zero-initialize an occupied-virtual-occupied-virtual object.
         auto B_iajb_slice = orbital_space.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_occupied, OccupationType::k_virtual);
         for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                        B_iajb_slice(i, a, j, b) = g.parameters()(a, i, b, j);
+                        B_iajb_slice(i, a, j, b) = g(a, i, b, j);
                     }
                 }
             }
@@ -436,7 +441,7 @@ public:
         auto B_iajb = B_iajb_slice.asTensor();
 
         // Finally, reshape the tensor to a matrix.
-        const GQCP::MatrixX<Scalar> B_matrix = B_iajb.reshape(n_occ * n_virt, n_occ * n_virt);
+        const auto B_matrix = B_iajb.reshape(n_occ * n_virt, n_occ * n_virt);
 
         return B_matrix;
     }
