@@ -231,21 +231,13 @@ public:
 
 
     /**
-     *  @return a vector containing 2 booleans.
-     * 
-     *  @note The first value will tell us whether or not the real->complex stability matrix belongs to a stable or unstable set of parameters. The second one does the same for the real valued restricted->unrestricted stability matrix.
+     *  @return whether the parameters are completely externally stable.
      */
     template <typename S = Scalar>
-    enable_if_t<std::is_same<S, double>::value, std::vector<bool>> isExternallyStable(const double threshold = -1.0e-5) const {
+    enable_if_t<std::is_same<S, double>::value, bool> isExternallyStable(const double threshold = -1.0e-5) const {
 
-        // Since we have to check 2 stabilities, we have to return 2 booleans. Hence why we create a vector.
-        std::vector<bool> stabilities;
-
-        // Check both external stabilities and add the results to the vector.
-        stabilities.push_back(this->isComplexConjugateStable(threshold));
-        stabilities.push_back(this->isTripletStable(threshold));
-
-        return stabilities;
+        // Return whether the parameters are completely externally stable.
+        return this->isComplexConjugateStable(threshold) && this->isTripletStable(threshold);
     }
 
 
