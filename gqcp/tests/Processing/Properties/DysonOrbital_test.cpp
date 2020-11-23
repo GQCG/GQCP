@@ -52,10 +52,10 @@ BOOST_AUTO_TEST_CASE(dyson_amplitudes) {
 
     // Calculate the Dyson amplitudes for both situations (alpha-reference) and (beta-reference), and check with the manual calculations.
     const auto dyson_orbital_alpha = GQCP::DysonOrbital<double>::calculateDysonOrbital(linear_expansion, linear_expansion_alpha);
-    const auto dyson_coefficients_alpha = dyson_orbital_alpha.coefficients();
+    const auto& dyson_coefficients_alpha = dyson_orbital_alpha.coefficients();
 
     const auto dyson_orbital_beta = GQCP::DysonOrbital<double>::calculateDysonOrbital(linear_expansion, linear_expansion_beta);
-    const auto dyson_coefficients_beta = dyson_orbital_beta.coefficients();
+    const auto& dyson_coefficients_beta = dyson_orbital_beta.coefficients();
 
     BOOST_CHECK(dyson_coefficients_alpha.isApprox(reference_amplitudes_alpha, 1.0e-06));
     BOOST_CHECK(dyson_coefficients_beta.isApprox(reference_amplitudes_beta, 1.0e-06));
