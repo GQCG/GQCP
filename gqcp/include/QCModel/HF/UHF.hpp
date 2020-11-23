@@ -346,6 +346,46 @@ public:
 
 
     /**
+     *  @param sigma                The spin-sigma component. 
+     * 
+     *  @return a matrix containing all the possible excitation energies of the wavefunction model, belonging to a certain spin component. 
+     * 
+     *  @note       The rows are determined by the number of virtual sigma orbitals, the columns by the number of occupied sigma orbitals.
+     * 
+     */
+    GQCP::MatrixX<Scalar> excitationEnergies(const spin sigma) const {
+
+        // Create the orbital space to determine the loops.
+        const auto orbital_space = this->orbitalSpace();
+
+        // Determine the number of occupied and virtual orbitals.
+        // We declare `n_occ` and `n_virt` outside the if-statement first.
+        int n_occ;
+        int n_virt;
+        if (sigma == Spin::alpha) {
+            n_occ = orbital_space.alpha().numberOfOrbitals(OccupationType::k_occupied);
+            n_virt = orbital_space.alpha().numberOfOrbitals(OccupationType::k_virtual);
+        } else {
+            n_occ = orbital_space.beta().numberOfOrbitals(OccupationType::k_occupied);
+            n_virt = orbital_space.beta().numberOfOrbitals(OccupationType::k_virtual);
+        }
+
+        // Calculate the occupied and virtual orbital energies.
+        const auto occupied_energies = this->occupiedOrbitalEnergies(sigma);
+        const auto virtual_energies = this->virtualOrbitalEnergies(sigma);
+
+        // Create the F matrix
+        GQCP::MatrixX<Scalar> F_values {n_virt, n_occ};
+        for (int a = 0; a < n_virt; a++) {
+            for (int i = 0; i < n_occ; i++) {
+                F_values(a, i) = virtual_energies[a] - occupied_energies[i];
+            }
+        }
+        return F_values;
+    }
+
+
+    /**
      *  @param sigma            alpha or beta
      *
      *  @return the coefficient matrix that expresses the sigma spin-orbitals (as a column) in its underlying scalar basis
@@ -396,6 +436,34 @@ public:
 
 
     /**
+     *  @param sigma            The alpha or beta spin component.
+     * 
+     *  @return the orbital energies belonging to the occupied orbitals
+     */
+    std::vector<double> occupiedOrbitalEnergies(const Spin sigma) const {
+
+        // Determine the number of occupied orbitals of the specified spin component.
+        // We declare `n_occ` outside the if-statement first.
+        int n_occ;
+        if (sigma == Spin::alpha) {
+            n_occ = this->orbitalSpace().alpha().numberOfOrbitals(OccupationType::k_occupied);
+        } else {
+            n_occ = this->orbitalSpace().beta().numberOfOrbitals(OccupationType::k_occupied);
+        }
+
+        std::vector<double> mo_energies;  // We use a std::vector in order to be able to slice the vector later on.
+        for (int i = 0; i < this->numberOfSpinOrbitals(sigma); i++) {
+            mo_energies.push_back(this->orbitalEnergies(sigma)[i]);
+        }
+
+        // Add the values with indices smaller than the occupied orbital indices, to the new vector.
+        std::vector<double> mo_energies_occupied;
+        std::copy(mo_energies.begin(), mo_energies.begin() + n_occ, std::back_inserter(mo_energies_occupied));
+        return mo_energies_occupied;
+    }
+
+
+    /**
      *  @param sigma            alpha or beta
      * 
      *  @return the orbital energies of the sigma-spin-orbitals
@@ -433,6 +501,34 @@ public:
         total_orbital_energies.tail(this->numberOfSpinOrbitals(Spin::beta)) = this->orbitalEnergies(Spin::beta);
 
         return total_orbital_energies;
+    }
+
+
+    /**
+     *  @param sigma            The alpha or beta spin component.
+     * 
+     *  @return the orbital energies belonging to the virtual orbitals
+     */
+    std::vector<double> virtualOrbitalEnergies(const Spin sigma) const {
+
+        // Determine the number of occupied orbitals of the specified spin component.
+        // We declare `n_occ` outside the if-statement first.
+        int n_occ;
+        if (sigma == Spin::alpha) {
+            n_occ = this->orbitalSpace().alpha().numberOfOrbitals(OccupationType::k_occupied);
+        } else {
+            n_occ = this->orbitalSpace().beta().numberOfOrbitals(OccupationType::k_occupied);
+        }
+
+        std::vector<double> mo_energies;  // We use a std::vector in order to be able to slice the vector later on.
+        for (int i = 0; i < this->numberOfSpinOrbitals(sigma); i++) {
+            mo_energies.push_back(this->orbitalEnergies(sigma)[i]);
+        }
+
+        // Add the values with indices greater than the occupied orbital indices, i.e. the virtual orbital indices, to the new vector.
+        std::vector<double> mo_energies_virtual;
+        std::copy(mo_energies.begin() + n_occ, mo_energies.end(), std::back_inserter(mo_energies_virtual));
+        return mo_energies_virtual;
     }
 };
 

@@ -353,9 +353,11 @@ public:
      *  Construct the partial stability matrix `A` from the GHF stability conditions.
      * 
      *  @note The formula for the `A` matrix is as follows:
-     *      A_IAJB = \delta_IJ * F_BA - \delta_BA * F_IJ + (AI||JB)
+     *      A_IAJB = \delta_IJ * F_BA - \delta_BA * F_IJ + (AI||JB).
      * 
      *  @param gsq_hamiltonian      The generalised, second quantized hamiltonian, which contains the necessary two electron operators.
+     * 
+     *  @return The partial stability matrix A.
      */
     GQCP::MatrixX<Scalar> calculatePartialStabilityMatrixA(const GSQHamiltonian<Scalar>& gsq_hamiltonian) const {
 
@@ -409,9 +411,11 @@ public:
      *  Construct the partial stability matrix `B` from the GHF stability conditions.
      *
      *  @note The formula for the `B` matrix is as follows:
-     *      B_IAJB = (AI||BJ)
+     *      B_IAJB = (AI||BJ).
      *
      *  @param gsq_hamiltonian      The generalised, second quantized hamiltonian, which contains the necessary two electron operators.
+     * 
+     *  @return The partial stability matrix B.
      */
     GQCP::MatrixX<Scalar> calculatePartialStabilityMatrixB(const GSQHamiltonian<Scalar>& gsq_hamiltonian) const {
 
