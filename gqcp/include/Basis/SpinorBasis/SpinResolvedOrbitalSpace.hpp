@@ -49,13 +49,13 @@ public:
      *  Create an implicit mathematical object that can serve as the representation of a object with the given occupation types, from the dense representation of the matrix slice.
      *  Each occupation type can belong to either the alpha or beta spin component, initializing a mixed spin mathematical object.
      * 
-     *  @tparam Scalar                      the scalar type of the elements of the implicit matrix
+     *  @tparam Scalar                      The scalar type of the elements of the implicit matrix.
      * 
-     *  @param row_type                     the spinor occupation type for the rows
-     *  @param row_spin                     the spin component for the rows
-     *  @param column_type                  the spinor occupation type for the columns
-     *  @param column_spin                  the spin component for the columns
-     *  @param M                            the dense representation of the matrix slice
+     *  @param row_type                     The spinor occupation type for the rows.
+     *  @param row_spin                     The spin component for the rows.
+     *  @param column_type                  The spinor occupation type for the columns.
+     *  @param column_spin                  The spin component for the columns.
+     *  @param M                            The dense representation of the matrix slice.
      * 
      *  @return an implicit matrix slice, according to the given occupation types and spin components.
      */
@@ -89,17 +89,17 @@ public:
      *  Create an implicit mathematical object that can serve as the representation of a object with the given occupation types, from the dense tensor representation of a slice.
      *  Each occupation type can belong to either the alpha or beta spin component, initializing a mixed spin mathematical object.
      * 
-     *  @tparam Scalar                      the scalar type of the elements of the implicit tensor
+     *  @tparam Scalar                      The scalar type of the elements of the implicit tensor.
      * 
-     *  @param axis1_type                   the spinor occupation type for the first tensor axis
-     *  @param axis1_spin                   the spin component for the first tensor axis
-     *  @param axis2_type                   the spinor occupation type for the second tensor axis
-     *  @param axis2_spin                   the spin component for the second tensor axis
-     *  @param axis3_type                   the spinor occupation type for the third tensor axis
-     *  @param axis3_spin                   the spin component for the third tensor axis
-     *  @param axis4_type                   the spinor occupation type for the fourth tensor axis
-     *  @param axis4_spin                   the spin component for the fourth tensor axis
-     *  @param T                            the dense representation of the tensor slice
+     *  @param axis1_type                   The spinor occupation type for the first tensor axis.
+     *  @param axis1_spin                   The spin component for the first tensor axis.
+     *  @param axis2_type                   The spinor occupation type for the second tensor axis.
+     *  @param axis2_spin                   The spin component for the second tensor axis.
+     *  @param axis3_type                   The spinor occupation type for the third tensor axis.
+     *  @param axis3_spin                   The spin component for the third tensor axis.
+     *  @param axis4_type                   The spinor occupation type for the fourth tensor axis.
+     *  @param axis4_spin                   The spin component for the fourth tensor axis.
+     *  @param T                            The dense representation of the tensor slice.
      * 
      *  @return an implicit rank-four tensor slice, according to the given occupation types and spin components.
      */
@@ -149,12 +149,12 @@ public:
      *  Create an implicit, zero-initialized, mathematical object that can serve as the representation of a object with the given occupation types.
      *  Each occupation type can belong to either the alpha or beta spin component, initializing a mixed spin mathematical object.
      * 
-     *  @tparam Scalar                      the scalar type of the elements of the implicit matrix
+     *  @tparam Scalar                      The scalar type of the elements of the implicit matrix.
      * 
-     *  @param row_type                     the spinor occupation type for the rows
-     *  @param row_spin                     the spin component for the rows
-     *  @param column_type                  the spinor occupation type for the columns
-     *  @param column_spin                  the spin component for the columns
+     *  @param row_type                     The spinor occupation type for the rows.
+     *  @param row_spin                     The spin component for the rows.
+     *  @param column_type                  The spinor occupation type for the columns.
+     *  @param column_spin                  The spin component for the columns.
      * 
      *  @return a zero-initialized implicit matrix slice, according to the given occupation types and spin components.
      */
@@ -190,16 +190,16 @@ public:
      *  Create an implicit, zero-initialized, mathematical object that can serve as the representation of a object with the given occupation types, from the dense tensor representation of a slice.
      *  Each occupation type can belong to either the alpha or beta spin component, initializing a mixed spin mathematical object.
      * 
-     *  @tparam Scalar                      the scalar type of the elements of the implicit tensor
+     *  @tparam Scalar                      The scalar type of the elements of the implicit tensor.
      * 
-     *  @param axis1_type                   the spinor occupation type for the first tensor axis
-     *  @param axis1_spin                   the spin component for the first tensor axis
-     *  @param axis2_type                   the spinor occupation type for the second tensor axis
-     *  @param axis2_spin                   the spin component for the second tensor axis
-     *  @param axis3_type                   the spinor occupation type for the third tensor axis
-     *  @param axis3_spin                   the spin component for the third tensor axis
-     *  @param axis4_type                   the spinor occupation type for the fourth tensor axis
-     *  @param axis4_spin                   the spin component for the fourth tensor axis
+     *  @param axis1_type                   The spinor occupation type for the first tensor axis.
+     *  @param axis1_spin                   The spin component for the first tensor axis.
+     *  @param axis2_type                   The spinor occupation type for the second tensor axis.
+     *  @param axis2_spin                   The spin component for the second tensor axis.
+     *  @param axis3_type                   The spinor occupation type for the third tensor axis.
+     *  @param axis3_spin                   The spin component for the third tensor axis.
+     *  @param axis4_type                   The spinor occupation type for the fourth tensor axis.
+     *  @param axis4_spin                   The spin component for the fourth tensor axis.
      * 
      *  @return a zero-initialized implicit mixed spin rank-four tensor slice, according to the given occupation types and spin components. 
      */
