@@ -34,9 +34,9 @@ void bindDysonOrbital(py::module& module) {
         // NAMED CONSTRUCTORS
 
         .def_static(
-            "calculateDysonOrbital",
+            "FromOverlap",
             [](const GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>& linear_expansion1, const GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>& linear_expansion2) {
-                return GQCP::DysonOrbital<double>::calculateDysonOrbital(linear_expansion1, linear_expansion2);
+                return GQCP::DysonOrbital<double>::FromOverlap(linear_expansion1, linear_expansion2);
             },
             py::arg("linear_expansion1"),
             py::arg("linear_expansion2"),
@@ -46,7 +46,7 @@ void bindDysonOrbital(py::module& module) {
         // PUBLIC METHODS
 
         .def(
-            "dysonAmplitudes",
+            "coefficients",
             [](const GQCP::DysonOrbital<double>& dyson_orbital) {
                 return dyson_orbital.coefficients();
             },
