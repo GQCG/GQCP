@@ -57,7 +57,7 @@ public:
      *  @param column_spin                  The spin component for the columns.
      *  @param M                            The dense representation of the matrix slice.
      * 
-     *  @return an implicit matrix slice, according to the given occupation types and spin components.
+     *  @return An implicit matrix slice, according to the given occupation types and spin components.
      */
     template <typename Scalar>
     ImplicitMatrixSlice<Scalar> createMixedRepresentableObjectFor(const OccupationType row_type, const Spin row_spin,
@@ -101,7 +101,7 @@ public:
      *  @param axis4_spin                   The spin component for the fourth tensor axis.
      *  @param T                            The dense representation of the tensor slice.
      * 
-     *  @return an implicit rank-four tensor slice, according to the given occupation types and spin components.
+     *  @return An implicit rank-four tensor slice, according to the given occupation types and spin components.
      */
     template <typename Scalar>
     ImplicitRankFourTensorSlice<Scalar> createMixedRepresentableObjectFor(const OccupationType axis1_type, const Spin axis1_spin, const OccupationType axis2_type, const Spin axis2_spin,
@@ -156,7 +156,7 @@ public:
      *  @param column_type                  The spinor occupation type for the columns.
      *  @param column_spin                  The spin component for the columns.
      * 
-     *  @return a zero-initialized implicit matrix slice, according to the given occupation types and spin components.
+     *  @return A zero-initialized implicit matrix slice, according to the given occupation types and spin components.
      */
     template <typename Scalar>
     ImplicitMatrixSlice<Scalar> initializeMixedRepresentableObjectFor(const OccupationType row_type, const Spin row_spin,
@@ -201,7 +201,7 @@ public:
      *  @param axis4_type                   The spinor occupation type for the fourth tensor axis.
      *  @param axis4_spin                   The spin component for the fourth tensor axis.
      * 
-     *  @return a zero-initialized implicit mixed spin rank-four tensor slice, according to the given occupation types and spin components. 
+     *  @return A zero-initialized implicit mixed spin rank-four tensor slice, according to the given occupation types and spin components. 
      */
     template <typename Scalar>
     ImplicitRankFourTensorSlice<Scalar> initializeMixedRepresentableObjectFor(const OccupationType axis1_type, const Spin axis1_spin, const OccupationType axis2_type, const Spin axis2_spin,
