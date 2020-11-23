@@ -377,7 +377,7 @@ public:
 
         // We need the two-electron integrals in MO basis, hence why we transform them with the coefficient matrix.
         // The ground state coefficient matrix is obtained from the QCModel.
-        const auto g = rsq_hamiltonian.twoElectron().transformed(this->coefficientMatrix());
+        const auto g = rsq_hamiltonian.twoElectron().transformed(this->expansion());
 
         // The elements (F_R)_AA and (F_R)_IJ are the eigenvalues of the one-electron Fock operator.
         // The excitationEnergies API can be used to find these values
@@ -432,7 +432,7 @@ public:
 
         // We need the two-electron integrals in MO basis, hence why we transform them with the coefficient matrix.
         // The ground state coefficient matrix is obtained from the QCModel.
-        const auto g = rsq_hamiltonian.twoElectron().transformed(this->coefficientMatrix());
+        const auto g = rsq_hamiltonian.twoElectron().transformed(this->expansion());
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object.
@@ -476,7 +476,7 @@ public:
 
         // We need the two-electron integrals in MO basis, hence why we transform them with the coefficient matrix.
         // The ground state coefficient matrix is obtained from the QCModel.
-        const auto g = rsq_hamiltonian.twoElectron().transformed(this->coefficientMatrix());
+        const auto g = rsq_hamiltonian.twoElectron().transformed(this->expansion());
 
         // The elements (F_R)_AA and (F_R)_IJ are the eigenvalues of the one-electron Fock operator.
         // The excitationEnergies API can be used to find these values
@@ -531,7 +531,7 @@ public:
 
         // We need the two-electron integrals in MO basis, hence why we transform them with the coefficient matrix.
         // The ground state coefficient matrix is obtained from the QCModel.
-        const auto g = rsq_hamiltonian.twoElectron().transformed(this->coefficientMatrix());
+        const auto g = rsq_hamiltonian.twoElectron().transformed(this->expansion());
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object.

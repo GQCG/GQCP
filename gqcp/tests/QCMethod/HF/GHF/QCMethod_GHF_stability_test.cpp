@@ -83,16 +83,17 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_2) {
     const auto sq_hamiltonian = GQCP::GSQHamiltonian<double>::Molecular(g_spinor_basis, molecule);
 
     // Create a solver and associated environment and let the QCMethod do its job.
-    GQCP::GTransformationMatrix<double> C_initial {6};
+    GQCP::SquareMatrix<double> C_initial_matrix {6};
     // We take a randomly generated matrix (from @xdvriend's implementation) as the initial guess. This makes sure the off-diagonal spin-blocks are not zero blocks and helps the calculation to converge to a true GHF solution.
     // clang-format off
-    C_initial << -0.3100721,  -0.15761163, -0.51612194, -0.38100148,  0.57090929, -0.37620802,
-                 -0.00741269,  0.38801568, -0.25974834, -0.41043789, -0.67141074, -0.40332126,
-                 -0.61961507,  0.18043708,  0.58367365,  0.17317687,  0.05464039, -0.45811451,
-                  0.67031756,  0.28266352,  0.37079814, -0.23639173,  0.37758712, -0.3671939,
-                  0.18059725, -0.8326703,   0.16282789, -0.03436191, -0.27832567, -0.41095738,
-                  0.19477298,  0.13713633, -0.4018331,   0.77416187,  0.01572939, -0.42686445;
+    C_initial_matrix << -0.3100721,  -0.15761163, -0.51612194, -0.38100148,  0.57090929, -0.37620802,
+                        -0.00741269,  0.38801568, -0.25974834, -0.41043789, -0.67141074, -0.40332126,
+                        -0.61961507,  0.18043708,  0.58367365,  0.17317687,  0.05464039, -0.45811451,
+                         0.67031756,  0.28266352,  0.37079814, -0.23639173,  0.37758712, -0.3671939,
+                         0.18059725, -0.8326703,   0.16282789, -0.03436191, -0.27832567, -0.41095738,
+                         0.19477298,  0.13713633, -0.4018331,   0.77416187,  0.01572939, -0.42686445;
     // clang-format on
+    GQCP::GTransformation<double> C_initial {C_initial_matrix};
 
     GQCP::GHFSCFEnvironment<double> environment {N, sq_hamiltonian, S, C_initial};
     auto solver = GQCP::GHFSCFSolver<double>::Plain(1.0e-08, 4000);

@@ -369,7 +369,7 @@ public:
         // We need the two-electron integrals in MO basis, hence why we transform them with the coefficient matrix.
         // The ground state coefficient matrix is obtained from the QCModel.
         // We need the anti-symmetrized tensor: (AI||JB) = (AI|JB) - (AB|JI). This is obtained by the `.antisymmetrized()` method.
-        const auto g = gsq_hamiltonian.twoElectron().transformed(this->coefficientMatrix()).antisymmetrized().parameters();
+        const auto g = gsq_hamiltonian.twoElectron().transformed(this->expansion()).antisymmetrized().parameters();
 
         // The elements F_BA and F_IJ are the eigenvalues of the one-electron Fock operator.
         // The excitationEnergies API can be used to find these values
@@ -425,7 +425,7 @@ public:
         // We need the two-electron integrals in MO basis, hence why we transform them with the coefficient matrix.
         // The ground state coefficient matrix is obtained from the QCModel.
         // We need the anti-symmetrized tensor: (AI||BJ) = (AI|BJ) - (AJ|BI). This is obtained by the `.antisymmetrized()` method.
-        const auto g = gsq_hamiltonian.twoElectron().transformed(this->coefficientMatrix()).antisymmetrized().parameters();
+        const auto g = gsq_hamiltonian.twoElectron().transformed(this->expansion()).antisymmetrized().parameters();
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object.
