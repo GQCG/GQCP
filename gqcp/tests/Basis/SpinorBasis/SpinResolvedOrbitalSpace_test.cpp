@@ -81,7 +81,7 @@ BOOST_AUTO_TEST_CASE(mixed_matrix) {
     const GQCP::OrbitalSpace orbital_space_b {occupied_indices_b, virtual_indices_b};
     const GQCP::SpinResolvedOrbitalSpace orbital_space {orbital_space_a, orbital_space_b};
 
-    // Zero-nitialize a mixed spin matrix object.
+    // Zero-initialize a mixed spin matrix object.
     const auto M = orbital_space.initializeMixedRepresentableObjectFor<double>(occ, alpha, virt, beta);
 
     // Test whether the dimensions of the mixed object match the correct number of indices of the chosen occupation type and spin.

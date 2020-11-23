@@ -417,7 +417,7 @@ public:
 
 
     /**
-     *  @return the implicit alpha and beta occupied-virtual orbital spaces that are associated to these UHF model parameters
+     *  @return The implicit alpha and beta occupied-virtual orbital spaces that are associated to these UHF model parameters.
      */
     SpinResolvedOrbitalSpace orbitalSpace() const { return UHF<Scalar>::orbitalSpace(this->numberOfSpinOrbitals(Spin::alpha), this->numberOfElectrons(Spin::alpha),
                                                                                      this->numberOfSpinOrbitals(Spin::beta), this->numberOfElectrons(Spin::beta)); }

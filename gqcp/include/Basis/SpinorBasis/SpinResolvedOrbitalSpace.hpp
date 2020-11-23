@@ -30,8 +30,6 @@ namespace GQCP {
  */
 class SpinResolvedOrbitalSpace:
     public SpinResolvedBase<OrbitalSpace, SpinResolvedOrbitalSpace> {
-
-
 public:
     /*
      *  MARK: Constructors
@@ -163,7 +161,7 @@ public:
                                                                       const OccupationType column_type, const Spin column_spin) const {
 
         // Prepare the necessary members for the other method.
-        // Determine the dimension of the matrix rows
+        // Determine the dimension of the matrix rows.
         size_t rows {};
         if (row_spin == Spin::alpha) {
             rows = this->alpha().numberOfOrbitals(row_type);
@@ -171,7 +169,7 @@ public:
             rows = this->beta().numberOfOrbitals(row_type);
         }
 
-        // determine the dimension of the matrix columns.
+        // Determine the dimension of the matrix columns.
         size_t columns {};
         if (column_spin == Spin::alpha) {
             columns = this->alpha().numberOfOrbitals(column_type);
@@ -211,7 +209,7 @@ public:
         // The spin component of each axis determines from which of the two internal OrbitalSpace members the orbitals of the chosen occupation type are used.
 
         // Determine the spin component and dimension of the first axis.
-        int axis1_dimension;
+        int axis1_dimension;  // Need an `int` because a `Tensor` requires it.
         if (axis1_spin == Spin::alpha) {
             axis1_dimension = this->alpha().numberOfOrbitals(axis1_type);
         } else {
