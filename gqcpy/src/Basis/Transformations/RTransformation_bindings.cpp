@@ -15,13 +15,10 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Basis/Transformations/RTransformation.hpp"
-#include "Basis/Transformations/transform.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
-#include <pybind11/stl.h>
 
 
 namespace py = pybind11;
@@ -29,17 +26,31 @@ namespace py = pybind11;
 
 namespace gqcpy {
 
+using namespace GQCP;
 
-void bindBasisTransform(py::module& module) {
 
-    module.def(
-        "transform",
-        [](const Eigen::MatrixXd& T, GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis, GQCP::RSQHamiltonian<double>& sq_hamiltonian) {
-            GQCP::transform(GQCP::RTransformation<double> {T}, spinor_basis, sq_hamiltonian);
-        },
-        py::arg("T"),
-        py::arg("spinor_basis"),
-        py::arg("sq_hamiltonian"));
+void bindRTransformation(py::module& module) {
+
+    py::class_<RTransformation<double>>(module, "RTransformation", "A 'restricted' basis transformation, i.e. a spin-orbital basis transformation where the transformation is applied equally to the alpha- and beta-spin-orbitals.")
+
+
+        /*
+         *  MARK: Constructors
+         */
+
+        .def(py::init<>([](const Eigen::MatrixXd& T) {
+                 return RTransformation<double> {T};
+             }),
+             py::arg("T"))
+
+
+        /*
+         *  MARK: Transformation matrix
+         */
+
+        .def("matrix",
+             &RTransformation<double>::matrix,
+             "Return the transformation matrix that collects the expansion coefficients of the new basis (vectors) in the old basis as columns.");
 }
 
 

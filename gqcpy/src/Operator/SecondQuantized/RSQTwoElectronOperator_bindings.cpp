@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
+#include "Operator/SecondQuantized/RSQTwoElectronOperator.hpp"
 #include "gqcpy/include/utilities.hpp"
 
 #include <pybind11/eigen.h>
@@ -27,25 +27,27 @@ namespace py = pybind11;
 
 namespace gqcpy {
 
+using namespace GQCP;
 
-void bindSQTwoElectronOperator(py::module& module) {
-    py::class_<GQCP::SQTwoElectronOperator<double, 1>>(module, "SQTwoElectronOperator", "A class that represents a real, second-quantized two-electron operator")
+
+void bindRSQTwoElectronOperator(py::module& module) {
+    py::class_<ScalarRSQTwoElectronOperator<double>>(module, "ScalarRSQTwoElectronOperator", "A class that represents a real, scalar, second-quantized two-electron operator.")
 
         // PUBLIC METHODS
 
-        .def(
-            "calculateExpectationValue",
-            [](const GQCP::SQTwoElectronOperator<double, 1>& op, const Eigen::Tensor<double, 4>& d) {  // use an itermediary Eigen Tensor for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Tensor
-                return op.calculateExpectationValue(GQCP::TwoDM<double> {d});
-            },
-            "Return the expectation value of the scalar two-electron operator given a 2-DM.")
+        // .def(
+        //     "calculateExpectationValue",
+        //     [](const ScalarRSQTwoElectronOperator<double>& op, const Eigen::Tensor<double, 4>& d) {  // use an itermediary Eigen Tensor for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Tensor
+        //         return op.calculateExpectationValue(TwoDM<double> {d});
+        //     },
+        //     "Return the expectation value of the scalar two-electron operator given a 2-DM.")
 
         .def(
             "parameters",
-            [](const GQCP::SQTwoElectronOperator<double, 1>& op) {
+            [](const ScalarRSQTwoElectronOperator<double>& op) {
                 return asNumpyArray(op.parameters().Eigen());
             },
-            "Return the integrals encapsulated by the second-quantized two-electron operator");
+            "Return the integrals encapsulated by the second-quantized two-electron operator.");
 }
 
 
