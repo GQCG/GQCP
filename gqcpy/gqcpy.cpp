@@ -103,6 +103,7 @@ void bindOrbital2DM(py::module& module);
 
 // Processing - Properties
 void bindDOCIElectricalResponseSolver(py::module& module);
+void bindDysonOrbital(py::module& module);
 void bindRHFElectricalResponseSolver(py::module& module);
 void bindvAP1roGElectricalResponseSolver(py::module& module);
 
@@ -269,6 +270,7 @@ PYBIND11_MODULE(gqcpy, module) {
 
     // Processing - Properties
     // gqcpy::bindDOCIElectricalResponseSolver(module);
+    gqcpy::bindDysonOrbital(module);
     gqcpy::bindRHFElectricalResponseSolver(module);
     gqcpy::bindvAP1roGElectricalResponseSolver(module);
 

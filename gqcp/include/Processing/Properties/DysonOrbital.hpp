@@ -60,7 +60,7 @@ public:
      *  @param linear_expansion1        A wave function in a spin-unresolved ONV basis.
      *  @param linear_expansion2        A wave function in a spin-unresolved ONV basis containing one fewer electron and the same number of orbitals that is expressed in the same basis
      *
-     *  @return a vector with the Dyson orbital amplitudes
+     *  @return A Dyson orbital containing Dyson amplitudes.
      */
     static DysonOrbital<Scalar> calculateDysonOrbital(const LinearExpansion<SpinResolvedONVBasis>& linear_expansion1, const LinearExpansion<SpinResolvedONVBasis>& linear_expansion2) {
 
