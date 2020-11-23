@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/Transformations/GTransformationMatrix.hpp"
+#include "Basis/Transformations/GTransformation.hpp"
 #include "DensityMatrix/DensityMatrixTraits.hpp"
 #include "DensityMatrix/Simple1DM.hpp"
 
@@ -62,8 +62,8 @@ public:
 template <typename Scalar>
 struct DensityMatrixTraits<G1DM<Scalar>> {
 public:
-    // The type of transformation matrix that is naturally related to a `G1DM`.
-    using TM = GTransformationMatrix<Scalar>;
+    // The type of transformation that is naturally related to a `G1DM`.
+    using Transformation = GTransformation<Scalar>;
 };
 
 

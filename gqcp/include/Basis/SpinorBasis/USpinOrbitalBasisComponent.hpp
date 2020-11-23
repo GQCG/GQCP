@@ -21,7 +21,7 @@
 #include "Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp"
 #include "Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp"
 #include "Basis/Transformations/JacobiRotation.hpp"
-#include "Basis/Transformations/UTransformationMatrixComponent.hpp"
+#include "Basis/Transformations/UTransformationComponent.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp"
 
 
@@ -83,7 +83,7 @@ public:
         const auto f_par = IntegralCalculator::calculateLibintIntegrals(fq_one_op, this->scalarBasis());  // Currently f is expressed in the AO basis. 'par' for 'parameters'
 
         ResultOperator f {f_par};
-        f.transform(this->coefficientMatrix());  // Now, f is expressed in the spin-orbital basis.
+        f.transform(this->expansion());  // Now, f is expressed in the spin-orbital basis.
         return f;
     }
 
@@ -104,7 +104,7 @@ public:
         // FIXME: Try to move this API to SimpleSpinOrbitalBasis.
 
         const auto ao_indices = this->scalarBasis().basisFunctionIndices(selector);
-        return UMullikenPartitioningComponent<ExpansionScalar> {ao_indices, this->coefficientMatrix()};
+        return UMullikenPartitioningComponent<ExpansionScalar> {ao_indices, this->expansion()};
     }
 
 
@@ -120,7 +120,7 @@ public:
         // FIXME: Try to move this API to SimpleSpinOrbitalBasis.
 
         const auto ao_indices = this->scalarBasis().basisFunctionIndices(selector);
-        return UMullikenPartitioningComponent<ExpansionScalar> {ao_indices, this->coefficientMatrix()};
+        return UMullikenPartitioningComponent<ExpansionScalar> {ao_indices, this->expansion()};
     }
 };
 
@@ -135,8 +135,8 @@ public:
 template <typename ExpansionScalar, typename Shell>
 struct SpinorBasisTraits<USpinOrbitalBasisComponent<ExpansionScalar, Shell>> {
 
-    // The type of transformation matrix that is naturally related to a `USpinOrbitalBasisComponent`.
-    using TM = UTransformationMatrixComponent<ExpansionScalar>;  // TODO: Rename to TransformationMatrix once the class is gone
+    // The type of transformation that is naturally related to a `USpinOrbitalBasisComponent`.
+    using Transformation = UTransformationComponent<ExpansionScalar>;
 
     // The second-quantized representation of the overlap operator related to a `USpinOrbitalBasisComponent`.
     using SQOverlapOperator = ScalarUSQOneElectronOperatorComponent<ExpansionScalar>;
@@ -153,8 +153,8 @@ struct SpinorBasisTraits<USpinOrbitalBasisComponent<ExpansionScalar, Shell>> {
 template <typename _ExpansionScalar, typename _Shell>
 struct BasisTransformableTraits<USpinOrbitalBasisComponent<_ExpansionScalar, _Shell>> {
 
-    // The type of transformation matrix that is naturally related to a `USpinOrbitalBasisComponent`.
-    using TM = UTransformationMatrixComponent<_ExpansionScalar>;
+    // The type of transformation that is naturally related to a `USpinOrbitalBasisComponent`.
+    using Transformation = UTransformationComponent<_ExpansionScalar>;
 };
 
 

@@ -23,7 +23,7 @@
 #include "Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp"
 #include "Basis/SpinorBasis/Spinor.hpp"
 #include "Basis/Transformations/JacobiRotation.hpp"
-#include "Basis/Transformations/RTransformationMatrix.hpp"
+#include "Basis/Transformations/RTransformation.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "Operator/SecondQuantized/EvaluatableScalarRSQOneElectronOperator.hpp"
@@ -55,8 +55,8 @@ public:
     // The type of the base spinor basis.
     using BaseSpinorBasis = SimpleSpinorBasis<_ExpansionScalar, RSpinOrbitalBasis<_ExpansionScalar, _Shell>>;
 
-    // The type of transformation matrix that is naturally related to a GSpinorBasis.
-    using TM = RTransformationMatrix<ExpansionScalar>;  // TODO: Rename to TransformationMatrix once the class is gone
+    // The type of transformation that is naturally related to an `RSpinOrbitalBasis`.
+    using Transformation = RTransformation<ExpansionScalar>;
 
     // The type that is used for representing the primitive for a basis function of this spin-orbital basis' underlying AO basis.
     using Primitive = typename Shell::Primitive;
@@ -118,8 +118,8 @@ public:
 
         const auto one_op_par = IntegralCalculator::calculateLibintIntegrals(fq_one_op, this->scalarBasis());  // in AO/scalar basis
 
-        ResultOperator op {one_op_par};           // op for 'operator'
-        op.transform(this->coefficientMatrix());  // now in the spatial/spin-orbital basis
+        ResultOperator op {one_op_par};   // op for 'operator'
+        op.transform(this->expansion());  // now in the spatial/spin-orbital basis
         return op;
     }
 
@@ -136,8 +136,8 @@ public:
 
         const auto one_op_par = IntegralCalculator::calculateLibintIntegrals(fq_op, this->scalarBasis());  // in AO/scalar basis
 
-        ResultOperator op {one_op_par};           // op for 'operator'
-        op.transform(this->coefficientMatrix());  // now in spatial/spin-orbital basis
+        ResultOperator op {one_op_par};   // op for 'operator'
+        op.transform(this->expansion());  // now in spatial/spin-orbital basis
         return op;
     }
 
@@ -191,7 +191,7 @@ public:
             // Calculate the spatial orbitals as a contraction between a column of the coefficient matrix and the basis functions.
             SpatialOrbital spatial_orbital {};
             for (size_t mu = 0; mu < basis_functions.size(); mu++) {
-                const auto coefficient = this->C.col(p)(mu);
+                const auto coefficient = this->expansion().matrix().col(p)(mu);
                 const auto& function = basis_functions[mu];
                 spatial_orbital.append({coefficient}, {function});
             }
@@ -241,7 +241,7 @@ public:
     RMullikenPartitioning<ExpansionScalar> mullikenPartitioning(const std::function<bool(const BasisFunction&)>& selector) const {
 
         const auto ao_indices = this->scalarBasis().basisFunctionIndices(selector);
-        return RMullikenPartitioning<ExpansionScalar> {ao_indices, this->coefficientMatrix()};
+        return RMullikenPartitioning<ExpansionScalar> {ao_indices, this->expansion()};
     }
 
 
@@ -255,7 +255,7 @@ public:
     RMullikenPartitioning<ExpansionScalar> mullikenPartitioning(const std::function<bool(const Shell&)>& selector) const {
 
         const auto ao_indices = this->scalarBasis().basisFunctionIndices(selector);
-        return RMullikenPartitioning<ExpansionScalar> {ao_indices, this->coefficientMatrix()};
+        return RMullikenPartitioning<ExpansionScalar> {ao_indices, this->expansion()};
     }
 };
 
@@ -279,8 +279,8 @@ struct SpinorBasisTraits<RSpinOrbitalBasis<_ExpansionScalar, _Shell>> {
     // The scalar type used to represent an expansion coefficient of the spinors in the underlying scalar orbitals: real or complex.
     using ExpansionScalar = _ExpansionScalar;
 
-    // The type of transformation matrix that is naturally related to an RSpinOrbitalBasis.
-    using TM = RTransformationMatrix<ExpansionScalar>;  // TODO: Rename to TransformationMatrix once the class is gone
+    // The type of transformation that is naturally related to an `RSpinOrbitalBasis`.
+    using Transformation = RTransformation<ExpansionScalar>;
 
     // The second-quantized representation of the overlap operator related to an RSpinOrbitalBasis.
     using SQOverlapOperator = ScalarRSQOneElectronOperator<ExpansionScalar>;
@@ -297,8 +297,8 @@ struct SpinorBasisTraits<RSpinOrbitalBasis<_ExpansionScalar, _Shell>> {
 template <typename _ExpansionScalar, typename _Shell>
 struct BasisTransformableTraits<RSpinOrbitalBasis<_ExpansionScalar, _Shell>> {
 
-    // The type of transformation matrix that is naturally related to an `RSpinOrbitalBasis`.
-    using TM = RTransformationMatrix<_ExpansionScalar>;
+    // The type of transformation that is naturally related to an `RSpinOrbitalBasis`.
+    using Transformation = RTransformation<_ExpansionScalar>;
 };
 
 

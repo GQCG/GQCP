@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/Transformations/GTransformationMatrix.hpp"
+#include "Basis/Transformations/GTransformation.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "QuantumChemical/SpinResolved.hpp"
 
@@ -45,7 +45,7 @@ private:
     std::vector<size_t> m_indices;
 
     // The transformation that relates the atomic spinors to the set of current generalized spinors.
-    GTransformationMatrix<Scalar> C;
+    GTransformation<Scalar> C;
 
 
 public:
@@ -59,7 +59,7 @@ public:
      *  @param indices          A set of indices that correspond to the AOs that are included in the Mulliken-partitioning of an AO basis. They are equal for the alpha- and beta-underlying scalar bases.
      *  @param C                The transformation that relates the atomic spinors to the set of current generalized spinors.
      */
-    GMullikenPartitioning(const std::vector<size_t>& indices, const GTransformationMatrix<Scalar>& C) :
+    GMullikenPartitioning(const std::vector<size_t>& indices, const GTransformation<Scalar>& C) :
         m_indices {indices},
         C {C} {}
 
@@ -104,11 +104,11 @@ public:
 
 
     /**
-     *  @return The Mulliken projection matrix defined as C^{-1} P_A C, where C is the transformation matrix and P_A is the partition matrix.
+     *  @return The Mulliken projection, defined as C^{-1} P_A C, where C is the transformation matrix and P_A is the partition matrix.
      * 
      *  @note We are aware that this formula is duplicate code (see `RMullikenPartitioning`), but it isn't worth (yet) to refactor this common functionality into a base class.
      */
-    GTransformationMatrix<Scalar> projectionMatrix() const { return this->C.inverse() * this->partitionMatrix() * this->C; }
+    GTransformation<Scalar> projectionMatrix() const { return GTransformation<Scalar> {this->C.inverse().matrix() * this->partitionMatrix() * this->C.matrix()}; }
 };
 
 

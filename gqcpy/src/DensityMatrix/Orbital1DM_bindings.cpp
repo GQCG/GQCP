@@ -35,7 +35,7 @@ void bindOrbital1DM(py::module& module) {
         .def(
             "transformed",
             [](const Eigen::MatrixXd& D, const Eigen::MatrixXd& T) {
-                return GQCP::Orbital1DM<double> {D}.transformed(GQCP::RTransformationMatrix<double> {T});
+                return GQCP::Orbital1DM<double> {D}.transformed(GQCP::RTransformation<double> {T});
             },
             py::arg("T"),
             "Return the transformed density matrix.");

@@ -83,54 +83,31 @@ GQCP::ScalarRSQTwoElectronOperator<double> calculateToyTwoElectronIntegrals() {
  *  UNIT TESTS - CONSTRUCTORS
  */
 
-BOOST_AUTO_TEST_CASE(HamiltonianParameters_constructor) {
 
-    // Create the spinor basis basis
-    auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {water, "STO-3G"};
+/**
+ *  Check if the constructor works as expected.
+ */
+BOOST_AUTO_TEST_CASE(constructor) {
 
+    const size_t K = 3;
 
-    // Create one- and two-electron operators and a transformation matrix with compatible dimensions
-    size_t K = spinor_basis.numberOfSpatialOrbitals();
-    GQCP::SquareMatrix<double> H_core = GQCP::SquareMatrix<double>::Random(K);
-
-    GQCP::SquareRankFourTensor<double> g {K};
-    g.setRandom();
+    // Create one- and two-electron operators with compatible dimensions.
+    const auto h_core = GQCP::ScalarRSQOneElectronOperator<double>::Random(K);
+    const auto g = GQCP::ScalarRSQTwoElectronOperator<double>::Random(K);
 
 
-    // Check if a correct constructor works
-    GQCP::RSQHamiltonian<double> sq_hamiltonian {GQCP::ScalarRSQOneElectronOperator<double>(H_core), GQCP::ScalarRSQTwoElectronOperator<double>(g)};
+    // Check if a correct constructor works.
+    BOOST_CHECK_NO_THROW(GQCP::RSQHamiltonian<double> sq_hamiltonian(h_core, g));
 
 
-    // Check if wrong arguments result in a throw
-    GQCP::SquareMatrix<double> H_core_faulty = GQCP::SquareMatrix<double>::Random(K + 1);
-    GQCP::SquareRankFourTensor<double> g_faulty {K + 1};
+    // Check if wrong arguments result in a throw.
+    const auto h_core_faulty = GQCP::ScalarRSQOneElectronOperator<double>::Random(K + 1);
+    const auto g_faulty = GQCP::ScalarRSQTwoElectronOperator<double>::Random(K + 1);
 
+    BOOST_CHECK_THROW(GQCP::RSQHamiltonian<double> sq_hamiltonian(h_core, g_faulty), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::RSQHamiltonian<double> sq_hamiltonian(h_core_faulty, g), std::invalid_argument);
 
-    BOOST_CHECK_THROW(GQCP::RSQHamiltonian<double> sq_hamiltonian({GQCP::ScalarRSQOneElectronOperator<double>(H_core_faulty), GQCP::ScalarRSQTwoElectronOperator<double>(g)}), std::invalid_argument);
-    BOOST_CHECK_THROW(GQCP::RSQHamiltonian<double> sq_hamiltonian({GQCP::ScalarRSQOneElectronOperator<double>(H_core), GQCP::ScalarRSQTwoElectronOperator<double>(g_faulty)}), std::invalid_argument);
-}
-
-
-BOOST_AUTO_TEST_CASE(rotate_argument) {
-
-    // Create a well-behaved Hamiltonian
-    size_t K = 3;
-    GQCP::SquareMatrix<double> H_op = GQCP::SquareMatrix<double>::Random(K);
-    GQCP::SquareRankFourTensor<double> g_op {K};
-    g_op.setRandom();
-
-    GQCP::RSQHamiltonian<double> sq_hamiltonian {GQCP::ScalarRSQOneElectronOperator<double>(H_op), GQCP::ScalarRSQTwoElectronOperator<double>(g_op)};
-
-
-    // Check if we can't rotate with a non-unitary matrix
-    GQCP::TransformationMatrix<double> T {K};
-    // clang-format off
-    T << 0.5, 0.5, -2.0,
-         3.0, 0.0,  1.5,
-         0.0, 0.0,  2.5;
-    // clang-format on
-    BOOST_CHECK_THROW(sq_hamiltonian.rotate(T), std::invalid_argument);
+    BOOST_CHECK_NO_THROW(GQCP::RSQHamiltonian<double> sq_hamiltonian(h_core_faulty, g_faulty));
 }
 
 

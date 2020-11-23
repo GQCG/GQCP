@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/Transformations/UTransformationMatrix.hpp"
+#include "Basis/Transformations/UTransformation.hpp"
 #include "DensityMatrix/G1DM.hpp"
 #include "DensityMatrix/Orbital1DM.hpp"
 #include "DensityMatrix/SpinDensity1DM.hpp"
@@ -44,8 +44,8 @@ public:
     // The scalar type of one of the density matrix elements: real or complex.
     using Scalar = _Scalar;
 
-    // The type of the transformation matrix that is naturally related to SpinResolved1DM.
-    using TM = UTransformationMatrix<Scalar>;
+    // The type of the transformation that is naturally related to a `SpinResolved1DM`.
+    using Transformation = UTransformation<Scalar>;
 
     // The type of 'this'.
     using Self = SpinResolved1DM<Scalar>;
@@ -146,17 +146,17 @@ public:
     /**
      *  Apply the basis transformation and return the result.
      * 
-     *  @param transformation_matrix        The type that encapsulates the basis transformation coefficients.
+     *  @param T        The basis transformation.
      * 
      *  @return The basis-transformed object.
      */
-    SpinResolved1DM<Scalar> transformed(const UTransformationMatrix<Scalar>& transformation_matrix) const override {
+    SpinResolved1DM<Scalar> transformed(const UTransformation<Scalar>& T) const override {
 
         auto result = *this;
 
-        // Transform the components with the components of the transformation matrix.
-        result.alpha().transform(transformation_matrix.alpha());
-        result.beta().transform(transformation_matrix.beta());
+        // Transform the components of the 1-DM with the components of the transformation.
+        result.alpha().transform(T.alpha());
+        result.beta().transform(T.beta());
 
         return result;
     }
@@ -202,8 +202,8 @@ public:
 template <typename Scalar>
 struct BasisTransformableTraits<SpinResolved1DM<Scalar>> {
 
-    // The type of the transformation matrix that is naturally related to SpinResolved1DM.
-    using TM = UTransformationMatrix<Scalar>;
+    // The type of the transformation that is naturally related to a `SpinResolved1DM`.
+    using Transformation = UTransformation<Scalar>;
 };
 
 

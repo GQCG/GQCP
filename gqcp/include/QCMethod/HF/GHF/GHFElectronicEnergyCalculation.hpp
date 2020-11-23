@@ -29,7 +29,7 @@ namespace GQCP {
 /**
  *  An iteration step that calculates the current electronic GHF energy.
  * 
- *  @tparam _Scalar              the scalar type used to represent the expansion coefficient/elements of the transformation matrix
+ *  @tparam _Scalar              The scalar type used to represent the expansion coefficient/elements of the transformation matrix.
  */
 template <typename _Scalar>
 class GHFElectronicEnergyCalculation:
@@ -60,9 +60,9 @@ public:
      */
     void execute(Environment& environment) override {
 
-        const auto& P = environment.density_matrices.back();                             // the most recent density matrix
+        const auto& P = environment.density_matrices.back();                              // the most recent density matrix
         const ScalarGSQOneElectronOperator<Scalar> F {environment.fock_matrices.back()};  // the most recent Fock matrix
-        const auto& H_core = environment.sq_hamiltonian.core();                          // the core Hamiltonian matrix
+        const auto& H_core = environment.sq_hamiltonian.core();                           // the core Hamiltonian matrix
 
         const auto E_electronic = QCModel::GHF<double>::calculateElectronicEnergy(P, H_core, F);
         environment.electronic_energies.push_back(E_electronic);

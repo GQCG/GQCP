@@ -16,6 +16,7 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Basis/ScalarBasis/GTOShell.hpp"
+#include "Basis/Transformations/RTransformation.hpp"
 #include "Basis/Transformations/transform.hpp"
 
 #include <pybind11/eigen.h>
@@ -32,13 +33,13 @@ namespace gqcpy {
 void bindBasisTransform(py::module& module) {
 
     module.def(
-        "basisTransform",
-        [](GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis, GQCP::RSQHamiltonian<double>& sq_hamiltonian, const Eigen::MatrixXd& T) {
-            GQCP::basisTransform(spinor_basis, sq_hamiltonian, GQCP::TransformationMatrix<double> {T});
+        "transform",
+        [](const Eigen::MatrixXd& T, GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis, GQCP::RSQHamiltonian<double>& sq_hamiltonian) {
+            GQCP::transform(GQCP::RTransformation<double> {T}, spinor_basis, sq_hamiltonian);
         },
+        py::arg("T"),
         py::arg("spinor_basis"),
-        py::arg("sq_hamiltonian"),
-        py::arg("T"));
+        py::arg("sq_hamiltonian"));
 }
 
 

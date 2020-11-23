@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/Transformations/RTransformationMatrix.hpp"
+#include "Basis/Transformations/RTransformation.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 
 #include <unsupported/Eigen/MatrixFunctions>
@@ -28,7 +28,7 @@ namespace GQCP {
 
 
 /**
- *  A class that represents the orbital rotation generators kappa
+ *  The real singlet orbital rotation generators kappa.
  */
 class OrbitalRotationGenerators {
 private:
@@ -76,9 +76,9 @@ public:
     const VectorX<double>& asVector() const { return this->kappa_vector; }
 
     /**
-     *  @return the unitary matrix that corresponds to these orbital rotation generators, i.e. exp(-kappa)
+     *  @return The unitary transformation corresponds to these orbital rotation generators, i.e. exp(-kappa).
      */
-    RTransformationMatrix<double> calculateRotationMatrix() const { return RTransformationMatrix<double> {(-this->asMatrix()).exp()}; }
+    RTransformation<double> rotation() const { return RTransformation<double> {(-this->asMatrix()).exp()}; }
 
     /*
      *  @return the number of spatial orbitals that can be rotated using these orbital rotation generators

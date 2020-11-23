@@ -15,11 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#define BOOST_TEST_MODULE "SimpleTransformationMatrix"
+#define BOOST_TEST_MODULE "SimpleTransformation"
 
 #include <boost/test/unit_test.hpp>
 
-#include "Basis/Transformations/RTransformationMatrix.hpp"
+#include "Basis/Transformations/RTransformation.hpp"
 
 #include <boost/math/constants/constants.hpp>
 
@@ -31,8 +31,8 @@ BOOST_AUTO_TEST_CASE(jacobi_rotation) {
 
     const size_t dim = 3;
 
-    // Set up an identity transformation matrix.
-    GQCP::RTransformationMatrix<double> T = GQCP::SquareMatrix<double>::Identity(dim);
+    // Set up an identity transformation.
+    GQCP::RTransformation<double> T = GQCP::SquareMatrix<double>::Identity(dim);
     const GQCP::JacobiRotation jacobi {1, 0, boost::math::constants::half_pi<double>()};
 
 
@@ -47,54 +47,57 @@ BOOST_AUTO_TEST_CASE(jacobi_rotation) {
 
     // Check the in-place and the returning methods.
     const auto T_transformed = T.rotated(jacobi);
-    BOOST_CHECK(T_transformed.isApprox(T_rotated_ref, 1.0e-12));
+    BOOST_CHECK(T_transformed.matrix().isApprox(T_rotated_ref, 1.0e-12));
 
     T.rotate(jacobi);
-    BOOST_CHECK(T.isApprox(T_rotated_ref, 1.0e-12));
+    BOOST_CHECK(T.matrix().isApprox(T_rotated_ref, 1.0e-12));
 }
 
 
 /**
- *  Check if Jacobi transformation matrices are unitary.
+ *  Check if Jacobi transformations are unitary.
  */
 BOOST_AUTO_TEST_CASE(FromJacobi_unitary) {
 
-    BOOST_CHECK(GQCP::RTransformationMatrix<double>::FromJacobi(GQCP::JacobiRotation(7, 4, 6.9921), 10).isUnitary());
-    BOOST_CHECK(GQCP::RTransformationMatrix<double>::FromJacobi(GQCP::JacobiRotation(9, 1, 78.00166), 22).isUnitary());
+    BOOST_CHECK(GQCP::RTransformation<double>::FromJacobi(GQCP::JacobiRotation(7, 4, 6.9921), 10).isUnitary());
+    BOOST_CHECK(GQCP::RTransformation<double>::FromJacobi(GQCP::JacobiRotation(9, 1, 78.00166), 22).isUnitary());
 }
 
 
 /**
- *  Check if the 'product' of two transformation matrices behaves as expected.
+ *  Check if the concatenation of two transformations behaves as expected.
  */
 BOOST_AUTO_TEST_CASE(transform) {
 
     // Create two transformation matrices.
-    GQCP::RTransformationMatrix<double> T1 {2};
+    GQCP::SquareMatrix<double> T1_matrix {2};
     // clang-format off
-    T1 << 1.0, 0.0,
-          1.0, 3.0;
+    T1_matrix << 1.0, 0.0,
+                 1.0, 3.0;
     // clang-format on
+    GQCP::RTransformation<double> T1 {T1_matrix};
 
-    GQCP::RTransformationMatrix<double> T2 {2};
+    GQCP::SquareMatrix<double> T2_matrix {2};
     // clang-format off
-    T2 << 1.0, 2.0,
-          3.0, 4.0;
+    T2_matrix << 1.0, 2.0,
+                 3.0, 4.0;
     // clang-format on
+    GQCP::RTransformation<double> T2 {T2_matrix};
 
 
     // Set up and check the expected result
-    GQCP::RTransformationMatrix<double> T_total_ref {2};
+    GQCP::SquareMatrix<double> T_total_ref_matrix {2};
     // clang-format off
-    T_total_ref <<  1.0,  2.0,
-                   10.0, 14.0;
+    T_total_ref_matrix <<  1.0,  2.0,
+                          10.0, 14.0;
     // clang-format on
+    GQCP::RTransformation<double> T_total_ref {T_total_ref_matrix};
 
 
     // Check the in-place and the returning methods.
     const auto T_total = T1.transformed(T2);
-    BOOST_CHECK(T_total.isApprox(T_total_ref, 1.0e-12));
+    BOOST_CHECK(T_total.matrix().isApprox(T_total_ref.matrix(), 1.0e-12));
 
     T1.transform(T2);
-    BOOST_CHECK(T1.isApprox(T_total_ref, 1.0e-12));
+    BOOST_CHECK(T1.matrix().isApprox(T_total_ref.matrix(), 1.0e-12));
 }

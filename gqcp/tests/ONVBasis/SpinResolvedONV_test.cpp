@@ -98,7 +98,7 @@ BOOST_AUTO_TEST_CASE(RHF_UHF_overlap) {
 
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
-    r_spinor_basis.transform(rhf_parameters.coefficientMatrix());
+    r_spinor_basis.transform(rhf_parameters.expansion());
 
 
     // Convert the RSpinOrbitalBasis into an USpinOrbitalBasis, yielding an unrestricted spin-orbital basis where C_alpha == C_beta.
@@ -106,8 +106,8 @@ BOOST_AUTO_TEST_CASE(RHF_UHF_overlap) {
 
 
     // Check if the UHF determinant has overlap 1 with the corresponding RHF determinant, and overlap 0 with the excitations on top of the RHF reference.
-    const auto& C_restricted = rhf_parameters.coefficientMatrix();
-    const auto C_unrestricted = GQCP::UTransformationMatrix<double>::FromRestricted(C_restricted);
+    const auto& C_restricted = rhf_parameters.expansion();
+    const auto C_unrestricted = GQCP::UTransformation<double>::FromRestricted(C_restricted);
 
     const auto uhf_determinant = GQCP::SpinResolvedONV::UHF(K, N_P, N_P);
 

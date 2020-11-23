@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/Transformations/UTransformationMatrixComponent.hpp"
+#include "Basis/Transformations/UTransformationComponent.hpp"
 #include "DensityMatrix/SpinResolved1DMComponent.hpp"
 #include "DensityMatrix/SpinResolved2DMComponent.hpp"
 #include "Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp"
@@ -92,16 +92,16 @@ struct OperatorTraits<PureUSQTwoElectronOperatorComponent<Scalar, Vectorizer>> {
     // A type that corresponds to the scalar version of the associated component of an unrestricted two-electron operator type.
     using ScalarOperator = ScalarPureUSQTwoElectronOperatorComponent<Scalar>;
 
-    // The type of one-electron operator that is naturally related to a restricted two-electron operator.
+    // The type of one-electron operator that is naturally related to a unrestricted two-electron operator.
     using SQOneElectronOperator = USQOneElectronOperatorComponent<Scalar, Vectorizer>;
 
-    // The type of transformation matrix that is naturally associated to a component of an unestricted two-electron operator.
-    using TM = UTransformationMatrixComponent<Scalar>;
+    // The type of transformation that is naturally associated to a component of an unrestricted two-electron operator.
+    using Transformation = UTransformationComponent<Scalar>;
 
-    // The type of the one-particle density matrix that is naturally associated a component of an unestricted two-electron operator.
+    // The type of the one-particle density matrix that is naturally associated a component of an unrestricted two-electron operator.
     using OneDM = SpinResolved1DMComponent<Scalar>;
 
-    // The type of the two-particle density matrix that is naturally associated a component of an unestricted two-electron operator.
+    // The type of the two-particle density matrix that is naturally associated a component of an unrestricted two-electron operator.
     using TwoDM = SpinResolved2DMComponent<Scalar>;
 };
 
@@ -116,8 +116,8 @@ struct OperatorTraits<PureUSQTwoElectronOperatorComponent<Scalar, Vectorizer>> {
 template <typename Scalar, typename Vectorizer>
 struct BasisTransformableTraits<PureUSQTwoElectronOperatorComponent<Scalar, Vectorizer>> {
 
-    // The type of transformation matrix that is naturally associated to a component of an unestricted two-electron operator.
-    using TM = UTransformationMatrixComponent<Scalar>;
+    // The type of transformation that is naturally associated to a component of an unrestricted two-electron operator.
+    using Transformation = UTransformationComponent<Scalar>;
 };
 
 

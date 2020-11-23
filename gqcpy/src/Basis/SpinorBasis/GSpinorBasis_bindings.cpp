@@ -49,16 +49,11 @@ void bindGSpinorBasis(py::module& module) {
         // INHERITED METHODS
 
         .def(
-            "coefficientMatrix",
+            "expansion",
             [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
-                return spinor_basis.coefficientMatrix();
+                return spinor_basis.expansion();
             },
             "Return the transformation matrix between the scalar bases and the current spinors.")
-
-        .def("coefficientMatrix",
-             [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Spin sigma) {
-                 return spinor_basis.coefficientMatrix(sigma);
-             })
 
         .def(
             "isOrthonormal",
@@ -69,9 +64,9 @@ void bindGSpinorBasis(py::module& module) {
             "Return if this spinor basis is orthonormal within the given precision")
 
         .def(
-            "lowdinOrthonormalizationMatrix",
+            "lowdinOrthonormalization",
             [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
-                return spinor_basis.lowdinOrthonormalizationMatrix();
+                return spinor_basis.lowdinOrthonormalization();
             },
             "Return the transformation matrix to the Löwdin basis: T = S_current^{-1/2}")
 
@@ -92,25 +87,19 @@ void bindGSpinorBasis(py::module& module) {
         .def(
             "rotate",
             [](GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& U) {
-                spinor_basis.rotate(GQCP::GTransformationMatrix<double>(U));
+                spinor_basis.rotate(GQCP::GTransformation<double>(U));
             },
             py::arg("U"),
             "Rotate the spinor basis to another one using the given unitary transformation matrix.")
 
         .def(
-            "transform", [](GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& T) {
-                spinor_basis.transform(GQCP::GTransformationMatrix<double>(T));
+            "transform", [](GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& T) {
+                spinor_basis.transform(GQCP::GTransformation<double>(T));
             },
             py::arg("T"), "Transform the current spinor basis using a given transformation matrix")
 
 
         // PUBLIC METHODS
-
-        .def(
-            "coefficientMatrix", [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Spin sigma) {
-                return spinor_basis.coefficientMatrix(sigma);
-            },
-            py::arg("sigma"), "Return the coefficient matrix for the requested spin component, i.e. the matrix of the expansion coefficients of the requested components of the spinors in terms of its underlying scalar basis")
 
         .def(
             "numberOfCoefficients", [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Spin sigma) {
@@ -148,15 +137,16 @@ void bindGSpinorBasis(py::module& module) {
             },
             "Return the overlap operator expressed in this spinor basis.")
 
-        .def(
-            "quantizeSpinOperator", [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
-                return spinor_basis.quantize(GQCP::Operator::ElectronicSpin());
-            },
-            "Return the electronic spin operator expressed in this spinor basis.")
+        // This will be fixed after #383 and #762.
+        // .def(
+        //     "quantizeSpinOperator", [](const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
+        //         return spinor_basis.quantize(GQCP::Operator::ElectronicSpin());
+        //     },
+        //     "Return the electronic spin operator expressed in this spinor basis.")
 
         .def(
             "transform", [](GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& T_matrix) {
-                const GQCP::GTransformationMatrix<double> T(T_matrix);
+                const GQCP::GTransformation<double> T(T_matrix);
                 spinor_basis.transform(T);
             },
             "Transform the current spinor basis using a given transformation matrix.");

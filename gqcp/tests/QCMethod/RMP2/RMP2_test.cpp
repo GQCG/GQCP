@@ -42,7 +42,7 @@ BOOST_AUTO_TEST_CASE(crawdad_sto3g_water) {
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
-    sq_hamiltonian.transform(rhf_parameters.coefficientMatrix());
+    sq_hamiltonian.transform(rhf_parameters.expansion());
 
 
     // Check if the RMP2 correction is correct
@@ -66,7 +66,7 @@ BOOST_AUTO_TEST_CASE(crawdad_sto3g_methane) {
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
-    sq_hamiltonian.transform(rhf_parameters.coefficientMatrix());
+    sq_hamiltonian.transform(rhf_parameters.expansion());
 
 
     // Check if the RMP2 correction is correct

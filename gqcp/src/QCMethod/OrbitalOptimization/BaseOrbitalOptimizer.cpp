@@ -56,7 +56,7 @@ void BaseOrbitalOptimizer::optimize(RSpinOrbitalBasis<double, GTOShell>& spinor_
 
     while (this->prepareConvergenceChecking(sq_hamiltonian), !this->checkForConvergence(sq_hamiltonian)) {  // result of the comma operator is the second operand, so this expression effectively means "if not converged"
         const auto U = this->calculateNewRotationMatrix(sq_hamiltonian);
-        basisRotate(spinor_basis, sq_hamiltonian, U);
+        rotate(U, spinor_basis, sq_hamiltonian);
 
         this->number_of_iterations++;
         if (this->number_of_iterations > this->maximum_number_of_iterations) {

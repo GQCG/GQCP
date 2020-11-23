@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/Transformations/RTransformationMatrix.hpp"
+#include "Basis/Transformations/RTransformation.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 
 #include <vector>
@@ -44,7 +44,7 @@ private:
     std::vector<size_t> m_indices;
 
     // The transformation that relates the atomic spin-orbitals to the set of current restricted spin-orbitals.
-    RTransformationMatrix<Scalar> C;
+    RTransformation<Scalar> C;
 
 
 public:
@@ -58,7 +58,7 @@ public:
      *  @param indices          A set of indices that correspond to the AOs that are included in the Mulliken-partitioning of an AO basis.
      *  @param C                The transformation that relates the atomic spin-orbitals to the set of current restricted spin-orbitals.
      */
-    RMullikenPartitioning(const std::vector<size_t>& indices, const RTransformationMatrix<Scalar>& C) :
+    RMullikenPartitioning(const std::vector<size_t>& indices, const RTransformation<Scalar>& C) :
         m_indices {indices},
         C {C} {}
 
@@ -89,9 +89,9 @@ public:
 
 
     /**
-     *  @return The Mulliken projection matrix defined as C^{-1} P_A C, where C is the transformation matrix and P_A is the partition matrix.
+     *  @return The Mulliken projection, defined as C^{-1} P_A C, where C is the transformation matrix and P_A is the partition matrix.
      */
-    RTransformationMatrix<Scalar> projectionMatrix() const { return this->C.inverse() * this->partitionMatrix() * this->C; }
+    RTransformation<Scalar> projectionMatrix() const { return RTransformation<Scalar> {this->C.matrix().inverse() * this->partitionMatrix() * this->C.matrix()}; }
 };
 
 

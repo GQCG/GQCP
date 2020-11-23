@@ -112,13 +112,13 @@ BOOST_AUTO_TEST_CASE(transform_wave_function_h3) {
     auto linear_expansion_direct = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver_direct, environment_direct).groundStateParameters();
 
 
-    // Generate a random rotation matrix and calculate the transformation of the linear expansion coefficients.
-    const GQCP::RTransformationMatrix<double> U_random = GQCP::RTransformationMatrix<double>::RandomUnitary(K);
+    // Generate a random rotation and calculate the transformation of the linear expansion coefficients.
+    const auto U_random = GQCP::RTransformation<double>::RandomUnitary(K);
     linear_expansion_direct.basisTransform(U_random);
 
 
     // Calculate a new linear expansion by rotation the underlying spinor basis and doing another dense calculation, and check if they deviate.
-    GQCP::basisRotate(spinor_basis, sq_hamiltonian, U_random);
+    GQCP::rotate(U_random, spinor_basis, sq_hamiltonian);
 
     auto environment_indirect = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
     auto solver_indirect = GQCP::EigenproblemSolver::Dense();
@@ -154,13 +154,13 @@ BOOST_AUTO_TEST_CASE(transform_wave_function_h4) {
     auto linear_expansion_direct = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver_direct, environment_direct).groundStateParameters();
 
 
-    // Generate a random rotation matrix and calculate the transformation of the linear expansion coefficients.
-    const GQCP::RTransformationMatrix<double> U_random = GQCP::RTransformationMatrix<double>::RandomUnitary(K);
+    // Generate a random rotation and calculate the transformation of the linear expansion coefficients.
+    const auto U_random = GQCP::RTransformation<double>::RandomUnitary(K);
     linear_expansion_direct.basisTransform(U_random);
 
 
     // Calculate a new linear expansion by rotation the underlying spinor basis and doing another dense calculation, and check if they deviate.
-    GQCP::basisRotate(spinor_basis, sq_hamiltonian, U_random);
+    GQCP::rotate(U_random, spinor_basis, sq_hamiltonian);
 
     auto environment_indirect = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
     auto solver_indirect = GQCP::EigenproblemSolver::Dense();
@@ -197,13 +197,13 @@ BOOST_AUTO_TEST_CASE(transform_wave_function_h5) {
     auto linear_expansion_direct = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver_direct, environment_direct).groundStateParameters();
 
 
-    // Generate a random rotation matrix and calculate the transformation of the linear expansion coefficients.
-    const GQCP::RTransformationMatrix<double> U_random = GQCP::RTransformationMatrix<double>::RandomUnitary(K);
+    // Generate a random rotation and calculate the transformation of the linear expansion coefficients.
+    const auto U_random = GQCP::RTransformation<double>::RandomUnitary(K);
     linear_expansion_direct.basisTransform(U_random);
 
 
     // Calculate a new linear expansion by rotation the underlying spinor basis and doing another dense calculation, and check if they deviate.
-    GQCP::basisRotate(spinor_basis, sq_hamiltonian, U_random);
+    GQCP::rotate(U_random, spinor_basis, sq_hamiltonian);
 
     auto environment_indirect = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
     auto solver_indirect = GQCP::EigenproblemSolver::Dense();
@@ -340,7 +340,7 @@ BOOST_AUTO_TEST_CASE(calculateNDMElement_3DM) {
 //     const auto molecule = GQCP::Molecule::HRingFromDistance(4, 1.0);
 
 //     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> r_spinor_basis {molecule, "STO-3G"};
-//     GQCP::TransformationMatrix<double> C {4};  // RHF canonical orbitals for this system (Xeno)
+//     GQCP::SquareMatrix<double> C {4};  // RHF canonical orbitals for this system (Xeno)
 //     // clang-format off
 //     C << -0.27745359, -0.8505133,   0.85051937,  2.02075317,
 //          -0.27745362, -0.85051937, -0.8505133,  -2.02075317,
@@ -351,7 +351,7 @@ BOOST_AUTO_TEST_CASE(calculateNDMElement_3DM) {
 
 
 //     // GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> u_spinor_basis {molecule, "STO-3G"};
-//     GQCP::TransformationMatrix<double> C_alpha {4};  // UHF alpha canonical orbitals for this system (Xeno), triplet
+//     GQCP::SquareMatrix<double> C_alpha {4};  // UHF alpha canonical orbitals for this system (Xeno), triplet
 //     // clang-format off
 //     C_alpha << -1.75646828e-01, -1.20606646e-06,  1.20281173e+00,  2.03213486e+00,
 //                -3.78560533e-01, -1.20281173e+00, -1.20606647e-06, -2.00427438e+00,
@@ -359,7 +359,7 @@ BOOST_AUTO_TEST_CASE(calculateNDMElement_3DM) {
 //                -3.78560533e-01,  1.20281173e+00,  1.20606646e-06, -2.00427438e+00;
 //     // clang-format on
 
-//     GQCP::TransformationMatrix<double> C_beta {4};  // UHF alpha canonical orbitals for this system (Xeno), triplet
+//     GQCP::SquareMatrix<double> C_beta {4};  // UHF alpha canonical orbitals for this system (Xeno), triplet
 //     // clang-format off
 //     C_beta << -3.78560533e-01,  1.20281173e+00,  1.21724557e-06,  2.00427438e+00,
 //               -1.75646828e-01,  1.21724558e-06, -1.20281173e+00, -2.03213486e+00,

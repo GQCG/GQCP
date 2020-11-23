@@ -61,8 +61,8 @@ public:
     // The type that corresponds to the scalar version of the derived one-electron operator type.
     using ScalarDerivedOperator = typename OperatorTraits<DerivedOperator>::ScalarOperator;
 
-    // The type of transformation matrix that is naturally associated to the derived one-electron operator.
-    using TM = typename OperatorTraits<DerivedOperator>::TM;
+    // The type of transformation that is naturally associated to the derived one-electron operator.
+    using Transformation = typename OperatorTraits<DerivedOperator>::Transformation;
 
     // The type of the one-particle density matrix that is naturally associated to the derived one-electron operator.
     using Derived1DM = typename OperatorTraits<DerivedOperator>::OneDM;
@@ -219,11 +219,11 @@ public:
     /**
      *  Apply the basis transformation and return the resulting one-electron integrals.
      * 
-     *  @param transformation_matrix        The type that encapsulates the basis transformation coefficients.
+     *  @param T            The basis transformation.
      * 
      *  @return The basis-transformed one-electron integrals.
      */
-    DerivedOperator transformed(const TM& transformation_matrix) const override {
+    DerivedOperator transformed(const Transformation& T) const override {
 
         // Calculate the basis transformation for every component of the operator.
         const auto& parameters = this->allParameters();
@@ -232,7 +232,7 @@ public:
         for (size_t i = 0; i < this->numberOfComponents(); i++) {
             const auto& f_i = parameters[i];
 
-            result[i] = transformation_matrix.adjoint() * f_i * transformation_matrix;
+            result[i] = T.matrix().adjoint() * f_i * T.matrix();
         }
 
         return DerivedOperator {StorageArray<MatrixRepresentation, Vectorizer>(result, this->array.vectorizer())};
@@ -285,11 +285,11 @@ public:
     /**
      *  Apply a one-index transformation and return the result.
      * 
-     *  @param T            The transformation that encapsulates the basis transformation coefficients.
+     *  @param T            The basis transformation.
      * 
      *  @return The one-index-transformed one-electron operator.
      */
-    DerivedOperator oneIndexTransformed(const TM& T) const {
+    DerivedOperator oneIndexTransformed(const Transformation& T) const {
 
         // Calculate the basis transformation for every component of the operator.
         const auto& parameters = this->allParameters();
@@ -298,7 +298,7 @@ public:
         for (size_t i = 0; i < this->numberOfComponents(); i++) {
             const auto& f_i = parameters[i];
 
-            result[i] = T.adjoint() * f_i + f_i * T;
+            result[i] = T.matrix().adjoint() * f_i + f_i * T.matrix();
         }
 
         return DerivedOperator {StorageArray<MatrixRepresentation, Vectorizer>(result, this->array.vectorizer())};
@@ -351,8 +351,8 @@ struct OperatorTraits<SimpleSQOneElectronOperator<_Scalar, _Vectorizer, _Derived
 template <typename _Scalar, typename _Vectorizer, typename _DerivedOperator>
 struct BasisTransformableTraits<SimpleSQOneElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>> {
 
-    // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix"
-    using TM = typename OperatorTraits<_DerivedOperator>::TM;
+    // The type of the transformation for which the basis transformation should be defined.
+    using Transformation = typename OperatorTraits<_DerivedOperator>::Transformation;
 };
 
 

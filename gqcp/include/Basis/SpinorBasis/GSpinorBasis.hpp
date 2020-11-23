@@ -23,7 +23,7 @@
 #include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
 #include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
-#include "Basis/Transformations/GTransformationMatrix.hpp"
+#include "Basis/Transformations/GTransformation.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "Operator/SecondQuantized/GSQOneElectronOperator.hpp"
@@ -54,8 +54,8 @@ public:
     // The type of the base spinor basis.
     using Base = SimpleSpinorBasis<_ExpansionScalar, GSpinorBasis<_ExpansionScalar, _Shell>>;
 
-    // The type of transformation matrix that is naturally related to a GSpinorBasis.
-    using TM = GTransformationMatrix<ExpansionScalar>;  // TODO: Rename to TransformationMatrix once the class is gone
+    // The type of transformation that is naturally related to a `GSpinorBasis`.
+    using Transformation = GTransformation<ExpansionScalar>;
 
     // The type that is used for representing the primitive for a basis function of this spin-orbital basis' underlying AO basis.
     using Primitive = typename Shell::Primitive;
@@ -78,9 +78,9 @@ public:
      *  Create a `GSpinorBasis` from scalar bases that are not necessarily equal.
      * 
      *  @param scalar_bases                 The scalar bases for the alpha and beta components of the spinors.
-     *  @param C                            The matrix that holds the expansion coefficients, i.e. that expresses the spinors in terms of the underlying scalar basis.
+     *  @param C                            The transformation that relates the current set of spinors with the atomic spinors.
      */
-    GSpinorBasis(const SpinResolved<ScalarBasis<Shell>>& scalar_bases, const TM& C) :
+    GSpinorBasis(const SpinResolved<ScalarBasis<Shell>>& scalar_bases, const Transformation& C) :
         Base(C),
         scalar_bases {scalar_bases} {
 
@@ -89,7 +89,7 @@ public:
         const auto K_beta = scalar_bases.beta().numberOfBasisFunctions();
 
         if (C.numberOfOrbitals() != K_alpha + K_beta) {
-            throw std::invalid_argument("GSpinorBasis(const SpinResolved<ScalarBasis<Shell>>&, const TM&): The given dimensions of the scalar bases and coefficient matrix are incompatible.");
+            throw std::invalid_argument("GSpinorBasis(const SpinResolved<ScalarBasis<Shell>>&, const Transformation&): The given dimensions of the scalar bases and coefficient matrix are incompatible.");
         }
     }
 
@@ -98,9 +98,9 @@ public:
      * 
      *  @param alpha_scalar_basis           The scalar basis in which the alpha components of the spinors are expanded.
      *  @param beta_scalar_basis            The scalar basis in which the beta components of the spinors are expanded.
-     *  @param C                            The matrix that holds the expansion coefficients, i.e. that expresses the spinors in terms of the underlying scalar basis.
+     *  @param C                            The transformation that relates the current set of spinors with the atomic spinors.
      */
-    GSpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis, const TM& C) :
+    GSpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis, const Transformation& C) :
         GSpinorBasis(SpinResolved<ScalarBasis<Shell>> {alpha_scalar_basis, beta_scalar_basis}, C) {}
 
 
@@ -108,9 +108,9 @@ public:
      *  Construct a generalized spinor basis in which both underlying scalar bases are equal.
      * ^
      *  @param scalar_basis             The scalar basis in which both the alpha and beta components are expanded.
-     *  @param C                        The matrix that holds the expansion coefficients, i.e. that expresses the spinors in terms of the underlying scalar basis.
+     *  @param C                        The transformation that relates the current set of spinors with the atomic spinors.
      */
-    GSpinorBasis(const ScalarBasis<Shell>& scalar_basis, const TM& C) :
+    GSpinorBasis(const ScalarBasis<Shell>& scalar_basis, const Transformation& C) :
         GSpinorBasis(scalar_basis, scalar_basis, C) {}
 
 
@@ -122,7 +122,7 @@ public:
      */
     GSpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis) :
         GSpinorBasis(alpha_scalar_basis, beta_scalar_basis,
-                     TM::Identity(alpha_scalar_basis.numberOfBasisFunctions() + beta_scalar_basis.numberOfBasisFunctions())) {}
+                     Transformation::Identity(alpha_scalar_basis.numberOfBasisFunctions(), beta_scalar_basis.numberOfBasisFunctions())) {}
 
 
     /**
@@ -217,50 +217,16 @@ public:
      */
     static GSpinorBasis<ExpansionScalar, Shell> FromUnrestricted(const USpinOrbitalBasis<ExpansionScalar, Shell>& u_spinor_basis) {
 
-        // The goal in this named constructor is to build up the general coefficient matrix (2K x 2K) from the restricted (K x K) one.
-        const auto M = u_spinor_basis.numberOfSpinOrbitals();
-        const auto K = M / 2;
-        const auto C = u_spinor_basis.coefficientMatrix();
-
-        TM C_general = TM::Zero(M);
-
-        //      alpha |  0
-        //        0   | beta
-        C_general.topLeftCorner(K, K) = C.alpha();
-        C_general.bottomRightCorner(K, K) = C.beta();
+        const auto C_general = GTransformation<ExpansionScalar>::FromUnrestricted(u_spinor_basis.expansion());
 
         return GSpinorBasis<ExpansionScalar, Shell>(u_spinor_basis.alpha().scalarBasis(), C_general);  // Assume the alpha- and beta- scalar bases are equal.
     }
 
 
     /*
-     *  MARK: Coefficient matrix
+     *  MARK: Coefficients
      */
 
-    // Use `coefficientMatrix` from the base spinor basis, since we're implementing `coefficientMatrix` in this type as well.
-    using Base::coefficientMatrix;
-
-    /**
-     *  @param sigma        Alpha or beta.
-     * 
-     *  @return The coefficient matrix for the requested spin component, i.e. the matrix of the expansion coefficients of the requested components of the spinors in terms of its underlying scalar basis
-     */
-    MatrixX<ExpansionScalar> coefficientMatrix(const Spin sigma) const {
-
-        const size_t K = this->numberOfCoefficients(sigma);
-
-        switch (sigma) {
-        case Spin::alpha: {
-            return this->coefficientMatrix().topRows(K);
-            break;
-        }
-
-        case Spin::beta: {
-            return this->coefficientMatrix().bottomRows(K);
-            break;
-        }
-        }
-    }
 
     /**
      *  @param sigma        Alpha or beta.
@@ -321,7 +287,7 @@ public:
 
         // 2. Transform using the current coefficient matrix.
         ResultOperator op {{f}};  // op for 'operator'
-        op.transform(this->coefficientMatrix());
+        op.transform(this->expansion());
         return op;
     }
 
@@ -373,7 +339,7 @@ public:
 
         // 3. Transform using the coefficient matrix
         ResultOperator spin_op {std::vector<SquareMatrix<ResultScalar>> {S_x, S_y, S_z}};  // 'op' for operator
-        spin_op.transform(this->coefficientMatrix());
+        spin_op.transform(this->expansion());
         return spin_op;
     }
 
@@ -439,7 +405,7 @@ public:
 
         // 3. Transform the operator using the current coefficient matrix.
         ResultOperator g_op {g_par};  // 'op' for 'operator'
-        g_op.transform(this->coefficientMatrix());
+        g_op.transform(this->expansion());
         return g_op;
     }
 
@@ -471,7 +437,7 @@ public:
 
         // Assume the underlying scalar bases are equal, and proceed to work with the one for the alpha component.
         const auto ao_indices = this->scalarBases().alpha().basisFunctionIndices(selector);
-        return GMullikenPartitioning<ExpansionScalar> {ao_indices, this->coefficientMatrix()};
+        return GMullikenPartitioning<ExpansionScalar> {ao_indices, this->expansion()};
     }
 
 
@@ -488,7 +454,7 @@ public:
 
         // Assume the underlying scalar bases are equal, and proceed to work with the one for the alpha component.
         const auto ao_indices = this->scalarBases().alpha().basisFunctionIndices(selector);
-        return GMullikenPartitioning<ExpansionScalar> {ao_indices, this->coefficientMatrix()};
+        return GMullikenPartitioning<ExpansionScalar> {ao_indices, this->expansion()};
     }
 };
 
@@ -505,8 +471,8 @@ struct SpinorBasisTraits<GSpinorBasis<_ExpansionScalar, _Shell>> {
     // The scalar type used to represent an expansion coefficient of the spinors in the underlying scalar orbitals: real or complex.
     using ExpansionScalar = _ExpansionScalar;
 
-    // The type of transformation matrix that is naturally related to a GSpinorBasis.
-    using TM = GTransformationMatrix<ExpansionScalar>;  // TODO: Rename to TransformationMatrix once the class is gone
+    // The type of transformation that is naturally related to a `GSpinorBasis`.
+    using Transformation = GTransformation<ExpansionScalar>;
 
     // The second-quantized representation of the overlap operator related to the derived spinor basis.
     using SQOverlapOperator = ScalarGSQOneElectronOperator<ExpansionScalar>;
@@ -523,8 +489,8 @@ struct SpinorBasisTraits<GSpinorBasis<_ExpansionScalar, _Shell>> {
 template <typename _ExpansionScalar, typename _Shell>
 struct BasisTransformableTraits<GSpinorBasis<_ExpansionScalar, _Shell>> {
 
-    // The type of transformation matrix that is naturally related to a `GSpinorBasis`.
-    using TM = GTransformationMatrix<_ExpansionScalar>;
+    // The type of transformation that is naturally related to a `GSpinorBasis`.
+    using Transformation = GTransformation<_ExpansionScalar>;
 };
 
 

@@ -42,13 +42,13 @@ JacobiOrbitalOptimizer::JacobiOrbitalOptimizer(const size_t dim, const double co
  */
 
 /**
- *  @param sq_hamiltonian           the current Hamiltonian
+ *  @param sq_hamiltonian           The current Hamiltonian.
  * 
- *  @return a unitary matrix that will be used to rotate the current Hamiltonian into the next iteration
+ *  @return The unitary transformation that will be used to rotate the current Hamiltonian into the next iteration.
  */
-RTransformationMatrix<double> JacobiOrbitalOptimizer::calculateNewRotationMatrix(const RSQHamiltonian<double>& sq_hamiltonian) const {
+RTransformation<double> JacobiOrbitalOptimizer::calculateNewRotationMatrix(const RSQHamiltonian<double>& sq_hamiltonian) const {
 
-    return RTransformationMatrix<double>::FromJacobi(this->optimal_jacobi_with_scalar.first, sq_hamiltonian.numberOfOrbitals());
+    return RTransformation<double>::FromJacobi(this->optimal_jacobi_with_scalar.first, sq_hamiltonian.numberOfOrbitals());
 }
 
 
