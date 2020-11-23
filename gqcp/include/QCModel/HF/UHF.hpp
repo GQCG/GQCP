@@ -346,6 +346,117 @@ public:
 
 
     /**
+     * Construct a pure-spin component of the spin-conserved stability matrix A'.
+     * 
+     *  @note The formula for this component is as follows:
+     *      A'_I(sigma)A(sigma)J(sigma)B(sigma) = \delta_I(sigma)J(sigma) * F_B(sigma)A(sigma) - \delta_B(sigma)A(sigma) * F_I(sigma)J(sigma) + (A(sigma)I(sigma)||J(sigma)B(sigma))
+     * 
+     *  @note The name `Spin-conserved`comes from the article "Constraints and stability in Hartree-Fock theory" by Seeger, R. and Pople J.A. (https://doi.org/10.1063/1.434318).
+     * 
+     *  @param rsq_hamiltonian      The second quantized Hamiltonian, which contains the necessary two-electron operators.
+     *  @param sigma                The spin-sigma component. This method creates a pure spin component, so all sigma's in the formula are either alpha or beta.
+     * 
+     *  @return The pure spin sigma component of stability matrix A'.
+     */
+    GQCP::Matrix<Scalar> calculatePureSpinConservedAComponent(const RSQHamiltonian<Scalar>& rsq_hamiltonian, const Spin sigma) const {
+
+        // Depending on whether we're making the alpha or beta A'-component, we need a different component of the orbital_space.
+        const auto orbital_space_sigma = this->orbitalSpace(sigma);
+
+        // Determine the number of occupied and virtual orbitals.
+        const auto n_occ = orbital_space_sigma.number_of_orbitals(OccupationType::k_occupied);
+        const auto n_virt = orbital_space_sigma.number_of_orbitals(OccupationType::k_virtual);
+
+        // We need the two-electron integrals in MO basis, hence why we transform them with the coefficient matrix.
+        // The ground state coefficient matrix is obtained from the QCModel.
+        // We need the anti-symmetrized tensor: (AI||JB) = (AI|JB) - (AB|JI). This is obtained by the `.antisymmetrized()` method.
+        const auto g = rsq_hamiltonian.twoElectron().transformed(this->expansion(sigma)).antisymmetrized().parameters();
+
+        // The elements F_BA and F_IJ are the eigenvalues of the one-electron Fock operator.
+        // The excitationEnergies API can be used to find these values
+        const auto F_values = this->excitationEnergies(sigma);
+
+        // The next step is to create the needed tensor slice.
+        // Zero-initialize an occupied-virtual-occupied-virtual object.
+        auto A_iajb_slice = orbital_space_sigma.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_occupied, OccupationType::k_virtual);
+        for (const auto& i : orbital_space_sigma.indices(OccupationType::k_occupied)) {
+            for (const auto& a : orbital_space_sigma.indices(OccupationType::k_virtual)) {
+                for (const auto& j : orbital_space_sigma.indices(OccupationType::k_occupied)) {
+                    for (const auto& b : orbital_space_sigma.indices(OccupationType::k_virtual)) {
+                        A_iajb_slice(i, a, j, b) = g(a, i, j, b);
+                    }
+                }
+            }
+        }
+
+        // Turn the ImplicitRankFourTensorSlice in an actual Tensor
+        auto A_iajb = A_iajb_slice.asTensor();
+
+        // Add the previously calculated F values on the correct positions.
+        for (int a = 0; a < n_virt; a++) {
+            for (int i = 0; i < n_occ; i++) {
+                A_iajb(i, a, i, a) += F_values(a, i);
+            }
+        }
+
+        // Finally, reshape the tensor to a matrix.
+        const auto pure_spin_conserved_A_component = A_iajb.reshape(n_occ * n_virt, n_occ * n_virt);
+
+        return pure_spin_conserved_A_component;
+    }
+
+
+    /**
+     * Construct a pure-spin component of the spin-conserved stability matrix B'.
+     * 
+     *  @note The formula for this component is as follows:
+     *      B'_I(sigma)A(sigma)J(sigma)B(sigma) = (A(sigma)I(sigma)||B(sigma)J(sigma))
+     * 
+     *  @note The name `Spin-conserved`comes from the article "Constraints and stability in Hartree-Fock theory" by Seeger, R. and Pople J.A. (https://doi.org/10.1063/1.434318).
+     * 
+     *  @param rsq_hamiltonian      The second quantized Hamiltonian, which contains the necessary two-electron operators.
+     *  @param sigma                The spin-sigma component. This method creates a pure spin component, so all sigma's in the formula are either alpha or beta.
+     * 
+     *  @return The pure spin sigma component of stability matrix B'.
+     */
+    GQCP::Matrix<Scalar> calculatePureSpinConservedBComponent(const RSQHamiltonian<Scalar>& rsq_hamiltonian, const Spin sigma) const {
+
+        // Depending on whether we're making the alpha or beta A'-component, we need a different component of the orbital_space.
+        const auto orbital_space_sigma = this->orbitalSpace(sigma);
+
+        // Determine the number of occupied and virtual orbitals.
+        const auto n_occ = orbital_space_sigma.number_of_orbitals(OccupationType::k_occupied);
+        const auto n_virt = orbital_space_sigma.number_of_orbitals(OccupationType::k_virtual);
+
+        // We need the two-electron integrals in MO basis, hence why we transform them with the coefficient matrix.
+        // The ground state coefficient matrix is obtained from the QCModel.
+        // We need the anti-symmetrized tensor: (AI||JB) = (AI|JB) - (AB|JI). This is obtained by the `.antisymmetrized()` method.
+        const auto g = rsq_hamiltonian.twoElectron().transformed(this->expansion(sigma)).antisymmetrized().parameters();
+
+        // The next step is to create the needed tensor slice.
+        // Zero-initialize an occupied-virtual-occupied-virtual object.
+        auto B_iajb_slice = orbital_space_sigma.template initializeRepresentableObjectFor<Scalar>(OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_occupied, OccupationType::k_virtual);
+        for (const auto& i : orbital_space_sigma.indices(OccupationType::k_occupied)) {
+            for (const auto& a : orbital_space_sigma.indices(OccupationType::k_virtual)) {
+                for (const auto& j : orbital_space_sigma.indices(OccupationType::k_occupied)) {
+                    for (const auto& b : orbital_space_sigma.indices(OccupationType::k_virtual)) {
+                        B_iajb_slice(i, a, j, b) = g(a, i, b, j);
+                    }
+                }
+            }
+        }
+
+        // Turn the ImplicitRankFourTensorSlice in an actual Tensor
+        auto B_iajb = B_iajb_slice.asTensor();
+
+        // Finally, reshape the tensor to a matrix.
+        const auto pure_spin_conserved_B_component = B_iajb.reshape(n_occ * n_virt, n_occ * n_virt);
+
+        return pure_spin_conserved_B_component;
+    }
+
+
+    /**
      *  @param sigma                The spin-sigma component. 
      * 
      *  @return a matrix containing all the possible excitation energies of the wavefunction model, belonging to a certain spin component. 
@@ -490,6 +601,27 @@ public:
      */
     SpinResolvedOrbitalSpace orbitalSpace() const { return UHF<Scalar>::orbitalSpace(this->numberOfSpinOrbitals(Spin::alpha), this->numberOfElectrons(Spin::alpha),
                                                                                      this->numberOfSpinOrbitals(Spin::beta), this->numberOfElectrons(Spin::beta)); }
+
+
+    /**
+     *  @param sigma            The spin sigma component.
+     * 
+     *  @return The implicit alpha or beta occupied-virtual orbital spaces that are associated to these UHF model parameters.
+     */
+    OrbitalSpace orbitalSpace(const Spin sigma) const {
+
+        switch (sigma) {
+        case Spin::alpha: {
+            return this->orbitalSpace().alpha();
+            break;
+        }
+
+        case Spin::beta: {
+            return this->orbitalSpace().beta();
+            break;
+        }
+        }
+    }
 
 
     /**
