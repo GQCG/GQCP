@@ -353,7 +353,7 @@ public:
      *  @note       The rows are determined by the number of virtual sigma orbitals, the columns by the number of occupied sigma orbitals.
      * 
      */
-    GQCP::MatrixX<Scalar> excitationEnergies(const spin sigma) const {
+    GQCP::MatrixX<Scalar> excitationEnergies(const Spin sigma) const {
 
         // Create the orbital space to determine the loops.
         const auto orbital_space = this->orbitalSpace();
@@ -362,6 +362,7 @@ public:
         // We declare `n_occ` and `n_virt` outside the if-statement first.
         int n_occ;
         int n_virt;
+
         if (sigma == Spin::alpha) {
             n_occ = orbital_space.alpha().numberOfOrbitals(OccupationType::k_occupied);
             n_virt = orbital_space.alpha().numberOfOrbitals(OccupationType::k_virtual);
