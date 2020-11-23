@@ -62,7 +62,7 @@ public:
      *
      *  @return A Dyson orbital containing Dyson amplitudes.
      */
-    static DysonOrbital<Scalar> calculateDysonOrbital(const LinearExpansion<SpinResolvedONVBasis>& linear_expansion1, const LinearExpansion<SpinResolvedONVBasis>& linear_expansion2) {
+    static DysonOrbital<Scalar> Overlap(const LinearExpansion<SpinResolvedONVBasis>& linear_expansion1, const LinearExpansion<SpinResolvedONVBasis>& linear_expansion2) {
 
         const auto onv_basis1 = linear_expansion1.onvBasis();
         const auto onv_basis2 = linear_expansion2.onvBasis();
@@ -148,8 +148,7 @@ public:
     /**
      *  @return The expansion coefficients of this Dyson orbital.
      */
-    const VectorX<double>& coefficients() const { return this->dyson_coefficients; }
-
-};  // DysonOrbital
+    const VectorX<Scalar>& coefficients() const { return this->dyson_coefficients; }
+};
 
 }  // namespace GQCP
