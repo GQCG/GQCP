@@ -33,37 +33,6 @@ const auto beta = GQCP::Spin::beta;
 
 
 /**
- *  Check whether the constructor works as expected.
- */
-BOOST_AUTO_TEST_CASE(constructor) {
-
-    // Create potential sets of indices for all occupation types.
-    const std::vector<size_t> occupied_indices {0, 1, 2};
-    const std::vector<size_t> active_indices {3};
-    const std::vector<size_t> virtual_indices {4, 5, 6, 7};
-    const std::vector<size_t> all_indices {0, 1, 2, 3, 4, 5, 6, 7};
-
-    // Construct an alpha and beta orbital space.
-    const GQCP::OrbitalSpace orbital_space_a {occupied_indices, active_indices, virtual_indices};
-    const GQCP::OrbitalSpace orbital_space_b {occupied_indices, active_indices, virtual_indices};
-
-    //Create the spin resolved orbital space from the alpha and beta component.
-    const GQCP::SpinResolvedOrbitalSpace orbital_space {orbital_space_a, orbital_space_b};
-
-    // Test whether or not the indices match. Some are tested for alpha, some for beta.
-    BOOST_CHECK(orbital_space.alpha().indices() == all_indices);
-    BOOST_CHECK(orbital_space.beta().indices(occ) == occupied_indices);
-    BOOST_CHECK(orbital_space.alpha().indices(act) == active_indices);
-    BOOST_CHECK(orbital_space.beta().indices(virt) == virtual_indices);
-
-    BOOST_CHECK(orbital_space.alpha().numberOfOrbitals() == 8);
-    BOOST_CHECK(orbital_space.beta().numberOfOrbitals(occ) == 3);
-    BOOST_CHECK(orbital_space.alpha().numberOfOrbitals(act) == 1);
-    BOOST_CHECK(orbital_space.beta().numberOfOrbitals(virt) == 4);
-}
-
-
-/**
  *  Check whether the initializing a mixed representable matrix object works as expected.
  */
 BOOST_AUTO_TEST_CASE(mixed_matrix) {
