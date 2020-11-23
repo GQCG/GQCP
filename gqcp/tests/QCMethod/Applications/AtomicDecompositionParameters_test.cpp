@@ -57,7 +57,7 @@
 //     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
 //     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
-//     const auto& T = rhf_parameters.coefficientMatrix();
+//     const auto& T = rhf_parameters.expansion();
 //     sq_hamiltonian.transform(T);
 
 

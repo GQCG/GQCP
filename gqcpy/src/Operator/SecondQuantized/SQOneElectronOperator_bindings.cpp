@@ -65,23 +65,7 @@ void bindSQOneElectronOperator(py::module& module, const std::string& suffix) {
             [](const GQCP::ScalarRSQOneElectronOperator<Scalar>& op) {
                 return op.parameters().Eigen();
             },
-            "Return the integrals encapsulated by the second-quantized one-electron operator.")
-
-        .def(
-            "rotate",
-            [](GQCP::ScalarRSQOneElectronOperator<Scalar>& sq_one_op, const Eigen::MatrixXd& U) {
-                sq_one_op.rotate(GQCP::TransformationMatrix<double> {U});
-            },
-            "In-place rotate the operator to another basis.",
-            py::arg("U"))
-
-        .def(
-            "transform",
-            [](GQCP::ScalarRSQOneElectronOperator<Scalar>& sq_one_op, const Eigen::MatrixXd& T) {
-                sq_one_op.transform(GQCP::TransformationMatrix<double> {T});
-            },
-            "In-place transform the operator to another basis.",
-            py::arg("T"));
+            "Return the integrals encapsulated by the second-quantized one-electron operator.");
 
 
     // Create a Python binding for VectorSQOneElectronOperator
@@ -105,23 +89,7 @@ void bindSQOneElectronOperator(py::module& module, const std::string& suffix) {
             [](const GQCP::VectorRSQOneElectronOperator<Scalar>& op, const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>& D) {  // use an itermediary Eigen matrix for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Matrix
                 return op.calculateExpectationValue(GQCP::OneDM<Scalar> {D});
             },
-            "Return the expectation value of the vector one-electron operator given a 1-DM.")
-
-        .def(
-            "rotate",
-            [](GQCP::VectorRSQOneElectronOperator<Scalar>& sq_one_op, const Eigen::MatrixXd& U) {
-                sq_one_op.rotate(GQCP::TransformationMatrix<double> {U});
-            },
-            "In-place rotate the operator to another basis.",
-            py::arg("U"))
-
-        .def(
-            "transform",
-            [](GQCP::VectorRSQOneElectronOperator<Scalar>& sq_one_op, const Eigen::MatrixXd& T) {
-                sq_one_op.transform(GQCP::TransformationMatrix<double> {T});
-            },
-            "In-place transform the operator to another basis.",
-            py::arg("T"));
+            "Return the expectation value of the vector one-electron operator given a 1-DM.");
 }
 
 

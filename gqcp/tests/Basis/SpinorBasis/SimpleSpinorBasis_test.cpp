@@ -47,18 +47,18 @@ BOOST_AUTO_TEST_CASE(Lowdin_orthonormal) {
 /**
  *  Check if the Löwdin-orthonormalization matrix depends on the current orbitals: the Löwdin basis isn't reached when T=S_AO^{-1/2}, but when T=S_current^{-1/2}
  */
-BOOST_AUTO_TEST_CASE(lowdinOrthonormalizationMatrix) {
+BOOST_AUTO_TEST_CASE(lowdinOrthonormalization) {
 
     // Construct the initial restricted spinor basis (corresponding to the underlying GTOs) and calculate the corresponding Löwdin orthonormalization matrix
     const auto h2 = GQCP::Molecule::ReadXYZ("data/h2.xyz");
     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {h2, "STO-3G"};
-    const auto T_lowdin_1 = spinor_basis.lowdinOrthonormalizationMatrix();
+    const auto T_lowdin_1 = spinor_basis.lowdinOrthonormalization();
 
 
-    // Transform the restricted spinor basis and re-calculate the Löwdin orthonormalization matrix and check the result
+    // Transform the restricted spinor basis and re-calculate the Löwdin orthonormalization and check the result
     const auto K = spinor_basis.numberOfSpatialOrbitals();
-    spinor_basis.transform(GQCP::RTransformationMatrix<double>::Random(K));
-    const auto T_lowdin_2 = spinor_basis.lowdinOrthonormalizationMatrix();
+    spinor_basis.transform(GQCP::RTransformation<double>::Random(K));
+    const auto T_lowdin_2 = spinor_basis.lowdinOrthonormalization();
 
-    BOOST_CHECK(!T_lowdin_1.isApprox(T_lowdin_2, 1.0e-08));  // the two Löwdin transformation matrices should not be equal
+    BOOST_CHECK(!T_lowdin_1.matrix().isApprox(T_lowdin_2.matrix(), 1.0e-08));  // The two Löwdin transformation matrices should not be equal.
 }

@@ -27,15 +27,15 @@ namespace GQCP {
 /**
  *  An interface that implements conformance to `BasisTransformable` for spin-resolved types.
  * 
- *  @tparam T           The spin-resolved type that should conform to `BasisTransformable`.
+ *  @tparam Type            The spin-resolved type that should conform to `BasisTransformable`.
  */
-template <typename T>
+template <typename Type>
 class SpinResolvedBasisTransformable:
-    public BasisTransformable<T> {
+    public BasisTransformable<Type> {
 
 public:
-    // The type of the transformation matrix for which the basis transformation should be defined.
-    using TM = typename BasisTransformableTraits<T>::TM;
+    // The type of the transformation for which the basis transformation should be defined.
+    using Transformation = typename BasisTransformableTraits<Type>::Transformation;
 
 
 public:
@@ -46,17 +46,17 @@ public:
     /**
      *  Apply the basis transformation and return the result.
      * 
-     *  @param transformation_matrix        The type that encapsulates the basis transformation coefficients.
+     *  @param T            The basis transformation.
      * 
      *  @return The basis-transformed spin-resolved object.
      */
-    T transformed(const TM& transformation_matrix) const override {
+    Type transformed(const Transformation& T) const override {
 
         // Transform the components of 'this' with the components of the transformation matrix.
-        const auto alpha_transformed = static_cast<const T&>(*this).alpha().transformed(transformation_matrix.alpha());
-        const auto beta_transformed = static_cast<const T&>(*this).beta().transformed(transformation_matrix.beta());
+        const auto alpha_transformed = static_cast<const Type&>(*this).alpha().transformed(T.alpha());
+        const auto beta_transformed = static_cast<const Type&>(*this).beta().transformed(T.beta());
 
-        return T {alpha_transformed, beta_transformed};
+        return Type {alpha_transformed, beta_transformed};
     }
 };
 

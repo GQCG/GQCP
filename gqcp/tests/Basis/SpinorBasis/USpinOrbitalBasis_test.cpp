@@ -39,11 +39,11 @@ BOOST_AUTO_TEST_CASE(constructor_throws) {
     const auto K_beta = beta_scalar_basis.numberOfBasisFunctions();  // 4
 
 
-    // Initialize compatible and incompatible test coefficient matrices.
-    const GQCP::UTransformationMatrix<double> T_compatible {GQCP::TransformationMatrix<double>::Zero(K_alpha), GQCP::TransformationMatrix<double>::Zero(K_beta)};
+    // Initialize compatible and incompatible test expansion coefficients.
+    const GQCP::UTransformation<double> T_compatible {GQCP::UTransformationComponent<double>::Zero(K_alpha), GQCP::UTransformationComponent<double>::Zero(K_beta)};
 
-    const GQCP::UTransformationMatrix<double> T_incompatible_alpha {GQCP::TransformationMatrix<double>::Zero(K_alpha + 1), GQCP::TransformationMatrix<double>::Zero(K_beta)};
-    const GQCP::UTransformationMatrix<double> T_incompatible_beta {GQCP::TransformationMatrix<double>::Zero(K_alpha), GQCP::TransformationMatrix<double>::Zero(K_beta + 1)};
+    const GQCP::UTransformation<double> T_incompatible_alpha {GQCP::UTransformationComponent<double>::Zero(K_alpha + 1), GQCP::UTransformationComponent<double>::Zero(K_beta)};
+    const GQCP::UTransformation<double> T_incompatible_beta {GQCP::UTransformationComponent<double>::Zero(K_alpha), GQCP::UTransformationComponent<double>::Zero(K_beta + 1)};
 
 
     // Check if the constructor throws upon receiving incompatible arguments.

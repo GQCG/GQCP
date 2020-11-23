@@ -52,8 +52,8 @@ public:
     // The type of 'this'.
     using Self = Simple1DM<Scalar, DerivedDM>;
 
-    // The type of transformation matrix that is naturally related to the DerivedDM.
-    using TM = typename DensityMatrixTraits<DerivedDM>::TM;
+    // The type of transformation that is naturally related to the DerivedDM.
+    using Transformation = typename DensityMatrixTraits<DerivedDM>::Transformation;
 
 
 public:
@@ -78,13 +78,13 @@ public:
     /**
      *  Apply the basis transformation and return the resulting 1-DM.
      * 
-     *  @param transformation_matrix        The type that encapsulates the basis transformation coefficients.
+     *  @param T        The basis transformation.
      * 
      *  @return The basis-transformed 1-DM.
      */
-    Self transformed(const TM& transformation_matrix) const override {
+    Self transformed(const Transformation& T) const override {
 
-        return Self(transformation_matrix.inverse().conjugate() * (*this) * transformation_matrix.inverse().transpose());  // Note that this basis transformation formula is different from the one-electron operator one. See SimpleSQOneElectronOperator.
+        return Self(T.matrix().inverse().conjugate() * (*this) * T.matrix().inverse().transpose());  // Note that this basis transformation formula is different from the one-electron operator one. See `SimpleSQOneElectronOperator`.
     }
 };
 
@@ -99,8 +99,8 @@ public:
 template <typename Scalar, typename DerivedDM>
 struct BasisTransformableTraits<Simple1DM<Scalar, DerivedDM>> {
 
-    // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix"
-    using TM = typename DensityMatrixTraits<DerivedDM>::TM;
+    // The type of the transformation for which the basis transformation should be defined.
+    using Transformation = typename DensityMatrixTraits<DerivedDM>::Transformation;
 };
 
 

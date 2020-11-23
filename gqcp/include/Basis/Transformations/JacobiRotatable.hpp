@@ -44,8 +44,6 @@ struct JacobiRotatableTraits {};
 /**
  *  An (abstract) interface for types that may be transformed from one orbital basis to another, using a Jacobi rotation.
  * 
- *  In general, we adopt the convention outlined in (https://gqcg-res.github.io/knowdes/spinor-transformations.html), where the new orbitals' coefficients can be found in the respective **column** of the related transformation matrix.
- * 
  *  @param T        The type that should be Jacobi-transformable. It is given as a template argument, enabling CRTP.
  */
 template <typename T>

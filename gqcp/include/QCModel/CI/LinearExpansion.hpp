@@ -22,7 +22,7 @@
 #include "Basis/SpinorBasis/GSpinorBasis.hpp"
 #include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
-#include "Basis/Transformations/RTransformationMatrix.hpp"
+#include "Basis/Transformations/RTransformation.hpp"
 #include "DensityMatrix/Orbital1DM.hpp"
 #include "DensityMatrix/Orbital2DM.hpp"
 #include "DensityMatrix/SpinResolved1DM.hpp"
@@ -279,11 +279,11 @@ public:
     static enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, LinearExpansion<Z>> FromONVProjection(const SpinResolvedONV& onv, const RSpinOrbitalBasis<double, GTOShell>& r_spinor_basis, const USpinOrbitalBasis<double, GTOShell>& u_spinor_basis) {
 
         // Determine the overlap matrices of the underlying scalar orbital bases, which is needed later on.
-        auto S_r = r_spinor_basis.overlap();                          // the overlap matrix of the restricted MOs/spin-orbitals
-        S_r.transform(r_spinor_basis.coefficientMatrix().inverse());  // now in AO basis
+        auto S_r = r_spinor_basis.overlap();                  // the overlap matrix of the restricted MOs/spin-orbitals
+        S_r.transform(r_spinor_basis.expansion().inverse());  // now in AO basis
 
-        auto S_u = u_spinor_basis.overlap();                          // The overlap matrix of the unrestricted spin-orbitals.
-        S_u.transform(u_spinor_basis.coefficientMatrix().inverse());  // Now in AO basis.
+        auto S_u = u_spinor_basis.overlap();                  // The overlap matrix of the unrestricted spin-orbitals.
+        S_u.transform(u_spinor_basis.expansion().inverse());  // Now in AO basis.
 
         if (!(S_r.parameters().isApprox(S_u.alpha().parameters(), 1.0e-08)) || !(S_r.parameters().isApprox(S_u.beta().parameters(), 1.0e-08))) {
             throw std::invalid_argument("LinearExpansion::FromONVProjection(const SpinResolvedONV&, const RSpinOrbitalBasis<double, GTOShell>&, const USpinOrbitalBasis<double, GTOShell>&): The given spinor bases are not expressed using the same scalar orbital basis.");
@@ -291,9 +291,9 @@ public:
 
 
         // Prepare some parameters.
-        const auto& C_restricted = r_spinor_basis.coefficientMatrix();
+        const auto& C_restricted = r_spinor_basis.expansion();
 
-        const auto C_unrestricted = u_spinor_basis.coefficientMatrix();
+        const auto C_unrestricted = u_spinor_basis.expansion();
 
 
         // Set up the required spin-resolved ONV basis.
@@ -333,10 +333,10 @@ public:
 
         // Determine the overlap matrices of the underlying scalar orbital bases, which is needed later on.
         auto S_on = spinor_basis_on.overlap();
-        S_on.transform(spinor_basis_on.coefficientMatrix().inverse());  // now in AO basis
+        S_on.transform(spinor_basis_on.expansion().inverse());  // now in AO basis
 
         auto S_of = spinor_basis_of.overlap();
-        S_of.transform(spinor_basis_of.coefficientMatrix().inverse());  // now in AO basis
+        S_of.transform(spinor_basis_of.expansion().inverse());  // now in AO basis
 
         if (!(S_on.parameters().isApprox(S_of.parameters(), 1.0e-08))) {
             throw std::invalid_argument("LinearExpansion::FromONVProjection(const SpinUnresolvedONV&, const RSpinOrbitalBasis<double, GTOShell>&, const GSpinorBasis<double, GTOShell>&): The given spinor bases are not expressed using the same scalar orbital basis.");
@@ -344,8 +344,8 @@ public:
 
 
         // Prepare some parameters.
-        const auto& C_on = spinor_basis_on.coefficientMatrix();
-        const auto& C_of = spinor_basis_of.coefficientMatrix();
+        const auto& C_on = spinor_basis_on.expansion();
+        const auto& C_of = spinor_basis_of.expansion();
 
 
         // Set up the required spin-resolved ONV basis.
@@ -393,24 +393,24 @@ public:
      */
 
     /**
-     *  Update the expansion coefficients of this linear expansion so that they correspond to the situation after a transformation of the underlying spinor basis with the given transformation matrix.
+     *  Update the expansion coefficients of this linear expansion so that they correspond to the situation after a transformation of the underlying spinor basis with the given basis transformation.
      *
-     *  @param T            The transformation matrix between the old and the new restricted spin-orbital basis.
+     *  @param T            The transformation between the old and the new restricted spin-orbital basis.
      * 
      *  @note This method is only available for the full spin-resolved ONV basis.
      *  @note This algorithm was implemented from a description in Helgaker2000.
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value> basisTransform(const RTransformationMatrix<double>& T) {
+    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value> basisTransform(const RTransformation<double>& T) {
 
         const auto K = onv_basis.numberOfOrbitals();  // number of spatial orbitals
         if (K != T.numberOfOrbitals()) {
-            throw std::invalid_argument("LinearExpansion::basisTransform(const RTransformationMatrix<double>&): The number of spatial orbitals does not match the dimension of the transformation matrix.");
+            throw std::invalid_argument("LinearExpansion::basisTransform(const RTransformation<double>&): The number of spatial orbitals does not match the dimension of the transformation matrix.");
         }
 
 
         // LU-decompose the transformation matrix LU decomposition for T
-        const auto& lu_decomposition = T.noPivotLUDecompose();
+        const auto& lu_decomposition = T.matrix().noPivotLUDecompose();
 
         SquareMatrix<double> L = SquareMatrix<double>::Identity(K);
         L.triangularView<Eigen::StrictlyLower>() = lu_decomposition[0];

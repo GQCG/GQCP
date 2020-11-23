@@ -72,19 +72,19 @@ public:
      * 
      *  @param alpha_scalar_basis           The scalar basis in which the alpha spin-orbitals are expanded.
      *  @param beta_scalar_basis            The scalar basis in which the beta spin-orbitals are expanded.
-     *  @param C                            The transformation that expresses the current spin-orbitals in terms of the underlying scalar basis.
+     *  @param C                            The transformation that relates the current set of spinors with the atomic spinors.
      */
-    USpinOrbitalBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis, const UTransformationMatrix<ExpansionScalar>& C) :
+    USpinOrbitalBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis, const UTransformation<ExpansionScalar>& C) :
         USpinOrbitalBasis(USpinOrbitalBasisComponent<ExpansionScalar, Shell> {alpha_scalar_basis, C.alpha()},
                           USpinOrbitalBasisComponent<ExpansionScalar, Shell> {beta_scalar_basis, C.beta()}) {
 
         // Check if the dimensions of the given objects are compatible.
         if (C.alpha().numberOfOrbitals() != alpha_scalar_basis.numberOfBasisFunctions()) {
-            throw std::invalid_argument("USpinOrbitalBasis(const ScalarBasis<Shell>&, const ScalarBasis<Shell>&, const UTransformationMatrix<ExpansionScalar>&): The given dimensions of the scalar basis and coefficient matrix for the alpha spin-orbitals are incompatible.");
+            throw std::invalid_argument("USpinOrbitalBasis(const ScalarBasis<Shell>&, const ScalarBasis<Shell>&, const UTransformation<ExpansionScalar>&): The given dimensions of the scalar basis and coefficient matrix for the alpha spin-orbitals are incompatible.");
         }
 
         if (C.beta().numberOfOrbitals() != beta_scalar_basis.numberOfBasisFunctions()) {
-            throw std::invalid_argument("USpinOrbitalBasis(const ScalarBasis<Shell>&, const ScalarBasis<Shell>&, const UTransformationMatrix<ExpansionScalar>&): The given dimensions of the scalar basis and coefficient matrix for the beta spin-orbitals are incompatible.");
+            throw std::invalid_argument("USpinOrbitalBasis(const ScalarBasis<Shell>&, const ScalarBasis<Shell>&, const UTransformation<ExpansionScalar>&): The given dimensions of the scalar basis and coefficient matrix for the beta spin-orbitals are incompatible.");
         }
     }
 
@@ -95,8 +95,8 @@ public:
      *  @param scalar_basis         The scalar basis in which both the alpha and beta spin-orbitals are expanded.
      *  @param C                    The transformation that expresses the current spin-orbitals in terms of the underlying scalar basis.
      */
-    USpinOrbitalBasis(const ScalarBasis<Shell>& scalar_basis, const UTransformationMatrixComponent<ExpansionScalar>& C) :
-        USpinOrbitalBasis(scalar_basis, scalar_basis, UTransformationMatrix<ExpansionScalar>::FromEqual(C)) {}
+    USpinOrbitalBasis(const ScalarBasis<Shell>& scalar_basis, const UTransformationComponent<ExpansionScalar>& C) :
+        USpinOrbitalBasis(scalar_basis, scalar_basis, UTransformation<ExpansionScalar>::FromEqual(C)) {}
 
 
     /**
@@ -107,9 +107,9 @@ public:
      */
     USpinOrbitalBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis) :
         USpinOrbitalBasis(alpha_scalar_basis, beta_scalar_basis,
-                          UTransformationMatrix<ExpansionScalar>(
-                              UTransformationMatrixComponent<ExpansionScalar>::Identity(alpha_scalar_basis.numberOfBasisFunctions()),
-                              UTransformationMatrixComponent<ExpansionScalar>::Identity(beta_scalar_basis.numberOfBasisFunctions()))) {}
+                          UTransformation<ExpansionScalar>(
+                              UTransformationComponent<ExpansionScalar>::Identity(alpha_scalar_basis.numberOfBasisFunctions()),
+                              UTransformationComponent<ExpansionScalar>::Identity(beta_scalar_basis.numberOfBasisFunctions()))) {}
 
 
     /**
@@ -180,15 +180,16 @@ public:
     /**
      *  Create an unrestricted spin-orbital basis from a restricted spin-orbital basis, leading to alpha- and beta- coefficient matrices that are equal.
      *
-     *  @param r_spinor_basis               the restricted spinor basis
+     *  @param r_spinor_basis               The restricted spin-orbital basis.
      *
-     *  @return an unrestricted spinor basis
+     *  @return An `USpinOrbitalBasis` that corresponds to the given restricted one.
      */
     static USpinOrbitalBasis<ExpansionScalar, Shell> FromRestricted(const RSpinOrbitalBasis<ExpansionScalar, Shell>& r_spinor_basis) {
 
-        const auto scalar_basis = r_spinor_basis.scalarBasis();
-        const auto C = r_spinor_basis.coefficientMatrix();
-        return USpinOrbitalBasis<ExpansionScalar, Shell>(scalar_basis, scalar_basis, UTransformationMatrix<ExpansionScalar>::FromRestricted(C));
+        const auto& scalar_basis = r_spinor_basis.scalarBasis();
+        const auto& C = r_spinor_basis.expansion();
+
+        return USpinOrbitalBasis<ExpansionScalar, Shell>(scalar_basis, scalar_basis, UTransformation<ExpansionScalar>::FromRestricted(C));
     }
 
 
@@ -199,8 +200,8 @@ public:
     /**
      *  @return The transformation that expresses the current spin-orbitals in terms of the underlying scalar basis.
      */
-    UTransformationMatrix<ExpansionScalar> coefficientMatrix() const {
-        return UTransformationMatrix<ExpansionScalar> {this->alpha().coefficientMatrix(), this->beta().coefficientMatrix()};
+    UTransformation<ExpansionScalar> expansion() const {
+        return UTransformation<ExpansionScalar> {this->alpha().expansion(), this->beta().expansion()};
     }
 
 
@@ -237,19 +238,19 @@ public:
 
 
     /**
-     *  @return The transformation T to the Löwdin basis, i.e. T = S_current^{-1/2}.
+     *  @return The transformation to the Löwdin basis. See also `SimpleSpinOrbitalBasis`.
      */
-    UTransformationMatrix<ExpansionScalar> lowdinOrthonormalizationMatrix() const {
+    UTransformation<ExpansionScalar> lowdinOrthonormalization() const {
 
-        const auto T_a = this->alpha().lowdinOrthonormalizationMatrix();
-        const auto T_b = this->beta().lowdinOrthonormalizationMatrix();
+        const auto T_a = this->alpha().lowdinOrthonormalization();
+        const auto T_b = this->beta().lowdinOrthonormalization();
 
-        return UTransformationMatrix<ExpansionScalar> {T_a, T_b};
+        return UTransformation<ExpansionScalar> {T_a, T_b};
     }
 
 
     /**
-     *  Transform this spin-orbital basis to the 'Löwdin basis', which is the orthonormal basis characterized by the transformation T = S_current^{-1/2}, where S_current is the current overlap matrix.
+     *  Transform this spin-orbital basis to the 'Löwdin basis'. See also `SimpleSpinOrbitalBasis`.
      */
     void lowdinOrthonormalize() {
         this->alpha().lowdinOrthonormalize();
@@ -337,7 +338,7 @@ public:
 
         // We have previously calculated the representations in the AO basis, so we'll still have to transform these representations to the current spin-orbitals.
         ResultOperator g {g_aa_par, g_ab_par, g_ba_par, g_bb_par};
-        g.transform(this->coefficientMatrix());  // Now, g is expressed in the current spin-orbital basis.
+        g.transform(this->expansion());  // Now, g is expressed in the current spin-orbital basis.
 
         return g;
     }
@@ -390,8 +391,8 @@ using USpinorBasis = USpinOrbitalBasis<ExpansionScalar, Shell>;
 template <typename _ExpansionScalar, typename _Shell>
 struct BasisTransformableTraits<USpinOrbitalBasis<_ExpansionScalar, _Shell>> {
 
-    // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix". A transformation matrix should naturally be transformable with itself.
-    using TM = UTransformationMatrix<_ExpansionScalar>;
+    // The type of transformation that is naturally related to a `USpinOrbitalBasis`.
+    using Transformation = UTransformation<_ExpansionScalar>;
 };
 
 

@@ -18,10 +18,10 @@
 #pragma once
 
 
-#include "Basis/Transformations/RTransformationMatrix.hpp"
+#include "Basis/Transformations/RTransformation.hpp"
 #include "Basis/Transformations/SpinResolvedBasisTransformable.hpp"
 #include "Basis/Transformations/SpinResolvedJacobiRotatable.hpp"
-#include "Basis/Transformations/UTransformationMatrixComponent.hpp"
+#include "Basis/Transformations/UTransformationComponent.hpp"
 #include "QuantumChemical/SpinResolvedBase.hpp"
 
 
@@ -29,7 +29,7 @@ namespace GQCP {
 
 
 /*
- *  MARK: UTransformationMatrix implementation
+ *  MARK: UTransformation implementation
  */
 
 /**
@@ -38,16 +38,16 @@ namespace GQCP {
  *  @tparam _Scalar         The scalar type used for a transformation coefficient: real or complex.
  */
 template <typename _Scalar>
-class UTransformationMatrix:
-    public SpinResolvedBase<UTransformationMatrixComponent<_Scalar>, UTransformationMatrix<_Scalar>>,
-    public SpinResolvedBasisTransformable<UTransformationMatrix<_Scalar>>,
-    public SpinResolvedJacobiRotatable<UTransformationMatrix<_Scalar>> {
+class UTransformation:
+    public SpinResolvedBase<UTransformationComponent<_Scalar>, UTransformation<_Scalar>>,
+    public SpinResolvedBasisTransformable<UTransformation<_Scalar>>,
+    public SpinResolvedJacobiRotatable<UTransformation<_Scalar>> {
 public:
     // The scalar type used for a transformation coefficient: real or complex.
     using Scalar = _Scalar;
 
-    // The type of the transformation matrix for which the basis transformation should be defined. A transformation matrix should naturally be transformable with itself.
-    using TM = UTransformationMatrix<Scalar>;
+    // The type of the transformation for which the basis transformation should be defined. A transformation should naturally be transformable with itself.
+    using Transformation = UTransformation<Scalar>;
 
 
 public:
@@ -56,7 +56,7 @@ public:
      */
 
     // Inherit `SpinResolvedBase`'s constructors.
-    using SpinResolvedBase<UTransformationMatrixComponent<Scalar>, UTransformationMatrix<Scalar>>::SpinResolvedBase;
+    using SpinResolvedBase<UTransformationComponent<Scalar>, UTransformation<Scalar>>::SpinResolvedBase;
 
 
     /*
@@ -64,55 +64,60 @@ public:
      */
 
     /**
-     *  Create an UTransformationMatrix from an RTransformationMatrix, leading to transformation matrices for both spin components that are equal.
+     *  Create an UTransformation from an RTransformation, leading to transformations for both spin components that are equal.
      * 
-     *  @param T                The equal transformation matrix for both the alpha and the beta spin-orbitals.
+     *  @param T                The transformation that is equal for both the alpha and the beta spin-orbitals.
      * 
-     *  @return An UTransformationMatrix.
+     *  @return A `UTransformation` corresponding to the given `RTransformation`.
      */
-    static UTransformationMatrix<Scalar> FromRestricted(const RTransformationMatrix<Scalar>& T) { return UTransformationMatrix<Scalar>::FromEqual(T); }
+    static UTransformation<Scalar> FromRestricted(const RTransformation<Scalar>& T) {
 
-
-    /**
-     *  Create an identity UTransformationMatrix.
-     * 
-     *  @param dim_alpha            The number of alpha spin-orbitals.
-     *  @param dim_beta             The number of beta spin-orbitals.
-     * 
-     *  @return An identity UTransformationMatrix.
-     */
-    static UTransformationMatrix<Scalar> Identity(const size_t dim_alpha, const size_t dim_beta) {
-
-        const UTransformationMatrixComponent<Scalar> T_alpha = UTransformationMatrixComponent<Scalar>::Identity(dim_alpha);
-        const UTransformationMatrixComponent<Scalar> T_beta = UTransformationMatrixComponent<Scalar>::Identity(dim_beta);
-
-        return UTransformationMatrix<Scalar> {T_alpha, T_beta};
+        // Wrap the restricted transformation in the correct class and return the result.
+        const UTransformationComponent<Scalar> T_component {T.matrix()};
+        return UTransformation<Scalar>::FromEqual(T_component);
     }
 
 
     /**
-     *  Create an identity UTransformationMatrix.
+     *  Create an identity UTransformation.
      * 
-     *  @param dim              The dimension of the alpha and beta spin-orbitals.
+     *  @param dim_alpha            The number of alpha spin-orbitals.
+     *  @param dim_beta             The number of beta spin-orbitals.
      * 
-     *  @return An identity UTransformationMatrix.
+     *  @return An identity UTransformation.
      */
-    static UTransformationMatrix<Scalar> Identity(const size_t dim) { return UTransformationMatrix<Scalar>::Identity(dim, dim); }
+    static UTransformation<Scalar> Identity(const size_t dim_alpha, const size_t dim_beta) {
+
+        const auto T_alpha = UTransformationComponent<Scalar>::Identity(dim_alpha);
+        const auto T_beta = UTransformationComponent<Scalar>::Identity(dim_beta);
+
+        return UTransformation<Scalar> {T_alpha, T_beta};
+    }
 
 
     /**
-     *  Create a random unitary `UTransformationMatrix`.
+     *  Create an identity UTransformation.
      * 
      *  @param dim              The dimension of the alpha and beta spin-orbitals.
      * 
-     *  @return A random unitary `UTransformationMatrix`.
+     *  @return An identity UTransformation.
      */
-    static UTransformationMatrix<Scalar> RandomUnitary(const size_t dim) {
+    static UTransformation<Scalar> Identity(const size_t dim) { return UTransformation<Scalar>::Identity(dim, dim); }
 
-        const UTransformationMatrixComponent<Scalar> T_alpha = UTransformationMatrixComponent<Scalar>::RandomUnitary(dim);
-        const UTransformationMatrixComponent<Scalar> T_beta = UTransformationMatrixComponent<Scalar>::RandomUnitary(dim);
 
-        return UTransformationMatrix<Scalar> {T_alpha, T_beta};
+    /**
+     *  Create a random unitary `UTransformation`.
+     * 
+     *  @param dim              The number of alpha or beta spin-orbitals (equal).
+     * 
+     *  @return A random unitary `UTransformation`.
+     */
+    static UTransformation<Scalar> RandomUnitary(const size_t dim) {
+
+        const auto T_alpha = UTransformationComponent<Scalar>::RandomUnitary(dim);
+        const auto T_beta = UTransformationComponent<Scalar>::RandomUnitary(dim);
+
+        return UTransformation<Scalar> {T_alpha, T_beta};
     }
 
 
@@ -131,7 +136,7 @@ public:
     /**
      *  @return The inverse of this transformation.
      */
-    UTransformationMatrix<Scalar> inverse() const {
+    UTransformation<Scalar> inverse() const {
 
         auto result = *this;
 
@@ -152,10 +157,10 @@ public:
  *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
  */
 template <typename Scalar>
-struct BasisTransformableTraits<UTransformationMatrix<Scalar>> {
+struct BasisTransformableTraits<UTransformation<Scalar>> {
 
-    // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix". A transformation matrix should naturally be transformable with itself.
-    using TM = UTransformationMatrix<Scalar>;
+    // The type of the transformation for which the basis transformation should be defined. A transformation matrix should naturally be transformable with itself.
+    using Transformation = UTransformation<Scalar>;
 };
 
 
@@ -167,7 +172,7 @@ struct BasisTransformableTraits<UTransformationMatrix<Scalar>> {
  *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
  */
 template <typename Scalar>
-struct JacobiRotatableTraits<UTransformationMatrix<Scalar>> {
+struct JacobiRotatableTraits<UTransformation<Scalar>> {
 
     // The type of Jacobi rotation for which the Jacobi rotation should be defined.
     using JacobiRotationType = UJacobiRotation;

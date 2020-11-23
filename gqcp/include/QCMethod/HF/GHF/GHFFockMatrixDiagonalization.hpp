@@ -30,7 +30,7 @@ namespace GQCP {
 /**
  *  An iteration step that solves the generalized eigenvalue problem for the current scalar/AO basis Fock matrix for the coefficient matrix.
  * 
- *  @tparam _Scalar              the scalar type used to represent the expansion coefficient/elements of the transformation matrix
+ *  @tparam _Scalar              The scalar type used to represent the expansion coefficient/elements of the transformation matrix: real or complex.
  */
 template <typename _Scalar>
 class GHFFockMatrixDiagonalization:
@@ -65,7 +65,7 @@ public:
 
         using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
         Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver {F, environment.S.parameters()};
-        const GTransformationMatrix<Scalar>& C = generalized_eigensolver.eigenvectors();
+        const GTransformation<Scalar>& C {generalized_eigensolver.eigenvectors()};
         const auto& orbital_energies = generalized_eigensolver.eigenvalues();
 
         environment.coefficient_matrices.push_back(C);

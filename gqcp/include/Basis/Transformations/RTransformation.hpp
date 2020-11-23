@@ -18,25 +18,26 @@
 #pragma once
 
 
-#include "Basis/Transformations/SimpleTransformationMatrix.hpp"
+#include "Basis/Transformations/SimpleTransformation.hpp"
+
 
 namespace GQCP {
 
 
 /*
- *  MARK: GTransformationMatrix implementation
+ *  MARK: RTransformation implementation
  */
 
 /**
- *  A 'general' basis transformation, i.e. a general, full-spinor basis transformation where the transformation mixes the alpha- and beta components of the two-component spinors.
+ *  A 'restricted' basis transformation, i.e. a spin-orbital basis transformation where the transformation is applied equally to the alpha- and beta-spin-orbitals.
  * 
  *  In general, we adopt the convention outlined in (https://gqcg-res.github.io/knowdes/spinor-transformations.html), where the new orbitals' coefficients can be found in the respective **column** of the related transformation matrix.
  * 
  *  @tparam _Scalar         The scalar type used for a transformation coefficient: real or complex.
  */
 template <typename _Scalar>
-class GTransformationMatrix:
-    public SimpleTransformationMatrix<_Scalar, GTransformationMatrix<_Scalar>> {
+class RTransformation:
+    public SimpleTransformation<_Scalar, RTransformation<_Scalar>> {
 public:
     // The scalar type used for a transformation coefficient: real or complex.
     using Scalar = _Scalar;
@@ -46,37 +47,8 @@ public:
      *  MARK: Constructors
      */
 
-    // Inherit SimpleTransformationMatrix' constructors.
-    using SimpleTransformationMatrix<Scalar, GTransformationMatrix<Scalar>>::SimpleTransformationMatrix;
-
-
-    /*
-     *  MARK: Components
-     */
-
-    // /**
-    //  *  @return The part of the general transformation that describes the alpha spinors.
-    //  */
-    // MatrixX<Scalar> alpha() const {
-
-    // }
-
-
-    // /**
-    //  *  @return The part of the general transformation that describes the beta spinors.
-    //  */
-    // MatrixX<Scalar> beta() const {
-
-    // }
-
-    // /**
-    //  *  @param sigma            Alpha or beta.
-    //  *
-    //  *  @return The part of the general transformation that describes the spinors of the requested component.
-    //  */
-    // MatrixX<Scalar> component(const Spin sigma) const {
-
-    // }
+    // Inherit SimpleTransformation' constructors.
+    using SimpleTransformation<Scalar, RTransformation<Scalar>>::SimpleTransformation;
 };
 
 
@@ -88,10 +60,10 @@ public:
  *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
  */
 template <typename Scalar>
-struct BasisTransformableTraits<GTransformationMatrix<Scalar>> {
+struct BasisTransformableTraits<RTransformation<Scalar>> {
 
-    // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix". A transformation matrix should naturally be transformable with itself.
-    using TM = GTransformationMatrix<Scalar>;
+    // The type of the transformation for which the basis transformation should be defined. A transformation should naturally be transformable with itself.
+    using Transformation = RTransformation<Scalar>;
 };
 
 
@@ -103,7 +75,7 @@ struct BasisTransformableTraits<GTransformationMatrix<Scalar>> {
  *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
  */
 template <typename Scalar>
-struct JacobiRotatableTraits<GTransformationMatrix<Scalar>> {
+struct JacobiRotatableTraits<RTransformation<Scalar>> {
 
     // The type of Jacobi rotation for which the Jacobi rotation should be defined.
     using JacobiRotationType = JacobiRotation;

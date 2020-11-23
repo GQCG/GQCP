@@ -46,7 +46,7 @@ BOOST_AUTO_TEST_CASE(RHF_orbitals_are_orthonormal) {
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
-    spinor_basis.transform(rhf_parameters.coefficientMatrix());
+    spinor_basis.transform(rhf_parameters.expansion());
     BOOST_CHECK(spinor_basis.isOrthonormal());
 }
 

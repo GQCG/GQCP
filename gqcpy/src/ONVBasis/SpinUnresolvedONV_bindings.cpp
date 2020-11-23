@@ -70,7 +70,7 @@ void bindSpinUnresolvedONV(py::module& module) {
         .def(
             "calculateProjection",
             [](const GQCP::SpinUnresolvedONV& onv_of, const GQCP::SpinUnresolvedONV& onv_on, const Eigen::MatrixXd& C_of, const Eigen::MatrixXd& C_on, const Eigen::MatrixXd& S) {
-                return onv_of.calculateProjection(onv_on, GQCP::GTransformationMatrix<double>(C_of), GQCP::GTransformationMatrix<double>(C_on), GQCP::SquareMatrix<double>(S));
+                return onv_of.calculateProjection(onv_on, GQCP::GTransformation<double>(C_of), GQCP::GTransformation<double>(C_on), GQCP::SquareMatrix<double>(S));
             },
             py::arg("onv_on"),
             py::arg("C_of"),

@@ -613,13 +613,13 @@ BOOST_AUTO_TEST_CASE(GHF_overlap) {
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
     // Create a GSpinorBasis from the canonical RHF spin-orbitals, yielding a general spinor basis with alternating alpha- and beta-spin-orbitals.
-    r_spinor_basis.transform(rhf_parameters.coefficientMatrix());
+    r_spinor_basis.transform(rhf_parameters.expansion());
 
     const auto g_spinor_basis_of = GQCP::GSpinorBasis<double, GQCP::GTOShell>::FromRestricted(r_spinor_basis);
     const auto g_spinor_basis_on = g_spinor_basis_of;
 
-    const auto& C_on = g_spinor_basis_on.coefficientMatrix();
-    const auto& C_of = g_spinor_basis_of.coefficientMatrix();
+    const auto& C_on = g_spinor_basis_on.expansion();
+    const auto& C_of = g_spinor_basis_of.expansion();
 
     auto S_op = g_spinor_basis_of.overlap();  // in MO basis
     S_op.transform(C_on.inverse());           // now in AO basis
@@ -665,34 +665,36 @@ BOOST_AUTO_TEST_CASE(RHF_UHF_projection) {
     // Obtain the canonical RHF spin-orbitals.
     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> r_spinor_basis {molecule, "STO-3G"};
     const auto S_restricted = r_spinor_basis.overlap().parameters();  // the AO overlap matrix
-    GQCP::RTransformationMatrix<double> C_restricted {4};             // RHF canonical orbitals for this system (Xeno)
+    GQCP::SquareMatrix<double> C_restricted_matrix {4};               // RHF canonical orbitals for this system (Xeno)
     // clang-format off
-    C_restricted << -0.27745359, -0.8505133,   0.85051937,  2.02075317,
-                    -0.27745362, -0.85051937, -0.8505133,  -2.02075317,
-                    -0.27745359,  0.8505133,  -0.85051937,  2.02075317,
-                    -0.27745362,  0.85051937,  0.8505133,  -2.02075317;
+    C_restricted_matrix << -0.27745359, -0.8505133,   0.85051937,  2.02075317,
+                           -0.27745362, -0.85051937, -0.8505133,  -2.02075317,
+                           -0.27745359,  0.8505133,  -0.85051937,  2.02075317,
+                           -0.27745362,  0.85051937,  0.8505133,  -2.02075317;
     // clang-format on
+    GQCP::RTransformation<double> C_restricted {C_restricted_matrix};
     r_spinor_basis.transform(C_restricted);
 
 
     // Obtain the canonical UHF spin-orbitals.
     GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> u_spinor_basis {molecule, "STO-3G"};
-    GQCP::TransformationMatrix<double> C_alpha {4};  // UHF alpha canonical orbitals for this system (Xeno), triplet
+    GQCP::SquareMatrix<double> C_alpha_matrix {4};  // UHF alpha canonical orbitals for this system (Xeno), triplet
     // clang-format off
-    C_alpha << -1.75646828e-01, -1.20606646e-06,  1.20281173e+00,  2.03213486e+00,
-               -3.78560533e-01, -1.20281173e+00, -1.20606647e-06, -2.00427438e+00,
-               -1.75646828e-01,  1.20606646e-06, -1.20281173e+00,  2.03213486e+00,
-               -3.78560533e-01,  1.20281173e+00,  1.20606646e-06, -2.00427438e+00;
+    C_alpha_matrix << -1.75646828e-01, -1.20606646e-06,  1.20281173e+00,  2.03213486e+00,
+                      -3.78560533e-01, -1.20281173e+00, -1.20606647e-06, -2.00427438e+00,
+                      -1.75646828e-01,  1.20606646e-06, -1.20281173e+00,  2.03213486e+00,
+                      -3.78560533e-01,  1.20281173e+00,  1.20606646e-06, -2.00427438e+00;
     // clang-format on
 
-    GQCP::TransformationMatrix<double> C_beta {4};  // UHF beta canonical orbitals for this system (Xeno), triplet
+
+    GQCP::SquareMatrix<double> C_beta_matrix {4};  // UHF beta canonical orbitals for this system (Xeno), triplet
     // clang-format off
-    C_beta << -3.78560533e-01,  1.20281173e+00,  1.21724557e-06,  2.00427438e+00,
-              -1.75646828e-01,  1.21724558e-06, -1.20281173e+00, -2.03213486e+00,
-              -3.78560533e-01, -1.20281173e+00, -1.21724558e-06,  2.00427438e+00,
-              -1.75646828e-01, -1.21724558e-06,  1.20281173e+00, -2.03213486e+00;
+    C_beta_matrix << -3.78560533e-01,  1.20281173e+00,  1.21724557e-06,  2.00427438e+00,
+                     -1.75646828e-01,  1.21724558e-06, -1.20281173e+00, -2.03213486e+00,
+                     -3.78560533e-01, -1.20281173e+00, -1.21724558e-06,  2.00427438e+00,
+                     -1.75646828e-01, -1.21724558e-06,  1.20281173e+00, -2.03213486e+00;
     // clang-format on
-    GQCP::UTransformationMatrix<double> C_unrestricted {C_alpha, C_beta};
+    GQCP::UTransformation<double> C_unrestricted {C_alpha_matrix, C_beta_matrix};
     u_spinor_basis.transform(C_unrestricted);
 
 
@@ -707,8 +709,8 @@ BOOST_AUTO_TEST_CASE(RHF_UHF_projection) {
     const auto g_spinor_basis_of = GQCP::GSpinorBasis<double, GQCP::GTOShell>::FromRestricted(r_spinor_basis);
     const auto g_spinor_basis_on = GQCP::GSpinorBasis<double, GQCP::GTOShell>::FromUnrestricted(u_spinor_basis);
 
-    const auto& C_of = g_spinor_basis_of.coefficientMatrix();
-    const auto& C_on = g_spinor_basis_on.coefficientMatrix();
+    const auto& C_of = g_spinor_basis_of.expansion();
+    const auto& C_on = g_spinor_basis_on.expansion();
 
     auto S_generalized_op = g_spinor_basis_of.overlap();  // in MO basis
     S_generalized_op.transform(C_of.inverse());           // in AO basis

@@ -19,7 +19,7 @@
 
 
 #include "Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp"
-#include "Basis/Transformations/UTransformationMatrixComponent.hpp"
+#include "Basis/Transformations/UTransformationComponent.hpp"
 #include "DensityMatrix/SpinResolved1DMComponent.hpp"
 #include "DensityMatrix/SpinResolved2DMComponent.hpp"
 #include "Mathematical/Representation/DenseVectorizer.hpp"
@@ -93,13 +93,13 @@ struct OperatorTraits<USQOneElectronOperatorComponent<Scalar, Vectorizer>> {
     // A type that corresponds to the scalar version of the associated component of an unrestricted one-electron operator type.
     using ScalarOperator = ScalarUSQOneElectronOperatorComponent<Scalar>;
 
-    // The type of transformation matrix that is naturally associated to a component of an unestricted one-electron operator.
-    using TM = UTransformationMatrixComponent<Scalar>;
+    // The type of transformation that is naturally associated to a component of an unestricted one-electron operator.
+    using Transformation = UTransformationComponent<Scalar>;
 
-    // The type of the one-particle density matrix that is naturally associated a component of an unestricted one-electron operator.
+    // The type of the one-particle density matrix that is naturally associated a component of an unrestricted one-electron operator.
     using OneDM = SpinResolved1DMComponent<Scalar>;
 
-    // The type of the two-particle density matrix that is naturally associated a component of an unestricted one-electron operator.
+    // The type of the two-particle density matrix that is naturally associated a component of an unrestricted one-electron operator.
     using TwoDM = SpinResolved2DMComponent<Scalar>;
 
     // The type used to encapsulate the Mulliken partitioning scheme.
@@ -117,8 +117,8 @@ struct OperatorTraits<USQOneElectronOperatorComponent<Scalar, Vectorizer>> {
 template <typename Scalar, typename Vectorizer>
 struct BasisTransformableTraits<USQOneElectronOperatorComponent<Scalar, Vectorizer>> {
 
-    // The type of transformation matrix that is naturally associated to a component of an unestricted one-electron operator.
-    using TM = UTransformationMatrixComponent<Scalar>;
+    // The type of transformation that is naturally associated to a component of an unrestricted one-electron operator.
+    using Transformation = UTransformationComponent<Scalar>;
 };
 
 

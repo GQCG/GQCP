@@ -257,9 +257,9 @@ BOOST_AUTO_TEST_CASE(USQTwoElectronOperator_scalar_product) {
 
 
 /**
- *  Check whether or not rotating with a trivial unitary matrix has no apparent effect.
+ *  Check whether or not rotating with a trivial unitary transformation has no apparent effect.
  */
-BOOST_AUTO_TEST_CASE(rotate_with_unitary_transformation_matrix) {
+BOOST_AUTO_TEST_CASE(rotate_with_unitary_transformation) {
 
     const size_t dim = 2;
 
@@ -277,8 +277,8 @@ BOOST_AUTO_TEST_CASE(rotate_with_unitary_transformation_matrix) {
     }
     GQCP::ScalarUSQTwoElectronOperator<double> op {T1, T1, T1, T1};
 
-    // Initialize the identity unitary transformation matrix and use it for the rotation.
-    const auto U = GQCP::UTransformationMatrix<double>::Identity(dim);
+    // Initialize the identity unitary transformation and use it for the rotation.
+    const auto U = GQCP::UTransformation<double>::Identity(dim);
 
     op.rotate(U);
     BOOST_CHECK(op.alphaAlpha().parameters().isApprox(T1, 1.0e-08));
@@ -291,7 +291,7 @@ BOOST_AUTO_TEST_CASE(rotate_with_unitary_transformation_matrix) {
 /**
  * Check whether or not the transformation method works as expected.
  */
-BOOST_AUTO_TEST_CASE(transform_with_transformation_matrix) {
+BOOST_AUTO_TEST_CASE(transform) {
 
     const size_t dim = 2;
 
@@ -309,13 +309,13 @@ BOOST_AUTO_TEST_CASE(transform_with_transformation_matrix) {
     }
     GQCP::ScalarUSQTwoElectronOperator<double> op {T1, T1, T1, T1};
 
-    // Initialize a test transformation matrix, equal for alpha and beta.
-    GQCP::UTransformationMatrixComponent<double> T_component {dim};
+    // Initialize a test transformation, equal for alpha and beta.
+    GQCP::SquareMatrix<double> T_component {dim};
     // clang-format off
     T_component << 2.0, 3.0,
                    3.0, 4.0;
     // clang-format on
-    const auto T = GQCP::UTransformationMatrix<double>::FromEqual(T_component);
+    const auto T = GQCP::UTransformation<double>::FromEqual(T_component);
 
 
     // Initialize a reference tensor, transform the original operator and check the result.

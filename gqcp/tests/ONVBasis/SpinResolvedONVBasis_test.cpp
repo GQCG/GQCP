@@ -260,7 +260,7 @@ BOOST_AUTO_TEST_CASE(evaluate_USQHamiltonian_dense) {
     spin_orbital_basis.lowdinOrthonormalize();
     auto hamiltonian = GQCP::USQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);
     const auto K = hamiltonian.numberOfOrbitals();
-    hamiltonian.rotate(GQCP::UTransformationMatrix<double>::RandomUnitary(K));
+    hamiltonian.rotate(GQCP::UTransformation<double>::RandomUnitary(K));
 
     // Set up the full spin-resolved ONV basis and its 'selected' equivalent.
     const auto N_P = molecule.numberOfElectronPairs();
@@ -314,7 +314,7 @@ BOOST_AUTO_TEST_CASE(unrestricted_dense_vs_matvec) {
     spin_orbital_basis.lowdinOrthonormalize();
     auto hamiltonian = GQCP::USQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);
     const auto K = hamiltonian.numberOfOrbitals();
-    hamiltonian.rotate(GQCP::UTransformationMatrix<double>::RandomUnitary(K));
+    hamiltonian.rotate(GQCP::UTransformation<double>::RandomUnitary(K));
 
     // Set up the full spin-resolved ONV basis.
     const GQCP::SpinResolvedONVBasis onv_basis {K, molecule.numberOfElectronPairs(), molecule.numberOfElectronPairs()};

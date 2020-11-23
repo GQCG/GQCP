@@ -83,8 +83,8 @@ public:
     // The type of the two-particle density matrix that is naturally associated to the second-quantized Hamiltonian.
     using TwoDM = typename OperatorTraits<ScalarSQOneElectronOperator>::TwoDM;
 
-    // The type of transformation matrix that is naturally associated to the Hamiltonian.
-    using TM = typename OperatorTraits<ScalarSQOneElectronOperator>::TM;
+    // The type of transformation that is naturally associated to the Hamiltonian.
+    using Transformation = typename OperatorTraits<ScalarSQOneElectronOperator>::Transformation;
 
     // The type of Jacobi rotation for which the Jacobi rotation should be defined.
     using JacobiRotationType = typename JacobiRotatableTraits<ScalarSQOneElectronOperator>::JacobiRotationType;
@@ -573,11 +573,11 @@ public:
     /**
      *  Apply the basis transformation and return the resulting Hamiltonian.
      * 
-     *  @param T            The type that encapsulates the basis transformation coefficients.
+     *  @param T            The basis transformation.
      * 
      *  @return The basis-transformed Hamiltonian.
      */
-    Self transformed(const TM& T) const override {
+    Self transformed(const Transformation& T) const override {
 
         auto result = *this;
 
@@ -757,8 +757,8 @@ public:
 template <typename ScalarSQOneElectronOperator, typename ScalarSQTwoElectronOperator>
 struct OperatorTraits<SQHamiltonian<ScalarSQOneElectronOperator, ScalarSQTwoElectronOperator>> {
 
-    // The type of transformation matrix that is naturally associated to the second-quantized Hamiltonian.
-    using TM = typename OperatorTraits<ScalarSQOneElectronOperator>::TM;
+    // The type of transformation that is naturally associated to the second-quantized Hamiltonian.
+    using Transformation = typename OperatorTraits<ScalarSQOneElectronOperator>::Transformation;
 
     // The type of the one-particle density matrix that is naturally associated to the second-quantized Hamiltonian.
     using OneDM = typename OperatorTraits<ScalarSQOneElectronOperator>::OneDM;
@@ -778,8 +778,8 @@ struct OperatorTraits<SQHamiltonian<ScalarSQOneElectronOperator, ScalarSQTwoElec
 template <typename ScalarSQOneElectronOperator, typename ScalarSQTwoElectronOperator>
 struct BasisTransformableTraits<SQHamiltonian<ScalarSQOneElectronOperator, ScalarSQTwoElectronOperator>> {
 
-    // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix"
-    using TM = typename OperatorTraits<ScalarSQOneElectronOperator>::TM;
+    // The type of the transformation for which the basis transformation should be defined.
+    using Transformation = typename OperatorTraits<ScalarSQOneElectronOperator>::Transformation;
 };
 
 

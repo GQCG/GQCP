@@ -19,7 +19,7 @@
 
 
 #include "Basis/SpinorBasis/OrbitalSpace.hpp"
-#include "Basis/Transformations/GTransformationMatrix.hpp"
+#include "Basis/Transformations/GTransformation.hpp"
 
 
 namespace GQCP {
@@ -194,14 +194,14 @@ public:
     /**
      *  Calculate the overlap <on|of>: the projection of between this spin-unresolved ONV ('of') and another spin-unresolved ONV ('on'), expressed in different general orthonormal spinor bases.
      * 
-     *  @param onv_on                       the spin-unresolved ONV that should be projected on
-     *  @param C_of                         the coefficient matrix that describes the expansion of the general spinors related to the ONV that is being projected
-     *  @param C_on                         the coefficient matrix that describes the expansion of the general spinors related to the ONV that is being projected on
-     *  @param S                            the overlap matrix of the underlying AOs
+     *  @param onv_on                       The spin-unresolved ONV that should be projected on.
+     *  @param C_of                         The transformation between the spinors related to the ONV that is being projected and the atomic spinors.
+     *  @param C_on                         The transformation between the spinors related to the ONV that is being projected on and the atomic spinors.
+     *  @param S                            The overlap matrix of the underlying AOs.
      * 
-     *  @return the overlap element <on|of>
+     *  @return The overlap element <on|of>.
      */
-    double calculateProjection(const SpinUnresolvedONV& onv_on, const GTransformationMatrix<double>& C_of, const GTransformationMatrix<double>& C_on, const SquareMatrix<double>& S) const;
+    double calculateProjection(const SpinUnresolvedONV& onv_on, const GTransformation<double>& C_of, const GTransformation<double>& C_on, const SquareMatrix<double>& S) const;
 
     /**
      *  @param other        the other spin-unresolved ONV

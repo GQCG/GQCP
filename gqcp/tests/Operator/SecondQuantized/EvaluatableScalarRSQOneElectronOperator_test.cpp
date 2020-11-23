@@ -68,7 +68,7 @@ BOOST_AUTO_TEST_CASE(transform_matrix_representations) {
     // clang-format on
 
 
-    // Create the transformation matrix and transform the operator manually: .transform() for does not work yet
+    // Create the transformation and transform the operator manually: .transform() for does not work yet
     GQCP::Matrix<double, 2, 2> T = GQCP::Matrix<double, 2, 2>::Zero();
     // clang-format off
     T << 2.0, 1.0,
@@ -187,7 +187,7 @@ BOOST_AUTO_TEST_CASE(integrated_density_sto_3g) {
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
-    spinor_basis.transform(rhf_parameters.coefficientMatrix());
+    spinor_basis.transform(rhf_parameters.expansion());
 
 
     // Calculate the RHF density.
@@ -221,7 +221,7 @@ BOOST_AUTO_TEST_CASE(integrated_density_cc_pVTZ) {
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
-    spinor_basis.transform(rhf_parameters.coefficientMatrix());
+    spinor_basis.transform(rhf_parameters.expansion());
 
 
     // Calculate the RHF density.

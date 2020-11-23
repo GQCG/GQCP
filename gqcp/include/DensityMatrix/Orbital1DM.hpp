@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/Transformations/RTransformationMatrix.hpp"
+#include "Basis/Transformations/RTransformation.hpp"
 #include "DensityMatrix/DensityMatrixTraits.hpp"
 #include "DensityMatrix/Simple1DM.hpp"
 
@@ -63,8 +63,8 @@ public:
  */
 template <typename Scalar>
 struct DensityMatrixTraits<Orbital1DM<Scalar>> {
-    // The type of transformation matrix that is naturally related to an Orbital1DM. The only transformations that should be naturally possible for an orbital 1-DM are restricted transformations, thereby assuming that the density matrices for alpha and beta are equal and thus transform similarly.
-    using TM = RTransformationMatrix<Scalar>;
+    // The type of transformation that is naturally related to an Orbital1DM. The only transformations that should be naturally possible for an orbital 1-DM are restricted transformations, thereby assuming that the density matrices for alpha and beta are equal and thus transform similarly.
+    using Transformation = RTransformation<Scalar>;
 };
 
 

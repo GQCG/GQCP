@@ -56,7 +56,7 @@ BOOST_AUTO_TEST_CASE(FCI_H2_dense) {
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
-    sq_hamiltonian.transform(rhf_parameters.coefficientMatrix());
+    sq_hamiltonian.transform(rhf_parameters.expansion());
 
 
     // Set up the full spin-resolved ONV basis (with addressing scheme).
@@ -95,7 +95,7 @@ BOOST_AUTO_TEST_CASE(FCI_rotated_diagonal_sum) {
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
-    sq_hamiltonian.transform(rhf_parameters.coefficientMatrix());
+    sq_hamiltonian.transform(rhf_parameters.expansion());
 
 
     // Set up the full spin-resolved ONV basis (with addressing scheme).
@@ -106,8 +106,8 @@ BOOST_AUTO_TEST_CASE(FCI_rotated_diagonal_sum) {
     const auto diagonal = onv_basis.evaluateOperatorDiagonal(sq_hamiltonian);
 
 
-    // Rotate the Hamiltonian with a random unitary matrix, evaluate the diagonal of the FCI Hamiltonian matrix in that basis, and check the result.
-    sq_hamiltonian.rotate(GQCP::RTransformationMatrix<double>::RandomUnitary(K));
+    // Rotate the Hamiltonian with a random unitary transformation, evaluate the diagonal of the FCI Hamiltonian matrix in that basis, and check the result.
+    sq_hamiltonian.rotate(GQCP::RTransformation<double>::RandomUnitary(K));
     const auto diagonal_rotated = onv_basis.evaluateOperatorDiagonal(sq_hamiltonian);
     BOOST_CHECK(std::abs(diagonal.sum() - diagonal_rotated.sum()) < 1.0e-10);
 }
@@ -136,7 +136,7 @@ BOOST_AUTO_TEST_CASE(FCI_H2O_dense) {
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
-    sq_hamiltonian.transform(rhf_parameters.coefficientMatrix());
+    sq_hamiltonian.transform(rhf_parameters.expansion());
 
 
     // Set up the full spin-resolved ONV basis (with addressing scheme).
@@ -177,7 +177,7 @@ BOOST_AUTO_TEST_CASE(FCI_H2_Davidson) {
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
-    sq_hamiltonian.transform(rhf_parameters.coefficientMatrix());
+    sq_hamiltonian.transform(rhf_parameters.expansion());
 
 
     // Set up the full spin-resolved ONV basis (with addressing scheme).
@@ -218,7 +218,7 @@ BOOST_AUTO_TEST_CASE(FCI_H2O_Davidson) {
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
-    sq_hamiltonian.transform(rhf_parameters.coefficientMatrix());
+    sq_hamiltonian.transform(rhf_parameters.expansion());
 
 
     // Set up the full spin-resolved ONV basis (with addressing scheme).
@@ -259,7 +259,7 @@ BOOST_AUTO_TEST_CASE(FCI_H6_dense_vs_Davidson) {
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian};
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
-    sq_hamiltonian.transform(rhf_parameters.coefficientMatrix());
+    sq_hamiltonian.transform(rhf_parameters.expansion());
 
 
     // Set up the full spin-resolved ONV basis (with addressing scheme).
@@ -300,7 +300,7 @@ BOOST_AUTO_TEST_CASE(unrestricted_FCI_dense) {
 
     auto sq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);
     const auto K = sq_hamiltonian.numberOfOrbitals();
-    sq_hamiltonian.rotate(GQCP::UTransformationMatrix<double>::RandomUnitary(K));
+    sq_hamiltonian.rotate(GQCP::UTransformation<double>::RandomUnitary(K));
 
 
     // Set up the full spin-resolved ONV basis.
@@ -333,7 +333,7 @@ BOOST_AUTO_TEST_CASE(generalized_FCI_dense) {
 
     auto sq_hamiltonian = GQCP::GSQHamiltonian<double>::Molecular(spinor_basis, molecule);
     const auto M = sq_hamiltonian.numberOfOrbitals();
-    sq_hamiltonian.rotate(GQCP::GTransformationMatrix<double>::RandomUnitary(M));
+    sq_hamiltonian.rotate(GQCP::GTransformation<double>::RandomUnitary(M));
 
 
     // Set up the full spin-unresolved ONV basis.
@@ -379,7 +379,7 @@ BOOST_AUTO_TEST_CASE(naturals) {
     // Calculate the 1-DM and diagonalize it to obtain the FCI naturals.
     const auto D_before = linear_expansion_before.calculate1DM();
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> diagonalizer {D_before};
-    GQCP::RTransformationMatrix<double> U {diagonalizer.eigenvectors()};
+    GQCP::RTransformation<double> U {diagonalizer.eigenvectors()};
 
 
     // Rotate the Hamiltonian to the basis of the FCI naturals, and re-do the FCI calculation. Subsequently check if the 1-DM, calculated from the FCI calculation in the natural orbital basis, is equal to the previously calculated 1-DM's eigenvalues on the diagonal.

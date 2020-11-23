@@ -156,11 +156,13 @@ BOOST_AUTO_TEST_CASE(constrained_CO_test_random_AO_basis) {
     GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
     const auto K = spin_orbital_basis.numberOfSpatialOrbitals();
 
-    // Generate a random transformation matrix, but keep the norm of the orbitals intact.
-    GQCP::RTransformationMatrix<double> T = GQCP::RTransformationMatrix<double>::Random(K);
+    // Generate a random transformation, but keep the norm of the orbitals intact.
+    GQCP::SquareMatrix<double> T_matrix = GQCP::SquareMatrix<double>::Random(K);
     for (size_t i = 0; i < K; i++) {
-        T(i, i) = 1.0;
+        T_matrix(i, i) = 1.0;
     }
+    const GQCP::RTransformation<double> T {T_matrix};
+
     spin_orbital_basis.transform(T);
     const auto S = spin_orbital_basis.overlap();
 

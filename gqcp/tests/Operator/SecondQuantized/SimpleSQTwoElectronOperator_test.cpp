@@ -206,9 +206,8 @@ BOOST_AUTO_TEST_CASE(rotate_trivial) {
     // Set up toy two-electron integrals.
     auto op = toyTwoElectronIntegrals(dim);
 
-    // Initialize an identity transformation matrix.
-    GQCP::TransformationMatrix<double> U = GQCP::TransformationMatrix<double>::Identity(dim);
-
+    // Initialize an identity transformation.
+    const auto U = GQCP::RTransformation<double>::Identity(dim);
 
     BOOST_CHECK(op.rotated(U).parameters().isApprox(op.parameters(), 1.0e-08));
 }
@@ -219,13 +218,15 @@ BOOST_AUTO_TEST_CASE(rotate_trivial) {
  */
 BOOST_AUTO_TEST_CASE(transform_olsens) {
 
-    // Set an example transformation matrix and two-electron integrals.
+    // Set an example transformation and two-electron integrals.
     const size_t dim = 2;
-    GQCP::TransformationMatrix<double> T {dim};
+    GQCP::SquareMatrix<double> T_matrix {dim};
     // clang-format off
-    T << 1, 2,
-         3, 4;
+    T_matrix << 1, 2,
+                3, 4;
     // clang-format on
+    const GQCP::RTransformation<double> T {T_matrix};
+
 
     auto g_par = GQCP::SquareRankFourTensor<double>::Zero(dim);
     for (size_t i = 0; i < dim; i++) {
@@ -246,21 +247,22 @@ BOOST_AUTO_TEST_CASE(transform_olsens) {
 
 
 /**
- *  Check whether or not the transform with transformation matrix method works as expected.
+ *  Check whether or not the transformation method works as expected.
  */
-BOOST_AUTO_TEST_CASE(transform_with_transformation_matrix) {
+BOOST_AUTO_TEST_CASE(transform) {
 
     const size_t dim = 2;
 
     // Initialize a test two-electron operator.
     auto op = toyTwoElectronIntegrals2(dim);
 
-    // Initialize a transformation matrix.
-    GQCP::TransformationMatrix<double> T {dim};
+    // Initialize a test transformation.
+    GQCP::SquareMatrix<double> T_matrix {dim};
     // clang-format off
-    T << 2.0, 3.0,
-         3.0, 4.0;
+    T_matrix << 2.0, 3.0,
+                3.0, 4.0;
     // clang-format
+    const GQCP::RTransformation<double> T {T_matrix};
 
     // Initialize the reference tensor.
     GQCP::SquareRankFourTensor<double> ref {dim};
@@ -303,7 +305,7 @@ BOOST_AUTO_TEST_CASE(transform_with_jacobi_matrix) {
     // Initialize a test two-electron operator.
     auto op = toyTwoElectronIntegrals2(dim);
 
-    // Initialize a transformation matrix.
+    // Initialize the Jacobi rotation.
     GQCP::JacobiRotation J {1, 0, (boost::math::constants::pi<double>() / 2)};
 
     // Initialize the reference tensor.

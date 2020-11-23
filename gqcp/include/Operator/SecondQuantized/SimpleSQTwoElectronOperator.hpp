@@ -69,8 +69,8 @@ public:
     // The type of the one-particle density matrix that is naturally associated to the derived two-electron operator.
     using Derived2DM = typename OperatorTraits<DerivedOperator>::TwoDM;
 
-    // The type of transformation matrix that is naturally associated to the derived two-electron operator.
-    using TM = typename OperatorTraits<DerivedOperator>::TM;
+    // The type of transformation that is naturally associated to the derived two-electron operator.
+    using Transformation = typename OperatorTraits<DerivedOperator>::Transformation;
 
 
 private:
@@ -270,21 +270,21 @@ public:
 
 
     /*
-     *  MARK: Conforming to BasisTransformable
+     *  MARK: Conforming to `BasisTransformable`
      */
 
     /**
-     *  Apply the basis transformation and return the resulting one-electron integrals.
+     *  Apply the basis transformation and return the resulting two-electron integrals.
      * 
-     *  @param transformation_matrix        The type that encapsulates the basis transformation coefficients.
+     *  @param T            The basis transformation
      * 
      *  @return The basis-transformed one-electron integrals.
      */
-    DerivedOperator transformed(const TM& transformation_matrix) const override {
+    DerivedOperator transformed(const Transformation& T) const override {
 
         // Since we're only getting T as a matrix, we should convert it to an appropriate tensor to perform contractions.
         // Although not a necessity for the einsum implementation, it makes it a lot easier to follow the formulas.
-        const GQCP::Tensor<Scalar, 2> T_tensor = GQCP::Tensor<Scalar, 2>(Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>>(transformation_matrix.data(), transformation_matrix.rows(), transformation_matrix.cols()));
+        const GQCP::Tensor<Scalar, 2> T_tensor = GQCP::Tensor<Scalar, 2>(Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>>(T.matrix().data(), T.matrix().rows(), T.matrix().cols()));
 
         // We calculate the conjugate as a tensor as well.
         const GQCP::Tensor<Scalar, 2> T_conjugate = T_tensor.conjugate();
@@ -334,7 +334,7 @@ public:
     DerivedOperator rotated(const JacobiRotation& jacobi_rotation) const override {
 
         // While waiting for an analogous Eigen::Tensor Jacobi module, we implement this rotation by constructing a Jacobi rotation matrix and then simply doing a rotation with it.
-        const auto J = TM::FromJacobi(jacobi_rotation, this->numberOfOrbitals());
+        const auto J = Transformation::FromJacobi(jacobi_rotation, this->numberOfOrbitals());
         return this->rotated(J);
     }
 
@@ -507,8 +507,8 @@ struct OperatorTraits<SimpleSQTwoElectronOperator<_Scalar, _Vectorizer, _Derived
 template <typename _Scalar, typename _Vectorizer, typename _DerivedOperator>
 struct BasisTransformableTraits<SimpleSQTwoElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>> {
 
-    // The type of the transformation matrix for which the basis transformation should be defined. // TODO: Rename "TM" to "TransformationMatrix"
-    using TM = typename OperatorTraits<_DerivedOperator>::TM;
+    // The type of the transformation for which the basis transformation should be defined.
+    using Transformation = typename OperatorTraits<_DerivedOperator>::Transformation;
 };
 
 

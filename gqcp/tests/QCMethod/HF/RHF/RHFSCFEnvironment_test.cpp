@@ -35,12 +35,12 @@ BOOST_AUTO_TEST_CASE(constructor) {
     const auto K = sq_hamiltonian.numberOfOrbitals();                                 // the number of spatial orbitals
 
     BOOST_CHECK_NO_THROW(const GQCP::RHFSCFEnvironment<double> rhf_environment(h2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters(),
-                                                                               GQCP::RTransformationMatrix<double>::Random(K)));
+                                                                               GQCP::RTransformation<double>::Random(K)));
 
 
     // Check if a faulty constructor with an odd number of electron throws
     auto h2_ion = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz", +1);
     BOOST_CHECK_THROW(const GQCP::RHFSCFEnvironment<double> rhf_environment(h2_ion.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters(),
-                                                                            GQCP::RTransformationMatrix<double>::Random(K)),
+                                                                            GQCP::RTransformation<double>::Random(K)),
                       std::invalid_argument);
 }

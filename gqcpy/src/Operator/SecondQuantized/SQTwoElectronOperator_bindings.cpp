@@ -45,23 +45,7 @@ void bindSQTwoElectronOperator(py::module& module) {
             [](const GQCP::SQTwoElectronOperator<double, 1>& op) {
                 return asNumpyArray(op.parameters().Eigen());
             },
-            "Return the integrals encapsulated by the second-quantized two-electron operator")
-
-        .def(
-            "rotate",
-            [](GQCP::SQTwoElectronOperator<double, 1>& sq_two_op, const Eigen::MatrixXd& U) {
-                sq_two_op.rotate(GQCP::TransformationMatrix<double> {U});
-            },
-            "In-place rotate the operator to another basis.",
-            py::arg("U"))
-
-        .def(
-            "transform",
-            [](GQCP::SQTwoElectronOperator<double, 1>& sq_two_op, const Eigen::MatrixXd& T) {
-                sq_two_op.transform(GQCP::TransformationMatrix<double> {T});
-            },
-            "In-place transform the operator to another basis.",
-            py::arg("T"));
+            "Return the integrals encapsulated by the second-quantized two-electron operator");
 }
 
 

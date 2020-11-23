@@ -50,9 +50,9 @@ void bindUSpinOrbitalBasis(py::module& module) {
 
         // PUBLIC METHODS
         .def(
-            "coefficientMatrix",
+            "expansion",
             [](const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Spin sigma) {
-                return spinor_basis.coefficientMatrix(sigma);
+                return spinor_basis.expansion(sigma);
             },
             py::arg("sigma"),
             "Return the coefficient matrix for the requested component, i.e. the matrix of the expansion coefficients of the requested component of the spinors in terms of its underlying scalar basis")
@@ -144,34 +144,7 @@ void bindUSpinOrbitalBasis(py::module& module) {
                 return spinor_basis.quantize(GQCP::Operator::Overlap(), sigma);
             },
             py::arg("sigma"),
-            "Return the overlap operator expressed in this spinor basis.")
-
-        .def(
-            "rotate",
-            [](GQCP::USpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& U, const GQCP::Spin sigma) {
-                spinor_basis.rotate(GQCP::TransformationMatrix<double>(U), sigma);
-            },
-            py::arg("U"),
-            py::arg("sigma"),
-            "Rotate the spinor basis of the requested component to another one using the given unitary transformation matrix.")
-
-        .def(
-            "transform",
-            [](GQCP::USpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& T, const GQCP::Spin sigma) {
-                spinor_basis.transform(GQCP::TransformationMatrix<double>(T), sigma);
-            },
-            py::arg("T"),
-            py::arg("sigma"),
-            "Transform the spinor basis for one component to another one using the given transformation matrix.")
-
-        .def(
-            "transform",
-            [](GQCP::USpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& T_alpha, const Eigen::MatrixXd& T_beta) {
-                spinor_basis.transform(GQCP::UTransformationMatrix<double>(T_alpha, T_beta));
-            },
-            py::arg("T_alpha"),
-            py::arg("T_beta"),
-            "Transform the spinor basis to another one using the given transformation matrices.");
+            "Return the overlap operator expressed in this spinor basis.");
 }
 
 

@@ -60,7 +60,7 @@ BOOST_AUTO_TEST_CASE(dipole_CO_STO_3G) {
     // Calculate the RHF 1-DM and the dipole operator in RHF MO basis.
     const auto D = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1DM(K, N);
     auto dipole_op = spin_orbital_basis.quantize(GQCP::Operator::ElectronicDipole());
-    dipole_op.transform(rhf_parameters.coefficientMatrix());
+    dipole_op.transform(rhf_parameters.expansion());
 
     // Calculate the RHF total dipole moment in the MO basis and check with the reference value.
     GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(molecule).value() + dipole_op.calculateExpectationValue(D).asVector();
@@ -98,7 +98,7 @@ BOOST_AUTO_TEST_CASE(dipole_N2_STO_3G) {
     // Calculate the RHF 1-DM and the dipole operator in RHF MO basis.
     const auto D = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1DM(K, N);
     auto dipole_op = spin_orbital_basis.quantize(GQCP::Operator::ElectronicDipole());
-    dipole_op.transform(rhf_parameters.coefficientMatrix());
+    dipole_op.transform(rhf_parameters.expansion());
 
     // Calculate the RHF total dipole moment in the MO basis and check with the reference value.
     GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(molecule).value() + dipole_op.calculateExpectationValue(D).asVector();
@@ -134,7 +134,7 @@ BOOST_AUTO_TEST_CASE(h2_polarizability_RHF) {
 
 
     // Transform the orbitals to the RHF basis and prepare the dipole integrals in the RHF basis.
-    GQCP::basisTransform(spin_orbital_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
+    GQCP::transform(rhf_parameters.expansion(), spin_orbital_basis, sq_hamiltonian);
     const auto dipole_op = spin_orbital_basis.quantize(GQCP::Operator::ElectronicDipole());
 
 
