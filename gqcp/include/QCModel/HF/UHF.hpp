@@ -681,6 +681,253 @@ public:
 
 
     /**
+     * Construct a component of the spin-unconserved stability matrix A''.
+     * 
+     *  @note The formula for this component is as follows:
+     *      A'_I(sigma)A(sigma_bar)J(sigma)B(sigma_bar) = \delta_I(sigma)J(sigma) * F_B(sigma_bar)A(sigma_bar) - \delta_B(sigma_bar)A(sigma_bar) * F_I(sigma)J(sigma) - (A(sigma_bar)B(sigma_bar)|J(sigma)I(sigma))
+     * 
+     *  @note Sigma_bar = alpha if sigma is beta and vice versa.
+     * 
+     *  @note The name `Spin-unconserved`comes from the article "Constraints and stability in Hartree-Fock theory" by Seeger, R. and Pople J.A. (https://doi.org/10.1063/1.434318).
+     * 
+     *  @param rsq_hamiltonian      The second quantized Hamiltonian, which contains the necessary two-electron operators.
+     *  @param sigma                The spin-sigma component. 
+     *  @param sigma_bar            The spin component, opposite to sigma.
+     * 
+     *  @return A component of stability matrix A''.
+     */
+    GQCP::Matrix<Scalar> calculateSpinUnconservedAComponent(const RSQHamiltonian<Scalar>& rsq_hamiltonian, const Spin sigma, const Spin sigma_bar) const {
+
+        // Sigma and sigma_bar need to be different. If they are the same, the method throws an error.
+        if (sigma == sigma_bar) {
+            throw std::invalid_argument("QCModel::UHF<Scalar>.calculateMixedSpinConservedAComponent(const RSQHamiltonian<Scalar>& rsq_hamiltonian, const Spin sigma, const Spin sigma_bar): The spin 'sigma' and spin 'sigma_bar' arguments are not allowed to be the same.");
+        }
+
+        // Depending on whether we're making the alpha or beta A'-component, we need a different component of the orbital_space.
+        const auto orbital_space = this->orbitalSpace();
+        const auto orbital_space_sigma = this->orbitalSpace(sigma);
+        const auto orbital_space_sigma_bar = this->orbitalSpace(sigma_bar);
+
+        // Determine the number of occupied and virtual orbitals.
+        const auto n_occ_sigma = orbital_space_sigma.number_of_orbitals(OccupationType::k_occupied);
+        const auto n_virt_sigma = orbital_space_sigma.number_of_orbitals(OccupationType::k_virtual);
+
+        const auto n_occ_sigma_bar = orbital_space_sigma_bar.number_of_orbitals(OccupationType::k_occupied);
+        const auto n_virt_sigma_bar = orbital_space_sigma_bar.number_of_orbitals(OccupationType::k_virtual);
+
+        // We need the two-electron integrals in mixed MO basis.
+        // The ground state coefficient matrix is obtained from the QCModel.
+        const auto& g = rsq_hamiltonian.twoElectron();
+
+        // Transform the first two indices to the sigma basis.
+        g.transformed(this->expansion(sigma), sigma);
+
+        // Transform the last two indices to the sigma_bar basis.
+        g.transformed(this->expansion(sigma_bar), sigma_bar);
+
+        // Return the parameters for later use.
+        g.parameters();
+
+        // The next step is to create the needed tensor slice.
+        // Zero-initialize an occupied-virtual-occupied-virtual object of mixed spins.
+        auto A_iajb_slice = orbital_space.template initializeMixedRepresentableObjectFor<Scalar>(OccupationType::k_occupied, sigma, OccupationType::k_virtual, sigma_bar,
+                                                                                                 OccupationType::k_occupied, sigma, OccupationType::k_virtual, sigma_bar);
+        for (const auto& i : orbital_space_sigma.indices(OccupationType::k_occupied)) {
+            for (const auto& a : orbital_space_sigma_bar.indices(OccupationType::k_virtual)) {
+                for (const auto& j : orbital_space_sigma.indices(OccupationType::k_occupied)) {
+                    for (const auto& b : orbital_space_sigma_bar.indices(OccupationType::k_virtual)) {
+                        A_iajb_slice(i, a, j, b) = -g(a, b, j, i);
+                    }
+                }
+            }
+        }
+
+        // Turn the ImplicitRankFourTensorSlice in an actual Tensor
+        auto A_iajb = A_iajb_slice.asTensor();
+
+        // The elements F_BA and F_IJ are the eigenvalues of the one-electron Fock operator.
+        // We have to construct a mixed matrix in this particular case.
+        GQCP::MatrixX<Scalar> F_values {n_virt_sigma, n_occ_sigma_bar};
+        const auto virtual_energies = this->virtualOrbitalEnergies(sigma);
+        const auto occupied_energies = this->occupiedOrbitalEnergies(sigma_bar);
+
+        for (int a = 0; a < n_virt_sigma; a++) {
+            for (int i = 0; i < n_occ_sigma_bar; i++) {
+                F_values(a, i) = virtual_energies[a] - occupied_energies[i];
+            }
+        }
+
+        // Add the previously calculated F values on the correct positions.
+        for (int a = 0; a < n_virt_sigma; a++) {
+            for (int i = 0; i < n_occ_sigma_bar; i++) {
+                A_iajb(i, a, i, a) += F_values(a, i);
+            }
+        }
+
+        // Finally, reshape the tensor to a matrix.
+        const auto mixed_spin_conserved_A_component = A_iajb.reshape(n_occ_sigma_bar * n_virt_sigma, n_occ_sigma_bar * n_virt_sigma);
+
+        return mixed_spin_conserved_A_component;
+    }
+
+
+    /**
+     * Construct a component of the spin-unconserved stability matrix B''.
+     * 
+     *  @note The formula for this component is as follows:
+     *      B'_I(sigma)A(sigma_bar)J(sigma_bar)B(sigma) = - (A(sigma_bar)J(sigma_bar)|B(sigma)I(sigma))
+     * 
+     *  @note Sigma_bar = alpha if sigma is beta and vice versa.
+     * 
+     *  @note The name `Spin-unconserved`comes from the article "Constraints and stability in Hartree-Fock theory" by Seeger, R. and Pople J.A. (https://doi.org/10.1063/1.434318).
+     * 
+     *  @param rsq_hamiltonian      The second quantized Hamiltonian, which contains the necessary two-electron operators.
+     *  @param sigma                The spin-sigma component. 
+     *  @param sigma_bar            The spin component, opposite to sigma.
+     * 
+     *  @return A component of stability matrix B''.
+     */
+    GQCP::Matrix<Scalar> calculateSpinUnconservedBComponent(const RSQHamiltonian<Scalar>& rsq_hamiltonian, const Spin sigma, const Spin sigma_bar) const {
+
+        // Sigma and sigma_bar need to be different. If they are the same, the method throws an error.
+        if (sigma == sigma_bar) {
+            throw std::invalid_argument("QCModel::UHF<Scalar>.calculateMixedSpinConservedAComponent(const RSQHamiltonian<Scalar>& rsq_hamiltonian, const Spin sigma, const Spin sigma_bar): The spin 'sigma' and spin 'sigma_bar' arguments are not allowed to be the same.");
+        }
+
+        // Depending on whether we're making the alpha or beta A'-component, we need a different component of the orbital_space.
+        const auto orbital_space = this->orbitalSpace();
+        const auto orbital_space_sigma = this->orbitalSpace(sigma);
+        const auto orbital_space_sigma_bar = this->orbitalSpace(sigma_bar);
+
+        // Determine the number of occupied and virtual orbitals.
+        const auto n_occ_sigma = orbital_space_sigma.number_of_orbitals(OccupationType::k_occupied);
+        const auto n_virt_sigma = orbital_space_sigma.number_of_orbitals(OccupationType::k_virtual);
+
+        const auto n_occ_sigma_bar = orbital_space_sigma_bar.number_of_orbitals(OccupationType::k_occupied);
+        const auto n_virt_sigma_bar = orbital_space_sigma_bar.number_of_orbitals(OccupationType::k_virtual);
+
+        // We need the two-electron integrals in mixed MO basis.
+        // The ground state coefficient matrix is obtained from the QCModel.
+        const auto& g = rsq_hamiltonian.twoElectron();
+
+        // Transform the first two indices to the sigma basis.
+        g.transformed(this->expansion(sigma), sigma);
+
+        // Transform the last two indices to the sigma_bar basis.
+        g.transformed(this->expansion(sigma_bar), sigma_bar);
+
+        // Return the parameters for later use.
+        g.parameters();
+
+        // The next step is to create the needed tensor slice.
+        // Zero-initialize an occupied-virtual-occupied-virtual object of mixed spins.
+        auto B_iajb_slice = orbital_space.template initializeMixedRepresentableObjectFor<Scalar>(OccupationType::k_occupied, sigma, OccupationType::k_virtual, sigma_bar,
+                                                                                                 OccupationType::k_occupied, sigma_bar, OccupationType::k_virtual, sigma);
+        for (const auto& i : orbital_space_sigma.indices(OccupationType::k_occupied)) {
+            for (const auto& a : orbital_space_sigma_bar.indices(OccupationType::k_virtual)) {
+                for (const auto& j : orbital_space_sigma_bar.indices(OccupationType::k_occupied)) {
+                    for (const auto& b : orbital_space_sigma.indices(OccupationType::k_virtual)) {
+                        B_iajb_slice(i, a, j, b) = -g(a, j, b, i);
+                    }
+                }
+            }
+        }
+
+        // Turn the ImplicitRankFourTensorSlice in an actual Tensor
+        auto B_iajb = B_iajb_slice.asTensor();
+
+        // Finally, reshape the tensor to a matrix.
+        const auto mixed_spin_conserved_B_component = B_iajb.reshape(n_occ_sigma_bar * n_virt_sigma, n_occ_sigma * n_virt_sigma_bar);
+
+        return mixed_spin_conserved_B_component;
+    }
+
+
+    /**
+     * Construct the complete spin-unconserved stability matrix A''.
+     * 
+     *  @note The formula for this component is as follows:
+     *      A'' = (A''_abab      0    )
+     *            (   0       A''_baba)
+     * 
+     *  @note The name `Spin-unconserved`comes from the article "Constraints and stability in Hartree-Fock theory" by Seeger, R. and Pople J.A. (https://doi.org/10.1063/1.434318).
+     * 
+     *  @param rsq_hamiltonian      The second quantized Hamiltonian, which contains the necessary two-electron operators.
+     * 
+     *  @return The complete stability matrix A''.
+     */
+    GQCP::MatrixX<Scalar> calculateSpinUnconservedA(const RSQHamiltonian<Scalar>& rsq_hamiltonian) const {
+
+        // Calculate the four different A' components.
+        const auto A_abab = this->calculateSpinUnconservedAComponent(rsq_hamiltonian, Spin::alpha, Spin::beta);  // Dimension = (n_occ_b * n_virt_a, n_occ_b * n_virt_a).
+        const auto A_baba = this->calculateSpinUnconservedAComponent(rsq_hamiltonian, Spin::beta, Spin::alpha);  // Dimension = (n_occ_a * n_virt_b, n_occ_a * n_virt_b).
+
+        // Determine the total matrix dimension and initialize the total matrix.
+        const auto n_occ_a = this->orbitalSpace(Spin::alpha).number_of_orbitals(OccupationType::k_occupied);
+        const auto n_virt_a = this->orbitalSpace(Spin::alpha).number_of_orbitals(OccupationType::k_virtual);
+        const auto n_occ_b = this->orbitalSpace(Spin::beta).number_of_orbitals(OccupationType::k_occupied);
+        const auto n_virt_b = this->orbitalSpace(Spin::beta).number_of_orbitals(OccupationType::k_virtual);
+
+        const auto dimension = (n_occ_b * n_virt_a) + (n_occ_a + n_virt_b);
+        GQCP::MatrixX<Scalar> total_A {dimension, dimension};
+
+        // Initialize the zero blocks of the total matrix.
+        const auto zero_1 = GQCP::MatrixX<Scalar>::Zero(n_virt_a * n_occ_b, n_occ_a * n_virt_b);
+        const auto zero_2 = GQCP::MatrixX<Scalar>::Zero(n_occ_a * n_virt_b, n_virt_a * n_occ_b);
+
+        // Place the components on the correct positions in the total matrix.
+        total_A.topLeftCorner(n_occ_b * n_virt_a, n_occ_b * n_virt_a) = A_abab;
+        total_A.topRightCorner(n_virt_a * n_occ_b, n_occ_a * n_virt_b) = zero_1;
+        total_A.bottomLeftCorner(n_occ_a * n_virt_b, n_occ_b * n_virt_a) = zero_2;
+        total_A.bottomRightCorner(n_occ_a * n_virt_b, n_occ_a * n_virt_b) = A_baba;
+
+        return total_A;
+    }
+
+
+    /**
+     * Construct the complete spin-unconserved stability matrix B''.
+     * 
+     *  @note The formula for this component is as follows:
+     *      B'' = (   0     B''_abba)
+     *            (B''_baab    0    )
+     * 
+     *  @note The name `Spin-unconserved`comes from the article "Constraints and stability in Hartree-Fock theory" by Seeger, R. and Pople J.A. (https://doi.org/10.1063/1.434318).
+     * 
+     *  @param rsq_hamiltonian      The second quantized Hamiltonian, which contains the necessary two-electron operators.
+     * 
+     *  @return The complete stability matrix B''.
+     */
+    GQCP::MatrixX<Scalar> calculateSpinUnconservedB(const RSQHamiltonian<Scalar>& rsq_hamiltonian) const {
+
+        // Calculate the four different A' components.
+        const auto B_abba = this->calculateSpinUnconservedBComponent(rsq_hamiltonian, Spin::alpha, Spin::beta);  // Dimension = (n_occ_b * n_virt_a, n_occ_a * n_virt_b).
+        const auto B_baab = this->calculateSpinUnconservedBComponent(rsq_hamiltonian, Spin::beta, Spin::alpha);  // Dimension = (n_occ_a * n_virt_b, n_occ_b * n_virt_a).
+
+        // Determine the total matrix dimension and initialize the total matrix.
+        const auto n_occ_a = this->orbitalSpace(Spin::alpha).number_of_orbitals(OccupationType::k_occupied);
+        const auto n_virt_a = this->orbitalSpace(Spin::alpha).number_of_orbitals(OccupationType::k_virtual);
+        const auto n_occ_b = this->orbitalSpace(Spin::beta).number_of_orbitals(OccupationType::k_occupied);
+        const auto n_virt_b = this->orbitalSpace(Spin::beta).number_of_orbitals(OccupationType::k_virtual);
+
+        const auto dimension = (n_occ_b * n_virt_a) + (n_occ_a + n_virt_b);
+        GQCP::MatrixX<Scalar> total_B {dimension, dimension};
+
+        // Initialize the zero blocks of the total matrix.
+        const auto zero_1 = GQCP::MatrixX<Scalar>::Zero(n_virt_a * n_occ_b, n_occ_b * n_virt_a);
+        const auto zero_2 = GQCP::MatrixX<Scalar>::Zero(n_occ_a * n_virt_b, n_virt_b * n_occ_a);
+
+        // Place the components on the correct positions in the total matrix.
+        total_B.topLeftCorner(n_occ_b * n_virt_a, n_occ_b * n_virt_a) = zero_1;
+        total_B.topRightCorner(n_virt_a * n_occ_b, n_occ_a * n_virt_b) = B_abba;
+        total_B.bottomLeftCorner(n_occ_a * n_virt_b, n_occ_b * n_virt_a) = B_baab;
+        total_B.bottomRightCorner(n_occ_a * n_virt_b, n_occ_a * n_virt_b) = zero_2;
+
+        return total_B;
+    }
+
+
+    /**
      *  @param sigma                The spin-sigma component. 
      * 
      *  @return a matrix containing all the possible excitation energies of the wavefunction model, belonging to a certain spin component. 
