@@ -1,17 +1,16 @@
 name: Docker deploy
 
 on:
-  # push:
-  #   paths:
-  #     - 'Dockerfile'
-  #     - '**.hpp'
-  #     - '**.cpp'
-  #     - '**.cmake'
-  #     - '**CMakeLists.txt'
-  #     - 'cmake/**'
-  #   branches:
-  #     - 'develop'
-  pull_request:
+  push:
+    paths:
+      - 'Dockerfile'
+      - '**.hpp'
+      - '**.cpp'
+      - '**.cmake'
+      - '**CMakeLists.txt'
+      - 'cmake/**'
+    branches:
+      - 'develop'
 
 jobs:
   build:
