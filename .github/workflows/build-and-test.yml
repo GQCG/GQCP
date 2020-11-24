@@ -15,51 +15,13 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
+    container:
+      image: gqcg/gqcp-dev:latest
     steps:
-    - uses: actions/setup-python@v2
-      with:
-        python-version: '3.8' 
-    - uses: actions/checkout@v2
-    - name: Download conda (Linux)
-      if: matrix.os == 'ubuntu-latest'
-      run: wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $HOME/miniconda.sh
-    - name: Download conda (macOS)
-      if: matrix.os == 'macos-latest'
-      run: wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O $HOME/miniconda.sh
-    - name: Install conda   
-      run: |  
-        bash $HOME/miniconda.sh -b -u -p $HOME/miniconda
-        echo "::add-path::$HOME/miniconda/bin"
-    - name: Install conda dependencies (Linux)
-      if: matrix.os == 'ubuntu-latest'
-      run: |
-        conda install -c conda-forge -c intel -c gqcg openmp=8.0.1 cmake=3.14 boost-cpp=1.69.0 eigen=3.3.7 blas=2.15 pybind11=2.4.3 benchmark numpy=1.18.1 mkl-include=2019.0 mkl-static=2019.0 intel-openmp=2019.0 libint=2.4.2 cint=3.0.17;
-    - name: Install conda dependencies (MacOS)
-      if: matrix.os == 'macos-latest'
-      run: |
-        conda install -c conda-forge -c intel -c gqcg blas=2.15 cmake=3.14 boost-cpp=1.69.0 eigen=3.3.7 pybind11=2.4.3 benchmark numpy=1.18.1 mkl-include=2019.0 mkl-static=2019.0 intel-openmp=2019.0 libint=2.4.2 cint=3.0.17;
+    - name: Checkout repo
+      uses: actions/checkout@v2
     - name: Build, test and install
       run: |
-        export LIBINT_DATA_PATH=$HOME/miniconda/share/libint/2.4.2/basis
         mkdir build && cd build
-        cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=$HOME/miniconda -DPYTHON_EXECUTABLE=$HOME/miniconda/bin/python3 -DPYTHON_LIBRARY=$HOME/miniconda/lib/libpython3.8m.a
-        make -j2 VERBOSE=1 && env CTEST_OUTPUT_ON_FAILURE=1 make test && sudo make install
-    # - name: Run benchmarks
-    #   run: |
-    #     cd build/gqcp/benchmarks
-    #     ./doci_case --benchmark_counters_tabular=true
-    #     ./doci_matrix --benchmark_counters_tabular=true
-    #     ./doci_matvec --benchmark_counters_tabular=true
-    #     ./fci_matrix --benchmark_counters_tabular=true
-    #     ./fci_matvec --benchmark_counters_tabular=true
-    #     ./hubbard_diagonalization --benchmark_counters_tabular=true
-    #     ./hubbard_matrix --benchmark_counters_tabular=true
-    #     ./hubbard_matvec --benchmark_counters_tabular=true
-    - name: Check external linking
-      run: |
-        cd /tmp
-        git clone https://github.com/GQCG/gqcp-link.git
-        cd gqcp-link
-        mkdir build && cd build
-        cmake .. -DCMAKE_PREFIX_PATH=$HOME/miniconda -DGQCP_INSTALL_PREFIX=~/.local -Dgqcp_DIR=/home/runner/.local/cmake
-        make -j2 && ./test_driver
+        cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=/usr/local/miniconda3 -DPYTHON_EXECUTABLE=/usr/local/miniconda3/bin/python3 -DPYTHON_LIBRARY=/usr/local/miniconda3/lib/libpython3.8m.a
+        make -j2 VERBOSE=1 && env CTEST_OUTPUT_ON_FAILURE=1 make test && make install
