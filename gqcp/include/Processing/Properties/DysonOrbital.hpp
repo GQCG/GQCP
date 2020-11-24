@@ -25,7 +25,7 @@ namespace GQCP {
 
 
 /**
- *  Dyson orbital linearly expanded by the Dyson amplitudes in a given spin-orbital basis. The Dyson amplitudes are given as <N-1|a_p|N>.
+ *  Dyson orbital linearly expanded by the Dyson amplitudes in a given spinor basis. The Dyson amplitudes are given as <N-1|a_p|N>.
  * 
  *  @tparam Scalar         The scalar type of the Dyson amplitudes.
  */
@@ -50,7 +50,7 @@ public:
     /**
      * Construct a Dyson orbital with all Dyson amplitudes set to zero.
      * 
-     * @param K     Dimension of the amplitude vecctor, expressed as the number of spin-orbitals in a given basis.
+     * @param K     Dimension of the amplitude vecctor, expressed as the number of spinors in a given basis.
      */
     DysonOrbital(const size_t K) :
         amplitudes {VectorX<Scalar>::Zero(K)} {}
@@ -71,10 +71,10 @@ public:
     /**
      *  Calculate the coefficients  of a Dyson orbital, expressed as the overlap between two wave functions expressed in the same spinor basis: <N-1|a_p|N>.
      * 
-     *  @param linear_expansion1        A wave function in a spin-unresolved ONV basis.
-     *  @param linear_expansion2        A wave function in a spin-unresolved ONV basis containing one fewer electron and the same number of orbitals that is expressed in the same basis.
+     *  @param linear_expansion1        A wave function in a spin-resolved ONV basis.
+     *  @param linear_expansion2        A wave function in a spin-resolved ONV basis containing one fewer electron and the same number of orbitals that is expressed in the same basis.
      *
-     *  @return A Dyson orbital containing Dyson amplitudes.
+     *  @return A Dyson orbital incorporating Dyson amplitudes.
      */
     static DysonOrbital<Scalar> FromOverlap(const LinearExpansion<SpinResolvedONVBasis>& linear_expansion1, const LinearExpansion<SpinResolvedONVBasis>& linear_expansion2) {
 
@@ -119,7 +119,6 @@ public:
 
         VectorX<double> dyson_coeffs = VectorX<double>::Zero(onv_basis1.alpha().numberOfOrbitals());
 
-
         // The actual algorithm to determine the Dyson amplitudes.
 
         // Since we want to calculate the overlap between two wave functions, the ONVs should have an equal number of electrons.
@@ -162,7 +161,7 @@ public:
      */
 
     /**
-     *  @return The expansion coefficients, indicated as <N-1|a_p|N>, of this Dyson orbital where 'p' is the index of spin-orbital p.
+     *  @return The expansion coefficients, indicated as <N-1|a_p|N>, of this Dyson orbital where 'p' is the index of spinor p.
      */
     const VectorX<Scalar>& coefficients() const { return this->amplitudes; }
 };
