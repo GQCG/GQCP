@@ -382,7 +382,7 @@ public:
         const auto g = rsq_hamiltonian.twoElectron().transformed(this->expansion());
 
         // The elements (F_R)_AA and (F_R)_IJ are the eigenvalues of the one-electron Fock operator.
-        // The excitationEnergies API can be used to find these values
+        // The excitationEnergies API can be used to find these values.
         const auto F_values = this->excitationEnergies();
 
         // The next step is to create the needed tensor slice.
@@ -485,7 +485,7 @@ public:
         const auto g = rsq_hamiltonian.twoElectron().transformed(this->expansion());
 
         // The elements (F_R)_AA and (F_R)_IJ are the eigenvalues of the one-electron Fock operator.
-        // The excitationEnergies API can be used to find these values
+        // The excitationEnergies API can be used to find these values.
         const auto F_values = this->excitationEnergies();
 
         // The next step is to create the needed tensor slice.
@@ -618,11 +618,11 @@ public:
     size_t numberOfSpatialOrbitals() const { return this->expansion().numberOfOrbitals(); }
 
     /**
-     *  @return the orbital energies belonging to the occupied orbitals
+     *  @return The orbital energies belonging to the occupied orbitals.
      */
     std::vector<double> occupiedOrbitalEnergies() const {
 
-        // Determine the number of occupied orbitals
+        // Determine the number of occupied orbitals.
         const auto& n_occ = this->orbitalSpace().numberOfOrbitals(OccupationType::k_occupied);
 
         std::vector<double> mo_energies;  // We use a std::vector in order to be able to slice the vector later on.
@@ -687,11 +687,11 @@ public:
 
 
     /**
-     *  @return the orbital energies belonging to the virtual orbitals
+     *  @return The orbital energies belonging to the virtual orbitals.
      */
     std::vector<double> virtualOrbitalEnergies() const {
 
-        // Determine the number of occupied orbitals
+        // Determine the number of occupied orbitals.
         const auto& n_occ = this->orbitalSpace().numberOfOrbitals(OccupationType::k_occupied);
 
         std::vector<double> mo_energies;  // We use a std::vector in order to be able to slice the vector later on.

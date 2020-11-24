@@ -26,7 +26,7 @@ namespace GQCP {
 
 
 /**
- *  The restricted Hartree-Fock stability matrices.
+ *  The unrestricted Hartree-Fock stability matrices.
  * 
  *  @tparam _Scalar             The type of scalar that is used for the elements of the stability matrices: real or complex.
  */
@@ -36,7 +36,7 @@ public:
     // The type of scalar that is used for the elements of the stability matrices: real or complex.
     using Scalar = _Scalar;
 
-    // The type of one of the components
+    // The type of one of the components.
     using Matrix = MatrixX<Scalar>;
 
 private:
@@ -59,6 +59,8 @@ public:
 
     /*
      *  Construct the object containing all building blocks for the UHF stability matrices.
+     * 
+     *  @note The names `Spin-conserved` and `Spin-unconserved`come from the article "Constraints and stability in Hartree-Fock theory" by Seeger, R. and Pople J.A. (https://doi.org/10.1063/1.434318).
      * 
      *  @param spin_conserved_A          The spin-conserved A' submatrix.
      *  @param spin_conserved_B          The spin-conserved B' submatrix.
@@ -102,7 +104,7 @@ public:
      */
 
     /**
-     *  Construct the internal stability matrix of the real UHF method.
+     *  @return The internal stability matrix of the real UHF method.
      *
      *  @note The internal stability condition of the real UHF method is checked using spin-conserved A' + spin-conserved B'.
      */
@@ -111,7 +113,7 @@ public:
 
 
     /**
-     *  Construct the real->complex external stability matrix of the real UHF method.
+     *  @return The real->complex external stability matrix of the real UHF method.
      *
      *  @note The real->complex external stability condition of the real UHF method is checked using spin-conserved A' - spin-conserved B'.
      */
@@ -120,7 +122,7 @@ public:
 
 
     /**
-     *  Construct the unrestricted->generalized external stability matrix of the real UHF method.
+     *  @return The unrestricted->generalized external stability matrix of the real UHF method.
      *
      *  @note The unrestricted->generalized external stability condition of the real UHF method is checked using spin-unconserved A'' - spin-unconserved B''.
      */
@@ -129,10 +131,10 @@ public:
 
 
     /**
-     *  @return the internal stability matrix of the complex UHF method.
+     *  @return The internal stability matrix of the complex UHF method.
      *
      *  @note The internal stability condition of the complex UHF method is checked using (spin-conserved A',   spin-conserved B'  )
-     *                                                                                    (spin-conserved B'^*, spin-conserved A'^*)
+     *                                                                                    (spin-conserved B'^*, spin-conserved A'^*).
      */
     template <typename S = Scalar>
     enable_if_t<std::is_same<S, complex>::value, MatrixX<complex>> internal() const {
@@ -158,10 +160,10 @@ public:
 
 
     /**
-     *  @return the unrestricted->generalized external stability matrix of the complex UHF method.
+     *  @return The unrestricted->generalized external stability matrix of the complex UHF method.
      *
      *  @note The unrestricted->generalized external stability condition of the complex UHF method is checked using (spin-unconserved A',   spin-unconserved B'  )
-     *                                                                                                              (spin-unconserved B'^*, spin-unconserved A'^*)
+     *                                                                                                              (spin-unconserved B'^*, spin-unconserved A'^*).
      */
     template <typename S = Scalar>
     enable_if_t<std::is_same<S, complex>::value, MatrixX<complex>> unrestrictedGeneralized() const {
@@ -191,7 +193,7 @@ public:
      */
 
     /**
-     *  @return a boolean, telling us whether or not the real or complex valued internal stability matrix belongs to a stable or unstable set of parameters.
+     *  @return A boolean, telling us whether or not the real or complex valued internal stability matrix belongs to a stable or unstable set of parameters.
      */
     const bool isInternallyStable(const double threshold = -1.0e-5) const {
 
@@ -204,7 +206,7 @@ public:
 
 
     /**
-     *  @return a boolean, telling us whether or not the real or complex valued unrestricted->generalized stability matrix belongs to a stable or unstable set of parameters.
+     *  @return A boolean, telling us whether or not the real or complex valued unrestricted->generalized stability matrix belongs to a stable or unstable set of parameters.
      */
     const bool isSpinUnconservedStable(const double threshold = -1.0e-5) const {
 
@@ -217,7 +219,7 @@ public:
 
 
     /**
-     *  @return a boolean, telling us whether or not the real->complex stability matrix belongs to a stable or unstable set of parameters.
+     *  @return A boolean, telling us whether or not the real->complex stability matrix belongs to a stable or unstable set of parameters.
      */
     template <typename S = Scalar>
     enable_if_t<std::is_same<S, double>::value, bool> isComplexConjugateStable(const double threshold = -1.0e-5) const {
@@ -231,7 +233,7 @@ public:
 
 
     /**
-     *  @return whether the real valued parameters are completely externally stable.
+     *  @return A boolean, telling us whether the real valued parameters are completely externally stable.
      */
     template <typename S = Scalar>
     enable_if_t<std::is_same<S, double>::value, bool> isExternallyStable(const double threshold = -1.0e-5) const {
@@ -242,7 +244,7 @@ public:
 
 
     /**
-     *  @return a boolean, telling us whether or not the complex valued external stability matrices belongs to a stable or unstable set of parameters.
+     *  @return A boolean, telling us whether or not the complex valued external stability matrices belongs to a stable or unstable set of parameters.
      */
     template <typename S = Scalar>
     enable_if_t<std::is_same<S, complex>::value, bool> isExternallyStable(const double threshold = -1.0e-5) const {

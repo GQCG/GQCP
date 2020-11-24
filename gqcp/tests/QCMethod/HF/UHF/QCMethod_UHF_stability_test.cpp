@@ -34,16 +34,16 @@
 BOOST_AUTO_TEST_CASE(H3_stability_test) {
 
     // Set up a general spinor basis to obtain a spin-blocked second-quantized molecular Hamiltonian.
-    const auto molecule = GQCP::Molecule::HRingFromDistance(3, 1.0);  // H3-triangle, 1 bohr apart
+    const auto molecule = GQCP::Molecule::HRingFromDistance(3, 1.0);  // H3-triangle, 1 bohr apart.
     const auto N_alpha = molecule.numberOfElectronPairs() + (molecule.numberOfElectrons() - 2 * molecule.numberOfElectronPairs());
     const auto N_beta = molecule.numberOfElectronPairs();
 
     const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
     const auto S = spinor_basis.overlap().parameters();
 
-    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // In an AO basis.
 
-    // Perform a GHF SCF calculation
+    // Perform a UHF SCF calculation.
     auto environment = GQCP::UHFSCFEnvironment<double>::WithCoreGuess(N_alpha, N_beta, sq_hamiltonian, S);
     auto solver = GQCP::UHFSCFSolver<double>::Plain(1.0e-06, 3000);
     const auto qc_structure = GQCP::QCMethod::UHF<double>().optimize(solver, environment);
@@ -65,7 +65,7 @@ BOOST_AUTO_TEST_CASE(H3_stability_test) {
     BOOST_CHECK(stability_matrices.isSpinUnconservedStable() == false);
     BOOST_CHECK(stability_matrices.isComplexConjugateStable() == true);
 
-    // Check that the stability properties can be printed
+    // Check that the stability properties can be printed.
     stability_matrices.printStabilityDescription();
 }
 
@@ -78,16 +78,16 @@ BOOST_AUTO_TEST_CASE(H3_stability_test) {
 BOOST_AUTO_TEST_CASE(H4_stability_test) {
 
     // Set up a general spinor basis to obtain a spin-blocked second-quantized molecular Hamiltonian.
-    const auto molecule = GQCP::Molecule::HRingFromDistance(4, 1.0);  // H4-square, 1 bohr apart
+    const auto molecule = GQCP::Molecule::HRingFromDistance(4, 1.0);  // H4-square, 1 bohr apart.
     const auto N_alpha = molecule.numberOfElectronPairs();
     const auto N_beta = molecule.numberOfElectronPairs();
 
     const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "6-31G"};
     const auto S = spinor_basis.overlap().parameters();
 
-    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
+    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // In an AO basis.
 
-    // Perform a GHF SCF calculation
+    // Perform a UHF SCF calculation.
     auto environment = GQCP::UHFSCFEnvironment<double>::WithCoreGuess(N_alpha, N_beta, sq_hamiltonian, S);
     auto solver = GQCP::UHFSCFSolver<double>::Plain(1.0e-06, 3000);
     const auto qc_structure = GQCP::QCMethod::UHF<double>().optimize(solver, environment);
@@ -109,6 +109,6 @@ BOOST_AUTO_TEST_CASE(H4_stability_test) {
     BOOST_CHECK(stability_matrices.isSpinUnconservedStable() == false);
     BOOST_CHECK(stability_matrices.isComplexConjugateStable() == false);
 
-    // Check that the stability properties can be printed
+    // Check that the stability properties can be printed.
     stability_matrices.printStabilityDescription();
 }

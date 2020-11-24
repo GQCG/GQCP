@@ -82,7 +82,7 @@ public:
      */
 
     /**
-     *  Construct the internal stability matrix of the real GHF method.
+     *  @return The internal stability matrix of the real GHF method.
      *
      *  @note The internal stability condition of the real GHF method is checked using A+B.
      */
@@ -91,7 +91,7 @@ public:
 
 
     /**
-     *  Construct the external stability matrix of the real GHF method.
+     *  @return The external stability matrix of the real GHF method.
      *
      *  @note The external stability condition of the real GHF method is checked using A-B.
      */
@@ -100,10 +100,10 @@ public:
 
 
     /**
-     *  @return the internal stability matrix of the complex GHF method.
+     *  @return The internal stability matrix of the complex GHF method.
      *
      *  @note The internal stability condition of the real GHF method is checked using (A,   B  )
-     *                                                                                 (B^*, A^*)
+     *                                                                                 (B^*, A^*).
      */
     template <typename S = Scalar>
     enable_if_t<std::is_same<S, complex>::value, MatrixX<complex>> internal() const {
@@ -133,7 +133,7 @@ public:
      */
 
     /**
-     *  @return a boolean, telling us whether or not the real or complex valued internal stability matrix belongs to a stable or unstable set of parameters.
+     *  @return A boolean, telling us whether or not the real or complex valued internal stability matrix belongs to a stable or unstable set of parameters.
      */
     const bool isInternallyStable(const double threshold = -1.0e-5) const {
 
@@ -146,7 +146,7 @@ public:
 
 
     /**
-     *  @return a boolean, telling us whether or not the real valued external stability matrix belongs to a stable or unstable set of parameters.
+     *  @return A boolean, telling us whether or not the real valued external stability matrix belongs to a stable or unstable set of parameters.
      */
     template <typename S = Scalar>
     enable_if_t<std::is_same<S, double>::value, bool> isExternallyStable(const double threshold = -1.0e-5) const {

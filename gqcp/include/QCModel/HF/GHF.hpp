@@ -310,7 +310,7 @@ public:
 
 
     /**
-     *  @return a matrix containing all the possible excitation energies of the wavefunction model. 
+     *  @return A matrix containing all the possible excitation energies of the wavefunction model. 
      * 
      *  @note       The rows are determined by the number of virtual orbitals, the columns by the number of occupied orbitals.
      */
@@ -490,11 +490,11 @@ public:
     size_t numberOfSpinors() const { return this->orbital_energies.size(); }
 
     /**
-     *  @return the orbital energies belonging to the occupied orbitals
+     *  @return The orbital energies belonging to the occupied orbitals.
      */
     std::vector<double> occupiedOrbitalEnergies() const {
 
-        // Determine the number of occupied orbitals
+        // Determine the number of occupied orbitals.
         const auto& n_occ = this->orbitalSpace().numberOfOrbitals(OccupationType::k_occupied);
 
         std::vector<double> mo_energies;  // We use a std::vector in order to be able to slice the vector later on.
@@ -527,11 +527,11 @@ public:
     OrbitalSpace orbitalSpace() const { return GHF<Scalar>::orbitalSpace(this->numberOfSpinors(), this->numberOfElectrons()); }
 
     /**
-     *  @return the orbital energies belonging to the virtual orbitals
+     *  @return The orbital energies belonging to the virtual orbitals.
      */
     std::vector<double> virtualOrbitalEnergies() const {
 
-        // Determine the number of occupied orbitals
+        // Determine the number of occupied orbitals.
         const auto& n_occ = this->orbitalSpace().numberOfOrbitals(OccupationType::k_occupied);
 
         std::vector<double> mo_energies;  // We use a std::vector in order to be able to slice the vector later on.

@@ -102,7 +102,7 @@ public:
      */
 
     /**
-     *  Construct the internal stability matrix of the real RHF method.
+     *  @return The internal stability matrix of the real RHF method.
      *
      *  @note The internal stability condition of the real RHF method is checked using singlet_A + singlet_B.
      */
@@ -111,7 +111,7 @@ public:
 
 
     /**
-     *  Construct the real->complex external stability matrix of the real RHF method.
+     *  @return The real->complex external stability matrix of the real RHF method.
      *
      *  @note The real->complex external stability condition of the real RHF method is checked using singlet_A - singlet_B.
      */
@@ -120,7 +120,7 @@ public:
 
 
     /**
-     *  Construct the restricted->unrestricted external stability matrix of the real RHF method.
+     *  @return The restricted->unrestricted external stability matrix of the real RHF method.
      *
      *  @note The restricted->unrestricted external stability condition of the real RHF method is checked using triplet_A + triplet_B.
      */
@@ -129,10 +129,10 @@ public:
 
 
     /**
-     *  @return the internal stability matrix of the complex RHF method.
+     *  @return The internal stability matrix of the complex RHF method.
      *
      *  @note The internal stability condition of the complex RHF method is checked using (singlet_A,   singlet_B  )
-     *                                                                                    (singlet_B^*, singlet_A^*)
+     *                                                                                    (singlet_B^*, singlet_A^*).
      */
     template <typename S = Scalar>
     enable_if_t<std::is_same<S, complex>::value, MatrixX<complex>> internal() const {
@@ -158,10 +158,10 @@ public:
 
 
     /**
-     *  @return the restricted->unrestricted external stability matrix of the complex RHF method.
+     *  @return The restricted->unrestricted external stability matrix of the complex RHF method.
      *
      *  @note The restricted->unrestricted external stability condition of the complex RHF method is checked using (triplet_A,   triplet_B  )
-     *                                                                                                             (triplet_B^*, triplet_A^*)
+     *                                                                                                             (triplet_B^*, triplet_A^*).
      */
     template <typename S = Scalar>
     enable_if_t<std::is_same<S, complex>::value, MatrixX<complex>> restrictedUnrestricted() const {
@@ -191,7 +191,7 @@ public:
      */
 
     /**
-     *  @return a boolean, telling us whether or not the real or complex valued internal stability matrix belongs to a stable or unstable set of parameters.
+     *  @return A boolean, telling us whether or not the real or complex valued internal stability matrix belongs to a stable or unstable set of parameters.
      */
     const bool isInternallyStable(const double threshold = -1.0e-5) const {
 
@@ -204,7 +204,7 @@ public:
 
 
     /**
-     *  @return a boolean, telling us whether or not the real or complex valued restricted->unrestricted stability matrix belongs to a stable or unstable set of parameters.
+     *  @return A boolean, telling us whether or not the real or complex valued restricted->unrestricted stability matrix belongs to a stable or unstable set of parameters.
      */
     const bool isTripletStable(const double threshold = -1.0e-5) const {
 
@@ -217,7 +217,7 @@ public:
 
 
     /**
-     *  @return a boolean, telling us whether or not the real->complex stability matrix belongs to a stable or unstable set of parameters.
+     *  @return A boolean, telling us whether or not the real->complex stability matrix belongs to a stable or unstable set of parameters.
      */
     template <typename S = Scalar>
     enable_if_t<std::is_same<S, double>::value, bool> isComplexConjugateStable(const double threshold = -1.0e-5) const {
@@ -231,7 +231,7 @@ public:
 
 
     /**
-     *  @return whether the parameters are completely externally stable.
+     *  @return A boolean, telling us whether the parameters are completely externally stable.
      */
     template <typename S = Scalar>
     enable_if_t<std::is_same<S, double>::value, bool> isExternallyStable(const double threshold = -1.0e-5) const {
@@ -242,7 +242,7 @@ public:
 
 
     /**
-     *  @return a boolean, telling us whether or not the complex valued external stability matrices belongs to a stable or unstable set of parameters.
+     *  @return A boolean, telling us whether or not the complex valued external stability matrices belongs to a stable or unstable set of parameters.
      */
     template <typename S = Scalar>
     enable_if_t<std::is_same<S, complex>::value, bool> isExternallyStable(const double threshold = -1.0e-5) const {
