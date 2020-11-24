@@ -16,41 +16,32 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Basis/Transformations/GTransformation.hpp"
+#include "gqcpy/include/interfaces.hpp"
 
-#include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
-
-
-namespace py = pybind11;
 
 
 namespace gqcpy {
 
+
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
 using namespace GQCP;
 
 
+/**
+ *  Register `GTransformation_d` to the gqcpy module and expose a part of its C++ interface to Python.
+ * 
+ *  @param module           The Pybind11 module in which `UTransformation_d` should be registered.
+ */
 void bindGTransformation(py::module& module) {
 
-    py::class_<GTransformation<double>>(module, "GTransformation", "A 'general' basis transformation, i.e. a general, full-spinor basis transformation where the transformation mixes the alpha- and beta components of the two-component spinors.")
+    // Define the Python class for `GTransformation_d`.
+    py::class_<GTransformation<double>> py_GTransformation_d {module, "GTransformation_d", "A 'general' basis transformation, i.e. a general, full-spinor basis transformation where the transformation mixes the alpha- and beta components of the two-component spinors."};
 
 
-        /*
-         *  MARK: Constructors
-         */
-
-        .def(py::init<>([](const Eigen::MatrixXd& T) {
-                 return GTransformation<double> {T};
-             }),
-             py::arg("T"))
-
-
-        /*
-         *  MARK: Transformation matrix
-         */
-
-        .def("matrix",
-             &GTransformation<double>::matrix,
-             "Return the transformation matrix that collects the expansion coefficients of the new basis (vectors) in the old basis as columns.");
+    // Expose the `SimpleTransformation` API to the Python class.
+    bindSimpleTransformationInterface(py_GTransformation_d);
 }
 
 

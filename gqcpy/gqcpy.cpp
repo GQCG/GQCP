@@ -28,6 +28,8 @@ namespace gqcpy {
 
 // Basis - MullikenPartitioning
 void bindRMullikenPartitioning(py::module& module);
+void bindUMullikenPartitioning(py::module& module);
+void bindUMullikenPartitioningComponent(py::module& module);
 
 
 // Basis - ScalarBasis
@@ -39,11 +41,14 @@ void bindGSpinorBasis(py::module& module);
 void bindOccupationType(py::module& module);
 void bindOrbitalSpace(py::module& module);
 void bindRSpinOrbitalBasis(py::module& module);
+void bindUSpinOrbitalBasis(py::module& module);
 
 
 // Basis - Transformations
 void bindGTransformation(py::module& module);
 void bindRTransformation(py::module& module);
+void bindUTransformation(py::module& module);
+void bindUTransformationComponent(py::module& module);
 
 
 // Mathematical - Algorithm
@@ -198,6 +203,8 @@ PYBIND11_MODULE(gqcpy, module) {
 
     // Basis - MullikenPartitioning
     gqcpy::bindRMullikenPartitioning(module);
+    gqcpy::bindUMullikenPartitioning(module);
+    gqcpy::bindUMullikenPartitioningComponent(module);
 
 
     // Basis - ScalarBasis
@@ -209,12 +216,14 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindOccupationType(module);
     gqcpy::bindOrbitalSpace(module);
     gqcpy::bindRSpinOrbitalBasis(module);
+    gqcpy::bindUSpinOrbitalBasis(module);
 
 
     // Basis - Transformations
     gqcpy::bindGTransformation(module);
     gqcpy::bindRTransformation(module);
-
+    gqcpy::bindUTransformation(module);
+    gqcpy::bindUTransformationComponent(module);
 
     // Mathematical - Algorithm
     gqcpy::bindAlgorithms(module);

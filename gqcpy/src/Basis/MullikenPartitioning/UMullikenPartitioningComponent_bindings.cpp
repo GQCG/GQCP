@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Basis/Transformations/RTransformation.hpp"
+#include "Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp"
 #include "gqcpy/include/interfaces.hpp"
 
 #include <pybind11/pybind11.h>
@@ -30,18 +30,18 @@ using namespace GQCP;
 
 
 /**
- *  Register `RTransformation_d` to the gqcpy module and expose a part of its C++ interface to Python.
+ *  Register `UMullikenPartitioningComponent_d` to the gqcpy module and expose a part of its C++ interface to Python.
  * 
- *  @param module           The Pybind11 module in which `RTransformation_d` should be registered.
+ *  @param module           The Pybind11 module in which `UMullikenPartitioningComponent_d` should be registered.
  */
-void bindRTransformation(py::module& module) {
+void bindUMullikenPartitioningComponent(py::module& module) {
 
-    // Define the Python class for `RTransformation_d`.
-    py::class_<RTransformation<double>> py_RTransformation_d {module, "RTransformation_d", "A 'restricted' basis transformation, i.e. a spin-orbital basis transformation where the transformation is applied equally to the alpha- and beta-spin-orbitals."};
+    // Define the Python class for `UMullikenPartitioningComponent`.
+    py::class_<UMullikenPartitioningComponent<double>> py_UMullikenPartitioningComponent_d {module, "UMullikenPartitioningComponent", "One of the components of an unrestricted Mulliken-based partitioning of an AO basis."};
 
-
-    // Expose the `SimpleTransformation` API to the Python class.
-    bindSimpleTransformationInterface(py_RTransformation_d);
+    // Expose the "Mulliken partitioning" interface to the Python class.
+    bindMullikenPartitioningIndicesInterface(py_UMullikenPartitioningComponent_d);
+    bindMullikenPartitioningMatricesInterface(py_UMullikenPartitioningComponent_d);
 }
 
 

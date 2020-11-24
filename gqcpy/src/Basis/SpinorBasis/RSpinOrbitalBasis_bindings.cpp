@@ -25,158 +25,68 @@
 #include <pybind11/stl.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
 
+
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
 using namespace GQCP;
 
 
+/**
+ *  Register `RSpinOrbitalBasis_d` to the gqcpy module and expose a part of its C++ interface to Python.
+ * 
+ *  @param module           The Pybind11 module in which `RSpinOrbitalBasis_d` should be registered.
+ */
 void bindRSpinOrbitalBasis(py::module& module) {
-    py::class_<RSpinOrbitalBasis<double, GTOShell>>(module, "RSpinOrbitalBasis", "A class that represents a real, restricted spinor basis with underlying GTO shells.")
 
-        /*
-         *  MARK: Constructors
-         */
+    // Define the Python class for `RSpinOrbitalBasis`.
+    py::class_<RSpinOrbitalBasis<double, GTOShell>> py_RSpinOrbitalBasis_d {module, "RSpinOrbitalBasis_d", "A class that represents a real, restricted spinor basis with underlying GTO shells."};
 
+    /*
+     *  MARK: Constructors
+     */
+
+    py_RSpinOrbitalBasis_d
         .def(py::init<const Molecule&, const std::string&>(),
              py::arg("molecule"),
-             py::arg("basisset_name"))
+             py::arg("basisset_name"));
 
 
-        /*
-         *  MARK: Inherited methods
-         */
+    // Expose the `SimpleSpinorBasis` API to the Python class.
+    bindSpinorBasisInterface(py_RSpinOrbitalBasis_d);
 
-        .def(
-            "expansion",
-            &RSpinOrbitalBasis<double, GTOShell>::expansion,
-            "Return a read-only reference to the transformation that relates the current set of spinors with the atomic spinors.")
+    /*
+     *  MARK: General information
+     */
 
-        .def(
-            "overlap",
-            &RSpinOrbitalBasis<double, GTOShell>::overlap,
-            "Return the overlap (one-electron) operator of this spin-orbital basis.")
-
-        .def(
-            "isOrthonormal",
-            &RSpinOrbitalBasis<double, GTOShell>::isOrthonormal,
-            py::arg("precision") = 1.0e-08,
-            "If this spinor basis is orthonormal.")
-
-        .def(
-            "lowdinOrthonormalization",
-            &RSpinOrbitalBasis<double, GTOShell>::lowdinOrthonormalization,
-            "Return the transformation to the Löwdin basis: T = S_current^{-1/2}.")
-
-        .def(
-            "lowdinOrthonormalize",
-            &RSpinOrbitalBasis<double, GTOShell>::lowdinOrthonormalize,
-            " Transform the spinor basis to the 'Löwdin basis', which is the orthonormal basis that we transform to with T = S^{-1/2}, where S is the current overlap matrix.")
-
-
-        /*
-         *  MARK: General information
-         */
-
+    py_RSpinOrbitalBasis_d
         .def(
             "numberOfSpatialOrbitals",
             [](RSpinOrbitalBasis<double, GTOShell>& spin_orbital_basis) {
                 return spin_orbital_basis.numberOfSpatialOrbitals();
             },
-            "Return the number of different spatial orbitals that are used in this spinor basis.")
+            "Return the number of different spatial orbitals that are used in this spinor basis.");
 
 
-        /*
-         *  MARK: Quantization of first-quantized operators
-         */
+    /*
+     *  MARK: Quantization of first-quantized operators
+     */
 
+    py_RSpinOrbitalBasis_d
         .def(
             "quantizeDipoleOperator",
             [](const RSpinOrbitalBasis<double, GTOShell>& spin_orbital_basis, const Vector<double, 3>& origin) {
                 return spin_orbital_basis.quantize(Operator::ElectronicDipole(origin));
             },
-            py::arg("origin") = Vector<double, 3>::Zero(), "Return the electronic dipole operator expressed in this spinor basis.")
-
-        .def(
-            "quantizeKineticOperator",
-            [](const RSpinOrbitalBasis<double, GTOShell>& spin_orbital_basis) {
-                return spin_orbital_basis.quantize(Operator::Kinetic());
-            },
-            "Return the kinetic energy operator expressed in this spinor basis.")
-
-        .def(
-            "quantizeNuclearAttractionOperator",
-            [](const RSpinOrbitalBasis<double, GTOShell>& spin_orbital_basis, const Molecule& molecule) {
-                return spin_orbital_basis.quantize(Operator::NuclearAttraction(molecule));
-            },
-            "Return the nuclear attraction operator expressed in this spinor basis.")
-
-        .def(
-            "quantizeOverlapOperator",
-            [](const RSpinOrbitalBasis<double, GTOShell>& spin_orbital_basis) {
-                return spin_orbital_basis.quantize(Operator::Overlap());
-            },
-            "Return the overlap operator expressed in this spinor basis.")
+            py::arg("origin") = Vector<double, 3>::Zero(), "Return the electronic dipole operator expressed in this spinor basis.");
 
 
-        .def(
-            "quantizeCoulombRepulsionOperator",
-            [](const RSpinOrbitalBasis<double, GTOShell>& spin_orbital_basis) {
-                return spin_orbital_basis.quantize(Operator::Coulomb());
-            },
-            "Return the Coulomb repulsion operator expressed in this spinor basis.")
+    // Expose some quantization API to the Python class;
+    bindSpinorBasisQuantizationInterface(py_RSpinOrbitalBasis_d);
 
-
-        /*
-         *  MARK: Mulliken partitioning
-         */
-
-        .def(
-            "mullikenPartitioning",
-            [](const RSpinOrbitalBasis<double, GTOShell>& spin_orbital_basis, const std::function<bool(const GTOShell&)>& selector) {
-                return spin_orbital_basis.mullikenPartitioning(selector);
-            },
-            py::arg("selector"),
-            "A `RMullikenPartitioning` for the AOs selected by the supplied selector function.")
-
-
-        /*
-         *  MARK: Conforming to `BasisTransformable`
-         */
-
-        .def(
-            "rotate",
-            [](RSpinOrbitalBasis<double, GTOShell>& spin_orbital_basis, const RTransformation<double>& U) {
-                spin_orbital_basis.rotate(U);
-            },
-            py::arg("U"),
-            "In-place apply the basis rotation.")
-
-        .def(
-            "rotated",
-            [](const RSpinOrbitalBasis<double, GTOShell>& spin_orbital_basis, const RTransformation<double>& U) {
-                spin_orbital_basis.rotated(U);
-            },
-            py::arg("U"),
-            "Apply the basis rotation and return the result.")
-
-        .def(
-            "transform",
-            [](RSpinOrbitalBasis<double, GTOShell>& spin_orbital_basis, const RTransformation<double>& T) {
-                spin_orbital_basis.transform(T);
-            },
-            py::arg("T"),
-            "In-place apply the basis transformation.")
-
-        .def(
-            "transformed",
-            [](const RSpinOrbitalBasis<double, GTOShell>& spin_orbital_basis, const RTransformation<double>& T) {
-                spin_orbital_basis.transformed(T);
-            },
-            py::arg("T"),
-            "Apply the basis transformation and return the result.");
+    // Expose some Mulliken API to the Python class;
+    bindSpinorBasisMullikenInterface(py_RSpinOrbitalBasis_d);
 }
 
 

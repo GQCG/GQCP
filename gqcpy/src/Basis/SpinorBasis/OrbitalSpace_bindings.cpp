@@ -21,14 +21,21 @@
 #include <pybind11/stl.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
 
 
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
+
+
+/**
+ *  Register `OrbitalSpace` to the gqcpy module and expose a part of its C++ interface to Python.
+ * 
+ *  @param module           The Pybind11 module in which `OrbitalSpace` should be registered.
+ */
 void bindOrbitalSpace(py::module& module) {
-    py::class_<GQCP::OrbitalSpace>(module, "OrbitalSpace", "A class that encapsulates occupied, active and virtual orbital indices.")
+    py::class_<OrbitalSpace>(module, "OrbitalSpace", "A class that encapsulates occupied, active and virtual orbital indices.")
 
         // CONSTRUCTORS
 
@@ -45,8 +52,8 @@ void bindOrbitalSpace(py::module& module) {
 
         .def_static(
             "Implicit",
-            [](const std::map<GQCP::OccupationType, size_t>& counts) {
-                return GQCP::OrbitalSpace::Implicit(counts);
+            [](const std::map<OccupationType, size_t>& counts) {
+                return OrbitalSpace::Implicit(counts);
             },
             py::arg("counts"),
             "Create an implicit orbital space with the given dimensions.")
@@ -56,19 +63,19 @@ void bindOrbitalSpace(py::module& module) {
 
         .def(
             "description",
-            &GQCP::OrbitalSpace::description,
+            &OrbitalSpace::description,
             "Return a textual description of this orbital space.")
 
         .def(
             "indices",
-            [](const GQCP::OrbitalSpace& orbital_space) {
+            [](const OrbitalSpace& orbital_space) {
                 return orbital_space.indices();
             },
             "Return all the indices of the spinors")
 
         .def(
             "indices",
-            [](const GQCP::OrbitalSpace& orbital_space, const GQCP::OccupationType type) {
+            [](const OrbitalSpace& orbital_space, const OccupationType type) {
                 return orbital_space.indices(type);
             },
             py::arg("type"),
@@ -76,7 +83,7 @@ void bindOrbitalSpace(py::module& module) {
 
         .def(
             "isIndex",
-            [](const GQCP::OrbitalSpace& orbital_space, const GQCP::OccupationType type, const size_t p) {
+            [](const OrbitalSpace& orbital_space, const OccupationType type, const size_t p) {
                 return orbital_space.isIndex(type, p);
             },
             py::arg("type"),
@@ -85,21 +92,21 @@ void bindOrbitalSpace(py::module& module) {
 
         .def(
             "numberOfExcitations",
-            &GQCP::OrbitalSpace::numberOfExcitations,
+            &OrbitalSpace::numberOfExcitations,
             py::arg("from"),
             py::arg("to"),
             "Return the number of possible excitations between the two orbital sets")
 
         .def(
             "numberOfOrbitals",
-            [](const GQCP::OrbitalSpace& orbital_space) {
+            [](const OrbitalSpace& orbital_space) {
                 return orbital_space.numberOfOrbitals();
             },
             "Return the total number of orbitals (i.e. spatial orbitals or spinors, depending on the context) in this orbital space.")
 
         .def(
             "numberOfOrbitals",
-            [](const GQCP::OrbitalSpace& orbital_space, const GQCP::OccupationType type) {
+            [](const OrbitalSpace& orbital_space, const OccupationType type) {
                 return orbital_space.numberOfOrbitals(type);
             },
             "Return the number of orbitals (i.e. spatial orbitals or spinors, depending on the context) that belong to the given occupation type.");

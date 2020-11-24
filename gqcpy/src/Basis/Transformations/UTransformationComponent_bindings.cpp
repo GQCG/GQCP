@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Basis/Transformations/RTransformation.hpp"
+#include "Basis/Transformations/UTransformationComponent.hpp"
 #include "gqcpy/include/interfaces.hpp"
 
 #include <pybind11/pybind11.h>
@@ -30,18 +30,18 @@ using namespace GQCP;
 
 
 /**
- *  Register `RTransformation_d` to the gqcpy module and expose a part of its C++ interface to Python.
+ *  Register `UTransformationComponent_d` to the gqcpy module and expose a part of its C++ interface to Python.
  * 
- *  @param module           The Pybind11 module in which `RTransformation_d` should be registered.
+ *  @param module           The Pybind11 module in which `UTransformationComponent_d` should be registered.
  */
-void bindRTransformation(py::module& module) {
+void bindUTransformationComponent(py::module& module) {
 
-    // Define the Python class for `RTransformation_d`.
-    py::class_<RTransformation<double>> py_RTransformation_d {module, "RTransformation_d", "A 'restricted' basis transformation, i.e. a spin-orbital basis transformation where the transformation is applied equally to the alpha- and beta-spin-orbitals."};
+    // Define the Python class for `UTransformationComponent_d`.
+    py::class_<UTransformationComponent<double>> py_UTransformationComponent_d {module, "UTransformationComponent_d", "One of the spin components of a `UTransformation`."};
 
 
     // Expose the `SimpleTransformation` API to the Python class.
-    bindSimpleTransformationInterface(py_RTransformation_d);
+    bindSimpleTransformationInterface(py_UTransformationComponent_d);
 }
 
 

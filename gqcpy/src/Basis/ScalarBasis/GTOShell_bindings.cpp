@@ -19,14 +19,20 @@
 
 #include <pybind11/pybind11.h>
 
-namespace py = pybind11;
-
 
 namespace gqcpy {
 
+
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
 using namespace GQCP;
 
 
+/**
+ *  Register `GTOShell` to the gqcpy module and expose a part of its C++ interface to Python.
+ * 
+ *  @param module           The Pybind11 module in which `GTOShell` should be registered.
+ */
 void bindGTOShell(py::module& module) {
     py::class_<GTOShell>(module, "GTOShell", "A class that represents a shell of GTOs: it specifies in a condensed way which GTOs are on an nucleus.")
 

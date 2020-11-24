@@ -16,42 +16,32 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Basis/MullikenPartitioning/RMullikenPartitioning.hpp"
+#include "gqcpy/include/interfaces.hpp"
 
-#include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
-#include <pybind11/stl.h>
-
-
-namespace py = pybind11;
 
 
 namespace gqcpy {
 
+
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
 using namespace GQCP;
 
 
+/**
+ *  Register `RMullikenPartitioning_d` to the gqcpy module and expose a part of its C++ interface to Python.
+ * 
+ *  @param module           The Pybind11 module in which `RMullikenPartitioning_d` should be registered.
+ */
 void bindRMullikenPartitioning(py::module& module) {
-    py::class_<RMullikenPartitioning<double>>(module, "RMullikenPartitioning", "A restricted Mulliken-based partitioning of an AO basis.")
 
-        /*
-         *  MARK: General information
-         */
+    // Define the Python class for `RMullikenPartitioning`.
+    py::class_<RMullikenPartitioning<double>> py_RMullikenPartitioning_d {module, "RMullikenPartitioning_d", "A restricted Mulliken-based partitioning of an AO basis."};
 
-        .def("indices",
-             &RMullikenPartitioning<double>::indices,
-             "Return the set of indices that correspond to the AOs that are included in the Mulliken-partitioning of an AO basis.")
-
-        /*
-         *  MARK: Partitioning and projecting
-         */
-
-        .def("partitionMatrix",
-             &RMullikenPartitioning<double>::partitionMatrix,
-             "Return the partition matrix 'P_A' related to this Mulliken partitioning.")
-
-        .def("projectionMatrix",
-             &RMullikenPartitioning<double>::projectionMatrix,
-             "Return the Mulliken projection, defined as C^{-1} P_A C, where C is the transformation matrix and P_A is the partition matrix.");
+    // Expose the "Mulliken partitioning" interface to the Python class.
+    bindMullikenPartitioningIndicesInterface(py_RMullikenPartitioning_d);
+    bindMullikenPartitioningMatricesInterface(py_RMullikenPartitioning_d);
 }
 
 
