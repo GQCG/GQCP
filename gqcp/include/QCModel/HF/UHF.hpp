@@ -635,7 +635,7 @@ public:
         const auto n_occ_b = this->orbitalSpace(Spin::beta).numberOfOrbitals(OccupationType::k_occupied);
         const auto n_virt_b = this->orbitalSpace(Spin::beta).numberOfOrbitals(OccupationType::k_virtual);
 
-        const auto dimension = (n_occ_a * n_virt_a) + (n_occ_b + n_virt_b);
+        const auto dimension = (n_occ_a * n_virt_a) + (n_occ_b * n_virt_b);
         GQCP::MatrixX<Scalar> total_A {dimension, dimension};
 
         // Place the components on the correct positions in the total matrix.
@@ -675,7 +675,7 @@ public:
         const auto n_occ_b = this->orbitalSpace(Spin::beta).numberOfOrbitals(OccupationType::k_occupied);
         const auto n_virt_b = this->orbitalSpace(Spin::beta).numberOfOrbitals(OccupationType::k_virtual);
 
-        const auto dimension = (n_occ_a * n_virt_a) + (n_occ_b + n_virt_b);
+        const auto dimension = (n_occ_a * n_virt_a) + (n_occ_b * n_virt_b);
         GQCP::MatrixX<Scalar> total_B {dimension, dimension};
 
         // Place the components on the correct positions in the total matrix.
@@ -882,7 +882,7 @@ public:
         const auto n_occ_b = this->orbitalSpace(Spin::beta).numberOfOrbitals(OccupationType::k_occupied);
         const auto n_virt_b = this->orbitalSpace(Spin::beta).numberOfOrbitals(OccupationType::k_virtual);
 
-        const auto dimension = (n_occ_b * n_virt_a) + (n_occ_a + n_virt_b);
+        const auto dimension = (n_occ_b * n_virt_a) + (n_occ_a * n_virt_b);
         GQCP::MatrixX<Scalar> total_A {dimension, dimension};
 
         // Initialize the zero blocks of the total matrix.
@@ -924,7 +924,7 @@ public:
         const auto n_occ_b = this->orbitalSpace(Spin::beta).numberOfOrbitals(OccupationType::k_occupied);
         const auto n_virt_b = this->orbitalSpace(Spin::beta).numberOfOrbitals(OccupationType::k_virtual);
 
-        const auto dimension = (n_occ_b * n_virt_a) + (n_occ_a + n_virt_b);
+        const auto dimension = (n_occ_b * n_virt_a) + (n_occ_a * n_virt_b);
         GQCP::MatrixX<Scalar> total_B {dimension, dimension};
 
         // Initialize the zero blocks of the total matrix.

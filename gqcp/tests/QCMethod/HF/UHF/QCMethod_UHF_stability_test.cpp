@@ -34,7 +34,7 @@
 BOOST_AUTO_TEST_CASE(H3_stability_test_1) {
 
     // Set up a general spinor basis to obtain a spin-blocked second-quantized molecular Hamiltonian.
-    const auto molecule = GQCP::Molecule::HRingFromDistance(3, 1.8897);  // H3-triangle, 1 bohr apart
+    const auto molecule = GQCP::Molecule::HRingFromDistance(3, 1.0);  // H3-triangle, 1 bohr apart
     const auto N_alpha = molecule.numberOfElectronPairs() + (molecule.numberOfElectrons() - 2 * molecule.numberOfElectronPairs());
     const auto N_beta = molecule.numberOfElectronPairs();
 
@@ -52,7 +52,12 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_1) {
     // We can now check the stability of the ground state parameters.
     // Calculate the stability matrices.
     const auto stability_matrices = uhf_parameters.calculateStabilityMatrices(sq_hamiltonian);
+    // std::cout << uhf_parameters.calculatePureSpinConservedAComponent(sq_hamiltonian, GQCP::Spin::alpha) << std::endl;
+    // std::cout << uhf_parameters.calculatePureSpinConservedAComponent(sq_hamiltonian, GQCP::Spin::beta) << std::endl;
 
+    std::cout << stability_matrices.spinConservedA() << std::endl;
+    std::cout << "---------------------------------" << std::endl;
+    std::cout << stability_matrices.spinConservedB() << std::endl;
     // This method should be internally stable.
     const auto internal_stability = stability_matrices.isInternallyStable();
     BOOST_CHECK(internal_stability == true);
