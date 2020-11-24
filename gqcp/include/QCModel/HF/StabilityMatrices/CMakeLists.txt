@@ -1,6 +1,6 @@
 target_sources(gqcp
     PRIVATE
         GHFStabilityMatrices.hpp
-        RHFStabilitymatrices.hpp
+        RHFStabilityMatrices.hpp
         UHFStabilityMatrices.hpp
 )
