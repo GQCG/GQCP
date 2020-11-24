@@ -423,15 +423,35 @@ public:
 
         GQCP::Matrix<Scalar> M {rows, cols};
 
-        for (int i = 0; i < this->dimension(0); i++) {
-            for (int j = 0; j < this->dimension(1); j++) {
-                for (int k = 0; k < this->dimension(2); k++) {
-                    for (int l = 0; l < this->dimension(3); l++) {
-                        const auto row_index = i + j + i * (this->dimension(1) - 1);
-                        const auto col_index = k + l + k * (this->dimension(3) - 1);
+        if (rows == cols) {
+            for (int i = 0; i < this->dimension(0); i++) {
+                for (int j = 0; j < this->dimension(1); j++) {
+                    for (int k = 0; k < this->dimension(2); k++) {
+                        for (int l = 0; l < this->dimension(3); l++) {
+                            const auto row_index = i + j + i * (this->dimension(1) - 1);
+                            const auto col_index = k + l + k * (this->dimension(3) - 1);
 
-                        M(row_index, col_index) = this->operator()(i, j, k, l);
+                            M(row_index, col_index) = this->operator()(i, j, k, l);
+                        }
                     }
+                }
+            }
+        } else {
+            // The process takes a little more work when we do not reshape to a square matrix.
+            // We create an intermediate vector to contain all the values of the tensor.
+            std::vector<Scalar> vectorized;
+            for (int i = 0; i < this->dimension(0); i++) {
+                for (int j = 0; j < this->dimension(1); j++) {
+                    for (int k = 0; k < this->dimension(2); k++) {
+                        for (int l = 0; l < this->dimension(3); l++) {
+                            vectorized.push_back(this->operator()(i, j, k, l));
+                        }
+                    }
+                }
+            }
+            for (int r = 0; r < rows; r++) {
+                for (int c = 0; c < cols; c++) {
+                    M(r, c) = vectorized[r * cols + c];
                 }
             }
         }

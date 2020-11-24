@@ -23,6 +23,7 @@
 #include "Basis/Transformations/UTransformationComponent.hpp"
 #include "DensityMatrix/SpinResolved1DM.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
+#include "Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
 #include "QCModel/HF/RHF.hpp"
@@ -375,24 +376,27 @@ public:
         const auto orbital_space_sigma_bar = this->orbitalSpace(sigma_bar);
 
         // Determine the number of occupied and virtual orbitals.
-        const auto n_occ_sigma = orbital_space_sigma.number_of_orbitals(OccupationType::k_occupied);
-        const auto n_virt_sigma = orbital_space_sigma.number_of_orbitals(OccupationType::k_virtual);
+        const auto n_occ_sigma = orbital_space_sigma.numberOfOrbitals(OccupationType::k_occupied);
+        const auto n_virt_sigma = orbital_space_sigma.numberOfOrbitals(OccupationType::k_virtual);
 
-        const auto n_occ_sigma_bar = orbital_space_sigma_bar.number_of_orbitals(OccupationType::k_occupied);
-        const auto n_virt_sigma_bar = orbital_space_sigma_bar.number_of_orbitals(OccupationType::k_virtual);
+        const auto n_occ_sigma_bar = orbital_space_sigma_bar.numberOfOrbitals(OccupationType::k_occupied);
+        const auto n_virt_sigma_bar = orbital_space_sigma_bar.numberOfOrbitals(OccupationType::k_virtual);
 
         // We need the two-electron integrals in mixed MO basis.
         // The ground state coefficient matrix is obtained from the QCModel.
-        const auto& g = rsq_hamiltonian.twoElectron();
+        const auto& two_electron_integrals = rsq_hamiltonian.twoElectron();
+
+        // We transform the necessary integrals to a mixed operator component in order to be able to transform the tensor in a mixed fashion.
+        const auto g_op = GQCP::ScalarMixedUSQTwoElectronOperatorComponent<Scalar> {two_electron_integrals.parameters()};
 
         // Transform the first two indices to the sigma basis.
-        g.transformed(this->expansion(sigma), sigma);
+        g_op.transformed(this->expansion(sigma), sigma);
 
         // Transform the last two indices to the sigma_bar basis.
-        g.transformed(this->expansion(sigma_bar), sigma_bar);
+        g_op.transformed(this->expansion(sigma_bar), sigma_bar);
 
         // Return the parameters for later use.
-        g.parameters();
+        const auto g = g_op.parameters();
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object of mixed spins.
@@ -447,24 +451,27 @@ public:
         const auto orbital_space_sigma_bar = this->orbitalSpace(sigma_bar);
 
         // Determine the number of occupied and virtual orbitals.
-        const auto n_occ_sigma = orbital_space_sigma.number_of_orbitals(OccupationType::k_occupied);
-        const auto n_virt_sigma = orbital_space_sigma.number_of_orbitals(OccupationType::k_virtual);
+        const auto n_occ_sigma = orbital_space_sigma.numberOfOrbitals(OccupationType::k_occupied);
+        const auto n_virt_sigma = orbital_space_sigma.numberOfOrbitals(OccupationType::k_virtual);
 
-        const auto n_occ_sigma_bar = orbital_space_sigma_bar.number_of_orbitals(OccupationType::k_occupied);
-        const auto n_virt_sigma_bar = orbital_space_sigma_bar.number_of_orbitals(OccupationType::k_virtual);
+        const auto n_occ_sigma_bar = orbital_space_sigma_bar.numberOfOrbitals(OccupationType::k_occupied);
+        const auto n_virt_sigma_bar = orbital_space_sigma_bar.numberOfOrbitals(OccupationType::k_virtual);
 
         // We need the two-electron integrals in mixed MO basis.
         // The ground state coefficient matrix is obtained from the QCModel.
-        const auto& g = rsq_hamiltonian.twoElectron();
+        const auto& two_electron_integrals = rsq_hamiltonian.twoElectron();
+
+        // We transform the necessary integrals to a mixed operator component in order to be able to transform the tensor in a mixed fashion.
+        const auto g_op = GQCP::ScalarMixedUSQTwoElectronOperatorComponent<Scalar> {two_electron_integrals.parameters()};
 
         // Transform the first two indices to the sigma basis.
-        g.transformed(this->expansion(sigma), sigma);
+        g_op.transformed(this->expansion(sigma), sigma);
 
         // Transform the last two indices to the sigma_bar basis.
-        g.transformed(this->expansion(sigma_bar), sigma_bar);
+        g_op.transformed(this->expansion(sigma_bar), sigma_bar);
 
         // Return the parameters for later use.
-        g.parameters();
+        const auto g = g_op.parameters();
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object of mixed spins.
@@ -509,13 +516,13 @@ public:
         const auto orbital_space_sigma = this->orbitalSpace(sigma);
 
         // Determine the number of occupied and virtual orbitals.
-        const auto n_occ = orbital_space_sigma.number_of_orbitals(OccupationType::k_occupied);
-        const auto n_virt = orbital_space_sigma.number_of_orbitals(OccupationType::k_virtual);
+        const auto n_occ = orbital_space_sigma.numberOfOrbitals(OccupationType::k_occupied);
+        const auto n_virt = orbital_space_sigma.numberOfOrbitals(OccupationType::k_virtual);
 
         // We need the two-electron integrals in MO basis, hence why we transform them with the coefficient matrix.
         // The ground state coefficient matrix is obtained from the QCModel.
         // We need the anti-symmetrized tensor: (AI||JB) = (AI|JB) - (AB|JI). This is obtained by the `.antisymmetrized()` method.
-        const auto g = rsq_hamiltonian.twoElectron().transformed(this->expansion(sigma)).antisymmetrized().parameters();
+        const auto g = rsq_hamiltonian.twoElectron().transformed(this->expansion(sigma).matrix()).antisymmetrized().parameters();
 
         // The elements F_BA and F_IJ are the eigenvalues of the one-electron Fock operator.
         // The excitationEnergies API can be used to find these values
@@ -570,13 +577,13 @@ public:
         const auto orbital_space_sigma = this->orbitalSpace(sigma);
 
         // Determine the number of occupied and virtual orbitals.
-        const auto n_occ = orbital_space_sigma.number_of_orbitals(OccupationType::k_occupied);
-        const auto n_virt = orbital_space_sigma.number_of_orbitals(OccupationType::k_virtual);
+        const auto n_occ = orbital_space_sigma.numberOfOrbitals(OccupationType::k_occupied);
+        const auto n_virt = orbital_space_sigma.numberOfOrbitals(OccupationType::k_virtual);
 
         // We need the two-electron integrals in MO basis, hence why we transform them with the coefficient matrix.
         // The ground state coefficient matrix is obtained from the QCModel.
         // We need the anti-symmetrized tensor: (AI||JB) = (AI|JB) - (AB|JI). This is obtained by the `.antisymmetrized()` method.
-        const auto g = rsq_hamiltonian.twoElectron().transformed(this->expansion(sigma)).antisymmetrized().parameters();
+        const auto g = rsq_hamiltonian.twoElectron().transformed(this->expansion(sigma).matrix()).antisymmetrized().parameters();
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object.
@@ -623,10 +630,10 @@ public:
         const auto A_bbaa = this->calculateMixedSpinConservedAComponent(rsq_hamiltonian, Spin::beta, Spin::alpha);  // Dimension = (n_occ_b * n_virt_b, n_occ_a * n_virt_a).
 
         // Determine the total matrix dimension and initialize the total matrix.
-        const auto n_occ_a = this->orbitalSpace(Spin::alpha).number_of_orbitals(OccupationType::k_occupied);
-        const auto n_virt_a = this->orbitalSpace(Spin::alpha).number_of_orbitals(OccupationType::k_virtual);
-        const auto n_occ_b = this->orbitalSpace(Spin::beta).number_of_orbitals(OccupationType::k_occupied);
-        const auto n_virt_b = this->orbitalSpace(Spin::beta).number_of_orbitals(OccupationType::k_virtual);
+        const auto n_occ_a = this->orbitalSpace(Spin::alpha).numberOfOrbitals(OccupationType::k_occupied);
+        const auto n_virt_a = this->orbitalSpace(Spin::alpha).numberOfOrbitals(OccupationType::k_virtual);
+        const auto n_occ_b = this->orbitalSpace(Spin::beta).numberOfOrbitals(OccupationType::k_occupied);
+        const auto n_virt_b = this->orbitalSpace(Spin::beta).numberOfOrbitals(OccupationType::k_virtual);
 
         const auto dimension = (n_occ_a * n_virt_a) + (n_occ_b + n_virt_b);
         GQCP::MatrixX<Scalar> total_A {dimension, dimension};
@@ -663,10 +670,10 @@ public:
         const auto B_bbaa = this->calculateMixedSpinConservedBComponent(rsq_hamiltonian, Spin::beta, Spin::alpha);  // Dimension = (n_occ_b * n_virt_b, n_occ_a * n_virt_a).
 
         // Determine the total matrix dimension and initialize the total matrix.
-        const auto n_occ_a = this->orbitalSpace(Spin::alpha).number_of_orbitals(OccupationType::k_occupied);
-        const auto n_virt_a = this->orbitalSpace(Spin::alpha).number_of_orbitals(OccupationType::k_virtual);
-        const auto n_occ_b = this->orbitalSpace(Spin::beta).number_of_orbitals(OccupationType::k_occupied);
-        const auto n_virt_b = this->orbitalSpace(Spin::beta).number_of_orbitals(OccupationType::k_virtual);
+        const auto n_occ_a = this->orbitalSpace(Spin::alpha).numberOfOrbitals(OccupationType::k_occupied);
+        const auto n_virt_a = this->orbitalSpace(Spin::alpha).numberOfOrbitals(OccupationType::k_virtual);
+        const auto n_occ_b = this->orbitalSpace(Spin::beta).numberOfOrbitals(OccupationType::k_occupied);
+        const auto n_virt_b = this->orbitalSpace(Spin::beta).numberOfOrbitals(OccupationType::k_virtual);
 
         const auto dimension = (n_occ_a * n_virt_a) + (n_occ_b + n_virt_b);
         GQCP::MatrixX<Scalar> total_B {dimension, dimension};
@@ -710,39 +717,41 @@ public:
         const auto orbital_space_sigma_bar = this->orbitalSpace(sigma_bar);
 
         // Determine the number of occupied and virtual orbitals.
-        const auto n_occ_sigma = orbital_space_sigma.number_of_orbitals(OccupationType::k_occupied);
-        const auto n_virt_sigma = orbital_space_sigma.number_of_orbitals(OccupationType::k_virtual);
+        const auto n_occ_sigma = orbital_space_sigma.numberOfOrbitals(OccupationType::k_occupied);
+        const auto n_virt_sigma = orbital_space_sigma.numberOfOrbitals(OccupationType::k_virtual);
 
-        const auto n_occ_sigma_bar = orbital_space_sigma_bar.number_of_orbitals(OccupationType::k_occupied);
-        const auto n_virt_sigma_bar = orbital_space_sigma_bar.number_of_orbitals(OccupationType::k_virtual);
+        const auto n_occ_sigma_bar = orbital_space_sigma_bar.numberOfOrbitals(OccupationType::k_occupied);
+        const auto n_virt_sigma_bar = orbital_space_sigma_bar.numberOfOrbitals(OccupationType::k_virtual);
 
         // We need the two-electron integrals in mixed MO basis.
         // The ground state coefficient matrix is obtained from the QCModel.
-        const auto& g = rsq_hamiltonian.twoElectron();
+        const auto& two_electron_integrals = rsq_hamiltonian.twoElectron();
+
+        // We transform the necessary integrals to a mixed operator component in order to be able to transform the tensor in a mixed fashion.
+        const auto g_op = GQCP::ScalarMixedUSQTwoElectronOperatorComponent<Scalar> {two_electron_integrals.parameters()};
 
         // Transform the first two indices to the sigma basis.
-        g.transformed(this->expansion(sigma), sigma);
+        g_op.transformed(this->expansion(sigma), sigma);
 
         // Transform the last two indices to the sigma_bar basis.
-        g.transformed(this->expansion(sigma_bar), sigma_bar);
+        g_op.transformed(this->expansion(sigma_bar), sigma_bar);
 
         // Return the parameters for later use.
-        g.parameters();
+        const auto g = g_op.parameters();
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object of mixed spins.
-        auto A_iajb_slice = orbital_space.template initializeMixedRepresentableObjectFor<Scalar>(OccupationType::k_occupied, sigma, OccupationType::k_virtual, sigma_bar,
-                                                                                                 OccupationType::k_occupied, sigma, OccupationType::k_virtual, sigma_bar);
-        for (const auto& i : orbital_space_sigma.indices(OccupationType::k_occupied)) {
-            for (const auto& a : orbital_space_sigma_bar.indices(OccupationType::k_virtual)) {
-                for (const auto& j : orbital_space_sigma.indices(OccupationType::k_occupied)) {
-                    for (const auto& b : orbital_space_sigma_bar.indices(OccupationType::k_virtual)) {
+        auto A_iajb_slice = orbital_space.template initializeMixedRepresentableObjectFor<Scalar>(OccupationType::k_occupied, sigma_bar, OccupationType::k_virtual, sigma,
+                                                                                                 OccupationType::k_occupied, sigma_bar, OccupationType::k_virtual, sigma);
+        for (const auto& i : orbital_space_sigma_bar.indices(OccupationType::k_occupied)) {
+            for (const auto& a : orbital_space_sigma.indices(OccupationType::k_virtual)) {
+                for (const auto& j : orbital_space_sigma_bar.indices(OccupationType::k_occupied)) {
+                    for (const auto& b : orbital_space_sigma.indices(OccupationType::k_virtual)) {
                         A_iajb_slice(i, a, j, b) = -g(a, b, j, i);
                     }
                 }
             }
         }
-
         // Turn the ImplicitRankFourTensorSlice in an actual Tensor
         auto A_iajb = A_iajb_slice.asTensor();
 
@@ -766,9 +775,9 @@ public:
         }
 
         // Finally, reshape the tensor to a matrix.
-        const auto mixed_spin_conserved_A_component = A_iajb.reshape(n_occ_sigma_bar * n_virt_sigma, n_occ_sigma_bar * n_virt_sigma);
+        const auto spin_unconserved_A_component = A_iajb.reshape(n_occ_sigma_bar * n_virt_sigma, n_occ_sigma_bar * n_virt_sigma);
 
-        return mixed_spin_conserved_A_component;
+        return spin_unconserved_A_component;
     }
 
 
@@ -801,24 +810,27 @@ public:
         const auto orbital_space_sigma_bar = this->orbitalSpace(sigma_bar);
 
         // Determine the number of occupied and virtual orbitals.
-        const auto n_occ_sigma = orbital_space_sigma.number_of_orbitals(OccupationType::k_occupied);
-        const auto n_virt_sigma = orbital_space_sigma.number_of_orbitals(OccupationType::k_virtual);
+        const auto n_occ_sigma = orbital_space_sigma.numberOfOrbitals(OccupationType::k_occupied);
+        const auto n_virt_sigma = orbital_space_sigma.numberOfOrbitals(OccupationType::k_virtual);
 
-        const auto n_occ_sigma_bar = orbital_space_sigma_bar.number_of_orbitals(OccupationType::k_occupied);
-        const auto n_virt_sigma_bar = orbital_space_sigma_bar.number_of_orbitals(OccupationType::k_virtual);
+        const auto n_occ_sigma_bar = orbital_space_sigma_bar.numberOfOrbitals(OccupationType::k_occupied);
+        const auto n_virt_sigma_bar = orbital_space_sigma_bar.numberOfOrbitals(OccupationType::k_virtual);
 
         // We need the two-electron integrals in mixed MO basis.
         // The ground state coefficient matrix is obtained from the QCModel.
-        const auto& g = rsq_hamiltonian.twoElectron();
+        const auto& two_electron_integrals = rsq_hamiltonian.twoElectron();
+
+        // We transform the necessary integrals to a mixed operator component in order to be able to transform the tensor in a mixed fashion.
+        const auto g_op = GQCP::ScalarMixedUSQTwoElectronOperatorComponent<Scalar> {two_electron_integrals.parameters()};
 
         // Transform the first two indices to the sigma basis.
-        g.transformed(this->expansion(sigma), sigma);
+        g_op.transformed(this->expansion(sigma), sigma);
 
         // Transform the last two indices to the sigma_bar basis.
-        g.transformed(this->expansion(sigma_bar), sigma_bar);
+        g_op.transformed(this->expansion(sigma_bar), sigma_bar);
 
         // Return the parameters for later use.
-        g.parameters();
+        const auto g = g_op.parameters();
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object of mixed spins.
@@ -838,9 +850,10 @@ public:
         auto B_iajb = B_iajb_slice.asTensor();
 
         // Finally, reshape the tensor to a matrix.
-        const auto mixed_spin_conserved_B_component = B_iajb.reshape(n_occ_sigma_bar * n_virt_sigma, n_occ_sigma * n_virt_sigma_bar);
 
-        return mixed_spin_conserved_B_component;
+        const auto spin_unconserved_B_component = B_iajb.reshape(n_occ_sigma_bar * n_virt_sigma, n_occ_sigma * n_virt_sigma_bar);
+
+        return spin_unconserved_B_component;
     }
 
 
@@ -864,10 +877,10 @@ public:
         const auto A_baba = this->calculateSpinUnconservedAComponent(rsq_hamiltonian, Spin::beta, Spin::alpha);  // Dimension = (n_occ_a * n_virt_b, n_occ_a * n_virt_b).
 
         // Determine the total matrix dimension and initialize the total matrix.
-        const auto n_occ_a = this->orbitalSpace(Spin::alpha).number_of_orbitals(OccupationType::k_occupied);
-        const auto n_virt_a = this->orbitalSpace(Spin::alpha).number_of_orbitals(OccupationType::k_virtual);
-        const auto n_occ_b = this->orbitalSpace(Spin::beta).number_of_orbitals(OccupationType::k_occupied);
-        const auto n_virt_b = this->orbitalSpace(Spin::beta).number_of_orbitals(OccupationType::k_virtual);
+        const auto n_occ_a = this->orbitalSpace(Spin::alpha).numberOfOrbitals(OccupationType::k_occupied);
+        const auto n_virt_a = this->orbitalSpace(Spin::alpha).numberOfOrbitals(OccupationType::k_virtual);
+        const auto n_occ_b = this->orbitalSpace(Spin::beta).numberOfOrbitals(OccupationType::k_occupied);
+        const auto n_virt_b = this->orbitalSpace(Spin::beta).numberOfOrbitals(OccupationType::k_virtual);
 
         const auto dimension = (n_occ_b * n_virt_a) + (n_occ_a + n_virt_b);
         GQCP::MatrixX<Scalar> total_A {dimension, dimension};
@@ -906,10 +919,10 @@ public:
         const auto B_baab = this->calculateSpinUnconservedBComponent(rsq_hamiltonian, Spin::beta, Spin::alpha);  // Dimension = (n_occ_a * n_virt_b, n_occ_b * n_virt_a).
 
         // Determine the total matrix dimension and initialize the total matrix.
-        const auto n_occ_a = this->orbitalSpace(Spin::alpha).number_of_orbitals(OccupationType::k_occupied);
-        const auto n_virt_a = this->orbitalSpace(Spin::alpha).number_of_orbitals(OccupationType::k_virtual);
-        const auto n_occ_b = this->orbitalSpace(Spin::beta).number_of_orbitals(OccupationType::k_occupied);
-        const auto n_virt_b = this->orbitalSpace(Spin::beta).number_of_orbitals(OccupationType::k_virtual);
+        const auto n_occ_a = this->orbitalSpace(Spin::alpha).numberOfOrbitals(OccupationType::k_occupied);
+        const auto n_virt_a = this->orbitalSpace(Spin::alpha).numberOfOrbitals(OccupationType::k_virtual);
+        const auto n_occ_b = this->orbitalSpace(Spin::beta).numberOfOrbitals(OccupationType::k_occupied);
+        const auto n_virt_b = this->orbitalSpace(Spin::beta).numberOfOrbitals(OccupationType::k_virtual);
 
         const auto dimension = (n_occ_b * n_virt_a) + (n_occ_a + n_virt_b);
         GQCP::MatrixX<Scalar> total_B {dimension, dimension};
@@ -1082,8 +1095,8 @@ public:
     /**
      *  @return The implicit alpha and beta occupied-virtual orbital spaces that are associated to these UHF model parameters.
      */
-    SpinResolvedOrbitalSpace orbitalSpace() const { return UHF<Scalar>::orbitalSpace(this->numberOfSpinOrbitals(Spin::alpha), this->numberOfElectrons(Spin::alpha),
-                                                                                     this->numberOfSpinOrbitals(Spin::beta), this->numberOfElectrons(Spin::beta)); }
+    SpinResolvedOrbitalSpace orbitalSpace() const { return UHF<Scalar>::orbitalSpace(this->numberOfSpinOrbitals(Spin::alpha), this->numberOfSpinOrbitals(Spin::beta),
+                                                                                     this->numberOfElectrons(Spin::alpha), this->numberOfElectrons(Spin::beta)); }
 
 
     /**
