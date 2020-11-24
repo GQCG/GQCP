@@ -390,13 +390,9 @@ public:
         const auto g_op = GQCP::ScalarMixedUSQTwoElectronOperatorComponent<Scalar> {two_electron_integrals.parameters()};
 
         // Transform the first two indices to the sigma basis.
-        g_op.transformed(this->expansion(sigma), sigma);
-
         // Transform the last two indices to the sigma_bar basis.
-        g_op.transformed(this->expansion(sigma_bar), sigma_bar);
-
-        // Return the parameters for later use.
-        const auto g = g_op.parameters();
+        // And return the parameters for later use.
+        const auto g = g_op.transformed(this->expansion(Spin::alpha), Spin::alpha).transformed(this->expansion(Spin::beta), Spin::beta).parameters();
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object of mixed spins.
@@ -406,7 +402,11 @@ public:
             for (const auto& a : orbital_space_sigma.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space_sigma_bar.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space_sigma_bar.indices(OccupationType::k_virtual)) {
-                        A_iajb_slice(i, a, j, b) = g(a, i, j, b);
+                        if (sigma == Spin::alpha && sigma_bar == Spin::beta) {
+                            A_iajb_slice(i, a, j, b) = g(a, i, j, b);
+                        } else {
+                            A_iajb_slice(i, a, j, b) = g(j, b, a, i);
+                        }
                     }
                 }
             }
@@ -465,13 +465,9 @@ public:
         const auto g_op = GQCP::ScalarMixedUSQTwoElectronOperatorComponent<Scalar> {two_electron_integrals.parameters()};
 
         // Transform the first two indices to the sigma basis.
-        g_op.transformed(this->expansion(sigma), sigma);
-
         // Transform the last two indices to the sigma_bar basis.
-        g_op.transformed(this->expansion(sigma_bar), sigma_bar);
-
-        // Return the parameters for later use.
-        const auto g = g_op.parameters();
+        // And return the parameters for later use.
+        const auto g = g_op.transformed(this->expansion(Spin::alpha), Spin::alpha).transformed(this->expansion(Spin::beta), Spin::beta).parameters();
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object of mixed spins.
@@ -481,7 +477,11 @@ public:
             for (const auto& a : orbital_space_sigma.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space_sigma_bar.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space_sigma_bar.indices(OccupationType::k_virtual)) {
-                        B_iajb_slice(i, a, j, b) = g(a, i, b, j);
+                        if (sigma == Spin::alpha && sigma_bar == Spin::beta) {
+                            B_iajb_slice(i, a, j, b) = g(a, i, b, j);
+                        } else {
+                            B_iajb_slice(i, a, j, b) = g(b, j, a, i);
+                        }
                     }
                 }
             }
@@ -664,10 +664,10 @@ public:
     GQCP::MatrixX<Scalar> calculateSpinConservedB(const RSQHamiltonian<Scalar>& rsq_hamiltonian) const {
 
         // Calculate the four different A' components.
-        const auto B_aaaa = this->calculatePureSpinConservedBComponent(rsq_hamiltonian, Spin::alpha);               // Dimension = (n_occ_a * n_virt_a, n_occ_a * n_virt_a).
-        const auto B_bbbb = this->calculatePureSpinConservedBComponent(rsq_hamiltonian, Spin::beta);                // Dimension = (n_occ_b * n_virt_b, n_occ_b * n_virt_b).
-        const auto B_aabb = this->calculateMixedSpinConservedBComponent(rsq_hamiltonian, Spin::alpha, Spin::beta);  // Dimension = (n_occ_a * n_virt_a, n_occ_b * n_virt_b).
-        const auto B_bbaa = this->calculateMixedSpinConservedBComponent(rsq_hamiltonian, Spin::beta, Spin::alpha);  // Dimension = (n_occ_b * n_virt_b, n_occ_a * n_virt_a).
+        const auto B_aaaa = this->calculatePureSpinConservedBComponent(rsq_hamiltonian, Spin::alpha);               // Dimension = (n_occ_a * n_virt_a, n_occ_a * n_virt_a). CORRECT
+        const auto B_bbbb = this->calculatePureSpinConservedBComponent(rsq_hamiltonian, Spin::beta);                // Dimension = (n_occ_b * n_virt_b, n_occ_b * n_virt_b). CORRECT
+        const auto B_aabb = this->calculateMixedSpinConservedBComponent(rsq_hamiltonian, Spin::alpha, Spin::beta);  // Dimension = (n_occ_a * n_virt_a, n_occ_b * n_virt_b). CORRECT
+        const auto B_bbaa = this->calculateMixedSpinConservedBComponent(rsq_hamiltonian, Spin::beta, Spin::alpha);  // Dimension = (n_occ_b * n_virt_b, n_occ_a * n_virt_a). WRONG
 
         // Determine the total matrix dimension and initialize the total matrix.
         const auto n_occ_a = this->orbitalSpace(Spin::alpha).numberOfOrbitals(OccupationType::k_occupied);
@@ -731,13 +731,9 @@ public:
         const auto g_op = GQCP::ScalarMixedUSQTwoElectronOperatorComponent<Scalar> {two_electron_integrals.parameters()};
 
         // Transform the first two indices to the sigma basis.
-        g_op.transformed(this->expansion(sigma), sigma);
-
         // Transform the last two indices to the sigma_bar basis.
-        g_op.transformed(this->expansion(sigma_bar), sigma_bar);
-
-        // Return the parameters for later use.
-        const auto g = g_op.parameters();
+        // And return the parameters for later use.
+        const auto g = g_op.transformed(this->expansion(Spin::alpha), Spin::alpha).transformed(this->expansion(Spin::beta), Spin::beta).parameters();
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object of mixed spins.
@@ -747,7 +743,11 @@ public:
             for (const auto& a : orbital_space_sigma.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space_sigma_bar.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space_sigma.indices(OccupationType::k_virtual)) {
-                        A_iajb_slice(i, a, j, b) = -g(a, b, j, i);
+                        if (sigma == Spin::alpha && sigma_bar == Spin::beta) {
+                            A_iajb_slice(i, a, j, b) = -g(a, b, j, i);
+                        } else {
+                            A_iajb_slice(i, a, j, b) = -g(j, i, a, b);
+                        }
                     }
                 }
             }
@@ -824,13 +824,9 @@ public:
         const auto g_op = GQCP::ScalarMixedUSQTwoElectronOperatorComponent<Scalar> {two_electron_integrals.parameters()};
 
         // Transform the first two indices to the sigma basis.
-        g_op.transformed(this->expansion(sigma), sigma);
-
         // Transform the last two indices to the sigma_bar basis.
-        g_op.transformed(this->expansion(sigma_bar), sigma_bar);
-
-        // Return the parameters for later use.
-        const auto g = g_op.parameters();
+        // And return the parameters for later use.
+        const auto g = g_op.transformed(this->expansion(Spin::alpha), Spin::alpha).transformed(this->expansion(Spin::beta), Spin::beta).parameters();
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object of mixed spins.
@@ -840,7 +836,11 @@ public:
             for (const auto& a : orbital_space_sigma_bar.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space_sigma_bar.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space_sigma.indices(OccupationType::k_virtual)) {
-                        B_iajb_slice(i, a, j, b) = -g(a, j, b, i);
+                        if (sigma == Spin::alpha && sigma_bar == Spin::beta) {
+                            B_iajb_slice(i, a, j, b) = -g(b, i, a, j);
+                        } else {
+                            B_iajb_slice(i, a, j, b) = -g(a, j, b, i);
+                        }
                     }
                 }
             }
@@ -873,8 +873,8 @@ public:
     GQCP::MatrixX<Scalar> calculateSpinUnconservedA(const RSQHamiltonian<Scalar>& rsq_hamiltonian) const {
 
         // Calculate the four different A' components.
-        const auto A_abab = this->calculateSpinUnconservedAComponent(rsq_hamiltonian, Spin::alpha, Spin::beta);  // Dimension = (n_occ_b * n_virt_a, n_occ_b * n_virt_a).
-        const auto A_baba = this->calculateSpinUnconservedAComponent(rsq_hamiltonian, Spin::beta, Spin::alpha);  // Dimension = (n_occ_a * n_virt_b, n_occ_a * n_virt_b).
+        const auto A_abab = this->calculateSpinUnconservedAComponent(rsq_hamiltonian, Spin::alpha, Spin::beta);  // Dimension = (n_occ_b * n_virt_a, n_occ_b * n_virt_a). CORRECT
+        const auto A_baba = this->calculateSpinUnconservedAComponent(rsq_hamiltonian, Spin::beta, Spin::alpha);  // Dimension = (n_occ_a * n_virt_b, n_occ_a * n_virt_b). WRONG
 
         // Determine the total matrix dimension and initialize the total matrix.
         const auto n_occ_a = this->orbitalSpace(Spin::alpha).numberOfOrbitals(OccupationType::k_occupied);
@@ -915,8 +915,8 @@ public:
     GQCP::MatrixX<Scalar> calculateSpinUnconservedB(const RSQHamiltonian<Scalar>& rsq_hamiltonian) const {
 
         // Calculate the four different A' components.
-        const auto B_abba = this->calculateSpinUnconservedBComponent(rsq_hamiltonian, Spin::alpha, Spin::beta);  // Dimension = (n_occ_b * n_virt_a, n_occ_a * n_virt_b).
-        const auto B_baab = this->calculateSpinUnconservedBComponent(rsq_hamiltonian, Spin::beta, Spin::alpha);  // Dimension = (n_occ_a * n_virt_b, n_occ_b * n_virt_a).
+        const auto B_abba = this->calculateSpinUnconservedBComponent(rsq_hamiltonian, Spin::alpha, Spin::beta);  // Dimension = (n_occ_b * n_virt_a, n_occ_a * n_virt_b). WRONG
+        const auto B_baab = this->calculateSpinUnconservedBComponent(rsq_hamiltonian, Spin::beta, Spin::alpha);  // Dimension = (n_occ_a * n_virt_b, n_occ_b * n_virt_a). CORRECT
 
         // Determine the total matrix dimension and initialize the total matrix.
         const auto n_occ_a = this->orbitalSpace(Spin::alpha).numberOfOrbitals(OccupationType::k_occupied);

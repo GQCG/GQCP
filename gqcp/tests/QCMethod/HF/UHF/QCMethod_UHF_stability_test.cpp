@@ -52,12 +52,7 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_1) {
     // We can now check the stability of the ground state parameters.
     // Calculate the stability matrices.
     const auto stability_matrices = uhf_parameters.calculateStabilityMatrices(sq_hamiltonian);
-    // std::cout << uhf_parameters.calculatePureSpinConservedAComponent(sq_hamiltonian, GQCP::Spin::alpha) << std::endl;
-    // std::cout << uhf_parameters.calculatePureSpinConservedAComponent(sq_hamiltonian, GQCP::Spin::beta) << std::endl;
 
-    std::cout << stability_matrices.spinConservedA() << std::endl;
-    std::cout << "---------------------------------" << std::endl;
-    std::cout << stability_matrices.spinConservedB() << std::endl;
     // This method should be internally stable.
     const auto internal_stability = stability_matrices.isInternallyStable();
     BOOST_CHECK(internal_stability == true);
@@ -68,7 +63,7 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_1) {
 
     // We check both external instabilities separately as well.
     BOOST_CHECK(stability_matrices.isSpinUnconservedStable() == false);
-    BOOST_CHECK(stability_matrices.isComplexConjugateStable() == false);
+    BOOST_CHECK(stability_matrices.isComplexConjugateStable() == true);
 
     // Check that the stability properties can be printed
     stability_matrices.printStabilityDescription();
