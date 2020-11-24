@@ -2,12 +2,12 @@ name: Build and test
 
 on: 
   pull_request:
-    paths:
-      - '**.hpp'
-      - '**.cpp'
-      - '**.cmake'
-      - '**CMakeLists.txt'
-      - 'cmake/**'
+    # paths:
+    #   - '**.hpp'
+    #   - '**.cpp'
+    #   - '**.cmake'
+    #   - '**CMakeLists.txt'
+    #   - 'cmake/**'
 
 jobs:
   build-and-test:
