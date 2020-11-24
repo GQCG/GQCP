@@ -41,8 +41,8 @@ void bindUTransformation(py::module& module) {
     py::class_<UTransformation<double>> py_UTransformation_d {module, "UTransformation_d", "A type that encapsulates transformation matrices for the alpha- and beta-parts of spin-orbital bases."};
 
 
-    // Expose the `BaseSpinResolved` API to Python.
-    bindBaseSpinResolvedInterface(py_UTransformation_d);
+    // Expose the `SpinResolvedBase` API to Python.
+    bindSpinResolvedBaseInterface(py_UTransformation_d);
 }
 
 

@@ -16,36 +16,32 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "DensityMatrix/Orbital2DM.hpp"
+#include "gqcpy/include/interfaces.hpp"
 
-#include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
-
-
-namespace py = pybind11;
 
 
 namespace gqcpy {
 
 
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
+
+
+/**
+ *  Register `Orbital2DM_d` to the gqcpy module and expose a part of its C++ interface to Python.
+ * 
+ *  @param module           The Pybind11 module in which `Orbital2DM_d` should be registered.
+ */
 void bindOrbital2DM(py::module& module) {
 
-    py::class_<GQCP::Orbital2DM<double>>(module, "Orbital2DM", "The orbital two-electron density matrix.")
+    // Define the Python class for `Orbital2DM`.
+    py::class_<GQCP::Orbital2DM<double>> py_Orbital2DM_d {module, "Orbital2DM_d", "The orbital two-electron density matrix."};
 
-        // PUBLIC METHODS
 
-        .def(
-            "reduce",
-            [](const GQCP::Orbital2DM<double>& d) {
-                return d.reduce();
-            },
-            "Return a partial contraction of the 2-DM, where D(p,q) = d(p,q,r,r).")
-
-        .def(
-            "trace",
-            [](const GQCP::Orbital2DM<double>& d) {
-                return d.trace();
-            },
-            "Return the trace of the 2-DM, i.e. d(p,p,q,q).");
+    // Expose the `Simple2DM` API to the Python class.
+    bindSimple2DMInterface(py_Orbital2DM_d);
 }
 
 
