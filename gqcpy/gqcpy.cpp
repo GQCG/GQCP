@@ -39,7 +39,6 @@ void bindGSpinorBasis(py::module& module);
 void bindOccupationType(py::module& module);
 void bindOrbitalSpace(py::module& module);
 void bindRSpinOrbitalBasis(py::module& module);
-// void bindUSpinOrbitalBasis(py::module& module);
 
 
 // Basis - Transformations
@@ -110,7 +109,6 @@ void bindOrbital2DM(py::module& module);
 
 
 // Processing - Properties
-void bindDOCIElectricalResponseSolver(py::module& module);
 void bindRHFElectricalResponseSolver(py::module& module);
 void bindvAP1roGElectricalResponseSolver(py::module& module);
 
@@ -124,11 +122,9 @@ void bindCCSDSolver(py::module& module);
 
 
 // QCMethod - CI
-// void bindCIEnvironments(py::module& module);
-// void bindCIFactory(py::module& module);
-// void bindDOCINewtonOrbitalOptimizerFactory(py::module& module);
-// void bindDOCINewtonOrbitalOptimizers(py::module& module);
-// void bindQCMethodCIs(py::module& module);
+void bindCIEnvironments(py::module& module);
+void bindCIFactory(py::module& module);
+void bindQCMethodCIs(py::module& module);
 
 
 // QCMethod - Geminals
@@ -213,7 +209,6 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindOccupationType(module);
     gqcpy::bindOrbitalSpace(module);
     gqcpy::bindRSpinOrbitalBasis(module);
-    // gqcpy::bindUSpinOrbitalBasis(module);
 
 
     // Basis - Transformations
@@ -284,7 +279,6 @@ PYBIND11_MODULE(gqcpy, module) {
 
 
     // Processing - Properties
-    // gqcpy::bindDOCIElectricalResponseSolver(module);
     gqcpy::bindRHFElectricalResponseSolver(module);
     gqcpy::bindvAP1roGElectricalResponseSolver(module);
 
@@ -298,11 +292,9 @@ PYBIND11_MODULE(gqcpy, module) {
 
 
     // QCMethod - CI
-    // gqcpy::bindCIEnvironments(module);
-    // gqcpy::bindCIFactory(module);
-    // gqcpy::bindDOCINewtonOrbitalOptimizerFactory(module);
-    // gqcpy::bindDOCINewtonOrbitalOptimizers(module);
-    // gqcpy::bindQCMethodCIs(module);
+    gqcpy::bindCIEnvironments(module);
+    gqcpy::bindCIFactory(module);
+    gqcpy::bindQCMethodCIs(module);
 
 
     // QCMethod - Geminals
