@@ -66,6 +66,25 @@ void bindSQHamiltonian(py::module& module, const std::string& name, const std::s
 
 
         /*
+         *  MARK: Access
+         */
+
+        .def(
+            "core",
+            [](const Hamiltonian& hamiltonian) {
+                return hamiltonian.core();
+            },
+            "Return a read-only reference to the total one-electron interaction operator, i.e. the core Hamiltonian.")
+
+        .def(
+            "twoElectron",
+            [](const Hamiltonian& hamiltonian) {
+                return hamiltonian.twoElectron();
+            },
+            "Return a read-only reference to the total one-electron interaction operator, i.e. the core Hamiltonian.")
+
+
+        /*
          *  MARK: Conforming to `BasisTransformable`
          */
 

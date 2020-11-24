@@ -21,7 +21,7 @@ namespace py = pybind11;
 
 
 /**
- *  As stated in the Pybind11 FAQ (https://pybind11.readthedocs.io/en/stable/faq.html#how-can-i-reduce-the-build-time), it is good practice to split the binding of the code over multiple files.
+ *  As stated in the Pybind11 FAQ (https://pybind11.readthedocs.io/en/stable/faq.html#how-can-i-reduce-the-build-time), it is good practice to split the binding of the code over multiple files. Here, we're declaring all the binding methods that we have implemented in various `_bindings.cpp` files.
  */
 namespace gqcpy {
 
@@ -39,6 +39,7 @@ void bindRSpinOrbitalBasis(py::module& module);
 
 
 // Basis - Transformations
+void bindGTransformation(py::module& module);
 void bindRTransformation(py::module& module);
 
 
@@ -208,6 +209,7 @@ PYBIND11_MODULE(gqcpy, module) {
 
 
     // Basis - Transformations
+    gqcpy::bindGTransformation(module);
     gqcpy::bindRTransformation(module);
 
 
