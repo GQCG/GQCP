@@ -26,6 +26,10 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
+// Basis - MullikenPartitioning
+void bindRMullikenPartitioning(py::module& module);
+
+
 // Basis - ScalarBasis
 void bindGTOShell(py::module& module);
 
@@ -195,6 +199,10 @@ void bindVersion(py::module& module);
  *  The actual Python binding into the gqcpy Python module.
  */
 PYBIND11_MODULE(gqcpy, module) {
+
+    // Basis - MullikenPartitioning
+    gqcpy::bindRMullikenPartitioning(module);
+
 
     // Basis - ScalarBasis
     gqcpy::bindGTOShell(module);

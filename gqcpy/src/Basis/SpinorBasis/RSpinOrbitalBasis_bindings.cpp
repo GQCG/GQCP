@@ -20,6 +20,7 @@
 #include "Operator/FirstQuantized/Operator.hpp"
 
 #include <pybind11/eigen.h>
+#include <pybind11/functional.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 
@@ -135,7 +136,7 @@ void bindRSpinOrbitalBasis(py::module& module) {
         .def(
             "mullikenPartitioning",
             [](const RSpinOrbitalBasis<double, GTOShell>& spin_orbital_basis, const std::function<bool(const GTOShell&)>& selector) {
-                spin_orbital_basis.mullikenPartitioning(selector);
+                return spin_orbital_basis.mullikenPartitioning(selector);
             },
             py::arg("selector"),
             "A `RMullikenPartitioning` for the AOs selected by the supplied selector function.")

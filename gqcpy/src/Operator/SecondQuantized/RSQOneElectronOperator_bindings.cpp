@@ -54,10 +54,13 @@ void bindRSQOneElectronOperator(py::module& module, const std::string& suffix) {
         /*
          *  MARK: Calculations
          */
-        // .def(
-        //     "calculateExpectationValue",
-        //     &ScalarRSQOneElectronOperator<Scalar>::calculateExpectationValue,
-        //     "Return the expectation value of all components of the one-electron operator")
+
+        .def(
+            "calculateExpectationValue",
+            [](const ScalarRSQOneElectronOperator<Scalar>& op, const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>& D) {
+                return op.calculateExpectationValue(Orbital1DM<Scalar> {D}).elements();
+            },
+            "Return the expectation value of all components of the one-electron operator")
 
 
         /*
@@ -73,9 +76,18 @@ void bindRSQOneElectronOperator(py::module& module, const std::string& suffix) {
         .def(
             "parameters",
             [](const ScalarRSQOneElectronOperator<Scalar>& op) {
-                return op.parameters().Eigen();
+                return op.parameters();
             },
-            "A read-only matrix representation of the parameters/matrix elements/integrals of one of the tensor components of this operator.");
+            "A read-only matrix representation of the parameters/matrix elements/integrals of one of the tensor components of this operator.")
+
+
+        /*
+         *  MARK: Mulliken partitioning
+         */
+
+        .def("partitioned",
+             &ScalarRSQOneElectronOperator<Scalar>::partitioned,
+             "Partition this one-electron operator according to the supplied Mulliken partitioning scheme.");
 
 
     // Create a Python binding for VectorSQOneElectronOperator.
@@ -90,13 +102,7 @@ void bindRSQOneElectronOperator(py::module& module, const std::string& suffix) {
             [](const VectorRSQOneElectronOperator<Scalar>& op) {
                 return op.allParameters();
             },
-            "Return a vector of read-only matrix representions of the parameters/matrix elements/integrals of this operator.")
-
-        // .def(
-        //     "calculateExpectationValue",
-        //     &ScalarRSQOneElectronOperator<Scalar>::calculateExpectationValue,
-        //     "Return the expectation value of all components of the one-electron operator")
-        ;
+            "Return a vector of read-only matrix representions of the parameters/matrix elements/integrals of this operator.");
 }
 
 
