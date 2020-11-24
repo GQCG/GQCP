@@ -363,6 +363,11 @@ public:
      */
     GQCP::Matrix<Scalar> calculateMixedSpinConservedAComponent(const RSQHamiltonian<Scalar>& rsq_hamiltonian, const Spin sigma, const Spin sigma_bar) const {
 
+        // Sigma and sigma_bar need to be different. If they are the same, the method throws an error.
+        if (sigma == sigma_bar) {
+            throw std::invalid_argument("QCModel::UHF<Scalar>.calculateMixedSpinConservedAComponent(const RSQHamiltonian<Scalar>& rsq_hamiltonian, const Spin sigma, const Spin sigma_bar): The spin 'sigma' and spin 'sigma_bar' arguments are not allowed to be the same.");
+        }
+
         // Depending on whether we're making the alpha or beta A'-component, we need a different component of the orbital_space.
         const auto orbital_space = this->orbitalSpace();
         const auto orbital_space_sigma = this->orbitalSpace(sigma);
@@ -429,6 +434,11 @@ public:
      *  @return The mixed spin sigma component of stability matrix B'.
      */
     GQCP::Matrix<Scalar> calculateMixedSpinConservedBComponent(const RSQHamiltonian<Scalar>& rsq_hamiltonian, const Spin sigma, const Spin sigma_bar) const {
+
+        // Sigma and sigma_bar need to be different. If they are the same, the method throws an error.
+        if (sigma == sigma_bar) {
+            throw std::invalid_argument("QCModel::UHF<Scalar>.calculateMixedSpinConservedBComponent(const RSQHamiltonian<Scalar>& rsq_hamiltonian, const Spin sigma, const Spin sigma_bar): The spin 'sigma' and spin 'sigma_bar' arguments are not allowed to be the same.");
+        }
 
         // Depending on whether we're making the alpha or beta A'-component, we need a different component of the orbital_space.
         const auto orbital_space = this->orbitalSpace();
@@ -587,6 +597,86 @@ public:
         const auto pure_spin_conserved_B_component = B_iajb.reshape(n_occ * n_virt, n_occ * n_virt);
 
         return pure_spin_conserved_B_component;
+    }
+
+
+    /**
+     * Construct the complete spin-conserved stability matrix A'.
+     * 
+     *  @note The formula for this component is as follows:
+     *      A' = (A'_aaaa   A'_aabb)
+     *           (A'_bbaa   A'_bbbb)
+     * 
+     *  @note The name `Spin-conserved`comes from the article "Constraints and stability in Hartree-Fock theory" by Seeger, R. and Pople J.A. (https://doi.org/10.1063/1.434318).
+     * 
+     *  @param rsq_hamiltonian      The second quantized Hamiltonian, which contains the necessary two-electron operators.
+     * 
+     *  @return The complete stability matrix A'.
+     */
+    GQCP::MatrixX<Scalar> calculateSpinConservedA(const RSQHamiltonian<Scalar>& rsq_hamiltonian) const {
+
+        // Calculate the four different A' components.
+        const auto A_aaaa = this->calculatePureSpinConservedAComponent(rsq_hamiltonian, Spin::alpha);               // Dimension = (n_occ_a * n_virt_a, n_occ_a * n_virt_a).
+        const auto A_bbbb = this->calculatePureSpinConservedAComponent(rsq_hamiltonian, Spin::beta);                // Dimension = (n_occ_b * n_virt_b, n_occ_b * n_virt_b).
+        const auto A_aabb = this->calculateMixedSpinConservedAComponent(rsq_hamiltonian, Spin::alpha, Spin::beta);  // Dimension = (n_occ_a * n_virt_a, n_occ_b * n_virt_b).
+        const auto A_bbaa = this->calculateMixedSpinConservedAComponent(rsq_hamiltonian, Spin::beta, Spin::alpha);  // Dimension = (n_occ_b * n_virt_b, n_occ_a * n_virt_a).
+
+        // Determine the total matrix dimension and initialize the total matrix.
+        const auto n_occ_a = this->orbitalSpace(Spin::alpha).number_of_orbitals(OccupationType::k_occupied);
+        const auto n_virt_a = this->orbitalSpace(Spin::alpha).number_of_orbitals(OccupationType::k_virtual);
+        const auto n_occ_b = this->orbitalSpace(Spin::beta).number_of_orbitals(OccupationType::k_occupied);
+        const auto n_virt_b = this->orbitalSpace(Spin::beta).number_of_orbitals(OccupationType::k_virtual);
+
+        const auto dimension = (n_occ_a * n_virt_a) + (n_occ_b + n_virt_b);
+        GQCP::MatrixX<Scalar> total_A {dimension, dimension};
+
+        // Place the components on the correct positions in the total matrix.
+        total_A.topLeftCorner(n_occ_a * n_virt_a, n_occ_a * n_virt_a) = A_aaaa;
+        total_A.topRightCorner(n_occ_a * n_virt_a, n_occ_b * n_virt_b) = A_aabb;
+        total_A.bottomLeftCorner(n_occ_b * n_virt_b, n_occ_a * n_virt_a) = A_bbaa;
+        total_A.bottomRightCorner(n_occ_b * n_virt_b, n_occ_b * n_virt_b) = A_bbbb;
+
+        return total_A;
+    }
+
+
+    /**
+     * Construct the complete spin-conserved stability matrix B'.
+     * 
+     *  @note The formula for this component is as follows:
+     *      B' = (B'_aaaa   B'_aabb)
+     *           (B'_bbaa   B'_bbbb)
+     * 
+     *  @note The name `Spin-conserved`comes from the article "Constraints and stability in Hartree-Fock theory" by Seeger, R. and Pople J.A. (https://doi.org/10.1063/1.434318).
+     * 
+     *  @param rsq_hamiltonian      The second quantized Hamiltonian, which contains the necessary two-electron operators.
+     * 
+     *  @return The complete stability matrix B'.
+     */
+    GQCP::MatrixX<Scalar> calculateSpinConservedB(const RSQHamiltonian<Scalar>& rsq_hamiltonian) const {
+
+        // Calculate the four different A' components.
+        const auto B_aaaa = this->calculatePureSpinConservedBComponent(rsq_hamiltonian, Spin::alpha);               // Dimension = (n_occ_a * n_virt_a, n_occ_a * n_virt_a).
+        const auto B_bbbb = this->calculatePureSpinConservedBComponent(rsq_hamiltonian, Spin::beta);                // Dimension = (n_occ_b * n_virt_b, n_occ_b * n_virt_b).
+        const auto B_aabb = this->calculateMixedSpinConservedBComponent(rsq_hamiltonian, Spin::alpha, Spin::beta);  // Dimension = (n_occ_a * n_virt_a, n_occ_b * n_virt_b).
+        const auto B_bbaa = this->calculateMixedSpinConservedBComponent(rsq_hamiltonian, Spin::beta, Spin::alpha);  // Dimension = (n_occ_b * n_virt_b, n_occ_a * n_virt_a).
+
+        // Determine the total matrix dimension and initialize the total matrix.
+        const auto n_occ_a = this->orbitalSpace(Spin::alpha).number_of_orbitals(OccupationType::k_occupied);
+        const auto n_virt_a = this->orbitalSpace(Spin::alpha).number_of_orbitals(OccupationType::k_virtual);
+        const auto n_occ_b = this->orbitalSpace(Spin::beta).number_of_orbitals(OccupationType::k_occupied);
+        const auto n_virt_b = this->orbitalSpace(Spin::beta).number_of_orbitals(OccupationType::k_virtual);
+
+        const auto dimension = (n_occ_a * n_virt_a) + (n_occ_b + n_virt_b);
+        GQCP::MatrixX<Scalar> total_B {dimension, dimension};
+
+        // Place the components on the correct positions in the total matrix.
+        total_B.topLeftCorner(n_occ_a * n_virt_a, n_occ_a * n_virt_a) = B_aaaa;
+        total_B.topRightCorner(n_occ_a * n_virt_a, n_occ_b * n_virt_b) = B_aabb;
+        total_B.bottomLeftCorner(n_occ_b * n_virt_b, n_occ_a * n_virt_a) = B_bbaa;
+        total_B.bottomRightCorner(n_occ_b * n_virt_b, n_occ_b * n_virt_b) = B_bbbb;
+
+        return total_B;
     }
 
 
