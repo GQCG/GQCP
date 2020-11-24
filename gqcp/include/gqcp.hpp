@@ -256,6 +256,7 @@
 #include "QCModel/HF/RHF.hpp"
 #include "QCModel/HF/StabilityMatrices/GHFStabilityMatrix.hpp"
 #include "QCModel/HF/StabilityMatrices/RHFStabilityMatrix.hpp"
+#include "QCModel/HF/StabilityMatrices/UHFStabilityMatrices.hpp"
 #include "QCModel/HF/UHF.hpp"
 #include "QuantumChemical/DoublySpinResolvedBase.hpp"
 #include "QuantumChemical/Spin.hpp"
