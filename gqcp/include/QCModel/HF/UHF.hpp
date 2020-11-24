@@ -527,7 +527,7 @@ public:
         const auto g = rsq_hamiltonian.twoElectron().transformed(this->expansion(sigma).matrix()).antisymmetrized().parameters();
 
         // The elements F_BA and F_IJ are the eigenvalues of the one-electron Fock operator.
-        // The excitationEnergies API can be used to find these values
+        // The excitationEnergies API can be used to find these values.
         const auto F_values = this->excitationEnergies(sigma);
 
         // The next step is to create the needed tensor slice.
