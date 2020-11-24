@@ -26,6 +26,7 @@
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
 #include "QCModel/HF/RHF.hpp"
+#include "QCModel/HF/StabilityMatrices/UHFStabilityMatrices.hpp"
 #include "QuantumChemical/Spin.hpp"
 
 
@@ -924,6 +925,17 @@ public:
         total_B.bottomRightCorner(n_occ_a * n_virt_b, n_occ_a * n_virt_b) = zero_2;
 
         return total_B;
+    }
+
+
+    /**
+     *  Calculate the UHF stability matrices and return them.
+     *
+     *  @return The UHF stability matrices.
+     */
+    UHFStabilityMatrices<Scalar> calculateStabilityMatrices(const RSQHamiltonian<Scalar>& rsq_hamiltonian) const {
+        return UHFStabilityMatrices<Scalar> {this->calculateSpinConservedA(rsq_hamiltonian), this->calculateSpinConservedB(rsq_hamiltonian),
+                                             this->calculateSpinUnconservedA(rsq_hamiltonian), this->calculateSpinUnconservedB(rsq_hamiltonian)};
     }
 
 

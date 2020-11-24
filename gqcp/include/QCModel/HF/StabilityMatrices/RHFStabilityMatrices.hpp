@@ -131,8 +131,8 @@ public:
     /**
      *  @return the internal stability matrix of the complex RHF method.
      *
-     *  @note The internal stability condition of the real GHF method is checked using (singlet_A,   singlet_B  )
-     *                                                                                 (singlet_B^*, singlet_A^*)
+     *  @note The internal stability condition of the complex RHF method is checked using (singlet_A,   singlet_B  )
+     *                                                                                    (singlet_B^*, singlet_A^*)
      */
     template <typename S = Scalar>
     enable_if_t<std::is_same<S, complex>::value, MatrixX<complex>> internal() const {
@@ -160,8 +160,8 @@ public:
     /**
      *  @return the restricted->unrestricted external stability matrix of the complex RHF method.
      *
-     *  @note The restricted->unrestricted external stability condition of the real GHF method is checked using (triplet_A,   triplet_B  )
-     *                                                                                                          (triplet_B^*, triplet_A^*)
+     *  @note The restricted->unrestricted external stability condition of the complex RHF method is checked using (triplet_A,   triplet_B  )
+     *                                                                                                             (triplet_B^*, triplet_A^*)
      */
     template <typename S = Scalar>
     enable_if_t<std::is_same<S, complex>::value, MatrixX<complex>> restrictedUnrestricted() const {
@@ -255,7 +255,7 @@ public:
      */
 
     /*
-     *  Print the description of the stability properties of a real valued GHF wavefunction.
+     *  Print the description of the stability properties of a real valued RHF wavefunction.
      * 
      *  @note   This method runs the stability calculation before printing the results.
      */
@@ -269,14 +269,14 @@ public:
             std::cout << "The real valued RHF wavefunction contains an internal instability." << std::endl;
         }
 
-        // The real->complex external stability on vector position 0.
+        // The real->complex external stability.
         if (this->isComplexConjugateStable() == true) {
             std::cout << "The real valued RHF wavefunction is stable within the real/complex RHF space." << std::endl;
         } else {
             std::cout << "The real valued RHF wavefunction contains a real->complex instability." << std::endl;
         }
 
-        // The restricted->unrestricted external stability on vector position 1.
+        // The restricted->unrestricted external stability.
         if (this->isTripletStable() == true) {
             std::cout << "The real valued RHF wavefunction is stable within the real RHF/UHF space." << std::endl;
         } else {
@@ -286,7 +286,7 @@ public:
 
 
     /*
-     *  Print the description of the stability properties of a complex valued GHF wavefunction.
+     *  Print the description of the stability properties of a complex valued RHF wavefunction.
      * 
      *  @note   This method runs the stability calculation before printing the results.
      */
