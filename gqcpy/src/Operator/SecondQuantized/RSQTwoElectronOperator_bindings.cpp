@@ -44,7 +44,7 @@ void bindRSQTwoElectronOperator(py::module& module) {
     bindScalarSQTwoElectronOperatorParameterInterface(py_ScalarRSQTwoElectronOperator_d);
 
 
-    py::class_<ScalarRSQTwoElectronOperator<complex>> py_ScalarRSQTwoElectronOperator_cd {module, "ScalarRSQTwoElectronOperator_d", "A (complex) restricted two-electron operator, which is suited for expressing non-relativistic (spin-free) two-electron operators."};
+    py::class_<ScalarRSQTwoElectronOperator<complex>> py_ScalarRSQTwoElectronOperator_cd {module, "ScalarRSQTwoElectronOperator_cd", "A (complex) restricted two-electron operator, which is suited for expressing non-relativistic (spin-free) two-electron operators."};
 
     bindSimpleSQTwoElectronOperatorInterface(py_ScalarRSQTwoElectronOperator_cd);
     bindScalarSQTwoElectronOperatorParameterInterface(py_ScalarRSQTwoElectronOperator_cd);

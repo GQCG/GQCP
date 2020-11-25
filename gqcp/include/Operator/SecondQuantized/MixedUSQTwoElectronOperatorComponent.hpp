@@ -30,7 +30,7 @@ namespace GQCP {
 
 
 /**
- *  One of the pure (i.e. alpha-alpha or beta-beta) spin components of an unrestricted two-electron operator.
+ *  One of the mixed (i.e. alpha-beta or beta-alpha) spin components of an unrestricted two-electron operator.
  * 
  *  @tparam _Scalar         The scalar type used for a single parameter: real or complex.
  *  @tparam _Vectorizer     The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of two-electron operators. This distinction is carried over from `USQOneElectronOperator`.

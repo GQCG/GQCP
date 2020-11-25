@@ -101,9 +101,14 @@ void bindHubbardHamiltonian(py::module& module);
 
 
 // Operator - SecondQuantized
-void bindSQHamiltonians(py::module& module);
+void bindMixedUSQTwoElectronOperatorComponent(py::module& module);
+void bindPureUSQTwoElectronOperatorComponent(py::module& module);
 void bindRSQOneElectronOperator(py::module& module);
 void bindRSQTwoElectronOperator(py::module& module);
+void bindSQHamiltonians(py::module& module);
+void bindUSQOneElectronOperator(py::module& module);
+void bindUSQOneElectronOperatorComponent(py::module& module);
+void bindUSQTwoElectronOperator(py::module& module);
 
 
 // Processing - DensityMatrices
@@ -275,9 +280,14 @@ PYBIND11_MODULE(gqcpy, module) {
 
 
     // Operator - SecondQuantized
-    gqcpy::bindSQHamiltonians(module);
+    gqcpy::bindMixedUSQTwoElectronOperatorComponent(module);
+    gqcpy::bindPureUSQTwoElectronOperatorComponent(module);
     gqcpy::bindRSQOneElectronOperator(module);
     gqcpy::bindRSQTwoElectronOperator(module);
+    gqcpy::bindSQHamiltonians(module);
+    gqcpy::bindUSQOneElectronOperator(module);
+    gqcpy::bindUSQOneElectronOperatorComponent(module);
+    gqcpy::bindUSQTwoElectronOperator(module);
 
 
     // Processing - DensityMatrices
