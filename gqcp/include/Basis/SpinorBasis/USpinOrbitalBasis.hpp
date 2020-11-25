@@ -23,6 +23,7 @@
 #include "Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp"
 #include "Basis/Transformations/SpinResolvedBasisTransformable.hpp"
 #include "Basis/Transformations/SpinResolvedJacobiRotatable.hpp"
+#include "Basis/Transformations/UTransformation.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/USQTwoElectronOperator.hpp"
@@ -50,6 +51,9 @@ public:
 
     // The type of shell the underlying scalar bases contain.
     using Shell = _Shell;
+
+    // The type of 'this'.
+    using Self = USpinOrbitalBasis<ExpansionScalar, Shell>;
 
     // The type that is used for representing the primitive for a basis function of this spin-orbital basis' underlying AO basis.
     using Primitive = typename Shell::Primitive;
@@ -372,6 +376,25 @@ public:
 
         return UMullikenPartitioning<ExpansionScalar> {this->alpha().mullikenPartitioning(selector), this->beta().mullikenPartitioning(selector)};
     }
+
+
+    /**
+     *  MARK: Enabling basis transformations
+     */
+
+    // Since `rotate` and `rotated` are both defined in `SpinResolvedBasisTransformable` and `SpinResolvedJacobiRotatable`, we have to explicitly enable these methods here.
+
+    // Allow the `rotate` method from `SpinResolvedBasisTransformable`, since there's also a `rotate` from `SpinResolvedJacobiRotatable`.
+    using SpinResolvedBasisTransformable<Self>::rotate;
+
+    // Allow the `rotated` method from `SpinResolvedBasisTransformable`, since there's also a `rotated` from `SpinResolvedJacobiRotatable`.
+    using SpinResolvedBasisTransformable<Self>::rotated;
+
+    // Allow the `rotate` method from `SpinResolvedJacobiRotatable`, since there's also a `rotate` from `SpinResolvedBasisTransformable`.
+    using SpinResolvedJacobiRotatable<Self>::rotate;
+
+    // Allow the `rotated` method from `SpinResolvedJacobiRotatable`, since there's also a `rotated` from `SpinResolvedBasisTransformable`.
+    using SpinResolvedJacobiRotatable<Self>::rotated;
 };
 
 /*

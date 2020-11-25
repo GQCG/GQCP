@@ -227,7 +227,6 @@ public:
      *  MARK: Coefficients
      */
 
-
     /**
      *  @param sigma        Alpha or beta.
      * 

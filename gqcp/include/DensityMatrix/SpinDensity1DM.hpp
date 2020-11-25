@@ -55,6 +55,36 @@ public:
 
 
 /*
+ *  MARK: BasisTransformableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
+ */
+template <typename Scalar>
+struct BasisTransformableTraits<SpinDensity1DM<Scalar>> {
+
+    // The type of transformation that is naturally related to a `SpinDensity1DM`.
+    using Transformation = RTransformation<Scalar>;
+};
+
+
+/*
+ *  MARK: JacobiRotatableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
+ */
+template <typename Scalar>
+struct JacobiRotatableTraits<SpinDensity1DM<Scalar>> {
+
+    // The type of Jacobi rotation that is naturally related to a `SpinDensity1DM`.
+    using JacobiRotationType = JacobiRotation;
+};
+
+
+/*
  *  MARK: DensityMatrixTraits
  */
 
@@ -63,6 +93,7 @@ public:
  */
 template <typename Scalar>
 struct DensityMatrixTraits<SpinDensity1DM<Scalar>> {
+
     // The type of transformation that is naturally related to a `SpinDensity1DM`. The only transformations that should be naturally possible for a a spin-density 1-DM are restricted transformations, that transform the alpha- and beta-spin-orbitals equally.
     using Transformation = RTransformation<Scalar>;
 };

@@ -17,27 +17,31 @@
 
 #pragma once
 
+#include <unsupported/Eigen/CXX11/Tensor>
+
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
-
-
-namespace py = pybind11;
 
 
 namespace gqcpy {
 
 
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
+
+
 /**
- *  Convert a rank-four Eigen::Tensor as a numpy array
+ *  Convert a rank-four Eigen::Tensor to a NumPy array.
  * 
- *  @param tensor       the tensor that should be converted to the numpy array
+ *  @param tensor       The `Eigen::Tensor` that should be converted to the NumPy array.
  * 
- *  @return the corresponding numpy array
+ *  @return The corresponding NumPy array.
  */
 template <typename T>
 py::array_t<T> asNumpyArray(const Eigen::Tensor<T, 4>& tensor) {
 
-    // Implementation adapted from https://github.com/pybind/pybind11/issues/1377
+    // Implementation adapted from https://github.com/pybind/pybind11/issues/1377.
     const auto shape = tensor.dimensions();
 
     return py::array_t<T>(shape,

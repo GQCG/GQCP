@@ -15,31 +15,35 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Basis/ScalarBasis/GTOShell.hpp"
-#include "Basis/Transformations/RTransformation.hpp"
-#include "Basis/Transformations/transform.hpp"
+#include "Basis/Transformations/UTransformation.hpp"
+#include "gqcpy/include/interfaces.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
 
 
-void bindBasisTransform(py::module& module) {
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
 
-    module.def(
-        "transform",
-        [](const Eigen::MatrixXd& T, GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis, GQCP::RSQHamiltonian<double>& sq_hamiltonian) {
-            GQCP::transform(GQCP::RTransformation<double> {T}, spinor_basis, sq_hamiltonian);
-        },
-        py::arg("T"),
-        py::arg("spinor_basis"),
-        py::arg("sq_hamiltonian"));
+
+/**
+ *  Register `UTransformation_d` to the gqcpy module and expose a part of its C++ interface to Python.
+ * 
+ *  @param module           The Pybind11 module in which `UTransformation_d` should be registered.
+ */
+void bindUTransformation(py::module& module) {
+
+    // Define the Python class for `UTransformation`.
+    py::class_<UTransformation<double>> py_UTransformation_d {module, "UTransformation_d", "A type that encapsulates transformation matrices for the alpha- and beta-parts of spin-orbital bases."};
+
+
+    // Expose the `SpinResolvedBase` API to Python.
+    bindSpinResolvedBaseInterface(py_UTransformation_d);
 }
 
 

@@ -169,6 +169,7 @@
 #include "Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp"
 #include "Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp"
 #include "Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp"
+#include "Operator/SecondQuantized/OperatorTraits.hpp"
 #include "Operator/SecondQuantized/PureUSQTwoElectronOperatorComponent.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/RSQTwoElectronOperator.hpp"
