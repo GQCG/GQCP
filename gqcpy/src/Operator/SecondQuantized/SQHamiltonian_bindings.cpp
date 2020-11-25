@@ -16,17 +16,17 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "gqcpy/include/interfaces.hpp"
 
-#include <pybind11/eigen.h>
 #include <pybind11/operators.h>
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
 
+
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
 using namespace GQCP;
 
 
@@ -48,8 +48,12 @@ void bindSQHamiltonian(py::module& module, const std::string& name, const std::s
     using ScalarSQTwoElectronOperator = typename Hamiltonian::ScalarSQTwoElectronOperator;
 
 
-    // Implement the actual Python bindings.
-    py::class_<Hamiltonian>(module, name.c_str(), description.c_str())
+    // Define the Python class related to the Hamiltonian.
+    py::class_<Hamiltonian> py_Hamiltonian {module, name.c_str(), description.c_str()};
+
+
+    // Expose the actual Python bindings.
+    py_Hamiltonian
 
         /*
          *  MARK: Named constructors
@@ -85,43 +89,6 @@ void bindSQHamiltonian(py::module& module, const std::string& name, const std::s
 
 
         /*
-         *  MARK: Conforming to `BasisTransformable`
-         */
-
-        .def(
-            "rotate",
-            [](Hamiltonian& hamiltonian, const Transformation& U) {
-                hamiltonian.rotate(U);
-            },
-            py::arg("U"),
-            "In-place apply the basis rotation.")
-
-        .def(
-            "rotated",
-            [](const Hamiltonian& hamiltonian, const Transformation& U) {
-                hamiltonian.rotated(U);
-            },
-            py::arg("U"),
-            "Apply the basis rotation and return the result.")
-
-        .def(
-            "transform",
-            [](Hamiltonian& hamiltonian, const Transformation& T) {
-                hamiltonian.transform(T);
-            },
-            py::arg("T"),
-            "In-place apply the basis transformation.")
-
-        .def(
-            "transformed",
-            [](const Hamiltonian& hamiltonian, const Transformation& T) {
-                hamiltonian.transformed(T);
-            },
-            py::arg("T"),
-            "Apply the basis transformation and return the result.")
-
-
-        /*
          *  MARK: Operations related to one-electron operators
          */
 
@@ -149,6 +116,10 @@ void bindSQHamiltonian(py::module& module, const std::string& name, const std::s
         .def(py::self -= ScalarSQTwoElectronOperator())
 
         .def(py::self - ScalarSQTwoElectronOperator());
+
+
+    // Expose the `BasisTransformable` interface.
+    bindBasisTransformableInterface(py_Hamiltonian);
 }
 
 

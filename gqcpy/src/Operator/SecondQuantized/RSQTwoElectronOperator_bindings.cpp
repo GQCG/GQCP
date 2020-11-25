@@ -16,38 +16,38 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Operator/SecondQuantized/RSQTwoElectronOperator.hpp"
-#include "gqcpy/include/utilities.hpp"
+#include "Utilities/aliases.hpp"
+#include "gqcpy/include/interfaces.hpp"
 
-#include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
-
-
-namespace py = pybind11;
 
 
 namespace gqcpy {
 
+
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
 using namespace GQCP;
 
 
+/**
+ *  Register multiple variants of `RSQTwoElectronOperator` to the gqcpy module and expose a part of its C++ interface to Python.
+ * 
+ *  @param module           The Pybind11 module in which the `RSQTwoElectronOperator`s should be registered.
+ */
 void bindRSQTwoElectronOperator(py::module& module) {
-    py::class_<ScalarRSQTwoElectronOperator<double>>(module, "ScalarRSQTwoElectronOperator", "A class that represents a real, scalar, second-quantized two-electron operator.")
 
-        // PUBLIC METHODS
+    // Define Python classes related to `RSQTwoElectronOperator` and expose their interfaces.
+    py::class_<ScalarRSQTwoElectronOperator<double>> py_ScalarRSQTwoElectronOperator_d {module, "ScalarRSQTwoElectronOperator_d", "A (real) restricted two-electron operator, which is suited for expressing non-relativistic (spin-free) two-electron operators."};
 
-        // .def(
-        //     "calculateExpectationValue",
-        //     [](const ScalarRSQTwoElectronOperator<double>& op, const Eigen::Tensor<double, 4>& d) {  // use an itermediary Eigen Tensor for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Tensor
-        //         return op.calculateExpectationValue(TwoDM<double> {d});
-        //     },
-        //     "Return the expectation value of the scalar two-electron operator given a 2-DM.")
+    bindSimpleSQTwoElectronOperatorInterface(py_ScalarRSQTwoElectronOperator_d);
+    bindScalarSQTwoElectronOperatorParameterInterface(py_ScalarRSQTwoElectronOperator_d);
 
-        .def(
-            "parameters",
-            [](const ScalarRSQTwoElectronOperator<double>& op) {
-                return asNumpyArray(op.parameters().Eigen());
-            },
-            "Return the integrals encapsulated by the second-quantized two-electron operator.");
+
+    py::class_<ScalarRSQTwoElectronOperator<complex>> py_ScalarRSQTwoElectronOperator_cd {module, "ScalarRSQTwoElectronOperator_d", "A (complex) restricted two-electron operator, which is suited for expressing non-relativistic (spin-free) two-electron operators."};
+
+    bindSimpleSQTwoElectronOperatorInterface(py_ScalarRSQTwoElectronOperator_cd);
+    bindScalarSQTwoElectronOperatorParameterInterface(py_ScalarRSQTwoElectronOperator_cd);
 }
 
 

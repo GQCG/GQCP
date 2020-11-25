@@ -17,99 +17,47 @@
 
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 #include "Utilities/aliases.hpp"
+#include "gqcpy/include/interfaces.hpp"
 
-#include <pybind11/eigen.h>
-#include <pybind11/operators.h>
 #include <pybind11/pybind11.h>
-#include <pybind11/stl.h>
 
-
-namespace py = pybind11;
 
 namespace gqcpy {
 
+
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
 using namespace GQCP;
 
 
 /**
- *  Since RSQOneElectronOperator has a template argument for the representation of the scalar type, we'll have to bind each of them separately. In order to avoid duplicate code, we use a templated binding approach.
- */
-
-/**
- *  Bind a scalar representation of an `RSQOneElectronOperator`.
+ *  Register multiple variants of `RSQOneElectronOperator` to the gqcpy module and expose a part of its C++ interface to Python.
  * 
- *  @tparam Scalar              The scalar type used for a single parameter: real or complex.
- * 
- *  @param module               The Pybind11 module.
- *  @param suffix               The suffix for the gqcpy class name, i.e. "RSQOneElectronOperator_" + suffix.
+ *  @param module           The Pybind11 module in which the `RSQOneElectronOperator`s should be registered.
  */
-template <typename Scalar>
-void bindRSQOneElectronOperator(py::module& module, const std::string& suffix) {
+void bindRSQOneElectronOperator(py::module& module) {
 
-    // Create a Python binding for ScalarRSQOneElectronOperator.
-    py::class_<ScalarRSQOneElectronOperator<Scalar>>(module,
-                                                     ("ScalarRSQOneElectronOperator_" + suffix).c_str(),
-                                                     "A restricted (scalar) one-electron operator, which is suited for expressing non-relativistic (spin-free) one-electron operators.")
+    // Define Python classes related to `RSQOneElectronOperator` and expose their interfaces.
+    py::class_<ScalarRSQOneElectronOperator<double>> py_ScalarRSQOneElectronOperator_d {module, "ScalarRSQOneElectronOperator_d", "A (real) restricted one-electron operator, which is suited for expressing non-relativistic (spin-free) one-electron operators."};
 
-        /*
-         *  MARK: Calculations
-         */
-
-        .def(
-            "calculateExpectationValue",
-            [](const ScalarRSQOneElectronOperator<Scalar>& op, const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>& D) {
-                return op.calculateExpectationValue(Orbital1DM<Scalar> {D}).elements();
-            },
-            "Return the expectation value of all components of the one-electron operator")
+    bindSimpleSQOneElectronOperatorInterface(py_ScalarRSQOneElectronOperator_d);
+    bindScalarSQOneElectronOperatorParameterInterface(py_ScalarRSQOneElectronOperator_d);
 
 
-        /*
-         *  MARK: Conforming to `VectorSpaceArithmetic`
-         */
-        .def(double() * py::self)
+    py::class_<ScalarRSQOneElectronOperator<complex>> py_ScalarRSQOneElectronOperator_cd {module, "ScalarRSQOneElectronOperator_cd", "A (complex) restricted one-electron operator, which is suited for expressing non-relativistic (spin-free) one-electron operators."};
+
+    bindSimpleSQOneElectronOperatorInterface(py_ScalarRSQOneElectronOperator_cd);
+    bindScalarSQOneElectronOperatorParameterInterface(py_ScalarRSQOneElectronOperator_cd);
 
 
-        /*
-         *  MARK: Parameter access
-         */
+    py::class_<VectorRSQOneElectronOperator<double>> py_VectorRSQOneElectronOperator_d {module, "VectorRSQOneElectronOperator_d", "A (real) restricted one-electron operator, which is suited for expressing non-relativistic (spin-free) one-electron operators."};
 
-        .def(
-            "parameters",
-            [](const ScalarRSQOneElectronOperator<Scalar>& op) {
-                return op.parameters();
-            },
-            "A read-only matrix representation of the parameters/matrix elements/integrals of one of the tensor components of this operator.")
+    bindSimpleSQOneElectronOperatorInterface(py_VectorRSQOneElectronOperator_d);
 
 
-        /*
-         *  MARK: Mulliken partitioning
-         */
+    py::class_<VectorRSQOneElectronOperator<complex>> py_VectorRSQOneElectronOperator_cd {module, "VectorRSQOneElectronOperator_cd", "A (complex) restricted one-electron operator, which is suited for expressing non-relativistic (spin-free) one-electron operators."};
 
-        .def("partitioned",
-             &ScalarRSQOneElectronOperator<Scalar>::partitioned,
-             "Partition this one-electron operator according to the supplied Mulliken partitioning scheme.");
-
-
-    // Create a Python binding for VectorSQOneElectronOperator.
-    py::class_<VectorRSQOneElectronOperator<Scalar>>(module,
-                                                     ("VectorRSQOneElectronOperator_" + suffix).c_str(),
-                                                     "A restricted one-electron operator with three tensor components.")
-
-        // PUBLIC METHODS
-
-        .def(
-            "allParameters",
-            [](const VectorRSQOneElectronOperator<Scalar>& op) {
-                return op.allParameters();
-            },
-            "Return a vector of read-only matrix representions of the parameters/matrix elements/integrals of this operator.");
-}
-
-
-void bindRSQOneElectronOperators(py::module& module) {
-
-    bindRSQOneElectronOperator<double>(module, "d");   // Suffix 'd' for the class name.
-    bindRSQOneElectronOperator<complex>(module, "c");  // Suffix 'cd' for the class name: complex.
+    bindSimpleSQOneElectronOperatorInterface(py_VectorRSQOneElectronOperator_cd);
 }
 
 

@@ -4,6 +4,7 @@ target_sources(gqcp
         GSQOneElectronOperator.hpp
         RSQOneElectronOperator.hpp
         MixedUSQTwoElectronOperatorComponent.hpp
+        OperatorTraits.hpp
         PureUSQTwoElectronOperatorComponent.hpp
         RSQOneElectronOperator.hpp
         RSQTwoElectronOperator.hpp
