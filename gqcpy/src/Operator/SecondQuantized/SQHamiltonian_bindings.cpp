@@ -104,7 +104,7 @@ void bindSQHamiltonian(py::module& module, const std::string& name, const std::s
 
 
         /*
-         *  MARK: Operations related to one-electron operators
+         *  MARK: Operations related to two-electron operators
          */
 
         .def(py::self += ScalarSQTwoElectronOperator())

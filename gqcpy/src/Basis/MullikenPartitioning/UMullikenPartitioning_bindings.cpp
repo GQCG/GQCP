@@ -43,7 +43,7 @@ void bindUMullikenPartitioning(py::module& module) {
     // Expose the "Mulliken partitioning" interface to the Python class.
     bindMullikenPartitioningMatricesInterface(py_UMullikenPartitioning_d);
 
-    // Exponse the `SpinResolvedBase` interface to the Python class.
+    // Expose the `SpinResolvedBase` interface to the Python class.
     bindSpinResolvedBaseInterface(py_UMullikenPartitioning_d);
 }
 
