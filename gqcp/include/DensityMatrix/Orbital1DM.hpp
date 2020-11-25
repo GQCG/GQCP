@@ -55,6 +55,36 @@ public:
 
 
 /*
+ *  MARK: BasisTransformableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
+ */
+template <typename Scalar>
+struct BasisTransformableTraits<Orbital1DM<Scalar>> {
+
+    // The type of transformation that is naturally related to an `Orbital1DM`.
+    using Transformation = RTransformation<Scalar>;
+};
+
+
+/*
+ *  MARK: JacobiRotatableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
+ */
+template <typename Scalar>
+struct JacobiRotatableTraits<Orbital1DM<Scalar>> {
+
+    // The type of Jacobi rotation that is naturally related to an `Orbital1DM`.
+    using JacobiRotationType = JacobiRotation;
+};
+
+
+/*
  *  MARK: DensityMatrixTraits
  */
 
@@ -63,7 +93,8 @@ public:
  */
 template <typename Scalar>
 struct DensityMatrixTraits<Orbital1DM<Scalar>> {
-    // The type of transformation that is naturally related to an Orbital1DM. The only transformations that should be naturally possible for an orbital 1-DM are restricted transformations, thereby assuming that the density matrices for alpha and beta are equal and thus transform similarly.
+
+    // The type of transformation that is naturally related to an `Orbital1DM`. The only transformations that should be naturally possible for an orbital 1-DM are restricted transformations, thereby assuming that the density matrices for alpha and beta are equal and thus transform similarly.
     using Transformation = RTransformation<Scalar>;
 };
 
