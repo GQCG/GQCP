@@ -41,13 +41,13 @@ void bindUSQOneElectronOperatorComponent(py::module& module) {
     py::class_<ScalarUSQOneElectronOperatorComponent<double>> py_ScalarUSQOneElectronOperatorComponent_d {module, "ScalarUSQOneElectronOperatorComponent_d", "One of the spin components of a (real) unrestricted one-electron operator, i.e. either the alpha or beta part."};
 
     bindSimpleSQOneElectronOperatorInterface(py_ScalarUSQOneElectronOperatorComponent_d);
-    bindScalaUSQOneElectronOperatorComponentParameterInterface(py_ScalarUSQOneElectronOperatorComponent_d);
+    bindScalarSQOneElectronOperatorParameterInterface(py_ScalarUSQOneElectronOperatorComponent_d);
 
 
     py::class_<ScalarUSQOneElectronOperatorComponent<complex>> py_ScalarUSQOneElectronOperatorComponent_cd {module, "ScalarUSQOneElectronOperatorComponent_cd", "One of the spin components of a (complex) unrestricted one-electron operator, i.e. either the alpha or beta part."};
 
     bindSimpleSQOneElectronOperatorInterface(py_ScalarUSQOneElectronOperatorComponent_cd);
-    bindScalaUSQOneElectronOperatorComponentParameterInterface(py_ScalarUSQOneElectronOperatorComponent_cd);
+    bindScalarSQOneElectronOperatorParameterInterface(py_ScalarUSQOneElectronOperatorComponent_cd);
 
 
     py::class_<VectorUSQOneElectronOperatorComponent<double>> py_VectorUSQOneElectronOperatorComponent_d {module, "VectorUSQOneElectronOperatorComponent_d", "One of the spin components of a (real) unrestricted one-electron operator, i.e. either the alpha or beta part."};

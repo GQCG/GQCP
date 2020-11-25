@@ -51,6 +51,13 @@ void bindUTransformation(py::module& module);
 void bindUTransformationComponent(py::module& module);
 
 
+// Processing - DensityMatrices
+void bindOrbital1DM(py::module& module);
+void bindOrbital2DM(py::module& module);
+void bindSpinResolved1DM(py::module& module);
+void bindSpinResolved2DM(py::module& module);
+
+
 // Mathematical - Algorithm
 void bindAlgorithms(py::module& module);
 void bindFunctionalSteps(py::module& module);
@@ -109,13 +116,6 @@ void bindSQHamiltonians(py::module& module);
 void bindUSQOneElectronOperator(py::module& module);
 void bindUSQOneElectronOperatorComponent(py::module& module);
 void bindUSQTwoElectronOperator(py::module& module);
-
-
-// Processing - DensityMatrices
-void bindOrbital1DM(py::module& module);
-void bindSpinResolvedOneDM(py::module& module);
-void bindSpinResolved2DM(py::module& module);
-void bindOrbital2DM(py::module& module);
 
 
 // Processing - Properties
@@ -230,6 +230,14 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindUTransformation(module);
     gqcpy::bindUTransformationComponent(module);
 
+
+    // DensityMatrix
+    gqcpy::bindOrbital1DM(module);
+    gqcpy::bindOrbital2DM(module);
+    gqcpy::bindSpinResolved1DM(module);
+    gqcpy::bindSpinResolved2DM(module);
+
+
     // Mathematical - Algorithm
     gqcpy::bindAlgorithms(module);
     gqcpy::bindFunctionalSteps(module);
@@ -288,13 +296,6 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindUSQOneElectronOperator(module);
     gqcpy::bindUSQOneElectronOperatorComponent(module);
     gqcpy::bindUSQTwoElectronOperator(module);
-
-
-    // Processing - DensityMatrices
-    gqcpy::bindOrbital1DM(module);
-    gqcpy::bindSpinResolvedOneDM(module);
-    gqcpy::bindSpinResolved2DM(module);
-    gqcpy::bindOrbital2DM(module);
 
 
     // Processing - Properties

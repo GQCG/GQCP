@@ -40,14 +40,14 @@ void bindMixedUSQTwoElectronOperatorComponent(py::module& module) {
     // Define Python classes related to `MixedUSQTwoElectronOperatorComponent` and expose their interfaces.
     py::class_<ScalarMixedUSQTwoElectronOperatorComponent<double>> py_ScalarMixedUSQTwoElectronOperatorComponent_d {module, "ScalarMixedUSQTwoElectronOperatorComponent_d", "One of the mixed (i.e. alpha-beta or beta-alpha) spin components of a (real) unrestricted two-electron operator."};
 
-    bindSimpleSQTwoElectronOperatorInterface(py_ScalarMixedUSQTwoElectronOperatorComponent_d);
-    bindScalaMixedUSQTwoElectronOperatorComponentParameterInterface(py_ScalarMixedUSQTwoElectronOperatorComponent_d);
+    bindSQTwoElectronOperatorInterface(py_ScalarMixedUSQTwoElectronOperatorComponent_d);
+    bindScalarSQTwoElectronOperatorParameterInterface(py_ScalarMixedUSQTwoElectronOperatorComponent_d);
 
 
     py::class_<ScalarMixedUSQTwoElectronOperatorComponent<complex>> py_ScalarMixedUSQTwoElectronOperatorComponent_cd {module, "ScalarMixedUSQTwoElectronOperatorComponent_cd", "One of the mixed (i.e. alpha-beta or beta-alpha) spin components of a (complex) unrestricted two-electron operator."};
 
-    bindSimpleSQTwoElectronOperatorInterface(py_ScalarMixedUSQTwoElectronOperatorComponent_cd);
-    bindScalaMixedUSQTwoElectronOperatorComponentParameterInterface(py_ScalarMixedUSQTwoElectronOperatorComponent_cd);
+    bindSQTwoElectronOperatorInterface(py_ScalarMixedUSQTwoElectronOperatorComponent_cd);
+    bindScalarSQTwoElectronOperatorParameterInterface(py_ScalarMixedUSQTwoElectronOperatorComponent_cd);
 }
 
 

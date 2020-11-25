@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Basis/Transformations/USQOneElectronOperator.hpp"
+#include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
 #include "gqcpy/include/interfaces.hpp"
 
 #include <pybind11/eigen.h>
@@ -38,15 +38,17 @@ using namespace GQCP;
  */
 void bindUSQOneElectronOperator(py::module& module) {
 
-    // Define the Python class for `USQOneElectronOperator`.
-    py::class_<USQOneElectronOperator<double>> py_USQOneElectronOperator_d {module, "USQOneElectronOperator_d", "A class that represents a (real) 'unrestricted second-quantized one-electron operator'. This type of operator is suitable for the projection of the non-relativistic Hamiltonian onto an unrestricted spinor basis. It holds the matrix representation of its parameters for both spin components."};
+    // Define the Python classes for `USQOneElectronOperator` and expose its APIs.
+    py::class_<ScalarUSQOneElectronOperator<double>> py_ScalarUSQOneElectronOperator_d {module, "USQOneElectronOperator_d", "A class that represents a (real) 'unrestricted second-quantized one-electron operator'. This type of operator is suitable for the projection of the non-relativistic Hamiltonian onto an unrestricted spinor basis. It holds the matrix representation of its parameters for both spin components."};
+
+    bindSpinResolvedBaseInterface(py_ScalarUSQOneElectronOperator_d);
+    bindSQOneElectronOperatorInterface(py_ScalarUSQOneElectronOperator_d);
 
 
-    // Expose the `SpinResolvedBase` API to Python.
-    bindSpinResolvedBaseInterface(py_USQOneElectronOperator_d);
+    py::class_<VectorUSQOneElectronOperator<double>> py_VectorUSQOneElectronOperator_d {module, "VectorUSQOneElectronOperator_d", "A class that represents a (real) 'unrestricted second-quantized one-electron operator'. This type of operator is suitable for the projection of the non-relativistic Hamiltonian onto an unrestricted spinor basis. It holds the matrix representation of its parameters for both spin components."};
 
-    // Expose one-electron operator APIs to Python.
-    bindSQOneElectronOperatorInterface(py_USQOneElectronOperator_d);
+    bindSpinResolvedBaseInterface(py_VectorUSQOneElectronOperator_d);
+    bindSQOneElectronOperatorInterface(py_VectorUSQOneElectronOperator_d);
 }
 
 

@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "DensityMatrix/USQTwoElectronOperator.hpp"
+#include "Operator/SecondQuantized/USQTwoElectronOperator.hpp"
 #include "gqcpy/include/interfaces.hpp"
 
 #include <pybind11/eigen.h>
@@ -34,17 +34,17 @@ using namespace GQCP;
 
 
 /**
- *  Register `USQTwoElectronOperator_d` to the gqcpy module and expose a part of its C++ interface to Python.
+ *  Register `ScalarUSQTwoElectronOperator_d` to the gqcpy module and expose a part of its C++ interface to Python.
  * 
- *  @param module           The Pybind11 module in which `USQTwoElectronOperator_d` should be registered.
+ *  @param module           The Pybind11 module in which `ScalarUSQTwoElectronOperator_d` should be registered.
  */
 void bindUSQTwoElectronOperator(py::module& module) {
 
     // Define the Python class for `USQTwoElectronOperator`.
-    py::class_<USQTwoElectronOperator<double>> py_USQTwoElectronOperator_d {module, "USQTwoElectronOperator_d", "A class that represents a (real) 'unrestricted second-quantized two-electron operator' suitable for the projection of the non-relativistic Hamiltonian onto an unrestricted spinor basis. It holds the tensor representation of its parameters for both spin components and both mixed spin components, which are (usually) integrals over first-quantized operators."};
+    py::class_<ScalarUSQTwoElectronOperator<double>> py_ScalarUSQTwoElectronOperator_d {module, "ScalarUSQTwoElectronOperator_d", "A class that represents a (real) 'unrestricted second-quantized two-electron operator' suitable for the projection of the non-relativistic Hamiltonian onto an unrestricted spinor basis. It holds the tensor representation of its parameters for both spin components and both mixed spin components, which are (usually) integrals over first-quantized operators."};
 
     // Expose the `DoublySpinResolvedBase` API to the Python class.
-    bindDoublySpinResolvedBaseInterface(py_USQTwoElectronOperator_d);
+    bindDoublySpinResolvedBaseInterface(py_ScalarUSQTwoElectronOperator_d);
 }
 
 

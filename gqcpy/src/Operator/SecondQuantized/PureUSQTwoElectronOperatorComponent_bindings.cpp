@@ -41,13 +41,13 @@ void bindPureUSQTwoElectronOperatorComponent(py::module& module) {
     py::class_<ScalarPureUSQTwoElectronOperatorComponent<double>> py_ScalarPureUSQTwoElectronOperatorComponent_d {module, "ScalarPureUSQTwoElectronOperatorComponent_d", "One of the pure (i.e. alpha-alpha or beta-beta) spin components of a (real) unrestricted two-electron operator."};
 
     bindSimpleSQTwoElectronOperatorInterface(py_ScalarPureUSQTwoElectronOperatorComponent_d);
-    bindScalaPureUSQTwoElectronOperatorComponentParameterInterface(py_ScalarPureUSQTwoElectronOperatorComponent_d);
+    bindScalarSQTwoElectronOperatorParameterInterface(py_ScalarPureUSQTwoElectronOperatorComponent_d);
 
 
     py::class_<ScalarPureUSQTwoElectronOperatorComponent<complex>> py_ScalarPureUSQTwoElectronOperatorComponent_cd {module, "ScalarPureUSQTwoElectronOperatorComponent_cd", "One of the pure (i.e. alpha-alpha or beta-beta) spin components of a (complex) unrestricted two-electron operator."};
 
     bindSimpleSQTwoElectronOperatorInterface(py_ScalarPureUSQTwoElectronOperatorComponent_cd);
-    bindScalaPureUSQTwoElectronOperatorComponentParameterInterface(py_ScalarPureUSQTwoElectronOperatorComponent_cd);
+    bindScalarSQTwoElectronOperatorParameterInterface(py_ScalarPureUSQTwoElectronOperatorComponent_cd);
 }
 
 
