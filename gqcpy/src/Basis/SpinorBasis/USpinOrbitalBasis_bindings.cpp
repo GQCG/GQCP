@@ -18,6 +18,7 @@
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
 #include "Molecule/Molecule.hpp"
+#include "gqcpy/include/interfaces.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>

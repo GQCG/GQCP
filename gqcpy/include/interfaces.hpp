@@ -17,6 +17,7 @@
 
 #pragma once
 
+#include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "QuantumChemical/SpinResolvedBase.hpp"
 

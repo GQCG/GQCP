@@ -18,7 +18,6 @@
 #include "DensityMatrix/SpinResolved1DM.hpp"
 #include "gqcpy/include/interfaces.hpp"
 
-#include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
 
 
@@ -86,5 +85,6 @@ void bindSpinResolved1DM(py::module& module) {
     // Expose the `BasisTransformable` API to the Python class.
     bindBasisTransformableInterface(py_SpinResolved1DM_d);
 }
+
 
 }  // namespace gqcpy

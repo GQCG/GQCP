@@ -58,11 +58,12 @@ void bindSpinResolved2DM(py::module& module) {
         .def(
             "orbitalDensity",
             &SpinResolved2DM<double>::orbitalDensity,
-            "The orbital (total, spin-summed) two-electron density matrix.")
+            "The orbital (total, spin-summed) two-electron density matrix.");
 
 
-        // Expose the `DoublySpinResolvedBase` API to the Python class.
-        bindDoublySpinResolvedBaseInterface(py_SpinResolved2DM_d);
+    // Expose the `DoublySpinResolvedBase` API to the Python class.
+    bindDoublySpinResolvedBaseInterface(py_SpinResolved2DM_d);
 }
+
 
 }  // namespace gqcpy

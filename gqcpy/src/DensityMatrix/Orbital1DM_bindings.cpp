@@ -41,7 +41,7 @@ void bindOrbital1DM(py::module& module) {
 
 
     // Expose the `BasisTransformable` API to the Python class.
-    bindBasisTransformableInterface(py_orbital1DM_d);
+    bindBasisTransformableInterface(py_Orbital1DM_d);
 }
 
 
