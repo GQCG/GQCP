@@ -25,7 +25,7 @@ namespace GQCP {
 
 
 /**
- *  Dyson orbital linearly expanded by the Dyson amplitudes in a given spinor basis. The Dyson amplitudes are given as <N-1|a_p|N>.
+ *  A Dyson orbital. It encapsulates a set of Dyson amplitudes that are its expansion coefficients in a spinor basis.
  * 
  *  @tparam Scalar         The scalar type of the Dyson amplitudes.
  */
@@ -41,7 +41,6 @@ public:
      *  MARK: Constructors
      */
 
-
     /**
      *  The default constructor.
      */
@@ -50,7 +49,7 @@ public:
     /**
      * Construct a Dyson orbital with all Dyson amplitudes set to zero.
      * 
-     * @param K     Dimension of the amplitude vecctor, expressed as the number of spinors in a given basis.
+     * @param K     The dimension of the amplitude vector, i.e. the dimension of a related orbital basis.
      */
     DysonOrbital(const size_t K) :
         amplitudes {VectorX<Scalar>::Zero(K)} {}
@@ -59,7 +58,7 @@ public:
     /**
      * Construct a Dyson orbital with corresponding Dyson amplitudes.
      * 
-     * @param amplitudes      Dyson amplitudes.
+     * @param amplitudes     The Dyson amplitudes for the Dyson orbital. They are indicated as <N-1|a_p|N>, where 'p' is the index of spinor p.
      */
     DysonOrbital(const VectorX<Scalar>& amplitudes) :
         amplitudes {amplitudes} {}
@@ -69,10 +68,10 @@ public:
      */
 
     /**
-     *  Calculate the coefficients  of a Dyson orbital, expressed as the overlap between two wave functions expressed in the same spinor basis: <N-1|a_p|N>.
+     *  Create a Dyson orbital from the formula for its amplitudes `<N_1|a_p|N>`.
      * 
-     *  @param linear_expansion1        A wave function in a spin-resolved ONV basis.
-     *  @param linear_expansion2        A wave function in a spin-resolved ONV basis containing one fewer electron and the same number of orbitals that is expressed in the same basis.
+     *  @param linear_expansion1        The N-electron wave function in a spin-resolved ONV basis.
+     *  @param linear_expansion2        The N-1-electron wave function in a spin-resolved ONV basis. It should be expressed in the same orbital basis as the N-electron wave function.
      *
      *  @return A Dyson orbital incorporating Dyson amplitudes.
      */
