@@ -34,13 +34,13 @@ void bindDysonOrbital(py::module& module) {
         // NAMED CONSTRUCTORS
 
         .def_static(
-            "FromOverlap",
+            "Overlap",
             [](const GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>& linear_expansion1, const GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>& linear_expansion2) {
                 return GQCP::DysonOrbital<double>::FromOverlap(linear_expansion1, linear_expansion2);
             },
             py::arg("linear_expansion1"),
             py::arg("linear_expansion2"),
-            "Return a Dyson orbital containing Dyson amplitudes.")
+            "A Dyson orbital incorporating Dyson amplitudes.")
 
 
         // PUBLIC METHODS
@@ -48,7 +48,7 @@ void bindDysonOrbital(py::module& module) {
         .def(
             "amplitudes",
             &GQCP::DysonOrbital<double>::amplitudes,
-            "Dyson amplitudes which are the expansion coefficients in a spin-orbital basis.");
+            "The Dyson amplitudes for the Dyson orbital. They are indicated as <N-1|a_p|N>, where 'p' is the index of spinor p.");
 }
 
 

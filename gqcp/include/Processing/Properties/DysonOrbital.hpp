@@ -37,7 +37,7 @@ public:
 
 
 private:
-    // The Dyson amplitudes or expansion coefficients.
+    // The Dyson amplitudes for the Dyson orbital. They are indicated as <N-1|a_p|N>, where 'p' is the index of spinor p.
     VectorX<Scalar> m_amplitudes;
 
 
@@ -80,7 +80,7 @@ public:
      *
      *  @return A Dyson orbital incorporating Dyson amplitudes.
      */
-    static DysonOrbital<Scalar> FromOverlap(const LinearExpansion<SpinResolvedONVBasis>& linear_expansion1, const LinearExpansion<SpinResolvedONVBasis>& linear_expansion2) {
+    static DysonOrbital<Scalar> Overlap(const LinearExpansion<SpinResolvedONVBasis>& linear_expansion1, const LinearExpansion<SpinResolvedONVBasis>& linear_expansion2) {
 
         const auto onv_basis1 = linear_expansion1.onvBasis();
         const auto onv_basis2 = linear_expansion2.onvBasis();
@@ -165,7 +165,7 @@ public:
      */
 
     /**
-     *  @return The expansion coefficients, indicated as <N-1|a_p|N>, of this Dyson orbital where 'p' is the index of spinor p.
+     *  @return The Dyson amplitudes for the Dyson orbital. They are indicated as <N-1|a_p|N>, where 'p' is the index of spinor p.
      */
     const VectorX<Scalar>& amplitudes() const { return this->m_amplitudes; }
 };
