@@ -46,8 +46,8 @@ void bindDysonOrbital(py::module& module) {
         // PUBLIC METHODS
 
         .def(
-            "coefficients",
-            &GQCP::DysonOrbital<double>::coefficients,
+            "amplitudes",
+            &GQCP::DysonOrbital<double>::amplitudes,
             "Dyson amplitudes which are the expansion coefficients in a spin-orbital basis.");
 }
 

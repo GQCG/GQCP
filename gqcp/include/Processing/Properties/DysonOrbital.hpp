@@ -29,11 +29,16 @@ namespace GQCP {
  * 
  *  @tparam Scalar         The scalar type of the Dyson amplitudes.
  */
-template <typename Scalar>
+template <typename _Scalar>
 class DysonOrbital {
+public:
+    // The scalar type used for a single parameter: real or complex.
+    using Scalar = _Scalar;
+
+
 private:
     // The Dyson amplitudes or expansion coefficients.
-    VectorX<Scalar> amplitudes;
+    VectorX<Scalar> m_amplitudes;
 
 
 public:
@@ -53,7 +58,7 @@ public:
      * @param K     Dimension of the amplitude vecctor, expressed as the number of spinors in a given basis.
      */
     DysonOrbital(const size_t K) :
-        amplitudes {VectorX<Scalar>::Zero(K)} {}
+        m_amplitudes {VectorX<Scalar>::Zero(K)} {}
 
 
     /**
@@ -62,7 +67,7 @@ public:
      * @param amplitudes      Dyson amplitudes.
      */
     DysonOrbital(const VectorX<Scalar>& amplitudes) :
-        amplitudes {amplitudes} {}
+        m_amplitudes {amplitudes} {}
 
     /*
      *  MARK: Named constructors
@@ -163,7 +168,7 @@ public:
     /**
      *  @return The expansion coefficients, indicated as <N-1|a_p|N>, of this Dyson orbital where 'p' is the index of spinor p.
      */
-    const VectorX<Scalar>& coefficients() const { return this->amplitudes; }
+    const VectorX<Scalar>& amplitudes() const { return this->m_amplitudes; }
 };
 
 }  // namespace GQCP
