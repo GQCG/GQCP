@@ -29,18 +29,18 @@ namespace gqcpy {
 
 void bindDysonOrbital(py::module& module) {
 
-    py::class_<GQCP::DysonOrbital<double>>(module, "DysonOrbital", "A class representing a Dyson orbital expanded in a basis of spin-orbitals.")
+    py::class_<GQCP::DysonOrbital<double>>(module, "DysonOrbital", "A Dyson orbital. It encapsulates a set of Dyson amplitudes that are its expansion coefficients in a spinor basis.")
 
         // NAMED CONSTRUCTORS
 
         .def_static(
             "Overlap",
             [](const GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>& linear_expansion1, const GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>& linear_expansion2) {
-                return GQCP::DysonOrbital<double>::FromOverlap(linear_expansion1, linear_expansion2);
+                return GQCP::DysonOrbital<double>::Overlap(linear_expansion1, linear_expansion2);
             },
             py::arg("linear_expansion1"),
             py::arg("linear_expansion2"),
-            "A Dyson orbital incorporating Dyson amplitudes.")
+            "Create a Dyson orbital from the formula for its amplitudes `<N_1|a_p|N>`.")
 
 
         // PUBLIC METHODS
