@@ -21,22 +21,24 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
+
+
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
 
 
 void bindAP1roGGeminalCoefficients(py::module& module) {
 
-    py::class_<GQCP::AP1roGGeminalCoefficients>(module,
-                                                "AP1roGGeminalCoefficients",
-                                                "Geminal coefficients for an AP1roG wave function.")
+    py::class_<AP1roGGeminalCoefficients>(module,
+                                          "AP1roGGeminalCoefficients",
+                                          "Geminal coefficients for an AP1roG wave function.")
 
         // CONSTRUCTORS
         .def(py::init(
                  [](const Eigen::MatrixXd& G) {
-                     return GQCP::AP1roGGeminalCoefficients(GQCP::MatrixX<double> {G});
+                     return AP1roGGeminalCoefficients(MatrixX<double> {G});
                  }),
              py::arg("G"))
 
@@ -45,7 +47,7 @@ void bindAP1roGGeminalCoefficients(py::module& module) {
              py::arg("K"))
 
         .def_static("WeakInteractionLimit",
-                    &GQCP::AP1roGGeminalCoefficients::WeakInteractionLimit,
+                    &AP1roGGeminalCoefficients::WeakInteractionLimit,
                     py::arg("sq_hamiltonian"),
                     py::arg("N_P"),
                     "Return the AP1roG geminal coefficients in the weak interaction limit.")
@@ -54,7 +56,7 @@ void bindAP1roGGeminalCoefficients(py::module& module) {
         // PUBLIC METHODS
 
         .def("asMatrix",
-             &GQCP::AP1roGGeminalCoefficients::asMatrix,
+             &AP1roGGeminalCoefficients::asMatrix,
              "Return the total geminal coefficient matrix, including the identity matrix block.");
 }
 

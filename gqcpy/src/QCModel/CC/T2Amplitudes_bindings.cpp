@@ -21,29 +21,31 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
+
+
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
 
 
 void bindT2Amplitudes(py::module& module) {
 
-    py::class_<GQCP::T2Amplitudes<double>>(module, "T2Amplitudes", "The coupled-cluster T2 amplitudes t_{ij}^{ab}.")
+    py::class_<T2Amplitudes<double>>(module, "T2Amplitudes", "The coupled-cluster T2 amplitudes t_{ij}^{ab}.")
 
         // CONSTRUCTORS
         .def(py::init<>(
-                 [](const Eigen::Tensor<double, 4>& T, const GQCP::OrbitalSpace& orbital_space) {
-                     const auto t = orbital_space.createRepresentableObjectFor<double>(GQCP::OccupationType::k_occupied, GQCP::OccupationType::k_occupied, GQCP::OccupationType::k_virtual, GQCP::OccupationType::k_virtual, T);
+                 [](const Eigen::Tensor<double, 4>& T, const OrbitalSpace& orbital_space) {
+                     const auto t = orbital_space.createRepresentableObjectFor<double>(OccupationType::k_occupied, OccupationType::k_occupied, OccupationType::k_virtual, OccupationType::k_virtual, T);
 
-                     return GQCP::T2Amplitudes<double>(t, orbital_space);
+                     return T2Amplitudes<double>(t, orbital_space);
                  }),
              "Construct T2-amplitudes given their dense representation.")
 
         // PUBLIC METHODS
         .def(
             "asTensor",
-            [](const GQCP::T2Amplitudes<double>& t2_amplitudes) {
+            [](const T2Amplitudes<double>& t2_amplitudes) {
                 return t2_amplitudes.asImplicitRankFourTensorSlice().asTensor();
             },
             "Return the T2-amplitudes as a tensor.");

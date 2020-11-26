@@ -22,21 +22,23 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
 
 
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
+
+
 void bindQCMethodUHF(py::module& module) {
-    py::class_<GQCP::QCMethod::UHF<double>>(module, "UHF", "The unrestricted Hartree-Fock quantum chemical method.")
+    py::class_<QCMethod::UHF<double>>(module, "UHF", "The unrestricted Hartree-Fock quantum chemical method.")
 
         // PUBLIC METHODS
 
         .def_static(
             "optimize",
-            [](GQCP::IterativeAlgorithm<GQCP::UHFSCFEnvironment<double>>& solver, GQCP::UHFSCFEnvironment<double>& environment) {
-                return GQCP::QCMethod::UHF<double>().optimize(solver, environment);
+            [](IterativeAlgorithm<UHFSCFEnvironment<double>>& solver, UHFSCFEnvironment<double>& environment) {
+                return QCMethod::UHF<double>().optimize(solver, environment);
             },
             py::arg("solver"),
             py::arg("environment"),

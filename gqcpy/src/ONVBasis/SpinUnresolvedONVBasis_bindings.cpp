@@ -21,13 +21,16 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
 
+
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
+
+
 void bindSpinUnresolvedONVBasis(py::module& module) {
-    py::class_<GQCP::SpinUnresolvedONVBasis>(module, "SpinUnresolvedONVBasis", "A full spin-unresolved ONV basis.")
+    py::class_<SpinUnresolvedONVBasis>(module, "SpinUnresolvedONVBasis", "A full spin-unresolved ONV basis.")
 
         // CONSTRUCTORS
 
@@ -40,7 +43,7 @@ void bindSpinUnresolvedONVBasis(py::module& module) {
 
         .def(
             "arcWeight",
-            [](const GQCP::SpinUnresolvedONVBasis& onv_basis, size_t p, const size_t n) {
+            [](const SpinUnresolvedONVBasis& onv_basis, size_t p, const size_t n) {
                 return onv_basis.arcWeight(p, n);
             },
             py::arg("p"),
@@ -49,7 +52,7 @@ void bindSpinUnresolvedONVBasis(py::module& module) {
 
         .def(
             "calculateDimension",
-            [](const GQCP::SpinUnresolvedONVBasis& onv_basis, size_t M, const size_t N) {
+            [](const SpinUnresolvedONVBasis& onv_basis, size_t M, const size_t N) {
                 return onv_basis.calculateDimension(M, N);
             },
             py::arg("M"),
@@ -58,7 +61,7 @@ void bindSpinUnresolvedONVBasis(py::module& module) {
 
         .def(
             "vertexWeight",
-            [](const GQCP::SpinUnresolvedONVBasis onv_basis, const size_t p, const size_t n) {
+            [](const SpinUnresolvedONVBasis onv_basis, const size_t p, const size_t n) {
                 return onv_basis.vertexWeight(p, n);
             },
             py::arg("p"),

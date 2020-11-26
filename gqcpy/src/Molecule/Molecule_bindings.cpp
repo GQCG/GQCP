@@ -21,24 +21,26 @@
 #include <pybind11/stl.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
 
 
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
+
+
 void bindMolecule(py::module& module) {
-    py::class_<GQCP::Molecule>(module, "Molecule", "A class that represents a collection of nuclei with a number of electrons")
+    py::class_<Molecule>(module, "Molecule", "A class that represents a collection of nuclei with a number of electrons")
 
         // CONSTRUCTORS
-        .def(py::init<const std::vector<GQCP::Nucleus>&, const int>(),
+        .def(py::init<const std::vector<Nucleus>&, const int>(),
              py::arg("nuclei"),
              py::arg("charge") = 0)
 
         .def_static(
             "HChain",
             [](const size_t n, const double spacing, const int charge) {
-                return GQCP::Molecule::HChain(n, spacing, charge);
+                return Molecule::HChain(n, spacing, charge);
             },
             py::arg("n"),
             py::arg("spacing"),
@@ -48,7 +50,7 @@ void bindMolecule(py::module& module) {
         .def_static(
             "H2Chain",
             [](const size_t n, const double a, const double b, const int charge) {
-                return GQCP::Molecule::H2Chain(n, a, b, charge);
+                return Molecule::H2Chain(n, a, b, charge);
             },
             py::arg("n"),
             py::arg("a"),
@@ -59,7 +61,7 @@ void bindMolecule(py::module& module) {
         .def_static(
             "HRingFromDistance",
             [](const size_t n, const double distance, const int charge) {
-                return GQCP::Molecule::HRingFromDistance(n, distance, charge);
+                return Molecule::HRingFromDistance(n, distance, charge);
             },
             py::arg("n"),
             py::arg("distance"),
@@ -69,7 +71,7 @@ void bindMolecule(py::module& module) {
         .def_static(
             "HRingFromRadius",
             [](const size_t n, const double radius, const int charge) {
-                return GQCP::Molecule::HRingFromRadius(n, radius, charge);
+                return Molecule::HRingFromRadius(n, radius, charge);
             },
             py::arg("n"),
             py::arg("radius"),
@@ -79,7 +81,7 @@ void bindMolecule(py::module& module) {
         .def_static(
             "ReadXYZ",
             [](const std::string& xyz_filename, const int charge) {
-                return GQCP::Molecule::ReadXYZ(xyz_filename, charge);
+                return Molecule::ReadXYZ(xyz_filename, charge);
             },
             py::arg("xyz_filename"),
             py::arg("charge") = 0,
@@ -89,16 +91,16 @@ void bindMolecule(py::module& module) {
         // PUBLIC METHODS
 
         .def("__str__",
-             [](const GQCP::Molecule& molecule) {
+             [](const Molecule& molecule) {
                  return molecule.description();
              })
 
         .def("numberOfElectrons",
-             &GQCP::Molecule::numberOfElectrons,
+             &Molecule::numberOfElectrons,
              "Return the number of electrons in the molecule.")
 
         .def("numberOfElectronPairs",
-             &GQCP::Molecule::numberOfElectronPairs,
+             &Molecule::numberOfElectronPairs,
              "Return the number of electron pairs in this molecule. For odd numbers of electrons, the number of electron pairs is equal to that of the (N-1)-even-electron system.");
 }
 

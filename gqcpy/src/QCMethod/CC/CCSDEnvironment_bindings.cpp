@@ -22,53 +22,55 @@
 #include <pybind11/stl.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
 
 
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
+
+
 void bindCCSDEnvironment(py::module& module) {
-    py::class_<GQCP::CCSDEnvironment<double>>(module, "CCSDEnvironment", "An algorithmic environment suitable for coupled-cluster calculations up to the CCSD level.")
+    py::class_<CCSDEnvironment<double>>(module, "CCSDEnvironment", "An algorithmic environment suitable for coupled-cluster calculations up to the CCSD level.")
 
         // CONSTRUCTORS
         .def_static(
             "PerturbativeCCSD",
-            [](const GQCP::GSQHamiltonian<double>& sq_hamiltonian, const GQCP::OrbitalSpace& orbital_space) {
-                return GQCP::CCSDEnvironment<double>::PerturbativeCCSD(sq_hamiltonian, orbital_space);
+            [](const GSQHamiltonian<double>& sq_hamiltonian, const OrbitalSpace& orbital_space) {
+                return CCSDEnvironment<double>::PerturbativeCCSD(sq_hamiltonian, orbital_space);
             },
             "Initialize a CCSD algorithmic environment with initial guesses for the T1- and T2-amplitudes based on perturbation theory.")
 
         .def_static(
             "PerturbativeCCD",
-            [](const GQCP::GSQHamiltonian<double>& sq_hamiltonian, const GQCP::OrbitalSpace& orbital_space) {
-                return GQCP::CCSDEnvironment<double>::PerturbativeCCD(sq_hamiltonian, orbital_space);
+            [](const GSQHamiltonian<double>& sq_hamiltonian, const OrbitalSpace& orbital_space) {
+                return CCSDEnvironment<double>::PerturbativeCCD(sq_hamiltonian, orbital_space);
             },
             "Initialize a CCD algorithmic environment with initial guesses for the T2-amplitudes based on perturbation theory.")
 
         // Bind read-write members/properties, exposing intermediary environment variables to the Python interface.
-        .def_readwrite("electronic_energies", &GQCP::CCSDEnvironment<double>::electronic_energies)
+        .def_readwrite("electronic_energies", &CCSDEnvironment<double>::electronic_energies)
 
 
         // Define read-only 'getters'.
         .def_readonly(
             "t1_amplitudes",
-            &GQCP::CCSDEnvironment<double>::t1_amplitudes)
+            &CCSDEnvironment<double>::t1_amplitudes)
 
         .def_readonly(
             "t2_amplitudes",
-            &GQCP::CCSDEnvironment<double>::t2_amplitudes)
+            &CCSDEnvironment<double>::t2_amplitudes)
 
 
         // Bind methods for the replacement of the most current iterates.
         .def("replace_current_t1_amplitudes",
-             [](GQCP::CCSDEnvironment<double>& environment, const GQCP::T1Amplitudes<double>& new_t1_amplitudes) {
+             [](CCSDEnvironment<double>& environment, const T1Amplitudes<double>& new_t1_amplitudes) {
                  environment.t1_amplitudes.pop_back();
                  environment.t1_amplitudes.push_back(new_t1_amplitudes);
              })
 
         .def("replace_current_t2_amplitudes",
-             [](GQCP::CCSDEnvironment<double>& environment, const GQCP::T2Amplitudes<double>& new_t2_amplitudes) {
+             [](CCSDEnvironment<double>& environment, const T2Amplitudes<double>& new_t2_amplitudes) {
                  environment.t2_amplitudes.pop_back();
                  environment.t2_amplitudes.push_back(new_t2_amplitudes);
              });

@@ -21,21 +21,23 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
 
 
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
+
+
 void bindHoppingMatrix(py::module& module) {
-    py::class_<GQCP::HoppingMatrix<double>>(module, "HoppingMatrix", "The Hubbard hopping matrix.")
+    py::class_<HoppingMatrix<double>>(module, "HoppingMatrix", "The Hubbard hopping matrix.")
 
         // CONSTRUCTORS
 
         .def_static(
             "FromAdjacencyMatrix",
             [](const Eigen::MatrixXd& A, const double t, const double U) {
-                return GQCP::HoppingMatrix<double> {GQCP::SquareMatrix<double> {A}, t, U};
+                return HoppingMatrix<double> {SquareMatrix<double> {A}, t, U};
             },
             py::arg("A"),
             py::arg("t"),
@@ -45,7 +47,7 @@ void bindHoppingMatrix(py::module& module) {
         .def_static(
             "FromCSLine",
             [](const std::string& cs_line) {
-                return GQCP::HoppingMatrix<double>::FromCSLine(cs_line);
+                return HoppingMatrix<double>::FromCSLine(cs_line);
             },
             "Return the hopping matrix that corresponds to the given comma-separated line.");
 }

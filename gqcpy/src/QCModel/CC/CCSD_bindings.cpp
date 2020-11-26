@@ -21,25 +21,27 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
+
+
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
 
 
 void bindQCModelCCSD(py::module& module) {
 
-    py::class_<GQCP::QCModel::CCSD<double>>(module, "QCModel_CCSD", "The CCSD wave function model.")
+    py::class_<QCModel::CCSD<double>>(module, "QCModel_CCSD", "The CCSD wave function model.")
 
         // PUBLIC METHODS
         .def(
             "t1Amplitudes",
-            &GQCP::QCModel::CCSD<double>::t1Amplitudes,
+            &QCModel::CCSD<double>::t1Amplitudes,
             "Return these CCSD model parameters' T1-amplitudes")
 
         .def(
             "t2Amplitudes",
-            &GQCP::QCModel::CCSD<double>::t2Amplitudes,
+            &QCModel::CCSD<double>::t2Amplitudes,
             "Return these CCSD model parameters' T2-amplitudes");
 }
 

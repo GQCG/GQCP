@@ -26,10 +26,12 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
+
+
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
 
 
 /**
@@ -48,9 +50,9 @@ namespace gqcpy {
 template <typename Environment>
 void bindFunctionalStep(py::module& module, const std::string& suffix, const std::string& description) {
 
-    py::class_<GQCP::FunctionalStep<Environment>>(module,
-                                                  ("FunctionalStep_" + suffix).c_str(),
-                                                  description.c_str())
+    py::class_<FunctionalStep<Environment>>(module,
+                                            ("FunctionalStep_" + suffix).c_str(),
+                                            description.c_str())
 
         // CONSTRUCTORS
 
@@ -62,13 +64,13 @@ void bindFunctionalStep(py::module& module, const std::string& suffix, const std
 
 void bindFunctionalSteps(py::module& module) {
 
-    bindFunctionalStep<GQCP::EigenproblemEnvironment>(module, "EigenproblemEnvironment", "A functional step that uses an EigenproblemEnvironment.");
-    bindFunctionalStep<GQCP::NonLinearEquationEnvironment<double>>(module, "NonLinearEquationEnvironment", "A functional step that uses a NonLinearEquationEnvironment.");
+    bindFunctionalStep<EigenproblemEnvironment>(module, "EigenproblemEnvironment", "A functional step that uses an EigenproblemEnvironment.");
+    bindFunctionalStep<NonLinearEquationEnvironment<double>>(module, "NonLinearEquationEnvironment", "A functional step that uses a NonLinearEquationEnvironment.");
 
-    bindFunctionalStep<GQCP::RHFSCFEnvironment<double>>(module, "RHFSCFEnvironment", "A functional step that uses an RHFSCFEnvironment.");
-    bindFunctionalStep<GQCP::UHFSCFEnvironment<double>>(module, "UHFSCFEnvironment", "A functional step that uses an UHFSCFEnvironment.");
+    bindFunctionalStep<RHFSCFEnvironment<double>>(module, "RHFSCFEnvironment", "A functional step that uses an RHFSCFEnvironment.");
+    bindFunctionalStep<UHFSCFEnvironment<double>>(module, "UHFSCFEnvironment", "A functional step that uses an UHFSCFEnvironment.");
 
-    bindFunctionalStep<GQCP::CCSDEnvironment<double>>(module, "CCSDEnvironment", "A functional step that uses an CCSDEnvironment.");
+    bindFunctionalStep<CCSDEnvironment<double>>(module, "CCSDEnvironment", "A functional step that uses an CCSDEnvironment.");
 }
 
 

@@ -20,15 +20,17 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
+
+
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
 
 
 void bindNonLinearEquationEnvironment(py::module& module) {
 
-    py::class_<GQCP::NonLinearEquationEnvironment<double>>(module, "NonLinearEquationEnvironment", "An environment used to solve non-linear systems of equations.");
+    py::class_<NonLinearEquationEnvironment<double>>(module, "NonLinearEquationEnvironment", "An environment used to solve non-linear systems of equations.");
 }
 
 

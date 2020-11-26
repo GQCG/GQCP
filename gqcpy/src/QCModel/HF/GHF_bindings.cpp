@@ -21,37 +21,39 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
 
 
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
+
+
 void bindQCModelGHF(py::module& module) {
-    py::class_<GQCP::QCModel::GHF<double>>(module, "QCModel_GHF", "The generalized Hartree-Fock wave function model.")
+    py::class_<QCModel::GHF<double>>(module, "QCModel_GHF", "The generalized Hartree-Fock wave function model.")
 
         // PUBLIC METHODS
 
         .def(
             "calculateOrthonormalBasis1DM",
-            [](const GQCP::QCModel::GHF<double>& ghf_parameters) {
+            [](const QCModel::GHF<double>& ghf_parameters) {
                 return ghf_parameters.calculateOrthonormalBasis1DM();
             },
             "Return the 1-DM expressed in an orthonormal spinor basis related to these optimal GHF parameters.")
 
         .def(
             "calculateScalarBasis1DM",
-            [](const GQCP::QCModel::GHF<double>& ghf_parameters) {
+            [](const QCModel::GHF<double>& ghf_parameters) {
                 return ghf_parameters.calculateScalarBasis1DM();
             },
             "Return the GHF 1-DM in the scalar/AO basis related to these optimal GHF parameters")
 
         .def("expansion",
-             &GQCP::QCModel::GHF<double>::expansion,
+             &QCModel::GHF<double>::expansion,
              "Return the coefficient matrix that expresses every spatial orbital (as a column) in its underlying scalar basis.")
 
         .def("orbitalEnergies",
-             &GQCP::QCModel::GHF<double>::orbitalEnergies,
+             &QCModel::GHF<double>::orbitalEnergies,
              "Return the orbital energies.");
 }
 

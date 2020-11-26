@@ -20,10 +20,12 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
+
+
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
 
 
 void bindPSEnvironment(py::module& module) {
@@ -32,8 +34,8 @@ void bindPSEnvironment(py::module& module) {
 
     module_ps_environment.def(
         "AP1roG",
-        [](const GQCP::RSQHamiltonian<double>& sq_hamiltonian, const GQCP::AP1roGGeminalCoefficients& G_initial) {
-            return GQCP::PSEnvironment::AP1roG(sq_hamiltonian, G_initial);
+        [](const RSQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G_initial) {
+            return PSEnvironment::AP1roG(sq_hamiltonian, G_initial);
         },
         py::arg("sq_hamiltonian"),
         py::arg("G_initial"),
@@ -41,8 +43,8 @@ void bindPSEnvironment(py::module& module) {
 
     module_ps_environment.def(
         "AP1roG",
-        [](const GQCP::RSQHamiltonian<double>& sq_hamiltonian, const size_t N_P) {
-            return GQCP::PSEnvironment::AP1roG(sq_hamiltonian, N_P);
+        [](const RSQHamiltonian<double>& sq_hamiltonian, const size_t N_P) {
+            return PSEnvironment::AP1roG(sq_hamiltonian, N_P);
         },
         py::arg("sq_hamiltonian"),
         py::arg("N_P"),

@@ -26,10 +26,12 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
+
+
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
 
 
 /**
@@ -47,16 +49,16 @@ namespace gqcpy {
  */
 template <typename ONVBasis>
 void bindLinearExpansion(py::module& module, const std::string& suffix, const std::string& description) {
-    py::class_<GQCP::LinearExpansion<ONVBasis>>(module,
-                                                ("LinearExpansion_" + suffix).c_str(),
-                                                description.c_str())
+    py::class_<LinearExpansion<ONVBasis>>(module,
+                                          ("LinearExpansion_" + suffix).c_str(),
+                                          description.c_str())
 
         // CONSTRUCTORS
 
         .def_static(
             "Constant",
             [](const ONVBasis& onv_basis) {
-                return GQCP::LinearExpansion<ONVBasis>::Constant(onv_basis);
+                return LinearExpansion<ONVBasis>::Constant(onv_basis);
             },
             py::arg("onv_basis"),
             "Return a linear expansion with a normalized coefficient vector (i.e. all the coefficients are equal).")
@@ -64,7 +66,7 @@ void bindLinearExpansion(py::module& module, const std::string& suffix, const st
         .def_static(
             "HartreeFock",
             [](const ONVBasis& onv_basis) {
-                return GQCP::LinearExpansion<ONVBasis>::HartreeFock(onv_basis);
+                return LinearExpansion<ONVBasis>::HartreeFock(onv_basis);
             },
             py::arg("onv_basis"),
             "Return a linear expansion that represents the Hartree-Fock wave function.")
@@ -72,7 +74,7 @@ void bindLinearExpansion(py::module& module, const std::string& suffix, const st
         .def_static(
             "Random",
             [](const ONVBasis& onv_basis) {
-                return GQCP::LinearExpansion<ONVBasis>::Random(onv_basis);
+                return LinearExpansion<ONVBasis>::Random(onv_basis);
             },
             py::arg("onv_basis"),
             "Return a linear expansion with a random, normalized coefficient vector, with coefficients uniformly distributed in [-1, +1] before any normalization.")
@@ -81,47 +83,47 @@ void bindLinearExpansion(py::module& module, const std::string& suffix, const st
         // PUBLIC METHODS
 
         .def("coefficients",
-             &GQCP::LinearExpansion<ONVBasis>::coefficients,
+             &LinearExpansion<ONVBasis>::coefficients,
              "Return the expansion coefficients of this linear expansion wave function model.");
 }
 
 
 /**
- *  A template specialization for the binding of GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>, because it has an additional function to be bound.
+ *  A template specialization for the binding of LinearExpansion<SeniorityZeroONVBasis>, because it has an additional function to be bound.
  * 
  *  @param module               the Pybind11 module
  *  @param suffix               the suffix for the gqcpy class name, i.e. "LinearExpansion" + suffix
  *  @param description          the description for the gqcpy class
  */
 template <>
-void bindLinearExpansion<GQCP::SeniorityZeroONVBasis>(py::module& module, const std::string& suffix, const std::string& description) {
+void bindLinearExpansion<SeniorityZeroONVBasis>(py::module& module, const std::string& suffix, const std::string& description) {
 
-    py::class_<GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>>(module,
-                                                                   ("LinearExpansion_" + suffix).c_str(),
-                                                                   description.c_str())
+    py::class_<LinearExpansion<SeniorityZeroONVBasis>>(module,
+                                                       ("LinearExpansion_" + suffix).c_str(),
+                                                       description.c_str())
 
         // CONSTRUCTORS
 
         .def_static(
             "Constant",
-            [](const GQCP::SeniorityZeroONVBasis& onv_basis) {
-                return GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>::Constant(onv_basis);
+            [](const SeniorityZeroONVBasis& onv_basis) {
+                return LinearExpansion<SeniorityZeroONVBasis>::Constant(onv_basis);
             },
             py::arg("onv_basis"),
             "Return a linear expansion with a normalized coefficient vector (i.e. all the coefficients are equal).")
 
         .def_static(
             "HartreeFock",
-            [](const GQCP::SeniorityZeroONVBasis& onv_basis) {
-                return GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>::HartreeFock(onv_basis);
+            [](const SeniorityZeroONVBasis& onv_basis) {
+                return LinearExpansion<SeniorityZeroONVBasis>::HartreeFock(onv_basis);
             },
             py::arg("onv_basis"),
             "Return a linear expansion that represents the Hartree-Fock wave function.")
 
         .def_static(
             "Random",
-            [](const GQCP::SeniorityZeroONVBasis& onv_basis) {
-                return GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>::Random(onv_basis);
+            [](const SeniorityZeroONVBasis& onv_basis) {
+                return LinearExpansion<SeniorityZeroONVBasis>::Random(onv_basis);
             },
             py::arg("onv_basis"),
             "Return a linear expansion with a random, normalized coefficient vector, with coefficients uniformly distributed in [-1, +1] before any normalization.")
@@ -131,32 +133,32 @@ void bindLinearExpansion<GQCP::SeniorityZeroONVBasis>(py::module& module, const 
 
         .def(
             "calculate1DM",
-            [](const GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>& linear_expansion) {
+            [](const LinearExpansion<SeniorityZeroONVBasis>& linear_expansion) {
                 return linear_expansion.calculate1DM();
             },
             "Return the one-electron density matrix (1-DM) for a seniority-zero wave function expansion.")
 
         .def(
             "calculate2DM",
-            [](const GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>& linear_expansion) {
+            [](const LinearExpansion<SeniorityZeroONVBasis>& linear_expansion) {
                 return asNumpyArray(linear_expansion.calculate2DM().Eigen());
             },
             "Return the two-electron density matrix (2-DM) for a seniority-zero wave function expansion.")
 
         .def("coefficients",
-             &GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>::coefficients,
+             &LinearExpansion<SeniorityZeroONVBasis>::coefficients,
              "Return the expansion coefficients of this linear expansion wave function model.")
 
         .def(
             "calculateSpinResolved1DM",
-            [](const GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>& linear_expansion) {
+            [](const LinearExpansion<SeniorityZeroONVBasis>& linear_expansion) {
                 return linear_expansion.calculateSpinResolved1DM();
             },
             "Return the spin-resolved 1-DM.")
 
         .def(
             "calculateSpinResolved2DM",
-            [](const GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>& linear_expansion) {
+            [](const LinearExpansion<SeniorityZeroONVBasis>& linear_expansion) {
                 return linear_expansion.calculateSpinResolved2DM();
             },
             "Return the spin resolved 2-DM.");
@@ -164,33 +166,33 @@ void bindLinearExpansion<GQCP::SeniorityZeroONVBasis>(py::module& module, const 
 
 
 /**
- *  A template specialization for the binding of GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>, because it has an additional function to be bound.
+ *  A template specialization for the binding of LinearExpansion<SpinResolvedONVBasis>, because it has an additional function to be bound.
  * 
  *  @param module               the Pybind11 module
  *  @param suffix               the suffix for the gqcpy class name, i.e. "LinearExpansion" + suffix
  *  @param description          the description for the gqcpy class
  */
 template <>
-void bindLinearExpansion<GQCP::SpinResolvedONVBasis>(py::module& module, const std::string& suffix, const std::string& description) {
+void bindLinearExpansion<SpinResolvedONVBasis>(py::module& module, const std::string& suffix, const std::string& description) {
 
-    py::class_<GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>>(module,
-                                                                  ("LinearExpansion_" + suffix).c_str(),
-                                                                  description.c_str())
+    py::class_<LinearExpansion<SpinResolvedONVBasis>>(module,
+                                                      ("LinearExpansion_" + suffix).c_str(),
+                                                      description.c_str())
 
         // CONSTRUCTORS
 
         .def_static(
             "Constant",
-            [](const GQCP::SpinResolvedONVBasis& onv_basis) {
-                return GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::Constant(onv_basis);
+            [](const SpinResolvedONVBasis& onv_basis) {
+                return LinearExpansion<SpinResolvedONVBasis>::Constant(onv_basis);
             },
             py::arg("onv_basis"),
             "Return a linear expansion with a normalized coefficient vector (i.e. all the coefficients are equal).")
 
         .def_static(
             "FromONVProjection",
-            [](const GQCP::SpinResolvedONV& onv, const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>& r_spinor_basis, const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell>& u_spinor_basis) {
-                return GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::FromONVProjection(onv, r_spinor_basis, u_spinor_basis);
+            [](const SpinResolvedONV& onv, const RSpinOrbitalBasis<double, GTOShell>& r_spinor_basis, const USpinOrbitalBasis<double, GTOShell>& u_spinor_basis) {
+                return LinearExpansion<SpinResolvedONVBasis>::FromONVProjection(onv, r_spinor_basis, u_spinor_basis);
             },
             py::arg("onv"),
             py::arg("r_spinor_basis"),
@@ -199,16 +201,16 @@ void bindLinearExpansion<GQCP::SpinResolvedONVBasis>(py::module& module, const s
 
         .def_static(
             "HartreeFock",
-            [](const GQCP::SpinResolvedONVBasis& onv_basis) {
-                return GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::HartreeFock(onv_basis);
+            [](const SpinResolvedONVBasis& onv_basis) {
+                return LinearExpansion<SpinResolvedONVBasis>::HartreeFock(onv_basis);
             },
             py::arg("onv_basis"),
             "Return a linear expansion that represents the Hartree-Fock wave function.")
 
         .def_static(
             "Random",
-            [](const GQCP::SpinResolvedONVBasis& onv_basis) {
-                return GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::Random(onv_basis);
+            [](const SpinResolvedONVBasis& onv_basis) {
+                return LinearExpansion<SpinResolvedONVBasis>::Random(onv_basis);
             },
             py::arg("onv_basis"),
             "Return a linear expansion with a random, normalized coefficient vector, with coefficients uniformly distributed in [-1, +1] before any normalization.")
@@ -218,25 +220,25 @@ void bindLinearExpansion<GQCP::SpinResolvedONVBasis>(py::module& module, const s
 
         .def(
             "calculate1DM",
-            [](const GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>& linear_expansion) {
+            [](const LinearExpansion<SpinResolvedONVBasis>& linear_expansion) {
                 return linear_expansion.calculate1DM();
             },
             "Return the one-electron density matrix (1-DM) for a full spin-resolved wave function expansion.")
 
         .def(
             "calculate2DM",
-            [](const GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>& linear_expansion) {
+            [](const LinearExpansion<SpinResolvedONVBasis>& linear_expansion) {
                 return asNumpyArray(linear_expansion.calculate2DM().Eigen());
             },
             "Return the two-electron density matrix (2-DM) for a full spin-resolved wave function expansion.")
 
         .def("coefficients",
-             &GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::coefficients,
+             &LinearExpansion<SpinResolvedONVBasis>::coefficients,
              "Return the expansion coefficients of this linear expansion wave function model.")
 
         .def(
             "forEach",
-            [](const GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>& linear_expansion, const std::function<void(const double, const GQCP::SpinResolvedONV)>& callback) {
+            [](const LinearExpansion<SpinResolvedONVBasis>& linear_expansion, const std::function<void(const double, const SpinResolvedONV)>& callback) {
                 return linear_expansion.forEach(callback);
             },
             py::arg("callback"),
@@ -244,14 +246,14 @@ void bindLinearExpansion<GQCP::SpinResolvedONVBasis>(py::module& module, const s
 
         .def(
             "calculateSpinResolved1DM",
-            [](const GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>& linear_expansion) {
+            [](const LinearExpansion<SpinResolvedONVBasis>& linear_expansion) {
                 return linear_expansion.calculateSpinResolved1DM();
             },
             "Return the spin-resolved 1-DM.")
 
         .def(
             "calculateSpinResolved2DM",
-            [](const GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>& linear_expansion) {
+            [](const LinearExpansion<SpinResolvedONVBasis>& linear_expansion) {
                 return linear_expansion.calculateSpinResolved2DM();
             },
             "Return the spin resolved 2-DM.");
@@ -259,41 +261,41 @@ void bindLinearExpansion<GQCP::SpinResolvedONVBasis>(py::module& module, const s
 
 
 /**
- *  A template specialization for the binding of GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>, because it has an additional function to be bound.
+ *  A template specialization for the binding of LinearExpansion<SpinResolvedSelectedONVBasis>, because it has an additional function to be bound.
  * 
  *  @param module               the Pybind11 module
  *  @param suffix               the suffix for the gqcpy class name, i.e. "LinearExpansion" + suffix
  *  @param description          the description for the gqcpy class
  */
 template <>
-void bindLinearExpansion<GQCP::SpinResolvedSelectedONVBasis>(py::module& module, const std::string& suffix, const std::string& description) {
+void bindLinearExpansion<SpinResolvedSelectedONVBasis>(py::module& module, const std::string& suffix, const std::string& description) {
 
-    py::class_<GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>>(module,
-                                                                          ("LinearExpansion_" + suffix).c_str(),
-                                                                          description.c_str())
+    py::class_<LinearExpansion<SpinResolvedSelectedONVBasis>>(module,
+                                                              ("LinearExpansion_" + suffix).c_str(),
+                                                              description.c_str())
 
         // CONSTRUCTORS
 
         .def_static(
             "Constant",
-            [](const GQCP::SpinResolvedSelectedONVBasis& onv_basis) {
-                return GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>::Constant(onv_basis);
+            [](const SpinResolvedSelectedONVBasis& onv_basis) {
+                return LinearExpansion<SpinResolvedSelectedONVBasis>::Constant(onv_basis);
             },
             py::arg("onv_basis"),
             "Return a linear expansion with a normalized coefficient vector (i.e. all the coefficients are equal).")
 
         .def_static(
             "HartreeFock",
-            [](const GQCP::SpinResolvedSelectedONVBasis& onv_basis) {
-                return GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>::HartreeFock(onv_basis);
+            [](const SpinResolvedSelectedONVBasis& onv_basis) {
+                return LinearExpansion<SpinResolvedSelectedONVBasis>::HartreeFock(onv_basis);
             },
             py::arg("onv_basis"),
             "Return a linear expansion that represents the Hartree-Fock wave function.")
 
         .def_static(
             "Random",
-            [](const GQCP::SpinResolvedSelectedONVBasis& onv_basis) {
-                return GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>::Random(onv_basis);
+            [](const SpinResolvedSelectedONVBasis& onv_basis) {
+                return LinearExpansion<SpinResolvedSelectedONVBasis>::Random(onv_basis);
             },
             py::arg("onv_basis"),
             "Return a linear expansion with a random, normalized coefficient vector, with coefficients uniformly distributed in [-1, +1] before any normalization.")
@@ -303,32 +305,32 @@ void bindLinearExpansion<GQCP::SpinResolvedSelectedONVBasis>(py::module& module,
 
         .def(
             "calculate1DM",
-            [](const GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>& linear_expansion) {
+            [](const LinearExpansion<SpinResolvedSelectedONVBasis>& linear_expansion) {
                 return linear_expansion.calculate1DM();
             },
             "Return the one-electron density matrix (1-DM) for a selected spin-resolved wave function expansion.")
 
         .def(
             "calculate2DM",
-            [](const GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>& linear_expansion) {
+            [](const LinearExpansion<SpinResolvedSelectedONVBasis>& linear_expansion) {
                 return asNumpyArray(linear_expansion.calculate2DM().Eigen());
             },
             "Return the two-electron density matrix (2-DM) for a selected spin-resolved wave function expansion.")
 
         .def("coefficients",
-             &GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>::coefficients,
+             &LinearExpansion<SpinResolvedSelectedONVBasis>::coefficients,
              "Return the expansion coefficients of this linear expansion wave function model.")
 
         .def(
             "calculateSpinResolved1DM",
-            [](const GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>& linear_expansion) {
+            [](const LinearExpansion<SpinResolvedSelectedONVBasis>& linear_expansion) {
                 return linear_expansion.calculateSpinResolved1DM();
             },
             "Return the spin-resolved 1-DM.")
 
         .def(
             "calculateSpinResolved2DM",
-            [](const GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>& linear_expansion) {
+            [](const LinearExpansion<SpinResolvedSelectedONVBasis>& linear_expansion) {
                 return linear_expansion.calculateSpinResolved2DM();
             },
             "Return the spin resolved 2-DM.");
@@ -336,33 +338,33 @@ void bindLinearExpansion<GQCP::SpinResolvedSelectedONVBasis>(py::module& module,
 
 
 /**
- *  A template specialization for the binding of GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>, because it has an additional function to be bound.
+ *  A template specialization for the binding of LinearExpansion<SpinUnresolvedONVBasis>, because it has an additional function to be bound.
  * 
  *  @param module               the Pybind11 module
  *  @param suffix               the suffix for the gqcpy class name, i.e. "LinearExpansion" + suffix
  *  @param description          the description for the gqcpy class
  */
 template <>
-void bindLinearExpansion<GQCP::SpinUnresolvedONVBasis>(py::module& module, const std::string& suffix, const std::string& description) {
+void bindLinearExpansion<SpinUnresolvedONVBasis>(py::module& module, const std::string& suffix, const std::string& description) {
 
-    py::class_<GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>>(module,
-                                                                    ("LinearExpansion_" + suffix).c_str(),
-                                                                    description.c_str())
+    py::class_<LinearExpansion<SpinUnresolvedONVBasis>>(module,
+                                                        ("LinearExpansion_" + suffix).c_str(),
+                                                        description.c_str())
 
         // CONSTRUCTORS
 
         .def_static(
             "Constant",
-            [](const GQCP::SpinUnresolvedONVBasis& onv_basis) {
-                return GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>::Constant(onv_basis);
+            [](const SpinUnresolvedONVBasis& onv_basis) {
+                return LinearExpansion<SpinUnresolvedONVBasis>::Constant(onv_basis);
             },
             py::arg("onv_basis"),
             "Return a linear expansion with a normalized coefficient vector (i.e. all the coefficients are equal).")
 
         .def_static(
             "FromONVProjection",
-            [](const GQCP::SpinUnresolvedONV& onv_of, const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis_on, const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis_of) {
-                return GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>::FromONVProjection(onv_of, spinor_basis_on, spinor_basis_of);
+            [](const SpinUnresolvedONV& onv_of, const GSpinorBasis<double, GTOShell>& spinor_basis_on, const GSpinorBasis<double, GTOShell>& spinor_basis_of) {
+                return LinearExpansion<SpinUnresolvedONVBasis>::FromONVProjection(onv_of, spinor_basis_on, spinor_basis_of);
             },
             py::arg("onv_of"),
             py::arg("spinor_basis_on"),
@@ -371,16 +373,16 @@ void bindLinearExpansion<GQCP::SpinUnresolvedONVBasis>(py::module& module, const
 
         .def_static(
             "HartreeFock",
-            [](const GQCP::SpinUnresolvedONVBasis& onv_basis) {
-                return GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>::HartreeFock(onv_basis);
+            [](const SpinUnresolvedONVBasis& onv_basis) {
+                return LinearExpansion<SpinUnresolvedONVBasis>::HartreeFock(onv_basis);
             },
             py::arg("onv_basis"),
             "Return a linear expansion that represents the Hartree-Fock wave function.")
 
         .def_static(
             "Random",
-            [](const GQCP::SpinUnresolvedONVBasis& onv_basis) {
-                return GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>::Random(onv_basis);
+            [](const SpinUnresolvedONVBasis& onv_basis) {
+                return LinearExpansion<SpinUnresolvedONVBasis>::Random(onv_basis);
             },
             py::arg("onv_basis"),
             "Return a linear expansion with a random, normalized coefficient vector, with coefficients uniformly distributed in [-1, +1] before any normalization.")
@@ -389,18 +391,18 @@ void bindLinearExpansion<GQCP::SpinUnresolvedONVBasis>(py::module& module, const
         // PUBLIC METHODS
 
         .def("coefficients",
-             &GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>::coefficients,
+             &LinearExpansion<SpinUnresolvedONVBasis>::coefficients,
              "Return the expansion coefficients of this linear expansion wave function model.");
 }
 
 
 void bindLinearExpansions(py::module& module) {
 
-    bindLinearExpansion<GQCP::SeniorityZeroONVBasis>(module, "SeniorityZero", "The linear expansion (configuration interaction) wave function model in a seniority-zero ONV basis.");
-    // bindLinearExpansion<GQCP::SpinResolvedFrozenONVBasis>(module, "SpinResolvedFrozen", "The linear expansion (configuration interaction) wave function model in a frozen core spin-resolved ONV basis.");
-    bindLinearExpansion<GQCP::SpinResolvedONVBasis>(module, "SpinResolved", "The linear expansion (configuration interaction) wave function model in a spin-resolved ONV basis.");
-    bindLinearExpansion<GQCP::SpinResolvedSelectedONVBasis>(module, "SpinResolvedSelected", "The linear expansion (configuration interaction) wave function model in a spin-resolved selected ONV basis.");
-    bindLinearExpansion<GQCP::SpinUnresolvedONVBasis>(module, "SpinUnresolved", "The linear expansion (configuration interaction) wave function model in a spin-unresolved ONV basis.");
+    bindLinearExpansion<SeniorityZeroONVBasis>(module, "SeniorityZero", "The linear expansion (configuration interaction) wave function model in a seniority-zero ONV basis.");
+    // bindLinearExpansion<SpinResolvedFrozenONVBasis>(module, "SpinResolvedFrozen", "The linear expansion (configuration interaction) wave function model in a frozen core spin-resolved ONV basis.");
+    bindLinearExpansion<SpinResolvedONVBasis>(module, "SpinResolved", "The linear expansion (configuration interaction) wave function model in a spin-resolved ONV basis.");
+    bindLinearExpansion<SpinResolvedSelectedONVBasis>(module, "SpinResolvedSelected", "The linear expansion (configuration interaction) wave function model in a spin-resolved selected ONV basis.");
+    bindLinearExpansion<SpinUnresolvedONVBasis>(module, "SpinUnresolved", "The linear expansion (configuration interaction) wave function model in a spin-unresolved ONV basis.");
 }
 
 

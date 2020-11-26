@@ -21,29 +21,31 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
+
+
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
 
 
 void bindT1Amplitudes(py::module& module) {
 
-    py::class_<GQCP::T1Amplitudes<double>>(module, "T1Amplitudes", "The coupled-cluster T1 amplitudes t_i^a.")
+    py::class_<T1Amplitudes<double>>(module, "T1Amplitudes", "The coupled-cluster T1 amplitudes t_i^a.")
 
         // CONSTRUCTORS
         .def(py::init<>(
-                 [](const Eigen::MatrixXd& T, const GQCP::OrbitalSpace& orbital_space) {
-                     const auto t = orbital_space.createRepresentableObjectFor<double>(GQCP::OccupationType::k_occupied, GQCP::OccupationType::k_virtual, T);
+                 [](const Eigen::MatrixXd& T, const OrbitalSpace& orbital_space) {
+                     const auto t = orbital_space.createRepresentableObjectFor<double>(OccupationType::k_occupied, OccupationType::k_virtual, T);
 
-                     return GQCP::T1Amplitudes<double>(t, orbital_space);
+                     return T1Amplitudes<double>(t, orbital_space);
                  }),
              "Construct T1-amplitudes given their dense representation.")
 
         // PUBLIC METHODS
         .def(
             "asMatrix",
-            [](const GQCP::T1Amplitudes<double>& t1_amplitudes) {
+            [](const T1Amplitudes<double>& t1_amplitudes) {
                 return t1_amplitudes.asImplicitMatrixSlice().asMatrix();
             },
             "Return the T1-amplitudes as a matrix.");

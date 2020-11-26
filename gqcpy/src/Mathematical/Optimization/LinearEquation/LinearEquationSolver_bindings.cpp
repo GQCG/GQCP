@@ -20,10 +20,12 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
+
+
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
 
 
 void bindLinearEquationSolver(py::module& module) {
@@ -33,14 +35,14 @@ void bindLinearEquationSolver(py::module& module) {
     module_linear_equation_solver.def(
         "HouseholderQR",
         []() {
-            return GQCP::LinearEquationSolver<double>::HouseholderQR();
+            return LinearEquationSolver<double>::HouseholderQR();
         },
         "Return a linear equations solver that uses the Householder QR algorithm.");
 
     module_linear_equation_solver.def(
         "ColPivHouseholderQR",
         []() {
-            return GQCP::LinearEquationSolver<double>::ColPivHouseholderQR();
+            return LinearEquationSolver<double>::ColPivHouseholderQR();
         },
         "Return a linear equations solver that uses the Householder QR (with column-pivoting) algorithm.");
 }

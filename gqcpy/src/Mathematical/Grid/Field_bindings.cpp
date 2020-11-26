@@ -26,14 +26,16 @@
 #include <functional>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
 
 
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
+
+
 void bindField(py::module& module) {
-    py::class_<GQCP::Field<double>>(module, "ScalarField", "A set of function values corresponding to points in space.")
+    py::class_<Field<double>>(module, "ScalarField", "A set of function values corresponding to points in space.")
 
         // CONSTRUCTORS
         .def(py::init<const std::vector<double>&>(),
@@ -42,7 +44,7 @@ void bindField(py::module& module) {
         .def_static(
             "ReadCubeFile",
             [](const std::string& filename) {
-                return GQCP::Field<double>::ReadCubeFile(filename);
+                return Field<double>::ReadCubeFile(filename);
             },
             py::arg("filename"),
             "Parse a GAUSSIAN Cube file (http://paulbourke.net/dataformats/cube/) for scalar field values. The grid-associated information is discarded.")
@@ -63,7 +65,7 @@ void bindField(py::module& module) {
         // PUBLIC METHODS
         .def(
             "map",
-            [](GQCP::Field<double>& field, const std::function<double(const double&)>& function) {
+            [](Field<double>& field, const std::function<double(const double&)>& function) {
                 field.map(function);
             },
             py::arg("function"),
@@ -71,7 +73,7 @@ void bindField(py::module& module) {
 
         .def(
             "mapped",
-            [](const GQCP::Field<double>& field, const std::function<double(const double&)>& function) {
+            [](const Field<double>& field, const std::function<double(const double&)>& function) {
                 field.mapped(function);
             },
             py::arg("function"),
@@ -79,12 +81,12 @@ void bindField(py::module& module) {
 
         .def(
             "size",
-            &GQCP::Field<double>::size,
+            &Field<double>::size,
             "Return the size of this field, i.e. the number of field values.")
 
         .def(
             "value",
-            [](const GQCP::Field<double>& field, const size_t index) {
+            [](const Field<double>& field, const size_t index) {
                 return field.value(index);
             },
             py::arg("index"),
@@ -92,7 +94,7 @@ void bindField(py::module& module) {
 
         .def(
             "value",
-            [](GQCP::Field<double>& field, const size_t index) {
+            [](Field<double>& field, const size_t index) {
                 return field.value(index);
             },
             py::arg("index"),
@@ -100,23 +102,23 @@ void bindField(py::module& module) {
 
         .def(
             "values",
-            &GQCP::Field<double>::values,
+            &Field<double>::values,
             "Return the evaluated function values, in the order of the grid's loop.");
 
 
-    py::class_<GQCP::Field<GQCP::Vector<double, 3>>>(module, "VectorField", "A set of function values corresponding to points in space.")
+    py::class_<Field<Vector<double, 3>>>(module, "VectorField", "A set of function values corresponding to points in space.")
 
         // CONSTRUCTORS
         .def(py::init<>([](const std::vector<Eigen::Vector3d>& values) {
-                 // Transform the Eigen::Vector3d vectors into GQCP::Vector<double, 3>.
-                 std::vector<GQCP::Vector<double, 3>> gqcp_values;
+                 // Transform the Eigen::Vector3d vectors into Vector<double, 3>.
+                 std::vector<Vector<double, 3>> gqcp_values;
                  gqcp_values.reserve(values.size());
 
                  std::transform(values.begin(), values.end(),
                                 std::back_inserter(gqcp_values),
-                                [](const Eigen::Vector3d& v) { return GQCP::Vector<double, 3>(v); });
+                                [](const Eigen::Vector3d& v) { return Vector<double, 3>(v); });
 
-                 return GQCP::Field<GQCP::Vector<double, 3>>(gqcp_values);
+                 return Field<Vector<double, 3>>(gqcp_values);
              }),
              py::arg("values"))
 
@@ -136,7 +138,7 @@ void bindField(py::module& module) {
         // PUBLIC METHODS
         .def(
             "map",
-            [](GQCP::Field<GQCP::Vector<double, 3>>& field, const std::function<GQCP::Vector<double, 3>(const GQCP::Vector<double, 3>&)>& function) {
+            [](Field<Vector<double, 3>>& field, const std::function<Vector<double, 3>(const Vector<double, 3>&)>& function) {
                 field.map(function);
             },
             py::arg("function"),
@@ -144,7 +146,7 @@ void bindField(py::module& module) {
 
         .def(
             "mapped",
-            [](const GQCP::Field<GQCP::Vector<double, 3>>& field, const std::function<GQCP::Vector<double, 3>(const GQCP::Vector<double, 3>&)>& function) {
+            [](const Field<Vector<double, 3>>& field, const std::function<Vector<double, 3>(const Vector<double, 3>&)>& function) {
                 field.mapped(function);
             },
             py::arg("function"),
@@ -152,12 +154,12 @@ void bindField(py::module& module) {
 
         .def(
             "size",
-            &GQCP::Field<GQCP::Vector<double, 3>>::size,
+            &Field<Vector<double, 3>>::size,
             "Return the size of this field, i.e. the number of field values.")
 
         .def(
             "value",
-            [](const GQCP::Field<GQCP::Vector<double, 3>>& field, const size_t index) {
+            [](const Field<Vector<double, 3>>& field, const size_t index) {
                 return Eigen::Vector3d(field.value(index));
             },
             py::arg("index"),
@@ -165,7 +167,7 @@ void bindField(py::module& module) {
 
         .def(
             "value",
-            [](GQCP::Field<GQCP::Vector<double, 3>>& field, const size_t index) {
+            [](Field<Vector<double, 3>>& field, const size_t index) {
                 return Eigen::Vector3d(field.value(index));
             },
             py::arg("index"),
@@ -173,8 +175,8 @@ void bindField(py::module& module) {
 
         .def(
             "values",
-            [](const GQCP::Field<GQCP::Vector<double, 3>>& field) {
-                // Transform std::vector<GQCP::Vector<double, 3>> into std::vector<Eigen::Vector3d>.
+            [](const Field<Vector<double, 3>>& field) {
+                // Transform std::vector<Vector<double, 3>> into std::vector<Eigen::Vector3d>.
                 const auto gqcp_values = field.values();
 
                 std::vector<Eigen::Vector3d> eigen_values;
@@ -182,7 +184,7 @@ void bindField(py::module& module) {
 
                 std::transform(gqcp_values.begin(), gqcp_values.end(),
                                std::back_inserter(eigen_values),
-                               [](const GQCP::Vector<double, 3>& v) {
+                               [](const Vector<double, 3>& v) {
                                    return Eigen::Vector3d(v);
                                });
 

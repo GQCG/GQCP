@@ -22,15 +22,17 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
+
+
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
 
 
 void bindRHFElectricalResponseSolver(py::module& module) {
 
-    py::class_<GQCP::RHFElectricalResponseSolver>(module, "RHFElectricalResponseSolver", "A class that is able to solve the electrical CPHF-equations for RHF.")
+    py::class_<RHFElectricalResponseSolver>(module, "RHFElectricalResponseSolver", "A class that is able to solve the electrical CPHF-equations for RHF.")
 
         // CONSTRUCTORS
 
@@ -41,7 +43,7 @@ void bindRHFElectricalResponseSolver(py::module& module) {
 
         .def(
             "calculateWaveFunctionResponse",
-            [](const GQCP::RHFElectricalResponseSolver& cphf_solver, const GQCP::RSQHamiltonian<double>& sq_hamiltonian, const GQCP::VectorRSQOneElectronOperator<double>& dipole_op) {
+            [](const RHFElectricalResponseSolver& cphf_solver, const RSQHamiltonian<double>& sq_hamiltonian, const VectorRSQOneElectronOperator<double>& dipole_op) {
                 return cphf_solver.calculateWaveFunctionResponse(sq_hamiltonian, dipole_op);
             },
             "Solve the linear response equations and return the wave function response.",
@@ -50,9 +52,9 @@ void bindRHFElectricalResponseSolver(py::module& module) {
 
         .def(
             "calculateElectricPolarizability",
-            [](const GQCP::RHFElectricalResponseSolver& cphf_solver, const Eigen::Matrix<double, Eigen::Dynamic, 3>& x, const GQCP::VectorRSQOneElectronOperator<double>& dipole_op) {
+            [](const RHFElectricalResponseSolver& cphf_solver, const Eigen::Matrix<double, Eigen::Dynamic, 3>& x, const VectorRSQOneElectronOperator<double>& dipole_op) {
                 const auto F_p = cphf_solver.calculateParameterResponseForce(dipole_op);
-                return GQCP::calculateElectricPolarizability(F_p, x);
+                return calculateElectricPolarizability(F_p, x);
             },
             "Calculate the RHF electric polarizability",
             py::arg("x"),

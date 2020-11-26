@@ -23,10 +23,12 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
+
+
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
 
 
 /**
@@ -47,7 +49,7 @@ void bindCIFactoryMethod(py::module& module) {
     module.def(
         "CI",
         [](const ONVBasis& onv_basis, const size_t number_of_states = 1) {
-            return GQCP::QCMethod::CI<ONVBasis>(onv_basis, number_of_states);
+            return QCMethod::CI<ONVBasis>(onv_basis, number_of_states);
         },
         "Return an appropriate CI method.",
         py::arg("onv_basis"),
@@ -60,8 +62,8 @@ void bindCIFactoryMethod(py::module& module) {
  */
 void bindCIFactory(py::module& module) {
 
-    bindCIFactoryMethod<GQCP::SpinResolvedONVBasis>(module);
-    bindCIFactoryMethod<GQCP::SpinResolvedSelectedONVBasis>(module);
+    bindCIFactoryMethod<SpinResolvedONVBasis>(module);
+    bindCIFactoryMethod<SpinResolvedSelectedONVBasis>(module);
 }
 
 

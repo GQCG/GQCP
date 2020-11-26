@@ -22,19 +22,21 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
 
 
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
+
+
 void bindQCMethodCCSD(py::module& module) {
-    py::class_<GQCP::QCMethod::CCSD<double>>(module, "CCSD", "The CCSD quantum chemical method.")
+    py::class_<QCMethod::CCSD<double>>(module, "CCSD", "The CCSD quantum chemical method.")
 
         .def_static(
             "optimize",
-            [](GQCP::IterativeAlgorithm<GQCP::CCSDEnvironment<double>>& solver, GQCP::CCSDEnvironment<double>& environment) {
-                return GQCP::QCMethod::CCSD<double>().optimize(solver, environment);
+            [](IterativeAlgorithm<CCSDEnvironment<double>>& solver, CCSDEnvironment<double>& environment) {
+                return QCMethod::CCSD<double>().optimize(solver, environment);
             },
             py::arg("solver"),
             py::arg("environment"),

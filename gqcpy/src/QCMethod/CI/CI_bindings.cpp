@@ -26,10 +26,12 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
+
+
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
 
 
 /**
@@ -47,9 +49,9 @@ namespace gqcpy {
  */
 template <typename ONVBasis>
 void bindQCMethodCI(py::module& module, const std::string& suffix, const std::string& description) {
-    py::class_<GQCP::QCMethod::CI<ONVBasis>>(module,
-                                             ("CI_" + suffix).c_str(),
-                                             description.c_str())
+    py::class_<QCMethod::CI<ONVBasis>>(module,
+                                       ("CI_" + suffix).c_str(),
+                                       description.c_str())
 
         // CONSTRUCTORS
 
@@ -62,14 +64,14 @@ void bindQCMethodCI(py::module& module, const std::string& suffix, const std::st
 
         .def(
             "optimize",
-            [](const GQCP::QCMethod::CI<ONVBasis>& qc_method, GQCP::Algorithm<GQCP::EigenproblemEnvironment>& solver, GQCP::EigenproblemEnvironment& environment) {
+            [](const QCMethod::CI<ONVBasis>& qc_method, Algorithm<EigenproblemEnvironment>& solver, EigenproblemEnvironment& environment) {
                 return qc_method.optimize(solver, environment);
             },
             "Optimize the CI wave function model: find the linear expansion coefficients.")
 
         .def(
             "optimize",
-            [](const GQCP::QCMethod::CI<ONVBasis>& qc_method, GQCP::IterativeAlgorithm<GQCP::EigenproblemEnvironment>& solver, GQCP::EigenproblemEnvironment& environment) {
+            [](const QCMethod::CI<ONVBasis>& qc_method, IterativeAlgorithm<EigenproblemEnvironment>& solver, EigenproblemEnvironment& environment) {
                 return qc_method.optimize(solver, environment);
             },
             "Optimize the CI wave function model: find the linear expansion coefficients.");
@@ -78,8 +80,8 @@ void bindQCMethodCI(py::module& module, const std::string& suffix, const std::st
 
 void bindQCMethodCIs(py::module& module) {
 
-    bindQCMethodCI<GQCP::SpinResolvedONVBasis>(module, "SpinResolved", "Configuration interaction in a spin-resolved ONV basis.");
-    bindQCMethodCI<GQCP::SpinResolvedSelectedONVBasis>(module, "SpinResolvedSelected", "Configuration interaction in a spin-resolved selected ONV basis.");
+    bindQCMethodCI<SpinResolvedONVBasis>(module, "SpinResolved", "Configuration interaction in a spin-resolved ONV basis.");
+    bindQCMethodCI<SpinResolvedSelectedONVBasis>(module, "SpinResolvedSelected", "Configuration interaction in a spin-resolved selected ONV basis.");
 }
 
 

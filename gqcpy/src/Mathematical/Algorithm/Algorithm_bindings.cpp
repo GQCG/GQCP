@@ -22,10 +22,12 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
+
+
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
 
 
 /**
@@ -44,22 +46,22 @@ namespace gqcpy {
 template <typename Environment>
 void bindAlgorithm(py::module& module, const std::string& suffix, const std::string& description) {
 
-    py::class_<GQCP::Algorithm<Environment>>(module,
-                                             ("Algorithm_" + suffix).c_str(),
-                                             description.c_str())
+    py::class_<Algorithm<Environment>>(module,
+                                       ("Algorithm_" + suffix).c_str(),
+                                       description.c_str())
 
         // PUBLIC METHODS
 
         .def("description",
-             &GQCP::Algorithm<Environment>::description,
+             &Algorithm<Environment>::description,
              "Return a textual description of this algorithm.");
 }
 
 
 void bindAlgorithms(py::module& module) {
 
-    bindAlgorithm<GQCP::EigenproblemEnvironment>(module, "EigenproblemEnvironment", "An algorithm that only performs one collection of steps using an EigenproblemEnvironment.");
-    bindAlgorithm<GQCP::LinearEquationEnvironment<double>>(module, "LinearEquationEnvironment", "An algorithm that only performs one collection of steps using a LinearEquationEnvironment.");
+    bindAlgorithm<EigenproblemEnvironment>(module, "EigenproblemEnvironment", "An algorithm that only performs one collection of steps using an EigenproblemEnvironment.");
+    bindAlgorithm<LinearEquationEnvironment<double>>(module, "LinearEquationEnvironment", "An algorithm that only performs one collection of steps using a LinearEquationEnvironment.");
 }
 
 

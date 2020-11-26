@@ -20,19 +20,21 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
 
 
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
+
+
 void bindQCModelAP1roG(py::module& module) {
-    py::class_<GQCP::QCModel::AP1roG>(module, "QCModel_AP1roG", "The AP1roG wave function model.")
+    py::class_<QCModel::AP1roG>(module, "QCModel_AP1roG", "The AP1roG wave function model.")
 
         // PUBLIC METHODS
 
         .def("geminalCoefficients",
-             &GQCP::QCModel::AP1roG::geminalCoefficients,
+             &QCModel::AP1roG::geminalCoefficients,
              "Return the corresponding geminal coefficients of these AP1roG model parameters.");
 }
 

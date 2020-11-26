@@ -15,17 +15,18 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
-
 #include "Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"
+#include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
 
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
+
+
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
 
 
 void bindEigenproblemSolver(py::module& module) {
@@ -33,11 +34,11 @@ void bindEigenproblemSolver(py::module& module) {
     auto module_eigenproblem_solver = module.def_submodule("EigenproblemSolver");
 
     module_eigenproblem_solver.def("Dense",
-                                   &GQCP::EigenproblemSolver::Dense,
+                                   &EigenproblemSolver::Dense,
                                    "Return an algorithm that can diagonalize a dense matrix.");
 
     module_eigenproblem_solver.def("Davidson",
-                                   &GQCP::EigenproblemSolver::Davidson,
+                                   &EigenproblemSolver::Davidson,
                                    py::arg("number_of_requested_eigenpairs") = 1,
                                    py::arg("maximum_subspace_dimension") = 15,
                                    py::arg("convergence_threshold") = 1.0e-08,

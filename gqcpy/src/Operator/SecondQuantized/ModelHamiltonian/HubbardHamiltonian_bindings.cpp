@@ -21,18 +21,20 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
 
 
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
+
+
 void bindHubbardHamiltonian(py::module& module) {
-    py::class_<GQCP::HubbardHamiltonian<double>>(module, "HubbardHamiltonian", "The Hubbard model Hamiltonian.")
+    py::class_<HubbardHamiltonian<double>>(module, "HubbardHamiltonian", "The Hubbard model Hamiltonian.")
 
         // CONSTRUCTORS
 
-        .def(py::init<const GQCP::HoppingMatrix<double>&>(),
+        .def(py::init<const HoppingMatrix<double>&>(),
              py::arg("H"));
 }
 
