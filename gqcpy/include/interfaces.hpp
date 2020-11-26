@@ -165,12 +165,12 @@ void bindSpinResolvedBaseInterface(Class& py_class) {
             },
             "A writable reference to the alpha object.")
 
-        .def(
-            "beta",
-            [](const Type& spin_resolved_object) {
-                return spin_resolved_object.beta();
-            },
-            "A read-only reference to the beta object.")
+        // .def(
+        //     "beta",
+        //     [](const Type& spin_resolved_object) {
+        //         return spin_resolved_object.beta();
+        //     },
+        //     "A read-only reference to the beta object.")
 
         .def(
             "beta",
@@ -179,15 +179,15 @@ void bindSpinResolvedBaseInterface(Class& py_class) {
             },
             "A writable reference to the beta object.")
 
-        // .def_property(
-        //     "beta",
-        //     [](const Type& spin_resolved_object) {
-        //         return spin_resolved_object.beta();
-        //     },
-        //     [](Type& spin_resolved_object, const ComponentType& new_component) {
-        //         spin_resolved_object.beta() = new_component;
-        //     },
-        //     "A writable reference to the beta object.")
+        .def_property(
+            "beta",
+            [](const Type& spin_resolved_object) {
+                return spin_resolved_object.beta();
+            },
+            [](Type& spin_resolved_object, const ComponentType& new_component) {
+                spin_resolved_object.beta() = new_component;
+            },
+            "A writable reference to the beta object.")
 
         .def(
             "component",
