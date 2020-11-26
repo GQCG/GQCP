@@ -3,7 +3,6 @@ target_sources(gqcp
         DensityMatrixTraits.hpp
         G1DM.hpp
         G2DM.hpp
-        OneDM.hpp
         Orbital1DM.hpp
         Orbital2DM.hpp
         SpinResolved1DM.hpp
@@ -12,5 +11,4 @@ target_sources(gqcp
         SpinDensity1DM.hpp
         SpinResolved1DM.hpp
         SpinResolved2DM.hpp
-        TwoDM.hpp
 )

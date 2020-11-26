@@ -20,7 +20,6 @@
 
 #include "Basis/Transformations/BasisTransformable.hpp"
 #include "Basis/Transformations/JacobiRotatable.hpp"
-#include "DensityMatrix/TwoDM.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/SecondQuantized/SQOperatorStorage.hpp"
 
@@ -338,38 +337,6 @@ struct OperatorTraits<SimpleSQOneElectronOperator<_Scalar, _Vectorizer, _Derived
 
     // The type of the operator that derives from `SimpleSQOneElectronOperator`, enabling CRTP and compile-time polymorphism.
     using DerivedOperator = _DerivedOperator;
-};
-
-
-/*
- *  MARK: BasisTransformableTraits
- */
-
-/**
- *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
- */
-template <typename _Scalar, typename _Vectorizer, typename _DerivedOperator>
-struct BasisTransformableTraits<SimpleSQOneElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>> {
-
-    // The type of the transformation for which the basis transformation should be defined.
-    using Transformation = typename OperatorTraits<_DerivedOperator>::Transformation;
-};
-
-
-/*
- *  MARK: JacobiRotatableTraits
- */
-
-/**
- *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
- * 
- *  @tparam T       The type that should conform to `JacobiRotatable`.
- */
-template <typename _Scalar, typename _Vectorizer, typename _DerivedOperator>
-struct JacobiRotatableTraits<SimpleSQOneElectronOperator<_Scalar, _Vectorizer, _DerivedOperator>> {
-
-    // The type of Jacobi rotation for which the Jacobi rotation should be defined.
-    using JacobiRotationType = JacobiRotation;
 };
 
 

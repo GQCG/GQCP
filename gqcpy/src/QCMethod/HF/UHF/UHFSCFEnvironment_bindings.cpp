@@ -36,7 +36,7 @@ void bindUHFSCFEnvironment(py::module& module) {
         // CONSTRUCTORS
 
         .def(py::init([](const size_t N_alpha, const size_t N_beta, const RSQHamiltonian<double>& sq_hamiltonian, const Eigen::MatrixXd& S, const Eigen::MatrixXd& C_alpha_initial, const Eigen::MatrixXd& C_beta_initial) {
-                 return UHFSCFEnvironment<double>(N_alpha, N_beta, sq_hamiltonian, SquareMatrix<double>(S), TransformationMatrix<double>(C_alpha_initial), TransformationMatrix<double>(C_beta_initial));
+                 return UHFSCFEnvironment<double>(N_alpha, N_beta, sq_hamiltonian, SquareMatrix<double>(S), UTransformationComponent<double>(C_alpha_initial), UTransformationComponent<double>(C_beta_initial));
              }),
              py::arg("N_alpha"),
              py::arg("N_beta"),

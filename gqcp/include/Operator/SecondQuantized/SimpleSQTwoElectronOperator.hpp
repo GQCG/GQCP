@@ -321,7 +321,7 @@ public:
 
 
     /*
-     *  MARK: Conforming to JacobiRotatable
+     *  MARK: Conforming to `JacobiRotatable`
      */
 
     /**
@@ -329,7 +329,7 @@ public:
      * 
      *  @param jacobi_rotation          The Jacobi rotation.
      * 
-     *  @return The jacobi-transformed object.
+     *  @return The Jacobi-transformed object.
      */
     DerivedOperator rotated(const JacobiRotation& jacobi_rotation) const override {
 

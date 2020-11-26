@@ -81,8 +81,8 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_throw) {
     const auto g = GQCP::ScalarUSQTwoElectronOperator<double>::Zero(dim);
 
     // Initialize valid and invalid test 2-DMs.
-    const GQCP::TwoDM<double> d_valid {2};
-    const GQCP::TwoDM<double> d_invalid {3};
+    const GQCP::SpinResolved2DMComponent<double> d_valid {2};
+    const GQCP::SpinResolved2DMComponent<double> d_invalid {3};
 
     const GQCP::SpinResolved2DM<double> d_invalid_aa {d_invalid, d_valid, d_valid, d_valid};
     const GQCP::SpinResolved2DM<double> d_invalid_ab {d_valid, d_invalid, d_valid, d_valid};
@@ -136,7 +136,7 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
 
 
     // Initialize test 2-DMs: each one is chosen to have the correct four-index symmetries.
-    auto d1 = GQCP::TwoDM<double>::Zero(dim);
+    auto d1 = GQCP::SpinResolved2DMComponent<double>::Zero(dim);
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
@@ -148,7 +148,7 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
         }
     }
 
-    auto d2 = GQCP::TwoDM<double>::Zero(dim);
+    auto d2 = GQCP::SpinResolved2DMComponent<double>::Zero(dim);
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {

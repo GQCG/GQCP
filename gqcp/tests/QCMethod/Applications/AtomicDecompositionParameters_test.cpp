@@ -20,7 +20,6 @@
 // #include <boost/test/unit_test.hpp>
 
 // #include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
-// #include "DensityMatrix/TwoDM.hpp"
 // #include "Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"
 // #include "ONVBasis/SpinResolvedONVBasis.hpp"
 // #include "QCMethod/Applications/AtomicDecompositionParameters.hpp"
@@ -77,8 +76,9 @@
 //     auto D = linear_expansion.calculate1DM();
 //     D.transform(T.inverse());  // Transform from MO basis back to AO basis using T.inverse().
 
-//     GQCP::TwoDM<double> d {linear_expansion.calculate2DM()};
-//     d.basisTransform(T.adjoint());  // T.adjoint() to transform BACK to AO basis FIXME: when refactoring 2e operators; implement BasisTransformable on 2DM using a cast from 2DM to 2e operator to access the transformation formula
+//     auto d = linear_expansion.calculate2DM;
+//     d.transform(T.inverse());
+// // d.basisTransform(T.adjoint());  // T.adjoint() to transform BACK to AO basis FIXME: when refactoring 2e operators; implement BasisTransformable on 2DM using a cast from 2DM to 2e operator to access the transformation formula
 
 
 //     // Check the decomposed energy values.
