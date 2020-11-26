@@ -87,10 +87,9 @@ public:
      */
     DerivedDM transformed(const Transformation& T) const override {
 
-        // Note that this basis transformation formula is different from the one-electron operator one. See `SimpleSQOneElectronOperator`.
-        const auto T_inverse_matrix = T.matrix().inverse();
-
-        return DerivedDM {T_inverse_matrix.conjugate() * (*this) * T_inverse_matrix.transpose()};
+        // The transformation formulas for one-electron operators and 1-DMs are similar, but not quite the same. Instead of using T, the transformation formula for the 1-DM uses T_inverse_transpose. See also (https://gqcg-res.github.io/knowdes/spinor-transformations.html).
+        const auto T_related = T.matrix().transpose().inverse();
+        return DerivedDM {T_related.adjoint() * (*this) * T_related};
     }
 
     // Allow the `rotate` method from `BasisTransformable`, since there's also a `rotate` from `JacobiRotatable`.

@@ -51,16 +51,17 @@ void bindUTransformation(py::module& module);
 void bindUTransformationComponent(py::module& module);
 
 
-// Processing - DensityMatrices
+// DensityMatrix
 void bindG1DM(py::module& module);
 void bindG2DM(py::module& module);
+void bindMixedSpinResolved2DMComponent(py::module& module);
 void bindOrbital1DM(py::module& module);
 void bindOrbital2DM(py::module& module);
+void bindPureSpinResolved2DMComponent(py::module& module);
 void bindSpinDensity1DM(py::module& module);
 void bindSpinResolved1DM(py::module& module);
 void bindSpinResolved1DMComponent(py::module& module);
 void bindSpinResolved2DM(py::module& module);
-void bindSpinResolved2DMComponent(py::module& module);
 
 
 // Mathematical - Algorithm
@@ -241,13 +242,14 @@ PYBIND11_MODULE(gqcpy, module) {
     // DensityMatrix
     gqcpy::bindG1DM(module);
     gqcpy::bindG2DM(module);
+    gqcpy::bindMixedSpinResolved2DMComponent(module);
     gqcpy::bindOrbital1DM(module);
     gqcpy::bindOrbital2DM(module);
+    gqcpy::bindPureSpinResolved2DMComponent(module);
     gqcpy::bindSpinDensity1DM(module);
     gqcpy::bindSpinResolved1DM(module);
     gqcpy::bindSpinResolved1DMComponent(module);
     gqcpy::bindSpinResolved2DM(module);
-    gqcpy::bindSpinResolved2DMComponent(module);
 
 
     // Mathematical - Algorithm
