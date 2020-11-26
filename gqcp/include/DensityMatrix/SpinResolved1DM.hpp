@@ -50,6 +50,9 @@ public:
     // The type of 'this'.
     using Self = SpinResolved1DM<Scalar>;
 
+    // The type component this spin resolved object is made of.
+    using ComponentType = typename SpinResolvedBase<SpinResolved1DMComponent<Scalar>, Self>::Of;
+
 
 public:
     /*

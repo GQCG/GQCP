@@ -52,6 +52,9 @@ public:
     // The type of 'this'.
     using Self = UTransformation<Scalar>;
 
+    // The type component this spin resolved object is made of.
+    using ComponentType = typename SpinResolvedBase<UTransformationComponent<Scalar>, Self>::Of;
+
 
 public:
     /*

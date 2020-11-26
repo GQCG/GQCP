@@ -17,6 +17,7 @@
 
 #include "Molecule/Nucleus.hpp"
 
+#include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 
@@ -49,7 +50,11 @@ void bindNucleus(py::module& module) {
 
         .def("element",
              &Nucleus::element,
-             "Return the string representation of the element that corresponds to this nucleus.");
+             "Return the string representation of the element that corresponds to this nucleus.")
+
+        .def("position",
+             &Nucleus::position,
+             "Return the vector describing the position of the nucleus.");
 }
 
 

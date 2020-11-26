@@ -138,6 +138,7 @@ void bindSpinResolvedBaseInterface(Class& py_class) {
 
     // The C++ type corresponding to the Python class.
     using Type = typename Class::type;
+    using ComponentType = typename Type::Of;
 
     py_class
         .def(
@@ -147,10 +148,20 @@ void bindSpinResolvedBaseInterface(Class& py_class) {
             },
             "A read-only reference to the alpha object.")
 
-        .def(
+        // .def(
+        //     "alpha",
+        //     [](Type& spin_resolved_object) {
+        //         return spin_resolved_object.alpha();
+        //     },
+        //     "A writable reference to the alpha object.")
+
+        .def_property(
             "alpha",
-            [](Type& spin_resolved_object) {
+            [](const Type& spin_resolved_object) {
                 return spin_resolved_object.alpha();
+            },
+            [](Type& spin_resolved_object, const ComponentType& new_component) {
+                spin_resolved_object.alpha() = new_component;
             },
             "A writable reference to the alpha object.")
 
@@ -168,6 +179,16 @@ void bindSpinResolvedBaseInterface(Class& py_class) {
             },
             "A writable reference to the beta object.")
 
+        .def_property(
+            "beta",
+            [](const Type& spin_resolved_object) {
+                return spin_resolved_object.beta();
+            },
+            [](Type& spin_resolved_object, const ComponentType& new_component) {
+                spin_resolved_object.beta() = new_component;
+            },
+            "A writable reference to the beta object.")
+
         .def(
             "component",
             [](const Type& spin_resolved_object, const Spin sigma) {
@@ -176,12 +197,14 @@ void bindSpinResolvedBaseInterface(Class& py_class) {
             py::arg("sigma"),
             "A read-only reference to the alpha or beta object.")
 
-        .def(
+        .def_property(
             "component",
-            [](Type& spin_resolved_object, const Spin sigma) {
+            [](const Type& spin_resolved_object, const Spin sigma) {
                 return spin_resolved_object.component(sigma);
             },
-            py::arg("sigma"),
+            [](Type& spin_resolved_object, const Spin sigma, const ComponentType& new_component) {
+                spin_resolved_object.component(sigma) = new_component;
+            },
             "A writable reference to the alpha or beta object.");
 }
 
