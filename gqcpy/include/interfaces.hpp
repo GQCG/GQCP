@@ -141,19 +141,6 @@ void bindSpinResolvedBaseInterface(Class& py_class) {
     using ComponentType = typename Type::ComponentType;
 
     py_class
-        .def(
-            "alpha",
-            [](const Type& spin_resolved_object) {
-                return spin_resolved_object.alpha();
-            },
-            "A read-only reference to the alpha object.")
-
-        // .def(
-        //     "alpha",
-        //     [](Type& spin_resolved_object) {
-        //         return spin_resolved_object.alpha();
-        //     },
-        //     "A writable reference to the alpha object.")
 
         .def_property(
             "alpha",
@@ -165,20 +152,6 @@ void bindSpinResolvedBaseInterface(Class& py_class) {
             },
             "A writable reference to the alpha object.")
 
-        // .def(
-        //     "beta",
-        //     [](const Type& spin_resolved_object) {
-        //         return spin_resolved_object.beta();
-        //     },
-        //     "A read-only reference to the beta object.")
-
-        .def(
-            "beta",
-            [](Type& spin_resolved_object) {
-                return spin_resolved_object.beta();
-            },
-            "A writable reference to the beta object.")
-
         .def_property(
             "beta",
             [](const Type& spin_resolved_object) {
@@ -189,13 +162,15 @@ void bindSpinResolvedBaseInterface(Class& py_class) {
             },
             "A writable reference to the beta object.")
 
-        .def(
+        .def_property(
             "component",
-            [](const Type& spin_resolved_object, const Spin sigma) {
+            [](const Type& spin_resolved_object) {
                 return spin_resolved_object.component(sigma);
             },
-            py::arg("sigma"),
-            "A read-only reference to the alpha or beta object.");
+            [](Type& spin_resolved_object, const ComponentType& new_component, const Spin sigma) {
+                spin_resolved_object.component(sigma) = new_component;
+            },
+            "A writable reference to the alpha orbeta object.");
 }
 
 
