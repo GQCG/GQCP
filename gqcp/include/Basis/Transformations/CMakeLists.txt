@@ -12,5 +12,4 @@ target_sources(gqcp
         UTransformation.hpp
         UTransformationComponent.hpp
         transform.hpp
-        TransformationMatrix.hpp
 )
