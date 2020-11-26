@@ -193,33 +193,39 @@ public:
      */
 
     /**
-     *  @return A boolean, telling us whether or not the real or complex valued internal stability matrix belongs to a stable or unstable set of parameters.
+     *  @param threshold        The threshold used to check if the matrix is positive semi-definite. If the lowest eigenvalue is more negative than the threshold, it is not positive semi-definite.
+     * 
+     *  @return A boolean, telling us if the real or complex valued internal stability matrix belongs to a stable or unstable set of parameters.
      */
     const bool isInternallyStable(const double threshold = -1.0e-5) const {
 
         // The first step is to calculate the correct stability matrix: This method checks the internal stability of a real or complex valued wavefunction.
         const auto stability_matrix = this->internal();
 
-        // Check whether or not the stability matrix is positive semi-definite. This indicates stability.
+        // Check if the stability matrix is positive semi-definite. This indicates stability.
         return stability_matrix.isPositiveSemiDefinite(threshold);
     }
 
 
     /**
-     *  @return A boolean, telling us whether or not the real or complex valued unrestricted->generalized stability matrix belongs to a stable or unstable set of parameters.
+     *  @param threshold        The threshold used to check if the matrix is positive semi-definite. If the lowest eigenvalue is more negative than the threshold, it is not positive semi-definite.
+     * 
+     *  @return A boolean, telling us if the real or complex valued unrestricted->generalized stability matrix belongs to a stable or unstable set of parameters.
      */
     const bool isSpinUnconservedStable(const double threshold = -1.0e-5) const {
 
         // The first step is to calculate the correct stability matrix: This method checks the unrestricted->generalized stability of a real or complex valued wavefunction.
         const auto stability_matrix = this->unrestrictedGeneralized();
 
-        // Check whether or not the stability matrix is positive semi-definite. This indicates stability.
+        // Check if the stability matrix is positive semi-definite. This indicates stability.
         return stability_matrix.isPositiveSemiDefinite(threshold);
     }
 
 
     /**
-     *  @return A boolean, telling us whether or not the real->complex stability matrix belongs to a stable or unstable set of parameters.
+     *  @param threshold        The threshold used to check if the matrix is positive semi-definite. If the lowest eigenvalue is more negative than the threshold, it is not positive semi-definite.
+     * 
+     *  @return A boolean, telling us if the real->complex stability matrix belongs to a stable or unstable set of parameters.
      */
     template <typename S = Scalar>
     enable_if_t<std::is_same<S, double>::value, bool> isComplexConjugateStable(const double threshold = -1.0e-5) const {
@@ -227,12 +233,14 @@ public:
         // The first step is to calculate the correct stability matrix: This method checks the real->complex stability of a real valued wavefunction.
         const auto stability_matrix = this->realComplex();
 
-        // Check whether or not the stability matrix is positive semi-definite. This indicates stability.
+        // Check if the stability matrix is positive semi-definite. This indicates stability.
         return stability_matrix.isPositiveSemiDefinite(threshold);
     }
 
 
     /**
+     *  @param threshold        The threshold used to check if the matrix is positive semi-definite. If the lowest eigenvalue is more negative than the threshold, it is not positive semi-definite. 
+     *
      *  @return A boolean, telling us whether the real valued parameters are completely externally stable.
      */
     template <typename S = Scalar>
@@ -244,7 +252,9 @@ public:
 
 
     /**
-     *  @return A boolean, telling us whether or not the complex valued external stability matrices belongs to a stable or unstable set of parameters.
+     *  @param threshold        The threshold used to check if the matrix is positive semi-definite. If the lowest eigenvalue is more negative than the threshold, it is not positive semi-definite.
+     * 
+     *  @return A boolean, telling us if the complex valued external stability matrices belongs to a stable or unstable set of parameters.
      */
     template <typename S = Scalar>
     enable_if_t<std::is_same<S, complex>::value, bool> isExternallyStable(const double threshold = -1.0e-5) const {

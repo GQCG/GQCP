@@ -355,7 +355,7 @@ public:
      *  @note The formula for the `A` matrix is as follows:
      *      A_IAJB = \delta_IJ * F_BA - \delta_BA * F_IJ + (AI||JB).
      * 
-     *  @param gsq_hamiltonian      The generalised, second quantized hamiltonian, which contains the necessary two electron operators.
+     *  @param gsq_hamiltonian      The second quantized Hamiltonian, expressed in the non-orthogonal, 'generalized' spinor basis of the AOs, which contains the necessary two-electron operators.
      * 
      *  @return The partial stability matrix A.
      */
@@ -413,7 +413,7 @@ public:
      *  @note The formula for the `B` matrix is as follows:
      *      B_IAJB = (AI||BJ).
      *
-     *  @param gsq_hamiltonian      The generalised, second quantized hamiltonian, which contains the necessary two electron operators.
+     *  @param gsq_hamiltonian      The second quantized Hamiltonian, expressed in the non-orthogonal, 'generalized' spinor basis of the AOs, which contains the necessary two-electron operators.
      * 
      *  @return The partial stability matrix B.
      */

@@ -33,7 +33,7 @@
  */
 BOOST_AUTO_TEST_CASE(H3_stability_test) {
 
-    // Set up a general spinor basis to obtain a spin-blocked second-quantized molecular Hamiltonian.
+    // Set up a spin orbital basis to obtain a second-quantized molecular Hamiltonian.
     const auto molecule = GQCP::Molecule::HRingFromDistance(3, 1.0);  // H3-triangle, 1 bohr apart.
     const auto N_alpha = molecule.numberOfElectronPairs() + (molecule.numberOfElectrons() - 2 * molecule.numberOfElectronPairs());
     const auto N_beta = molecule.numberOfElectronPairs();
@@ -77,7 +77,7 @@ BOOST_AUTO_TEST_CASE(H3_stability_test) {
  */
 BOOST_AUTO_TEST_CASE(H4_stability_test) {
 
-    // Set up a general spinor basis to obtain a spin-blocked second-quantized molecular Hamiltonian.
+    // Set up a spin orbital basis to obtain a second-quantized molecular Hamiltonian.
     const auto molecule = GQCP::Molecule::HRingFromDistance(4, 1.0);  // H4-square, 1 bohr apart.
     const auto N_alpha = molecule.numberOfElectronPairs();
     const auto N_beta = molecule.numberOfElectronPairs();

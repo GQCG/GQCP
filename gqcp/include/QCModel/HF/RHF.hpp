@@ -364,7 +364,7 @@ public:
      *  @note The formula for the `singlet A` matrix is as follows:
      *      A_IAJB = \delta_IJ * (F_R)_BA - \delta_AB * (F_R)_IJ + 2 * (AI|JB) - (AB|JI).
      * 
-     *  @param rsq_hamiltonian      The second quantized Hamiltonian, which contains the necessary two electron operators.
+     *  @param rsq_hamiltonian      The second quantized Hamiltonian, expressed in the non-orthogonal, 'restricted' spin-orbital basis of the AOs, which contains the necessary two-electron operators.
      * 
      *  @return The singlet-A stability matrix.
      */
@@ -421,7 +421,7 @@ public:
      *  @note The formula for the `singlet B` matrix is as follows:
      *      B_IAJB = 2 * (AI|BJ) - (AJ|BI).
      * 
-     *  @param rsq_hamiltonian      The second quantized Hamiltonian, which contains the necessary two electron operators.
+     *  @param rsq_hamiltonian      The second quantized Hamiltonian, expressed in the non-orthogonal, 'restricted' spin-orbital basis of the AOs, which contains the necessary two-electron operators.
      * 
      *  @return The singlet-B stability matrix.
      */
@@ -467,7 +467,7 @@ public:
      *  @note The formula for the `triplet A` matrix is as follows:
      *      A_IAJB = \delta_IJ * (F_R)_BA - \delta_AB * (F_R)_IJ - (AB|JI).
      * 
-     *  @param rsq_hamiltonian      The second quantized Hamiltonian, which contains the necessary two electron operators.
+     *  @param rsq_hamiltonian      The second quantized Hamiltonian, expressed in the non-orthogonal, 'restricted' spin-orbital basis of the AOs, which contains the necessary two-electron operators.
      * 
      *  @return the triplet-A stability matrix.
      */
@@ -524,7 +524,7 @@ public:
      *  @note The formula for the `triplet B` matrix is as follows:
      *      B_IAJB = - (AJ|BI).
      * 
-     *  @param rsq_hamiltonian      The second quantized Hamiltonian, which contains the necessary two electron operators.
+     *  @param rsq_hamiltonian      The second quantized Hamiltonian, expressed in the non-orthogonal, 'restricted' spin-orbital basis of the AOs, which contains the necessary two-electron operators.
      * 
      *  @return The triplet-B stability matrix.
      */

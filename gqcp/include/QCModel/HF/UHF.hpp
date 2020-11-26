@@ -357,7 +357,7 @@ public:
      * 
      *  @note The name `Spin-conserved`comes from the article "Constraints and stability in Hartree-Fock theory" by Seeger, R. and Pople J.A. (https://doi.org/10.1063/1.434318).
      * 
-     *  @param rsq_hamiltonian      The second quantized Hamiltonian, which contains the necessary two-electron operators.
+     *  @param rsq_hamiltonian      The second quantized Hamiltonian, expressed in the non-orthogonal, 'restricted' spin-orbital basis of the AOs, which contains the necessary two-electron operators.
      *  @param sigma                The spin-sigma component. 
      *  @param sigma_bar            The spin component, opposite to sigma.
      * 
@@ -433,7 +433,7 @@ public:
      * 
      *  @note The name `Spin-conserved`comes from the article "Constraints and stability in Hartree-Fock theory" by Seeger, R. and Pople J.A. (https://doi.org/10.1063/1.434318).
      * 
-     *  @param rsq_hamiltonian      The second quantized Hamiltonian, which contains the necessary two-electron operators.
+     *  @param rsq_hamiltonian      The second quantized Hamiltonian, expressed in the non-orthogonal, 'restricted' spin-orbital basis of the AOs, which contains the necessary two-electron operators.
      *  @param sigma                The spin-sigma component. 
      *  @param sigma_bar            The spin component, opposite to sigma.
      * 
@@ -448,8 +448,8 @@ public:
 
         // Depending on whether we are making the aabb or bbaa B'-component, we need a different component of the orbital_space.
         const auto orbital_space = this->orbitalSpace();
-        const auto orbital_space_sigma = this->orbitalSpace(sigma);
-        const auto orbital_space_sigma_bar = this->orbitalSpace(sigma_bar);
+        const auto& orbital_space_sigma = orbital_space.component(sigma);
+        const auto& orbital_space_sigma_bar = orbital_space.component(sigma_bar);
 
         // Determine the number of occupied and virtual orbitals for both spin components.
         const auto n_occ_sigma = orbital_space_sigma.numberOfOrbitals(OccupationType::k_occupied);
@@ -507,7 +507,7 @@ public:
      * 
      *  @note The name `Spin-conserved`comes from the article "Constraints and stability in Hartree-Fock theory" by Seeger, R. and Pople J.A. (https://doi.org/10.1063/1.434318).
      * 
-     *  @param rsq_hamiltonian      The second quantized Hamiltonian, which contains the necessary two-electron operators.
+     *  @param rsq_hamiltonian      The second quantized Hamiltonian, expressed in the non-orthogonal, 'restricted' spin-orbital basis of the AOs, which contains the necessary two-electron operators.
      *  @param sigma                The spin-sigma component. This method creates a pure spin component, so all sigma's in the formula are either alpha or beta.
      * 
      *  @return The pure spin sigma component of stability matrix A'.
@@ -515,7 +515,7 @@ public:
     GQCP::Matrix<Scalar> calculatePureSpinConservedAComponent(const RSQHamiltonian<Scalar>& rsq_hamiltonian, const Spin sigma) const {
 
         // Depending on whether we are making the alpha or beta A'-component, we need a different component of the orbital_space.
-        const auto orbital_space_sigma = this->orbitalSpace(sigma);
+        const auto orbital_space_sigma = this->orbitalSpace().component(sigma);
 
         // Determine the number of occupied and virtual orbitals.
         const auto n_occ = orbital_space_sigma.numberOfOrbitals(OccupationType::k_occupied);
@@ -528,7 +528,7 @@ public:
 
         // The elements F_BA and F_IJ are the eigenvalues of the one-electron Fock operator.
         // The excitationEnergies API can be used to find these values.
-        const auto F_values = this->excitationEnergies(sigma);
+        const auto F_values = this->excitationEnergies().component(sigma);
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object.
@@ -568,7 +568,7 @@ public:
      * 
      *  @note The name `Spin-conserved`comes from the article "Constraints and stability in Hartree-Fock theory" by Seeger, R. and Pople J.A. (https://doi.org/10.1063/1.434318).
      * 
-     *  @param rsq_hamiltonian      The second quantized Hamiltonian, which contains the necessary two-electron operators.
+     *  @param rsq_hamiltonian      The second quantized Hamiltonian, expressed in the non-orthogonal, 'restricted' spin-orbital basis of the AOs, which contains the necessary two-electron operators.
      *  @param sigma                The spin-sigma component. This method creates a pure spin component, so all sigma's in the formula are either alpha or beta.
      * 
      *  @return The pure spin sigma component of stability matrix B'.
@@ -576,7 +576,7 @@ public:
     GQCP::Matrix<Scalar> calculatePureSpinConservedBComponent(const RSQHamiltonian<Scalar>& rsq_hamiltonian, const Spin sigma) const {
 
         // Depending on whether we are making the alpha or beta B'-component, we need a different component of the orbital_space.
-        const auto orbital_space_sigma = this->orbitalSpace(sigma);
+        const auto orbital_space_sigma = this->orbitalSpace().component(sigma);
 
         // Determine the number of occupied and virtual orbitals.
         const auto n_occ = orbital_space_sigma.numberOfOrbitals(OccupationType::k_occupied);
@@ -619,7 +619,7 @@ public:
      * 
      *  @note The name `Spin-conserved`comes from the article "Constraints and stability in Hartree-Fock theory" by Seeger, R. and Pople J.A. (https://doi.org/10.1063/1.434318).
      * 
-     *  @param rsq_hamiltonian      The second quantized Hamiltonian, which contains the necessary two-electron operators.
+     *  @param rsq_hamiltonian      The second quantized Hamiltonian, expressed in the non-orthogonal, 'restricted' spin-orbital basis of the AOs, which contains the necessary two-electron operators.
      * 
      *  @return The complete stability matrix A'.
      */
@@ -632,10 +632,11 @@ public:
         const auto A_bbaa = this->calculateMixedSpinConservedAComponent(rsq_hamiltonian, Spin::beta, Spin::alpha);  // Dimension = (n_occ_b * n_virt_b, n_occ_a * n_virt_a).
 
         // Determine the total matrix dimension and initialize the total matrix.
-        const auto n_occ_a = this->orbitalSpace(Spin::alpha).numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt_a = this->orbitalSpace(Spin::alpha).numberOfOrbitals(OccupationType::k_virtual);
-        const auto n_occ_b = this->orbitalSpace(Spin::beta).numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt_b = this->orbitalSpace(Spin::beta).numberOfOrbitals(OccupationType::k_virtual);
+        const auto orbital_space = this->orbitalSpace();
+        const auto& n_occ_a = orbital_space.component(Spin::alpha).numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt_a = orbital_space.component(Spin::alpha).numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ_b = orbital_space.component(Spin::beta).numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt_b = orbital_space.component(Spin::beta).numberOfOrbitals(OccupationType::k_virtual);
 
         const auto dimension = (n_occ_a * n_virt_a) + (n_occ_b * n_virt_b);
         GQCP::MatrixX<Scalar> total_A {dimension, dimension};
@@ -659,7 +660,7 @@ public:
      * 
      *  @note The name `Spin-conserved`comes from the article "Constraints and stability in Hartree-Fock theory" by Seeger, R. and Pople J.A. (https://doi.org/10.1063/1.434318).
      * 
-     *  @param rsq_hamiltonian      The second quantized Hamiltonian, which contains the necessary two-electron operators.
+     *  @param rsq_hamiltonian      The second quantized Hamiltonian, expressed in the non-orthogonal, 'restricted' spin-orbital basis of the AOs, which contains the necessary two-electron operators.
      * 
      *  @return The complete stability matrix B'.
      */
@@ -672,10 +673,11 @@ public:
         const auto B_bbaa = this->calculateMixedSpinConservedBComponent(rsq_hamiltonian, Spin::beta, Spin::alpha);  // Dimension = (n_occ_b * n_virt_b, n_occ_a * n_virt_a).
 
         // Determine the total matrix dimension and initialize the total matrix.
-        const auto n_occ_a = this->orbitalSpace(Spin::alpha).numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt_a = this->orbitalSpace(Spin::alpha).numberOfOrbitals(OccupationType::k_virtual);
-        const auto n_occ_b = this->orbitalSpace(Spin::beta).numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt_b = this->orbitalSpace(Spin::beta).numberOfOrbitals(OccupationType::k_virtual);
+        const auto orbital_space = this->orbitalSpace();
+        const auto& n_occ_a = orbital_space.component(Spin::alpha).numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt_a = orbital_space.component(Spin::alpha).numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ_b = orbital_space.component(Spin::beta).numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt_b = orbital_space.component(Spin::beta).numberOfOrbitals(OccupationType::k_virtual);
 
         const auto dimension = (n_occ_a * n_virt_a) + (n_occ_b * n_virt_b);
         GQCP::MatrixX<Scalar> total_B {dimension, dimension};
@@ -700,7 +702,7 @@ public:
      * 
      *  @note The name `Spin-unconserved`comes from the article "Constraints and stability in Hartree-Fock theory" by Seeger, R. and Pople J.A. (https://doi.org/10.1063/1.434318).
      * 
-     *  @param rsq_hamiltonian      The second quantized Hamiltonian, which contains the necessary two-electron operators.
+     *  @param rsq_hamiltonian      The second quantized Hamiltonian, expressed in the non-orthogonal, 'restricted' spin-orbital basis of the AOs, which contains the necessary two-electron operators.
      *  @param sigma                The spin-sigma component. 
      *  @param sigma_bar            The spin component, opposite to sigma.
      * 
@@ -715,8 +717,8 @@ public:
 
         // Depending on whether we're making the abab or baba A''-component, we need a different component of the orbital_space.
         const auto orbital_space = this->orbitalSpace();
-        const auto orbital_space_sigma = this->orbitalSpace(sigma);
-        const auto orbital_space_sigma_bar = this->orbitalSpace(sigma_bar);
+        const auto& orbital_space_sigma = orbital_space.component(sigma);
+        const auto& orbital_space_sigma_bar = orbital_space.component(sigma_bar);
 
         // Determine the number of occupied and virtual orbitals.
         const auto n_occ_sigma = orbital_space_sigma.numberOfOrbitals(OccupationType::k_occupied);
@@ -761,8 +763,8 @@ public:
         // The elements F_BA and F_IJ are the eigenvalues of the one-electron Fock operator.
         // We have to construct a mixed matrix in this particular case.
         GQCP::MatrixX<Scalar> F_values {n_virt_sigma, n_occ_sigma_bar};
-        const auto virtual_energies = this->virtualOrbitalEnergies(sigma);
-        const auto occupied_energies = this->occupiedOrbitalEnergies(sigma_bar);
+        const auto virtual_energies = this->virtualOrbitalEnergies().component(sigma);
+        const auto occupied_energies = this->occupiedOrbitalEnergies().component(sigma_bar);
 
         for (int a = 0; a < n_virt_sigma; a++) {
             for (int i = 0; i < n_occ_sigma_bar; i++) {
@@ -794,7 +796,7 @@ public:
      * 
      *  @note The name `Spin-unconserved`comes from the article "Constraints and stability in Hartree-Fock theory" by Seeger, R. and Pople J.A. (https://doi.org/10.1063/1.434318).
      * 
-     *  @param rsq_hamiltonian      The second quantized Hamiltonian, which contains the necessary two-electron operators.
+     *  @param rsq_hamiltonian      The second quantized Hamiltonian, expressed in the non-orthogonal, 'restricted' spin-orbital basis of the AOs, which contains the necessary two-electron operators.
      *  @param sigma                The spin-sigma component. 
      *  @param sigma_bar            The spin component, opposite to sigma.
      * 
@@ -809,8 +811,8 @@ public:
 
         // Depending on whether we're making the abba or baab B''-component, we need a different component of the orbital_space.
         const auto orbital_space = this->orbitalSpace();
-        const auto orbital_space_sigma = this->orbitalSpace(sigma);
-        const auto orbital_space_sigma_bar = this->orbitalSpace(sigma_bar);
+        const auto& orbital_space_sigma = orbital_space.component(sigma);
+        const auto& orbital_space_sigma_bar = orbital_space.component(sigma_bar);
 
         // Determine the number of occupied and virtual orbitals.
         const auto n_occ_sigma = orbital_space_sigma.numberOfOrbitals(OccupationType::k_occupied);
@@ -870,7 +872,7 @@ public:
      * 
      *  @note The name `Spin-unconserved`comes from the article "Constraints and stability in Hartree-Fock theory" by Seeger, R. and Pople J.A. (https://doi.org/10.1063/1.434318).
      * 
-     *  @param rsq_hamiltonian      The second quantized Hamiltonian, which contains the necessary two-electron operators.
+     *  @param rsq_hamiltonian      The second quantized Hamiltonian, expressed in the non-orthogonal, 'restricted' spin-orbital basis of the AOs, which contains the necessary two-electron operators.
      * 
      *  @return The complete stability matrix A''.
      */
@@ -881,10 +883,11 @@ public:
         const auto A_baba = this->calculateSpinUnconservedAComponent(rsq_hamiltonian, Spin::beta, Spin::alpha);  // Dimension = (n_occ_a * n_virt_b, n_occ_a * n_virt_b).
 
         // Determine the total matrix dimension and initialize the total matrix.
-        const auto n_occ_a = this->orbitalSpace(Spin::alpha).numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt_a = this->orbitalSpace(Spin::alpha).numberOfOrbitals(OccupationType::k_virtual);
-        const auto n_occ_b = this->orbitalSpace(Spin::beta).numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt_b = this->orbitalSpace(Spin::beta).numberOfOrbitals(OccupationType::k_virtual);
+        const auto orbital_space = this->orbitalSpace();
+        const auto& n_occ_a = orbital_space.component(Spin::alpha).numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt_a = orbital_space.component(Spin::alpha).numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ_b = orbital_space.component(Spin::beta).numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt_b = orbital_space.component(Spin::beta).numberOfOrbitals(OccupationType::k_virtual);
 
         const auto dimension = (n_occ_b * n_virt_a) + (n_occ_a * n_virt_b);
         GQCP::MatrixX<Scalar> total_A {dimension, dimension};
@@ -912,7 +915,7 @@ public:
      * 
      *  @note The name `Spin-unconserved`comes from the article "Constraints and stability in Hartree-Fock theory" by Seeger, R. and Pople J.A. (https://doi.org/10.1063/1.434318).
      * 
-     *  @param rsq_hamiltonian      The second quantized Hamiltonian, which contains the necessary two-electron operators.
+     *  @param rsq_hamiltonian      The second quantized Hamiltonian, expressed in the non-orthogonal, 'restricted' spin-orbital basis of the AOs, which contains the necessary two-electron operators.
      * 
      *  @return The complete stability matrix B''.
      */
@@ -923,10 +926,11 @@ public:
         const auto B_baab = this->calculateSpinUnconservedBComponent(rsq_hamiltonian, Spin::beta, Spin::alpha);  // Dimension = (n_occ_a * n_virt_b, n_occ_b * n_virt_a).
 
         // Determine the total matrix dimension and initialize the total matrix.
-        const auto n_occ_a = this->orbitalSpace(Spin::alpha).numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt_a = this->orbitalSpace(Spin::alpha).numberOfOrbitals(OccupationType::k_virtual);
-        const auto n_occ_b = this->orbitalSpace(Spin::beta).numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt_b = this->orbitalSpace(Spin::beta).numberOfOrbitals(OccupationType::k_virtual);
+        const auto orbital_space = this->orbitalSpace();
+        const auto& n_occ_a = orbital_space.component(Spin::alpha).numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt_a = orbital_space.component(Spin::alpha).numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ_b = orbital_space.component(Spin::beta).numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt_b = orbital_space.component(Spin::beta).numberOfOrbitals(OccupationType::k_virtual);
 
         const auto dimension = (n_occ_b * n_virt_a) + (n_occ_a * n_virt_b);
         GQCP::MatrixX<Scalar> total_B {dimension, dimension};
@@ -964,36 +968,36 @@ public:
      *  @note       The rows are determined by the number of virtual sigma orbitals, the columns by the number of occupied sigma orbitals.
      * 
      */
-    GQCP::MatrixX<Scalar> excitationEnergies(const Spin sigma) const {
+    SpinResolved<GQCP::MatrixX<Scalar>> excitationEnergies() const {
 
         // Create the orbital space to determine the loops.
         const auto orbital_space = this->orbitalSpace();
 
         // Determine the number of occupied and virtual orbitals.
-        // We declare `n_occ` and `n_virt` outside the if-statement first.
-        int n_occ;
-        int n_virt;
-
-        if (sigma == Spin::alpha) {
-            n_occ = orbital_space.alpha().numberOfOrbitals(OccupationType::k_occupied);
-            n_virt = orbital_space.alpha().numberOfOrbitals(OccupationType::k_virtual);
-        } else {
-            n_occ = orbital_space.beta().numberOfOrbitals(OccupationType::k_occupied);
-            n_virt = orbital_space.beta().numberOfOrbitals(OccupationType::k_virtual);
-        }
+        const auto& n_occ_a = orbital_space.alpha().numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt_a = orbital_space.alpha().numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ_b = orbital_space.beta().numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt_b = orbital_space.beta().numberOfOrbitals(OccupationType::k_virtual);
 
         // Calculate the occupied and virtual orbital energies.
-        const auto occupied_energies = this->occupiedOrbitalEnergies(sigma);
-        const auto virtual_energies = this->virtualOrbitalEnergies(sigma);
+        const auto occupied_energies = this->occupiedOrbitalEnergies();
+        const auto virtual_energies = this->virtualOrbitalEnergies();
 
         // Create the F matrix
-        GQCP::MatrixX<Scalar> F_values {n_virt, n_occ};
-        for (int a = 0; a < n_virt; a++) {
-            for (int i = 0; i < n_occ; i++) {
-                F_values(a, i) = virtual_energies[a] - occupied_energies[i];
+        GQCP::MatrixX<Scalar> F_values_a {n_virt_a, n_occ_a};
+        GQCP::MatrixX<Scalar> F_values_b {n_virt_b, n_occ_b};
+
+        for (int a = 0; a < n_virt_a; a++) {
+            for (int i = 0; i < n_occ_a; i++) {
+                F_values_a(a, i) = virtual_energies.alpha()[a] - occupied_energies.alpha()[i];
             }
         }
-        return F_values;
+        for (int a = 0; a < n_virt_b; a++) {
+            for (int i = 0; i < n_occ_b; i++) {
+                F_values_b(a, i) = virtual_energies.beta()[a] - occupied_energies.beta()[i];
+            }
+        }
+        return SpinResolved<GQCP::MatrixX<Scalar>> {F_values_a, F_values_b};
     }
 
 
@@ -1052,26 +1056,33 @@ public:
      * 
      *  @return The orbital energies belonging to the occupied orbitals of spin component sigma.
      */
-    std::vector<double> occupiedOrbitalEnergies(const Spin sigma) const {
+    SpinResolved<std::vector<double>> occupiedOrbitalEnergies() const {
 
-        // Determine the number of occupied orbitals of the specified spin component.
-        // We declare `n_occ` outside the if-statement first.
-        int n_occ;
-        if (sigma == Spin::alpha) {
-            n_occ = this->orbitalSpace().alpha().numberOfOrbitals(OccupationType::k_occupied);
-        } else {
-            n_occ = this->orbitalSpace().beta().numberOfOrbitals(OccupationType::k_occupied);
+        // Determine the number of occupied orbitals of the spin components.
+        const auto orbital_space = this->orbitalSpace();
+        const auto& n_occ_a = orbital_space.alpha().numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_occ_b = orbital_space.beta().numberOfOrbitals(OccupationType::k_occupied);
+
+
+        std::vector<double> mo_energies_a;  // We use a std::vector in order to be able to slice the vector later on.
+        std::vector<double> mo_energies_b;  // We use a std::vector in order to be able to slice the vector later on.
+
+        for (int i = 0; i < this->numberOfSpinOrbitals(Spin::alpha); i++) {
+            mo_energies_a.push_back(this->orbitalEnergies(Spin::alpha)[i]);
+        }
+        for (int i = 0; i < this->numberOfSpinOrbitals(Spin::beta); i++) {
+            mo_energies_b.push_back(this->orbitalEnergies(Spin::beta)[i]);
         }
 
-        std::vector<double> mo_energies;  // We use a std::vector in order to be able to slice the vector later on.
-        for (int i = 0; i < this->numberOfSpinOrbitals(sigma); i++) {
-            mo_energies.push_back(this->orbitalEnergies(sigma)[i]);
-        }
+        // Add the values with indices greater than the occupied orbital indices, i.e. the virtual orbital indices, to the new vector.
+        std::vector<double> mo_energies_occupied_a;
+        std::vector<double> mo_energies_occupied_b;
 
         // Add the values with indices smaller than the occupied orbital indices, to the new vector.
-        std::vector<double> mo_energies_occupied;
-        std::copy(mo_energies.begin(), mo_energies.begin() + n_occ, std::back_inserter(mo_energies_occupied));
-        return mo_energies_occupied;
+        std::copy(mo_energies_a.begin(), mo_energies_a.begin() + n_occ_a, std::back_inserter(mo_energies_occupied_a));
+        std::copy(mo_energies_b.begin(), mo_energies_b.begin() + n_occ_b, std::back_inserter(mo_energies_occupied_b));
+
+        return SpinResolved<std::vector<double>> {mo_energies_occupied_a, mo_energies_occupied_b};
     }
 
 
@@ -1104,27 +1115,6 @@ public:
 
 
     /**
-     *  @param sigma            The spin sigma component.
-     * 
-     *  @return The implicit alpha or beta occupied-virtual orbital spaces that are associated to these UHF model parameters.
-     */
-    OrbitalSpace orbitalSpace(const Spin sigma) const {
-
-        switch (sigma) {
-        case Spin::alpha: {
-            return this->orbitalSpace().alpha();
-            break;
-        }
-
-        case Spin::beta: {
-            return this->orbitalSpace().beta();
-            break;
-        }
-        }
-    }
-
-
-    /**
      *  @return all the spin-orbital energies, with the alpha spin-orbital energies appearing before the beta spin-orbital energies
      */
     VectorX<double> spinOrbitalEnergiesBlocked() const {
@@ -1142,26 +1132,32 @@ public:
      * 
      *  @return The orbital energies belonging to the virtual orbitals of spin component sigma.
      */
-    std::vector<double> virtualOrbitalEnergies(const Spin sigma) const {
+    SpinResolved<std::vector<double>> virtualOrbitalEnergies() const {
 
-        // Determine the number of occupied orbitals of the specified spin component.
-        // We declare `n_occ` outside the if-statement first.
-        int n_occ;
-        if (sigma == Spin::alpha) {
-            n_occ = this->orbitalSpace().alpha().numberOfOrbitals(OccupationType::k_occupied);
-        } else {
-            n_occ = this->orbitalSpace().beta().numberOfOrbitals(OccupationType::k_occupied);
+        // Determine the number of occupied orbitals of the spin components.
+        const auto orbital_space = this->orbitalSpace();
+        const auto& n_occ_a = orbital_space.alpha().numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_occ_b = orbital_space.beta().numberOfOrbitals(OccupationType::k_occupied);
+
+
+        std::vector<double> mo_energies_a;  // We use a std::vector in order to be able to slice the vector later on.
+        std::vector<double> mo_energies_b;  // We use a std::vector in order to be able to slice the vector later on.
+
+        for (int i = 0; i < this->numberOfSpinOrbitals(Spin::alpha); i++) {
+            mo_energies_a.push_back(this->orbitalEnergies(Spin::alpha)[i]);
         }
-
-        std::vector<double> mo_energies;  // We use a std::vector in order to be able to slice the vector later on.
-        for (int i = 0; i < this->numberOfSpinOrbitals(sigma); i++) {
-            mo_energies.push_back(this->orbitalEnergies(sigma)[i]);
+        for (int i = 0; i < this->numberOfSpinOrbitals(Spin::beta); i++) {
+            mo_energies_b.push_back(this->orbitalEnergies(Spin::beta)[i]);
         }
 
         // Add the values with indices greater than the occupied orbital indices, i.e. the virtual orbital indices, to the new vector.
-        std::vector<double> mo_energies_virtual;
-        std::copy(mo_energies.begin() + n_occ, mo_energies.end(), std::back_inserter(mo_energies_virtual));
-        return mo_energies_virtual;
+        std::vector<double> mo_energies_virtual_a;
+        std::vector<double> mo_energies_virtual_b;
+
+        std::copy(mo_energies_a.begin() + n_occ_a, mo_energies_a.end(), std::back_inserter(mo_energies_virtual_a));
+        std::copy(mo_energies_b.begin() + n_occ_b, mo_energies_b.end(), std::back_inserter(mo_energies_virtual_b));
+
+        return SpinResolved<std::vector<double>> {mo_energies_virtual_a, mo_energies_virtual_b};
     }
 };
 
