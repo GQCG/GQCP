@@ -19,23 +19,13 @@
 
 
 #include "Mathematical/Representation/StorageArray.hpp"
+#include "Operator/SecondQuantized/OperatorTraits.hpp"
 #include "Utilities/type_traits.hpp"
 
 #include <algorithm>
 
 
 namespace GQCP {
-
-
-/*
- *  MARK: Operator traits
- */
-
-/**
- *  A type that provides compile-time information on operators that is otherwise not accessible through a public class alias.
- */
-template <typename Operator>
-struct OperatorTraits {};
 
 
 /*

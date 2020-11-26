@@ -361,7 +361,7 @@ public:
 
 
     /*
-     *  MARK: Parameter access
+     *  MARK: Access
      */
 
     /**

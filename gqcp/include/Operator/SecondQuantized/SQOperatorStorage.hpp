@@ -72,7 +72,7 @@ public:
 
 
     /*
-     *  MARK: Conforming to VectorSpaceArithmetic
+     *  MARK: Conforming to `VectorSpaceArithmetic`
      */
 
     /**

@@ -33,7 +33,7 @@ namespace GQCP {
 
 
 /**
- *  A restricted two-electron operator, which is suited for expressing non-relativistic (spin-free) one-electron operators.
+ *  A restricted two-electron operator, which is suited for expressing non-relativistic (spin-free) two-electron operators.
  * 
  *  @tparam _Scalar                 The scalar type used for a single parameter/matrix element: real or complex.
  *  @tparam _Vectorizer             The type of the vectorizer that relates a one-dimensional storage of tensors to the tensor structure of two-electron operators. This distinction is carried over from SimpleSQOneElectronOperator.

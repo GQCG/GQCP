@@ -54,6 +54,36 @@ public:
 
 
 /*
+ *  MARK: BasisTransformableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
+ */
+template <typename Scalar>
+struct BasisTransformableTraits<SpinResolved1DMComponent<Scalar>> {
+
+    // The type of transformation that is naturally related to a `SpinResolved1DMComponent`.
+    using Transformation = UTransformationComponent<Scalar>;
+};
+
+
+/*
+ *  MARK: JacobiRotatableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
+ */
+template <typename Scalar>
+struct JacobiRotatableTraits<SpinResolved1DMComponent<Scalar>> {
+
+    // The type of Jacobi rotation that is naturally related to an `SpinResolved1DMComponent`.
+    using JacobiRotationType = JacobiRotation;
+};
+
+
+/*
  *  MARK: DensityMatrixTraits
  */
 
@@ -62,6 +92,7 @@ public:
  */
 template <typename Scalar>
 struct DensityMatrixTraits<SpinResolved1DMComponent<Scalar>> {
+
     // The type of transformation that is naturally related to a `SpinResolved1DMComponent`. Since a `SpinResolved1DM` naturally transforms with a `UTransformation`, a `SpinResolved1DMComponent` naturally transforms with a `UTransformationComponent`.
     using Transformation = UTransformationComponent<Scalar>;
 };

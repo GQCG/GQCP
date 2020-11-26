@@ -18,6 +18,7 @@
 #include "Molecule/Nucleus.hpp"
 
 #include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
 
 
 namespace py = pybind11;
@@ -25,11 +26,30 @@ namespace py = pybind11;
 
 namespace gqcpy {
 
+using namespace GQCP;
+
 
 void bindNucleus(py::module& module) {
-    py::class_<GQCP::Nucleus>(module, "Nucleus", "A class that represents a nucleus: it has a charge and a position in space")
+    py::class_<Nucleus>(module, "Nucleus", "A class that represents a nucleus: it has a charge and a position in space")
 
-        .def(py::init<const size_t, const double, const double, const double>(), py::arg("Z"), py::arg("x"), py::arg("y"), py::arg("z"));
+        /*
+         *  MARK: Constructors
+         */
+
+        .def(py::init<const size_t, const double, const double, const double>(),
+             py::arg("Z"),
+             py::arg("x"),
+             py::arg("y"),
+             py::arg("z"))
+
+
+        /*
+         *  MARK: General information
+         */
+
+        .def("element",
+             &Nucleus::element,
+             "Return the string representation of the element that corresponds to this nucleus.");
 }
 
 

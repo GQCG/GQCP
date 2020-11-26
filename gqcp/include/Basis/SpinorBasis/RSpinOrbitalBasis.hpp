@@ -125,9 +125,11 @@ public:
 
 
     /**
-     *  @param fq_op        the first-quantized Coulomb operator
+     *  Quantize the Coulomb operator in this restricted spin-orbital basis.
      * 
-     *  @return the second-quantized operator corresponding to the Coulomb operator
+     *  @param fq_op                The first-quantized Coulomb operator.
+     * 
+     *  @return The second-quantized operator corresponding to the Coulomb operator.
      */
     auto quantize(const CoulombRepulsionOperator& fq_op) const -> RSQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>, CoulombRepulsionOperator::Vectorizer> {
 

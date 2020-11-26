@@ -53,6 +53,36 @@ public:
 
 
 /*
+ *  MARK: BasisTransformableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
+ */
+template <typename Scalar>
+struct BasisTransformableTraits<G1DM<Scalar>> {
+
+    // The type of transformation that is naturally related to a `G1DM`.
+    using Transformation = GTransformation<Scalar>;
+};
+
+
+/*
+ *  MARK: JacobiRotatableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
+ */
+template <typename Scalar>
+struct JacobiRotatableTraits<G1DM<Scalar>> {
+
+    // The type of Jacobi rotation that is naturally related to a `G1DM`.
+    using JacobiRotationType = JacobiRotation;
+};
+
+
+/*
  *  MARK: DensityMatrixTraits
  */
 
@@ -61,7 +91,7 @@ public:
  */
 template <typename Scalar>
 struct DensityMatrixTraits<G1DM<Scalar>> {
-public:
+
     // The type of transformation that is naturally related to a `G1DM`.
     using Transformation = GTransformation<Scalar>;
 };
