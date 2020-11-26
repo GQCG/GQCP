@@ -138,7 +138,7 @@ void bindSpinResolvedBaseInterface(Class& py_class) {
 
     // The C++ type corresponding to the Python class.
     using Type = typename Class::type;
-    using ComponentType = typename Type::Of;
+    using ComponentType = typename Type::ComponentType;
 
     py_class
         .def(
@@ -179,15 +179,15 @@ void bindSpinResolvedBaseInterface(Class& py_class) {
             },
             "A writable reference to the beta object.")
 
-        .def_property(
-            "beta",
-            [](const Type& spin_resolved_object) {
-                return spin_resolved_object.beta();
-            },
-            [](Type& spin_resolved_object, const ComponentType& new_component) {
-                spin_resolved_object.beta() = new_component;
-            },
-            "A writable reference to the beta object.")
+        // .def_property(
+        //     "beta",
+        //     [](const Type& spin_resolved_object) {
+        //         return spin_resolved_object.beta();
+        //     },
+        //     [](Type& spin_resolved_object, const ComponentType& new_component) {
+        //         spin_resolved_object.beta() = new_component;
+        //     },
+        //     "A writable reference to the beta object.")
 
         .def(
             "component",
@@ -195,17 +195,7 @@ void bindSpinResolvedBaseInterface(Class& py_class) {
                 return spin_resolved_object.component(sigma);
             },
             py::arg("sigma"),
-            "A read-only reference to the alpha or beta object.")
-
-        .def_property(
-            "component",
-            [](const Type& spin_resolved_object, const Spin sigma) {
-                return spin_resolved_object.component(sigma);
-            },
-            [](Type& spin_resolved_object, const Spin sigma, const ComponentType& new_component) {
-                spin_resolved_object.component(sigma) = new_component;
-            },
-            "A writable reference to the alpha or beta object.");
+            "A read-only reference to the alpha or beta object.");
 }
 
 
