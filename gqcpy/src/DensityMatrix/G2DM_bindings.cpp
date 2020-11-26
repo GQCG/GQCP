@@ -15,9 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
-#include "QCMethod/CC/CCD.hpp"
-#include "QCMethod/CC/CCDSolver.hpp"
+#include "DensityMatrix/G2DM.hpp"
+#include "gqcpy/include/interfaces.hpp"
 
 #include <pybind11/pybind11.h>
 
@@ -30,17 +29,19 @@ namespace py = pybind11;
 using namespace GQCP;
 
 
-void bindQCMethodCCD(py::module& module) {
-    py::class_<QCMethod::CCD<double>>(module, "CCD", "The CCD quantum chemical method.")
+/**
+ *  Register `G2DM_d` to the gqcpy module and expose a part of its C++ interface to Python.
+ * 
+ *  @param module           The Pybind11 module in which `G2DM_d` should be registered.
+ */
+void bindG2DM(py::module& module) {
 
-        .def_static(
-            "optimize",
-            [](IterativeAlgorithm<CCSDEnvironment<double>>& solver, CCSDEnvironment<double>& environment) {
-                return QCMethod::CCD<double>().optimize(solver, environment);
-            },
-            py::arg("solver"),
-            py::arg("environment"),
-            "Optimize the CCD wave function model.");
+    // Define the Python class for `G2DM`.
+    py::class_<G2DM<double>> py_G2DM_d {module, "G2DM_d", "A type used to represent a two-electron general(ized) density matrix, i.e. the full spinor two-component two-electron density matrix."};
+
+
+    // Expose the `Simple2DM` API to the Python class.
+    bindSimple2DMInterface(py_G2DM_d);
 }
 
 

@@ -22,23 +22,25 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
 
 
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
+
+
 void bindAP1roGLagrangianNewtonOrbitalOptimizer(py::module& module) {
-    py::class_<GQCP::AP1roGLagrangianNewtonOrbitalOptimizer>(module,
-                                                             "AP1roGLagrangianNewtonOrbitalOptimizer",
-                                                             "An orbital optimizer for vAP1roG.")
+    py::class_<AP1roGLagrangianNewtonOrbitalOptimizer>(module,
+                                                       "AP1roGLagrangianNewtonOrbitalOptimizer",
+                                                       "An orbital optimizer for vAP1roG.")
 
         // CONSTRUCTORS
 
         // Use a standard Hessian modifier for the Python bindings.
-        .def(py::init([](const GQCP::AP1roGGeminalCoefficients& G, const double oo_convergence_threshold = 1.0e-08, const size_t oo_maximum_number_of_iterations = 128, const double pse_convergence_threshold = 1.0e-08, const size_t pse_maximum_number_of_iterations = 128) {
-                 auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
-                 return GQCP::AP1roGLagrangianNewtonOrbitalOptimizer(G, hessian_modifier, oo_convergence_threshold, oo_maximum_number_of_iterations, pse_convergence_threshold, pse_maximum_number_of_iterations);
+        .def(py::init([](const AP1roGGeminalCoefficients& G, const double oo_convergence_threshold = 1.0e-08, const size_t oo_maximum_number_of_iterations = 128, const double pse_convergence_threshold = 1.0e-08, const size_t pse_maximum_number_of_iterations = 128) {
+                 auto hessian_modifier = std::make_shared<IterativeIdentitiesHessianModifier>();
+                 return AP1roGLagrangianNewtonOrbitalOptimizer(G, hessian_modifier, oo_convergence_threshold, oo_maximum_number_of_iterations, pse_convergence_threshold, pse_maximum_number_of_iterations);
              }),
              py::arg("G"),
              py::arg("oo_convergence_threshold") = 1.0e-08,
@@ -50,18 +52,18 @@ void bindAP1roGLagrangianNewtonOrbitalOptimizer(py::module& module) {
         // PUBLIC METHODS
 
         .def("electronicEnergy",
-             &GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::electronicEnergy)
+             &AP1roGLagrangianNewtonOrbitalOptimizer::electronicEnergy)
 
         .def("geminalCoefficients",
-             &GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::geminalCoefficients)
+             &AP1roGLagrangianNewtonOrbitalOptimizer::geminalCoefficients)
 
         .def("multipliers",
-             [](const GQCP::AP1roGLagrangianNewtonOrbitalOptimizer& optimizer) {
+             [](const AP1roGLagrangianNewtonOrbitalOptimizer& optimizer) {
                  return optimizer.multipliers().asMatrix();
              })
 
         .def("optimize",
-             [](GQCP::AP1roGLagrangianNewtonOrbitalOptimizer& optimizer, GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis, GQCP::RSQHamiltonian<double>& sq_hamiltonian) {
+             [](AP1roGLagrangianNewtonOrbitalOptimizer& optimizer, RSpinOrbitalBasis<double, GTOShell>& spinor_basis, RSQHamiltonian<double>& sq_hamiltonian) {
                  return optimizer.optimize(spinor_basis, sq_hamiltonian);
              });
 }

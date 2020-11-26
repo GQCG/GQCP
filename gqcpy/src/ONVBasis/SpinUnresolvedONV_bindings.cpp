@@ -22,21 +22,23 @@
 #include <pybind11/stl.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
 
 
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
+
+
 void bindSpinUnresolvedONV(py::module& module) {
-    py::class_<GQCP::SpinUnresolvedONV>(module, "SpinUnresolvedONV", "A spin-unresolved occupation number vector.")
+    py::class_<SpinUnresolvedONV>(module, "SpinUnresolvedONV", "A spin-unresolved occupation number vector.")
 
         // CONSTRUCTORS
 
         .def_static(
             "FromString",
             [](const std::string& string_representation) {
-                return GQCP::SpinUnresolvedONV::FromString(string_representation);
+                return SpinUnresolvedONV::FromString(string_representation);
             },
             py::arg("string_representation"),
             "Create a spin-unresolved ONV from a string representation.")
@@ -44,7 +46,7 @@ void bindSpinUnresolvedONV(py::module& module) {
         .def_static(
             "FromOccupiedIndices",
             [](const std::vector<size_t>& occupied_indices, const size_t M) {
-                return GQCP::SpinUnresolvedONV::FromOccupiedIndices(occupied_indices, M);
+                return SpinUnresolvedONV::FromOccupiedIndices(occupied_indices, M);
             },
             py::arg("occupied_indices"),
             py::arg("M"),
@@ -53,7 +55,7 @@ void bindSpinUnresolvedONV(py::module& module) {
         .def_static(
             "GHF",
             [](const size_t M, const size_t N, const Eigen::MatrixXd& orbital_energies) {
-                return GQCP::SpinUnresolvedONV::GHF(M, N, GQCP::VectorX<double>(orbital_energies));
+                return SpinUnresolvedONV::GHF(M, N, VectorX<double>(orbital_energies));
             },
             py::arg("M"),
             py::arg("N"),
@@ -65,12 +67,12 @@ void bindSpinUnresolvedONV(py::module& module) {
 
         .def(
             "__repr__",
-            &GQCP::SpinUnresolvedONV::asString)
+            &SpinUnresolvedONV::asString)
 
         .def(
             "calculateProjection",
-            [](const GQCP::SpinUnresolvedONV& onv_of, const GQCP::SpinUnresolvedONV& onv_on, const Eigen::MatrixXd& C_of, const Eigen::MatrixXd& C_on, const Eigen::MatrixXd& S) {
-                return onv_of.calculateProjection(onv_on, GQCP::GTransformation<double>(C_of), GQCP::GTransformation<double>(C_on), GQCP::SquareMatrix<double>(S));
+            [](const SpinUnresolvedONV& onv_of, const SpinUnresolvedONV& onv_on, const Eigen::MatrixXd& C_of, const Eigen::MatrixXd& C_on, const Eigen::MatrixXd& S) {
+                return onv_of.calculateProjection(onv_on, GTransformation<double>(C_of), GTransformation<double>(C_on), SquareMatrix<double>(S));
             },
             py::arg("onv_on"),
             py::arg("C_of"),
@@ -80,7 +82,7 @@ void bindSpinUnresolvedONV(py::module& module) {
 
         .def(
             "orbitalSpace",
-            &GQCP::SpinUnresolvedONV::orbitalSpace,
+            &SpinUnresolvedONV::orbitalSpace,
             "Return the implicit orbital space that is related to this spin-unresolved ONV by taking this as a reference determinant.");
 }
 

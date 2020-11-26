@@ -20,18 +20,20 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
 
 
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
+
+
 void bindDiagonalRHFFockMatrixObjective(py::module& module) {
-    py::class_<GQCP::DiagonalRHFFockMatrixObjective<double>>(module, "DiagonalRHFFockMatrixObjective", "An objective that checks if the RHF Fock matrix is diagonal, i.e. if the RHF parameters represent the canonical RHF coefficients.")
+    py::class_<DiagonalRHFFockMatrixObjective<double>>(module, "DiagonalRHFFockMatrixObjective", "An objective that checks if the RHF Fock matrix is diagonal, i.e. if the RHF parameters represent the canonical RHF coefficients.")
 
         // CONSTRUCTORS
 
-        .def(py::init<const GQCP::RSQHamiltonian<double>&, const double>(),
+        .def(py::init<const RSQHamiltonian<double>&, const double>(),
              py::arg("sq_hamiltonian"),
              py::arg("precision") = 1.0e-08);
 }

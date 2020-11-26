@@ -20,19 +20,21 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
 
 
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
+
+
 void bindCCSDSolver(py::module& module) {
-    py::class_<GQCP::CCSDSolver<double>>(module, "CCSDSolver", "A factory class that can construct CCSD solvers in an easy way.")
+    py::class_<CCSDSolver<double>>(module, "CCSDSolver", "A factory class that can construct CCSD solvers in an easy way.")
 
         .def_static(
             "Plain",
             [](const double threshold, const size_t maximum_number_of_iterations) {
-                return GQCP::CCSDSolver<double>::Plain(threshold, maximum_number_of_iterations);
+                return CCSDSolver<double>::Plain(threshold, maximum_number_of_iterations);
             },
             py::arg("threshold") = 1.0e-08,
             py::arg("maximum_number_of_iterations") = 128,

@@ -23,21 +23,23 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
 
 
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
+
+
 void bindQCMethodRHF(py::module& module) {
-    py::class_<GQCP::QCMethod::RHF<double>>(module, "RHF", "The restricted Hartree-Fock quantum chemical method.")
+    py::class_<QCMethod::RHF<double>>(module, "RHF", "The restricted Hartree-Fock quantum chemical method.")
 
         // PUBLIC METHODS
 
         .def_static(
             "optimize",
-            [](const GQCP::DiagonalRHFFockMatrixObjective<double>& objective, GQCP::IterativeAlgorithm<GQCP::RHFSCFEnvironment<double>>& solver, GQCP::RHFSCFEnvironment<double>& environment) {
-                return GQCP::QCMethod::RHF<double>().optimize(objective, solver, environment);
+            [](const DiagonalRHFFockMatrixObjective<double>& objective, IterativeAlgorithm<RHFSCFEnvironment<double>>& solver, RHFSCFEnvironment<double>& environment) {
+                return QCMethod::RHF<double>().optimize(objective, solver, environment);
             },
             "Optimize the RHF wave function model: find the parameters satisfy the given objective.");
 }

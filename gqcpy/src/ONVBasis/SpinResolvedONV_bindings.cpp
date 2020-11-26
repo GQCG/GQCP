@@ -21,21 +21,23 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
 
 
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
+
+
 void bindSpinResolvedONV(py::module& module) {
-    py::class_<GQCP::SpinResolvedONV>(module, "SpinResolvedONV", "An occupation number vector that is spin-resolved into alpha- and beta-constituents.")
+    py::class_<SpinResolvedONV>(module, "SpinResolvedONV", "An occupation number vector that is spin-resolved into alpha- and beta-constituents.")
 
         // CONSTRUCTORS
 
         .def_static(
             "RHF",
             [](const size_t K, const size_t N_P) {
-                return GQCP::SpinResolvedONV::RHF(K, N_P);
+                return SpinResolvedONV::RHF(K, N_P);
             },
             py::arg("K"),
             py::arg("N_P"),
@@ -44,7 +46,7 @@ void bindSpinResolvedONV(py::module& module) {
         .def_static(
             "UHF",
             [](const size_t K, const size_t N_alpha, const size_t N_beta) {
-                return GQCP::SpinResolvedONV::UHF(K, N_alpha, N_beta);
+                return SpinResolvedONV::UHF(K, N_alpha, N_beta);
             },
             py::arg("K"),
             py::arg("N_alpha"),
@@ -55,12 +57,12 @@ void bindSpinResolvedONV(py::module& module) {
         // PUBLIC METHODS
 
         .def("__repr__",
-             &GQCP::SpinResolvedONV::asString)
+             &SpinResolvedONV::asString)
 
         .def(
             "calculateProjection",
-            [](const GQCP::SpinResolvedONV& onv_of, const GQCP::SpinResolvedONV& onv_on, const Eigen::MatrixXd& C_alpha, const Eigen::MatrixXd& C_beta, const Eigen::MatrixXd& C_on, const Eigen::MatrixXd& S) {
-                return onv_of.calculateProjection(onv_on, GQCP::UTransformation<double>(GQCP::UTransformationComponent<double> {C_alpha}, GQCP::UTransformationComponent<double> {C_beta}), GQCP::RTransformation<double>(C_on), GQCP::SquareMatrix<double>(S));
+            [](const SpinResolvedONV& onv_of, const SpinResolvedONV& onv_on, const Eigen::MatrixXd& C_alpha, const Eigen::MatrixXd& C_beta, const Eigen::MatrixXd& C_on, const Eigen::MatrixXd& S) {
+                return onv_of.calculateProjection(onv_on, UTransformation<double>(UTransformationComponent<double> {C_alpha}, UTransformationComponent<double> {C_beta}), RTransformation<double>(C_on), SquareMatrix<double>(S));
             },
             py::arg("onv_on"),
             py::arg("C_alpha"),
@@ -71,7 +73,7 @@ void bindSpinResolvedONV(py::module& module) {
 
         .def(
             "onv",
-            [](const GQCP::SpinResolvedONV& spin_resolved_onv, const GQCP::Spin sigma) {
+            [](const SpinResolvedONV& spin_resolved_onv, const Spin sigma) {
                 return spin_resolved_onv.onv(sigma);
             },
             py::arg("sigma"),

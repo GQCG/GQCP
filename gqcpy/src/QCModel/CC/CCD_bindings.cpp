@@ -21,20 +21,22 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
+
+
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
 
 
 void bindQCModelCCD(py::module& module) {
 
-    py::class_<GQCP::QCModel::CCD<double>>(module, "QCModel_CCD", "The CCD wave function model.")
+    py::class_<QCModel::CCD<double>>(module, "QCModel_CCD", "The CCD wave function model.")
 
         // PUBLIC METHODS
         .def(
             "t2Amplitudes",
-            &GQCP::QCModel::CCD<double>::t2Amplitudes,
+            &QCModel::CCD<double>::t2Amplitudes,
             "Return these CCD model parameters' T2-amplitudes");
 }
 

@@ -21,47 +21,49 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
+
+
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
 
 
 void bindOperator(py::module& module) {
 
-    py::class_<GQCP::NuclearDipoleOperator>(module, "NuclearDipoleOperator", "The nuclear dipole operator.")
+    py::class_<NuclearDipoleOperator>(module, "NuclearDipoleOperator", "The nuclear dipole operator.")
 
         // PUBLIC METHODS
 
         .def("value",
-             &GQCP::NuclearDipoleOperator::value,
+             &NuclearDipoleOperator::value,
              "Return the value of this nuclear dipole operator.");
 
 
-    py::class_<GQCP::NuclearRepulsionOperator>(module, "NuclearRepulsionOperator", "The nuclear repulsion operator.")
+    py::class_<NuclearRepulsionOperator>(module, "NuclearRepulsionOperator", "The nuclear repulsion operator.")
 
         // PUBLIC METHODS
 
         .def("value",
-             &GQCP::NuclearRepulsionOperator::value,
+             &NuclearRepulsionOperator::value,
              "Return the scalar value of this nuclear repulsion operator.");
 
 
-    py::class_<GQCP::Operator>(module, "Operator", "A class that is used to construct operators using static methods, much like a factory class.")
+    py::class_<Operator>(module, "Operator", "A class that is used to construct operators using static methods, much like a factory class.")
 
         // PUBLIC METHODS
 
         .def_static(
             "NuclearDipole",
-            [](const GQCP::Molecule& molecule, const Eigen::Vector3d& o) {
-                return GQCP::Operator::NuclearDipole(molecule, GQCP::Vector<double, 3>(o));
+            [](const Molecule& molecule, const Eigen::Vector3d& o) {
+                return Operator::NuclearDipole(molecule, Vector<double, 3>(o));
             },
             py::arg("molecule"),
             py::arg("o") = Eigen::Vector3d::Zero(),
             "Return a NuclearDipoleOperator.")
 
         .def_static("NuclearRepulsion",
-                    &GQCP::Operator::NuclearRepulsion,
+                    &Operator::NuclearRepulsion,
                     "Return a NuclearRepulsionOperator.");
 }
 

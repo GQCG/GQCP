@@ -23,18 +23,20 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
 
 
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
+
+
 void bindQCMethodvAP1roG(py::module& module) {
-    py::class_<GQCP::QCMethod::vAP1roG>(module, "vAP1roG", "The variationally optimized AP1roG quantum chemical method.")
+    py::class_<QCMethod::vAP1roG>(module, "vAP1roG", "The variationally optimized AP1roG quantum chemical method.")
 
         // CONSTRUCTORS
 
-        .def(py::init<GQCP::RSQHamiltonian<double>, size_t>(),
+        .def(py::init<RSQHamiltonian<double>, size_t>(),
              py::arg("sq_hamiltonian"),
              py::arg("N_P"))
 
@@ -43,7 +45,7 @@ void bindQCMethodvAP1roG(py::module& module) {
 
         .def(
             "optimize",
-            [](const GQCP::QCMethod::vAP1roG& qc_method, GQCP::IterativeAlgorithm<GQCP::NonLinearEquationEnvironment<double>>& non_linear_solver, GQCP::NonLinearEquationEnvironment<double>& non_linear_environment, GQCP::Algorithm<GQCP::LinearEquationEnvironment<double>>& linear_solver) {
+            [](const QCMethod::vAP1roG& qc_method, IterativeAlgorithm<NonLinearEquationEnvironment<double>>& non_linear_solver, NonLinearEquationEnvironment<double>& non_linear_environment, Algorithm<LinearEquationEnvironment<double>>& linear_solver) {
                 return qc_method.optimize(non_linear_solver, non_linear_environment, linear_solver);
             },
             "Optimize the vAP1roG wave function model.");

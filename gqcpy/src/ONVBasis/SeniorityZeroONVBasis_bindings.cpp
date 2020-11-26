@@ -21,14 +21,16 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
 
 
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
+
+
 void bindSeniorityZeroONVBasis(py::module& module) {
-    py::class_<GQCP::SeniorityZeroONVBasis>(module, "SeniorityZeroONVBasis", "A full seniority-zero ONV basis.")
+    py::class_<SeniorityZeroONVBasis>(module, "SeniorityZeroONVBasis", "A full seniority-zero ONV basis.")
 
         // CONSTRUCTORS
 
@@ -39,7 +41,7 @@ void bindSeniorityZeroONVBasis(py::module& module) {
         // PUBLIC METHODS
 
         .def("dimension",
-             &GQCP::SeniorityZeroONVBasis::dimension);
+             &SeniorityZeroONVBasis::dimension);
 }
 
 

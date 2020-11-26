@@ -31,7 +31,7 @@ namespace GQCP {
  */
 
 /**
- *  One of the spin components of a SpinResolved2DM.
+ *  One of the spin components of a `SpinResolved2DM`.
  * 
  *  It is specifically designed as one of these spin components, in order to ensuring compile-time correctness. It would be wrong to use either `Orbital2DM` or `G2DM` as one of the spin components, and it's not possible to use `Simple2DM` as one of the spin components because it requires a template argument of the type that derives from it.
  * 

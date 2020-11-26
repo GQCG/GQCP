@@ -21,18 +21,20 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
 
 
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
+
+
 void bindQCMethodAP1roG(py::module& module) {
-    py::class_<GQCP::QCMethod::AP1roG>(module, "AP1roG", "The AP1roG quantum chemical method.")
+    py::class_<QCMethod::AP1roG>(module, "AP1roG", "The AP1roG quantum chemical method.")
 
         // CONSTRUCTORS
 
-        .def(py::init<GQCP::RSQHamiltonian<double>, size_t>(),
+        .def(py::init<RSQHamiltonian<double>, size_t>(),
              py::arg("sq_hamiltonian"),
              py::arg("N_P"))
 
@@ -41,7 +43,7 @@ void bindQCMethodAP1roG(py::module& module) {
 
         .def(
             "optimize",
-            [](const GQCP::QCMethod::AP1roG& qc_method, GQCP::IterativeAlgorithm<GQCP::NonLinearEquationEnvironment<double>>& solver, GQCP::NonLinearEquationEnvironment<double>& environment) {
+            [](const QCMethod::AP1roG& qc_method, IterativeAlgorithm<NonLinearEquationEnvironment<double>>& solver, NonLinearEquationEnvironment<double>& environment) {
                 return qc_method.optimize(solver, environment);
             },
             "Optimize the AP1roG wave function model.");

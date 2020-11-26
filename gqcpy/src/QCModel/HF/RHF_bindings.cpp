@@ -21,47 +21,49 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
 
 
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
+
+
 void bindQCModelRHF(py::module& module) {
-    py::class_<GQCP::QCModel::RHF<double>>(module, "QCModel_RHF", "The restricted Hartree-Fock wave function model.")
+    py::class_<QCModel::RHF<double>>(module, "QCModel_RHF", "The restricted Hartree-Fock wave function model.")
 
         // PUBLIC METHODS
 
         .def(
             "calculateOrthonormalBasis1DM",
-            [](const GQCP::QCModel::RHF<double>& rhf_parameters) {
+            [](const QCModel::RHF<double>& rhf_parameters) {
                 return rhf_parameters.calculateOrthonormalBasis1DM();
             },
             "Return the 1-DM expressed in an orthonormal spinor basis related to these optimal RHF parameters.")
 
         .def(
             "calculateScalarBasis1DM",
-            [](const GQCP::QCModel::RHF<double>& rhf_parameters) {
+            [](const QCModel::RHF<double>& rhf_parameters) {
                 return rhf_parameters.calculateScalarBasis1DM();
             },
             "Return the RHF 1-DM in the scalar/AO basis related to these optimal RHF parameters")
 
         .def("expansion",
-             &GQCP::QCModel::RHF<double>::expansion,
+             &QCModel::RHF<double>::expansion,
              "Return the coefficient matrix that expresses every spatial orbital (as a column) in its underlying scalar basis.")
 
         .def("orbitalEnergies",
-             &GQCP::QCModel::RHF<double>::orbitalEnergies,
+             &QCModel::RHF<double>::orbitalEnergies,
              "Return the orbital energies.")
 
         .def(
             "spinOrbitalEnergiesBlocked",
-            &GQCP::QCModel::RHF<double>::spinOrbitalEnergiesBlocked,
+            &QCModel::RHF<double>::spinOrbitalEnergiesBlocked,
             "Return all the spin-orbital energies, with the alpha spin-orbital energies appearing before the beta spin-orbital energies.")
 
         .def(
             "spinOrbitalEnergiesInterleaved",
-            &GQCP::QCModel::RHF<double>::spinOrbitalEnergiesInterleaved,
+            &QCModel::RHF<double>::spinOrbitalEnergiesInterleaved,
             "Return all the spin-orbital energies, with the alpha spin-orbital energies appearing before the beta spin-orbital energies.");
 }
 

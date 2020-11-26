@@ -21,14 +21,16 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
 
 
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
+
+
 void bindSpinResolvedONVBasis(py::module& module) {
-    py::class_<GQCP::SpinResolvedONVBasis>(module, "SpinResolvedONVBasis", "A full spin-resolved ONV basis.")
+    py::class_<SpinResolvedONVBasis>(module, "SpinResolvedONVBasis", "A full spin-resolved ONV basis.")
 
         // CONSTRUCTORS
 
@@ -41,7 +43,7 @@ void bindSpinResolvedONVBasis(py::module& module) {
         // PUBLIC METHODS
 
         .def("dimension",
-             &GQCP::SpinResolvedONVBasis::dimension);
+             &SpinResolvedONVBasis::dimension);
 }
 
 

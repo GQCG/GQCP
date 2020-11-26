@@ -15,9 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
-#include "QCMethod/CC/CCD.hpp"
-#include "QCMethod/CC/CCDSolver.hpp"
+#include "DensityMatrix/SpinDensity1DM.hpp"
+#include "gqcpy/include/interfaces.hpp"
 
 #include <pybind11/pybind11.h>
 
@@ -30,17 +29,19 @@ namespace py = pybind11;
 using namespace GQCP;
 
 
-void bindQCMethodCCD(py::module& module) {
-    py::class_<QCMethod::CCD<double>>(module, "CCD", "The CCD quantum chemical method.")
+/**
+ *  Register `SpinDensity1DM_d` to the gqcpy module and expose a part of its C++ interface to Python.
+ * 
+ *  @param module           The Pybind11 module in which `SpinDensity1DM_d` should be registered.
+ */
+void bindSpinDensity1DM(py::module& module) {
 
-        .def_static(
-            "optimize",
-            [](IterativeAlgorithm<CCSDEnvironment<double>>& solver, CCSDEnvironment<double>& environment) {
-                return QCMethod::CCD<double>().optimize(solver, environment);
-            },
-            py::arg("solver"),
-            py::arg("environment"),
-            "Optimize the CCD wave function model.");
+    // Define the Python class for `SpinDensity1DM`.
+    py::class_<SpinDensity1DM<double>> py_SpinDensity1DM_d {module, "SpinDensity1DM_d", "A type used to represent a one-electron spin-density density matrix, i.e. the alpha density matrix minus the beta density matrix."};
+
+
+    // Expose the `BasisTransformable` API to the Python class.
+    bindBasisTransformableInterface(py_SpinDensity1DM_d);
 }
 
 

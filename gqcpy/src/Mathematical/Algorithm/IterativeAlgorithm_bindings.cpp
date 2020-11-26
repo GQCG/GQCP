@@ -26,10 +26,12 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
+
+
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
 
 
 /**
@@ -48,7 +50,7 @@ namespace gqcpy {
 template <typename Environment>
 void bindIterativeAlgorithm(py::module& module, const std::string& suffix, const std::string& description) {
 
-    py::class_<GQCP::IterativeAlgorithm<Environment>>(module,
+    py::class_<IterativeAlgorithm<Environment>>(module,
                                                       ("IterativeAlgorithm_" + suffix).c_str(),
                                                       description.c_str())
 
@@ -56,12 +58,12 @@ void bindIterativeAlgorithm(py::module& module, const std::string& suffix, const
 
         .def(
             "description",
-            &GQCP::IterativeAlgorithm<Environment>::description,
+            &IterativeAlgorithm<Environment>::description,
             "Return a textual description of this iterative algorithm.")
 
         .def(
             "insert",
-            [](GQCP::IterativeAlgorithm<Environment>& algorithm, const GQCP::FunctionalStep<Environment>& step, const size_t index) {
+            [](IterativeAlgorithm<Environment>& algorithm, const FunctionalStep<Environment>& step, const size_t index) {
                 algorithm.insert(step, index);
             },
             py::arg("step"),
@@ -70,17 +72,17 @@ void bindIterativeAlgorithm(py::module& module, const std::string& suffix, const
 
         .def(
             "maximumNumberOfIterations",
-            &GQCP::IterativeAlgorithm<Environment>::maximumNumberOfIterations,
+            &IterativeAlgorithm<Environment>::maximumNumberOfIterations,
             "Return the maximum number of iterations the algorithm may perform")
 
         .def(
             "numberOfIterations",
-            &GQCP::IterativeAlgorithm<Environment>::numberOfIterations,
+            &IterativeAlgorithm<Environment>::numberOfIterations,
             "Return the number of iterations that have been performed")
 
         .def(
             "perform",
-            [](GQCP::IterativeAlgorithm<Environment>& algorithm, Environment& environment) {
+            [](IterativeAlgorithm<Environment>& algorithm, Environment& environment) {
                 algorithm.perform(environment);
             },
             py::arg("environment"))
@@ -88,7 +90,7 @@ void bindIterativeAlgorithm(py::module& module, const std::string& suffix, const
 
         .def(
             "remove",
-            [](GQCP::IterativeAlgorithm<Environment>& algorithm, const size_t index) {
+            [](IterativeAlgorithm<Environment>& algorithm, const size_t index) {
                 algorithm.remove(index);
             },
             py::arg("index"),
@@ -96,7 +98,7 @@ void bindIterativeAlgorithm(py::module& module, const std::string& suffix, const
 
         .def(
             "replace",
-            [](GQCP::IterativeAlgorithm<Environment>& algorithm, const GQCP::FunctionalStep<Environment>& step, const size_t index) {
+            [](IterativeAlgorithm<Environment>& algorithm, const FunctionalStep<Environment>& step, const size_t index) {
                 algorithm.replace(step, index);
             },
             py::arg("step"),
@@ -107,13 +109,13 @@ void bindIterativeAlgorithm(py::module& module, const std::string& suffix, const
 
 void bindIterativeAlgorithms(py::module& module) {
 
-    bindIterativeAlgorithm<GQCP::EigenproblemEnvironment>(module, "EigenproblemEnvironment", "An algorithm that performs iterations using an EigenproblemEnvironment.");
-    bindIterativeAlgorithm<GQCP::NonLinearEquationEnvironment<double>>(module, "NonLinearEquationEnvironment", "An algorithm that performs iterations using a NonLinearEquationEnvironment.");
+    bindIterativeAlgorithm<EigenproblemEnvironment>(module, "EigenproblemEnvironment", "An algorithm that performs iterations using an EigenproblemEnvironment.");
+    bindIterativeAlgorithm<NonLinearEquationEnvironment<double>>(module, "NonLinearEquationEnvironment", "An algorithm that performs iterations using a NonLinearEquationEnvironment.");
 
-    bindIterativeAlgorithm<GQCP::RHFSCFEnvironment<double>>(module, "RHFSCFEnvironment", "An algorithm that performs iterations using an RHFSCFEnvironment.");
-    bindIterativeAlgorithm<GQCP::UHFSCFEnvironment<double>>(module, "UHFSCFEnvironment", "An algorithm that performs iterations using an UHFSCFEnvironment.");
+    bindIterativeAlgorithm<RHFSCFEnvironment<double>>(module, "RHFSCFEnvironment", "An algorithm that performs iterations using an RHFSCFEnvironment.");
+    bindIterativeAlgorithm<UHFSCFEnvironment<double>>(module, "UHFSCFEnvironment", "An algorithm that performs iterations using an UHFSCFEnvironment.");
 
-    bindIterativeAlgorithm<GQCP::CCSDEnvironment<double>>(module, "CCSDEnvironment", "An algorithm that performs iterations using a CCSDEnvironment.");
+    bindIterativeAlgorithm<CCSDEnvironment<double>>(module, "CCSDEnvironment", "An algorithm that performs iterations using a CCSDEnvironment.");
 }
 
 

@@ -21,30 +21,32 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
 
 
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
+
+
 void bindQCModelvAP1roG(py::module& module) {
-    py::class_<GQCP::QCModel::vAP1roG>(module, "QCModel_vAP1roG", "The variationally optimized AP1roG wave function model.")
+    py::class_<QCModel::vAP1roG>(module, "QCModel_vAP1roG", "The variationally optimized AP1roG wave function model.")
 
         // PUBLIC METHODS
         .def(
             "calculate1DM",
-            [](const GQCP::QCModel::vAP1roG& qc_model) {
+            [](const QCModel::vAP1roG& qc_model) {
                 return qc_model.calculate1DM();
             },
             "Return the reponse one-electron density matrix.")
 
         .def("geminalCoefficients",
-             &GQCP::QCModel::vAP1roG::geminalCoefficients,
+             &QCModel::vAP1roG::geminalCoefficients,
              "Return the corresponding geminal coefficients of these AP1roG model parameters.")
 
         .def(
             "lagrangeMultipliers",
-            [](const GQCP::QCModel::vAP1roG& qc_model) {
+            [](const QCModel::vAP1roG& qc_model) {
                 return qc_model.lagrangeMultipliers().asMatrix();
             },
             "Return the Lagrange multipliers.");

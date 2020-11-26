@@ -22,10 +22,12 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
+
+
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
 
 
 /**
@@ -39,15 +41,15 @@ namespace gqcpy {
 template <typename EigenproblemSolver>
 void bindDOCINewtonOrbitalOptimizer(py::module& module, const std::string& suffix) {
 
-    py::class_<GQCP::DOCINewtonOrbitalOptimizer<EigenproblemSolver>>(module,
-                                                                     ("DOCINewtonOrbitalOptimizer_" + suffix).c_str(),
-                                                                     "A class that performs gradient-and-Hessian-based orbital optimization for DOCI")
+    py::class_<DOCINewtonOrbitalOptimizer<EigenproblemSolver>>(module,
+                                                               ("DOCINewtonOrbitalOptimizer_" + suffix).c_str(),
+                                                               "A class that performs gradient-and-Hessian-based orbital optimization for DOCI")
 
         // PUBLIC METHODS
 
         .def(
             "optimize",
-            [](GQCP::DOCINewtonOrbitalOptimizer<EigenproblemSolver>& optimizer, GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis, GQCP::RSQHamiltonian<double>& sq_hamiltonian) {
+            [](DOCINewtonOrbitalOptimizer<EigenproblemSolver>& optimizer, RSpinOrbitalBasis<double, GTOShell>& spinor_basis, RSQHamiltonian<double>& sq_hamiltonian) {
                 optimizer.optimize(spinor_basis, sq_hamiltonian);
             },
             py::arg("spinor_basis"),
@@ -62,8 +64,8 @@ void bindDOCINewtonOrbitalOptimizer(py::module& module, const std::string& suffi
  */
 void bindDOCINewtonOrbitalOptimizers(py::module& module) {
 
-    bindDOCINewtonOrbitalOptimizer<GQCP::Algorithm<GQCP::EigenproblemEnvironment>>(module, "Dense");
-    bindDOCINewtonOrbitalOptimizer<GQCP::IterativeAlgorithm<GQCP::EigenproblemEnvironment>>(module, "Iterative");
+    bindDOCINewtonOrbitalOptimizer<Algorithm<EigenproblemEnvironment>>(module, "Dense");
+    bindDOCINewtonOrbitalOptimizer<IterativeAlgorithm<EigenproblemEnvironment>>(module, "Iterative");
 }
 
 

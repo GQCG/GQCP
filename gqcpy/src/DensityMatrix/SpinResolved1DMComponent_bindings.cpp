@@ -15,9 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
-#include "QCMethod/CC/CCD.hpp"
-#include "QCMethod/CC/CCDSolver.hpp"
+#include "DensityMatrix/SpinResolved1DMComponent.hpp"
+#include "gqcpy/include/interfaces.hpp"
 
 #include <pybind11/pybind11.h>
 
@@ -30,17 +29,19 @@ namespace py = pybind11;
 using namespace GQCP;
 
 
-void bindQCMethodCCD(py::module& module) {
-    py::class_<QCMethod::CCD<double>>(module, "CCD", "The CCD quantum chemical method.")
+/**
+ *  Register `SpinResolved1DMComponent_d` to the gqcpy module and expose a part of its C++ interface to Python.
+ * 
+ *  @param module           The Pybind11 module in which `SpinResolved1DMComponent_d` should be registered.
+ */
+void bindSpinResolved1DMComponent(py::module& module) {
 
-        .def_static(
-            "optimize",
-            [](IterativeAlgorithm<CCSDEnvironment<double>>& solver, CCSDEnvironment<double>& environment) {
-                return QCMethod::CCD<double>().optimize(solver, environment);
-            },
-            py::arg("solver"),
-            py::arg("environment"),
-            "Optimize the CCD wave function model.");
+    // Define the Python class for `SpinResolved1DMComponent`.
+    py::class_<SpinResolved1DMComponent<double>> py_SpinResolved1DMComponent_d {module, "SpinResolved1DMComponent_d", "One of the spin components of a `SpinResolved1DM`."};
+
+
+    // Expose the `BasisTransformable` API to the Python class.
+    bindBasisTransformableInterface(py_SpinResolved1DMComponent_d);
 }
 
 

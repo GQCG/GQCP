@@ -20,17 +20,19 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
 
 
-void bindSpin(py::module& module) {
-    py::enum_<GQCP::Spin>(module, "Spin")
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
 
-        .value("alpha", GQCP::Spin::alpha)
-        .value("beta", GQCP::Spin::beta)
+
+void bindSpin(py::module& module) {
+    py::enum_<Spin>(module, "Spin")
+
+        .value("alpha", Spin::alpha)
+        .value("beta", Spin::beta)
         .export_values();
 }
 
