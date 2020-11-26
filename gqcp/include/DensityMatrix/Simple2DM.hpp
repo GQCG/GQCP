@@ -55,7 +55,7 @@ public:
     using Self = Simple2DM<Scalar, DerivedDM>;
 
     // The type of the one-electron density matrix that is naturally related to the derived 2-DM.
-    using OneDM_Placeholder = typename DensityMatrixTraits<DerivedDM>::OneDM_Placeholder;
+    using OneDM = typename DensityMatrixTraits<DerivedDM>::OneDM;
 
     // The type of transformation that is naturally associated to the derived 2-DM.
     using Transformation = typename DensityMatrixTraits<DerivedDM>::Transformation;
@@ -87,12 +87,12 @@ public:
     /**
      *  @return A partial contraction D(p,q) of the 2-DM, where D(p,q) = d(p,q,r,r).
      */
-    OneDM_Placeholder reduce() const {
+    OneDM reduce() const {
         // TODO: when Eigen3 releases tensor.trace(), use it to implement the reduction
 
         const auto K = this->numberOfOrbitals();
 
-        OneDM_Placeholder D = OneDM_Placeholder::Zero(K);
+        OneDM D = OneDM::Zero(K);
         for (size_t p = 0; p < K; p++) {
             for (size_t q = 0; q < K; q++) {
 

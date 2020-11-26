@@ -67,7 +67,7 @@ struct DensityMatrixTraits<Orbital2DM<Scalar>> {
     using Transformation = RTransformation<Scalar>;
 
     // The type of the one-electron density matrix that is naturally related to an `Orbital2DM`.
-    using OneDM_Placeholder = Orbital1DM<Scalar>;
+    using OneDM = Orbital1DM<Scalar>;
 };
 
 

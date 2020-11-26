@@ -67,7 +67,7 @@ struct DensityMatrixTraits<G2DM<Scalar>> {
     using Transformation = GTransformation<Scalar>;
 
     // The type of the one-electron density matrix that is naturally related to a `G2DM`.
-    using OneDM_Placeholder = G1DM<Scalar>;
+    using OneDM = G1DM<Scalar>;
 };
 
 
