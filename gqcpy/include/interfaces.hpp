@@ -165,7 +165,7 @@ void bindSpinResolvedBaseInterface(Class& py_class) {
 
         .def_property(
             "component",
-            [](const Type& spin_resolved_object) {
+            [](const Type& spin_resolved_object, const Spin sigma) {
                 return spin_resolved_object.component(sigma);
             },
             [](Type& spin_resolved_object, const ComponentType& new_component, const Spin sigma) {
