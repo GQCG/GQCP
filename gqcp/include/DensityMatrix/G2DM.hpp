@@ -54,7 +54,7 @@ public:
 
 
 /*
- *  MARK: DensityMatrixTraits
+ *  MARK: `DensityMatrixTraits`
  */
 
 /**
@@ -62,11 +62,42 @@ public:
  */
 template <typename Scalar>
 struct DensityMatrixTraits<G2DM<Scalar>> {
+
     // The type of transformation that is naturally related to a `G2DM`.
     using Transformation = GTransformation<Scalar>;
 
     // The type of the one-electron density matrix that is naturally related to a `G2DM`.
-    using OneDM_Placeholder = G1DM<Scalar>;
+    using OneDM = G1DM<Scalar>;
+};
+
+
+/*
+ *  MARK: `BasisTransformableTraits`
+ */
+
+/**
+ *  A type that provides compile-time information on the abstract interface `BasisTransformable` that is otherwise not accessible through a public class alias.
+ */
+template <typename Scalar>
+struct BasisTransformableTraits<G2DM<Scalar>> {
+
+    // The type of transformation that is naturally related to a `G2DM`.
+    using Transformation = GTransformation<Scalar>;
+};
+
+
+/*
+ *  MARK: `JacobiRotatableTraits`
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
+ */
+template <typename Scalar>
+struct JacobiRotatableTraits<G2DM<Scalar>> {
+
+    // The type of Jacobi rotation that is naturally related to a `G2DM`.
+    using JacobiRotationType = JacobiRotation;
 };
 
 

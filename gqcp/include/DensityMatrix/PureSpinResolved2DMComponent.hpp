@@ -18,23 +18,23 @@
 #pragma once
 
 
-#include "Basis/Transformations/TransformationMatrix.hpp"
-#include "Mathematical/Representation/SquareMatrix.hpp"
+#include "Mathematical/Representation/SquareRankFourTensor.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  A type that represents a one-electron density matrix.
- *
- *  @tparam _Scalar     the scalar type
+ *  One of the pure (i.e. alpha-alpha or beta-beta) spin components of a spin-resolved 2-DM.
+ * 
+ *  @tparam _Scalar                 The scalar type used for a density matrix element: real or complex.
  */
 template <typename _Scalar>
-class OneDM: public SquareMatrix<_Scalar> {
+class PureSpinResolved2DMComponent:
+    public SquareRankFourTensor<_Scalar> {
 public:
+    // The scalar type used for a density matrix element: real or complex.
     using Scalar = _Scalar;
-    using Self = OneDM<Scalar>;
 
 
 public:
@@ -42,28 +42,18 @@ public:
      *  MARK: Constructors
      */
 
-    // Inherit base constructors.
-    using SquareMatrix<Scalar>::SquareMatrix;
+    // Inherit `SquareRankFourTensor`'s constructors.
+    using SquareRankFourTensor<Scalar>::SquareRankFourTensor;
 
 
     /*
      *  MARK: General information
      */
-    size_t numberOfOrbitals() const { return this->dimension(); }
-
-
-    /*
-     *  MARK: Transformations
-     */
 
     /**
-     *  @param T          transformation matrix for the spin unresolved 1-DM
-     * 
-     *  @return the transformed density matrix.
+     *  @return The number of orbitals that are related to this 2-DM.
      */
-    OneDM<Scalar> transformed(const TransformationMatrix<double>& T) const {
-        return Self(T.adjoint() * (*this) * T);
-    }
+    size_t numberOfOrbitals() const { return this->dimension(); }
 };
 
 

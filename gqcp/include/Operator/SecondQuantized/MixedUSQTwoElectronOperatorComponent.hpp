@@ -19,8 +19,8 @@
 
 
 #include "Basis/Transformations/UTransformationComponent.hpp"
+#include "DensityMatrix/MixedSpinResolved2DMComponent.hpp"
 #include "DensityMatrix/SpinResolved1DMComponent.hpp"
-#include "DensityMatrix/SpinResolved2DMComponent.hpp"
 #include "Mathematical/Representation/SquareRankFourTensor.hpp"
 #include "Operator/SecondQuantized/SQOperatorStorage.hpp"
 #include "QuantumChemical/Spin.hpp"
@@ -69,12 +69,12 @@ public:
      *
      *  @return The expectation values of all the components of the two-electron operator, with the given 2-DM.
      */
-    StorageArray<Scalar, Vectorizer> calculateExpectationValue(const SpinResolved2DMComponent<Scalar>& d) const {
+    StorageArray<Scalar, Vectorizer> calculateExpectationValue(const MixedSpinResolved2DMComponent<Scalar>& d) const {
 
         // FIXME: This is duplicate code from `SimpleSQTwoElectronOperator`. It would be double work to introduce a temporary intermediate class before resolving issue #559 (https://github.com/GQCG/GQCP/issues/559), which is why we chose to just copy-paste the implementation.
 
         if (this->numberOfOrbitals() != d.numberOfOrbitals()) {
-            throw std::invalid_argument("MixedUSQTwoElectronOperatorComponent::calculateExpectationValue(const SpinResolved2DMComponent&): The given 2-DM's dimension is not compatible with the two-electron operator.");
+            throw std::invalid_argument("MixedUSQTwoElectronOperatorComponent::calculateExpectationValue(const MixedSpinResolved2DMComponent&): The given 2-DM's dimension is not compatible with the two-electron operator.");
         }
 
 
@@ -247,7 +247,7 @@ struct OperatorTraits<MixedUSQTwoElectronOperatorComponent<_Scalar, _Vectorizer>
     using OneDM = SpinResolved1DMComponent<Scalar>;
 
     // The type of the two-particle density matrix that is naturally associated a component of an unestricted two-electron operator.
-    using TwoDM = SpinResolved2DMComponent<Scalar>;
+    using TwoDM = MixedSpinResolved2DMComponent<Scalar>;
 };
 
 

@@ -20,7 +20,6 @@
 
 #include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
-#include "Basis/Transformations/TransformationMatrix.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QuantumChemical/Spin.hpp"
 

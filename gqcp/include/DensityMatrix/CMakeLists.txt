@@ -3,14 +3,14 @@ target_sources(gqcp
         DensityMatrixTraits.hpp
         G1DM.hpp
         G2DM.hpp
-        OneDM.hpp
+        MixedSpinResolved2DMComponent.hpp
         Orbital1DM.hpp
         Orbital2DM.hpp
-        SpinResolved1DM.hpp
+        PureSpinResolved2DMComponent.hpp
         Simple1DM.hpp
         Simple2DM.hpp
         SpinDensity1DM.hpp
         SpinResolved1DM.hpp
+        SpinResolved1DMComponent.hpp
         SpinResolved2DM.hpp
-        TwoDM.hpp
 )

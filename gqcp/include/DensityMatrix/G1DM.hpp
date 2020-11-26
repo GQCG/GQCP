@@ -53,7 +53,7 @@ public:
 
 
 /*
- *  MARK: BasisTransformableTraits
+ *  MARK: `BasisTransformableTraits`
  */
 
 /**
@@ -68,7 +68,7 @@ struct BasisTransformableTraits<G1DM<Scalar>> {
 
 
 /*
- *  MARK: JacobiRotatableTraits
+ *  MARK: `JacobiRotatableTraits`
  */
 
 /**
@@ -83,7 +83,7 @@ struct JacobiRotatableTraits<G1DM<Scalar>> {
 
 
 /*
- *  MARK: DensityMatrixTraits
+ *  MARK: `DensityMatrixTraits`
  */
 
 /**

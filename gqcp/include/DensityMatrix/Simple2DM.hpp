@@ -18,6 +18,8 @@
 #pragma once
 
 
+#include "Basis/Transformations/BasisTransformable.hpp"
+#include "Basis/Transformations/JacobiRotatable.hpp"
 #include "DensityMatrix/DensityMatrixTraits.hpp"
 #include "Mathematical/Representation/SquareRankFourTensor.hpp"
 
@@ -26,7 +28,7 @@ namespace GQCP {
 
 
 /*
- *  MARK: Simple2DM implementation
+ *  MARK: `Simple2DM` implementation
  */
 
 /**
@@ -39,7 +41,9 @@ namespace GQCP {
  */
 template <typename _Scalar, typename _DerivedDM>
 class Simple2DM:
-    public SquareRankFourTensor<_Scalar> {
+    public SquareRankFourTensor<_Scalar>,
+    public BasisTransformable<_DerivedDM>,
+    public JacobiRotatable<_DerivedDM> {
 public:
     // The scalar type used for a density matrix element: real or complex.
     using Scalar = _Scalar;
@@ -51,7 +55,10 @@ public:
     using Self = Simple2DM<Scalar, DerivedDM>;
 
     // The type of the one-electron density matrix that is naturally related to the derived 2-DM.
-    using OneDM_Placeholder = typename DensityMatrixTraits<DerivedDM>::OneDM_Placeholder;
+    using OneDM = typename DensityMatrixTraits<DerivedDM>::OneDM;
+
+    // The type of transformation that is naturally associated to the derived 2-DM.
+    using Transformation = typename DensityMatrixTraits<DerivedDM>::Transformation;
 
 
 public:
@@ -59,12 +66,16 @@ public:
      *  MARK: Constructors
      */
 
-    // Inherit base constructors.
+    // Inherit `SquareRankFourTensor`'s constructors.
     using SquareRankFourTensor<Scalar>::SquareRankFourTensor;
 
 
     /*
      *  MARK: General information
+     */
+
+    /**
+     *  @return The number of orbitals that are related to this 2-DM.
      */
     size_t numberOfOrbitals() const { return this->dimension(); }
 
@@ -76,12 +87,12 @@ public:
     /**
      *  @return A partial contraction D(p,q) of the 2-DM, where D(p,q) = d(p,q,r,r).
      */
-    OneDM_Placeholder reduce() const {
+    OneDM reduce() const {
         // TODO: when Eigen3 releases tensor.trace(), use it to implement the reduction
 
         const auto K = this->numberOfOrbitals();
 
-        OneDM_Placeholder D = OneDM_Placeholder::Zero(K);
+        OneDM D = OneDM::Zero(K);
         for (size_t p = 0; p < K; p++) {
             for (size_t q = 0; q < K; q++) {
 
@@ -112,6 +123,73 @@ public:
 
         return trace;
     }
+
+
+    /*
+     *  MARK: Conforming to `BasisTransformable`
+     */
+
+    /**
+     *  Apply the basis transformation and return the resulting two-electron integrals.
+     * 
+     *  @param T            The basis transformation
+     * 
+     *  @return The basis-transformed one-electron integrals.
+     */
+    DerivedDM transformed(const Transformation& T) const override {
+
+        // The transformation formulas for two-electron operators and 2-DMs are similar, but not quite the same. Instead of using T, the transformation formula for the 2-DM uses T_inverse_transpose. See also (https://gqcg-res.github.io/knowdes/spinor-transformations.html).
+
+        // Since we're only getting T as a matrix, we should convert it to an appropriate tensor to perform contractions.
+        // Although not a necessity for the einsum implementation, it makes it a lot easier to follow the formulas.
+        const GQCP::SquareMatrix<Scalar> T_related = T.matrix().transpose().inverse();
+        const GQCP::Tensor<Scalar, 2> T_related_tensor = Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>>(T_related.data(), T_related.rows(), T_related.cols());
+
+        // We calculate the conjugate as a tensor as well.
+        const GQCP::Tensor<Scalar, 2> T_related_conjugate = T_related_tensor.conjugate();
+
+        // We will have to do four single contractions
+        // d(T U V W)  T^*(V R) -> a(T U R W)
+        // a(T U R W)  T(W S) -> b(T U R S)
+        const auto temp_1 = this->template einsum<1>("TUVW,VR->TURW", T_related_conjugate).template einsum<1>("TURW,WS->TURS", T_related_tensor);
+
+        // T(U Q)  b(T U R S) -> c(T Q R S)
+        const auto temp_2 = T_related_tensor.template einsum<1>("UQ,TURS->TQRS", temp_1);
+
+        // T^*(T P)  c(T Q R S) -> d'(P Q R S)
+        const auto transformed = T_related_conjugate.template einsum<1>("TP,TQRS->PQRS", temp_2);
+
+        return DerivedDM {transformed};
+    }
+
+
+    // Allow the `rotate` method from `BasisTransformable`, since there's also a `rotate` from `JacobiRotatable`.
+    using BasisTransformable<DerivedDM>::rotate;
+
+    // Allow the `rotated` method from `BasisTransformable`, since there's also a `rotated` from `JacobiRotatable`.
+    using BasisTransformable<DerivedDM>::rotated;
+
+
+    /*
+     *  MARK: Conforming to `JacobiRotatable`
+     */
+
+    /**
+     *  Apply the Jacobi rotation and return the result.
+     * 
+     *  @param jacobi_rotation          The Jacobi rotation.
+     * 
+     *  @return The Jacobi-transformed object.
+     */
+    DerivedDM rotated(const JacobiRotation& jacobi_rotation) const override {
+
+        // While waiting for an analogous Eigen::Tensor Jacobi module, we implement this rotation by constructing a Jacobi rotation matrix and then simply doing a rotation with it.
+        const auto J = Transformation::FromJacobi(jacobi_rotation, this->numberOfOrbitals());
+        return this->rotated(J);
+    }
+
+    // Allow the `rotate` method from `JacobiRotatable`, since there's also a `rotate` from `BasisTransformable`.
+    using JacobiRotatable<DerivedDM>::rotate;
 };
 
 

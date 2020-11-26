@@ -18,8 +18,9 @@
 #pragma once
 
 
+#include "DensityMatrix/MixedSpinResolved2DMComponent.hpp"
 #include "DensityMatrix/Orbital2DM.hpp"
-#include "DensityMatrix/SpinResolved2DMComponent.hpp"
+#include "DensityMatrix/PureSpinResolved2DMComponent.hpp"
 #include "QuantumChemical/DoublySpinResolvedBase.hpp"
 #include "QuantumChemical/Spin.hpp"
 
@@ -34,7 +35,7 @@ namespace GQCP {
  */
 template <typename _Scalar>
 class SpinResolved2DM:
-    public DoublySpinResolvedBase<SpinResolved2DMComponent<_Scalar>, SpinResolved2DMComponent<_Scalar>, SpinResolved2DM<_Scalar>> {
+    public DoublySpinResolvedBase<PureSpinResolved2DMComponent<_Scalar>, MixedSpinResolved2DMComponent<_Scalar>, SpinResolved2DM<_Scalar>> {
 public:
     // The scalar type of one of the density matrix elements: real or complex.
     using Scalar = _Scalar;
@@ -46,7 +47,7 @@ public:
      */
 
     // Inherit `DoublySpinResolvedBase`'s constructors.
-    using DoublySpinResolvedBase<SpinResolved2DMComponent<_Scalar>, SpinResolved2DMComponent<_Scalar>, SpinResolved2DM<_Scalar>>::DoublySpinResolvedBase;
+    using DoublySpinResolvedBase<PureSpinResolved2DMComponent<_Scalar>, MixedSpinResolved2DMComponent<_Scalar>, SpinResolved2DM<_Scalar>>::DoublySpinResolvedBase;
 
 
     /*

@@ -157,8 +157,8 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_throw) {
 
     const GQCP::ScalarRSQTwoElectronOperator<double> g {2};
 
-    const GQCP::TwoDM<double> d_valid {2};
-    const GQCP::TwoDM<double> d_invalid {3};
+    const GQCP::Orbital2DM<double> d_valid {2};
+    const GQCP::Orbital2DM<double> d_invalid {3};
 
     BOOST_CHECK_THROW(g.calculateExpectationValue(d_invalid), std::invalid_argument);
     BOOST_CHECK_NO_THROW(g.calculateExpectationValue(d_valid));
@@ -175,8 +175,8 @@ BOOST_AUTO_TEST_CASE(calculateExpectationValue_behaviour) {
     // Set up toy two-electron integrals.
     const auto op = toyTwoElectronIntegrals(dim);
 
-    // Initialize an alpha and beta density matrix, each one is chosen as a Hermitian matrix.
-    GQCP::TwoDM<double> d {dim};
+    // Initialize a density matrix as a Hermitian matrix.
+    GQCP::Orbital2DM<double> d {dim};
 
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {

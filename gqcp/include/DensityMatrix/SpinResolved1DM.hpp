@@ -18,6 +18,8 @@
 #pragma once
 
 
+#include "Basis/Transformations/SpinResolvedBasisTransformable.hpp"
+#include "Basis/Transformations/SpinResolvedJacobiRotatable.hpp"
 #include "Basis/Transformations/UTransformation.hpp"
 #include "DensityMatrix/G1DM.hpp"
 #include "DensityMatrix/Orbital1DM.hpp"
@@ -38,7 +40,7 @@ namespace GQCP {
 template <typename _Scalar>
 class SpinResolved1DM:
     public SpinResolvedBase<SpinResolved1DMComponent<_Scalar>, SpinResolved1DM<_Scalar>>,
-    public BasisTransformable<SpinResolved1DM<_Scalar>>,
+    public SpinResolvedBasisTransformable<SpinResolved1DM<_Scalar>>,
     public VectorSpaceArithmetic<SpinResolved1DM<_Scalar>, _Scalar> {
 public:
     // The scalar type of one of the density matrix elements: real or complex.
@@ -139,29 +141,6 @@ public:
      */
     Orbital1DM<Scalar> orbitalDensity() const {
         return this->alpha() + this->beta();
-    }
-
-
-    /*
-     *  MARK: Conforming to `BasisTransformable`
-     */
-
-    /**
-     *  Apply the basis transformation and return the result.
-     * 
-     *  @param T        The basis transformation.
-     * 
-     *  @return The basis-transformed object.
-     */
-    SpinResolved1DM<Scalar> transformed(const UTransformation<Scalar>& T) const override {
-
-        auto result = *this;
-
-        // Transform the components of the 1-DM with the components of the transformation.
-        result.alpha().transform(T.alpha());
-        result.beta().transform(T.beta());
-
-        return result;
     }
 
 

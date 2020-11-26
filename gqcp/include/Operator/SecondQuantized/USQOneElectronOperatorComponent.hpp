@@ -20,8 +20,8 @@
 
 #include "Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp"
 #include "Basis/Transformations/UTransformationComponent.hpp"
+#include "DensityMatrix/PureSpinResolved2DMComponent.hpp"
 #include "DensityMatrix/SpinResolved1DMComponent.hpp"
-#include "DensityMatrix/SpinResolved2DMComponent.hpp"
 #include "Mathematical/Representation/DenseVectorizer.hpp"
 #include "Operator/SecondQuantized/SimpleSQOneElectronOperator.hpp"
 
@@ -100,7 +100,7 @@ struct OperatorTraits<USQOneElectronOperatorComponent<Scalar, Vectorizer>> {
     using OneDM = SpinResolved1DMComponent<Scalar>;
 
     // The type of the two-particle density matrix that is naturally associated a component of an unrestricted one-electron operator.
-    using TwoDM = SpinResolved2DMComponent<Scalar>;
+    using TwoDM = PureSpinResolved2DMComponent<Scalar>;
 
     // The type used to encapsulate the Mulliken partitioning scheme.
     using MullikenPartitioning = UMullikenPartitioningComponent<Scalar>;

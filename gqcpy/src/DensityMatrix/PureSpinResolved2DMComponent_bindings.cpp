@@ -15,8 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "DensityMatrix/SpinResolved2DMComponent.hpp"
-#include "gqcpy/include/interfaces.hpp"
+#include "DensityMatrix/PureSpinResolved2DMComponent.hpp"
 
 #include <pybind11/pybind11.h>
 
@@ -30,18 +29,14 @@ using namespace GQCP;
 
 
 /**
- *  Register `SpinResolved2DMComponent_d` to the gqcpy module and expose a part of its C++ interface to Python.
+ *  Register `PureSpinResolved2DMComponent_d` to the gqcpy module and expose a part of its C++ interface to Python.
  * 
- *  @param module           The Pybind11 module in which `SpinResolved2DMComponent_d` should be registered.
+ *  @param module           The Pybind11 module in which `PureSpinResolved2DMComponent_d` should be registered.
  */
-void bindSpinResolved2DMComponent(py::module& module) {
+void bindPureSpinResolved2DMComponent(py::module& module) {
 
-    // Define the Python class for `SpinResolved2DMComponent`.
-    py::class_<SpinResolved2DMComponent<double>> py_SpinResolved2DMComponent_d {module, "SpinResolved2DMComponent_d", "One of the spin components of a `SpinResolved2DM`."};
-
-
-    // Expose the `Simple2DM` API to the Python class.
-    bindSimple2DMInterface(py_SpinResolved2DMComponent_d);
+    // Define the Python class for `PureSpinResolved2DMComponent`.
+    py::class_<PureSpinResolved2DMComponent<double>> py_PureSpinResolved2DMComponent_d {module, "PureSpinResolved2DMComponent_d", "One of the pure (i.e. alpha-alpha or beta-beta) spin components of a spin-resolved 2-DM."};
 }
 
 

@@ -875,9 +875,9 @@ public:
         // Initialize as zero matrices
         size_t K = this->onv_basis.alpha().numberOfOrbitals();
 
-        SpinResolved2DMComponent<double> d_aaaa = SpinResolved2DMComponent<double>::Zero(K);
-        SpinResolved2DMComponent<double> d_aabb = SpinResolved2DMComponent<double>::Zero(K);
-        SpinResolved2DMComponent<double> d_bbbb = SpinResolved2DMComponent<double>::Zero(K);
+        PureSpinResolved2DMComponent<double> d_aaaa = PureSpinResolved2DMComponent<double>::Zero(K);
+        MixedSpinResolved2DMComponent<double> d_aabb = MixedSpinResolved2DMComponent<double>::Zero(K);
+        PureSpinResolved2DMComponent<double> d_bbbb = PureSpinResolved2DMComponent<double>::Zero(K);
 
         // ALPHA-ALPHA-ALPHA-ALPHA
         SpinUnresolvedONV spin_string_alpha_aaaa = onv_basis_alpha.constructONVFromAddress(0);  // spin string with address 0
@@ -1005,7 +1005,7 @@ public:
         // BETA-BETA-ALPHA-ALPHA
         // We know that d^aabb_pqrs = d^bbaa_rspq
         Eigen::array<int, 4> shuffle {2, 3, 0, 1};  // array specifying the axes that should be swapped
-        SpinResolved2DMComponent<double> d_bbaa {d_aabb.Eigen().shuffle(shuffle)};
+        MixedSpinResolved2DMComponent<double> d_bbaa {d_aabb.Eigen().shuffle(shuffle)};
 
 
         // BETA-BETA-BETA-BETA
@@ -1156,8 +1156,8 @@ public:
 
 
         // For seniority-zero linear expansions, we only have to calculate d_aaaa and d_aabb.
-        SpinResolved2DMComponent<double> d_aaaa = SpinResolved2DMComponent<double>::Zero(K);
-        SpinResolved2DMComponent<double> d_aabb = SpinResolved2DMComponent<double>::Zero(K);
+        PureSpinResolved2DMComponent<double> d_aaaa = PureSpinResolved2DMComponent<double>::Zero(K);
+        MixedSpinResolved2DMComponent<double> d_aabb = MixedSpinResolved2DMComponent<double>::Zero(K);
 
 
         // Create the first ONV (with address 0). In DOCI, the ONV basis for alpha and beta is equal, so we can use the proxy ONV basis.
@@ -1303,10 +1303,10 @@ public:
         size_t K = this->onv_basis.numberOfOrbitals();
         size_t dim = onv_basis.dimension();
 
-        SpinResolved2DMComponent<double> d_aaaa = SpinResolved2DMComponent<double>::Zero(K);
-        SpinResolved2DMComponent<double> d_aabb = SpinResolved2DMComponent<double>::Zero(K);
-        SpinResolved2DMComponent<double> d_bbaa = SpinResolved2DMComponent<double>::Zero(K);
-        SpinResolved2DMComponent<double> d_bbbb = SpinResolved2DMComponent<double>::Zero(K);
+        PureSpinResolved2DMComponent<double> d_aaaa = PureSpinResolved2DMComponent<double>::Zero(K);
+        MixedSpinResolved2DMComponent<double> d_aabb = MixedSpinResolved2DMComponent<double>::Zero(K);
+        MixedSpinResolved2DMComponent<double> d_bbaa = MixedSpinResolved2DMComponent<double>::Zero(K);
+        PureSpinResolved2DMComponent<double> d_bbbb = PureSpinResolved2DMComponent<double>::Zero(K);
 
         for (size_t I = 0; I < dim; I++) {  // loop over all addresses I
 

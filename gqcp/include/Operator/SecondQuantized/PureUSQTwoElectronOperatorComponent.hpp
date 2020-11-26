@@ -19,8 +19,8 @@
 
 
 #include "Basis/Transformations/UTransformationComponent.hpp"
+#include "DensityMatrix/PureSpinResolved2DMComponent.hpp"
 #include "DensityMatrix/SpinResolved1DMComponent.hpp"
-#include "DensityMatrix/SpinResolved2DMComponent.hpp"
 #include "Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp"
 
@@ -102,7 +102,7 @@ struct OperatorTraits<PureUSQTwoElectronOperatorComponent<Scalar, Vectorizer>> {
     using OneDM = SpinResolved1DMComponent<Scalar>;
 
     // The type of the two-particle density matrix that is naturally associated a component of an unrestricted two-electron operator.
-    using TwoDM = SpinResolved2DMComponent<Scalar>;
+    using TwoDM = PureSpinResolved2DMComponent<Scalar>;
 };
 
 

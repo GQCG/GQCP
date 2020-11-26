@@ -33,10 +33,9 @@
  *  @return a toy 2-DM:
  *      d(p,q,r,s) = delta_pq delta_rs
  */
-GQCP::TwoDM<double> calculateToy2DM() {
+GQCP::Orbital2DM<double> calculateToy2DM() {
 
-    GQCP::TwoDM<double> d {2};
-    d.setZero();
+    auto d = GQCP::Orbital2DM<double>::Zero(2);
 
     for (size_t p = 0; p < 2; p++) {
         for (size_t q = 0; q < 2; q++) {
@@ -210,11 +209,11 @@ BOOST_AUTO_TEST_CASE(calculate_generalized_Fock_matrix_and_super_invalid_argumen
 
 
     // Create valid and invalid density matrices (with respect to the dimensions of the SOBasis)
-    GQCP::OneDM<double> D_valid = GQCP::OneDM<double>::Zero(2);
-    GQCP::OneDM<double> D_invalid = GQCP::OneDM<double>::Zero(3);
+    GQCP::Orbital1DM<double> D_valid = GQCP::Orbital1DM<double>::Zero(2);
+    GQCP::Orbital1DM<double> D_invalid = GQCP::Orbital1DM<double>::Zero(3);
 
-    GQCP::TwoDM<double> d_valid {2};
-    GQCP::TwoDM<double> d_invalid {3};
+    GQCP::Orbital2DM<double> d_valid {2};
+    GQCP::Orbital2DM<double> d_invalid {3};
 
 
     // Test a faulty function calls
@@ -235,7 +234,7 @@ BOOST_AUTO_TEST_CASE(calculate_Fockian_and_super) {
 
     // We test the function by a manual calculation of nonsensical toy 1- and 2-DMs and one- and two-electron integrals
     // Set up the toy 1- and 2-DMs
-    GQCP::OneDM<double> D {2};
+    GQCP::Orbital1DM<double> D {2};
     // clang-format off
     D << 0, 1,
          1, 0;

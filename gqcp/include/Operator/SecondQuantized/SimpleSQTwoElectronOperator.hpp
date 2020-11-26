@@ -284,7 +284,7 @@ public:
 
         // Since we're only getting T as a matrix, we should convert it to an appropriate tensor to perform contractions.
         // Although not a necessity for the einsum implementation, it makes it a lot easier to follow the formulas.
-        const GQCP::Tensor<Scalar, 2> T_tensor = GQCP::Tensor<Scalar, 2>(Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>>(T.matrix().data(), T.matrix().rows(), T.matrix().cols()));
+        const GQCP::Tensor<Scalar, 2> T_tensor = Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>>(T.matrix().data(), T.matrix().rows(), T.matrix().cols());
 
         // We calculate the conjugate as a tensor as well.
         const GQCP::Tensor<Scalar, 2> T_conjugate = T_tensor.conjugate();
@@ -321,7 +321,7 @@ public:
 
 
     /*
-     *  MARK: Conforming to JacobiRotatable
+     *  MARK: Conforming to `JacobiRotatable`
      */
 
     /**
@@ -329,7 +329,7 @@ public:
      * 
      *  @param jacobi_rotation          The Jacobi rotation.
      * 
-     *  @return The jacobi-transformed object.
+     *  @return The Jacobi-transformed object.
      */
     DerivedOperator rotated(const JacobiRotation& jacobi_rotation) const override {
 
