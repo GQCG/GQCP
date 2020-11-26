@@ -140,8 +140,8 @@ public:
     enable_if_t<std::is_same<S, complex>::value, MatrixX<complex>> internal() const {
 
         // Calculate the necessary partial stability matrices.
-        const auto spin_conserved_A = this->spinConservedA();
-        const auto spin_conserved_B = this->spinConservedB();
+        const auto& spin_conserved_A = this->spinConservedA();
+        const auto& spin_conserved_B = this->spinConservedB();
 
         // Determine the dimensions of the total stability matrix.
         const auto K = spin_conserved_A.dimension(0);
@@ -169,8 +169,8 @@ public:
     enable_if_t<std::is_same<S, complex>::value, MatrixX<complex>> unrestrictedGeneralized() const {
 
         // Calculate the necessary partial stability matrices.
-        const auto spin_unconserved_A = this->spinUnconservedA();
-        const auto spin_unconserved_B = this->spinUnconservedB();
+        const auto& spin_unconserved_A = this->spinUnconservedA();
+        const auto& spin_unconserved_B = this->spinUnconservedB();
 
         // Determine the dimensions of the total stability matrix.
         const auto K = spin_unconserved_A.dimension(0);

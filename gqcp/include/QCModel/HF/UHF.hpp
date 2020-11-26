@@ -372,8 +372,8 @@ public:
 
         // Depending on whether we are making the aabb or bbaa A'-component, we need a different component of the orbital_space.
         const auto orbital_space = this->orbitalSpace();
-        const auto orbital_space_sigma = this->orbitalSpace(sigma);
-        const auto orbital_space_sigma_bar = this->orbitalSpace(sigma_bar);
+        const auto& orbital_space_sigma = orbital_space.component(sigma);
+        const auto& orbital_space_sigma_bar = orbital_space.component(sigma_bar);
 
         // Determine the number of occupied and virtual orbitals for both spin components.
         const auto n_occ_sigma = orbital_space_sigma.numberOfOrbitals(OccupationType::k_occupied);

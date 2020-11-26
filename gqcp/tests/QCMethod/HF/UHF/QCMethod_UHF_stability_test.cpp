@@ -97,7 +97,7 @@ BOOST_AUTO_TEST_CASE(H4_stability_test) {
     // Calculate the stability matrices.
     const auto stability_matrices = uhf_parameters.calculateStabilityMatrices(sq_hamiltonian);
 
-    // This method should be internally stable.
+    // This method should be internally unstable.
     const auto internal_stability = stability_matrices.isInternallyStable();
     BOOST_CHECK(internal_stability == false);
 

@@ -490,7 +490,7 @@ BOOST_AUTO_TEST_CASE(reshape_square) {
 }
 
 /**
- *  Test the numpy-like reshape method and check whether it behaves correctly.
+ *  Test the numpy-like reshape method and check whether it behaves correctly for rectangular matrices.
  */
 BOOST_AUTO_TEST_CASE(reshape_non_square) {
 
