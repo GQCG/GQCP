@@ -21,6 +21,7 @@
 #include "Basis/Transformations/DoublySpinResolvedBasisTransformable.hpp"
 #include "Basis/Transformations/DoublySpinResolvedJacobiRotatable.hpp"
 #include "Basis/Transformations/UJacobiRotation.hpp"
+#include "Basis/Transformations/UTransformation.hpp"
 #include "DensityMatrix/MixedSpinResolved2DMComponent.hpp"
 #include "DensityMatrix/Orbital2DM.hpp"
 #include "DensityMatrix/PureSpinResolved2DMComponent.hpp"
