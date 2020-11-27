@@ -24,8 +24,9 @@
 #include "QCMethod/HF/RHF/RHF.hpp"
 #include "QCMethod/HF/RHF/RHFSCFSolver.hpp"
 
+
 /**
- *  Test if the expectation value of a one-electron operator in two different orbital bases is the same.
+ *  Test if the expectation value of a one-electron operator in different orbital bases is the same.
  */
 BOOST_AUTO_TEST_CASE(one_electron_operator_expectation_value_different_orbital_bases) {
 
