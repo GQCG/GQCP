@@ -80,7 +80,7 @@ public:
      *
      *  @return A Dyson orbital incorporating Dyson amplitudes.
      */
-    static DysonOrbital<Scalar> Overlap(const LinearExpansion<SpinResolvedONVBasis>& linear_expansion1, const LinearExpansion<SpinResolvedONVBasis>& linear_expansion2) {
+    static DysonOrbital<Scalar> TransitionAmplitudes(const LinearExpansion<SpinResolvedONVBasis>& linear_expansion1, const LinearExpansion<SpinResolvedONVBasis>& linear_expansion2) {
 
         const auto onv_basis1 = linear_expansion1.onvBasis();
         const auto onv_basis2 = linear_expansion2.onvBasis();
