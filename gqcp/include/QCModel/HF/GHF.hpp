@@ -320,8 +320,8 @@ public:
         const auto orbital_space = this->orbitalSpace();
 
         // Determine the number of occupied and virtual orbitals.
-        const auto n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
 
         // Calculate the occupied and virtual orbital energies.
         const auto occupied_energies = this->occupiedOrbitalEnergies();
@@ -365,8 +365,8 @@ public:
         const auto orbital_space = this->orbitalSpace();
 
         // Determine the number of occupied and virtual orbitals.
-        const auto n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
 
         // We need the anti-symmetrized tensor: (AI||JB) = (AI|JB) - (AB|JI). This is obtained by the `.antisymmetrized()` method.
         const auto g = gsq_hamiltonian.twoElectron().antisymmetrized().parameters();
@@ -421,8 +421,8 @@ public:
         const auto orbital_space = this->orbitalSpace();
 
         // Determine the number of occupied and virtual orbitals.
-        const auto n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
 
         // We need the anti-symmetrized tensor: (AI||BJ) = (AI|BJ) - (AJ|BI). This is obtained by the `.antisymmetrized()` method.
         const auto g = gsq_hamiltonian.twoElectron().antisymmetrized().parameters();
@@ -493,7 +493,7 @@ public:
     std::vector<double> occupiedOrbitalEnergies() const {
 
         // Determine the number of occupied orbitals.
-        const auto& n_occ = this->orbitalSpace().numberOfOrbitals(OccupationType::k_occupied);
+        const auto n_occ = this->orbitalSpace().numberOfOrbitals(OccupationType::k_occupied);
 
         std::vector<double> mo_energies;  // We use a std::vector in order to be able to slice the vector later on.
         for (int i = 0; i < this->numberOfSpinors(); i++) {
@@ -530,7 +530,7 @@ public:
     std::vector<double> virtualOrbitalEnergies() const {
 
         // Determine the number of occupied orbitals.
-        const auto& n_occ = this->orbitalSpace().numberOfOrbitals(OccupationType::k_occupied);
+        const auto n_occ = this->orbitalSpace().numberOfOrbitals(OccupationType::k_occupied);
 
         std::vector<double> mo_energies;  // We use a std::vector in order to be able to slice the vector later on.
         for (int i = 0; i < this->numberOfSpinors(); i++) {

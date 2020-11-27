@@ -376,14 +376,14 @@ public:
         const auto& orbital_space_sigma_bar = orbital_space.component(sigma_bar);
 
         // Determine the number of occupied and virtual orbitals for both spin components.
-        const auto n_occ_sigma = orbital_space_sigma.numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt_sigma = orbital_space_sigma.numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ_sigma = orbital_space_sigma.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt_sigma = orbital_space_sigma.numberOfOrbitals(OccupationType::k_virtual);
 
-        const auto n_occ_sigma_bar = orbital_space_sigma_bar.numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt_sigma_bar = orbital_space_sigma_bar.numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ_sigma_bar = orbital_space_sigma_bar.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt_sigma_bar = orbital_space_sigma_bar.numberOfOrbitals(OccupationType::k_virtual);
 
         // The mixed alpha-beta two electron integrals are extracted from the Hamiltonian.
-        const auto g = usq_hamiltonian.twoElectron().alphaBeta().parameters();
+        const auto& g = usq_hamiltonian.twoElectron().alphaBeta().parameters();
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object of mixed spins.
@@ -444,14 +444,14 @@ public:
         const auto& orbital_space_sigma_bar = orbital_space.component(sigma_bar);
 
         // Determine the number of occupied and virtual orbitals for both spin components.
-        const auto n_occ_sigma = orbital_space_sigma.numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt_sigma = orbital_space_sigma.numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ_sigma = orbital_space_sigma.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt_sigma = orbital_space_sigma.numberOfOrbitals(OccupationType::k_virtual);
 
-        const auto n_occ_sigma_bar = orbital_space_sigma_bar.numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt_sigma_bar = orbital_space_sigma_bar.numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ_sigma_bar = orbital_space_sigma_bar.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt_sigma_bar = orbital_space_sigma_bar.numberOfOrbitals(OccupationType::k_virtual);
 
         // The mixed alpha-beta two electron integrals are extracted from the Hamiltonian.
-        const auto g = usq_hamiltonian.twoElectron().alphaBeta().parameters();
+        const auto& g = usq_hamiltonian.twoElectron().alphaBeta().parameters();
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object of mixed spins.
@@ -502,8 +502,8 @@ public:
         const auto orbital_space_sigma = this->orbitalSpace().component(sigma);
 
         // Determine the number of occupied and virtual orbitals.
-        const auto n_occ = orbital_space_sigma.numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt = orbital_space_sigma.numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ = orbital_space_sigma.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt = orbital_space_sigma.numberOfOrbitals(OccupationType::k_virtual);
 
         // The pure alpha-alpha two electron integrals are extracted from the Hamiltonian.
         // We need the anti-symmetrized tensor: (AI||JB) = (AI|JB) - (AB|JI). This is obtained by the `.antisymmetrized()` method.
@@ -562,8 +562,8 @@ public:
         const auto orbital_space_sigma = this->orbitalSpace().component(sigma);
 
         // Determine the number of occupied and virtual orbitals.
-        const auto n_occ = orbital_space_sigma.numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt = orbital_space_sigma.numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ = orbital_space_sigma.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt = orbital_space_sigma.numberOfOrbitals(OccupationType::k_virtual);
 
         // The pure beta-beta two electron integrals are extracted from the Hamiltonian.
         // We need the anti-symmetrized tensor: (AI||JB) = (AI|JB) - (AB|JI). This is obtained by the `.antisymmetrized()` method.
@@ -703,14 +703,14 @@ public:
         const auto& orbital_space_sigma_bar = orbital_space.component(sigma_bar);
 
         // Determine the number of occupied and virtual orbitals.
-        const auto n_occ_sigma = orbital_space_sigma.numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt_sigma = orbital_space_sigma.numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ_sigma = orbital_space_sigma.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt_sigma = orbital_space_sigma.numberOfOrbitals(OccupationType::k_virtual);
 
-        const auto n_occ_sigma_bar = orbital_space_sigma_bar.numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt_sigma_bar = orbital_space_sigma_bar.numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ_sigma_bar = orbital_space_sigma_bar.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt_sigma_bar = orbital_space_sigma_bar.numberOfOrbitals(OccupationType::k_virtual);
 
         /// The mixed alpha-beta two electron integrals are extracted from the Hamiltonian.
-        const auto g = usq_hamiltonian.twoElectron().alphaBeta().parameters();
+        const auto& g = usq_hamiltonian.twoElectron().alphaBeta().parameters();
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object of mixed spins.
@@ -789,14 +789,14 @@ public:
         const auto& orbital_space_sigma_bar = orbital_space.component(sigma_bar);
 
         // Determine the number of occupied and virtual orbitals.
-        const auto n_occ_sigma = orbital_space_sigma.numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt_sigma = orbital_space_sigma.numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ_sigma = orbital_space_sigma.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt_sigma = orbital_space_sigma.numberOfOrbitals(OccupationType::k_virtual);
 
-        const auto n_occ_sigma_bar = orbital_space_sigma_bar.numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt_sigma_bar = orbital_space_sigma_bar.numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ_sigma_bar = orbital_space_sigma_bar.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt_sigma_bar = orbital_space_sigma_bar.numberOfOrbitals(OccupationType::k_virtual);
 
         // The mixed alpha-beta two electron integrals are extracted from the Hamiltonian.
-        const auto g = usq_hamiltonian.twoElectron().alphaBeta().parameters();
+        const auto& g = usq_hamiltonian.twoElectron().alphaBeta().parameters();
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object of mixed spins.

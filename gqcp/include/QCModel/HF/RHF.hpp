@@ -330,8 +330,8 @@ public:
         const auto orbital_space = this->orbitalSpace();
 
         // Determine the number of occupied and virtual orbitals.
-        const auto n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
 
         // Calculate the occupied and virtual orbital energies.
         const auto occupied_energies = this->occupiedOrbitalEnergies();
@@ -374,11 +374,11 @@ public:
         const auto orbital_space = this->orbitalSpace();
 
         // Create the number of occupied and virtual orbitals.
-        const auto n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
 
         // The two electron integrals are extracted from the Hamiltonian.
-        const auto g = rsq_hamiltonian.twoElectron().parameters();
+        const auto& g = rsq_hamiltonian.twoElectron().parameters();
 
         // The elements (F_R)_AA and (F_R)_IJ are the eigenvalues of the one-electron Fock operator.
         // The excitationEnergies API can be used to find these values.
@@ -430,11 +430,11 @@ public:
         const auto orbital_space = this->orbitalSpace();
 
         // Create the number of occupied and virtual orbitals.
-        const auto n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
 
         // The two electron integrals are extracted from the Hamiltonian.
-        const auto g = rsq_hamiltonian.twoElectron().parameters();
+        const auto& g = rsq_hamiltonian.twoElectron().parameters();
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object.
@@ -475,11 +475,11 @@ public:
         const auto orbital_space = this->orbitalSpace();
 
         // Create the number of occupied and virtual orbitals.
-        const auto n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
 
         // The two electron integrals are extracted from the Hamiltonian.
-        const auto g = rsq_hamiltonian.twoElectron().parameters();
+        const auto& g = rsq_hamiltonian.twoElectron().parameters();
 
         // The elements (F_R)_AA and (F_R)_IJ are the eigenvalues of the one-electron Fock operator.
         // The excitationEnergies API can be used to find these values.
@@ -531,11 +531,11 @@ public:
         const auto orbital_space = this->orbitalSpace();
 
         // Create the number of occupied and virtual orbitals.
-        const auto n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
 
         // The two electron integrals are extracted from the Hamiltonian.
-        const auto g = rsq_hamiltonian.twoElectron().parameters();
+        const auto& g = rsq_hamiltonian.twoElectron().parameters();
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object.
@@ -621,7 +621,7 @@ public:
     std::vector<double> occupiedOrbitalEnergies() const {
 
         // Determine the number of occupied orbitals.
-        const auto& n_occ = this->orbitalSpace().numberOfOrbitals(OccupationType::k_occupied);
+        const auto n_occ = this->orbitalSpace().numberOfOrbitals(OccupationType::k_occupied);
 
         std::vector<double> mo_energies;  // We use a std::vector in order to be able to slice the vector later on.
         for (int i = 0; i < this->numberOfSpatialOrbitals(); i++) {
@@ -690,7 +690,7 @@ public:
     std::vector<double> virtualOrbitalEnergies() const {
 
         // Determine the number of occupied orbitals.
-        const auto& n_occ = this->orbitalSpace().numberOfOrbitals(OccupationType::k_occupied);
+        const auto n_occ = this->orbitalSpace().numberOfOrbitals(OccupationType::k_occupied);
 
         std::vector<double> mo_energies;  // We use a std::vector in order to be able to slice the vector later on.
         for (int i = 0; i < this->numberOfSpatialOrbitals(); i++) {
