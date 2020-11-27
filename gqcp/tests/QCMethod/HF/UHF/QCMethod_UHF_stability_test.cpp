@@ -50,8 +50,13 @@ BOOST_AUTO_TEST_CASE(H3_stability_test) {
     auto uhf_parameters = qc_structure.groundStateParameters();
 
     // We can now check the stability of the ground state parameters.
+    // For this we need an unrestricted Hamiltonian in the orthonormal MO basis.
+    const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> basis {molecule, "STO-3G"};
+    const auto basis_mo = basis.transformed(uhf_parameters.expansion());
+    const auto h_mo = GQCP::USQHamiltonian<double>::Molecular(basis_mo, molecule);
+
     // Calculate the stability matrices.
-    const auto stability_matrices = uhf_parameters.calculateStabilityMatrices(sq_hamiltonian);
+    const auto stability_matrices = uhf_parameters.calculateStabilityMatrices(h_mo);
 
     // This method should be internally stable.
     const auto internal_stability = stability_matrices.isInternallyStable();
@@ -94,8 +99,13 @@ BOOST_AUTO_TEST_CASE(H4_stability_test) {
     auto uhf_parameters = qc_structure.groundStateParameters();
 
     // We can now check the stability of the ground state parameters.
+    // For this we need an unrestricted Hamiltonian in the orthonormal MO basis.
+    const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> basis {molecule, "6-31G"};
+    const auto basis_mo = basis.transformed(uhf_parameters.expansion());
+    const auto h_mo = GQCP::USQHamiltonian<double>::Molecular(basis_mo, molecule);
+
     // Calculate the stability matrices.
-    const auto stability_matrices = uhf_parameters.calculateStabilityMatrices(sq_hamiltonian);
+    const auto stability_matrices = uhf_parameters.calculateStabilityMatrices(h_mo);
 
     // This method should be internally unstable.
     const auto internal_stability = stability_matrices.isInternallyStable();

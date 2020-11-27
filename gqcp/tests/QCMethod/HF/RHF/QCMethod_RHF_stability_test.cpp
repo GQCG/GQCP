@@ -44,8 +44,12 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_stability) {
     auto rhf_parameters = qc_structure.groundStateParameters();
 
     // We can now check the stability of the ground state parameters.
+    // For this we need a restricted Hamiltonian in the orthonormal MO basis.
+    const auto basis_mo = spinor_basis.transformed(rhf_parameters.expansion());
+    const auto h_mo = GQCP::RSQHamiltonian<double>::Molecular(basis_mo, water);
+
     // Calculate the stability matrices.
-    const auto stability_matrices = rhf_parameters.calculateStabilityMatrices(sq_hamiltonian);
+    const auto stability_matrices = rhf_parameters.calculateStabilityMatrices(h_mo);
 
     // This method should be internally stable.
     const auto internal_stability = stability_matrices.isInternallyStable();
@@ -78,8 +82,12 @@ BOOST_AUTO_TEST_CASE(h4_sto3g_stability) {
     auto rhf_parameters = qc_structure.groundStateParameters();
 
     // We can now check the stability of the ground state parameters.
+    // For this we need a restricted Hamiltonian in the orthonormal MO basis.
+    const auto basis_mo = spinor_basis.transformed(rhf_parameters.expansion());
+    const auto h_mo = GQCP::RSQHamiltonian<double>::Molecular(basis_mo, molecule);
+
     // Calculate the stability matrices.
-    const auto stability_matrices = rhf_parameters.calculateStabilityMatrices(sq_hamiltonian);
+    const auto stability_matrices = rhf_parameters.calculateStabilityMatrices(h_mo);
 
     // This method should be internally stable.
     const auto internal_stability = stability_matrices.isInternallyStable();

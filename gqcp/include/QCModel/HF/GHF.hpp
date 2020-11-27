@@ -355,7 +355,7 @@ public:
      *  @note The formula for the `A` matrix is as follows:
      *      A_IAJB = \delta_IJ * F_BA - \delta_BA * F_IJ + (AI||JB).
      * 
-     *  @param gsq_hamiltonian      The second quantized Hamiltonian, expressed in the non-orthogonal, 'generalized' spinor basis of the AOs, which contains the necessary two-electron operators.
+     *  @param gsq_hamiltonian      The second quantized Hamiltonian, expressed in the orthonormal, 'generalized' spinor basis of the GHF MOs, which contains the necessary two-electron operators.
      * 
      *  @return The partial stability matrix A.
      */
@@ -368,10 +368,8 @@ public:
         const auto n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
         const auto n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
 
-        // We need the two-electron integrals in MO basis, hence why we transform them with the coefficient matrix.
-        // The ground state coefficient matrix is obtained from the QCModel.
         // We need the anti-symmetrized tensor: (AI||JB) = (AI|JB) - (AB|JI). This is obtained by the `.antisymmetrized()` method.
-        const auto g = gsq_hamiltonian.twoElectron().transformed(this->expansion()).antisymmetrized().parameters();
+        const auto g = gsq_hamiltonian.twoElectron().antisymmetrized().parameters();
 
         // The elements F_BA and F_IJ are the eigenvalues of the one-electron Fock operator.
         // The excitationEnergies API can be used to find these values
@@ -413,7 +411,7 @@ public:
      *  @note The formula for the `B` matrix is as follows:
      *      B_IAJB = (AI||BJ).
      *
-     *  @param gsq_hamiltonian      The second quantized Hamiltonian, expressed in the non-orthogonal, 'generalized' spinor basis of the AOs, which contains the necessary two-electron operators.
+     *  @param gsq_hamiltonian      The second quantized Hamiltonian, expressed in the orthonormal, 'generalized' spinor basis of the GHF MOs, which contains the necessary two-electron operators.
      * 
      *  @return The partial stability matrix B.
      */
@@ -426,10 +424,8 @@ public:
         const auto n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
         const auto n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
 
-        // We need the two-electron integrals in MO basis, hence why we transform them with the coefficient matrix.
-        // The ground state coefficient matrix is obtained from the QCModel.
         // We need the anti-symmetrized tensor: (AI||BJ) = (AI|BJ) - (AJ|BI). This is obtained by the `.antisymmetrized()` method.
-        const auto g = gsq_hamiltonian.twoElectron().transformed(this->expansion()).antisymmetrized().parameters();
+        const auto g = gsq_hamiltonian.twoElectron().antisymmetrized().parameters();
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object.
@@ -466,6 +462,8 @@ public:
 
     /**
      *  Calculate the GHF stability matrices and return them.
+     * 
+     *  @param gsq_hamiltonian      The second quantized Hamiltonian, expressed in the orthonormal, 'generalized' spinor basis of the GHF MOs, which contains the necessary two-electron operators.
      *
      *  @return The GHF stability matrices.
      */

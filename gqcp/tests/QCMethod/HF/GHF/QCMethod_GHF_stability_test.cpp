@@ -49,8 +49,13 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_1) {
     auto ghf_parameters = qc_structure.groundStateParameters();
 
     // We can now check the stability of the ground state parameters.
+    // For this we need a generalized Hamiltonian in the orthonormal MO basis.
+    const auto basis_mo = g_spinor_basis.transformed(ghf_parameters.expansion());
+    const auto h_mo = GQCP::GSQHamiltonian<double>::Molecular(basis_mo, molecule);
+
     // Calculate the stability matrices.
-    const auto stability_matrices = ghf_parameters.calculateStabilityMatrices(sq_hamiltonian);
+    const auto stability_matrices = ghf_parameters.calculateStabilityMatrices(h_mo);
+
 
     // This method should be internally unstable.
     const auto internal_stability = stability_matrices.isInternallyStable();
@@ -101,8 +106,13 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_2) {
     auto ghf_parameters = qc_structure.groundStateParameters();
 
     // We can now check the stability of the ground state parameters.
+    // For this we need a generalized Hamiltonian in the orthonormal MO basis.
+    const auto basis_mo = g_spinor_basis.transformed(ghf_parameters.expansion());
+    const auto h_mo = GQCP::GSQHamiltonian<double>::Molecular(basis_mo, molecule);
+
     // Calculate the stability matrices.
-    const auto stability_matrices = ghf_parameters.calculateStabilityMatrices(sq_hamiltonian);
+    const auto stability_matrices = ghf_parameters.calculateStabilityMatrices(h_mo);
+
 
     // This method should be internally stable.
     const auto internal_stability = stability_matrices.isInternallyStable();
@@ -131,6 +141,7 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_3) {
     const GQCP::GSpinorBasis<double, GQCP::GTOShell> g_spinor_basis {molecule, "6-31G"};
     const auto S = g_spinor_basis.overlap().parameters();
 
+    // Create a Hamiltonian in the AO basis.
     const auto sq_hamiltonian = GQCP::GSQHamiltonian<double>::Molecular(g_spinor_basis, molecule);
 
     // Perform a GHF SCF calculation
@@ -140,8 +151,12 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_3) {
     auto ghf_parameters = qc_structure.groundStateParameters();
 
     // We can now check the stability of the ground state parameters.
+    // For this we need a generalized Hamiltonian in the orthonormal MO basis.
+    const auto g_mo = g_spinor_basis.transformed(ghf_parameters.expansion());
+    const auto h_mo = GQCP::GSQHamiltonian<double>::Molecular(g_mo, molecule);
+
     // Calculate the stability matrices.
-    const auto stability_matrices = ghf_parameters.calculateStabilityMatrices(sq_hamiltonian);
+    const auto stability_matrices = ghf_parameters.calculateStabilityMatrices(h_mo);
 
     // This method should be internally stable.
     const auto internal_stability = stability_matrices.isInternallyStable();
