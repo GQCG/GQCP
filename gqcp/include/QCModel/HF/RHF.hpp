@@ -192,10 +192,12 @@ public:
 
 
     /**
-     *  @param K    the number of spatial orbitals
-     *  @param N    the number of electrons
+     *  Calculate the RHF 1-DM expressed in an orthonormal spin-orbital basis.
+     * 
+     *  @param K            The number of spatial orbitals.
+     *  @param N            The total number of electrons.
      *
-     *  @return the RHF 1-DM expressed in an orthonormal spinor basis
+     *  @return The RHF 1-DM expressed in an orthonormal spin-orbital basis.
      */
     static Orbital1DM<Scalar> calculateOrthonormalBasis1DM(const size_t K, const size_t N) {
 
@@ -210,10 +212,54 @@ public:
         //    0  0  0  0  0
         //    0  0  0  0  0
 
-        Orbital1DM<double> D_MO = Orbital1DM<double>::Zero(K);
-        D_MO.topLeftCorner(N / 2, N / 2) = 2 * SquareMatrix<double>::Identity(N / 2);
+        Orbital1DM<double> D = Orbital1DM<double>::Zero(K);
+        D.topLeftCorner(N / 2, N / 2) = 2 * SquareMatrix<double>::Identity(N / 2);
 
-        return D_MO;
+        return D;
+    }
+
+
+    /**
+     *  Calculate the RHF 2-DM expressed in an orthonormal spin-orbital basis.
+     * 
+     *  @param K            The number of spatial orbitals.
+     *  @param N            The total number of electrons.
+     *
+     *  @return The RHF 2-DM expressed in an orthonormal spin-orbital basis.
+     */
+    static Orbital2DM<Scalar> calculateOrthonormalBasis2DM(const size_t K, const size_t N) {
+
+        if (N % 2 != 0) {
+            throw std::invalid_argument("QCMethod::RHF::calculateOrthonormalBasis1DM(const size_t, const size_t): The number of given electrons cannot be odd for RHF.");
+        }
+
+        const size_t N_P = N / 2;  // The number of electron pairs.
+
+
+        // Create the orbital space to determine the loops.
+        const auto orbital_space = RHF<Scalar>::orbitalSpace(K, N_P);
+
+
+        // Implement a KISS formula for the GHF 2-DM.
+        Orbital2DM<Scalar> d = Orbital2DM<Scalar>::Zero(K);
+
+        for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
+                for (const auto& k : orbital_space.indices(OccupationType::k_occupied)) {
+                    for (const auto& l : orbital_space.indices(OccupationType::k_occupied)) {
+                        if ((i == j) && (k == l)) {
+                            d(i, j, k, l) += 4.0;
+                        }
+
+                        if ((i == l) && (j == k)) {
+                            d(i, j, k, l) -= 2.0;
+                        }
+                    }
+                }
+            }
+        }
+
+        return d;
     }
 
 
@@ -265,8 +311,7 @@ public:
      *
      *  @return the (spatial orbital, not spin-orbital) index of the RHF HOMO in an implicit orbital space
      */
-    static size_t
-    homoIndex(const size_t N) {
+    static size_t homoIndex(const size_t N) {
 
         if (N % 2 != 0) {
             throw std::invalid_argument("QCModel::RHF::homoIndex(const size_t): Can't calculate the RHF HOMO index for an odd number of electrons N.");
@@ -309,13 +354,24 @@ public:
      */
 
     /**
-     *  @return the 1-DM expressed in an orthonormal spinor basis related to these optimal RHF parameters
+     *  @return The 1-DM expressed in an orthonormal spinor basis related to these optimal RHF parameters.
      */
     Orbital1DM<Scalar> calculateOrthonormalBasis1DM() const {
 
         const auto K = this->numberOfSpatialOrbitals();
         const auto N = 2 * this->numberOfElectronPairs();
         return RHF<Scalar>::calculateOrthonormalBasis1DM(K, N);
+    }
+
+
+    /**
+     *  @return The 2-DM expressed in an orthonormal spinor basis related to these optimal RHF parameters.
+     */
+    Orbital2DM<Scalar> calculateOrthonormalBasis2DM() const {
+
+        const auto K = this->numberOfSpatialOrbitals();
+        const auto N = 2 * this->numberOfElectronPairs();
+        return RHF<Scalar>::calculateOrthonormalBasis2DM(K, N);
     }
 
 
