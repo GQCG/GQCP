@@ -520,7 +520,7 @@ public:
 
 
     /**
-     *  @return the coefficient matrix that expresses every spinor orbital (as a column) in the underlying scalar bases
+     *  @return The transformation that expresses the GHF MOs in terms of the underlying AOs.
      */
     const GTransformation<Scalar>& expansion() const { return this->C; }
 

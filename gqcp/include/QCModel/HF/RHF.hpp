@@ -624,7 +624,7 @@ public:
 
 
     /**
-     *  @return the coefficient matrix that expresses every spatial orbital (as a column) in its underlying scalar basis
+     *  @return The transformation that expresses the RHF MOs in terms of the underlying AOs.
      */
     const RTransformation<Scalar>& expansion() const { return this->C; }
 
