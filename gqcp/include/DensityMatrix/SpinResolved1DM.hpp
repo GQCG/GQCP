@@ -41,6 +41,7 @@ template <typename _Scalar>
 class SpinResolved1DM:
     public SpinResolvedBase<SpinResolved1DMComponent<_Scalar>, SpinResolved1DM<_Scalar>>,
     public SpinResolvedBasisTransformable<SpinResolved1DM<_Scalar>>,
+    public SpinResolvedJacobiRotatable<SpinResolved1DM<_Scalar>>,
     public VectorSpaceArithmetic<SpinResolved1DM<_Scalar>, _Scalar> {
 public:
     // The scalar type of one of the density matrix elements: real or complex.

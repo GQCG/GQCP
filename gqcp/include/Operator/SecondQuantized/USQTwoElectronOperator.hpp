@@ -18,8 +18,8 @@
 #pragma once
 
 
-#include "Basis/Transformations/BasisTransformable.hpp"
-#include "Basis/Transformations/JacobiRotatable.hpp"
+#include "Basis/Transformations/DoublySpinResolvedBasisTransformable.hpp"
+#include "Basis/Transformations/DoublySpinResolvedJacobiRotatable.hpp"
 #include "Basis/Transformations/UJacobiRotation.hpp"
 #include "Basis/Transformations/UTransformation.hpp"
 #include "DensityMatrix/SpinResolved1DM.hpp"
@@ -44,8 +44,8 @@ namespace GQCP {
 template <typename _Scalar, typename _Vectorizer>
 class USQTwoElectronOperator:
     public DoublySpinResolvedBase<PureUSQTwoElectronOperatorComponent<_Scalar, _Vectorizer>, MixedUSQTwoElectronOperatorComponent<_Scalar, _Vectorizer>, USQTwoElectronOperator<_Scalar, _Vectorizer>>,
-    public BasisTransformable<USQTwoElectronOperator<_Scalar, _Vectorizer>>,
-    public JacobiRotatable<USQTwoElectronOperator<_Scalar, _Vectorizer>>,
+    public DoublySpinResolvedBasisTransformable<USQTwoElectronOperator<_Scalar, _Vectorizer>>,
+    public DoublySpinResolvedJacobiRotatable<USQTwoElectronOperator<_Scalar, _Vectorizer>>,
     public VectorSpaceArithmetic<USQTwoElectronOperator<_Scalar, _Vectorizer>, _Scalar> {
 public:
     // The scalar type used for a single parameter: real or complex.
@@ -231,74 +231,23 @@ public:
     size_t numberOfOrbitals() const { return this->alphaAlpha().numberOfOrbitals(); }
 
 
-    /*
-     *  MARK: Conforming to `BasisTransformable`
-     */
-
     /**
-     *  Apply the basis transformation and return the result.
-     * 
-     *  @param T            The basis transformation.
-     * 
-     *  @return The basis-transformed object.
-     */
-    Self transformed(const Transformation& T) const override {
-
-        auto result = *this;
-
-        // Transform each of the spin-components of this two-electron operator.
-        result.alphaAlpha().transform(T.alpha());
-
-        result.alphaBeta().transform(T.alpha(), Spin::alpha);  // See `MixedUSQTwoElectronOperatorComponent::transform` for explanation of the API.
-        result.alphaBeta().transform(T.beta(), Spin::beta);
-
-        result.betaAlpha().transform(T.beta(), Spin::alpha);
-        result.betaAlpha().transform(T.alpha(), Spin::beta);
-
-        result.betaBeta().transform(T.beta());
-
-        return result;
-    };
-
-
-    // Allow the `rotate` method from `BasisTransformable`, since there's also a `rotate` from `JacobiRotatable`.
-    using BasisTransformable<Self>::rotate;
-
-    // Allow the `rotated` method from `BasisTransformable`, since there's also a `rotate` from `JacobiRotatable`.
-    using BasisTransformable<Self>::rotated;
-
-
-    /*
-     *  MARK: Conforming to `JacobiRotatable`
+     *  MARK: Enabling basis transformations
      */
 
-    /**
-     *  Apply the Jacobi rotation and return the result.
-     * 
-     *  @param jacobi_rotation          The Jacobi rotation.
-     * 
-     *  @return The jacobi-transformed object.
-     */
-    Self rotated(const JacobiRotationType& jacobi_rotation) const override {
+    // Since `rotate` and `rotated` are both defined in `DoublySpinResolvedBasisTransformable` and `DoublySpinResolvedJacobiRotatable`, we have to explicitly enable these methods here.
 
-        auto result = *this;
+    // Allow the `rotate` method from `DoublySpinResolvedBasisTransformable`, since there's also a `rotate` from `DoublySpinResolvedJacobiRotatable`.
+    using DoublySpinResolvedBasisTransformable<Self>::rotate;
 
-        // Rotate each of the spin-components of this two-electron operator.
-        result.alphaAlpha().rotate(jacobi_rotation.alpha());
+    // Allow the `rotated` method from `DoublySpinResolvedBasisTransformable`, since there's also a `rotated` from `DoublySpinResolvedJacobiRotatable`.
+    using DoublySpinResolvedBasisTransformable<Self>::rotated;
 
-        result.alphaBeta().rotate(jacobi_rotation.alpha(), Spin::alpha);  // See `MixedUSQTwoElectronOperatorComponent::rotate` for explanation of the API.
-        result.alphaBeta().rotate(jacobi_rotation.beta(), Spin::beta);
+    // Allow the `rotate` method from `DoublySpinResolvedJacobiRotatable`, since there's also a `rotate` from `DoublySpinResolvedBasisTransformable`.
+    using DoublySpinResolvedJacobiRotatable<Self>::rotate;
 
-        result.betaAlpha().rotate(jacobi_rotation.beta(), Spin::alpha);
-        result.betaAlpha().rotate(jacobi_rotation.alpha(), Spin::beta);
-
-        result.betaBeta().rotate(jacobi_rotation.beta());
-
-        return result;
-    }
-
-    // Allow the `rotate` method from `JacobiRotatable`, since there's also a `rotate` from `BasisTransformable`.
-    using JacobiRotatable<Self>::rotate;
+    // Allow the `rotated` method from `DoublySpinResolvedJacobiRotatable`, since there's also a `rotated` from `DoublySpinResolvedBasisTransformable`.
+    using DoublySpinResolvedJacobiRotatable<Self>::rotated;
 
 
     /*
