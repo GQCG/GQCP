@@ -18,7 +18,9 @@
 #pragma once
 
 
+#include "Basis/Transformations/UTransformationComponent.hpp"
 #include "Mathematical/Representation/SquareRankFourTensor.hpp"
+#include "QuantumChemical/Spin.hpp"
 
 
 namespace GQCP {
