@@ -60,8 +60,6 @@ void bindCIFactoryMethod(py::module& module) {
  */
 void bindCIFactory(py::module& module) {
 
-    bindCIFactoryMethod<GQCP::SeniorityZeroONVBasis>(module);
-    // bindCIFactoryMethod<GQCP::SpinResolvedFrozenONVBasis>(module);
     bindCIFactoryMethod<GQCP::SpinResolvedONVBasis>(module);
     bindCIFactoryMethod<GQCP::SpinResolvedSelectedONVBasis>(module);
 }

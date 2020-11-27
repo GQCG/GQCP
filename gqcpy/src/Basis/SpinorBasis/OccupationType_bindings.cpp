@@ -20,18 +20,25 @@
 #include <pybind11/pybind11.h>
 
 
-namespace py = pybind11;
-
-
 namespace gqcpy {
 
 
-void bindOccupationType(py::module& module) {
-    py::enum_<GQCP::OccupationType>(module, "OccupationType")
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
 
-        .value("occupied", GQCP::OccupationType::k_occupied)
-        .value("active", GQCP::OccupationType::k_active)
-        .value("virtual", GQCP::OccupationType::k_virtual)
+
+/**
+ *  Register `OccupationType` to the gqcpy module and expose a part of its C++ interface to Python.
+ * 
+ *  @param module           The Pybind11 module in which `OccupationType` should be registered.
+ */
+void bindOccupationType(py::module& module) {
+    py::enum_<OccupationType>(module, "OccupationType")
+
+        .value("occupied", OccupationType::k_occupied)
+        .value("active", OccupationType::k_active)
+        .value("virtual", OccupationType::k_virtual)
         .export_values();
 }
 

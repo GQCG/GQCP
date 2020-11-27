@@ -41,7 +41,7 @@ namespace GQCP {
 template <typename _Scalar, typename _DerivedDM>
 class Simple1DM:
     public SquareMatrix<_Scalar>,
-    public BasisTransformable<Simple1DM<_Scalar, _DerivedDM>> {
+    public BasisTransformable<_DerivedDM> {
 public:
     // The scalar type used for a density matrix element: real or complex.
     using Scalar = _Scalar;
@@ -52,7 +52,7 @@ public:
     // The type of 'this'.
     using Self = Simple1DM<Scalar, DerivedDM>;
 
-    // The type of transformation that is naturally related to the DerivedDM.
+    // The type of transformation that is naturally related to the `DerivedDM`.
     using Transformation = typename DensityMatrixTraits<DerivedDM>::Transformation;
 
 
@@ -61,7 +61,7 @@ public:
      *  MARK: Constructors
      */
 
-    // Inherit base constructors.
+    // Inherit `SquareMatrix`' constructors.
     using SquareMatrix<Scalar>::SquareMatrix;
 
 
@@ -82,40 +82,13 @@ public:
      * 
      *  @return The basis-transformed 1-DM.
      */
-    Self transformed(const Transformation& T) const override {
+    DerivedDM transformed(const Transformation& T) const override {
 
-        return Self(T.matrix().inverse().conjugate() * (*this) * T.matrix().inverse().transpose());  // Note that this basis transformation formula is different from the one-electron operator one. See `SimpleSQOneElectronOperator`.
+        // Note that this basis transformation formula is different from the one-electron operator one. See `SimpleSQOneElectronOperator`.
+        const auto T_inverse_matrix = T.matrix().inverse();
+
+        return DerivedDM {T_inverse_matrix.conjugate() * (*this) * T_inverse_matrix.transpose()};
     }
-};
-
-
-/*
- *  MARK: BasisTransformableTraits
- */
-
-/**
- *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
- */
-template <typename Scalar, typename DerivedDM>
-struct BasisTransformableTraits<Simple1DM<Scalar, DerivedDM>> {
-
-    // The type of the transformation for which the basis transformation should be defined.
-    using Transformation = typename DensityMatrixTraits<DerivedDM>::Transformation;
-};
-
-
-/*
- *  MARK: JacobiRotatableTraits
- */
-
-/**
- *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
- */
-template <typename Scalar, typename DerivedDM>
-struct JacobiRotatableTraits<Simple1DM<Scalar, DerivedDM>> {
-
-    // The type of Jacobi rotation for which the Jacobi rotation should be defined.
-    using JacobiRotationType = JacobiRotation;
 };
 
 

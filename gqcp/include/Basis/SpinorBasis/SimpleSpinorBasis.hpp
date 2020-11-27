@@ -112,7 +112,7 @@ public:
      */
 
     /**
-     *  @return the overlap (one-electron) operator of this restricted spinor basis
+     *  @return The overlap (one-electron) operator of this spinor basis.
      */
     SQOverlapOperator overlap() const { return this->derived().quantize(Operator::Overlap()); }
 
@@ -132,7 +132,7 @@ public:
     }
 
     /**
-     *  @return The transformation to the Löwdin basis: T = S_current^{-1/2}
+     *  @return The transformation to the Löwdin basis: T = S_current^{-1/2}.
      */
     Transformation lowdinOrthonormalization() const {
 

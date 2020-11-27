@@ -16,62 +16,75 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "DensityMatrix/SpinResolved1DM.hpp"
+#include "gqcpy/include/interfaces.hpp"
 
-#include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
-
-
-namespace py = pybind11;
 
 
 namespace gqcpy {
 
 
-void bindSpinResolvedOneDM(py::module& module) {
-    py::class_<GQCP::SpinResolved1DM<double>>(module, "SpinResolved1DM", "A class that represents a spin resolved 1-DM.")
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
 
-        // CONSTRUCTORS
+
+/**
+ *  Register `SpinResolved1DM_d` to the gqcpy module and expose a part of its C++ interface to Python.
+ * 
+ *  @param module           The Pybind11 module in which `SpinResolved1DM_d` should be registered.
+ */
+void bindSpinResolved1DM(py::module& module) {
+
+    // Define the Python class for `SpinResolved1DM`.
+    py::class_<SpinResolved1DM<double>> py_SpinResolved1DM_d {module, "SpinResolved1DM_d", "A type that encapsulates alpha and beta (spin-resolved) density matrices."};
+
+
+    py_SpinResolved1DM_d
+
+        /*
+         *  MARK: Named constructors
+         */
 
         .def_static(
             "FromOrbital1DM",
-            [](const Eigen::MatrixXd& D) {
-                return GQCP::SpinResolved1DM<double>::FromOrbital1DM(GQCP::Orbital1DM<double> {D});
-            },
-            "Return a spin resolved 1-DM created from an orbital 1-DM.")
+            &SpinResolved1DM<double>::FromOrbital1DM,
+            "Create a spin-resolved 1-DM from an `Orbital1DM`, attributing half of the orbital 1-DM to each of the spin components.")
 
-        // PUBLIC METHODS
 
-        .def(
-            "alpha",
-            [](const GQCP::SpinResolved1DM<double>& D) {
-                return D.alpha();
-            },
-            "Return the alpha part of the spin resolved 1-DM.")
-
-        .def(
-            "beta",
-            [](const GQCP::SpinResolved1DM<double>& D) {
-                return D.beta();
-            },
-            "Return the beta part of the spin resolved 1-DM.")
+        /*
+         *  MARK: General information
+         */
 
         .def(
             "numberOfOrbitals",
-            [](const GQCP::SpinResolved1DM<double>& D, const GQCP::Spin sigma) {
-                return D.numberOfOrbitals(sigma);
-            },
+            &SpinResolved1DM<double>::numberOfOrbitals,
             py::arg("sigma"),
             "Return the number of orbitals (spinors or spin-orbitals, depending on the context) that correspond to the given spin.")
 
+
+        /*
+         *  MARK: Spin-related operations
+         */
+
         .def(
             "spinDensity",
-            &GQCP::SpinResolved1DM<double>::spinDensity,
+            &SpinResolved1DM<double>::spinDensity,
             "Return the spin-density matrix, i.e. the difference between the alpha and beta 1-DM.")
 
         .def(
             "orbitalDensity",
-            &GQCP::SpinResolved1DM<double>::orbitalDensity,
+            &SpinResolved1DM<double>::orbitalDensity,
             "Return the orbital density matrix, i.e. the sum of the alpha and beta 1-DM.");
+
+
+    // Expose the `SpinResolvedBase` API to the Python class.
+    bindSpinResolvedBaseInterface(py_SpinResolved1DM_d);
+
+
+    // Expose the `BasisTransformable` API to the Python class.
+    bindBasisTransformableInterface(py_SpinResolved1DM_d);
 }
+
 
 }  // namespace gqcpy

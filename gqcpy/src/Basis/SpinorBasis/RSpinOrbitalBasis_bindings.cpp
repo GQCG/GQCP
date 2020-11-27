@@ -17,120 +17,77 @@
 
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
-#include "Molecule/Molecule.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
+#include "gqcpy/include/interfaces.hpp"
 
 #include <pybind11/eigen.h>
+#include <pybind11/functional.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
-
-
-namespace py = pybind11;
 
 
 namespace gqcpy {
 
 
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
+
+
+/**
+ *  Register `RSpinOrbitalBasis_d` to the gqcpy module and expose a part of its C++ interface to Python.
+ * 
+ *  @param module           The Pybind11 module in which `RSpinOrbitalBasis_d` should be registered.
+ */
 void bindRSpinOrbitalBasis(py::module& module) {
-    py::class_<GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>>(module, "RSpinOrbitalBasis", "A class that represents a real, restricted spinor basis with underlying GTO shells.")
 
-        // CONSTRUCTORS
+    // Define the Python class for `RSpinOrbitalBasis`.
+    py::class_<RSpinOrbitalBasis<double, GTOShell>> py_RSpinOrbitalBasis_d {module, "RSpinOrbitalBasis_d", "A class that represents a real, restricted spinor basis with underlying GTO shells."};
 
-        .def(py::init<const GQCP::Molecule&, const std::string&>(),
+    /*
+     *  MARK: Constructors
+     */
+
+    py_RSpinOrbitalBasis_d
+        .def(py::init<const Molecule&, const std::string&>(),
              py::arg("molecule"),
-             py::arg("basisset_name"))
+             py::arg("basisset_name"));
 
 
-        // INHERITED METHODS
+    // Expose the `SimpleSpinorBasis` API to the Python class.
+    bindSpinorBasisInterface(py_RSpinOrbitalBasis_d);
 
+    /*
+     *  MARK: General information
+     */
+
+    py_RSpinOrbitalBasis_d
         .def(
-            "expansion",
-            [](const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis) {
-                return spinor_basis.expansion();
+            "numberOfSpatialOrbitals",
+            [](RSpinOrbitalBasis<double, GTOShell>& spin_orbital_basis) {
+                return spin_orbital_basis.numberOfSpatialOrbitals();
             },
-            "Return the transformation matrix between the scalar basis and the current orbitals.")
+            "Return the number of different spatial orbitals that are used in this spinor basis.");
 
+
+    /*
+     *  MARK: Quantization of first-quantized operators
+     */
+
+    py_RSpinOrbitalBasis_d
         .def(
-            "isOrthonormal",
-            [](const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis, const double precision) {
-                return spinor_basis.isOrthonormal(precision);
+            "quantizeDipoleOperator",
+            [](const RSpinOrbitalBasis<double, GTOShell>& spin_orbital_basis, const Vector<double, 3>& origin) {
+                return spin_orbital_basis.quantize(Operator::ElectronicDipole(origin));
             },
-            py::arg("precision") = 1.0e-08,
-            "Return if this spinor basis is orthonormal within the given precision")
-
-        .def(
-            "lowdinOrthonormalization",
-            [](const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis) {
-                return spinor_basis.lowdinOrthonormalization();
-            },
-            "Return the transformation matrix to the Löwdin basis: T = S_current^{-1/2}")
-
-        .def(
-            "lowdinOrthonormalize",
-            [](GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis) {
-                spinor_basis.lowdinOrthonormalize();
-            },
-            "Transform the spinor basis to the 'Löwdin basis', which is the orthonormal basis that we transform to with T = S^{-1/2}, where S is the current overlap matrix.")
-
-        .def(
-            "overlap",
-            [](const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis) {
-                return spinor_basis.overlap();
-            },
-            "Return the overlap (one-electron) operator of this restricted spinor basis")
-
-        .def(
-            "rotate",
-            [](GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& U) {
-                spinor_basis.rotate(GQCP::RTransformation<double>(U));
-            },
-            py::arg("U"),
-            "Rotate the spinor basis to another one using the given unitary transformation matrix.")
-
-        .def(
-            "transform", [](GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& T) {
-                spinor_basis.transform(GQCP::RTransformation<double>(T));
-            },
-            py::arg("T"), "Transform the current spinor basis using a given transformation matrix")
+            py::arg("origin") = Vector<double, 3>::Zero(), "Return the electronic dipole operator expressed in this spinor basis.");
 
 
-        // PUBLIC METHODS
+    // Expose some quantization API to the Python class;
+    bindSpinorBasisQuantizationInterface(py_RSpinOrbitalBasis_d);
 
-        .def(
-            "numberOfSpatialOrbitals", [](GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis) {
-                return spinor_basis.numberOfSpatialOrbitals();
-            },
-            "Return the number of different spatial orbitals that are used in this spinor basis.")
-
-        .def(
-            "quantizeCoulombRepulsionOperator", [](const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis) {
-                return spinor_basis.quantize(GQCP::Operator::Coulomb());
-            },
-            "Return the Coulomb repulsion operator expressed in this spinor basis.")
-
-        .def(
-            "quantizeDipoleOperator", [](const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Vector<double, 3>& origin) {
-                return spinor_basis.quantize(GQCP::Operator::ElectronicDipole(origin));
-            },
-            py::arg("origin") = GQCP::Vector<double, 3>::Zero(), "Return the electronic dipole operator expressed in this spinor basis.")
-
-        .def(
-            "quantizeKineticOperator", [](const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis) {
-                return spinor_basis.quantize(GQCP::Operator::Kinetic());
-            },
-            "Return the kinetic energy operator expressed in this spinor basis.")
-
-        .def(
-            "quantizeNuclearAttractionOperator", [](const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Molecule& molecule) {
-                return spinor_basis.quantize(GQCP::Operator::NuclearAttraction(molecule));
-            },
-            "Return the nuclear attraction operator expressed in this spinor basis.")
-
-        .def(
-            "quantizeOverlapOperator", [](const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>& spinor_basis) {
-                return spinor_basis.quantize(GQCP::Operator::Overlap());
-            },
-            "Return the overlap operator expressed in this spinor basis.");
+    // Expose some Mulliken API to the Python class;
+    bindSpinorBasisMullikenInterface(py_RSpinOrbitalBasis_d);
 }
 
 

@@ -130,7 +130,7 @@ public:
     bool isPure() const { return this->pure; }
 
     /**
-     *  @return the nucleus on which the shell is centered
+     *  @return The nucleus on which the shell is centered.
      */
     const Nucleus& nucleus() const { return this->m_nucleus; }
 

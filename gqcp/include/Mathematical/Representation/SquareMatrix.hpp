@@ -30,7 +30,7 @@ namespace GQCP {
 
 
 /**
- *  A square matrix. It is an extension of the Matrix class, allowing for dynamic-size square matrix.
+ *  A square matrix. It is an extension of the Matrix class, allowing for dynamic-size square matrices.
  *
  *  @tparam _Scalar      The scalar type.
  */
@@ -64,6 +64,15 @@ public:
      */
     SquareMatrix(const size_t dim) :
         MatrixX<Scalar>(dim, dim) {}
+
+
+    /**
+     *  A default constructor for Pybind11's Eigen-related casting.
+     * 
+     *  @note This method is only here to avoid compile-time errors with Pybind11 and should never be called directly!
+     */
+    SquareMatrix(const size_t rows, const size_t cols) :
+        MatrixX<Scalar>(rows, cols) {}
 
 
     /**

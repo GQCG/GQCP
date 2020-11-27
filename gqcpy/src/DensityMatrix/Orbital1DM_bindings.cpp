@@ -16,29 +16,32 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "DensityMatrix/Orbital1DM.hpp"
+#include "gqcpy/include/interfaces.hpp"
 
-#include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
-
-
-namespace py = pybind11;
 
 
 namespace gqcpy {
 
 
+// Provide some shortcuts for frequent namespaces.
+namespace py = pybind11;
+using namespace GQCP;
+
+
+/**
+ *  Register `Orbital1DM_d` to the gqcpy module and expose a part of its C++ interface to Python.
+ * 
+ *  @param module           The Pybind11 module in which `Orbital1DM_d` should be registered.
+ */
 void bindOrbital1DM(py::module& module) {
-    py::class_<GQCP::Orbital1DM<double>>(module, "Orbital1DM", "The orbital one-electron density matrix.")
 
-        // PUBLIC METHODS
+    // Define the Python class for `Orbital1DM`.
+    py::class_<Orbital1DM<double>> py_Orbital1DM_d {module, "Orbital1DM_d", "The orbital one-electron density matrix."};
 
-        .def(
-            "transformed",
-            [](const Eigen::MatrixXd& D, const Eigen::MatrixXd& T) {
-                return GQCP::Orbital1DM<double> {D}.transformed(GQCP::RTransformation<double> {T});
-            },
-            py::arg("T"),
-            "Return the transformed density matrix.");
+
+    // Expose the `BasisTransformable` API to the Python class.
+    bindBasisTransformableInterface(py_Orbital1DM_d);
 }
 
 

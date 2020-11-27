@@ -25,7 +25,7 @@ namespace GQCP {
 
 
 /**
- *  A utility type encapsulating an alpha- and beta-type. In contrast to `BaseSpinResolved`, this class is used as an instantiatable type, much like you would use a std::vector<_Of>.
+ *  A utility type encapsulating an alpha- and beta-type. In contrast to `SpinResolvedBase`, this class is used as an instantiatable type, much like you would use a std::vector<_Of>.
  * 
  *  @param _Of          The type of the alpha- and beta-objects. The name 'Of' is chosen for a natural reading `SpinResolved<_Of>`.
  */
