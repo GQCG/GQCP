@@ -2,6 +2,7 @@ target_sources(gqcp
     PRIVATE
         BaseElectricalResponseSolver.hpp
         CIElectricalResponseSolver.hpp
+        DysonOrbital.hpp
         expectation_values.hpp
         properties.hpp
         RHFElectricalResponseSolver.hpp
