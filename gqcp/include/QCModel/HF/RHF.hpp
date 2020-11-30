@@ -320,7 +320,7 @@ public:
 
 
     /**
-     *  @return a matrix containing all the possible excitation energies of the wavefunction model.
+     *  @return A matrix containing all the possible excitation energies of the wavefunction model.
      * 
      *  @note       The rows are determined by the number of virtual orbitals, the columns by the number of occupied orbitals.
      */
@@ -337,7 +337,7 @@ public:
         const auto occupied_energies = this->occupiedOrbitalEnergies();
         const auto virtual_energies = this->virtualOrbitalEnergies();
 
-        // Create the F matrix
+        // Create the F matrix.
         GQCP::MatrixX<Scalar> F_values(n_virt, n_occ);
         for (int a = 0; a < n_virt; a++) {
             for (int i = 0; i < n_occ; i++) {

@@ -383,7 +383,7 @@ public:
         const auto& n_virt_sigma_bar = orbital_space_sigma_bar.numberOfOrbitals(OccupationType::k_virtual);
 
         // The mixed alpha-beta two electron integrals are extracted from the Hamiltonian.
-        const auto& g = usq_hamiltonian.twoElectron().alphaBeta().parameters();
+        const auto& g_aabb = usq_hamiltonian.twoElectron().alphaBeta().parameters();
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object of mixed spins.
@@ -396,9 +396,9 @@ public:
 
                         // Depending on which spin component is alpha and which is beta, the indices need to be transposed correctly.
                         if (sigma == Spin::alpha && sigma_bar == Spin::beta) {
-                            A_iajb_slice(i, a, j, b) = g(a, i, j, b);
+                            A_iajb_slice(i, a, j, b) = g_aabb(a, i, j, b);
                         } else {
-                            A_iajb_slice(i, a, j, b) = g(j, b, a, i);
+                            A_iajb_slice(i, a, j, b) = g_aabb(j, b, a, i);
                         }
                     }
                 }
@@ -451,7 +451,7 @@ public:
         const auto& n_virt_sigma_bar = orbital_space_sigma_bar.numberOfOrbitals(OccupationType::k_virtual);
 
         // The mixed alpha-beta two electron integrals are extracted from the Hamiltonian.
-        const auto& g = usq_hamiltonian.twoElectron().alphaBeta().parameters();
+        const auto& g_aabb = usq_hamiltonian.twoElectron().alphaBeta().parameters();
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object of mixed spins.
@@ -464,9 +464,9 @@ public:
 
                         // Depending on which spin component is alpha and which is beta, the indices need to be transposed correctly.
                         if (sigma == Spin::alpha && sigma_bar == Spin::beta) {
-                            B_iajb_slice(i, a, j, b) = g(a, i, b, j);
+                            B_iajb_slice(i, a, j, b) = g_aabb(a, i, b, j);
                         } else {
-                            B_iajb_slice(i, a, j, b) = g(b, j, a, i);
+                            B_iajb_slice(i, a, j, b) = g_aabb(b, j, a, i);
                         }
                     }
                 }
@@ -507,7 +507,7 @@ public:
 
         // The pure alpha-alpha two electron integrals are extracted from the Hamiltonian.
         // We need the anti-symmetrized tensor: (AI||JB) = (AI|JB) - (AB|JI). This is obtained by the `.antisymmetrized()` method.
-        const auto g = usq_hamiltonian.twoElectron().alphaAlpha().antisymmetrized().parameters();
+        const auto g_aaaa = usq_hamiltonian.twoElectron().alphaAlpha().antisymmetrized().parameters();
 
         // The elements F_BA and F_IJ are the eigenvalues of the one-electron Fock operator.
         // The excitationEnergies API can be used to find these values.
@@ -520,7 +520,7 @@ public:
             for (const auto& a : orbital_space_sigma.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space_sigma.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space_sigma.indices(OccupationType::k_virtual)) {
-                        A_iajb_slice(i, a, j, b) = g(a, i, j, b);
+                        A_iajb_slice(i, a, j, b) = g_aaaa(a, i, j, b);
                     }
                 }
             }
@@ -567,7 +567,7 @@ public:
 
         // The pure beta-beta two electron integrals are extracted from the Hamiltonian.
         // We need the anti-symmetrized tensor: (AI||JB) = (AI|JB) - (AB|JI). This is obtained by the `.antisymmetrized()` method.
-        const auto g = usq_hamiltonian.twoElectron().betaBeta().antisymmetrized().parameters();
+        const auto g_bbbb = usq_hamiltonian.twoElectron().betaBeta().antisymmetrized().parameters();
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object.
@@ -576,7 +576,7 @@ public:
             for (const auto& a : orbital_space_sigma.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space_sigma.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space_sigma.indices(OccupationType::k_virtual)) {
-                        B_iajb_slice(i, a, j, b) = g(a, i, b, j);
+                        B_iajb_slice(i, a, j, b) = g_bbbb(a, i, b, j);
                     }
                 }
             }
@@ -710,7 +710,7 @@ public:
         const auto& n_virt_sigma_bar = orbital_space_sigma_bar.numberOfOrbitals(OccupationType::k_virtual);
 
         /// The mixed alpha-beta two electron integrals are extracted from the Hamiltonian.
-        const auto& g = usq_hamiltonian.twoElectron().alphaBeta().parameters();
+        const auto& g_aabb = usq_hamiltonian.twoElectron().alphaBeta().parameters();
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object of mixed spins.
@@ -723,9 +723,9 @@ public:
 
                         // Depending on which spin component is alpha and which is beta, the indices need to be transposed correctly.
                         if (sigma == Spin::alpha && sigma_bar == Spin::beta) {
-                            A_iajb_slice(i, a, j, b) = -g(a, b, j, i);
+                            A_iajb_slice(i, a, j, b) = -g_aabb(a, b, j, i);
                         } else {
-                            A_iajb_slice(i, a, j, b) = -g(j, i, a, b);
+                            A_iajb_slice(i, a, j, b) = -g_aabb(j, i, a, b);
                         }
                     }
                 }
@@ -796,7 +796,7 @@ public:
         const auto& n_virt_sigma_bar = orbital_space_sigma_bar.numberOfOrbitals(OccupationType::k_virtual);
 
         // The mixed alpha-beta two electron integrals are extracted from the Hamiltonian.
-        const auto& g = usq_hamiltonian.twoElectron().alphaBeta().parameters();
+        const auto& g_aabb = usq_hamiltonian.twoElectron().alphaBeta().parameters();
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object of mixed spins.
@@ -809,9 +809,9 @@ public:
 
                         // Depending on which spin component is alpha and which is beta, the indices need to be transposed correctly.
                         if (sigma == Spin::alpha && sigma_bar == Spin::beta) {
-                            B_iajb_slice(i, a, j, b) = -g(b, i, a, j);
+                            B_iajb_slice(i, a, j, b) = -g_aabb(b, i, a, j);
                         } else {
-                            B_iajb_slice(i, a, j, b) = -g(a, j, b, i);
+                            B_iajb_slice(i, a, j, b) = -g_aabb(a, j, b, i);
                         }
                     }
                 }
@@ -951,7 +951,7 @@ public:
         const auto occupied_energies = this->occupiedOrbitalEnergies();
         const auto virtual_energies = this->virtualOrbitalEnergies();
 
-        // Create the F matrix
+        // Create the F matrix.
         GQCP::MatrixX<Scalar> F_values_a {n_virt_a, n_occ_a};
         GQCP::MatrixX<Scalar> F_values_b {n_virt_b, n_occ_b};
 
