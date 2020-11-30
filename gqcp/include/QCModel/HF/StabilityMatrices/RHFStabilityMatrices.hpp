@@ -102,7 +102,7 @@ public:
      */
 
     /**
-     *  Construct the internal stability matrix of the real RHF method.
+     *  @return The internal stability matrix of the real RHF method.
      *
      *  @note The internal stability condition of the real RHF method is checked using singlet_A + singlet_B.
      */
@@ -111,7 +111,7 @@ public:
 
 
     /**
-     *  Construct the real->complex external stability matrix of the real RHF method.
+     *  @return The real->complex external stability matrix of the real RHF method.
      *
      *  @note The real->complex external stability condition of the real RHF method is checked using singlet_A - singlet_B.
      */
@@ -120,7 +120,7 @@ public:
 
 
     /**
-     *  Construct the restricted->unrestricted external stability matrix of the real RHF method.
+     *  @return The restricted->unrestricted external stability matrix of the real RHF method.
      *
      *  @note The restricted->unrestricted external stability condition of the real RHF method is checked using triplet_A + triplet_B.
      */
@@ -129,17 +129,17 @@ public:
 
 
     /**
-     *  @return the internal stability matrix of the complex RHF method.
+     *  @return The internal stability matrix of the complex RHF method.
      *
-     *  @note The internal stability condition of the real GHF method is checked using (singlet_A,   singlet_B  )
-     *                                                                                 (singlet_B^*, singlet_A^*)
+     *  @note The internal stability condition of the complex RHF method is checked using (singlet_A,   singlet_B  )
+     *                                                                                    (singlet_B^*, singlet_A^*).
      */
     template <typename S = Scalar>
     enable_if_t<std::is_same<S, complex>::value, MatrixX<complex>> internal() const {
 
         // Calculate the necessary partial stability matrices.
-        const auto singlet_A = this->singletA();
-        const auto singlet_B = this->singletB();
+        const auto& singlet_A = this->singletA();
+        const auto& singlet_B = this->singletB();
 
         // Determine the dimensions of the total stability matrix.
         const auto K = singlet_A.dimension(0);
@@ -158,17 +158,17 @@ public:
 
 
     /**
-     *  @return the restricted->unrestricted external stability matrix of the complex RHF method.
+     *  @return The restricted->unrestricted external stability matrix of the complex RHF method.
      *
-     *  @note The restricted->unrestricted external stability condition of the real GHF method is checked using (triplet_A,   triplet_B  )
-     *                                                                                                          (triplet_B^*, triplet_A^*)
+     *  @note The restricted->unrestricted external stability condition of the complex RHF method is checked using (triplet_A,   triplet_B  )
+     *                                                                                                             (triplet_B^*, triplet_A^*).
      */
     template <typename S = Scalar>
     enable_if_t<std::is_same<S, complex>::value, MatrixX<complex>> restrictedUnrestricted() const {
 
         // Calculate the necessary partial stability matrices.
-        const auto triplet_A = this->tripletA();
-        const auto triplet_B = this->tripletB();
+        const auto& triplet_A = this->tripletA();
+        const auto& triplet_B = this->tripletB();
 
         // Determine the dimensions of the total stability matrix.
         const auto K = triplet_A.dimension(0);
@@ -191,33 +191,39 @@ public:
      */
 
     /**
-     *  @return a boolean, telling us whether or not the real or complex valued internal stability matrix belongs to a stable or unstable set of parameters.
+     *  @param threshold        The threshold used to check if the matrix is positive semi-definite. If the lowest eigenvalue is more negative than the threshold, it is not positive semi-definite.
+     * 
+     *  @return A boolean, telling us if the real or complex valued internal stability matrix belongs to a stable or unstable set of parameters.
      */
     const bool isInternallyStable(const double threshold = -1.0e-5) const {
 
         // The first step is to calculate the correct stability matrix: This method checks the internal stability of a real or complex valued wavefunction.
         const auto stability_matrix = this->internal();
 
-        // Check whether or not the stability matrix is positive semi-definite. This indicates stability.
+        // Check if the stability matrix is positive semi-definite. This indicates stability.
         return stability_matrix.isPositiveSemiDefinite(threshold);
     }
 
 
     /**
-     *  @return a boolean, telling us whether or not the real or complex valued restricted->unrestricted stability matrix belongs to a stable or unstable set of parameters.
+     *  @param threshold        The threshold used to check if the matrix is positive semi-definite. If the lowest eigenvalue is more negative than the threshold, it is not positive semi-definite.
+     * 
+     *  @return A boolean, telling us if the real or complex valued restricted->unrestricted stability matrix belongs to a stable or unstable set of parameters.
      */
     const bool isTripletStable(const double threshold = -1.0e-5) const {
 
         // The first step is to calculate the correct stability matrix: This method checks the restricted->unrestricted stability of a real or complex valued wavefunction.
         const auto stability_matrix = this->restrictedUnrestricted();
 
-        // Check whether or not the stability matrix is positive semi-definite. This indicates stability.
+        // Check if the stability matrix is positive semi-definite. This indicates stability.
         return stability_matrix.isPositiveSemiDefinite(threshold);
     }
 
 
     /**
-     *  @return a boolean, telling us whether or not the real->complex stability matrix belongs to a stable or unstable set of parameters.
+     *  @param threshold        The threshold used to check if the matrix is positive semi-definite. If the lowest eigenvalue is more negative than the threshold, it is not positive semi-definite. 
+     *
+     *  @return A boolean, telling us if the real->complex stability matrix belongs to a stable or unstable set of parameters.
      */
     template <typename S = Scalar>
     enable_if_t<std::is_same<S, double>::value, bool> isComplexConjugateStable(const double threshold = -1.0e-5) const {
@@ -225,13 +231,15 @@ public:
         // The first step is to calculate the correct stability matrix: This method checks the real->complex stability of a real valued wavefunction.
         const auto stability_matrix = this->realComplex();
 
-        // Check whether or not the stability matrix is positive semi-definite. This indicates stability.
+        // Check if the stability matrix is positive semi-definite. This indicates stability.
         return stability_matrix.isPositiveSemiDefinite(threshold);
     }
 
 
     /**
-     *  @return whether the parameters are completely externally stable.
+     *  @param threshold        The threshold used to check if the matrix is positive semi-definite. If the lowest eigenvalue is more negative than the threshold, it is not positive semi-definite.
+     * 
+     *  @return A boolean, telling us whether the parameters are completely externally stable.
      */
     template <typename S = Scalar>
     enable_if_t<std::is_same<S, double>::value, bool> isExternallyStable(const double threshold = -1.0e-5) const {
@@ -242,7 +250,9 @@ public:
 
 
     /**
-     *  @return a boolean, telling us whether or not the complex valued external stability matrices belongs to a stable or unstable set of parameters.
+     *  @param threshold        The threshold used to check if the matrix is positive semi-definite. If the lowest eigenvalue is more negative than the threshold, it is not positive semi-definite.
+     * 
+     *  @return A boolean, telling us if the complex valued external stability matrices belongs to a stable or unstable set of parameters.
      */
     template <typename S = Scalar>
     enable_if_t<std::is_same<S, complex>::value, bool> isExternallyStable(const double threshold = -1.0e-5) const {
@@ -255,7 +265,7 @@ public:
      */
 
     /*
-     *  Print the description of the stability properties of a real valued GHF wavefunction.
+     *  Print the description of the stability properties of a real valued RHF wavefunction.
      * 
      *  @note   This method runs the stability calculation before printing the results.
      */
@@ -269,14 +279,14 @@ public:
             std::cout << "The real valued RHF wavefunction contains an internal instability." << std::endl;
         }
 
-        // The real->complex external stability on vector position 0.
+        // The real->complex external stability.
         if (this->isComplexConjugateStable() == true) {
             std::cout << "The real valued RHF wavefunction is stable within the real/complex RHF space." << std::endl;
         } else {
             std::cout << "The real valued RHF wavefunction contains a real->complex instability." << std::endl;
         }
 
-        // The restricted->unrestricted external stability on vector position 1.
+        // The restricted->unrestricted external stability.
         if (this->isTripletStable() == true) {
             std::cout << "The real valued RHF wavefunction is stable within the real RHF/UHF space." << std::endl;
         } else {
@@ -286,7 +296,7 @@ public:
 
 
     /*
-     *  Print the description of the stability properties of a complex valued GHF wavefunction.
+     *  Print the description of the stability properties of a complex valued RHF wavefunction.
      * 
      *  @note   This method runs the stability calculation before printing the results.
      */

@@ -310,7 +310,7 @@ public:
 
 
     /**
-     *  @return a matrix containing all the possible excitation energies of the wavefunction model. 
+     *  @return A matrix containing all the possible excitation energies of the wavefunction model. 
      * 
      *  @note       The rows are determined by the number of virtual orbitals, the columns by the number of occupied orbitals.
      */
@@ -320,14 +320,14 @@ public:
         const auto orbital_space = this->orbitalSpace();
 
         // Determine the number of occupied and virtual orbitals.
-        const auto n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
 
         // Calculate the occupied and virtual orbital energies.
         const auto occupied_energies = this->occupiedOrbitalEnergies();
         const auto virtual_energies = this->virtualOrbitalEnergies();
 
-        // Create the F matrix
+        // Create the F matrix.
         GQCP::MatrixX<Scalar> F_values {n_virt, n_occ};
         for (int a = 0; a < n_virt; a++) {
             for (int i = 0; i < n_occ; i++) {
@@ -353,9 +353,11 @@ public:
      *  Construct the partial stability matrix `A` from the GHF stability conditions.
      * 
      *  @note The formula for the `A` matrix is as follows:
-     *      A_IAJB = \delta_IJ * F_BA - \delta_BA * F_IJ + (AI||JB)
+     *      A_IAJB = \delta_IJ * F_BA - \delta_BA * F_IJ + (AI||JB).
      * 
-     *  @param gsq_hamiltonian      The generalised, second quantized hamiltonian, which contains the necessary two electron operators.
+     *  @param gsq_hamiltonian      The second quantized Hamiltonian, expressed in the orthonormal, 'generalized' spinor basis of the GHF MOs, which contains the necessary two-electron operators.
+     * 
+     *  @return The partial stability matrix A.
      */
     GQCP::MatrixX<Scalar> calculatePartialStabilityMatrixA(const GSQHamiltonian<Scalar>& gsq_hamiltonian) const {
 
@@ -363,13 +365,11 @@ public:
         const auto orbital_space = this->orbitalSpace();
 
         // Determine the number of occupied and virtual orbitals.
-        const auto n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
 
-        // We need the two-electron integrals in MO basis, hence why we transform them with the coefficient matrix.
-        // The ground state coefficient matrix is obtained from the QCModel.
         // We need the anti-symmetrized tensor: (AI||JB) = (AI|JB) - (AB|JI). This is obtained by the `.antisymmetrized()` method.
-        const auto g = gsq_hamiltonian.twoElectron().transformed(this->expansion()).antisymmetrized().parameters();
+        const auto g = gsq_hamiltonian.twoElectron().antisymmetrized().parameters();
 
         // The elements F_BA and F_IJ are the eigenvalues of the one-electron Fock operator.
         // The excitationEnergies API can be used to find these values
@@ -409,9 +409,11 @@ public:
      *  Construct the partial stability matrix `B` from the GHF stability conditions.
      *
      *  @note The formula for the `B` matrix is as follows:
-     *      B_IAJB = (AI||BJ)
+     *      B_IAJB = (AI||BJ).
      *
-     *  @param gsq_hamiltonian      The generalised, second quantized hamiltonian, which contains the necessary two electron operators.
+     *  @param gsq_hamiltonian      The second quantized Hamiltonian, expressed in the orthonormal, 'generalized' spinor basis of the GHF MOs, which contains the necessary two-electron operators.
+     * 
+     *  @return The partial stability matrix B.
      */
     GQCP::MatrixX<Scalar> calculatePartialStabilityMatrixB(const GSQHamiltonian<Scalar>& gsq_hamiltonian) const {
 
@@ -419,13 +421,11 @@ public:
         const auto orbital_space = this->orbitalSpace();
 
         // Determine the number of occupied and virtual orbitals.
-        const auto n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
 
-        // We need the two-electron integrals in MO basis, hence why we transform them with the coefficient matrix.
-        // The ground state coefficient matrix is obtained from the QCModel.
         // We need the anti-symmetrized tensor: (AI||BJ) = (AI|BJ) - (AJ|BI). This is obtained by the `.antisymmetrized()` method.
-        const auto g = gsq_hamiltonian.twoElectron().transformed(this->expansion()).antisymmetrized().parameters();
+        const auto g = gsq_hamiltonian.twoElectron().antisymmetrized().parameters();
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object.
@@ -462,6 +462,8 @@ public:
 
     /**
      *  Calculate the GHF stability matrices and return them.
+     * 
+     *  @param gsq_hamiltonian      The second quantized Hamiltonian, expressed in the orthonormal, 'generalized' spinor basis of the GHF MOs, which contains the necessary two-electron operators.
      *
      *  @return The GHF stability matrices.
      */
@@ -486,12 +488,12 @@ public:
     size_t numberOfSpinors() const { return this->orbital_energies.size(); }
 
     /**
-     *  @return the orbital energies belonging to the occupied orbitals
+     *  @return The orbital energies belonging to the occupied orbitals.
      */
     std::vector<double> occupiedOrbitalEnergies() const {
 
-        // Determine the number of occupied orbitals
-        const auto& n_occ = this->orbitalSpace().numberOfOrbitals(OccupationType::k_occupied);
+        // Determine the number of occupied orbitals.
+        const auto n_occ = this->orbitalSpace().numberOfOrbitals(OccupationType::k_occupied);
 
         std::vector<double> mo_energies;  // We use a std::vector in order to be able to slice the vector later on.
         for (int i = 0; i < this->numberOfSpinors(); i++) {
@@ -523,12 +525,12 @@ public:
     OrbitalSpace orbitalSpace() const { return GHF<Scalar>::orbitalSpace(this->numberOfSpinors(), this->numberOfElectrons()); }
 
     /**
-     *  @return the orbital energies belonging to the virtual orbitals
+     *  @return The orbital energies belonging to the virtual orbitals.
      */
     std::vector<double> virtualOrbitalEnergies() const {
 
-        // Determine the number of occupied orbitals
-        const auto& n_occ = this->orbitalSpace().numberOfOrbitals(OccupationType::k_occupied);
+        // Determine the number of occupied orbitals.
+        const auto n_occ = this->orbitalSpace().numberOfOrbitals(OccupationType::k_occupied);
 
         std::vector<double> mo_energies;  // We use a std::vector in order to be able to slice the vector later on.
         for (int i = 0; i < this->numberOfSpinors(); i++) {

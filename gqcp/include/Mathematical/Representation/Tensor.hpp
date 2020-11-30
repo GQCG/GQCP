@@ -419,20 +419,40 @@ public:
      *
      *  @return This tensor as a matrix of the specified dimensions, ordered using C-like ordering.
      */
-    const GQCP::Matrix<Scalar> reshape(const size_t rows, const size_t cols) const {
+    GQCP::Matrix<Scalar> reshape(const size_t rows, const size_t cols) const {
 
+        // The dimensions of the tensor have to match the dimensions of the target matrix.
+        if (rows * cols != this->numberOfElements()) {
+            throw std::invalid_argument("Tensor.reshape(const size_t rows, const size_t cols): The tensor cannot be reshaped into a matrix with the specified dimensions.");
+        }
+
+        // Initialize a matrix with the wanted dimensions.
         GQCP::Matrix<Scalar> M {rows, cols};
 
+        // We create an intermediate vector to contain all the values of the tensor.
+        std::vector<Scalar> vectorized;
+
+        // We reserve the amount of data we expect the tensor to take up.
+        vectorized.reserve(rows * cols);
+
+        // Fill the vector with the elements of the tensor.
         for (int i = 0; i < this->dimension(0); i++) {
             for (int j = 0; j < this->dimension(1); j++) {
                 for (int k = 0; k < this->dimension(2); k++) {
                     for (int l = 0; l < this->dimension(3); l++) {
-                        const auto row_index = i + j + i * (this->dimension(1) - 1);
-                        const auto col_index = k + l + k * (this->dimension(3) - 1);
-
-                        M(row_index, col_index) = this->operator()(i, j, k, l);
+                        vectorized.push_back(this->operator()(i, j, k, l));
                     }
                 }
+            }
+        }
+
+        // Fill the matrix with the elements of the intermediate vector.
+        for (int r = 0; r < rows; r++) {
+            for (int c = 0; c < cols; c++) {
+
+                // The columns are looped first. Hence, the position within the row is determined by c (+c).
+                // The rows are determined by the outer loop. When you start filling a new row, you have to skip all the vector elements used for the previous row (r * cols).
+                M(r, c) = vectorized[r * cols + c];
             }
         }
 
@@ -488,6 +508,14 @@ public:
         }  // rank-4 tensor traversing
 
         return true;
+    }
+
+
+    /**
+     * @return The total number of elements in this tensor.
+     */
+    size_t numberOfElements() const {
+        return this->dimension(0) * this->dimension(1) * this->dimension(2) * this->dimension(3);
     }
 
 
