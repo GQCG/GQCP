@@ -73,7 +73,7 @@ const siteConfig = {
     // For no header links in the top nav bar -> headerLinks: [],
     headerLinks: [
         { doc: 'documentation', label: 'Documentation' },
-        { doc: 'doc4', label: 'API' },
+        { doc: 'api', label: 'API' },
         { page: 'help', label: 'Help' },
         { blog: true, label: 'Blog' },
     ],
@@ -84,10 +84,10 @@ const siteConfig = {
     // If you have developers set above, you add it here:
     developers,
 
-    /* path to images for header/footer */
-    headerIcon: 'img/favicon.ico',
-    footerIcon: 'img/favicon.ico',
-    favicon: 'img/favicon.ico',
+    /* Path to images for header/footer. Uncomment if you want to enable it. */
+    // headerIcon: 'img/gqcg_logo-01.png',
+    // footerIcon: 'img/gqcg_logo-01.png',
+    // favicon: 'img/gqcg_logo-01.png',
 
     /* Colors for website */
     colors: {
