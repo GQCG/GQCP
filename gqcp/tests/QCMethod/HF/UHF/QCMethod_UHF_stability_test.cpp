@@ -51,12 +51,12 @@ BOOST_AUTO_TEST_CASE(H3_stability_test) {
 
     // We can now check the stability of the ground state parameters.
     // For this we need an unrestricted Hamiltonian in the orthonormal MO basis.
-    const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> basis {molecule, "STO-3G"};
-    const auto basis_mo = basis.transformed(uhf_parameters.expansion());
-    const auto h_mo = GQCP::USQHamiltonian<double>::Molecular(basis_mo, molecule);
+    const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> unrestricted_basis {molecule, "STO-3G"};
+    const auto usq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(unrestricted_basis, molecule);
+    const auto hamiltonian_unrestricted = usq_hamiltonian.transformed(uhf_parameters.expansion());
 
     // Calculate the stability matrices.
-    const auto stability_matrices = uhf_parameters.calculateStabilityMatrices(h_mo);
+    const auto stability_matrices = uhf_parameters.calculateStabilityMatrices(hamiltonian_unrestricted);
 
     // This method should be internally stable.
     const auto internal_stability = stability_matrices.isInternallyStable();
@@ -100,12 +100,12 @@ BOOST_AUTO_TEST_CASE(H4_stability_test) {
 
     // We can now check the stability of the ground state parameters.
     // For this we need an unrestricted Hamiltonian in the orthonormal MO basis.
-    const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> basis {molecule, "6-31G"};
-    const auto basis_mo = basis.transformed(uhf_parameters.expansion());
-    const auto h_mo = GQCP::USQHamiltonian<double>::Molecular(basis_mo, molecule);
+    const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> unrestricted_basis {molecule, "6-31G"};
+    const auto usq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(unrestricted_basis, molecule);
+    const auto hamiltonian_unrestricted = usq_hamiltonian.transformed(uhf_parameters.expansion());
 
     // Calculate the stability matrices.
-    const auto stability_matrices = uhf_parameters.calculateStabilityMatrices(h_mo);
+    const auto stability_matrices = uhf_parameters.calculateStabilityMatrices(hamiltonian_unrestricted);
 
     // This method should be internally unstable.
     const auto internal_stability = stability_matrices.isInternallyStable();

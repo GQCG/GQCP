@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_1) {
     const auto hamiltonian_generalized = sq_hamiltonian.transformed(ghf_parameters.expansion());
 
     // Calculate the stability matrices.
-    const auto stability_matrices = ghf_parameters.calculateStabilityMatrices(h_mo);
+    const auto stability_matrices = ghf_parameters.calculateStabilityMatrices(hamiltonian_generalized);
 
 
     // This method should be internally unstable.
@@ -106,11 +106,10 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_2) {
 
     // We can now check the stability of the ground state parameters.
     // For this we need a generalized Hamiltonian in the orthonormal MO basis.
-    const auto basis_mo = g_spinor_basis.transformed(ghf_parameters.expansion());
-    const auto h_mo = GQCP::GSQHamiltonian<double>::Molecular(basis_mo, molecule);
+    const auto hamiltonian_generalized = sq_hamiltonian.transformed(ghf_parameters.expansion());
 
     // Calculate the stability matrices.
-    const auto stability_matrices = ghf_parameters.calculateStabilityMatrices(h_mo);
+    const auto stability_matrices = ghf_parameters.calculateStabilityMatrices(hamiltonian_generalized);
 
 
     // This method should be internally stable.
@@ -151,11 +150,10 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_3) {
 
     // We can now check the stability of the ground state parameters.
     // For this we need a generalized Hamiltonian in the orthonormal MO basis.
-    const auto g_mo = g_spinor_basis.transformed(ghf_parameters.expansion());
-    const auto h_mo = GQCP::GSQHamiltonian<double>::Molecular(g_mo, molecule);
+    const auto hamiltonian_generalized = sq_hamiltonian.transformed(ghf_parameters.expansion());
 
     // Calculate the stability matrices.
-    const auto stability_matrices = ghf_parameters.calculateStabilityMatrices(h_mo);
+    const auto stability_matrices = ghf_parameters.calculateStabilityMatrices(hamiltonian_generalized);
 
     // This method should be internally stable.
     const auto internal_stability = stability_matrices.isInternallyStable();
