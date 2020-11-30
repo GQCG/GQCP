@@ -169,6 +169,25 @@ public:
 
         return *this;
     }
+
+
+    /**
+     *  MARK: Enabling basis transformations
+     */
+
+    // Since `rotate` and `rotated` are both defined in `SpinResolvedBasisTransformable` and `SpinResolvedJacobiRotatable`, we have to explicitly enable these methods here.
+
+    // Allow the `rotate` method from `SpinResolvedBasisTransformable`, since there's also a `rotate` from `SpinResolvedJacobiRotatable`.
+    using SpinResolvedBasisTransformable<Self>::rotate;
+
+    // Allow the `rotated` method from `SpinResolvedBasisTransformable`, since there's also a `rotated` from `SpinResolvedJacobiRotatable`.
+    using SpinResolvedBasisTransformable<Self>::rotated;
+
+    // Allow the `rotate` method from `SpinResolvedJacobiRotatable`, since there's also a `rotate` from `SpinResolvedBasisTransformable`.
+    using SpinResolvedJacobiRotatable<Self>::rotate;
+
+    // Allow the `rotated` method from `SpinResolvedJacobiRotatable`, since there's also a `rotated` from `SpinResolvedBasisTransformable`.
+    using SpinResolvedJacobiRotatable<Self>::rotated;
 };
 
 
