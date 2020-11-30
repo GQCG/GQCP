@@ -466,8 +466,7 @@ public:
      *
      *  @return if this tensor has the same dimensions as the other tensor
      */
-    bool
-    hasEqualDimensionsAs(const Self& other) const {
+    bool hasEqualDimensionsAs(const Self& other) const {
 
         for (size_t i = 0; i < Rank; i++) {
             if (this->dimension(i) != other.dimension(i)) {
@@ -527,7 +526,7 @@ public:
             }
         }
     }
-};  // namespace GQCP
+};
 
 
 }  // namespace GQCP

@@ -50,8 +50,7 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_1) {
 
     // We can now check the stability of the ground state parameters.
     // For this we need a generalized Hamiltonian in the orthonormal MO basis.
-    const auto basis_mo = g_spinor_basis.transformed(ghf_parameters.expansion());
-    const auto h_mo = GQCP::GSQHamiltonian<double>::Molecular(basis_mo, molecule);
+    const auto hamiltonian_generalized = sq_hamiltonian.transformed(ghf_parameters.expansion());
 
     // Calculate the stability matrices.
     const auto stability_matrices = ghf_parameters.calculateStabilityMatrices(h_mo);
