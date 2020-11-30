@@ -262,7 +262,7 @@ public:
         const auto orbital_space = GHF<Scalar>::orbitalSpace(M, N);
 
 
-        // Implement a KISS formula for the GHF 2-DM
+        // Implement a KISS formula for the GHF 2-DM.
         G2DM<Scalar> d = G2DM<Scalar>::Zero(M);
 
         for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {

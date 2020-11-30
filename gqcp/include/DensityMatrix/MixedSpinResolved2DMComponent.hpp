@@ -97,7 +97,7 @@ public:
      *  @param T                            The basis transformation.
      *  @param sigma                        Alpha indicates a transformation of the first two axes, beta indicates a transformation of the second two axes.
      * 
-     *  @return The basis-transformed 2-DM
+     *  @return The basis-transformed 2-DM.
      * 
      *  @note We apologize for this half-baked API. It is currently present in the code, while issue #559 (https://github.com/GQCG/GQCP/issues/688) is being implemented.
      */

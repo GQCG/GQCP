@@ -25,7 +25,7 @@
 #include "QCModel/HF/RHF.hpp"
 
 /**
- *  Check for valid and invalid arguments for GQCP::QCModel::RHF::calculateOrthonormalBasis1DM()
+ *  Check for valid and invalid arguments for GQCP::QCModel::RHF::calculateOrthonormalBasis1DM().
  */
 BOOST_AUTO_TEST_CASE(RHF_1DM_invalid_argument) {
 
@@ -104,7 +104,7 @@ BOOST_AUTO_TEST_CASE(spinorbitalEnergies) {
  */
 BOOST_AUTO_TEST_CASE(RHF_DMs) {
 
-    // Do an RHF calculation.
+    // Perform an RHF calculation.
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
     const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
     auto hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);  // In an AO basis.

@@ -104,7 +104,7 @@ BOOST_AUTO_TEST_CASE(spinorbitalEnergies) {
  */
 BOOST_AUTO_TEST_CASE(UHF_DMs) {
 
-    // Do an UHF calculation.
+    // Perform a UHF calculation.
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
     const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
     auto r_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);  // In an AO basis.

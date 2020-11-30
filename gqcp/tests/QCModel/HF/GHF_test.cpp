@@ -29,7 +29,7 @@
  */
 BOOST_AUTO_TEST_CASE(GHF_DMs) {
 
-    // Do a GHF calculation.
+    // Perform a GHF calculation.
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
     const GQCP::GSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
     auto hamiltonian = GQCP::GSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // In an AO basis.
