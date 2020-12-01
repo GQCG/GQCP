@@ -480,8 +480,8 @@ void bindSimpleTransformationInterface(Class& py_class) {
 
         .def(
             "transformed",
-            [](const Type& T_self, Type& T) {
-                return T_self.transformed(T);
+            [](const Type& T_this, Type& T) {
+                return T_this.transformed(T);
             },
             py::arg("T"),
             "The transformation that encapsulates the sequential application of this transformation, followed by the given transformation.");
