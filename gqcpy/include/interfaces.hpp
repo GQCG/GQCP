@@ -480,7 +480,7 @@ void bindSimpleTransformationInterface(Class& py_class) {
 
         .def(
             "transformed",
-            [](const Type& T_this, Type& T) {
+            [](const Type& T_this, const Type& T) {
                 return T_this.transformed(T);
             },
             py::arg("T"),
