@@ -476,15 +476,9 @@ void bindSimpleTransformationInterface(Class& py_class) {
 
         .def("inverse",
              &Type::inverse,
-             "Return the inverse transformation of this transformation matrix.")
+             "Return the inverse transformation of this transformation matrix.");
 
-        .def(
-            "transformed",
-            [](const Type& T_this, const Type& T) {
-                return T_this.transformed(T);
-            },
-            py::arg("T"),
-            "The transformation that encapsulates the sequential application of this transformation, followed by the given transformation.");
+    bindBasisTransformableInterface(py_class);
 }
 
 
