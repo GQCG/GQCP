@@ -44,8 +44,11 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_stability) {
     auto rhf_parameters = qc_structure.groundStateParameters();
 
     // We can now check the stability of the ground state parameters.
+    // For this we need a restricted Hamiltonian in the orthonormal MO basis.
+    const auto hamiltonian_restricted = sq_hamiltonian.transformed(rhf_parameters.expansion());
+
     // Calculate the stability matrices.
-    const auto stability_matrices = rhf_parameters.calculateStabilityMatrices(sq_hamiltonian);
+    const auto stability_matrices = rhf_parameters.calculateStabilityMatrices(hamiltonian_restricted);
 
     // This method should be internally stable.
     const auto internal_stability = stability_matrices.isInternallyStable();
@@ -68,7 +71,7 @@ BOOST_AUTO_TEST_CASE(h4_sto3g_stability) {
     // Do our own RHF calculation
     const auto molecule = GQCP::Molecule::HRingFromDistance(4, 1.0);  // H3-triangle, 1 bohr apart
 
-    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "6-31G"};
     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective {sq_hamiltonian, 1.0e-05};
 
@@ -78,8 +81,11 @@ BOOST_AUTO_TEST_CASE(h4_sto3g_stability) {
     auto rhf_parameters = qc_structure.groundStateParameters();
 
     // We can now check the stability of the ground state parameters.
+    // For this we need a restricted Hamiltonian in the orthonormal MO basis.
+    const auto hamiltonian_restricted = sq_hamiltonian.transformed(rhf_parameters.expansion());
+
     // Calculate the stability matrices.
-    const auto stability_matrices = rhf_parameters.calculateStabilityMatrices(sq_hamiltonian);
+    const auto stability_matrices = rhf_parameters.calculateStabilityMatrices(hamiltonian_restricted);
 
     // This method should be internally stable.
     const auto internal_stability = stability_matrices.isInternallyStable();

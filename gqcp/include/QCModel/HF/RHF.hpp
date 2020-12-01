@@ -376,9 +376,9 @@ public:
 
 
     /**
-     *  @return a matrix containing all the possible excitation energies of the wavefunction model.
+     *  @return A matrix containing all the possible excitation energies of the wavefunction model.
      * 
-     *  @note       The rows are determined by the number of virtual orbitals, the columns by the number of occupied orbitals.
+     *  @note The rows are determined by the number of virtual orbitals, the columns by the number of occupied orbitals.
      */
     GQCP::MatrixX<Scalar> excitationEnergies() const {
 
@@ -386,14 +386,14 @@ public:
         const auto orbital_space = this->orbitalSpace();
 
         // Determine the number of occupied and virtual orbitals.
-        const auto n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
 
         // Calculate the occupied and virtual orbital energies.
         const auto occupied_energies = this->occupiedOrbitalEnergies();
         const auto virtual_energies = this->virtualOrbitalEnergies();
 
-        // Create the F matrix
+        // Create the F matrix.
         GQCP::MatrixX<Scalar> F_values(n_virt, n_occ);
         for (int a = 0; a < n_virt; a++) {
             for (int i = 0; i < n_occ; i++) {
@@ -418,9 +418,11 @@ public:
      *  Construct the `singlet A` stability matrix from the RHF stability conditions.
      * 
      *  @note The formula for the `singlet A` matrix is as follows:
-     *      A_IAJB = \delta_IJ * (F_R)_BA - \delta_AB * (F_R)_IJ + 2 * (AI|JB) - (AB|JI)
+     *      A_IAJB = \delta_IJ * (F_R)_BA - \delta_AB * (F_R)_IJ + 2 * (AI|JB) - (AB|JI).
      * 
-     *  @param rsq_hamiltonian      The second quantized hamiltonian, which contains the necessary two electron operators.
+     *  @param rsq_hamiltonian      The second quantized Hamiltonian, expressed in the orthonormal, 'restricted' spin orbital basis of the RHF MOs, which contains the necessary two-electron operators.
+     * 
+     *  @return The singlet-A stability matrix.
      */
     GQCP::MatrixX<Scalar> calculateSingletAStabilityMatrix(const RSQHamiltonian<Scalar>& rsq_hamiltonian) const {
 
@@ -428,15 +430,14 @@ public:
         const auto orbital_space = this->orbitalSpace();
 
         // Create the number of occupied and virtual orbitals.
-        const auto n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
 
-        // We need the two-electron integrals in MO basis, hence why we transform them with the coefficient matrix.
-        // The ground state coefficient matrix is obtained from the QCModel.
-        const auto g = rsq_hamiltonian.twoElectron().transformed(this->expansion());
+        // The two electron integrals are extracted from the Hamiltonian.
+        const auto& g = rsq_hamiltonian.twoElectron().parameters();
 
         // The elements (F_R)_AA and (F_R)_IJ are the eigenvalues of the one-electron Fock operator.
-        // The excitationEnergies API can be used to find these values
+        // The excitationEnergies API can be used to find these values.
         const auto F_values = this->excitationEnergies();
 
         // The next step is to create the needed tensor slice.
@@ -446,7 +447,7 @@ public:
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                        singlet_A_slice(i, a, j, b) = 2 * g.parameters()(a, i, j, b) - g.parameters()(a, b, j, i);
+                        singlet_A_slice(i, a, j, b) = 2 * g(a, i, j, b) - g(a, b, j, i);
                     }
                 }
             }
@@ -473,9 +474,11 @@ public:
      *  Construct the `singlet B` stability matrix from the RHF stability conditions.
      * 
      *  @note The formula for the `singlet B` matrix is as follows:
-     *      B_IAJB = 2 * (AI|BJ) - (AJ|BI)
+     *      B_IAJB = 2 * (AI|BJ) - (AJ|BI).
      * 
-     *  @param rsq_hamiltonian      The second quantized hamiltonian, which contains the necessary two electron operators.
+     *  @param rsq_hamiltonian      The second quantized Hamiltonian, expressed in the orthonormal, 'restricted' spin orbital basis of the RHF MOs, which contains the necessary two-electron operators.
+     * 
+     *  @return The singlet-B stability matrix.
      */
     GQCP::MatrixX<Scalar> calculateSingletBStabilityMatrix(const RSQHamiltonian<Scalar>& rsq_hamiltonian) const {
 
@@ -483,12 +486,11 @@ public:
         const auto orbital_space = this->orbitalSpace();
 
         // Create the number of occupied and virtual orbitals.
-        const auto n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
 
-        // We need the two-electron integrals in MO basis, hence why we transform them with the coefficient matrix.
-        // The ground state coefficient matrix is obtained from the QCModel.
-        const auto g = rsq_hamiltonian.twoElectron().transformed(this->expansion());
+        // The two electron integrals are extracted from the Hamiltonian.
+        const auto& g = rsq_hamiltonian.twoElectron().parameters();
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object.
@@ -497,7 +499,7 @@ public:
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                        singlet_B_slice(i, a, j, b) = 2 * g.parameters()(a, i, b, j) - g.parameters()(a, j, b, i);
+                        singlet_B_slice(i, a, j, b) = 2 * g(a, i, b, j) - g(a, j, b, i);
                     }
                 }
             }
@@ -517,9 +519,11 @@ public:
      *  Construct the `triplet A` stability matrix from the RHF stability conditions.
      * 
      *  @note The formula for the `triplet A` matrix is as follows:
-     *      A_IAJB = \delta_IJ * (F_R)_BA - \delta_AB * (F_R)_IJ - (AB|JI)
+     *      A_IAJB = \delta_IJ * (F_R)_BA - \delta_AB * (F_R)_IJ - (AB|JI).
      * 
-     *  @param rsq_hamiltonian      The second quantized hamiltonian, which contains the necessary two electron operators.
+     *  @param rsq_hamiltonian      The second quantized Hamiltonian, expressed in the orthonormal, 'restricted' spin orbital basis of the RHF MOs, which contains the necessary two-electron operators.
+     * 
+     *  @return the triplet-A stability matrix.
      */
     GQCP::MatrixX<Scalar> calculateTripletAStabilityMatrix(const RSQHamiltonian<Scalar>& rsq_hamiltonian) const {
 
@@ -527,15 +531,14 @@ public:
         const auto orbital_space = this->orbitalSpace();
 
         // Create the number of occupied and virtual orbitals.
-        const auto n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
 
-        // We need the two-electron integrals in MO basis, hence why we transform them with the coefficient matrix.
-        // The ground state coefficient matrix is obtained from the QCModel.
-        const auto g = rsq_hamiltonian.twoElectron().transformed(this->expansion());
+        // The two electron integrals are extracted from the Hamiltonian.
+        const auto& g = rsq_hamiltonian.twoElectron().parameters();
 
         // The elements (F_R)_AA and (F_R)_IJ are the eigenvalues of the one-electron Fock operator.
-        // The excitationEnergies API can be used to find these values
+        // The excitationEnergies API can be used to find these values.
         const auto F_values = this->excitationEnergies();
 
         // The next step is to create the needed tensor slice.
@@ -545,7 +548,7 @@ public:
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                        triplet_A_slice(i, a, j, b) = -g.parameters()(a, b, j, i);
+                        triplet_A_slice(i, a, j, b) = -g(a, b, j, i);
                     }
                 }
             }
@@ -572,9 +575,11 @@ public:
      *  Construct the `triplet B` stability matrix from the RHF stability conditions.
      * 
      *  @note The formula for the `triplet B` matrix is as follows:
-     *      B_IAJB = - (AJ|BI)
+     *      B_IAJB = - (AJ|BI).
      * 
-     *  @param rsq_hamiltonian      The second quantized hamiltonian, which contains the necessary two electron operators.
+     *  @param rsq_hamiltonian      The second quantized Hamiltonian, expressed in the orthonormal, 'restricted' spin orbital basis of the RHF MOs, which contains the necessary two-electron operators.
+     * 
+     *  @return The triplet-B stability matrix.
      */
     GQCP::MatrixX<Scalar> calculateTripletBStabilityMatrix(const RSQHamiltonian<Scalar>& rsq_hamiltonian) const {
 
@@ -582,12 +587,11 @@ public:
         const auto orbital_space = this->orbitalSpace();
 
         // Create the number of occupied and virtual orbitals.
-        const auto n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
-        const auto n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
+        const auto& n_occ = orbital_space.numberOfOrbitals(OccupationType::k_occupied);
+        const auto& n_virt = orbital_space.numberOfOrbitals(OccupationType::k_virtual);
 
-        // We need the two-electron integrals in MO basis, hence why we transform them with the coefficient matrix.
-        // The ground state coefficient matrix is obtained from the QCModel.
-        const auto g = rsq_hamiltonian.twoElectron().transformed(this->expansion());
+        // The two electron integrals are extracted from the Hamiltonian.
+        const auto& g = rsq_hamiltonian.twoElectron().parameters();
 
         // The next step is to create the needed tensor slice.
         // Zero-initialize an occupied-virtual-occupied-virtual object.
@@ -596,7 +600,7 @@ public:
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                        triplet_B_slice(i, a, j, b) = -g.parameters()(a, j, b, i);
+                        triplet_B_slice(i, a, j, b) = -g(a, j, b, i);
                     }
                 }
             }
@@ -614,6 +618,8 @@ public:
 
     /**
      *  Calculate the RHF stability matrices and return them.
+     * 
+     *  @param rsq_hamiltonian      The second quantized Hamiltonian, expressed in the orthonormal, 'restricted' spin orbital basis of the RHF MOs, which contains the necessary two-electron operators.
      *
      *  @return The RHF stability matrices.
      */
@@ -666,12 +672,12 @@ public:
     size_t numberOfSpatialOrbitals() const { return this->expansion().numberOfOrbitals(); }
 
     /**
-     *  @return the orbital energies belonging to the occupied orbitals
+     *  @return The orbital energies belonging to the occupied orbitals.
      */
     std::vector<double> occupiedOrbitalEnergies() const {
 
-        // Determine the number of occupied orbitals
-        const auto& n_occ = this->orbitalSpace().numberOfOrbitals(OccupationType::k_occupied);
+        // Determine the number of occupied orbitals.
+        const auto n_occ = this->orbitalSpace().numberOfOrbitals(OccupationType::k_occupied);
 
         std::vector<double> mo_energies;  // We use a std::vector in order to be able to slice the vector later on.
         for (int i = 0; i < this->numberOfSpatialOrbitals(); i++) {
@@ -735,12 +741,12 @@ public:
 
 
     /**
-     *  @return the orbital energies belonging to the virtual orbitals
+     *  @return The orbital energies belonging to the virtual orbitals.
      */
     std::vector<double> virtualOrbitalEnergies() const {
 
-        // Determine the number of occupied orbitals
-        const auto& n_occ = this->orbitalSpace().numberOfOrbitals(OccupationType::k_occupied);
+        // Determine the number of occupied orbitals.
+        const auto n_occ = this->orbitalSpace().numberOfOrbitals(OccupationType::k_occupied);
 
         std::vector<double> mo_energies;  // We use a std::vector in order to be able to slice the vector later on.
         for (int i = 0; i < this->numberOfSpatialOrbitals(); i++) {

@@ -48,15 +48,4 @@ Matrix<double, 3, 3> calculateElectricPolarizability(const Matrix<double, Dynami
 Matrix<double, 3, 3> calculateElectricPolarizability(const Matrix<double, Dynamic, 3>& F_p, const Matrix<double, Dynamic, 3>& x, const Matrix<double, Dynamic, 3>& A_lambda, const Matrix<double, Dynamic, 3>& y);
 
 
-/**
- *  Calculate the Dyson 'amplitudes' (the coefficients of a Dyson orbital) between two wave function expressed in the same spinor basis 
- * 
- *  @param linear_expansion1        a wave function in a spin-unresolved ONV basis  
- *  @param linear_expansion2        a wave function in a spin-unresolved ONV basis containing one fewer electron and the same number of orbitals that is expressed in the same basis
- *
- *  @return a vector with the Dyson orbital amplitudes
- */
-VectorX<double> calculateDysonOrbitalCoefficients(const LinearExpansion<SpinResolvedONVBasis>& linear_expansion1, const LinearExpansion<SpinResolvedONVBasis>& linear_expansion2);
-
-
 }  // namespace GQCP
