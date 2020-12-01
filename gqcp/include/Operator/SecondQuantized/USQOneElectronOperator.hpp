@@ -62,6 +62,8 @@ public:
     // The type of transformation that is naturally related to a `USQOneElectronOperator`.
     using Transformation = UTransformation<Scalar>;
 
+    // The type component this spin resolved object is made of.
+    using ComponentType = typename SpinResolvedBase<USQOneElectronOperatorComponent<Scalar, Vectorizer>, Self>::Of;
 
 public:
     /*

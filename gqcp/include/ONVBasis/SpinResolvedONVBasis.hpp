@@ -35,6 +35,10 @@ namespace GQCP {
  */
 class SpinResolvedONVBasis:
     public SpinResolvedBase<SpinUnresolvedONVBasis, SpinResolvedONVBasis> {
+public:
+    // The type component this spin resolved object is made of.
+    using ComponentType = typename SpinResolvedBase<SpinUnresolvedONVBasis, SpinResolvedONVBasis>::Of;
+
 private:
     // A vector of sparse matrices containing the one-electron coupling elements for the alpha ONV basis. See also `calculateOneElectronCouplings`.
     std::vector<Eigen::SparseMatrix<double>> alpha_couplings;

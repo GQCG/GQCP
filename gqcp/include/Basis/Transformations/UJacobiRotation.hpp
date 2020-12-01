@@ -30,6 +30,9 @@ namespace GQCP {
  */
 class UJacobiRotation:
     public SpinResolvedBase<JacobiRotation, UJacobiRotation> {
+public:
+    // The type component this spin resolved object is made of.
+    using ComponentType = typename SpinResolvedBase<JacobiRotation, UJacobiRotation>::Of;
 
 public:
     /*
