@@ -472,7 +472,19 @@ void bindSimpleTransformationInterface(Class& py_class) {
 
         .def("matrix",
              &Type::matrix,
-             "Return the transformation matrix that collects the expansion coefficients of the new basis (vectors) in the old basis as columns.");
+             "Return the transformation matrix that collects the expansion coefficients of the new basis (vectors) in the old basis as columns.")
+
+        .def("inverse",
+             &Type::inverse,
+             "Return the inverse transformation of this transformation matrix.")
+
+        .def(
+            "transformed",
+            [](const Type& T_self, Type& T) {
+                return T_self.transformed(T);
+            },
+            py::arg("T"),
+            "The transformation that encapsulates the sequential application of this transformation, followed by the given transformation.");
 }
 
 
