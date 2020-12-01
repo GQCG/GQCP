@@ -478,6 +478,7 @@ void bindSimpleTransformationInterface(Class& py_class) {
              &Type::inverse,
              "Return the inverse transformation of this transformation matrix.");
 
+    // Expose the `BasisTransformable` APIs.
     bindBasisTransformableInterface(py_class);
 }
 
