@@ -269,7 +269,7 @@ public:
      *
      *  @return the RHF 1-DM expressed in the underlying scalar basis
      */
-    static Orbital1DM<Scalar> calculateScalarBasis1DM(const RTransformation<double>& C, const size_t N) {
+    static Orbital1DM<Scalar> calculateScalarBasis1DM(const RTransformation<Scalar>& C, const size_t N) {
 
         const size_t K = C.numberOfOrbitals();
         const auto D_orthonormal = RHF<Scalar>::calculateOrthonormalBasis1DM(K, N);
@@ -758,8 +758,7 @@ public:
         std::copy(mo_energies.begin() + n_occ, mo_energies.end(), std::back_inserter(mo_energies_virtual));
         return mo_energies_virtual;
     }
-
-};  // namespace QCModel
+};
 
 
 }  // namespace QCModel

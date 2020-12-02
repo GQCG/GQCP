@@ -123,7 +123,7 @@ public:
      *
      *  @return the GHF 1-DM expressed in the underlying scalar basis
      */
-    static G1DM<Scalar> calculateScalarBasis1DM(const GTransformation<double>& C, const size_t N) {
+    static G1DM<Scalar> calculateScalarBasis1DM(const GTransformation<Scalar>& C, const size_t N) {
 
         const size_t M = C.dimension();
         const auto P_orthonormal = GHF<Scalar>::calculateOrthonormalBasis1DM(M, N);

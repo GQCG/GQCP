@@ -196,8 +196,8 @@ void bindQCModelvAP1roG(py::module& module);
 
 // QCModel - HF
 void bindQCModelGHF(py::module& module);
-void bindQCModelRHF(py::module& module);
-void bindQCModelUHF(py::module& module);
+void bindQCModelsRHF(py::module& module);
+void bindQCModelsUHF(py::module& module);
 
 
 // QuantumChemical
@@ -385,8 +385,9 @@ PYBIND11_MODULE(gqcpy, module) {
 
 
     // QCModel - HF
-    gqcpy::bindQCModelRHF(module);
-    gqcpy::bindQCModelUHF(module);
+    gqcpy::bindQCModelGHF(module);
+    gqcpy::bindQCModelsRHF(module);
+    gqcpy::bindQCModelsUHF(module);
 
 
     // QuantumChemical
