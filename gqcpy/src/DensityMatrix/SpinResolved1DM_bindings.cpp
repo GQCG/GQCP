@@ -84,6 +84,9 @@ void bindSpinResolved1DM(py::module& module) {
 
     // Expose the `BasisTransformable` API to the Python class.
     bindBasisTransformableInterface(py_SpinResolved1DM_d);
+
+    // Expose the `VectorSpaceArithmetic` API to the Python class.
+    bindVectorSpaceArithmeticInterface(py_SpinResolved1DM_d);
 }
 
 
