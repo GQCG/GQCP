@@ -44,7 +44,14 @@ void bindUTransformation(py::module& module) {
     py_UTransformation_d
         .def("inverse",
              &UTransformation<double>::inverse,
-             "Return the inverse transformation of this transformation matrix.");
+             "Return the inverse transformation of this transformation matrix.")
+
+        .def(
+            "isUnitary",
+            [](const UTransformation<double>& T, const double threshold = 1.0e-12) {
+                return T.isUnitary(threshold);
+            },
+            "Return if this transformation is unitary, within the given threshold");
 
     // Expose the `SpinResolvedBase` API to Python.
     bindSpinResolvedBaseInterface(py_UTransformation_d);
