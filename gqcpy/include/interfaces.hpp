@@ -26,6 +26,7 @@
 
 #include <pybind11/eigen.h>
 #include <pybind11/functional.h>
+#include <pybind11/iostream.h>
 #include <pybind11/operators.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -813,6 +814,7 @@ void bindQCModelHartreeFockStabilityInterface(Class& py_class) {
         .def(
             "printStabilityDescription",
             [](const Type& stability_matrices) {
+                py::scoped_ostream_redirect stream(std::cout, py::module::import("sys").attr("stdout"));
                 stability_matrices.printStabilityDescription();
             },
             "Print the description of the stability properties of a HF wavefunction.");

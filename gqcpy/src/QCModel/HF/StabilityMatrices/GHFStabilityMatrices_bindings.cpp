@@ -39,9 +39,9 @@ void bindGHFStabilityMatrices(py::module& module) {
     bindQCModelHartreeFockStabilityInterface(py_GHFStabilityMatrices_d);
 
 
-    py::class_<GHFStabilityMatrices<complex>> py_GHFStabilityMatrices_cd {module, "GHFStabilityMatrices_cd", "The complex generalized Hartree-Fock stability matrices."};
+    // py::class_<GHFStabilityMatrices<complex>> py_GHFStabilityMatrices_cd {module, "GHFStabilityMatrices_cd", "The complex generalized Hartree-Fock stability matrices."};
 
-    bindQCModelHartreeFockStabilityInterface(py_GHFStabilityMatrices_cd);
+    // bindQCModelHartreeFockStabilityInterface(py_GHFStabilityMatrices_cd);
 }
 
 
