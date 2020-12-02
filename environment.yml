@@ -1,6 +1,9 @@
 name: gqcpenv
 channels:
+  - intel
   - gqcg
+  - anaconda
+  - conda-forge
   - defaults
 dependencies:
   - gqcp
