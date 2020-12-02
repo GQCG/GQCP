@@ -1,7 +1,6 @@
-name: gqcpenv37
+name: gqcpenv
 channels:
   - gqcg
   - defaults
 dependencies:
-  - python=3.7
   - gqcp
