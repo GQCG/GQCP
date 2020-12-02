@@ -150,7 +150,7 @@ BOOST_AUTO_TEST_CASE(energy_expectation_value_Hamiltonian) {
 BOOST_AUTO_TEST_CASE(two_electron_operator_expectation_value_different_orbital_bases) {
 
     // Prepare the molecular Hamiltonian in the AO basis, in order to proceed with an UHF SCF calculation.
-    const auto molecule = GQCP::Molecule::ReadXYZ("data/CH4_crawdad.xyz");
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/ch4_crawdad.xyz");
     const auto N_a = molecule.numberOfElectronPairs();
     const auto N_b = molecule.numberOfElectronPairs();
 
