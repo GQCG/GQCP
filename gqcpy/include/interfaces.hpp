@@ -73,7 +73,7 @@ void bindBasisTransformableInterface(Class& py_class) {
         .def(
             "rotated",
             [](const Type& transformable, const Transformation& U) {
-                transformable.rotated(U);
+                return transformable.rotated(U);
             },
             py::arg("U"),
             "Apply the basis rotation and return the result.")
@@ -89,7 +89,7 @@ void bindBasisTransformableInterface(Class& py_class) {
         .def(
             "transformed",
             [](Type& transformable, const Transformation& T) {
-                transformable.transformed(T);
+                return transformable.transformed(T);
             },
             py::arg("T"),
             "Apply the basis transformation and return the result.");
@@ -476,7 +476,14 @@ void bindSimpleTransformationInterface(Class& py_class) {
 
         .def("inverse",
              &Type::inverse,
-             "Return the inverse transformation of this transformation matrix.");
+             "Return the inverse transformation of this transformation matrix.")
+
+        .def(
+            "isUnitary",
+            [](const Type& T, const double threshold = 1.0e-12) {
+                return T.isUnitary(threshold);
+            },
+            "Return if this transformation is unitary, within the given threshold");
 
     // Expose the `BasisTransformable` APIs.
     bindBasisTransformableInterface(py_class);
