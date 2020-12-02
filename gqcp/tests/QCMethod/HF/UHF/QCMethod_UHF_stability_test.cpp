@@ -65,6 +65,7 @@ BOOST_AUTO_TEST_CASE(H3_stability_test) {
     // This wavefunction should be externally unstable.
     const auto external_stability = stability_matrices.isExternallyStable();
     BOOST_CHECK(external_stability == false);
+    std::cout << stability_matrices.internal() << std::endl;
 
     // We check both external instabilities separately as well.
     BOOST_CHECK(stability_matrices.isSpinUnconservedStable() == false);

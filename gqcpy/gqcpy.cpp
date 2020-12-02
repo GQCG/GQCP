@@ -200,6 +200,12 @@ void bindQCModelsRHF(py::module& module);
 void bindQCModelsUHF(py::module& module);
 
 
+// QCModel - HF - StabilityMatrices
+void bindGHFStabilityMatrices(py::module& module);
+void bindRHFStabilityMatrices(py::module& module);
+void bindUHFStabilityMatrices(py::module& module);
+
+
 // QuantumChemical
 void bindSpin(py::module& module);
 
@@ -388,6 +394,12 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindQCModelGHF(module);
     gqcpy::bindQCModelsRHF(module);
     gqcpy::bindQCModelsUHF(module);
+
+
+    // QCModel - HF - StabilityMatrices
+    gqcpy::bindGHFStabilityMatrices(module);
+    gqcpy::bindRHFStabilityMatrices(module);
+    gqcpy::bindUHFStabilityMatrices(module);
 
 
     // QuantumChemical

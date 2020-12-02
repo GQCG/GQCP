@@ -44,7 +44,11 @@ namespace QCModel {
 template <typename _Scalar>
 class UHF {
 public:
+    // The scalar type used within the QCModel: real or complex.
     using Scalar = _Scalar;
+
+    // The type of Hamiltonian that fits this QCModel.
+    using Hamiltonian = USQHamiltonian<Scalar>;
 
 
 private:

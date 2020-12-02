@@ -62,9 +62,6 @@ void bindQCModelUHF(py::module& module, const std::string& name, const std::stri
 
     // Expose the `HartreeFock` interface.
     bindQCModelHartreeFockInterface(py_QCModelUHF);
-
-    // Expose the `SpinResolvedBase` interface to the Python class.
-    bindSpinResolvedBaseInterface(py_QCModelUHF);
 }
 
 /**

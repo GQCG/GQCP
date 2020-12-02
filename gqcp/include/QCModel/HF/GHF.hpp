@@ -39,7 +39,11 @@ namespace QCModel {
 template <typename _Scalar>
 class GHF {
 public:
+    // The scalar type used within the QCModel: real or complex.
     using Scalar = _Scalar;
+
+    // The type of Hamiltonian that fits this QCModel.
+    using Hamiltonian = GSQHamiltonian<Scalar>;
 
 private:
     size_t N;  // the number of electrons

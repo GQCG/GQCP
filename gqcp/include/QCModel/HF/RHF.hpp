@@ -41,7 +41,11 @@ namespace QCModel {
 template <typename _Scalar>
 class RHF {
 public:
+    // The scalar type used within the QCModel: real or complex.
     using Scalar = _Scalar;
+
+    // The type of Hamiltonian that fits this QCModel.
+    using Hamiltonian = RSQHamiltonian<Scalar>;
 
 
 private:
@@ -447,7 +451,7 @@ public:
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                        singlet_A_slice(i, a, j, b) = 2 * g(a, i, j, b) - g(a, b, j, i);
+                        singlet_A_slice(i, a, j, b) = g(a, i, j, b) + g(a, i, j, b) - g(a, b, j, i);
                     }
                 }
             }
@@ -499,7 +503,7 @@ public:
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                        singlet_B_slice(i, a, j, b) = 2 * g(a, i, b, j) - g(a, j, b, i);
+                        singlet_B_slice(i, a, j, b) = g(a, i, b, j) + g(a, i, b, j) - g(a, j, b, i);
                     }
                 }
             }
