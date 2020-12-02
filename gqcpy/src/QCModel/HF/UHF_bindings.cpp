@@ -50,17 +50,12 @@ void bindQCModelUHF(py::module& module) {
 
         .def(
             "expansion",
-            [](const QCModel::UHF<double>& uhf_parameters, const Spin sigma) {
-                return uhf_parameters.expansion(sigma);
-            },
-            py::arg("sigma"),
+            &QCModel::UHF<double>::expansion,
             "Return the coefficient matrix that expresses the sigma spin-orbitals (as a column) in its underlying scalar basis.")
 
         .def(
             "numberOfElectrons",
-            [](const QCModel::UHF<double>& uhf_parameters, const Spin sigma) {
-                return uhf_parameters.numberOfElectrons(sigma);
-            },
+            &QCModel::UHF<double>::numberOfElectrons,
             py::arg("sigma"),
             "Return the number of sigma electrons that these UHF model parameters describe, i.e. the number of occupied sigma-spin-orbitals.")
 
@@ -81,9 +76,7 @@ void bindQCModelUHF(py::module& module) {
 
         .def(
             "orbitalEnergies",
-            [](const QCModel::UHF<double>& uhf_parameters, const Spin sigma) {
-                return uhf_parameters.orbitalEnergies(sigma);
-            },
+            &QCModel::UHF<double>::orbitalEnergies,
             py::arg("sigma"),
             "Return the orbital energies of the sigma-spin-orbitals.")
 

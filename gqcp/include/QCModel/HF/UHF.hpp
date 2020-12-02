@@ -22,6 +22,7 @@
 #include "Basis/Transformations/UTransformation.hpp"
 #include "Basis/Transformations/UTransformationComponent.hpp"
 #include "DensityMatrix/SpinResolved1DM.hpp"
+#include "DensityMatrix/SpinResolved2DM.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 #include "Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
@@ -171,12 +172,14 @@ public:
 
 
     /**
-     *  @param K_a          the number of spatial orbitals for the alpha spin component
-     *  @param K_b          the number of spatial orbitals for the beta spin component
-     *  @param N_a          the number of alpha electrons, i.e. the number of occupied alpha spin-orbitals
-     *  @param N_b          the number of beta electrons, i.e. the number of occupied beta spin-orbitals
+     *  Calculate and return the (spin-resolved) UHF 1-DM in an orthonormal spin-orbital basis.
+     * 
+     *  @param K_a          The number of spatial orbitals for the alpha spin component.
+     *  @param K_b          The number of spatial orbitals for the beta spin component.
+     *  @param N_a          The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals.
+     *  @param N_b          The number of beta electrons, i.e. the number of occupied beta spin-orbitals.
      *
-     *  @return the spin resolved UHF 1-DM expressed in an orthonormal sigma spin-orbital basis
+     *  @return The UHF 1-DM in an orthonormal spin-orbital basis.
      */
     static SpinResolved1DM<Scalar> calculateOrthonormalBasis1DM(const size_t K_a, const size_t K_b, const size_t N_a, const size_t N_b) {
 
@@ -194,6 +197,89 @@ public:
         D_MO_b.topLeftCorner(N_b, N_b) = SquareMatrix<Scalar>::Identity(N_b);
 
         return SpinResolved1DM<Scalar> {D_MO_a, D_MO_b};
+    }
+
+
+    /**
+     *  Calculate and return the (spin-resolved) UHF 2-DM in an orthonormal spin-orbital basis.
+     * 
+     *  @param K            The number of spatial orbitals for the alpha and beta spin components.
+     *  @param N_a          The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals.
+     *  @param N_b          The number of beta electrons, i.e. the number of occupied beta spin-orbitals.
+     *
+     *  @return The UHF 2-DM in an orthonormal spin-orbital basis.
+     */
+    static SpinResolved2DM<Scalar> calculateOrthonormalBasis2DM(const size_t K, const size_t N_a, const size_t N_b) {
+
+        // Create the orbital space to determine the loops.
+        const auto orbital_space = UHF<Scalar>::orbitalSpace(K, K, N_a, N_b);
+
+
+        // Use KISS formulas to implement the spin components of the UHF 2-DM.
+        PureSpinResolved2DMComponent<Scalar> d_aaaa = PureSpinResolved2DMComponent<Scalar>::Zero(K);
+        for (const auto& i : orbital_space.alpha().indices(OccupationType::k_occupied)) {
+            for (const auto& j : orbital_space.alpha().indices(OccupationType::k_occupied)) {
+                for (const auto& k : orbital_space.alpha().indices(OccupationType::k_occupied)) {
+                    for (const auto& l : orbital_space.alpha().indices(OccupationType::k_occupied)) {
+                        if ((i == j) && (k == l)) {
+                            d_aaaa(i, j, k, l) += 1.0;
+                        }
+
+                        if ((i == l) && (j == k)) {
+                            d_aaaa(i, j, k, l) -= 1.0;
+                        }
+                    }
+                }
+            }
+        }
+
+
+        MixedSpinResolved2DMComponent<Scalar> d_aabb = MixedSpinResolved2DMComponent<Scalar>::Zero(K);
+        for (const auto& i : orbital_space.alpha().indices(OccupationType::k_occupied)) {
+            for (const auto& j : orbital_space.alpha().indices(OccupationType::k_occupied)) {
+                for (const auto& k : orbital_space.beta().indices(OccupationType::k_occupied)) {
+                    for (const auto& l : orbital_space.beta().indices(OccupationType::k_occupied)) {
+                        if ((i == j) && (k == l)) {
+                            d_aabb(i, j, k, l) += 1.0;
+                        }
+                    }
+                }
+            }
+        }
+
+
+        MixedSpinResolved2DMComponent<Scalar> d_bbaa = MixedSpinResolved2DMComponent<Scalar>::Zero(K);
+        for (const auto& i : orbital_space.beta().indices(OccupationType::k_occupied)) {
+            for (const auto& j : orbital_space.beta().indices(OccupationType::k_occupied)) {
+                for (const auto& k : orbital_space.alpha().indices(OccupationType::k_occupied)) {
+                    for (const auto& l : orbital_space.alpha().indices(OccupationType::k_occupied)) {
+                        if ((i == j) && (k == l)) {
+                            d_aabb(i, j, k, l) += 1.0;
+                        }
+                    }
+                }
+            }
+        }
+
+
+        PureSpinResolved2DMComponent<Scalar> d_bbbb = PureSpinResolved2DMComponent<Scalar>::Zero(K);
+        for (const auto& i : orbital_space.beta().indices(OccupationType::k_occupied)) {
+            for (const auto& j : orbital_space.beta().indices(OccupationType::k_occupied)) {
+                for (const auto& k : orbital_space.beta().indices(OccupationType::k_occupied)) {
+                    for (const auto& l : orbital_space.beta().indices(OccupationType::k_occupied)) {
+                        if ((i == j) && (k == l)) {
+                            d_aaaa(i, j, k, l) += 1.0;
+                        }
+
+                        if ((i == l) && (j == k)) {
+                            d_aaaa(i, j, k, l) -= 1.0;
+                        }
+                    }
+                }
+            }
+        }
+
+        return SpinResolved2DM<Scalar> {d_aaaa, d_aabb, d_bbaa, d_bbbb};
     }
 
 
@@ -317,8 +403,7 @@ public:
      */
 
     /**
-     * 
-     *  @return the spin resolved UHF 1-DM expressed in an orthonormal spin-orbital basis for these UHF model parameters
+     *  @return The (spin-resolved) UHF 1-DM expressed in an orthonormal spin-orbital basis for these UHF model parameters.
      */
     SpinResolved1DM<Scalar> calculateOrthonormalBasis1DM() const {
 
@@ -332,12 +417,27 @@ public:
 
 
     /**
+     *  @return The (spin-resolved) UHF 2-DM expressed in an orthonormal spin-orbital basis for these UHF model parameters.
+     * 
+     *  @note We assume that the total number of alpha and beta orbitals is the same.
+     */
+    SpinResolved2DM<Scalar> calculateOrthonormalBasis2DM() const {
+
+        const auto K = this->numberOfSpinOrbitals(Spin::alpha);  // Assume K_alpha and K_beta are equal.
+        const auto N_a = this->numberOfElectrons(Spin::alpha);
+        const auto N_b = this->numberOfElectrons(Spin::beta);
+
+        return UHF<Scalar>::calculateOrthonormalBasis2DM(K, N_a, N_b);
+    }
+
+
+    /**
      *  @return The spin resolved UHF 1-DM expressed in the underlying scalar basis for these UHF model parameters.
      */
     SpinResolved1DM<Scalar> calculateScalarBasis1DM() const {
 
-        const auto C_a = this->expansion(Spin::alpha);
-        const auto C_b = this->expansion(Spin::beta);
+        const auto C_a = this->expansion().component(Spin::alpha);
+        const auto C_b = this->expansion().component(Spin::beta);
         const UTransformation<Scalar> C {C_a, C_b};
 
         const auto N_a = this->numberOfElectrons(Spin::alpha);
@@ -970,21 +1070,9 @@ public:
 
 
     /**
-     *  @return the coefficient matrix that expresses the sigma spin-orbitals (as a column) in its underlying scalar basis
+     *  @return The transformation that expresses the UHF MOs in terms of the underlying AOs.
      */
-    const UTransformation<Scalar> expansion() const {
-        return C;
-    }
-
-
-    /**
-     *  @param sigma            alpha or beta
-     *
-     *  @return the coefficient matrix that expresses the sigma spin-orbitals (as a column) in its underlying scalar basis
-     */
-    const UTransformationComponent<Scalar> expansion(const Spin sigma) const {
-        return C.component(sigma);
-    }
+    const UTransformation<Scalar>& expansion() const { return this->C; }
 
 
     /**
@@ -1023,7 +1111,7 @@ public:
      *  @return the number of sigma spin-orbitals that these UHF model parameters describe
      */
     size_t numberOfSpinOrbitals(const Spin sigma) const {
-        return this->expansion(sigma).numberOfOrbitals();
+        return this->expansion().component(sigma).numberOfOrbitals();
     }
 
 
