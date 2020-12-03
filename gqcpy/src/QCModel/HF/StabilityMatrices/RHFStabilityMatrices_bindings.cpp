@@ -119,7 +119,7 @@ void bindRHFStabilityMatrices(py::module& module) {
             py::arg("threshold") = 1.0e-05,
             "Return a boolean, telling us if the complex valued external stability matrix belongs to a stable or unstable set of parameters.");
 
-    // Expose the `HartreeFockRealStability` interface.
+    // Expose the `HartreeFockComplexStability` interface.
     bindQCModelHartreeFockComplexStabilityInterface(py_RHFStabilityMatrices_cd);
 
     // Expose the `RHFStability` interface.
