@@ -208,6 +208,7 @@ void bindUHFStabilityMatrices(py::module& module);
 
 // QuantumChemical
 void bindSpin(py::module& module);
+void bindSpinResolvedTypes(py::module& module);
 
 
 // Single includes
@@ -404,6 +405,7 @@ PYBIND11_MODULE(gqcpy, module) {
 
     // QuantumChemical
     gqcpy::bindSpin(module);
+    gqcpy::bindSpinResolvedTypes(module);
 
 
     // Single includes

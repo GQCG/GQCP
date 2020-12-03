@@ -88,7 +88,7 @@ void bindUHFStabilityMatrices(py::module& module) {
     // Define Python class related to `real UHFStabilityMatrices` and expose their interfaces.
     py::class_<UHFStabilityMatrices<double>> py_UHFStabilityMatrices_d {module, "UHFStabilityMatrices_d", "The real generalized Hartree-Fock stability matrices."};
 
-    // Expose python bindings unique to the real method
+    // Expose python bindings unique to the real method.
     py_UHFStabilityMatrices_d
 
         .def(
@@ -108,7 +108,7 @@ void bindUHFStabilityMatrices(py::module& module) {
     // Define Python class related to `complex UHFStabilityMatrices` and expose their interfaces.
     py::class_<UHFStabilityMatrices<complex>> py_UHFStabilityMatrices_cd {module, "UHFStabilityMatrices_cd", "The complex generalized Hartree-Fock stability matrices."};
 
-    // Expose python bindings unique to the real method
+    // Expose python bindings unique to the complex method.
     py_UHFStabilityMatrices_cd
 
         .def(

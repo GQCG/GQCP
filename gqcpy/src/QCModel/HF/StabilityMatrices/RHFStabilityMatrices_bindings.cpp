@@ -88,7 +88,7 @@ void bindRHFStabilityMatrices(py::module& module) {
     // Define Python class related to `real RHFStabilityMatrices` and expose their interfaces.
     py::class_<RHFStabilityMatrices<double>> py_RHFStabilityMatrices_d {module, "RHFStabilityMatrices_d", "The real generalized Hartree-Fock stability matrices."};
 
-    // Expose python bindings unique to the real method
+    // Expose python bindings unique to the real method.
     py_RHFStabilityMatrices_d
 
         .def(
@@ -108,7 +108,7 @@ void bindRHFStabilityMatrices(py::module& module) {
     // Define Python class related to `complex RHFStabilityMatrices` and expose their interfaces.
     py::class_<RHFStabilityMatrices<complex>> py_RHFStabilityMatrices_cd {module, "RHFStabilityMatrices_cd", "The complex generalized Hartree-Fock stability matrices."};
 
-    // Expose python bindings unique to the complex method
+    // Expose python bindings unique to the complex method.
     py_RHFStabilityMatrices_cd
 
         .def(
