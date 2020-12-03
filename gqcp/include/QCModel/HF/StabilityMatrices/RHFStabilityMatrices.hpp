@@ -142,7 +142,7 @@ public:
         const auto& singlet_B = this->singletB();
 
         // Determine the dimensions of the total stability matrix.
-        const auto K = singlet_A.dimension(0);
+        const auto K = singlet_A.rows();
         const auto dim = 2 * K;
 
         // Create the total stability matrix as specified above in the documentation.
@@ -171,7 +171,7 @@ public:
         const auto& triplet_B = this->tripletB();
 
         // Determine the dimensions of the total stability matrix.
-        const auto K = triplet_A.dimension(0);
+        const auto K = triplet_A.rows();
         const auto dim = 2 * K;
 
         // Create the total stability matrix as specified above in the documentation.

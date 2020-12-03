@@ -113,7 +113,7 @@ public:
         const auto& B = this->subMatrixB();
 
         // Determine the dimensions of the total stability matrix.
-        const auto K = A.dimension(0);
+        const auto K = A.rows();
         const auto dim = 2 * K;
 
         // Create the total stability matrix as specified above in the documentation.
