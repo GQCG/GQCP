@@ -33,14 +33,16 @@ using namespace GQCP;
 
 void bindQCModelGHF(py::module& module) {
 
-    // Define Python classes related to `QCModel::GHF` and expose their interfaces.
+    // Define Python class related to `real QCModel::GHF` and expose their interfaces.
     py::class_<QCModel::GHF<double>> py_QCModelGHF_d {module, "QCModel_GHF_d", "The generalized Hartree-Fock wave function model."};
 
+    // Expose the `HartreeFock` interface.
     bindQCModelHartreeFockInterface(py_QCModelGHF_d);
 
-
+    // Define Python class related to `real QCModel::GHF` and expose their interfaces.
     py::class_<QCModel::GHF<complex>> py_QCModelGHF_cd {module, "QCModel_GHF_cd", "The generalized Hartree-Fock wave function model."};
 
+    // Expose the `HartreeFock` interface.
     bindQCModelHartreeFockInterface(py_QCModelGHF_cd);
 }
 

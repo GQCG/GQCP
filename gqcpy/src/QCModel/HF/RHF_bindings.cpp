@@ -36,7 +36,7 @@ void bindQCModelRHF(py::module& module, const std::string& name, const std::stri
     // Define Python classes related to `QCModel::RHF` and expose their interfaces.
     py::class_<QCModel::RHF<Scalar>> py_QCModelRHF {module, name.c_str(), description.c_str()};
 
-    // Expose the actual Python bindings.
+    // Expose the actual Python bindings unique to RHF.
     py_QCModelRHF
 
         .def(

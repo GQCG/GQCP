@@ -36,7 +36,7 @@ void bindQCModelUHF(py::module& module, const std::string& name, const std::stri
     // Define Python classes related to `QCModel::UHF` and expose their interfaces.
     py::class_<QCModel::UHF<Scalar>> py_QCModelUHF {module, name.c_str(), description.c_str()};
 
-    // Expose the actual Python bindings.
+    // Expose the actual Python bindings unique to UHF.
     py_QCModelUHF
 
         .def(
