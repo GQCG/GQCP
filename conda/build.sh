@@ -18,7 +18,6 @@ if [ `uname` == Darwin ]; then
         -DCMAKE_C_FLAGS="${CFLAGS} ${OPTS}" \
         -DCMAKE_CXX_FLAGS="${CXXFLAGS} ${OPTS}" \
         -DCMAKE_VERBOSE_MAKEFILE=TRUE \
-        #-DBUILD_TESTS=TRUE \
         -DBUILD_PYTHON_BINDINGS=TRUE \
         -DPYTHON_EXECUTABLE=${PYTHON} \
         -DPYTHON_LIBRARY=${STDLIB_DIR}/libpython${PY_VER}.a
@@ -33,7 +32,6 @@ if [ `uname` == Linux ]; then
         -DCMAKE_C_FLAGS="${CFLAGS} ${OPTS}" \
         -DCMAKE_CXX_FLAGS="${CXXFLAGS} ${OPTS}" \
         -DCMAKE_VERBOSE_MAKEFILE=TRUE \
-        #-DBUILD_TESTS=TRUE \
         -DBUILD_PYTHON_BINDINGS=TRUE \
         -DPYTHON_EXECUTABLE=${PYTHON} \
         -DPYTHON_LIBRARY=${STDLIB_DIR}/libpython${PY_VER}.a
