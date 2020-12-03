@@ -1,7 +1,8 @@
 name: Conda CI/CD
 
 on:
-  paths:
+  push:
+    paths:
     - 'conda/**'
     - 'workflows/ci-cd-conda.yml'
     - '**.hpp'
@@ -9,10 +10,17 @@ on:
     - '**.cmake'
     - '**CMakeLists.txt'
     - 'cmake/**'
-  push:
     branches:
       - develop
   pull_request:
+    paths:
+    - 'conda/**'
+    - 'workflows/ci-cd-conda.yml'
+    - '**.hpp'
+    - '**.cpp'
+    - '**.cmake'
+    - '**CMakeLists.txt'
+    - 'cmake/**'
 
 jobs:
   conda-ci-cd:
