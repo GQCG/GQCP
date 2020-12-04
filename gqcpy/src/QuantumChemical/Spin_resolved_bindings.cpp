@@ -31,7 +31,7 @@ using namespace GQCP;
 template <typename Of>
 void bindSpinResolved(py::module& module, const std::string& name, const std::string& description) {
 
-    // Define the Python class for `spinResolved long`.
+    // Define the Python class for `spinResolved` types.
     py::class_<SpinResolved<Of>> py_spinResolved {module, name.c_str(), description.c_str()};
 
     // Expose the `BasisTransformable` API to the Python class.
