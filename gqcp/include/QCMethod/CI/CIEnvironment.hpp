@@ -19,10 +19,6 @@
 
 
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
-#include "ONVBasis/SeniorityZeroONVBasis.hpp"
-#include "ONVBasis/SpinResolvedONVBasis.hpp"
-#include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
-#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 
 namespace GQCP {
