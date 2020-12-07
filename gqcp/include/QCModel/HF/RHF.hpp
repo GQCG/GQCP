@@ -42,6 +42,7 @@ template <typename _Scalar>
 class RHF {
 public:
     // The scalar type used within the QCModel: real or complex.
+    using Scalar = _Scalar;
 
 
 private:

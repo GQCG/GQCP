@@ -73,13 +73,10 @@ void bindQCModelRHFStabilityInterface(Class& py_class) {
             },
             "Return the restricted->unrestricted external RHF stability matrix.")
 
-        .def(
-            "isTripletStable",
-            [](const Type& stability_matrices, const double threshold) {
-                return stability_matrices.isTripletStable(threshold);
-            },
-            py::arg("threshold") = 1.0e-05,
-            "Return a boolean, telling us if the restricted->unrestricted stability matrix belongs to a stable or unstable set of parameters.");
+        .def("isTripletStable",
+             &Type::isTripletStable,
+             py::arg("threshold") = 1.0e-05,
+             "Return a boolean, telling us if the restricted->unrestricted stability matrix belongs to a stable or unstable set of parameters.");
 }
 
 

@@ -73,13 +73,10 @@ void bindQCModelUHFStabilityInterface(Class& py_class) {
             },
             "Return the unrestricted->generalized external UHF stability matrix.")
 
-        .def(
-            "isSpinUnconservedStable",
-            [](const Type& stability_matrices, const double threshold) {
-                return stability_matrices.isSpinUnconservedStable(threshold);
-            },
-            py::arg("threshold") = 1.0e-05,
-            "Return a boolean, telling us if the unrestricted->generalized stability matrix belongs to a stable or unstable set of parameters.");
+        .def("isSpinUnconservedStable",
+             &Type::isSpinUnconservedStable,
+             py::arg("threshold") = 1.0e-05,
+             "Return a boolean, telling us if the unrestricted->generalized stability matrix belongs to a stable or unstable set of parameters.");
 }
 
 

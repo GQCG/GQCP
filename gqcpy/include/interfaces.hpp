@@ -786,13 +786,10 @@ void bindQCModelHartreeFockComplexStabilityInterface(Class& py_class) {
             },
             "Return the internal HF stability matrix.")
 
-        .def(
-            "isInternallyStable",
-            [](const Type& stability_matrices, const double threshold) {
-                return stability_matrices.isInternallyStable(threshold);
-            },
-            py::arg("threshold") = 1.0e-05,
-            "Return a boolean, telling us if the real or complex valued internal stability matrix belongs to a stable or unstable set of parameters.")
+        .def("isInternallyStable",
+             &Type::isInternallyStable,
+             py::arg("threshold") = 1.0e-05,
+             "Return a boolean, telling us if the real or complex valued internal stability matrix belongs to a stable or unstable set of parameters.")
 
         .def(
             "printStabilityDescription",
