@@ -480,9 +480,8 @@ void bindSimpleTransformationInterface(Class& py_class) {
 
         .def(
             "isUnitary",
-            [](const Type& T, const double threshold = 1.0e-12) {
-                return T.isUnitary(threshold);
-            },
+            &Type::isUnitary,
+            py::arg("threshold") = 1.0e-12,
             "Return if this transformation is unitary, within the given threshold");
 
     // Expose the `BasisTransformable` APIs.
