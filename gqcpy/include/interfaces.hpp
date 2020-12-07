@@ -203,16 +203,12 @@ void bindSpinResolvedTransformationInterface(Class& py_class) {
     py_class
         .def(
             "inverse",
-            [](const Type& spin_resolved_transformation) {
-                return spin_resolved_transformation.inverse();
-            },
+            &Type::inverse,
             "Return the inverse transformation of this transformation matrix.")
 
         .def(
             "isUnitary",
-            [](const Type& spin_resolved_transformation, const double treshold) {
-                spin_resolved_transformation.isUnitary(treshold);
-            },
+            &Type::isUnitary,
             py::arg("threshold") = 1.0e-12,
             "Return if this transformation is unitary, within the given threshold");
 }
