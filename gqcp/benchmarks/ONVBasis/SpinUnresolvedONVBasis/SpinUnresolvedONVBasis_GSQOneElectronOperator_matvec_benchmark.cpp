@@ -10,8 +10,8 @@
 
 
 static void CustomArguments(benchmark::internal::Benchmark* b) {
-    for (int i = 5; i < 10; ++i) {  // need int instead of size_t
-        b->Args({28, i});           // spinors, electrons
+    for (int i = 5; i < 10; ++i) {  // Needs an `int` instead of a `size_t`.
+        b->Args({28, i});           // The number of spinors, the number of electrons.
     }
 }
 
@@ -20,13 +20,13 @@ static void matvec(benchmark::State& state) {
 
     // Prepare a full spin-unresolved ONV basis and a random one-electron operator.
     const size_t M = state.range(0);  // The number of spinors.
-    const size_t N = state.range(1);  // number of electrons
+    const size_t N = state.range(1);  // The number of electrons.
     GQCP::SpinUnresolvedONVBasis onv_basis {M, N};
 
     const auto f = GQCP::ScalarGSQOneElectronOperator<double>::Random(M);
     const auto x = GQCP::LinearExpansion<GQCP::SpinUnresolvedONVBasis>::Random(onv_basis).coefficients();
 
-    // Code inside this loop is measured repeatedly
+    // Code inside this loop is measured repeatedly.
     for (auto _ : state) {
         GQCP::VectorX<double> matvec = onv_basis.evaluateOperatorMatrixVectorProduct(f, x);
 

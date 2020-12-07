@@ -167,7 +167,7 @@ BOOST_AUTO_TEST_CASE(DOCI_BeH_cation_Davidson) {
 
     // Read in the molecular Hamiltonian from a FCIDUMP file.
     const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::FromFCIDUMP("data/beh_cation_631g_caitlin.FCIDUMP");
-    const auto K = sq_hamiltonian.numberOfOrbitals();  // the number of spatial orbitals
+    const auto K = sq_hamiltonian.numberOfOrbitals();  // The number of spatial orbitals.
 
     // The species contains 4 electrons, so 2 electron pairs.
     // Construct an appropriate seniority-zero ONV basis.

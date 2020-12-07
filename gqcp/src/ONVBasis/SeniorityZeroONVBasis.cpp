@@ -78,7 +78,7 @@ void SeniorityZeroONVBasis::forEach(const std::function<void(const SpinUnresolve
         if (I < dim - 1) {  //Pprevent the last permutation from occurring.
             proxy_onv_basis.transformONVToNextPermutation(onv);
         }
-    }  // address (I) loop
+    }  // Address (I) loop.
 }
 
 
@@ -112,14 +112,14 @@ SquareMatrix<double> SeniorityZeroONVBasis::evaluateOperatorDense(const RSQHamil
     // Use a proxy ONV basis to treat alpha- and beta- ONVs as equal and multiply all contributions by 2.
     const auto proxy_onv_basis = this->proxy();
     auto onv = proxy_onv_basis.constructONVFromAddress(0);  // Create the ONV with address 0.
-    for (size_t I = 0; I < dim; I++) {                      // I loops over all the addresses of the ONVs
+    for (size_t I = 0; I < dim; I++) {                      // I loops over all the addresses of the ONVs.
 
         H(I, I) += diagonal(I);
 
-        for (size_t e1 = 0; e1 < N_P; e1++) {            // e1 (electron 1) loops over the number of electrons
-            const size_t p = onv.occupationIndexOf(e1);  // retrieve the index of the orbital that the electron occupies
+        for (size_t e1 = 0; e1 < N_P; e1++) {            // E1 (electron 1) loops over the number of electrons.
+            const size_t p = onv.occupationIndexOf(e1);  // Retrieve the index of the orbital that the electron occupies.
 
-            // Remove the weight from the initial address I, because we annihilate
+            // Remove the weight from the initial address I, because we annihilate.
             size_t address = I - proxy_onv_basis.vertexWeight(p, e1 + 1);
 
             // The e2 iteration counts the number of encountered electrons for the creation operator.
@@ -127,7 +127,7 @@ SquareMatrix<double> SeniorityZeroONVBasis::evaluateOperatorDense(const RSQHamil
             size_t e2 = e1 + 1;
             size_t q = p + 1;
 
-            // perform a shift  TODO: clarify what shift
+            // perform a shift  TODO: clarify what shift.
             proxy_onv_basis.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2);
 
             while (q < K) {
@@ -136,17 +136,17 @@ SquareMatrix<double> SeniorityZeroONVBasis::evaluateOperatorDense(const RSQHamil
                 H(I, J) += g(p, q, p, q);
                 H(J, I) += g(p, q, p, q);
 
-                q++;  // go to the next orbital
+                q++;  // Go to the next orbital.
 
-                // perform a shift  TODO: clarify what shift
+                // Perform a shift;  TODO: clarify what shift.
                 proxy_onv_basis.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2);
-            }  // creation
-        }      // e1 loop (annihilation)
+            }  // Creation.
+        }      // E1 loop (annihilation).
 
-        if (I < dim - 1) {  // prevent the last permutation from occurring
+        if (I < dim - 1) {  // Prevent the last permutation from occurring.
             proxy_onv_basis.transformONVToNextPermutation(onv);
         }
-    }  // address (I) loop
+    }  // Address (I) loop.
 
     return H;
 }
@@ -183,7 +183,7 @@ VectorX<double> SeniorityZeroONVBasis::evaluateOperatorDiagonal(const ScalarRSQO
 
         // Loop over every occupied orbital index and add the contribution.
         onv.forEach([&value, &f](const size_t p) {
-            value += 2 * f(p, p);  // *2 because of seniority-zero
+            value += 2 * f(p, p);  //Factor  *2 because of seniority-zero.
         });
 
         diagonal(I) += value;
@@ -220,7 +220,7 @@ VectorX<double> SeniorityZeroONVBasis::evaluateOperatorDiagonal(const ScalarRSQT
 
         // Loop over every occupied spinor index and add the contributions.
         onv.forEach([&value, &g](const size_t p) {
-            value += g(p, p, p, p);  // 1/2*2 because of seniority-zero
+            value += g(p, p, p, p);  // Factor 1/2*2 because of seniority-zero.
         });
 
         // Loop over every pair of occupied spinor indices and add the contributions.
@@ -249,7 +249,7 @@ VectorX<double> SeniorityZeroONVBasis::evaluateOperatorDiagonal(const RSQHamilto
 
 
     // Check if the argument is compatible.
-    const auto K = hamiltonian.numberOfOrbitals();  // number of spatial orbitals
+    const auto K = hamiltonian.numberOfOrbitals();  // The number of spatial orbitals.
 
     if (K != this->numberOfSpatialOrbitals()) {
         throw std::invalid_argument("SeniorityZeroONVBasis::evaluateOperatorDiagonal(const RSQHamiltonian<double>&): The number of spatial orbitals for the ONV basis and one-electron operator are incompatible.");
@@ -270,8 +270,8 @@ VectorX<double> SeniorityZeroONVBasis::evaluateOperatorDiagonal(const RSQHamilto
 
         // Loop over every occupied spinor index and add the contributions.
         onv.forEach([&value, &h, &g](const size_t p) {
-            value += 2 * h(p, p);    // *2 because of seniority zero
-            value += g(p, p, p, p);  // 1/2*2 because of seniority zero
+            value += 2 * h(p, p);    // Factor *2 because of seniority zero.
+            value += g(p, p, p, p);  // Factor 1/2*2 because of seniority zero.
         });
 
         // Loop over every pair of occupied spinor indices and add the contributions.
@@ -332,17 +332,17 @@ VectorX<double> SeniorityZeroONVBasis::evaluateOperatorMatrixVectorProduct(const
 
     // Create the first doubly-occupied ONV basis. Since in DOCI, alpha == beta, we can use the proxy ONV basis to treat them as one and multiply all contributions by 2.
     const auto proxy_onv_basis = this->proxy();
-    auto onv = proxy_onv_basis.constructONVFromAddress(0);  // ONV with address 0
-    for (size_t I = 0; I < dim; I++) {                      // I loops over all the addresses of the onv
+    auto onv = proxy_onv_basis.constructONVFromAddress(0);  // ONV with address 0.
+    for (size_t I = 0; I < dim; I++) {                      // I loops over all the addresses of the ONV.
 
-        // Using container values of type double reduce the number of times a vector has to be read from/written to
+        // Using container values of type double reduce the number of times a vector has to be read from/written to.
         double value = 0;
         const double x_I = x(I);
 
-        for (size_t e1 = 0; e1 < N_P; e1++) {            // e1 (electron 1) loops over the (number of) electrons
-            const size_t p = onv.occupationIndexOf(e1);  // retrieve the index of a given electron
+        for (size_t e1 = 0; e1 < N_P; e1++) {            // E1 (electron 1) loops over the (number of) electrons.
+            const size_t p = onv.occupationIndexOf(e1);  // Retrieve the index of a given electron.
 
-            // Remove the weight from the initial address I, because we annihilate
+            // Remove the weight from the initial address I, because we annihilate.
             size_t address = I - proxy_onv_basis.vertexWeight(p, e1 + 1);
 
             // The e2 iteration counts the number of encountered electrons for the creation operator.
@@ -350,7 +350,7 @@ VectorX<double> SeniorityZeroONVBasis::evaluateOperatorMatrixVectorProduct(const
             size_t e2 = e1 + 1;
             size_t q = p + 1;
 
-            // perform a shift  TODO: clarify what shift
+            // Perform a shift.  TODO: clarify what shift.
             proxy_onv_basis.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2);
 
             while (q < K) {
@@ -359,19 +359,19 @@ VectorX<double> SeniorityZeroONVBasis::evaluateOperatorMatrixVectorProduct(const
                 value += g(p, q, p, q) * x(J);
                 matvec(J) += g(p, q, p, q) * x_I;
 
-                q++;  // go to the next orbital
+                q++;  // Go to the next orbital.
 
-                // perform a shift  TODO: clarify what shift
+                // Perform a shift.  TODO: clarify what shift.
                 proxy_onv_basis.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2);
-            }  // creation
-        }      // e1 loop (annihilation)
+            }  // Creation.
+        }      // E1 loop (annihilation).
 
-        if (I < dim - 1) {  // prevent last permutation
+        if (I < dim - 1) {  // Prevent the last permutation.
             proxy_onv_basis.transformONVToNextPermutation(onv);
         }
 
         matvec(I) += value;
-    }  // address (I) loop
+    }  // Address (I) loop.
 
     return matvec;
 }

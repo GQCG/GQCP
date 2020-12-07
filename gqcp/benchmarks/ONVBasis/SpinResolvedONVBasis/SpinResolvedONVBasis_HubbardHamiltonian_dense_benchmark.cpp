@@ -9,8 +9,8 @@
 
 
 static void CustomArguments(benchmark::internal::Benchmark* b) {
-    for (int i = 2; i < 5; ++i) {  // need int instead of size_t
-        b->Args({8, i});           // sites, electron pairs
+    for (int i = 2; i < 5; ++i) {  // Needs an `int` instead of a `size_t`.
+        b->Args({8, i});           // The number of sites, the number of electron pairs.
     }
 }
 

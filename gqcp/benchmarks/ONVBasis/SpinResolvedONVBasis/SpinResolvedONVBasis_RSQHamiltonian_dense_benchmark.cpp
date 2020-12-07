@@ -9,8 +9,8 @@
 
 
 static void CustomArguments(benchmark::internal::Benchmark* b) {
-    for (int i = 2; i < 6; ++i) {  // need int instead of size_t
-        b->Args({8, i});           // number of spatial orbitals, number of electron pairs
+    for (int i = 2; i < 6; ++i) {  // Needs an `int` instead of a `size_t`.
+        b->Args({8, i});           // The number of spatial orbitals, the number of electron pairs.
     }
 }
 
@@ -27,7 +27,7 @@ static void constructHamiltonian(benchmark::State& state) {
     const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
 
 
-    // Code inside this loop is measured repeatedly
+    // Code inside this loop is measured repeatedly.
     for (auto _ : state) {
         const auto H = onv_basis.evaluateOperatorDense(hamiltonian);
 

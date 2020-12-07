@@ -30,7 +30,7 @@ static void matvec(benchmark::State& state) {
     const auto x = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::Random(onv_basis).coefficients();
 
 
-    // Code inside this loop is measured repeatedly
+    // Code inside this loop is measured repeatedly.
     for (auto _ : state) {
         const auto matvec = onv_basis.evaluateOperatorMatrixVectorProduct(hubbard_hamiltonian, x);
 

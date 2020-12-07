@@ -385,10 +385,10 @@ VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const HubbardHami
 
     SpinUnresolvedONV onv_alpha = this->alpha().constructONVFromAddress(0);
     SpinUnresolvedONV onv_beta = this->beta().constructONVFromAddress(0);
-    for (size_t Ia = 0; Ia < dim_alpha; Ia++) {  // Ia loops over the addresses of alpha ONVs
+    for (size_t Ia = 0; Ia < dim_alpha; Ia++) {  // Ia loops over the addresses of alpha ONVs.
         this->beta().transformONVCorrespondingToAddress(onv_beta, 0);
 
-        for (size_t Ib = 0; Ib < dim_beta; Ib++) {  // Ib loops over addresses of beta ONVs
+        for (size_t Ib = 0; Ib < dim_beta; Ib++) {  // Ib loops over addresses of beta ONVs.
             const auto I = this->compoundAddress(Ia, Ib);
 
             // There is a contribution for all orbital indices p that are occupied both in the alpha- and beta ONV.
@@ -400,12 +400,12 @@ VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const HubbardHami
             if (Ib < dim_beta - 1) {  // Prevent the last permutation from occurring.
                 this->beta().transformONVToNextPermutation(onv_beta);
             }
-        }  // beta address (Ib) loop
+        }  // Beta address (Ib) loop.
 
         if (Ia < dim_alpha - 1) {  // Prevent the last permutation from occurring.
             this->alpha().transformONVToNextPermutation(onv_alpha);
         }
-    }  // alpha address (Ia) loop
+    }  // Alpha address (Ia) loop.
 
     return diagonal;
 }

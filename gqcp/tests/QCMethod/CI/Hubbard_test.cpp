@@ -109,7 +109,7 @@ BOOST_AUTO_TEST_CASE(four_site_chain) {
          0, 0, 1, 0;
     // clang-format on
 
-    // Set the reference results
+    // Set the reference results.
     const double t = 1.0;
     const std::vector<double> U_list {0.0, 1.0, 1.5, 3.5, 6.5, 9, 10};
     const std::vector<double> E_list {-4.472135955, -3.57536562, -3.202271824, -2.135871608, -1.338959715, -1.004379799, -0.9114974686};
@@ -140,7 +140,7 @@ BOOST_AUTO_TEST_CASE(four_site_chain) {
  */
 BOOST_AUTO_TEST_CASE(six_site_ring) {
 
-    // Create the adjacency matrix for a four-site chain
+    // Create the adjacency matrix for a four-site chain.
     const auto K = 6;    // The number of lattice sites.
     const auto N_P = 3;  // The number of electron pairs.
     GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Zero(K);
@@ -154,7 +154,7 @@ BOOST_AUTO_TEST_CASE(six_site_ring) {
     // clang-format on
 
 
-    // Set the reference results
+    // Set the reference results.
     const double t = 1.0;
     const std::vector<double> U_list {0.0, 1.0, 1.5, 3.5, 6.5, 9, 10};
     const std::vector<double> E_list {-8, -6.601158293, -5.978815789, -4.025796251, -2.469458295, -1.836926909, -1.664362733};
