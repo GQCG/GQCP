@@ -1,6 +1,6 @@
 set(benchmark_target_sources)
 
-# add_subdirectory(ONVBasis)
+add_subdirectory(ONVBasis)
 add_subdirectory(QCMethod)
 
 
