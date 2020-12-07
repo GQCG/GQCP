@@ -47,13 +47,9 @@ public:
     // The scalar type used within the QCModel: real or complex.
     using Scalar = _Scalar;
 
-    // The type of Hamiltonian that fits this QCModel.
-    using Hamiltonian = USQHamiltonian<Scalar>;
-
 
 private:
-    size_t N_alpha;  // the number of alpha electrons
-    size_t N_beta;   // the number of beta electrons
+    SpinResolved<size_t> N;  // the number of alpha and beta electrons
 
     VectorX<double> orbital_energies_alpha;  // sorted by ascending energy
     VectorX<double> orbital_energies_beta;   // sorted by ascending energy
@@ -77,8 +73,7 @@ public:
      *  @param C                                        The transformation between the UHF MOs and the atomic spin-orbitals.
      */
     UHF(const size_t N_alpha, const size_t N_beta, const VectorX<double>& orbital_energies_alpha, const VectorX<double>& orbital_energies_beta, const UTransformation<Scalar>& C) :
-        N_alpha {N_alpha},
-        N_beta {N_beta},
+        N {N_alpha, N_beta},
         orbital_energies_alpha {orbital_energies_alpha},
         orbital_energies_beta {orbital_energies_beta},
         C {C} {
@@ -1082,7 +1077,7 @@ public:
     /**
      *  @return The number of alpha and beta electrons that these UHF model parameters describe, i.e. the number of occupied alpha- & beta-spin-orbitals.
      */
-    SpinResolved<size_t> numberOfElectrons() const { return SpinResolved<size_t> {this->N_alpha, this->N_beta}; }
+    SpinResolved<size_t> numberOfElectrons() const { return SpinResolved<size_t> {this->N.alpha(), this->N.beta()}; }
 
 
     /**

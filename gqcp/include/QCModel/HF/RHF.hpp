@@ -42,10 +42,6 @@ template <typename _Scalar>
 class RHF {
 public:
     // The scalar type used within the QCModel: real or complex.
-    using Scalar = _Scalar;
-
-    // The type of Hamiltonian that fits this QCModel.
-    using Hamiltonian = RSQHamiltonian<Scalar>;
 
 
 private:

@@ -716,7 +716,6 @@ void bindQCModelHartreeFockInterface(Class& py_class) {
 
     // The C++ type corresponding to the Python class.
     using Type = typename Class::type;
-    using Hamiltonian = typename Type::Hamiltonian;
     using Scalar = typename Type::Scalar;
 
     py_class
@@ -736,9 +735,8 @@ void bindQCModelHartreeFockInterface(Class& py_class) {
 
         .def(
             "calculateStabilityMatrices",
-            [](const Type& parameters, const Hamiltonian& hamiltonian) {
-                return parameters.calculateStabilityMatrices(hamiltonian);
-            },
+            &Type::calculateStabilityMatrices,
+            py::arg("hamiltonian"),
             "Return the HF stability matrices parameters.")
 
         .def("expansion",
