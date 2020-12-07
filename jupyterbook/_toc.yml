@@ -1,0 +1,31 @@
+- file: landing-page
+
+- part: "Examples"
+  chapters:
+    - file: examples/mulliken-populations
+
+- part: "User documentation"
+  chapters:
+    - file: user-documentation/getting-started
+    - file: user-documentation/introduction
+    - file: user-documentation/molecules
+    - file: user-documentation/orbital-bases
+    - file: user-documentation/quantum-chemical-methods
+    - file: user-documentation/quantum-chemical-models
+    - file: user-documentation/common-use-cases
+
+- part: "Developer documentation"
+  chapters:
+    - file: developer-documentation/getting-started
+    - file: developer-documentation/style-guide
+    - file: developer-documentation/introduction
+    - file: developer-documentation/ONV-path-manipulation
+    - file: developer-documentation/devops
+
+- part: "Miscellaneous"
+  chapters:
+    - file: miscellaneous/troubleshooting
+
+- part: "Blog posts"
+  chapters:
+    - file: blog/2020-11-30-RSDD
