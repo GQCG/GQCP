@@ -15,11 +15,9 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "QCModel/HF/GHF.hpp"
-#include "Utilities/aliases.hpp"
+#include "QuantumChemical/SpinResolved.hpp"
 #include "gqcpy/include/interfaces.hpp"
 
-#include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
 
 
@@ -30,21 +28,25 @@ namespace gqcpy {
 namespace py = pybind11;
 using namespace GQCP;
 
+template <typename Of>
+void bindSpinResolved(py::module& module, const std::string& name, const std::string& description) {
 
-void bindQCModelGHF(py::module& module) {
+    // Define the Python class for `SpinResolved` types.
+    py::class_<SpinResolved<Of>> py_spinResolved {module, name.c_str(), description.c_str()};
 
-    // Define Python class related to `real QCModel::GHF` and expose their interfaces.
-    py::class_<QCModel::GHF<double>> py_QCModelGHF_d {module, "QCModel_GHF_d", "The generalized Hartree-Fock wave function model."};
-
-    // Expose the `HartreeFock` interface.
-    bindQCModelHartreeFockInterface(py_QCModelGHF_d);
-
-    // Define Python class related to `real QCModel::GHF` and expose their interfaces.
-    py::class_<QCModel::GHF<complex>> py_QCModelGHF_cd {module, "QCModel_GHF_cd", "The generalized Hartree-Fock wave function model."};
-
-    // Expose the `HartreeFock` interface.
-    bindQCModelHartreeFockInterface(py_QCModelGHF_cd);
+    // Expose the `SpinResolvedBase` API to the Python class.
+    bindSpinResolvedBaseInterface(py_spinResolved);
 }
 
+
+/**
+ *  Bind all types of `SpinResolved`s.
+ */
+void bindSpinResolvedTypes(py::module& module) {
+
+    bindSpinResolved<size_t>(module, "SpinResolved_size_t", "A spin resolved encapsulation of two unsigned longs.");
+    bindSpinResolved<std::vector<double>>(module, "SpinResolved_std_vector_d", "A spin resolved encapsulation of two std::vectors.");
+    bindSpinResolved<VectorX<double>>(module, "SpinResolved_VectorX_d", "A spin resolved encapsulation of two GQCP::Vectors.");
+}
 
 }  // namespace gqcpy

@@ -41,6 +41,7 @@ namespace QCModel {
 template <typename _Scalar>
 class RHF {
 public:
+    // The scalar type used within the QCModel: real or complex.
     using Scalar = _Scalar;
 
 
@@ -269,7 +270,7 @@ public:
      *
      *  @return the RHF 1-DM expressed in the underlying scalar basis
      */
-    static Orbital1DM<Scalar> calculateScalarBasis1DM(const RTransformation<double>& C, const size_t N) {
+    static Orbital1DM<Scalar> calculateScalarBasis1DM(const RTransformation<Scalar>& C, const size_t N) {
 
         const size_t K = C.numberOfOrbitals();
         const auto D_orthonormal = RHF<Scalar>::calculateOrthonormalBasis1DM(K, N);
@@ -447,7 +448,7 @@ public:
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                        singlet_A_slice(i, a, j, b) = 2 * g(a, i, j, b) - g(a, b, j, i);
+                        singlet_A_slice(i, a, j, b) = 2.0 * g(a, i, j, b) - g(a, b, j, i);
                     }
                 }
             }
@@ -499,7 +500,7 @@ public:
             for (const auto& a : orbital_space.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space.indices(OccupationType::k_virtual)) {
-                        singlet_B_slice(i, a, j, b) = 2 * g(a, i, b, j) - g(a, j, b, i);
+                        singlet_B_slice(i, a, j, b) = 2.0 * g(a, i, b, j) - g(a, j, b, i);
                     }
                 }
             }
@@ -758,8 +759,7 @@ public:
         std::copy(mo_energies.begin() + n_occ, mo_energies.end(), std::back_inserter(mo_energies_virtual));
         return mo_energies_virtual;
     }
-
-};  // namespace QCModel
+};
 
 
 }  // namespace QCModel

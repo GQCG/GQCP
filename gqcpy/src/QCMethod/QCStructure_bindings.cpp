@@ -24,6 +24,7 @@
 #include "QCModel/CI/LinearExpansion.hpp"
 #include "QCModel/Geminals/AP1roG.hpp"
 #include "QCModel/Geminals/vAP1roG.hpp"
+#include "QCModel/HF/GHF.hpp"
 #include "QCModel/HF/RHF.hpp"
 #include "QCModel/HF/UHF.hpp"
 
@@ -103,6 +104,7 @@ void bindQCStructures(py::module& module) {
     bindQCStructure<QCModel::AP1roG>(module, "AP1roG", "A quantum chemical structure for AP1roG parameters.");
     bindQCStructure<QCModel::vAP1roG>(module, "vAP1roG", "A quantum chemical structure for vAP1roG parameters.");
 
+    bindQCStructure<QCModel::GHF<double>>(module, "GHF", "A quantum chemical structure for GHF parameters.");
     bindQCStructure<QCModel::RHF<double>>(module, "RHF", "A quantum chemical structure for RHF parameters.");
     bindQCStructure<QCModel::UHF<double>>(module, "UHF", "A quantum chemical structure for UHF parameters.");
 

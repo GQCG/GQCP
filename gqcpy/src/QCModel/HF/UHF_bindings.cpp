@@ -16,6 +16,8 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "QCModel/HF/UHF.hpp"
+#include "Utilities/aliases.hpp"
+#include "gqcpy/include/interfaces.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
@@ -28,40 +30,18 @@ namespace gqcpy {
 namespace py = pybind11;
 using namespace GQCP;
 
+template <typename Scalar>
+void bindQCModelUHF(py::module& module, const std::string& name, const std::string& description) {
 
-void bindQCModelUHF(py::module& module) {
-    py::class_<QCModel::UHF<double>>(module, "QCModel_UHF", "The unrestricted Hartree-Fock wave function model.")
+    // Define Python classes related to `QCModel::UHF` and expose their interfaces.
+    py::class_<QCModel::UHF<Scalar>> py_QCModelUHF {module, name.c_str(), description.c_str()};
 
-        // PUBLIC METHODS
-
-        .def(
-            "calculateOrthonormalBasis1DM",
-            [](const QCModel::UHF<double>& uhf_parameters) {
-                return uhf_parameters.calculateOrthonormalBasis1DM();
-            },
-            "Return the spin resolved UHF 1-DM expressed in an orthonormal sigma spin-orbital basis for these UHF model parameters.")
-
-        .def(
-            "calculateScalarBasis1DM",
-            [](const QCModel::UHF<double>& uhf_parameters) {
-                return uhf_parameters.calculateScalarBasis1DM();
-            },
-            "Return the spin resolved UHF 1-DM expressed in the underlying scalar basis for these UHF model parameters.")
-
-        .def(
-            "expansion",
-            &QCModel::UHF<double>::expansion,
-            "Return the coefficient matrix that expresses the sigma spin-orbitals (as a column) in its underlying scalar basis.")
-
-        .def(
-            "numberOfElectrons",
-            &QCModel::UHF<double>::numberOfElectrons,
-            py::arg("sigma"),
-            "Return the number of sigma electrons that these UHF model parameters describe, i.e. the number of occupied sigma-spin-orbitals.")
+    // Expose the actual Python bindings unique to UHF.
+    py_QCModelUHF
 
         .def(
             "numberOfSpinOrbitals",
-            [](const QCModel::UHF<double>& uhf_parameters, const Spin sigma) {
+            [](const QCModel::UHF<Scalar>& uhf_parameters, const Spin sigma) {
                 return uhf_parameters.numberOfSpinOrbitals(sigma);
             },
             py::arg("sigma"),
@@ -69,21 +49,28 @@ void bindQCModelUHF(py::module& module) {
 
         .def(
             "numberOfSpinOrbitals",
-            [](const QCModel::UHF<double>& uhf_parameters) {
+            [](const QCModel::UHF<Scalar>& uhf_parameters) {
                 return uhf_parameters.numberOfSpinOrbitals();
             },
             "Return the number of spin-orbitals that these UHF model parameters describe.")
 
-        .def(
-            "orbitalEnergies",
-            &QCModel::UHF<double>::orbitalEnergies,
-            py::arg("sigma"),
-            "Return the orbital energies of the sigma-spin-orbitals.")
 
         .def(
             "spinOrbitalEnergiesBlocked",
-            &QCModel::UHF<double>::spinOrbitalEnergiesBlocked,
+            &QCModel::UHF<Scalar>::spinOrbitalEnergiesBlocked,
             "Return all the spin-orbital energies, with the alpha spin-orbital energies appearing before the beta spin-orbital energies");
+
+    // Expose the `HartreeFock` interface.
+    bindQCModelHartreeFockInterface(py_QCModelUHF);
+}
+
+/**
+ *  Bind all types of `QCModel::UHF`s.
+ */
+void bindQCModelsUHF(py::module& module) {
+
+    bindQCModelUHF<double>(module, "QCModel_UHF_d", "The real unrestricted Hartree-Fock wave function model.");
+    bindQCModelUHF<complex>(module, "QCModel_UHF_cd", "The complex unrestricted Hartree-Fock wave function model.");
 }
 
 
