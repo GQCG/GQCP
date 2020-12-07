@@ -97,7 +97,6 @@ void bindQCStructure(py::module& module, const std::string& suffix, const std::s
 void bindQCStructures(py::module& module) {
 
     bindQCStructure<LinearExpansion<SeniorityZeroONVBasis>>(module, "LinearExpansionSeniorityZero", "A quantum chemical structure for linear expansions in a seniority-zero ONV basis.");
-    // bindQCStructure<LinearExpansion<SpinResolvedFrozenONVBasis>>(module, "LinearExpansionSpinResolvedFrozen", "A quantum chemical structure for linear expansions in a frozen core spin-resolved ONV basis.");
     bindQCStructure<LinearExpansion<SpinResolvedONVBasis>>(module, "LinearExpansionSpinResolved", "A quantum chemical structure for linear expansions in a spin-resolved ONV basis.");
     bindQCStructure<LinearExpansion<SpinResolvedSelectedONVBasis>>(module, "LinearExpansionSpinResolvedSelected", "A quantum chemical structure for linear expansions in a spin-resolved selected ONV basis.");
 

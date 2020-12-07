@@ -115,7 +115,7 @@ BOOST_AUTO_TEST_CASE(two_electron_operator_expectation_value_different_orbital_b
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, diis_rhf_scf_solver, rhf_environment).groundStateParameters();
 
 
-    // Prepare three one-electron operators in different orbital basis.
+    // Prepare three two-electron operators in different orbital basis.
     const auto& g_AO = hamiltonian.twoElectron();
     const auto g_MO = g_AO.transformed(rhf_parameters.expansion());
 
@@ -123,16 +123,16 @@ BOOST_AUTO_TEST_CASE(two_electron_operator_expectation_value_different_orbital_b
     const auto g_random = g_AO.transformed(T_random);
 
     // Prepare three density matrices in the corresponding orbital bases.
-    const auto D_AO = rhf_parameters.calculateOrthonormalBasis2DM();
-    const auto D_MO = D_AO.transformed(rhf_parameters.expansion());
-    const auto D_random = D_AO.transformed(T_random);
+    const auto d_AO = rhf_parameters.calculateOrthonormalBasis2DM();
+    const auto d_MO = d_AO.transformed(rhf_parameters.expansion());
+    const auto d_random = d_AO.transformed(T_random);
 
 
     // Check if the expectation values match.
-    const double exp_val_AO = g_AO.calculateExpectationValue(D_AO);
-    const double exp_val_MO = g_MO.calculateExpectationValue(D_MO);
-    const double exp_val_random = g_random.calculateExpectationValue(D_random);
+    const double exp_val_AO = g_AO.calculateExpectationValue(d_AO);
+    const double exp_val_MO = g_MO.calculateExpectationValue(d_MO);
+    const double exp_val_random = g_random.calculateExpectationValue(d_random);
 
-    BOOST_CHECK(std::abs(exp_val_AO - exp_val_MO) < 1.0e-12);
-    BOOST_CHECK(std::abs(exp_val_AO - exp_val_random) < 1.0e-12);
+    BOOST_CHECK(std::abs(exp_val_AO - exp_val_MO) < 1.0e-11);
+    BOOST_CHECK(std::abs(exp_val_AO - exp_val_random) < 1.0e-11);
 }

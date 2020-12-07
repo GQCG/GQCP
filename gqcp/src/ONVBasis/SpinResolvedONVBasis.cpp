@@ -246,6 +246,30 @@ SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const RSQHamilt
 }
 
 
+/**
+ *  Calculate the dense matrix representation of a Hubbard Hamiltonian in this ONV basis.
+ *
+ *  @param hamiltonian      A Hubbard Hamiltonian expressed in an orthonormal orbital basis.
+ *
+ *  @return A dense matrix represention of the Hamiltonian.
+ */
+SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const HubbardHamiltonian<double>& hamiltonian) const {
+
+    if (hamiltonian.numberOfLatticeSites() != this->alpha().numberOfOrbitals()) {
+        throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorDense(const HubbardHamiltonian<double>&): The number of spatial orbitals of this ONV basis and the number of lattice sites for the Hubbard Hamiltonian are incompatible.");
+    }
+
+
+    // Split up the evaluation of the Hamiltonian in one- and two-electron contributions.
+    // The hopping terms lead to one-electron contributions.
+    // The two-electron on-site repulsion terms only lead to diagonal contributions.
+    const auto H1 = this->evaluateOperatorDense(hamiltonian.core());
+    const SquareMatrix<double> H2 {this->evaluateOperatorDiagonal(hamiltonian).asDiagonal()};
+
+    return H1 + H2;
+}
+
+
 /*
  *  MARK: Diagonal restricted operator evaluations
  */
@@ -336,6 +360,57 @@ VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const RSQHamilton
 }
 
 
+/**
+ *  Calculate the diagonal of the dense matrix representation of a Hubbard Hamiltonian in this ONV basis.
+ *
+ *  @param hamiltonian      A Hubbard Hamiltonian expressed in an orthonormal orbital basis.
+ *
+ *  @return The diagonal of the dense matrix represention of the Hamiltonian.
+ */
+VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const HubbardHamiltonian<double>& hamiltonian) const {
+
+    if (hamiltonian.numberOfLatticeSites() != this->alpha().numberOfOrbitals()) {
+        throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorDiagonal(const HubbardHamiltonian<double>&): The number of spatial orbitals of this ONV basis and the number of lattice sites for the Hubbard Hamiltonian are incompatible.");
+    }
+
+
+    // Prepare some variables.
+    const auto dim_alpha = this->alpha().dimension();
+    const auto dim_beta = this->beta().dimension();
+    const auto& H = hamiltonian.hoppingMatrix();
+
+
+    // Calculate the diagonal contributions resulting from the two-electron on-site interactions by iterating over all ONVs.
+    VectorX<double> diagonal = VectorX<double>::Zero(this->dimension());
+
+    SpinUnresolvedONV onv_alpha = this->alpha().constructONVFromAddress(0);
+    SpinUnresolvedONV onv_beta = this->beta().constructONVFromAddress(0);
+    for (size_t Ia = 0; Ia < dim_alpha; Ia++) {  // Ia loops over the addresses of alpha ONVs.
+        this->beta().transformONVCorrespondingToAddress(onv_beta, 0);
+
+        for (size_t Ib = 0; Ib < dim_beta; Ib++) {  // Ib loops over addresses of beta ONVs.
+            const auto I = this->compoundAddress(Ia, Ib);
+
+            // There is a contribution for all orbital indices p that are occupied both in the alpha- and beta ONV.
+            std::vector<size_t> occupations = onv_alpha.findMatchingOccupations(onv_beta);
+            for (const auto& p : occupations) {
+                diagonal(I) += H(p, p);  // The two-electron (on-site repulsion) contributions are on the diagonal of the hopping matrix.
+            }
+
+            if (Ib < dim_beta - 1) {  // Prevent the last permutation from occurring.
+                this->beta().transformONVToNextPermutation(onv_beta);
+            }
+        }  // Beta address (Ib) loop.
+
+        if (Ia < dim_alpha - 1) {  // Prevent the last permutation from occurring.
+            this->alpha().transformONVToNextPermutation(onv_alpha);
+        }
+    }  // Alpha address (Ia) loop.
+
+    return diagonal;
+}
+
+
 /*
  *  MARK: Restricted matrix-vector product evaluations
  */
@@ -410,6 +485,45 @@ VectorX<double> SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(const 
     const USQHamiltonian<double> unrestricted_hamiltonian {h_unrestricted, g_unrestricted};
 
     return this->evaluateOperatorMatrixVectorProduct(unrestricted_hamiltonian, x);
+}
+
+
+/**
+ *  Calculate the matrix-vector product of (the matrix representation of) a Hubbard Hamiltonian with the given coefficient vector.
+ *
+ *  @param hamiltonian      A Hubbard Hamiltonian expressed in an orthonormal orbital basis.
+ *  @param x                The coefficient vector of a linear expansion.
+ *
+ *  @return The coefficient vector of the linear expansion after being acted on with the given (matrix representation of) the Hamiltonian.
+ */
+VectorX<double> SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(const HubbardHamiltonian<double>& hamiltonian, const VectorX<double>& x) const {
+
+    if (hamiltonian.numberOfLatticeSites() != this->alpha().numberOfOrbitals()) {
+        throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(const HubbardHamiltonian<double>&, const VectorX<double>&): The number of spatial orbitals of this ONV basis and the number of lattice sites for the Hubbard Hamiltonian are incompatible.");
+    }
+
+
+    // Prepare some variables.
+    const auto dim_alpha = static_cast<long>(this->alpha().dimension());  // Casting is required because of Eigen.
+    const auto dim_beta = static_cast<long>(this->beta().dimension());
+    const auto diagonal = this->evaluateOperatorDiagonal(hamiltonian);
+    const auto h = hamiltonian.core();
+
+
+    // Calculate the Hubbard matrix-vector product, which is the sum of the alpha- and beta one-electron contributions plus the diagonal that contains the two-electron contributions.
+
+    // We can calculate the evaluation using re-mapped approach. We first map x as a dense matrix instead of a vector, and calculate an initial value for the vector (from the diagonal two-electron evaluations) for storing the result.
+    Eigen::Map<const Eigen::MatrixXd> x_map {x.data(), dim_beta, dim_alpha};
+    VectorX<double> matvec = diagonal.cwiseProduct(x);
+    Eigen::Map<Eigen::MatrixXd> matvec_map {matvec.data(), dim_beta, dim_alpha};
+
+    // The contributions can then be written very simply as matrix-matrix multiplications, taking advantage of mapped matvec representation. We use a sparse multiplication in order to reduce memory and speed impact.
+    const auto H_a = this->alpha().evaluateOperatorSparse(h.alpha());
+    const auto H_b = this->alpha().evaluateOperatorSparse(h.beta());
+    matvec_map += H_b * x_map + x_map * H_a;
+
+    // We can safely return the vector representation of the matvec, because we have used Eigen's mapped representation to emplace its elements.
+    return matvec;
 }
 
 

@@ -2,6 +2,7 @@
  *  A benchmark executable for the Hubbard matrix-vector product. The number of sites is kept at 12, while the number of electron pairs varies from 2 to 6.
  */
 
+#include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp"
 #include "QCModel/CI/LinearExpansion.hpp"
 
@@ -18,24 +19,22 @@ static void CustomArguments(benchmark::internal::Benchmark* b) {
 static void matvec(benchmark::State& state) {
 
     // Prepare a random Hubbard model Hamiltonian.
-    const size_t K = state.range(0);    // number of sites
-    const size_t N_P = state.range(1);  // number of electron pairs
+    const size_t K = state.range(0);    // The number of lattice sites.
+    const size_t N_P = state.range(1);  // The number of electron pairs.
     const auto H = GQCP::HoppingMatrix<double>::Random(K);
     const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian {H};
 
 
     // Set up the full spin-resolved ONV basis.
     const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
-    const GQCP::Hubbard hubbard_builder {onv_basis};
-    const auto diagonal = hubbard_builder.calculateDiagonal(hubbard_hamiltonian);
     const auto x = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::Random(onv_basis).coefficients();
 
 
-    // Code inside this loop is measured repeatedly
+    // Code inside this loop is measured repeatedly.
     for (auto _ : state) {
-        const auto matvec = hubbard_builder.matrixVectorProduct(hubbard_hamiltonian, x, diagonal);
+        const auto matvec = onv_basis.evaluateOperatorMatrixVectorProduct(hubbard_hamiltonian, x);
 
-        benchmark::DoNotOptimize(matvec);  // make sure that the variable is not optimized away by compiler
+        benchmark::DoNotOptimize(matvec);  // Make sure that the variable is not optimized away by compiler.
     }
 
     state.counters["Sites"] = K;

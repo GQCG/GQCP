@@ -21,20 +21,18 @@ static void matvec(benchmark::State& state) {
     const size_t N_P = state.range(1);  // number of electron pairs
 
 
-    // Set up a second-quantized Hamiltonian and a full spin-resolved ONV basis
-    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Random(K);
-    GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
+    // Prepare the second-quantized Hamiltonian and set up the full spin-resolved ONV basis.
+    // Note that the Hamiltonian is not necessarily expressed in an orthonormal basis, but this doesn't matter here.
+    const auto hamiltonian = GQCP::RSQHamiltonian<double>::Random(K);
+    const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
 
-
-    GQCP::FCI fci {onv_basis};
-    const auto diagonal = fci.calculateDiagonal(sq_hamiltonian);
     const auto x = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>::Random(onv_basis).coefficients();
 
-    // Code inside this loop is measured repeatedly
+    // Code inside this loop is measured repeatedly.
     for (auto _ : state) {
-        const auto matvec = fci.matrixVectorProduct(sq_hamiltonian, x, diagonal);
+        const auto matvec = onv_basis.evaluateOperatorMatrixVectorProduct(hamiltonian, x);
 
-        benchmark::DoNotOptimize(matvec);  // make sure that the variable is not optimized away by compiler
+        benchmark::DoNotOptimize(matvec);  // Make sure that the variable is not optimized away by compiler.
     }
 
     state.counters["Spatial orbitals"] = K;

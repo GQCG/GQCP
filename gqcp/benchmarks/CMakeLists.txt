@@ -1,7 +1,7 @@
 set(benchmark_target_sources)
 
-# add_subdirectory(ONVBasis)
-# add_subdirectory(QCMethod)
+add_subdirectory(ONVBasis)
+add_subdirectory(QCMethod)
 
 
 file(COPY data DESTINATION ${CMAKE_BINARY_DIR}/gqcp/benchmarks)  # make sure that the paths in the source files point to the correct data files

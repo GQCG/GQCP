@@ -81,6 +81,7 @@ void bindQCMethodCI(py::module& module, const std::string& suffix, const std::st
 void bindQCMethodCIs(py::module& module) {
 
     bindQCMethodCI<SpinResolvedONVBasis>(module, "SpinResolved", "Configuration interaction in a spin-resolved ONV basis.");
+    bindQCMethodCI<SeniorityZeroONVBasis>(module, "SeniorityZero", "Configuration interaction in a seniority zero ONV basis.");
     bindQCMethodCI<SpinResolvedSelectedONVBasis>(module, "SpinResolvedSelected", "Configuration interaction in a spin-resolved selected ONV basis.");
 }
 
