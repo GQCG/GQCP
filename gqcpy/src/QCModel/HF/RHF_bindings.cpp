@@ -53,6 +53,7 @@ void bindQCModelRHF(py::module& module, const std::string& name, const std::stri
     bindQCModelHartreeFockInterface(py_QCModelRHF);
 }
 
+
 /**
  *  Bind all types of `QCModel::RHF`s.
  */

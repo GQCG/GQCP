@@ -31,10 +31,10 @@ using namespace GQCP;
 template <typename Of>
 void bindSpinResolved(py::module& module, const std::string& name, const std::string& description) {
 
-    // Define the Python class for `spinResolved` types.
+    // Define the Python class for `SpinResolved` types.
     py::class_<SpinResolved<Of>> py_spinResolved {module, name.c_str(), description.c_str()};
 
-    // Expose the `BasisTransformable` API to the Python class.
+    // Expose the `SpinResolvedBase` API to the Python class.
     bindSpinResolvedBaseInterface(py_spinResolved);
 }
 
@@ -44,9 +44,9 @@ void bindSpinResolved(py::module& module, const std::string& name, const std::st
  */
 void bindSpinResolvedTypes(py::module& module) {
 
-    bindSpinResolved<size_t>(module, "SpinResolvedLong", "A spin resolved encapsulation of two unsigned longs.");
-    bindSpinResolved<std::vector<double>>(module, "SpinResolvedStdVector", "A spin resolved encapsulation of two std::vectors.");
-    bindSpinResolved<VectorX<double>>(module, "SpinResolvedVector", "A spin resolved encapsulation of two GQCP::Vectors.");
+    bindSpinResolved<size_t>(module, "SpinResolved_size_t", "A spin resolved encapsulation of two unsigned longs.");
+    bindSpinResolved<std::vector<double>>(module, "SpinResolved_std_vector_d", "A spin resolved encapsulation of two std::vectors.");
+    bindSpinResolved<VectorX<double>>(module, "SpinResolved_VectorX_d", "A spin resolved encapsulation of two GQCP::Vectors.");
 }
 
 }  // namespace gqcpy

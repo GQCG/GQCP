@@ -42,7 +42,7 @@ public:
     // The scalar type used within the QCModel: real or complex.
     using Scalar = _Scalar;
 
-    // The type of Hamiltonian that fits this QCModel.
+    // The type of Hamiltonian that is naturally related to an orbital basis described by converged HF parameters.
     using Hamiltonian = GSQHamiltonian<Scalar>;
 
 private:

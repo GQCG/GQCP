@@ -89,7 +89,7 @@ void bindBasisTransformableInterface(Class& py_class) {
 
         .def(
             "transformed",
-            [](Type& transformable, const Transformation& T) {
+            [](const Type& transformable, const Transformation& T) {
                 return transformable.transformed(T);
             },
             py::arg("T"),
@@ -799,7 +799,7 @@ void bindQCModelHartreeFockComplexStabilityInterface(Class& py_class) {
         .def(
             "printStabilityDescription",
             [](const Type& stability_matrices) {
-                py::scoped_ostream_redirect stream(std::cout, py::module::import("sys").attr("stdout"));
+                py::scoped_ostream_redirect stream {std::cout, py::module::import("sys").attr("stdout")};
                 stability_matrices.printStabilityDescription();
             },
             "Print the description of the stability properties of a HF wavefunction.");
