@@ -22,6 +22,7 @@
 #include "Basis/Transformations/UTransformation.hpp"
 #include "Basis/Transformations/UTransformationComponent.hpp"
 #include "DensityMatrix/SpinResolved1DM.hpp"
+#include "DensityMatrix/SpinResolved2DM.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 #include "Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
@@ -43,12 +44,12 @@ namespace QCModel {
 template <typename _Scalar>
 class UHF {
 public:
+    // The scalar type used within the QCModel: real or complex.
     using Scalar = _Scalar;
 
 
 private:
-    size_t N_alpha;  // the number of alpha electrons
-    size_t N_beta;   // the number of beta electrons
+    SpinResolved<size_t> N;  // the number of alpha and beta electrons
 
     VectorX<double> orbital_energies_alpha;  // sorted by ascending energy
     VectorX<double> orbital_energies_beta;   // sorted by ascending energy
@@ -72,8 +73,7 @@ public:
      *  @param C                                        The transformation between the UHF MOs and the atomic spin-orbitals.
      */
     UHF(const size_t N_alpha, const size_t N_beta, const VectorX<double>& orbital_energies_alpha, const VectorX<double>& orbital_energies_beta, const UTransformation<Scalar>& C) :
-        N_alpha {N_alpha},
-        N_beta {N_beta},
+        N {N_alpha, N_beta},
         orbital_energies_alpha {orbital_energies_alpha},
         orbital_energies_beta {orbital_energies_beta},
         C {C} {
@@ -171,12 +171,14 @@ public:
 
 
     /**
-     *  @param K_a          the number of spatial orbitals for the alpha spin component
-     *  @param K_b          the number of spatial orbitals for the beta spin component
-     *  @param N_a          the number of alpha electrons, i.e. the number of occupied alpha spin-orbitals
-     *  @param N_b          the number of beta electrons, i.e. the number of occupied beta spin-orbitals
+     *  Calculate and return the (spin-resolved) UHF 1-DM in an orthonormal spin-orbital basis.
+     * 
+     *  @param K_a          The number of spatial orbitals for the alpha spin component.
+     *  @param K_b          The number of spatial orbitals for the beta spin component.
+     *  @param N_a          The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals.
+     *  @param N_b          The number of beta electrons, i.e. the number of occupied beta spin-orbitals.
      *
-     *  @return the spin resolved UHF 1-DM expressed in an orthonormal sigma spin-orbital basis
+     *  @return The UHF 1-DM in an orthonormal spin-orbital basis.
      */
     static SpinResolved1DM<Scalar> calculateOrthonormalBasis1DM(const size_t K_a, const size_t K_b, const size_t N_a, const size_t N_b) {
 
@@ -194,6 +196,89 @@ public:
         D_MO_b.topLeftCorner(N_b, N_b) = SquareMatrix<Scalar>::Identity(N_b);
 
         return SpinResolved1DM<Scalar> {D_MO_a, D_MO_b};
+    }
+
+
+    /**
+     *  Calculate and return the (spin-resolved) UHF 2-DM in an orthonormal spin-orbital basis.
+     * 
+     *  @param K            The number of spatial orbitals for the alpha and beta spin components.
+     *  @param N_a          The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals.
+     *  @param N_b          The number of beta electrons, i.e. the number of occupied beta spin-orbitals.
+     *
+     *  @return The UHF 2-DM in an orthonormal spin-orbital basis.
+     */
+    static SpinResolved2DM<Scalar> calculateOrthonormalBasis2DM(const size_t K, const size_t N_a, const size_t N_b) {
+
+        // Create the orbital space to determine the loops.
+        const auto orbital_space = UHF<Scalar>::orbitalSpace(K, K, N_a, N_b);
+
+
+        // Use KISS formulas to implement the spin components of the UHF 2-DM.
+        PureSpinResolved2DMComponent<Scalar> d_aaaa = PureSpinResolved2DMComponent<Scalar>::Zero(K);
+        for (const auto& i : orbital_space.alpha().indices(OccupationType::k_occupied)) {
+            for (const auto& j : orbital_space.alpha().indices(OccupationType::k_occupied)) {
+                for (const auto& k : orbital_space.alpha().indices(OccupationType::k_occupied)) {
+                    for (const auto& l : orbital_space.alpha().indices(OccupationType::k_occupied)) {
+                        if ((i == j) && (k == l)) {
+                            d_aaaa(i, j, k, l) += 1.0;
+                        }
+
+                        if ((i == l) && (j == k)) {
+                            d_aaaa(i, j, k, l) -= 1.0;
+                        }
+                    }
+                }
+            }
+        }
+
+
+        MixedSpinResolved2DMComponent<Scalar> d_aabb = MixedSpinResolved2DMComponent<Scalar>::Zero(K);
+        for (const auto& i : orbital_space.alpha().indices(OccupationType::k_occupied)) {
+            for (const auto& j : orbital_space.alpha().indices(OccupationType::k_occupied)) {
+                for (const auto& k : orbital_space.beta().indices(OccupationType::k_occupied)) {
+                    for (const auto& l : orbital_space.beta().indices(OccupationType::k_occupied)) {
+                        if ((i == j) && (k == l)) {
+                            d_aabb(i, j, k, l) += 1.0;
+                        }
+                    }
+                }
+            }
+        }
+
+
+        MixedSpinResolved2DMComponent<Scalar> d_bbaa = MixedSpinResolved2DMComponent<Scalar>::Zero(K);
+        for (const auto& i : orbital_space.beta().indices(OccupationType::k_occupied)) {
+            for (const auto& j : orbital_space.beta().indices(OccupationType::k_occupied)) {
+                for (const auto& k : orbital_space.alpha().indices(OccupationType::k_occupied)) {
+                    for (const auto& l : orbital_space.alpha().indices(OccupationType::k_occupied)) {
+                        if ((i == j) && (k == l)) {
+                            d_aabb(i, j, k, l) += 1.0;
+                        }
+                    }
+                }
+            }
+        }
+
+
+        PureSpinResolved2DMComponent<Scalar> d_bbbb = PureSpinResolved2DMComponent<Scalar>::Zero(K);
+        for (const auto& i : orbital_space.beta().indices(OccupationType::k_occupied)) {
+            for (const auto& j : orbital_space.beta().indices(OccupationType::k_occupied)) {
+                for (const auto& k : orbital_space.beta().indices(OccupationType::k_occupied)) {
+                    for (const auto& l : orbital_space.beta().indices(OccupationType::k_occupied)) {
+                        if ((i == j) && (k == l)) {
+                            d_aaaa(i, j, k, l) += 1.0;
+                        }
+
+                        if ((i == l) && (j == k)) {
+                            d_aaaa(i, j, k, l) -= 1.0;
+                        }
+                    }
+                }
+            }
+        }
+
+        return SpinResolved2DM<Scalar> {d_aaaa, d_aabb, d_bbaa, d_bbbb};
     }
 
 
@@ -317,17 +402,31 @@ public:
      */
 
     /**
-     * 
-     *  @return the spin resolved UHF 1-DM expressed in an orthonormal spin-orbital basis for these UHF model parameters
+     *  @return The (spin-resolved) UHF 1-DM expressed in an orthonormal spin-orbital basis for these UHF model parameters.
      */
     SpinResolved1DM<Scalar> calculateOrthonormalBasis1DM() const {
 
         const auto K_a = this->numberOfSpinOrbitals(Spin::alpha);
         const auto K_b = this->numberOfSpinOrbitals(Spin::beta);
-        const auto N_a = this->numberOfElectrons(Spin::alpha);
-        const auto N_b = this->numberOfElectrons(Spin::beta);
+        const auto N_a = this->numberOfElectrons().alpha();
+        const auto N_b = this->numberOfElectrons().beta();
 
         return UHF<Scalar>::calculateOrthonormalBasis1DM(K_a, K_b, N_a, N_b);
+    }
+
+
+    /**
+     *  @return The (spin-resolved) UHF 2-DM expressed in an orthonormal spin-orbital basis for these UHF model parameters.
+     * 
+     *  @note We assume that the total number of alpha and beta orbitals is the same.
+     */
+    SpinResolved2DM<Scalar> calculateOrthonormalBasis2DM() const {
+
+        const auto K = this->numberOfSpinOrbitals(Spin::alpha);  // Assume K_alpha and K_beta are equal.
+        const auto N_a = this->numberOfElectrons().alpha();
+        const auto N_b = this->numberOfElectrons().beta();
+
+        return UHF<Scalar>::calculateOrthonormalBasis2DM(K, N_a, N_b);
     }
 
 
@@ -336,12 +435,12 @@ public:
      */
     SpinResolved1DM<Scalar> calculateScalarBasis1DM() const {
 
-        const auto C_a = this->expansion(Spin::alpha);
-        const auto C_b = this->expansion(Spin::beta);
+        const auto C_a = this->expansion().component(Spin::alpha);
+        const auto C_b = this->expansion().component(Spin::beta);
         const UTransformation<Scalar> C {C_a, C_b};
 
-        const auto N_a = this->numberOfElectrons(Spin::alpha);
-        const auto N_b = this->numberOfElectrons(Spin::beta);
+        const auto N_a = this->numberOfElectrons().alpha();
+        const auto N_b = this->numberOfElectrons().beta();
 
         return UHF<Scalar>::calculateScalarBasis1DM(C, N_a, N_b);
     }
@@ -970,42 +1069,15 @@ public:
 
 
     /**
-     *  @return the coefficient matrix that expresses the sigma spin-orbitals (as a column) in its underlying scalar basis
+     *  @return The transformation that expresses the UHF MOs in terms of the underlying AOs.
      */
-    const UTransformation<Scalar> expansion() const {
-        return C;
-    }
+    const UTransformation<Scalar>& expansion() const { return this->C; }
 
 
     /**
-     *  @param sigma            alpha or beta
-     *
-     *  @return the coefficient matrix that expresses the sigma spin-orbitals (as a column) in its underlying scalar basis
+     *  @return The number of alpha and beta electrons that these UHF model parameters describe, i.e. the number of occupied alpha- & beta-spin-orbitals.
      */
-    const UTransformationComponent<Scalar> expansion(const Spin sigma) const {
-        return C.component(sigma);
-    }
-
-
-    /**
-     *  @param sigma            alpha or beta
-     * 
-     *  @return the number of sigma electrons that these UHF model parameters describe, i.e. the number of occupied sigma-spin-orbitals
-     */
-    size_t numberOfElectrons(const Spin sigma) const {
-
-        switch (sigma) {
-        case Spin::alpha: {
-            return this->N_alpha;
-            break;
-        }
-
-        case Spin::beta: {
-            return this->N_beta;
-            break;
-        }
-        }
-    }
+    SpinResolved<size_t> numberOfElectrons() const { return SpinResolved<size_t> {this->N.alpha(), this->N.beta()}; }
 
 
     /**
@@ -1023,7 +1095,7 @@ public:
      *  @return the number of sigma spin-orbitals that these UHF model parameters describe
      */
     size_t numberOfSpinOrbitals(const Spin sigma) const {
-        return this->expansion(sigma).numberOfOrbitals();
+        return this->expansion().component(sigma).numberOfOrbitals();
     }
 
 
@@ -1044,10 +1116,10 @@ public:
         std::vector<double> mo_energies_b;  // We use a std::vector in order to be able to slice the vector later on.
 
         for (int i = 0; i < this->numberOfSpinOrbitals(Spin::alpha); i++) {
-            mo_energies_a.push_back(this->orbitalEnergies(Spin::alpha)[i]);
+            mo_energies_a.push_back(this->orbitalEnergies().alpha()[i]);
         }
         for (int i = 0; i < this->numberOfSpinOrbitals(Spin::beta); i++) {
-            mo_energies_b.push_back(this->orbitalEnergies(Spin::beta)[i]);
+            mo_energies_b.push_back(this->orbitalEnergies().beta()[i]);
         }
 
         // Add the values with indices greater than the occupied orbital indices, i.e. the virtual orbital indices, to the new vector.
@@ -1062,32 +1134,17 @@ public:
     }
 
 
-    /**
-     *  @param sigma            alpha or beta
-     * 
-     *  @return the orbital energies of the sigma-spin-orbitals
+    /**   
+     *  @return The orbital energies of the alpha and beta orbitals.
      */
-    const VectorX<double>& orbitalEnergies(const Spin sigma) const {
-
-        switch (sigma) {
-        case Spin::alpha: {
-            return this->orbital_energies_alpha;
-            break;
-        }
-
-        case Spin::beta: {
-            return this->orbital_energies_beta;
-            break;
-        }
-        }
-    }
+    const SpinResolved<VectorX<double>> orbitalEnergies() const { return SpinResolved<VectorX<double>> {this->orbital_energies_alpha, this->orbital_energies_beta}; }
 
 
     /**
      *  @return The implicit alpha and beta occupied-virtual orbital spaces that are associated to these UHF model parameters.
      */
     SpinResolvedOrbitalSpace orbitalSpace() const { return UHF<Scalar>::orbitalSpace(this->numberOfSpinOrbitals(Spin::alpha), this->numberOfSpinOrbitals(Spin::beta),
-                                                                                     this->numberOfElectrons(Spin::alpha), this->numberOfElectrons(Spin::beta)); }
+                                                                                     this->numberOfElectrons().alpha(), this->numberOfElectrons().beta()); }
 
 
     /**
@@ -1096,8 +1153,8 @@ public:
     VectorX<double> spinOrbitalEnergiesBlocked() const {
 
         GQCP::VectorX<double> total_orbital_energies {this->numberOfSpinOrbitals()};
-        total_orbital_energies.head(this->numberOfSpinOrbitals(Spin::alpha)) = this->orbitalEnergies(Spin::alpha);
-        total_orbital_energies.tail(this->numberOfSpinOrbitals(Spin::beta)) = this->orbitalEnergies(Spin::beta);
+        total_orbital_energies.head(this->numberOfSpinOrbitals(Spin::alpha)) = this->orbitalEnergies().alpha();
+        total_orbital_energies.tail(this->numberOfSpinOrbitals(Spin::beta)) = this->orbitalEnergies().beta();
 
         return total_orbital_energies;
     }
@@ -1120,10 +1177,10 @@ public:
         std::vector<double> mo_energies_b;  // We use a std::vector in order to be able to slice the vector later on.
 
         for (int i = 0; i < this->numberOfSpinOrbitals(Spin::alpha); i++) {
-            mo_energies_a.push_back(this->orbitalEnergies(Spin::alpha)[i]);
+            mo_energies_a.push_back(this->orbitalEnergies().alpha()[i]);
         }
         for (int i = 0; i < this->numberOfSpinOrbitals(Spin::beta); i++) {
-            mo_energies_b.push_back(this->orbitalEnergies(Spin::beta)[i]);
+            mo_energies_b.push_back(this->orbitalEnergies().beta()[i]);
         }
 
         // Add the values with indices greater than the occupied orbital indices, i.e. the virtual orbital indices, to the new vector.

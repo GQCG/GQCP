@@ -39,6 +39,9 @@ public:
     // The scalar type used to represent an element of the Mulliken projection matrix: real or complex.
     using Scalar = _Scalar;
 
+    // The type component this spin resolved object is made of.
+    using ComponentType = typename SpinResolvedBase<UMullikenPartitioningComponent<Scalar>, UMullikenPartitioning<Scalar>>::Of;
+
 public:
     /*
      *  MARK: Constructors

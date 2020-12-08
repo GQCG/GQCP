@@ -16,6 +16,8 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "QCModel/HF/GHF.hpp"
+#include "Utilities/aliases.hpp"
+#include "gqcpy/include/interfaces.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
@@ -30,31 +32,18 @@ using namespace GQCP;
 
 
 void bindQCModelGHF(py::module& module) {
-    py::class_<QCModel::GHF<double>>(module, "QCModel_GHF", "The generalized Hartree-Fock wave function model.")
 
-        // PUBLIC METHODS
+    // Define Python class related to `real QCModel::GHF` and expose their interfaces.
+    py::class_<QCModel::GHF<double>> py_QCModelGHF_d {module, "QCModel_GHF_d", "The generalized Hartree-Fock wave function model."};
 
-        .def(
-            "calculateOrthonormalBasis1DM",
-            [](const QCModel::GHF<double>& ghf_parameters) {
-                return ghf_parameters.calculateOrthonormalBasis1DM();
-            },
-            "Return the 1-DM expressed in an orthonormal spinor basis related to these optimal GHF parameters.")
+    // Expose the `HartreeFock` interface.
+    bindQCModelHartreeFockInterface(py_QCModelGHF_d);
 
-        .def(
-            "calculateScalarBasis1DM",
-            [](const QCModel::GHF<double>& ghf_parameters) {
-                return ghf_parameters.calculateScalarBasis1DM();
-            },
-            "Return the GHF 1-DM in the scalar/AO basis related to these optimal GHF parameters")
+    // Define Python class related to `real QCModel::GHF` and expose their interfaces.
+    py::class_<QCModel::GHF<complex>> py_QCModelGHF_cd {module, "QCModel_GHF_cd", "The generalized Hartree-Fock wave function model."};
 
-        .def("expansion",
-             &QCModel::GHF<double>::expansion,
-             "Return the coefficient matrix that expresses every spatial orbital (as a column) in its underlying scalar basis.")
-
-        .def("orbitalEnergies",
-             &QCModel::GHF<double>::orbitalEnergies,
-             "Return the orbital energies.");
+    // Expose the `HartreeFock` interface.
+    bindQCModelHartreeFockInterface(py_QCModelGHF_cd);
 }
 
 

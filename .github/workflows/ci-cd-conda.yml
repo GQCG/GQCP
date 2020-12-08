@@ -1,0 +1,68 @@
+name: Conda CI/CD
+
+on:
+  push:
+    paths:
+    - 'conda/**'
+    - 'workflows/ci-cd-conda.yml'
+    - '**.hpp'
+    - '**.cpp'
+    - '**.cmake'
+    - '**CMakeLists.txt'
+    - 'cmake/**'
+    branches:
+      - develop
+  pull_request:
+    paths:
+    - 'conda/**'
+    - 'workflows/ci-cd-conda.yml'
+    - '**.hpp'
+    - '**.cpp'
+    - '**.cmake'
+    - '**CMakeLists.txt'
+    - 'cmake/**'
+
+jobs:
+  conda-ci-cd:
+    strategy:
+      matrix:
+        os: [ubuntu-18.04]
+        #os: [ubuntu-18.04, macos-10.15]
+        py: [3.6, 3.7]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout repo 
+        uses: actions/checkout@v2
+      - name: Python ${{ matrix.py }} setup
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.py }}
+      - name: Setup conda
+        uses: s-weigand/setup-conda@v1
+        with:
+          update-conda: true
+          python-version: ${{ matrix.py }}
+          conda-channels: anaconda, conda-forge, intel
+      - name: Download MacOSX 10.9 SDK as conda-build dependency
+        if: matrix.os == 'macos-10.15'
+        run: |
+          wget https://github.com/phracker/MacOSX-SDKs/releases/download/10.13/MacOSX10.9.sdk.tar.xz
+          sudo mkdir /opt/MacOSX10.9.sdk
+          sudo tar -xf MacOSX10.9.sdk.tar.xz -C /opt
+          ls -hal /opt/MacOSX10.9.sdk
+      - name: Build conda package
+        if: github.event_name == 'pull_request'
+        run: |
+          conda create -n packaging -c conda-forge python=${{ matrix.py }} conda-build anaconda-client conda-verify
+          source activate packaging
+          conda config --set anaconda_upload no
+          conda-build -c gqcg -c conda-forge -c intel conda --user ${{ secrets.ANACONDA_USER }} --token ${{ secrets.ANACONDA_TOKEN }} --variants "{python: [${{ matrix.py }}] }"
+          anaconda logout
+      - name: Deploy conda package
+        if: github.event_name == 'push'
+        run: |
+          conda create -n packaging -c conda-forge python=${{ matrix.py }} conda-build anaconda-client conda-verify
+          source activate packaging
+          conda config --set anaconda_upload yes
+          conda-build -c gqcg -c conda-forge -c intel conda --user ${{ secrets.ANACONDA_USER }} --token ${{ secrets.ANACONDA_TOKEN }} --variants "{python: [${{ matrix.py }}] }"
+          anaconda logout

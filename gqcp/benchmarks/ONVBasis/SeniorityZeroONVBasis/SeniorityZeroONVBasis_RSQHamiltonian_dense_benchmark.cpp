@@ -17,21 +17,18 @@ static void CustomArguments(benchmark::internal::Benchmark* b) {
 
 static void constructHamiltonian(benchmark::State& state) {
 
-    // Set up a random SQHamiltonian and a doubly occupied SpinUnresolvedONV basis.
-    const size_t K = state.range(0);    // number of spatial orbitals
-    const size_t N_P = state.range(1);  // number of electron pairs
+    // Set up a random restricted SQHamiltonian and a seniority-zero ONV basis.
+    const size_t K = state.range(0);    // The number of spatial orbitals.
+    const size_t N_P = state.range(1);  // The number of electron pairs.
 
-    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Random(K);  // not necessarily in a non-orthonormal basis, but this doesn't matter here
-    GQCP::SeniorityZeroONVBasis onv_basis {K, N_P};
-
-    GQCP::DOCI doci {onv_basis};
-
+    const auto hamiltonian = GQCP::RSQHamiltonian<double>::Random(K);  // This Hamiltonian is not necessarily expressed in an orthonormal basis, but this doesn't matter here.
+    const GQCP::SeniorityZeroONVBasis onv_basis {K, N_P};
 
     // Code inside this loop is measured repeatedly.
     for (auto _ : state) {
-        const auto H = doci.constructHamiltonian(sq_hamiltonian);
+        const auto H = onv_basis.evaluateOperatorDense(hamiltonian);
 
-        benchmark::DoNotOptimize(H);  // make sure that the variable is not optimized away by compiler
+        benchmark::DoNotOptimize(H);  // Make sure that the variable is not optimized away by compiler.
     }
 
 

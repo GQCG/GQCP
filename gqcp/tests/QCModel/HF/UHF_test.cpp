@@ -19,6 +19,9 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "QCMethod/HF/UHF/UHF.hpp"
+#include "QCMethod/HF/UHF/UHFSCFSolver.hpp"
 #include "QCModel/HF/UHF.hpp"
 
 
@@ -93,4 +96,37 @@ BOOST_AUTO_TEST_CASE(spinorbitalEnergies) {
     GQCP::VectorX<double> ref_spinorbital_energies_blocked {2 * K};
     ref_spinorbital_energies_blocked << -0.5, 0.5, -0.5, 0.5;
     BOOST_CHECK(uhf_parameters.spinOrbitalEnergiesBlocked().isApprox(ref_spinorbital_energies_blocked, 1.0e-12));
+}
+
+
+/**
+ *  Check if the UHF energy is equal to the expectation value of the Hamiltonian through its density matrices.
+ */
+BOOST_AUTO_TEST_CASE(UHF_DMs) {
+
+    // Perform a UHF calculation.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
+    auto r_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);  // In an AO basis.
+
+    const auto N_a = molecule.numberOfElectronPairs();  // The number of alpha electrons.
+    const auto N_b = molecule.numberOfElectronPairs();  // The number of beta electrons.
+    auto uhf_environment = GQCP::UHFSCFEnvironment<double>::WithCoreGuess(N_a, N_b, r_hamiltonian, spin_orbital_basis.overlap().parameters());
+    auto plain_uhf_scf_solver = GQCP::UHFSCFSolver<double>::Plain();
+
+    const auto uhf_qc_structure = GQCP::QCMethod::UHF<double>().optimize(plain_uhf_scf_solver, uhf_environment);
+    const auto uhf_parameters = uhf_qc_structure.groundStateParameters();
+    const auto uhf_energy = uhf_qc_structure.groundStateEnergy();
+
+    // Determine the RHF energy through the expectation value of the Hamiltonian, and check the result.
+    // Do the calculations in the RHF MO basis, in order to check the implementation of the RHF density matrices in MO basis.
+    auto u_spin_orbital_basis = GQCP::USpinOrbitalBasis<double, GQCP::GTOShell>::FromRestricted(spin_orbital_basis);
+    u_spin_orbital_basis.transform(uhf_parameters.expansion());
+    auto u_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(u_spin_orbital_basis, molecule);
+
+    const auto D_MO = uhf_parameters.calculateOrthonormalBasis1DM();
+    const auto d_MO = uhf_parameters.calculateOrthonormalBasis2DM();
+    const double expectation_value = u_hamiltonian.calculateExpectationValue(D_MO, d_MO);
+
+    BOOST_CHECK(std::abs(uhf_energy - expectation_value) < 1.0e-12);
 }

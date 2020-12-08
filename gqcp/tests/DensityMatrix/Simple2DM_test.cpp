@@ -20,6 +20,10 @@
 #include <boost/test/unit_test.hpp>
 
 #include "DensityMatrix/G2DM.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
+#include "QCMethod/HF/RHF/RHF.hpp"
+#include "QCMethod/HF/RHF/RHFSCFSolver.hpp"
 
 
 /*
@@ -85,4 +89,50 @@ BOOST_AUTO_TEST_CASE(reduce) {
     // clang-format on
 
     BOOST_CHECK(D_ref.isApprox(d.reduce(), 1.0e-12));
+}
+
+
+/**
+ *  Test if the expectation value of a two-electron operator in different orbital bases is the same.
+ */
+BOOST_AUTO_TEST_CASE(two_electron_operator_expectation_value_different_orbital_bases) {
+
+    // Prepare the molecular Hamiltonian in the AO basis, in order to proceed with an RHF SCF calculation.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/ch4_crawdad.xyz");
+    const auto N = molecule.numberOfElectrons();
+
+    GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
+    const auto S = spin_orbital_basis.overlap();
+
+    const auto hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spin_orbital_basis, molecule);  // In the AO basis.
+    const auto K = hamiltonian.numberOfOrbitals();
+
+    // Do the RHF SCF calculation to retrieve the RHF MOs.
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), hamiltonian, S.parameters());
+    auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective {hamiltonian};
+
+    const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, diis_rhf_scf_solver, rhf_environment).groundStateParameters();
+
+
+    // Prepare three two-electron operators in different orbital basis.
+    const auto& g_AO = hamiltonian.twoElectron();
+    const auto g_MO = g_AO.transformed(rhf_parameters.expansion());
+
+    const auto T_random = GQCP::RTransformation<double>::Random(K);
+    const auto g_random = g_AO.transformed(T_random);
+
+    // Prepare three density matrices in the corresponding orbital bases.
+    const auto d_AO = rhf_parameters.calculateOrthonormalBasis2DM();
+    const auto d_MO = d_AO.transformed(rhf_parameters.expansion());
+    const auto d_random = d_AO.transformed(T_random);
+
+
+    // Check if the expectation values match.
+    const double exp_val_AO = g_AO.calculateExpectationValue(d_AO);
+    const double exp_val_MO = g_MO.calculateExpectationValue(d_MO);
+    const double exp_val_random = g_random.calculateExpectationValue(d_random);
+
+    BOOST_CHECK(std::abs(exp_val_AO - exp_val_MO) < 1.0e-11);
+    BOOST_CHECK(std::abs(exp_val_AO - exp_val_random) < 1.0e-11);
 }

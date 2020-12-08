@@ -64,7 +64,7 @@ class HomeSplash extends React.Component {
                 <div className="inner">
                     <ProjectTitle tagline={siteConfig.tagline} title={siteConfig.title} />
                     <PromoSection>
-                        <Button href="#try">Try It Out!</Button>
+                        <Button href="https://mybinder.org/v2/gh/GQCG/GQCP/develop?filepath=gqcpy%2Fexamples%2FTry-out-Binder.ipynb">Try It Out!</Button>
                         {/* <Button href={docUrl('doc1.html')}>Example Link</Button>
                         <Button href={docUrl('doc2.html')}>Example Link 2</Button> */}
                     </PromoSection>

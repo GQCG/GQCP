@@ -20,7 +20,7 @@
 
 #include "Mathematical/Representation/Matrix.hpp"
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
-// #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 #include <functional>
 
@@ -33,105 +33,148 @@ namespace GQCP {
  */
 class SeniorityZeroONVBasis {
 private:
-    size_t K;    // the number of spatial orbitals
-    size_t N_P;  // the number of electron pairs
-
-    size_t dim;  // the dimension of this ONV basis
+    size_t K;    // The number of spatial orbitals.
+    size_t N_P;  // The number of electron pairs.
 
 
 public:
-    // CONSTRUCTORS
+    /*
+     *  MARK: Constructors
+     */
 
     /**
      *  The default constructor.
      */
     SeniorityZeroONVBasis() = default;
 
-
     /**
-     *  @param K            the number of spatial orbitals
-     *  @param N_P          the number of electron pairs
+     *  @param K            The number of spatial orbitals.
+     *  @param N_P          The number of electron pairs.
      */
     SeniorityZeroONVBasis(const size_t K, const size_t N_P);
 
 
-    // STATIC PUBLIC METHODS
-
-    /**
-     *  @param K            the number of spatial orbitals
-     *  @param N_P          the number of electron pairs
-     * 
-     *  @return the dimension of a seniority-zero ONV basis with the given number of spatial orbitals and electron pairs
+    /*
+     *  MARK: General information
      */
-    static size_t calculateDimension(const size_t K, const size_t N_P);
-
-
-    // PUBLIC METHODS
 
     /**
-     *  @return the dimension of this ONV basis
-     */
-    size_t dimension() const { return this->dim; }
-
-    // /**
-    //  *  Evaluate the diagonal of the matrix representation of a one-electron operator inside this seniority-zero ONV basis.
-    //  *
-    //  *  @param one_op               a one-electron operator expressed in an orthonormal orbital basis
-    //  *
-    //  *  @return the diagonal of the matrix representation of the one-electron operator in this seniority-zero ONV basis
-    //  */
-    // VectorX<double> evaluateOperatorDiagonal(const ScalarRSQOneElectronOperator<double>& one_op) const;
-
-    // /**
-    //  *  Evaluate the diagonal of the matrix representation of a two-electron operator inside this seniority-zero ONV basis.
-    //  *
-    //  *  @param two_op               a two-electron operator expressed in an orthonormal orbital basis
-    //  *
-    //  *  @return the diagonal of the matrix representation of the two-electron operator in this seniority-zero ONV basis
-    //  */
-    // VectorX<double> evaluateOperatorDiagonal(const ScalarRSQTwoElectronOperator<double>& two_op) const;
-
-    // /**
-    //  *  Evaluate the diagonal of the matrix representation of a Hamiltonian inside this seniority-zero ONV basis.
-    //  *
-    //  *  @param sq_hamiltonian               a Hamiltonian expressed in an orthonormal orbital basis
-    //  *
-    //  *  @return the diagonal of the matrix representation of the Hamiltonian in this seniority-zero ONV basis
-    //  */
-    // VectorX<double> evaluateOperatorDiagonal(const RSQHamiltonian<double>& sq_hamiltonian) const;
-
-    // /**
-    //  *  Evaluate a one electron operator in a matrix vector product
-    //  *
-    //  *  @param one_op                       the one electron operator expressed in an orthonormal basis
-    //  *  @param x                            the vector upon which the evaluation acts
-    //  *  @param diagonal                     the diagonal evaluated in the ONV basis
-    //  *
-    //  *  @return the one electron operator's matrix vector product in a vector with the dimensions of the ONV basis
-    //  */
-    // VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarRSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
-
-    /**
-     *  Iterate over every (proxy) spin-resolved ONV in this seniority-zero ONV basis and apply the given callback.
-     * 
-     *  @param callback             a function to be called on every step during the iteration over all the ONVs. The arguments of the callback are the ONV and its address in this ONV basis.
-     */
-    void forEach(const std::function<void(const SpinUnresolvedONV&, const size_t)>& callback) const;
-
-    /**
-     *  @return the number of electron pairs that this ONV basis is related to
+     *  @return The number of electron pairs that this ONV basis is related to.
      */
     size_t numberOfElectronPairs() const { return this->N_P; }
 
     /**
-     *  @return the number of spatial orbitals that this ONV basis is related to
+     *  @return The number of spatial orbitals that this ONV basis is related to.
      */
     size_t numberOfSpatialOrbitals() const { return this->K; }
 
     /**
-     *  @return a spin-unresolved ONV basis that behaves analogously (with respect to a doubly-occupied situation) as this seniority-zero ONV basis
+     *  Calculate the dimension of a seniority-zero ONV basis with a given number of spatial orbitals and number of electron pairs.
+     * 
+     *  @param K            The number of spatial orbitals.
+     *  @param N_P          The number of electron pairs.
+     * 
+     *  @return The dimension of a seniority-zero ONV basis.
+     */
+    static size_t calculateDimension(const size_t K, const size_t N_P);
+
+    /**
+     *  @return The dimension of this ONV basis.
+     */
+    size_t dimension() const { return SeniorityZeroONVBasis::calculateDimension(this->numberOfSpatialOrbitals(), this->numberOfElectronPairs()); }
+
+
+    /*
+     *  MARK: Proxies
+     */
+
+    /**
+     *  @return A spin-unresolved ONV basis that behaves analogously (with respect to a doubly-occupied situation) as this seniority-zero ONV basis.
      */
     SpinUnresolvedONVBasis proxy() const { return SpinUnresolvedONVBasis(this->K, this->N_P); }
+
+
+    /*
+     *  MARK: Iterations
+     */
+
+    /**
+     *  Iterate over every (proxy) spin-(un)resolved ONV in this seniority-zero ONV basis and apply the given callback.
+     * 
+     *  @param callback             The function to be called on every step during the iteration over all the ONVs. The arguments of the callback are the ONV and its address in this ONV basis.
+     */
+    void forEach(const std::function<void(const SpinUnresolvedONV&, const size_t)>& callback) const;
+
+
+    /*
+     *  MARK: Dense restricted operator evaluations
+     */
+
+    /**
+     *  Calculate the dense matrix representation of a Hubbard Hamiltonian in this ONV basis.
+     *
+     *  @param hamiltonian      A Hubbard Hamiltonian expressed in an orthonormal orbital basis.
+     *
+     *  @return A dense matrix represention of the Hamiltonian.
+     */
+    SquareMatrix<double> evaluateOperatorDense(const RSQHamiltonian<double>& hamiltonian) const;
+
+
+    /*
+     *  MARK: Diagonal restricted operator evaluations
+     */
+
+    /**
+     *  Calculate the diagonal of the matrix representation of a restricted one-electron operator in this ONV basis.
+     *
+     *  @param f_op             A restricted one-electron operator expressed in an orthonormal orbital basis.
+     *
+     *  @return The diagonal of the dense matrix represention of the one-electron operator.
+     */
+    VectorX<double> evaluateOperatorDiagonal(const ScalarRSQOneElectronOperator<double>& f_op) const;
+
+    /**
+     *  Calculate the diagonal of the matrix representation of a restricted two-electron operator in this ONV basis.
+     *
+     *  @param g                A restricted two-electron operator expressed in an orthonormal orbital basis.
+     *
+     *  @return The diagonal of the dense matrix represention of the two-electron operator.
+     */
+    VectorX<double> evaluateOperatorDiagonal(const ScalarRSQTwoElectronOperator<double>& g_op) const;
+
+    /**
+     *  Calculate the diagonal of the dense matrix representation of a restricted Hamiltonian in this ONV basis.
+     *
+     *  @param hamiltonian      A restricted Hamiltonian expressed in an orthonormal orbital basis.
+     *
+     *  @return The diagonal of the dense matrix represention of the Hamiltonian.
+     */
+    VectorX<double> evaluateOperatorDiagonal(const RSQHamiltonian<double>& hamiltonian) const;
+
+
+    /*
+     *  MARK: Restricted matrix-vector product evaluations
+     */
+
+    /**
+     *  Calculate the matrix-vector product of (the matrix representation of) a restricted one-electron operator with the given coefficient vector.
+     *
+     *  @param f                A restricted one-electron operator expressed in an orthonormal orbital basis.
+     *  @param x                The coefficient vector of a linear expansion.
+     *
+     *  @return The coefficient vector of the linear expansion after being acted on with the given (matrix representation of) the one-electron operator.
+     */
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarRSQOneElectronOperator<double>& f, const VectorX<double>& x) const;
+
+    /**
+     *  Calculate the matrix-vector product of (the matrix representation of) a restricted Hamiltonian with the given coefficient vector.
+     *
+     *  @param hamiltonian      A restricted Hamiltonian expressed in an orthonormal orbital basis.
+     *  @param x                The coefficient vector of a linear expansion.
+     *
+     *  @return The coefficient vector of the linear expansion after being acted on with the given (matrix representation of) the Hamiltonian.
+     */
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const RSQHamiltonian<double>& hamiltonian, const VectorX<double>& x) const;
 };
 
 

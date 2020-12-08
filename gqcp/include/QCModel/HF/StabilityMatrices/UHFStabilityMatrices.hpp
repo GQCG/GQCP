@@ -144,7 +144,7 @@ public:
         const auto& spin_conserved_B = this->spinConservedB();
 
         // Determine the dimensions of the total stability matrix.
-        const auto K = spin_conserved_A.dimension(0);
+        const auto K = spin_conserved_A.rows();
         const auto dim = 2 * K;
 
         // Create the total stability matrix as specified above in the documentation.
@@ -173,7 +173,7 @@ public:
         const auto& spin_unconserved_B = this->spinUnconservedB();
 
         // Determine the dimensions of the total stability matrix.
-        const auto K = spin_unconserved_A.dimension(0);
+        const auto K = spin_unconserved_A.rows();
         const auto dim = 2 * K;
 
         // Create the total stability matrix as specified above in the documentation.

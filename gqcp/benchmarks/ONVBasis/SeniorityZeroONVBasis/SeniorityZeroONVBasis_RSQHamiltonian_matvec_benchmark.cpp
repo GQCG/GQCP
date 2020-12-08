@@ -18,23 +18,20 @@ static void CustomArguments(benchmark::internal::Benchmark* b) {
 
 static void matvec(benchmark::State& state) {
 
-    // Set up a random second-quantized Hamiltonian and a doubly-occupied ONV basis.
-    const size_t K = state.range(0);
-    const size_t N_P = state.range(1);  // number of electron pairs
+    // Set up a random restricted SQHamiltonian and a seniority-zero ONV basis.
+    const size_t K = state.range(0);    // The number of spatial orbitals.
+    const size_t N_P = state.range(1);  // The number of electron pairs.
 
-    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Random(K);  // not necessarily in a non-orthonormal basis, but this doesn't matter here
+    const auto hamiltonian = GQCP::RSQHamiltonian<double>::Random(K);  // This Hamiltonian is not necessarily expressed in an orthonormal basis, but this doesn't matter here.
     const GQCP::SeniorityZeroONVBasis onv_basis {K, N_P};
 
-    GQCP::DOCI doci_builder {onv_basis};  // the DOCI HamiltonianBuilder
-
-    const auto diagonal = doci_builder.calculateDiagonal(sq_hamiltonian);
     const auto x = GQCP::LinearExpansion<GQCP::SeniorityZeroONVBasis>::Random(onv_basis).coefficients();
 
     // Code inside this loop is measured repeatedly.
     for (auto _ : state) {
-        const auto matvec = doci_builder.matrixVectorProduct(sq_hamiltonian, x, diagonal);
+        const auto matvec = onv_basis.evaluateOperatorMatrixVectorProduct(hamiltonian, x);
 
-        benchmark::DoNotOptimize(matvec);  // make sure that the variable is not optimized away by compiler
+        benchmark::DoNotOptimize(matvec);  // Make sure that the variable is not optimized away by compiler.
     }
 
     state.counters["Spatial orbitals"] = K;

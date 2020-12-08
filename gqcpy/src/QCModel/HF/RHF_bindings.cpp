@@ -16,6 +16,8 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "QCModel/HF/RHF.hpp"
+#include "Utilities/aliases.hpp"
+#include "gqcpy/include/interfaces.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
@@ -28,43 +30,37 @@ namespace gqcpy {
 namespace py = pybind11;
 using namespace GQCP;
 
+template <typename Scalar>
+void bindQCModelRHF(py::module& module, const std::string& name, const std::string& description) {
 
-void bindQCModelRHF(py::module& module) {
-    py::class_<QCModel::RHF<double>>(module, "QCModel_RHF", "The restricted Hartree-Fock wave function model.")
+    // Define Python classes related to `QCModel::RHF` and expose their interfaces.
+    py::class_<QCModel::RHF<Scalar>> py_QCModelRHF {module, name.c_str(), description.c_str()};
 
-        // PUBLIC METHODS
-
-        .def(
-            "calculateOrthonormalBasis1DM",
-            [](const QCModel::RHF<double>& rhf_parameters) {
-                return rhf_parameters.calculateOrthonormalBasis1DM();
-            },
-            "Return the 1-DM expressed in an orthonormal spinor basis related to these optimal RHF parameters.")
-
-        .def(
-            "calculateScalarBasis1DM",
-            [](const QCModel::RHF<double>& rhf_parameters) {
-                return rhf_parameters.calculateScalarBasis1DM();
-            },
-            "Return the RHF 1-DM in the scalar/AO basis related to these optimal RHF parameters")
-
-        .def("expansion",
-             &QCModel::RHF<double>::expansion,
-             "Return the coefficient matrix that expresses every spatial orbital (as a column) in its underlying scalar basis.")
-
-        .def("orbitalEnergies",
-             &QCModel::RHF<double>::orbitalEnergies,
-             "Return the orbital energies.")
+    // Expose the actual Python bindings unique to RHF.
+    py_QCModelRHF
 
         .def(
             "spinOrbitalEnergiesBlocked",
-            &QCModel::RHF<double>::spinOrbitalEnergiesBlocked,
+            &QCModel::RHF<Scalar>::spinOrbitalEnergiesBlocked,
             "Return all the spin-orbital energies, with the alpha spin-orbital energies appearing before the beta spin-orbital energies.")
 
         .def(
             "spinOrbitalEnergiesInterleaved",
-            &QCModel::RHF<double>::spinOrbitalEnergiesInterleaved,
+            &QCModel::RHF<Scalar>::spinOrbitalEnergiesInterleaved,
             "Return all the spin-orbital energies, with the alpha spin-orbital energies appearing before the beta spin-orbital energies.");
+
+    // Expose the `HartreeFock` interface.
+    bindQCModelHartreeFockInterface(py_QCModelRHF);
+}
+
+
+/**
+ *  Bind all types of `QCModel::RHF`s.
+ */
+void bindQCModelsRHF(py::module& module) {
+
+    bindQCModelRHF<double>(module, "QCModel_RHF_d", "The real restricted Hartree-Fock wave function model.");
+    bindQCModelRHF<complex>(module, "QCModel_RHF_cd", "The complex restricted Hartree-Fock wave function model.");
 }
 
 
