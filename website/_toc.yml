@@ -8,7 +8,7 @@
     - file: user-documentation/orbital-bases
     - file: user-documentation/quantum-chemical-methods
     - file: user-documentation/quantum-chemical-models
-    - file: user-documentation/common-use-cases
+    - file: user-documentation/use-cases
 
 - part: "Examples"
   chapters:
@@ -20,7 +20,7 @@
     - file: examples/HF-Stability
     - file: examples/Hubbard
     - file: examples/Mulliken-population
-    - file: examples/ONVPath-new
+    - file: examples/ONVPath
     - file: examples/R-U-GHF-overlaps
     - file: examples/README
     - file: examples/RHF-dipole-moments
@@ -40,6 +40,7 @@
 - part: "Miscellaneous"
   chapters:
     - file: miscellaneous/troubleshooting
+    - file: miscellaneous/citations
 
 - part: "Blog posts"
   chapters:
