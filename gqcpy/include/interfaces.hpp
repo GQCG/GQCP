@@ -195,7 +195,7 @@ void bindSpinResolvedBaseInterface(Class& py_class) {
  *  @param py_class             The Pybind11 `class_` that should obtain APIs related to `SpinResolved` transformations.
  */
 template <typename Class>
-void bindSpinResolvedTransformationInterface(Class& py_class) {
+void bindBasisTransformableOperationsInterface(Class& py_class) {
 
     // The C++ type corresponding to the Python class.
     using Type = typename Class::type;
@@ -499,20 +499,14 @@ void bindSimpleTransformationInterface(Class& py_class) {
 
         .def("matrix",
              &Type::matrix,
-             "Return the transformation matrix that collects the expansion coefficients of the new basis (vectors) in the old basis as columns.")
+             "Return the transformation matrix that collects the expansion coefficients of the new basis (vectors) in the old basis as columns.");
 
-        .def("inverse",
-             &Type::inverse,
-             "Return the inverse transformation of this transformation matrix.")
-
-        .def(
-            "isUnitary",
-            &Type::isUnitary,
-            py::arg("threshold") = 1.0e-12,
-            "Return if this transformation is unitary, within the given threshold");
 
     // Expose the `BasisTransformable` APIs.
     bindBasisTransformableInterface(py_class);
+
+    // Add some APIs related to operations on `BasisTransformable`s.
+    bindBasisTransformableOperationsInterface(py_class);
 }
 
 
