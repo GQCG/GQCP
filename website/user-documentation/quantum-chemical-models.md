@@ -1,8 +1,4 @@
----
-id: user_quantum_chemical_models
-title: Quantum chemical models
-sidebar_label: Quantum chemical models
----
+# Quantum chemical models
 
 
 In GQCP, a quantum chemical [(wave function) model](https://gqcg-res.github.io/knowdes/wave-function-models.html) is defined to be a parametrization of a certain kind of wave function. To encapsulate the optimizable parameters related to a certain quantum chemical method, we currently provide the following models:

@@ -1,8 +1,4 @@
----
-id: developer_getting_started
-title: Getting started
-sidebar_label: Getting started
----
+# Getting started
 
 Before delving into GQCP's structure under the hood, let's make sure you're set up for development to GQCP.
 

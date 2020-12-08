@@ -1,8 +1,4 @@
----
-id: troubleshooting
-title: Troubleshooting guide
-sidebar_label: Troubleshooting
----
+# Troubleshooting guide
 
 Can't build or use GQCP? Compiler errors? Other faults? You're at the right address. Here, we've compiled a list issues that have been encountered in the past.
 

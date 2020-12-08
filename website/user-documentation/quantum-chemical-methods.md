@@ -1,8 +1,4 @@
----
-id: user_quantum_chemical_methods
-title: Quantum chemical methods
-sidebar_label: Quantum chemical methods
----
+# Quantum chemical methods
 
 
 ## Configuration interaction

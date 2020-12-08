@@ -1,9 +1,5 @@
 - file: landing-page
 
-- part: "Examples"
-  chapters:
-    - file: examples/mulliken-populations
-
 - part: "User documentation"
   chapters:
     - file: user-documentation/getting-started
@@ -13,6 +9,25 @@
     - file: user-documentation/quantum-chemical-methods
     - file: user-documentation/quantum-chemical-models
     - file: user-documentation/common-use-cases
+
+- part: "Examples"
+  chapters:
+    - file: examples/AP1roG-calculations
+    - file: examples/CCSD
+    - file: examples/Custom-algorithms-showcase-CUHF
+    - file: examples/DOCI
+    - file: examples/FCI
+    - file: examples/HF-Stability
+    - file: examples/Hubbard
+    - file: examples/Mulliken-population
+    - file: examples/ONVPath-new
+    - file: examples/R-U-GHF-overlaps
+    - file: examples/README
+    - file: examples/RHF-dipole-moments
+    - file: examples/Spinor-bases
+    - file: examples/Try-out-Binder
+    - file: examples/Try-out-Colab
+    - file: examples/UHF-calculations
 
 - part: "Developer documentation"
   chapters:

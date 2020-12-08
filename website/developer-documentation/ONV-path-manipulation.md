@@ -1,8 +1,5 @@
----
-id: ONV_path_manipulation
-title: Manipulating ONVs and their addresses
-sidebar_label: Manipulating ONVs
----
+# Manipulating ONVs and their addresses
+
 
 Understanding the inner workings of a low-level CI code can be daunting, mainly because bit string manipulations can be very hard to understand without any guidance. This section should help aspiring developers how GQCP deals with the manipulation of ONV's (occupation number vectors) and their path representation in an addressing scheme.
 
@@ -40,7 +37,7 @@ GQCP::ONVPath onv_path {onv_basis, I};
 
 Graphically, the state of the corresponding `ONVPath` may be pictorially represented as:
 
-![init_path](/GQCP/img/ONVPath_10110.png)
+![init_path](../img/ONVPath_10110.png)
 
 Since the address of an ONV is the sum of its diagonal arc weights, the address for `|10110>` is `2`.
 
@@ -85,7 +82,7 @@ onv_path.annihilate(0, 0);
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-![first_annihilate](/GQCP/img/ONVPath_00110_1.png)
+![first_annihilate](../img/ONVPath_00110_1.png)
 
 Since we have removed a diagonal arc with weight `1`, the current address of this open path is `2`. To _close_ the current path, we can use the `create()` function.
 
@@ -122,7 +119,7 @@ onv_path.create(1, 0);
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-![first_create](/GQCP/img/ONVPath_01110.png)
+![first_create](../img/ONVPath_01110.png)
 
 
 This was not the only way to close the path related to the ONV `|00110>`. Clearly, it is possible to create an electron in the orbital with index `4`. In order to update the path's state, we'll have to shift diagonal arcs (indicating occupied orbitals) to the left until a vertical arc is encountered to close the gap. For this purpose, GQCP offers the API `leftTranslateDiagonalArc()`.
@@ -149,7 +146,7 @@ This was not the only way to close the path related to the ONV `|00110>`. Clearl
 
 The initial situation may be described in the following figure, on the left.
 
-![first_annihilate_shift](/GQCP/img/ONVPath_00110_2_3_side.png)
+![first_annihilate_shift](../img/ONVPath_00110_2_3_side.png)
 
 > Notice the blue dot at the coordinate [2, 0]. This means that the path's state is now ready to be modified starting at the orbital with index `2`.
 
@@ -209,7 +206,7 @@ onv_path.leftTranslateDiagonalArcUntilVerticalArc();
 
 This will lead to the exact same ONV as performing the two `leftTranslateDiagonalArc()` functions separately. 
 
-![second_shift](/GQCP/img/ONVPath_00110_4.png)
+![second_shift](../img/ONVPath_00110_4.png)
 
 Since we've removed an arc with weight `1` and created one with weight `3`, the address of the resulting open path is `5`. Finally, we may close the path by creating an electron, since the next index now refers to an unoccupied orbital. The weight of the related diagonal arc is `4`, so finally the address of the resulting ONV is `9`.
 
@@ -229,4 +226,4 @@ onv_path.create(4, 2);
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-![final_creation](/GQCP/img/ONVPath_00111.png)
+![final_creation](../img/ONVPath_00111.png)

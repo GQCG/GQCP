@@ -1,8 +1,4 @@
----
-id: devops
-title: GQCP Devops
-sidebar_label: DevOps
----
+# GQCP devops
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 

@@ -1,8 +1,5 @@
----
-id: user_introduction
-title: Introduction for users
-sidebar_label: Introduction
----
+# Introduction for users
+
 
 ## Introduction
 

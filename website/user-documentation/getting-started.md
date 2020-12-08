@@ -1,8 +1,5 @@
----
-id: user_getting_started
-title: Getting started
-sidebar_label: Getting started
----
+# Getting started
+
 
 Before discussing GQCP's capabilities, let's make sure you're all set up to use GQCP.
 

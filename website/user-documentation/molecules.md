@@ -1,8 +1,4 @@
----
-id: user_molecules
-title: Molecules
-sidebar_label: Molecules
----
+# Molecules
 
 
 ## Constructing molecules

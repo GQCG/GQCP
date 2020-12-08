@@ -1,8 +1,4 @@
----
-id: user_orbital_bases
-title: Orbital bases
-sidebar_label: Orbital bases
----
+# Orbital bases
 
 ## Creating an orbital basis
 

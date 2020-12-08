@@ -1,8 +1,4 @@
----
-id: developer_introduction
-title: Introduction for developers
-sidebar_label: Introduction
----
+# Introduction for developers
 
 Welcome to the developer documentation! Here, we'll guide you through the design of the C++ library and the Python bindings.
 
