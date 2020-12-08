@@ -61,6 +61,9 @@ public:
     // The type that is used for representing the underlying basis functions of this spin-orbital basis.
     using BasisFunction = typename Shell::BasisFunction;
 
+    // The type component this spin resolved object is made of.
+    using ComponentType = typename SpinResolvedBase<USpinOrbitalBasisComponent<ExpansionScalar, Shell>, Self>::Of;
+
 
 public:
     /*

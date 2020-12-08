@@ -10,36 +10,36 @@ source:
 requirements:
     build:
       - benchmark
-      - cmake {{ cmake }}
+      - cmake
       - {{ compiler('c') }}
       - {{ compiler('cxx') }}
       - git
       - make
     host:
-      - blas {{ blas }}
-      - boost-cpp {{ boost_cpp }}
-      - cint {{ cint }}
-      - eigen {{ eigen }}
-      - intel-openmp {{ intel_openmp }}
-      - mkl-include {{ mkl_include }}
-      - mkl-static {{ mkl_static }}
-      - numpy {{ numpy }}
-      - libint {{ libint }}
-      - llvm-openmp               # [osx]
-      - numpy {{ numpy }}
-      - openmp {{ openmp }}       # [linux]
-      - pybind11 {{ pybind11 }}
-      - python
-    run:
       - blas
       - boost-cpp
-      - cint {{ cint }}
+      - cint
       - eigen
       - intel-openmp
       - mkl-include
       - mkl-static
       - numpy
-      - libint {{ libint }}
+      - libint
+      - llvm-openmp               # [osx]
+      - numpy 
+      - openmp                    # [linux]
+      - pybind11 
+      - python
+    run:
+      - blas
+      - boost-cpp
+      - cint
+      - eigen
+      - intel-openmp
+      - mkl-include
+      - mkl-static
+      - numpy
+      - libint
       - llvm-openmp               # [osx]
       - numpy
       - intel-openmp              # [linux]

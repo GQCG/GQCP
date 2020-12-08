@@ -52,6 +52,9 @@ public:
     // The type of 'this'.
     using Self = UTransformation<Scalar>;
 
+    // The type component this spin resolved object is made of.
+    using ComponentType = typename SpinResolvedBase<UTransformationComponent<Scalar>, Self>::Of;
+
 
 public:
     /*
@@ -106,6 +109,22 @@ public:
      *  @return An identity UTransformation.
      */
     static UTransformation<Scalar> Identity(const size_t dim) { return UTransformation<Scalar>::Identity(dim, dim); }
+
+
+    /**
+     *  Create a random `UTransformation`.
+     * 
+     *  @param dim              The number of alpha or beta spin-orbitals (equal).
+     * 
+     *  @return A random `UTransformation`.
+     */
+    static UTransformation<Scalar> Random(const size_t dim) {
+
+        const auto T_alpha = UTransformationComponent<Scalar>::Random(dim);
+        const auto T_beta = UTransformationComponent<Scalar>::Random(dim);
+
+        return UTransformation<Scalar> {T_alpha, T_beta};
+    }
 
 
     /**

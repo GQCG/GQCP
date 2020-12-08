@@ -69,15 +69,17 @@ public:
     template <typename Z = Scalar>
     enable_if_t<std::is_same<Z, double>::value, ScalarRSQOneElectronOperator<double>> core() const {
 
+        // Prepare some variables.
         const auto K = this->numberOfLatticeSites();
+        const auto& H = this->hoppingMatrix();
         auto h = ScalarRSQOneElectronOperator<double>::Zero(K);
 
         // The one-electron hopping terms can be found on the off-diagonal elements of the hopping matrix.
         for (size_t p = 0; p < K; p++) {
             for (size_t q = p; q < K; q++) {
                 if (p != q) {
-                    h.parameters()(p, q) = this->hoppingMatrix(p, q);
-                    h.parameters()(q, p) = this->hoppingMatrix(q, p);
+                    h.parameters()(p, q) = H(p, q);
+                    h.parameters()(q, p) = H(q, p);
                 }
             }
         }

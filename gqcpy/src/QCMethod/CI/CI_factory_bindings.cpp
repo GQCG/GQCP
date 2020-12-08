@@ -62,6 +62,7 @@ void bindCIFactoryMethod(py::module& module) {
  */
 void bindCIFactory(py::module& module) {
 
+    bindCIFactoryMethod<SeniorityZeroONVBasis>(module);
     bindCIFactoryMethod<SpinResolvedONVBasis>(module);
     bindCIFactoryMethod<SpinResolvedSelectedONVBasis>(module);
 }

@@ -31,6 +31,10 @@ namespace GQCP {
 class SpinResolvedOrbitalSpace:
     public SpinResolvedBase<OrbitalSpace, SpinResolvedOrbitalSpace> {
 public:
+    // The type component this spin resolved object is made of.
+    using ComponentType = typename SpinResolvedBase<OrbitalSpace, SpinResolvedOrbitalSpace>::Of;
+
+public:
     /*
      *  MARK: Constructors
      */

@@ -39,7 +39,9 @@ namespace QCModel {
 template <typename _Scalar>
 class GHF {
 public:
+    // The scalar type used within the QCModel: real or complex.
     using Scalar = _Scalar;
+
 
 private:
     size_t N;  // the number of electrons
@@ -123,7 +125,7 @@ public:
      *
      *  @return the GHF 1-DM expressed in the underlying scalar basis
      */
-    static G1DM<Scalar> calculateScalarBasis1DM(const GTransformation<double>& C, const size_t N) {
+    static G1DM<Scalar> calculateScalarBasis1DM(const GTransformation<Scalar>& C, const size_t N) {
 
         const size_t M = C.dimension();
         const auto P_orthonormal = GHF<Scalar>::calculateOrthonormalBasis1DM(M, N);
@@ -225,13 +227,14 @@ public:
 
 
     /**
-     *  @param M            the number of spinors
-     *  @param N            the number of electrons
+     *  Calculate the GHF 1-DM expressed in an orthonormal spinor basis.
+     * 
+     *  @param M            The number of spinors.
+     *  @param N            The number of electrons.
      *
-     *  @return the GHF 1-DM expressed in an orthonormal spinor basis
+     *  @return The GHF 1-DM expressed in an orthonormal spinor basis.
      */
-    static G1DM<Scalar>
-    calculateOrthonormalBasis1DM(const size_t M, const size_t N) {
+    static G1DM<Scalar> calculateOrthonormalBasis1DM(const size_t M, const size_t N) {
 
         // The 1-DM for GHF looks like (for M=5, N=3)
         //    1  0  0  0  0
@@ -240,10 +243,47 @@ public:
         //    0  0  0  0  0
         //    0  0  0  0  0
 
-        G1DM<Scalar> D_MO = G1DM<Scalar>::Zero(M);
-        D_MO.topLeftCorner(N, N) = SquareMatrix<Scalar>::Identity(N);
+        G1DM<Scalar> D = G1DM<Scalar>::Zero(M);
+        D.topLeftCorner(N, N) = SquareMatrix<Scalar>::Identity(N);
 
-        return D_MO;
+        return D;
+    }
+
+
+    /**
+     *  Calculate the GHF 2-DM expressed in an orthonormal spinor basis.
+     * 
+     *  @param M            The number of spinors.
+     *  @param N            The number of electrons.
+     *
+     *  @return The GHF 2-DM expressed in an orthonormal spinor basis.
+     */
+    static G2DM<Scalar> calculateOrthonormalBasis2DM(const size_t M, const size_t N) {
+
+        // Create the orbital space to determine the loops.
+        const auto orbital_space = GHF<Scalar>::orbitalSpace(M, N);
+
+
+        // Implement a KISS formula for the GHF 2-DM.
+        G2DM<Scalar> d = G2DM<Scalar>::Zero(M);
+
+        for (const auto& i : orbital_space.indices(OccupationType::k_occupied)) {
+            for (const auto& j : orbital_space.indices(OccupationType::k_occupied)) {
+                for (const auto& k : orbital_space.indices(OccupationType::k_occupied)) {
+                    for (const auto& l : orbital_space.indices(OccupationType::k_occupied)) {
+                        if ((i == j) && (k == l)) {
+                            d(i, j, k, l) += 1.0;
+                        }
+
+                        if ((i == l) && (j == k)) {
+                            d(i, j, k, l) -= 1.0;
+                        }
+                    }
+                }
+            }
+        }
+
+        return d;
     }
 
 
@@ -339,13 +379,24 @@ public:
 
 
     /**
-     *  @return the 1-DM expressed in an orthonormal spinor basis related to these optimal GHF parameters
+     *  @return The 1-DM expressed in an orthonormal spinor basis related to these optimal GHF parameters.
      */
     G1DM<Scalar> calculateOrthonormalBasis1DM() const {
 
         const auto M = this->numberOfSpinors();
         const auto N = this->numberOfElectrons();
         return GHF<Scalar>::calculateOrthonormalBasis1DM(M, N);
+    }
+
+
+    /**
+     *  @return The 2-DM expressed in an orthonormal spinor basis related to these optimal GHF parameters.
+     */
+    G2DM<Scalar> calculateOrthonormalBasis2DM() const {
+
+        const auto M = this->numberOfSpinors();
+        const auto N = this->numberOfElectrons();
+        return GHF<Scalar>::calculateOrthonormalBasis2DM(M, N);
     }
 
 
@@ -473,7 +524,7 @@ public:
 
 
     /**
-     *  @return the coefficient matrix that expresses every spinor orbital (as a column) in the underlying scalar bases
+     *  @return The transformation that expresses the GHF MOs in terms of the underlying AOs.
      */
     const GTransformation<Scalar>& expansion() const { return this->C; }
 
@@ -520,7 +571,7 @@ public:
     double orbitalEnergy(const size_t i) const { return this->orbital_energies(i); }
 
     /**
-     *  @return the implicit occupied-virtual orbital space that is associated to these GHF model parameters
+     *  @return The implicit occupied-virtual orbital space that is associated to these GHF model parameters.
      */
     OrbitalSpace orbitalSpace() const { return GHF<Scalar>::orbitalSpace(this->numberOfSpinors(), this->numberOfElectrons()); }
 

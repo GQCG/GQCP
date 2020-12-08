@@ -20,6 +20,7 @@
 
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 #include "Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp"
+#include "Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/RSQTwoElectronOperator.hpp"
 #include "QuantumChemical/SpinResolvedBase.hpp"
@@ -35,6 +36,10 @@ namespace GQCP {
  */
 class SpinResolvedONVBasis:
     public SpinResolvedBase<SpinUnresolvedONVBasis, SpinResolvedONVBasis> {
+public:
+    // The type component this spin resolved object is made of.
+    using ComponentType = typename SpinResolvedBase<SpinUnresolvedONVBasis, SpinResolvedONVBasis>::Of;
+
 private:
     // A vector of sparse matrices containing the one-electron coupling elements for the alpha ONV basis. See also `calculateOneElectronCouplings`.
     std::vector<Eigen::SparseMatrix<double>> alpha_couplings;
@@ -158,6 +163,15 @@ public:
      */
     SquareMatrix<double> evaluateOperatorDense(const RSQHamiltonian<double>& hamiltonian) const;
 
+    /**
+     *  Calculate the dense matrix representation of a Hubbard Hamiltonian in this ONV basis.
+     *
+     *  @param hamiltonian      A Hubbard Hamiltonian expressed in an orthonormal orbital basis.
+     *
+     *  @return A dense matrix represention of the Hamiltonian.
+     */
+    SquareMatrix<double> evaluateOperatorDense(const HubbardHamiltonian<double>& hamiltonian) const;
+
 
     /*
      *  MARK: Diagonal restricted operator evaluations
@@ -189,6 +203,15 @@ public:
      *  @return The diagonal of the dense matrix represention of the Hamiltonian.
      */
     VectorX<double> evaluateOperatorDiagonal(const RSQHamiltonian<double>& hamiltonian) const;
+
+    /**
+     *  Calculate the diagonal of the dense matrix representation of a Hubbard Hamiltonian in this ONV basis.
+     *
+     *  @param hamiltonian      A Hubbard Hamiltonian expressed in an orthonormal orbital basis.
+     *
+     *  @return The diagonal of the dense matrix represention of the Hamiltonian.
+     */
+    VectorX<double> evaluateOperatorDiagonal(const HubbardHamiltonian<double>& hamiltonian) const;
 
 
     /*
@@ -224,6 +247,16 @@ public:
      *  @return The coefficient vector of the linear expansion after being acted on with the given (matrix representation of) the Hamiltonian.
      */
     VectorX<double> evaluateOperatorMatrixVectorProduct(const RSQHamiltonian<double>& hamiltonian, const VectorX<double>& x) const;
+
+    /**
+     *  Calculate the matrix-vector product of (the matrix representation of) a Hubbard Hamiltonian with the given coefficient vector.
+     *
+     *  @param hamiltonian      A Hubbard Hamiltonian expressed in an orthonormal orbital basis.
+     *  @param x                The coefficient vector of a linear expansion.
+     *
+     *  @return The coefficient vector of the linear expansion after being acted on with the given (matrix representation of) the Hamiltonian.
+     */
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const HubbardHamiltonian<double>& hamiltonian, const VectorX<double>& x) const;
 
 
     /*

@@ -15,6 +15,9 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "ONVBasis/SpinResolvedONVBasis.hpp"
+#include "Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/CIEnvironment.hpp"
 
 #include <pybind11/eigen.h>
@@ -68,6 +71,7 @@ void bindCIEnvironments(py::module& module) {
 
     bindCIEnvironment<RSQHamiltonian<double>, SpinResolvedONVBasis>(submodule, "Return an environment suitable for solving spin-resolved FCI eigenvalue problems.");
     bindCIEnvironment<USQHamiltonian<double>, SpinResolvedONVBasis>(submodule, "Return an environment suitable for solving spin-resolved FCI eigenvalue problems.");
+    bindCIEnvironment<HubbardHamiltonian<double>, SpinResolvedONVBasis>(submodule, "Return an environment suitable for solving Hubbard problems.");
 }
 
 

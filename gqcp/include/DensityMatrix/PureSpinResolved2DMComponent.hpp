@@ -18,7 +18,9 @@
 #pragma once
 
 
-#include "Mathematical/Representation/SquareRankFourTensor.hpp"
+#include "Basis/Transformations/UTransformationComponent.hpp"
+#include "DensityMatrix/Simple2DM.hpp"
+#include "DensityMatrix/SpinResolved1DMComponent.hpp"
 
 
 namespace GQCP {
@@ -31,7 +33,7 @@ namespace GQCP {
  */
 template <typename _Scalar>
 class PureSpinResolved2DMComponent:
-    public SquareRankFourTensor<_Scalar> {
+    public Simple2DM<_Scalar, PureSpinResolved2DMComponent<_Scalar>> {
 public:
     // The scalar type used for a density matrix element: real or complex.
     using Scalar = _Scalar;
@@ -42,18 +44,56 @@ public:
      *  MARK: Constructors
      */
 
-    // Inherit `SquareRankFourTensor`'s constructors.
-    using SquareRankFourTensor<Scalar>::SquareRankFourTensor;
+    // Inherit `Simple2DM`'s constructors.
+    using Simple2DM<Scalar, PureSpinResolved2DMComponent<Scalar>>::Simple2DM;
+};
 
 
-    /*
-     *  MARK: General information
-     */
+/*
+ *  MARK: `DensityMatrixTraits`
+ */
 
-    /**
-     *  @return The number of orbitals that are related to this 2-DM.
-     */
-    size_t numberOfOrbitals() const { return this->dimension(); }
+/**
+ *  A type that provides compile-time information on `PureSpinResolved2DMComponent` that is otherwise not accessible through a public class alias.
+ */
+template <typename Scalar>
+struct DensityMatrixTraits<PureSpinResolved2DMComponent<Scalar>> {
+
+    // The type of transformation that is naturally associated to a component of a spin-resolved 2-DM.
+    using Transformation = UTransformationComponent<Scalar>;
+
+    // The type of the one-electron density matrix that is naturally related to an `PureSpinResolved2DMComponent`.
+    using OneDM = SpinResolved1DMComponent<Scalar>;
+};
+
+
+/*
+ *  MARK: BasisTransformableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
+ */
+template <typename Scalar>
+struct BasisTransformableTraits<PureSpinResolved2DMComponent<Scalar>> {
+
+    // The type of transformation that is naturally associated to a component of a spin-resolved 2-DM.
+    using Transformation = UTransformationComponent<Scalar>;
+};
+
+
+/*
+ *  MARK: JacobiRotatableTraits
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
+ */
+template <typename Scalar>
+struct JacobiRotatableTraits<PureSpinResolved2DMComponent<Scalar>> {
+
+    // The type of Jacobi rotation for which the Jacobi rotation should be defined.
+    using JacobiRotationType = JacobiRotation;
 };
 
 

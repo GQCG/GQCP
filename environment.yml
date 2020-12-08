@@ -1,0 +1,11 @@
+name: gqcpenv
+channels:
+  - gqcg
+  - conda-forge
+  - intel
+  - defaults
+dependencies:
+  - python=3.7
+  - gqcp
+  
+  

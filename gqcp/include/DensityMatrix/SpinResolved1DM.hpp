@@ -41,6 +41,7 @@ template <typename _Scalar>
 class SpinResolved1DM:
     public SpinResolvedBase<SpinResolved1DMComponent<_Scalar>, SpinResolved1DM<_Scalar>>,
     public SpinResolvedBasisTransformable<SpinResolved1DM<_Scalar>>,
+    public SpinResolvedJacobiRotatable<SpinResolved1DM<_Scalar>>,
     public VectorSpaceArithmetic<SpinResolved1DM<_Scalar>, _Scalar> {
 public:
     // The scalar type of one of the density matrix elements: real or complex.
@@ -51,6 +52,9 @@ public:
 
     // The type of 'this'.
     using Self = SpinResolved1DM<Scalar>;
+
+    // The type component this spin resolved object is made of.
+    using ComponentType = typename SpinResolvedBase<SpinResolved1DMComponent<Scalar>, Self>::Of;
 
 
 public:
@@ -168,6 +172,25 @@ public:
 
         return *this;
     }
+
+
+    /**
+     *  MARK: Enabling basis transformations
+     */
+
+    // Since `rotate` and `rotated` are both defined in `SpinResolvedBasisTransformable` and `SpinResolvedJacobiRotatable`, we have to explicitly enable these methods here.
+
+    // Allow the `rotate` method from `SpinResolvedBasisTransformable`, since there's also a `rotate` from `SpinResolvedJacobiRotatable`.
+    using SpinResolvedBasisTransformable<Self>::rotate;
+
+    // Allow the `rotated` method from `SpinResolvedBasisTransformable`, since there's also a `rotated` from `SpinResolvedJacobiRotatable`.
+    using SpinResolvedBasisTransformable<Self>::rotated;
+
+    // Allow the `rotate` method from `SpinResolvedJacobiRotatable`, since there's also a `rotate` from `SpinResolvedBasisTransformable`.
+    using SpinResolvedJacobiRotatable<Self>::rotate;
+
+    // Allow the `rotated` method from `SpinResolvedJacobiRotatable`, since there's also a `rotated` from `SpinResolvedBasisTransformable`.
+    using SpinResolvedJacobiRotatable<Self>::rotated;
 };
 
 

@@ -114,7 +114,7 @@ public:
 
         // Since we're only getting T as a matrix, we should convert it to an appropriate tensor to perform contractions.
         // Although not a necessity for the einsum implementation, it makes it a lot easier to follow the formulas.
-        const GQCP::Tensor<Scalar, 2> T_tensor = GQCP::Tensor<Scalar, 2>(Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>>(T.matrix().data(), T.matrix().rows(), T.matrix().cols()));
+        const GQCP::Tensor<Scalar, 2> T_tensor = Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>>(T.matrix().data(), T.matrix().rows(), T.matrix().cols());
 
         // We calculate the conjugate as a tensor as well.
         const GQCP::Tensor<Scalar, 2> T_conjugate = T_tensor.conjugate();
@@ -127,15 +127,15 @@ public:
         for (size_t i = 0; i < this->numberOfComponents(); i++) {
             switch (sigma) {
             case Spin::alpha: {
-                const auto temp = T_conjugate.template einsum<1>("UQ,TUVW->TQVW", parameters[i]);
-                const auto transformed = T_tensor.template einsum<1>("TP,TQVW->PQVW", temp);
+                const auto temp = T_tensor.template einsum<1>("UQ,TUVW->TQVW", parameters[i]);
+                const auto transformed = T_conjugate.template einsum<1>("TP,TQVW->PQVW", temp);
                 result[i] = transformed;
                 break;
             }
 
             case Spin::beta: {
-                const auto temp = parameters[i].template einsum<1>("PQVW, WS->PQVS", T_conjugate);
-                const auto transformed = temp.template einsum<1>("PQVS, VR->PQRS", T_tensor);
+                const auto temp = parameters[i].template einsum<1>("PQVW, WS->PQVS", T_tensor);
+                const auto transformed = temp.template einsum<1>("PQVS, VR->PQRS", T_conjugate);
                 result[i] = transformed;
                 break;
             }

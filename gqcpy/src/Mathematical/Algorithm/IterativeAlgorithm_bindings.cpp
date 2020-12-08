@@ -20,6 +20,7 @@
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
 #include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp"
 #include "QCMethod/CC/CCSDEnvironment.hpp"
+#include "QCMethod/HF/GHF/GHFSCFEnvironment.hpp"
 #include "QCMethod/HF/RHF/RHFSCFEnvironment.hpp"
 #include "QCMethod/HF/UHF/UHFSCFEnvironment.hpp"
 
@@ -51,8 +52,8 @@ template <typename Environment>
 void bindIterativeAlgorithm(py::module& module, const std::string& suffix, const std::string& description) {
 
     py::class_<IterativeAlgorithm<Environment>>(module,
-                                                      ("IterativeAlgorithm_" + suffix).c_str(),
-                                                      description.c_str())
+                                                ("IterativeAlgorithm_" + suffix).c_str(),
+                                                description.c_str())
 
         // PUBLIC METHODS
 
@@ -114,6 +115,7 @@ void bindIterativeAlgorithms(py::module& module) {
 
     bindIterativeAlgorithm<RHFSCFEnvironment<double>>(module, "RHFSCFEnvironment", "An algorithm that performs iterations using an RHFSCFEnvironment.");
     bindIterativeAlgorithm<UHFSCFEnvironment<double>>(module, "UHFSCFEnvironment", "An algorithm that performs iterations using an UHFSCFEnvironment.");
+    bindIterativeAlgorithm<GHFSCFEnvironment<double>>(module, "GHFSCFEnvironment", "An algorithm that performs iterations using an GHFSCFEnvironment.");
 
     bindIterativeAlgorithm<CCSDEnvironment<double>>(module, "CCSDEnvironment", "An algorithm that performs iterations using a CCSDEnvironment.");
 }

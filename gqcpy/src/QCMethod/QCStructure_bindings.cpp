@@ -24,6 +24,7 @@
 #include "QCModel/CI/LinearExpansion.hpp"
 #include "QCModel/Geminals/AP1roG.hpp"
 #include "QCModel/Geminals/vAP1roG.hpp"
+#include "QCModel/HF/GHF.hpp"
 #include "QCModel/HF/RHF.hpp"
 #include "QCModel/HF/UHF.hpp"
 
@@ -96,13 +97,13 @@ void bindQCStructure(py::module& module, const std::string& suffix, const std::s
 void bindQCStructures(py::module& module) {
 
     bindQCStructure<LinearExpansion<SeniorityZeroONVBasis>>(module, "LinearExpansionSeniorityZero", "A quantum chemical structure for linear expansions in a seniority-zero ONV basis.");
-    // bindQCStructure<LinearExpansion<SpinResolvedFrozenONVBasis>>(module, "LinearExpansionSpinResolvedFrozen", "A quantum chemical structure for linear expansions in a frozen core spin-resolved ONV basis.");
     bindQCStructure<LinearExpansion<SpinResolvedONVBasis>>(module, "LinearExpansionSpinResolved", "A quantum chemical structure for linear expansions in a spin-resolved ONV basis.");
     bindQCStructure<LinearExpansion<SpinResolvedSelectedONVBasis>>(module, "LinearExpansionSpinResolvedSelected", "A quantum chemical structure for linear expansions in a spin-resolved selected ONV basis.");
 
     bindQCStructure<QCModel::AP1roG>(module, "AP1roG", "A quantum chemical structure for AP1roG parameters.");
     bindQCStructure<QCModel::vAP1roG>(module, "vAP1roG", "A quantum chemical structure for vAP1roG parameters.");
 
+    bindQCStructure<QCModel::GHF<double>>(module, "GHF", "A quantum chemical structure for GHF parameters.");
     bindQCStructure<QCModel::RHF<double>>(module, "RHF", "A quantum chemical structure for RHF parameters.");
     bindQCStructure<QCModel::UHF<double>>(module, "UHF", "A quantum chemical structure for UHF parameters.");
 

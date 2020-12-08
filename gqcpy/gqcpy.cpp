@@ -196,12 +196,19 @@ void bindQCModelvAP1roG(py::module& module);
 
 // QCModel - HF
 void bindQCModelGHF(py::module& module);
-void bindQCModelRHF(py::module& module);
-void bindQCModelUHF(py::module& module);
+void bindQCModelsRHF(py::module& module);
+void bindQCModelsUHF(py::module& module);
+
+
+// QCModel - HF - StabilityMatrices
+void bindGHFStabilityMatrices(py::module& module);
+void bindRHFStabilityMatrices(py::module& module);
+void bindUHFStabilityMatrices(py::module& module);
 
 
 // QuantumChemical
 void bindSpin(py::module& module);
+void bindSpinResolvedTypes(py::module& module);
 
 
 // Single includes
@@ -385,12 +392,20 @@ PYBIND11_MODULE(gqcpy, module) {
 
 
     // QCModel - HF
-    gqcpy::bindQCModelRHF(module);
-    gqcpy::bindQCModelUHF(module);
+    gqcpy::bindQCModelGHF(module);
+    gqcpy::bindQCModelsRHF(module);
+    gqcpy::bindQCModelsUHF(module);
+
+
+    // QCModel - HF - StabilityMatrices
+    gqcpy::bindGHFStabilityMatrices(module);
+    gqcpy::bindRHFStabilityMatrices(module);
+    gqcpy::bindUHFStabilityMatrices(module);
 
 
     // QuantumChemical
     gqcpy::bindSpin(module);
+    gqcpy::bindSpinResolvedTypes(module);
 
 
     // Single includes
