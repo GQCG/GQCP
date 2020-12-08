@@ -47,7 +47,7 @@ void bindUTransformation(py::module& module) {
     // Expose the `BasisTransformable` API to Python.
     bindBasisTransformableInterface(py_UTransformation_d);
 
-    // Add some APIs related to operations on `BasisTransformable`s.
+    // Add some APIs related to operations on `BasisTransformable` objects.
     bindBasisTransformableOperationsInterface(py_UTransformation_d);
 }
 
