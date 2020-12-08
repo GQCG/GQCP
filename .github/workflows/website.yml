@@ -1,68 +1,49 @@
 name: Website
 
-# This workflow is triggered on a pull-request. This is a single event so no brackets are needed.
-on: 
-  push: 
+# Only run the workflow if website files are changed.
+on:
+  push:
     branches:
       - develop
     paths:
-      - 'site/**'
+      - 'website/**'
   pull_request:
-    # This workflow will only start if files in site/docs/ or site/website are changed.
-    paths: 
-    - 'site/**'
+    paths:
+      - 'website/**'
 
 jobs:
-  build-and-deploy:
-    # Configures a build matrix containing multiple operating systems. For each configuration, a copy of the job runs and reports a status.
-    runs-on: ${{ matrix.os }}
-    # To specify the array of operating systems, we must list them under 'strategy'.
-    strategy:
-      matrix:
-        # This job runs on the latest version of Linux.
-        os: [ubuntu-latest]
+  deploy-website:
+    runs-on: ubuntu-latest
     steps:
-    # The checkout action must be included when your workflow requires a copy of your repository's code.
     - uses: actions/checkout@v2
 
-    # Download and install conda such that we can use it to install the required packages for Docusaurus.
-    - name: Setup conda
-      uses: s-weigand/setup-conda@v1
+    # Install Jupyter Book dependencies
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v1
       with:
-        update-conda: true
-        
-    # Nodejs and Yarn are required packages to run Docusaurus.
-    - name: Install Nodejs and Yarn
-      run: |
-        conda install -c anaconda nodejs
-        conda install -c conda-forge yarn
+        python-version: 3.7
 
-    # Run the Docusaurus installation script.
-    - name: Docusaurus installation
+    - name: Install Jupyter Book
       run: |
-        cd site/website
-        npx docusaurus-init
-        yarn
+        pip install -U jupyter-book
 
-    # Build the site
-    - name: Build site using Docusaurus
+    # Build the website
+    - name: Build website
       run: |
-        cd site/website
-        yarn run build
-    
-    # Upload artifact if pull_request
+        jupyter-book build website
+
+    # Upload an artifact of the website on pull request.
     - name: Archive build
       uses: actions/upload-artifact@v1
       with:
         name: _site
-        path: site/website/build/
+        path: ./website/_build
       if: github.event_name == 'pull_request'
-    
-    # Deploy the website to GitHub pages.
+
+    # Deploy the website to GitHub pages on push.
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./site/website/build/GQCP
-        publish_branch: gh-pages
+        publish_dir: ./website/_build/html
       if: github.event_name == 'push'
