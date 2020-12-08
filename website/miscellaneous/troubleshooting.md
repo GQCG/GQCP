@@ -12,3 +12,4 @@ If you encounter an EMT-instruction failure when using the Intel compilers on th
 ## (HPC) Slow compilation
 Store and compile the code on `$VSC_SCRATCH` to achieve optimal performance. 
 
+Still have a problem even after reading through the documentation and the troubleshooting guide? Create an [issue](https://github.com/GQCG/GQCP/issues/new/choose) and help us help you.
