@@ -23,6 +23,7 @@
 #include "QCMethod/HF/GHF/GHFSCFEnvironment.hpp"
 #include "QCMethod/HF/RHF/RHFSCFEnvironment.hpp"
 #include "QCMethod/HF/UHF/UHFSCFEnvironment.hpp"
+#include "Utilities/literals.hpp"
 
 #include <pybind11/pybind11.h>
 
@@ -115,7 +116,8 @@ void bindIterativeAlgorithms(py::module& module) {
 
     bindIterativeAlgorithm<RHFSCFEnvironment<double>>(module, "RHFSCFEnvironment", "An algorithm that performs iterations using an RHFSCFEnvironment.");
     bindIterativeAlgorithm<UHFSCFEnvironment<double>>(module, "UHFSCFEnvironment", "An algorithm that performs iterations using an UHFSCFEnvironment.");
-    bindIterativeAlgorithm<GHFSCFEnvironment<double>>(module, "GHFSCFEnvironment", "An algorithm that performs iterations using an GHFSCFEnvironment.");
+    bindIterativeAlgorithm<GHFSCFEnvironment<double>>(module, "GHFSCFEnvironment_d", "An algorithm that performs iterations using a real GHFSCFEnvironment.");
+    bindIterativeAlgorithm<GHFSCFEnvironment<complex>>(module, "GHFSCFEnvironment_cd", "An algorithm that performs iterations using a complex GHFSCFEnvironment.");
 
     bindIterativeAlgorithm<CCSDEnvironment<double>>(module, "CCSDEnvironment", "An algorithm that performs iterations using a CCSDEnvironment.");
 }

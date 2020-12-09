@@ -229,7 +229,7 @@ public:
      *  @return A second-quantized molecular Hamiltonian.
      */
     template <typename Z = SpinorTag>
-    static enable_if_t<std::is_same<Z, GeneralSpinorTag>::value, Self> Molecular(const GSpinorBasis<double, GTOShell>& spinor_basis, const Molecule& molecule) {
+    static enable_if_t<std::is_same<Z, GeneralSpinorTag>::value, Self> Molecular(const GSpinorBasis<Scalar, GTOShell>& spinor_basis, const Molecule& molecule) {
 
         // Calculate the integrals for the molecular Hamiltonian
         const auto T = spinor_basis.quantize(Operator::Kinetic());

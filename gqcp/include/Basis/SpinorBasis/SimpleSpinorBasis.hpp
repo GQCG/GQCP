@@ -138,7 +138,7 @@ public:
 
         // Calculate S^{-1/2}, where S is expressed with respect to the current spinors.
         const auto S = this->overlap().parameters();
-        Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> eigensolver {S};
+        Eigen::SelfAdjointEigenSolver<Eigen::Matrix<ExpansionScalar, Eigen::Dynamic, Eigen::Dynamic>> eigensolver {S};
         return Transformation {eigensolver.operatorInverseSqrt()};
     }
 

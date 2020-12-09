@@ -16,6 +16,7 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Basis/Transformations/GTransformation.hpp"
+#include "Utilities/aliases.hpp"
 #include "gqcpy/include/interfaces.hpp"
 
 #include <pybind11/pybind11.h>
@@ -30,18 +31,25 @@ using namespace GQCP;
 
 
 /**
- *  Register `GTransformation_d` to the gqcpy module and expose a part of its C++ interface to Python.
+ *  Register `GTransformation_d` and `GTransformation_cd` to the gqcpy module and expose a part of their C++ interface to Python.
  * 
- *  @param module           The Pybind11 module in which `UTransformation_d` should be registered.
+ *  @param module           The Pybind11 module in which `GTransformation_d` and `GTransformation_cd` should be registered.
  */
-void bindGTransformation(py::module& module) {
+void bindGTransformations(py::module& module) {
 
     // Define the Python class for `GTransformation_d`.
-    py::class_<GTransformation<double>> py_GTransformation_d {module, "GTransformation_d", "A 'general' basis transformation, i.e. a general, full-spinor basis transformation where the transformation mixes the alpha- and beta components of the two-component spinors."};
+    py::class_<GTransformation<double>> py_GTransformation_d {module, "GTransformation_d", "A (real) 'general' basis transformation, i.e. a general, full-spinor basis transformation where the transformation mixes the alpha- and beta components of the two-component spinors."};
 
 
     // Expose the `SimpleTransformation` API to the Python class.
     bindSimpleTransformationInterface(py_GTransformation_d);
+
+
+    // Define the Python class for `GTransformation_cd`.
+    py::class_<GTransformation<complex>> py_GTransformation_cd {module, "GTransformation_cd", "A (complex) 'general' basis transformation, i.e. a general, full-spinor basis transformation where the transformation mixes the alpha- and beta components of the two-component spinors."};
+
+    // Expose the `SimpleTransformation` API to the Python class.
+    bindSimpleTransformationInterface(py_GTransformation_cd);
 }
 
 

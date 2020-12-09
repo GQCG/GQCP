@@ -53,18 +53,18 @@ using namespace GQCP;
  *  @param suffix               the suffix that the Python class should receive, i.e. "QCStructure" + suffix
  *  @param description          the Python class description
  */
-template <typename QCModel>
+template <typename QCModel, typename Scalar = double>
 void bindQCStructure(py::module& module, const std::string& suffix, const std::string& description) {
 
-    py::class_<QCStructure<QCModel>>(module,
-                                     ("QCStructure_" + suffix).c_str(),
-                                     description.c_str())
+    py::class_<QCStructure<QCModel, Scalar>>(module,
+                                             ("QCStructure_" + suffix).c_str(),
+                                             description.c_str())
 
         // PUBLIC METHODS
 
         .def(
             "energy",
-            [](const QCStructure<QCModel>& qc_structure, const size_t i) {
+            [](const QCStructure<QCModel, Scalar>& qc_structure, const size_t i) {
                 return qc_structure.energy(i);
             },
             py::arg("i") = 0,
@@ -72,21 +72,21 @@ void bindQCStructure(py::module& module, const std::string& suffix, const std::s
 
         .def(
             "groundStateEnergy",
-            [](const QCStructure<QCModel>& qc_structure) {
+            [](const QCStructure<QCModel, Scalar>& qc_structure) {
                 return qc_structure.groundStateEnergy();
             },
             "Return the ground state electronic energy for this quantum chemical structure.")
 
         .def(
             "groundStateParameters",
-            [](const QCStructure<QCModel>& qc_structure) {
+            [](const QCStructure<QCModel, Scalar>& qc_structure) {
                 return qc_structure.groundStateParameters();
             },
             "Return the ground state model parameters for this quantum chemical structure.")
 
         .def(
             "parameters",
-            [](const QCStructure<QCModel>& qc_structure, const size_t i) {
+            [](const QCStructure<QCModel, Scalar>& qc_structure, const size_t i) {
                 return qc_structure.parameters(i);
             },
             py::arg("i") = 0,
@@ -103,7 +103,8 @@ void bindQCStructures(py::module& module) {
     bindQCStructure<QCModel::AP1roG>(module, "AP1roG", "A quantum chemical structure for AP1roG parameters.");
     bindQCStructure<QCModel::vAP1roG>(module, "vAP1roG", "A quantum chemical structure for vAP1roG parameters.");
 
-    bindQCStructure<QCModel::GHF<double>>(module, "GHF", "A quantum chemical structure for GHF parameters.");
+    bindQCStructure<QCModel::GHF<double>>(module, "GHF_d", "A quantum chemical structure for real GHF parameters.");
+    bindQCStructure<QCModel::GHF<complex>, complex>(module, "GHF_cd", "A quantum chemical structure for complex GHF parameters.");
     bindQCStructure<QCModel::RHF<double>>(module, "RHF", "A quantum chemical structure for RHF parameters.");
     bindQCStructure<QCModel::UHF<double>>(module, "UHF", "A quantum chemical structure for UHF parameters.");
 
