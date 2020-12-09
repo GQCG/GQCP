@@ -41,6 +41,7 @@
   chapters:
     - file: miscellaneous/troubleshooting
     - file: miscellaneous/citations
+    - file: miscellaneous/api
 
 - part: "Blog posts"
   chapters:
