@@ -38,10 +38,10 @@ BOOST_AUTO_TEST_CASE(H3_stability_test) {
     const auto N_alpha = molecule.numberOfElectronPairs() + (molecule.numberOfElectrons() - 2 * molecule.numberOfElectronPairs());
     const auto N_beta = molecule.numberOfElectronPairs();
 
-    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
-    const auto S = spinor_basis.overlap().parameters();
+    const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+    const auto S = spinor_basis.overlap().alpha().parameters();
 
-    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // In an AO basis.
+    const auto sq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(spinor_basis, molecule);  // In an AO basis.
 
     // Perform a UHF SCF calculation.
     auto environment = GQCP::UHFSCFEnvironment<double>::WithCoreGuess(N_alpha, N_beta, sq_hamiltonian, S);
@@ -51,12 +51,10 @@ BOOST_AUTO_TEST_CASE(H3_stability_test) {
 
     // We can now check the stability of the ground state parameters.
     // For this we need an unrestricted Hamiltonian in the orthonormal MO basis.
-    const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> unrestricted_basis {molecule, "STO-3G"};
-    const auto usq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(unrestricted_basis, molecule);
-    const auto hamiltonian_unrestricted = usq_hamiltonian.transformed(uhf_parameters.expansion());
+    const auto hamiltonian_unrestricted_mo = sq_hamiltonian.transformed(uhf_parameters.expansion());
 
     // Calculate the stability matrices.
-    const auto stability_matrices = uhf_parameters.calculateStabilityMatrices(hamiltonian_unrestricted);
+    const auto stability_matrices = uhf_parameters.calculateStabilityMatrices(hamiltonian_unrestricted_mo);
 
     // This method should be internally stable.
     const auto internal_stability = stability_matrices.isInternallyStable();
@@ -87,10 +85,10 @@ BOOST_AUTO_TEST_CASE(H4_stability_test) {
     const auto N_alpha = molecule.numberOfElectronPairs();
     const auto N_beta = molecule.numberOfElectronPairs();
 
-    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "6-31G"};
-    const auto S = spinor_basis.overlap().parameters();
+    const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "6-31G"};
+    const auto S = spinor_basis.overlap().alpha().parameters();
 
-    const auto sq_hamiltonian = GQCP::RSQHamiltonian<double>::Molecular(spinor_basis, molecule);  // In an AO basis.
+    const auto sq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(spinor_basis, molecule);  // In an AO basis.
 
     // Perform a UHF SCF calculation.
     auto environment = GQCP::UHFSCFEnvironment<double>::WithCoreGuess(N_alpha, N_beta, sq_hamiltonian, S);
@@ -100,12 +98,10 @@ BOOST_AUTO_TEST_CASE(H4_stability_test) {
 
     // We can now check the stability of the ground state parameters.
     // For this we need an unrestricted Hamiltonian in the orthonormal MO basis.
-    const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> unrestricted_basis {molecule, "6-31G"};
-    const auto usq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(unrestricted_basis, molecule);
-    const auto hamiltonian_unrestricted = usq_hamiltonian.transformed(uhf_parameters.expansion());
+    const auto hamiltonian_unrestricted_mo = sq_hamiltonian.transformed(uhf_parameters.expansion());
 
     // Calculate the stability matrices.
-    const auto stability_matrices = uhf_parameters.calculateStabilityMatrices(hamiltonian_unrestricted);
+    const auto stability_matrices = uhf_parameters.calculateStabilityMatrices(hamiltonian_unrestricted_mo);
 
     // This method should be internally unstable.
     const auto internal_stability = stability_matrices.isInternallyStable();

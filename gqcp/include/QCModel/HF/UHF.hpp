@@ -139,7 +139,7 @@ public:
      *
      *  @return the UHF electronic energy for the sigma electrons
      */
-    static double calculateElectronicEnergy(const SpinResolved1DMComponent<Scalar>& P_sigma, const ScalarRSQOneElectronOperator<Scalar>& H_core_sigma, const ScalarRSQOneElectronOperator<Scalar>& F_sigma) {
+    static double calculateElectronicEnergy(const SpinResolved1DMComponent<Scalar>& P_sigma, const ScalarUSQOneElectronOperatorComponent<Scalar>& H_core_sigma, const ScalarUSQOneElectronOperatorComponent<Scalar>& F_sigma) {
 
         // First, calculate the sum of H_core and F (this saves a contraction).
         const auto Z_sigma = H_core_sigma + F_sigma;
@@ -311,15 +311,16 @@ public:
      * 
      *  @return the UHF direct (Coulomb) matrix for spin sigma
      */
-    static ScalarUSQOneElectronOperator<Scalar> calculateScalarBasisDirectMatrix(const SpinResolved1DM<Scalar>& P, const RSQHamiltonian<Scalar>& sq_hamiltonian) {
+    static ScalarUSQOneElectronOperator<Scalar> calculateScalarBasisDirectMatrix(const SpinResolved1DM<Scalar>& P, const USQHamiltonian<Scalar>& sq_hamiltonian) {
 
         // Get the two-electron parameters
-        const auto& g = sq_hamiltonian.twoElectron().parameters();
+        const auto& g_a = sq_hamiltonian.twoElectron().alphaAlpha().parameters();
+        const auto& g_b = sq_hamiltonian.twoElectron().betaBeta().parameters();
 
         // Specify the contraction pairs for the direct contractions:
         //      (mu nu|rho lambda) P(rho lambda)
-        const auto J_alpha = g.template einsum<2>("ijkl,kl->ij", P.alpha()).asMatrix();
-        const auto J_beta = g.template einsum<2>("ijkl,kl->ij", P.beta()).asMatrix();
+        const auto J_alpha = g_a.template einsum<2>("ijkl,kl->ij", P.alpha()).asMatrix();
+        const auto J_beta = g_b.template einsum<2>("ijkl,kl->ij", P.beta()).asMatrix();
 
         // Calculate the total J tensor
         const auto J = J_alpha + J_beta;
@@ -336,15 +337,16 @@ public:
      * 
      *  @return the UHF direct (Coulomb) matrix for spin sigma
      */
-    static ScalarUSQOneElectronOperator<Scalar> calculateScalarBasisExchangeMatrix(const SpinResolved1DM<Scalar>& P, const RSQHamiltonian<Scalar>& sq_hamiltonian) {
+    static ScalarUSQOneElectronOperator<Scalar> calculateScalarBasisExchangeMatrix(const SpinResolved1DM<Scalar>& P, const USQHamiltonian<Scalar>& sq_hamiltonian) {
 
         // Get the two-electron parameters
-        const auto& g = sq_hamiltonian.twoElectron().parameters();
+        const auto& g_a = sq_hamiltonian.twoElectron().alphaAlpha().parameters();
+        const auto& g_b = sq_hamiltonian.twoElectron().betaBeta().parameters();
 
         // Specify the contraction pairs for the exchange contraction:
         //      (mu rho|lambda nu) P(lambda rho)
-        const auto K_alpha = g.template einsum<2>("ijkl,kj->il", P.alpha()).asMatrix();
-        const auto K_beta = g.template einsum<2>("ijkl,kj->il", P.beta()).asMatrix();
+        const auto K_alpha = g_a.template einsum<2>("ijkl,kj->il", P.alpha()).asMatrix();
+        const auto K_beta = g_b.template einsum<2>("ijkl,kj->il", P.beta()).asMatrix();
 
         return ScalarUSQOneElectronOperator<Scalar> {K_alpha, K_beta};
     }
@@ -358,11 +360,11 @@ public:
      *
      *  @return the RHF Fock matrix expressed in the scalar basis
      */
-    static ScalarUSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(const SpinResolved1DM<Scalar>& P, const RSQHamiltonian<Scalar>& sq_hamiltonian) {
+    static ScalarUSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(const SpinResolved1DM<Scalar>& P, const USQHamiltonian<Scalar>& sq_hamiltonian) {
 
         // F_sigma = H_core + (J_alpha + J_beta) - K_sigma
         // H_core is always the same
-        const auto& H_core = sq_hamiltonian.core().parameters();
+        const auto& H_core = sq_hamiltonian.core();
 
         // Get the alpha and beta parameters of the coulomb and exchange matrices
         const auto J_a = UHF<Scalar>::calculateScalarBasisDirectMatrix(P, sq_hamiltonian).alpha().parameters();
@@ -373,8 +375,8 @@ public:
 
 
         // Generate the alpha and beta Fock matrix and put the in a USQOneElectronOperator
-        const auto F_a = H_core + J_a - K_a;
-        const auto F_b = H_core + J_b - K_b;
+        const auto F_a = H_core.alpha().parameters() + J_a - K_a;
+        const auto F_b = H_core.beta().parameters() + J_b - K_b;
 
         return ScalarUSQOneElectronOperator<Scalar> {F_a, F_b};
     }

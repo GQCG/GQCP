@@ -35,7 +35,7 @@ void bindUHFSCFEnvironment(py::module& module) {
 
         // CONSTRUCTORS
 
-        .def(py::init([](const size_t N_alpha, const size_t N_beta, const RSQHamiltonian<double>& sq_hamiltonian, const Eigen::MatrixXd& S, const Eigen::MatrixXd& C_alpha_initial, const Eigen::MatrixXd& C_beta_initial) {
+        .def(py::init([](const size_t N_alpha, const size_t N_beta, const USQHamiltonian<double>& sq_hamiltonian, const Eigen::MatrixXd& S, const Eigen::MatrixXd& C_alpha_initial, const Eigen::MatrixXd& C_beta_initial) {
                  return UHFSCFEnvironment<double>(N_alpha, N_beta, sq_hamiltonian, SquareMatrix<double>(S), UTransformationComponent<double>(C_alpha_initial), UTransformationComponent<double>(C_beta_initial));
              }),
              py::arg("N_alpha"),
@@ -46,7 +46,7 @@ void bindUHFSCFEnvironment(py::module& module) {
              py::arg("C_beta_initial"),
              "A constructor that initializes the environment with initial guesses for the alpha and beta coefficient matrices.")
 
-        .def(py::init([](const QCModel::RHF<double>& rhf_parameters, const RSQHamiltonian<double>& sq_hamiltonian, const Eigen::MatrixXd& S) {  // use an itermediary Eigen matrix for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Matrix
+        .def(py::init([](const QCModel::RHF<double>& rhf_parameters, const USQHamiltonian<double>& sq_hamiltonian, const Eigen::MatrixXd& S) {  // use an itermediary Eigen matrix for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Matrix
                  return UHFSCFEnvironment<double>(rhf_parameters, sq_hamiltonian, SquareMatrix<double>(S));
              }),
              py::arg("rhf_parameters"),
@@ -56,7 +56,7 @@ void bindUHFSCFEnvironment(py::module& module) {
 
         .def_static(
             "WithCoreGuess",
-            [](const size_t N_alpha, const size_t N_beta, const RSQHamiltonian<double>& sq_hamiltonian, const Eigen::MatrixXd& S) {  // use an itermediary Eigen matrix for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Matrix
+            [](const size_t N_alpha, const size_t N_beta, const USQHamiltonian<double>& sq_hamiltonian, const Eigen::MatrixXd& S) {  // use an itermediary Eigen matrix for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Matrix
                 return UHFSCFEnvironment<double>::WithCoreGuess(N_alpha, N_beta, sq_hamiltonian, SquareMatrix<double>(S));
             },
             "Initialize an UHF SCF environment with initial coefficient matrices (equal for alpha and beta) that is obtained by diagonalizing the core Hamiltonian matrix.")
