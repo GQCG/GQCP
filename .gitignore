@@ -24,6 +24,7 @@ version.hpp
 
 
 # Build and back-up folders
+_build*/
 build*/
 cmake-build-*/
 release*/

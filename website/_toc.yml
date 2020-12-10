@@ -1,0 +1,48 @@
+- file: landing-page
+
+- part: "User documentation"
+  chapters:
+    - file: user-documentation/getting-started
+    - file: user-documentation/introduction
+    - file: user-documentation/molecules
+    - file: user-documentation/orbital-bases
+    - file: user-documentation/quantum-chemical-methods
+    - file: user-documentation/quantum-chemical-models
+    - file: user-documentation/use-cases
+
+- part: "Examples"
+  chapters:
+    - file: examples/AP1roG-calculations
+    - file: examples/CCSD
+    - file: examples/Custom-algorithms-showcase-CUHF
+    - file: examples/DOCI
+    - file: examples/FCI
+    - file: examples/HF-Stability
+    - file: examples/Hubbard
+    - file: examples/Mulliken-population
+    - file: examples/ONVPath
+    - file: examples/R-U-GHF-overlaps
+    - file: examples/README
+    - file: examples/RHF-dipole-moments
+    - file: examples/Spinor-bases
+    - file: examples/Try-out-Binder
+    - file: examples/Try-out-Colab
+    - file: examples/UHF-calculations
+
+- part: "Developer documentation"
+  chapters:
+    - file: developer-documentation/getting-started
+    - file: developer-documentation/style-guide
+    - file: developer-documentation/introduction
+    - file: developer-documentation/ONV-path-manipulation
+    - file: developer-documentation/devops
+
+- part: "Miscellaneous"
+  chapters:
+    - file: miscellaneous/troubleshooting
+    - file: miscellaneous/citations
+    - file: miscellaneous/api
+
+- part: "Blog posts"
+  chapters:
+    - file: blog/2020-11-30-RSDD
