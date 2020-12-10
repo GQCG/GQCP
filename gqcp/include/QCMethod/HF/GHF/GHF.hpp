@@ -57,7 +57,7 @@ public:
      *  @param environment          the environment, which acts as a sort of calculation space for the solver
      */
     template <typename Solver>
-    QCStructure<QCModel::GHF<Scalar>> optimize(Solver& solver, GHFSCFEnvironment<Scalar>& environment) const {
+    QCStructure<QCModel::GHF<Scalar>, Scalar> optimize(Solver& solver, GHFSCFEnvironment<Scalar>& environment) const {
 
         // The GHF method's responsibility is to try to optimize the parameters of its method, given a solver and associated environment.
         solver.perform(environment);
@@ -71,7 +71,7 @@ public:
 
         const QCModel::GHF<Scalar> ghf_parameters {N, orbital_energies, C};
 
-        return QCStructure<QCModel::GHF<Scalar>>({E_electronic}, {ghf_parameters});
+        return QCStructure<QCModel::GHF<Scalar>, Scalar>({E_electronic}, {ghf_parameters});
     }
 };
 
