@@ -90,7 +90,7 @@ BOOST_AUTO_TEST_CASE(constrained_CO_test) {
         const auto constrained_hamiltonian = hamiltonian - lambda * mulliken_op;  // In the AO basis.
 
         // Create a DIIS RHF SCF solver and solve the SCF equations.
-        auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), constrained_hamiltonian, S.parameters());
+        auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), constrained_hamiltonian, S);
         auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
         const GQCP::DiagonalRHFFockMatrixObjective<double> objective {constrained_hamiltonian};
 
@@ -186,7 +186,7 @@ BOOST_AUTO_TEST_CASE(constrained_CO_test_random_AO_basis) {
         const auto constrained_hamiltonian = hamiltonian - lambda * mulliken_op;  // In the AO basis.
 
         // Create a DIIS RHF SCF solver and solve the SCF equations.
-        auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), constrained_hamiltonian, S.parameters());
+        auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), constrained_hamiltonian, S);
         auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
         const GQCP::DiagonalRHFFockMatrixObjective<double> objective {constrained_hamiltonian};
 
